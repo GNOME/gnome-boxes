@@ -6,12 +6,12 @@ class CollectionItem: GLib.Object {
 }
 
 class Collection: GLib.Object {
-	public signal void item_added (CollectionItem item);
+    public signal void item_added (CollectionItem item);
 
-	GenericArray<CollectionItem> array = new GenericArray<CollectionItem> ();
+    GenericArray<CollectionItem> array = new GenericArray<CollectionItem> ();
 
-	public void add_item (CollectionItem item) {
-		array.add (item);
-		item_added (item);
-	}
+    public void add_item (CollectionItem item) {
+        array.add (item);
+        item_added (item);
+    }
 }

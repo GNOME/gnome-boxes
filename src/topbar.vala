@@ -2,7 +2,7 @@ using Clutter;
 using Gtk;
 
 class Topbar: BoxesUI {
-	Boxes boxes;
+    Boxes boxes;
     uint height = 50;
 
     Clutter.Actor actor; // the topbar box
@@ -46,6 +46,7 @@ class Topbar: BoxesUI {
         hbox.pack_start (toolbar_start, false, false, 0);
 
         var label = new Gtk.Label ("New and Recent");
+        label.name = "TopbarLabel";
         label.set_halign (Gtk.Align.START);
         hbox.pack_start (label, true, true, 0);
 
@@ -71,21 +72,21 @@ class Topbar: BoxesUI {
         switch (ui_state) {
         case UIState.COLLECTION: {
             toolbar_start.hide ();
-			spinner.hide ();
-			break;
-		}
-		case UIState.CREDS: {
-			toolbar_start.show ();
-			spinner.show ();
-			break;
-		}
-		case UIState.REMOTE: {
-			pin_actor(actor);
-			break;
-		}
-		default:
-			break;
-		}
-	}
+            spinner.hide ();
+            break;
+        }
+        case UIState.CREDS: {
+            toolbar_start.show ();
+            spinner.show ();
+            break;
+        }
+        case UIState.REMOTE: {
+            pin_actor(actor);
+            break;
+        }
+        default:
+            break;
+        }
+    }
 }
 

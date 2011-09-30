@@ -18,5 +18,10 @@ AM_VALAFLAGS =						\
 bin_PROGRAMS = boxes
 
 boxes_SOURCES = boxes.vala box.vala collection.vala util.vala collection-view.vala sidebar.vala topbar.vala
+BUILT_SOURCES = dirs.h
 boxes_LDADD = $(BOXES_LIBS)
 boxes_CFLAGS = $(BOXES_CFLAGS)
+
+DISTCLEANFILES = dirs.h
+dirs.h: Makefile
+	echo '#define DATADIR "$(datadir)"' >$@

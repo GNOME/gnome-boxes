@@ -2,16 +2,16 @@ using GLib;
 using Clutter;
 
 class CollectionView: BoxesUI {
-	Boxes boxes;
+    Boxes boxes;
 
     Clutter.Box actor; // the boxes list box
     Clutter.FlowLayout actor_flow;
     Clutter.Box actor_onebox; // a box on top of boxes list
 
-	public CollectionView (Boxes boxes) {
-		this.boxes = boxes;
-		setup_view ();
-	}
+    public CollectionView (Boxes boxes) {
+        this.boxes = boxes;
+        setup_view ();
+    }
 
     private void setup_view () {
         actor_flow = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
@@ -21,7 +21,7 @@ class CollectionView: BoxesUI {
 
         // for (var i = 0; i < 7; ++i) {
         //     var box = new Box ("vm %d".printf(i));
-		// 	add_box (box);
+        //  add_box (box);
         // }
         boxes.cbox.pack (actor, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
@@ -41,55 +41,55 @@ class CollectionView: BoxesUI {
         boxes.cstate.set_key (null, "remote", actor_onebox, "y", AnimationMode.EASE_OUT_QUAD, (float)0, 0, 0);
     }
 
-	public void add_item (CollectionItem item) {
-		if (item is Box) {
-			var box = (Box)item;
-			var actor = box.actor;
-			var cactor = box.get_clutter_actor ();
-			actor.scale_texture ();
-			actor.entry.set_can_focus (false);
-			actor.entry.hide ();
-			actor.label.show ();
-			this.actor.add_actor (cactor);
-		} else {
-			warning ("Cannot add item %p".printf (&item));
-		}
-	}
+    public void add_item (CollectionItem item) {
+        if (item is Box) {
+            var box = (Box)item;
+            var actor = box.actor;
+            var cactor = box.get_clutter_actor ();
+            actor.scale_texture ();
+            actor.entry.set_can_focus (false);
+            actor.entry.hide ();
+            actor.label.show ();
+            this.actor.add_actor (cactor);
+        } else {
+            warning ("Cannot add item %p".printf (&item));
+        }
+    }
 
-	public void remove_item (CollectionItem item) {
-		if (item is Box) {
-			var box = (Box)item;
-			var actor = box.get_clutter_actor ();
-			this.actor.remove_actor (actor);
-		} else {
-			warning ("Cannot remove item %p".printf (&item));
-		}
-	}
+    public void remove_item (CollectionItem item) {
+        if (item is Box) {
+            var box = (Box)item;
+            var actor = box.get_clutter_actor ();
+            this.actor.remove_actor (actor);
+        } else {
+            warning ("Cannot remove item %p".printf (&item));
+        }
+    }
 
-	public override void ui_state_changed () {
+    public override void ui_state_changed () {
         switch (ui_state) {
-		case UIState.CREDS: {
-			var actor = boxes.box.actor;
-			var cactor = actor.actor;
+        case UIState.CREDS: {
+            var actor = boxes.box.actor;
+            var cactor = actor.actor;
 
             remove_item (boxes.box);
 
-			actor.scale_texture (2.0f);
-			actor.entry.show ();
-			//      actor.entry.set_sensitive (false); FIXME: depending on spice-gtk conn. results
-			actor.entry.set_can_focus (true);
-			actor.entry.grab_focus ();
+            actor.scale_texture (2.0f);
+            actor.entry.show ();
+            //      actor.entry.set_sensitive (false); FIXME: depending on spice-gtk conn. results
+            actor.entry.set_can_focus (true);
+            actor.entry.grab_focus ();
 
-			actor_onebox.pack (cactor,
-							   "x-align", Clutter.BinAlignment.CENTER,
-							   "y-align", Clutter.BinAlignment.CENTER);
+            actor_onebox.pack (cactor,
+                               "x-align", Clutter.BinAlignment.CENTER,
+                               "y-align", Clutter.BinAlignment.CENTER);
 
-			this.actor.set_layout_manager (new Clutter.FixedLayout ());
-			break;
-		}
-		case UIState.REMOTE: {
-			var actor = boxes.box.actor;
-			var cactor = actor.actor;
+            this.actor.set_layout_manager (new Clutter.FixedLayout ());
+            break;
+        }
+        case UIState.REMOTE: {
+            var actor = boxes.box.actor;
+            var cactor = actor.actor;
             float x, y;
 
             actor.entry.hide ();
@@ -100,33 +100,33 @@ class CollectionView: BoxesUI {
             boxes.cstage.add_actor (cactor);
             cactor.set_position (x, y);
 
-			int w, h;
-			boxes.window.get_size (out w, out h);
+            int w, h;
+            boxes.window.get_size (out w, out h);
             actor.ctexture.animate (Clutter.AnimationMode.LINEAR, 555,
                                     "width", (float)w,
                                     "height", (float)h);
             actor.actor.animate (Clutter.AnimationMode.LINEAR, 555,
                                  "x", 0.0f,
-								 "y", 0.0f);
+                                 "y", 0.0f);
 
 
-			break;
-		}
-		case UIState.COLLECTION: {
-			if (boxes.box == null)
-				break;
+            break;
+        }
+        case UIState.COLLECTION: {
+            if (boxes.box == null)
+                break;
 
-			var actor = boxes.box.actor;
-			var cactor = actor.actor;
+            var actor = boxes.box.actor;
+            var cactor = actor.actor;
 
-			actor_onebox.remove_actor (cactor);
-			add_item (boxes.box);
+            actor_onebox.remove_actor (cactor);
+            add_item (boxes.box);
 
-			this.actor.set_layout_manager (actor_flow);
-			break;
-		}
-		default:
-			break;
-		}
-	}
+            this.actor.set_layout_manager (actor_flow);
+            break;
+        }
+        default:
+            break;
+        }
+    }
 }
