@@ -26,6 +26,7 @@ GOBJECT_INTROSPECTION_REQUIRE([0.9.6])
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_CXX
+AM_PROG_VALAC([0.12.0])
 
 # no stupid static libraries
 AM_DISABLE_STATIC
@@ -41,13 +42,19 @@ GTK_MIN_VERSION=3.1.13
 GOBJECT_INTROSPECTION_MIN_VERSION=0.9.6
 CLUTTER_GTK_MIN_VERSION=1.0.1
 SPICE_GTK_MIN_VERSION=0.7
+LIBVIRT_GLIB_MIN_VERSION=0.0.1
 
 PKG_CHECK_MODULES(BOXES,
                   clutter-gtk-1.0 >= $CLUTTER_GTK_MIN_VERSION
                   glib-2.0 >= $GLIB_MIN_VERSION
                   gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
                   spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
-                  gtk+-3.0 >= $GTK_MIN_VERSION)
+                  gtk+-3.0 >= $GTK_MIN_VERSION
+                  libvirt-gobject-1.0 >= $LIBVIRT_GLIB_MIN_VERSION)
+
+VALA_CHECK_PACKAGES([
+glib-2.0
+]) dnl FIXME
 
 AC_CONFIG_FILES([
 Makefile
