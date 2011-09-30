@@ -9,9 +9,9 @@ namespace GVir {
 		public void close ();
 		public GVir.Domain create_domain (GVirConfig.Domain conf) throws GLib.Error;
 		public bool fetch_domains (GLib.Cancellable? cancellable) throws GLib.Error;
-		public async bool fetch_domains_async (GLib.Cancellable? cancellable, void* opaque) throws GLib.Error;
+		public async bool fetch_domains_async (GLib.Cancellable? cancellable) throws GLib.Error;
 		public bool fetch_storage_pools (GLib.Cancellable? cancellable) throws GLib.Error;
-		public async bool fetch_storage_pools_async (GLib.Cancellable? cancellable, void* opaque) throws GLib.Error;
+		public async bool fetch_storage_pools_async (GLib.Cancellable? cancellable) throws GLib.Error;
 		public GVir.Domain find_domain_by_id (int id);
 		public GVir.Domain find_domain_by_name (string name);
 		public GVir.StoragePool find_storage_pool_by_name (string name);
@@ -183,7 +183,7 @@ namespace GVir {
 		public GVir.StoragePool get_volume (string name);
 		public GLib.List<GVir.StoragePool> get_volumes ();
 		public bool refresh (GLib.Cancellable? cancellable) throws GLib.Error;
-		public async bool refresh_async (GLib.Cancellable? cancellable, void* opaque) throws GLib.Error;
+		public async bool refresh_async (GLib.Cancellable? cancellable) throws GLib.Error;
 		[NoAccessorMethod]
 		public GVir.StoragePoolHandle handle { owned get; construct; }
 	}
@@ -227,8 +227,8 @@ namespace GVir {
 		SHUTOFF,
 		CRASHED
 	}
-	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h", instance_pos = 3.9)]
-	public delegate int StreamSinkFunc (GVir.Stream stream, string buf, size_t nbytes);
+	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h", instance_pos = 2.9)]
+	public delegate int StreamSinkFunc (GVir.Stream stream, [CCode (array_length_cname = "nbytes", array_length_pos = 2.1, array_length_type = "gsize")] out unowned string[] buf);
 	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h")]
 	public static void init_object ([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref string[]? argv);
 	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h")]
