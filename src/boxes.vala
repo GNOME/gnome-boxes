@@ -15,7 +15,8 @@ public enum UIState {
 }
 
 class Boxes: BoxesUI {
-    public GtkClutter.Window window;
+    public Gtk.Window window;
+	public GtkClutter.Embed embed;
     public Clutter.Stage cstage;
     public Clutter.State cstate;
     public Clutter.Box cbox; // the whole app box
@@ -63,9 +64,17 @@ class Boxes: BoxesUI {
 	}
 
 	private void setup_ui () {
-        window = new GtkClutter.Window ();
+        window = new Gtk.Window ();
         window.set_default_size (640, 480);
-        cstage = (Clutter.Stage)window.get_stage ();
+		embed = new GtkClutter.Embed ();
+		embed.show ();
+		window.add (embed);
+        cstage = (Clutter.Stage)embed.get_stage ();
+
+		var a = new GtkClutter.Actor (); // just to have background
+		a.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) cstage, BindCoordinate.SIZE, 0));
+		((Clutter.Container) cstage).add_actor (a);
+
         cstate = new Clutter.State ();
         cstate.set_duration (null, null, 555); // default to 1/2 for all transitions
 
