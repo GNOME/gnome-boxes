@@ -1,3 +1,4 @@
+using GLib;
 using Gtk;
 using Config;
 
@@ -7,6 +8,20 @@ public string get_pkgdata (string? file = null) {
 
 public string get_style (string? file = null) {
     return Path.build_filename (get_pkgdata (), "style", file);
+}
+
+public string get_pkgcache (string? file = null) {
+	var dir = Path.build_filename (Environment.get_user_cache_dir (), Config.PACKAGE_TARNAME);
+
+	try {
+		var f = GLib.File.new_for_path (dir);
+		f.make_directory_with_parents (null);
+	} catch (GLib.Error e) {
+		if (!(e is IOError.EXISTS))
+			warning (e.message);
+	}
+
+	return Path.build_filename (dir, file);
 }
 
 public void tree_view_activate_on_single_click (Gtk.TreeView tv, bool should_activate)
@@ -33,3 +48,13 @@ public void tree_view_activate_on_single_click (Gtk.TreeView tv, bool should_act
     }
 }
 
+public async void output_stream_write (OutputStream o, uint8[] buffer) throws GLib.IOError
+{
+	var l = buffer.length;
+	ssize_t i = 0;
+
+	while (i < l) {
+		i += yield o.write_async (buffer[i:l]);
+		message (i.to_string ());
+	}
+}

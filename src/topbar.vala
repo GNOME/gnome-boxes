@@ -8,6 +8,7 @@ class Topbar: BoxesUI {
     Clutter.Actor actor; // the topbar box
     Gtk.Notebook notebook;
     public Gtk.Widget corner;
+	public Gtk.Label label;
     Gtk.HBox hbox;
     Gtk.Toolbar toolbar_start;
     Gtk.ToolButton spinner;
@@ -45,7 +46,7 @@ class Topbar: BoxesUI {
         toolbar_start.set_show_arrow (false);
         hbox.pack_start (toolbar_start, false, false, 0);
 
-        var label = new Gtk.Label ("New and Recent");
+        label = new Gtk.Label ("New and Recent");
         label.name = "TopbarLabel";
         label.set_halign (Gtk.Align.START);
         hbox.pack_start (label, true, true, 0);

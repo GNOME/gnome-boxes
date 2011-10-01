@@ -52,9 +52,15 @@ namespace GVir {
 		public bool start (uint64 flags) throws GLib.Error;
 		public bool stop (uint64 flags) throws GLib.Error;
 		[NoWrapper]
+		public virtual void vir_domain_resumed ();
+		[NoWrapper]
 		public virtual void vir_domain_started ();
 		[NoWrapper]
 		public virtual void vir_domain_stopped ();
+		[NoWrapper]
+		public virtual void vir_domain_suspended ();
+		[NoWrapper]
+		public virtual void vir_domain_updated ();
 		[NoAccessorMethod]
 		public GVir.DomainHandle handle { owned get; construct; }
 		public signal void vir_resumed (string object);
@@ -206,10 +212,11 @@ namespace GVir {
 	public class StorageVolHandle {
 	}
 	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h", type_id = "gvir_stream_get_type ()")]
-	public class Stream : GLib.Object {
+	public class Stream : GLib.IOStream {
 		[CCode (has_construct_function = false)]
 		protected Stream ();
-		public int receive_all (GVir.StreamSinkFunc func) throws GLib.Error;
+		public ssize_t receive (string buffer, size_t size, GLib.Cancellable? cancellable) throws GLib.Error;
+		public ssize_t receive_all (GVir.StreamSinkFunc func) throws GLib.Error;
 		[NoAccessorMethod]
 		public GVir.StreamHandle handle { owned get; construct; }
 	}

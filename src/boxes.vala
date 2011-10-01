@@ -21,6 +21,7 @@ class Boxes: BoxesUI {
     public Clutter.State cstate;
     public Clutter.Box cbox; // the whole app box
     public Box? box; // currently selected box
+	public GVir.Connection conn;
 
     Clutter.TableLayout cbox_table;
 
@@ -48,17 +49,17 @@ class Boxes: BoxesUI {
     }
 
     private async void setup_libvirt () {
-        var c = new GVir.Connection("qemu:///system");
+        conn = new GVir.Connection("qemu:///system");
 
         try {
-            yield c.open_async (null);
-            c.fetch_domains(null);
+            yield conn.open_async (null);
+            conn.fetch_domains(null);
         } catch (GLib.Error e) {
             warning (e.message);
         }
 
-        foreach (var d in c.get_domains()) {
-            var box = new Box (d);
+        foreach (var d in conn.get_domains()) {
+            var box = new Box (this, d);
             collection.add_item (box);
         }
     }
@@ -98,6 +99,10 @@ class Boxes: BoxesUI {
 
         set_ui_state (UIState.COLLECTION);
     }
+
+	public void set_category (Category category) {
+		topbar.label.set_text (category.name);
+	}
 
     void set_ui_state (UIState state) {
         message ("Switching layout to %s".printf (state.to_string ()));

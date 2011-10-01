@@ -19,10 +19,6 @@ class CollectionView: BoxesUI {
         actor_flow.set_column_spacing (35);
         actor_flow.set_row_spacing (25);
 
-        // for (var i = 0; i < 7; ++i) {
-        //     var box = new Box ("vm %d".printf(i));
-        //  add_box (box);
-        // }
         boxes.cbox.pack (actor, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
         // FIXME! report bug to clutter about flow inside table
