@@ -1,20 +1,20 @@
 using Clutter;
 using Gtk;
 
-class Topbar: BoxesUI {
-    Boxes boxes;
+class Boxes.Topbar: Boxes.UI {
+    App app;
     uint height = 50;
 
     Clutter.Actor actor; // the topbar box
     Gtk.Notebook notebook;
     public Gtk.Widget corner;
-	public Gtk.Label label;
+    public Gtk.Label label;
     Gtk.HBox hbox;
     Gtk.Toolbar toolbar_start;
     Gtk.ToolButton spinner;
 
-    public Topbar (Boxes boxes) {
-        this.boxes = boxes;
+    public Topbar (App app) {
+        this.app = app;
         setup_topbar ();
     }
 
@@ -22,10 +22,10 @@ class Topbar: BoxesUI {
         notebook = new Gtk.Notebook ();
         notebook.set_size_request (50, (int)height);
         actor = new GtkClutter.Actor.with_contents (notebook);
-        boxes.cbox.pack (actor,
-                         "column", 0, "row", 0,
-                         "column-span", 2,
-                         "x-expand", true, "y-expand", false);
+        app.cbox.pack (actor,
+                       "column", 0, "row", 0,
+                       "column-span", 2,
+                       "x-expand", true, "y-expand", false);
 
         hbox = new Gtk.HBox (false, 0);
         hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
@@ -41,7 +41,7 @@ class Topbar: BoxesUI {
         var back = new Gtk.ToolButton (null, null);
         back.icon_name =  "go-previous-symbolic";
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ( (button) => { boxes.go_back (); });
+        back.clicked.connect ( (button) => { app.go_back (); });
         toolbar_start.insert (back, 0);
         toolbar_start.set_show_arrow (false);
         hbox.pack_start (toolbar_start, false, false, 0);
@@ -66,7 +66,7 @@ class Topbar: BoxesUI {
         notebook.show_tabs = false;
         notebook.show_all ();
 
-        boxes.cstate.set_key (null, "remote", actor, "y", AnimationMode.EASE_OUT_QUAD, -(float)height, 0, 0); // FIXME: make it dynamic depending on topbar size..
+        app.cstate.set_key (null, "display", actor, "y", AnimationMode.EASE_OUT_QUAD, -(float)height, 0, 0); // FIXME: make it dynamic depending on topbar size..
     }
 
     public override void ui_state_changed () {
@@ -81,7 +81,7 @@ class Topbar: BoxesUI {
             spinner.show ();
             break;
         }
-        case UIState.REMOTE: {
+        case UIState.DISPLAY: {
             pin_actor(actor);
             break;
         }

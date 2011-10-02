@@ -43,25 +43,31 @@ GOBJECT_INTROSPECTION_MIN_VERSION=0.9.6
 CLUTTER_GTK_MIN_VERSION=1.0.1
 SPICE_GTK_MIN_VERSION=0.7
 LIBVIRT_GLIB_MIN_VERSION=0.0.1
+LIBXML2_MIN_VERSION=2.7.8
 
-PKG_CHECK_MODULES(BOXES,
-                  clutter-gtk-1.0 >= $CLUTTER_GTK_MIN_VERSION
-                  glib-2.0 >= $GLIB_MIN_VERSION
-                  gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
-                  spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
-                  gtk+-3.0 >= $GTK_MIN_VERSION
-                  libvirt-gobject-1.0 >= $LIBVIRT_GLIB_MIN_VERSION)
+PKG_CHECK_MODULES(BOXES, [
+  clutter-gtk-1.0 >= $CLUTTER_GTK_MIN_VERSION
+  glib-2.0 >= $GLIB_MIN_VERSION
+  gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
+  spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
+  gtk+-3.0 >= $GTK_MIN_VERSION
+  libvirt-gobject-1.0 >= $LIBVIRT_GLIB_MIN_VERSION
+  libxml-2.0 >= $LIBXML2_MIN_VERSION
+])
 
 VALA_CHECK_PACKAGES([
-glib-2.0
-]) dnl FIXME
+  clutter-gtk-1.0
+  gdk-pixbuf-2.0
+  glib-2.0
+  libxml-2.0
+])
 
 AC_CONFIG_FILES([
-Makefile
-src/Makefile
-data/Makefile
-data/boxes.desktop.in
-po/Makefile.in
+  Makefile
+  src/Makefile
+  data/Makefile
+  data/boxes.desktop.in
+  po/Makefile.in
 ])
 
 AC_OUTPUT

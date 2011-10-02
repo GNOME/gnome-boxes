@@ -1,12 +1,12 @@
 using GLib;
 
-class CollectionItem: GLib.Object {
+class Boxes.CollectionItem: GLib.Object {
     GenericArray<Category> categories = new GenericArray<Category> ();
 
     public string name;
 }
 
-class Collection: GLib.Object {
+class Boxes.Collection: GLib.Object {
     public signal void item_added (CollectionItem item);
 
     GenericArray<CollectionItem> array = new GenericArray<CollectionItem> ();
@@ -17,14 +17,14 @@ class Collection: GLib.Object {
     }
 }
 
-class Category: GLib.Object {
-	public string name;
+class Boxes.Category: GLib.Object {
+    public string name;
 
-	public Category (string name) {
-		this.name = name;
-	}
+    public Category (string name) {
+        this.name = name;
+    }
 
-	public bool item_filter (CollectionItem item) {
-		return true;
-	}
+    // public bool item_filter (CollectionItem item) {
+    //     return true;
+    // }
 }

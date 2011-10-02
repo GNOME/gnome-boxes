@@ -8,20 +8,31 @@ AM_CPPFLAGS =						\
 AM_VALAFLAGS =						\
 	--vapidir=$(srcdir)/				\
 	--vapidir=$(top_srcdir)/vapi                    \
-	--pkg config					\
-	--pkg glib-2.0					\
 	--pkg clutter-gtk-1.0				\
-	--pkg spice-client-gtk-3.0			\
+	--pkg config					\
+	--pkg gdk-pixbuf-2.0				\
+	--pkg glib-2.0					\
 	--pkg libvirt-gobject-1.0			\
+	--pkg libxml-2.0				\
+	--pkg spice-client-gtk-3.0			\
 	$(NULL)
 
 bin_PROGRAMS = boxes
 
-boxes_SOURCES = boxes.vala box.vala collection.vala util.vala collection-view.vala sidebar.vala topbar.vala
+boxes_SOURCES =					\
+	box.vala				\
+	boxes.vala				\
+	collection-view.vala			\
+	collection.vala				\
+	sidebar.vala				\
+	spice-display.vala			\
+	topbar.vala				\
+	util.vala				\
+	$(NULL)
 BUILT_SOURCES = dirs.h
 boxes_LDADD = $(BOXES_LIBS)
 boxes_CFLAGS = $(BOXES_CFLAGS)
 
 DISTCLEANFILES = dirs.h
 dirs.h: Makefile
-	echo '#define DATADIR "$(datadir)"' >$@
+	$(AM_V_GEN)echo '#define DATADIR "$(datadir)"' >$@

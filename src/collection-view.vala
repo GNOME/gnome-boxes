@@ -1,52 +1,53 @@
 using GLib;
 using Clutter;
 
-class CollectionView: BoxesUI {
-    Boxes boxes;
+class Boxes.CollectionView: Boxes.UI {
+    App app;
 
-    Clutter.Box actor; // the boxes list box
-    Clutter.FlowLayout actor_flow;
+    Clutter.Group actor; // the surrounding actor, for the margin
+    Clutter.Box boxes; // the boxes list box
+    Clutter.FlowLayout flow;
     Clutter.Box actor_onebox; // a box on top of boxes list
 
-    public CollectionView (Boxes boxes) {
-        this.boxes = boxes;
+    public CollectionView (App app) {
+        this.app = app;
         setup_view ();
     }
 
     private void setup_view () {
-        actor_flow = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
-        actor = new Clutter.Box (actor_flow);
-        actor_flow.set_column_spacing (35);
-        actor_flow.set_row_spacing (25);
+        flow = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
+        actor = new Clutter.Group ();
+        boxes = new Clutter.Box (flow);
+        flow.set_column_spacing (35);
+        flow.set_row_spacing (25);
+        actor.add (boxes);
+        app.cbox.pack (actor, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
-        boxes.cbox.pack (actor, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
-
-        // FIXME! report bug to clutter about flow inside table
-        actor.add_constraint_with_name ("boxes-left", new Clutter.SnapConstraint (boxes.cstage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
-        actor.add_constraint_with_name ("boxes-bottom", new Clutter.SnapConstraint (boxes.cstage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
+        boxes.set_position (15f, 15f);
+        boxes.add_constraint_with_name ("boxes-width", new Clutter.BindConstraint (actor, BindCoordinate.WIDTH, -25f));
+        boxes.add_constraint_with_name ("boxes-height", new Clutter.BindConstraint (actor, BindCoordinate.HEIGHT, -25f));
+     // FIXME! report bug to clutter about flow inside table
+        actor.add_constraint_with_name ("boxes-left", new Clutter.SnapConstraint (app.cstage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
+        actor.add_constraint_with_name ("boxes-bottom", new Clutter.SnapConstraint (app.cstage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
 
         actor_onebox = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
         actor_onebox.add_constraint_with_name ("onebox-size", new Clutter.BindConstraint (actor, BindCoordinate.SIZE, 0));
         actor_onebox.add_constraint_with_name ("onebox-position", new Clutter.BindConstraint (actor, BindCoordinate.POSITION, 0));
-        boxes.cstage.add_actor (actor_onebox);
+        app.cstage.add_actor (actor_onebox);
 
-        boxes.cstate.set_key (null, "creds", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint)0, 0, 0);
-        boxes.cstate.set_key (null, "remote", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint)0, 0, 0);
-        boxes.cstate.set_key (null, "collection", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint)255, 0, 0);
-        boxes.cstate.set_key (null, "remote", actor_onebox, "x", AnimationMode.EASE_OUT_QUAD, (float)0, 0, 0);
-        boxes.cstate.set_key (null, "remote", actor_onebox, "y", AnimationMode.EASE_OUT_QUAD, (float)0, 0, 0);
+        app.cstate.set_key (null, "creds", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint)0, 0, 0);
+        app.cstate.set_key (null, "display", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint)0, 0, 0);
+        app.cstate.set_key (null, "collection", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint)255, 0, 0);
+        app.cstate.set_key (null, "display", actor_onebox, "x", AnimationMode.EASE_OUT_QUAD, (float)0, 0, 0);
+        app.cstate.set_key (null, "display", actor_onebox, "y", AnimationMode.EASE_OUT_QUAD, (float)0, 0, 0);
     }
 
     public void add_item (CollectionItem item) {
         if (item is Box) {
             var box = (Box)item;
-            var actor = box.actor;
-            var cactor = box.get_clutter_actor ();
-            actor.scale_texture ();
-            actor.entry.set_can_focus (false);
-            actor.entry.hide ();
-            actor.label.show ();
-            this.actor.add_actor (cactor);
+
+            box.actor.ui_state = UIState.COLLECTION;
+            actor_add (box.get_clutter_actor (), boxes);
         } else {
             warning ("Cannot add item %p".printf (&item));
         }
@@ -56,7 +57,8 @@ class CollectionView: BoxesUI {
         if (item is Box) {
             var box = (Box)item;
             var actor = box.get_clutter_actor ();
-            this.actor.remove_actor (actor);
+            if (actor.get_parent () == this.boxes)
+                this.boxes.remove_actor (actor); // FIXME: why Clutter warn here??!
         } else {
             warning ("Cannot remove item %p".printf (&item));
         }
@@ -65,60 +67,42 @@ class CollectionView: BoxesUI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS: {
-            var actor = boxes.box.actor;
-            var cactor = actor.actor;
+            remove_item (app.box);
+            app.box.actor.ui_state = UIState.CREDS;
 
-            remove_item (boxes.box);
-
-            actor.scale_texture (2.0f);
-            actor.entry.show ();
-            //      actor.entry.set_sensitive (false); FIXME: depending on spice-gtk conn. results
-            actor.entry.set_can_focus (true);
-            actor.entry.grab_focus ();
-
-            actor_onebox.pack (cactor,
+            actor_onebox.pack (app.box.get_clutter_actor (),
                                "x-align", Clutter.BinAlignment.CENTER,
                                "y-align", Clutter.BinAlignment.CENTER);
 
-            this.actor.set_layout_manager (new Clutter.FixedLayout ());
+            this.boxes.set_layout_manager (new Clutter.FixedLayout ());
             break;
         }
-        case UIState.REMOTE: {
-            var actor = boxes.box.actor;
-            var cactor = actor.actor;
+        case UIState.DISPLAY: {
             float x, y;
+            var a = app.box.get_clutter_actor ();
 
-            actor.entry.hide ();
-            actor.label.hide ();
+            /* move box actor to stage */
+            a.get_transformed_position (out x, out y);
+            if (a.get_parent () == actor_onebox)
+                actor_onebox.remove_actor (a);
+            if (a.get_parent () != app.cstage)
+                app.cstage.add_actor (a);
+            a.set_position (x, y);
 
-            cactor.get_transformed_position (out x, out y);
-            actor_onebox.remove_actor (cactor);
-            boxes.cstage.add_actor (cactor);
-            cactor.set_position (x, y);
-
-            int w, h;
-            boxes.window.get_size (out w, out h);
-            actor.ctexture.animate (Clutter.AnimationMode.LINEAR, 555,
-                                    "width", (float)w,
-                                    "height", (float)h);
-            actor.actor.animate (Clutter.AnimationMode.LINEAR, 555,
-                                 "x", 0.0f,
-                                 "y", 0.0f);
-
-
+            app.box.actor.ui_state = UIState.DISPLAY;
             break;
         }
         case UIState.COLLECTION: {
-            if (boxes.box == null)
+            boxes.set_layout_manager (flow);
+
+            if (app.box == null)
                 break;
 
-            var actor = boxes.box.actor;
-            var cactor = actor.actor;
+            var a = app.box.get_clutter_actor ();
+            if (a.get_parent () == actor_onebox)
+                actor_onebox.remove_actor (a);
+            add_item (app.box);
 
-            actor_onebox.remove_actor (cactor);
-            add_item (boxes.box);
-
-            this.actor.set_layout_manager (actor_flow);
             break;
         }
         default:

@@ -3,24 +3,24 @@ using Gdk;
 using Clutter;
 using GLib;
 
-class Sidebar: BoxesUI {
-    Boxes boxes;
-    uint width = 200;
+class Boxes.Sidebar: Boxes.UI {
+    App app;
+    uint width = 180;
 
     Clutter.Actor actor; // the sidebar box
     public Gtk.Notebook notebook;
     public Gtk.TreeView tree_view;
 
-    public Sidebar(Boxes boxes) {
-        this.boxes = boxes;
+    public Sidebar(App app) {
+        this.app = app;
         setup_sidebar ();
     }
 
     private void list_append (ListStore listmodel,
-							  Category category,
-							  string? icon = null,
-							  uint height = 0,
-							  bool sensitive = true) {
+                              Category category,
+                              string? icon = null,
+                              uint height = 0,
+                              bool sensitive = true) {
         Gtk.TreeIter iter;
 
         listmodel.append (out iter);
@@ -28,7 +28,7 @@ class Sidebar: BoxesUI {
         listmodel.set (iter, 1, height);
         listmodel.set (iter, 2, sensitive);
         listmodel.set (iter, 3, icon);
-		listmodel.set (iter, 4, category);
+        listmodel.set (iter, 4, category);
     }
 
     private static bool selection_func (Gtk.TreeSelection selection, Gtk.TreeModel model,
@@ -43,7 +43,7 @@ class Sidebar: BoxesUI {
 
     private void setup_sidebar () {
         notebook = new Gtk.Notebook ();
-        notebook.set_size_request ((int)width, 200);
+        notebook.set_size_request ((int)width, 100);
 
         var vbox = new Gtk.VBox (false, 0);
         notebook.append_page (vbox, new Gtk.Label (""));
@@ -52,19 +52,19 @@ class Sidebar: BoxesUI {
         var selection = tree_view.get_selection ();
         selection.set_select_function (selection_func);
         tree_view_activate_on_single_click (tree_view, true);
-		tree_view.row_activated.connect ( (tv, path, column) => {
-				Gtk.TreeIter iter;
-				Category category;
-				var model = tv.get_model ();
-				bool selectable;
+        tree_view.row_activated.connect ( (tv, path, column) => {
+                Gtk.TreeIter iter;
+                Category category;
+                var model = tv.get_model ();
+                bool selectable;
 
-				model.get_iter (out iter, path);
-				model.get (iter, 4, out category);
-				model.get (iter, 2, out selectable);
+                model.get_iter (out iter, path);
+                model.get (iter, 4, out category);
+                model.get (iter, 2, out selectable);
 
-				if (selectable)
-					boxes.set_category (category);
-			});
+                if (selectable)
+                    app.set_category (category);
+            });
 
         vbox.pack_start (tree_view, true, true, 0);
         notebook.page = 0;
@@ -72,12 +72,17 @@ class Sidebar: BoxesUI {
         notebook.show_all ();
 
         actor = new GtkClutter.Actor.with_contents (notebook);
-        boxes.cbox.pack (actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
+        app.cbox.pack (actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
 
         var listmodel = new ListStore (5, typeof (string), typeof (uint), typeof (bool), typeof (string), typeof (Category));
         tree_view.set_model (listmodel);
         tree_view.headers_visible = false;
-        tree_view.insert_column_with_attributes (-1, "", new CellRendererPixbuf (), "icon-name", 3);
+        var cellpix = new CellRendererPixbuf ();
+        // cellpix.width = 20;
+        // cellpix.mode = CellRendererMode.INERT;
+        // cellpix.xalign = 1f;
+        cellpix.xpad = 5;
+        tree_view.insert_column_with_attributes (-1, "", cellpix, "icon-name", 3);
         tree_view.insert_column_with_attributes (-1, "", new CellRendererText (), "text", 0, "height", 1, "sensitive", 2);
 
         list_append (listmodel, new Category ("New and Recent"));
@@ -86,18 +91,20 @@ class Sidebar: BoxesUI {
         list_append (listmodel, new Category ("Private"), "channel-secure-symbolic");
         list_append (listmodel, new Category ("Shared with you"), "emblem-shared-symbolic");
         list_append (listmodel, new Category ("Collections"), null, 40, false);
+        // TODO: make it dynamic
         list_append (listmodel, new Category ("Work"));
         list_append (listmodel, new Category ("Game"));
 
         var create = new Gtk.Button.with_label ("Create");
+        create.margin = 5;
         vbox.pack_end (create, false, false, 0);
         create.show ();
 
-        boxes.cstate.set_key (null, "remote", actor, "x", AnimationMode.EASE_OUT_QUAD, -(float)width, 0, 0); // FIXME: make it dynamic depending on sidebar size..
+        app.cstate.set_key (null, "display", actor, "x", AnimationMode.EASE_OUT_QUAD, -(float)width, 0, 0); // FIXME: make it dynamic depending on sidebar size..
     }
 
     public override void ui_state_changed () {
-        if (ui_state == UIState.REMOTE) {
+        if (ui_state == UIState.DISPLAY) {
             pin_actor(actor);
         }
     }

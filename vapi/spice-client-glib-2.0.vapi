@@ -36,7 +36,7 @@ namespace Spice {
 		public Spice.Session spice_session { owned get; construct; }
 		[NoAccessorMethod]
 		public ulong total_read_bytes { get; }
-		public virtual signal void channel_event (int event);
+		public virtual signal void channel_event (Spice.ChannelEvent event);
 		[HasEmitter]
 		public virtual signal void open_fd (int with_tls);
 	}
