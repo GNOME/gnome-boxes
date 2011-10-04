@@ -17,9 +17,9 @@ AM_VALAFLAGS =						\
 	--pkg spice-client-gtk-3.0			\
 	$(NULL)
 
-bin_PROGRAMS = boxes
+bin_PROGRAMS = gnome-boxes
 
-boxes_SOURCES =					\
+gnome_boxes_SOURCES =					\
 	box.vala				\
 	boxes.vala				\
 	collection-view.vala			\
@@ -30,8 +30,8 @@ boxes_SOURCES =					\
 	util.vala				\
 	$(NULL)
 BUILT_SOURCES = dirs.h
-boxes_LDADD = $(BOXES_LIBS)
-boxes_CFLAGS = $(BOXES_CFLAGS)
+gnome_boxes_LDADD = $(BOXES_LIBS)
+gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
 
 DISTCLEANFILES = dirs.h
 dirs.h: Makefile

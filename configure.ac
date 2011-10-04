@@ -1,6 +1,6 @@
 AC_PREREQ([2.63])
 
-AC_INIT([boxes], [m4_esyscmd(build-aux/git-version-gen .tarball-version)],
+AC_INIT([gnome-boxes], [m4_esyscmd(build-aux/git-version-gen .tarball-version)],
         [spice-devel@lists.freedesktop.org])
 
 AC_CONFIG_MACRO_DIR([m4])
@@ -66,7 +66,7 @@ AC_CONFIG_FILES([
   Makefile
   src/Makefile
   data/Makefile
-  data/boxes.desktop.in
+  data/gnome-boxes.desktop.in
   po/Makefile.in
 ])
 
