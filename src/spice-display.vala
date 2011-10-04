@@ -1,43 +1,21 @@
-/*
- * Copyright (C) 2011 Red Hat, Inc.
- *
- * Authors: Marc-André Lureau <marcandre.lureau@gmail.com>
- *          Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *
- * This file is part of GNOME Boxes.
- *
- * GNOME Boxes is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * GNOME Boxes is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
+// This file is part of GNOME Boxes. License: LGPL2
 using Gtk;
 using Spice;
 
-public class Boxes.SpiceDisplay: Boxes.Display {
+private class Boxes.SpiceDisplay: Boxes.Display {
     private Session session;
 
     public SpiceDisplay (string host, int port) {
-        this.session = new Session ();
-        this.session.port = port.to_string ();
-        this.session.host = host;
+        session = new Session ();
+        session.port = port.to_string ();
+        session.host = host;
     }
 
     public override Gtk.Widget get_display (int n) throws Boxes.Error {
         var display = displays.lookup (n);
 
         if (display == null) {
-            display = new Spice.Display (this.session, n);
+            display = new Spice.Display (session, n);
         }
 
         if (display == null) {
@@ -49,9 +27,9 @@ public class Boxes.SpiceDisplay: Boxes.Display {
 
     public override void connect_it () {
         // FIXME: vala does't want to put this in ctor..
-        this.session.channel_new.connect ((channel) => {
+        session.channel_new.connect ((channel) => {
             if (channel is Spice.MainChannel)
-                channel.channel_event.connect (this.main_event);
+                channel.channel_event.connect (main_event);
 
             if (channel is Spice.DisplayChannel) {
                 var display = channel as DisplayChannel;
@@ -61,11 +39,11 @@ public class Boxes.SpiceDisplay: Boxes.Display {
             }
         });
 
-        this.session.connect ();
+        session.connect ();
     }
 
     public override void disconnect_it () {
-        this.session.disconnect ();
+        session.disconnect ();
     }
 
     private void main_event (ChannelEvent event) {

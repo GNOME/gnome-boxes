@@ -1,30 +1,8 @@
-/*
- * Copyright (C) 2011 Red Hat, Inc.
- *
- * Authors: Marc-André Lureau <marcandre.lureau@gmail.com>
- *          Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *
- * This file is part of GNOME Boxes.
- *
- * GNOME Boxes is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * GNOME Boxes is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
+// This file is part of GNOME Boxes. License: LGPL2
 using GLib;
 using Clutter;
 
-public class Boxes.CollectionView: Boxes.UI {
+private class Boxes.CollectionView: Boxes.UI {
     private App app;
 
     private Clutter.Group actor; // the surrounding actor, for the margin
@@ -34,55 +12,54 @@ public class Boxes.CollectionView: Boxes.UI {
 
     public CollectionView (App app) {
         this.app = app;
-        this.setup_view ();
+        setup_view ();
     }
 
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
-            this.remove_item (this.app.selected_box);
-            this.app.selected_box.actor.ui_state = UIState.CREDS;
+            remove_item (app.selected_box);
+            app.selected_box.actor.ui_state = UIState.CREDS;
 
-            this.top_box.pack (this.app.selected_box.get_clutter_actor (),
-                               "x-align", Clutter.BinAlignment.CENTER,
-                               "y-align", Clutter.BinAlignment.CENTER);
+            top_box.pack (app.selected_box.get_clutter_actor (),
+                          "x-align", Clutter.BinAlignment.CENTER,
+                          "y-align", Clutter.BinAlignment.CENTER);
 
-            this.boxes.set_layout_manager (new Clutter.FixedLayout ());
+            boxes.set_layout_manager (new Clutter.FixedLayout ());
 
             break;
 
         case UIState.DISPLAY: {
             float x, y;
-            var actor = this.app.selected_box.get_clutter_actor ();
+            var actor = app.selected_box.get_clutter_actor ();
 
             /* move box actor to stage */
             actor.get_transformed_position (out x, out y);
-            if (actor.get_parent () == this.top_box)
-                this.top_box.remove_actor (actor);
-            if (actor.get_parent () != this.app.stage)
-                this.app.stage.add_actor (actor);
+            if (actor.get_parent () == top_box)
+                top_box.remove_actor (actor);
+            if (actor.get_parent () != app.stage)
+                app.stage.add_actor (actor);
             actor.set_position (x, y);
 
-            this.app.selected_box.actor.ui_state = UIState.DISPLAY;
+            app.selected_box.actor.ui_state = UIState.DISPLAY;
 
             break;
         }
 
         case UIState.COLLECTION:
-            this.boxes.set_layout_manager (this.layout);
+            boxes.set_layout_manager (layout);
 
-            if (this.app.selected_box == null)
+            if (app.selected_box == null)
                 break;
 
-            var actor = this.app.selected_box.get_clutter_actor ();
-            if (actor.get_parent () == this.top_box)
-                this.top_box.remove_actor (actor);
-            this.add_item (this.app.selected_box);
+            var actor = app.selected_box.get_clutter_actor ();
+            if (actor.get_parent () == top_box)
+                top_box.remove_actor (actor);
+            add_item (app.selected_box);
 
             break;
 
         default:
-
             break;
         }
     }
@@ -92,7 +69,7 @@ public class Boxes.CollectionView: Boxes.UI {
             var box = (Box)item;
 
             box.actor.ui_state = UIState.COLLECTION;
-            actor_add (box.get_clutter_actor (), this.boxes);
+            actor_add (box.get_clutter_actor (), boxes);
         } else
             warning ("Cannot add item %p".printf (&item));
     }
@@ -101,54 +78,43 @@ public class Boxes.CollectionView: Boxes.UI {
         if (item is Box) {
             var box = (Box)item;
             var actor = box.get_clutter_actor ();
-            if (actor.get_parent () == this.boxes)
-                this.boxes.remove_actor (actor); // FIXME: why Clutter warn here??!
+            if (actor.get_parent () == boxes)
+                boxes.remove_actor (actor); // FIXME: why Clutter warn here??!
         } else
             warning ("Cannot remove item %p".printf (&item));
     }
 
     private void setup_view () {
-        this.layout = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
-        this.actor = new Clutter.Group ();
-        this.boxes = new Clutter.Box (this.layout);
-        this.layout.set_column_spacing (35);
-        this.layout.set_row_spacing (25);
-        this.actor.add (this.boxes);
-        this.app.box.pack (this.actor, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
+        layout = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
+        actor = new Clutter.Group ();
+        boxes = new Clutter.Box (layout);
+        layout.set_column_spacing (35);
+        layout.set_row_spacing (25);
+        actor.add (boxes);
+        app.box.pack (actor, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
-        this.boxes.set_position (15f, 15f);
-        this.boxes.add_constraint_with_name ("boxes-width",
-                                             new Clutter.BindConstraint (this.actor, BindCoordinate.WIDTH, -25f));
-        this.boxes.add_constraint_with_name ("boxes-height",
-                                             new Clutter.BindConstraint (this.actor, BindCoordinate.HEIGHT, -25f));
+        boxes.set_position (15f, 15f);
+        boxes.add_constraint_with_name ("boxes-width",
+                                        new Clutter.BindConstraint (actor, BindCoordinate.WIDTH, -25f));
+        boxes.add_constraint_with_name ("boxes-height",
+                                        new Clutter.BindConstraint (actor, BindCoordinate.HEIGHT, -25f));
         // FIXME! report bug to clutter about flow inside table
-        this.actor.add_constraint_with_name ("boxes-left", new Clutter.SnapConstraint (this.app.stage,
-                                                                                       SnapEdge.RIGHT,
-                                                                                       SnapEdge.RIGHT,
-                                                                                       0));
-        this.actor.add_constraint_with_name ("boxes-bottom", new Clutter.SnapConstraint (this.app.stage,
-                                                                                         SnapEdge.BOTTOM,
-                                                                                         SnapEdge.RIGHT.BOTTOM,
-                                                                                         0));
+        actor.add_constraint_with_name ("boxes-left",
+                                        new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
+        actor.add_constraint_with_name ("boxes-bottom",
+                                        new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
 
-        this.top_box = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
-        this.top_box.add_constraint_with_name ("top-box-size",
-                                         new Clutter.BindConstraint (this.actor, BindCoordinate.SIZE, 0));
-        this.top_box.add_constraint_with_name ("top-box-position",
-                                         new Clutter.BindConstraint (this.actor, BindCoordinate.POSITION, 0));
-        this.app.stage.add_actor (this.top_box);
+        top_box = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
+        top_box.add_constraint_with_name ("top-box-size",
+                                          new Clutter.BindConstraint (actor, BindCoordinate.SIZE, 0));
+        top_box.add_constraint_with_name ("top-box-position",
+                                          new Clutter.BindConstraint (actor, BindCoordinate.POSITION, 0));
+        app.stage.add_actor (top_box);
 
-        this.app.state.set_key (null, "creds", this.boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
-        this.app.state.set_key (null, "display", this.boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
-        this.app.state.set_key (null,
-                                "collection",
-                                this.boxes,
-                                "opacity",
-                                AnimationMode.EASE_OUT_QUAD,
-                                (uint) 255,
-                                0,
-                                0);
-        this.app.state.set_key (null, "display", this.top_box, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
-        this.app.state.set_key (null, "display", this.top_box, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
+        app.state.set_key (null, "creds", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
+        app.state.set_key (null, "display", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
+        app.state.set_key (null, "collection", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 255, 0, 0);
+        app.state.set_key (null, "display", top_box, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
+        app.state.set_key (null, "display", top_box, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
     }
 }

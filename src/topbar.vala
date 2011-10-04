@@ -1,30 +1,8 @@
-/*
- * Copyright (C) 2011 Red Hat, Inc.
- *
- * Authors: Marc-André Lureau <marcandre.lureau@gmail.com>
- *          Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *
- * This file is part of GNOME Boxes.
- *
- * GNOME Boxes is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * GNOME Boxes is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
+// This file is part of GNOME Boxes. License: LGPL2
 using Clutter;
 using Gtk;
 
-public class Boxes.Topbar: Boxes.UI {
+private class Boxes.Topbar: Boxes.UI {
     public Widget corner;
     public Gtk.Label label;
 
@@ -40,88 +18,79 @@ public class Boxes.Topbar: Boxes.UI {
 
     public Topbar (App app) {
         this.app = app;
-        this.height = 50;
+        height = 50;
 
-        this.setup_topbar ();
+        setup_topbar ();
     }
 
     private void setup_topbar () {
-        this.notebook = new Gtk.Notebook ();
-        this.notebook.set_size_request (50, (int)this.height);
-        this.actor = new GtkClutter.Actor.with_contents (this.notebook);
-        this.app.box.pack (this.actor,
-                           "column", 0,
-                           "row", 0,
-                           "column-span", 2,
-                           "x-expand", true,
-                           "y-expand", false);
+        notebook = new Gtk.Notebook ();
+        notebook.set_size_request (50, (int)height);
+        actor = new GtkClutter.Actor.with_contents (notebook);
+        app.box.pack (actor,
+                      "column", 0,
+                      "row", 0,
+                      "column-span", 2,
+                      "x-expand", true,
+                      "y-expand", false);
 
-        this.hbox = new Gtk.HBox (false, 0);
-        this.hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
+        hbox = new Gtk.HBox (false, 0);
+        hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
 
-        this.corner = new Gtk.EventBox ();
-        // FIXME.. this.corner.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
-        this.hbox.pack_start (this.corner, false, false, 0);
+        corner = new Gtk.EventBox ();
+        // FIXME.. corner.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
+        hbox.pack_start (corner, false, false, 0);
 
-        this.toolbar_start = new Gtk.Toolbar ();
-        this.toolbar_start.icon_size = Gtk.IconSize.MENU;
-        this.toolbar_start.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar_start = new Gtk.Toolbar ();
+        toolbar_start.icon_size = Gtk.IconSize.MENU;
+        toolbar_start.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
 
         var back = new Gtk.ToolButton (null, null);
         back.icon_name =  "go-previous-symbolic";
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ( (button) => { this.app.go_back (); });
-        this.toolbar_start.insert (back, 0);
-        this.toolbar_start.set_show_arrow (false);
-        this.hbox.pack_start (this.toolbar_start, false, false, 0);
+        back.clicked.connect ( (button) => { app.go_back (); });
+        toolbar_start.insert (back, 0);
+        toolbar_start.set_show_arrow (false);
+        hbox.pack_start (toolbar_start, false, false, 0);
 
-        this.label = new Gtk.Label ("New and Recent");
-        this.label.name = "TopbarLabel";
-        this.label.set_halign (Gtk.Align.START);
-        this.hbox.pack_start (this.label, true, true, 0);
+        label = new Gtk.Label ("New and Recent");
+        label.name = "TopbarLabel";
+        label.set_halign (Gtk.Align.START);
+        hbox.pack_start (label, true, true, 0);
 
         var toolbar_end = new Gtk.Toolbar ();
         toolbar_end.icon_size = Gtk.IconSize.MENU;
         toolbar_end.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
 
-        this.spinner = new Gtk.ToolButton (new Gtk.Spinner (), null);
-        this.spinner.get_style_context ().add_class ("raised");
-        toolbar_end.insert (this.spinner, 0);
+        spinner = new Gtk.ToolButton (new Gtk.Spinner (), null);
+        spinner.get_style_context ().add_class ("raised");
+        toolbar_end.insert (spinner, 0);
         toolbar_end.set_show_arrow (false);
-        this.hbox.pack_start (toolbar_end, false, false, 0);
+        hbox.pack_start (toolbar_end, false, false, 0);
 
-        this.notebook.append_page (this.hbox, null);
-        this.notebook.page = 0;
-        this.notebook.show_tabs = false;
-        this.notebook.show_all ();
+        notebook.append_page (hbox, null);
+        notebook.page = 0;
+        notebook.show_tabs = false;
+        notebook.show_all ();
 
-        this.app.state.set_key (null,
-                                "display",
-                                this.actor,
-                                "y",
-                                AnimationMode.EASE_OUT_QUAD,
-                                -(float) this.height,
-                                0,
-                                0); // FIXME: make it dynamic depending on topbar size..
+        // FIXME: make it dynamic depending on topbar size..:
+        app.state.set_key (null, "display", actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
     }
 
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
-            this.toolbar_start.hide ();
-            this.spinner.hide ();
-
+            toolbar_start.hide ();
+            spinner.hide ();
             break;
 
         case UIState.CREDS:
-            this.toolbar_start.show ();
-            this.spinner.show ();
-
+            toolbar_start.show ();
+            spinner.show ();
             break;
 
         case UIState.DISPLAY:
-            pin_actor(this.actor);
-
+            pin_actor(actor);
             break;
 
         default:

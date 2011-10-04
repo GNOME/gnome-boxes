@@ -1,26 +1,4 @@
-/*
- * Copyright (C) 2011 Red Hat, Inc.
- *
- * Authors: Marc-André Lureau <marcandre.lureau@gmail.com>
- *          Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
- *
- * This file is part of GNOME Boxes.
- *
- * GNOME Boxes is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * GNOME Boxes is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this program; if not, write to the Free Software Foundation,
- * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
-
+// This file is part of GNOME Boxes. License: LGPL2
 using Config;
 using Gtk;
 using Gdk;
@@ -32,7 +10,7 @@ using GVir;
 // FIXME: vala includes header incorrectly, this will make sure config.h comes on top...
 static const string foo = GNOMELOCALEDIR;
 
-public enum Boxes.UIState {
+private enum Boxes.UIState {
     COLLECTION,
     CREDS,
     DISPLAY,
@@ -40,11 +18,11 @@ public enum Boxes.UIState {
     WIZARD
 }
 
-public errordomain Boxes.Error {
+private errordomain Boxes.Error {
     INVALID
 }
 
-public class Boxes.App: Boxes.UI {
+private class Boxes.App: Boxes.UI {
     // FIXME: Remove these when we can use Vala release that provides binding for gdkkeysyms.h
     private const uint F11_KEY = 0xffc8;
     private const uint F12_KEY = 0xffc9;
@@ -71,6 +49,7 @@ public class Boxes.App: Boxes.UI {
         GLib.Environment.set_application_name (_("GNOME Boxes"));
 
         GtkClutter.init (ref args);
+
         Gtk.Window.set_default_icon_name ("gnome-boxes");
         Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
         var provider = new Gtk.CssProvider ();
@@ -89,110 +68,110 @@ public class Boxes.App: Boxes.UI {
     }
 
     public App() {
-        this.setup_ui ();
-        this.collection = new Collection ();
+        setup_ui ();
+        collection = new Collection ();
 
-        this.collection.item_added.connect((item) => {
+        collection.item_added.connect((item) => {
             if (item is Box) {
                 var box = item as Box;
                 var actor = box.get_clutter_actor ();
                 actor.set_reactive (true);
-                actor.button_press_event.connect ((actor, event) => { return this.box_clicked (box, event); });
+                actor.button_press_event.connect ((actor, event) => { return box_clicked (box, event); });
             }
 
-            this.view.add_item (item);
+            view.add_item (item);
         });
 
-        this.setup_libvirt.begin ();
+        setup_libvirt.begin ();
     }
 
     public void set_category (Category category) {
-        this.topbar.label.set_text (category.name);
+        topbar.label.set_text (category.name);
     }
 
     private async void setup_libvirt () {
-        this.connection = new GVir.Connection ("qemu:///system");
+        connection = new GVir.Connection ("qemu:///system");
 
         try {
-            yield this.connection.open_async (null);
-            this.connection.fetch_domains (null);
+            yield connection.open_async (null);
+            connection.fetch_domains (null);
         } catch (GLib.Error e) {
             warning (e.message);
         }
 
-        foreach (var domain in this.connection.get_domains ()) {
+        foreach (var domain in connection.get_domains ()) {
             var box = new Box (this, domain);
-            this.collection.add_item (box);
+            collection.add_item (box);
         }
     }
 
     private void setup_ui () {
-        this.window = new Gtk.Window ();
-        this.window.set_default_size (640, 480);
-        this.embed = new GtkClutter.Embed ();
-        this.embed.show ();
-        this.window.add (this.embed);
-        this.stage = this.embed.get_stage () as Clutter.Stage;
+        window = new Gtk.Window ();
+        window.set_default_size (640, 480);
+        embed = new GtkClutter.Embed ();
+        embed.show ();
+        window.add (embed);
+        stage = embed.get_stage () as Clutter.Stage;
 
         var actor = new GtkClutter.Actor (); // just to have background
-        actor.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) this.stage, BindCoordinate.SIZE, 0));
-        ((Clutter.Container) this.stage).add_actor (actor);
+        actor.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) stage, BindCoordinate.SIZE, 0));
+        ((Clutter.Container) stage).add_actor (actor);
 
-        this.state = new Clutter.State ();
-        this.state.set_duration (null, null, this.duration);
+        state = new Clutter.State ();
+        state.set_duration (null, null, duration);
 
-        this.window.destroy.connect (quit);
-        this.window.key_press_event.connect (this.on_key_pressed);
-        this.window.configure_event.connect ( (event) => {
+        window.destroy.connect (quit);
+        window.key_press_event.connect (on_key_pressed);
+        window.configure_event.connect ( (event) => {
             if (event.type == Gdk.EventType.CONFIGURE)
                 save_window_size ();
 
             return false;
         });
 
-        this.box_table = new Clutter.TableLayout ();
-        this.box = new Clutter.Box (this.box_table);
-        this.box.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) this.stage, BindCoordinate.SIZE, 0));
-        ((Clutter.Container) this.stage).add_actor (this.box);
+        box_table = new Clutter.TableLayout ();
+        box = new Clutter.Box (box_table);
+        box.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) stage, BindCoordinate.SIZE, 0));
+        ((Clutter.Container) stage).add_actor (box);
 
-        this.topbar = new Topbar (this);
-        this.sidebar = new Sidebar (this);
-        this.view = new CollectionView (this);
+        topbar = new Topbar (this);
+        sidebar = new Sidebar (this);
+        view = new CollectionView (this);
 
         var size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
-        size_group.add_widget (this.topbar.corner);
-        size_group.add_widget (this.sidebar.notebook);
+        size_group.add_widget (topbar.corner);
+        size_group.add_widget (sidebar.notebook);
 
-        this.window.show ();
+        window.show ();
 
         ui_state = UIState.COLLECTION;
     }
 
     public void go_back () {
         ui_state = UIState.COLLECTION;
-        this.selected_box = null;
+        selected_box = null;
     }
 
     public override void ui_state_changed () {
         message ("Switching layout to %s".printf (ui_state.to_string ()));
 
-        foreach (var o in new Boxes.UI[] { this.sidebar, this.topbar, this.view }) {
+        foreach (var o in new Boxes.UI[] { sidebar, topbar, view }) {
             o.ui_state = ui_state;
         }
 
-        this.box.set_layout_manager (this.box_table);
+        box.set_layout_manager (box_table);
 
         switch (ui_state) {
         case UIState.DISPLAY:
-            this.box.set_layout_manager (new Clutter.FixedLayout ());
-            this.state.set_state ("display");
+            box.set_layout_manager (new Clutter.FixedLayout ());
+            state.set_state ("display");
             break;
         case UIState.CREDS:
-            this.state.set_state ("creds");
+            state.set_state ("creds");
             break;
         case UIState.COLLECTION:
             restore_window_size ();
-            this.state.set_state ("collection");
+            state.set_state ("collection");
             break;
         default:
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
@@ -206,19 +185,19 @@ public class Boxes.App: Boxes.UI {
 		if (ui_state == UIState.DISPLAY)
 			return;
 
-        this.window.get_size (out w, out h);
-        this.window.default_width = (int)w;
-        this.window.default_height = (int)h;
+        window.get_size (out w, out h);
+        window.default_width = (int)w;
+        window.default_height = (int)h;
     }
 
     public void restore_window_size () {
-        this.window.resize (this.window.default_width, this.window.default_height);
+        window.resize (window.default_width, window.default_height);
     }
 
     public void set_window_size (int width, int height, bool save=false) {
         if (save)
             save_window_size ();
-        this.window.resize (width, height);
+        window.resize (width, height);
     }
 
     public void quit () {
@@ -227,10 +206,10 @@ public class Boxes.App: Boxes.UI {
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         if (event.keyval == F11_KEY) {
-            if (WindowState.FULLSCREEN in this.window.get_window ().get_state ())
-                this.window.unfullscreen ();
+            if (WindowState.FULLSCREEN in window.get_window ().get_state ())
+                window.unfullscreen ();
             else
-                this.window.fullscreen ();
+                window.fullscreen ();
 
             return true;
         }
@@ -244,8 +223,8 @@ public class Boxes.App: Boxes.UI {
 
     private bool box_clicked (Box box, Clutter.ButtonEvent event) {
         if (ui_state == UIState.COLLECTION) {
-            this.selected_box = box;
-            if (this.selected_box.connect_display ())
+            selected_box = box;
+            if (selected_box.connect_display ())
                 ui_state = UIState.CREDS;
         }
 
@@ -253,11 +232,11 @@ public class Boxes.App: Boxes.UI {
     }
 }
 
-public abstract class Boxes.UI: GLib.Object {
+private abstract class Boxes.UI: GLib.Object {
     public UIState ui_state { get; set; }
 
     public UI () {
-        this.notify["ui-state"].connect ( (s, p) => {
+        notify["ui-state"].connect ( (s, p) => {
             ui_state_changed ();
         });
     }
