@@ -1,10 +1,33 @@
+/*
+ * Copyright (C) 2011 Red Hat, Inc.
+ *
+ * Authors: Marc-André Lureau <marcandre.lureau@gmail.com>
+ *          Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *
+ * This file is part of GNOME Boxes.
+ *
+ * GNOME Boxes is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * GNOME Boxes is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
 using GLib;
 using Clutter;
 using Gdk;
 using Gtk;
 using GVir;
 
-abstract class Boxes.Display: GLib.Object {
+public abstract class Boxes.Display: GLib.Object {
     protected HashTable<int, Gtk.Widget?> displays;
 
     public signal void show (int display_id);
@@ -24,7 +47,7 @@ abstract class Boxes.Display: GLib.Object {
     }
 }
 
-class Boxes.Box: Boxes.CollectionItem {
+public class Boxes.Box: Boxes.CollectionItem {
     public Boxes.App app;
     public BoxActor actor;
     public DomainState state {
@@ -45,7 +68,7 @@ class Boxes.Box: Boxes.CollectionItem {
         }
     }
 
-    private Display? display;
+    private Display display;
 
     public Box (Boxes.App app, GVir.Domain domain) {
         Object (domain: domain);
@@ -204,7 +227,7 @@ class Boxes.Box: Boxes.CollectionItem {
     }
 }
 
-class Boxes.BoxActor: Boxes.UI {
+public class Boxes.BoxActor: Boxes.UI {
     public Clutter.Box actor;
 
     private GtkClutter.Texture screenshot;

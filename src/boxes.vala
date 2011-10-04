@@ -1,3 +1,26 @@
+/*
+ * Copyright (C) 2011 Red Hat, Inc.
+ *
+ * Authors: Marc-André Lureau <marcandre.lureau@gmail.com>
+ *          Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+ *
+ * This file is part of GNOME Boxes.
+ *
+ * GNOME Boxes is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * GNOME Boxes is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
 using Config;
 using Gtk;
 using Gdk;
@@ -21,7 +44,7 @@ public errordomain Boxes.Error {
     INVALID
 }
 
-class Boxes.App: Boxes.UI {
+public class Boxes.App: Boxes.UI {
     // FIXME: Remove these when we can use Vala release that provides binding for gdkkeysyms.h
     private const uint F11_KEY = 0xffc8;
     private const uint F12_KEY = 0xffc9;
@@ -31,7 +54,7 @@ class Boxes.App: Boxes.UI {
     public Stage stage;
     public Clutter.State state;
     public Clutter.Box box; // the whole app box
-    public Box? selected_box; // currently selected box
+    public Box selected_box; // currently selected box
     public GVir.Connection connection;
     public static const uint duration = 555;  // default to 1/2 for all transitions
 
