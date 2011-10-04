@@ -3,59 +3,58 @@ using Gtk;
 using Config;
 using Xml;
 
-public string get_pkgdata (string? file = null) {
-    return Path.build_filename (Config.DATADIR, Config.PACKAGE_TARNAME, file);
+public string get_pkgdata (string? file_name = null) {
+    return Path.build_filename (DATADIR, Config.PACKAGE_TARNAME, file_name);
 }
 
-public string get_style (string? file = null) {
-    return Path.build_filename (get_pkgdata (), "style", file);
+public string get_style (string? file_name = null) {
+    return Path.build_filename (get_pkgdata (), "style", file_name);
 }
 
-public string get_pkgcache (string? file = null) {
+public string get_pkgcache (string? file_name = null) {
     var dir = Path.build_filename (Environment.get_user_cache_dir (), Config.PACKAGE_TARNAME);
 
     try {
-        var f = GLib.File.new_for_path (dir);
-        f.make_directory_with_parents (null);
+        var file = GLib.File.new_for_path (dir);
+        file.make_directory_with_parents (null);
     } catch (GLib.Error e) {
         if (!(e is IOError.EXISTS))
             warning (e.message);
     }
 
-    return Path.build_filename (dir, file);
+    return Path.build_filename (dir, file_name);
 }
 
-public void tree_view_activate_on_single_click (Gtk.TreeView tv, bool should_activate) {
-    var id = tv.get_data<ulong> ("boxes-tree-view-activate");
+public void tree_view_activate_on_single_click (Gtk.TreeView tree_view, bool should_activate) {
+    var id = tree_view.get_data<ulong> ("boxes-tree-view-activate");
 
     if (id != 0 && should_activate == false) {
-        tv.disconnect (id);
-        tv.set_data<ulong> ("boxes-tree-view-activate", 0);
+        tree_view.disconnect (id);
+        tree_view.set_data<ulong> ("boxes-tree-view-activate", 0);
     } else {
-        id = tv.button_press_event.connect (
-            (w, event) => {
-                Gtk.TreePath? path;
-                unowned Gtk.TreeViewColumn? column;
-                int x, y;
+        id = tree_view.button_press_event.connect ((w, event) => {
+            Gtk.TreePath? path;
+            unowned Gtk.TreeViewColumn? column;
+            int x, y;
 
-                if (event.button == 1 && event.type == Gdk.EventType.BUTTON_PRESS) {
-                    tv.get_path_at_pos ((int)event.x, (int)event.y, out path, out column, out x, out y);
+            if (event.button == 1 && event.type == Gdk.EventType.BUTTON_PRESS) {
+                    tree_view.get_path_at_pos ((int)event.x, (int)event.y, out path, out column, out x, out y);
                     if (path != null)
-                        tv.row_activated (path, column);
-                }
-                return false;
-            });
-        tv.set_data<ulong> ("boxes-tree-view-activate", id);
+                        tree_view.row_activated (path, column);
+            }
+
+            return false;
+        });
+        tree_view.set_data<ulong> ("boxes-tree-view-activate", id);
     }
 }
 
-public async void output_stream_write (OutputStream o, uint8[] buffer) throws GLib.IOError {
-    var l = buffer.length;
+public async void output_stream_write (OutputStream stream, uint8[] buffer) throws GLib.IOError {
+    var length = buffer.length;
     ssize_t i = 0;
 
-    while (i < l) {
-        i += yield o.write_async (buffer[i:l]);
-    }
+    while (i < length)
+        i += yield stream.write_async (buffer[i:length]);
 }
 
 public string? extract_xpath (string xmldoc, string xpath, bool required = false) throws Boxes.Error {
@@ -80,20 +79,19 @@ public string? extract_xpath (string xmldoc, string xpath, bool required = false
     return obj->stringval;
 }
 
-public void actor_add (Clutter.Actor a, Clutter.Container c) {
-    if (a.get_parent () == (Clutter.Actor)c)
+public void actor_add (Clutter.Actor actor, Clutter.Container container) {
+    if (actor.get_parent () == (Clutter.Actor) container)
         return;
 
-    actor_remove (a);
-    c.add (a);
+    actor_remove (actor);
+    container.add (actor);
 }
 
-public void actor_remove (Clutter.Actor a) {
-    var c = a.get_parent () as Clutter.Container;
+public void actor_remove (Clutter.Actor actor) {
+    var container = actor.get_parent () as Clutter.Container;
 
-    if (c == null) {
+    if (container == null)
         return;
-    }
 
-    c.remove (a);
+    container.remove (actor);
 }
