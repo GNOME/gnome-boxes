@@ -205,10 +205,10 @@ class Boxes.App: Boxes.UI {
         Intl.bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
         Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
         Intl.textdomain (GETTEXT_PACKAGE);
-        GLib.Environment.set_application_name (_("Boxes"));
+        GLib.Environment.set_application_name (_("GNOME Boxes"));
 
         GtkClutter.init (ref args);
-        Gtk.Window.set_default_icon_name ("boxes");
+        Gtk.Window.set_default_icon_name ("gnome-boxes");
         Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
         var provider = new Gtk.CssProvider ();
         try {
