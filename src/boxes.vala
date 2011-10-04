@@ -22,6 +22,10 @@ public errordomain Boxes.Error {
 }
 
 class Boxes.App: Boxes.UI {
+    // FIXME: Remove these when we can use Vala release that provides binding for gdkkeysyms.h
+    private const uint F11_KEY = 0xffc8;
+    private const uint F12_KEY = 0xffc9;
+
     public Gtk.Window window;
     public GtkClutter.Embed embed;
     public Clutter.Stage cstage;
@@ -117,14 +121,14 @@ class Boxes.App: Boxes.UI {
     }
 
     bool key_pressed (Gtk.Widget widget, Gdk.EventKey event) {
-        if (event.keyval == Gdk.Key.F11) {
+        if (event.keyval == F11_KEY) {
             if (WindowState.FULLSCREEN in window.get_window ().get_state ())
                 window.unfullscreen ();
             else
                 window.fullscreen ();
             return true;
         }
-        if (event.keyval == Gdk.Key.F12) {
+        if (event.keyval == F12_KEY) {
             ui_state = UIState.COLLECTION;
         }
         return false;
