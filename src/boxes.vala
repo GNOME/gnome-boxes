@@ -114,7 +114,7 @@ private class Boxes.App: Boxes.UI {
 
         var actor = new GtkClutter.Actor (); // just to have background
         actor.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) stage, BindCoordinate.SIZE, 0));
-        ((Clutter.Container) stage).add_actor (actor);
+        stage.add_actor (actor);
 
         state = new Clutter.State ();
         state.set_duration (null, null, duration);
