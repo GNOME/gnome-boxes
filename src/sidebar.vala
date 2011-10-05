@@ -2,7 +2,6 @@
 using Gtk;
 using Gdk;
 using Clutter;
-using GLib;
 
 private class Boxes.Sidebar: Boxes.UI {
     public Notebook notebook;

@@ -4,7 +4,6 @@ using Gtk;
 using Gdk;
 using GtkClutter;
 using Clutter;
-using GLib;
 using GVir;
 
 // FIXME: vala includes header incorrectly, this will make sure config.h comes on top...
