@@ -10,11 +10,12 @@ INTLTOOL_FILES =				\
 	$(NULL)
 
 DISTCLEANFILES =				\
+	gnome-doc-utils.make			\
 	intltool-extract			\
 	intltool-merge				\
 	intltool-update				\
-	gnome-doc-utils.make			\
 	po/.intltool-merge-cache		\
+	version.h				\
 	$(NULL)
 
 EXTRA_DIST =					\
@@ -38,6 +39,14 @@ MAINTAINERCLEANFILES =				\
 	build-aux/missing			\
 	build-aux/mkinstalldirs			\
 	po/Makefile.in.in			\
+	po/Makevars.template			\
+	po/Rules-quot				\
+	po/boldquot.sed				\
+	po/en@boldquot.header			\
+	po/en@quot.header			\
+	po/insert-header.sin			\
+	po/quot.sed				\
+	po/remove-potcdate.sin
 	$(NULL)
 
 # see git-version-gen

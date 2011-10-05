@@ -39,3 +39,10 @@ gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
 DISTCLEANFILES = dirs.h
 dirs.h: Makefile
 	$(AM_V_GEN)echo '#define DATADIR "$(datadir)"' >$@
+
+MAINTAINERCLEANFILES =				\
+	$(gnome_boxes_SOURCES:.vala=.c)		\
+	*.stamp					\
+	$(NULL)
+
+-include $(top_srcdir)/git.mk
