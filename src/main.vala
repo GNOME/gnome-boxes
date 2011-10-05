@@ -2,9 +2,6 @@
 using Config;
 using Posix;
 
-// FIXME: vala includes header incorrectly, this will make sure config.h comes on top...
-static const string foo_ = GNOMELOCALEDIR;
-
 private static bool version;
 
 private const OptionEntry[] options = {

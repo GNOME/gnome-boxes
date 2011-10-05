@@ -239,7 +239,7 @@ private class Boxes.BoxActor: Boxes.UI {
         vbox.add (label);
         entry = new Gtk.Entry ();
         entry.set_visibility (false);
-        entry.set_placeholder_text ("Password"); // TODO: i18n stupid vala...
+        entry.set_placeholder_text (_("Password")); // TODO: i18n stupid vala...
         vbox.add (entry);
 
         vbox.show_all ();

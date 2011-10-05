@@ -102,17 +102,17 @@ private class Boxes.Sidebar: Boxes.UI {
         var renderer = new CellRendererText ();
         tree_view.insert_column_with_attributes (-1, "", renderer, "text", 0, "height", 1, "sensitive", 2);
 
-        list_append (listmodel, new Category ("New and Recent"));
+        list_append (listmodel, new Category (_("New and Recent")));
         selection.select_path (new Gtk.TreePath.from_string ("0"));
-        list_append (listmodel, new Category ("Favorites"), "emblem-favorite-symbolic");
-        list_append (listmodel, new Category ("Private"), "channel-secure-symbolic");
-        list_append (listmodel, new Category ("Shared with you"), "emblem-shared-symbolic");
-        list_append (listmodel, new Category ("Collections"), null, 40, false);
+        list_append (listmodel, new Category (_("Favorites")), "emblem-favorite-symbolic");
+        list_append (listmodel, new Category (_("Private")), "channel-secure-symbolic");
+        list_append (listmodel, new Category (_("Shared with you")), "emblem-shared-symbolic");
+        list_append (listmodel, new Category (_("Collections")), null, 40, false);
         // TODO: make it dynamic
-        list_append (listmodel, new Category ("Work"));
-        list_append (listmodel, new Category ("Game"));
+        list_append (listmodel, new Category (_("Work")));
+        list_append (listmodel, new Category (_("Game")));
 
-        var create = new Gtk.Button.with_label ("Create");
+        var create = new Gtk.Button.with_label (_("Create"));
         create.margin = 5;
         vbox.pack_end (create, false, false, 0);
         create.show ();

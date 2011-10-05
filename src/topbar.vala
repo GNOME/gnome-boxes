@@ -53,7 +53,7 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar_start.set_show_arrow (false);
         hbox.pack_start (toolbar_start, false, false, 0);
 
-        label = new Gtk.Label ("New and Recent");
+        label = new Gtk.Label (_("New and Recent"));
         label.name = "TopbarLabel";
         label.set_halign (Gtk.Align.START);
         hbox.pack_start (label, true, true, 0);

@@ -6,9 +6,6 @@ using GtkClutter;
 using Clutter;
 using GVir;
 
-// FIXME: vala includes header incorrectly, this will make sure config.h comes on top...
-static const string foo = GNOMELOCALEDIR;
-
 private enum Boxes.UIState {
     COLLECTION,
     CREDS,

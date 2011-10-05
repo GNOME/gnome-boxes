@@ -1,6 +1,7 @@
 NULL =
 
 AM_CPPFLAGS =						\
+	-include config.h				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	$(DISABLE_DEPRECATED)				\
 	$(NULL)
