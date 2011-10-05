@@ -65,7 +65,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
     public void add_item (CollectionItem item) {
         if (item is Box) {
-            var box = (Box)item;
+            var box = item as Box;
 
             box.actor.ui_state = UIState.COLLECTION;
             actor_add (box.get_clutter_actor (), boxes);
@@ -75,7 +75,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
     public void remove_item (CollectionItem item) {
         if (item is Box) {
-            var box = (Box)item;
+            var box = item as Box;
             var actor = box.get_clutter_actor ();
             if (actor.get_parent () == boxes)
                 boxes.remove_actor (actor); // FIXME: why Clutter warn here??!

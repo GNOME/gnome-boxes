@@ -19,7 +19,7 @@ private abstract class Boxes.Display: GLib.Object {
         displays = new HashTable<int, Gtk.Widget> (direct_hash, direct_equal);
     }
 
-    ~Boxes() {
+    ~Boxes () {
         disconnect_it ();
     }
 }
@@ -267,12 +267,8 @@ private class Boxes.BoxActor: Boxes.UI {
         actor_remove (screenshot);
 
         this.display = display;
-        width_req_id = display.notify["width-request"].connect ( (pspec) => {
-            update_display_size ();
-        });
-        height_req_id = display.notify["height-request"].connect ( (pspec) => {
-            update_display_size ();
-        });
+        width_req_id = display.notify["width-request"].connect ((pspec) => { update_display_size (); });
+        height_req_id = display.notify["height-request"].connect ((pspec) => { update_display_size (); });
         vbox.add (display);
         update_display_size ();
 

@@ -39,7 +39,7 @@ namespace Boxes {
                 int x, y;
 
                 if (event.button == 1 && event.type == Gdk.EventType.BUTTON_PRESS) {
-                    tree_view.get_path_at_pos ((int)event.x, (int)event.y, out path, out column, out x, out y);
+                    tree_view.get_path_at_pos ((int) event.x, (int) event.y, out path, out column, out x, out y);
                     if (path != null)
                         tree_view.row_activated (path, column);
                 }

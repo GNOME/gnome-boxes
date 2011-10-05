@@ -66,11 +66,11 @@ private class Boxes.App: Boxes.UI {
         Gtk.main ();
     }
 
-    public App() {
+    public App () {
         setup_ui ();
         collection = new Collection ();
 
-        collection.item_added.connect((item) => {
+        collection.item_added.connect ((item) => {
             if (item is Box) {
                 var box = item as Box;
                 var actor = box.get_clutter_actor ();
@@ -121,7 +121,7 @@ private class Boxes.App: Boxes.UI {
 
         window.destroy.connect (quit);
         window.key_press_event.connect (on_key_pressed);
-        window.configure_event.connect ( (event) => {
+        window.configure_event.connect ((event) => {
             if (event.type == Gdk.EventType.CONFIGURE)
                 save_window_size ();
 
@@ -179,14 +179,14 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void save_window_size () {
-        float w, h;
+        float width, height;
 
 		if (ui_state == UIState.DISPLAY)
 			return;
 
-        window.get_size (out w, out h);
-        window.default_width = (int)w;
-        window.default_height = (int)h;
+        window.get_size (out width, out height);
+        window.default_width = (int) width;
+        window.default_height = (int) height;
     }
 
     public void restore_window_size () {

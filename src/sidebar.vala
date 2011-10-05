@@ -54,7 +54,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
     private void setup_sidebar () {
         notebook = new Gtk.Notebook ();
-        notebook.set_size_request ((int)width, 100);
+        notebook.set_size_request ((int) width, 100);
 
         var vbox = new Gtk.VBox (false, 0);
         notebook.append_page (vbox, new Gtk.Label (""));

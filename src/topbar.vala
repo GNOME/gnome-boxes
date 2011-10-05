@@ -25,7 +25,7 @@ private class Boxes.Topbar: Boxes.UI {
 
     private void setup_topbar () {
         notebook = new Gtk.Notebook ();
-        notebook.set_size_request (50, (int)height);
+        notebook.set_size_request (50, (int) height);
         actor = new GtkClutter.Actor.with_contents (notebook);
         app.box.pack (actor,
                       "column", 0,
@@ -48,7 +48,7 @@ private class Boxes.Topbar: Boxes.UI {
         var back = new Gtk.ToolButton (null, null);
         back.icon_name =  "go-previous-symbolic";
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ( (button) => { app.go_back (); });
+        back.clicked.connect ((button) => { app.go_back (); });
         toolbar_start.insert (back, 0);
         toolbar_start.set_show_arrow (false);
         hbox.pack_start (toolbar_start, false, false, 0);
@@ -90,7 +90,7 @@ private class Boxes.Topbar: Boxes.UI {
             break;
 
         case UIState.DISPLAY:
-            pin_actor(actor);
+            pin_actor (actor);
             break;
 
         default:
