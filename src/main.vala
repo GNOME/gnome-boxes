@@ -2,15 +2,18 @@
 using Config;
 using Posix;
 
+// FIXME: vala includes header incorrectly, this will make sure config.h comes on top...
+static const string foo_ = GNOMELOCALEDIR;
+
 private static bool version;
 
 private const OptionEntry[] options = {
-    { "version", 0, 0, OptionArg.NONE, ref version, "Display version number", null },
+    { "version", 0, 0, OptionArg.NONE, ref version, N_("Display version number"), null },
     { null }
 };
 
 private static void parse_args (ref unowned string[] args) {
-    var parameter_string = "- " + PACKAGE_TARNAME;
+    var parameter_string = _("- A simple application to access remote or virtual machines");
     var opt_context = new OptionContext (parameter_string);
     opt_context.set_help_enabled (true);
     opt_context.set_ignore_unknown_options (true);
@@ -19,6 +22,7 @@ private static void parse_args (ref unowned string[] args) {
     opt_context.add_group (Cogl.get_option_group ());
     opt_context.add_group (Clutter.get_option_group_without_init ());
     opt_context.add_group (GtkClutter.get_option_group ());
+    // FIXME: add spice
 
     try {
         opt_context.parse (ref args);
@@ -41,7 +45,6 @@ public void main (string[] args) {
     Intl.textdomain (GETTEXT_PACKAGE);
     GLib.Environment.set_application_name (_("GNOME Boxes"));
 
-    GtkClutter.init (ref args);
     parse_args (ref args);
 
     Gtk.Window.set_default_icon_name ("gnome-boxes");
