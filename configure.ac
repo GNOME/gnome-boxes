@@ -63,6 +63,16 @@ VALA_CHECK_PACKAGES([
   cogl-1.0
 ])
 
+dnl Strict compiler
+AC_ARG_ENABLE(strict-cc,
+	AS_HELP_STRING([--enable-strict-cc],[enable strict C compiler]),,
+        enable_strict_cc=no)
+if test "x$enable_strict_cc" = "xyes"; then
+        CFLAGS="$CFLAGS -Wall -Werror"
+else
+        CFLAGS="$CFLAGS -w"
+fi
+
 AC_CONFIG_FILES([
   Makefile
   src/Makefile
@@ -77,8 +87,8 @@ AC_OUTPUT
 dnl ==========================================================================
 AC_MSG_NOTICE([
 
-        Boxes $VERSION
-        ==============
+        GNOME Boxes $VERSION
+        =================
 
         prefix:                   ${prefix}
         c compiler:               ${CC}
