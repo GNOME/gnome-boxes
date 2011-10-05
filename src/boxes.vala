@@ -1,4 +1,4 @@
-// This file is part of GNOME Boxes. License: LGPL2
+// This file is part of GNOME Boxes. License: LGPLv2
 using Config;
 using Gtk;
 using Gdk;
