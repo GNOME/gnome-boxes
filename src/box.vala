@@ -187,7 +187,7 @@ private class Boxes.Box: Boxes.CollectionItem {
         }
 
         if (type == "spice") {
-            display = new SpiceDisplay (ghost, gport.to_int ());
+            display = new SpiceDisplay (ghost, int.parse (gport));
         } else {
             warning ("unsupported display of type " + type);
 
