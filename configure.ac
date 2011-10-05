@@ -60,6 +60,7 @@ VALA_CHECK_PACKAGES([
   gdk-pixbuf-2.0
   glib-2.0
   libxml-2.0
+  cogl-1.0
 ])
 
 AC_CONFIG_FILES([

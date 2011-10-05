@@ -9,7 +9,9 @@ AM_VALAFLAGS =						\
 	--vapidir=$(srcdir)/				\
 	--vapidir=$(top_srcdir)/vapi                    \
 	--pkg clutter-gtk-1.0				\
+	--pkg cogl-1.0					\
 	--pkg config					\
+	--pkg posix					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg glib-2.0					\
 	--pkg libvirt-gobject-1.0			\
@@ -19,11 +21,12 @@ AM_VALAFLAGS =						\
 
 bin_PROGRAMS = gnome-boxes
 
-gnome_boxes_SOURCES =					\
+gnome_boxes_SOURCES =				\
+	app.vala				\
 	box.vala				\
-	boxes.vala				\
 	collection-view.vala			\
 	collection.vala				\
+	main.vala				\
 	sidebar.vala				\
 	spice-display.vala			\
 	topbar.vala				\

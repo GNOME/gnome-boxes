@@ -3,22 +3,25 @@ NULL =
 
 SUBDIRS = data src po
 
-INTLTOOL_FILES = intltool-extract.in		\
-		 intltool-merge.in		\
-		 intltool-update.in		\
-		 $(NULL)
+INTLTOOL_FILES =				\
+	intltool-extract.in			\
+	intltool-merge.in			\
+	intltool-update.in			\
+	$(NULL)
 
-DISTCLEANFILES = intltool-extract		\
-		 intltool-merge			\
-		 intltool-update		\
-		 gnome-doc-utils.make		\
-		 po/.intltool-merge-cache	\
-		 $(NULL)
+DISTCLEANFILES =				\
+	intltool-extract			\
+	intltool-merge				\
+	intltool-update				\
+	gnome-doc-utils.make			\
+	po/.intltool-merge-cache		\
+	$(NULL)
 
-EXTRA_DIST = build-aux/git-version-gen		\
-	     .version				\
-	     $(INTLTOOL_FILES)			\
-	     $(NULL)
+EXTRA_DIST =					\
+	build-aux/git-version-gen		\
+	.version				\
+	$(INTLTOOL_FILES)			\
+	$(NULL)
 
 MAINTAINERCLEANFILES =				\
 	ABOUT-NLS				\
@@ -44,5 +47,10 @@ dist-hook:
 BUILT_SOURCES = $(top_srcdir)/.version
 $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
+
+all: version.h
+
+version.h: $(top_srcdir)/.version
+	echo '#define BUILD_VERSION "'`cat $(top_srcdir)/.version`'"' > $@-t && mv $@-t $@
 
 -include $(top_srcdir)/git.mk

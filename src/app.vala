@@ -41,31 +41,6 @@ private class Boxes.App: Boxes.UI {
     private Topbar topbar;
     private CollectionView view;
 
-    public static void main (string[] args) {
-        Intl.bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
-        Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-        Intl.textdomain (GETTEXT_PACKAGE);
-        GLib.Environment.set_application_name (_("GNOME Boxes"));
-
-        GtkClutter.init (ref args);
-
-        Gtk.Window.set_default_icon_name ("gnome-boxes");
-        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-        var provider = new Gtk.CssProvider ();
-        try {
-            var sheet = get_style ("gtk-style.css");
-            provider.load_from_path (sheet);
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
-                                                      provider,
-                                                      600);
-        } catch (GLib.Error e) {
-            warning (e.message);
-        }
-
-        new App ();
-        Gtk.main ();
-    }
-
     public App () {
         setup_ui ();
         collection = new Collection ();
