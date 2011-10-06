@@ -3,13 +3,14 @@ using Clutter;
 using Gtk;
 
 private class Boxes.Topbar: Boxes.UI {
+    public override Clutter.Actor actor { get { return gtk_actor; } }
     public Widget corner;
     public Gtk.Label label;
 
     private App app;
     private uint height;
 
-    private Actor actor; // the topbar box
+    private GtkClutter.Actor gtk_actor; // the topbar box
     private Notebook notebook;
 
     private HBox hbox;
@@ -26,8 +27,8 @@ private class Boxes.Topbar: Boxes.UI {
     private void setup_topbar () {
         notebook = new Gtk.Notebook ();
         notebook.set_size_request (50, (int) height);
-        actor = new GtkClutter.Actor.with_contents (notebook);
-        app.box.pack (actor,
+        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        app.box.pack (gtk_actor,
                       "column", 0,
                       "row", 0,
                       "column-span", 2,
@@ -74,7 +75,7 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.show_all ();
 
         // FIXME: make it dynamic depending on topbar size..:
-        app.state.set_key (null, "display", actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
+        app.state.set_key (null, "display", gtk_actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
     }
 
     public override void ui_state_changed () {
@@ -90,7 +91,7 @@ private class Boxes.Topbar: Boxes.UI {
             break;
 
         case UIState.DISPLAY:
-            pin_actor (actor);
+            pin_actor (gtk_actor);
             break;
 
         default:

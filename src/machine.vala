@@ -4,9 +4,11 @@ using Gdk;
 using Gtk;
 using GVir;
 
-private class Boxes.Box: Boxes.CollectionItem {
+private class Boxes.Machine: Boxes.CollectionItem {
+    public override Clutter.Actor actor { get { return machine_actor.actor; } }
     public Boxes.App app;
-    public BoxActor actor;
+    public MachineActor machine_actor;
+    public GVir.Domain domain;
     public DomainState state {
         get {
             try {
@@ -17,22 +19,14 @@ private class Boxes.Box: Boxes.CollectionItem {
         }
     }
 
-    private GVir.Domain _domain;
-    public GVir.Domain domain {
-        get { return _domain; }
-        construct set {
-            _domain = value;
-        }
-    }
-
     private Display display;
 
-    public Box (Boxes.App app, GVir.Domain domain) {
-        Object (domain: domain);
+    public Machine (Boxes.App app, GVir.Domain domain) {
+        this.domain = domain;
         this.app = app;
 
         name = domain.get_name ();
-        actor = new BoxActor (this);
+        machine_actor = new MachineActor (this);
 
         update_screenshot.begin ();
         Timeout.add_seconds (5, () => {
@@ -43,20 +37,16 @@ private class Boxes.Box: Boxes.CollectionItem {
 
         app.state.completed.connect ( () => {
             if (app.state.state == "display") {
-                if (app.selected_box != this)
+                if (app.current_item != this)
                     return;
 
                 try {
-                    actor.show_display (display.get_display (0));
+                    machine_actor.show_display (display.get_display (0));
                 } catch (Boxes.Error error) {
                     warning (error.message);
                 }
             }
         });
-    }
-
-    public Clutter.Actor get_clutter_actor () {
-        return actor.actor;
     }
 
     public async bool take_screenshot () throws GLib.Error {
@@ -113,7 +103,7 @@ private class Boxes.Box: Boxes.CollectionItem {
             pixbuf = draw_fallback_vm (128, 96);
 
         try {
-            actor.set_screenshot (pixbuf);
+            machine_actor.set_screenshot (pixbuf);
         } catch (GLib.Error err) {
             warning (err.message);
         }
@@ -182,10 +172,15 @@ private class Boxes.Box: Boxes.CollectionItem {
             app.ui_state = Boxes.UIState.COLLECTION;
         });
     }
+
+    public override void ui_state_changed () {
+        machine_actor.ui_state = ui_state;
+    }
 }
 
-private class Boxes.BoxActor: Boxes.UI {
-    public Clutter.Box actor;
+private class Boxes.MachineActor: Boxes.UI {
+    public override Clutter.Actor actor { get { return box; } }
+    public Clutter.Box box;
 
     private GtkClutter.Texture screenshot;
     private GtkClutter.Actor gtkactor;
@@ -193,25 +188,25 @@ private class Boxes.BoxActor: Boxes.UI {
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry entry;
     private Gtk.Widget? display;
-    private Box box;
+    private Machine machine;
 
-    public BoxActor (Box box) {
-        this.box = box;
+    public MachineActor (Machine machine) {
+        this.machine = machine;
 
         var layout = new Clutter.BoxLayout ();
         layout.vertical = true;
-        var cbox = new Clutter.Box (layout);
+        box = new Clutter.Box (layout);
 
         screenshot = new GtkClutter.Texture ();
         screenshot.name = "screenshot";
 
         scale_screenshot ();
-        actor_add (screenshot, cbox);
+        actor_add (screenshot, box);
         screenshot.keep_aspect_ratio = true;
 
         vbox = new Gtk.VBox (false, 0);
         gtkactor = new GtkClutter.Actor.with_contents (vbox);
-        label = new Gtk.Label (box.name);
+        label = new Gtk.Label (machine.name);
         vbox.add (label);
         entry = new Gtk.Entry ();
         entry.set_visibility (false);
@@ -221,9 +216,7 @@ private class Boxes.BoxActor: Boxes.UI {
         vbox.show_all ();
         entry.hide ();
 
-        actor_add (gtkactor, cbox);
-
-        actor = cbox;
+        actor_add (gtkactor, box);
     }
 
     public void scale_screenshot (float scale = 1.5f) {
@@ -256,7 +249,7 @@ private class Boxes.BoxActor: Boxes.UI {
         vbox.remove (display);
         display = null;
 
-        actor.pack_at (screenshot, 0);
+        box.pack_at (screenshot, 0);
     }
 
     public override void ui_state_changed () {
@@ -275,7 +268,7 @@ private class Boxes.BoxActor: Boxes.UI {
 
             entry.hide ();
             label.hide ();
-            box.app.window.get_size (out width, out height);
+            machine.app.window.get_size (out width, out height);
             screenshot.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                                 "width", (float) width,
                                 "height", (float) height);
@@ -302,4 +295,3 @@ private class Boxes.BoxActor: Boxes.UI {
         }
     }
 }
-

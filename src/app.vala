@@ -19,12 +19,13 @@ private errordomain Boxes.Error {
 }
 
 private class Boxes.App: Boxes.UI {
+    public override Clutter.Actor actor { get { return stage; } }
     public Gtk.Window window;
     public GtkClutter.Embed embed;
-    public Stage stage;
+    public Clutter.Stage stage;
     public Clutter.State state;
     public Clutter.Box box; // the whole app box
-    public Box selected_box; // currently selected box
+    public CollectionItem current_item; // current object/vm manipulated
     public GVir.Connection connection;
     public static const uint duration = 555;  // default to 1/2 for all transitions
 
@@ -39,12 +40,10 @@ private class Boxes.App: Boxes.UI {
         collection = new Collection ();
 
         collection.item_added.connect ((item) => {
-            if (item is Box) {
-                var box = item as Box;
-                var actor = box.get_clutter_actor ();
-                actor.set_reactive (true);
-                actor.button_press_event.connect ((actor, event) => { return box_clicked (box, event); });
-            }
+            item.actor.set_reactive (true);
+            item.actor.button_press_event.connect ((actor, event) => {
+                return item_clicked (item, event);
+            });
 
             view.add_item (item);
         });
@@ -67,8 +66,8 @@ private class Boxes.App: Boxes.UI {
         }
 
         foreach (var domain in connection.get_domains ()) {
-            var box = new Box (this, domain);
-            collection.add_item (box);
+            var machine = new Machine (this, domain);
+            collection.add_item (machine);
         }
     }
 
@@ -110,7 +109,7 @@ private class Boxes.App: Boxes.UI {
 
     public void go_back () {
         ui_state = UIState.COLLECTION;
-        selected_box = null;
+        current_item = null;
     }
 
     public override void ui_state_changed () {
@@ -160,11 +159,18 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    private bool box_clicked (Box box, Clutter.ButtonEvent event) {
+    private bool item_clicked (CollectionItem item, Clutter.ButtonEvent event) {
         if (ui_state == UIState.COLLECTION) {
-            selected_box = box;
-            if (selected_box.connect_display ())
+            current_item = item;
+
+            if (current_item is Machine) {
+                var machine = current_item as Machine;
+
+                machine.connect_display ();
                 ui_state = UIState.CREDS;
+
+            } else
+                warning ("unknown item, fix your code");
         }
 
         return false;
@@ -172,16 +178,13 @@ private class Boxes.App: Boxes.UI {
 }
 
 private abstract class Boxes.UI: GLib.Object {
+    public abstract Clutter.Actor actor { get; }
     public UIState ui_state { get; set; }
 
     public UI () {
         notify["ui-state"].connect ( (s, p) => {
             ui_state_changed ();
         });
-    }
-
-    public void pin_actor (Clutter.Actor actor) {
-        actor.set_geometry (actor.get_geometry ());
     }
 
     public abstract void ui_state_changed ();

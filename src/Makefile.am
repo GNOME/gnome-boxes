@@ -24,10 +24,10 @@ bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
 	app.vala				\
-	box.vala				\
 	collection-view.vala			\
 	collection.vala				\
 	display.vala				\
+	machine.vala				\
 	main.vala				\
 	sidebar.vala				\
 	spice-display.vala			\

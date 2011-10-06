@@ -1,6 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2
 
-private class Boxes.CollectionItem: GLib.Object {
+private abstract class Boxes.CollectionItem: Boxes.UI {
     public string name;
 }
 
@@ -9,7 +9,7 @@ private class Boxes.Collection: GLib.Object {
 
     GenericArray<CollectionItem> items;
 
-    public Collection () {
+    construct {
         items = new GenericArray<CollectionItem> ();
     }
 

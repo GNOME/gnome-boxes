@@ -4,13 +4,14 @@ using Gdk;
 using Clutter;
 
 private class Boxes.Sidebar: Boxes.UI {
+    public override Clutter.Actor actor { get { return gtk_actor; } }
     public Notebook notebook;
     public TreeView tree_view;
 
     private App app;
     private uint width;
 
-    private Clutter.Actor actor; // the sidebar box
+    private GtkClutter.Actor gtk_actor; // the sidebar box
 
     private bool selection_func (Gtk.TreeSelection selection,
                                  Gtk.TreeModel     model,
@@ -82,8 +83,8 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook.show_tabs = false;
         notebook.show_all ();
 
-        actor = new GtkClutter.Actor.with_contents (notebook);
-        app.box.pack (actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
+        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        app.box.pack (gtk_actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
 
         var listmodel = new ListStore (5,
                                        typeof (string),
@@ -118,6 +119,6 @@ private class Boxes.Sidebar: Boxes.UI {
         create.show ();
 
         // FIXME: make it dynamic depending on sidebar size..:
-        app.state.set_key (null, "display", actor, "x", AnimationMode.EASE_OUT_QUAD, -(float) width, 0, 0);
+        app.state.set_key (null, "display", gtk_actor, "x", AnimationMode.EASE_OUT_QUAD, -(float) width, 0, 0);
     }
 }

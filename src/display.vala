@@ -11,7 +11,7 @@ private abstract class Boxes.Display: GLib.Object {
     public abstract void connect_it ();
     public abstract void disconnect_it ();
 
-    public override void constructed () {
+    construct {
         displays = new HashTable<int, Gtk.Widget> (direct_hash, direct_equal);
     }
 
