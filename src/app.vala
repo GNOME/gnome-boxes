@@ -89,12 +89,6 @@ private class Boxes.App: Boxes.UI {
 
         window.destroy.connect (quit);
         window.key_press_event.connect (on_key_pressed);
-        window.configure_event.connect ((event) => {
-            if (event.type == Gdk.EventType.CONFIGURE)
-                save_window_size ();
-
-            return false;
-        });
 
         box_table = new Clutter.TableLayout ();
         box = new Clutter.Box (box_table);
@@ -137,34 +131,12 @@ private class Boxes.App: Boxes.UI {
             state.set_state ("creds");
             break;
         case UIState.COLLECTION:
-            restore_window_size ();
             state.set_state ("collection");
             break;
         default:
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
             break;
         }
-    }
-
-    public void save_window_size () {
-        float width, height;
-
-		if (ui_state == UIState.DISPLAY)
-			return;
-
-        window.get_size (out width, out height);
-        window.default_width = (int) width;
-        window.default_height = (int) height;
-    }
-
-    public void restore_window_size () {
-        window.resize (window.default_width, window.default_height);
-    }
-
-    public void set_window_size (int width, int height, bool save=false) {
-        if (save)
-            save_window_size ();
-        window.resize (width, height);
     }
 
     public void quit () {

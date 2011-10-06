@@ -195,10 +195,6 @@ private class Boxes.BoxActor: Boxes.UI {
     private Gtk.Widget? display;
     private Box box;
 
-    // signal handler IDs
-    private ulong width_req_id;
-    private ulong height_req_id;
-
     public BoxActor (Box box) {
         this.box = box;
 
@@ -247,10 +243,7 @@ private class Boxes.BoxActor: Boxes.UI {
         actor_remove (screenshot);
 
         this.display = display;
-        width_req_id = display.notify["width-request"].connect ((pspec) => { update_display_size (); });
-        height_req_id = display.notify["height-request"].connect ((pspec) => { update_display_size (); });
         vbox.add (display);
-        update_display_size ();
 
         display.show ();
         display.grab_focus ();
@@ -261,8 +254,6 @@ private class Boxes.BoxActor: Boxes.UI {
             return;
 
         vbox.remove (display);
-        display.disconnect (width_req_id);
-        display.disconnect (height_req_id);
         display = null;
 
         actor.pack_at (screenshot, 0);
@@ -309,16 +300,6 @@ private class Boxes.BoxActor: Boxes.UI {
 
             break;
         }
-    }
-
-    private void update_display_size () {
-        if (display.width_request < 320 || display.height_request < 200) {
-            // filter invalid size request
-            // TODO: where does it come from
-            return;
-        }
-
-        box.app.set_window_size (display.width_request, display.height_request);
     }
 }
 
