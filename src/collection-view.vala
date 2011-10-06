@@ -2,10 +2,10 @@
 using Clutter;
 
 private class Boxes.CollectionView: Boxes.UI {
-    public override Clutter.Actor actor { get { return group; } }
+    public override Clutter.Actor actor { get { return margin; } }
 
     private App app;
-    private Clutter.Group group; // the surrounding actor, for the margin
+    private Clutter.Group margin; // the surrounding actor, for the margin
     private Clutter.Box boxes; // the boxes list box
     private Clutter.FlowLayout layout;
     private Clutter.Box top_box; // a box on top of boxes list
@@ -86,29 +86,29 @@ private class Boxes.CollectionView: Boxes.UI {
 
     private void setup_view () {
         layout = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
-        group = new Clutter.Group ();
+        margin = new Clutter.Group ();
         boxes = new Clutter.Box (layout);
         layout.set_column_spacing (35);
         layout.set_row_spacing (25);
-        group.add (boxes);
-        app.box.pack (group, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
+        margin.add (boxes);
+        app.box.pack (margin, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
         boxes.set_position (15f, 15f);
         boxes.add_constraint_with_name ("boxes-width",
-                                        new Clutter.BindConstraint (group, BindCoordinate.WIDTH, -25f));
+                                        new Clutter.BindConstraint (margin, BindCoordinate.WIDTH, -25f));
         boxes.add_constraint_with_name ("boxes-height",
-                                        new Clutter.BindConstraint (group, BindCoordinate.HEIGHT, -25f));
+                                        new Clutter.BindConstraint (margin, BindCoordinate.HEIGHT, -25f));
         // FIXME! report bug to clutter about flow inside table
-        group.add_constraint_with_name ("boxes-left",
+        margin.add_constraint_with_name ("boxes-left",
                                         new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
-        group.add_constraint_with_name ("boxes-bottom",
+        margin.add_constraint_with_name ("boxes-bottom",
                                         new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
 
         top_box = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
         top_box.add_constraint_with_name ("top-box-size",
-                                          new Clutter.BindConstraint (group, BindCoordinate.SIZE, 0));
+                                          new Clutter.BindConstraint (margin, BindCoordinate.SIZE, 0));
         top_box.add_constraint_with_name ("top-box-position",
-                                          new Clutter.BindConstraint (group, BindCoordinate.POSITION, 0));
+                                          new Clutter.BindConstraint (margin, BindCoordinate.POSITION, 0));
         app.stage.add_actor (top_box);
 
         app.state.set_key (null, "creds", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
