@@ -27,6 +27,7 @@ gnome_boxes_SOURCES =				\
 	box.vala				\
 	collection-view.vala			\
 	collection.vala				\
+	display.vala				\
 	main.vala				\
 	sidebar.vala				\
 	spice-display.vala			\
