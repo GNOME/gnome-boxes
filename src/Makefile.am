@@ -9,6 +9,7 @@ AM_CPPFLAGS =						\
 AM_VALAFLAGS =						\
 	--vapidir=$(srcdir)/				\
 	--vapidir=$(top_srcdir)/vapi                    \
+	--vapidir=$(top_srcdir)/vapi/upstream           \
 	--pkg clutter-gtk-1.0				\
 	--pkg cogl-1.0					\
 	--pkg config					\

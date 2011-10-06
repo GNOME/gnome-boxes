@@ -75,11 +75,13 @@ fi
 
 AC_CONFIG_FILES([
   Makefile
-  src/Makefile
   data/Makefile
-  data/icons/Makefile
   data/gnome-boxes.desktop.in
+  data/icons/Makefile
   po/Makefile.in
+  src/Makefile
+  vapi/Makefile.in
+  vapi/upstream/Makefile.in
 ])
 
 AC_OUTPUT
