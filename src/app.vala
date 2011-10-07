@@ -25,6 +25,7 @@ private class Boxes.App: Boxes.UI {
     public Clutter.Stage stage;
     public Clutter.State state;
     public Clutter.Box box; // the whole app box
+    public Clutter.Box display_box; // the display box above
     public CollectionItem current_item; // current object/vm manipulated
     public GVir.Connection connection;
     public static const uint duration = 555;  // default to 1/2 for all transitions
@@ -79,9 +80,9 @@ private class Boxes.App: Boxes.UI {
         window.add (embed);
         stage = embed.get_stage () as Clutter.Stage;
 
-        var actor = new GtkClutter.Actor (); // just to have background
-        actor.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) stage, BindCoordinate.SIZE, 0));
-        stage.add_actor (actor);
+        var background = new GtkClutter.Actor (); // just to have background
+        background.add_constraint (new Clutter.BindConstraint (stage, BindCoordinate.SIZE, 0));
+        stage.add_actor (background);
 
         state = new Clutter.State ();
         state.set_duration (null, null, duration);
@@ -91,8 +92,8 @@ private class Boxes.App: Boxes.UI {
 
         box_table = new Clutter.TableLayout ();
         box = new Clutter.Box (box_table);
-        box.add_constraint (new Clutter.BindConstraint ((Clutter.Actor) stage, BindCoordinate.SIZE, 0));
-        ((Clutter.Container) stage).add_actor (box);
+        box.add_constraint (new Clutter.BindConstraint (stage, BindCoordinate.SIZE, 0));
+        stage.add_actor (box);
 
         topbar = new Topbar (this);
         sidebar = new Sidebar (this);
@@ -101,6 +102,9 @@ private class Boxes.App: Boxes.UI {
         var size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
         size_group.add_widget (topbar.corner);
         size_group.add_widget (sidebar.notebook);
+
+        display_box = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.CENTER, Clutter.BinAlignment.CENTER));
+        stage.add_actor (display_box);
 
         window.show ();
 
@@ -119,17 +123,17 @@ private class Boxes.App: Boxes.UI {
             o.ui_state = ui_state;
         }
 
-        box.set_layout_manager (box_table);
-
         switch (ui_state) {
         case UIState.DISPLAY:
             box.set_layout_manager (new Clutter.FixedLayout ());
             state.set_state ("display");
             break;
         case UIState.CREDS:
+            box.set_layout_manager (box_table);
             state.set_state ("creds");
             break;
         case UIState.COLLECTION:
+            box.set_layout_manager (box_table);
             state.set_state ("collection");
             break;
         default:

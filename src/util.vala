@@ -5,6 +5,7 @@ using Xml;
 
 namespace Boxes {
     // FIXME: Remove these when we can use Vala release that provides binding for gdkkeysyms.h
+    private const uint F10_KEY = 0xffc7;
     private const uint F11_KEY = 0xffc8;
     private const uint F12_KEY = 0xffc9;
 

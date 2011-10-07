@@ -12,10 +12,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     public override Gtk.Widget get_display (int n) throws Boxes.Error {
-        var display = displays.lookup (n);
+        var display = displays.lookup (n) as Spice.Display;
 
         if (display == null) {
             display = new Spice.Display (session, n);
+            display.scaling = true;
         }
 
         if (display == null) {
