@@ -80,8 +80,8 @@ AC_CONFIG_FILES([
   data/icons/Makefile
   po/Makefile.in
   src/Makefile
-  vapi/Makefile.in
-  vapi/upstream/Makefile.in
+  vapi/Makefile
+  vapi/upstream/Makefile
 ])
 
 AC_OUTPUT
