@@ -8,7 +8,7 @@ private class Boxes.CollectionView: Boxes.UI {
     private Clutter.Group margin; // the surrounding actor, for the margin
     private Clutter.Box boxes; // the boxes list box
     private Clutter.FlowLayout layout;
-    private Clutter.Box top_box; // a box on top of boxes list
+    private Clutter.Box over_boxes; // a box on top of boxes list
 
     public CollectionView (App app) {
         this.app = app;
@@ -18,12 +18,18 @@ private class Boxes.CollectionView: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
+            over_boxes.add_constraint_with_name ("top-box-size",
+                                                 new Clutter.BindConstraint (margin, BindCoordinate.SIZE, 0));
+            over_boxes.add_constraint_with_name ("top-box-position",
+                                                 new Clutter.BindConstraint (margin, BindCoordinate.POSITION, 0));
+            actor_add (over_boxes, app.stage);
+
             remove_item (app.current_item);
             app.current_item.ui_state = UIState.CREDS;
 
-            top_box.pack (app.current_item.actor,
-                          "x-align", Clutter.BinAlignment.CENTER,
-                          "y-align", Clutter.BinAlignment.CENTER);
+            over_boxes.pack (app.current_item.actor,
+                             "x-align", Clutter.BinAlignment.CENTER,
+                             "y-align", Clutter.BinAlignment.CENTER);
 
             boxes.set_layout_manager (new Clutter.FixedLayout ());
 
@@ -35,8 +41,8 @@ private class Boxes.CollectionView: Boxes.UI {
 
             /* move box actor to stage */
             actor.get_transformed_position (out x, out y);
-            if (actor.get_parent () == top_box)
-                top_box.remove_actor (actor);
+            if (actor.get_parent () == over_boxes)
+                over_boxes.remove_actor (actor);
             if (actor.get_parent () != app.stage)
                 app.stage.add_actor (actor);
             actor.set_position (x, y);
@@ -53,8 +59,8 @@ private class Boxes.CollectionView: Boxes.UI {
                 break;
 
             var actor = app.current_item.actor;
-            if (actor.get_parent () == top_box)
-                top_box.remove_actor (actor);
+            if (actor.get_parent () == over_boxes)
+                over_boxes.remove_actor (actor);
             add_item (app.current_item);
 
             break;
@@ -100,21 +106,16 @@ private class Boxes.CollectionView: Boxes.UI {
                                         new Clutter.BindConstraint (margin, BindCoordinate.HEIGHT, -25f));
         // FIXME! report bug to clutter about flow inside table
         margin.add_constraint_with_name ("boxes-left",
-                                        new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
+                                         new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
         margin.add_constraint_with_name ("boxes-bottom",
-                                        new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
+                                         new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
 
-        top_box = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
-        top_box.add_constraint_with_name ("top-box-size",
-                                          new Clutter.BindConstraint (margin, BindCoordinate.SIZE, 0));
-        top_box.add_constraint_with_name ("top-box-position",
-                                          new Clutter.BindConstraint (margin, BindCoordinate.POSITION, 0));
-        app.stage.add_actor (top_box);
+        over_boxes = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
 
         app.state.set_key (null, "creds", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
         app.state.set_key (null, "display", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
         app.state.set_key (null, "collection", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 255, 0, 0);
-        app.state.set_key (null, "display", top_box, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
-        app.state.set_key (null, "display", top_box, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
+        app.state.set_key (null, "display", over_boxes, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
+        app.state.set_key (null, "display", over_boxes, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
     }
 }
