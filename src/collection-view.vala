@@ -102,6 +102,7 @@ private class Boxes.CollectionView: Boxes.UI {
         layout = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
         margin = new Clutter.Group ();
         margin.set_clip_to_allocation (true);
+        margin.set_reactive (true);
         /* this helps to keep the app table inside the window, otherwise, it allocated large */
         margin.set_size (1f, 1f);
 
@@ -111,10 +112,33 @@ private class Boxes.CollectionView: Boxes.UI {
         margin.add (boxes);
         app.box.pack (margin, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
+        margin.scroll_event.connect ((event) => {
+            float scrollable_height = boxes.get_height ();
+
+            boxes.get_preferred_height (boxes.get_width (), null, out scrollable_height);
+            var viewport_height = margin.get_height ();
+
+            message ("foo %f %f", scrollable_height, viewport_height);
+            if (scrollable_height < viewport_height)
+                return true;
+            var y = boxes.get_y ();
+            switch (event.direction) {
+            case ScrollDirection.UP:
+                y += 50f;
+                break;
+            case ScrollDirection.DOWN:
+                y -= 50f;
+                break;
+            default:
+                break;
+            }
+            y = y.clamp (viewport_height - scrollable_height, 0.0f);
+            boxes.animate (AnimationMode.LINEAR, 50, "y", y);
+            return true;
+        });
+
         boxes.add_constraint_with_name ("boxes-width",
                                         new Clutter.BindConstraint (margin, BindCoordinate.WIDTH, -25f));
-        boxes.add_constraint_with_name ("boxes-height",
-                                        new Clutter.BindConstraint (margin, BindCoordinate.HEIGHT, -25f));
 
         over_boxes = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
         over_boxes.add_constraint_with_name ("top-box-size",
