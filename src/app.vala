@@ -80,9 +80,19 @@ private class Boxes.App: Boxes.UI {
         window.add (embed);
         stage = embed.get_stage () as Clutter.Stage;
 
-        var background = new GtkClutter.Actor (); // just to have background
-        background.add_constraint (new Clutter.BindConstraint (stage, BindCoordinate.SIZE, 0));
-        stage.add_actor (background);
+        var style = new Gtk.StyleContext ();
+        var path = new Gtk.WidgetPath ();
+        path.append_type (typeof (Gtk.Window));
+        style.set_path (path);
+        style.add_class ("boxes-bg");
+        var gdk_rgba = style.get_background_color (0);
+        Clutter.Color color = {
+            (uint8) (gdk_rgba.red * 255).clamp (0, 255),
+            (uint8) (gdk_rgba.green * 255).clamp (0, 255),
+            (uint8) (gdk_rgba.blue * 255).clamp (0, 255),
+            (uint8) (gdk_rgba.alpha * 255).clamp (0, 255)
+        };
+        stage.set_color (color);
 
         state = new Clutter.State ();
         state.set_duration (null, null, duration);

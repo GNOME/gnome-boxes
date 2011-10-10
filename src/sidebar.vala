@@ -61,6 +61,7 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook.append_page (vbox, new Gtk.Label (""));
 
         tree_view = new Gtk.TreeView ();
+        tree_view.set_name ("MyTreeview");
         var selection = tree_view.get_selection ();
         selection.set_select_function (selection_func);
         tree_view_activate_on_single_click (tree_view, true);

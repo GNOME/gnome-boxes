@@ -148,12 +148,12 @@ private class Boxes.Machine: Boxes.CollectionItem {
             var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
             var context = new Cairo.Context (surface);
 
-            var pattern = new Cairo.Pattern.linear (0, 0, 0, height);
-            pattern.add_color_stop_rgb (0, 0.260, 0.260, 0.260);
-            pattern.add_color_stop_rgb (1, 0.220, 0.220, 0.220);
-
-            context.set_source (pattern);
-            context.paint ();
+            // make it take color from theme
+            // var pattern = new Cairo.Pattern.linear (0, 0, 0, height);
+            // pattern.add_color_stop_rgb (0, 0.260, 0.260, 0.260);
+            // pattern.add_color_stop_rgb (1, 0.220, 0.220, 0.220);
+            // context.set_source (pattern);
+            // context.paint ();
 
             int size = (int) (height * 0.5);
             var icon_info = IconTheme.get_default ().lookup_icon ("computer-symbolic", size,
@@ -231,6 +231,9 @@ private class Boxes.MachineActor: Boxes.UI {
 
         vbox = new Gtk.VBox (false, 0);
         gtk_vbox = new GtkClutter.Actor.with_contents (vbox);
+
+        gtk_vbox.get_widget ().get_style_context ().add_class ("boxes-bg");
+
         label = new Gtk.Label (machine.name);
         vbox.add (label);
         entry = new Gtk.Entry ();
