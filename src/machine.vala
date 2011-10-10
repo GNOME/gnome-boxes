@@ -21,6 +21,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
 
     private ulong show_id;
     private ulong disconnected_id;
+    private uint screenshot_id;
 
     private Display? _display;
     private Display? display {
@@ -55,12 +56,29 @@ private class Boxes.Machine: Boxes.CollectionItem {
         name = domain.get_name ();
         machine_actor = new MachineActor (this);
 
-        update_screenshot.begin ();
-        Timeout.add_seconds (5, () => {
-            update_screenshot.begin ();
-
-            return true;
+        set_screenshot_enable (true);
+        app.notify["ui-state"].connect (() => {
+            if (app.ui_state == UIState.DISPLAY)
+                set_screenshot_enable (false);
+            else
+                set_screenshot_enable (true);
         });
+    }
+
+    public void set_screenshot_enable (bool enable) {
+        if (enable) {
+            if (screenshot_id != 0)
+                return;
+            update_screenshot.begin ();
+            screenshot_id = Timeout.add_seconds (5, () => {
+                update_screenshot.begin ();
+                return true;
+            });
+        } else {
+            if (screenshot_id != 0)
+                Source.remove (screenshot_id);
+            screenshot_id = 0;
+        }
     }
 
     public async bool take_screenshot () throws GLib.Error {

@@ -189,15 +189,10 @@ private abstract class Boxes.UI: GLib.Object {
         set {
             if (_ui_state != value) {
                 _ui_state = value;
-                notify_property("ui_state");
+                ui_state_changed ();
+                notify_property ("ui-state");
             }
         }
-    }
-
-    public UI () {
-        notify["ui-state"].connect ( (s, p) => {
-            ui_state_changed ();
-        });
     }
 
     public abstract void ui_state_changed ();
