@@ -81,7 +81,6 @@ private class Boxes.CollectionView: Boxes.UI {
         if (item is Machine) {
             var machine = item as Machine;
 
-            message ("add");
             machine.machine_actor.ui_state = UIState.COLLECTION;
             actor_add (machine.actor, boxes);
         } else
@@ -118,7 +117,6 @@ private class Boxes.CollectionView: Boxes.UI {
             boxes.get_preferred_height (boxes.get_width (), null, out scrollable_height);
             var viewport_height = margin.get_height ();
 
-            message ("foo %f %f", scrollable_height, viewport_height);
             if (scrollable_height < viewport_height)
                 return true;
             var y = boxes.get_y ();
