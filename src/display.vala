@@ -14,8 +14,4 @@ private abstract class Boxes.Display: GLib.Object {
     construct {
         displays = new HashTable<int, Gtk.Widget> (direct_hash, direct_equal);
     }
-
-    ~Boxes () {
-        disconnect_it ();
-    }
 }

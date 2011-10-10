@@ -81,7 +81,7 @@ private class Boxes.CollectionView: Boxes.UI {
         if (item is Machine) {
             var machine = item as Machine;
 
-            machine.machine_actor.ui_state = UIState.COLLECTION;
+            machine.ui_state = UIState.COLLECTION;
             actor_add (machine.actor, boxes);
         } else
             warning ("Cannot add item %p".printf (&item));
