@@ -35,7 +35,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
     public override void ui_state_changed () {
         if (ui_state == UIState.DISPLAY)
-            pin_actor (actor);
+            actor_pin (actor);
     }
 
     private void list_append (ListStore listmodel,

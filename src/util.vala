@@ -102,7 +102,12 @@ namespace Boxes {
         container.remove (actor);
     }
 
-    private void pin_actor (Clutter.Actor actor) {
+    private void actor_pin (Clutter.Actor actor) {
         actor.set_geometry (actor.get_geometry ());
+    }
+
+    private void actor_unpin (Clutter.Actor actor) {
+        actor.set_size (-1, -1);
+        actor.set_position (-1, -1);
     }
 }

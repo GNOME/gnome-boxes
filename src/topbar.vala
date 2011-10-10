@@ -91,7 +91,7 @@ private class Boxes.Topbar: Boxes.UI {
             break;
 
         case UIState.DISPLAY:
-            pin_actor (gtk_actor);
+            actor_pin (gtk_actor);
             break;
 
         default:

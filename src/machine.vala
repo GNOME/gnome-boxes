@@ -19,7 +19,34 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
     }
 
-    private Display display;
+    private ulong show_id;
+    private ulong disconnected_id;
+
+    private Display? _display;
+    private Display? display {
+        get { return _display; }
+        set {
+            if (_display != null) {
+                _display.disconnect (show_id);
+                _display.disconnect (disconnected_id);
+            }
+
+            _display = value;
+
+            show_id = _display.show.connect ((id) => {
+                app.ui_state = Boxes.UIState.DISPLAY;
+                try {
+                    machine_actor.show_display (display.get_display (0));
+                } catch (Boxes.Error error) {
+                    warning (error.message);
+                }
+            });
+
+            disconnected_id = _display.disconnected.connect (() => {
+                app.ui_state = Boxes.UIState.COLLECTION;
+            });
+        }
+    }
 
     public Machine (Boxes.App app, GVir.Domain domain) {
         this.domain = domain;
@@ -33,19 +60,6 @@ private class Boxes.Machine: Boxes.CollectionItem {
             update_screenshot.begin ();
 
             return true;
-        });
-
-        app.state.completed.connect ( () => {
-            if (app.state.state == "display") {
-                if (app.current_item != this)
-                    return;
-
-                try {
-                    machine_actor.show_display (display.get_display (0));
-                } catch (Boxes.Error error) {
-                    warning (error.message);
-                }
-            }
         });
     }
 
@@ -163,14 +177,6 @@ private class Boxes.Machine: Boxes.CollectionItem {
 
             return;
         }
-
-        display.show.connect ((id) => {
-            app.ui_state = Boxes.UIState.DISPLAY;
-        });
-
-        display.disconnected.connect (() => {
-            app.ui_state = Boxes.UIState.COLLECTION;
-        });
     }
 
     public override void ui_state_changed () {
@@ -183,7 +189,8 @@ private class Boxes.MachineActor: Boxes.UI {
     public Clutter.Box box;
 
     private GtkClutter.Texture screenshot;
-    private GtkClutter.Actor gtkactor;
+    public GtkClutter.Actor gtk_vbox;
+    public GtkClutter.Actor gtk_display;
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry entry;
@@ -205,18 +212,18 @@ private class Boxes.MachineActor: Boxes.UI {
         screenshot.keep_aspect_ratio = true;
 
         vbox = new Gtk.VBox (false, 0);
-        gtkactor = new GtkClutter.Actor.with_contents (vbox);
+        gtk_vbox = new GtkClutter.Actor.with_contents (vbox);
         label = new Gtk.Label (machine.name);
         vbox.add (label);
         entry = new Gtk.Entry ();
         entry.set_visibility (false);
-        entry.set_placeholder_text (_("Password")); // TODO: i18n stupid vala...
+        entry.set_placeholder_text (_("Password"));
         vbox.add (entry);
 
         vbox.show_all ();
         entry.hide ();
 
-        actor_add (gtkactor, box);
+        actor_add (gtk_vbox, box);
     }
 
     public void scale_screenshot (float scale = 1.5f) {
@@ -233,23 +240,29 @@ private class Boxes.MachineActor: Boxes.UI {
             return;
         }
 
-        actor_remove (screenshot);
-
+        /* before display was in the vbox, but there are scaling issues, so now on stage */
         this.display = display;
-        vbox.add (display);
-
+        gtk_display = new GtkClutter.Actor.with_contents (display);
+        gtk_display.add_constraint_with_name ("display-fs", new Clutter.BindConstraint (machine.app.stage, BindCoordinate.SIZE, 0));
         display.show ();
-        display.grab_focus ();
+
+        // FIXME: there is flickering if we show it without delay
+        // where does this rendering delay come from?
+        Timeout.add (Boxes.App.duration, () => {
+            machine.app.stage.add (gtk_display);
+            gtk_display.grab_key_focus ();
+            display.grab_focus ();
+            return false;
+        });
     }
 
     public void hide_display () {
         if (display == null)
             return;
 
-        vbox.remove (display);
+        actor_remove (gtk_display);
         display = null;
-
-        box.pack_at (screenshot, 0);
+        gtk_display = null;
     }
 
     public override void ui_state_changed () {
@@ -275,7 +288,6 @@ private class Boxes.MachineActor: Boxes.UI {
             actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                            "x", 0.0f,
                            "y", 0.0f);
-
             break;
         }
 

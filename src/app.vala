@@ -7,6 +7,7 @@ using Clutter;
 using GVir;
 
 private enum Boxes.UIState {
+    NONE,
     COLLECTION,
     CREDS,
     DISPLAY,
@@ -25,7 +26,6 @@ private class Boxes.App: Boxes.UI {
     public Clutter.Stage stage;
     public Clutter.State state;
     public Clutter.Box box; // the whole app box
-    public Clutter.Box display_box; // the display box above
     public CollectionItem current_item; // current object/vm manipulated
     public GVir.Connection connection;
     public static const uint duration = 555;  // default to 1/2 for all transitions
@@ -103,9 +103,6 @@ private class Boxes.App: Boxes.UI {
         size_group.add_widget (topbar.corner);
         size_group.add_widget (sidebar.notebook);
 
-        display_box = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.CENTER, Clutter.BinAlignment.CENTER));
-        stage.add_actor (display_box);
-
         window.show ();
 
         ui_state = UIState.COLLECTION;
@@ -135,6 +132,7 @@ private class Boxes.App: Boxes.UI {
         case UIState.COLLECTION:
             box.set_layout_manager (box_table);
             state.set_state ("collection");
+
             break;
         default:
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
@@ -183,7 +181,18 @@ private class Boxes.App: Boxes.UI {
 
 private abstract class Boxes.UI: GLib.Object {
     public abstract Clutter.Actor actor { get; }
-    public UIState ui_state { get; set; }
+
+    private UIState _ui_state;
+    [CCode (notify = false)]
+    public UIState ui_state {
+        get { return _ui_state; }
+        set {
+            if (_ui_state != value) {
+                _ui_state = value;
+                notify_property("ui_state");
+            }
+        }
+    }
 
     public UI () {
         notify["ui-state"].connect ( (s, p) => {

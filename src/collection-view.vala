@@ -18,34 +18,34 @@ private class Boxes.CollectionView: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
-            over_boxes.add_constraint_with_name ("top-box-size",
-                                                 new Clutter.BindConstraint (margin, BindCoordinate.SIZE, 0));
-            over_boxes.add_constraint_with_name ("top-box-position",
-                                                 new Clutter.BindConstraint (margin, BindCoordinate.POSITION, 0));
-            actor_add (over_boxes, app.stage);
-
             remove_item (app.current_item);
-            app.current_item.ui_state = UIState.CREDS;
-
             over_boxes.pack (app.current_item.actor,
                              "x-align", Clutter.BinAlignment.CENTER,
                              "y-align", Clutter.BinAlignment.CENTER);
+            app.current_item.ui_state = UIState.CREDS;
+            actor_add (over_boxes, app.stage);
 
+            /* item don't move anymore */
             boxes.set_layout_manager (new Clutter.FixedLayout ());
 
             break;
 
         case UIState.DISPLAY: {
             float x, y;
-            var actor = app.current_item.actor;
+            var display = app.current_item.actor;
 
-            /* move box actor to stage */
-            actor.get_transformed_position (out x, out y);
-            if (actor.get_parent () == over_boxes)
-                over_boxes.remove_actor (actor);
-            if (actor.get_parent () != app.stage)
-                app.stage.add_actor (actor);
-            actor.set_position (x, y);
+            /* move display/machine actor to stage, keep same position */
+            display.get_transformed_position (out x, out y);
+            actor_remove (display);
+            actor_add (display, app.stage);
+            display.set_position (x, y);
+
+            /* make sure the boxes stay where they are */
+            boxes.get_transformed_position (out x, out y);
+            boxes.set_position (x, y);
+            actor_pin (boxes);
+            margin.remove_constraint_by_name ("boxes-left");
+            margin.remove_constraint_by_name ("boxes-bottom");
 
             app.current_item.ui_state = UIState.DISPLAY;
 
@@ -53,15 +53,22 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         case UIState.COLLECTION:
+            if (app.current_item != null) {
+                actor_remove (app.current_item.actor);
+                add_item (app.current_item);
+            }
+
+            /* follow main table layout again */
+            actor_unpin (boxes);
+            boxes.set_position (15f, 15f);
+            margin.add_constraint_with_name ("boxes-left",
+                                             new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
+            margin.add_constraint_with_name ("boxes-bottom",
+                                             new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
+            /* normal flow items */
             boxes.set_layout_manager (layout);
 
-            if (app.current_item == null)
-                break;
-
-            var actor = app.current_item.actor;
-            if (actor.get_parent () == over_boxes)
-                over_boxes.remove_actor (actor);
-            add_item (app.current_item);
+            actor_remove (over_boxes);
 
             break;
 
@@ -74,6 +81,7 @@ private class Boxes.CollectionView: Boxes.UI {
         if (item is Machine) {
             var machine = item as Machine;
 
+            message ("add");
             machine.machine_actor.ui_state = UIState.COLLECTION;
             actor_add (machine.actor, boxes);
         } else
@@ -93,24 +101,26 @@ private class Boxes.CollectionView: Boxes.UI {
     private void setup_view () {
         layout = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
         margin = new Clutter.Group ();
+        margin.set_clip_to_allocation (true);
+        /* this helps to keep the app table inside the window, otherwise, it allocated large */
+        margin.set_size (1f, 1f);
+
         boxes = new Clutter.Box (layout);
         layout.set_column_spacing (35);
         layout.set_row_spacing (25);
         margin.add (boxes);
         app.box.pack (margin, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
 
-        boxes.set_position (15f, 15f);
         boxes.add_constraint_with_name ("boxes-width",
                                         new Clutter.BindConstraint (margin, BindCoordinate.WIDTH, -25f));
         boxes.add_constraint_with_name ("boxes-height",
                                         new Clutter.BindConstraint (margin, BindCoordinate.HEIGHT, -25f));
-        // FIXME! report bug to clutter about flow inside table
-        margin.add_constraint_with_name ("boxes-left",
-                                         new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
-        margin.add_constraint_with_name ("boxes-bottom",
-                                         new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
 
         over_boxes = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
+        over_boxes.add_constraint_with_name ("top-box-size",
+                                             new Clutter.BindConstraint (margin, BindCoordinate.SIZE, 0));
+        over_boxes.add_constraint_with_name ("top-box-position",
+                                             new Clutter.BindConstraint (margin, BindCoordinate.POSITION, 0));
 
         app.state.set_key (null, "creds", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
         app.state.set_key (null, "display", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
