@@ -21,6 +21,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
 
     private ulong show_id;
     private ulong disconnected_id;
+    private ulong need_password_id;
     private uint screenshot_id;
 
     private Display? _display;
@@ -30,6 +31,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
             if (_display != null) {
                 _display.disconnect (show_id);
                 _display.disconnect (disconnected_id);
+                _display.disconnect (need_password_id);
             }
 
             _display = value;
@@ -46,6 +48,12 @@ private class Boxes.Machine: Boxes.CollectionItem {
             disconnected_id = _display.disconnected.connect (() => {
                 app.ui_state = Boxes.UIState.COLLECTION;
             });
+
+            need_password_id = display.notify["need-password"].connect (() => {
+                machine_actor.set_password_needed (display.need_password);
+            });
+
+            display.password = machine_actor.get_password ();
         }
     }
 
@@ -211,7 +219,7 @@ private class Boxes.MachineActor: Boxes.UI {
     public GtkClutter.Actor gtk_display;
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
-    private Gtk.Entry entry;
+    private Gtk.Entry password_entry;
     private Gtk.Widget? display;
     private Machine machine;
 
@@ -236,13 +244,24 @@ private class Boxes.MachineActor: Boxes.UI {
 
         label = new Gtk.Label (machine.name);
         vbox.add (label);
-        entry = new Gtk.Entry ();
-        entry.set_visibility (false);
-        entry.set_placeholder_text (_("Password"));
-        vbox.add (entry);
+        password_entry = new Gtk.Entry ();
+        password_entry.set_visibility (false);
+        password_entry.set_placeholder_text (_("Password"));
+        set_password_needed (false);
+        password_entry.key_press_event.connect ((event) => {
+            if (event.keyval == Gdk.Key.KP_Enter ||
+                event.keyval == Gdk.Key.ISO_Enter ||
+                event.keyval == Gdk.Key.Return) {
+                machine.connect_display ();
+                return true;
+            }
+
+            return false;
+        });
+        vbox.add (password_entry);
 
         vbox.show_all ();
-        entry.hide ();
+        password_entry.hide ();
 
         actor_add (gtk_vbox, box);
     }
@@ -286,21 +305,28 @@ private class Boxes.MachineActor: Boxes.UI {
         gtk_display = null;
     }
 
+    public void set_password_needed (bool needed) {
+        password_entry.set_sensitive (needed);
+        password_entry.set_can_focus (needed);
+        if (needed)
+            password_entry.grab_focus ();
+    }
+
+    public string get_password () {
+        return password_entry.text;
+    }
+
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
             scale_screenshot (2.0f);
-            entry.show ();
-            // actor.entry.set_sensitive (false); FIXME: depending on spice-gtk conn. results
-            entry.set_can_focus (true);
-            entry.grab_focus ();
-
+            password_entry.show ();
             break;
 
         case UIState.DISPLAY: {
             int width, height;
 
-            entry.hide ();
+            password_entry.hide ();
             label.hide ();
             machine.app.window.get_size (out width, out height);
             screenshot.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
@@ -315,8 +341,8 @@ private class Boxes.MachineActor: Boxes.UI {
         case UIState.COLLECTION:
             hide_display ();
             scale_screenshot ();
-            entry.set_can_focus (false);
-            entry.hide ();
+            password_entry.set_can_focus (false);
+            password_entry.hide ();
             label.show ();
 
             break;
