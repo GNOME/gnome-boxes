@@ -45,6 +45,12 @@ public void main (string[] args) {
 
     parse_args (ref args);
 
+    try {
+        GVir.init_object_check (ref args);
+    } catch (GLib.Error e) {
+        error (e.message);
+    }
+
     Gtk.Window.set_default_icon_name ("gnome-boxes");
     Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
     var provider = new Gtk.CssProvider ();
