@@ -237,7 +237,7 @@ namespace GVir {
 	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h", instance_pos = 2.9)]
 	public delegate int StreamSinkFunc (GVir.Stream stream, [CCode (array_length_cname = "nbytes", array_length_pos = 2.1, array_length_type = "gsize")] out unowned string[] buf);
 	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h")]
-	public static void init_object ([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref string[]? argv);
+	public static void init_object ([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref unowned string[]? argv);
 	[CCode (cheader_filename = "libvirt-gobject/libvirt-gobject.h")]
-	public static bool init_object_check ([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref string[]? argv) throws GLib.Error;
+	public static bool init_object_check ([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref unowned string[]? argv) throws GLib.Error;
 }
