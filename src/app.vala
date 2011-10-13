@@ -27,8 +27,8 @@ private class Boxes.App: Boxes.UI {
     public Clutter.State state;
     public Clutter.Box box; // the whole app box
     public CollectionItem current_item; // current object/vm manipulated
-    public GVir.Connection connection;
     public static const uint duration = 555;  // default to 1/2 for all transitions
+    public static GLib.Settings settings;
 
     private Clutter.TableLayout box_table;
     private Collection collection;
@@ -37,6 +37,7 @@ private class Boxes.App: Boxes.UI {
     private CollectionView view;
 
     public App () {
+        settings = new GLib.Settings ("org.gnome.boxes");
         setup_ui ();
         collection = new Collection ();
 
@@ -49,15 +50,15 @@ private class Boxes.App: Boxes.UI {
             view.add_item (item);
         });
 
-        setup_libvirt.begin ();
+        setup_brokers ();
     }
 
     public void set_category (Category category) {
         topbar.label.set_text (category.name);
     }
 
-    private async void setup_libvirt () {
-        connection = new GVir.Connection ("qemu:///system");
+    private async void setup_broker (string uri) {
+        var connection = new GVir.Connection (uri);
 
         try {
             yield connection.open_async (null);
@@ -67,8 +68,14 @@ private class Boxes.App: Boxes.UI {
         }
 
         foreach (var domain in connection.get_domains ()) {
-            var machine = new Machine (this, domain);
+            var machine = new Machine (this, connection, domain);
             collection.add_item (machine);
+        }
+    }
+
+    private async void setup_brokers () {
+        foreach (var uri in settings.get_strv("broker-uris")) {
+            setup_broker.begin (uri);
         }
     }
 

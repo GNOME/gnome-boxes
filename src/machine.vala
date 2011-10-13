@@ -9,6 +9,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
     public Boxes.App app;
     public MachineActor machine_actor;
     public GVir.Domain domain;
+    public GVir.Connection connection;
     public DomainState state {
         get {
             try {
@@ -57,9 +58,10 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
     }
 
-    public Machine (Boxes.App app, GVir.Domain domain) {
-        this.domain = domain;
+    public Machine (Boxes.App app, GVir.Connection connection, GVir.Domain domain) {
         this.app = app;
+        this.connection = connection;
+        this.domain = domain;
 
         name = domain.get_name ();
         machine_actor = new MachineActor (this);
@@ -94,7 +96,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
             state != DomainState.PAUSED)
             return false;
 
-        var stream = app.connection.get_stream (0);
+        var stream = connection.get_stream (0);
         var file_name = get_screenshot_filename ();
         var file = File.new_for_path (file_name);
         var output_stream = yield file.replace_async (null, false, FileCreateFlags.REPLACE_DESTINATION);

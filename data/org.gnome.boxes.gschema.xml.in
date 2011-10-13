@@ -1,0 +1,24 @@
+<schemalist>
+  <schema id="org.gnome.boxes" path="/org/gnome/boxes/" gettext-domain="gnome-boxes">
+
+    <key name="broker-uris" type="as">
+      <summary>Broker URIs</summary>
+      <description>
+        List broker URIs to connect to. A broker URI can only be a
+        libvirt URI for now. The default value is:
+        qemu+unix:///session.
+      </description>
+      <default>[ 'qemu+unix:///session' ]</default>
+    </key>
+
+    <key name="screenshot-interval" type="i">
+      <summary>Screenshot interval</summary>
+      <description>
+        The interval in seconds between screenshot updates.
+        Default value: 5.
+      </description>
+      <default>5</default>
+    </key>
+
+  </schema>
+</schemalist>
