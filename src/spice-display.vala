@@ -38,8 +38,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                 if (channel is Spice.DisplayChannel) {
                     var display = channel as DisplayChannel;
 
+                    // FIXME: should show only when mark received? not reliable yet:
                     show (display.channel_id);
-                    display.display_mark.connect ((mark) => { show (display.channel_id); });
+                    // display.display_mark.connect ((mark) => { show (display.channel_id); });
                 }
             });
         }

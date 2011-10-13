@@ -136,7 +136,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
             pixbuf = new Gdk.Pixbuf.from_file (get_screenshot_filename ());
         } catch (GLib.Error error) {
             if (!(error is FileError.NOENT))
-                warning (error.message);
+                warning ("%s: %s".printf (name, error.message));
         }
 
         if (pixbuf == null)
