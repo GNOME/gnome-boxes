@@ -5,12 +5,17 @@ private abstract class Boxes.CollectionItem: Boxes.UI {
 }
 
 private class Boxes.Collection: GLib.Object {
+    private Boxes.App app;
     public signal void item_added (CollectionItem item);
 
     GenericArray<CollectionItem> items;
 
     construct {
         items = new GenericArray<CollectionItem> ();
+    }
+
+    public Collection (Boxes.App app) {
+        this.app = app;
     }
 
     public void add_item (CollectionItem item) {

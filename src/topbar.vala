@@ -2,6 +2,11 @@
 using Clutter;
 using Gtk;
 
+public enum Boxes.TopbarPage {
+    COLLECTION,
+    WIZARD,
+}
+
 private class Boxes.Topbar: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
     public Widget corner;
@@ -11,9 +16,8 @@ private class Boxes.Topbar: Boxes.UI {
     private uint height;
 
     private GtkClutter.Actor gtk_actor; // the topbar box
-    private Notebook notebook;
+    public Notebook notebook;
 
-    private HBox hbox;
     private Toolbar toolbar_start;
     private ToolButton spinner;
 
@@ -35,7 +39,9 @@ private class Boxes.Topbar: Boxes.UI {
                       "x-expand", true,
                       "y-expand", false);
 
-        hbox = new Gtk.HBox (false, 0);
+        /* TopbarPage.COLLECTION */
+        var hbox = new Gtk.HBox (false, 0);
+        notebook.append_page (hbox, null);
         hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
 
         corner = new Gtk.EventBox ();
@@ -69,8 +75,12 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar_end.set_show_arrow (false);
         hbox.pack_start (toolbar_end, false, false, 0);
 
+        /* TopbarPage.WIZARD */
+        hbox = new Gtk.HBox (false, 0);
+        hbox.margin = 5;
         notebook.append_page (hbox, null);
-        notebook.page = 0;
+        hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
+
         notebook.show_tabs = false;
         notebook.show_all ();
 
@@ -81,17 +91,19 @@ private class Boxes.Topbar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
+            notebook.page = TopbarPage.COLLECTION;
             toolbar_start.hide ();
             spinner.hide ();
             break;
-
         case UIState.CREDS:
             toolbar_start.show ();
             spinner.show ();
             break;
-
         case UIState.DISPLAY:
             actor_pin (gtk_actor);
+            break;
+        case UIState.WIZARD:
+            notebook.page = TopbarPage.WIZARD;
             break;
 
         default:

@@ -1,4 +1,5 @@
 @define-color boxes_bg_color darker (@theme_bg_color);
+@define-color boxes_continue_color #5f8dd3;
 
 #TopbarLabel {
     font-size: 14;
@@ -11,4 +12,17 @@
 
 .boxes-bg {
     background-color: @boxes_bg_color;
+}
+
+.boxes-step-label {
+    color: gray;
+    font-size: 11;
+    font-weight: bold;
+}
+
+.boxes-continue {
+    background-image: -gtk-gradient (linear,
+                                     left top, left bottom,
+                                     from (@boxes_continue_color),
+                                     to (darker (@boxes_continue_color)));
 }

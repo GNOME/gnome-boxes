@@ -3,6 +3,11 @@ using Gtk;
 using Gdk;
 using Clutter;
 
+private enum Boxes.SidebarPage {
+    COLLECTION,
+    WIZARD,
+}
+
 private class Boxes.Sidebar: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
     public Notebook notebook;
@@ -34,8 +39,17 @@ private class Boxes.Sidebar: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        if (ui_state == UIState.DISPLAY)
+        switch (ui_state) {
+        case UIState.COLLECTION:
+            notebook.page = SidebarPage.COLLECTION;
+            break;
+        case UIState.DISPLAY:
             actor_pin (actor);
+            break;
+        case UIState.WIZARD:
+            notebook.page = SidebarPage.WIZARD;
+            break;
+        }
     }
 
     private void list_append (ListStore listmodel,
@@ -57,8 +71,9 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook = new Gtk.Notebook ();
         notebook.set_size_request ((int) width, 100);
 
+        /* SidebarPage.COLLECTION */
         var vbox = new Gtk.VBox (false, 0);
-        notebook.append_page (vbox, new Gtk.Label (""));
+        notebook.append_page (vbox, null);
 
         tree_view = new Gtk.TreeView ();
         tree_view.set_name ("MyTreeview");
@@ -80,9 +95,7 @@ private class Boxes.Sidebar: Boxes.UI {
         });
 
         vbox.pack_start (tree_view, true, true, 0);
-        notebook.page = 0;
         notebook.show_tabs = false;
-        notebook.show_all ();
 
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
         app.box.pack (gtk_actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
@@ -118,6 +131,15 @@ private class Boxes.Sidebar: Boxes.UI {
         create.margin = 5;
         vbox.pack_end (create, false, false, 0);
         create.show ();
+        create.clicked.connect (() => {
+            app.go_create ();
+        });
+
+        /* SidebarPage.WIZARD */
+        vbox = new Gtk.VBox (false, 0);
+        notebook.append_page (vbox, null);
+
+        notebook.show_all ();
 
         // FIXME: make it dynamic depending on sidebar size..:
         app.state.set_key (null, "display", gtk_actor, "x", AnimationMode.EASE_OUT_QUAD, -(float) width, 0, 0);

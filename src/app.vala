@@ -27,19 +27,20 @@ private class Boxes.App: Boxes.UI {
     public Clutter.State state;
     public Clutter.Box box; // the whole app box
     public CollectionItem current_item; // current object/vm manipulated
+    public Topbar topbar;
+    public Sidebar sidebar;
     public static const uint duration = 555;  // default to 1/2 for all transitions
     public static GLib.Settings settings;
+    public Wizard wizard;
 
     private Clutter.TableLayout box_table;
     private Collection collection;
-    private Sidebar sidebar;
-    private Topbar topbar;
     private CollectionView view;
 
     public App () {
         settings = new GLib.Settings ("org.gnome.boxes");
         setup_ui ();
-        collection = new Collection ();
+        collection = new Collection (this);
 
         collection.item_added.connect ((item) => {
             item.actor.set_reactive (true);
@@ -122,6 +123,7 @@ private class Boxes.App: Boxes.UI {
 
         window.show ();
 
+        wizard = new Wizard (this);
         ui_state = UIState.COLLECTION;
     }
 
@@ -130,10 +132,14 @@ private class Boxes.App: Boxes.UI {
         current_item = null;
     }
 
+    public void go_create () {
+        ui_state = UIState.WIZARD;
+    }
+
     public override void ui_state_changed () {
         message ("Switching layout to %s".printf (ui_state.to_string ()));
 
-        foreach (var o in new Boxes.UI[] { sidebar, topbar, view }) {
+        foreach (var o in new Boxes.UI[] { sidebar, topbar, view, wizard }) {
             o.ui_state = ui_state;
         }
 
@@ -149,7 +155,9 @@ private class Boxes.App: Boxes.UI {
         case UIState.COLLECTION:
             box.set_layout_manager (box_table);
             state.set_state ("collection");
-
+            break;
+        case UIState.WIZARD:
+            box.set_layout_manager (box_table);
             break;
         default:
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));

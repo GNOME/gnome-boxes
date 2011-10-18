@@ -34,6 +34,7 @@ gnome_boxes_SOURCES =				\
 	spice-display.vala			\
 	topbar.vala				\
 	util.vala				\
+	wizard.vala				\
 	$(NULL)
 BUILT_SOURCES = dirs.h
 gnome_boxes_LDADD = $(BOXES_LIBS)

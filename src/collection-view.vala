@@ -53,6 +53,8 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         case UIState.COLLECTION:
+            actor_remove (app.wizard.actor);
+
             if (app.current_item != null) {
                 actor_remove (app.current_item.actor);
                 add_item (app.current_item);
@@ -70,6 +72,12 @@ private class Boxes.CollectionView: Boxes.UI {
 
             actor_remove (over_boxes);
 
+            break;
+
+        case UIState.WIZARD:
+            over_boxes.pack (app.wizard.actor);
+            app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
+            actor_add (over_boxes, app.stage);
             break;
 
         default:
