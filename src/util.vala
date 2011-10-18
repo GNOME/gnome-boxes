@@ -17,6 +17,10 @@ namespace Boxes {
         return Path.build_filename (get_pkgdata (), "style", file_name);
     }
 
+    private string get_pixmap (string? file_name = null) {
+        return Path.build_filename (get_pkgdata (), "pixmaps", file_name);
+    }
+
     private string get_pkgcache (string? file_name = null) {
         var dir = Path.build_filename (Environment.get_user_cache_dir (), Config.PACKAGE_TARNAME);
 
@@ -29,6 +33,32 @@ namespace Boxes {
         }
 
         return Path.build_filename (dir, file_name);
+    }
+
+    private Clutter.Color gdk_rgba_to_clutter_color (Gdk.RGBA gdk_rgba) {
+        Clutter.Color color = {
+            (uint8) (gdk_rgba.red * 255).clamp (0, 255),
+            (uint8) (gdk_rgba.green * 255).clamp (0, 255),
+            (uint8) (gdk_rgba.blue * 255).clamp (0, 255),
+            (uint8) (gdk_rgba.alpha * 255).clamp (0, 255)
+        };
+
+        return color;
+    }
+
+    private Gdk.RGBA get_boxes_bg_color () {
+        var style = new Gtk.StyleContext ();
+        var path = new Gtk.WidgetPath ();
+        path.append_type (typeof (Gtk.Window));
+        style.set_path (path);
+        style.add_class ("boxes-bg");
+        return style.get_background_color (0);
+    }
+
+    private Gdk.Color get_color (string desc) {
+        Gdk.Color color;
+        Gdk.Color.parse (desc, out color);
+        return color;
     }
 
     private void tree_view_activate_on_single_click (Gtk.TreeView tree_view, bool should_activate) {

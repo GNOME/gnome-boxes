@@ -86,7 +86,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
             });
         } else {
             if (screenshot_id != 0)
-                Source.remove (screenshot_id);
+                GLib.Source.remove (screenshot_id);
             screenshot_id = 0;
         }
     }

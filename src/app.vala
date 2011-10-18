@@ -87,20 +87,7 @@ private class Boxes.App: Boxes.UI {
         embed.show ();
         window.add (embed);
         stage = embed.get_stage () as Clutter.Stage;
-
-        var style = new Gtk.StyleContext ();
-        var path = new Gtk.WidgetPath ();
-        path.append_type (typeof (Gtk.Window));
-        style.set_path (path);
-        style.add_class ("boxes-bg");
-        var gdk_rgba = style.get_background_color (0);
-        Clutter.Color color = {
-            (uint8) (gdk_rgba.red * 255).clamp (0, 255),
-            (uint8) (gdk_rgba.green * 255).clamp (0, 255),
-            (uint8) (gdk_rgba.blue * 255).clamp (0, 255),
-            (uint8) (gdk_rgba.alpha * 255).clamp (0, 255)
-        };
-        stage.set_color (color);
+        stage.set_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
 
         state = new Clutter.State ();
         state.set_duration (null, null, duration);
