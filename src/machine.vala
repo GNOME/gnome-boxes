@@ -161,7 +161,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
         return get_pkgcache (uuid + "-screenshot." + ext);
     }
 
-    private async void update_screenshot (int width = 128, int height = 96) {
+    public async void update_screenshot (int width = 128, int height = 96) {
         Gdk.Pixbuf? pixbuf = null;
 
         try {

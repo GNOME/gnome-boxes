@@ -171,6 +171,7 @@ private class Boxes.App: Boxes.UI {
                 var machine = current_item as Machine;
 
                 machine.connect_display = false;
+                machine.update_screenshot.begin ();
             }
             ui_state = UIState.COLLECTION;
         }
