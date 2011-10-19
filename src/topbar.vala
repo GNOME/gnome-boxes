@@ -19,7 +19,8 @@ private class Boxes.Topbar: Boxes.UI {
     public Notebook notebook;
 
     private Toolbar toolbar_start;
-    private ToolButton spinner;
+    private Toolbar toolbar_end;
+    private Gtk.Spinner spinner;
 
     public Topbar (App app) {
         this.app = app;
@@ -65,13 +66,15 @@ private class Boxes.Topbar: Boxes.UI {
         label.set_halign (Gtk.Align.START);
         hbox.pack_start (label, true, true, 0);
 
-        var toolbar_end = new Gtk.Toolbar ();
+        toolbar_end = new Gtk.Toolbar ();
         toolbar_end.icon_size = Gtk.IconSize.MENU;
         toolbar_end.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
 
-        spinner = new Gtk.ToolButton (new Gtk.Spinner (), null);
-        spinner.get_style_context ().add_class ("raised");
-        toolbar_end.insert (spinner, 0);
+        spinner = new Gtk.Spinner ();
+        spinner.start ();
+        var btn = new Gtk.ToolButton (spinner, null);
+        btn.get_style_context ().add_class ("raised");
+        toolbar_end.insert (btn, 0);
         toolbar_end.set_show_arrow (false);
         hbox.pack_start (toolbar_end, false, false, 0);
 
@@ -93,11 +96,11 @@ private class Boxes.Topbar: Boxes.UI {
         case UIState.COLLECTION:
             notebook.page = TopbarPage.COLLECTION;
             toolbar_start.hide ();
-            spinner.hide ();
+            toolbar_end.hide ();
             break;
         case UIState.CREDS:
             toolbar_start.show ();
-            spinner.show ();
+            toolbar_end.show ();
             break;
         case UIState.DISPLAY:
             actor_pin (gtk_actor);

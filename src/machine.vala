@@ -130,7 +130,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
         return get_pkgcache (uuid + "-screenshot." + ext);
     }
 
-    private async void update_screenshot () {
+    private async void update_screenshot (int width = 128, int height = 96) {
         Gdk.Pixbuf? pixbuf = null;
 
         try {
@@ -142,7 +142,9 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
 
         if (pixbuf == null)
-            pixbuf = draw_fallback_vm (128, 96);
+            pixbuf = draw_fallback_vm (width, height);
+        else
+            pixbuf = draw_vm (pixbuf, width, height);
 
         try {
             machine_actor.set_screenshot (pixbuf);
@@ -151,19 +153,53 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
     }
 
+    private Gdk.Pixbuf draw_vm (Gdk.Pixbuf pixbuf, int width, int height) {
+        var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
+        var context = new Cairo.Context (surface);
+
+        var pw = (double)pixbuf.get_width ();
+        var ph = (double)pixbuf.get_height ();
+        var sw = width / pw;
+        var sh = height / ph;
+        var x = 0.0;
+        var y = 0.0;
+
+        if (pw > ph) {
+            y = (height - (ph * sw)) / 2;
+            sh = sw;
+        }
+
+        context.rectangle (x, y, width - x * 2, height - y * 2);
+        context.clip ();
+
+        context.scale (sw, sh);
+        Gdk.cairo_set_source_pixbuf (context, pixbuf, x / sw, y / sh);
+        context.get_source ().set_filter (Cairo.Filter.BEST); // FIXME: cairo scaling is crap
+        context.paint ();
+
+        if (state != DomainState.RUNNING) {
+            context.set_source_rgba (1, 1, 1, 1);
+            context.set_operator (Cairo.Operator.HSL_SATURATION);
+            context.paint ();
+
+            context.identity_matrix ();
+            context.scale (0.1875, 0.1875);
+            var grid = new Cairo.Pattern.for_surface (new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png")));
+            grid.set_extend (Cairo.Extend.REPEAT);
+            context.set_source_rgba (1, 1, 1, 1);
+            context.set_operator (Cairo.Operator.OVER);
+            context.mask (grid);
+        }
+
+        return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
+    }
+
     private static Gdk.Pixbuf draw_fallback_vm (int width, int height) {
         Gdk.Pixbuf pixbuf = null;
 
         try {
             var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
             var context = new Cairo.Context (surface);
-
-            // make it take color from theme
-            // var pattern = new Cairo.Pattern.linear (0, 0, 0, height);
-            // pattern.add_color_stop_rgb (0, 0.260, 0.260, 0.260);
-            // pattern.add_color_stop_rgb (1, 0.220, 0.220, 0.220);
-            // context.set_source (pattern);
-            // context.paint ();
 
             int size = (int) (height * 0.5);
             var icon_info = IconTheme.get_default ().lookup_icon ("computer-symbolic", size,
