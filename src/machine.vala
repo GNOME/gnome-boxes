@@ -113,15 +113,46 @@ private class Boxes.Machine: Boxes.CollectionItem {
         return true;
     }
 
-    public bool connect_display () {
-        update_display ();
+    private ulong started_id;
+    private bool _connect_display;
+    public bool connect_display {
+        get { return _connect_display; }
+        set {
+            if (_connect_display == value)
+                return;
 
-        if (display == null)
-            return false;
+            if (value && state != DomainState.RUNNING) {
+                if (started_id != 0)
+                    return;
 
-        display.connect_it ();
+                if (state == DomainState.PAUSED) {
+                    started_id = domain.resumed.connect (() => {
+                        domain.disconnect (started_id);
+                        started_id = 0;
+                        connect_display = true;
+                    });
+                    try {
+                        domain.resume ();
+                    } catch (GLib.Error e) {
+                        warning (e.message);
+                    }
+                } else if (state != DomainState.RUNNING) {
+                    started_id = domain.started.connect (() => {
+                        domain.disconnect (started_id);
+                        started_id = 0;
+                        connect_display = true;
+                    });
+                    try {
+                        domain.start (0);
+                    } catch (GLib.Error e) {
+                        warning (e.message);
+                    }
+                }
+            }
 
-        return true;
+            _connect_display = value;
+            update_display ();
+        }
     }
 
     private string get_screenshot_filename (string ext = "ppm") {
@@ -144,7 +175,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
         if (pixbuf == null)
             pixbuf = draw_fallback_vm (width, height);
         else
-            pixbuf = draw_vm (pixbuf, width, height);
+            pixbuf = draw_vm (pixbuf, pixbuf.get_width (), pixbuf.get_height ());
 
         try {
             machine_actor.set_screenshot (pixbuf);
@@ -183,7 +214,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
             context.paint ();
 
             context.identity_matrix ();
-            context.scale (0.1875, 0.1875);
+            context.scale (0.1875 / 128 * width, 0.1875 / 96 * height);
             var grid = new Cairo.Pattern.for_surface (new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png")));
             grid.set_extend (Cairo.Extend.REPEAT);
             context.set_source_rgba (1, 1, 1, 1);
@@ -235,12 +266,17 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
 
         if (type == "spice") {
+            if (display != null)
+                display.disconnect_it ();
             display = new SpiceDisplay (ghost, int.parse (gport));
         } else {
             warning ("unsupported display of type " + type);
 
             return;
         }
+
+        if (connect_display)
+            display.connect_it ();
     }
 
     public override void ui_state_changed () {
@@ -290,7 +326,7 @@ private class Boxes.MachineActor: Boxes.UI {
             if (event.keyval == Gdk.Key.KP_Enter ||
                 event.keyval == Gdk.Key.ISO_Enter ||
                 event.keyval == Gdk.Key.Return) {
-                machine.connect_display ();
+                machine.connect_display = true;
                 return true;
             }
 

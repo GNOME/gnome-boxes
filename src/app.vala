@@ -167,6 +167,11 @@ private class Boxes.App: Boxes.UI {
         }
 
         if (event.keyval == F12_KEY) {
+            if (current_item is Machine) {
+                var machine = current_item as Machine;
+
+                machine.connect_display = false;
+            }
             ui_state = UIState.COLLECTION;
         }
 
@@ -180,7 +185,7 @@ private class Boxes.App: Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                machine.connect_display ();
+                machine.connect_display = true;
                 ui_state = UIState.CREDS;
 
             } else
