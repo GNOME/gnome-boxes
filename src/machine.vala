@@ -290,7 +290,6 @@ private class Boxes.MachineActor: Boxes.UI {
 
     private GtkClutter.Texture screenshot;
     public GtkClutter.Actor gtk_vbox;
-    public GtkClutter.Actor gtk_display;
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
@@ -356,27 +355,19 @@ private class Boxes.MachineActor: Boxes.UI {
 
         /* before display was in the vbox, but there are scaling issues, so now on stage */
         this.display = display;
-        gtk_display = new GtkClutter.Actor.with_contents (display);
-        gtk_display.add_constraint_with_name ("display-fs", new Clutter.BindConstraint (machine.app.stage, BindCoordinate.SIZE, 0));
-        display.show ();
 
         // FIXME: there is flickering if we show it without delay
         // where does this rendering delay come from?
         Timeout.add (Boxes.App.duration, () => {
-            machine.app.stage.add (gtk_display);
-            gtk_display.grab_key_focus ();
+            machine.app.show_display (display);
             display.grab_focus ();
             return false;
         });
     }
 
     public void hide_display () {
-        if (display == null)
-            return;
-
-        actor_remove (gtk_display);
+        machine.app.remove_display ();
         display = null;
-        gtk_display = null;
     }
 
     public void set_password_needed (bool needed) {

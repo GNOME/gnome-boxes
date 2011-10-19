@@ -19,9 +19,16 @@ private errordomain Boxes.Error {
     INVALID
 }
 
+private enum Boxes.AppPage {
+    MAIN,
+    DISPLAY
+}
+
 private class Boxes.App: Boxes.UI {
     public override Clutter.Actor actor { get { return stage; } }
     public Gtk.Window window;
+    public Gtk.Notebook notebook;
+    public Gtk.Bin display_bin;
     public GtkClutter.Embed embed;
     public Clutter.Stage stage;
     public Clutter.State state;
@@ -58,6 +65,19 @@ private class Boxes.App: Boxes.UI {
         topbar.label.set_text (category.name);
     }
 
+    public void show_display (Gtk.Widget display) {
+        remove_display ();
+
+        display_bin.add (display);
+        display_bin.show_all ();
+        notebook.page = Boxes.AppPage.DISPLAY;
+    }
+
+    public void remove_display () {
+        if (display_bin.get_child () != null)
+            display_bin.remove (display_bin.get_child ());
+    }
+
     private async void setup_broker (string uri) {
         var connection = new GVir.Connection (uri);
 
@@ -83,9 +103,15 @@ private class Boxes.App: Boxes.UI {
     private void setup_ui () {
         window = new Gtk.Window ();
         window.set_default_size (640, 480);
+        notebook = new Gtk.Notebook ();
+        notebook.show_tabs = false;
+        window.add (notebook);
         embed = new GtkClutter.Embed ();
-        embed.show ();
-        window.add (embed);
+        notebook.append_page (embed, null);
+
+        display_bin = new Gtk.Alignment (1, 1, 1, 1);
+        notebook.append_page (display_bin, null);
+
         stage = embed.get_stage () as Clutter.Stage;
         stage.set_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
 
@@ -108,7 +134,7 @@ private class Boxes.App: Boxes.UI {
         size_group.add_widget (topbar.corner);
         size_group.add_widget (sidebar.notebook);
 
-        window.show ();
+        window.show_all ();
 
         wizard = new Wizard (this);
         ui_state = UIState.COLLECTION;
@@ -136,14 +162,17 @@ private class Boxes.App: Boxes.UI {
             state.set_state ("display");
             break;
         case UIState.CREDS:
+            notebook.page = Boxes.AppPage.MAIN;
             box.set_layout_manager (box_table);
             state.set_state ("creds");
             break;
         case UIState.COLLECTION:
+            notebook.page = Boxes.AppPage.MAIN;
             box.set_layout_manager (box_table);
             state.set_state ("collection");
             break;
         case UIState.WIZARD:
+            notebook.page = Boxes.AppPage.MAIN;
             box.set_layout_manager (box_table);
             break;
         default:

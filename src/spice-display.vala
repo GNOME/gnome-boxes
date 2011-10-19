@@ -18,6 +18,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         if (display == null) {
             display = new Spice.Display (session, n);
+            display.resize_guest = true;
             display.scaling = true;
         }
 
