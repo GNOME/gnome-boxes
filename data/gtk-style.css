@@ -1,5 +1,6 @@
-@define-color boxes_bg_color darker (@theme_bg_color);
-@define-color boxes_continue_color #5f8dd3;
+@define-color boxes_bg_color shade (@theme_bg_color, 0.5);
+@define-color boxes_sidebar_bg_color mix (@theme_bg_color, @boxes_bg_color, 0.5);
+@define-color boxes_selected_color #5f8dd3;
 
 #TopbarLabel {
     font-size: 14;
@@ -14,6 +15,10 @@
     background-color: @boxes_bg_color;
 }
 
+.boxes-sidebar-bg {
+    background-color: @boxes_sidebar_bg_color;
+}
+
 .boxes-step-label {
     color: gray;
     font-size: 11;
@@ -25,9 +30,17 @@
     font-weight: bold;
 }
 
+.boxes-source-nb {
+    border-radius: 15;
+}
+
+.boxes-selected {
+    background-color: @boxes_selected_color;
+}
+
 .boxes-continue {
     background-image: -gtk-gradient (linear,
                                      left top, left bottom,
-                                     from (@boxes_continue_color),
-                                     to (darker (@boxes_continue_color)));
+                                     from (@boxes_selected_color),
+                                     to (darker (@boxes_selected_color)));
 }

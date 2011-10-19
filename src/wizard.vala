@@ -35,11 +35,12 @@ private class Boxes.Source: GLib.Object {
 
     public Source () {
         notebook = new Gtk.Notebook ();
+        notebook.get_style_context ().add_class ("boxes-source-nb");
         notebook.show_tabs = false;
 
         /* main page */
         var vbox = new Gtk.VBox (false, 10);
-        vbox.margin_top = vbox.margin_bottom = 20;
+        vbox.margin_top = vbox.margin_bottom = 15;
         notebook.append_page (vbox, null);
 
         var hbox = add_entry (vbox, () => { page = SourcePage.URL; });
@@ -62,7 +63,7 @@ private class Boxes.Source: GLib.Object {
 
         /* URL page */
         vbox = new Gtk.VBox (false, 10);
-        vbox.margin_top = vbox.margin_bottom = 20;
+        vbox.margin_top = vbox.margin_bottom = 15;
         notebook.append_page (vbox, null);
 
         hbox = add_entry (vbox, () => { page = SourcePage.MAIN; });
@@ -94,6 +95,7 @@ private class Boxes.Source: GLib.Object {
 
     private Gtk.HBox add_entry (Gtk.VBox vbox, ClickedFunc? clicked = null) {
         var ebox = new Gtk.EventBox ();
+        ebox.visible_window = false;
         var hbox = new Gtk.HBox (false, 20);
         ebox.add (hbox);
         vbox.pack_start (ebox, false, false);
@@ -175,9 +177,7 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             /* highlight in white current page label */
-            Gdk.Color white;
-            Gdk.Color.parse ("white", out white);
-            steps.get (page).modify_fg (Gtk.StateType.NORMAL, white);
+            steps.get (page).modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
 
             back_button.set_sensitive (page != WizardPage.INTRODUCTION);
             next_button.set_label (page != WizardPage.REVIEW ? _("Continue") : _("Create"));

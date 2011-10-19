@@ -69,6 +69,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
     private void setup_sidebar () {
         notebook = new Gtk.Notebook ();
+        notebook.get_style_context ().add_class ("boxes-sidebar-bg");
         notebook.set_size_request ((int) width, 100);
 
         /* SidebarPage.COLLECTION */
@@ -76,7 +77,6 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook.append_page (vbox, null);
 
         tree_view = new Gtk.TreeView ();
-        tree_view.set_name ("MyTreeview");
         var selection = tree_view.get_selection ();
         selection.set_select_function (selection_func);
         tree_view_activate_on_single_click (tree_view, true);
