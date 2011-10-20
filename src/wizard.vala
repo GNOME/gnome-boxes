@@ -160,7 +160,7 @@ private class Boxes.Wizard: Boxes.UI {
         get { return _page; }
         set {
             if (value == WizardPage.LAST) {
-                app.go_back ();
+                app.ui_state = UIState.COLLECTION;
             }
 
             if (skip_page (value)) {
@@ -280,7 +280,7 @@ private class Boxes.Wizard: Boxes.UI {
         var cancel = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
         hbox_end.pack_start (cancel, false, false, 15);
         cancel.clicked.connect (() => {
-            app.go_back ();
+            app.ui_state = UIState.COLLECTION;
         });
         back_button = new Gtk.Button.from_stock (Gtk.Stock.GO_BACK);
         hbox_end.pack_start (back_button, false, false, 5);

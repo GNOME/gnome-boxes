@@ -127,18 +127,7 @@ private class Boxes.App: Boxes.UI {
         ui_state = UIState.COLLECTION;
     }
 
-    public void go_back () {
-        ui_state = UIState.COLLECTION;
-        current_item = null;
-    }
-
-    public void go_create () {
-        ui_state = UIState.WIZARD;
-    }
-
     public override void ui_state_changed () {
-        message ("Switching layout to %s".printf (ui_state.to_string ()));
-
         foreach (var o in new Boxes.UI[] { sidebar, topbar, view, wizard }) {
             o.ui_state = ui_state;
         }
@@ -273,7 +262,7 @@ private class Boxes.DisplayPage: GLib.Object {
         var back = new Gtk.ToolButton (null, null);
         back.icon_name =  "go-previous-symbolic";
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ((button) => { app.go_back (); });
+        back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
         toolbar.insert (back, 0);
         toolbar.set_show_arrow (false);
 

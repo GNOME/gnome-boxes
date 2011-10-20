@@ -132,7 +132,7 @@ private class Boxes.Sidebar: Boxes.UI {
         vbox.pack_end (create, false, false, 0);
         create.show ();
         create.clicked.connect (() => {
-            app.go_create ();
+            app.ui_state = UIState.WIZARD;
         });
 
         /* SidebarPage.WIZARD */

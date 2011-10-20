@@ -56,7 +56,7 @@ private class Boxes.Topbar: Boxes.UI {
         var back = new Gtk.ToolButton (null, null);
         back.icon_name =  "go-previous-symbolic";
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ((button) => { app.go_back (); });
+        back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
         toolbar_start.insert (back, 0);
         toolbar_start.set_show_arrow (false);
         hbox.pack_start (toolbar_start, false, false, 0);
