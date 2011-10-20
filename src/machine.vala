@@ -359,14 +359,14 @@ private class Boxes.MachineActor: Boxes.UI {
         // FIXME: there is flickering if we show it without delay
         // where does this rendering delay come from?
         Timeout.add (Boxes.App.duration, () => {
-            machine.app.show_display (display);
+            machine.app.display_page.show_display (display);
             display.grab_focus ();
             return false;
         });
     }
 
     public void hide_display () {
-        machine.app.remove_display ();
+        machine.app.display_page.remove_display ();
         display = null;
     }
 

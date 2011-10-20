@@ -28,7 +28,6 @@ private class Boxes.App: Boxes.UI {
     public override Clutter.Actor actor { get { return stage; } }
     public Gtk.Window window;
     public Gtk.Notebook notebook;
-    public Gtk.Bin display_bin;
     public GtkClutter.Embed embed;
     public Clutter.Stage stage;
     public Clutter.State state;
@@ -39,6 +38,7 @@ private class Boxes.App: Boxes.UI {
     public static const uint duration = 555;  // default to 1/2 for all transitions
     public static GLib.Settings settings;
     public Wizard wizard;
+    public DisplayPage display_page;
 
     private Clutter.TableLayout box_table;
     private Collection collection;
@@ -48,7 +48,6 @@ private class Boxes.App: Boxes.UI {
         settings = new GLib.Settings ("org.gnome.boxes");
         setup_ui ();
         collection = new Collection (this);
-
         collection.item_added.connect ((item) => {
             item.actor.set_reactive (true);
             item.actor.button_press_event.connect ((actor, event) => {
@@ -63,19 +62,6 @@ private class Boxes.App: Boxes.UI {
 
     public void set_category (Category category) {
         topbar.label.set_text (category.name);
-    }
-
-    public void show_display (Gtk.Widget display) {
-        remove_display ();
-
-        display_bin.add (display);
-        display_bin.show_all ();
-        notebook.page = Boxes.AppPage.DISPLAY;
-    }
-
-    public void remove_display () {
-        if (display_bin.get_child () != null)
-            display_bin.remove (display_bin.get_child ());
     }
 
     private async void setup_broker (string uri) {
@@ -109,8 +95,8 @@ private class Boxes.App: Boxes.UI {
         embed = new GtkClutter.Embed ();
         notebook.append_page (embed, null);
 
-        display_bin = new Gtk.Alignment (1, 1, 1, 1);
-        notebook.append_page (display_bin, null);
+        display_page = new DisplayPage (this);
+        notebook.append_page (display_page.widget, null);
 
         stage = embed.get_stage () as Clutter.Stage;
         stage.set_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
@@ -243,4 +229,28 @@ private abstract class Boxes.UI: GLib.Object {
     }
 
     public abstract void ui_state_changed ();
+}
+
+private class Boxes.DisplayPage: GLib.Object {
+    public Boxes.App app;
+    public Gtk.Bin widget;
+
+    public DisplayPage (Boxes.App app) {
+        this.app = app;
+        widget = new Gtk.Alignment (1, 1, 1, 1);
+    }
+
+    public void show_display (Gtk.Widget display) {
+        remove_display ();
+
+        widget.add (display);
+        widget.show_all ();
+        app.notebook.page = Boxes.AppPage.DISPLAY;
+    }
+
+    public void remove_display () {
+        if (widget.get_child () != null)
+            widget.remove (widget.get_child ());
+    }
+
 }
