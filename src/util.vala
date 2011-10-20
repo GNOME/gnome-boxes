@@ -61,12 +61,6 @@ namespace Boxes {
         return color;
     }
 
-    private Gdk.RGBA get_rgba (string desc) {
-        Gdk.RGBA rgba = { 0.0, 0.0, 0.0, 0.0 };
-        rgba.parse (desc);
-        return rgba;
-    }
-
     private void tree_view_activate_on_single_click (Gtk.TreeView tree_view, bool should_activate) {
         var id = tree_view.get_data<ulong> ("boxes-tree-view-activate");
 
