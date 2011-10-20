@@ -90,6 +90,7 @@ private class Boxes.App: Boxes.UI {
         window = new Gtk.Window ();
         window.set_default_size (640, 480);
         notebook = new Gtk.Notebook ();
+        notebook.show_border = false;
         notebook.show_tabs = false;
         window.add (notebook);
         embed = new GtkClutter.Embed ();
@@ -153,6 +154,12 @@ private class Boxes.App: Boxes.UI {
             state.set_state ("creds");
             break;
         case UIState.COLLECTION:
+            if (current_item is Machine) {
+                var machine = current_item as Machine;
+
+                machine.connect_display = false;
+                machine.update_screenshot.begin ();
+            }
             notebook.page = Boxes.AppPage.MAIN;
             box.set_layout_manager (box_table);
             state.set_state ("collection");
@@ -179,16 +186,6 @@ private class Boxes.App: Boxes.UI {
                 window.fullscreen ();
 
             return true;
-        }
-
-        if (event.keyval == F12_KEY) {
-            if (current_item is Machine) {
-                var machine = current_item as Machine;
-
-                machine.connect_display = false;
-                machine.update_screenshot.begin ();
-            }
-            ui_state = UIState.COLLECTION;
         }
 
         return false;
@@ -232,25 +229,108 @@ private abstract class Boxes.UI: GLib.Object {
 }
 
 private class Boxes.DisplayPage: GLib.Object {
-    public Boxes.App app;
-    public Gtk.Bin widget;
+    public Gtk.Widget widget { get { return overlay; } }
+    private Gtk.Overlay overlay;
+    private Boxes.App app;
+    private Gtk.EventBox event_box;
+    private Gtk.Toolbar toolbar;
+    private uint toolbar_show_id;
+    private uint toolbar_hide_id;
 
     public DisplayPage (Boxes.App app) {
         this.app = app;
-        widget = new Gtk.Alignment (1, 1, 1, 1);
+
+        event_box = new Gtk.EventBox ();
+        event_box.set_events (Gdk.EventMask.POINTER_MOTION_MASK);
+        event_box.above_child = true;
+        event_box.event.connect ((event) => {
+            if (event.type == Gdk.EventType.MOTION_NOTIFY) {
+                var y = event.motion.y;
+
+                if (y <= 5 && toolbar_show_id == 0) {
+                    toolbar_event_stop ();
+                    toolbar_show_id = Timeout.add (app.duration, () => {
+                        toolbar.show_all ();
+                        toolbar_show_id = 0;
+                        return false;
+                    });
+                } else if (y > 5)
+                    toolbar_event_stop (true, false);
+            }
+
+            if (event_box.get_child () != null)
+                event_box.get_child ().event (event);
+            return false;
+        });
+        overlay = new Gtk.Overlay ();
+        overlay.margin = 0;
+        overlay.add (event_box);
+
+        toolbar = new Gtk.Toolbar ();
+        toolbar.icon_size = Gtk.IconSize.MENU;
+        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+
+        var back = new Gtk.ToolButton (null, null);
+        back.icon_name =  "go-previous-symbolic";
+        back.get_style_context ().add_class ("raised");
+        back.clicked.connect ((button) => { app.go_back (); });
+        toolbar.insert (back, 0);
+        toolbar.set_show_arrow (false);
+
+        toolbar.set_halign (Gtk.Align.FILL);
+        toolbar.set_valign (Gtk.Align.START);
+
+        toolbar.event.connect ((event) => {
+            switch (event.type) {
+            case Gdk.EventType.ENTER_NOTIFY:
+                toolbar_event_stop ();
+                break;
+            case Gdk.EventType.LEAVE_NOTIFY:
+                toolbar_event_stop ();
+                toolbar_hide_id = Timeout.add (app.duration, () => {
+                    toolbar.hide ();
+                    toolbar_hide_id = 0;
+                    return false;
+                });
+                break;
+            }
+            return false;
+        });
+
+        overlay.add_overlay (toolbar);
+        overlay.show_all ();
+    }
+
+    ~DisplayPage () {
+        toolbar_event_stop ();
+    }
+
+    private void toolbar_event_stop (bool show = true, bool hide = true) {
+        if (show) {
+            if (toolbar_show_id != 0)
+                GLib.Source.remove (toolbar_show_id);
+            toolbar_show_id = 0;
+        }
+
+        if (hide) {
+            if (toolbar_hide_id != 0)
+                GLib.Source.remove (toolbar_hide_id);
+            toolbar_hide_id = 0;
+        }
     }
 
     public void show_display (Gtk.Widget display) {
         remove_display ();
+        toolbar.hide ();
 
-        widget.add (display);
-        widget.show_all ();
+        event_box.add (display);
+        event_box.show_all ();
         app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
     public void remove_display () {
-        if (widget.get_child () != null)
-            widget.remove (widget.get_child ());
+        if (event_box.get_child () != null)
+            event_box.remove (event_box.get_child ());
     }
 
 }
