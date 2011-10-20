@@ -225,6 +225,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private Gtk.Toolbar toolbar;
     private uint toolbar_show_id;
     private uint toolbar_hide_id;
+    private Gtk.Label title;
 
     public DisplayPage (Boxes.App app) {
         this.app = app;
@@ -265,6 +266,12 @@ private class Boxes.DisplayPage: GLib.Object {
         back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
         toolbar.insert (back, 0);
         toolbar.set_show_arrow (false);
+
+        title = new Gtk.Label ("Display");
+        var item = new Gtk.ToolItem ();
+        item.add (title);
+        item.set_expand (true);
+        toolbar.insert (item, -1);
 
         toolbar.set_halign (Gtk.Align.FILL);
         toolbar.set_valign (Gtk.Align.START);
@@ -308,10 +315,10 @@ private class Boxes.DisplayPage: GLib.Object {
         }
     }
 
-    public void show_display (Gtk.Widget display) {
+    public void show_display (Boxes.Machine machine, Gtk.Widget display) {
         remove_display ();
         toolbar.hide ();
-
+        title.set_text (machine.name);
         event_box.add (display);
         event_box.show_all ();
         app.notebook.page = Boxes.AppPage.DISPLAY;

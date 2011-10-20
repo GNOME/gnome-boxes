@@ -40,7 +40,13 @@ private class Boxes.Machine: Boxes.CollectionItem {
             show_id = _display.show.connect ((id) => {
                 app.ui_state = Boxes.UIState.DISPLAY;
                 try {
-                    machine_actor.show_display (display.get_display (0));
+                    var widget = display.get_display (0);
+
+                    Timeout.add (Boxes.App.duration, () => {
+                        app.display_page.show_display (this, widget);
+                        widget.grab_focus ();
+                        return false;
+                    });
                 } catch (Boxes.Error error) {
                     warning (error.message);
                 }
@@ -293,7 +299,6 @@ private class Boxes.MachineActor: Boxes.UI {
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
-    private Gtk.Widget? display;
     private Machine machine;
 
     public MachineActor (Machine machine) {
@@ -347,29 +352,6 @@ private class Boxes.MachineActor: Boxes.UI {
         screenshot.set_from_pixbuf (pixbuf);
     }
 
-    public void show_display (Gtk.Widget display) {
-        if (this.display != null) {
-            warning ("This box actor already contains a display");
-            return;
-        }
-
-        /* before display was in the vbox, but there are scaling issues, so now on stage */
-        this.display = display;
-
-        // FIXME: there is flickering if we show it without delay
-        // where does this rendering delay come from?
-        Timeout.add (Boxes.App.duration, () => {
-            machine.app.display_page.show_display (display);
-            display.grab_focus ();
-            return false;
-        });
-    }
-
-    public void hide_display () {
-        machine.app.display_page.remove_display ();
-        display = null;
-    }
-
     public void set_password_needed (bool needed) {
         password_entry.set_sensitive (needed);
         password_entry.set_can_focus (needed);
@@ -404,7 +386,6 @@ private class Boxes.MachineActor: Boxes.UI {
         }
 
         case UIState.COLLECTION:
-            hide_display ();
             scale_screenshot ();
             password_entry.set_can_focus (false);
             password_entry.hide ();
