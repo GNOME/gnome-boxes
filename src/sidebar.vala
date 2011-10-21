@@ -41,12 +41,16 @@ private class Boxes.Sidebar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
+            actor_remove (gtk_actor);
+            app.box.pack (gtk_actor, "column", 0, "row", 0, "row-span", 2, "x-expand", false, "y-expand", true);
             notebook.page = SidebarPage.COLLECTION;
             break;
         case UIState.DISPLAY:
             actor_pin (actor);
             break;
         case UIState.WIZARD:
+            actor_remove (gtk_actor);
+            app.box.pack (gtk_actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
             notebook.page = SidebarPage.WIZARD;
             break;
         }
@@ -98,7 +102,6 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook.show_tabs = false;
 
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
-        app.box.pack (gtk_actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
 
         var listmodel = new ListStore (5,
                                        typeof (string),

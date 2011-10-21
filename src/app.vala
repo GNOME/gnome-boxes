@@ -117,10 +117,6 @@ private class Boxes.App: Boxes.UI {
         sidebar = new Sidebar (this);
         view = new CollectionView (this);
 
-        var size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
-        size_group.add_widget (topbar.corner);
-        size_group.add_widget (sidebar.notebook);
-
         window.show_all ();
 
         wizard = new Wizard (this);

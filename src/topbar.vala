@@ -9,7 +9,6 @@ public enum Boxes.TopbarPage {
 
 private class Boxes.Topbar: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
-    public Widget corner;
     public Gtk.Label label;
 
     private App app;
@@ -33,21 +32,11 @@ private class Boxes.Topbar: Boxes.UI {
         notebook = new Gtk.Notebook ();
         notebook.set_size_request (50, (int) height);
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
-        app.box.pack (gtk_actor,
-                      "column", 0,
-                      "row", 0,
-                      "column-span", 2,
-                      "x-expand", true,
-                      "y-expand", false);
 
         /* TopbarPage.COLLECTION */
         var hbox = new Gtk.HBox (false, 0);
         notebook.append_page (hbox, null);
         hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
-
-        corner = new Gtk.EventBox ();
-        // FIXME.. corner.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
-        hbox.pack_start (corner, false, false, 0);
 
         toolbar_start = new Gtk.Toolbar ();
         toolbar_start.icon_size = Gtk.IconSize.MENU;
@@ -64,7 +53,7 @@ private class Boxes.Topbar: Boxes.UI {
         label = new Gtk.Label (_("New and Recent"));
         label.name = "TopbarLabel";
         label.set_halign (Gtk.Align.START);
-        hbox.pack_start (label, true, true, 0);
+        hbox.pack_start (label, true, true, 20);
 
         toolbar_end = new Gtk.Toolbar ();
         toolbar_end.icon_size = Gtk.IconSize.MENU;
@@ -94,6 +83,8 @@ private class Boxes.Topbar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
+            actor_remove (gtk_actor);
+            app.box.pack (gtk_actor, "row", 0, "column", 1, "x-expand", true, "y-expand", false);
             notebook.page = TopbarPage.COLLECTION;
             toolbar_start.hide ();
             toolbar_end.hide ();
@@ -106,6 +97,8 @@ private class Boxes.Topbar: Boxes.UI {
             actor_pin (gtk_actor);
             break;
         case UIState.WIZARD:
+            actor_remove (gtk_actor);
+            app.box.pack (gtk_actor, "row", 0, "column", 0, "column-span", 2, "x-expand", true, "y-expand", false);
             notebook.page = TopbarPage.WIZARD;
             break;
 
