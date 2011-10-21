@@ -81,7 +81,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     private async void setup_brokers () {
-        foreach (var uri in settings.get_strv("broker-uris")) {
+        foreach (var uri in settings.get_strv ("broker-uris")) {
             setup_broker.begin (uri);
         }
     }

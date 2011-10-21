@@ -11,7 +11,8 @@ private enum Boxes.SidebarPage {
 private class Boxes.Sidebar: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
     public Notebook notebook;
-    public TreeView tree_view;
+    public TreeView default_tree_view;
+    public TreeView user_tree_view;
 
     private App app;
     private uint width;
@@ -71,17 +72,10 @@ private class Boxes.Sidebar: Boxes.UI {
         listmodel.set (iter, 4, category);
     }
 
-    private void setup_sidebar () {
-        notebook = new Gtk.Notebook ();
-        notebook.get_style_context ().add_class ("boxes-sidebar-bg");
-        notebook.set_size_request ((int) width, 100);
-
-        /* SidebarPage.COLLECTION */
-        var vbox = new Gtk.VBox (false, 0);
-        notebook.append_page (vbox, null);
-
-        tree_view = new Gtk.TreeView ();
+    private Gtk.TreeView make_tree_view () {
+        var tree_view = new Gtk.TreeView ();
         var selection = tree_view.get_selection ();
+        selection.set_mode (Gtk.SelectionMode.BROWSE);
         selection.set_select_function (selection_func);
         tree_view_activate_on_single_click (tree_view, true);
         tree_view.row_activated.connect ( (treeview, path, column) => {
@@ -96,12 +90,9 @@ private class Boxes.Sidebar: Boxes.UI {
 
             if (selectable)
                 app.set_category (category);
+
+            (treeview == default_tree_view ? user_tree_view : default_tree_view).get_selection ().unselect_all ();
         });
-
-        vbox.pack_start (tree_view, true, true, 0);
-        notebook.show_tabs = false;
-
-        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
 
         var listmodel = new ListStore (5,
                                        typeof (string),
@@ -111,6 +102,7 @@ private class Boxes.Sidebar: Boxes.UI {
                                        typeof (Category));
         tree_view.set_model (listmodel);
         tree_view.headers_visible = false;
+
         var pixbuf_renderer = new CellRendererPixbuf ();
         // pixbuf_renderer.width = 20;
         // pixbuf_renderer.mode = CellRendererMode.INERT;
@@ -120,15 +112,51 @@ private class Boxes.Sidebar: Boxes.UI {
         var renderer = new CellRendererText ();
         tree_view.insert_column_with_attributes (-1, "", renderer, "text", 0, "height", 1, "sensitive", 2);
 
+        return tree_view;
+    }
+
+    private void update_user_tree () {
+        var listmodel = user_tree_view.get_model () as Gtk.ListStore;
+
+        listmodel.clear ();
+        foreach (var collection in app.settings.get_strv ("collections"))
+            list_append (listmodel, new Category (_(collection)));
+    }
+
+    private void setup_sidebar () {
+        notebook = new Gtk.Notebook ();
+        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        notebook.get_style_context ().add_class ("boxes-sidebar-bg");
+        notebook.set_size_request ((int) width, 100);
+        notebook.show_tabs = false;
+
+        /* SidebarPage.COLLECTION */
+        var vbox = new Gtk.VBox (false, 0);
+        notebook.append_page (vbox, null);
+
+        default_tree_view = make_tree_view ();
+        vbox.pack_start (default_tree_view, false, false, 0);
+
+        var listmodel = default_tree_view.get_model () as Gtk.ListStore;
         list_append (listmodel, new Category (_("New and Recent")));
-        selection.select_path (new Gtk.TreePath.from_string ("0"));
         list_append (listmodel, new Category (_("Favorites")), "emblem-favorite-symbolic");
         list_append (listmodel, new Category (_("Private")), "channel-secure-symbolic");
         list_append (listmodel, new Category (_("Shared with you")), "emblem-shared-symbolic");
-        list_append (listmodel, new Category (_("Collections")), null, 40, false);
-        // TODO: make it dynamic
-        list_append (listmodel, new Category (_("Work")));
-        list_append (listmodel, new Category (_("Game")));
+        default_tree_view.get_selection ().select_path (new Gtk.TreePath.from_string ("0"));
+
+        var label = new Gtk.Label (_("Collections"));
+        label.name = "CollectionLabel";
+        label.xalign = 0.0f;
+        label.margin = 10;
+        label.margin_top = 20;
+        var labelw = new Gtk.EventBox ();
+        labelw.visible_window = true;
+        labelw.add (label);
+        vbox.pack_start (labelw, false, false, 0);
+
+        user_tree_view = make_tree_view ();
+        vbox.pack_start (user_tree_view, true, true, 0);
+        update_user_tree ();
 
         var create = new Gtk.Button.with_label (_("Create"));
         create.margin = 5;
