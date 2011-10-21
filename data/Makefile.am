@@ -13,6 +13,9 @@ gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
 styledir         = $(datadir)/gnome-boxes/style
 style_DATA       = gtk-style.css
 
+sourcedir         = $(datadir)/gnome-boxes/sources
+source_DATA       = QEMU_Session
+
 iconsdir = $(pkgdatadir)/icons
 
 EXTRA_DIST =					\

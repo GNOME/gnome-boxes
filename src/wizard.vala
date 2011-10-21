@@ -32,6 +32,7 @@ private class Boxes.Source: GLib.Object {
     }
 
     private Gtk.Notebook notebook;
+    public Gtk.Entry url_entry;
 
     public Source () {
         notebook = new Gtk.Notebook ();
@@ -76,8 +77,8 @@ private class Boxes.Source: GLib.Object {
         separator.height_request = 5;
         vbox.pack_start (separator, false, false);
         hbox = add_entry (vbox);
-        var entry = new Gtk.Entry ();
-        hbox.add (entry);
+        url_entry = new Gtk.Entry ();
+        hbox.add (url_entry);
         hbox = add_entry (vbox);
         var image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
         // var image = new Gtk.Image.from_icon_name ("krfb", 0);
@@ -160,6 +161,8 @@ private class Boxes.Wizard: Boxes.UI {
         get { return _page; }
         set {
             if (value == WizardPage.LAST) {
+                if (!create ())
+                    return;
                 app.ui_state = UIState.COLLECTION;
             }
 
@@ -194,6 +197,23 @@ private class Boxes.Wizard: Boxes.UI {
         this.app = app;
 
         setup_ui ();
+    }
+
+    private bool create () {
+        if (this.source.page == Boxes.SourcePage.URL) {
+            var text = this.source.url_entry.get_text ();
+
+            bool uncertain;
+            var type = ContentType.guess (text, null, out uncertain);
+            if (uncertain) {
+                var uri = Xml.URI.parse (text);
+                if (uri.scheme == "spice" || uri.scheme == "vnc") {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     private void add_step (Gtk.Widget widget, string label, WizardPage page) {

@@ -57,14 +57,14 @@ private class Boxes.App: Boxes.UI {
             view.add_item (item);
         });
 
-        setup_brokers ();
+        setup_sources.begin ();
     }
 
     public void set_category (Category category) {
         topbar.label.set_text (category.name);
     }
 
-    private async void setup_broker (string uri) {
+    private async void setup_libvirt (string uri) {
         var connection = new GVir.Connection (uri);
 
         try {
@@ -80,9 +80,33 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
-    private async void setup_brokers () {
-        foreach (var uri in settings.get_strv ("broker-uris")) {
-            setup_broker.begin (uri);
+    private async void setup_sources () {
+        if (!has_pkgconfig_sources ()) {
+            var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
+            var dst = File.new_for_path (get_pkgconfig_source ("QEMU Session"));
+            try {
+                yield src.copy_async (dst, FileCopyFlags.NONE);
+            } catch (GLib.Error e) {
+                critical ("Can't setup default sources: %s", e.message);
+            }
+        }
+
+        var dir = File.new_for_path (get_pkgconfig_source ());
+        try {
+            var e = yield dir.enumerate_children_async (FILE_ATTRIBUTE_STANDARD_NAME,
+                                                        0, Priority.DEFAULT);
+            while (true) {
+                var files = yield e.next_files_async (10, Priority.DEFAULT);
+                if (files == null)
+                    break;
+                foreach (var file in files) {
+                    var source = new CollectionSource.with_file (file.get_name ());
+                    if (source.source_type == "libvirt")
+                        setup_libvirt (source.uri);
+                }
+            }
+        } catch (GLib.Error e) {
+            warning (e.message);
         }
     }
 

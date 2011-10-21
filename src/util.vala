@@ -21,18 +21,47 @@ namespace Boxes {
         return Path.build_filename (get_pkgdata (), "pixmaps", file_name);
     }
 
+    private string get_pkgdata_source (string? file_name = null) {
+        return Path.build_filename (get_pkgdata (), "sources", file_name);
+    }
+
     private string get_pkgcache (string? file_name = null) {
         var dir = Path.build_filename (Environment.get_user_cache_dir (), Config.PACKAGE_TARNAME);
 
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
+    private string get_pkgconfig (string? file_name = null) {
+        var dir = Path.build_filename (Environment.get_user_config_dir (), Config.PACKAGE_TARNAME);
+
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
+    private bool has_pkgconfig_sources () {
+        return FileUtils.test (Path.build_filename (get_pkgconfig (), "sources"), FileTest.IS_DIR);
+    }
+
+    private string get_pkgconfig_source (string? file_name = null) {
+        var dir = Path.build_filename (get_pkgconfig (), "sources");
+
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
+    private void ensure_directory (string dir) {
         try {
             var file = GLib.File.new_for_path (dir);
             file.make_directory_with_parents (null);
         } catch (GLib.Error e) {
-            if (!(e is IOError.EXISTS))
-                warning (e.message);
+            if (e is IOError.EXISTS)
+                return;
+            warning (e.message);
         }
-
-        return Path.build_filename (dir, file_name);
     }
 
     private Clutter.Color gdk_rgba_to_clutter_color (Gdk.RGBA gdk_rgba) {
@@ -113,6 +142,38 @@ namespace Boxes {
             throw new Boxes.Error.INVALID ("Failed to extract xpath " + xpath);
 
         return obj->stringval;
+    }
+
+    private bool keyfile_save (KeyFile key_file, string file_name, bool overwrite = false) {
+        if (!overwrite && FileUtils.test (file_name, FileTest.EXISTS))
+            return false;
+
+        var file = FileStream.open (file_name, "w");
+        var data = key_file.to_data (null);
+        file.puts (data);
+
+        return true;
+    }
+
+    public string replace_regex (string str, string old, string replacement) {
+        try {
+            var regex = new GLib.Regex (old);
+            return regex.replace_literal (str, -1, 0, replacement);
+        } catch (GLib.RegexError e) {
+            critical (e.message);
+            return str;
+        }
+    }
+
+    private string make_filename (string name) {
+        var filename = replace_regex (name, "[\\\\/:()<>|?*]", "_");
+
+        var tryname = filename;
+        for (var i = 0; FileUtils.test (tryname, FileTest.EXISTS); i++) {
+            tryname =  "%s-%d".printf (filename, i);
+        }
+
+        return tryname;
     }
 
     private void actor_add (Clutter.Actor actor, Clutter.Container container) {
