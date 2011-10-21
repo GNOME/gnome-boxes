@@ -221,6 +221,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private Gtk.Toolbar toolbar;
     private uint toolbar_show_id;
     private uint toolbar_hide_id;
+    private ulong display_id;
     private Gtk.Label title;
 
     public DisplayPage (Boxes.App app) {
@@ -233,7 +234,7 @@ private class Boxes.DisplayPage: GLib.Object {
             if (event.type == Gdk.EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
 
-                if (y <= 5 && toolbar_show_id == 0) {
+                if (y <= 20 && toolbar_show_id == 0) {
                     toolbar_event_stop ();
                     toolbar_show_id = Timeout.add (app.duration, () => {
                         toolbar.show_all ();
@@ -272,23 +273,6 @@ private class Boxes.DisplayPage: GLib.Object {
         toolbar.set_halign (Gtk.Align.FILL);
         toolbar.set_valign (Gtk.Align.START);
 
-        toolbar.event.connect ((event) => {
-            switch (event.type) {
-            case Gdk.EventType.ENTER_NOTIFY:
-                toolbar_event_stop ();
-                break;
-            case Gdk.EventType.LEAVE_NOTIFY:
-                toolbar_event_stop ();
-                toolbar_hide_id = Timeout.add (app.duration, () => {
-                    toolbar.hide ();
-                    toolbar_hide_id = 0;
-                    return false;
-                });
-                break;
-            }
-            return false;
-        });
-
         overlay.add_overlay (toolbar);
         overlay.show_all ();
     }
@@ -317,12 +301,37 @@ private class Boxes.DisplayPage: GLib.Object {
         title.set_text (machine.name);
         event_box.add (display);
         event_box.show_all ();
+
+        display_id = display.event.connect ((event) => {
+            switch (event.type) {
+            case Gdk.EventType.LEAVE_NOTIFY:
+                toolbar_event_stop ();
+                break;
+            case Gdk.EventType.ENTER_NOTIFY:
+                toolbar_event_stop ();
+                toolbar_hide_id = Timeout.add (app.duration, () => {
+                    toolbar.hide ();
+                    toolbar_hide_id = 0;
+                    return false;
+                });
+                break;
+            }
+            return false;
+        });
+
         app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
     public void remove_display () {
-        if (event_box.get_child () != null)
-            event_box.remove (event_box.get_child ());
+        var display = event_box.get_child ();
+
+        if (display_id != 0) {
+            display.disconnect (display_id);
+            display_id = 0;
+        }
+        if (display != null)
+            event_box.remove (display);
+
     }
 
 }
