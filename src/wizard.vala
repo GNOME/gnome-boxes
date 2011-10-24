@@ -204,7 +204,7 @@ private class Boxes.Wizard: Boxes.UI {
             var text = this.source.url_entry.get_text ();
 
             bool uncertain;
-            ContentType.guess (text, null, out uncertain);
+            var type = ContentType.guess (text, null, out uncertain);
             if (uncertain) {
                 var uri = Xml.URI.parse (text);
                 if (uri.scheme == "spice" || uri.scheme == "vnc") {

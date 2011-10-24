@@ -144,6 +144,17 @@ namespace Boxes {
         return obj->stringval;
     }
 
+    private bool keyfile_save (KeyFile key_file, string file_name, bool overwrite = false) {
+        if (!overwrite && FileUtils.test (file_name, FileTest.EXISTS))
+            return false;
+
+        var file = FileStream.open (file_name, "w");
+        var data = key_file.to_data (null);
+        file.puts (data);
+
+        return true;
+    }
+
     public string replace_regex (string str, string old, string replacement) {
         try {
             var regex = new GLib.Regex (old);
@@ -152,6 +163,17 @@ namespace Boxes {
             critical (error.message);
             return str;
         }
+    }
+
+    private string make_filename (string name) {
+        var filename = replace_regex (name, "[\\\\/:()<>|?*]", "_");
+
+        var tryname = filename;
+        for (var i = 0; FileUtils.test (tryname, FileTest.EXISTS); i++) {
+            tryname =  "%s-%d".printf (filename, i);
+        }
+
+        return tryname;
     }
 
     private void actor_add (Clutter.Actor actor, Clutter.Container container) {
