@@ -1,8 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
-using Config;
 using Gtk;
 using Gdk;
-using GtkClutter;
 using Clutter;
 
 private errordomain Boxes.Error {
