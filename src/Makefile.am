@@ -25,6 +25,8 @@ bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
 	app.vala				\
+	ui.vala				\
+	display-page.vala				\
 	collection-view.vala			\
 	collection.vala				\
 	display.vala				\
