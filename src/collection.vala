@@ -60,15 +60,6 @@ private class Boxes.CollectionSource: GLib.Object {
                                 KeyFileFlags.KEEP_COMMENTS | KeyFileFlags.KEEP_TRANSLATIONS);
     }
 
-    private void save () {
-        if (filename == null) {
-            filename = make_filename (name);
-            keyfile_save (keyfile, get_pkgconfig_source (filename));
-        } else {
-            keyfile_save (keyfile, get_pkgconfig_source (filename), true);
-        }
-    }
-
     private string? get_string (string group, string key) {
         try {
             return keyfile.get_string (group, key);
