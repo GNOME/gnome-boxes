@@ -251,6 +251,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private uint toolbar_show_id;
     private uint toolbar_hide_id;
     private ulong display_id;
+    private ulong cursor_id;
     private Gtk.Label title;
 
     public DisplayPage (Boxes.App app) {
@@ -348,6 +349,10 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
 
+        cursor_id = display.get_window ().notify["cursor"].connect (() => {
+            event_box.get_window ().set_cursor (display.get_window ().cursor);
+        });
+
         app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
@@ -357,6 +362,10 @@ private class Boxes.DisplayPage: GLib.Object {
         if (display_id != 0) {
             display.disconnect (display_id);
             display_id = 0;
+        }
+        if (cursor_id != 0) {
+            display.disconnect (cursor_id);
+            cursor_id = 0;
         }
         if (display != null)
             event_box.remove (display);
