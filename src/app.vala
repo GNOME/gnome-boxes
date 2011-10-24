@@ -92,6 +92,11 @@ private class Boxes.App: Boxes.UI {
         }
 
         var dir = File.new_for_path (get_pkgconfig_source ());
+
+        get_sources_from_dir (dir);
+    }
+
+    private async void get_sources_from_dir (File dir) {
         try {
             var enumerator = yield dir.enumerate_children_async (FILE_ATTRIBUTE_STANDARD_NAME,
                                                                  0, Priority.DEFAULT);
