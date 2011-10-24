@@ -183,8 +183,8 @@ private class Boxes.Wizard: Boxes.UI {
             if (value == WizardPage.REVIEW) {
                 try {
                     prepare ();
-                } catch (Boxes.Error e) {
-                    warning ("Fixme: %s".printf (e.message));
+                } catch (Boxes.Error error) {
+                    warning ("Fixme: %s".printf (error.message));
                     return;
                 }
             } else if (value == WizardPage.LAST) {

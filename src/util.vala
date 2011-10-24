@@ -154,12 +154,12 @@ namespace Boxes {
                 else
                     file.delete ();
 
-            var dos = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
-            dos.put_string (key_file.to_data (null));
+            var stream = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
+            stream.put_string (key_file.to_data (null));
 
             return true;
-        } catch (GLib.Error e) {
-            warning (e.message);
+        } catch (GLib.Error error) {
+            warning (error.message);
             return false;
         }
     }

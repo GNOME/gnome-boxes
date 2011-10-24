@@ -237,8 +237,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 });
                 try {
                     domain.resume ();
-                } catch (GLib.Error e) {
-                    warning (e.message);
+                } catch (GLib.Error error) {
+                    warning (error.message);
                 }
             } else if (state != DomainState.RUNNING) {
                 started_id = domain.started.connect (() => {
@@ -248,8 +248,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 });
                 try {
                     domain.start (0);
-                } catch (GLib.Error e) {
-                    warning (e.message);
+                } catch (GLib.Error error) {
+                    warning (error.message);
                 }
             }
         }
