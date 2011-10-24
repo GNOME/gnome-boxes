@@ -13,12 +13,12 @@ private enum Boxes.AppPage {
 }
 
 private class Boxes.App: Boxes.UI {
-    public override Clutter.Actor actor { get { return stage; } }
+    public override Actor actor { get { return stage; } }
     public Gtk.Window window;
-    public Gtk.Notebook notebook;
+    public Notebook notebook;
     public GtkClutter.Embed embed;
-    public Clutter.Stage stage;
-    public Clutter.State state;
+    public Stage stage;
+    public State state;
     public Clutter.Box box; // the whole app box
     public CollectionItem current_item; // current object/vm manipulated
     public Topbar topbar;
@@ -28,7 +28,7 @@ private class Boxes.App: Boxes.UI {
     public Wizard wizard;
     public DisplayPage display_page;
 
-    private Clutter.TableLayout box_table;
+    private TableLayout box_table;
     private Collection collection;
     private CollectionView view;
 
@@ -115,7 +115,7 @@ private class Boxes.App: Boxes.UI {
     private void setup_ui () {
         window = new Gtk.Window ();
         window.set_default_size (640, 480);
-        notebook = new Gtk.Notebook ();
+        notebook = new Notebook ();
         notebook.show_border = false;
         notebook.show_tabs = false;
         window.add (notebook);
@@ -125,18 +125,18 @@ private class Boxes.App: Boxes.UI {
         display_page = new DisplayPage (this);
         notebook.append_page (display_page.widget, null);
 
-        stage = embed.get_stage () as Clutter.Stage;
+        stage = embed.get_stage () as Stage;
         stage.set_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
 
-        state = new Clutter.State ();
+        state = new State ();
         state.set_duration (null, null, duration);
 
         window.destroy.connect (quit);
         window.key_press_event.connect (on_key_pressed);
 
-        box_table = new Clutter.TableLayout ();
+        box_table = new TableLayout ();
         box = new Clutter.Box (box_table);
-        box.add_constraint (new Clutter.BindConstraint (stage, BindCoordinate.SIZE, 0));
+        box.add_constraint (new BindConstraint (stage, BindCoordinate.SIZE, 0));
         stage.add_actor (box);
 
         topbar = new Topbar (this);
@@ -156,7 +156,7 @@ private class Boxes.App: Boxes.UI {
 
         switch (ui_state) {
         case UIState.DISPLAY:
-            box.set_layout_manager (new Clutter.FixedLayout ());
+            box.set_layout_manager (new FixedLayout ());
             state.set_state ("display");
             break;
         case UIState.CREDS:
@@ -189,7 +189,7 @@ private class Boxes.App: Boxes.UI {
         Gtk.main_quit ();
     }
 
-    private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
+    private bool on_key_pressed (Widget widget, EventKey event) {
         if (event.keyval == F11_KEY) {
             if (WindowState.FULLSCREEN in window.get_window ().get_state ())
                 window.unfullscreen ();
