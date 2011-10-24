@@ -364,7 +364,7 @@ private class Boxes.DisplayPage: GLib.Object {
             display_id = 0;
         }
         if (cursor_id != 0) {
-            display.disconnect (cursor_id);
+            display.get_window ().disconnect (cursor_id);
             cursor_id = 0;
         }
         if (display != null)
