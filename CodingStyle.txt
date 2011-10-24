@@ -1,0 +1,110 @@
+Boxes CodingStyle
+=================
+
+Coding style is very similar to that of Rygel: https://live.gnome.org/Rygel/CodingStyle
+
+ * 4-spaces (and not tabs) for indentation.
+
+ * Each line must be considered 120-columns.
+
+ * 1-space between function name and braces (both calls and signature declarations)
+
+ * Avoid use of 'this' keyword as much as possible:
+
+ * If function signature/call fits in a single line, do not break it into multiple lines.
+
+ * If function signature/call doesn't fit in the same line:
+   * if the first argument fits on the same line as the previous portion of the call/signature, put it on the first line
+     with following comma rest of them on subsequent lines, one-per-line and aligned with the first argument. Like this:
+
+            some_object.some_method_call (a,
+                                          b,
+                                          c,
+                                          d,
+                                          e,
+                                          f);
+
+   * otherwise, put the opening brace along with the first argument on the second line but indented by 40 columns. The
+     rest of the argument follows the same rule as above. Like this:
+
+        public void some_method_with_very_long_name
+                                        (int some_argument_with_long_name,
+                                         int another_argument);
+
+  * An exception to this rule is made for methods/functions that take variable argument tuples. In that case all the
+    first elements of tuples are indented just the normal way described above but the subsequent elements of each tuple
+    are indented 4-space more. Like this:
+
+        action.get ("ObjectID",
+                        typeof (string),
+                        out this.object_id,
+                    "Filter",
+                        typeof (string),
+                        out this.filter,
+                    "StartingIndex",
+                        typeof (uint),
+                        out this.index,
+                    "RequestedCount",
+                        typeof (uint),
+                        out this.requested_count,
+                    "SortCriteria",
+                        typeof (string),
+                        out this.sort_criteria);
+
+ * Error declarations go on the same line as the last argument if possible, otherwise put it on the next line either
+   aligned to the last argument if any or indented by 40 spaces if there are no arguments.
+
+        public void some_method (int some_variable_with_long_name,
+                                 int another_variable) throws Error;
+        public void some_method (WithAReallyLongSingleArgument arg)
+                                 throws Error;
+        public void some_method_with_a_very_long_name_that_throws_error ()
+                                        throws Error;
+
+ * When you have to break strings on multiple lines, make use of '+' operator (you can use it on strings in Vala). Like
+   this:
+
+        // FIXME: This is not recommended by translators, need to clarify Jens Georg
+        some_object.some_method ("A very long string" +
+                                 " that doesn't fit " +
+                                 " in one line.");
+
+ * ''Prefer'' descriptive names over abbreviations (unless well-known) & shortening of names. E.g discoverer over disco.
+
+ * Use 'var' in variable declarations wherever possible.
+
+ * Use 'as' to cast wherever possible.
+
+ * Signle statments inside if/else must not be enclosed by '{}'.
+
+ * The more you provide docs in comments, but at the same time avoid over-documenting. Here is an example of useless
+   comment:
+
+   // Fetch the document
+   fetch_the_document ();
+
+ * Each class should go in a separate module (.vala file) & name the modules according to the class in it. E.g
+   Boxes.SpiceDisplay class should go under spice-display.vala.
+
+ * Avoid putting more than 3 'using' statements in each module (vala file). If you feel you need to use more, perhaps
+   you should consider refactoring (Move some of the code to a separate class).
+
+ * Declare the namespace(s) of the class/errordomain with the class/errordomain itself. Like this:
+
+   public class Boxes.Hello {
+   ...
+   };
+
+ * Prefer 'foreach' over 'for'.
+
+ * Add a newline before each return, break, throw, continue etc. if it is not the only statement in that block:
+
+    if (condition_applies ()) {
+      do_something ();
+
+      return false;
+    }
+
+    if (other_condition_applies ())
+      return true;
+
