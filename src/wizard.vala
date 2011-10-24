@@ -233,7 +233,8 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool skip_page (Boxes.WizardPage page) {
-        if (Boxes.WizardPage.SOURCE < page < Boxes.WizardPage.REVIEW &&
+        if (page > Boxes.WizardPage.SOURCE &&
+            page < Boxes.WizardPage.REVIEW &&
             this.source.page == Boxes.SourcePage.URL)
             return true;
         return false;
