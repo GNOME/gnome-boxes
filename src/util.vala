@@ -210,4 +210,42 @@ namespace Boxes {
         actor.set_size (-1, -1);
         actor.set_position (-1, -1);
     }
+
+    public class Pair<T1,T2> {
+        public T1 first;
+        public T2 second;
+
+        public Pair (T1 first, T2 second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
+
+    // FIXME: should be replaced with GUri the day it's available.
+    public class Query: GLib.Object {
+        string query;
+        HashTable<string, string?> params;
+
+        construct {
+            params = new HashTable<string, string> (GLib.str_hash, GLib.str_equal);
+        }
+
+        public Query (string query) {
+            this.query = query;
+            parse ();
+        }
+
+        private void parse () {
+            foreach (var p in query.split ("&")) {
+                var pair = p.split ("=");
+                if (pair.length != 2)
+                    continue;
+                params.insert (pair[0], pair[1]);
+            }
+        }
+
+        public new string? get (string key) {
+            return params.lookup (key);
+        }
+    }
 }

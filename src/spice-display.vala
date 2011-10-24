@@ -6,11 +6,19 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private Session session;
     private ulong channel_new_id;
 
+    construct {
+        need_password = false;
+    }
+
     public SpiceDisplay (string host, int port) {
         session = new Session ();
         session.port = port.to_string ();
         session.host = host;
-        need_password = false;
+    }
+
+    public SpiceDisplay.with_uri (string uri) {
+        session = new Session ();
+        session.uri = uri;
     }
 
     public override Gtk.Widget get_display (int n) throws Boxes.Error {

@@ -38,7 +38,18 @@ private class Boxes.CollectionSource: GLib.Object {
         owned get { return get_string ("source", "uri"); }
         set { keyfile.set_string ("source", "uri", value); }
     }
-    private string? filename;
+
+    private string? _filename;
+    public string? filename {
+        get {
+            if (_filename == null)
+                _filename = make_filename (name);
+            return _filename;
+        }
+        set { _filename = value; }
+    }
+
+    private bool has_file;
 
     construct {
         keyfile = new KeyFile ();
@@ -52,6 +63,7 @@ private class Boxes.CollectionSource: GLib.Object {
 
     public CollectionSource.with_file (string filename) throws GLib.Error {
         this.filename = filename;
+        has_file = true;
         load ();
     }
 
@@ -60,13 +72,9 @@ private class Boxes.CollectionSource: GLib.Object {
                                 KeyFileFlags.KEEP_COMMENTS | KeyFileFlags.KEEP_TRANSLATIONS);
     }
 
-    private void save () {
-        if (filename == null) {
-            filename = make_filename (name);
-            keyfile_save (keyfile, get_pkgconfig_source (filename));
-        } else {
-            keyfile_save (keyfile, get_pkgconfig_source (filename), true);
-        }
+    public void save () {
+        keyfile_save (keyfile, get_pkgconfig_source (filename), has_file);
+        has_file = true;
     }
 
     private string? get_string (string group, string key) {

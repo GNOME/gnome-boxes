@@ -4,21 +4,11 @@ using Gdk;
 using Gtk;
 using GVir;
 
-private class Boxes.Machine: Boxes.CollectionItem {
+private abstract class Boxes.Machine: Boxes.CollectionItem {
     public override Clutter.Actor actor { get { return machine_actor.actor; } }
     public Boxes.App app;
     public MachineActor machine_actor;
-    public GVir.Domain domain;
-    public GVir.Connection connection;
-    public DomainState state {
-        get {
-            try {
-                return domain.get_info ().state;
-            } catch (GLib.Error error) {
-                return DomainState.NONE;
-            }
-        }
-    }
+    public Boxes.CollectionSource source;
 
     private ulong show_id;
     private ulong disconnected_id;
@@ -26,16 +16,21 @@ private class Boxes.Machine: Boxes.CollectionItem {
     private uint screenshot_id;
 
     private Display? _display;
-    private Display? display {
+    protected Display? display {
         get { return _display; }
         set {
             if (_display != null) {
                 _display.disconnect (show_id);
+                show_id = 0;
                 _display.disconnect (disconnected_id);
+                disconnected_id = 0;
                 _display.disconnect (need_password_id);
+                need_password_id = 0;
             }
 
             _display = value;
+            if (_display == null)
+                return;
 
             show_id = _display.show.connect ((id) => {
                 app.ui_state = Boxes.UIState.DISPLAY;
@@ -64,15 +59,13 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
     }
 
-    public Machine (Boxes.App app, GVir.Connection connection, GVir.Domain domain) {
+    public Machine (Boxes.CollectionSource source, Boxes.App app, string name) {
         this.app = app;
-        this.connection = connection;
-        this.domain = domain;
+        this.name = name;
+        this.source = source;
 
-        name = domain.get_name ();
         machine_actor = new MachineActor (this);
 
-        set_screenshot_enable (true);
         app.notify["ui-state"].connect (() => {
             if (app.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
@@ -97,75 +90,20 @@ private class Boxes.Machine: Boxes.CollectionItem {
         }
     }
 
-    public async bool take_screenshot () throws GLib.Error {
-        if (state != DomainState.RUNNING &&
-            state != DomainState.PAUSED)
-            return false;
-
-        var stream = connection.get_stream (0);
-        var file_name = get_screenshot_filename ();
-        var file = File.new_for_path (file_name);
-        var output_stream = yield file.replace_async (null, false, FileCreateFlags.REPLACE_DESTINATION);
-        var input_stream = stream.get_input_stream ();
-        domain.screenshot (stream, 0, 0);
-
-        var buffer = new uint8[65535];
-        ssize_t length = 0;
-        do {
-            length = yield input_stream.read_async (buffer);
-            yield output_stream_write (output_stream, buffer[0:length]);
-        } while (length > 0);
-
-        return true;
+    public string get_screenshot_filename (string ext = "ppm") {
+        return get_pkgcache (get_screenshot_prefix () + "-screenshot." + ext);
     }
 
-    private ulong started_id;
-    private bool _connect_display;
-    public bool connect_display {
-        get { return _connect_display; }
-        set {
-            if (_connect_display == value)
-                return;
-
-            if (value && state != DomainState.RUNNING) {
-                if (started_id != 0)
-                    return;
-
-                if (state == DomainState.PAUSED) {
-                    started_id = domain.resumed.connect (() => {
-                        domain.disconnect (started_id);
-                        started_id = 0;
-                        connect_display = true;
-                    });
-                    try {
-                        domain.resume ();
-                    } catch (GLib.Error error) {
-                        warning (error.message);
-                    }
-                } else if (state != DomainState.RUNNING) {
-                    started_id = domain.started.connect (() => {
-                        domain.disconnect (started_id);
-                        started_id = 0;
-                        connect_display = true;
-                    });
-                    try {
-                        domain.start (0);
-                    } catch (GLib.Error error) {
-                        warning (error.message);
-                    }
-                }
-            }
-
-            _connect_display = value;
-            update_display ();
-        }
+    public virtual async bool take_screenshot () throws GLib.Error {
+        return false;
     }
 
-    private string get_screenshot_filename (string ext = "ppm") {
-        var uuid = domain.get_uuid ();
+    public abstract bool is_running ();
+    public abstract string get_screenshot_prefix ();
 
-        return get_pkgcache (uuid + "-screenshot." + ext);
-    }
+    protected bool _connect_display;
+    public abstract void connect_display ();
+    public abstract void disconnect_display ();
 
     public async void update_screenshot (int width = 128, int height = 96) {
         Gdk.Pixbuf? pixbuf = null;
@@ -214,7 +152,7 @@ private class Boxes.Machine: Boxes.CollectionItem {
         context.get_source ().set_filter (Cairo.Filter.BEST); // FIXME: cairo scaling is crap
         context.paint ();
 
-        if (state != DomainState.RUNNING) {
+        if (!is_running ()) {
             context.set_source_rgba (1, 1, 1, 1);
             context.set_operator (Cairo.Operator.HSL_SATURATION);
             context.paint ();
@@ -256,6 +194,80 @@ private class Boxes.Machine: Boxes.CollectionItem {
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 
+    public override void ui_state_changed () {
+        machine_actor.ui_state = ui_state;
+    }
+}
+
+private class Boxes.LibvirtMachine: Boxes.Machine {
+    public GVir.Domain domain;
+    public GVir.Connection connection;
+    public DomainState state {
+        get {
+            try {
+                return domain.get_info ().state;
+            } catch (GLib.Error error) {
+                return DomainState.NONE;
+            }
+        }
+    }
+
+    public override void disconnect_display () {
+        if (_connect_display == false)
+            return;
+
+        _connect_display = false;
+        update_display ();
+    }
+
+    private ulong started_id;
+    public override void connect_display () {
+        if (_connect_display == true)
+            return;
+
+        if (state != DomainState.RUNNING) {
+            if (started_id != 0)
+                return;
+
+            if (state == DomainState.PAUSED) {
+                started_id = domain.resumed.connect (() => {
+                    domain.disconnect (started_id);
+                    started_id = 0;
+                    connect_display ();
+                });
+                try {
+                    domain.resume ();
+                } catch (GLib.Error e) {
+                    warning (e.message);
+                }
+            } else if (state != DomainState.RUNNING) {
+                started_id = domain.started.connect (() => {
+                    domain.disconnect (started_id);
+                    started_id = 0;
+                    connect_display ();
+                });
+                try {
+                    domain.start (0);
+                } catch (GLib.Error e) {
+                    warning (e.message);
+                }
+            }
+        }
+
+        _connect_display = true;
+        update_display ();
+    }
+
+    public LibvirtMachine (CollectionSource source, Boxes.App app,
+                           GVir.Connection connection, GVir.Domain domain) {
+        base (source, app, domain.get_name ());
+
+        this.connection = connection;
+        this.domain = domain;
+
+        set_screenshot_enable (true);
+    }
+
     private void update_display () {
         string type, gport, socket, ghost;
 
@@ -281,12 +293,73 @@ private class Boxes.Machine: Boxes.CollectionItem {
             return;
         }
 
-        if (connect_display)
+        if (_connect_display)
             display.connect_it ();
     }
 
-    public override void ui_state_changed () {
-        machine_actor.ui_state = ui_state;
+    public override string get_screenshot_prefix () {
+        return domain.get_uuid ();
+    }
+
+    public override bool is_running () {
+        return state == DomainState.RUNNING;
+    }
+
+    public override async bool take_screenshot () throws GLib.Error {
+        if (state != DomainState.RUNNING &&
+            state != DomainState.PAUSED)
+            return true;
+
+        var stream = connection.get_stream (0);
+        var file_name = get_screenshot_filename ();
+        var file = File.new_for_path (file_name);
+        var output_stream = yield file.replace_async (null, false, FileCreateFlags.REPLACE_DESTINATION);
+        var input_stream = stream.get_input_stream ();
+        domain.screenshot (stream, 0, 0);
+
+        var buffer = new uint8[65535];
+        ssize_t length = 0;
+        do {
+            length = yield input_stream.read_async (buffer);
+            yield output_stream_write (output_stream, buffer[0:length]);
+        } while (length > 0);
+
+        return true;
+    }
+}
+
+private class Boxes.SpiceMachine: Boxes.Machine {
+
+    public SpiceMachine (CollectionSource source, Boxes.App app) {
+        base (source, app, source.name);
+
+        update_screenshot.begin ();
+    }
+
+    public override void connect_display () {
+        if (_connect_display == true)
+            return;
+
+        display = new SpiceDisplay.with_uri (source.uri);
+        display.connect_it ();
+    }
+
+    public override void disconnect_display () {
+        _connect_display = false;
+
+        if (display != null) {
+            display.disconnect_it ();
+            display = null;
+        }
+    }
+
+    public override string get_screenshot_prefix () {
+        return source.filename;
+    }
+
+    public override bool is_running () {
+        // assume the remote is running for now
+        return true;
     }
 }
 
@@ -330,7 +403,7 @@ private class Boxes.MachineActor: Boxes.UI {
             if (event.keyval == Gdk.Key.KP_Enter ||
                 event.keyval == Gdk.Key.ISO_Enter ||
                 event.keyval == Gdk.Key.Return) {
-                machine.connect_display = true;
+                machine.connect_display ();
                 return true;
             }
 

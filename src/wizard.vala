@@ -20,7 +20,7 @@ private enum Boxes.SourcePage {
 
 public delegate void ClickedFunc ();
 
-private class Boxes.Source: GLib.Object {
+private class Boxes.WizardSource: GLib.Object {
     public Gtk.Widget widget { get { return notebook; } }
     private SourcePage _page;
     public SourcePage page {
@@ -30,11 +30,14 @@ private class Boxes.Source: GLib.Object {
             notebook.set_current_page (page);
         }
     }
+    public string uri {
+        get { return url_entry.get_text (); }
+    }
 
     private Gtk.Notebook notebook;
-    public Gtk.Entry url_entry;
+    private Gtk.Entry url_entry;
 
-    public Source () {
+    public WizardSource () {
         notebook = new Gtk.Notebook ();
         notebook.get_style_context ().add_class ("boxes-source-nb");
         notebook.show_tabs = false;
@@ -121,26 +124,42 @@ private class Boxes.WizardSummary: GLib.Object {
     public WizardSummary () {
         table = new Gtk.Table (1, 2, false);
         table.margin = 20;
-        table.row_spacing = 20;
+        table.row_spacing = 10;
         table.column_spacing = 20;
+
+        clear ();
+    }
+
+    public void add_property (string name, string? value) {
+        if (value == null)
+            return;
+
+        var label_name = new Gtk.Label (name);
+        label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
+        label_name.xalign = 1.0f;
+        table.attach_defaults (label_name, 0, 1, current_row, current_row + 1);
+
+        var label_value = new Gtk.Label (value);
+        label_value.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
+        label_value.xalign = 0.0f;
+        table.attach_defaults (label_value, 1, 2, current_row, current_row + 1);
+
+        current_row += 1;
+        table.show_all ();
+    }
+
+    public void clear () {
+        foreach (var child in table.get_children ()) {
+            table.remove (child);
+        }
+
+        table.resize (1, 2);
+
         var label = new Gtk.Label (_("Will create a new box with the following properties:"));
+        label.margin_bottom = 10;
         label.xalign = 0.0f;
         table.attach_defaults (label, 0, 2, 0, 1);
         current_row = 1;
-    }
-
-    public void add_property (string name, string value) {
-        var label = new Gtk.Label (name);
-        label.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
-        label.xalign = 1.0f;
-        table.attach_defaults (label, 0, 1, current_row, current_row + 1);
-
-        label = new Gtk.Label (value);
-        label.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
-        label.xalign = 0.0f;
-        table.attach_defaults (label, 1, 2, current_row, current_row + 1);
-
-        current_row += 1;
     }
 }
 
@@ -153,14 +172,22 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.Notebook notebook;
     private Gtk.Button back_button;
     private Gtk.Button next_button;
-    private Boxes.Source source;
+    private Boxes.WizardSource wizard_source;
     private Boxes.WizardSummary summary;
+    private CollectionSource? source;
 
     private WizardPage _page;
     private WizardPage page {
         get { return _page; }
         set {
-            if (value == WizardPage.LAST) {
+            if (value == WizardPage.REVIEW) {
+                try {
+                    prepare ();
+                } catch (Boxes.Error e) {
+                    warning ("Fixme: %s".printf (e.message));
+                    return;
+                }
+            } else if (value == WizardPage.LAST) {
                 if (!create ())
                     return;
                 app.ui_state = UIState.COLLECTION;
@@ -190,7 +217,7 @@ private class Boxes.Wizard: Boxes.UI {
     construct {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
-        source = new Boxes.Source ();
+        wizard_source = new Boxes.WizardSource ();
     }
 
     public Wizard (App app) {
@@ -200,20 +227,46 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool create () {
-        if (this.source.page == Boxes.SourcePage.URL) {
-            var text = this.source.url_entry.get_text ();
+        if (source == null)
+            return false;
 
-            bool uncertain;
-            var type = ContentType.guess (text, null, out uncertain);
-            if (uncertain) {
-                var uri = Xml.URI.parse (text);
-                if (uri.scheme == "spice" || uri.scheme == "vnc") {
-                    return true;
-                }
-            }
+        source.save ();
+        app.add_collection_source (source);
+        return true;
+    }
+
+    private void prepare_with_uri (string text) throws Boxes.Error {
+        bool uncertain;
+
+        var mimetype = ContentType.guess (text, null, out uncertain);
+        var uri = Xml.URI.parse (text);
+
+        if (uncertain) {
+            if (uri.server == null)
+                throw new Boxes.Error.INVALID ("the URI is invalid");
+
+            if (uri.scheme == "spice" || uri.scheme == "vnc") {
+                var query = new Query (uri.query_raw ?? uri.query);
+
+                source = new CollectionSource (uri.server, uri.scheme, text);
+                summary.add_property (_("Type"), uri.scheme.up ());
+                summary.add_property (_("Host"), uri.server.down ());
+                summary.add_property (_("Port"), query.get ("port"));
+                summary.add_property (_("TLS Port"), query.get ("tls-port"));
+            } else
+                throw new Boxes.Error.INVALID ("Unsupported protocol");
+        } else {
+            debug ("FIXME: %s".printf (mimetype));
         }
+    }
 
-        return false;
+    private void prepare () throws Boxes.Error {
+        summary.clear ();
+
+        if (this.wizard_source.page == Boxes.SourcePage.URL ||
+            this.wizard_source.page == Boxes.SourcePage.FILE) {
+            prepare_with_uri (this.wizard_source.uri);
+        }
     }
 
     private void add_step (Gtk.Widget widget, string label, WizardPage page) {
@@ -235,8 +288,9 @@ private class Boxes.Wizard: Boxes.UI {
     private bool skip_page (Boxes.WizardPage page) {
         if (page > Boxes.WizardPage.SOURCE &&
             page < Boxes.WizardPage.REVIEW &&
-            this.source.page == Boxes.SourcePage.URL)
+            this.wizard_source.page == Boxes.SourcePage.URL)
             return true;
+
         return false;
     }
 
@@ -265,7 +319,7 @@ private class Boxes.Wizard: Boxes.UI {
         la = new Gtk.Label (_("Insert operating system installation media or select a source below"));
         la.wrap = true;
         vbox.pack_start (la, false, false);
-        vbox.pack_start (source.widget, false, false);
+        vbox.pack_start (wizard_source.widget, false, false);
         vbox.show_all ();
 
         /* Preparation */
@@ -282,7 +336,6 @@ private class Boxes.Wizard: Boxes.UI {
         vbox = new Gtk.VBox (false, 10);
         add_step (vbox, _("Review"), WizardPage.REVIEW);
         summary = new Boxes.WizardSummary ();
-        summary.add_property (_("Hostname"), "foobar");
         vbox.pack_start (summary.widget, false, false);
         vbox.show_all ();
 

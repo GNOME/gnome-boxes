@@ -64,8 +64,8 @@ private class Boxes.App: Boxes.UI {
         topbar.label.set_text (category.name);
     }
 
-    private async void setup_libvirt (string uri) {
-        var connection = new GVir.Connection (uri);
+    private async void setup_libvirt (CollectionSource source) {
+        var connection = new GVir.Connection (source.uri);
 
         try {
             yield connection.open_async (null);
@@ -75,7 +75,16 @@ private class Boxes.App: Boxes.UI {
         }
 
         foreach (var domain in connection.get_domains ()) {
-            var machine = new Machine (this, connection, domain);
+            var machine = new LibvirtMachine (source, this, connection, domain);
+            collection.add_item (machine);
+        }
+    }
+
+    public void add_collection_source (CollectionSource source) {
+        if (source.source_type == "libvirt")
+            setup_libvirt (source);
+        else if (source.source_type == "spice") {
+            var machine = new SpiceMachine (source, this);
             collection.add_item (machine);
         }
     }
@@ -106,8 +115,7 @@ private class Boxes.App: Boxes.UI {
                     break;
                 foreach (var file in files) {
                     var source = new CollectionSource.with_file (file.get_name ());
-                    if (source.source_type == "libvirt")
-                        setup_libvirt (source.uri);
+                    add_collection_source (source);
                 }
             }
         } catch (GLib.Error error) {
@@ -171,7 +179,7 @@ private class Boxes.App: Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                machine.connect_display = false;
+                machine.disconnect_display ();
                 machine.update_screenshot.begin ();
             }
             notebook.page = Boxes.AppPage.MAIN;
@@ -212,7 +220,7 @@ private class Boxes.App: Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                machine.connect_display = true;
+                machine.connect_display ();
                 ui_state = UIState.CREDS;
 
             } else
