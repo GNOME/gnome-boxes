@@ -108,7 +108,8 @@ private class Boxes.App: Boxes.UI {
     private async void get_sources_from_dir (File dir) {
         try {
             var enumerator = yield dir.enumerate_children_async (FILE_ATTRIBUTE_STANDARD_NAME,
-                                                                 0, Priority.DEFAULT);
+                                                                 0,
+                                                                 Priority.DEFAULT);
             while (true) {
                 var files = yield enumerator.next_files_async (10, Priority.DEFAULT);
                 if (files == null)
