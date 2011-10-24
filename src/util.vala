@@ -145,14 +145,23 @@ namespace Boxes {
     }
 
     private bool keyfile_save (KeyFile key_file, string file_name, bool overwrite = false) {
-        if (!overwrite && FileUtils.test (file_name, FileTest.EXISTS))
+        try {
+            var file = File.new_for_path (file_name);
+
+            if (file.query_exists ())
+                if (!overwrite)
+                    return false;
+                else
+                    file.delete ();
+
+            var dos = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
+            dos.put_string (key_file.to_data (null));
+
+            return true;
+        } catch (GLib.Error e) {
+            warning (e.message);
             return false;
-
-        var file = FileStream.open (file_name, "w");
-        var data = key_file.to_data (null);
-        file.puts (data);
-
-        return true;
+        }
     }
 
     public string replace_regex (string str, string old, string replacement) {
