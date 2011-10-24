@@ -72,7 +72,7 @@ private class Boxes.CollectionSource: GLib.Object {
     private string? get_string (string group, string key) {
         try {
             return keyfile.get_string (group, key);
-        } catch (GLib.KeyFileError e) {
+        } catch (GLib.KeyFileError error) {
             return null;
         }
     }

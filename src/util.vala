@@ -57,10 +57,10 @@ namespace Boxes {
         try {
             var file = GLib.File.new_for_path (dir);
             file.make_directory_with_parents (null);
-        } catch (GLib.Error e) {
-            if (e is IOError.EXISTS)
+        } catch (GLib.Error error) {
+            if (error is IOError.EXISTS)
                 return;
-            warning (e.message);
+            warning (error.message);
         }
     }
 
@@ -159,8 +159,8 @@ namespace Boxes {
         try {
             var regex = new GLib.Regex (old);
             return regex.replace_literal (str, -1, 0, replacement);
-        } catch (GLib.RegexError e) {
-            critical (e.message);
+        } catch (GLib.RegexError error) {
+            critical (error.message);
             return str;
         }
     }

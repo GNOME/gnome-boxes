@@ -70,8 +70,8 @@ private class Boxes.App: Boxes.UI {
         try {
             yield connection.open_async (null);
             connection.fetch_domains (null);
-        } catch (GLib.Error e) {
-            warning (e.message);
+        } catch (GLib.Error error) {
+            warning (error.message);
         }
 
         foreach (var domain in connection.get_domains ()) {
@@ -86,17 +86,17 @@ private class Boxes.App: Boxes.UI {
             var dst = File.new_for_path (get_pkgconfig_source ("QEMU Session"));
             try {
                 yield src.copy_async (dst, FileCopyFlags.NONE);
-            } catch (GLib.Error e) {
-                critical ("Can't setup default sources: %s", e.message);
+            } catch (GLib.Error error) {
+                critical ("Can't setup default sources: %s", error.message);
             }
         }
 
         var dir = File.new_for_path (get_pkgconfig_source ());
         try {
-            var e = yield dir.enumerate_children_async (FILE_ATTRIBUTE_STANDARD_NAME,
-                                                        0, Priority.DEFAULT);
+            var enumerator = yield dir.enumerate_children_async (FILE_ATTRIBUTE_STANDARD_NAME,
+                                                                 0, Priority.DEFAULT);
             while (true) {
-                var files = yield e.next_files_async (10, Priority.DEFAULT);
+                var files = yield enumerator.next_files_async (10, Priority.DEFAULT);
                 if (files == null)
                     break;
                 foreach (var file in files) {
@@ -105,8 +105,8 @@ private class Boxes.App: Boxes.UI {
                         setup_libvirt (source.uri);
                 }
             }
-        } catch (GLib.Error e) {
-            warning (e.message);
+        } catch (GLib.Error error) {
+            warning (error.message);
         }
     }
 

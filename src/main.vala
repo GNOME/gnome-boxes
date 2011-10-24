@@ -26,8 +26,8 @@ private static void parse_args (ref unowned string[] args) {
     } catch (OptionError.BAD_VALUE err) {
         GLib.stdout.printf (opt_context.get_help (true, null));
         exit (1);
-    } catch (OptionError e) {
-        warning (e.message);
+    } catch (OptionError error) {
+        warning (error.message);
     }
 
     if (version) {
@@ -47,8 +47,8 @@ public void main (string[] args) {
 
     try {
         GVir.init_object_check (ref args);
-    } catch (GLib.Error e) {
-        error (e.message);
+    } catch (GLib.Error err) {
+        error (err.message);
     }
 
     Gtk.Window.set_default_icon_name ("gnome-boxes");
@@ -60,8 +60,8 @@ public void main (string[] args) {
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
                                                   provider,
                                                   600);
-    } catch (GLib.Error e) {
-        warning (e.message);
+    } catch (GLib.Error error) {
+        warning (error.message);
     }
 
     new Boxes.App ();
