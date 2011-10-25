@@ -8,7 +8,7 @@ private abstract class Boxes.Display: GLib.Object {
     public signal void hide (int display_id);
     public signal void disconnected ();
 
-    public abstract Gtk.Widget get_display (int n) throws Boxes.Error;
+    public abstract Gtk.Widget? get_display (int n) throws Boxes.Error;
     public abstract void connect_it ();
     public abstract void disconnect_it ();
 

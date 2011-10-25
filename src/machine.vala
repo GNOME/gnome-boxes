@@ -37,18 +37,17 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
 
             show_id = _display.show.connect ((id) => {
                 app.ui_state = Boxes.UIState.DISPLAY;
-                try {
-                    var widget = display.get_display (0);
-
-                    Timeout.add (Boxes.App.duration, () => {
+                Timeout.add (Boxes.App.duration, () => {
+                    try {
+                        var widget = display.get_display (0);
                         app.display_page.show_display (this, widget);
                         widget.grab_focus ();
+                    } catch (Boxes.Error error) {
+                        warning (error.message);
+                    }
 
-                        return false;
-                    });
-                } catch (Boxes.Error error) {
-                    warning (error.message);
-                }
+                    return false;
+                });
             });
 
             hide_id = _display.hide.connect ((id) => {
@@ -59,11 +58,14 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
                 app.ui_state = Boxes.UIState.COLLECTION;
             });
 
-            need_password_id = display.notify["need-password"].connect (() => {
+            need_password_id = _display.notify["need-password"].connect (() => {
                 machine_actor.set_password_needed (display.need_password);
             });
 
-            display.password = machine_actor.get_password ();
+            _display.password = machine_actor.get_password ();
+
+            if (_connect_display)
+                display.connect_it ();
         }
     }
 
@@ -292,17 +294,22 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return;
         }
 
-        if (type == "spice") {
-            if (display != null)
-                display.disconnect_it ();
-            display = new SpiceDisplay (ghost, int.parse (gport));
-        } else {
-            warning ("unsupported display of type " + type);
-            return;
-        }
+        if (display != null)
+            display.disconnect_it ();
 
-        if (_connect_display)
-            display.connect_it ();
+        switch (type) {
+        case "spice":
+            display = new SpiceDisplay (ghost, int.parse (gport));
+            break;
+
+        case "vnc":
+            display = new VncDisplay (ghost, int.parse (gport));
+            break;
+
+        default:
+            warning ("unsupported display of type " + type);
+            break;
+        }
     }
 
     public override string get_screenshot_prefix () {

@@ -38,6 +38,7 @@ private class Boxes.DisplayPage: GLib.Object {
 
             if (event_box.get_child () != null)
                 event_box.get_child ().event (event);
+
             return false;
         });
         overlay = new Overlay ();

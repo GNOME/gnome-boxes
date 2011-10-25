@@ -246,13 +246,25 @@ private class Boxes.Wizard: Boxes.UI {
                 throw new Boxes.Error.INVALID ("the URI is invalid");
 
             if (uri.scheme == "spice" || uri.scheme == "vnc") {
-                var query = new Query (uri.query_raw ?? uri.query);
-
                 source = new CollectionSource (uri.server, uri.scheme, text);
                 summary.add_property (_("Type"), uri.scheme.up ());
                 summary.add_property (_("Host"), uri.server.down ());
-                summary.add_property (_("Port"), query.get ("port"));
-                summary.add_property (_("TLS Port"), query.get ("tls-port"));
+
+                if (uri.scheme == "spice") {
+                    if (uri.query_raw == null && uri.query == null)
+                        throw new Boxes.Error.INVALID ("the Spice URI is incomplete");
+
+                    var query = new Query (uri.query_raw ?? uri.query);
+
+                    if (uri.port != -1)
+                        throw new Boxes.Error.INVALID ("the Spice URI is invalid");
+
+                    summary.add_property (_("Port"), query.get ("port"));
+                    summary.add_property (_("TLS Port"), query.get ("tls-port"));
+                } else {
+                    if (uri.port != -1)
+                        summary.add_property (_("Port"), uri.port.to_string ());
+                }
             } else
                 throw new Boxes.Error.INVALID ("Unsupported protocol");
         } else {

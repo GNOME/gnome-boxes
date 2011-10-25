@@ -22,7 +22,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session.uri = uri;
     }
 
-    public override Gtk.Widget get_display (int n) throws Boxes.Error {
+    public override Gtk.Widget? get_display (int n) throws Boxes.Error {
         var display = displays.lookup (n) as Spice.Display;
 
         if (display == null) {
