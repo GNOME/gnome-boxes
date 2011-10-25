@@ -7,7 +7,7 @@ from the Rygel Coding Style.
 
  * 4-spaces (and not tabs) for indentation.
 
- * ''Prefer'' lines of less than < 120 columns
+ * ''Prefer'' lines of less than <= 120 columns
 
  * 1-space between function name and braces (both calls and signature
    declarations)
@@ -44,7 +44,7 @@ from the Rygel Coding Style.
 
  * Use 'as' to cast wherever possible.
 
- * Signle statments inside if/else must not be enclosed by '{}'.
+ * Single statments inside if/else must not be enclosed by '{}'.
 
  * The more you provide docs in comments, but at the same time avoid
    over-documenting. Here is an example of useless comment:
@@ -52,13 +52,15 @@ from the Rygel Coding Style.
    // Fetch the document
    fetch_the_document ();
 
- * Each class should go in a separate module (.vala file) & name the
-   modules according to the class in it. E.g Boxes.SpiceDisplay class
-   should go under spice-display.vala.
+ * Each class should go in a separate .vala file & named according to
+   the class in it. E.g Boxes.SpiceDisplay class should go under
+   spice-display.vala. In case a class isn't used outside, it may stay
+   in the file as the class that uses it. Example:
+   Boxes.SpiceDisplayExtra class could stay in spice-display.vala.
 
- * Avoid putting more than 3 'using' statements in each module (vala
-   file). If you feel you need to use more, perhaps you should
-   consider refactoring (Move some of the code to a separate class).
+ * Avoid putting more than 3 'using' statements in each .vala file. If
+   you feel you need to use more, perhaps you should consider
+   refactoring (Move some of the code to a separate class).
 
  * Declare the namespace(s) of the class/errordomain with the
    class/errordomain itself. Like this:
@@ -69,8 +71,10 @@ from the Rygel Coding Style.
 
  * Prefer 'foreach' over 'for'.
 
- * Add a newline before each return, break, throw, continue etc. if it
-   is not the only statement in that block:
+ * Add a newline to break the code in logical pieces
+
+ * Add a newline before each return, throw, break etc. if it
+   is not the only statement in that block
 
     if (condition_applies ()) {
       do_something ();
@@ -81,3 +85,14 @@ from the Rygel Coding Style.
     if (other_condition_applies ())
       return true;
 
+   Except for the break in a switch:
+
+    switch (val) {
+    case 1:
+        debug ("case 1");
+        do_one ();
+        break;
+
+    default:
+        ...
+    }
