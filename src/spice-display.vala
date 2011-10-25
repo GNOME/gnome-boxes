@@ -5,6 +5,7 @@ using Spice;
 private class Boxes.SpiceDisplay: Boxes.Display {
     private Session session;
     private ulong channel_new_id;
+    private ulong channel_destroy_id;
 
     construct {
         need_password = false;
@@ -30,16 +31,15 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             display.scaling = true;
         }
 
-        if (display == null) {
+        if (display == null)
             throw new Boxes.Error.INVALID ("invalid display");
-        }
 
         return display;
     }
 
     public override void connect_it () {
         // FIXME: vala does't want to put this in ctor..
-        if (channel_new_id == 0) {
+        if (channel_new_id == 0)
             channel_new_id = session.channel_new.connect ((channel) => {
                 if (channel is Spice.MainChannel)
                     channel.channel_event.connect (main_event);
@@ -52,7 +52,14 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                     // display.display_mark.connect ((mark) => { show (display.channel_id); });
                 }
             });
-        }
+
+        if (channel_destroy_id == 0)
+            channel_destroy_id = session.channel_destroy.connect ((channel) => {
+                if (channel is Spice.DisplayChannel) {
+                    var display = channel as DisplayChannel;
+                    hide (display.channel_id);
+                }
+            });
 
         session.password = password;
         session.connect ();
@@ -67,9 +74,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         case ChannelEvent.CLOSED:
             disconnected ();
             break;
+
         case ChannelEvent.ERROR_AUTH:
             need_password = true;
             break;
+
         default:
             break;
         }

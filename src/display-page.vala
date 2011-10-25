@@ -4,6 +4,7 @@ using Gdk;
 
 private class Boxes.DisplayPage: GLib.Object {
     public Widget widget { get { return overlay; } }
+
     private Overlay overlay;
     private Boxes.App app;
     private EventBox event_box;
@@ -127,9 +128,9 @@ private class Boxes.DisplayPage: GLib.Object {
             display.get_window ().disconnect (cursor_id);
             cursor_id = 0;
         }
+
         if (display != null)
             event_box.remove (display);
-
     }
 
 }

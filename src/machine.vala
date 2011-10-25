@@ -11,6 +11,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     public Boxes.CollectionSource source;
 
     private ulong show_id;
+    private ulong hide_id;
     private ulong disconnected_id;
     private ulong need_password_id;
     private uint screenshot_id;
@@ -22,6 +23,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
             if (_display != null) {
                 _display.disconnect (show_id);
                 show_id = 0;
+                _display.disconnect (hide_id);
+                hide_id = 0;
                 _display.disconnect (disconnected_id);
                 disconnected_id = 0;
                 _display.disconnect (need_password_id);
@@ -40,11 +43,16 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
                     Timeout.add (Boxes.App.duration, () => {
                         app.display_page.show_display (this, widget);
                         widget.grab_focus ();
+
                         return false;
                     });
                 } catch (Boxes.Error error) {
                     warning (error.message);
                 }
+            });
+
+            hide_id = _display.hide.connect ((id) => {
+                app.display_page.remove_display ();
             });
 
             disconnected_id = _display.disconnected.connect (() => {
@@ -81,6 +89,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
             update_screenshot.begin ();
             screenshot_id = Timeout.add_seconds (5, () => {
                 update_screenshot.begin ();
+
                 return true;
             });
         } else {
@@ -217,6 +226,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return;
 
         _connect_display = false;
+        app.display_page.remove_display ();
         update_display ();
     }
 
@@ -279,7 +289,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             ghost = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@listen)");
         } catch (GLib.Error error) {
             warning (error.message);
-
             return;
         }
 
@@ -289,7 +298,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             display = new SpiceDisplay (ghost, int.parse (gport));
         } else {
             warning ("unsupported display of type " + type);
-
             return;
         }
 
@@ -346,6 +354,8 @@ private class Boxes.SpiceMachine: Boxes.Machine {
 
     public override void disconnect_display () {
         _connect_display = false;
+
+        app.display_page.remove_display ();
 
         if (display != null) {
             display.disconnect_it ();
@@ -404,6 +414,7 @@ private class Boxes.MachineActor: Boxes.UI {
                 event.keyval == Gdk.Key.ISO_Enter ||
                 event.keyval == Gdk.Key.Return) {
                 machine.connect_display ();
+
                 return true;
             }
 
@@ -443,7 +454,7 @@ private class Boxes.MachineActor: Boxes.UI {
             password_entry.show ();
             break;
 
-        case UIState.DISPLAY: {
+        case UIState.DISPLAY:
             int width, height;
 
             password_entry.hide ();
@@ -456,19 +467,16 @@ private class Boxes.MachineActor: Boxes.UI {
                            "x", 0.0f,
                            "y", 0.0f);
             break;
-        }
 
         case UIState.COLLECTION:
             scale_screenshot ();
             password_entry.set_can_focus (false);
             password_entry.hide ();
             label.show ();
-
             break;
 
         default:
             message ("Unhandled UI state " + ui_state.to_string ());
-
             break;
         }
     }

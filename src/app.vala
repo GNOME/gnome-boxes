@@ -89,19 +89,18 @@ private class Boxes.App: Boxes.UI {
         }
 
         var dir = File.new_for_path (get_pkgconfig_source ());
-
         get_sources_from_dir (dir);
     }
 
     private async void get_sources_from_dir (File dir) {
         try {
             var enumerator = yield dir.enumerate_children_async (FILE_ATTRIBUTE_STANDARD_NAME,
-                                                                 0,
-                                                                 Priority.DEFAULT);
+                                                                 0, Priority.DEFAULT);
             while (true) {
                 var files = yield enumerator.next_files_async (10, Priority.DEFAULT);
                 if (files == null)
                     break;
+
                 foreach (var file in files) {
                     var source = new CollectionSource.with_file (file.get_name ());
                     add_collection_source (source);
@@ -159,11 +158,13 @@ private class Boxes.App: Boxes.UI {
             box.set_layout_manager (new Clutter.FixedLayout ());
             state.set_state ("display");
             break;
+
         case UIState.CREDS:
             notebook.page = Boxes.AppPage.MAIN;
             box.set_layout_manager (box_table);
             state.set_state ("creds");
             break;
+
         case UIState.COLLECTION:
             if (current_item is Machine) {
                 var machine = current_item as Machine;
@@ -175,10 +176,12 @@ private class Boxes.App: Boxes.UI {
             box.set_layout_manager (box_table);
             state.set_state ("collection");
             break;
+
         case UIState.WIZARD:
             notebook.page = Boxes.AppPage.MAIN;
             box.set_layout_manager (box_table);
             break;
+
         default:
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
             break;
@@ -211,7 +214,6 @@ private class Boxes.App: Boxes.UI {
 
                 machine.connect_display ();
                 ui_state = UIState.CREDS;
-
             } else
                 warning ("unknown item, fix your code");
         }
