@@ -29,12 +29,8 @@ AM_PROG_CC_C_O
 AC_PROG_CXX
 AM_PROG_VALAC([0.14.0])
 
-# no stupid static libraries
 AM_DISABLE_STATIC
 AC_PROG_LIBTOOL
-
-GJS_JS_DIR=`$PKG_CONFIG --variable=datadir gjs-1.0`/gjs-1.0
-AC_SUBST(GJS_JS_DIR)
 
 GLIB_GSETTINGS
 
@@ -50,29 +46,28 @@ PKG_CHECK_MODULES(BOXES, [
   clutter-gtk-1.0 >= $CLUTTER_GTK_MIN_VERSION
   glib-2.0 >= $GLIB_MIN_VERSION
   gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
-  spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
   gtk+-3.0 >= $GTK_MIN_VERSION
   libvirt-gobject-1.0 >= $LIBVIRT_GLIB_MIN_VERSION
   libxml-2.0 >= $LIBXML2_MIN_VERSION
+  spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
 ])
 
 VALA_CHECK_PACKAGES([
   clutter-gtk-1.0
+  cogl-1.0
   gdk-pixbuf-2.0
   glib-2.0
+  libvirt-gobject-1.0
   libxml-2.0
-  cogl-1.0
+  posix
 ])
 
 dnl Strict compiler
-AC_ARG_ENABLE(strict-cc,
-	AS_HELP_STRING([--enable-strict-cc],[enable strict C compiler]),,
-        enable_strict_cc=no)
-if test "x$enable_strict_cc" = "xyes"; then
-        CFLAGS="$CFLAGS -Wall -Werror"
-else
-        CFLAGS="$CFLAGS -w"
-fi
+AC_ARG_ENABLE([strict-cc],
+  AS_HELP_STRING([--enable-strict-cc],[Enable strict C compiler]))
+
+AS_IF([test "x$enable_strict_cc" = "xyes"], [CFLAGS="$CFLAGS -Wall -Werror"],
+      [CFLAGS="$CFLAGS -w"])
 
 AC_CONFIG_FILES([
   Makefile
@@ -94,5 +89,5 @@ AC_MSG_NOTICE([
         =================
 
         prefix:                   ${prefix}
-        c compiler:               ${CC}
+        c compiler:               ${CC} ${CFLAGS}
 ])
