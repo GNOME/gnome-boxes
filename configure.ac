@@ -60,6 +60,7 @@ VALA_CHECK_PACKAGES([
   gdk-pixbuf-2.0
   glib-2.0
   gtk+-3.0
+  gtk-vnc-2.0
   libvirt-gobject-1.0
   libxml-2.0
   posix
