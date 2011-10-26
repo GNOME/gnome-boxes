@@ -95,7 +95,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
             if (screenshot_id != 0)
                 return;
             update_screenshot.begin ();
-            screenshot_id = Timeout.add_seconds (5, () => {
+            var interval = app.settings.get_int ("screenshot-interval");
+            screenshot_id = Timeout.add_seconds (interval, () => {
                 update_screenshot.begin ();
 
                 return true;

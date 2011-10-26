@@ -78,7 +78,7 @@ private class Boxes.VncDisplay: Boxes.Display {
             throw new Boxes.Error.INVALID ("the URI is missing a server");
 
         this.host = uri.server;
-        this.port = uri.port == -1 ? 5900 : uri.port;
+        this.port = uri.port <= 0 ? 5900 : uri.port;
     }
 
     public override Gtk.Widget? get_display (int n) throws Boxes.Error {

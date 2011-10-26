@@ -1,8 +1,8 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-private class Boxes.SpiceMachine: Boxes.Machine {
+private class Boxes.RemoteMachine: Boxes.Machine {
 
-    public SpiceMachine (CollectionSource source, Boxes.App app) {
+    public RemoteMachine (CollectionSource source, Boxes.App app) {
         base (source, app, source.name);
 
         update_screenshot.begin ();
@@ -12,8 +12,16 @@ private class Boxes.SpiceMachine: Boxes.Machine {
         if (_connect_display == true)
             return;
 
-        display = new SpiceDisplay.with_uri (source.uri);
-        display.connect_it ();
+        try {
+            if (source.source_type == "spice")
+                display = new SpiceDisplay.with_uri (source.uri);
+            else if (source.source_type == "vnc")
+                display = new VncDisplay.with_uri (source.uri);
+
+            display.connect_it ();
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
     }
 
     public override void disconnect_display () {

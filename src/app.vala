@@ -69,11 +69,20 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void add_collection_source (CollectionSource source) {
-        if (source.source_type == "libvirt")
+        switch (source.source_type) {
+        case "libvirt":
             setup_libvirt (source);
-        else if (source.source_type == "spice") {
-            var machine = new SpiceMachine (source, this);
+            break;
+
+        case "vnc":
+        case "spice":
+            var machine = new RemoteMachine (source, this);
             collection.add_item (machine);
+            break;
+
+        default:
+            warning ("Unsupported source type %s", source.source_type);
+            break;
         }
     }
 
