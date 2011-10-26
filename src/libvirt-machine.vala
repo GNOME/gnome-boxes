@@ -72,14 +72,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private void update_display () {
-        string type, gport, socket, ghost;
+        string type, port, socket, host;
 
         try {
             var xmldoc = domain.get_config (0).doc;
             type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
-            gport = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
+            port = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
             socket = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@socket)");
-            ghost = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@listen)");
+            host = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@listen)");
         } catch (GLib.Error error) {
             warning (error.message);
             return;
@@ -90,11 +90,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         switch (type) {
         case "spice":
-            display = new SpiceDisplay (ghost, int.parse (gport));
+            display = new SpiceDisplay (host, int.parse (port));
             break;
 
         case "vnc":
-            display = new VncDisplay (ghost, int.parse (gport));
+            display = new VncDisplay (host, int.parse (port));
             break;
 
         default:
