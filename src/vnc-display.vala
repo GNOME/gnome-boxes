@@ -29,17 +29,37 @@ private class Boxes.VncDisplay: Boxes.Display {
         display.vnc_disconnected.connect (() => {
             hide (0);
         });
-        display.vnc_initialized.connect (() => {
-            debug ("initialized");
-        });
+
         display.vnc_auth_failure.connect (() => {
             debug ("auth failure");
         });
         display.vnc_auth_unsupported.connect (() => {
             debug ("auth unsupported");
         });
-        display.vnc_auth_credential.connect (() => {
-            debug ("auth credentials");
+
+        display.vnc_auth_credential.connect ((vnc, creds) => {
+            foreach (var cred in creds) {
+                var credential = cred as DisplayCredential;
+
+                switch (credential) {
+                case DisplayCredential.USERNAME:
+                    need_username = true;
+                    break;
+
+                case DisplayCredential.PASSWORD:
+                    need_password = true;
+                    break;
+
+                case DisplayCredential.CLIENTNAME:
+                    break;
+
+                default:
+                    debug ("Unsupported credential: %s".printf (credential.to_string ()));
+                    break;
+                }
+            }
+
+            display.close ();
         });
     }
 
@@ -63,13 +83,21 @@ private class Boxes.VncDisplay: Boxes.Display {
 
     public override Gtk.Widget? get_display (int n) throws Boxes.Error {
         window.remove (display);
+
         return display;
     }
 
     public override void connect_it () {
+        // FIXME: we ignore return value which seems to be inconsistent
+        display.set_credential (DisplayCredential.USERNAME, username);
+        display.set_credential (DisplayCredential.PASSWORD, password);
+        display.set_credential (DisplayCredential.CLIENTNAME, "boxes");
+
         display.open_host (host, port.to_string ());
     }
 
     public override void disconnect_it () {
+        if (display.is_open ())
+            display.close ();
     }
 }

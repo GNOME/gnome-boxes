@@ -2,7 +2,9 @@
 
 private abstract class Boxes.Display: GLib.Object {
     public bool need_password { get; set; }
+    public bool need_username { get; set; }
     public string? password { get; set; }
+    public string? username { get; set; }
 
     public signal void show (int display_id);
     public signal void hide (int display_id);

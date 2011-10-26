@@ -14,6 +14,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     private ulong hide_id;
     private ulong disconnected_id;
     private ulong need_password_id;
+    private ulong need_username_id;
     private uint screenshot_id;
 
     private Display? _display;
@@ -29,6 +30,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
                 disconnected_id = 0;
                 _display.disconnect (need_password_id);
                 need_password_id = 0;
+                _display.disconnect (need_username_id);
+                need_username_id = 0;
             }
 
             _display = value;
@@ -60,6 +63,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
 
             need_password_id = _display.notify["need-password"].connect (() => {
                 machine_actor.set_password_needed (display.need_password);
+            });
+
+            need_username_id = _display.notify["need-username"].connect (() => {
+                machine_actor.set_username_needed (display.need_username);
             });
 
             _display.password = machine_actor.get_password ();
@@ -448,6 +455,10 @@ private class Boxes.MachineActor: Boxes.UI {
         password_entry.set_can_focus (needed);
         if (needed)
             password_entry.grab_focus ();
+    }
+
+    public void set_username_needed (bool needed) {
+        debug ("fixme");
     }
 
     public string get_password () {
