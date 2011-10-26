@@ -3,6 +3,7 @@ NULL =
 AM_CPPFLAGS =						\
 	-include config.h				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DDATADIR=\""$(datadir)"\"			\
 	$(DISABLE_DEPRECATED)				\
 	$(NULL)
 
@@ -45,13 +46,8 @@ gnome_boxes_SOURCES =				\
 	wizard.vala				\
 	$(NULL)
 
-BUILT_SOURCES = dirs.h
 gnome_boxes_LDADD = $(BOXES_LIBS)
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
-
-DISTCLEANFILES = dirs.h
-dirs.h: Makefile
-	$(AM_V_GEN)echo '#define DATADIR "$(datadir)"' >$@
 
 MAINTAINERCLEANFILES =				\
 	$(gnome_boxes_SOURCES:.vala=.c)		\

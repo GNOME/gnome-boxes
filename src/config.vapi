@@ -6,6 +6,5 @@ namespace Config {
         public const string PACKAGE_TARNAME;
         public const string GETTEXT_PACKAGE;
         public const string GNOMELOCALEDIR;
-        [CCode (cheader_filename = "dirs.h")]
         public const string DATADIR;
 }
