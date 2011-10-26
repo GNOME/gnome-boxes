@@ -26,20 +26,25 @@ bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
 	app.vala				\
-	ui.vala				\
-	display-page.vala				\
+	collection-source.vala			\
 	collection-view.vala			\
 	collection.vala				\
+	display-page.vala			\
 	display.vala				\
+	libvirt-machine.vala			\
 	machine.vala				\
 	main.vala				\
 	sidebar.vala				\
 	spice-display.vala			\
+	spice-machine.vala			\
 	topbar.vala				\
+	ui.vala					\
 	util.vala				\
 	vnc-display.vala			\
+	wizard-source.vala			\
 	wizard.vala				\
 	$(NULL)
+
 BUILT_SOURCES = dirs.h
 gnome_boxes_LDADD = $(BOXES_LIBS)
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
