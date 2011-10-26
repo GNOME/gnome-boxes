@@ -88,6 +88,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (display != null)
             display.disconnect_it ();
 
+        if (host == null || host == "")
+            host = "localhost";
+
         switch (type) {
         case "spice":
             display = new SpiceDisplay (host, int.parse (port));
