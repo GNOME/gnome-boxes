@@ -32,10 +32,13 @@ private class Boxes.App: Boxes.UI {
     private Collection collection;
     private CollectionView view;
 
+    private HashTable<string,GVir.Connection> connections;
+
     public App () {
         settings = new GLib.Settings ("org.gnome.boxes");
         setup_ui ();
         collection = new Collection (this);
+        connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
         collection.item_added.connect ((item) => {
             item.actor.set_reactive (true);
             item.actor.button_press_event.connect ((actor, event) => {
@@ -66,6 +69,8 @@ private class Boxes.App: Boxes.UI {
             var machine = new LibvirtMachine (source, this, connection, domain);
             collection.add_item (machine);
         }
+
+        connections.replace (source.uri, connection);
     }
 
     public void add_collection_source (CollectionSource source) {
