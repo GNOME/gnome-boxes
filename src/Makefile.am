@@ -17,6 +17,7 @@ AM_VALAFLAGS =						\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg glib-2.0					\
 	--pkg libvirt-gobject-1.0			\
+	--pkg libvirt-gconfig-1.0			\
 	--pkg libxml-2.0				\
 	--pkg posix					\
 	--pkg spice-client-gtk-3.0			\
