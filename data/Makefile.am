@@ -18,6 +18,19 @@ source_DATA       = QEMU_Session
 
 iconsdir = $(pkgdatadir)/icons
 
+unattendeddir = $(datadir)/gnome-boxes/unattended
+unattended_DATA = ks.cfg 			\
+		  win7.xml 			\
+		  win2k.xml 			\
+		  winxp.sif 			\
+		  win2k.sif 			\
+		  win2k3.sif 			\
+		  floppy.img			\
+		  $(NULL)
+
+floppy.img:
+	rm -f floppy.img && mkfs.msdos -C floppy.img 2048
+
 EXTRA_DIST =					\
 	gnome-boxes.desktop.in			\
 	org.gnome.boxes.gschema.xml.in		\
