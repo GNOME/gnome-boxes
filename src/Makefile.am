@@ -22,6 +22,7 @@ AM_VALAFLAGS =						\
 	--pkg posix					\
 	--pkg spice-client-gtk-3.0			\
 	--pkg gtk-vnc-2.0				\
+	--pkg gudev-1.0					\
 	$(NULL)
 
 bin_PROGRAMS = gnome-boxes
