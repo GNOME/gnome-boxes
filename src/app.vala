@@ -3,10 +3,6 @@ using Gtk;
 using Gdk;
 using Clutter;
 
-private errordomain Boxes.Error {
-    INVALID
-}
-
 private enum Boxes.AppPage {
     MAIN,
     DISPLAY
