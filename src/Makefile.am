@@ -37,7 +37,7 @@ gnome_boxes_SOURCES =				\
 	display.vala				\
 	libvirt-machine.vala			\
 	machine.vala				\
-	main.vala				\
+	boxes-main.vala				\
 	remote-machine.vala			\
 	sidebar.vala				\
 	spice-display.vala			\
