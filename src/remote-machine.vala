@@ -1,6 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
+using Gtk;
 
-private class Boxes.RemoteMachine: Boxes.Machine {
+private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
 
     public RemoteMachine (CollectionSource source, Boxes.App app) {
         base (source, app, source.name);
@@ -33,6 +34,27 @@ private class Boxes.RemoteMachine: Boxes.Machine {
             display.disconnect_it ();
             display = null;
         }
+    }
+
+    public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
+        var list = new List<Pair<string, Widget>> ();
+
+        switch (page) {
+        case PropertiesPage.LOGIN:
+            add_string_property (ref list, _("Name"), source.name, (name) => {
+                source.name = name;
+            });
+            add_string_property (ref list, _("URI"), source.uri);
+            break;
+
+        case PropertiesPage.DISPLAY:
+            add_string_property (ref list, _("Protocol"), source.source_type.up ());
+            break;
+        }
+
+        list.concat (display.get_properties (page));
+
+        return list;
     }
 
     public override string get_screenshot_prefix () {

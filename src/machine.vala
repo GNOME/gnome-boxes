@@ -3,7 +3,7 @@ using Clutter;
 using Gdk;
 using Gtk;
 
-private abstract class Boxes.Machine: Boxes.CollectionItem {
+private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
     public override Clutter.Actor actor { get { return machine_actor.actor; } }
     public Boxes.App app;
     public MachineActor machine_actor;
@@ -115,6 +115,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     public virtual async bool take_screenshot () throws GLib.Error {
         return false;
     }
+
+    public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
 
     public abstract bool is_running ();
     public abstract string get_screenshot_prefix ();

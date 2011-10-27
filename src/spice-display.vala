@@ -2,8 +2,12 @@
 using Gtk;
 using Spice;
 
-private class Boxes.SpiceDisplay: Boxes.Display {
+private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
+    public override string protocol { get { return "SPICE"; } }
+    public override string uri { owned get { return session.uri; } }
+
     private Session session;
+    private unowned GtkSession gtk_session;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
 
@@ -15,6 +19,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session = new Session ();
         session.port = port.to_string ();
         session.host = host;
+        gtk_session = GtkSession.get (session);
     }
 
     public SpiceDisplay.with_uri (string uri) {
@@ -82,5 +87,37 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         default:
             break;
         }
+    }
+
+    public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
+        var list = new List<Pair<string, Widget>> ();
+
+        switch (page) {
+        case PropertiesPage.DISPLAY:
+            var toggle = new Gtk.Switch ();
+            gtk_session.bind_property ("auto-clipboard", toggle, "active",
+                                       BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            add_property (ref list, _("Share clipboard"), toggle);
+
+            try {
+                toggle = new Gtk.Switch ();
+                var display = get_display (0);
+                display.bind_property ("resize-guest", toggle, "active",
+                                       BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                add_property (ref list, _("Resize guest"), toggle);
+            } catch (Boxes.Error error) {
+                warning (error.message);
+            }
+            break;
+
+        case PropertiesPage.DEVICES:
+            var toggle = new Gtk.Switch ();
+            gtk_session.bind_property ("auto-usbredir", toggle, "active",
+                                       BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            add_property (ref list, _("USB redirection"), toggle);
+            break;
+        }
+
+        return list;
     }
 }

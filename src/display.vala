@@ -1,6 +1,10 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
+using Gtk;
 
-private abstract class Boxes.Display: GLib.Object {
+private abstract class Boxes.Display: GLib.Object, Boxes.IProperties {
+    public abstract string protocol { get; }
+    public abstract string uri { owned get; }
+
     public bool need_password { get; set; }
     public bool need_username { get; set; }
     public string? password { get; set; }
@@ -13,6 +17,8 @@ private abstract class Boxes.Display: GLib.Object {
     public abstract Gtk.Widget? get_display (int n) throws Boxes.Error;
     public abstract void connect_it ();
     public abstract void disconnect_it ();
+
+    public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
 
     protected HashTable<int, Gtk.Widget?> displays;
     construct {

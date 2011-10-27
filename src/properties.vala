@@ -9,6 +9,24 @@ private enum Boxes.PropertiesPage {
     LAST,
 }
 
+public delegate void PropertyStringChanged (string value) throws Boxes.Error;
+
+private interface Boxes.IProperties: GLib.Object {
+    public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
+
+    protected void add_property (ref List<Pair<string, Widget>> list, string name, Widget widget) {
+        list.append (new Pair<string, Widget> (name, widget));
+    }
+
+    protected void add_string_property (ref List<Pair<string, Widget>> list,
+                                        string name, string value,
+                                        PropertyStringChanged? changed = null) {
+        var label = new Gtk.Label (value);
+        label.selectable = true;
+        add_property (ref list, name, label);
+    }
+}
+
 private class Boxes.Properties: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
 
@@ -24,7 +42,7 @@ private class Boxes.Properties: Boxes.UI {
         public Gtk.Widget widget;
         public string name;
 
-        private Gtk.Table table;
+        private Gtk.Grid grid;
 
         public PageWidget (PropertiesPage page, Machine machine) {
             switch (page) {
@@ -41,22 +59,36 @@ private class Boxes.Properties: Boxes.UI {
                 break;
             }
 
-            var vbox = new Gtk.VBox (false, 10);
-            table = new Gtk.Table (1, 2, false);
-            vbox.pack_start (table, false, false, 0);
-            table.margin = 20;
-            table.row_spacing = 10;
-            table.column_spacing = 20;
+            grid = new Gtk.Grid ();
+            grid.margin = 20;
+            grid.row_spacing = 10;
+            grid.column_spacing = 20;
+            grid.valign = Gtk.Align.START;
 
-            table.resize (1, 2);
             var label = new Gtk.Label (name);
             label.get_style_context ().add_class ("boxes-step-label");
             label.margin_bottom = 10;
             label.xalign = 0.0f;
-            table.attach_defaults (label, 0, 2, 0, 1);
+            label.hexpand = false;
+            grid.attach (label, 0, 0, 2, 1);
 
-            vbox.show_all ();
-            widget = vbox;
+            int current_row = 1;
+            foreach (var p in machine.get_properties (page)) {
+                var label_name = new Gtk.Label (p.first);
+                label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
+                label_name.margin_left = 25;
+                label_name.halign = Gtk.Align.START;
+                label_name.hexpand = false;
+                grid.attach (label_name, 0, current_row, 1, 1);
+                var widget = p.second;
+                widget.halign = Gtk.Align.START;
+                grid.attach (widget, 1, current_row, 1, 1);
+
+                current_row += 1;
+            }
+
+            grid.show_all ();
+            widget = grid;
         }
 
         public bool is_empty () {
@@ -80,7 +112,7 @@ private class Boxes.Properties: Boxes.UI {
     private void populate () {
         listmodel.clear ();
         for (var i = 0; i < PropertiesPage.LAST; i++)
-            notebook.remove_page (i);
+            notebook.remove_page (-1);
 
         if (app.current_item == null)
             return;
@@ -147,6 +179,7 @@ private class Boxes.Properties: Boxes.UI {
         tree_view.set_model (listmodel);
         tree_view.headers_visible = false;
         var renderer = new CellRendererText ();
+        renderer.xpad = 20;
         tree_view.insert_column_with_attributes (-1, "", renderer, "text", 0);
         vbox.pack_start (tree_view, true, true, 0);
 

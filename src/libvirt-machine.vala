@@ -1,5 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using GVir;
+using Gtk;
 
 private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Domain domain;
@@ -69,6 +70,25 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         this.domain = domain;
 
         set_screenshot_enable (true);
+    }
+
+    public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
+        var list = new List<Pair<string, Widget>> ();
+
+        switch (page) {
+        case PropertiesPage.LOGIN:
+            add_string_property (ref list, _("Virtualizer"), source.uri);
+            add_string_property (ref list, _("URI"), display.uri);
+            break;
+
+        case PropertiesPage.DISPLAY:
+            add_string_property (ref list, _("Protocol"), display.protocol);
+            break;
+        }
+
+        list.concat (display.get_properties (page));
+
+        return list;
     }
 
     private void update_display () {

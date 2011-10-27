@@ -228,19 +228,16 @@ private class Boxes.App: Boxes.UI {
     }
 
     private bool item_clicked (CollectionItem item, Clutter.ButtonEvent event) {
-        message ("button %u".printf (event.button));
-
-        if (Clutter.ModifierType.BUTTON2_MASK in event.modifier_state)
-            return false;
-
         if (ui_state == UIState.COLLECTION) {
             current_item = item;
 
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                machine.connect_display ();
-                ui_state = UIState.CREDS;
+                if (event.button == 1) {
+                    machine.connect_display ();
+                    ui_state = UIState.CREDS;
+                }
             } else
                 warning ("unknown item, fix your code");
         }

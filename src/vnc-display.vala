@@ -3,6 +3,9 @@ using Gtk;
 using Vnc;
 
 private class Boxes.VncDisplay: Boxes.Display {
+    public override string protocol { get { return "VNC"; } }
+    public override string uri { owned get { return @"vnc://$host:$port"; } }
+
     private Vnc.Display display;
     private string host;
     private int port;
@@ -99,5 +102,20 @@ private class Boxes.VncDisplay: Boxes.Display {
     public override void disconnect_it () {
         if (display.is_open ())
             display.close ();
+    }
+
+    public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
+        var list = new List<Pair<string, Widget>> ();
+
+        switch (page) {
+        case PropertiesPage.DISPLAY:
+            var toggle = new Gtk.Switch ();
+            display.bind_property ("read-only", toggle, "active",
+                                   BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            add_property (ref list, _("Read-only"), toggle);
+            break;
+        }
+
+        return list;
     }
 }
