@@ -6,6 +6,7 @@ using Clutter;
 private enum Boxes.SidebarPage {
     COLLECTION,
     WIZARD,
+    PROPERTIES,
 }
 
 private class Boxes.Sidebar: Boxes.UI {
@@ -34,7 +35,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
     public Sidebar (App app) {
         this.app = app;
-        width = 180;
+        width = 200;
 
         setup_sidebar ();
     }
@@ -46,18 +47,21 @@ private class Boxes.Sidebar: Boxes.UI {
             app.box.pack (gtk_actor, "column", 0, "row", 0, "row-span", 2, "x-expand", false, "y-expand", true);
             notebook.page = SidebarPage.COLLECTION;
             break;
+
         case UIState.DISPLAY:
             actor_pin (actor);
             break;
+
         case UIState.WIZARD:
+        case UIState.PROPERTIES:
             actor_remove (gtk_actor);
-            app.box.pack (gtk_actor, "column", 0, "row", 1, "x-expand", false, "y-expand", true);
-            notebook.page = SidebarPage.WIZARD;
+            app.box.pack (gtk_actor, "column", 0, "row", 1, "row-span", 1, "x-expand", false, "y-expand", true);
+            notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
         }
     }
 
-    private void list_append (ListStore listmodel,
+    private void list_append (Gtk.ListStore listmodel,
                               Category  category,
                               string?   icon = null,
                               uint      height = 0,
@@ -168,6 +172,10 @@ private class Boxes.Sidebar: Boxes.UI {
 
         /* SidebarPage.WIZARD */
         vbox = new Gtk.VBox (false, 0);
+        notebook.append_page (vbox, null);
+
+        /* SidebarPage.PROPERTIES */
+        vbox = new Gtk.VBox (false, 10);
         notebook.append_page (vbox, null);
 
         notebook.show_all ();

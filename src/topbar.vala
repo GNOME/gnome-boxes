@@ -5,6 +5,7 @@ using Gtk;
 public enum Boxes.TopbarPage {
     COLLECTION,
     WIZARD,
+    PROPERTIES
 }
 
 private class Boxes.Topbar: Boxes.UI {
@@ -12,7 +13,7 @@ private class Boxes.Topbar: Boxes.UI {
     public Gtk.Label label;
 
     private App app;
-    private uint height;
+    public const uint height = 50;
 
     private GtkClutter.Actor gtk_actor; // the topbar box
     public Notebook notebook;
@@ -23,7 +24,6 @@ private class Boxes.Topbar: Boxes.UI {
 
     public Topbar (App app) {
         this.app = app;
-        height = 50;
 
         setup_topbar ();
     }
@@ -73,6 +73,11 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.append_page (hbox, null);
         hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
 
+        /* TopbarPage.PROPERTIES */
+        hbox = new Gtk.HBox (false, 0);
+        notebook.append_page (hbox, null);
+        hbox.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
+
         notebook.show_tabs = false;
         notebook.show_all ();
 
@@ -89,17 +94,21 @@ private class Boxes.Topbar: Boxes.UI {
             toolbar_start.hide ();
             toolbar_end.hide ();
             break;
+
         case UIState.CREDS:
             toolbar_start.show ();
             toolbar_end.show ();
             break;
+
         case UIState.DISPLAY:
             actor_pin (gtk_actor);
             break;
+
+        case UIState.PROPERTIES:
         case UIState.WIZARD:
             actor_remove (gtk_actor);
             app.box.pack (gtk_actor, "row", 0, "column", 0, "column-span", 2, "x-expand", true, "y-expand", false);
-            notebook.page = TopbarPage.WIZARD;
+            notebook.page = ui_state == UIState.WIZARD ? TopbarPage.WIZARD : TopbarPage.PROPERTIES;
             break;
 
         default:

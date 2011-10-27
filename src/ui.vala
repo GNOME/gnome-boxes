@@ -6,18 +6,21 @@ private enum Boxes.UIState {
     CREDS,
     DISPLAY,
     SETTINGS,
-    WIZARD
+    WIZARD,
+    PROPERTIES
 }
 
 private abstract class Boxes.UI: GLib.Object {
     public abstract Clutter.Actor actor { get; }
 
+    protected UIState previous_ui_state;
     private UIState _ui_state;
     [CCode (notify = false)]
     public UIState ui_state {
         get { return _ui_state; }
         set {
             if (_ui_state != value) {
+                previous_ui_state = _ui_state;
                 _ui_state = value;
                 ui_state_changed ();
                 notify_property ("ui-state");

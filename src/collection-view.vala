@@ -15,15 +15,41 @@ private class Boxes.CollectionView: Boxes.UI {
         setup_view ();
     }
 
+    private void set_main_ui_state () {
+        actor_remove (app.wizard.actor);
+        actor_remove (app.properties.actor);
+
+        if (app.current_item != null) {
+            actor_remove (app.current_item.actor);
+            add_item (app.current_item);
+        }
+
+        /* follow main table layout again */
+        actor_unpin (boxes);
+        boxes.set_position (15f, 15f);
+        margin.add_constraint_with_name ("boxes-left",
+                                         new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
+        margin.add_constraint_with_name ("boxes-bottom",
+                                         new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
+        /* normal flow items */
+        boxes.set_layout_manager (layout);
+
+        actor_remove (over_boxes);
+    }
+
+    public void set_over_boxes () {
+        remove_item (app.current_item);
+        over_boxes.pack (app.current_item.actor,
+                         "x-align", Clutter.BinAlignment.CENTER,
+                         "y-align", Clutter.BinAlignment.CENTER);
+        actor_add (over_boxes, app.stage);
+    }
+
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
-            remove_item (app.current_item);
-            over_boxes.pack (app.current_item.actor,
-                             "x-align", Clutter.BinAlignment.CENTER,
-                             "y-align", Clutter.BinAlignment.CENTER);
+            set_over_boxes ();
             app.current_item.ui_state = UIState.CREDS;
-            actor_add (over_boxes, app.stage);
 
             /* item don't move anymore */
             boxes.set_layout_manager (new Clutter.FixedLayout ());
@@ -34,18 +60,20 @@ private class Boxes.CollectionView: Boxes.UI {
             float x, y;
             var display = app.current_item.actor;
 
-            /* move display/machine actor to stage, keep same position */
-            display.get_transformed_position (out x, out y);
-            actor_remove (display);
-            actor_add (display, app.stage);
-            display.set_position (x, y);
+            if (previous_ui_state == UIState.CREDS) {
+                /* move display/machine actor to stage, keep same position */
+                display.get_transformed_position (out x, out y);
+                actor_remove (display);
+                actor_add (display, app.stage);
+                display.set_position (x, y);
 
-            /* make sure the boxes stay where they are */
-            boxes.get_transformed_position (out x, out y);
-            boxes.set_position (x, y);
-            actor_pin (boxes);
-            margin.remove_constraint_by_name ("boxes-left");
-            margin.remove_constraint_by_name ("boxes-bottom");
+                /* make sure the boxes stay where they are */
+                boxes.get_transformed_position (out x, out y);
+                boxes.set_position (x, y);
+                actor_pin (boxes);
+                margin.remove_constraint_by_name ("boxes-left");
+                margin.remove_constraint_by_name ("boxes-bottom");
+            }
 
             app.current_item.ui_state = UIState.DISPLAY;
 
@@ -53,29 +81,13 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         case UIState.COLLECTION:
-            actor_remove (app.wizard.actor);
-
-            if (app.current_item != null) {
-                actor_remove (app.current_item.actor);
-                add_item (app.current_item);
-            }
-
-            /* follow main table layout again */
-            actor_unpin (boxes);
-            boxes.set_position (15f, 15f);
-            margin.add_constraint_with_name ("boxes-left",
-                                             new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
-            margin.add_constraint_with_name ("boxes-bottom",
-                                             new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
-            /* normal flow items */
-            boxes.set_layout_manager (layout);
-
-            actor_remove (over_boxes);
-
+            set_main_ui_state ();
             break;
 
         case UIState.WIZARD:
-            over_boxes.pack (app.wizard.actor);
+        case UIState.PROPERTIES:
+            set_main_ui_state ();
+            over_boxes.pack (ui_state == UIState.WIZARD ? app.wizard.actor : app.properties.actor);
             app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
             actor_add (over_boxes, app.stage);
             break;

@@ -25,14 +25,14 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     public override Gtk.Widget? get_display (int n) throws Boxes.Error {
         var display = displays.lookup (n) as Spice.Display;
 
-        if (display == null) {
+        if (display == null)
             display = new Spice.Display (session, n);
-            display.resize_guest = true;
-            display.scaling = true;
-        }
 
         if (display == null)
             throw new Boxes.Error.INVALID ("invalid display");
+
+        display.resize_guest = true;
+        display.scaling = true;
 
         return display;
     }

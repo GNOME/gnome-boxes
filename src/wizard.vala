@@ -103,13 +103,13 @@ private class Boxes.Wizard: Boxes.UI {
 
                     var query = new Query (uri.query_raw ?? uri.query);
 
-                    if (uri.port != -1)
+                    if (uri.port > 0)
                         throw new Boxes.Error.INVALID ("the Spice URI is invalid");
 
                     summary.add_property (_("Port"), query.get ("port"));
                     summary.add_property (_("TLS Port"), query.get ("tls-port"));
                 } else {
-                    if (uri.port != -1)
+                    if (uri.port > 0)
                         summary.add_property (_("Port"), uri.port.to_string ());
                 }
             } else

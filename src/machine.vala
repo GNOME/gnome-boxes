@@ -141,8 +141,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
 
         try {
             machine_actor.set_screenshot (pixbuf);
-        } catch (GLib.Error err) {
-            warning (err.message);
+        } catch (GLib.Error error) {
+            warning (error.message);
         }
     }
 
@@ -303,17 +303,21 @@ private class Boxes.MachineActor: Boxes.UI {
             break;
 
         case UIState.DISPLAY:
-            int width, height;
+            if (previous_ui_state == UIState.CREDS) {
+                int width, height;
 
-            password_entry.hide ();
-            label.hide ();
-            machine.app.window.get_size (out width, out height);
-            screenshot.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
-                                "width", (float) width,
-                                "height", (float) height);
-            actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
-                           "x", 0.0f,
-                           "y", 0.0f);
+                password_entry.hide ();
+                label.hide ();
+                machine.app.window.get_size (out width, out height);
+                screenshot.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                                    "width", (float) width,
+                                    "height", (float) height);
+                actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                               "x", 0.0f,
+                               "y", 0.0f);
+            } else
+                machine.app.display_page.show ();
+
             break;
 
         case UIState.COLLECTION:

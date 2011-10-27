@@ -22,6 +22,7 @@ private class Boxes.App: Boxes.UI {
     public static const uint duration = 555;  // default to 1/2 for all transitions
     public static GLib.Settings settings;
     public Wizard wizard;
+    public Properties properties;
     public DisplayPage display_page;
 
     private Clutter.TableLayout box_table;
@@ -128,7 +129,7 @@ private class Boxes.App: Boxes.UI {
 
     private void setup_ui () {
         window = new Gtk.Window ();
-        window.set_default_size (640, 480);
+        window.set_default_size (680, 480);
         notebook = new Gtk.Notebook ();
         notebook.show_border = false;
         notebook.show_tabs = false;
@@ -160,11 +161,21 @@ private class Boxes.App: Boxes.UI {
         window.show_all ();
 
         wizard = new Wizard (this);
+        properties = new Properties (this);
+
         ui_state = UIState.COLLECTION;
     }
 
+    private void set_main_ui_state (string clutter_state) {
+        notebook.page = Boxes.AppPage.MAIN;
+        box.set_layout_manager (box_table);
+        state.set_state (clutter_state);
+    }
+
     public override void ui_state_changed () {
-        foreach (var o in new Boxes.UI[] { sidebar, topbar, view, wizard }) {
+        box.set_layout_manager (box_table);
+
+        foreach (var o in new Boxes.UI[] { sidebar, topbar, view, wizard, properties }) {
             o.ui_state = ui_state;
         }
 
@@ -175,9 +186,7 @@ private class Boxes.App: Boxes.UI {
             break;
 
         case UIState.CREDS:
-            notebook.page = Boxes.AppPage.MAIN;
-            box.set_layout_manager (box_table);
-            state.set_state ("creds");
+            set_main_ui_state ("creds");
             break;
 
         case UIState.COLLECTION:
@@ -187,14 +196,12 @@ private class Boxes.App: Boxes.UI {
                 machine.disconnect_display ();
                 machine.update_screenshot.begin ();
             }
-            notebook.page = Boxes.AppPage.MAIN;
-            box.set_layout_manager (box_table);
-            state.set_state ("collection");
+            set_main_ui_state ("collection");
             break;
 
+        case UIState.PROPERTIES:
         case UIState.WIZARD:
-            notebook.page = Boxes.AppPage.MAIN;
-            box.set_layout_manager (box_table);
+            set_main_ui_state ("collection");
             break;
 
         default:
@@ -221,6 +228,11 @@ private class Boxes.App: Boxes.UI {
     }
 
     private bool item_clicked (CollectionItem item, Clutter.ButtonEvent event) {
+        message ("button %u".printf (event.button));
+
+        if (Clutter.ModifierType.BUTTON2_MASK in event.modifier_state)
+            return false;
+
         if (ui_state == UIState.COLLECTION) {
             current_item = item;
 

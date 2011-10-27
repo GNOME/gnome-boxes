@@ -25,15 +25,22 @@ private class Boxes.DisplayPage: GLib.Object {
             if (event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
 
-                if (y <= 20 && toolbar_show_id == 0) {
+                if (y <= 50 && toolbar_show_id == 0) {
                     toolbar_event_stop ();
                     toolbar_show_id = Timeout.add (app.duration, () => {
                         toolbar.show_all ();
                         toolbar_show_id = 0;
                         return false;
                     });
-                } else if (y > 5)
+                } else if (y > 20) {
                     toolbar_event_stop (true, false);
+                    if (toolbar_hide_id == 0)
+                        toolbar_hide_id = Timeout.add (app.duration, () => {
+                            toolbar.hide ();
+                            toolbar_hide_id = 0;
+                            return false;
+                        });
+                }
             }
 
             if (event_box.get_child () != null)
@@ -50,7 +57,7 @@ private class Boxes.DisplayPage: GLib.Object {
         toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
 
         var back = new ToolButton (null, null);
-        back.icon_name =  "go-previous-symbolic";
+        back.icon_name = "go-previous-symbolic";
         back.get_style_context ().add_class ("raised");
         back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
         toolbar.insert (back, 0);
@@ -62,8 +69,14 @@ private class Boxes.DisplayPage: GLib.Object {
         item.set_expand (true);
         toolbar.insert (item, -1);
 
-        toolbar.set_halign (Align.FILL);
-        toolbar.set_valign (Align.START);
+        var props = new ToolButton (null, null);
+        props.icon_name = "go-next-symbolic";
+        props.get_style_context ().add_class ("raised");
+        props.clicked.connect ((button) => { app.ui_state = UIState.PROPERTIES; });
+        toolbar.insert (props, -1);
+
+        toolbar.set_show_arrow (false);
+        toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (toolbar);
         overlay.show_all ();
@@ -87,6 +100,10 @@ private class Boxes.DisplayPage: GLib.Object {
         }
     }
 
+    public void show () {
+        app.notebook.page = Boxes.AppPage.DISPLAY;
+    }
+
     public void show_display (Boxes.Machine machine, Widget display) {
         remove_display ();
         toolbar.hide ();
@@ -101,11 +118,6 @@ private class Boxes.DisplayPage: GLib.Object {
                 break;
             case EventType.ENTER_NOTIFY:
                 toolbar_event_stop ();
-                toolbar_hide_id = Timeout.add (app.duration, () => {
-                    toolbar.hide ();
-                    toolbar_hide_id = 0;
-                    return false;
-                });
                 break;
             }
             return false;
@@ -115,7 +127,7 @@ private class Boxes.DisplayPage: GLib.Object {
             event_box.get_window ().set_cursor (display.get_window ().cursor);
         });
 
-        app.notebook.page = Boxes.AppPage.DISPLAY;
+        show ();
     }
 
     public void remove_display () {

@@ -30,6 +30,7 @@ bin_PROGRAMS = gnome-boxes gnome-boxes-installer
 
 gnome_boxes_SOURCES =				\
 	app.vala				\
+	boxes-main.vala				\
 	collection-source.vala			\
 	collection-view.vala			\
 	collection.vala				\
@@ -37,7 +38,7 @@ gnome_boxes_SOURCES =				\
 	display.vala				\
 	libvirt-machine.vala			\
 	machine.vala				\
-	boxes-main.vala				\
+	properties.vala				\
 	remote-machine.vala			\
 	sidebar.vala				\
 	spice-display.vala			\
