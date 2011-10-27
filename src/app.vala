@@ -70,6 +70,11 @@ private class Boxes.App: Boxes.UI {
             collection.add_item (machine);
         }
 
+        connection.domain_added.connect ((connection, domain) => {
+            var machine = new LibvirtMachine (source, this, connection, domain);
+            collection.add_item (machine);
+        });
+
         connections.replace (source.uri, connection);
     }
 
