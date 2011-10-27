@@ -43,7 +43,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 } catch (GLib.Error error) {
                     warning (error.message);
                 }
-            } else if (state != DomainState.RUNNING) {
+            } else {
                 started_id = domain.started.connect (() => {
                     domain.disconnect (started_id);
                     started_id = 0;
