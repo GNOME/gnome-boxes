@@ -143,8 +143,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
 
         try {
             machine_actor.set_screenshot (pixbuf);
-        } catch (GLib.Error error) {
-            warning (error.message);
+        } catch (GLib.Error err) {
+            warning (err.message);
         }
     }
 
