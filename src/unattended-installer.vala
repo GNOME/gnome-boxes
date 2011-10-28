@@ -9,7 +9,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public string initrd_path;
 
     public string floppy_path;
-    protected File floppy_file;
 
     protected string unattended_src_path;
     protected string unattended_dest_name;
