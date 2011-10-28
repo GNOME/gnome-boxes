@@ -26,7 +26,6 @@ private class Boxes.EditableEntry: Alignment {
 
             label.label = value;
             (button.get_child () as Label).label = value;
-            notify_property ("text");
         }
     }
 
@@ -39,7 +38,6 @@ private class Boxes.EditableEntry: Alignment {
 
             _editable = value;
             notebook.page = editable ? Page.BUTTON : Page.LABEL;
-            notify_property ("editable");
         }
     }
 
@@ -50,11 +48,10 @@ private class Boxes.EditableEntry: Alignment {
                 return;
 
             label.selectable = value;
-            notify_property ("selectable");
         }
     }
 
-    private Pango.Weight _weight;
+    private Pango.Weight _weight = Pango.Weight.NORMAL;
     public Pango.Weight weight {
         get { return _weight; }
         set {
@@ -65,12 +62,11 @@ private class Boxes.EditableEntry: Alignment {
             weight_set = true;
 
             update_fonts ();
-            notify_property ("weight");
         }
     }
     public bool weight_set { get; set; }
 
-    private double _scale;
+    private double _scale = 1.0;
     public double scale {
         get { return _scale; }
         set {
@@ -81,7 +77,6 @@ private class Boxes.EditableEntry: Alignment {
             scale_set = true;
 
             update_fonts ();
-            notify_property ("scale");
         }
     }
     public bool scale_set { get; set; }
@@ -145,11 +140,6 @@ private class Boxes.EditableEntry: Alignment {
     }
 
     public EditableEntry () {
-        weight = Pango.Weight.NORMAL;
-        weight_set = false;
-        scale = 1.0;
-        scale_set = false;
-
         notebook = new Gtk.Notebook ();
         notebook.show_tabs = false;
         notebook.show_border = false;
