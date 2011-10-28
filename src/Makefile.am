@@ -36,6 +36,7 @@ gnome_boxes_SOURCES =				\
 	collection.vala				\
 	display-page.vala			\
 	display.vala				\
+	editable-entry.vala			\
 	libvirt-machine.vala			\
 	machine.vala				\
 	properties.vala				\

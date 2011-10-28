@@ -21,9 +21,21 @@ private interface Boxes.IProperties: GLib.Object {
     protected void add_string_property (ref List<Pair<string, Widget>> list,
                                         string name, string value,
                                         PropertyStringChanged? changed = null) {
-        var label = new Gtk.Label (value);
-        label.selectable = true;
-        add_property (ref list, name, label);
+        var entry = new Boxes.EditableEntry ();
+
+        entry.text = value;
+        entry.selectable = true;
+        entry.editable = changed != null;
+
+        entry.editing_done.connect (() => {
+            try {
+                changed (entry.text);
+            } catch (Boxes.Error error) {
+                warning (error.message);
+            }
+        });
+
+        add_property (ref list, name, entry);
     }
 }
 
