@@ -82,40 +82,48 @@ private class Boxes.Wizard: Boxes.UI {
         return true;
     }
 
-    private void prepare_with_uri (string text) throws Boxes.Error {
+    private void prepare_for_location (string location) throws Boxes.Error {
         bool uncertain;
 
-        var mimetype = ContentType.guess (text, null, out uncertain);
-        var uri = Xml.URI.parse (text);
+        var mimetype = ContentType.guess (location, null, out uncertain);
 
-        if (uncertain) {
-            if (uri.server == null)
-                throw new Boxes.Error.INVALID ("the URI is invalid");
-
-            if (uri.scheme == "spice" || uri.scheme == "vnc") {
-                source = new CollectionSource (uri.server, uri.scheme, text);
-                summary.add_property (_("Type"), uri.scheme.up ());
-                summary.add_property (_("Host"), uri.server.down ());
-
-                if (uri.scheme == "spice") {
-                    if (uri.query_raw == null && uri.query == null)
-                        throw new Boxes.Error.INVALID ("the Spice URI is incomplete");
-
-                    var query = new Query (uri.query_raw ?? uri.query);
-
-                    if (uri.port > 0)
-                        throw new Boxes.Error.INVALID ("the Spice URI is invalid");
-
-                    summary.add_property (_("Port"), query.get ("port"));
-                    summary.add_property (_("TLS Port"), query.get ("tls-port"));
-                } else {
-                    if (uri.port > 0)
-                        summary.add_property (_("Port"), uri.port.to_string ());
-                }
-            } else
-                throw new Boxes.Error.INVALID ("Unsupported protocol");
-        } else {
+        if (uncertain)
+            prepare_for_uri (location);
+        else
             debug ("FIXME: %s".printf (mimetype));
+    }
+
+    private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
+        var uri = Xml.URI.parse (uri_as_text);
+
+        if (uri.server == null)
+            throw new Boxes.Error.INVALID ("the URI is invalid");
+
+        source = new CollectionSource (uri.server, uri.scheme, uri_as_text);
+        summary.add_property (_("Type"), uri.scheme.up ());
+        summary.add_property (_("Host"), uri.server.down ());
+
+        switch (uri.scheme) {
+        case "spice":
+            if (uri.query_raw == null && uri.query == null)
+                throw new Boxes.Error.INVALID ("the Spice URI is incomplete");
+
+            var query = new Query (uri.query_raw ?? uri.query);
+
+            if (uri.port > 0)
+                throw new Boxes.Error.INVALID ("the Spice URI is invalid");
+
+            summary.add_property (_("Port"), query.get ("port"));
+            summary.add_property (_("TLS Port"), query.get ("tls-port"));
+            break;
+
+        case "vnc":
+            if (uri.port > 0)
+                summary.add_property (_("Port"), uri.port.to_string ());
+            break;
+
+        default:
+            throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
         }
     }
 
@@ -124,7 +132,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         if (this.wizard_source.page == Boxes.SourcePage.URL ||
             this.wizard_source.page == Boxes.SourcePage.FILE) {
-            prepare_with_uri (this.wizard_source.uri);
+            prepare_for_location (this.wizard_source.uri);
         }
     }
 
