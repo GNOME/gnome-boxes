@@ -23,6 +23,13 @@ private class Boxes.Wizard: Boxes.UI {
     private WizardSummary summary;
     private CollectionSource? source;
 
+    private OSDatabase os_db;
+    private VMCreator vm_creator;
+    private GUdev.Client client;
+
+    private InstallerMedia? install_media;
+    private Osinfo.Resources? resources;
+
     private WizardPage _page;
     private WizardPage page {
         get { return _page; }
@@ -30,7 +37,7 @@ private class Boxes.Wizard: Boxes.UI {
             if (value == WizardPage.REVIEW) {
                 try {
                     prepare ();
-                } catch (Boxes.Error error) {
+                } catch (GLib.Error error) {
                     warning ("Fixme: %s".printf (error.message));
                     return;
                 }
@@ -74,21 +81,48 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool create () {
-        if (source == null)
-            return false;
+        if (source == null) {
+            if (install_media == null)
+                return false;
+
+            next_button.sensitive = false;
+            vm_creator.create_domain_for_installer.begin (install_media, resources, null, on_domain_created);
+            install_media = null;
+            resources = null;
+
+            return true;
+        }
 
         source.save ();
         app.add_collection_source (source);
         return true;
     }
 
-    private void prepare_for_location (string location) throws Boxes.Error {
+    private void on_domain_created (Object? source_object, AsyncResult result) {
+        try {
+            var domain = vm_creator.create_domain_for_installer.end (result);
+            domain.start (0);
+        } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
+        } catch (GLib.Error error) {
+            warning ("Fixme: %s".printf (error.message));
+
+            return;
+        }
+
+        // Only let the user through if either domain was successfully created or operation was cancelled
+        next_button.sensitive = true;
+    }
+
+    private void prepare_for_location (string location) throws GLib.Error {
         bool uncertain;
 
         var mimetype = ContentType.guess (location, null, out uncertain);
 
         if (uncertain)
             prepare_for_uri (location);
+        else if (ContentType.is_a (mimetype, "application/x-cd-image"))
+            // FIXME: We are assuming that its local URI
+            prepare_for_installer (location);
         else
             debug ("FIXME: %s".printf (mimetype));
     }
@@ -127,7 +161,34 @@ private class Boxes.Wizard: Boxes.UI {
         }
     }
 
-    private void prepare () throws Boxes.Error {
+    private void prepare_for_installer (string location) throws GLib.Error {
+        if (client == null) {
+            client = new GUdev.Client ({"block"});
+            os_db = new OSDatabase ();
+            vm_creator = new VMCreator ("qemu:///session"); // FIXME
+        }
+
+        next_button.sensitive = false;
+        var file = File.new_for_uri (location);
+        // FIXME: Assuming location is a local URI
+        InstallerMedia.instantiate.begin (file.get_path (), os_db, client, null, on_installer_media_instantiated);
+    }
+
+    private void on_installer_media_instantiated (Object? source_object, AsyncResult result) {
+        next_button.sensitive = true;
+
+        try {
+            install_media = InstallerMedia.instantiate.end (result);
+            resources = os_db.get_resources_for_os (install_media.os);
+
+            summary.add_property (_("System"), install_media.label);
+        } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
+        } catch (GLib.Error error) {
+            warning ("Fixme: %s".printf (error.message));
+        }
+    }
+
+    private void prepare () throws GLib.Error {
         summary.clear ();
 
         if (this.wizard_source.page == Boxes.SourcePage.URL ||

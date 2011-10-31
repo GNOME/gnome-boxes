@@ -49,6 +49,13 @@ gnome_boxes_SOURCES =				\
 	vnc-display.vala			\
 	wizard-source.vala			\
 	wizard.vala				\
+	installer-media-symlink.vala 		\
+	unattended-installer-symlink.vala 	\
+	fedora-installer-symlink.vala 		\
+	win7-installer-symlink.vala 		\
+	winxp-installer-symlink.vala 		\
+	os-database-symlink.vala 		\
+	vm-creator-symlink.vala 		\
 	$(NULL)
 
 gnome_boxes_installer_SOURCES = 		\
