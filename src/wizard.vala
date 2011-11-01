@@ -64,11 +64,11 @@ private class Boxes.Wizard: Boxes.UI {
     construct {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
-        wizard_source = new Boxes.WizardSource ();
     }
 
     public Wizard (App app) {
         this.app = app;
+        wizard_source = new Boxes.WizardSource (app.uri);
 
         setup_ui ();
     }
@@ -131,9 +131,8 @@ private class Boxes.Wizard: Boxes.UI {
         summary.clear ();
 
         if (this.wizard_source.page == Boxes.SourcePage.URL ||
-            this.wizard_source.page == Boxes.SourcePage.FILE) {
+            this.wizard_source.page == Boxes.SourcePage.FILE)
             prepare_for_location (this.wizard_source.uri);
-        }
     }
 
     private void add_step (Gtk.Widget widget, string label, WizardPage page) {
@@ -243,7 +242,11 @@ private class Boxes.Wizard: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.WIZARD:
-            page = WizardPage.INTRODUCTION;
+            if (app.uri != null) {
+                page = WizardPage.SOURCE;
+                wizard_source.page = SourcePage.URL;
+            } else
+                page = WizardPage.INTRODUCTION;
             break;
         }
     }

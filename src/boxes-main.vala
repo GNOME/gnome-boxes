@@ -3,9 +3,11 @@ using Config;
 using Posix;
 
 private static bool version;
+private static string[] uris;
 
 private const OptionEntry[] options = {
     { "version", 0, 0, OptionArg.NONE, ref version, N_("Display version number"), null },
+    { "", 0, 0, OptionArg.STRING_ARRAY, ref uris, N_("URI to display, broker or installer media"), null },
     { null }
 };
 
@@ -64,7 +66,8 @@ public void main (string[] args) {
         warning (error.message);
     }
 
-    new Boxes.App ();
+    // FIXME: We only handle a single URI from commandline
+    new Boxes.App ((uris != null)? uris[0] : null);
     Gtk.main ();
 }
 

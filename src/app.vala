@@ -24,6 +24,7 @@ private class Boxes.App: Boxes.UI {
     public Wizard wizard;
     public Properties properties;
     public DisplayPage display_page;
+    public string? uri { get; private set; }
 
     private Clutter.TableLayout box_table;
     private Collection collection;
@@ -31,7 +32,8 @@ private class Boxes.App: Boxes.UI {
 
     private HashTable<string,GVir.Connection> connections;
 
-    public App () {
+    public App (string? uri) {
+        this.uri = uri;
         settings = new GLib.Settings ("org.gnome.boxes");
         setup_ui ();
         collection = new Collection (this);
@@ -164,7 +166,10 @@ private class Boxes.App: Boxes.UI {
         wizard = new Wizard (this);
         properties = new Properties (this);
 
-        ui_state = UIState.COLLECTION;
+        if (uri != null)
+            ui_state = UIState.WIZARD;
+        else
+            ui_state = UIState.COLLECTION;
     }
 
     private void set_main_ui_state (string clutter_state) {

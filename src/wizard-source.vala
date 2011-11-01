@@ -27,7 +27,7 @@ private class Boxes.WizardSource: GLib.Object {
     private Gtk.Notebook notebook;
     private Gtk.Entry url_entry;
 
-    public WizardSource () {
+    public WizardSource (string? uri) {
         notebook = new Gtk.Notebook ();
         notebook.get_style_context ().add_class ("boxes-source-nb");
         notebook.show_tabs = false;
@@ -83,6 +83,9 @@ private class Boxes.WizardSource: GLib.Object {
         label.set_use_markup (true);
         label.wrap = true;
         hbox.pack_start (label, true, true);
+
+        if (uri != null)
+            url_entry.text = uri;
 
         notebook.show_all ();
     }
