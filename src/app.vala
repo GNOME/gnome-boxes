@@ -175,8 +175,8 @@ private class Boxes.App: Boxes.UI {
     public override void ui_state_changed () {
         box.set_layout_manager (box_table);
 
-        foreach (var o in new Boxes.UI[] { sidebar, topbar, view, wizard, properties }) {
-            o.ui_state = ui_state;
+        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, wizard, properties }) {
+            ui.ui_state = ui_state;
         }
 
         switch (ui_state) {
