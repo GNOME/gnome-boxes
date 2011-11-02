@@ -26,11 +26,11 @@ AM_VALAFLAGS =						\
 	--pkg libosinfo-1.0				\
 	$(NULL)
 
-bin_PROGRAMS = gnome-boxes gnome-boxes-installer
+bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
 	app.vala				\
-	boxes-main.vala				\
+	main.vala				\
 	collection-source.vala			\
 	collection-view.vala			\
 	collection.vala				\
@@ -49,16 +49,6 @@ gnome_boxes_SOURCES =				\
 	vnc-display.vala			\
 	wizard-source.vala			\
 	wizard.vala				\
-	installer-media-symlink.vala 		\
-	unattended-installer-symlink.vala 	\
-	fedora-installer-symlink.vala 		\
-	win7-installer-symlink.vala 		\
-	winxp-installer-symlink.vala 		\
-	os-database-symlink.vala 		\
-	vm-creator-symlink.vala 		\
-	$(NULL)
-
-gnome_boxes_installer_SOURCES = 		\
 	installer-media.vala 			\
 	unattended-installer.vala 		\
 	fedora-installer.vala 			\
@@ -66,15 +56,10 @@ gnome_boxes_installer_SOURCES = 		\
 	winxp-installer.vala 			\
 	os-database.vala 			\
 	vm-creator.vala 			\
-	installer-util.vala			\
-	installer-main.vala			\
 	$(NULL)
 
 gnome_boxes_LDADD = $(BOXES_LIBS)
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
-
-gnome_boxes_installer_LDADD = $(BOXES_LIBS)
-gnome_boxes_installer_CFLAGS = $(BOXES_CFLAGS)
 
 MAINTAINERCLEANFILES =				\
 	$(gnome_boxes_SOURCES:.vala=.c)		\

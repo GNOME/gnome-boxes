@@ -1,1 +1,0 @@
-win7-installer.vala
