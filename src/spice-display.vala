@@ -10,20 +10,36 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
     private unowned GtkSession gtk_session;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
+    private Display.SavedProperty[] display_saved_properties;
+    private Display.SavedProperty[] gtk_session_saved_properties;
 
     construct {
+        display_saved_properties = {
+            SavedProperty () { name = "resize-guest", default_value = true }
+        };
+
+        gtk_session_saved_properties = {
+            SavedProperty () { name = "auto-clipboard", default_value = true },
+            SavedProperty () { name = "auto-usbredir", default_value = false }
+        };
+
         need_password = false;
+        session = new Session ();
+        gtk_session = GtkSession.get (session);
+
+        this.notify["source"].connect (() => {
+            sync_source_with_display (gtk_session, gtk_session_saved_properties);
+        });
     }
 
     public SpiceDisplay (string host, int port) {
-        session = new Session ();
         session.port = port.to_string ();
         session.host = host;
-        gtk_session = GtkSession.get (session);
     }
 
-    public SpiceDisplay.with_uri (string uri) {
-        session = new Session ();
+    public SpiceDisplay.with_uri (CollectionSource source, string uri) {
+        this.source = source;
+
         session.uri = uri;
     }
 
@@ -36,7 +52,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
             if (display == null)
                 throw new Boxes.Error.INVALID ("invalid display");
 
-            display.resize_guest = true;
+            sync_source_with_display (display, display_saved_properties);
+
             display.scaling = true;
 
             displays.replace (n, display);

@@ -16,9 +16,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
 
         try {
             if (source.source_type == "spice")
-                display = new SpiceDisplay.with_uri (source.uri);
+                display = new SpiceDisplay.with_uri (source, source.uri);
             else if (source.source_type == "vnc")
-                display = new VncDisplay.with_uri (source.uri);
+                display = new VncDisplay.with_uri (source, source.uri);
 
             display.connect_it ();
         } catch (GLib.Error error) {

@@ -66,4 +66,37 @@ private class Boxes.CollectionSource: GLib.Object {
             return null;
         }
     }
+
+    public void save_display_property (Object display, string property_name) {
+        var group = "display";
+        var value = Value (display.get_class ().find_property (property_name).value_type);
+
+        display.get_property (property_name, ref value);
+
+        if (value.type () == typeof (string))
+            keyfile.set_string (group, property_name, value.get_string ());
+        else if (value.type () == typeof (bool))
+            keyfile.set_boolean (group, property_name, value.get_boolean ());
+        else
+            warning ("unhandled property %s type, value: %s".printf (
+                         property_name, value.strdup_contents ()));
+
+        save ();
+    }
+
+    public void load_display_property (Object display, string property_name, Value default_value) {
+        var group = "display";
+        var value = Value (display.get_class ().find_property (property_name).value_type);
+
+        try {
+            if (value.type () == typeof (string))
+                value = keyfile.get_string (group, property_name);
+            if (value.type () == typeof (bool))
+                value = keyfile.get_boolean (group, property_name);
+        } catch (GLib.Error err) {
+            value = default_value;
+        }
+
+        display.set_property (property_name, value);
+    }
 }

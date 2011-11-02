@@ -2,6 +2,11 @@
 using Gtk;
 
 private abstract class Boxes.Display: GLib.Object, Boxes.IProperties {
+    protected struct SavedProperty {
+        string name;
+        Value default_value;
+    }
+
     public abstract string protocol { get; }
     public abstract string uri { owned get; }
 
@@ -25,5 +30,23 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IProperties {
     protected HashTable<int, Gtk.Widget?> displays;
     construct {
         displays = new HashTable<int, Gtk.Widget> (direct_hash, direct_equal);
+    }
+
+    public CollectionSource? source { get; set; }
+
+    public void sync_source_with_display (Object display, SavedProperty[] saved_properties) {
+        if (source == null)
+            return;
+
+        foreach (var prop in saved_properties)
+            source.load_display_property (display, prop.name, prop.default_value);
+
+        display.notify.connect ((pspec) => {
+            foreach (var prop in saved_properties)
+                if (pspec.name == prop.name) {
+                    source.save_display_property (display, pspec.name);
+                    break;
+                }
+        });
     }
 }

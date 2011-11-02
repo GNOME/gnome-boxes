@@ -10,8 +10,12 @@ private class Boxes.VncDisplay: Boxes.Display {
     private string host;
     private int port;
     private Gtk.Window window;
+    private Display.SavedProperty[] saved_properties;
 
     construct {
+        saved_properties = {
+            SavedProperty () { name = "read-only", default_value = false }
+        };
         need_password = false;
 
         display = new Vnc.Display ();
@@ -71,7 +75,10 @@ private class Boxes.VncDisplay: Boxes.Display {
         this.port = port;
     }
 
-    public VncDisplay.with_uri (string _uri) throws Boxes.Error {
+    public VncDisplay.with_uri (CollectionSource source, string _uri) throws Boxes.Error {
+        this.source = source;
+        sync_source_with_display (display, saved_properties);
+
         var uri = Xml.URI.parse (_uri);
 
         if (uri.scheme != "vnc")
