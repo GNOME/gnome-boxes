@@ -26,7 +26,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         window.add (display);
         display.realize ();
 
-        display.vnc_connected.connect (() => {
+        display.vnc_initialized.connect (() => {
             show (0);
         });
         display.vnc_disconnected.connect (() => {
