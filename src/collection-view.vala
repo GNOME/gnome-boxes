@@ -11,8 +11,19 @@ private class Boxes.CollectionView: Boxes.UI {
     private Clutter.FlowLayout layout;
     private Clutter.Box over_boxes; // a box on top of boxes list
 
-    public CollectionView (App app) {
+    private Category _category;
+    public Category category {
+        get { return _category; }
+        set {
+            _category = value;
+            if (sorted != null)
+                update_view ();
+        }
+    }
+
+    public CollectionView (App app, Category category) {
         this.app = app;
+        this.category = category;
         sorted = new SortedCollection ((a, b) => {
             return strcmp (a.name.down (), b.name.down ());
         });
@@ -103,23 +114,56 @@ private class Boxes.CollectionView: Boxes.UI {
         }
     }
 
-    public void add_item (CollectionItem item) {
+    public void update_item_visible (CollectionItem item) {
+        var visible = false;
+
         if (item is Machine) {
             var machine = item as Machine;
 
-            machine.ui_state = UIState.COLLECTION;
-            actor_remove (machine.actor);
-
-            var iter = sorted.insert (machine);
-
-            if (iter.is_begin ())
-                boxes.pack_before (machine.actor, null);
-            else {
-                var prev = iter.prev ().get ();
-                boxes.pack_after (machine.actor, prev.actor);
+            switch (category.kind) {
+            case Category.Kind.USER:
+                visible = category.name in machine.source.categories;
+                break;
+            case Category.Kind.NEW:
+                visible = true;
+                break;
             }
-        } else
+        }
+
+        item.actor.visible = visible;
+    }
+
+    public void update_view () {
+        var iter = sorted.sequence.get_begin_iter ();
+
+        while (!iter.is_end ()) {
+            var item = iter.get ();
+            update_item_visible (item);
+            iter = iter.next ();
+        }
+    }
+
+    public void add_item (CollectionItem item) {
+        var machine = item as Machine;
+
+        if (machine == null) {
             warning ("Cannot add item %p in %s".printf (&item, sorted.to_string ()));
+            return;
+        }
+
+        item.ui_state = UIState.COLLECTION;
+        actor_remove (item.actor);
+
+        var iter = sorted.insert (item);
+
+        if (iter.is_begin ())
+            boxes.pack_before (item.actor, null);
+        else {
+            var prev = iter.prev ().get ();
+            boxes.pack_after (item.actor, prev.actor);
+        }
+
+        update_item_visible (item);
     }
 
     public void remove_item (CollectionItem item) {
@@ -189,7 +233,7 @@ private class Boxes.CollectionView: Boxes.UI {
     }
 
     private class SortedCollection: GLib.Object {
-        GLib.Sequence<CollectionItem> boxes_sequence = new GLib.Sequence<CollectionItem> ();
+        public GLib.Sequence<CollectionItem> sequence = new GLib.Sequence<CollectionItem> ();
         CompareDataFunc<CollectionItem> compare;
 
         public SortedCollection(owned CompareDataFunc<CollectionItem> compare) {
@@ -197,18 +241,18 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         public SequenceIter<CollectionItem> insert (owned CollectionItem item) {
-            return boxes_sequence.insert_sorted (item, compare);
+            return sequence.insert_sorted (item, compare);
         }
 
         public void remove (CollectionItem item) {
-            var iter = boxes_sequence.lookup (item, compare);
-            boxes_sequence.remove (iter);
+            var iter = sequence.lookup (item, compare);
+            sequence.remove (iter);
         }
 
         public string to_string () {
             var str = "";
 
-            var iter = boxes_sequence.get_begin_iter ();
+            var iter = sequence.get_begin_iter ();
             while (!iter.is_end ()) {
                 str += iter.get ().name + " ";
                 iter = iter.next ();

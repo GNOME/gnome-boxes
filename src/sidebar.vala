@@ -14,6 +14,7 @@ private class Boxes.Sidebar: Boxes.UI {
     public Notebook notebook;
     public TreeView default_tree_view;
     public TreeView user_tree_view;
+    public Category category;
 
     private App app;
     private uint width;
@@ -92,8 +93,10 @@ private class Boxes.Sidebar: Boxes.UI {
             model.get (iter, 4, out category);
             model.get (iter, 2, out selectable);
 
-            if (selectable)
+            if (selectable) {
+                this.category = category;
                 app.set_category (category);
+            }
 
             (treeview == default_tree_view ? user_tree_view : default_tree_view).get_selection ().unselect_all ();
         });
@@ -142,10 +145,11 @@ private class Boxes.Sidebar: Boxes.UI {
         vbox.pack_start (default_tree_view, false, false, 0);
 
         var listmodel = default_tree_view.get_model () as Gtk.ListStore;
-        list_append (listmodel, new Category (_("New and Recent")));
-        list_append (listmodel, new Category (_("Favorites")), "emblem-favorite-symbolic");
-        list_append (listmodel, new Category (_("Private")), "channel-secure-symbolic");
-        list_append (listmodel, new Category (_("Shared with you")), "emblem-shared-symbolic");
+        category = new Category (_("New and Recent"), Category.Kind.NEW);
+        list_append (listmodel, category);
+        list_append (listmodel, new Category (_("Favorites"), Category.Kind.FAVORITES), "emblem-favorite-symbolic");
+        list_append (listmodel, new Category (_("Private"), Category.Kind.PRIVATE), "channel-secure-symbolic");
+        list_append (listmodel, new Category (_("Shared with you"), Category.Kind.SHARED), "emblem-shared-symbolic");
         default_tree_view.get_selection ().select_path (new Gtk.TreePath.from_string ("0"));
 
         var label = new Gtk.Label (_("Collections"));

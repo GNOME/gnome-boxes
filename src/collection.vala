@@ -25,9 +25,19 @@ private class Boxes.Collection: GLib.Object {
 }
 
 private class Boxes.Category: GLib.Object {
-    public string name;
+    public enum Kind {
+        USER,
+        NEW,
+        FAVORITES,
+        PRIVATE,
+        SHARED
+    }
 
-    public Category (string name) {
+    public string name;
+    public Kind kind;
+
+    public Category (string name, Kind kind = Kind.USER) {
         this.name = name;
+        this.kind = kind;
     }
 }

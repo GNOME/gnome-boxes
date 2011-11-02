@@ -58,6 +58,7 @@ private class Boxes.App: Boxes.UI {
 
     public void set_category (Category category) {
         topbar.label.set_text (category.name);
+        view.category = category;
     }
 
     private async void setup_libvirt (CollectionSource source) {
@@ -165,7 +166,7 @@ private class Boxes.App: Boxes.UI {
 
         topbar = new Topbar (this);
         sidebar = new Sidebar (this);
-        view = new CollectionView (this);
+        view = new CollectionView (this, sidebar.category);
 
         window.show_all ();
 
