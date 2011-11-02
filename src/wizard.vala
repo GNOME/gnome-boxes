@@ -196,20 +196,20 @@ private class Boxes.Wizard: Boxes.UI {
             prepare_for_location (this.wizard_source.uri);
     }
 
-    private void add_step (Gtk.Widget widget, string label, WizardPage page) {
+    private void add_step (Gtk.Widget widget, string title, WizardPage page) {
         notebook.append_page (widget, null);
 
         /* sidebar */
         var vbox = app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.VBox;
 
-        var la = new Gtk.Label (label);
-        la.margin_left = 25;
-        la.get_style_context ().add_class ("boxes-step-label");
-        la.set_halign (Gtk.Align.START);
-        vbox.pack_start (la, false, false, 10);
+        var label = new Gtk.Label (title);
+        label.margin_left = 25;
+        label.get_style_context ().add_class ("boxes-step-label");
+        label.set_halign (Gtk.Align.START);
+        vbox.pack_start (label, false, false, 10);
 
         vbox.show_all ();
-        steps.set (page, la);
+        steps.set (page, label);
     }
 
     private bool skip_page (Boxes.WizardPage page) {
@@ -232,20 +232,20 @@ private class Boxes.Wizard: Boxes.UI {
         hbox.margin_right = 20;
         add_step (hbox, _("Introduction"), WizardPage.INTRODUCTION);
         hbox.add (new Gtk.Image.from_file (get_pixmap ("boxes-create.png")));
-        var la = new Gtk.Label (null);
-        la.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
-        la.set_use_markup (true);
-        la.wrap = true;
-        hbox.add (la);
+        var label = new Gtk.Label (null);
+        label.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
+        label.set_use_markup (true);
+        label.wrap = true;
+        hbox.add (label);
         hbox.show_all ();
 
         /* Source */
         var vbox = new Gtk.VBox (false, 20);
         vbox.margin = 15;
         add_step (vbox, _("Source Selection"), WizardPage.SOURCE);
-        la = new Gtk.Label (_("Insert operating system installation media or select a source below"));
-        la.wrap = true;
-        vbox.pack_start (la, false, false);
+        label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
+        label.wrap = true;
+        vbox.pack_start (label, false, false);
         vbox.pack_start (wizard_source.widget, false, false);
         vbox.show_all ();
 
@@ -269,11 +269,11 @@ private class Boxes.Wizard: Boxes.UI {
         /* topbar */
         hbox = app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.HBox;
 
-        la = new Gtk.Label (_("Create a Box"));
-        la.name = "TopbarLabel";
-        la.margin_left = 20;
-        la.set_halign (Gtk.Align.START);
-        hbox.pack_start (la, true, true, 0);
+        label = new Gtk.Label (_("Create a Box"));
+        label.name = "TopbarLabel";
+        label.margin_left = 20;
+        label.set_halign (Gtk.Align.START);
+        hbox.pack_start (label, true, true, 0);
 
         var hbox_end = new Gtk.HBox (false, 0);
         hbox.pack_start (hbox_end, false, false, 0);
