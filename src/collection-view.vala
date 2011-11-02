@@ -33,11 +33,8 @@ private class Boxes.CollectionView: Boxes.UI {
     private void set_main_ui_state () {
         actor_remove (app.wizard.actor);
         actor_remove (app.properties.actor);
-
-        if (app.current_item != null) {
+        if (app.current_item != null)
             actor_remove (app.current_item.actor);
-            add_item (app.current_item);
-        }
 
         /* follow main table layout again */
         actor_unpin (boxes);
@@ -97,6 +94,8 @@ private class Boxes.CollectionView: Boxes.UI {
 
         case UIState.COLLECTION:
             set_main_ui_state ();
+            if (app.current_item != null)
+                add_item (app.current_item);
             break;
 
         case UIState.WIZARD:
@@ -246,7 +245,8 @@ private class Boxes.CollectionView: Boxes.UI {
 
         public void remove (CollectionItem item) {
             var iter = sequence.lookup (item, compare);
-            sequence.remove (iter);
+            if (iter != null)
+                sequence.remove (iter);
         }
 
         public string to_string () {
