@@ -90,6 +90,10 @@ private class Boxes.VncDisplay: Boxes.Display {
         return display;
     }
 
+    public override Gdk.Pixbuf get_pixbuf (int n) throws Boxes.Error {
+        return display.get_pixbuf ();
+    }
+
     public override void connect_it () {
         // FIXME: we ignore return value which seems to be inconsistent
         display.set_credential (DisplayCredential.USERNAME, username);

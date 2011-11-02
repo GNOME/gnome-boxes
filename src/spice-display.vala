@@ -30,16 +30,21 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
     public override Gtk.Widget? get_display (int n) throws Boxes.Error {
         var display = displays.lookup (n) as Spice.Display;
 
-        if (display == null)
+        if (display == null) {
             display = new Spice.Display (session, n);
 
-        if (display == null)
-            throw new Boxes.Error.INVALID ("invalid display");
+            if (display == null)
+                throw new Boxes.Error.INVALID ("invalid display");
 
-        display.resize_guest = true;
-        display.scaling = true;
+            display.resize_guest = true;
+            display.scaling = true;
+        }
 
         return display;
+    }
+
+    public override Gdk.Pixbuf get_pixbuf (int n) throws Boxes.Error {
+        return (get_display (n) as Spice.Display).get_pixbuf ();
     }
 
     public override void connect_it () {
