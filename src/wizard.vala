@@ -172,6 +172,7 @@ private class Boxes.Wizard: Boxes.UI {
         try {
             install_media = InstallerMedia.instantiate.end (result);
             resources = os_db.get_resources_for_os (install_media.os);
+            page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             warning ("Fixme: %s".printf (error.message));
