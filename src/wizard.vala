@@ -34,17 +34,25 @@ private class Boxes.Wizard: Boxes.UI {
     private WizardPage page {
         get { return _page; }
         set {
-            if (value == WizardPage.REVIEW) {
+            switch (value) {
+            case WizardPage.PREPARATION:
                 try {
                     prepare ();
                 } catch (GLib.Error error) {
                     warning ("Fixme: %s".printf (error.message));
                     return;
                 }
-            } else if (value == WizardPage.LAST) {
+                break;
+
+            case WizardPage.REVIEW:
+                review ();
+                break;
+
+            case WizardPage.LAST:
                 if (!create ())
                     return;
                 app.ui_state = UIState.COLLECTION;
+                break;
             }
 
             if (skip_page (value)) {
@@ -134,31 +142,15 @@ private class Boxes.Wizard: Boxes.UI {
             throw new Boxes.Error.INVALID ("the URI is invalid");
 
         source = new CollectionSource (uri.server, uri.scheme, uri_as_text);
-        summary.add_property (_("Type"), uri.scheme.up ());
-        summary.add_property (_("Host"), uri.server.down ());
 
-        switch (uri.scheme) {
-        case "spice":
+        if (uri.scheme == "spice") {
             if (uri.query_raw == null && uri.query == null)
                 throw new Boxes.Error.INVALID ("the Spice URI is incomplete");
 
-            var query = new Query (uri.query_raw ?? uri.query);
-
             if (uri.port > 0)
                 throw new Boxes.Error.INVALID ("the Spice URI is invalid");
-
-            summary.add_property (_("Port"), query.get ("port"));
-            summary.add_property (_("TLS Port"), query.get ("tls-port"));
-            break;
-
-        case "vnc":
-            if (uri.port > 0)
-                summary.add_property (_("Port"), uri.port.to_string ());
-            break;
-
-        default:
+        } else
             throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
-        }
     }
 
     private void prepare_for_installer (string location) throws GLib.Error {
@@ -180,8 +172,6 @@ private class Boxes.Wizard: Boxes.UI {
         try {
             install_media = InstallerMedia.instantiate.end (result);
             resources = os_db.get_resources_for_os (install_media.os);
-
-            summary.add_property (_("System"), install_media.label);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             warning ("Fixme: %s".printf (error.message));
@@ -189,11 +179,35 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare () throws GLib.Error {
-        summary.clear ();
-
         if (this.wizard_source.page == Boxes.SourcePage.URL ||
             this.wizard_source.page == Boxes.SourcePage.FILE)
             prepare_for_location (this.wizard_source.uri);
+    }
+
+    private void review () {
+        summary.clear ();
+
+        if (source != null) {
+            var uri = Xml.URI.parse (source.uri);
+
+            summary.add_property (_("Type"), uri.scheme.up ());
+            summary.add_property (_("Host"), uri.server.down ());
+
+            switch (uri.scheme) {
+            case "spice":
+                var query = new Query (uri.query_raw ?? uri.query);
+
+                summary.add_property (_("Port"), query.get ("port"));
+                summary.add_property (_("TLS Port"), query.get ("tls-port"));
+                break;
+
+            case "vnc":
+                if (uri.port > 0)
+                    summary.add_property (_("Port"), uri.port.to_string ());
+                break;
+            }
+        } else if (install_media != null)
+            summary.add_property (_("System"), install_media.label);
     }
 
     private void add_step (Gtk.Widget widget, string title, WizardPage page) {
@@ -213,7 +227,7 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool skip_page (Boxes.WizardPage page) {
-        if (page > Boxes.WizardPage.SOURCE &&
+        if (page > Boxes.WizardPage.PREPARATION &&
             page < Boxes.WizardPage.REVIEW &&
             this.wizard_source.page == Boxes.SourcePage.URL)
             return true;
