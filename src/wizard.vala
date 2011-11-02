@@ -22,6 +22,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Boxes.WizardSource wizard_source;
     private WizardSummary summary;
     private CollectionSource? source;
+    private Gtk.ProgressBar prep_progress;
 
     private OSDatabase os_db;
     private VMCreator vm_creator;
@@ -172,6 +173,7 @@ private class Boxes.Wizard: Boxes.UI {
         try {
             install_media = InstallerMedia.instantiate.end (result);
             resources = os_db.get_resources_for_os (install_media.os);
+            prep_progress.fraction = 1.0;
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
@@ -270,7 +272,29 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* Preparation */
         vbox = new Gtk.VBox (false, 10);
+        vbox.margin = 15;
         add_step (vbox, _("Preparation"), WizardPage.PREPARATION);
+        label = new Gtk.Label (_("Preparing to create new box"));
+        label.set_halign (Gtk.Align.START);
+        label.wrap = true;
+        vbox.pack_start (label, false, false);
+
+        hbox = new Gtk.HBox (false, 10);
+        hbox.valign = Gtk.Align.CENTER;
+        hbox.halign = Gtk.Align.CENTER;
+        hbox.margin = 24;
+        vbox.pack_start (hbox, true, true);
+
+        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
+        image.pixel_size = 128;
+        hbox.pack_start (image, false, false);
+        var prep_vbox = new Gtk.VBox (true, 10);
+        prep_vbox.valign = Gtk.Align.CENTER;
+        hbox.pack_start (prep_vbox, true, true);
+        label = new Gtk.Label (_("Analyzing installer media."));
+        prep_vbox.pack_start (label, false, false);
+        prep_progress = new Gtk.ProgressBar ();
+        prep_vbox.pack_start (prep_progress, false, false);
         vbox.show_all ();
 
         /* Setup */
