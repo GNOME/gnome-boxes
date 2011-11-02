@@ -7,11 +7,15 @@ private class Boxes.CollectionView: Boxes.UI {
     private App app;
     private Clutter.Group margin; // the surrounding actor, for the margin
     private Clutter.Box boxes; // the boxes list box
+    private SortedCollection sorted;
     private Clutter.FlowLayout layout;
     private Clutter.Box over_boxes; // a box on top of boxes list
 
     public CollectionView (App app) {
         this.app = app;
+        sorted = new SortedCollection ((a, b) => {
+            return strcmp (a.name.down (), b.name.down ());
+        });
         setup_view ();
     }
 
@@ -104,17 +108,28 @@ private class Boxes.CollectionView: Boxes.UI {
             var machine = item as Machine;
 
             machine.ui_state = UIState.COLLECTION;
-            actor_add (machine.actor, boxes);
+            actor_remove (machine.actor);
+
+            var iter = sorted.insert (machine);
+
+            if (iter.is_begin ())
+                boxes.pack_before (machine.actor, null);
+            else {
+                var prev = iter.prev ().get ();
+                boxes.pack_after (machine.actor, prev.actor);
+            }
         } else
-            warning ("Cannot add item %p".printf (&item));
+            warning ("Cannot add item %p in %s".printf (&item, sorted.to_string ()));
     }
 
     public void remove_item (CollectionItem item) {
         if (item is Machine) {
             var machine = item as Machine;
             var actor = machine.actor;
+
+            sorted.remove (machine);
             if (actor.get_parent () == boxes)
-                boxes.remove_actor (actor); // FIXME: why Clutter warn here??!
+                boxes.remove_actor (actor);
         } else
             warning ("Cannot remove item %p".printf (&item));
     }
@@ -171,5 +186,35 @@ private class Boxes.CollectionView: Boxes.UI {
         app.state.set_key (null, "collection", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 255, 0, 0);
         app.state.set_key (null, "display", over_boxes, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
         app.state.set_key (null, "display", over_boxes, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
+    }
+
+    private class SortedCollection: GLib.Object {
+        GLib.Sequence<CollectionItem> boxes_sequence = new GLib.Sequence<CollectionItem> ();
+        CompareDataFunc<CollectionItem> compare;
+
+        public SortedCollection(owned CompareDataFunc<CollectionItem> compare) {
+            this.compare = (owned) compare;
+        }
+
+        public SequenceIter<CollectionItem> insert (owned CollectionItem item) {
+            return boxes_sequence.insert_sorted (item, compare);
+        }
+
+        public void remove (CollectionItem item) {
+            var iter = boxes_sequence.lookup (item, compare);
+            boxes_sequence.remove (iter);
+        }
+
+        public string to_string () {
+            var str = "";
+
+            var iter = boxes_sequence.get_begin_iter ();
+            while (!iter.is_end ()) {
+                str += iter.get ().name + " ";
+                iter = iter.next ();
+            }
+
+            return str;
+        }
     }
 }

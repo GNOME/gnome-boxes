@@ -20,6 +20,10 @@ private class Boxes.CollectionSource: GLib.Object {
         owned get { return get_string ("source", "uri"); }
         set { keyfile.set_string ("source", "uri", value); }
     }
+    public string[]? categories {
+        owned get { return get_string_list ("display", "categories"); }
+        set { keyfile.set_string_list ("display", "categories", value); }
+    }
 
     private string? _filename;
     public string? filename {
@@ -62,6 +66,14 @@ private class Boxes.CollectionSource: GLib.Object {
     private string? get_string (string group, string key) {
         try {
             return keyfile.get_string (group, key);
+        } catch (GLib.KeyFileError error) {
+            return null;
+        }
+    }
+
+    private string[]? get_string_list (string group, string key) {
+        try {
+            return keyfile.get_string_list (group, key);
         } catch (GLib.KeyFileError error) {
             return null;
         }
