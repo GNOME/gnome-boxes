@@ -251,6 +251,7 @@ private class Boxes.Wizard: Boxes.UI {
         label.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
         label.set_use_markup (true);
         label.wrap = true;
+        label.set_halign (Gtk.Align.START);
         hbox.add (label);
         hbox.show_all ();
 
@@ -260,8 +261,11 @@ private class Boxes.Wizard: Boxes.UI {
         add_step (vbox, _("Source Selection"), WizardPage.SOURCE);
         label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
         label.wrap = true;
+        label.set_halign (Gtk.Align.START);
         vbox.pack_start (label, false, false);
-        vbox.pack_start (wizard_source.widget, false, false);
+        wizard_source.widget.valign = Gtk.Align.CENTER;
+        wizard_source.widget.halign = Gtk.Align.CENTER;
+        vbox.pack_start (wizard_source.widget, true, true);
         vbox.show_all ();
 
         /* Preparation */
