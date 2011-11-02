@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 private abstract class Boxes.CollectionItem: Boxes.UI {
-    public string name;
+    public string name { set; get; }
 }
 
 private class Boxes.Collection: GLib.Object {

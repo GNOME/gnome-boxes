@@ -251,6 +251,7 @@ private class Boxes.MachineActor: Boxes.UI {
         gtk_vbox.get_widget ().get_style_context ().add_class ("boxes-bg");
 
         label = new Gtk.Label (machine.name);
+        machine.bind_property ("name", label, "label", BindingFlags.DEFAULT);
         vbox.add (label);
         password_entry = new Gtk.Entry ();
         password_entry.set_visibility (false);

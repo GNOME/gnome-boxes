@@ -4,7 +4,13 @@ private class Boxes.CollectionSource: GLib.Object {
     private KeyFile keyfile;
     public string? name {
         owned get { return get_string ("source", "name"); }
-        set { keyfile.set_string ("source", "name", value); }
+        set {
+            keyfile.set_string ("source", "name", value);
+            if (has_file)
+                FileUtils.unlink (get_pkgconfig_source (filename));
+            _filename = null;
+            save ();
+        }
     }
     public string? source_type {
         owned get { return get_string ("source", "type"); }

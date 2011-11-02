@@ -49,6 +49,7 @@ private class Boxes.Properties: Boxes.UI {
     private Gtk.Label toolbar_label;
     private Gtk.ListStore listmodel;
     private Gtk.TreeView tree_view;
+    private GLib.Binding toolbar_label_bind;
 
     private class PageWidget {
         public Gtk.Widget widget;
@@ -202,7 +203,7 @@ private class Boxes.Properties: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.PROPERTIES:
-            toolbar_label.label = app.current_item.name;
+            toolbar_label_bind = app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
             populate ();
             break;
         }

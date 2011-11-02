@@ -6,6 +6,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
     public RemoteMachine (CollectionSource source, Boxes.App app) {
         base (source, app, source.name);
 
+        source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
         update_screenshot.begin ();
     }
 
