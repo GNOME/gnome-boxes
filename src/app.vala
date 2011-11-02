@@ -32,8 +32,7 @@ private class Boxes.App: Boxes.UI {
 
     private HashTable<string,GVir.Connection> connections;
 
-    public App (string? uri) {
-        this.uri = uri;
+    public App () {
         settings = new GLib.Settings ("org.gnome.boxes");
         setup_ui ();
         collection = new Collection (this);
@@ -48,6 +47,13 @@ private class Boxes.App: Boxes.UI {
         });
 
         setup_sources.begin ();
+    }
+
+    public App.with_uri (string uri) {
+        this ();
+        this.uri = uri;
+
+        ui_state = UIState.WIZARD;
     }
 
     public void set_category (Category category) {
@@ -166,10 +172,7 @@ private class Boxes.App: Boxes.UI {
         wizard = new Wizard (this);
         properties = new Properties (this);
 
-        if (uri != null)
-            ui_state = UIState.WIZARD;
-        else
-            ui_state = UIState.COLLECTION;
+        ui_state = UIState.COLLECTION;
     }
 
     private void set_main_ui_state (string clutter_state) {

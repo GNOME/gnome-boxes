@@ -66,8 +66,11 @@ public void main (string[] args) {
         warning (error.message);
     }
 
-    // FIXME: We only handle a single URI from commandline
-    new Boxes.App ((uris != null)? uris[0] : null);
+    if (uris != null)
+        // FIXME: We only handle a single URI from commandline
+        new Boxes.App.with_uri (uris[0]);
+    else
+        new Boxes.App ();
     Gtk.main ();
 }
 

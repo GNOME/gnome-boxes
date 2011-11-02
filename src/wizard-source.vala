@@ -22,12 +22,13 @@ private class Boxes.WizardSource: GLib.Object {
     }
     public string uri {
         get { return url_entry.get_text (); }
+        set { url_entry.set_text (value); }
     }
 
     private Gtk.Notebook notebook;
     private Gtk.Entry url_entry;
 
-    public WizardSource (string? uri) {
+    public WizardSource () {
         notebook = new Gtk.Notebook ();
         notebook.get_style_context ().add_class ("boxes-source-nb");
         notebook.show_tabs = false;
@@ -83,9 +84,6 @@ private class Boxes.WizardSource: GLib.Object {
         label.set_use_markup (true);
         label.wrap = true;
         hbox.pack_start (label, true, true);
-
-        if (uri != null)
-            url_entry.text = uri;
 
         notebook.show_all ();
     }

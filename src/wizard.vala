@@ -71,11 +71,11 @@ private class Boxes.Wizard: Boxes.UI {
     construct {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
+        wizard_source = new Boxes.WizardSource ();
     }
 
     public Wizard (App app) {
         this.app = app;
-        wizard_source = new Boxes.WizardSource (app.uri);
 
         setup_ui ();
     }
@@ -306,6 +306,7 @@ private class Boxes.Wizard: Boxes.UI {
             if (app.uri != null) {
                 page = WizardPage.SOURCE;
                 wizard_source.page = SourcePage.URL;
+                wizard_source.uri = app.uri;
             } else
                 page = WizardPage.INTRODUCTION;
             break;
