@@ -130,7 +130,7 @@ private class Boxes.DisplayPage: GLib.Object {
         show ();
     }
 
-    public void remove_display () {
+    public Widget? remove_display () {
         var display = event_box.get_child ();
 
         if (display_id != 0) {
@@ -144,6 +144,8 @@ private class Boxes.DisplayPage: GLib.Object {
 
         if (display != null)
             event_box.remove (display);
+
+        return display;
     }
 
 }

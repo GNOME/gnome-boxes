@@ -38,6 +38,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
 
             display.resize_guest = true;
             display.scaling = true;
+
+            displays.replace (n, display);
         }
 
         return display;

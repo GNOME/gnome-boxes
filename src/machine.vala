@@ -17,7 +17,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
     private uint screenshot_id;
 
     private Display? _display;
-    protected Display? display {
+    public Display? display {
         get { return _display; }
         set {
             if (_display != null) {
@@ -224,7 +224,8 @@ private class Boxes.MachineActor: Boxes.UI {
     public Clutter.Box box;
 
     private GtkClutter.Texture screenshot;
-    public GtkClutter.Actor gtk_vbox;
+    private GtkClutter.Actor gtk_vbox;
+    private GtkClutter.Actor? display;
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
@@ -298,6 +299,10 @@ private class Boxes.MachineActor: Boxes.UI {
     }
 
     public override void ui_state_changed () {
+        int width, height;
+
+        machine.app.window.get_size (out width, out height);
+
         switch (ui_state) {
         case UIState.CREDS:
             scale_screenshot (2.0f);
@@ -306,19 +311,32 @@ private class Boxes.MachineActor: Boxes.UI {
 
         case UIState.DISPLAY:
             if (previous_ui_state == UIState.CREDS) {
-                int width, height;
-
                 password_entry.hide ();
                 label.hide ();
-                machine.app.window.get_size (out width, out height);
                 screenshot.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                                     "width", (float) width,
                                     "height", (float) height);
                 actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                                "x", 0.0f,
                                "y", 0.0f);
-            } else
-                machine.app.display_page.show ();
+            } else {
+                if (display != null) {
+                    var anim = display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                                                "x", 0.0f,
+                                                "y", 0.0f,
+                                                "width", (float) width,
+                                                "height", (float) height);
+                    anim.completed.connect (() => {
+                        actor_remove (display);
+                        var widget = display.contents;
+                        display.contents = null;
+                        display = null;
+                        // FIXME: enable grabs
+                        machine.app.display_page.show_display (machine, widget);
+                    });
+                } else
+                    machine.app.display_page.show ();
+            }
 
             break;
 
@@ -327,6 +345,23 @@ private class Boxes.MachineActor: Boxes.UI {
             password_entry.set_can_focus (false);
             password_entry.hide ();
             label.show ();
+            break;
+
+        case UIState.PROPERTIES:
+            var widget = machine.app.display_page.remove_display ();
+            // FIXME: disable grabs
+            display = new GtkClutter.Actor.with_contents (widget);
+            display.x = 0.0f;
+            display.y = 0.0f;
+            display.width = (float) width;
+            display.height = (float) height;
+            actor_add (display, machine.app.stage);
+
+            display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                             "x", 10.0f,
+                             "y", 70.0f,
+                             "width", 190.0f,
+                             "height", 130.0f);
             break;
 
         default:
