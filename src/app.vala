@@ -130,6 +130,7 @@ private class Boxes.App: Boxes.UI {
     private void setup_ui () {
         window = new Gtk.Window ();
         window.set_default_size (680, 480);
+        window.maximize ();
         notebook = new Gtk.Notebook ();
         notebook.show_border = false;
         notebook.show_tabs = false;
