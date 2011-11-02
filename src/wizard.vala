@@ -36,6 +36,15 @@ private class Boxes.Wizard: Boxes.UI {
         get { return _page; }
         set {
             switch (value) {
+            case WizardPage.INTRODUCTION:
+                next_button.sensitive = true;
+                break;
+
+            case WizardPage.SOURCE:
+                // reset page to notify deeply widgets states
+                wizard_source.page = wizard_source.page;
+                break;
+
             case WizardPage.PREPARATION:
                 try {
                     prepare ();
@@ -72,8 +81,8 @@ private class Boxes.Wizard: Boxes.UI {
             /* highlight in white current page label */
             steps.get (page).modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
 
-            back_button.set_sensitive (page != WizardPage.INTRODUCTION);
-            next_button.set_label (page != WizardPage.REVIEW ? _("Continue") : _("Create"));
+            back_button.sensitive = page != WizardPage.INTRODUCTION;
+            next_button.label = page != WizardPage.REVIEW ? _("Continue") : _("Create");
         }
     }
 
@@ -81,6 +90,13 @@ private class Boxes.Wizard: Boxes.UI {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
         wizard_source = new Boxes.WizardSource ();
+        wizard_source.notify["page"].connect(() => {
+            if (wizard_source.page == Boxes.SourcePage.MAIN)
+                next_button.sensitive = false;
+        });
+        wizard_source.url_entry.changed.connect (() => {
+            next_button.sensitive = wizard_source.uri.len () != 0;
+        });
     }
 
     public Wizard (App app) {

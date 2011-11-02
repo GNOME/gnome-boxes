@@ -18,6 +18,8 @@ private class Boxes.WizardSource: GLib.Object {
         set {
             _page = value;
             notebook.set_current_page (page);
+            if (page == SourcePage.URL)
+                url_entry.changed ();
         }
     }
     public string uri {
@@ -26,7 +28,7 @@ private class Boxes.WizardSource: GLib.Object {
     }
 
     private Gtk.Notebook notebook;
-    private Gtk.Entry url_entry;
+    public Gtk.Entry url_entry;
 
     public WizardSource () {
         notebook = new Gtk.Notebook ();
