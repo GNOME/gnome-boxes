@@ -25,12 +25,23 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
         }
     }
 
+    public override string get_screenshot_filename (string ext = "jpg") {
+        return base.get_screenshot_filename (ext);
+    }
+
     public override void disconnect_display () {
         _connect_display = false;
 
         app.display_page.remove_display ();
 
         if (display != null) {
+            try {
+                var pixbuf = display.get_pixbuf (0);
+                pixbuf.save (get_screenshot_filename (), "jpeg");
+                update_screenshot ();
+            } catch (GLib.Error err) {
+                warning (err.message);
+            }
             display.disconnect_it ();
             display = null;
         }

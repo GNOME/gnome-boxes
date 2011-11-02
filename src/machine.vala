@@ -108,7 +108,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
         }
     }
 
-    public string get_screenshot_filename (string ext = "ppm") {
+    public virtual string get_screenshot_filename (string ext = "ppm") {
         return get_pkgcache (get_screenshot_prefix () + "-screenshot." + ext);
     }
 
