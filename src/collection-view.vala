@@ -90,7 +90,8 @@ private class Boxes.CollectionView: Boxes.UI {
             over_boxes.pack (ui_state == UIState.WIZARD ? app.wizard.actor : app.properties.actor);
             app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
             actor_add (over_boxes, app.stage);
-            app.current_item.ui_state = ui_state;
+            if (app.current_item != null)
+                app.current_item.ui_state = ui_state;
             break;
 
         default:
