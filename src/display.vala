@@ -32,19 +32,19 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IProperties {
         displays = new HashTable<int, Gtk.Widget> (direct_hash, direct_equal);
     }
 
-    public CollectionSource? source { get; set; }
+    public DisplayConfig? config { get; set; }
 
-    public void sync_source_with_display (Object display, SavedProperty[] saved_properties) {
-        if (source == null)
+    public void sync_config_with_display (Object display, SavedProperty[] saved_properties) {
+        if (config == null)
             return;
 
         foreach (var prop in saved_properties)
-            source.load_display_property (display, prop.name, prop.default_value);
+            config.load_display_property (display, prop.name, prop.default_value);
 
         display.notify.connect ((pspec) => {
             foreach (var prop in saved_properties)
                 if (pspec.name == prop.name) {
-                    source.save_display_property (display, pspec.name);
+                    config.save_display_property (display, pspec.name);
                     break;
                 }
         });

@@ -27,8 +27,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
         session = new Session ();
         gtk_session = GtkSession.get (session);
 
-        this.notify["source"].connect (() => {
-            sync_source_with_display (gtk_session, gtk_session_saved_properties);
+        this.notify["config"].connect (() => {
+            sync_config_with_display (gtk_session, gtk_session_saved_properties);
         });
     }
 
@@ -37,8 +37,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
         session.host = host;
     }
 
-    public SpiceDisplay.with_uri (CollectionSource source, string uri) {
-        this.source = source;
+    public SpiceDisplay.with_uri (DisplayConfig config, string uri) {
+        this.config = config;
 
         session.uri = uri;
     }
@@ -52,7 +52,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
             if (display == null)
                 throw new Boxes.Error.INVALID ("invalid display");
 
-            sync_source_with_display (display, display_saved_properties);
+            sync_config_with_display (display, display_saved_properties);
 
             display.scaling = true;
 

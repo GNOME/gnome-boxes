@@ -6,6 +6,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
     public RemoteMachine (CollectionSource source, Boxes.App app) {
         base (source, app, source.name);
 
+        config = new DisplayConfig (source);
         source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
         update_screenshot.begin ();
     }
@@ -16,9 +17,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
 
         try {
             if (source.source_type == "spice")
-                display = new SpiceDisplay.with_uri (source, source.uri);
+                display = new SpiceDisplay.with_uri (config, source.uri);
             else if (source.source_type == "vnc")
-                display = new VncDisplay.with_uri (source, source.uri);
+                display = new VncDisplay.with_uri (config, source.uri);
 
             display.connect_it ();
         } catch (GLib.Error error) {

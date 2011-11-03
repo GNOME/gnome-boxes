@@ -8,6 +8,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
     public Boxes.App app;
     public MachineActor machine_actor;
     public Boxes.CollectionSource source;
+    public Boxes.DisplayConfig config;
 
     private ulong show_id;
     private ulong hide_id;

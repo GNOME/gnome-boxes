@@ -121,7 +121,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
             switch (category.kind) {
             case Category.Kind.USER:
-                visible = category.name in machine.source.categories;
+                visible = category.name in machine.config.categories;
                 break;
             case Category.Kind.NEW:
                 visible = true;

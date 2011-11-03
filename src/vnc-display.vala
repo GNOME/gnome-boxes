@@ -75,9 +75,9 @@ private class Boxes.VncDisplay: Boxes.Display {
         this.port = port;
     }
 
-    public VncDisplay.with_uri (CollectionSource source, string _uri) throws Boxes.Error {
-        this.source = source;
-        sync_source_with_display (display, saved_properties);
+    public VncDisplay.with_uri (DisplayConfig config, string _uri) throws Boxes.Error {
+        this.config = config;
+        sync_config_with_display (display, saved_properties);
 
         var uri = Xml.URI.parse (_uri);
 
