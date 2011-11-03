@@ -66,6 +66,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                            GVir.Connection connection, GVir.Domain domain) {
         base (source, app, domain.get_name ());
 
+        this.config = new DisplayConfig (source, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
 
@@ -113,11 +114,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         switch (type) {
         case "spice":
-            display = new SpiceDisplay (host, int.parse (port));
+            display = new SpiceDisplay (config, host, int.parse (port));
             break;
 
         case "vnc":
-            display = new VncDisplay (host, int.parse (port));
+            display = new VncDisplay (config, host, int.parse (port));
             break;
 
         default:

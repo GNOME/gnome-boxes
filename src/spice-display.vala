@@ -32,7 +32,9 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
         });
     }
 
-    public SpiceDisplay (string host, int port) {
+    public SpiceDisplay (DisplayConfig config, string host, int port) {
+        this.config = config;
+
         session.port = port.to_string ();
         session.host = host;
     }
