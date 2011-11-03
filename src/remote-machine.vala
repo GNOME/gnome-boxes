@@ -38,11 +38,14 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
         if (display != null) {
             try {
                 var pixbuf = display.get_pixbuf (0);
-                pixbuf.save (get_screenshot_filename (), "jpeg");
-                update_screenshot ();
+                if (pixbuf != null) {
+                    pixbuf.save (get_screenshot_filename (), "jpeg");
+                    update_screenshot ();
+                }
             } catch (GLib.Error err) {
                 warning (err.message);
             }
+
             display.disconnect_it ();
             display = null;
         }

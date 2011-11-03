@@ -91,13 +91,13 @@ private class Boxes.VncDisplay: Boxes.Display {
         this.port = uri.port <= 0 ? 5900 : uri.port;
     }
 
-    public override Gtk.Widget? get_display (int n) throws Boxes.Error {
+    public override Gtk.Widget get_display (int n) throws Boxes.Error {
         window.remove (display);
 
         return display;
     }
 
-    public override Gdk.Pixbuf get_pixbuf (int n) throws Boxes.Error {
+    public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
         return display.get_pixbuf ();
     }
 

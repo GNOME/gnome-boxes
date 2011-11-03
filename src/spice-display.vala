@@ -43,7 +43,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
         session.uri = uri;
     }
 
-    public override Gtk.Widget? get_display (int n) throws Boxes.Error {
+    public override Gtk.Widget get_display (int n) throws Boxes.Error {
         var display = displays.lookup (n) as Spice.Display;
 
         if (display == null) {
@@ -62,7 +62,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
         return display;
     }
 
-    public override Gdk.Pixbuf get_pixbuf (int n) throws Boxes.Error {
+    public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
         return (get_display (n) as Spice.Display).get_pixbuf ();
     }
 
