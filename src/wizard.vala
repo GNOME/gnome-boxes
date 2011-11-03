@@ -35,34 +35,38 @@ private class Boxes.Wizard: Boxes.UI {
     private WizardPage page {
         get { return _page; }
         set {
-            switch (value) {
-            case WizardPage.INTRODUCTION:
-                next_button.sensitive = true;
-                break;
+            var forwards = value > page;
 
-            case WizardPage.SOURCE:
-                // reset page to notify deeply widgets states
-                wizard_source.page = wizard_source.page;
-                break;
+            if (forwards) {
+                switch (value) {
+                case WizardPage.INTRODUCTION:
+                    next_button.sensitive = true;
+                    break;
 
-            case WizardPage.PREPARATION:
-                try {
-                    prepare ();
-                } catch (GLib.Error error) {
-                    warning ("Fixme: %s".printf (error.message));
-                    return;
+                case WizardPage.SOURCE:
+                    // reset page to notify deeply widgets states
+                    wizard_source.page = wizard_source.page;
+                    break;
+
+                case WizardPage.PREPARATION:
+                    try {
+                        prepare ();
+                    } catch (GLib.Error error) {
+                        warning ("Fixme: %s".printf (error.message));
+                        return;
+                    }
+                    break;
+
+                case WizardPage.REVIEW:
+                    review ();
+                    break;
+
+                case WizardPage.LAST:
+                    if (!create ())
+                        return;
+                    app.ui_state = UIState.COLLECTION;
+                    break;
                 }
-                break;
-
-            case WizardPage.REVIEW:
-                review ();
-                break;
-
-            case WizardPage.LAST:
-                if (!create ())
-                    return;
-                app.ui_state = UIState.COLLECTION;
-                break;
             }
 
             if (skip_page (value)) {
@@ -249,10 +253,14 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool skip_page (Boxes.WizardPage page) {
-        // remote-display case
-        if (page > Boxes.WizardPage.SOURCE &&
-            page < Boxes.WizardPage.REVIEW &&
-            this.source != null)
+        var backwards = page < this.page;
+
+        if (backwards) {
+            if (page == Boxes.WizardPage.PREPARATION)
+                return true;
+        } else if (this.source != null &&            // remote-display case
+                   page > Boxes.WizardPage.SOURCE &&
+                   page < Boxes.WizardPage.REVIEW)
             return true;
 
         // FIXME: other cases here
