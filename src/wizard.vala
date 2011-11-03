@@ -95,6 +95,7 @@ private class Boxes.Wizard: Boxes.UI {
                 next_button.sensitive = false;
         });
         wizard_source.url_entry.changed.connect (() => {
+            // FIXME: add uri checker
             next_button.sensitive = wizard_source.uri.len () != 0;
         });
     }
@@ -281,9 +282,9 @@ private class Boxes.Wizard: Boxes.UI {
         label.wrap = true;
         label.set_halign (Gtk.Align.START);
         vbox.pack_start (label, false, false);
-        wizard_source.widget.valign = Gtk.Align.CENTER;
+        vbox.pack_start (wizard_source.widget, false, false);
+        wizard_source.widget.hexpand = true;
         wizard_source.widget.halign = Gtk.Align.CENTER;
-        vbox.pack_start (wizard_source.widget, true, true);
         vbox.show_all ();
 
         /* Preparation */
