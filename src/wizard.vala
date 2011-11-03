@@ -37,17 +37,19 @@ private class Boxes.Wizard: Boxes.UI {
         set {
             var forwards = value > page;
 
+            switch (value) {
+            case WizardPage.INTRODUCTION:
+                next_button.sensitive = true;
+                break;
+
+            case WizardPage.SOURCE:
+                // reset page to notify deeply widgets states
+                wizard_source.page = wizard_source.page;
+                break;
+            }
+
             if (forwards) {
                 switch (value) {
-                case WizardPage.INTRODUCTION:
-                    next_button.sensitive = true;
-                    break;
-
-                case WizardPage.SOURCE:
-                    // reset page to notify deeply widgets states
-                    wizard_source.page = wizard_source.page;
-                    break;
-
                 case WizardPage.PREPARATION:
                     try {
                         prepare ();
