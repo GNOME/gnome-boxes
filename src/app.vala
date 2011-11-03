@@ -11,6 +11,8 @@ private enum Boxes.AppPage {
 private class Boxes.App: Boxes.UI {
     public override Clutter.Actor actor { get { return stage; } }
     public Gtk.Window window;
+    private bool fullscreen { get { return WindowState.FULLSCREEN in window.get_window ().get_state (); } }
+    private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
     public Gtk.Notebook notebook;
     public GtkClutter.Embed embed;
     public Clutter.Stage stage;
@@ -31,6 +33,9 @@ private class Boxes.App: Boxes.UI {
     private CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
+
+    private uint configure_id;
+    public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
         settings = new GLib.Settings ("org.gnome.boxes");
@@ -136,10 +141,65 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
+    private void save_window_geometry () {
+        int width, height, x, y;
+
+        if (maximized)
+            return;
+
+        window.get_size (out width, out height);
+        settings.set_value ("window-size", new int[] { width, height });
+
+        window.get_position (out x, out y);
+        settings.set_value ("window-position", new int[] { x, y });
+    }
+
     private void setup_ui () {
         window = new Gtk.Window ();
-        window.set_default_size (680, 480);
-        window.maximize ();
+
+        // restore window geometry/position
+        var size = settings.get_value ("window-size");
+        if (size.n_children () == 2) {
+            var width = (int32) size.get_child_value (0);
+            var height = (int32) size.get_child_value (1);
+
+            window.set_default_size (width, height);
+        }
+
+        if (settings.get_boolean ("window-maximized"))
+            window.maximize ();
+
+        var position = settings.get_value ("window-position");
+        if (position.n_children () == 2) {
+            var x = (int32) size.get_child_value (0);
+            var y = (int32) size.get_child_value (1);
+
+            window.move (x, y);
+        }
+
+        window.configure_event.connect (() => {
+            if (fullscreen)
+                return false;
+
+            if (configure_id != 0)
+                GLib.Source.remove (configure_id);
+            configure_id = Timeout.add (configure_id_timeout, () => {
+                configure_id = 0;
+                save_window_geometry ();
+
+                return false;
+            });
+
+            return false;
+        });
+        window.window_state_event.connect (() => {
+            if (fullscreen)
+                return false;
+
+            settings.set_boolean ("window-maximized", maximized);
+            return false;
+        });
+
         notebook = new Gtk.Notebook ();
         notebook.show_border = false;
         notebook.show_tabs = false;
@@ -156,7 +216,8 @@ private class Boxes.App: Boxes.UI {
         state = new Clutter.State ();
         state.set_duration (null, null, duration);
 
-        window.destroy.connect (quit);
+        window.delete_event.connect (() => { return quit (); });
+
         window.key_press_event.connect (on_key_pressed);
 
         box_table = new Clutter.TableLayout ();
@@ -220,13 +281,16 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
-    public void quit () {
+    public bool quit () {
+        save_window_geometry ();
         Gtk.main_quit ();
+
+        return false;
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         if (event.keyval == F11_KEY) {
-            if (WindowState.FULLSCREEN in window.get_window ().get_state ())
+            if (fullscreen)
                 window.unfullscreen ();
             else
                 window.fullscreen ();

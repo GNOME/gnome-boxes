@@ -2,21 +2,41 @@
   <schema id="org.gnome.boxes" path="/org/gnome/boxes/" gettext-domain="gnome-boxes">
 
     <key name="collections" type="as">
-      <summary>Collections</summary>
-      <description>
-        The list of boxes collections. The default value is:
-        Work.
-      </description>
+      <_summary>Collections</_summary>
+      <_description>
+        The list of boxes collections
+      </_description>
       <default>[ 'Work', 'Research', 'Gaming' ]</default>
     </key>
 
     <key name="screenshot-interval" type="i">
-      <summary>Screenshot interval</summary>
-      <description>
-        The interval in seconds between screenshot updates.
-        Default value: 5.
-      </description>
+      <_summary>Screenshot interval</_summary>
+      <_description>
+        The interval in seconds between screenshot updates
+      </_description>
       <default>5</default>
+    </key>
+
+    <key name="window-size" type="ai">
+      <default>[768, 600]</default>
+      <_summary>Window size</_summary>
+      <_description>
+        Window size (width and height)
+      </_description>
+    </key>
+    <key name="window-position" type="ai">
+      <default>[]</default>
+      <_summary>Window position</_summary>
+      <_description>
+        Window position (x and y)
+      </_description>
+    </key>
+    <key name="window-maximized" type="b">
+      <default>true</default>
+      <_summary>Window maximized</_summary>
+      <_description>
+        Window maximized state
+      </_description>
     </key>
 
   </schema>
