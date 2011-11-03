@@ -23,6 +23,7 @@ private class Boxes.Wizard: Boxes.UI {
     private WizardSummary summary;
     private CollectionSource? source;
     private Gtk.ProgressBar prep_progress;
+    private Gtk.VBox setup_vbox;
 
     private OSDatabase os_db;
     private VMCreator vm_creator;
@@ -57,6 +58,10 @@ private class Boxes.Wizard: Boxes.UI {
                         warning ("Fixme: %s".printf (error.message));
                         return;
                     }
+                    break;
+
+                case WizardPage.SETUP:
+                    setup ();
                     break;
 
                 case WizardPage.REVIEW:
@@ -212,6 +217,26 @@ private class Boxes.Wizard: Boxes.UI {
             prepare_for_location (this.wizard_source.uri);
     }
 
+    private void setup () {
+        foreach (var child in setup_vbox.get_children ())
+            setup_vbox.remove (child);
+
+        if (install_media == null || !(install_media is UnattendedInstaller)) {
+            // Nothing to do so just skip to the next page but let the current page change complete first
+            Idle.add (() => {
+                page = page + 1;
+
+                return false;
+            });
+
+            return;
+        }
+
+        var installer = install_media as UnattendedInstaller;
+        installer.populate_setup_vbox (setup_vbox);
+        setup_vbox.show_all ();
+    }
+
     private void review () {
         summary.clear ();
 
@@ -323,7 +348,7 @@ private class Boxes.Wizard: Boxes.UI {
         image.pixel_size = 128;
         hbox.pack_start (image, false, false);
         var prep_vbox = new Gtk.VBox (true, 20);
-        prep_vbox.valign = Gtk.Align.CENTER;
+        prep_vbox.valign = Gtk.Align.START;
         hbox.pack_start (prep_vbox, true, true);
         label = new Gtk.Label (_("Analyzing installer media."));
         label.halign = Gtk.Align.START;
@@ -333,10 +358,9 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.show_all ();
 
         /* Setup */
-        vbox = new Gtk.VBox (false, 30);
-        add_step (vbox, _("Setup"), WizardPage.SETUP);
-        vbox.margin = 40;
-        vbox.show_all ();
+        setup_vbox = new Gtk.VBox (false, 30);
+        add_step (setup_vbox, _("Setup"), WizardPage.SETUP);
+        setup_vbox.margin = 40;
 
         /* Review */
         vbox = new Gtk.VBox (false, 30);

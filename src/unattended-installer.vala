@@ -15,6 +15,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     private bool created_floppy;
 
+    protected Gtk.Label setup_label;
+    protected Gtk.HBox setup_hbox;
+    protected Gtk.Switch express_toggle;
+    protected Gtk.Entry username_entry;
+    protected Gtk.Entry password_entry;
+
     public UnattendedInstaller.copy (InstallerMedia media,
                                      string         unattended_src_path,
                                      string         unattended_dest_name) throws GLib.Error {
@@ -27,6 +33,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         floppy_path = get_pkgcache (os.short_id + "-unattended.img");
         this.unattended_src_path = unattended_src_path;
         this.unattended_dest_name = unattended_dest_name;
+
+        setup_ui ();
     }
 
     public async void setup (Cancellable? cancellable) throws GLib.Error {
@@ -44,6 +52,74 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
             throw error;
         }
+    }
+
+    public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {
+        setup_vbox.pack_start (setup_label, false, false);
+        setup_vbox.pack_start (setup_hbox, false, false);
+    }
+
+    protected virtual void setup_ui () {
+        setup_label = new Gtk.Label (_("Choose express install to automatically preconfigure the box with optimal settings."));
+        setup_label.halign = Gtk.Align.START;
+        setup_hbox = new Gtk.HBox (false, 20);
+        setup_hbox.valign = Gtk.Align.START;
+        setup_hbox.margin = 24;
+
+        var table = new Gtk.Table (3, 3, false);
+        setup_hbox.pack_start (table, false, false);
+        table.column_spacing = 10;
+        table.row_spacing = 10;
+
+        // First row
+        var label = new Gtk.Label (_("Express Install"));
+        label.halign = Gtk.Align.END;
+        label.valign = Gtk.Align.CENTER;
+        table.attach_defaults (label, 1, 2, 0, 1);
+
+        express_toggle = new Gtk.Switch ();
+        express_toggle.active = true;
+        express_toggle.halign = Gtk.Align.START;
+        express_toggle.valign = Gtk.Align.CENTER;
+        table.attach_defaults (express_toggle, 2, 3, 0, 1);
+        express_toggle.notify["active"].connect ((object, pspec) => {
+            foreach (var child in table.get_children ())
+                if (child != express_toggle)
+                    child.sensitive = express_toggle.active;
+        });
+
+        // 2nd row (while user avatar spans over 2 rows)
+        var avatar_file = "/var/lib/AccountsService/icons/" + Environment.get_user_name ();
+        var file = File.new_for_path (avatar_file);
+        Gtk.Image avatar;
+        if (file.query_exists ())
+            avatar = new Gtk.Image.from_file (avatar_file);
+        else
+            avatar = new Gtk.Image.from_icon_name ("avatar-default", 0);
+        avatar.pixel_size = 128;
+        table.attach_defaults (avatar, 0, 1, 1, 3);
+
+        label = new Gtk.Label (_("Username"));
+        label.halign = Gtk.Align.END;
+        label.valign = Gtk.Align.CENTER;
+        table.attach_defaults (label, 1, 2, 1, 2);
+        username_entry = new Gtk.Entry ();
+        username_entry.text = Environment.get_user_name ();
+        username_entry.halign = Gtk.Align.START;
+        username_entry.valign = Gtk.Align.CENTER;
+        table.attach_defaults (username_entry, 2, 3, 1, 2);
+
+        // 3rd row
+        label = new Gtk.Label (_("Password"));
+        label.halign = Gtk.Align.END;
+        label.valign = Gtk.Align.CENTER;
+        table.attach_defaults (label, 1, 2, 2, 3);
+        password_entry = new Gtk.Entry ();
+        password_entry.visibility = false;
+        password_entry.text = "";
+        password_entry.halign = Gtk.Align.START;
+        password_entry.valign = Gtk.Align.CENTER;
+        table.attach_defaults (password_entry, 2, 3, 2, 3);
     }
 
     protected virtual void clean_up () throws GLib.Error {
