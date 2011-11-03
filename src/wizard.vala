@@ -199,6 +199,8 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare () throws GLib.Error {
+        source = null;
+
         if (this.wizard_source.page == Boxes.SourcePage.URL ||
             this.wizard_source.page == Boxes.SourcePage.FILE)
             prepare_for_location (this.wizard_source.uri);
@@ -247,10 +249,13 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool skip_page (Boxes.WizardPage page) {
-        if (page > Boxes.WizardPage.PREPARATION &&
+        // remote-display case
+        if (page > Boxes.WizardPage.SOURCE &&
             page < Boxes.WizardPage.REVIEW &&
-            this.wizard_source.page == Boxes.SourcePage.URL)
+            this.source != null)
             return true;
+
+        // FIXME: other cases here
 
         return false;
     }
