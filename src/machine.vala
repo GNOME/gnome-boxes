@@ -181,7 +181,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
             context.scale (0.1875 / 128 * width, 0.1875 / 96 * height);
             var grid = new Cairo.Pattern.for_surface (new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png")));
             grid.set_extend (Cairo.Extend.REPEAT);
-            context.set_source_rgba (1, 1, 1, 1);
+            context.set_source_rgba (0, 0, 0, 1);
             context.set_operator (Cairo.Operator.OVER);
             context.mask (grid);
         }
