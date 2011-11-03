@@ -160,8 +160,8 @@ private class Boxes.App: Boxes.UI {
         // restore window geometry/position
         var size = settings.get_value ("window-size");
         if (size.n_children () == 2) {
-            var width = (int32) size.get_child_value (0);
-            var height = (int32) size.get_child_value (1);
+            var width = (int) size.get_child_value (0);
+            var height = (int) size.get_child_value (1);
 
             window.set_default_size (width, height);
         }
@@ -171,8 +171,8 @@ private class Boxes.App: Boxes.UI {
 
         var position = settings.get_value ("window-position");
         if (position.n_children () == 2) {
-            var x = (int32) size.get_child_value (0);
-            var y = (int32) size.get_child_value (1);
+            var x = (int) position.get_child_value (0);
+            var y = (int) position.get_child_value (1);
 
             window.move (x, y);
         }
