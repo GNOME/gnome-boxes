@@ -96,7 +96,7 @@ private class Boxes.Wizard: Boxes.UI {
         });
         wizard_source.url_entry.changed.connect (() => {
             // FIXME: add uri checker
-            next_button.sensitive = wizard_source.uri.len () != 0;
+            next_button.sensitive = wizard_source.uri.length != 0;
         });
     }
 
