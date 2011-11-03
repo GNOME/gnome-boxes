@@ -196,7 +196,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
             var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
             var context = new Cairo.Context (surface);
 
-            int size = (int) (height * 0.5);
+            int size = (int) (height * 0.6);
             var icon_info = IconTheme.get_default ().lookup_icon ("computer-symbolic", size,
                                                                   IconLookupFlags.GENERIC_FALLBACK);
             Gdk.cairo_set_source_pixbuf (context, icon_info.load_icon (),
@@ -236,6 +236,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
         var layout = new Clutter.BoxLayout ();
         layout.vertical = true;
+        layout.spacing = 10;
         box = new Clutter.Box (layout);
 
         screenshot = new GtkClutter.Texture ();
@@ -251,6 +252,7 @@ private class Boxes.MachineActor: Boxes.UI {
         gtk_vbox.get_widget ().get_style_context ().add_class ("boxes-bg");
 
         label = new Gtk.Label (machine.name);
+        label.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
         machine.bind_property ("name", label, "label", BindingFlags.DEFAULT);
         vbox.add (label);
         password_entry = new Gtk.Entry ();
