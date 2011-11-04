@@ -8,7 +8,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public string kernel_path;
     public string initrd_path;
 
-    public string floppy_path;
+    public string _floppy_path;
+    public string floppy_path {
+        get { return express_toggle.active ? _floppy_path : null; }
+        private set { _floppy_path = value; }
+    }
 
     protected string unattended_src_path;
     protected string unattended_dest_name;
@@ -38,6 +42,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public async void setup (Cancellable? cancellable) throws GLib.Error {
+        if (!express_toggle.active) {
+            debug ("Unattended installation disabled.");
+
+            return;
+        }
+
         try {
             if (yield unattended_floppy_exists (cancellable))
                 debug ("Found previously created unattended floppy image for '%s', re-using..", os.short_id);

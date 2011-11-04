@@ -14,6 +14,9 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     }
 
     protected override async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {
+        if (!express_toggle.active)
+            return;
+
         var kernel_path = os_media.get_kernel_path ();
         var initrd_path = os_media.get_initrd_path ();
 
