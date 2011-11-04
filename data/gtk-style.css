@@ -10,7 +10,6 @@
 #CollectionLabel {
     font-size: 11;
     font-weight: bold;
-    background-color: red;
 }
 
 .view {
@@ -52,4 +51,64 @@
 }
 .boxes-continue:insensitive {
     background-image: none;
+}
+
+.osd {
+    background-image: none;
+    background-color: alpha(#000, 0.0);
+}
+
+.osd .toolbar {
+    padding: 6 6;
+    border-style: none;
+    border-radius: 5;
+    border-width: 0;
+
+    background-image: none;
+    background-color: alpha(#fff, 0.15);
+
+    text-shadow: 1 1 black;
+    icon-shadow: 1 1 black;
+}
+
+.osd .toolbar .favorite {
+    color: shade(@theme_selected_bg_color, 1.20);
+}
+
+.osd .toolbar .separator {
+    color: alpha(@theme_tooltip_fg_color, 0.30);
+}
+
+.osd .toolbar .button:hover {
+    background-image: -gtk-gradient(linear, left top, left bottom,
+                                    from(alpha(@theme_tooltip_fg_color, 0.00)),
+                                    color-stop(0.50, alpha(@theme_tooltip_fg_color, 0.15)),
+                                    to(alpha(@theme_tooltip_fg_color, 0.00)));
+
+    border-image: none;
+    border-style: none;
+    border-radius: 2;
+    border-width: 0;
+}
+
+.osd .toolbar .button:active {
+    background-image: none;
+    background-color: alpha(@theme_tooltip_fg_color, 0.15);
+
+    border-image: none;
+    border-style: none;
+    border-radius: 2;
+    border-width: 0;
+}
+
+.osd .toolbar .button:active:hover {
+    background-image: -gtk-gradient(linear, left top, left bottom,
+                                    from(alpha(@theme_tooltip_fg_color, 0.15)),
+                                    color-stop(0.50, alpha(@theme_tooltip_fg_color, 0.30)),
+                                    to(alpha(@theme_tooltip_fg_color, 0.15)));
+
+    border-style: none;
+    border-image: none;
+    border-radius: 2;
+    border-width: 0;
 }

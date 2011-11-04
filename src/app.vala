@@ -21,6 +21,7 @@ private class Boxes.App: Boxes.UI {
     public CollectionItem current_item; // current object/vm manipulated
     public Topbar topbar;
     public Sidebar sidebar;
+    public Selectionbar selectionbar;
     public static const uint duration = 555;  // default to 1/2 for all transitions
     public static GLib.Settings settings;
     public Wizard wizard;
@@ -228,6 +229,15 @@ private class Boxes.App: Boxes.UI {
         topbar = new Topbar (this);
         sidebar = new Sidebar (this);
         view = new CollectionView (this, sidebar.category);
+
+        selectionbar = new Selectionbar (this);
+        selectionbar.actor.add_constraint (new Clutter.AlignConstraint (view.actor, AlignAxis.X_AXIS, 0.5f));
+        var yconstraint = new Clutter.BindConstraint (view.actor, BindCoordinate.Y,
+                                                      view.actor.height - selectionbar.spacing);
+        selectionbar.actor.add_constraint (yconstraint);
+        view.actor.notify["height"].connect (() => {
+            yconstraint.set_offset (view.actor.height - selectionbar.spacing);
+        });
 
         window.show_all ();
 
