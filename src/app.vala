@@ -44,11 +44,6 @@ private class Boxes.App: Boxes.UI {
         collection = new Collection (this);
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
         collection.item_added.connect ((item) => {
-            item.actor.set_reactive (true);
-            item.actor.button_press_event.connect ((actor, event) => {
-                return item_clicked (item, event);
-            });
-
             view.add_item (item);
         });
 
@@ -271,17 +266,33 @@ private class Boxes.App: Boxes.UI {
             break;
 
         case UIState.COLLECTION:
+            set_main_ui_state ("collection");
+            actor_remove (topbar.actor);
+            actor_remove (sidebar.actor);
+            actor_remove (view.actor);
+            box.pack (topbar.actor, "column", 0, "row", 0,
+                      "x-expand", true, "y-expand", false);
+            box.pack (view.actor, "column", 0, "row", 1,
+                      "x-expand", true, "y-expand", true);
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
                 machine.disconnect_display ();
                 machine.update_screenshot.begin ();
             }
-            set_main_ui_state ("collection");
             break;
 
         case UIState.PROPERTIES:
         case UIState.WIZARD:
+            actor_remove (topbar.actor);
+            actor_remove (sidebar.actor);
+            actor_remove (view.actor);
+            box.pack (topbar.actor, "column", 0, "row", 0, "column-span", 2,
+                      "x-expand", true, "y-expand", false);
+            box.pack (sidebar.actor, "column", 0, "row", 1,
+                      "x-expand", false, "y-expand", true);
+            box.pack (view.actor, "column", 1, "row", 1,
+                      "x-expand", true, "y-expand", true);
             set_main_ui_state ("collection");
             break;
 
@@ -311,17 +322,15 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    private bool item_clicked (CollectionItem item, Clutter.ButtonEvent event) {
+    public bool item_selected (CollectionItem item) {
         if (ui_state == UIState.COLLECTION) {
             current_item = item;
 
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                if (event.button == 1) {
-                    machine.connect_display ();
-                    ui_state = UIState.CREDS;
-                }
+                machine.connect_display ();
+                ui_state = UIState.CREDS;
             } else
                 warning ("unknown item, fix your code");
         }

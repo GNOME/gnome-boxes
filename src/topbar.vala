@@ -24,6 +24,7 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.ToolButton cancel_btn;
     private Gtk.ToolButton spinner_btn;
     private Gtk.ToolButton back_btn;
+    private Gtk.Button new_btn;
 
     public Topbar (App app) {
         this.app = app;
@@ -48,18 +49,28 @@ private class Boxes.Topbar: Boxes.UI {
         hbox.pack_start (toolbar_start, true, true, 0);
 
         back_btn = new Gtk.ToolButton (null, null);
+        back_btn.valign = Gtk.Align.CENTER;
         back_btn.icon_name =  "go-previous-symbolic";
         back_btn.get_style_context ().add_class ("raised");
         back_btn.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
         toolbar_start.insert (back_btn, 0);
 
-        label = new Gtk.Label (_("New and Recent"));
+        new_btn = new Gtk.Button.with_label (_("New"));
+        new_btn.set_size_request (70, -1);
+        new_btn.get_style_context ().add_class ("raised");
+        var tool_item = new Gtk.ToolItem ();
+        tool_item.child = new_btn;
+        tool_item.valign = Gtk.Align.CENTER;
+        new_btn.clicked.connect ((button) => { app.ui_state = UIState.WIZARD; });
+        toolbar_start.insert (tool_item, 1);
+
+        label = new Gtk.Label ("");
         label.name = "TopbarLabel";
         label.set_halign (Gtk.Align.START);
-        var tool_item = new Gtk.ToolItem ();
+        tool_item = new Gtk.ToolItem ();
         tool_item.set_expand (true);
         tool_item.child = label;
-        toolbar_start.insert (tool_item, 1);
+        toolbar_start.insert (tool_item, 2);
 
         var toolbar_end = new Gtk.Toolbar ();
         toolbar_end.icon_size = Gtk.IconSize.MENU;
@@ -133,15 +144,15 @@ private class Boxes.Topbar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
-            back_btn.hide ();
-            actor_remove (gtk_actor);
-            app.box.pack (gtk_actor, "row", 0, "column", 1, "x-expand", true, "y-expand", false);
             notebook.page = TopbarPage.COLLECTION;
+            back_btn.hide ();
             spinner_btn.hide ();
             select_btn.show ();
+            new_btn.show ();
             break;
 
         case UIState.CREDS:
+            new_btn.hide ();
             back_btn.show ();
             spinner_btn.show ();
             select_btn.hide ();
@@ -152,10 +163,11 @@ private class Boxes.Topbar: Boxes.UI {
             break;
 
         case UIState.PROPERTIES:
+            notebook.page = TopbarPage.PROPERTIES;
+            break;
+
         case UIState.WIZARD:
-            actor_remove (gtk_actor);
-            app.box.pack (gtk_actor, "row", 0, "column", 0, "column-span", 2, "x-expand", true, "y-expand", false);
-            notebook.page = ui_state == UIState.WIZARD ? TopbarPage.WIZARD : TopbarPage.PROPERTIES;
+            notebook.page = TopbarPage.WIZARD;
             break;
 
         default:

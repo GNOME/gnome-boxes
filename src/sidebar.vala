@@ -44,8 +44,6 @@ private class Boxes.Sidebar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
-            actor_remove (gtk_actor);
-            app.box.pack (gtk_actor, "column", 0, "row", 0, "row-span", 2, "x-expand", false, "y-expand", true);
             notebook.page = SidebarPage.COLLECTION;
             break;
 
@@ -55,8 +53,6 @@ private class Boxes.Sidebar: Boxes.UI {
 
         case UIState.WIZARD:
         case UIState.PROPERTIES:
-            actor_remove (gtk_actor);
-            app.box.pack (gtk_actor, "column", 0, "row", 1, "row-span", 1, "x-expand", false, "y-expand", true);
             notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
         }
@@ -111,9 +107,6 @@ private class Boxes.Sidebar: Boxes.UI {
         tree_view.headers_visible = false;
 
         var pixbuf_renderer = new CellRendererPixbuf ();
-        // pixbuf_renderer.width = 20;
-        // pixbuf_renderer.mode = CellRendererMode.INERT;
-        // pixbuf_renderer.xalign = 1f;
         pixbuf_renderer.xpad = 5;
         tree_view.insert_column_with_attributes (-1, "", pixbuf_renderer, "icon-name", 3);
         var renderer = new CellRendererText ();

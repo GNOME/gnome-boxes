@@ -9,6 +9,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
     public MachineActor machine_actor;
     public Boxes.CollectionSource source;
     public Boxes.DisplayConfig config;
+    public Gdk.Pixbuf? pixbuf { get; set; }
 
     private ulong show_id;
     private ulong hide_id;
@@ -16,6 +17,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
     private ulong need_password_id;
     private ulong need_username_id;
     private uint screenshot_id;
+    public static const int SCREENSHOT_WIDTH = 180;
+    public static const int SCREENSHOT_HEIGHT = 134;
 
     private Display? _display;
     public Display? display {
@@ -81,6 +84,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
         this.name = name;
         this.source = source;
 
+        pixbuf = draw_fallback_vm ();
         machine_actor = new MachineActor (this);
 
         app.notify["ui-state"].connect (() => {
@@ -126,26 +130,20 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
     public abstract void connect_display ();
     public abstract void disconnect_display ();
 
-    public async void update_screenshot (int width = 128, int height = 96) {
-        Gdk.Pixbuf? pixbuf = null;
-
+    public async void update_screenshot (int width = SCREENSHOT_WIDTH, int height = SCREENSHOT_HEIGHT) {
         try {
             yield take_screenshot ();
             pixbuf = new Gdk.Pixbuf.from_file (get_screenshot_filename ());
+            machine_actor.set_screenshot (pixbuf); // high resolution
+            pixbuf = draw_vm (pixbuf, width, height);
         } catch (GLib.Error error) {
             if (!(error is FileError.NOENT))
                 warning ("%s: %s".printf (name, error.message));
         }
 
-        if (pixbuf == null)
+        if (pixbuf == null) {
             pixbuf = draw_fallback_vm (width, height);
-        else
-            pixbuf = draw_vm (pixbuf, pixbuf.get_width (), pixbuf.get_height ());
-
-        try {
             machine_actor.set_screenshot (pixbuf);
-        } catch (GLib.Error err) {
-            warning (err.message);
         }
     }
 
@@ -179,7 +177,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
             context.paint ();
 
             context.identity_matrix ();
-            context.scale (0.1875 / 128 * width, 0.1875 / 96 * height);
+            context.scale (0.1875 / SCREENSHOT_WIDTH * width, 0.1875 / SCREENSHOT_HEIGHT * height);
             var grid = new Cairo.Pattern.for_surface (new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png")));
             grid.set_extend (Cairo.Extend.REPEAT);
             context.set_source_rgba (0, 0, 0, 1);
@@ -190,8 +188,17 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 
-    private static Gdk.Pixbuf draw_fallback_vm (int width, int height) {
+    private static Gdk.Pixbuf? default_fallback = null;
+    private static Gdk.Pixbuf draw_fallback_vm (int width = SCREENSHOT_WIDTH,
+                                                int height = SCREENSHOT_HEIGHT,
+                                                bool force = false) {
         Gdk.Pixbuf pixbuf = null;
+
+        if (width == SCREENSHOT_WIDTH && height == SCREENSHOT_HEIGHT && !force)
+            if (default_fallback != null)
+                return default_fallback;
+            else
+                default_fallback = draw_fallback_vm (width, height, true);
 
         try {
             var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
@@ -242,7 +249,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
         screenshot = new GtkClutter.Texture ();
         screenshot.name = "screenshot";
-
+        set_screenshot (machine.pixbuf);
         scale_screenshot ();
         actor_add (screenshot, box);
         screenshot.keep_aspect_ratio = true;
@@ -277,14 +284,20 @@ private class Boxes.MachineActor: Boxes.UI {
         password_entry.hide ();
 
         actor_add (gtk_vbox, box);
+        actor.set_reactive (true);
     }
 
     public void scale_screenshot (float scale = 1.5f) {
-        screenshot.set_size (128 * scale, 96 * scale);
+        screenshot.set_size (Machine.SCREENSHOT_WIDTH * scale,
+                             Machine.SCREENSHOT_HEIGHT * scale);
     }
 
-    public void set_screenshot (Gdk.Pixbuf pixbuf) throws GLib.Error {
-        screenshot.set_from_pixbuf (pixbuf);
+    public void set_screenshot (Gdk.Pixbuf pixbuf) {
+        try {
+            screenshot.set_from_pixbuf (pixbuf);
+        } catch (GLib.Error err) {
+            warning (err.message);
+        }
     }
 
     public void set_password_needed (bool needed) {
@@ -325,6 +338,7 @@ private class Boxes.MachineActor: Boxes.UI {
                                "y", 0.0f);
             } else {
                 if (display != null) {
+                    // zoom in, back from properties
                     var anim = display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                                                 "x", 0.0f,
                                                 "y", 0.0f,
@@ -369,7 +383,6 @@ private class Boxes.MachineActor: Boxes.UI {
             break;
 
         default:
-            message ("Unhandled UI state " + ui_state.to_string ());
             break;
         }
     }

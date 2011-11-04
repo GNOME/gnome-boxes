@@ -2,13 +2,10 @@
 using Clutter;
 
 private class Boxes.CollectionView: Boxes.UI {
-    public override Clutter.Actor actor { get { return margin; } }
+    public override Clutter.Actor actor { get { return gtkactor; } }
 
     private App app;
-    private Clutter.Group margin; // the surrounding actor, for the margin
-    private Clutter.Box boxes; // the boxes list box
-    private SortedCollection sorted;
-    private Clutter.FlowLayout layout;
+    private GtkClutter.Actor gtkactor;
     private Clutter.Box over_boxes; // a box on top of boxes list
 
     private Category _category;
@@ -16,61 +13,54 @@ private class Boxes.CollectionView: Boxes.UI {
         get { return _category; }
         set {
             _category = value;
-            if (sorted != null)
-                update_view ();
+            // FIXME: update view
         }
     }
+
+    private Gtk.IconView icon_view;
+    private enum ModelColumns {
+        SCREENSHOT,
+        TITLE,
+        ITEM
+    }
+    private Gtk.ListStore model;
 
     public CollectionView (App app, Category category) {
         this.app = app;
         this.category = category;
-        sorted = new SortedCollection ((a, b) => {
-            return strcmp (a.name.down (), b.name.down ());
-        });
         setup_view ();
     }
 
-    private void set_main_ui_state () {
-        actor_remove (app.wizard.actor);
-        actor_remove (app.properties.actor);
-        if (app.current_item != null)
-            actor_remove (app.current_item.actor);
+    public void set_over_boxes (Clutter.Actor actor, bool center = false) {
+        if (center)
+            over_boxes.pack (actor,
+                             "x-align", Clutter.BinAlignment.CENTER,
+                             "y-align", Clutter.BinAlignment.CENTER);
+        else
+            over_boxes.pack (actor);
 
-        /* follow main table layout again */
-        actor_unpin (boxes);
-        boxes.set_position (15f, 15f);
-        margin.add_constraint_with_name ("boxes-left",
-                                         new Clutter.SnapConstraint (app.stage, SnapEdge.RIGHT, SnapEdge.RIGHT, 0));
-        margin.add_constraint_with_name ("boxes-bottom",
-                                         new Clutter.SnapConstraint (app.stage, SnapEdge.BOTTOM, SnapEdge.RIGHT.BOTTOM, 0));
-        /* normal flow items */
-        boxes.set_layout_manager (layout);
-
-        actor_remove (over_boxes);
-    }
-
-    public void set_over_boxes () {
-        remove_item (app.current_item);
-        over_boxes.pack (app.current_item.actor,
-                         "x-align", Clutter.BinAlignment.CENTER,
-                         "y-align", Clutter.BinAlignment.CENTER);
         actor_add (over_boxes, app.stage);
     }
 
     public override void ui_state_changed () {
         switch (ui_state) {
+        case UIState.COLLECTION:
+            icon_view.unselect_all ();
+            actor_remove (app.wizard.actor);
+            actor_remove (over_boxes);
+            if (app.current_item != null)
+                actor_remove (app.current_item.actor);
+            break;
+
         case UIState.CREDS:
-            set_over_boxes ();
-            app.current_item.ui_state = UIState.CREDS;
-
-            /* item don't move anymore */
-            boxes.set_layout_manager (new Clutter.FixedLayout ());
-
+            set_over_boxes (app.current_item.actor, true);
             break;
 
         case UIState.DISPLAY: {
             float x, y;
             var display = app.current_item.actor;
+
+            actor_remove (app.properties.actor);
 
             if (previous_ui_state == UIState.CREDS) {
                 /* move display/machine actor to stage, keep same position */
@@ -78,44 +68,33 @@ private class Boxes.CollectionView: Boxes.UI {
                 actor_remove (display);
                 actor_add (display, app.stage);
                 display.set_position (x, y);
-
-                /* make sure the boxes stay where they are */
-                boxes.get_transformed_position (out x, out y);
-                boxes.set_position (x, y);
-                actor_pin (boxes);
-                margin.remove_constraint_by_name ("boxes-left");
-                margin.remove_constraint_by_name ("boxes-bottom");
             }
-
-            app.current_item.ui_state = UIState.DISPLAY;
-
             break;
         }
 
-        case UIState.COLLECTION:
-            set_main_ui_state ();
-            if (app.current_item != null)
-                add_item (app.current_item);
+        case UIState.WIZARD:
+            app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
+            set_over_boxes (app.wizard.actor);
             break;
 
-        case UIState.WIZARD:
         case UIState.PROPERTIES:
-            set_main_ui_state ();
-            over_boxes.pack (ui_state == UIState.WIZARD ? app.wizard.actor : app.properties.actor);
-            app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
-            actor_add (over_boxes, app.stage);
-            if (app.current_item != null)
-                app.current_item.ui_state = ui_state;
+            actor_remove (app.current_item.actor);
+            app.properties.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
+            set_over_boxes (app.properties.actor);
             break;
 
         default:
             break;
         }
+
+        if (app.current_item != null)
+            app.current_item.ui_state = ui_state;
     }
 
     public void update_item_visible (CollectionItem item) {
         var visible = false;
 
+        // FIXME
         if (item is Machine) {
             var machine = item as Machine;
 
@@ -132,101 +111,110 @@ private class Boxes.CollectionView: Boxes.UI {
         item.actor.visible = visible;
     }
 
-    public void update_view () {
-        var iter = sorted.sequence.get_begin_iter ();
+    private Gtk.TreeIter append (Gdk.Pixbuf pixbuf,
+                                 string title,
+                                 CollectionItem item)
+    {
+        Gtk.TreeIter iter;
 
-        while (!iter.is_end ()) {
-            var item = iter.get ();
-            update_item_visible (item);
-            iter = iter.next ();
-        }
+        model.append (out iter);
+        model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
+        model.set (iter, ModelColumns.TITLE, title);
+        model.set (iter, ModelColumns.ITEM, item);
+
+        set_data<Gtk.TreeIter?> ("iter", iter);
+
+        return iter;
     }
 
     public void add_item (CollectionItem item) {
         var machine = item as Machine;
 
         if (machine == null) {
-            warning ("Cannot add item %p in %s".printf (&item, sorted.to_string ()));
+            warning ("Cannot add item %p".printf (&item));
             return;
         }
 
+        var iter = append (machine.pixbuf, machine.name, item);
+        machine.notify["pixbuf"].connect (() => {
+            // apparently iter is stable after insertion/removal/sort
+            model.set (iter, ModelColumns.SCREENSHOT, machine.pixbuf);
+        });
+
         item.ui_state = UIState.COLLECTION;
         actor_remove (item.actor);
-
-        var iter = sorted.insert (item);
-
-        if (iter.is_begin ())
-            boxes.pack_before (item.actor, null);
-        else {
-            var prev = iter.prev ().get ();
-            boxes.pack_after (item.actor, prev.actor);
-        }
 
         update_item_visible (item);
     }
 
     public void remove_item (CollectionItem item) {
-        if (item is Machine) {
-            var machine = item as Machine;
-            var actor = machine.actor;
+        var iter = item.get_data<Gtk.TreeIter?> ("iter");
+        return_if_fail (iter != null);
 
-            sorted.remove (machine);
-            if (actor.get_parent () == boxes)
-                boxes.remove_actor (actor);
-        } else
-            warning ("Cannot remove item %p".printf (&item));
+        model.remove (iter);
+        item.set_data<Gtk.TreeIter?> ("iter", null);
     }
 
     private void setup_view () {
-        layout = new Clutter.FlowLayout (Clutter.FlowOrientation.HORIZONTAL);
-        margin = new Clutter.Group ();
-        margin.set_clip_to_allocation (true);
-        margin.set_reactive (true);
-        /* this helps to keep the app table inside the window, otherwise, it allocated large */
-        margin.set_size (1f, 1f);
+        model = new Gtk.ListStore (3,
+                                   typeof (Gdk.Pixbuf),
+                                   typeof (string),
+                                   typeof (CollectionItem));
+        model.set_default_sort_func ((model, a, b) => {
+            CollectionItem item_a, item_b;
 
-        boxes = new Clutter.Box (layout);
-        layout.set_column_spacing (35);
-        layout.set_row_spacing (25);
-        margin.add (boxes);
-        app.box.pack (margin, "column", 1, "row", 1, "x-expand", true, "y-expand", true);
+            model.get (a, ModelColumns.ITEM, out item_a);
+            model.get (b, ModelColumns.ITEM, out item_b);
 
-        margin.scroll_event.connect ((event) => {
-            float scrollable_height = boxes.get_height ();
+            if (item_a == null || item_b == null) // FIXME?!
+                return 0;
 
-            boxes.get_preferred_height (boxes.get_width (), null, out scrollable_height);
-            var viewport_height = margin.get_height ();
+            return strcmp (item_a.name.down (), item_b.name.down ());
+        });
+        model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
 
-            if (scrollable_height < viewport_height)
-                return true;
-            var y = boxes.get_y ();
-            switch (event.direction) {
-            case ScrollDirection.UP:
-                y += 50f;
-                break;
-            case ScrollDirection.DOWN:
-                y -= 50f;
-                break;
-            default:
-                break;
-            }
-            y = y.clamp (viewport_height - scrollable_height, 0.0f);
-            boxes.animate (AnimationMode.LINEAR, 50, "y", y);
-            return true;
+        icon_view = new Gtk.IconView.with_model (model);
+        icon_view.item_width = 185;
+        icon_view.column_spacing = 20;
+        icon_view.margin = 16;
+        icon_view_activate_on_single_click (icon_view, true);
+        icon_view.set_selection_mode (Gtk.SelectionMode.SINGLE);
+        icon_view.item_activated.connect ((view, path) => {
+            Gtk.TreeIter iter;
+            GLib.Value value;
+
+            model.get_iter (out iter, path);
+            model.get_value (iter, ModelColumns.ITEM, out value);
+            app.item_selected ((CollectionItem) value);
         });
 
-        boxes.add_constraint_with_name ("boxes-width",
-                                        new Clutter.BindConstraint (margin, BindCoordinate.WIDTH, -25f));
+        var pixbuf_renderer = new Gtk.CellRendererPixbuf ();
+        pixbuf_renderer.xalign = 0.5f;
+        pixbuf_renderer.yalign = 0.5f;
+        icon_view.pack_start (pixbuf_renderer, false);
+        icon_view.add_attribute (pixbuf_renderer, "pixbuf", ModelColumns.SCREENSHOT);
+
+        var text_renderer = new Gtk.CellRendererText ();
+        text_renderer.xalign = 0.5f;
+        text_renderer.foreground = "white";
+        icon_view.pack_start (text_renderer, false);
+        icon_view.add_attribute(text_renderer, "text", ModelColumns.TITLE);
+
+        var scrolled_window = new Gtk.ScrolledWindow (null, null);
+        scrolled_window.add (icon_view);
+        scrolled_window.show_all ();
+
+        gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
 
         over_boxes = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
         over_boxes.add_constraint_with_name ("top-box-size",
-                                             new Clutter.BindConstraint (margin, BindCoordinate.SIZE, 0));
+                                             new Clutter.BindConstraint (gtkactor, BindCoordinate.SIZE, 0));
         over_boxes.add_constraint_with_name ("top-box-position",
-                                             new Clutter.BindConstraint (margin, BindCoordinate.POSITION, 0));
+                                             new Clutter.BindConstraint (gtkactor, BindCoordinate.POSITION, 0));
 
-        app.state.set_key (null, "creds", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
-        app.state.set_key (null, "display", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
-        app.state.set_key (null, "collection", boxes, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 255, 0, 0);
+        app.state.set_key (null, "creds", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
+        app.state.set_key (null, "display", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
+        app.state.set_key (null, "collection", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 255, 0, 0);
         app.state.set_key (null, "display", over_boxes, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
         app.state.set_key (null, "display", over_boxes, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
     }
