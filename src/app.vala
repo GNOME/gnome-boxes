@@ -22,7 +22,7 @@ private class Boxes.App: Boxes.UI {
     public Topbar topbar;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
-    public static const uint duration = 555;  // default to 1/2 for all transitions
+    public static uint duration;
     public static GLib.Settings settings;
     public Wizard wizard;
     public Properties properties;
@@ -40,6 +40,7 @@ private class Boxes.App: Boxes.UI {
 
     public App () {
         settings = new GLib.Settings ("org.gnome.boxes");
+        duration = settings.get_int ("animation-duration");
         setup_ui ();
         collection = new Collection (this);
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
