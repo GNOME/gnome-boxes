@@ -25,6 +25,9 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     protected Gtk.Entry username_entry;
     protected Gtk.Entry password_entry;
 
+    private Regex username_regex;
+    private Regex password_regex;
+
     public UnattendedInstaller.copy (InstallerMedia media,
                                      string         unattended_src_path,
                                      string         unattended_dest_name) throws GLib.Error {
@@ -37,6 +40,9 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         floppy_path = get_pkgcache (os.short_id + "-unattended.img");
         this.unattended_src_path = unattended_src_path;
         this.unattended_dest_name = unattended_dest_name;
+
+        username_regex = new Regex ("BOXES_USERNAME");
+        password_regex = new Regex ("BOXES_PASSWORD");
 
         setup_ui ();
     }
@@ -187,13 +193,39 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private async void copy_unattended_file (Cancellable? cancellable) throws GLib.Error {
-        debug ("Putting unattended file: %s", unattended_dest_name);
+        var unattended_src = File.new_for_path (unattended_src_path);
+        var unattended_tmp_path = get_unattended_dir (unattended_dest_name);
+        var unattended_tmp = File.new_for_path (unattended_tmp_path);
+
+        debug ("Creating unattended file at '%s'..", unattended_tmp_path);
+        var input_stream = yield unattended_src.read_async (Priority.DEFAULT, cancellable);
+        var output_stream = yield unattended_tmp.replace_async (null,
+                                                                false,
+                                                                FileCreateFlags.REPLACE_DESTINATION,
+                                                                Priority.DEFAULT,
+                                                                cancellable);
+        var buffer = new uint8[1024];
+        size_t bytes_read;
+        while ((bytes_read = yield input_stream.read_async (buffer, Priority.DEFAULT, cancellable)) > 0) {
+            var str = ((string) buffer).substring (0, (long) bytes_read);
+            str = username_regex.replace (str, str.length, 0, username_entry.text);
+            str = password_regex.replace (str, str.length, 0, password_entry.text);
+            yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
+        }
+        yield output_stream.close_async (Priority.DEFAULT, cancellable);
+        debug ("Created unattended file at '%s'..", unattended_tmp_path);
+
+        debug ("Copying unattended file '%s' into floppy drive/image '%s'", unattended_dest_name, floppy_path);
         // FIXME: Perhaps we should use libarchive for this?
         string[] argv = { "mcopy", "-i", floppy_path,
-                                   unattended_src_path,
+                                   unattended_tmp_path,
                                    "::" + unattended_dest_name };
         yield exec (argv, cancellable);
-        debug ("Put unattended file: %s", unattended_dest_name);
+        debug ("Copied unattended file '%s' into floppy drive/image '%s'", unattended_dest_name, floppy_path);
+
+        debug ("Deleting temporary file '%s'", unattended_tmp_path);
+        unattended_tmp.delete (cancellable);
+        debug ("Deleted temporary file '%s'", unattended_tmp_path);
     }
 
     private async bool unattended_floppy_exists (Cancellable? cancellable) {
