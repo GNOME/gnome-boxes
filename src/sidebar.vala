@@ -169,6 +169,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
         /* SidebarPage.WIZARD */
         vbox = new Gtk.VBox (false, 0);
+        vbox.margin_top = 20;
         notebook.append_page (vbox, null);
 
         /* SidebarPage.PROPERTIES */

@@ -77,7 +77,7 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             if (skip_page (value)) {
-                page = value > page ? value + 1 : value - 1;
+                page = forwards ? value + 1 : value - 1;
                 return;
             }
 
@@ -218,6 +218,9 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void setup () {
+        if (source != null)
+            return;
+
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
 
@@ -282,15 +285,15 @@ private class Boxes.Wizard: Boxes.UI {
     private bool skip_page (Boxes.WizardPage page) {
         var backwards = page < this.page;
 
-        if (backwards) {
-            if (page == Boxes.WizardPage.PREPARATION)
-                return true;
-        } else if (this.source != null &&            // remote-display case
-                   page > Boxes.WizardPage.SOURCE &&
-                   page < Boxes.WizardPage.REVIEW)
+        // remote-display case
+        if (this.source != null &&
+            page > Boxes.WizardPage.SOURCE &&
+            page < Boxes.WizardPage.REVIEW)
             return true;
 
-        // FIXME: other cases here
+        if (backwards &&
+            page == Boxes.WizardPage.PREPARATION)
+            return true;
 
         return false;
     }
@@ -303,55 +306,57 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* Introduction */
         var hbox = new Gtk.HBox (false, 10);
-        hbox.margin_right = 20;
         add_step (hbox, _("Introduction"), WizardPage.INTRODUCTION);
         hbox.add (new Gtk.Image.from_file (get_pixmap ("boxes-create.png")));
         var label = new Gtk.Label (null);
+        label.get_style_context ().add_class ("boxes-wizard-label");
         label.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
         label.set_use_markup (true);
         label.wrap = true;
-        label.justify = Gtk.Justification.LEFT;
-        label.set_halign (Gtk.Align.START);
+        label.halign = Gtk.Align.START;
         hbox.add (label);
         hbox.show_all ();
 
         /* Source */
         var vbox = new Gtk.VBox (false, 30);
-        vbox.margin = 40;
+        vbox.valign = Gtk.Align.CENTER;
+        vbox.halign = Gtk.Align.CENTER;
+        vbox.margin = 15;
         add_step (vbox, _("Source Selection"), WizardPage.SOURCE);
         label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
+        label.get_style_context ().add_class ("boxes-wizard-label");
         label.wrap = true;
-        label.justify = Gtk.Justification.LEFT;
-        label.set_halign (Gtk.Align.START);
+        label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
         vbox.pack_start (wizard_source.widget, false, false);
         wizard_source.widget.hexpand = true;
-        wizard_source.widget.margin_right = 100;
+        wizard_source.widget.halign = Gtk.Align.CENTER;
         vbox.show_all ();
 
         /* Preparation */
         vbox = new Gtk.VBox (false, 30);
-        vbox.margin = 40;
+        vbox.margin = 15;
         add_step (vbox, _("Preparation"), WizardPage.PREPARATION);
         label = new Gtk.Label (_("Preparing to create new box"));
+        label.get_style_context ().add_class ("boxes-wizard-label");
         label.set_halign (Gtk.Align.START);
         label.wrap = true;
-        label.justify = Gtk.Justification.LEFT;
         vbox.pack_start (label, false, false);
 
         hbox = new Gtk.HBox (false, 10);
-        hbox.valign = Gtk.Align.START;
+        hbox.valign = Gtk.Align.CENTER;
+        hbox.halign = Gtk.Align.CENTER;
         hbox.margin = 24;
         vbox.pack_start (hbox, true, true);
 
         var image = new Gtk.Image.from_icon_name ("media-optical", 0);
         image.pixel_size = 128;
         hbox.pack_start (image, false, false);
-        var prep_vbox = new Gtk.VBox (true, 20);
-        prep_vbox.valign = Gtk.Align.START;
+        var prep_vbox = new Gtk.VBox (true, 10);
+        prep_vbox.valign = Gtk.Align.CENTER;
         hbox.pack_start (prep_vbox, true, true);
         label = new Gtk.Label (_("Analyzing installer media."));
-        label.halign = Gtk.Align.START;
+        label.get_style_context ().add_class ("boxes-wizard-label");
         prep_vbox.pack_start (label, false, false);
         prep_progress = new Gtk.ProgressBar ();
         prep_vbox.pack_start (prep_progress, false, false);
@@ -360,14 +365,21 @@ private class Boxes.Wizard: Boxes.UI {
         /* Setup */
         setup_vbox = new Gtk.VBox (false, 30);
         add_step (setup_vbox, _("Setup"), WizardPage.SETUP);
-        setup_vbox.margin = 40;
+        setup_vbox.show_all ();
 
         /* Review */
         vbox = new Gtk.VBox (false, 30);
-        vbox.margin = 40;
+        vbox.valign = Gtk.Align.CENTER;
+        vbox.halign = Gtk.Align.CENTER;
         add_step (vbox, _("Review"), WizardPage.REVIEW);
+
+        label = new Gtk.Label (_("Will create a new box with the following properties:"));
+        label.get_style_context ().add_class ("boxes-wizard-label");
+        label.xalign = 0.0f;
+        vbox.pack_start (label, false, false);
+
         summary = new WizardSummary ();
-        vbox.pack_start (summary.widget, false, false);
+        vbox.pack_start (summary.widget, true, true);
         vbox.show_all ();
 
         /* topbar */
@@ -454,12 +466,7 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             table.resize (1, 2);
-
-            var label = new Gtk.Label (_("Will create a new box with the following properties:"));
-            label.margin_bottom = 10;
-            label.xalign = 0.0f;
-            table.attach_defaults (label, 0, 2, 0, 1);
-            current_row = 1;
+            current_row = 0;
         }
     }
 }
