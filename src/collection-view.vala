@@ -218,35 +218,4 @@ private class Boxes.CollectionView: Boxes.UI {
         app.state.set_key (null, "display", over_boxes, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
         app.state.set_key (null, "display", over_boxes, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
     }
-
-    private class SortedCollection: GLib.Object {
-        public GLib.Sequence<CollectionItem> sequence = new GLib.Sequence<CollectionItem> ();
-        CompareDataFunc<CollectionItem> compare;
-
-        public SortedCollection(owned CompareDataFunc<CollectionItem> compare) {
-            this.compare = (owned) compare;
-        }
-
-        public SequenceIter<CollectionItem> insert (owned CollectionItem item) {
-            return sequence.insert_sorted (item, compare);
-        }
-
-        public void remove (CollectionItem item) {
-            var iter = sequence.lookup (item, compare);
-            if (iter != null)
-                sequence.remove (iter);
-        }
-
-        public string to_string () {
-            var str = "";
-
-            var iter = sequence.get_begin_iter ();
-            while (!iter.is_end ()) {
-                str += iter.get ().name + " ";
-                iter = iter.next ();
-            }
-
-            return str;
-        }
-    }
 }
