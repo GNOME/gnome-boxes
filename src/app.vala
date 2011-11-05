@@ -222,9 +222,9 @@ private class Boxes.App: Boxes.UI {
         box.add_constraint (new Clutter.BindConstraint (stage, BindCoordinate.SIZE, 0));
         stage.add_actor (box);
 
-        topbar = new Topbar (this);
         sidebar = new Sidebar (this);
         view = new CollectionView (this, sidebar.category);
+        topbar = new Topbar (this);
 
         selectionbar = new Selectionbar (this);
         selectionbar.actor.add_constraint (new Clutter.AlignConstraint (view.actor, AlignAxis.X_AXIS, 0.5f));
@@ -268,6 +268,8 @@ private class Boxes.App: Boxes.UI {
 
         case UIState.COLLECTION:
             set_main_ui_state ("collection");
+            actor_unpin (topbar.actor);
+            actor_unpin (view.actor);
             actor_remove (topbar.actor);
             actor_remove (sidebar.actor);
             actor_remove (view.actor);
@@ -310,6 +312,24 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
+    private bool _selection_mode;
+    public bool selection_mode { get { return _selection_mode; }
+        set {
+            return_if_fail (ui_state == UIState.COLLECTION);
+
+            _selection_mode = value;
+        }
+    }
+
+    public List<CollectionItem> selected_items {
+        owned get { return view.get_selected_items (); }
+    }
+
+    public void remove_item (CollectionItem item) {
+        debug ("FIXME: this is not yet fully implemented");
+        view.remove_item (item);
+    }
+
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         if (event.keyval == F11_KEY) {
             if (fullscreen)
@@ -324,7 +344,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     public bool item_selected (CollectionItem item) {
-        if (ui_state == UIState.COLLECTION) {
+        if (ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
 
             if (current_item is Machine) {

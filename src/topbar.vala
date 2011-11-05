@@ -25,11 +25,16 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.ToolButton spinner_btn;
     private Gtk.ToolButton back_btn;
     private Gtk.Button new_btn;
+    private Gtk.Label selection_label;
 
     public Topbar (App app) {
         this.app = app;
 
         setup_topbar ();
+
+        app.notify["selected-items"].connect (() => {
+            update_selection_label ();
+        });
     }
 
     private void setup_topbar () {
@@ -89,6 +94,7 @@ private class Boxes.Topbar: Boxes.UI {
         select_btn.valign = Gtk.Align.CENTER;
         select_btn.clicked.connect (() => {
             notebook.page = TopbarPage.SELECTION;
+            app.selection_mode = true;
         });
         toolbar_end.insert (select_btn, 1);
 
@@ -107,7 +113,8 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar_selection.set_show_arrow (false);
         hbox.pack_start (toolbar_selection, true, true, 0);
 
-        var selection_label = new Gtk.Label ("<i>" + _("Click on items to select them") + "</i>");
+        selection_label = new Gtk.Label ("");
+        update_selection_label ();
         selection_label.use_markup = true;
         tool_item = new Gtk.ToolItem ();
         tool_item.set_expand (true);
@@ -120,6 +127,7 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar_selection.insert (cancel_btn, 1);
         cancel_btn.clicked.connect (() => {
             select_btn.active = false;
+            app.selection_mode = false;
             notebook.page = TopbarPage.COLLECTION;
         });
 
@@ -139,6 +147,14 @@ private class Boxes.Topbar: Boxes.UI {
 
         // FIXME: make it dynamic depending on topbar size..:
         app.state.set_key (null, "display", gtk_actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
+    }
+
+    private void update_selection_label () {
+        var items = app.selected_items.length ();
+        if (items > 0)
+            selection_label.set_markup ("<b>" + _("%d selected").printf (items) + "</b>");
+        else
+            selection_label.set_markup ("<i>" + _("Click on items to select them") + "</i>");
     }
 
     public override void ui_state_changed () {

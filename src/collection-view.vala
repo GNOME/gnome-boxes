@@ -28,7 +28,12 @@ private class Boxes.CollectionView: Boxes.UI {
     public CollectionView (App app, Category category) {
         this.app = app;
         this.category = category;
+
         setup_view ();
+        app.notify["selection-mode"].connect (() => {
+            var mode = app.selection_mode ? Gtk.SelectionMode.MULTIPLE : Gtk.SelectionMode.SINGLE;
+            icon_view.set_selection_mode (mode);
+        });
     }
 
     public void set_over_boxes (Clutter.Actor actor, bool center = false) {
@@ -122,7 +127,7 @@ private class Boxes.CollectionView: Boxes.UI {
         model.set (iter, ModelColumns.TITLE, title);
         model.set (iter, ModelColumns.ITEM, item);
 
-        set_data<Gtk.TreeIter?> ("iter", iter);
+        item.set_data<Gtk.TreeIter?> ("iter", iter);
 
         return iter;
     }
@@ -136,10 +141,11 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         var iter = append (machine.pixbuf, machine.name, item);
-        machine.notify["pixbuf"].connect (() => {
+        var pixbuf_id = machine.notify["pixbuf"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.SCREENSHOT, machine.pixbuf);
         });
+        item.set_data<ulong> ("pixbuf_id", pixbuf_id);
 
         item.ui_state = UIState.COLLECTION;
         actor_remove (item.actor);
@@ -147,12 +153,35 @@ private class Boxes.CollectionView: Boxes.UI {
         update_item_visible (item);
     }
 
+    public List<CollectionItem> get_selected_items () {
+        var list = new List<CollectionItem> ();
+        var selected = icon_view.get_selected_items ();
+
+        foreach (var path in selected)
+            list.append (get_item_for_path (path));
+
+        return list;
+    }
+
     public void remove_item (CollectionItem item) {
         var iter = item.get_data<Gtk.TreeIter?> ("iter");
+        var pixbuf_id = item.get_data<ulong> ("pixbuf_id");
+
         return_if_fail (iter != null);
 
         model.remove (iter);
         item.set_data<Gtk.TreeIter?> ("iter", null);
+        item.disconnect (pixbuf_id);
+    }
+
+    private CollectionItem get_item_for_path (Gtk.TreePath path) {
+        Gtk.TreeIter iter;
+        GLib.Value value;
+
+        model.get_iter (out iter, path);
+        model.get_value (iter, ModelColumns.ITEM, out value);
+
+        return (CollectionItem) value;
     }
 
     private void setup_view () {
@@ -180,14 +209,12 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view_activate_on_single_click (icon_view, true);
         icon_view.set_selection_mode (Gtk.SelectionMode.SINGLE);
         icon_view.item_activated.connect ((view, path) => {
-            Gtk.TreeIter iter;
-            GLib.Value value;
-
-            model.get_iter (out iter, path);
-            model.get_value (iter, ModelColumns.ITEM, out value);
-            app.item_selected ((CollectionItem) value);
+            var item = get_item_for_path (path);
+            app.item_selected (item);
         });
-
+        icon_view.selection_changed.connect (() => {
+            app.notify_property ("selected-items");
+        });
         var pixbuf_renderer = new Gtk.CellRendererPixbuf ();
         pixbuf_renderer.xalign = 0.5f;
         pixbuf_renderer.yalign = 0.5f;

@@ -30,6 +30,18 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
             this.group += " " + subgroup;
     }
 
+    public void add_category (string category) {
+        if (category in categories)
+            return;
+
+        // FIXME: vala bug if in one line
+        string[] categories = categories;
+        categories += category;
+        this.categories = categories;
+
+        save ();
+    }
+
     public void save_display_property (Object display, string property_name) {
         var value = Value (display.get_class ().find_property (property_name).value_type);
 
