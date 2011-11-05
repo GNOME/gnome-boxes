@@ -8,6 +8,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
 
     private Session session;
     private unowned GtkSession gtk_session;
+    private unowned Audio audio;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
     private Display.SavedProperty[] display_saved_properties;
@@ -25,6 +26,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
 
         need_password = false;
         session = new Session ();
+        audio = Spice.Audio.get (session, null);
         gtk_session = GtkSession.get (session);
 
         this.notify["config"].connect (() => {
