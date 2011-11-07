@@ -63,6 +63,13 @@ private class Boxes.App: Boxes.UI {
         view.category = category;
     }
 
+    private void add_domain (CollectionSource source,
+                             GVir.Connection connection, GVir.Domain domain) {
+        var machine = new LibvirtMachine (source, this, connection, domain);
+        collection.add_item (machine);
+        domain.set_data<LibvirtMachine> ("machine", machine);
+    }
+
     private async void setup_libvirt (CollectionSource source) {
         var connection = new GVir.Connection (source.uri);
 
@@ -73,14 +80,16 @@ private class Boxes.App: Boxes.UI {
             warning (error.message);
         }
 
-        foreach (var domain in connection.get_domains ()) {
-            var machine = new LibvirtMachine (source, this, connection, domain);
-            collection.add_item (machine);
-        }
+        foreach (var domain in connection.get_domains ())
+            add_domain (source, connection, domain);
+
+        connection.domain_removed.connect ((connection, domain) => {
+            var machine = domain.get_data<LibvirtMachine> ("machine");
+            view.remove_item (machine);
+        });
 
         connection.domain_added.connect ((connection, domain) => {
-            var machine = new LibvirtMachine (source, this, connection, domain);
-            collection.add_item (machine);
+            add_domain (source, connection, domain);
         });
 
         connections.replace (source.uri, connection);
