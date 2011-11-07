@@ -326,7 +326,11 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void remove_item (CollectionItem item) {
-        debug ("FIXME: this is not yet fully implemented");
+        var machine = item as Machine;
+
+        if (machine != null)
+            machine.delete ();
+
         view.remove_item (item);
     }
 

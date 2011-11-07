@@ -56,8 +56,7 @@ private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
         owned get { return get_string ("source", "name"); }
         set {
             keyfile.set_string ("source", "name", value);
-            if (has_file)
-                FileUtils.unlink (get_pkgconfig_source (filename));
+            this.delete ();
             _filename = null;
             save ();
         }
@@ -85,5 +84,13 @@ private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
         this.filename = filename;
         has_file = true;
         load ();
+    }
+
+    public void delete () {
+        if (!has_file)
+            return;
+
+        FileUtils.unlink (get_pkgconfig_source (filename));
+        has_file = false;
     }
 }

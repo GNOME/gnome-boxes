@@ -81,4 +81,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
         // assume the remote is running for now
         return true;
     }
+
+    public override void delete () {
+        source.delete ();
+    }
 }

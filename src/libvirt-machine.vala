@@ -156,4 +156,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         return true;
     }
+
+    public override void delete () {
+        try {
+            domain.stop (0);
+            domain.delete (0);
+        } catch (GLib.Error err) {
+            warning (err.message);
+        }
+    }
 }
