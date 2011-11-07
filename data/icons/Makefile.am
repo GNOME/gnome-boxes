@@ -20,6 +20,8 @@ noinst_DATA =					\
 imagesdir = $(datadir)/gnome-boxes/pixmaps
 images_DATA =					\
 	boxes-create.png			\
+	boxes-dark.png				\
+	boxes-gray.png				\
 	boxes-grid.png				\
 	$(NULL)
 
