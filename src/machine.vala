@@ -379,7 +379,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
             display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                              "x", 10.0f,
-                             "y", 70.0f,
+                             "y", height - 200.0f,
                              "width", 190.0f,
                              "height", 130.0f);
             break;

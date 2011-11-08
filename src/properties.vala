@@ -50,6 +50,9 @@ private class Boxes.Properties: Boxes.UI {
     private Gtk.ListStore listmodel;
     private Gtk.TreeView tree_view;
     private GLib.Binding toolbar_label_bind;
+    private MiniGraph cpu;
+    private MiniGraph io;
+    private MiniGraph net;
 
     private class PageWidget {
         public Gtk.Widget widget;
@@ -175,11 +178,6 @@ private class Boxes.Properties: Boxes.UI {
         /* sidebar */
         var vbox = app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.VBox;
 
-        var image = new Gtk.Image ();
-        image.set_size_request (180, 125);
-        image.margin = 15;
-        vbox.pack_start (image, false, false, 0);
-
         tree_view = new Gtk.TreeView ();
         var selection = tree_view.get_selection ();
         selection.set_mode (Gtk.SelectionMode.BROWSE);
@@ -195,6 +193,25 @@ private class Boxes.Properties: Boxes.UI {
         renderer.xpad = 20;
         tree_view.insert_column_with_attributes (-1, "", renderer, "text", 0);
         vbox.pack_start (tree_view, true, true, 0);
+
+        var grid = new Gtk.Grid ();
+        vbox.pack_start (grid, true, true, 0);
+        grid.column_homogeneous = true;
+
+        grid.attach (new Gtk.Label (_("CPU:")), 0, 0, 1, 1);
+        cpu = new MiniGraph.with_ymax ({}, 100.0, 20);
+        cpu.hexpand = true;
+        grid.attach (cpu, 1, 0, 1, 1);
+
+        grid.attach (new Gtk.Label (_("I/O:")), 2, 0, 1, 1);
+        io = new MiniGraph.with_ymax ({}, 100.0, 20);
+        io.hexpand = true;
+        grid.attach (io, 3, 0, 1, 1);
+
+        grid.attach (new Gtk.Label (_("Net:")), 4, 0, 1, 1);
+        net = new MiniGraph.with_ymax ({}, 100.0, 20);
+        net.hexpand = true;
+        grid.attach (net, 5, 0, 1, 1);
 
         vbox.show_all ();
         notebook.show_all ();
