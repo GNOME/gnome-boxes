@@ -53,6 +53,7 @@ private class Boxes.Properties: Boxes.UI {
     private MiniGraph cpu;
     private MiniGraph io;
     private MiniGraph net;
+    private ulong stats_id;
 
     private class PageWidget {
         public Gtk.Widget widget;
@@ -142,6 +143,13 @@ private class Boxes.Properties: Boxes.UI {
         }
 
         tree_view.get_selection ().select_path (new Gtk.TreePath.from_string ("0"));
+
+        var machine = app.current_item as LibvirtMachine;
+        if (machine != null) {
+            stats_id = machine.stats_updated.connect (() => {
+                cpu.points = machine.cpu_stats;
+            });
+        }
     }
 
     private void setup_ui () {
@@ -195,20 +203,32 @@ private class Boxes.Properties: Boxes.UI {
         vbox.pack_start (tree_view, true, true, 0);
 
         var grid = new Gtk.Grid ();
-        vbox.pack_start (grid, true, true, 0);
+        vbox.pack_start (grid, false, false, 0);
         grid.column_homogeneous = true;
+        grid.column_spacing = 2;
+        grid.margin_left = 10;
+        grid.margin_right = 10;
+        /* this will need to be FIXME */
+        grid.margin_bottom = 30;
+        grid.margin_top = 200;
 
-        grid.attach (new Gtk.Label (_("CPU:")), 0, 0, 1, 1);
+        var label = new Gtk.Label (_("CPU:"));
+        label.get_style_context ().add_class ("boxes-graph-label");
+        grid.attach (label, 0, 0, 1, 1);
         cpu = new MiniGraph.with_ymax ({}, 100.0, 20);
         cpu.hexpand = true;
         grid.attach (cpu, 1, 0, 1, 1);
 
-        grid.attach (new Gtk.Label (_("I/O:")), 2, 0, 1, 1);
+        label = new Gtk.Label (_("I/O:"));
+        label.get_style_context ().add_class ("boxes-graph-label");
+        grid.attach (label, 2, 0, 1, 1);
         io = new MiniGraph.with_ymax ({}, 100.0, 20);
         io.hexpand = true;
         grid.attach (io, 3, 0, 1, 1);
 
-        grid.attach (new Gtk.Label (_("Net:")), 4, 0, 1, 1);
+        label = new Gtk.Label (_("Net:"));
+        label.get_style_context ().add_class ("boxes-graph-label");
+        grid.attach (label, 4, 0, 1, 1);
         net = new MiniGraph.with_ymax ({}, 100.0, 20);
         net.hexpand = true;
         grid.attach (net, 5, 0, 1, 1);
@@ -218,6 +238,11 @@ private class Boxes.Properties: Boxes.UI {
     }
 
     public override void ui_state_changed () {
+        if (stats_id != 0) {
+            app.current_item.disconnect (stats_id);
+            stats_id = 0;
+        }
+
         switch (ui_state) {
         case UIState.PROPERTIES:
             toolbar_label_bind = app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);

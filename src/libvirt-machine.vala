@@ -35,10 +35,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             if (state == DomainState.PAUSED) {
                 started_id = domain.resumed.connect (() => {
-                    domain.disconnect (started_id);
-                    started_id = 0;
-                    connect_display ();
-                });
+                        domain.disconnect (started_id);
+                        started_id = 0;
+                        connect_display ();
+                    });
                 try {
                     domain.resume ();
                 } catch (GLib.Error error) {
@@ -46,10 +46,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 }
             } else {
                 started_id = domain.started.connect (() => {
-                    domain.disconnect (started_id);
-                    started_id = 0;
-                    connect_display ();
-                });
+                        domain.disconnect (started_id);
+                        started_id = 0;
+                        connect_display ();
+                    });
                 try {
                     domain.start (0);
                 } catch (GLib.Error error) {
@@ -62,6 +62,24 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         update_display ();
     }
 
+    struct MachineStat {
+        int64 timestamp;
+        double cpu_time;
+        double cpu_time_abs;
+        double cpu_guest_percent;
+        double memory_percent;
+        uint disk_read;
+        uint disk_write;
+        uint net_read;
+        uint net_write;
+    }
+
+    static const int STATS_SIZE = 20;
+    private MachineStat[] stats;
+    construct {
+        stats = new MachineStat[STATS_SIZE];
+    }
+
     public LibvirtMachine (CollectionSource source, Boxes.App app,
                            GVir.Connection connection, GVir.Domain domain) {
         base (source, app, domain.get_name ());
@@ -71,6 +89,104 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         this.domain = domain;
 
         set_screenshot_enable (true);
+        set_stats_enable (true);
+    }
+
+    private void update_cpu_stat (DomainInfo info, ref MachineStat stat) {
+        var prev = stats[STATS_SIZE - 1];
+
+        if (info.state == DomainState.CRASHED ||
+            info.state == DomainState.SHUTOFF)
+            return;
+
+        stat.cpu_time = info.cpuTime - prev.cpu_time_abs;
+        stat.cpu_time_abs = info.cpuTime;
+        // hmm, where does this x10 come from?
+        var dt = (stat.timestamp - prev.timestamp) * 10;
+        var percent = stat.cpu_time / dt;
+        percent = percent / info.nrVirtCpu;
+        stat.cpu_guest_percent = percent.clamp (0, 100);
+    }
+
+    private void update_mem_stat (DomainInfo info, ref MachineStat stat) {
+        if (!is_running ())
+            return;
+
+        stat.memory_percent = info.memory * 100.0 / info.maxMem;
+    }
+
+    private void update_io_stat (ref MachineStat stat) {
+    }
+
+
+    public signal void stats_updated ();
+
+    public double[] cpu_stats;
+    public double[] io_stats;
+    public double[] net_stats;
+    private void update_stats () {
+        cpu_stats = {};
+        io_stats = {};
+        net_stats = {};
+
+        foreach (var s in stats) {
+            cpu_stats += s.cpu_guest_percent;
+        }
+
+        stats_updated ();
+    }
+
+    private void update_net_stat (ref MachineStat stat) {
+        try {
+            // var xmldoc = domain.get_config (0).doc;
+            // var target_dev = extract_xpath (xmldoc,
+            //     "string(/domain/devices/interface[@type='network']/target/@dev)", true);
+            // if (target_dev == "")
+            //     return;
+            // var interfaces = domain.get_interfaces ();
+            // foreach (var iface in interfaces)
+            //     message (iface.name);
+        } catch (GLib.Error err) {
+        }
+    }
+
+    private uint stats_id;
+    public void set_stats_enable (bool enable) {
+        if (enable) {
+            if (stats_id != 0)
+                return;
+
+            stats_id = Timeout.add_seconds (1, () => {
+                    try {
+                        var now = get_monotonic_time ();
+                        var stat = MachineStat () { timestamp = now };
+                        var info = domain.get_info ();
+
+                        // message (domain.get_config (0).to_xml ());
+                        // message (domain.get_config (0).get_node_content ("devices"));
+                        // var devices = domain.get_config (0).get_devices ().data;
+                        // foreach (var d in devices) {
+                        //     message (d.to_xml ());
+                        // }
+                        update_cpu_stat (info, ref stat);
+                        update_mem_stat (info, ref stat);
+                        update_io_stat (ref stat);
+                        update_net_stat (ref stat);
+
+                        stats = stats[1:STATS_SIZE];
+                        stats += stat;
+
+                        update_stats ();
+                    } catch (GLib.Error err) {
+                        warning (err.message);
+                    }
+                    return true;
+                });
+        } else {
+            if (stats_id != 0)
+                GLib.Source.remove (stats_id);
+            stats_id = 0;
+        }
     }
 
     public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {

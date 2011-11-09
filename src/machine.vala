@@ -233,6 +233,7 @@ private class Boxes.MachineActor: Boxes.UI {
     public override Clutter.Actor actor { get { return box; } }
     public Clutter.Box box;
 
+    private Clutter.BindConstraint yconstraint;
     private GtkClutter.Texture screenshot;
     private GtkClutter.Actor gtk_vbox;
     private GtkClutter.Actor? display;
@@ -240,6 +241,14 @@ private class Boxes.MachineActor: Boxes.UI {
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
     private Machine machine;
+    private ulong height_id;
+
+    static const int properties_y = 200;
+
+    ~MachineActor() {
+        machine.app.actor.disconnect (height_id);
+        height_id = 0;
+    }
 
     public MachineActor (Machine machine) {
         this.machine = machine;
@@ -287,6 +296,14 @@ private class Boxes.MachineActor: Boxes.UI {
 
         actor_add (gtk_vbox, box);
         actor.set_reactive (true);
+
+        yconstraint = new Clutter.BindConstraint (machine.app.actor, BindCoordinate.Y,
+                                                  machine.app.actor.height - properties_y);
+        height_id = machine.app.actor.notify["height"].connect (() => {
+            yconstraint.set_offset (machine.app.actor.height - properties_y);
+        });
+
+        yconstraint.enabled = false;
     }
 
     public void scale_screenshot (float scale = 1.5f) {
@@ -320,6 +337,7 @@ private class Boxes.MachineActor: Boxes.UI {
     public override void ui_state_changed () {
         int width, height;
 
+        yconstraint.enabled = false;
         machine.app.window.get_size (out width, out height);
 
         switch (ui_state) {
@@ -376,12 +394,17 @@ private class Boxes.MachineActor: Boxes.UI {
             display.width = (float) width;
             display.height = (float) height;
             actor_add (display, machine.app.stage);
+            display.add_constraint (yconstraint);
 
             display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
                              "x", 10.0f,
                              "y", height - 200.0f,
-                             "width", 190.0f,
-                             "height", 130.0f);
+                             "width", 180.0f,
+                             "height", 130.0f).completed.connect (() => {
+                                     message ("enabled");
+                                 yconstraint.enabled = true;
+                             });
+
             break;
 
         default:

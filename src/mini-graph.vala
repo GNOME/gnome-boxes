@@ -44,7 +44,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         int width = get_allocated_width ();
         int height = get_allocated_height ();
 
-        Gdk.cairo_set_source_color (cr, get_style ().dark[get_state ()]);
+        Gdk.cairo_set_source_rgba (cr, get_boxes_bg_color ());
         cr.rectangle (0, 0, width, height);
         cr.fill ();
 
