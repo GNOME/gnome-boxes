@@ -15,7 +15,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
             ymax_set = true;
         }
     }
-    private bool ymax_set;
+    private bool ymax_set = false;
 
     public MiniGraph (double[] points = {}, int npoints = -1) {
         this.points = points;
@@ -33,9 +33,10 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
             return 1.0;
 
         double max = points[0];
-        foreach (var p in points)
+        foreach (var p in points) {
             if (p > max)
                 max = p;
+        }
 
         return max;
     }
@@ -59,6 +60,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         var x = 0.0;
         foreach (var p in points) {
             var y = height - p * dy;
+
             if (x == 0.0)
                 cr.move_to (x, y);
             else

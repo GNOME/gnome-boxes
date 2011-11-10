@@ -68,6 +68,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         double cpu_time_abs;
         double cpu_guest_percent;
         double memory_percent;
+        DomainDiskStats disk;
         double disk_read;
         double disk_write;
         DomainInterfaceStats net;
@@ -117,6 +118,28 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private void update_io_stat (ref MachineStat stat) {
+        if (!is_running ())
+            return;
+
+        try {
+            // FIXME: switch to domain.get_devices () and loop over all interfaces
+            var xmldoc = domain.get_config (0).to_xml ();
+            var target_dev = extract_xpath (xmldoc,
+                "string(/domain/devices/disk[@type='file']/target/@dev)", true);
+            if (target_dev == "")
+                return;
+
+            var disk = GLib.Object.new (typeof (GVir.DomainDisk),
+                                        "path", target_dev,
+                                        "domain", domain) as GVir.DomainDisk;
+            stat.disk = disk.get_stats ();
+            var prev = stats[STATS_SIZE - 1];
+            if (prev.disk != null) {
+                stat.disk_read = (stat.disk.rd_bytes - prev.disk.rd_bytes);
+                stat.disk_write = (stat.disk.wr_bytes - prev.disk.wr_bytes);
+            }
+        } catch (GLib.Error err) {
+        }
     }
 
 
@@ -192,9 +215,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 return;
 
             stats_id = Timeout.add_seconds (1, () => {
-                    update_stats ();
-                    return true;
-                });
+                update_stats ();
+                return true;
+            });
         } else {
             if (stats_id != 0)
                 GLib.Source.remove (stats_id);

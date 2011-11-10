@@ -224,7 +224,7 @@ private class Boxes.Properties: Boxes.UI {
         label = new Gtk.Label (_("I/O:"));
         label.get_style_context ().add_class ("boxes-graph-label");
         grid.attach (label, 2, 0, 1, 1);
-        io = new MiniGraph.with_ymax ({}, 20);
+        io = new MiniGraph ({}, 20);
         io.hexpand = true;
         grid.attach (io, 3, 0, 1, 1);
 
