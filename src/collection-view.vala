@@ -50,6 +50,7 @@ private class Boxes.CollectionView: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
+            actor.show ();
             icon_view.unselect_all ();
             actor_remove (app.wizard.actor);
             actor_remove (over_boxes);
@@ -65,6 +66,7 @@ private class Boxes.CollectionView: Boxes.UI {
             float x, y;
             var display = app.current_item.actor;
 
+            actor.hide ();
             actor_remove (app.properties.actor);
 
             if (previous_ui_state == UIState.CREDS) {
