@@ -148,6 +148,8 @@ private class Boxes.Properties: Boxes.UI {
         if (machine != null) {
             stats_id = machine.stats_updated.connect (() => {
                 cpu.points = machine.cpu_stats;
+                net.points = machine.net_stats;
+                io.points = machine.io_stats;
             });
         }
     }
@@ -222,14 +224,14 @@ private class Boxes.Properties: Boxes.UI {
         label = new Gtk.Label (_("I/O:"));
         label.get_style_context ().add_class ("boxes-graph-label");
         grid.attach (label, 2, 0, 1, 1);
-        io = new MiniGraph.with_ymax ({}, 100.0, 20);
+        io = new MiniGraph.with_ymax ({}, 20);
         io.hexpand = true;
         grid.attach (io, 3, 0, 1, 1);
 
         label = new Gtk.Label (_("Net:"));
         label.get_style_context ().add_class ("boxes-graph-label");
         grid.attach (label, 4, 0, 1, 1);
-        net = new MiniGraph.with_ymax ({}, 100.0, 20);
+        net = new MiniGraph ({}, 20);
         net.hexpand = true;
         grid.attach (net, 5, 0, 1, 1);
 

@@ -68,10 +68,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         double cpu_time_abs;
         double cpu_guest_percent;
         double memory_percent;
-        uint disk_read;
-        uint disk_write;
-        uint net_read;
-        uint net_write;
+        double disk_read;
+        double disk_write;
+        DomainInterfaceStats net;
+        double net_read;
+        double net_write;
     }
 
     static const int STATS_SIZE = 20;
@@ -119,12 +120,54 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
 
+    private void update_net_stat (ref MachineStat stat) {
+        if (!is_running ())
+            return;
+
+        try {
+            // FIXME: switch to domain.get_devices () and loop over all interfaces
+            var xmldoc = domain.get_config (0).to_xml ();
+            var target_dev = extract_xpath (xmldoc,
+                "string(/domain/devices/interface[@type='network']/target/@dev)", true);
+            if (target_dev == "")
+                return;
+
+            var net = GLib.Object.new (typeof (GVir.DomainInterface),
+                                       "path", target_dev,
+                                       "domain", domain) as GVir.DomainInterface;
+            stat.net = net.get_stats ();
+            var prev = stats[STATS_SIZE - 1];
+            if (prev.net != null) {
+                stat.net_read = (stat.net.rx_bytes - prev.net.rx_bytes);
+                stat.net_write = (stat.net.tx_bytes - prev.net.tx_bytes);
+            }
+        } catch (GLib.Error err) {
+        }
+    }
+
     public signal void stats_updated ();
 
     public double[] cpu_stats;
     public double[] io_stats;
     public double[] net_stats;
     private void update_stats () {
+        try {
+            var now = get_monotonic_time ();
+            var stat = MachineStat () { timestamp = now };
+            var info = domain.get_info ();
+
+            update_cpu_stat (info, ref stat);
+            update_mem_stat (info, ref stat);
+            update_io_stat (ref stat);
+            update_net_stat (ref stat);
+
+            stats = stats[1:STATS_SIZE];
+            stats += stat;
+
+        } catch (GLib.Error err) {
+            warning (err.message);
+        }
+
         cpu_stats = {};
         io_stats = {};
         net_stats = {};
@@ -132,22 +175,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         foreach (var s in stats) {
             cpu_stats += s.cpu_guest_percent;
         }
+        foreach (var s in stats) {
+            net_stats += (s.net_read + s.net_write);
+        }
+        foreach (var s in stats) {
+            io_stats += (s.disk_read + s.disk_write);
+        }
 
         stats_updated ();
-    }
-
-    private void update_net_stat (ref MachineStat stat) {
-        try {
-            // var xmldoc = domain.get_config (0).doc;
-            // var target_dev = extract_xpath (xmldoc,
-            //     "string(/domain/devices/interface[@type='network']/target/@dev)", true);
-            // if (target_dev == "")
-            //     return;
-            // var interfaces = domain.get_interfaces ();
-            // foreach (var iface in interfaces)
-            //     message (iface.name);
-        } catch (GLib.Error err) {
-        }
     }
 
     private uint stats_id;
@@ -157,29 +192,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 return;
 
             stats_id = Timeout.add_seconds (1, () => {
-                    try {
-                        var now = get_monotonic_time ();
-                        var stat = MachineStat () { timestamp = now };
-                        var info = domain.get_info ();
-
-                        // message (domain.get_config (0).to_xml ());
-                        // message (domain.get_config (0).get_node_content ("devices"));
-                        // var devices = domain.get_config (0).get_devices ().data;
-                        // foreach (var d in devices) {
-                        //     message (d.to_xml ());
-                        // }
-                        update_cpu_stat (info, ref stat);
-                        update_mem_stat (info, ref stat);
-                        update_io_stat (ref stat);
-                        update_net_stat (ref stat);
-
-                        stats = stats[1:STATS_SIZE];
-                        stats += stat;
-
-                        update_stats ();
-                    } catch (GLib.Error err) {
-                        warning (err.message);
-                    }
+                    update_stats ();
                     return true;
                 });
         } else {

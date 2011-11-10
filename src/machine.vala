@@ -401,7 +401,6 @@ private class Boxes.MachineActor: Boxes.UI {
                              "y", height - 200.0f,
                              "width", 180.0f,
                              "height", 130.0f).completed.connect (() => {
-                                     message ("enabled");
                                  yconstraint.enabled = true;
                              });
 
