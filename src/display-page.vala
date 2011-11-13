@@ -9,6 +9,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private Boxes.App app;
     private EventBox event_box;
     private Toolbar toolbar;
+    private Toolbar title_toolbar;
     private uint toolbar_show_id;
     private uint toolbar_hide_id;
     private ulong display_id;
@@ -28,7 +29,7 @@ private class Boxes.DisplayPage: GLib.Object {
                 if (y <= 50 && toolbar_show_id == 0) {
                     toolbar_event_stop ();
                     toolbar_show_id = Timeout.add (app.duration, () => {
-                        toolbar.show_all ();
+                        set_toolbar_visible (true);
                         toolbar_show_id = 0;
                         return false;
                     });
@@ -36,7 +37,7 @@ private class Boxes.DisplayPage: GLib.Object {
                     toolbar_event_stop (true, false);
                     if (toolbar_hide_id == 0)
                         toolbar_hide_id = Timeout.add (app.duration, () => {
-                            toolbar.hide ();
+                            set_toolbar_visible (false);
                             toolbar_hide_id = 0;
                             return false;
                         });
@@ -63,14 +64,35 @@ private class Boxes.DisplayPage: GLib.Object {
         toolbar.insert (back, 0);
         toolbar.set_show_arrow (false);
 
+        /* this is quite insane to center the label and keep toolbar style... */
+        /* unfortunately, metacity doesn't even center its own title.. sad panda */
+        title_toolbar = new Toolbar ();
+        title_toolbar.valign = Gtk.Align.START;
+        title_toolbar.halign = Gtk.Align.CENTER;
+        title_toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
+        title_toolbar.set_size_request (300, -1); // FIXME: can't put them in a sizegroup
         title = new Label ("Display");
-        var item = new ToolItem ();
-        item.add (title);
-        item.set_expand (true);
-        toolbar.insert (item, -1);
+
+        var title_item = new Gtk.ToolItem ();
+        title_item.set_expand (true);
+        title_item.add (title);
+        title_toolbar.insert (title_item, -1);
+
+        var sep = new Gtk.ToolItem ();
+        sep.set_expand (true);
+        toolbar.insert (sep, -1);
+
+        /* this is quite crappy way of centering label. FIXME: event pass-through */
+        var btn = new ToolButton (null, null);
+        btn.icon_name = "view-fullscreen-symbolic";
+        btn.get_style_context ().add_class ("raised");
+        btn.clicked.connect ((button) => { app.fullscreen = !app.fullscreen; });
+        toolbar.insert (btn, -1);
+
+        toolbar.insert (new Gtk.SeparatorToolItem (), -1);
 
         var props = new ToolButton (null, null);
-        props.icon_name = "go-next-symbolic";
+        props.icon_name = "utilities-system-monitor-symbolic";
         props.get_style_context ().add_class ("raised");
         props.clicked.connect ((button) => { app.ui_state = UIState.PROPERTIES; });
         toolbar.insert (props, -1);
@@ -79,7 +101,13 @@ private class Boxes.DisplayPage: GLib.Object {
         toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (toolbar);
+        overlay.add_overlay (title_toolbar);
         overlay.show_all ();
+    }
+
+    void set_toolbar_visible(bool visible) {
+        toolbar.visible = visible;
+        title_toolbar.visible = visible;
     }
 
     ~DisplayPage () {
@@ -106,7 +134,7 @@ private class Boxes.DisplayPage: GLib.Object {
 
     public void show_display (Boxes.Machine machine, Widget display) {
         remove_display ();
-        toolbar.hide ();
+        set_toolbar_visible (false);
         title.set_text (machine.name);
         event_box.add (display);
         event_box.show_all ();

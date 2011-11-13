@@ -11,7 +11,15 @@ private enum Boxes.AppPage {
 private class Boxes.App: Boxes.UI {
     public override Clutter.Actor actor { get { return stage; } }
     public Gtk.Window window;
-    private bool fullscreen { get { return WindowState.FULLSCREEN in window.get_window ().get_state (); } }
+    public bool fullscreen {
+        get { return WindowState.FULLSCREEN in window.get_window ().get_state (); }
+        set {
+            if (fullscreen)
+                window.unfullscreen ();
+            else
+                window.fullscreen ();
+        }
+    }
     private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
     public Gtk.Notebook notebook;
     public GtkClutter.Embed embed;
@@ -345,11 +353,7 @@ private class Boxes.App: Boxes.UI {
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         if (event.keyval == F11_KEY) {
-            if (fullscreen)
-                window.unfullscreen ();
-            else
-                window.fullscreen ();
-
+            fullscreen = !fullscreen;
             return true;
         }
 
