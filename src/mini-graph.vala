@@ -1,3 +1,5 @@
+// This file is part of GNOME Boxes. License: LGPLv2+
+
 private class Boxes.MiniGraph: Gtk.DrawingArea {
     private double[] _points;
     public double[] points { get { return _points; }
