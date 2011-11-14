@@ -96,7 +96,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         string type, port, socket, host;
 
         try {
-            var xmldoc = domain.get_config (0).doc;
+            var xmldoc = domain.get_config (0).to_xml();
             type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
             port = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
             socket = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@socket)");

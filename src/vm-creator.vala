@@ -28,7 +28,7 @@ private class Boxes.VMCreator {
         var target_path = yield create_target_volume (name, resources.storage);
 
         var xml = get_virt_xml (install_media, name, target_path, resources);
-        var config = new GVirConfig.Domain (xml);
+        var config = new GVirConfig.Domain.from_xml (xml);
 
         return connection.create_domain (config);
     }
@@ -112,7 +112,7 @@ private class Boxes.VMCreator {
                   "    </permissions>\n" +
                   "  </target>\n" +
                   "</volume>";
-        var config = new GVirConfig.StorageVol (xml);
+        var config = new GVirConfig.StorageVol.from_xml (xml);
         var volume = pool.create_volume (config);
 
         return volume.get_path ();
@@ -190,7 +190,7 @@ private class Boxes.VMCreator {
                       "    </permissions>\n" +
                       "  </target>\n" +
                       "</pool>";
-            var config = new GVirConfig.StoragePool (xml);
+            var config = new GVirConfig.StoragePool.from_xml (xml);
             pool = connection.create_storage_pool (config, 0);
             yield pool.build_async (0, null);
             yield pool.start_async (0, null);
