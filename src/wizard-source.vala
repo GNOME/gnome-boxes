@@ -59,7 +59,7 @@ private class Boxes.WizardSource: GLib.Object {
         var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
         menubox.pack_start (separator, false, false);
 
-        hbox = add_entry (menubox, () => { page = SourcePage.FILE; });
+        hbox = add_entry (menubox, launch_file_selection_dialog);
         label = new Gtk.Label (_("Select a file"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -113,5 +113,20 @@ private class Boxes.WizardSource: GLib.Object {
         }
 
         return hbox;
+    }
+
+    private void launch_file_selection_dialog () {
+        var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
+                                                null,
+                                                Gtk.FileChooserAction.OPEN,
+                                                Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                                                Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+        dialog.show_hidden = false;
+        if (dialog.run () == Gtk.ResponseType.ACCEPT) {
+            uri = dialog.get_uri ();
+            page = SourcePage.URL;
+        }
+
+        dialog.hide ();
     }
 }
