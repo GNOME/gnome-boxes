@@ -18,8 +18,15 @@ private class Boxes.WizardSource: GLib.Object {
         set {
             _page = value;
             notebook.set_current_page (page);
-            if (page == SourcePage.URL)
+            switch (page) {
+            case SourcePage.MAIN:
+                menubox.grab_focus ();
+                break;
+            case SourcePage.URL:
                 url_entry.changed ();
+                url_entry.grab_focus ();
+                break;
+            }
         }
     }
     public string uri {
@@ -27,6 +34,7 @@ private class Boxes.WizardSource: GLib.Object {
         set { url_entry.set_text (value); }
     }
 
+    private Boxes.MenuBox menubox;
     private Gtk.Notebook notebook;
     public Gtk.Entry url_entry;
 
@@ -36,11 +44,12 @@ private class Boxes.WizardSource: GLib.Object {
         notebook.show_tabs = false;
 
         /* main page */
-        var vbox = new Gtk.VBox (false, 10);
-        vbox.margin_top = vbox.margin_bottom = 15;
-        notebook.append_page (vbox, null);
+        menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
+        menubox.margin_top = menubox.margin_bottom = 15;
+        menubox.grab_focus ();
+        notebook.append_page (menubox, null);
 
-        var hbox = add_entry (vbox, () => { page = SourcePage.URL; });
+        var hbox = add_entry (menubox, () => { page = SourcePage.URL; });
         var label = new Gtk.Label (_("Enter URL"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -48,10 +57,9 @@ private class Boxes.WizardSource: GLib.Object {
         hbox.pack_start (next, false, false);
 
         var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        separator.height_request = 5;
-        vbox.pack_start (separator, false, false);
+        menubox.pack_start (separator, false, false);
 
-        hbox = add_entry (vbox, () => { page = SourcePage.FILE; });
+        hbox = add_entry (menubox, () => { page = SourcePage.FILE; });
         label = new Gtk.Label (_("Select a file"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -59,23 +67,22 @@ private class Boxes.WizardSource: GLib.Object {
         hbox.pack_start (next, false, false);
 
         /* URL page */
-        vbox = new Gtk.VBox (false, 10);
-        vbox.margin_top = vbox.margin_bottom = 15;
-        notebook.append_page (vbox, null);
+        menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
+        menubox.margin_top = menubox.margin_bottom = 15;
+        notebook.append_page (menubox, null);
 
-        hbox = add_entry (vbox, () => { page = SourcePage.MAIN; });
+        hbox = add_entry (menubox, () => { page = SourcePage.MAIN; });
         var prev = new Gtk.Label ("◀");
         hbox.pack_start (prev, false, false);
         label = new Gtk.Label (_("Enter URL"));
         label.get_style_context ().add_class ("boxes-source-label");
         hbox.pack_start (label, true, true);
         separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        separator.height_request = 5;
-        vbox.pack_start (separator, false, false);
-        hbox = add_entry (vbox);
+        menubox.add (separator);
+        hbox = add_entry (menubox);
         url_entry = new Gtk.Entry ();
         hbox.add (url_entry);
-        hbox = add_entry (vbox);
+        hbox = add_entry (menubox);
         var image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
         // var image = new Gtk.Image.from_icon_name ("krfb", 0);
         image.pixel_size = 96;
@@ -90,18 +97,18 @@ private class Boxes.WizardSource: GLib.Object {
         notebook.show_all ();
     }
 
-    private Gtk.HBox add_entry (Gtk.VBox vbox, ClickedFunc? clicked = null) {
-        var ebox = new Gtk.EventBox ();
-        ebox.visible_window = false;
+    private Gtk.HBox add_entry (MenuBox box, ClickedFunc? clicked = null) {
         var hbox = new Gtk.HBox (false, 20);
-        ebox.add (hbox);
-        vbox.pack_start (ebox, false, false);
+        var item = new MenuBox.Item (hbox);
+        box.add (item);
         hbox.margin_left = hbox.margin_right = 20;
+        hbox.margin_top = hbox.margin_bottom = 10;
+
         if (clicked != null) {
-            ebox.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-            ebox.button_press_event.connect (() => {
-                clicked ();
-                return true;
+            item.selectable = true;
+            box.selected.connect ((widget) => {
+                if (widget == item)
+                    clicked ();
             });
         }
 

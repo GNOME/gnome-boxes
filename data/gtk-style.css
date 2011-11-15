@@ -1,5 +1,5 @@
 @define-color boxes_bg_color shade (@theme_bg_color, 0.5);
-@define-color boxes_sidebar_bg_color mix (@theme_bg_color, @boxes_bg_color, 0.5);
+@define-color boxes_bg2_color mix (@theme_bg_color, @boxes_bg_color, 0.5);
 @define-color boxes_selected_color #5f8dd3;
 
 #TopbarLabel {
@@ -10,6 +10,11 @@
 #CollectionLabel {
     font-size: 11;
     font-weight: bold;
+}
+
+.separator {
+    -GtkWidget-wide-separators: true;
+    -GtkWidget-separator-height: 1;
 }
 
 .view {
@@ -28,7 +33,7 @@
 }
 
 .boxes-sidebar-bg {
-    background-color: @boxes_sidebar_bg_color;
+    background-color: @boxes_bg2_color;
     background-image: url("/opt/gnome/share/gnome-boxes/pixmaps/boxes-gray.png");
     background-repeat: repeat;
 }
@@ -55,7 +60,7 @@
 }
 
 .boxes-source-nb {
-    border-radius: 15;
+    background-color: alpha(#fff, 0.0);
 }
 
 .boxes-selected {
@@ -134,8 +139,8 @@
 }
 
 BoxesMenuBox .menuitem {
-    background-color: @theme_base_color;
-    border-radius: 10;
+    background-color: @boxes_bg2_color;
+    border-radius: 15;
 }
 
 BoxesMenuBox .menuitem:focused {
@@ -143,5 +148,5 @@ BoxesMenuBox .menuitem:focused {
 }
 
 BoxesMenuBox .menuitem:prelight {
-    background-color: shade (@theme_base_color, 1.1);
+    background-color: shade (@boxes_bg2_color, 1.1);
 }
