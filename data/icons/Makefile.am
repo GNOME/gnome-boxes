@@ -17,11 +17,15 @@ noinst_DATA =					\
 	gnome-boxes.svg				\
 	$(NULL)
 
+assetsdir = $(datadir)/gnome-boxes/style/assets
+assets_DATA =					\
+	boxes-dark.png				\
+	boxes-gray.png				\
+	$(NULL)
+
 imagesdir = $(datadir)/gnome-boxes/pixmaps
 images_DATA =					\
 	boxes-create.png			\
-	boxes-dark.png				\
-	boxes-gray.png				\
 	boxes-grid.png				\
 	$(NULL)
 
