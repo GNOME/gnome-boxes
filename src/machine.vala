@@ -320,7 +320,7 @@ private class Boxes.MachineActor: Boxes.UI {
     }
 
     public void set_password_needed (bool needed) {
-        password_entry.set_sensitive (needed);
+        password_entry.visible = needed;
         password_entry.set_can_focus (needed);
         if (needed)
             password_entry.grab_focus ();
@@ -343,7 +343,6 @@ private class Boxes.MachineActor: Boxes.UI {
         switch (ui_state) {
         case UIState.CREDS:
             scale_screenshot (2.0f);
-            password_entry.show ();
             break;
 
         case UIState.DISPLAY:
