@@ -96,7 +96,7 @@ private class Boxes.VMCreator {
         for (var i = 1; pool.get_volume (volume_name) != null; i++)
             volume_name = name + "-" + i.to_string () + ".qcow2";
 
-        var storage_str = (storage / GIBIBYTES * 2).to_string ();
+        var storage_str = (storage / GIBIBYTES).to_string ();
         var xml = "<volume>\n" +
                   "  <name>" + volume_name + "</name>\n" +
                   "  <capacity unit='G'>" + storage_str + "</capacity>\n" +

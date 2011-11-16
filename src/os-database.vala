@@ -82,7 +82,7 @@ private class Boxes.OSDatabase {
         if (recommended != null && recommended.storage > 0)
             resources.storage = recommended.storage;
         else if (minimum != null && minimum.storage > 0)
-            resources.storage = int64.max (minimum.storage, resources.storage);
+            resources.storage = int64.max (minimum.storage * 2, resources.storage);
 
         return resources;
     }
