@@ -21,9 +21,9 @@ private class Boxes.VMCreator {
 
         string name;
         if (install_media.os != null)
-            name = install_media.os.short_id;
+            name = install_media.os.name;
         else
-            name = install_media.label.replace (" ", "-");
+            name = install_media.label;
 
         var target_path = yield create_target_volume (name, resources.storage);
 
