@@ -20,6 +20,7 @@ private class Boxes.WizardSource: GLib.Object {
             notebook.set_current_page (page);
             switch (page) {
             case SourcePage.MAIN:
+                // FIXME: grab first element in the menu list
                 menubox.grab_focus ();
                 break;
             case SourcePage.URL:

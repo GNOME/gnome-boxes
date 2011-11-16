@@ -63,6 +63,12 @@ private class Boxes.MenuBox: Gtk.Box {
         var item  = widget as Item;
 
         if (item != null) {
+            item.key_press_event.connect ((event) => {
+                if (event.keyval == Gdk.Key.Return) {
+                    selected (item);
+                }
+                return false;
+            });
             item.button_press_event.connect (() => {
                 item.grab_focus ();
                 selected (item);

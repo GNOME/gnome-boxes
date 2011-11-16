@@ -41,6 +41,7 @@ private class Boxes.Wizard: Boxes.UI {
             switch (value) {
             case WizardPage.INTRODUCTION:
                 next_button.sensitive = true;
+                next_button.grab_focus (); // FIXME: doesn't work?!
                 break;
 
             case WizardPage.SOURCE:
@@ -108,6 +109,9 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.url_entry.changed.connect (() => {
             // FIXME: add uri checker
             next_button.sensitive = wizard_source.uri.length != 0;
+        });
+        wizard_source.url_entry.activate.connect(() => {
+            page = page + 1;
         });
     }
 
