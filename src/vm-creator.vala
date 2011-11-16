@@ -45,8 +45,6 @@ private class Boxes.VMCreator {
         if (install_media.os != null && install_media.os.short_id.contains ("win"))
             clock_offset = "localtime";
 
-        var spice_port = 61000;
-
         var domain_name = name;
         for (var i = 1; connection.find_domain_by_name (domain_name) != null; i++)
             domain_name = name + "-" + i.to_string ();
@@ -81,7 +79,7 @@ private class Boxes.VMCreator {
                "      <mac address='00:11:22:33:44:55'/>\n" +
                "    </interface>\n" +
                "    <input type='tablet' bus='usb'/>\n" +
-               "    <graphics type='spice' port='" + spice_port.to_string () + "'/>\n" +
+               "    <graphics type='spice'/>\n" +
                "    <console type='pty'/>\n" +
                "    <video>\n" +
                // FIXME: Should be 'qxl', work-around for a spice bug
