@@ -26,14 +26,17 @@ private class Boxes.DisplayPage: GLib.Object {
             if (event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
 
-                if (y <= 50 && toolbar_show_id == 0) {
+                if (y == 0) {
                     toolbar_event_stop ();
-                    toolbar_show_id = Timeout.add (app.duration, () => {
+                    set_toolbar_visible (true);
+                } else if (!app.fullscreen && y <= 5 && toolbar_show_id == 0) {
+                    toolbar_event_stop ();
+                    toolbar_show_id = Timeout.add (1000, () => {
                         set_toolbar_visible (true);
                         toolbar_show_id = 0;
                         return false;
                     });
-                } else if (y > 20) {
+                } else if (y > 5) {
                     toolbar_event_stop (true, false);
                     if (toolbar_hide_id == 0)
                         toolbar_hide_id = Timeout.add (app.duration, () => {
