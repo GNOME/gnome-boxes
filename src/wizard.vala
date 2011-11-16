@@ -155,17 +155,21 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare_for_location (string location) throws GLib.Error {
-        bool uncertain;
+        var file = File.new_for_uri (location);
 
-        var mimetype = ContentType.guess (location, null, out uncertain);
-
-        if (uncertain)
-            prepare_for_uri (location);
-        else if (ContentType.is_a (mimetype, "application/x-cd-image"))
-            // FIXME: We are assuming that its local URI
+        if (file.is_native ())
+            // FIXME: We should able to handle non-local URIs here too
             prepare_for_installer (location);
-        else
-            debug ("FIXME: %s".printf (mimetype));
+        else {
+            bool uncertain;
+
+            var mimetype = ContentType.guess (location, null, out uncertain);
+
+            if (uncertain)
+                prepare_for_uri (location);
+            else
+                debug ("FIXME: %s".printf (mimetype));
+        }
     }
 
     private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
