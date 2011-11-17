@@ -130,6 +130,7 @@ private class Boxes.Wizard: Boxes.UI {
             vm_creator.create_domain_for_installer.begin (install_media, resources, null, on_domain_created);
             install_media = null;
             resources = null;
+            wizard_source.uri = "";
 
             return true;
         }
