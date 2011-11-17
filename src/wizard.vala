@@ -343,18 +343,19 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* Preparation */
         vbox = new Gtk.VBox (false, 30);
+        vbox.valign = Gtk.Align.CENTER;
+        vbox.halign = Gtk.Align.CENTER;
         vbox.margin = 15;
         add_step (vbox, _("Preparation"), WizardPage.PREPARATION);
         label = new Gtk.Label (_("Preparing to create new box"));
         label.get_style_context ().add_class ("boxes-wizard-label");
-        label.set_halign (Gtk.Align.START);
         label.wrap = true;
+        label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
 
         hbox = new Gtk.HBox (false, 10);
         hbox.valign = Gtk.Align.CENTER;
         hbox.halign = Gtk.Align.CENTER;
-        hbox.margin = 24;
         vbox.pack_start (hbox, true, true);
 
         var image = new Gtk.Image.from_icon_name ("media-optical", 0);
@@ -372,6 +373,8 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* Setup */
         setup_vbox = new Gtk.VBox (false, 30);
+        setup_vbox.valign = Gtk.Align.CENTER;
+        setup_vbox.halign = Gtk.Align.CENTER;
         add_step (setup_vbox, _("Setup"), WizardPage.SETUP);
         setup_vbox.show_all ();
 
