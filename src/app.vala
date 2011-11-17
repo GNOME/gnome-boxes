@@ -30,8 +30,8 @@ private class Boxes.App: Boxes.UI {
     public Topbar topbar;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
-    public static uint duration;
-    public static GLib.Settings settings;
+    public uint duration;
+    public GLib.Settings settings;
     public Wizard wizard;
     public Properties properties;
     public DisplayPage display_page;
