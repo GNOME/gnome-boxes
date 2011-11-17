@@ -26,8 +26,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private ulong started_id;
     public override void connect_display () {
-        if (_connect_display == true)
+        if (_connect_display) {
+            update_display ();
             return;
+        }
 
         if (state != DomainState.RUNNING) {
             if (started_id != 0)
@@ -35,10 +37,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             if (state == DomainState.PAUSED) {
                 started_id = domain.resumed.connect (() => {
-                        domain.disconnect (started_id);
-                        started_id = 0;
-                        connect_display ();
-                    });
+                    domain.disconnect (started_id);
+                    started_id = 0;
+                    connect_display ();
+                });
                 try {
                     domain.resume ();
                 } catch (GLib.Error error) {
@@ -46,10 +48,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 }
             } else {
                 started_id = domain.started.connect (() => {
-                        domain.disconnect (started_id);
-                        started_id = 0;
-                        connect_display ();
-                    });
+                    domain.disconnect (started_id);
+                    started_id = 0;
+                    connect_display ();
+                });
                 try {
                     domain.start (0);
                 } catch (GLib.Error error) {
@@ -246,6 +248,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private void update_display () {
         string type, port, socket, host;
+
+        // TODO: this assertion holds true for the moment, I don't see
+        // yet why it shouldn't be
+        return_if_fail (_connect_display == true);
 
         try {
             var xmldoc = domain.get_config (0).to_xml();
