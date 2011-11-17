@@ -59,11 +59,13 @@ private class Boxes.InstallerMedia : Object {
             get_os_and_label_from_device (device, os_db);
         else {
             from_image = true;
-            os = yield os_db.guess_os_from_install_media (device_file, cancellable, out os_media);
+            os = yield os_db.guess_os_from_install_media (device_file, cancellable);
         }
 
-        if (os != null)
+        if (os != null) {
             label = os.get_name ();
+            os_media = os_db.get_prefered_media_for_os (os);
+        }
 
         if (label == null)
             label = Path.get_basename (device_file);

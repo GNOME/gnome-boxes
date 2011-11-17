@@ -30,19 +30,10 @@ private class Boxes.OSDatabase {
         db = loader.get_db ();
     }
 
-    public async Os? guess_os_from_install_media (string       media_path,
-                                                  Cancellable? cancellable,
-                                                  out Media    os_media) throws GLib.Error {
+    public async Os? guess_os_from_install_media (string media_path, Cancellable? cancellable) throws GLib.Error {
         var media = yield Media.create_from_location_async (media_path, Priority.DEFAULT, cancellable);
 
-        var os = db.guess_os_from_media (media);
-        if (os != null) {
-            var medias = os.get_media_list ();
-            os_media = get_prefered_media (medias);
-        } else
-            os_media = null;
-
-        return os;
+        return db.guess_os_from_media (media);
     }
 
     public Os? get_os_by_id (string id) {
@@ -61,6 +52,12 @@ private class Boxes.OSDatabase {
         var minimum = get_prefered_resources (list);
 
         return get_resources_from_os_resources (minimum, recommended);
+    }
+
+    public Media? get_prefered_media_for_os (Os os) {
+        var medias = os.get_media_list ();
+
+        return get_prefered_media (medias);
     }
 
     private Resources get_resources_from_os_resources (Resources? minimum, Resources? recommended) {
