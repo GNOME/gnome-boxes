@@ -5,9 +5,28 @@ using GVir;
 
 private class Boxes.VMCreator {
     private Connection connection;
+    private uint16 spice_port;
 
-    public VMCreator (string uri) throws GLib.Error {
+    public VMCreator (App app, string uri) throws GLib.Error {
         connection = new Connection (uri);
+        spice_port = 5800;
+
+        // Ensure unique spice port
+        foreach (var item in app.collection.items.data) {
+            if (item is LibvirtMachine) {
+                var machine = item as LibvirtMachine;
+                var xmldoc = machine.domain.get_config (0).to_xml();
+
+                var type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
+                var port_str = extract_xpath (xmldoc, "string(/domain/devices/graphics[@type='" + type + "']/@port)");
+                var port = int.parse (port_str);
+
+                if (port > 0)
+                    spice_port = uint16.max (spice_port, (uint16) port);
+            }
+        }
+
+        spice_port++;
     }
 
     public async GVir.Domain create_domain_for_installer (InstallerMedia install_media,
@@ -28,6 +47,7 @@ private class Boxes.VMCreator {
         var target_path = yield create_target_volume (name, resources.storage);
 
         var xml = get_virt_xml (install_media, name, target_path, resources);
+        spice_port++; // So next VM doesn't get the same port
         var config = new GVirConfig.Domain.from_xml (xml);
 
         return connection.create_domain (config);
@@ -79,7 +99,7 @@ private class Boxes.VMCreator {
                "      <mac address='00:11:22:33:44:55'/>\n" +
                "    </interface>\n" +
                "    <input type='tablet' bus='usb'/>\n" +
-               "    <graphics type='spice'/>\n" +
+               "    <graphics type='spice' port='" + spice_port.to_string () + "' />\n" +
                "    <console type='pty'/>\n" +
                "    <video>\n" +
                // FIXME: Should be 'qxl', work-around for a spice bug

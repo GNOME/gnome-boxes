@@ -8,7 +8,7 @@ private class Boxes.Collection: GLib.Object {
     private Boxes.App app;
     public signal void item_added (CollectionItem item);
 
-    GenericArray<CollectionItem> items;
+    public GenericArray<CollectionItem> items;
 
     construct {
         items = new GenericArray<CollectionItem> ();

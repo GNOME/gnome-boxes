@@ -36,9 +36,9 @@ private class Boxes.App: Boxes.UI {
     public Properties properties;
     public DisplayPage display_page;
     public string? uri { get; private set; }
+    public Collection collection;
 
     private Clutter.TableLayout box_table;
-    private Collection collection;
     private CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
