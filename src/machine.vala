@@ -43,7 +43,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
 
             show_id = _display.show.connect ((id) => {
                 app.ui_state = Boxes.UIState.DISPLAY;
-                Timeout.add (Boxes.App.duration, () => {
+                Timeout.add (app.duration, () => {
                     try {
                         var widget = display.get_display (0);
                         app.display_page.show_display (this, widget);
@@ -349,16 +349,16 @@ private class Boxes.MachineActor: Boxes.UI {
             if (previous_ui_state == UIState.CREDS) {
                 password_entry.hide ();
                 label.hide ();
-                screenshot.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                screenshot.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
                                     "width", (float) width,
                                     "height", (float) height);
-                actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                actor.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
                                "x", 0.0f,
                                "y", 0.0f);
             } else {
                 if (display != null) {
                     // zoom in, back from properties
-                    var anim = display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+                    var anim = display.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
                                                 "x", 0.0f,
                                                 "y", 0.0f,
                                                 "width", (float) width,
@@ -395,7 +395,7 @@ private class Boxes.MachineActor: Boxes.UI {
             actor_add (display, machine.app.stage);
             display.add_constraint (yconstraint);
 
-            display.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+            display.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
                              "x", 10.0f,
                              "y", height - 200.0f,
                              "width", 180.0f,

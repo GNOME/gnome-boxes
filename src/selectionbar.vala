@@ -78,12 +78,12 @@ private class Boxes.Selectionbar: GLib.Object {
     private void show () {
         actor.show ();
         actor.queue_redraw ();
-        actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+        actor.animate (Clutter.AnimationMode.LINEAR, app.duration,
                        "opacity", 255);
     }
 
     private void hide () {
-        var anim = actor.animate (Clutter.AnimationMode.LINEAR, Boxes.App.duration,
+        var anim = actor.animate (Clutter.AnimationMode.LINEAR, app.duration,
                                   "opacity", 0);
         anim.completed.connect (() => {
             actor.hide ();
