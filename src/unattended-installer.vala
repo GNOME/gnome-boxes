@@ -36,6 +36,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         label = media.label;
         device_file = media.device_file;
         from_image = media.from_image;
+        mount_point = media.mount_point;
 
         floppy_path = get_pkgcache (os.short_id + "-unattended.img");
         this.unattended_src_path = unattended_src_path;
