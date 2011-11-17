@@ -35,7 +35,7 @@ private class Boxes.App: Boxes.UI {
     public Wizard wizard;
     public Properties properties;
     public DisplayPage display_page;
-    public string? uri { get; private set; }
+    public string? uri { get; set; }
     public Collection collection;
 
     private Clutter.TableLayout box_table;

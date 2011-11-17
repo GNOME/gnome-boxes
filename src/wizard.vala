@@ -435,6 +435,7 @@ private class Boxes.Wizard: Boxes.UI {
                 page = WizardPage.SOURCE;
                 wizard_source.page = SourcePage.URL;
                 wizard_source.uri = app.uri;
+                app.uri = null;
             } else
                 page = WizardPage.INTRODUCTION;
             break;
