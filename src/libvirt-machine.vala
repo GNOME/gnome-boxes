@@ -21,7 +21,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         _connect_display = false;
         app.display_page.remove_display ();
-        update_display ();
+        display = null;
     }
 
     private ulong started_id;
@@ -249,8 +249,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private void update_display () {
         string type, port, socket, host;
 
-        // TODO: this assertion holds true for the moment, I don't see
-        // yet why it shouldn't be
         return_if_fail (_connect_display == true);
 
         try {
