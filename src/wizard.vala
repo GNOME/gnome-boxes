@@ -175,7 +175,7 @@ private class Boxes.Wizard: Boxes.UI {
     private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
         var uri = Xml.URI.parse (uri_as_text);
 
-        if (uri.server == null)
+        if (uri == null || uri.server == null)
             throw new Boxes.Error.INVALID ("the URI is invalid");
 
         source = new CollectionSource (uri.server, uri.scheme, uri_as_text);
