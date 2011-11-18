@@ -193,6 +193,7 @@ private class Boxes.VMCreator {
         var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
         if (pool == null) {
             var pool_path = get_pkgconfig ("images");
+            ensure_directory (pool_path);
             var xml = "<pool type='dir'>\n" +
                       "<name>" + Config.PACKAGE_TARNAME + "</name>\n" +
                       "  <source>\n" +
