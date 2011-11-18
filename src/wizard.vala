@@ -127,7 +127,7 @@ private class Boxes.Wizard: Boxes.UI {
                 return false;
 
             next_button.sensitive = false;
-            vm_creator.create_domain_for_installer.begin (install_media, resources, null, on_domain_created);
+            vm_creator.create_and_launch_vm.begin (install_media, resources, null, on_vm_created);
             install_media = null;
             resources = null;
             wizard_source.uri = "";
@@ -140,10 +140,9 @@ private class Boxes.Wizard: Boxes.UI {
         return true;
     }
 
-    private void on_domain_created (Object? source_object, AsyncResult result) {
+    private void on_vm_created (Object? source_object, AsyncResult result) {
         try {
-            var domain = vm_creator.create_domain_for_installer.end (result);
-            domain.start (0);
+            vm_creator.create_and_launch_vm.end (result);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
         } catch (GLib.Error error) {
             warning ("Fixme: %s".printf (error.message));
@@ -151,7 +150,7 @@ private class Boxes.Wizard: Boxes.UI {
             return;
         }
 
-        // Only let the user through if either domain was successfully created or operation was cancelled
+        // Only let the user through if either VM was successfully created or operation was cancelled
         next_button.sensitive = true;
     }
 

@@ -7,6 +7,14 @@ private class Boxes.VMCreator {
     private Connection connection;
     private uint16 spice_port;
 
+    private static Regex direct_boot_regex;
+    private static Regex cdrom_boot_regex;
+
+    static construct {
+        direct_boot_regex = /<kernel>.*<\/cmdline>/msx;
+        cdrom_boot_regex = /<boot.*dev=.cdrom.\/>/msx;
+    }
+
     public VMCreator (App app, string uri) throws GLib.Error {
         connection = new Connection (uri);
         spice_port = 5800;
@@ -29,9 +37,9 @@ private class Boxes.VMCreator {
         spice_port++;
     }
 
-    public async GVir.Domain create_domain_for_installer (InstallerMedia install_media,
-                                                          Resources      resources,
-                                                          Cancellable?   cancellable) throws GLib.Error {
+    public async GVir.Domain create_and_launch_vm (InstallerMedia install_media,
+                                                   Resources      resources,
+                                                   Cancellable?   cancellable) throws GLib.Error {
         if (!connection.is_open ())
             yield connect (cancellable);
 
@@ -50,7 +58,19 @@ private class Boxes.VMCreator {
         spice_port++; // So next VM doesn't get the same port
         var config = new GVirConfig.Domain.from_xml (xml);
 
-        return connection.create_domain (config);
+        var domain = connection.create_domain (config);
+
+        domain.start (0);
+
+        // FIXME: We really should use GVirConfig API (as soon as its available) to modify the configuration XML.
+        xml = domain.get_config (0).to_xml ();
+        xml = direct_boot_regex.replace (xml, -1, 0, "");
+        xml = cdrom_boot_regex.replace (xml, -1, 0, "");
+        config = new GVirConfig.Domain.from_xml (xml);
+
+        domain.set_config (config);
+
+        return domain;
     }
 
     private async void connect (Cancellable? cancellable) throws GLib.Error {
