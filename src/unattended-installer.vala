@@ -195,7 +195,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     private async void copy_unattended_file (Cancellable? cancellable) throws GLib.Error {
         var unattended_src = File.new_for_path (unattended_src_path);
-        var unattended_tmp_path = get_unattended_dir (unattended_dest_name);
+        var unattended_tmp_path = get_user_unattended_dir (unattended_dest_name);
         var unattended_tmp = File.new_for_path (unattended_tmp_path);
 
         debug ("Creating unattended file at '%s'..", unattended_tmp_path);

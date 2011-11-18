@@ -34,7 +34,7 @@ namespace Boxes {
     }
 
     public string get_user_unattended_dir (string? file_name = null) {
-        var dir = Path.build_filename (get_pkgconfig (), "unattended", file_name);
+        var dir = Path.build_filename (get_pkgconfig (), "unattended");
 
         ensure_directory (dir);
 
