@@ -30,6 +30,7 @@ images_DATA =					\
 	$(NULL)
 
 EXTRA_DIST =					\
+	$(assets_DATA)				\
 	$(images_DATA)				\
 	$(public_icons)				\
 	$(noinst_DATA)				\

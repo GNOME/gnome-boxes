@@ -35,6 +35,9 @@ EXTRA_DIST =					\
 	gnome-boxes.desktop.in			\
 	org.gnome.boxes.gschema.xml.in		\
 	$(desktop_in_files)			\
+	$(source_DATA)				\
+	$(style_DATA)				\
+	$(unattended_DATA)			\
 	$(NULL)
 
 CLEANFILES =					\
@@ -42,6 +45,7 @@ CLEANFILES =					\
 	$(NULL)
 
 DISTCLEANFILES =				\
+	org.gnome.boxes.gschema.xml		\
 	$(desktop_DATA)				\
 	$(NULL)
 
