@@ -67,12 +67,13 @@ VALA_CHECK_PACKAGES([
   glib-2.0
   gtk+-3.0
   gtk-vnc-2.0
-  libvirt-gobject-1.0
-  libvirt-gconfig-1.0
-  libxml-2.0
   gudev-1.0
   libosinfo-1.0
+  libvirt-gconfig-1.0
+  libvirt-gobject-1.0
+  libxml-2.0
   posix
+  spice-client-gtk-3.0
 ])
 
 dnl Strict compiler
