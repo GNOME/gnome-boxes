@@ -187,6 +187,8 @@ private class Boxes.Wizard: Boxes.UI {
 
             if (uri.port > 0)
                 throw new Boxes.Error.INVALID ("the Spice URI is invalid");
+        } else if (uri.scheme == "vnc") {
+            // accept any vnc:// uri
         } else
             throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
     }
