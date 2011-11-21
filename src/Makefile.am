@@ -8,6 +8,7 @@ AM_CPPFLAGS =						\
 	$(NULL)
 
 AM_VALAFLAGS =						\
+	--enable-experimental				\
 	--vapidir=$(srcdir)/				\
 	--vapidir=$(top_srcdir)/vapi                    \
 	--vapidir=$(top_srcdir)/vapi/upstream           \
