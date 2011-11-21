@@ -298,8 +298,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         // remote-display case
         if (this.source != null &&
-            page > Boxes.WizardPage.SOURCE &&
-            page < Boxes.WizardPage.REVIEW)
+            Boxes.WizardPage.SOURCE < page < Boxes.WizardPage.REVIEW)
             return true;
 
         if (backwards &&
