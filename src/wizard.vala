@@ -397,32 +397,47 @@ private class Boxes.Wizard: Boxes.UI {
         /* topbar */
         hbox = app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.HBox;
 
+        var toolbar = new Gtk.Toolbar ();
+        toolbar.icon_size = Gtk.IconSize.MENU;
+        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar.set_show_arrow (false);
+        hbox.pack_start (toolbar, true, true, 0);
+
         label = new Gtk.Label (_("Create a Box"));
         label.name = "TopbarLabel";
-        label.margin_left = 20;
-        label.set_halign (Gtk.Align.START);
-        hbox.pack_start (label, true, true, 0);
+        label.halign = Gtk.Align.START;
+        label.margin_left = 15;
+        var tool_item = new Gtk.ToolItem ();
+        tool_item.set_expand (true);
+        tool_item.child = label;
+        toolbar.insert (tool_item, 0);
 
-        var hbox_end = new Gtk.HBox (false, 0);
-        hbox.pack_start (hbox_end, false, false, 0);
-        hbox_end.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         var cancel = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
-        hbox_end.pack_start (cancel, false, false, 15);
+        tool_item = new Gtk.ToolItem ();
+        tool_item.child = cancel;
+        toolbar.insert (tool_item, 1);
         cancel.clicked.connect (() => {
             app.ui_state = UIState.COLLECTION;
         });
+
         back_button = new Gtk.Button.from_stock (Gtk.Stock.GO_BACK);
-        hbox_end.pack_start (back_button, false, false, 5);
+        tool_item = new Gtk.ToolItem ();
+        tool_item.child = back_button;
+        tool_item.margin_left = 20;
+        toolbar.insert (tool_item, 2);
         back_button.clicked.connect (() => {
             page = page - 1;
         });
 
         next_button = new Gtk.Button.with_label (_("Continue"));
-        hbox_end.pack_start (next_button, false, false, 0);
+        tool_item = new Gtk.ToolItem ();
+        tool_item.child = next_button;
+        tool_item.margin_left = 5;
+        toolbar.insert (tool_item, 3);
+        next_button.get_style_context ().add_class ("boxes-continue");
         next_button.clicked.connect (() => {
             page = page + 1;
         });
-        next_button.get_style_context ().add_class ("boxes-continue");
 
         hbox.show_all ();
         notebook.show_all ();
