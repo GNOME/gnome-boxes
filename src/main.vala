@@ -43,7 +43,6 @@ public void main (string[] args) {
     Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain (GETTEXT_PACKAGE);
     GLib.Environment.set_application_name (_("Boxes"));
-    Gdk.disable_multidevice ();
 
     parse_args (ref args);
 
