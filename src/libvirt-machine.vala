@@ -84,6 +84,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stats = new MachineStat[STATS_SIZE];
     }
 
+    ~LibvirtMachine () {
+        set_stats_enable (false);
+    }
+
     public LibvirtMachine (CollectionSource source, Boxes.App app,
                            GVir.Connection connection, GVir.Domain domain) {
         base (source, app, domain.get_name ());
@@ -315,10 +319,18 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public override void delete () {
         try {
-            domain.stop (0);
+            if (is_running ())
+                domain.stop (0);
+        } catch (GLib.Error err) {
+            // ignore stop error
+        }
+
+        try {
             domain.delete (0);
         } catch (GLib.Error err) {
             warning (err.message);
         }
+
+        set_stats_enable (false);
     }
 }

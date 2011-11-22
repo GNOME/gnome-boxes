@@ -169,7 +169,10 @@ private class Boxes.CollectionView: Boxes.UI {
         var iter = item.get_data<Gtk.TreeIter?> ("iter");
         var pixbuf_id = item.get_data<ulong> ("pixbuf_id");
 
-        return_if_fail (iter != null);
+        if (iter == null) {
+            debug ("item not in view or already removed");
+            return;
+        }
 
         model.remove (iter);
         item.set_data<Gtk.TreeIter?> ("iter", null);
