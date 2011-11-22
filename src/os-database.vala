@@ -86,14 +86,14 @@ private class Boxes.OSDatabase {
 
     private Resources? get_prefered_resources (ResourcesList list) {
         // Prefer x86_64 resources
-        string[] prefs = {"x86_64", "i386", ARCHITECTURE_ALL};
+        string[] prefs = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
 
         return get_prefered_entity (list.new_filtered, RESOURCES_PROP_ARCHITECTURE, prefs) as Resources;
     }
 
     private Media? get_prefered_media (MediaList list) {
         // Prefer x86_64 resources
-        string[] prefs = {"x86_64", "i386", ARCHITECTURE_ALL};
+        string[] prefs = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
 
         return get_prefered_entity (list.new_filtered, MEDIA_PROP_ARCHITECTURE, prefs) as Media;
     }
