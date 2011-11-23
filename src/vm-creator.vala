@@ -85,7 +85,7 @@ private class Boxes.VMCreator {
                "  </features>\n" +
                "  <clock offset='" + clock_offset + "'/>\n" +
                "  <on_poweroff>destroy</on_poweroff>\n" +
-               "  <on_reboot>destroy</on_reboot>\n" +
+               "  <on_reboot>restart</on_reboot>\n" +
                "  <on_crash>destroy</on_crash>\n" +
                "  <devices>\n" +
                "    <disk type='file' device='disk'>\n" +
