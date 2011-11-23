@@ -70,10 +70,11 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.LAST:
-                    if (!create ())
-                        return;
-                    app.ui_state = UIState.COLLECTION;
-                    break;
+                    create.begin ((source, result) => {
+                       if (create.end (result))
+                           app.ui_state = UIState.COLLECTION;
+                    });
+                    return;
                 }
             }
 
@@ -121,13 +122,20 @@ private class Boxes.Wizard: Boxes.UI {
         setup_ui ();
     }
 
-    private bool create () {
+    private async bool create () {
         if (source == null) {
             if (install_media == null)
                 return false;
 
             next_button.sensitive = false;
-            vm_creator.create_and_launch_vm.begin (install_media, resources, null, on_vm_created);
+            try {
+                yield vm_creator.create_and_launch_vm (install_media, resources, null);
+            } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
+            } catch (GLib.Error error) {
+                warning (error.message);
+                return false;
+            }
+
             install_media = null;
             resources = null;
             wizard_source.uri = "";
@@ -138,20 +146,6 @@ private class Boxes.Wizard: Boxes.UI {
         source.save ();
         app.add_collection_source (source);
         return true;
-    }
-
-    private void on_vm_created (Object? source_object, AsyncResult result) {
-        try {
-            vm_creator.create_and_launch_vm.end (result);
-        } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
-        } catch (GLib.Error error) {
-            warning ("Fixme: %s".printf (error.message));
-
-            return;
-        }
-
-        // Only let the user through if either VM was successfully created or operation was cancelled
-        next_button.sensitive = true;
     }
 
     private void prepare_for_location (string location) throws GLib.Error {
