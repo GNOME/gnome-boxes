@@ -5,6 +5,7 @@ AM_CPPFLAGS =						\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"			\
 	$(DISABLE_DEPRECATED)				\
+	-DG_LOG_DOMAIN=\""Boxes"\"			\
 	$(NULL)
 
 AM_VALAFLAGS =						\
