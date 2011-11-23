@@ -55,17 +55,17 @@ private class Boxes.InstallerMedia : Object {
                                        Cancellable? cancellable) throws GLib.Error {
         var device = yield get_device_from_path (path, client, cancellable);
 
-        if (device != null)
+        if (device != null) {
             get_os_and_label_from_device (device, os_db);
-        else {
+            if (os != null)
+                os_media = os_db.get_prefered_media_for_os (os);
+        } else {
             from_image = true;
-            os = yield os_db.guess_os_from_install_media (device_file, cancellable);
+            os = yield os_db.guess_os_from_install_media (device_file, out os_media, cancellable);
         }
 
-        if (os != null) {
+        if (os != null)
             label = os.get_name ();
-            os_media = os_db.get_prefered_media_for_os (os);
-        }
 
         if (label == null)
             label = Path.get_basename (device_file);

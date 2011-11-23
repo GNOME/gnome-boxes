@@ -30,10 +30,12 @@ private class Boxes.OSDatabase {
         db = loader.get_db ();
     }
 
-    public async Os? guess_os_from_install_media (string media_path, Cancellable? cancellable) throws GLib.Error {
+    public async Os? guess_os_from_install_media (string media_path,
+                                                  out Media os_media,
+                                                  Cancellable? cancellable) throws GLib.Error {
         var media = yield Media.create_from_location_async (media_path, Priority.DEFAULT, cancellable);
 
-        return db.guess_os_from_media (media);
+        return db.guess_os_from_media (media, out os_media);
     }
 
     public Os? get_os_by_id (string id) {
@@ -54,6 +56,7 @@ private class Boxes.OSDatabase {
         return get_resources_from_os_resources (minimum, recommended);
     }
 
+    // FIXME: We should be choosing the media that actually correponsds to original media (if any)
     public Media? get_prefered_media_for_os (Os os) {
         var medias = os.get_media_list ();
 
