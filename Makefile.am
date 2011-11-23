@@ -20,6 +20,7 @@ DISTCLEANFILES =				\
 
 EXTRA_DIST =					\
 	CodingStyle.txt				\
+	THANKS					\
 	build-aux/git-version-gen		\
 	.version				\
 	$(INTLTOOL_FILES)			\
