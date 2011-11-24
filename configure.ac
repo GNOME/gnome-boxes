@@ -7,7 +7,7 @@ AC_INIT([gnome-boxes],
         [http://live.gnome.org/Boxes])
 
 AC_CONFIG_MACRO_DIR([m4])
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_AUX_DIR([build-aux])
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
