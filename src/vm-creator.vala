@@ -33,22 +33,28 @@ private class Boxes.VMCreator {
         else
             name = install_media.label;
 
-        var target_path = yield create_target_volume (name, resources.storage);
+        string target_path = null;
+        if (install_media.os_media.installer)
+            target_path = yield create_target_volume (name, resources.storage);
 
         var xml = get_virt_xml (install_media, name, target_path, resources);
         var config = new GVirConfig.Domain.from_xml (xml);
 
-        var domain = connection.create_domain (config);
+        Domain domain;
+        if (install_media.os_media.installer) {
+            domain = connection.create_domain (config);
+            domain.start (0);
 
-        domain.start (0);
+            // FIXME: We really should use GVirConfig API (as soon as its available) to modify the configuration XML.
+            xml = domain.get_config (0).to_xml ();
+            xml = direct_boot_regex.replace (xml, -1, 0, "");
+            xml = cdrom_boot_regex.replace (xml, -1, 0, "");
+            config = new GVirConfig.Domain.from_xml (xml);
 
-        // FIXME: We really should use GVirConfig API (as soon as its available) to modify the configuration XML.
-        xml = domain.get_config (0).to_xml ();
-        xml = direct_boot_regex.replace (xml, -1, 0, "");
-        xml = cdrom_boot_regex.replace (xml, -1, 0, "");
-        config = new GVirConfig.Domain.from_xml (xml);
-
-        domain.set_config (config);
+            domain.set_config (config);
+        } else
+            // We create a transient domain for media w/o an installer
+            domain = connection.start_domain (config, 0);
 
         return domain;
     }
@@ -59,7 +65,7 @@ private class Boxes.VMCreator {
         yield connection.fetch_storage_pools_async (cancellable);
     }
 
-    private string get_virt_xml (InstallerMedia install_media, string name, string target_path, Resources resources) {
+    private string get_virt_xml (InstallerMedia install_media, string name, string? target_path, Resources resources) {
         // FIXME: This information should come from libosinfo
         var clock_offset = "utc";
         if (install_media.os != null && install_media.os.short_id.contains ("win"))
@@ -88,11 +94,7 @@ private class Boxes.VMCreator {
                "  <on_reboot>restart</on_reboot>\n" +
                "  <on_crash>destroy</on_crash>\n" +
                "  <devices>\n" +
-               "    <disk type='file' device='disk'>\n" +
-               "      <driver name='qemu' type='qcow2'/>\n" +
-               "      <source file='" + target_path + "'/>\n" +
-               "      <target dev='hda' bus='ide'/>\n" +
-               "    </disk>\n" +
+               get_target_media_xml (target_path) +
                get_unattended_dir_floppy_xml (install_media) +
                get_source_media_xml (install_media) +
                "    <interface type='user'>\n" +
@@ -134,6 +136,17 @@ private class Boxes.VMCreator {
         var volume = pool.create_volume (config);
 
         return volume.get_path ();
+    }
+
+    private string get_target_media_xml (string? target_path) {
+        if (target_path == null)
+            return "";
+
+        return "    <disk type='file' device='disk'>\n" +
+               "      <driver name='qemu' type='qcow2'/>\n" +
+               "      <source file='" + target_path + "'/>\n" +
+               "      <target dev='hda' bus='ide'/>\n" +
+               "    </disk>\n";
     }
 
     private string get_source_media_xml (InstallerMedia install_media) {
