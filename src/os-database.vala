@@ -4,7 +4,8 @@ using Osinfo;
 
 public errordomain Boxes.OSDatabaseError {
     NON_BOOTABLE,
-    UNKNOWN_OS_ID
+    UNKNOWN_OS_ID,
+    UNKNOWN_MEDIA_ID
 }
 
 private class Boxes.OSDatabase {
@@ -49,25 +50,31 @@ private class Boxes.OSDatabase {
         return os;
     }
 
+    public Media get_media_by_id (Os os, string id) throws OSDatabaseError {
+        var medias = os.get_media_list ();
+
+        var media = medias.find_by_id (id) as Media;
+        if (media == null)
+            throw new OSDatabaseError.UNKNOWN_MEDIA_ID ("Unknown media ID '%s'", id);
+
+        return media;
+    }
+
     public Resources get_resources_for_os (Os? os) {
         if (os == null)
             return get_default_resources ();
 
+        // Prefer x86_64 resources
+        string[] prefs = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
+
         // First try recommended resources
         var list = os.get_recommended_resources ();
-        var recommended = get_prefered_resources (list);
+        var recommended = get_prefered_resources (list, prefs);
 
         list = os.get_minimum_resources ();
-        var minimum = get_prefered_resources (list);
+        var minimum = get_prefered_resources (list, prefs);
 
         return get_resources_from_os_resources (minimum, recommended);
-    }
-
-    // FIXME: We should be choosing the media that actually correponsds to original media (if any)
-    public Media? get_prefered_media_for_os (Os os) {
-        var medias = os.get_media_list ();
-
-        return get_prefered_media (medias);
     }
 
     private Resources get_resources_from_os_resources (Resources? minimum, Resources? recommended) {
@@ -94,34 +101,18 @@ private class Boxes.OSDatabase {
         return resources;
     }
 
-    private Resources? get_prefered_resources (ResourcesList list) {
-        // Prefer x86_64 resources
-        string[] prefs = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
-
-        return get_prefered_entity (list.new_filtered, RESOURCES_PROP_ARCHITECTURE, prefs) as Resources;
-    }
-
-    private Media? get_prefered_media (MediaList list) {
-        // Prefer x86_64 resources
-        string[] prefs = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
-
-        return get_prefered_entity (list.new_filtered, MEDIA_PROP_ARCHITECTURE, prefs) as Media;
-    }
-
-    private Entity? get_prefered_entity (ListFilterFunc filter_func, string property, string[] prefs) {
+    private Resources? get_prefered_resources (ResourcesList list, string[] prefs) {
         if (prefs.length <= 0)
             return null;
 
         var filter = new Filter ();
-        filter.add_constraint (property, prefs[0]);
-        var filtered = filter_func (filter);
+        filter.add_constraint (RESOURCES_PROP_ARCHITECTURE, prefs[0]);
+        var filtered = list.new_filtered (filter);
         if (filtered.get_length () <= 0)
-            return get_prefered_entity (filter_func, property, prefs[1:prefs.length]);
+            return get_prefered_resources (list, prefs[1:prefs.length]);
         else
             // Assumption: There is only one resources instance of each type
             // (minimum/recommended) of each architecture for each OS.
-            return filtered.get_nth (0);
+            return filtered.get_nth (0) as Resources;
     }
-
-    private delegate Osinfo.List ListFilterFunc (Filter filter);
 }

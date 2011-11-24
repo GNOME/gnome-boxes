@@ -55,11 +55,9 @@ private class Boxes.InstallerMedia : Object {
                                        Cancellable? cancellable) throws GLib.Error {
         var device = yield get_device_from_path (path, client, cancellable);
 
-        if (device != null) {
-            get_os_and_label_from_device (device, os_db);
-            if (os != null)
-                os_media = os_db.get_prefered_media_for_os (os);
-        } else {
+        if (device != null)
+            get_media_info_from_device (device, os_db);
+        else {
             from_image = true;
             os = yield os_db.guess_os_from_install_media (device_file, out os_media, cancellable);
         }
@@ -91,7 +89,7 @@ private class Boxes.InstallerMedia : Object {
         return client.query_by_device_file (device_file);
     }
 
-    private void get_os_and_label_from_device (GUdev.Device device, OSDatabase os_db) throws OSDatabaseError {
+    private void get_media_info_from_device (GUdev.Device device, OSDatabase os_db) throws OSDatabaseError {
         if (!device.get_property_as_boolean ("OSINFO_BOOTABLE"))
             throw new OSDatabaseError.NON_BOOTABLE ("Media %s is not bootable.", device_file);
 
@@ -100,6 +98,10 @@ private class Boxes.InstallerMedia : Object {
         var os_id = device.get_property ("OSINFO_INSTALLER");
         if (os_id != null) {
             os = os_db.get_os_by_id (os_id);
+
+            var media_id = device.get_property ("OSINFO_MEDIA");
+            if (media_id != null)
+                os_media = os_db.get_media_by_id (os, media_id);
         }
     }
 }
