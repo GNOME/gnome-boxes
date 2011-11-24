@@ -95,7 +95,8 @@ private class Boxes.InstallerMedia : Object {
 
         label = device.get_property ("ID_FS_LABEL");
 
-        var os_id = device.get_property ("OSINFO_INSTALLER");
+        var os_id = device.get_property ("OSINFO_INSTALLER") ?? device.get_property ("OSINFO_LIVE");
+
         if (os_id != null) {
             os = os_db.get_os_by_id (os_id);
 
