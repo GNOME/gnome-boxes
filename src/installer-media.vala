@@ -100,8 +100,6 @@ private class Boxes.InstallerMedia : Object {
         var os_id = device.get_property ("OSINFO_INSTALLER");
         if (os_id != null) {
             os = os_db.get_os_by_id (os_id);
-            if (os == null)
-                throw new OSDatabaseError.UNKNOWN_OS_ID ("Unknown OS ID '%s'", os_id);
         }
     }
 }

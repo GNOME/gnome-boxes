@@ -41,8 +41,12 @@ private class Boxes.OSDatabase {
         return db.guess_os_from_media (media, out os_media);
     }
 
-    public Os? get_os_by_id (string id) {
-        return db.get_os (id);
+    public Os get_os_by_id (string id) throws OSDatabaseError {
+        var os = db.get_os (id);
+        if (os == null)
+            throw new OSDatabaseError.UNKNOWN_OS_ID ("Unknown OS ID '%s'", id);
+
+        return os;
     }
 
     public Resources get_resources_for_os (Os? os) {
