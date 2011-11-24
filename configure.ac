@@ -1,7 +1,10 @@
 AC_PREREQ([2.63])
 
-AC_INIT([gnome-boxes], [m4_esyscmd(build-aux/git-version-gen .tarball-version)],
-        [spice-devel@lists.freedesktop.org])
+AC_INIT([gnome-boxes],
+        [m4_esyscmd(build-aux/git-version-gen .tarball-version)],
+        [https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes],
+        [gnome-boxes],
+        [http://live.gnome.org/Boxes])
 
 AC_CONFIG_MACRO_DIR([m4])
 AM_CONFIG_HEADER([config.h])
