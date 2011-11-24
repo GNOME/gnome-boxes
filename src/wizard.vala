@@ -239,9 +239,17 @@ private class Boxes.Wizard: Boxes.UI {
             return;
         }
 
-        var installer = install_media as UnattendedInstaller;
-        installer.populate_setup_vbox (setup_vbox);
-        setup_vbox.show_all ();
+        if (install_media.os_media.installer) {
+            var installer = install_media as UnattendedInstaller;
+            installer.populate_setup_vbox (setup_vbox);
+            setup_vbox.show_all ();
+        } else
+            // No setup required for pure (no installer) live medias
+            Idle.add (() => {
+                page = page + 1;
+
+                return false;
+            });
     }
 
     private void review () {
