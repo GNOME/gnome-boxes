@@ -12,7 +12,6 @@ AC_CONFIG_AUX_DIR([build-aux])
 m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 AM_INIT_AUTOMAKE([1.11 dist-xz no-dist-gzip tar-ustar foreign -Wall -Werror])
-LT_INIT
 AM_MAINTAINER_MODE([enable])
 
 GETTEXT_PACKAGE=AC_PACKAGE_NAME
@@ -32,8 +31,9 @@ AM_PROG_CC_C_O
 AC_PROG_CXX
 AM_PROG_VALAC([0.14.0])
 
-AM_DISABLE_STATIC
-AC_PROG_LIBTOOL
+# Initialize libtool
+LT_PREREQ([2.2])
+LT_INIT([disable-static])
 
 GLIB_GSETTINGS
 
