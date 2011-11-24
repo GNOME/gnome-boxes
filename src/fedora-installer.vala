@@ -17,15 +17,12 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         if (!express_toggle.active)
             return;
 
-        var kernel_path = os_media.get_kernel_path ();
-        var initrd_path = os_media.get_initrd_path ();
-
-        if (kernel_path == null || initrd_path == null)
+        if (os_media.kernel_path == null || os_media.initrd_path == null)
             return;
 
         yield mount_media (cancellable);
 
-        yield extract_boot_files (kernel_path, initrd_path, cancellable);
+        yield extract_boot_files (cancellable);
 
         yield normal_clean_up (cancellable);
     }
@@ -81,11 +78,11 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         mounted = true;
     }
 
-    private async void extract_boot_files (string kernel, string initrd, Cancellable? cancellable) throws GLib.Error {
-        kernel_path = Path.build_filename (mount_point, kernel);
-        kernel_file = File.new_for_path (kernel_path);
-        initrd_path = Path.build_filename (mount_point, initrd);
-        initrd_file = File.new_for_path (initrd_path);
+    private async void extract_boot_files (Cancellable? cancellable) throws GLib.Error {
+        kernel_path = Path.build_filename (mount_point, os_media.kernel_path);
+        kernel_file = File.new_for_path (os_media.kernel_path);
+        initrd_path = Path.build_filename (mount_point, os_media.initrd_path);
+        initrd_file = File.new_for_path (os_media.initrd_path);
 
         if (!mounted)
             return;
