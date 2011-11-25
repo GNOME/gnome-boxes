@@ -21,6 +21,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IProperties {
 
     public abstract Gtk.Widget get_display (int n) throws Boxes.Error;
     public abstract Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error;
+    public abstract void set_enable_inputs (Gtk.Widget widget, bool enable);
 
     public abstract void connect_it ();
     public abstract void disconnect_it ();

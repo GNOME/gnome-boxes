@@ -369,6 +369,7 @@ private class Boxes.MachineActor: Boxes.UI {
                         display.contents = null;
                         display = null;
                         // FIXME: enable grabs
+                        machine.display.set_enable_inputs (widget, true);
                         machine.app.display_page.show_display (machine, widget);
                     });
                 } else
@@ -386,7 +387,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
         case UIState.PROPERTIES:
             var widget = machine.app.display_page.remove_display ();
-            // FIXME: disable grabs
+            machine.display.set_enable_inputs (widget, false);
             display = new GtkClutter.Actor.with_contents (widget);
             display.x = 0.0f;
             display.y = 0.0f;

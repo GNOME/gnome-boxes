@@ -5,7 +5,6 @@ using Vnc;
 private class Boxes.VncDisplay: Boxes.Display {
     public override string protocol { get { return "VNC"; } }
     public override string uri { owned get { return @"vnc://$host:$port"; } }
-
     private Vnc.Display display;
     private string host;
     private int port;
@@ -100,6 +99,10 @@ private class Boxes.VncDisplay: Boxes.Display {
         window.remove (display);
 
         return display;
+    }
+
+    public override void set_enable_inputs (Gtk.Widget widget, bool enable) {
+        (widget as Vnc.Display).read_only = !enable;
     }
 
     public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {

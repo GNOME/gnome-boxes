@@ -66,6 +66,10 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
         return display;
     }
 
+    public override void set_enable_inputs (Gtk.Widget widget, bool enable) {
+        (widget as Spice.Display).disable_inputs = !enable;
+    }
+
     public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
         return (get_display (n) as Spice.Display).get_pixbuf ();
     }
