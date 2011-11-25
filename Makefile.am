@@ -1,4 +1,4 @@
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 NULL =
 
 SUBDIRS = data src po vapi
