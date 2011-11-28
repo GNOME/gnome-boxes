@@ -14,6 +14,21 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         private set { _floppy_path = value; }
     }
 
+    public bool express_install {
+        get { return express_toggle.active; }
+    }
+
+    public string username {
+        get { return username_entry.text; }
+    }
+
+    public string hidden_password {
+        owned get {
+            return password_entry.text.length > 0 ?
+                   string.nfill (password_entry.text_length, '*') : "no password";
+        }
+    }
+
     protected string unattended_src_path;
     protected string unattended_dest_name;
 
