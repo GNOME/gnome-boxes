@@ -80,9 +80,9 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
     private async void extract_boot_files (Cancellable? cancellable) throws GLib.Error {
         kernel_path = Path.build_filename (mount_point, os_media.kernel_path);
-        kernel_file = File.new_for_path (os_media.kernel_path);
+        kernel_file = File.new_for_path (kernel_path);
         initrd_path = Path.build_filename (mount_point, os_media.initrd_path);
-        initrd_file = File.new_for_path (os_media.initrd_path);
+        initrd_file = File.new_for_path (initrd_path);
 
         if (!mounted)
             return;
@@ -97,7 +97,9 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         var dest_file = File.new_for_path (dest_path);
 
         try {
+            debug ("Copying '%s' to '%s'..", file.get_path (), dest_path);
             yield file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable);
+            debug ("Copied '%s' to '%s'.", file.get_path (), dest_path);
         } catch (IOError.EXISTS error) {}
 
         return dest_file;
