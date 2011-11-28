@@ -149,18 +149,19 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare_for_location (string location) throws GLib.Error {
-        var file = File.new_for_uri (location);
+        var file = File.new_for_commandline_arg (location);
 
         if (file.is_native ())
             // FIXME: We should able to handle non-local URIs here too
-            prepare_for_installer (location);
+            prepare_for_installer (file.get_path ());
         else {
             bool uncertain;
+            var uri = file.get_uri ();
 
-            var mimetype = ContentType.guess (location, null, out uncertain);
+            var mimetype = ContentType.guess (uri, null, out uncertain);
 
             if (uncertain)
-                prepare_for_uri (location);
+                prepare_for_uri (uri);
             else
                 debug ("FIXME: %s".printf (mimetype));
         }
@@ -186,7 +187,7 @@ private class Boxes.Wizard: Boxes.UI {
             throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
     }
 
-    private void prepare_for_installer (string location) throws GLib.Error {
+    private void prepare_for_installer (string path) throws GLib.Error {
         if (client == null) {
             client = new GUdev.Client ({"block"});
             os_db = new OSDatabase ();
@@ -194,9 +195,7 @@ private class Boxes.Wizard: Boxes.UI {
         }
 
         next_button.sensitive = false;
-        var file = File.new_for_uri (location);
-        // FIXME: Assuming location is a local URI
-        InstallerMedia.instantiate.begin (file.get_path (), os_db, client, null, on_installer_media_instantiated);
+        InstallerMedia.instantiate.begin (path, os_db, client, null, on_installer_media_instantiated);
     }
 
     private void on_installer_media_instantiated (Object? source_object, AsyncResult result) {
