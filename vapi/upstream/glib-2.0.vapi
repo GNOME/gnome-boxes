@@ -2184,6 +2184,7 @@ namespace GLib {
 		public static GLib.LogFunc default_handler;
 		public static LogLevelFlags set_fatal_mask (string log_domain, LogLevelFlags log_levels);
 		public static LogLevelFlags set_always_fatal (LogLevelFlags log_levels);
+		public static void remove_handler (string? log_domain, uint handler_id);
 
 		public const string FILE;
 		public const int LINE;
@@ -2675,7 +2676,19 @@ namespace GLib {
 	[CCode (has_target = false)]
 	public delegate void VoidFunc ();
 
+	[Deprecated (replacement = "format_size")]
 	public string format_size_for_display (int64 size);
+
+	public string format_size (uint64 size);
+
+	public string format_size_full (uint64 size, FormatSizeFlags flags);
+
+	[CCode (cprefix = "G_FORMAT_SIZE_", has_type_id = false)]
+	public enum FormatSizeFlags {
+		DEFAULT,
+		LONG_FORMAT,
+		IEC_UNITS
+	}
 
 	/* Lexical Scanner */
 	[CCode (has_target = false)]
@@ -3878,7 +3891,7 @@ namespace GLib {
 		[CCode (cname = "g_sequence_get")]
 		public unowned G get ();
 		[CCode (cname = "g_sequence_set")]
-		public unowned void set (owned G data);
+		public void set (owned G data);
 	}
 
 	public delegate int SequenceIterCompareFunc<G> (SequenceIter<G> a, SequenceIter<G> b);

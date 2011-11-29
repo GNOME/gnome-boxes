@@ -116,16 +116,6 @@ private class Boxes.Wizard: Boxes.UI {
         });
     }
 
-    private static string memory_to_string (int64 memory) {
-        if (memory >= Osinfo.GIBIBYTES)
-            // Translators: GB here means giga bytes. More information: http://en.wikipedia.org/wiki/Gigabyte
-            return _("%lld GB".printf (memory / Osinfo.GIBIBYTES));
-        else
-            // Does anyone have < 1M memory?
-            // Translators: MB here means mega bytes. More information: http://en.wikipedia.org/wiki/Megabyte
-            return _("%lld MB".printf (memory / Osinfo.MEBIBYTES));
-    }
-
     public Wizard (App app) {
         this.app = app;
 
@@ -292,8 +282,10 @@ private class Boxes.Wizard: Boxes.UI {
                     summary.add_property (_("Password"), media.hidden_password);
                 }
 
-                summary.add_property (_("Memory"), memory_to_string (resources.ram));
-                summary.add_property (_("Disk"),  _("%s maximum".printf (memory_to_string (resources.storage))));
+                var memory = format_size_full (resources.ram, FormatSizeFlags.IEC_UNITS);
+                summary.add_property (_("Memory"), memory);
+                memory = format_size_full (resources.storage, FormatSizeFlags.IEC_UNITS);
+                summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
             }
         }
     }
