@@ -8,10 +8,12 @@ private class Boxes.VMCreator {
 
     private static Regex direct_boot_regex;
     private static Regex cdrom_boot_regex;
+    private static Regex on_reboot_regex;
 
     static construct {
         direct_boot_regex = /<kernel>.*<\/cmdline>/msx;
         cdrom_boot_regex = /<boot.*dev=.cdrom.\/>/msx;
+        on_reboot_regex = /<on_reboot>destroy/msx;
     }
 
     public VMCreator (App app, string uri) throws GLib.Error {
@@ -62,9 +64,10 @@ private class Boxes.VMCreator {
     private void post_install_setup (Domain domain, GVirConfig.Domain config, bool permanent) {
         try {
             var new_config = create_post_install_config (config);
-            if (permanent)
+            if (permanent) {
                 domain.set_config (new_config);
-            else {
+                domain.start (0);
+            } else {
                 var new_domain = connection.create_domain (new_config);
                 new_domain.start (0);
             }
@@ -90,6 +93,7 @@ private class Boxes.VMCreator {
         var xml = config.to_xml ();
         xml = direct_boot_regex.replace (xml, -1, 0, "");
         xml = cdrom_boot_regex.replace (xml, -1, 0, "");
+        xml = on_reboot_regex.replace (xml, -1, 0, "<on_reboot>restart");
 
         return new GVirConfig.Domain.from_xml (xml);
     }
@@ -126,7 +130,7 @@ private class Boxes.VMCreator {
                "  </features>\n" +
                "  <clock offset='" + clock_offset + "'/>\n" +
                "  <on_poweroff>destroy</on_poweroff>\n" +
-               "  <on_reboot>restart</on_reboot>\n" +
+               "  <on_reboot>destroy</on_reboot>\n" +
                "  <on_crash>destroy</on_crash>\n" +
                "  <devices>\n" +
                get_target_media_xml (target_path) +
