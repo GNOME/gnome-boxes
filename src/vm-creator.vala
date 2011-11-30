@@ -33,28 +33,65 @@ private class Boxes.VMCreator {
         else
             name = install_media.label;
 
-        var target_path = yield create_target_volume (name, resources.storage);
+        var volume = yield create_target_volume (name, resources.storage);
 
-        var xml = get_virt_xml (install_media, name, target_path, resources);
+        var xml = get_virt_xml (install_media, name, volume.get_path (), resources);
         var config = new GVirConfig.Domain.from_xml (xml);
 
         Domain domain;
         if (install_media.os_media.installer) {
             domain = connection.create_domain (config);
             domain.start (0);
-
-            // FIXME: We really should use GVirConfig API (as soon as its available) to modify the configuration XML.
-            xml = domain.get_config (0).to_xml ();
-            xml = direct_boot_regex.replace (xml, -1, 0, "");
-            xml = cdrom_boot_regex.replace (xml, -1, 0, "");
-            config = new GVirConfig.Domain.from_xml (xml);
-
-            domain.set_config (config);
+            config = domain.get_config (0);
         } else
             // We create a transient domain for media w/o an installer
             domain = connection.start_domain (config, 0);
 
+        ulong id = 0;
+        id = domain.stopped.connect (() => {
+            if (guest_installed_os (volume)) {
+                post_install_setup (domain, config, install_media.os_media.installer);
+                domain.disconnect (id);
+            } else if (!install_media.os_media.installer)
+                domain.disconnect (id);
+        });
+
         return domain;
+    }
+
+    private void post_install_setup (Domain domain, GVirConfig.Domain config, bool permanent) {
+        try {
+            var new_config = create_post_install_config (config);
+            if (permanent)
+                domain.set_config (new_config);
+            else {
+                var new_domain = connection.create_domain (new_config);
+                new_domain.start (0);
+            }
+        } catch (GLib.Error error) {
+            warning ("Post-install setup failed for domain '%s': %s", domain.get_uuid (), error.message);
+        }
+    }
+
+    private bool guest_installed_os (StorageVol volume) {
+        try {
+            var info = volume.get_info ();
+
+            // If guest has used 1 MiB of storage, we assume it installed an OS on the volume
+            return (info.allocation >= Osinfo.MEBIBYTES);
+        } catch (GLib.Error error) {
+            warning ("Failed to get information from volume '%s': %s", volume.get_name (), error.message);
+            return false;
+        }
+    }
+
+    private GVirConfig.Domain create_post_install_config (GVirConfig.Domain config) throws GLib.Error {
+        // FIXME: We really should use GVirConfig API (as soon as its available) to modify the configuration XML.
+        var xml = config.to_xml ();
+        xml = direct_boot_regex.replace (xml, -1, 0, "");
+        xml = cdrom_boot_regex.replace (xml, -1, 0, "");
+
+        return new GVirConfig.Domain.from_xml (xml);
     }
 
     private async void connect (Cancellable? cancellable) throws GLib.Error {
@@ -106,7 +143,7 @@ private class Boxes.VMCreator {
                "</domain>";
     }
 
-    private async string create_target_volume (string name, int64 storage) throws GLib.Error {
+    private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
         var pool = yield get_storage_pool ();
 
         var volume_name = name + ".qcow2";
@@ -130,7 +167,7 @@ private class Boxes.VMCreator {
         var config = new GVirConfig.StorageVol.from_xml (xml);
         var volume = pool.create_volume (config);
 
-        return volume.get_path ();
+        return volume;
     }
 
     private string get_target_media_xml (string target_path) {
