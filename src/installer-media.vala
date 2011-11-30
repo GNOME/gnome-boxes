@@ -11,6 +11,8 @@ private class Boxes.InstallerMedia : Object {
     public string mount_point;
     public bool from_image;
 
+    public bool live { get { return os_media == null || os_media.live; } }
+
     public static async InstallerMedia instantiate (string       path,
                                                     OSDatabase   os_db,
                                                     Client       client,

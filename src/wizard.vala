@@ -227,28 +227,25 @@ private class Boxes.Wizard: Boxes.UI {
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
 
-        if (install_media == null || !(install_media is UnattendedInstaller)) {
+        var skip_to = page;
+        if (install_media == null || install_media.live)
+            // No setup or review required for unknown and live media
+            skip_to = WizardPage.LAST;
+        else if (!(install_media is UnattendedInstaller))
             // Nothing to do so just skip to the next page but let the current page change complete first
+            skip_to = page + 1;
+
+        if (skip_to != page)
             Idle.add (() => {
-                page = page + 1;
+                page = skip_to;
 
                 return false;
             });
-
-            return;
-        }
-
-        if (install_media.os_media.installer) {
+        else {
             var installer = install_media as UnattendedInstaller;
             installer.populate_setup_vbox (setup_vbox);
             setup_vbox.show_all ();
-        } else
-            // No setup or review required for pure (no installer) live medias
-            Idle.add (() => {
-                page = WizardPage.LAST;
-
-                return false;
-            });
+        }
     }
 
     private void review () {

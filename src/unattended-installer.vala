@@ -109,7 +109,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         table.attach_defaults (label, 1, 2, 0, 1);
 
         express_toggle = new Gtk.Switch ();
-        express_toggle.active = os_media.installer;
+        express_toggle.active = !os_media.live;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
         table.attach_defaults (express_toggle, 2, 3, 0, 1);

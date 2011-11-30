@@ -41,20 +41,21 @@ private class Boxes.VMCreator {
         var config = new GVirConfig.Domain.from_xml (xml);
 
         Domain domain;
-        if (install_media.os_media.installer) {
+        if (install_media.live)
+            // We create a (initially) transient domain for live and unknown media
+            domain = connection.start_domain (config, 0);
+        else {
             domain = connection.create_domain (config);
             domain.start (0);
             config = domain.get_config (0);
-        } else
-            // We create a transient domain for media w/o an installer
-            domain = connection.start_domain (config, 0);
+        }
 
         ulong id = 0;
         id = domain.stopped.connect (() => {
             if (guest_installed_os (volume)) {
-                post_install_setup (domain, config, install_media.os_media.installer);
+                post_install_setup (domain, config, !install_media.live);
                 domain.disconnect (id);
-            } else if (!install_media.os_media.installer)
+            } else if (install_media.live)
                 domain.disconnect (id);
         });
 
