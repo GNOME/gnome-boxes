@@ -33,9 +33,7 @@ private class Boxes.VMCreator {
         else
             name = install_media.label;
 
-        string target_path = null;
-        if (install_media.os_media.installer)
-            target_path = yield create_target_volume (name, resources.storage);
+        var target_path = yield create_target_volume (name, resources.storage);
 
         var xml = get_virt_xml (install_media, name, target_path, resources);
         var config = new GVirConfig.Domain.from_xml (xml);
@@ -65,7 +63,7 @@ private class Boxes.VMCreator {
         yield connection.fetch_storage_pools_async (cancellable);
     }
 
-    private string get_virt_xml (InstallerMedia install_media, string name, string? target_path, Resources resources) {
+    private string get_virt_xml (InstallerMedia install_media, string name, string target_path, Resources resources) {
         // FIXME: This information should come from libosinfo
         var clock_offset = "utc";
         if (install_media.os != null && install_media.os.short_id.contains ("win"))
@@ -135,10 +133,7 @@ private class Boxes.VMCreator {
         return volume.get_path ();
     }
 
-    private string get_target_media_xml (string? target_path) {
-        if (target_path == null)
-            return "";
-
+    private string get_target_media_xml (string target_path) {
         return "    <disk type='file' device='disk'>\n" +
                "      <driver name='qemu' type='qcow2'/>\n" +
                "      <source file='" + target_path + "'/>\n" +
