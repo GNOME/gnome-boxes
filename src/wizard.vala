@@ -243,9 +243,9 @@ private class Boxes.Wizard: Boxes.UI {
             installer.populate_setup_vbox (setup_vbox);
             setup_vbox.show_all ();
         } else
-            // No setup required for pure (no installer) live medias
+            // No setup or review required for pure (no installer) live medias
             Idle.add (() => {
-                page = page + 1;
+                page = WizardPage.LAST;
 
                 return false;
             });
