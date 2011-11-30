@@ -55,6 +55,9 @@ private class Boxes.App: Boxes.UI {
         collection.item_added.connect ((item) => {
             view.add_item (item);
         });
+        collection.item_removed.connect ((item) => {
+            view.remove_item (item);
+        });
 
         setup_sources.begin ();
     }
@@ -93,7 +96,8 @@ private class Boxes.App: Boxes.UI {
 
         connection.domain_removed.connect ((connection, domain) => {
             var machine = domain.get_data<LibvirtMachine> ("machine");
-            view.remove_item (machine);
+            machine.delete (false);
+            collection.remove_item (machine);
         });
 
         connection.domain_added.connect ((connection, domain) => {

@@ -82,7 +82,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
         return true;
     }
 
-    public override void delete () {
+    public override void delete (bool by_user = true) {
+        return_if_fail (by_user);
+
         source.delete ();
     }
 }

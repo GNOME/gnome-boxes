@@ -7,6 +7,7 @@ private abstract class Boxes.CollectionItem: Boxes.UI {
 private class Boxes.Collection: GLib.Object {
     private Boxes.App app;
     public signal void item_added (CollectionItem item);
+    public signal void item_removed (CollectionItem item);
 
     public GenericArray<CollectionItem> items;
 
@@ -21,6 +22,11 @@ private class Boxes.Collection: GLib.Object {
     public void add_item (CollectionItem item) {
         items.add (item);
         item_added (item);
+    }
+
+    public void remove_item (CollectionItem item) {
+        items.remove (item);
+        item_removed (item);
     }
 }
 

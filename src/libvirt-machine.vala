@@ -84,10 +84,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stats = new MachineStat[STATS_SIZE];
     }
 
-    ~LibvirtMachine () {
-        set_stats_enable (false);
-    }
-
     public LibvirtMachine (CollectionSource source, Boxes.App app,
                            GVir.Connection connection, GVir.Domain domain) {
         base (source, app, domain.get_name ());
@@ -215,7 +211,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private uint stats_id;
-    public void set_stats_enable (bool enable) {
+    private void set_stats_enable (bool enable) {
         if (enable) {
             if (stats_id != 0)
                 return;
@@ -317,18 +313,20 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return true;
     }
 
-    public override void delete () {
-        try {
-            if (is_running ())
-                domain.stop (0);
-        } catch (GLib.Error err) {
-            // ignore stop error
-        }
+    public override void delete (bool by_user = true) {
+        if (by_user) {
+            try {
+                if (is_running ())
+                    domain.stop (0);
+            } catch (GLib.Error err) {
+                // ignore stop error
+            }
 
-        try {
-            domain.delete (0);
-        } catch (GLib.Error err) {
-            warning (err.message);
+            try {
+                domain.delete (0);
+            } catch (GLib.Error err) {
+                warning (err.message);
+            }
         }
 
         set_stats_enable (false);

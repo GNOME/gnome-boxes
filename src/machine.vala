@@ -222,7 +222,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 
-    public abstract void delete ();
+    public abstract void delete (bool by_user = true);
 
     public override void ui_state_changed () {
         machine_actor.ui_state = ui_state;
