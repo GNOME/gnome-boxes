@@ -5,24 +5,16 @@ using GVir;
 
 private class Boxes.VMCreator {
     private Connection connection;
-
-    private static Regex direct_boot_regex;
-    private static Regex cdrom_boot_regex;
-    private static Regex on_reboot_regex;
-
-    static construct {
-        direct_boot_regex = /<kernel>.*<\/cmdline>/msx;
-        cdrom_boot_regex = /<boot.*dev=.cdrom.\/>/msx;
-        on_reboot_regex = /<on_reboot>destroy/msx;
-    }
+    private VMConfigurator configurator;
 
     public VMCreator (App app, string uri) throws GLib.Error {
         connection = new Connection (uri);
+        configurator = new VMConfigurator ();
     }
 
-    public async GVir.Domain create_and_launch_vm (InstallerMedia install_media,
-                                                   Resources      resources,
-                                                   Cancellable?   cancellable) throws GLib.Error {
+    public async Domain create_and_launch_vm (InstallerMedia install_media,
+                                              Resources      resources,
+                                              Cancellable?   cancellable) throws GLib.Error {
         if (!connection.is_open ())
             yield connect (cancellable);
 
@@ -35,10 +27,12 @@ private class Boxes.VMCreator {
         else
             name = install_media.label;
 
-        var volume = yield create_target_volume (name, resources.storage);
+        var domain_name = name;
+        for (var i = 1; connection.find_domain_by_name (domain_name) != null; i++)
+            domain_name = name + "-" + i.to_string ();
 
-        var xml = get_virt_xml (install_media, name, volume.get_path (), resources);
-        var config = new GVirConfig.Domain.from_xml (xml);
+        var volume = yield create_target_volume (name, resources.storage);
+        var config = configurator.create_domain_config (install_media, domain_name, volume.get_path (), resources);
 
         Domain domain;
         if (install_media.live)
@@ -70,13 +64,14 @@ private class Boxes.VMCreator {
     }
 
     private void post_install_setup (Domain domain, GVirConfig.Domain config, bool permanent) {
+        configurator.post_install_setup (config);
+
         try {
-            var new_config = create_post_install_config (config);
             if (permanent) {
-                domain.set_config (new_config);
+                domain.set_config (config);
                 domain.start (0);
             } else {
-                var new_domain = connection.create_domain (new_config);
+                var new_domain = connection.create_domain (config);
                 new_domain.start (0);
             }
         } catch (GLib.Error error) {
@@ -96,63 +91,10 @@ private class Boxes.VMCreator {
         }
     }
 
-    private GVirConfig.Domain create_post_install_config (GVirConfig.Domain config) throws GLib.Error {
-        // FIXME: We really should use GVirConfig API (as soon as its available) to modify the configuration XML.
-        var xml = config.to_xml ();
-        xml = direct_boot_regex.replace (xml, -1, 0, "");
-        xml = cdrom_boot_regex.replace (xml, -1, 0, "");
-        xml = on_reboot_regex.replace (xml, -1, 0, "<on_reboot>restart");
-
-        return new GVirConfig.Domain.from_xml (xml);
-    }
-
     private async void connect (Cancellable? cancellable) throws GLib.Error {
         yield connection.open_async (cancellable);
         yield connection.fetch_domains_async (cancellable);
         yield connection.fetch_storage_pools_async (cancellable);
-    }
-
-    private string get_virt_xml (InstallerMedia install_media, string name, string target_path, Resources resources) {
-        // FIXME: This information should come from libosinfo
-        var clock_offset = "utc";
-        if (install_media.os != null && install_media.os.short_id.contains ("win"))
-            clock_offset = "localtime";
-
-        var domain_name = name;
-        for (var i = 1; connection.find_domain_by_name (domain_name) != null; i++)
-            domain_name = name + "-" + i.to_string ();
-
-        var ram = (resources.ram / KIBIBYTES).to_string ();
-        return "<domain type='kvm'>\n" +
-               "  <name>" +  domain_name + "</name>\n" +
-               "  <memory>" + ram + "</memory>\n" +
-               "  <vcpu>" + resources.n_cpus.to_string () + "</vcpu>\n" +
-               "  <os>\n" +
-               "    <type arch='x86_64'>hvm</type>\n" +
-               "    <boot dev='cdrom'/>\n" +
-               "    <boot dev='hd'/>\n" +
-               get_direct_boot_xml (install_media) +
-               "  </os>\n" +
-               "  <features>\n" +
-               "    <acpi/><apic/><pae/>\n" +
-               "  </features>\n" +
-               "  <clock offset='" + clock_offset + "'/>\n" +
-               "  <on_poweroff>destroy</on_poweroff>\n" +
-               "  <on_reboot>destroy</on_reboot>\n" +
-               "  <on_crash>destroy</on_crash>\n" +
-               "  <devices>\n" +
-               get_target_media_xml (target_path) +
-               get_unattended_dir_floppy_xml (install_media) +
-               get_source_media_xml (install_media) +
-               "    <interface type='user'>\n" +
-               "      <mac address='00:11:22:33:44:55'/>\n" +
-               "    </interface>\n" +
-               "    <input type='tablet' bus='usb'/>\n" +
-               "    <graphics type='spice' autoport='yes' />\n" +
-               "    <console type='pty'/>\n" +
-               get_video_xml (install_media) +
-               "  </devices>\n" +
-               "</domain>";
     }
 
     private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
@@ -162,117 +104,16 @@ private class Boxes.VMCreator {
         for (var i = 1; pool.get_volume (volume_name) != null; i++)
             volume_name = name + "-" + i.to_string () + ".qcow2";
 
-        var storage_str = (storage / GIBIBYTES).to_string ();
-        var xml = "<volume>\n" +
-                  "  <name>" + volume_name + "</name>\n" +
-                  "  <capacity unit='G'>" + storage_str + "</capacity>\n" +
-                  "  <target>\n" +
-                  "    <format type='qcow2'/>\n" +
-                  "    <permissions>\n" +
-                  "      <owner>" + get_uid () + "</owner>\n" +
-                  "      <group>" + get_gid () + "</group>\n" +
-                  "      <mode>0744</mode>\n" +
-                  "      <label>virt-image-" + name + "</label>\n" +
-                  "    </permissions>\n" +
-                  "  </target>\n" +
-                  "</volume>";
-        var config = new GVirConfig.StorageVol.from_xml (xml);
+        var config = configurator.create_volume_config (volume_name, storage);
         var volume = pool.create_volume (config);
 
         return volume;
     }
 
-    private string get_target_media_xml (string target_path) {
-        return "    <disk type='file' device='disk'>\n" +
-               "      <driver name='qemu' type='qcow2'/>\n" +
-               "      <source file='" + target_path + "'/>\n" +
-               "      <target dev='hda' bus='ide'/>\n" +
-               "    </disk>\n";
-    }
-
-    private string get_source_media_xml (InstallerMedia install_media) {
-        string type, source_attr;
-
-        if (install_media.from_image) {
-            type = "file";
-            source_attr = "file" ;
-        } else {
-            type = "block";
-            source_attr = "dev";
-        }
-
-        return "    <disk type='" + type + "'\n" +
-               "          device='cdrom'>\n" +
-               "      <driver name='qemu' type='raw'/>\n" +
-               "      <source " + source_attr + "='" +
-                                  install_media.device_file + "'/>\n" +
-               "      <target dev='hdc' bus='ide'/>\n" +
-               "      <readonly/>\n" +
-               "    </disk>\n";
-    }
-
-    private string get_unattended_dir_floppy_xml (InstallerMedia install_media) {
-        if (!(install_media is UnattendedInstaller))
-            return "";
-
-        var floppy_path = (install_media as UnattendedInstaller).floppy_path;
-        if (floppy_path == null)
-            return "";
-
-        return "    <disk type='file' device='floppy'>\n" +
-               "      <driver name='qemu' type='raw'/>\n" +
-               "      <source file='" + floppy_path + "'/>\n" +
-               "      <target dev='fd'/>\n" +
-               "    </disk>\n";
-    }
-
-    private string get_direct_boot_xml (InstallerMedia install_media) {
-        if (!(install_media is UnattendedInstaller))
-            return "";
-
-        var unattended = install_media as UnattendedInstaller;
-
-        var kernel_path = unattended.kernel_path;
-        var initrd_path = unattended.initrd_path;
-
-        if (kernel_path == null || initrd_path == null)
-            return "";
-
-        return "    <kernel>" + kernel_path + "</kernel>\n" +
-               "    <initrd>" + initrd_path + "</initrd>\n" +
-               "    <cmdline>ks=floppy</cmdline>\n";
-    }
-
-    private string get_video_xml (InstallerMedia install_media) {
-        // FIXME: Should be 'qxl' for every OS. Work-around for a Qemu bug
-        var type = (install_media is Win7Installer) ? "vga" : "qxl";
-
-        return "    <video>\n" +
-               "      <model type='" + type + "'/>\n" +
-               "    </video>\n";
-    }
-
     private async StoragePool get_storage_pool () throws GLib.Error {
         var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
         if (pool == null) {
-            var pool_path = get_pkgconfig ("images");
-            ensure_directory (pool_path);
-            var xml = "<pool type='dir'>\n" +
-                      "<name>" + Config.PACKAGE_TARNAME + "</name>\n" +
-                      "  <source>\n" +
-                      "    <directory path='" + pool_path + "'/>\n" +
-                      "  </source>\n" +
-                      "  <target>\n" +
-                      "    <path>" + pool_path + "</path>\n" +
-                      "    <permissions>\n" +
-                      "      <owner>" + get_uid () + "</owner>\n" +
-                      "      <group>" + get_gid () + "</group>\n" +
-                      "      <mode>0744</mode>\n" +
-                      "      <label>" + Config.PACKAGE_TARNAME + "</label>\n" +
-                      "    </permissions>\n" +
-                      "  </target>\n" +
-                      "</pool>";
-            var config = new GVirConfig.StoragePool.from_xml (xml);
+            var config = configurator.get_pool_config ();
             pool = connection.create_storage_pool (config, 0);
             yield pool.build_async (0, null);
             yield pool.start_async (0, null);
@@ -282,13 +123,5 @@ private class Boxes.VMCreator {
         pool.refresh (null);
 
         return pool;
-    }
-
-    private string get_uid () {
-        return ((uint32) Posix.getuid ()).to_string ();
-    }
-
-    private string get_gid () {
-        return ((uint32) Posix.getgid ()).to_string ();
     }
 }

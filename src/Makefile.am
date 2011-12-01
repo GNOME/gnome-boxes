@@ -57,6 +57,7 @@ gnome_boxes_SOURCES =				\
 	unattended-installer.vala 		\
 	util.vala				\
 	vm-creator.vala 			\
+	vm-configurator.vala 			\
 	vnc-display.vala			\
 	win7-installer.vala 			\
 	winxp-installer.vala 			\
