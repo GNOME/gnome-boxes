@@ -73,11 +73,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         try {
             if (yield unattended_floppy_exists (cancellable))
                 debug ("Found previously created unattended floppy image for '%s', re-using..", os.short_id);
-            else {
+            else
                 yield create_floppy_image (cancellable);
-                yield copy_unattended_file (cancellable);
-            }
 
+            yield copy_unattended_file (cancellable);
             yield prepare_direct_boot (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
@@ -233,7 +232,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         debug ("Copying unattended file '%s' into floppy drive/image '%s'", unattended_dest_name, floppy_path);
         // FIXME: Perhaps we should use libarchive for this?
-        string[] argv = { "mcopy", "-i", floppy_path,
+        string[] argv = { "mcopy", "-n", "-o", "-i", floppy_path,
                                    unattended_tmp_path,
                                    "::" + unattended_dest_name };
         yield exec (argv, cancellable);
