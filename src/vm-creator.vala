@@ -103,10 +103,7 @@ private class Boxes.VMCreator {
                "    <input type='tablet' bus='usb'/>\n" +
                "    <graphics type='spice' autoport='yes' />\n" +
                "    <console type='pty'/>\n" +
-               "    <video>\n" +
-               // FIXME: Should be 'qxl', work-around for a spice bug
-               "      <model type='vga'/>\n" +
-               "    </video>\n" +
+               get_video_xml (install_media) +
                "  </devices>\n" +
                "</domain>";
     }
@@ -200,6 +197,15 @@ private class Boxes.VMCreator {
         return "    <kernel>" + kernel_path + "</kernel>\n" +
                "    <initrd>" + initrd_path + "</initrd>\n" +
                "    <cmdline>ks=floppy</cmdline>\n";
+    }
+
+    private string get_video_xml (InstallerMedia install_media) {
+        // FIXME: Should be 'qxl' for every OS. Work-around for a Qemu bug
+        var type = (install_media is Win7Installer) ? "vga" : "qxl";
+
+        return "    <video>\n" +
+               "      <model type='" + type + "'/>\n" +
+               "    </video>\n";
     }
 
     private async StoragePool get_storage_pool () throws GLib.Error {
