@@ -55,8 +55,15 @@ private class Boxes.VMCreator {
             if (guest_installed_os (volume)) {
                 post_install_setup (domain, config, !install_media.live);
                 domain.disconnect (id);
-            } else if (install_media.live)
+            } else if (install_media.live) {
                 domain.disconnect (id);
+                // Domain is gone then so we should delete associated storage volume.
+                try {
+                    volume.delete (0);
+                } catch (GLib.Error error) {
+                    warning ("Failed to delete volume '%s': %s", volume.get_path (), error.message);
+                }
+            }
         });
 
         return domain;
