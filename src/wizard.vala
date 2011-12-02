@@ -282,9 +282,9 @@ private class Boxes.Wizard: Boxes.UI {
                     summary.add_property (_("Password"), media.hidden_password);
                 }
 
-                var memory = format_size_full (resources.ram, FormatSizeFlags.IEC_UNITS);
+                var memory = format_size (resources.ram, FormatSizeFlags.IEC_UNITS);
                 summary.add_property (_("Memory"), memory);
-                memory = format_size_full (resources.storage, FormatSizeFlags.IEC_UNITS);
+                memory = format_size (resources.storage, FormatSizeFlags.IEC_UNITS);
                 summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
             }
         }
