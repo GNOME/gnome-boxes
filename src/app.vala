@@ -178,6 +178,7 @@ private class Boxes.App: Boxes.UI {
 
     private void setup_ui () {
         window = new Gtk.Window ();
+        window.set_hide_titlebar_when_maximized (true);
 
         // restore window geometry/position
         var size = settings.get_value ("window-size");

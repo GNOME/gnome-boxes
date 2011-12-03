@@ -5760,6 +5760,7 @@ namespace Gtk {
 		public unowned Gtk.Widget get_default_widget ();
 		public bool get_deletable ();
 		public bool get_destroy_with_parent ();
+		public bool get_hide_titlebar_when_maximized ();
 		public unowned Gtk.Widget get_focus ();
 		public bool get_focus_on_map ();
 		public bool get_focus_visible ();
@@ -5815,6 +5816,7 @@ namespace Gtk {
 		public void set_default_size (int width, int height);
 		public void set_deletable (bool setting);
 		public void set_destroy_with_parent (bool setting);
+		public void set_hide_titlebar_when_maximized (bool setting);
 		public void set_focus_on_map (bool setting);
 		public void set_focus_visible (bool setting);
 		public void set_geometry_hints (Gtk.Widget geometry_widget, Gdk.Geometry geometry, Gdk.WindowHints geom_mask);
@@ -5856,6 +5858,7 @@ namespace Gtk {
 		public int default_width { get; set; }
 		public bool deletable { get; set; }
 		public bool destroy_with_parent { get; set; }
+		public bool hide_titlebar_when_maximized { get; set; }
 		public bool focus_on_map { get; set; }
 		public bool focus_visible { get; set; }
 		public Gdk.Gravity gravity { get; set; }
