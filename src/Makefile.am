@@ -60,6 +60,7 @@ gnome_boxes_SOURCES =				\
 	vm-creator.vala 			\
 	vm-configurator.vala 			\
 	vnc-display.vala			\
+	windows-installer.vala 			\
 	win7-installer.vala 			\
 	winxp-installer.vala 			\
 	wizard-source.vala			\

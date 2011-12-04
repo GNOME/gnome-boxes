@@ -1,19 +1,12 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+using GVirConfig;
+
 public errordomain UnattendedInstallerError {
     COMMAND_FAILED
 }
 
 private abstract class Boxes.UnattendedInstaller: InstallerMedia {
-    public string kernel_path;
-    public string initrd_path;
-
-    public string _floppy_path;
-    public string floppy_path {
-        get { return express_toggle.active ? _floppy_path : null; }
-        private set { _floppy_path = value; }
-    }
-
     public bool express_install {
         get { return express_toggle.active; }
     }
@@ -37,7 +30,9 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     protected string unattended_dest_name;
     protected DataStreamNewlineType newline_type;
 
-    private bool created_floppy;
+    protected string disk_path;
+
+    private bool created_disk;
 
     protected Gtk.Table setup_table;
     protected Gtk.Label setup_label;
@@ -79,7 +74,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         from_image = media.from_image;
         mount_point = media.mount_point;
 
-        floppy_path = get_pkgcache (os.short_id + "-unattended.img");
+        disk_path = get_pkgcache (os.short_id + "-unattended.img");
         this.unattended_src_path = unattended_src_path;
         this.unattended_dest_name = unattended_dest_name;
         newline_type = DataStreamNewlineType.LF;
@@ -106,10 +101,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         try {
-            if (yield unattended_floppy_exists (cancellable))
-                debug ("Found previously created unattended floppy image for '%s', re-using..", os.short_id);
+            if (yield unattended_disk_exists (cancellable))
+                debug ("Found previously created unattended disk image for '%s', re-using..", os.short_id);
             else
-                yield create_floppy_image (cancellable);
+                yield create_disk_image (cancellable);
 
             yield copy_unattended_file (cancellable);
             yield prepare_direct_boot (cancellable);
@@ -123,6 +118,23 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {
         setup_vbox.pack_start (setup_label, false, false);
         setup_vbox.pack_start (setup_hbox, false, false);
+    }
+
+    public virtual void set_direct_boot_params (DomainOs os) {}
+
+    public virtual DomainDisk? get_unattended_disk_config () {
+        if (disk_path == null)
+            return null;
+
+        var disk = new DomainDisk ();
+        disk.set_type (DomainDiskType.FILE);
+        disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
+        disk.set_driver_name ("qemu");
+        disk.set_driver_type ("raw");
+        disk.set_source (disk_path);
+        disk.set_target_dev ("sdb");
+
+        return disk;
     }
 
     protected virtual void setup_ui () {
@@ -201,14 +213,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     protected virtual void clean_up () throws GLib.Error {
-        if (!created_floppy)
+        if (!created_disk)
             return;
 
-        var floppy_file = File.new_for_path (floppy_path);
+        var disk_file = File.new_for_path (disk_path);
 
-        floppy_file.delete ();
+        disk_file.delete ();
 
-        debug ("Removed '%s'.", floppy_path);
+        debug ("Removed '%s'.", disk_path);
     }
 
     protected virtual string fill_unattended_data (string data) throws RegexError {
@@ -252,16 +264,16 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             throw error;
     }
 
-    private async void create_floppy_image (Cancellable? cancellable) throws GLib.Error {
-        var floppy_file = File.new_for_path (floppy_path);
-        var template_path = get_unattended_dir ("floppy.img");
+    private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
+        var disk_file = File.new_for_path (disk_path);
+        var template_path = get_unattended_dir ("disk.img");
         var template_file = File.new_for_path (template_path);
 
-        debug ("Creating floppy image for unattended installation at '%s'..", floppy_path);
-        yield template_file.copy_async (floppy_file, 0, Priority.DEFAULT, cancellable);
-        debug ("Floppy image for unattended installation created at '%s'", floppy_path);
+        debug ("Creating disk image for unattended installation at '%s'..", disk_path);
+        yield template_file.copy_async (disk_file, 0, Priority.DEFAULT, cancellable);
+        debug ("Floppy image for unattended installation created at '%s'", disk_path);
 
-        created_floppy = true;
+        created_disk = true;
     }
 
     private async void copy_unattended_file (Cancellable? cancellable) throws GLib.Error {
@@ -271,13 +283,13 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         create_unattended_file (unattended_src, unattended_tmp, cancellable);
 
-        debug ("Copying unattended file '%s' into floppy drive/image '%s'", unattended_dest_name, floppy_path);
+        debug ("Copying unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
         // FIXME: Perhaps we should use libarchive for this?
-        string[] argv = { "mcopy", "-n", "-o", "-i", floppy_path,
+        string[] argv = { "mcopy", "-n", "-o", "-i", disk_path,
                                    unattended_tmp_path,
                                    "::" + unattended_dest_name };
         yield exec (argv, cancellable);
-        debug ("Copied unattended file '%s' into floppy drive/image '%s'", unattended_dest_name, floppy_path);
+        debug ("Copied unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
 
         debug ("Deleting temporary file '%s'", unattended_tmp_path);
         unattended_tmp.delete (cancellable);
@@ -308,8 +320,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         debug ("Created unattended file at '%s'..", destination.get_path ());
     }
 
-    private async bool unattended_floppy_exists (Cancellable? cancellable) {
-        var file = File.new_for_path (floppy_path);
+    private async bool unattended_disk_exists (Cancellable? cancellable) {
+        var file = File.new_for_path (disk_path);
 
         try {
             yield file.read_async (Priority.DEFAULT, cancellable);

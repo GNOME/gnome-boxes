@@ -26,7 +26,7 @@ private class Boxes.VMConfigurator {
         domain.set_clock (clock);
 
         set_target_media_config (domain, target_path);
-        set_unattended_floppy_config (domain, install_media);
+        set_unattended_disk_config (domain, install_media);
         set_source_media_config (domain, install_media);
 
         var input = new DomainInput ();
@@ -133,21 +133,13 @@ private class Boxes.VMConfigurator {
         domain.add_device (disk);
     }
 
-    private void set_unattended_floppy_config (Domain domain, InstallerMedia install_media) {
+    private void set_unattended_disk_config (Domain domain, InstallerMedia install_media) {
         if (!(install_media is UnattendedInstaller))
             return;
 
-        var floppy_path = (install_media as UnattendedInstaller).floppy_path;
-        if (floppy_path == null)
+        var disk = (install_media as UnattendedInstaller).get_unattended_disk_config ();
+        if (disk == null)
             return;
-
-        var disk = new DomainDisk ();
-        disk.set_type (DomainDiskType.FILE);
-        disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
-        disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
-        disk.set_source (floppy_path);
-        disk.set_target_dev ("fd");
 
         domain.add_device (disk);
     }
@@ -172,17 +164,7 @@ private class Boxes.VMConfigurator {
         if (!(install_media is UnattendedInstaller))
             return;
 
-        var unattended = install_media as UnattendedInstaller;
-
-        var kernel_path = unattended.kernel_path;
-        var initrd_path = unattended.initrd_path;
-
-        if (kernel_path == null || initrd_path == null)
-            return;
-
-        os.set_kernel (kernel_path);
-        os.set_ramdisk (initrd_path);
-        os.set_cmdline ("ks=floppy");
+        (install_media as UnattendedInstaller).set_direct_boot_params (os);
     }
 
     private void set_video_config (Domain domain, InstallerMedia install_media) {

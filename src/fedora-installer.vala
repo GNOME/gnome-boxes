@@ -7,10 +7,22 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     private File kernel_file;
     private File initrd_file;
 
+    private string kernel_path;
+    private string initrd_path;
+
     public FedoraInstaller.copy (InstallerMedia media) throws GLib.Error {
         var source_path = get_unattended_dir ("fedora.ks");
 
         base.copy (media, source_path, "ks.cfg");
+    }
+
+    public override void set_direct_boot_params (GVirConfig.DomainOs os) {
+        if (kernel_path == null || initrd_path == null)
+            return;
+
+        os.set_kernel (kernel_path);
+        os.set_ramdisk (initrd_path);
+        os.set_cmdline ("ks=hd:sdb:" + unattended_dest_name);
     }
 
     protected override async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {
