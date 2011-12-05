@@ -34,3 +34,10 @@ user --name=BOXES_USERNAME --password=BOXES_PASSWORD
 xorg-x11-drv-qxl
 
 %end
+
+%post --nochroot
+
+# Add user to admin group
+echo "BOXES_USERNAME  ALL=(ALL)    ALL" >> /etc/sudoers
+
+%end
