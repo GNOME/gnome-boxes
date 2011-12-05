@@ -29,7 +29,7 @@ unattended_DATA = ks.cfg 			\
 		  $(NULL)
 
 floppy.img:
-	rm -f floppy.img && mkfs.msdos -C floppy.img 2048
+	rm -f floppy.img && qemu-img create -f raw floppy.img 1440k && mkfs.msdos -s 1 floppy.img
 
 EXTRA_DIST =					\
 	gnome-boxes.desktop.in			\
