@@ -147,10 +147,18 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         table.attach_defaults (label, 1, 2, 2, 3);
         password_entry = new Gtk.Entry ();
         password_entry.visibility = false;
+        password_entry.visible = true;
         password_entry.text = "";
         password_entry.halign = Gtk.Align.START;
         password_entry.valign = Gtk.Align.CENTER;
-        table.attach_defaults (password_entry, 2, 3, 2, 3);
+        var button = new Gtk.Button.with_mnemonic (_("_Add Passord"));
+        button.valign = Gtk.Align.CENTER;
+        table.attach_defaults (button, 2, 3, 2, 3);
+        button.clicked.connect (() => {
+            table.remove (button);
+            table.attach_defaults (password_entry, 2, 3, 2, 3);
+            password_entry.is_focus = true;
+        });
     }
 
     protected virtual void clean_up () throws GLib.Error {
