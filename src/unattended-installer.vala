@@ -113,11 +113,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
         table.attach_defaults (express_toggle, 2, 3, 0, 1);
-        express_toggle.notify["active"].connect ((object, pspec) => {
-            foreach (var child in table.get_children ())
-                if (child != express_toggle)
-                    child.sensitive = express_toggle.active;
-        });
 
         // 2nd row (while user avatar spans over 2 rows)
         var avatar_file = "/var/lib/AccountsService/icons/" + Environment.get_user_name ();
@@ -159,6 +154,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             table.attach_defaults (password_entry, 2, 3, 2, 3);
             password_entry.is_focus = true;
         });
+
+        foreach (var child in table.get_children ())
+            if (child != express_toggle)
+                express_toggle.bind_property ("active", child, "sensitive", 0);
     }
 
     protected virtual void clean_up () throws GLib.Error {
