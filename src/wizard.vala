@@ -62,7 +62,8 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.SETUP:
-                    setup ();
+                    if (!setup ())
+                        return;
                     break;
 
                 case WizardPage.REVIEW:
@@ -220,9 +221,9 @@ private class Boxes.Wizard: Boxes.UI {
             prepare_for_location (this.wizard_source.uri);
     }
 
-    private void setup () {
+    private bool setup () {
         if (source != null)
-            return;
+            return true;
 
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
@@ -233,19 +234,19 @@ private class Boxes.Wizard: Boxes.UI {
             skip_to = WizardPage.LAST;
         else if (!(install_media is UnattendedInstaller))
             // Nothing to do so just skip to the next page but let the current page change complete first
-            skip_to = page + 1;
+            skip_to = WizardPage.REVIEW;
 
-        if (skip_to != page)
-            Idle.add (() => {
-                page = skip_to;
+        if (skip_to != page) {
+            page = skip_to;
 
-                return false;
-            });
-        else {
-            var installer = install_media as UnattendedInstaller;
-            installer.populate_setup_vbox (setup_vbox);
-            setup_vbox.show_all ();
+            return false;
         }
+
+        var installer = install_media as UnattendedInstaller;
+        installer.populate_setup_vbox (setup_vbox);
+        setup_vbox.show_all ();
+
+        return true;
     }
 
     private void review () {
