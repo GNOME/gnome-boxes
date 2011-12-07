@@ -273,18 +273,19 @@ private class Boxes.Wizard: Boxes.UI {
             }
         } else if (install_media != null) {
             summary.add_property (_("System"), install_media.label);
+            var memory = format_size (resources.ram, FormatSizeFlags.IEC_UNITS);
+
             if (install_media is UnattendedInstaller) {
                 var media = install_media as UnattendedInstaller;
                 if (media.express_install) {
                     summary.add_property (_("Username"), media.username);
                     summary.add_property (_("Password"), media.hidden_password);
                 }
-
-                var memory = format_size (resources.ram, FormatSizeFlags.IEC_UNITS);
-                summary.add_property (_("Memory"), memory);
-                memory = format_size (resources.storage, FormatSizeFlags.IEC_UNITS);
-                summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
             }
+
+            summary.add_property (_("Memory"), memory);
+            memory = format_size (resources.storage, FormatSizeFlags.IEC_UNITS);
+            summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
         }
     }
 
