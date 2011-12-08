@@ -174,7 +174,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         password_entry.text = "";
         password_entry.halign = Gtk.Align.START;
         password_entry.valign = Gtk.Align.CENTER;
-        var button = new Gtk.Button.with_mnemonic (_("_Add Passord"));
+        var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
         button.valign = Gtk.Align.CENTER;
         table.attach_defaults (button, 2, 3, 2, 3);
         button.clicked.connect (() => {
