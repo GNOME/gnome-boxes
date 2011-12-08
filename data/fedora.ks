@@ -6,7 +6,7 @@ rootpw whatever
 firewall --disabled
 authconfig --enableshadow --enablemd5
 selinux --enforcing
-timezone --utc Europe/Helsinki
+timezone --utc BOXES_TZ
 bootloader --location=mbr
 zerombr
 clearpart --all --drives=sda
