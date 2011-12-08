@@ -5,5 +5,9 @@ private class Boxes.Win7Installer: UnattendedInstaller {
     public Win7Installer.copy (InstallerMedia media) throws GLib.Error {
         var unattended_source = get_unattended_dir (media.os.short_id + ".xml");
         base.copy (media, unattended_source, "Autounattend.xml");
+
+        lang = lang.replace ("_", "-");
+        // Remove '.' and everything after it
+        lang = /\..*/i.replace (lang, -1, 0, "");
     }
 }

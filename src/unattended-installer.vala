@@ -42,11 +42,13 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected string timezone;
     protected string kbd;
+    protected string lang;
 
     private static Regex username_regex;
     private static Regex password_regex;
     private static Regex timezone_regex;
     private static Regex kbd_regex;
+    private static Regex lang_regex;
 
     static construct {
         try {
@@ -54,6 +56,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             password_regex = new Regex ("BOXES_PASSWORD");
             timezone_regex = new Regex ("BOXES_TZ");
             kbd_regex = new Regex ("BOXES_KBD");
+            lang_regex = new Regex ("BOXES_LANG");
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
@@ -81,6 +84,9 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var settings = new GLib.Settings ("org.gnome.libgnomekbd.keyboard");
         var layouts = settings.get_strv ("layouts");
         kbd = layouts[0] ?? "us";
+
+        var langs = Intl.get_language_names ();
+        lang = langs[0];
 
         setup_ui ();
     }
@@ -275,6 +281,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             str = password_regex.replace (str, str.length, 0, password_entry.text);
             str = timezone_regex.replace (str, str.length, 0, timezone);
             str = kbd_regex.replace (str, str.length, 0, kbd);
+            str = lang_regex.replace (str, str.length, 0, lang);
 
             yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
         }

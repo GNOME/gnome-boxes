@@ -1,6 +1,6 @@
 install
 keyboard BOXES_KBD
-lang en_US.UTF-8
+lang BOXES_LANG
 network --device eth0 --bootproto dhcp
 rootpw whatever
 firewall --disabled
