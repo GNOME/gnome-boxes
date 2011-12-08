@@ -19,7 +19,7 @@ source_DATA       = QEMU_Session
 iconsdir = $(pkgdatadir)/icons
 
 unattendeddir = $(datadir)/gnome-boxes/unattended
-unattended_DATA = ks.cfg 			\
+unattended_DATA = fedora.ks			\
 		  win7.xml 			\
 		  win2k.xml 			\
 		  winxp.sif 			\

@@ -8,7 +8,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     private File initrd_file;
 
     public FedoraInstaller.copy (InstallerMedia media) throws GLib.Error {
-        var source_path = get_unattended_dir ("ks.cfg");
+        var source_path = get_unattended_dir ("fedora.ks");
 
         base.copy (media, source_path, "ks.cfg");
     }
