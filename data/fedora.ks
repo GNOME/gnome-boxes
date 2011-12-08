@@ -1,5 +1,5 @@
 install
-keyboard us
+keyboard BOXES_KBD
 lang en_US.UTF-8
 network --device eth0 --bootproto dhcp
 rootpw whatever
