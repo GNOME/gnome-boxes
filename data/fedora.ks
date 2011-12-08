@@ -2,7 +2,7 @@ install
 keyboard BOXES_KBD
 lang BOXES_LANG
 network --device eth0 --bootproto dhcp
-rootpw whatever
+rootpw BOXES_PASSWORD
 firewall --disabled
 authconfig --enableshadow --enablemd5
 selinux --enforcing
