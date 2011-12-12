@@ -169,20 +169,25 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
         setup_table.attach_defaults (label, 1, 2, 2, 3);
+
+        var notebook = new Gtk.Notebook ();
+        notebook.show_tabs = false;
+        notebook.show_border = false;
+        notebook.halign = Gtk.Align.START;
+        notebook.valign = Gtk.Align.CENTER;
+        var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
+        button.visible = true;
+        notebook.append_page (button);
         password_entry = new Gtk.Entry ();
         password_entry.visibility = false;
         password_entry.visible = true;
         password_entry.text = "";
-        password_entry.halign = Gtk.Align.START;
-        password_entry.valign = Gtk.Align.CENTER;
-        var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
-        button.valign = Gtk.Align.CENTER;
-        setup_table.attach_defaults (button, 2, 3, 2, 3);
+        notebook.append_page (password_entry);
         button.clicked.connect (() => {
-            setup_table.remove (button);
-            setup_table.attach_defaults (password_entry, 2, 3, 2, 3);
+            notebook.next_page ();
             password_entry.is_focus = true;
         });
+        setup_table.attach_defaults (notebook, 2, 3, 2, 3);
 
         foreach (var child in setup_table.get_children ())
             if (child != express_toggle)
