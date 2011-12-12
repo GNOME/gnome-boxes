@@ -34,6 +34,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     private bool created_floppy;
 
+    protected Gtk.Table setup_table;
     protected Gtk.Label setup_label;
     protected Gtk.HBox setup_hbox;
     protected Gtk.Switch express_toggle;
@@ -125,22 +126,22 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_hbox.valign = Gtk.Align.START;
         setup_hbox.margin = 24;
 
-        var table = new Gtk.Table (3, 3, false);
-        setup_hbox.pack_start (table, false, false);
-        table.column_spacing = 10;
-        table.row_spacing = 10;
+        setup_table = new Gtk.Table (3, 3, false);
+        setup_hbox.pack_start (setup_table, false, false);
+        setup_table.column_spacing = 10;
+        setup_table.row_spacing = 10;
 
         // First row
         var label = new Gtk.Label (_("Express Install"));
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
-        table.attach_defaults (label, 1, 2, 0, 1);
+        setup_table.attach_defaults (label, 1, 2, 0, 1);
 
         express_toggle = new Gtk.Switch ();
         express_toggle.active = !os_media.live;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
-        table.attach_defaults (express_toggle, 2, 3, 0, 1);
+        setup_table.attach_defaults (express_toggle, 2, 3, 0, 1);
 
         // 2nd row (while user avatar spans over 2 rows)
         var avatar_file = "/var/lib/AccountsService/icons/" + Environment.get_user_name ();
@@ -151,23 +152,23 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         else
             avatar = new Gtk.Image.from_icon_name ("avatar-default", 0);
         avatar.pixel_size = 128;
-        table.attach_defaults (avatar, 0, 1, 1, 3);
+        setup_table.attach_defaults (avatar, 0, 1, 1, 3);
 
         label = new Gtk.Label (_("Username"));
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
-        table.attach_defaults (label, 1, 2, 1, 2);
+        setup_table.attach_defaults (label, 1, 2, 1, 2);
         username_entry = new Gtk.Entry ();
         username_entry.text = Environment.get_user_name ();
         username_entry.halign = Gtk.Align.START;
         username_entry.valign = Gtk.Align.CENTER;
-        table.attach_defaults (username_entry, 2, 3, 1, 2);
+        setup_table.attach_defaults (username_entry, 2, 3, 1, 2);
 
         // 3rd row
         label = new Gtk.Label (_("Password"));
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
-        table.attach_defaults (label, 1, 2, 2, 3);
+        setup_table.attach_defaults (label, 1, 2, 2, 3);
         password_entry = new Gtk.Entry ();
         password_entry.visibility = false;
         password_entry.visible = true;
@@ -176,14 +177,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         password_entry.valign = Gtk.Align.CENTER;
         var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
         button.valign = Gtk.Align.CENTER;
-        table.attach_defaults (button, 2, 3, 2, 3);
+        setup_table.attach_defaults (button, 2, 3, 2, 3);
         button.clicked.connect (() => {
-            table.remove (button);
-            table.attach_defaults (password_entry, 2, 3, 2, 3);
+            setup_table.remove (button);
+            setup_table.attach_defaults (password_entry, 2, 3, 2, 3);
             password_entry.is_focus = true;
         });
 
-        foreach (var child in table.get_children ())
+        foreach (var child in setup_table.get_children ())
             if (child != express_toggle)
                 express_toggle.bind_property ("active", child, "sensitive", 0);
     }
@@ -197,6 +198,16 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         floppy_file.delete ();
 
         debug ("Removed '%s'.", floppy_path);
+    }
+
+    protected virtual string fill_unattended_data (string data) throws RegexError {
+        var str = username_regex.replace (data, data.length, 0, username_entry.text);
+        str = password_regex.replace (str, str.length, 0, password_entry.text);
+        str = timezone_regex.replace (str, str.length, 0, timezone);
+        str = kbd_regex.replace (str, str.length, 0, kbd);
+        str = lang_regex.replace (str, str.length, 0, lang);
+
+        return str;
     }
 
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
@@ -276,12 +287,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         size_t bytes_read;
         while ((bytes_read = yield input_stream.read_async (buffer, Priority.DEFAULT, cancellable)) > 0) {
             var str = ((string) buffer).substring (0, (long) bytes_read);
-
-            str = username_regex.replace (str, str.length, 0, username_entry.text);
-            str = password_regex.replace (str, str.length, 0, password_entry.text);
-            str = timezone_regex.replace (str, str.length, 0, timezone);
-            str = kbd_regex.replace (str, str.length, 0, kbd);
-            str = lang_regex.replace (str, str.length, 0, lang);
+            str = fill_unattended_data (str);
 
             yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
         }
