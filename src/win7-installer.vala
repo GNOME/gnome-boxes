@@ -6,6 +6,8 @@ private class Boxes.Win7Installer: UnattendedInstaller {
         var unattended_source = get_unattended_dir (media.os.short_id + ".xml");
         base.copy (media, unattended_source, "Autounattend.xml");
 
+        newline_type = DataStreamNewlineType.CR_LF;
+
         lang = lang.replace ("_", "-");
         // Remove '.' and everything after it
         lang = /\..*/i.replace (lang, -1, 0, "");

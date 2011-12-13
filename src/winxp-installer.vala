@@ -22,6 +22,8 @@ private class Boxes.WinXPInstaller: UnattendedInstaller {
     public WinXPInstaller.copy (InstallerMedia media) throws GLib.Error {
         var unattended_source = get_unattended_dir (media.os.short_id + ".sif");
         base.copy (media, unattended_source, "Winnt.sif");
+
+        newline_type = DataStreamNewlineType.CR_LF;
     }
 
     protected override void setup_ui () {

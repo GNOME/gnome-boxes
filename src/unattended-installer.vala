@@ -31,6 +31,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected string unattended_src_path;
     protected string unattended_dest_name;
+    protected DataStreamNewlineType newline_type;
 
     private bool created_floppy;
 
@@ -77,6 +78,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         floppy_path = get_pkgcache (os.short_id + "-unattended.img");
         this.unattended_src_path = unattended_src_path;
         this.unattended_dest_name = unattended_dest_name;
+        newline_type = DataStreamNewlineType.LF;
 
         var time = TimeVal ();
         var date = new DateTime.from_timeval_local (time);
@@ -288,11 +290,13 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                                                              FileCreateFlags.REPLACE_DESTINATION,
                                                              Priority.DEFAULT,
                                                              cancellable);
-        var buffer = new uint8[1024];
-        size_t bytes_read;
-        while ((bytes_read = yield input_stream.read_async (buffer, Priority.DEFAULT, cancellable)) > 0) {
-            var str = ((string) buffer).substring (0, (long) bytes_read);
+        var data_stream = new DataInputStream (input_stream);
+        data_stream.newline_type = DataStreamNewlineType.ANY;
+        string? str;
+        while ((str = yield data_stream.read_line_async (Priority.DEFAULT, cancellable)) != null) {
             str = fill_unattended_data (str);
+
+            str += (newline_type == DataStreamNewlineType.LF) ? "\n" : "\r\n";
 
             yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
         }
