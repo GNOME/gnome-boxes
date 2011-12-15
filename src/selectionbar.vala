@@ -41,8 +41,7 @@ private class Boxes.Selectionbar: GLib.Object {
         toolbar.insert (remove_btn, 2);
         remove_btn.icon_name = "edit-delete-symbolic";
         remove_btn.clicked.connect (() => {
-            foreach (var item in app.selected_items)
-                app.remove_item (item);
+            app.remove_selected_items ();
         });
         toolbar.show_all ();
 

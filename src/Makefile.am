@@ -63,6 +63,7 @@ gnome_boxes_SOURCES =				\
 	winxp-installer.vala 			\
 	wizard-source.vala			\
 	wizard.vala				\
+	notificationbar.vala			\
 	$(NULL)
 
 gnome_boxes_LDADD = $(BOXES_LIBS)

@@ -28,6 +28,7 @@ private class Boxes.App: Boxes.UI {
     public Clutter.Box box; // the whole app box
     public CollectionItem current_item; // current object/vm manipulated
     public Topbar topbar;
+    public Notificationbar notificationbar;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
     public uint duration;
@@ -249,11 +250,18 @@ private class Boxes.App: Boxes.UI {
         sidebar = new Sidebar (this);
         view = new CollectionView (this, sidebar.category);
         topbar = new Topbar (this);
+        notificationbar = new Notificationbar (this);
+        notificationbar.actor.add_constraint (new Clutter.AlignConstraint (view.actor, AlignAxis.X_AXIS, 0.5f));
+        var yconstraint = new Clutter.BindConstraint (topbar.actor, BindCoordinate.Y, topbar.height);
+        notificationbar.actor.add_constraint (yconstraint);
+        topbar.actor.notify["height"].connect (() => {
+            yconstraint.set_offset (topbar.height);
+        });
 
         selectionbar = new Selectionbar (this);
         selectionbar.actor.add_constraint (new Clutter.AlignConstraint (view.actor, AlignAxis.X_AXIS, 0.5f));
-        var yconstraint = new Clutter.BindConstraint (view.actor, BindCoordinate.Y,
-                                                      view.actor.height - selectionbar.spacing);
+        yconstraint = new Clutter.BindConstraint (view.actor, BindCoordinate.Y,
+                                                  view.actor.height - selectionbar.spacing);
         selectionbar.actor.add_constraint (yconstraint);
         view.actor.notify["height"].connect (() => {
             yconstraint.set_offset (view.actor.height - selectionbar.spacing);
@@ -349,13 +357,32 @@ private class Boxes.App: Boxes.UI {
         owned get { return view.get_selected_items (); }
     }
 
-    public void remove_item (CollectionItem item) {
-        var machine = item as Machine;
+    public void remove_selected_items () {
+        var selected_items = view.get_selected_items ();
+        var num_selected = selected_items.length ();
+        if (num_selected == 0)
+            return;
 
-        if (machine != null)
-            machine.delete ();
+        var message = (num_selected == 1) ? _("Box '%s' has been deleted").printf (selected_items.data.name) :
+                                            _("%u boxes have been deleted").printf (num_selected);
+        foreach (var item in selected_items)
+            view.remove_item (item);
 
-        view.remove_item (item);
+        Notificationbar.ActionFunc undo = () => {
+            foreach (var selected in selected_items)
+                view.add_item (selected);
+        };
+
+        Notificationbar.IgnoreFunc really_remove = () => {
+            foreach (var selected in selected_items) {
+                var machine = selected as Machine;
+
+                if (machine != null)
+                    machine.delete ();
+            }
+        };
+
+        notificationbar.display (Gtk.Stock.UNDO, message, (owned) undo, (owned) really_remove);
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
