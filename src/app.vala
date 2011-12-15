@@ -96,6 +96,9 @@ private class Boxes.App: Boxes.UI {
 
         connection.domain_removed.connect ((connection, domain) => {
             var machine = domain.get_data<LibvirtMachine> ("machine");
+            if (machine == null)
+                return; // Looks like we removed the domain ourselves. Nothing to do then..
+
             machine.delete (false);
             collection.remove_item (machine);
         });
