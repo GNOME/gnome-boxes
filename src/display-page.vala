@@ -2,18 +2,77 @@
 using Gtk;
 using Gdk;
 
+private class Boxes.DisplayToolbar: Gtk.Toolbar {
+    public string title {
+        get { return label.get_text (); }
+        set { label.set_text (value); }
+    }
+    private Label label;
+
+    public DisplayToolbar (Boxes.App app) {
+        icon_size = IconSize.MENU;
+        get_style_context ().add_class (STYLE_CLASS_MENUBAR);
+        set_show_arrow (false);
+
+        var left_group = new ToolItem ();
+        insert (left_group, 0);
+
+        var center_group = new ToolItem ();
+        center_group.set_expand (true);
+        insert (center_group, -1);
+
+        var right_group = new ToolItem ();
+        insert (right_group, -1);
+
+        var size_group = new SizeGroup (SizeGroupMode.HORIZONTAL);
+        size_group.add_widget (left_group);
+        size_group.add_widget (right_group);
+
+        var left_box = new Box (Orientation.HORIZONTAL, 0);
+        left_group.add (left_box);
+
+        var back = new Button ();
+        back.add (new Image.from_icon_name ("go-previous-symbolic",
+                                            IconSize.MENU));
+        back.get_style_context ().add_class ("raised");
+        back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
+        left_box.pack_start (back, false, false, 0);
+
+        /* center title - unfortunately, metacity doesn't even center its
+           own title.. sad panda */
+        label = new Label ("Display");
+        center_group.add (label);
+
+        var right_box = new Box (Orientation.HORIZONTAL, 12);
+        right_group.add(right_box);
+
+        var btn = new Button ();
+        btn.add (new Image.from_icon_name ("view-fullscreen-symbolic",
+                                           IconSize.MENU));
+        btn.get_style_context ().add_class ("raised");
+        btn.clicked.connect ((button) => { app.fullscreen = !app.fullscreen; });
+        right_box.pack_start (btn, false, false, 0);
+
+        var props = new Button ();
+        props.add (new Image.from_icon_name ("utilities-system-monitor-symbolic",
+                                             IconSize.MENU));
+        props.get_style_context ().add_class ("raised");
+        props.clicked.connect ((button) => { app.ui_state = UIState.PROPERTIES; });
+        right_box.pack_start (props, false, false, 0);
+    }
+}
+
 private class Boxes.DisplayPage: GLib.Object {
     public Widget widget { get { return overlay; } }
 
     private Overlay overlay;
     private Boxes.App app;
     private EventBox event_box;
-    private Toolbar toolbar;
+    private DisplayToolbar toolbar;
     private uint toolbar_show_id;
     private uint toolbar_hide_id;
     private ulong display_id;
     private ulong cursor_id;
-    private Label title;
 
     public DisplayPage (Boxes.App app) {
         this.app = app;
@@ -55,57 +114,7 @@ private class Boxes.DisplayPage: GLib.Object {
         overlay.margin = 0;
         overlay.add (event_box);
 
-        toolbar = new Toolbar ();
-        toolbar.icon_size = IconSize.MENU;
-        toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
-
-        var left_group = new ToolItem ();
-        toolbar.insert (left_group, 0);
-
-        var center_group = new ToolItem ();
-        center_group.set_expand (true);
-        toolbar.insert (center_group, -1);
-
-        var right_group = new ToolItem ();
-        toolbar.insert (right_group, -1);
-
-        var size_group = new SizeGroup (SizeGroupMode.HORIZONTAL);
-        size_group.add_widget (left_group);
-        size_group.add_widget (right_group);
-
-        var left_box = new Box (Orientation.HORIZONTAL, 0);
-        left_group.add (left_box);
-
-        var back = new Button ();
-        back.add (new Image.from_icon_name ("go-previous-symbolic",
-                                            IconSize.MENU));
-        back.get_style_context ().add_class ("raised");
-        back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
-        left_box.pack_start (back, false, false, 0);
-
-        /* center title - unfortunately, metacity doesn't even center its
-           own title.. sad panda */
-        title = new Label ("Display");
-        center_group.add (title);
-
-        var right_box = new Box (Orientation.HORIZONTAL, 12);
-        right_group.add(right_box);
-
-        var btn = new Button ();
-        btn.add (new Image.from_icon_name ("view-fullscreen-symbolic",
-                                           IconSize.MENU));
-        btn.get_style_context ().add_class ("raised");
-        btn.clicked.connect ((button) => { app.fullscreen = !app.fullscreen; });
-        right_box.pack_start (btn, false, false, 0);
-
-        var props = new Button ();
-        props.add (new Image.from_icon_name ("utilities-system-monitor-symbolic",
-                                             IconSize.MENU));
-        props.get_style_context ().add_class ("raised");
-        props.clicked.connect ((button) => { app.ui_state = UIState.PROPERTIES; });
-        right_box.pack_start (props, false, false, 0);
-
-        toolbar.set_show_arrow (false);
+        toolbar = new DisplayToolbar (app);
         toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (toolbar);
@@ -141,7 +150,7 @@ private class Boxes.DisplayPage: GLib.Object {
     public void show_display (Boxes.Machine machine, Widget display) {
         remove_display ();
         set_toolbar_visible (false);
-        title.set_text (machine.name);
+        toolbar.title = machine.name;
         event_box.add (display);
         event_box.show_all ();
 
