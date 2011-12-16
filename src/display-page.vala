@@ -9,7 +9,6 @@ private class Boxes.DisplayPage: GLib.Object {
     private Boxes.App app;
     private EventBox event_box;
     private Toolbar toolbar;
-    private Toolbar title_toolbar;
     private uint toolbar_show_id;
     private uint toolbar_hide_id;
     private ulong display_id;
@@ -60,57 +59,61 @@ private class Boxes.DisplayPage: GLib.Object {
         toolbar.icon_size = IconSize.MENU;
         toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
 
-        var back = new ToolButton (null, null);
-        back.icon_name = "go-previous-symbolic";
+        var left_group = new ToolItem ();
+        toolbar.insert (left_group, 0);
+
+        var center_group = new ToolItem ();
+        center_group.set_expand (true);
+        toolbar.insert (center_group, -1);
+
+        var right_group = new ToolItem ();
+        toolbar.insert (right_group, -1);
+
+        var size_group = new SizeGroup (SizeGroupMode.HORIZONTAL);
+        size_group.add_widget (left_group);
+        size_group.add_widget (right_group);
+
+        var left_box = new Box (Orientation.HORIZONTAL, 0);
+        left_group.add (left_box);
+
+        var back = new Button ();
+        back.add (new Image.from_icon_name ("go-previous-symbolic",
+                                            IconSize.MENU));
         back.get_style_context ().add_class ("raised");
         back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
-        toolbar.insert (back, 0);
-        toolbar.set_show_arrow (false);
+        left_box.pack_start (back, false, false, 0);
 
-        /* this is quite insane to center the label and keep toolbar style... */
-        /* unfortunately, metacity doesn't even center its own title.. sad panda */
-        title_toolbar = new Toolbar ();
-        title_toolbar.valign = Gtk.Align.START;
-        title_toolbar.halign = Gtk.Align.CENTER;
-        title_toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
-        title_toolbar.set_size_request (300, -1); // FIXME: can't put them in a sizegroup
+        /* center title - unfortunately, metacity doesn't even center its
+           own title.. sad panda */
         title = new Label ("Display");
+        center_group.add (title);
 
-        var title_item = new Gtk.ToolItem ();
-        title_item.set_expand (true);
-        title_item.add (title);
-        title_toolbar.insert (title_item, -1);
+        var right_box = new Box (Orientation.HORIZONTAL, 12);
+        right_group.add(right_box);
 
-        var sep = new Gtk.ToolItem ();
-        sep.set_expand (true);
-        toolbar.insert (sep, -1);
-
-        /* this is quite crappy way of centering label. FIXME: event pass-through */
-        var btn = new ToolButton (null, null);
-        btn.icon_name = "view-fullscreen-symbolic";
+        var btn = new Button ();
+        btn.add (new Image.from_icon_name ("view-fullscreen-symbolic",
+                                           IconSize.MENU));
         btn.get_style_context ().add_class ("raised");
         btn.clicked.connect ((button) => { app.fullscreen = !app.fullscreen; });
-        toolbar.insert (btn, -1);
+        right_box.pack_start (btn, false, false, 0);
 
-        toolbar.insert (new Gtk.SeparatorToolItem (), -1);
-
-        var props = new ToolButton (null, null);
-        props.icon_name = "utilities-system-monitor-symbolic";
+        var props = new Button ();
+        props.add (new Image.from_icon_name ("utilities-system-monitor-symbolic",
+                                             IconSize.MENU));
         props.get_style_context ().add_class ("raised");
         props.clicked.connect ((button) => { app.ui_state = UIState.PROPERTIES; });
-        toolbar.insert (props, -1);
+        right_box.pack_start (props, false, false, 0);
 
         toolbar.set_show_arrow (false);
         toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (toolbar);
-        overlay.add_overlay (title_toolbar);
         overlay.show_all ();
     }
 
     void set_toolbar_visible(bool visible) {
         toolbar.visible = visible;
-        title_toolbar.visible = visible;
     }
 
     ~DisplayPage () {
