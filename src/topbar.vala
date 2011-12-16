@@ -146,7 +146,7 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.show_all ();
 
         // FIXME: make it dynamic depending on topbar size..:
-        app.state.set_key (null, "display", gtk_actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
+        app.state.set_key (null, "display-fullscreen", gtk_actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
     }
 
     private void update_selection_label () {

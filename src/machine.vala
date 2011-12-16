@@ -335,10 +335,15 @@ private class Boxes.MachineActor: Boxes.UI {
     }
 
     public override void ui_state_changed () {
+        int window_width, window_height;
         int width, height;
+        int x, y;
 
         yconstraint.enabled = false;
-        machine.app.window.get_size (out width, out height);
+        machine.app.display_page.get_size (out width, out height);
+        machine.app.window.get_size (out window_width, out window_height);
+        x = window_width - width;
+        y = window_height - height;
 
         switch (ui_state) {
         case UIState.CREDS:
@@ -353,14 +358,14 @@ private class Boxes.MachineActor: Boxes.UI {
                                     "width", (float) width,
                                     "height", (float) height);
                 actor.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
-                               "x", 0.0f,
-                               "y", 0.0f);
+                               "x", (float) x,
+                               "y", (float) y);
             } else {
                 if (display != null) {
                     // zoom in, back from properties
                     var anim = display.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
-                                                "x", 0.0f,
-                                                "y", 0.0f,
+                                                "x", (float) x,
+                                                "y", (float) y,
                                                 "width", (float) width,
                                                 "height", (float) height);
                     anim.completed.connect (() => {

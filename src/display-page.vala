@@ -68,8 +68,9 @@ private class Boxes.DisplayPage: GLib.Object {
     private Overlay overlay;
     private Boxes.App app;
     private EventBox event_box;
+    private Box box;
+    private DisplayToolbar overlay_toolbar;
     private DisplayToolbar toolbar;
-    private uint toolbar_show_id;
     private uint toolbar_hide_id;
     private ulong display_id;
     private ulong cursor_id;
@@ -81,27 +82,19 @@ private class Boxes.DisplayPage: GLib.Object {
         event_box.set_events (EventMask.POINTER_MOTION_MASK);
         event_box.above_child = true;
         event_box.event.connect ((event) => {
-            if (event.type == EventType.MOTION_NOTIFY) {
+            if (app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
 
                 if (y == 0) {
                     toolbar_event_stop ();
-                    set_toolbar_visible (true);
-                } else if (!app.fullscreen && y <= 5 && toolbar_show_id == 0) {
+                    set_overlay_toolbar_visible (true);
+                } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
-                    toolbar_show_id = Timeout.add (1000, () => {
-                        set_toolbar_visible (true);
-                        toolbar_show_id = 0;
+                    toolbar_hide_id = Timeout.add (app.duration, () => {
+                        set_overlay_toolbar_visible (false);
+                        toolbar_hide_id = 0;
                         return false;
                     });
-                } else if (y > 5) {
-                    toolbar_event_stop (true, false);
-                    if (toolbar_hide_id == 0)
-                        toolbar_hide_id = Timeout.add (app.duration, () => {
-                            set_toolbar_visible (false);
-                            toolbar_hide_id = 0;
-                            return false;
-                        });
                 }
             }
 
@@ -110,37 +103,52 @@ private class Boxes.DisplayPage: GLib.Object {
 
             return false;
         });
-        overlay = new Overlay ();
-        overlay.margin = 0;
-        overlay.add (event_box);
 
         toolbar = new DisplayToolbar (app);
-        toolbar.set_valign (Gtk.Align.START);
 
-        overlay.add_overlay (toolbar);
+        box = new Box (Orientation.VERTICAL, 0);
+        box.pack_start (toolbar, false, false, 0);
+        box.pack_start (event_box, true, true, 0);
+
+        overlay = new Overlay ();
+        app.window.window_state_event.connect ((event) => {
+            toolbar.visible = !app.fullscreen;
+            set_overlay_toolbar_visible (false);
+            return false;
+        });
+        overlay.margin = 0;
+        overlay.add (box);
+
+        overlay_toolbar = new DisplayToolbar (app);
+        overlay_toolbar.set_valign (Gtk.Align.START);
+
+        overlay.add_overlay (overlay_toolbar);
         overlay.show_all ();
     }
 
-    void set_toolbar_visible(bool visible) {
-        toolbar.visible = visible;
+    public void get_size (out int width, out int height) {
+        int tb_height;
+
+        app.window.get_size (out width, out height);
+
+        if (!app.fullscreen) {
+            toolbar.get_preferred_height (null, out tb_height);
+            height -= tb_height;
+        }
+    }
+
+    void set_overlay_toolbar_visible(bool visible) {
+        overlay_toolbar.visible = visible;
     }
 
     ~DisplayPage () {
         toolbar_event_stop ();
     }
 
-    private void toolbar_event_stop (bool show = true, bool hide = true) {
-        if (show) {
-            if (toolbar_show_id != 0)
-                GLib.Source.remove (toolbar_show_id);
-            toolbar_show_id = 0;
-        }
-
-        if (hide) {
-            if (toolbar_hide_id != 0)
-                GLib.Source.remove (toolbar_hide_id);
-            toolbar_hide_id = 0;
-        }
+    private void toolbar_event_stop () {
+        if (toolbar_hide_id != 0)
+            GLib.Source.remove (toolbar_hide_id);
+        toolbar_hide_id = 0;
     }
 
     public void show () {
@@ -149,8 +157,8 @@ private class Boxes.DisplayPage: GLib.Object {
 
     public void show_display (Boxes.Machine machine, Widget display) {
         remove_display ();
-        set_toolbar_visible (false);
-        toolbar.title = machine.name;
+        set_overlay_toolbar_visible (false);
+        overlay_toolbar.title = toolbar.title = machine.name;
         event_box.add (display);
         event_box.show_all ();
 

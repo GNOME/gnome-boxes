@@ -292,7 +292,7 @@ private class Boxes.App: Boxes.UI {
         switch (ui_state) {
         case UIState.DISPLAY:
             box.set_layout_manager (new Clutter.FixedLayout ());
-            state.set_state ("display");
+            state.set_state (fullscreen ? "display-fullscreen" : "display");
             break;
 
         case UIState.CREDS:
