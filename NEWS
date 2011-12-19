@@ -1,3 +1,113 @@
+3.3.3 - Dec 19, 2011
+====================
+
+Changes since 3.3.2:
+
+- Instead of manually writing the libvirt's XML strings, we now make use of
+  libvirt-gconfig to deal with the XML for us.
+- Protect user from accidental deletion of boxes by providing an 'undo' button
+  until after 6 seconds of deletion.
+- Rely on libvirt for automatic assignment of unique SPICE port for new VMs.
+- Don't destroy boxes on reboot.
+- Also entertain medias of i686 architecture.
+- Define a log domain for easier filtering of console log.
+- Adapt to libosinfo 0.0.3 API for better OS media detection.
+- Make the VM thumbnail in the properties view insensitive.
+- Box creation wizard:
+  - Make wizard topbar a real toolbar. This way, the window can be moved, and it
+    can be styled correctly.
+  - Only return from wizard to collection view if box creation succeeds.
+  - Skip directly to 'Preparation' step when URI is passed through commandline
+    argument.
+  - Bump default storage allocation to 20 GiB.
+    - This should be adequate storage for most OSs out there.
+    - We use the dynamically growing storage format (qcow2) so actual
+      amount of disk space used is completely dependent on the OS.
+  - Special handling of live and unknown OS media:
+    - Create initially transient box and only make it permanent if media
+      installs anything on the storage.
+    - Skip 'Setup' and 'Review' pages.
+  - Only boot new VMs from hard drive after something is actually installed on
+    the storage.
+  - Accept path for URI as well.
+  - More details at summary page on VM creation.
+  - Express installation:
+    - Actually update the settings after the first install of an OS.
+    - UI to set admin and user password.
+    - UI for specifying product key for Windows XP and 2003. Note that product
+      keys are not required by recent Windows (Vista, 7  and 2008) installers.
+    - Install QXL on Fedora guests to take full advantage of SPICE's efficiency.
+    - Enable X/graphics for Fedora.
+    - Add user to admin group for Fedora.
+    - Automatically timezone and keyboard layout setup. This currently only
+      works for Fedora.
+    - Automatically language setup. Currently it only works for Windows 7,
+      Windows 2008 and Fedora.
+    - Fix user account setup for Windows 7 and 2008.
+    - Fix some fundamental issues with Windows 2008. Now at least most of
+      installation is automated.
+    - Fix express installation floppy image and in turn express installation of
+      Microsoft Windows XP.
+- Added/updated translations
+  - Polish
+  - Swedish
+- Various other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- libvirt-glib >= 0.0.3
+- libvirt-gconfig >= 0.0.3
+- spice-gtk >= 0.7.81
+- libosinfo >=0.0.3
+
+All bugs fixed in this release:
+
+664214 - Installation from Live media is broken
+664215 - Make the VM thumbnail in the properties view insensitive
+664527 - Require latest gtk+ and libvirt-glib
+664528 - gnome-boxes doesn't respond to mouse events
+664561 - Unable to delete inactive libvirt boxes
+664578 - Make wizard topbar a real toolbar
+664594 - Use libvirt spice autoport
+664600 - Also entertain medias of i686 arch
+664603 - wizard: only return to collection view when creation succeed
+664676 - qemu-kvm gets started with -no-reboot
+664690 - wizard: Skip to 'Preparation' when URI is passed
+664759 - default hdd image size too small
+664766 - Correctly handle pure live media
+664773 - Upgrade autotools config
+665001 - Windows XP express installation is broken
+665068 - Show more information in summary
+665198 - Fix removal of libvirt machines
+665254 - New way to handle live and unknown media
+665290 - Express install settings ineffective after first install
+665320 - Enable X/graphics for Fedora express installation
+665333 - Install vdagent & QXL on Fedora guests
+665336 - Only use 'vga' driver for win7
+665444 - Update glib-2.0 VAPI and usage
+665803 - Various express installation fixes/improvements
+666019 - Improvements to Windows Server 2008 express install
+666030 - UI for specifying product key for Windows XP & 2003
+666032 - Use Gtk.Notebook for password input
+666086 - Read & fill 1 line of unattended files at time
+666315 - Start making use of libvirt-gconfig
+666324 - Don't react to domain deletion event trigered by us
+666334 - Be more friendly to user on deletion of boxes
+664760 - Passing a file path (not uri) to installation media makes wizard behave
+         oddly
+
+All contributors to this release:
+
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Nylander <po@danielnylander.se>
+Javier Jardón <jjardon@gnome.org>
+Lucas Meneghel Rodrigues <lmr@redhat.com>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Olav Vitters <olav@vitters.nl>
+Piotr Drąg <piotrdrag@gmail.com>
+Tom Goralczyk <maido.in.heaven@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.3.2 - Nov 22, 2011
 ====================
 
