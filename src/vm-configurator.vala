@@ -29,11 +29,6 @@ private class Boxes.VMConfigurator {
         set_unattended_disk_config (domain, install_media);
         set_source_media_config (domain, install_media);
 
-        var input = new DomainInput ();
-        input.set_bus (DomainInputBus.USB);
-        input.set_device_type (DomainInputDeviceType.TABLET);
-        domain.add_device (input);
-
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (true);
         if (install_media is UnattendedInstaller) {
@@ -45,6 +40,8 @@ private class Boxes.VMConfigurator {
         domain.add_device (graphics);
 
         set_video_config (domain, install_media);
+        set_sound_config (domain, install_media);
+        set_tablet_config (domain, install_media);
 
         domain.set_lifecycle (DomainLifecycleEvent.ON_POWEROFF, DomainLifecycleAction.DESTROY);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.DESTROY);
@@ -56,10 +53,6 @@ private class Boxes.VMConfigurator {
 
         var iface = new DomainInterfaceUser ();
         domain.add_device (iface);
-
-        var sound = new DomainSound ();
-        sound.set_model (DomainSoundModel.AC97);
-        domain.add_device (sound);
 
         return domain;
     }
@@ -168,15 +161,43 @@ private class Boxes.VMConfigurator {
     }
 
     private void set_video_config (Domain domain, InstallerMedia install_media) {
-        var video = new DomainVideo ();
+        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_CLASS, "video");
+        if (device == null)
+            return;
 
-        // FIXME: Should be QXL for every OS. Work-around for a Qemu bug
-        if (install_media is Win7Installer)
-            video.set_model (DomainVideoModel.VGA);
-        else
-            video.set_model (DomainVideoModel.QXL);
+        var video = new DomainVideo ();
+        var model = get_enum_value (device.get_name (), typeof (DomainVideoModel));
+        return_if_fail (model != -1);
+        video.set_model ((DomainVideoModel) model);
 
         domain.add_device (video);
+    }
+
+    private void set_sound_config (Domain domain, InstallerMedia install_media) {
+        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_CLASS, "audio");
+        if (device == null)
+            return;
+
+        var sound = new DomainSound ();
+        var model = get_enum_value (device.get_name (), typeof (DomainSoundModel));
+        return_if_fail (model != -1);
+        sound.set_model ((DomainSoundModel) model);
+
+        domain.add_device (sound);
+    }
+
+    private void set_tablet_config (Domain domain, InstallerMedia install_media) {
+        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_NAME, "tablet");
+        if (device == null)
+            return;
+
+        var input = new DomainInput ();
+        var bus = get_enum_value (device.get_bus_type (), typeof (DomainInputBus));
+        return_if_fail (bus != -1);
+        input.set_bus ((DomainInputBus) bus);
+        input.set_device_type (DomainInputDeviceType.TABLET);
+
+        domain.add_device (input);
     }
 
     private StoragePermissions get_default_permissions () {

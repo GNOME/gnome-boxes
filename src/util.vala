@@ -253,6 +253,24 @@ namespace Boxes {
         actor.set_position (-1, -1);
     }
 
+    public Osinfo.Device? get_os_device_by_prop (Osinfo.Os? os, string prop_name, string prop_value) {
+        if (os == null)
+            return null;
+
+        var filter = new Osinfo.Filter ();
+        filter.add_constraint (prop_name, prop_value);
+        var devices = os.get_all_devices (null).new_filtered (filter);
+        return (devices.get_length () > 0) ? devices.get_nth (0) as Osinfo.Device : null;
+    }
+
+    public int get_enum_value (string value_nick, Type enum_type) {
+        var enum_class = (EnumClass) enum_type.class_ref ();
+        var val = enum_class.get_value_by_nick (value_nick);
+        return_val_if_fail (val != null, -1);
+
+        return val.value;
+    }
+
     public class Pair<T1,T2> {
         public T1 first;
         public T2 second;
