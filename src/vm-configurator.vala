@@ -51,6 +51,10 @@ private class Boxes.VMConfigurator {
         var iface = new DomainInterfaceUser ();
         domain.add_device (iface);
 
+        var sound = new DomainSound ();
+        sound.set_model (DomainSoundModel.AC97);
+        domain.add_device (sound);
+
         return domain;
     }
 
