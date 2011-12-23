@@ -11,6 +11,18 @@ private interface Boxes.IConfig {
         has_file = true;
     }
 
+    public bool get_boolean (string group, string key, bool default_value = false) {
+        try {
+            return keyfile.get_boolean (group, key);
+        } catch (GLib.KeyFileError error) {
+            return default_value;
+        }
+    }
+
+    public void set_boolean (string group, string key, bool value) {
+        keyfile.set_boolean (group, key, value);
+    }
+
     protected void load () throws GLib.Error {
         if (!has_file)
             throw new Boxes.Error.INVALID ("has_file is false");

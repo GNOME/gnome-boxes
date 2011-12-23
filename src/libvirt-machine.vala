@@ -15,6 +15,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
+    public bool save_on_quit {
+        get { return source.get_boolean ("source", "save-on-quit"); }
+        set { source.set_boolean ("source", "save-on-quit", value); }
+    }
+
     public override void disconnect_display () {
         if (_connect_display == false)
             return;
@@ -330,5 +335,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         set_stats_enable (false);
+    }
+
+    public async void suspend () throws GLib.Error {
+        (save_on_quit) ? yield domain.save_async (0, null) : domain.suspend ();
     }
 }

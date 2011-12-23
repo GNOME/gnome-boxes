@@ -407,6 +407,14 @@ private class Boxes.App: Boxes.UI {
         save_window_geometry ();
         window.destroy ();
 
+        foreach (var item in collection.items.data)
+            if (item is LibvirtMachine) {
+                var machine = item as LibvirtMachine;
+
+                if (machine.connection == default_connection)
+                    machine.suspend.begin ();
+            }
+
         return false;
     }
 
