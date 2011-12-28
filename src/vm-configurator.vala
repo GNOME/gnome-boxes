@@ -36,6 +36,12 @@ private class Boxes.VMConfigurator {
 
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (true);
+        if (install_media is UnattendedInstaller) {
+            var unattended = install_media as UnattendedInstaller;
+
+            if (unattended.express_install && unattended.password != "")
+                graphics.set_password (unattended.password);
+        }
         domain.add_device (graphics);
 
         set_video_config (domain, install_media);

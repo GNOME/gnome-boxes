@@ -22,6 +22,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         get { return username_entry.text; }
     }
 
+    public string password {
+        owned get { return password_entry.text; }
+    }
+
     public string hidden_password {
         owned get {
             return password_entry.text.length > 0 ?
