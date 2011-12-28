@@ -11,6 +11,8 @@ bootloader --location=mbr
 zerombr
 clearpart --all --drives=sda
 
+firstboot --disable
+
 part biosboot --fstype=biosboot --size=1
 part /boot --fstype ext4 --recommended --ondisk=sda
 part pv.2 --size=1 --grow --ondisk=sda
