@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-private abstract class Boxes.Display: GLib.Object, Boxes.IProperties {
+private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     protected struct SavedProperty {
         string name;
         Value default_value;

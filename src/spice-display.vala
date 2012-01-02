@@ -2,7 +2,7 @@
 using Gtk;
 using Spice;
 
-private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IProperties {
+private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     public override string protocol { get { return "SPICE"; } }
     public override string uri { owned get { return session.uri; } }
 

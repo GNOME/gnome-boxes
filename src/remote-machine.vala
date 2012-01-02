@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IProperties {
+private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
     public RemoteMachine (CollectionSource source, Boxes.App app) {
         base (source, app, source.name);

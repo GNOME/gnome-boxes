@@ -9,36 +9,6 @@ private enum Boxes.PropertiesPage {
     LAST,
 }
 
-public delegate void PropertyStringChanged (string value) throws Boxes.Error;
-
-private interface Boxes.IProperties: GLib.Object {
-    public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
-
-    protected void add_property (ref List<Pair<string, Widget>> list, string name, Widget widget) {
-        list.append (new Pair<string, Widget> (name, widget));
-    }
-
-    protected void add_string_property (ref List<Pair<string, Widget>> list,
-                                        string name, string value,
-                                        PropertyStringChanged? changed = null) {
-        var entry = new Boxes.EditableEntry ();
-
-        entry.text = value;
-        entry.selectable = true;
-        entry.editable = changed != null;
-
-        entry.editing_done.connect (() => {
-            try {
-                changed (entry.text);
-            } catch (Boxes.Error error) {
-                warning (error.message);
-            }
-        });
-
-        add_property (ref list, name, entry);
-    }
-}
-
 private class Boxes.Properties: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
 

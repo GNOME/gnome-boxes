@@ -47,6 +47,7 @@ gnome_boxes_SOURCES =				\
 	mini-graph.vala				\
 	main.vala				\
 	os-database.vala 			\
+	i-properties-provider.vala		\
 	properties.vala				\
 	remote-machine.vala			\
 	selectionbar.vala			\

@@ -3,7 +3,7 @@ using Clutter;
 using Gdk;
 using Gtk;
 
-private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IProperties {
+private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
     public override Clutter.Actor actor { get { return machine_actor.actor; } }
     public Boxes.App app;
     public MachineActor machine_actor;
