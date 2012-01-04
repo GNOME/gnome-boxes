@@ -150,6 +150,9 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare_for_location (string location) throws GLib.Error {
+        if (location == "")
+            throw new Boxes.Error.INVALID ("empty location");
+
         var file = File.new_for_commandline_arg (location);
 
         if (file.is_native ())
