@@ -159,6 +159,7 @@ private class Boxes.DisplayPage: GLib.Object {
         remove_display ();
         set_overlay_toolbar_visible (false);
         overlay_toolbar.title = toolbar.title = machine.name;
+        display.set_events (display.get_events () & ~Gdk.EventMask.POINTER_MOTION_MASK);
         event_box.add (display);
         event_box.show_all ();
 
