@@ -37,7 +37,7 @@ xorg-x11-drv-qxl
 
 %end
 
-%post --nochroot
+%post --erroronfail
 
 # Add user to admin group
 echo "BOXES_USERNAME  ALL=(ALL)    ALL" >> /etc/sudoers
