@@ -42,4 +42,20 @@ xorg-x11-drv-qxl
 # Add user to admin group
 echo "BOXES_USERNAME  ALL=(ALL)    ALL" >> /etc/sudoers
 
+# Enable autologin
+echo "[daemon]
+AutomaticLoginEnable=true
+AutomaticLogin=BOXES_USERNAME
+
+[security]
+
+[xdmcp]
+
+[greeter]
+
+[chooser]
+
+[debug]
+" > /etc/gdm/custom.conf
+
 %end
