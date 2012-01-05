@@ -63,13 +63,6 @@ private class Boxes.App: Boxes.UI {
         setup_sources.begin ();
     }
 
-    public App.with_uri (string uri) {
-        this ();
-        this.uri = uri;
-
-        ui_state = UIState.WIZARD;
-    }
-
     public void set_category (Category category) {
         topbar.label.set_text (category.name);
         view.category = category;

@@ -65,12 +65,14 @@ public void main (string[] args) {
         warning (error.message);
     }
 
+    var app = new Boxes.App ();
+
     if (uris != null) {
         // FIXME: We only handle a single URI from commandline
         var file = File.new_for_commandline_arg (uris[0]);
-        new Boxes.App.with_uri (file.get_uri ());
-    } else
-        new Boxes.App ();
+        app.wizard.open_with_uri (file.get_uri ());
+    }
+
     Gtk.main ();
 }
 

@@ -459,17 +459,19 @@ private class Boxes.Wizard: Boxes.UI {
         notebook.show_all ();
     }
 
+    public void open_with_uri (string uri) {
+        ui_state = UIState.WIZARD;
+
+        page = WizardPage.SOURCE;
+        wizard_source.page = SourcePage.URL;
+        wizard_source.uri = uri;
+        page = WizardPage.PREPARATION;
+    }
+
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.WIZARD:
-            if (app.uri != null) {
-                page = WizardPage.SOURCE;
-                wizard_source.page = SourcePage.URL;
-                wizard_source.uri = app.uri;
-                page = WizardPage.PREPARATION;
-                app.uri = null;
-            } else
-                page = WizardPage.INTRODUCTION;
+            page = WizardPage.INTRODUCTION;
             break;
         }
     }
