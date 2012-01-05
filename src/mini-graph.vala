@@ -44,14 +44,15 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
     }
 
     public override bool draw (Cairo.Context cr) {
-        int width = get_allocated_width ();
-        int height = get_allocated_height ();
+        var width = get_allocated_width ();
+        var height = get_allocated_height ();
+        var style = get_style_context ();
 
-        Gdk.cairo_set_source_rgba (cr, get_boxes_bg_color ());
+        Gdk.cairo_set_source_rgba (cr, style.get_background_color (get_state_flags ()));
         cr.rectangle (0, 0, width, height);
         cr.fill ();
 
-        Gdk.cairo_set_source_color (cr, get_style ().fg[get_state ()]);
+        Gdk.cairo_set_source_rgba (cr, style.get_color (Gtk.StateFlags.NORMAL));
         cr.set_line_width (1.5);
 
         var nstep = (npoints == -1 ? points.length : npoints) - 1;
@@ -71,7 +72,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         }
         cr.stroke ();
 
-        Gdk.cairo_set_source_color (cr, get_style ().light[get_state ()]);
+        Gdk.cairo_set_source_rgba (cr, style.get_border_color (get_state_flags ()));
         x = 0.0;
         foreach (var p in points) {
             var y = height - p * dy;
