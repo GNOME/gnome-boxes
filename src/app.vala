@@ -70,6 +70,30 @@ private class Boxes.App: Boxes.UI {
         action_properties.activate.connect (() => { ui_state = UIState.PROPERTIES; });
         application.add_action (action_properties);
 
+        action = new GLib.SimpleAction ("about", null);
+        action.activate.connect (() => {
+            string[] authors = {
+                "Zeeshan Ali (Khattak) <zeeshanak@gnome.org>",
+                "Marc-André Lureau <marcandre.lureau@gmail.com>"
+            };
+            string[] artists = {
+                "Jon McCann <jmccann@redhat.com>",
+                "Jakub Steiner <jsteiner@redhat.com>"
+            };
+
+            Gtk.show_about_dialog (window,
+                                   "artists", artists,
+                                   "authors", authors,
+                                   "comments", "A simple GNOME 3 application to access remote or virtual systems",
+                                   "copyright", "Copyright 2011 Red Hat, Inc.",
+                                   "license-type", Gtk.License.LGPL_2_1,
+                                   "logo-icon-name", "gnome-boxes",
+                                   "version", Config.BUILD_VERSION,
+                                   "website", "http://live.gnome.org/Boxes",
+                                   "wrap-license", true);
+        });
+        application.add_action (action);
+
         var menu = new GLib.Menu ();
         menu.append (_("New"), "app.new");
 
@@ -78,6 +102,7 @@ private class Boxes.App: Boxes.UI {
         display_section.append (_("Fullscreen"), "app.display.fullscreen");
         menu.append_section (null, display_section);
 
+        menu.append (_("About Boxes"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
         application.set_app_menu (menu);
