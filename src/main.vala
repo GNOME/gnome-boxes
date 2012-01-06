@@ -38,7 +38,7 @@ private static void parse_args (ref unowned string[] args) {
     }
 }
 
-public void main (string[] args) {
+public int main (string[] args) {
     Intl.bindtextdomain (GETTEXT_PACKAGE, GNOMELOCALEDIR);
     Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain (GETTEXT_PACKAGE);
@@ -73,6 +73,6 @@ public void main (string[] args) {
         app.wizard.open_with_uri (file.get_uri ());
     }
 
-    Gtk.main ();
+    return app.run ();
 }
 

@@ -80,6 +80,8 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         case UIState.WIZARD:
+            if (app.current_item != null)
+                actor_remove (app.current_item.actor);
             app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
             set_over_boxes (app.wizard.actor);
             break;

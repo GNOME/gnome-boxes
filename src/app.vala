@@ -10,14 +10,14 @@ private enum Boxes.AppPage {
 
 private class Boxes.App: Boxes.UI {
     public override Clutter.Actor actor { get { return stage; } }
-    public Gtk.Window window;
+    public Gtk.ApplicationWindow window;
     public bool fullscreen {
         get { return WindowState.FULLSCREEN in window.get_window ().get_state (); }
         set {
-            if (fullscreen)
-                window.unfullscreen ();
-            else
+            if (value)
                 window.fullscreen ();
+            else
+                window.unfullscreen ();
         }
     }
     private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
@@ -38,7 +38,10 @@ private class Boxes.App: Boxes.UI {
     public DisplayPage display_page;
     public string? uri { get; set; }
     public Collection collection;
+    public GLib.SimpleAction action_properties;
+    public GLib.SimpleAction action_fullscreen;
 
+    private Gtk.Application application;
     private Clutter.TableLayout box_table;
     private CollectionView view;
 
@@ -48,19 +51,58 @@ private class Boxes.App: Boxes.UI {
     public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
+        application = new Gtk.Application ("org.gnome.Boxes", 0);
         settings = new GLib.Settings ("org.gnome.boxes");
-        duration = settings.get_int ("animation-duration");
-        setup_ui ();
-        collection = new Collection (this);
-        connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
-        collection.item_added.connect ((item) => {
-            view.add_item (item);
-        });
-        collection.item_removed.connect ((item) => {
-            view.remove_item (item);
+
+        var action = new GLib.SimpleAction ("quit", null);
+        action.activate.connect (() => { quit (); });
+        application.add_action (action);
+
+        action = new GLib.SimpleAction ("new", null);
+        action.activate.connect (() => { ui_state = UIState.WIZARD; });
+        application.add_action (action);
+
+        action_fullscreen = new GLib.SimpleAction ("display.fullscreen", null);
+        action_fullscreen.activate.connect (() => { fullscreen = true; });
+        application.add_action (action_fullscreen);
+
+        action_properties = new GLib.SimpleAction ("display.properties", null);
+        action_properties.activate.connect (() => { ui_state = UIState.PROPERTIES; });
+        application.add_action (action_properties);
+
+        var menu = new GLib.Menu ();
+        menu.append (_("New"), "app.new");
+
+        var display_section = new GLib.Menu ();
+        display_section.append (_("Properties"), "app.display.properties");
+        display_section.append (_("Fullscreen"), "app.display.fullscreen");
+        menu.append_section (null, display_section);
+
+        menu.append (_("Quit"), "app.quit");
+
+        application.set_app_menu (menu);
+
+        application.startup.connect_after ((app) => {
+            duration = settings.get_int ("animation-duration");
+            setup_ui ();
+            collection = new Collection (this);
+            connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
+            collection.item_added.connect ((item) => {
+                view.add_item (item);
+            });
+            collection.item_removed.connect ((item) => {
+                view.remove_item (item);
+            });
+            setup_sources.begin ();
         });
 
-        setup_sources.begin ();
+        application.activate.connect_after ((app) => {
+            window.present ();
+        });
+    }
+
+    public int run () {
+        return application.run ();
     }
 
     public void set_category (Category category) {
@@ -170,8 +212,9 @@ private class Boxes.App: Boxes.UI {
     }
 
     private void setup_ui () {
-        window = new Gtk.Window ();
-        window.set_hide_titlebar_when_maximized (true);
+        window = new Gtk.ApplicationWindow (application);
+        window.show_menubar = false;
+        window.hide_titlebar_when_maximized = true;
 
         // restore window geometry/position
         var size = settings.get_value ("window-size");
@@ -260,8 +303,7 @@ private class Boxes.App: Boxes.UI {
         view.actor.notify["height"].connect (() => {
             yconstraint.set_offset (view.actor.height - selectionbar.spacing);
         });
-
-        window.show_all ();
+        notebook.show_all ();
 
         wizard = new Wizard (this);
         properties = new Properties (this);
@@ -277,6 +319,8 @@ private class Boxes.App: Boxes.UI {
 
     public override void ui_state_changed () {
         box.set_layout_manager (box_table);
+        action_fullscreen.set_enabled (ui_state == UIState.DISPLAY);
+        action_properties.set_enabled (ui_state == UIState.DISPLAY);
 
         foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, wizard, properties }) {
             ui.ui_state = ui_state;
@@ -333,7 +377,7 @@ private class Boxes.App: Boxes.UI {
 
     public bool quit () {
         save_window_geometry ();
-        Gtk.main_quit ();
+        window.destroy ();
 
         return false;
     }
