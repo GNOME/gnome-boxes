@@ -67,11 +67,13 @@ public int main (string[] args) {
 
     var app = new Boxes.App ();
 
-    if (uris != null) {
-        // FIXME: We only handle a single URI from commandline
-        var file = File.new_for_commandline_arg (uris[0]);
-        app.wizard.open_with_uri (file.get_uri ());
-    }
+    app.activate.connect (() => {
+        if (uris != null) {
+            // FIXME: We only handle a single URI from commandline
+            var file = File.new_for_commandline_arg (uris[0]);
+            app.wizard.open_with_uri (file.get_uri ());
+        }
+    });
 
     return app.run ();
 }

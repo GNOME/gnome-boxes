@@ -41,6 +41,7 @@ private class Boxes.App: Boxes.UI {
     public GLib.SimpleAction action_properties;
     public GLib.SimpleAction action_fullscreen;
 
+    public signal void activate ();
     private Gtk.Application application;
     private Clutter.TableLayout box_table;
     private CollectionView view;
@@ -122,6 +123,7 @@ private class Boxes.App: Boxes.UI {
         });
 
         application.activate.connect_after ((app) => {
+            activate ();
             window.present ();
         });
     }
