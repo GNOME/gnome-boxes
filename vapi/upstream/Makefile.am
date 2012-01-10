@@ -8,6 +8,7 @@ EXTRA_DIST =					\
 	cogl-1.0.deps				\
 	cogl-1.0.vapi				\
 	gio-2.0.vapi				\
+	glib-2.0.vapi				\
 	gdk-3.0.deps				\
 	gdk-3.0.vapi				\
 	gtk+-3.0.deps				\
