@@ -152,7 +152,7 @@ private class Boxes.Topbar: Boxes.UI {
     private void update_selection_label () {
         var items = app.selected_items.length ();
         if (items > 0)
-            selection_label.set_markup ("<b>" + _("%d selected").printf (items) + "</b>");
+            selection_label.set_markup ("<b>" + ngettext ("%d selected", "%d selected", items).printf (items) + "</b>");
         else
             selection_label.set_markup ("<i>" + _("Click on items to select them") + "</i>");
     }
