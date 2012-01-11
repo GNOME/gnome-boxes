@@ -47,6 +47,7 @@ private class Boxes.App: Boxes.UI {
     private CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
+    public GVir.Connection default_connection { get { return connections.get ("QEMU Session"); } }
 
     private uint configure_id;
     public static const uint configure_id_timeout = 100;  // 100ms
@@ -149,7 +150,8 @@ private class Boxes.App: Boxes.UI {
 
         try {
             yield connection.open_async (null);
-            connection.fetch_domains (null);
+            yield connection.fetch_domains_async (null);
+            yield connection.fetch_storage_pools_async (null);
         } catch (GLib.Error error) {
             warning (error.message);
         }
@@ -170,7 +172,7 @@ private class Boxes.App: Boxes.UI {
             add_domain (source, connection, domain);
         });
 
-        connections.replace (source.uri, connection);
+        connections.replace (source.name, connection);
     }
 
     public void add_collection_source (CollectionSource source) {

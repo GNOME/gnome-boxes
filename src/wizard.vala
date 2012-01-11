@@ -195,7 +195,7 @@ private class Boxes.Wizard: Boxes.UI {
         if (client == null) {
             client = new GUdev.Client ({"block"});
             os_db = new OSDatabase ();
-            vm_creator = new VMCreator (app, "qemu:///session"); // FIXME
+            vm_creator = new VMCreator (app);
         }
 
         next_button.sensitive = false;

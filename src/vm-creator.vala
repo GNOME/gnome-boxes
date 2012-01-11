@@ -7,17 +7,14 @@ private class Boxes.VMCreator {
     private Connection connection;
     private VMConfigurator configurator;
 
-    public VMCreator (App app, string uri) throws GLib.Error {
-        connection = new Connection (uri);
+    public VMCreator (App app) throws GLib.Error {
+        connection = app.default_connection;
         configurator = new VMConfigurator ();
     }
 
     public async Domain create_and_launch_vm (InstallerMedia install_media,
                                               Resources      resources,
                                               Cancellable?   cancellable) throws GLib.Error {
-        if (!connection.is_open ())
-            yield connect (cancellable);
-
         if (install_media is UnattendedInstaller)
             yield (install_media as UnattendedInstaller).setup (cancellable);
 
@@ -89,12 +86,6 @@ private class Boxes.VMCreator {
             warning ("Failed to get information from volume '%s': %s", volume.get_name (), error.message);
             return false;
         }
-    }
-
-    private async void connect (Cancellable? cancellable) throws GLib.Error {
-        yield connection.open_async (cancellable);
-        yield connection.fetch_domains_async (cancellable);
-        yield connection.fetch_storage_pools_async (cancellable);
     }
 
     private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
