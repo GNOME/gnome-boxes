@@ -25,11 +25,11 @@ unattended_DATA = fedora.ks			\
 		  winxp.sif 			\
 		  win2k.sif 			\
 		  win2k3.sif 			\
-		  floppy.img			\
+		  disk.img			\
 		  $(NULL)
 
-floppy.img:
-	rm -f floppy.img && qemu-img create -f raw floppy.img 1440k && mkfs.msdos -s 1 floppy.img
+disk.img:
+	rm -f disk.img && qemu-img create -f raw disk.img 1440k && mkfs.msdos -s 1 disk.img
 
 EXTRA_DIST =					\
 	gnome-boxes.desktop.in			\
