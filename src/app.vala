@@ -152,6 +152,10 @@ private class Boxes.App: Boxes.UI {
             yield connection.open_async (null);
             yield connection.fetch_domains_async (null);
             yield connection.fetch_storage_pools_async (null);
+            var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
+            if (pool != null)
+                // If default storage pool exists, we should refresh it already
+                yield pool.refresh_async (null);
         } catch (GLib.Error error) {
             warning (error.message);
         }

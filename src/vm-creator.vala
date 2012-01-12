@@ -108,10 +108,8 @@ private class Boxes.VMCreator {
             pool = connection.create_storage_pool (config, 0);
             yield pool.build_async (0, null);
             yield pool.start_async (0, null);
+            yield pool.refresh_async (null);
         }
-
-        // This should be async
-        pool.refresh (null);
 
         return pool;
     }
