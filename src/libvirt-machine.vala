@@ -335,7 +335,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
                 if (volume != null)
                     volume.delete (0);
-                domain.delete (0);
+                if (domain.persistent)
+                    domain.delete (0);
             } catch (GLib.Error err) {
                 warning (err.message);
             }
