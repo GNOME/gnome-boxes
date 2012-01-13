@@ -41,7 +41,7 @@ private class Boxes.App: Boxes.UI {
     public GLib.SimpleAction action_properties;
     public GLib.SimpleAction action_fullscreen;
 
-    public signal void activate ();
+    public signal void ready ();
     private Gtk.Application application;
     private Clutter.TableLayout box_table;
     private CollectionView view;
@@ -120,11 +120,12 @@ private class Boxes.App: Boxes.UI {
             collection.item_removed.connect ((item) => {
                 view.remove_item (item);
             });
-            setup_sources.begin ();
+            setup_sources.begin ((obj, rest) => {
+                ready ();
+            });
         });
 
         application.activate.connect_after ((app) => {
-            activate ();
             window.present ();
         });
     }
@@ -146,6 +147,9 @@ private class Boxes.App: Boxes.UI {
     }
 
     private async void setup_libvirt (CollectionSource source) {
+        if (connections.lookup (source.name) != null)
+            return;
+
         var connection = new GVir.Connection (source.uri);
 
         try {
@@ -176,13 +180,13 @@ private class Boxes.App: Boxes.UI {
             add_domain (source, connection, domain);
         });
 
-        connections.replace (source.name, connection);
+        connections.insert (source.name, connection);
     }
 
-    public void add_collection_source (CollectionSource source) {
+    public async void add_collection_source (CollectionSource source) {
         switch (source.source_type) {
         case "libvirt":
-            setup_libvirt (source);
+            yield setup_libvirt (source);
             break;
 
         case "vnc":
@@ -208,8 +212,20 @@ private class Boxes.App: Boxes.UI {
             }
         }
 
+        try {
+            var source = new CollectionSource.with_file ("QEMU Session");
+            yield add_collection_source (source);
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+        if (default_connection == null) {
+            printerr ("error: missing or failing default libvirt connection");
+            application.release (); // will end application
+            return;
+        }
+
         var dir = File.new_for_path (get_pkgconfig_source ());
-        get_sources_from_dir (dir);
+        get_sources_from_dir.begin (dir);
     }
 
     private async void get_sources_from_dir (File dir) {

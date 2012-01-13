@@ -67,7 +67,7 @@ public int main (string[] args) {
 
     var app = new Boxes.App ();
 
-    app.activate.connect (() => {
+    app.ready.connect (() => {
         if (uris != null) {
             // FIXME: We only handle a single URI from commandline
             var file = File.new_for_commandline_arg (uris[0]);
