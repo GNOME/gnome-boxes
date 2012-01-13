@@ -22,7 +22,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
         os.set_kernel (kernel_path);
         os.set_ramdisk (initrd_path);
-        os.set_cmdline ("ks=hd:sdb:" + unattended_dest_name);
+        os.set_cmdline ("ks=hd:sdb1:" + unattended_dest_name);
     }
 
     protected override async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {
@@ -36,26 +36,10 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
         yield extract_boot_files (cancellable);
 
-        yield normal_clean_up (cancellable);
+        yield clean_up (cancellable);
     }
 
-    protected override void clean_up () throws GLib.Error {
-        base.clean_up ();
-
-        if (kernel_file != null) {
-            debug ("Removing '%s'..", kernel_path);
-            kernel_file.delete ();
-            debug ("Removed '%s'.", kernel_path);
-        }
-
-        if (initrd_file != null) {
-            debug ("Removing '%s'..", initrd_path);
-            initrd_file.delete ();
-            debug ("Removed '%s'.", initrd_path);
-        }
-    }
-
-    private async void normal_clean_up (Cancellable? cancellable) throws GLib.Error {
+    private async void clean_up (Cancellable? cancellable) throws GLib.Error {
         if (!mounted)
             return;
 

@@ -32,8 +32,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected string disk_path;
 
-    private bool created_disk;
-
     protected Gtk.Table setup_table;
     protected Gtk.Label setup_label;
     protected Gtk.HBox setup_hbox;
@@ -74,7 +72,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         from_image = media.from_image;
         mount_point = media.mount_point;
 
-        disk_path = get_pkgcache (os.short_id + "-unattended.img");
+        disk_path = get_pkgcache (os.short_id + "-unattended");
+        ensure_directory (disk_path);
         this.unattended_src_path = unattended_src_path;
         this.unattended_dest_name = unattended_dest_name;
         newline_type = DataStreamNewlineType.LF;
@@ -100,19 +99,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             return;
         }
 
-        try {
-            if (yield unattended_disk_exists (cancellable))
-                debug ("Found previously created unattended disk image for '%s', re-using..", os.short_id);
-            else
-                yield create_disk_image (cancellable);
-
-            yield copy_unattended_file (cancellable);
-            yield prepare_direct_boot (cancellable);
-        } catch (GLib.Error error) {
-            clean_up ();
-
-            throw error;
-        }
+        yield create_unattended_file (cancellable);
+        yield prepare_direct_boot (cancellable);
     }
 
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {
@@ -127,12 +115,13 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             return null;
 
         var disk = new DomainDisk ();
-        disk.set_type (DomainDiskType.FILE);
+        disk.set_type (DomainDiskType.DIR);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
         disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
+        disk.set_driver_type ("fat");
         disk.set_source (disk_path);
         disk.set_target_dev ("sdb");
+        disk.set_readonly (true);
 
         return disk;
     }
@@ -212,17 +201,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                 express_toggle.bind_property ("active", child, "sensitive", 0);
     }
 
-    protected virtual void clean_up () throws GLib.Error {
-        if (!created_disk)
-            return;
-
-        var disk_file = File.new_for_path (disk_path);
-
-        disk_file.delete ();
-
-        debug ("Removed '%s'.", disk_path);
-    }
-
     protected virtual string fill_unattended_data (string data) throws RegexError {
         var str = username_regex.replace (data, data.length, 0, username_entry.text);
         str = password_regex.replace (str, str.length, 0, password_entry.text);
@@ -235,71 +213,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
 
-    protected async void exec (string[] argv, Cancellable? cancellable) throws GLib.Error {
-        SourceFunc continuation = exec.callback;
-        GLib.Error error = null;
-        var context = MainContext.get_thread_default ();
+    private async void create_unattended_file (Cancellable? cancellable)  throws GLib.Error {
+        var source = File.new_for_path (unattended_src_path);
+        var destination_path = Path.build_filename (disk_path, unattended_dest_name);
+        var destination = File.new_for_path (destination_path);
 
-        g_io_scheduler_push_job ((job) => {
-            try {
-                exec_sync (argv);
-            } catch (GLib.Error err) {
-                error = err;
-            }
-
-            var source = new IdleSource ();
-            source.set_callback (() => {
-                continuation ();
-
-                return false;
-            });
-            source.attach (context);
-
-            return false;
-        });
-
-        yield;
-
-        if (error != null)
-            throw error;
-    }
-
-    private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
-        var disk_file = File.new_for_path (disk_path);
-        var template_path = get_unattended_dir ("disk.img");
-        var template_file = File.new_for_path (template_path);
-
-        debug ("Creating disk image for unattended installation at '%s'..", disk_path);
-        yield template_file.copy_async (disk_file, 0, Priority.DEFAULT, cancellable);
-        debug ("Floppy image for unattended installation created at '%s'", disk_path);
-
-        created_disk = true;
-    }
-
-    private async void copy_unattended_file (Cancellable? cancellable) throws GLib.Error {
-        var unattended_src = File.new_for_path (unattended_src_path);
-        var unattended_tmp_path = get_user_unattended_dir (unattended_dest_name);
-        var unattended_tmp = File.new_for_path (unattended_tmp_path);
-
-        yield create_unattended_file (unattended_src, unattended_tmp, cancellable);
-
-        debug ("Copying unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
-        // FIXME: Perhaps we should use libarchive for this?
-        string[] argv = { "mcopy", "-n", "-o", "-i", disk_path,
-                                   unattended_tmp_path,
-                                   "::" + unattended_dest_name };
-        yield exec (argv, cancellable);
-        debug ("Copied unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
-
-        debug ("Deleting temporary file '%s'", unattended_tmp_path);
-        unattended_tmp.delete (cancellable);
-        debug ("Deleted temporary file '%s'", unattended_tmp_path);
-    }
-
-    private async void create_unattended_file (File         source,
-                                               File         destination,
-                                               Cancellable? cancellable)  throws GLib.Error {
-        debug ("Creating unattended file at '%s'..", destination.get_path ());
+        debug ("Creating unattended file at '%s'..", destination_path);
         var input_stream = yield source.read_async (Priority.DEFAULT, cancellable);
         var output_stream = yield destination.replace_async (null,
                                                              false,
@@ -317,33 +236,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
         }
         yield output_stream.close_async (Priority.DEFAULT, cancellable);
-        debug ("Created unattended file at '%s'..", destination.get_path ());
-    }
-
-    private async bool unattended_disk_exists (Cancellable? cancellable) {
-        var file = File.new_for_path (disk_path);
-
-        try {
-            yield file.read_async (Priority.DEFAULT, cancellable);
-        } catch (IOError.NOT_FOUND not_found_error) {
-            return false;
-        } catch (GLib.Error error) {}
-
-        return true;
-    }
-
-    private void exec_sync (string[] argv) throws GLib.Error {
-        int exit_status = -1;
-
-        Process.spawn_sync (null,
-                            argv,
-                            null,
-                            SpawnFlags.SEARCH_PATH,
-                            null,
-                            null,
-                            null,
-                            out exit_status);
-        if (exit_status != 0)
-            throw new UnattendedInstallerError.COMMAND_FAILED ("Failed to execute: %s", string.joinv (" ", argv));
+        debug ("Created unattended file at '%s'.", destination_path);
     }
 }
