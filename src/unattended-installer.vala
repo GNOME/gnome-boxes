@@ -281,7 +281,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var unattended_tmp_path = get_user_unattended_dir (unattended_dest_name);
         var unattended_tmp = File.new_for_path (unattended_tmp_path);
 
-        create_unattended_file (unattended_src, unattended_tmp, cancellable);
+        yield create_unattended_file (unattended_src, unattended_tmp, cancellable);
 
         debug ("Copying unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
         // FIXME: Perhaps we should use libarchive for this?
