@@ -460,7 +460,7 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public void open_with_uri (string uri) {
-        ui_state = UIState.WIZARD;
+        app.ui_state = UIState.WIZARD;
 
         page = WizardPage.SOURCE;
         wizard_source.page = SourcePage.URL;
