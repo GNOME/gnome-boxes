@@ -61,6 +61,14 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
+    public string get_user_pkgdata (string? file_name = null) {
+        var dir = Path.build_filename (Environment.get_user_data_dir (), Config.PACKAGE_TARNAME);
+
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
     public bool has_pkgconfig_sources () {
         return FileUtils.test (Path.build_filename (get_pkgconfig (), "sources"), FileTest.IS_DIR);
     }
