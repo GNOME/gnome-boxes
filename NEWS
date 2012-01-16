@@ -1,3 +1,71 @@
+3.3.4 - Jan 16, 2012
+====================
+
+Changes since 3.3.3:
+
+- Add GtkApplication and gnome-shell menu.
+- Add 'about' dialog.
+- Hide titlebar when maximized.
+- Use overlay toolbar only in fullscreen mode.
+- Fix auto-hidden topbar not being shown again.
+- Save default libvirt connection machines on quit.
+- Delete storage volume along with its VM.
+- Box creation wizard:
+  - Don't accept empty URL.
+  - Add a sound card device.
+  - Add devices based on what is supported by the OS.
+  - Put VM images in XDG_DATA_DIR, not XDG_CONFIG_DIR.
+  - Express install:
+    - Fix a race-condition by adding a missing 'yield' keyword.
+    - Disable first boot menu for Fedora.
+    - Single password setup: User now need to only authenticate once when to
+      selecting the box using the password provided at box creation time and not
+      inside the guest.
+    - Use floppy image for only Windows OSs. According to Lucas Rodrigues
+      <lmr@redhat.com>, floppy support on Linux isn't reliable enough.
+- Use ngettext where appropriate.
+- Added/updated translations:
+  - Polish
+  - Finnish
+- Various other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- gudev >= 147 (Reduced)
+- libvirt-gconfig >= 0.0.4
+- gtk+-3.0 >= 3.3.5
+- spice-gtk >= 0.7.81
+- libosinfo >=0.0.5
+
+All bugs fixed in this release:
+
+665812  - VM images should not be in ~/.config
+666354  - Use overlay toolbar only in fullscreen mode
+666355  - app: Request to hide titlebar when maximized
+666366  - Suspend to disk on quit for (local) session VMs
+666368  - Single-password setup
+666369  - Delete associated storage when deleting a local VM
+666599  - No sound in VM started by boxes
+666739  - Add devices based on what is supported by the OS
+666956  - Use floppy image for only Windows express install
+667140  - Refactor IProperties interface a bit
+667362  - Fix auto-hide topbar not being shown
+667363  - wizard: don't accept empty string
+667435  - add shell menu
+667660  - Reduce gudev dependency to 147
+667785  - Don't try to delete transient domains
+667859  - check default connection is there before crashing badly
+
+All contributors to this release:
+
+Christophe Fergeau <cfergeau@redhat.com>
+Florian Müllner <fmuellner@gnome.org>
+Lucas Meneghel Rodrigues <lmr@redhat.com>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Marko Myllynen <marko.myllynen@redhat.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.3.3 - Dec 19, 2011
 ====================
 
