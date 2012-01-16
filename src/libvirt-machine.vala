@@ -202,14 +202,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         io_stats = {};
         net_stats = {};
 
-        foreach (var s in stats) {
-            cpu_stats += s.cpu_guest_percent;
-        }
-        foreach (var s in stats) {
-            net_stats += (s.net_read + s.net_write);
-        }
-        foreach (var s in stats) {
-            io_stats += (s.disk_read + s.disk_write);
+        foreach (var stat in stats) {
+            cpu_stats += stat.cpu_guest_percent;
+            net_stats += (stat.net_read + stat.net_write);
+            io_stats += (stat.disk_read + stat.disk_write);
         }
 
         stats_updated ();
