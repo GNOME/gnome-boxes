@@ -319,6 +319,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override void delete (bool by_user = true) {
+        base.delete (by_user);
+
+        set_stats_enable (false);
+
         if (by_user) {
             try {
                 // The reason we fetch the volume before stopping the domain is that we need the domain's
@@ -341,8 +345,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 warning (err.message);
             }
         }
-
-        set_stats_enable (false);
     }
 
     public async void suspend () throws GLib.Error {
