@@ -1,6 +1,7 @@
 NULL =
 
 EXTRA_DIST =					\
+	cairo.vapi				\
 	clutter-1.0.deps			\
 	clutter-1.0.vapi			\
 	clutter-gtk-1.0.deps			\
