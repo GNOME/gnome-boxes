@@ -76,4 +76,6 @@ MAINTAINERCLEANFILES =				\
 	*.stamp					\
 	$(NULL)
 
+EXTRA_DIST = config.vapi
+
 -include $(top_srcdir)/git.mk
