@@ -340,7 +340,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 // The reason we fetch the volume before stopping the domain is that we need the domain's
                 // configuration for fechting its volume and transient domains stop existing after they are stopped.
                 // OTOH we can't just delete the volume from a running domain.
-                var volume = get_storage_volume ();
+                StorageVol volume = null;
+                if (connection == app.default_connection)
+                    volume = get_storage_volume (connection, domain);
 
                 try {
                     if (is_running ())
@@ -361,29 +363,5 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public async void suspend () throws GLib.Error {
         (save_on_quit) ? yield domain.save_async (0, null) : domain.suspend ();
-    }
-
-    private GVir.StorageVol? get_storage_volume () throws GLib.Error {
-        if (connection != app.default_connection)
-            return null;
-
-        var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
-        if (pool == null)
-            // Absence of our pool just means that disk was not created by us and therefore should not be deleted by
-            // us either.
-            return null;
-
-        foreach (var device in domain_config.get_devices ()) {
-            if (!(device is GVirConfig.DomainDisk))
-                continue;
-
-            var path = (device as GVirConfig.DomainDisk).get_source ();
-
-            foreach (var volume in pool.get_volumes ())
-                if (volume.get_path () == path)
-                    return volume;
-        }
-
-        return null;
     }
 }

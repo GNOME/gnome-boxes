@@ -18,18 +18,9 @@ private class Boxes.VMCreator {
         if (install_media is UnattendedInstaller)
             yield (install_media as UnattendedInstaller).setup (cancellable);
 
-        string name;
-        if (install_media.os != null)
-            name = install_media.os.name;
-        else
-            name = install_media.label;
-
-        var domain_name = name;
-        for (var i = 1; connection.find_domain_by_name (domain_name) != null; i++)
-            domain_name = name + "-" + i.to_string ();
-
+        var name = yield create_domain_name_from_media (install_media);
         var volume = yield create_target_volume (name, install_media.resources.storage);
-        var config = configurator.create_domain_config (install_media, domain_name, volume.get_path ());
+        var config = configurator.create_domain_config (install_media, name, volume.get_path ());
 
         Domain domain;
         if (install_media.live)
@@ -88,14 +79,21 @@ private class Boxes.VMCreator {
         }
     }
 
+    private async string create_domain_name_from_media (InstallerMedia install_media) throws GLib.Error {
+        var base_name = (install_media.os != null) ? install_media.os.name : install_media.label;
+        var name = base_name;
+
+        var pool = yield get_storage_pool ();
+        for (var i = 1; connection.find_domain_by_name (name) != null || pool.get_volume (name) != null; i++)
+            name = base_name + "-" + i.to_string ();
+
+        return name;
+    }
+
     private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
         var pool = yield get_storage_pool ();
 
-        var volume_name = name + ".qcow2";
-        for (var i = 1; pool.get_volume (volume_name) != null; i++)
-            volume_name = name + "-" + i.to_string () + ".qcow2";
-
-        var config = configurator.create_volume_config (volume_name, storage);
+        var config = configurator.create_volume_config (name, storage);
         var volume = pool.create_volume (config);
 
         return volume;
