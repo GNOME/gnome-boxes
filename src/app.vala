@@ -114,10 +114,10 @@ private class Boxes.App: Boxes.UI {
 
             application.set_app_menu (menu);
 
+            collection = new Collection (this);
             duration = settings.get_int ("animation-duration");
             setup_ui ();
 
-            collection = new Collection (this);
             collection.item_added.connect ((item) => {
                 view.add_item (item);
             });

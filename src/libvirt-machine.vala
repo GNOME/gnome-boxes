@@ -337,24 +337,19 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         if (by_user) {
             try {
-                // The reason we fetch the volume before stopping the domain is that we need the domain's
-                // configuration for fechting its volume and transient domains stop existing after they are stopped.
-                // OTOH we can't just delete the volume from a running domain.
-                StorageVol volume = null;
-                if (connection == app.default_connection)
-                    volume = get_storage_volume (connection, domain);
+                if (is_running ())
+                    domain.stop (0);
+            } catch (GLib.Error err) {
+                // ignore stop error
+            }
 
-                try {
-                    if (is_running ())
-                        domain.stop (0);
-                } catch (GLib.Error err) {
-                    // ignore stop error
+            try {
+                if (connection == app.default_connection) {
+                    var volume = get_storage_volume (connection, domain);
+                    if (volume != null)
+                        volume.delete (0);
                 }
-
-                if (volume != null)
-                    volume.delete (0);
-                if (domain.persistent)
-                    domain.delete (0);
+                domain.delete (0);
             } catch (GLib.Error err) {
                 warning (err.message);
             }

@@ -4,9 +4,25 @@ using Osinfo;
 using GVirConfig;
 
 private class Boxes.VMConfigurator {
+    private const string BOXES_NS = "boxes";
+    private const string BOXES_NS_URI = "http://live.gnome.org/Boxes/";
+    private const string LIVE_STATE = "live";
+    private const string INSTALLATION_STATE = "installation";
+    private const string INSTALLED_STATE = "installed";
+    private const string LIVE_XML = "<os-state>" + LIVE_STATE + "</os-state>";
+    private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
+    private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
+
     public Domain create_domain_config (InstallerMedia install_media, string name, string target_path) {
         var domain = new Domain ();
         domain.name = name;
+
+        var xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
+
+        try {
+            domain.set_custom_xml (xml, BOXES_NS, BOXES_NS_URI);
+        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+
         domain.memory = install_media.resources.ram / KIBIBYTES;
         domain.vcpu = install_media.resources.n_cpus;
         domain.set_virt_type (DomainVirtType.KVM);
@@ -54,8 +70,19 @@ private class Boxes.VMConfigurator {
     }
 
     public void post_install_setup (Domain domain) {
+        try {
+            domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
+        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
         set_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
+    }
+
+    public bool is_install_config (Domain domain) {
+        return get_os_state (domain) == INSTALLATION_STATE;
+    }
+
+    public bool is_live_config (Domain domain) {
+        return get_os_state (domain) == LIVE_STATE;
     }
 
     public StorageVol create_volume_config (string name, int64 storage) throws GLib.Error {
@@ -204,5 +231,24 @@ private class Boxes.VMConfigurator {
         permissions.set_mode (744);
 
         return permissions;
+    }
+
+    private string? get_os_state (Domain domain) {
+        var xml = domain.get_custom_xml (BOXES_NS_URI);
+        if (xml != null) {
+            var reader = new Xml.TextReader.for_memory ((char []) xml.data,
+                                                        xml.length,
+                                                        BOXES_NS_URI,
+                                                        null,
+                                                        Xml.ParserOption.COMPACT);
+            do {
+                if (reader.name () == "boxes:os-state")
+                    return reader.read_string ();
+            } while (reader.next () == 1);
+        }
+
+        warning ("Failed to find OS state for domain '%s'.", domain.get_name ());
+
+        return null;
     }
 }

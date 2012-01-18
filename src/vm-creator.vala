@@ -11,6 +11,31 @@ private class Boxes.VMCreator {
     public VMCreator (App app) {
         configurator = new VMConfigurator ();
         this.app = app;
+
+        app.collection.item_added.connect (on_item_added);
+    }
+
+    private void on_item_added (Collection collection, CollectionItem item) {
+        if (!(item is LibvirtMachine))
+            return;
+
+        var machine = item as LibvirtMachine;
+        if (machine.connection != connection)
+            return;
+
+        try {
+            var config = machine.domain.get_config (0);
+            if (!configurator.is_install_config (config) && !configurator.is_live_config (config))
+                return;
+
+            var state = machine.domain.get_info ().state;
+            if (state == DomainState.SHUTOFF || state == DomainState.CRASHED || state == DomainState.NONE)
+                on_domain_stopped (machine.domain);
+            else
+                machine.domain.stopped.connect (on_domain_stopped);
+        } catch (GLib.Error error) {
+            warning ("Failed to get information on domain '%s': %s", machine.domain.get_name (), error.message);
+        }
     }
 
     public async Domain create_and_launch_vm (InstallerMedia install_media,
@@ -22,46 +47,42 @@ private class Boxes.VMCreator {
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var config = configurator.create_domain_config (install_media, name, volume.get_path ());
 
-        Domain domain;
-        if (install_media.live)
-            // We create a (initially) transient domain for live and unknown media
-            domain = connection.start_domain (config, 0);
-        else {
-            domain = connection.create_domain (config);
-            domain.start (0);
-            config = domain.get_config (0);
-        }
-
-        ulong id = 0;
-        id = domain.stopped.connect (() => {
-            if (guest_installed_os (volume)) {
-                post_install_setup (domain, config, !install_media.live);
-                domain.disconnect (id);
-            } else if (install_media.live) {
-                domain.disconnect (id);
-                // Domain is gone then so we should delete associated storage volume.
-                try {
-                    volume.delete (0);
-                } catch (GLib.Error error) {
-                    warning ("Failed to delete volume '%s': %s", volume.get_name (), error.message);
-                }
-            }
-        });
+        var domain = connection.create_domain (config);
+        domain.start (0);
 
         return domain;
     }
 
-    private void post_install_setup (Domain domain, GVirConfig.Domain config, bool permanent) {
-        configurator.post_install_setup (config);
+    private void on_domain_stopped (Domain domain) {
+        var volume = get_storage_volume (connection, domain);
 
-        try {
-            if (permanent) {
-                domain.set_config (config);
-                domain.start (0);
-            } else {
-                var new_domain = connection.create_domain (config);
-                new_domain.start (0);
+        if (guest_installed_os (volume)) {
+            post_install_setup (domain);
+            domain.stopped.disconnect (on_domain_stopped);
+        } else {
+            try {
+                var config = domain.get_config (0);
+
+                if (!configurator.is_live_config (config))
+                    return;
+
+                // No installation during live session, so lets delete the domain and its storage volume.
+                domain.stopped.disconnect (on_domain_stopped);
+                domain.delete (0);
+                volume.delete (0);
+            } catch (GLib.Error error) {
+                warning ("Failed to delete domain '%s' or its volume: %s", domain.get_name (), error.message);
             }
+        }
+    }
+
+    private void post_install_setup (Domain domain) {
+        try {
+            var config = domain.get_config (0);
+            configurator.post_install_setup (config);
+
+            domain.set_config (config);
+            domain.start (0);
         } catch (GLib.Error error) {
             warning ("Post-install setup failed for domain '%s': %s", domain.get_uuid (), error.message);
         }
