@@ -22,6 +22,7 @@ EXTRA_DIST =					\
 	CodingStyle.txt				\
 	THANKS					\
 	build-aux/git-version-gen		\
+	m4/boxes.m4				\
 	.version				\
 	$(INTLTOOL_FILES)			\
 	$(NULL)
@@ -30,7 +31,6 @@ MAINTAINERCLEANFILES =				\
 	ABOUT-NLS				\
 	aclocal.m4				\
 	config.h.in				\
-	m4/*.m4					\
 	build-aux/compile			\
 	build-aux/config.guess			\
 	build-aux/config.rpath			\
@@ -63,5 +63,8 @@ all: version.h
 
 version.h: $(top_srcdir)/.version
 	echo '#define BUILD_VERSION "'`cat $(top_srcdir)/.version`'"' > $@-t && mv $@-t $@
+
+vala-clean:
+	rm -f `find . -name "*.stamp"`
 
 -include $(top_srcdir)/git.mk
