@@ -19,7 +19,6 @@ AM_SILENT_RULES([yes])
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_CXX
-AM_PROG_VALAC([0.14.0])
 
 # Initialize libtool
 LT_PREREQ([2.2])
@@ -70,7 +69,10 @@ PKG_CHECK_MODULES(BOXES, [
   libosinfo-1.0 >= $OSINFO_MIN_VERSION
 ])
 
-VALA_CHECK_PACKAGES([
+
+VALA_ADD_STAMP([src/gnome_boxes_vala.stamp])
+
+VALA_CHECK([0.14.0], [
   clutter-gtk-1.0
   cogl-1.0
   gdk-pixbuf-2.0
@@ -114,4 +116,5 @@ AC_MSG_NOTICE([
 
         prefix:                   ${prefix}
         c compiler:               ${CC} ${CFLAGS}
+        build from vala sources:  $enable_vala
 ])
