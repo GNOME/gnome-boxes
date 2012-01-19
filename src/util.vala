@@ -265,9 +265,8 @@ namespace Boxes {
         if (os == null)
             return null;
 
-        var filter = new Osinfo.Filter ();
-        filter.add_constraint (prop_name, prop_value);
-        var devices = os.get_all_devices (null).new_filtered (filter);
+        var devices = os.get_devices_by_property (prop_name, prop_value, true);
+
         return (devices.get_length () > 0) ? devices.get_nth (0) as Osinfo.Device : null;
     }
 
