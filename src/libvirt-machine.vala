@@ -4,6 +4,7 @@ using Gtk;
 
 private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Domain domain;
+    public GVirConfig.Domain domain_config;
     public GVir.Connection connection;
     public DomainState state {
         get {
@@ -89,13 +90,24 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stats = new MachineStat[STATS_SIZE];
     }
 
-    public LibvirtMachine (CollectionSource source, Boxes.App app,
-                           GVir.Connection connection, GVir.Domain domain) {
+    public LibvirtMachine (CollectionSource source,
+                           Boxes.App app,
+                           GVir.Connection connection,
+                           GVir.Domain domain) throws GLib.Error {
         base (source, app, domain.get_name ());
 
         this.config = new DisplayConfig (source, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
+        this.domain_config = domain.get_config (0);
+
+        domain.updated.connect (() => {
+            try {
+                this.domain_config = domain.get_config (0);
+            } catch (GLib.Error error) {
+                critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
+            }
+        });
 
         set_screenshot_enable (true);
         set_stats_enable (true);
@@ -130,7 +142,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         try {
             // FIXME: switch to domain.get_devices () and loop over all interfaces
-            var xmldoc = domain.get_config (0).to_xml ();
+            var xmldoc = domain_config.to_xml ();
             var target_dev = extract_xpath (xmldoc,
                 "string(/domain/devices/disk[@type='file']/target/@dev)", true);
             if (target_dev == "")
@@ -156,7 +168,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         try {
             // FIXME: switch to domain.get_devices () and loop over all interfaces
-            var xmldoc = domain.get_config (0).to_xml ();
+            var xmldoc = domain_config.to_xml ();
             var target_dev = extract_xpath (xmldoc,
                 "string(/domain/devices/interface[@type='network']/target/@dev)", true);
             if (target_dev == "")
@@ -253,7 +265,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return_if_fail (_connect_display == true);
 
         try {
-            var xmldoc = domain.get_config (0).to_xml();
+            var xmldoc = domain_config.to_xml ();
             type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
             port = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
             socket = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@socket)");
@@ -351,14 +363,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (connection != app.default_connection)
             return null;
 
-        var config = domain.get_config (0);
         var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
         if (pool == null)
             // Absence of our pool just means that disk was not created by us and therefore should not be deleted by
             // us either.
             return null;
 
-        foreach (var device in config.get_devices ()) {
+        foreach (var device in domain_config.get_devices ()) {
             if (!(device is GVirConfig.DomainDisk))
                 continue;
 

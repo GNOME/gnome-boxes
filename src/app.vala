@@ -142,9 +142,13 @@ private class Boxes.App: Boxes.UI {
 
     private void add_domain (CollectionSource source,
                              GVir.Connection connection, GVir.Domain domain) {
-        var machine = new LibvirtMachine (source, this, connection, domain);
-        collection.add_item (machine);
-        domain.set_data<LibvirtMachine> ("machine", machine);
+        try {
+            var machine = new LibvirtMachine (source, this, connection, domain);
+            collection.add_item (machine);
+            domain.set_data<LibvirtMachine> ("machine", machine);
+        } catch (GLib.Error error) {
+            warning ("Failed to create source '%s': %s", source.name, error.message);
+        }
     }
 
     private async void setup_libvirt (CollectionSource source) {
