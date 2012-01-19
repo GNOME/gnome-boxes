@@ -40,7 +40,7 @@ xorg-x11-drv-qxl
 %post --erroronfail
 
 # Add user to admin group
-echo "BOXES_USERNAME  ALL=(ALL)    ALL" >> /etc/sudoers
+usermod BOXES_USERNAME -a -G wheel
 
 # Enable autologin
 echo "[daemon]
