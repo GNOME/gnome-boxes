@@ -97,22 +97,25 @@ private class Boxes.App: Boxes.UI {
         });
         application.add_action (action);
 
-        var menu = new GLib.Menu ();
-        menu.append (_("New"), "app.new");
 
-        var display_section = new GLib.Menu ();
-        display_section.append (_("Properties"), "app.display.properties");
-        display_section.append (_("Fullscreen"), "app.display.fullscreen");
-        menu.append_section (null, display_section);
-
-        menu.append (_("About Boxes"), "app.about");
-        menu.append (_("Quit"), "app.quit");
-
-        application.set_app_menu (menu);
 
         application.startup.connect_after ((app) => {
+            var menu = new GLib.Menu ();
+            menu.append (_("New"), "app.new");
+
+            var display_section = new GLib.Menu ();
+            display_section.append (_("Properties"), "app.display.properties");
+            display_section.append (_("Fullscreen"), "app.display.fullscreen");
+            menu.append_section (null, display_section);
+
+            menu.append (_("About Boxes"), "app.about");
+            menu.append (_("Quit"), "app.quit");
+
+            application.set_app_menu (menu);
+
             duration = settings.get_int ("animation-duration");
             setup_ui ();
+
             collection = new Collection (this);
             connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
             collection.item_added.connect ((item) => {
