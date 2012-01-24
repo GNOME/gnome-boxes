@@ -123,7 +123,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public virtual void set_direct_boot_params (DomainOs os) {}
 
     public virtual DomainDisk? get_unattended_disk_config () {
-        if (disk_path == null)
+        if (!express_toggle.active)
             return null;
 
         var disk = new DomainDisk ();
