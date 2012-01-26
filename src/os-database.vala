@@ -60,12 +60,22 @@ private class Boxes.OSDatabase {
         return media;
     }
 
-    public Resources get_resources_for_os (Os? os) {
+    public Resources get_resources_for_os (Os? os, string? architecture) {
         if (os == null)
             return get_default_resources ();
 
-        // Prefer x86_64 resources
-        string[] prefs = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
+        // Prefer x86_64 resources by default
+        string[] architectures = {"x86_64", "i686", "i386", ARCHITECTURE_ALL};
+        string[] prefs;
+        if (architecture != null) {
+            prefs = new string[0];
+            prefs += architecture;
+
+            foreach (var arch in architectures)
+                if (arch != architecture)
+                    prefs += arch;
+        } else
+            prefs = architectures;
 
         // First try recommended resources
         var list = os.get_recommended_resources ();

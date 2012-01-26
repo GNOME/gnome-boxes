@@ -207,7 +207,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         try {
             install_media = InstallerMedia.instantiate.end (result);
-            resources = os_db.get_resources_for_os (install_media.os);
+            resources = os_db.get_resources_for_os (install_media.os, install_media.os_media.architecture);
             prep_progress.fraction = 1.0;
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
