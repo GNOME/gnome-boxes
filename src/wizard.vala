@@ -55,7 +55,7 @@ private class Boxes.Wizard: Boxes.UI {
                     try {
                         prepare ();
                     } catch (GLib.Error error) {
-                        warning ("Fixme: %s".printf (error.message));
+                        app.notificationbar.display_error (error.message);
                         return;
                     }
                     break;
@@ -71,8 +71,10 @@ private class Boxes.Wizard: Boxes.UI {
 
                 case WizardPage.LAST:
                     create.begin ((source, result) => {
-                       if (create.end (result))
-                           app.ui_state = UIState.COLLECTION;
+                        if (create.end (result))
+                            app.ui_state = UIState.COLLECTION;
+                        else
+                            app.notificationbar.display_error (_("Box creation failed!"));
                     });
                     return;
                 }
@@ -195,7 +197,7 @@ private class Boxes.Wizard: Boxes.UI {
         var uri = Xml.URI.parse (uri_as_text);
 
         if (uri == null)
-            throw new Boxes.Error.INVALID ("the URI is invalid");
+            throw new Boxes.Error.INVALID (_("Invalid URI"));
 
         source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
@@ -206,7 +208,7 @@ private class Boxes.Wizard: Boxes.UI {
             // accept any qemu..:// uri
             source.source_type = "libvirt";
         } else
-            throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
+            throw new Boxes.Error.INVALID (_("Unsupported protocol '%s'").printf (uri.scheme));
     }
 
     private void prepare_for_installer (string path) throws GLib.Error {
@@ -223,7 +225,8 @@ private class Boxes.Wizard: Boxes.UI {
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
-            warning ("Fixme: %s".printf (error.message));
+            app.notificationbar.display_error (error.message);
+            page = page - 1;
         }
     }
 
