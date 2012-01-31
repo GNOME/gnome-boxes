@@ -5,13 +5,13 @@ private class Boxes.Notificationbar: GLib.Object {
     public Clutter.Actor actor { get; private set; }
     public static const float spacing = 60.0f;
 
-    public delegate void ActionFunc ();
-    public delegate void IgnoreFunc ();
+    public delegate void OKFunc ();
+    public delegate void CancelFunc ();
 
     private App app;
     private InfoBar info_bar;
-    private Label label;
-    private Button action_button;
+    private Label message_label;
+    private Button ok_button;
 
     private uint timeout_id;
     private ulong response_id;
@@ -22,12 +22,32 @@ private class Boxes.Notificationbar: GLib.Object {
         setup_action_notify ();
     }
 
-    public void display (string            action_label,
-                         string            action_message,
-                         owned ActionFunc  action_func,
-                         owned IgnoreFunc? ignore_func = null) {
-        action_button.label = action_label;
-        label.label = action_message;
+    public void display_for_action (string            message,
+                                    string            action_label,
+                                    owned OKFunc      action_func,
+                                    owned CancelFunc? ignore_func = null) {
+        display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func);
+    }
+
+    public void display_error (string message) {
+        display (message, MessageType.ERROR);
+    }
+
+    private void display (string            message,
+                          MessageType       message_type,
+                          string?           ok_label = null,
+                          owned OKFunc?     ok_func = null,
+                          owned CancelFunc? cancel_func = null) {
+        if (ok_label != null) {
+            ok_button.label = ok_label;
+            info_bar.spacing = 120;
+            ok_button.show ();
+        } else {
+            info_bar.spacing = 60;
+            ok_button.hide ();
+        }
+        message_label.label = message;
+        info_bar.message_type = message_type;
 
         // Replace running notification, if any
         if (timeout_id != 0) {
@@ -50,10 +70,11 @@ private class Boxes.Notificationbar: GLib.Object {
             response_id = 0;
 
             if (response == ResponseType.OK)
-                action_func ();
+                if (ok_func != null)
+                    ok_func ();
             else {
-                if (ignore_func != null)
-                    ignore_func ();
+                if (cancel_func != null)
+                    cancel_func ();
             }
         });
 
@@ -63,16 +84,15 @@ private class Boxes.Notificationbar: GLib.Object {
     private void setup_action_notify () {
         info_bar = new InfoBar ();
         info_bar.get_style_context ().add_class ("osd");
-        info_bar.spacing = 120;
         info_bar.margin = 5;
 
-        label = new Label ("");
+        message_label = new Label ("");
         var content_area = info_bar.get_content_area () as Container;
-        content_area.add (label);
+        content_area.add (message_label);
 
-        action_button = new Button ();
-        info_bar.add_action_widget (action_button, ResponseType.OK);
-        action_button.use_stock = true;
+        ok_button = new Button ();
+        info_bar.add_action_widget (ok_button, ResponseType.OK);
+        ok_button.use_stock = true;
 
         var image = new Image.from_icon_name ("window-close-symbolic", IconSize.BUTTON);
         var close_button = new Button ();
@@ -84,7 +104,6 @@ private class Boxes.Notificationbar: GLib.Object {
         var button_box = info_bar.get_action_area () as ButtonBox;
         button_box.orientation = Orientation.HORIZONTAL;
         button_box.set_child_non_homogeneous (close_button, true);
-        info_bar.set_message_type (MessageType.INFO);
 
         info_bar.show_all ();
 
@@ -92,6 +111,7 @@ private class Boxes.Notificationbar: GLib.Object {
         app.stage.add (actor);
         actor.hide ();
         actor.scale_y = 0f;
+        actor.depth = 1f; // Apear above every view
     }
 
     private void show () {

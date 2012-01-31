@@ -472,12 +472,12 @@ private class Boxes.App: Boxes.UI {
         foreach (var item in selected_items)
             view.remove_item (item);
 
-        Notificationbar.ActionFunc undo = () => {
+        Notificationbar.OKFunc undo = () => {
             foreach (var selected in selected_items)
                 view.add_item (selected);
         };
 
-        Notificationbar.IgnoreFunc really_remove = () => {
+        Notificationbar.CancelFunc really_remove = () => {
             foreach (var selected in selected_items) {
                 var machine = selected as Machine;
 
@@ -486,7 +486,7 @@ private class Boxes.App: Boxes.UI {
             }
         };
 
-        notificationbar.display (Gtk.Stock.UNDO, message, (owned) undo, (owned) really_remove);
+        notificationbar.display_for_action (message, Gtk.Stock.UNDO, (owned) undo, (owned) really_remove);
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
