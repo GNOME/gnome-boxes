@@ -175,8 +175,14 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
 
-        cursor_id = display.get_window ().notify["cursor"].connect (() => {
-            event_box.get_window ().set_cursor (display.get_window ().cursor);
+        cursor_id = display.draw.connect (() => {
+            display.disconnect (cursor_id);
+
+            cursor_id = display.get_window ().notify["cursor"].connect (() => {
+                event_box.get_window ().set_cursor (display.get_window ().cursor);
+            });
+
+            return false;
         });
 
         show ();
