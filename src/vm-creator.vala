@@ -52,7 +52,7 @@ private class Boxes.VMCreator {
                 try {
                     volume.delete (0);
                 } catch (GLib.Error error) {
-                    warning ("Failed to delete volume '%s': %s", volume.get_path (), error.message);
+                    warning ("Failed to delete volume '%s': %s", volume.get_name (), error.message);
                 }
             }
         });
