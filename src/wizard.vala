@@ -24,6 +24,7 @@ private class Boxes.Wizard: Boxes.UI {
     private CollectionSource? source;
     private Gtk.ProgressBar prep_progress;
     private Gtk.VBox setup_vbox;
+    private Gtk.Label review_label;
 
     private OSDatabase os_db;
     private VMCreator vm_creator;
@@ -194,13 +195,18 @@ private class Boxes.Wizard: Boxes.UI {
     private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
         var uri = Xml.URI.parse (uri_as_text);
 
-        if (uri == null || uri.server == null)
+        if (uri == null)
             throw new Boxes.Error.INVALID ("the URI is invalid");
 
         source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
-        // Accept any spice:// or vnc:// uri but not any other
-        if (uri.scheme != "spice" && uri.scheme != "vnc")
+        if (uri.scheme == "spice" ||
+            uri.scheme == "vnc") {
+            // accept any vnc:// or spice:// uri
+        } else if (uri.scheme.has_prefix ("qemu")) {
+            // accept any qemu..:// uri
+            source.source_type = "libvirt";
+        } else
             throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
     }
 
@@ -269,11 +275,17 @@ private class Boxes.Wizard: Boxes.UI {
     private void review () {
         summary.clear ();
 
+        review_label.set_text (_("Will create a new box with the following properties:"));
+
         if (source != null) {
             var uri = Xml.URI.parse (source.uri);
 
-            summary.add_property (_("Type"), uri.scheme.up ());
-            summary.add_property (_("Host"), uri.server.down ());
+            summary.add_property (_("Type"), source.source_type);
+
+            if (uri != null && uri.server != null)
+                summary.add_property (_("Host"), uri.server.down ());
+            else
+                summary.add_property (_("URI"), source.uri.down ());
 
             switch (uri.scheme) {
             case "spice":
@@ -287,6 +299,10 @@ private class Boxes.Wizard: Boxes.UI {
                 if (uri.port > 0)
                     summary.add_property (_("Port"), uri.port.to_string ());
                 break;
+            }
+
+            if (source.source_type == "libvirt") {
+                review_label.set_text (_("Will add boxes for all systems available from this account:"));
             }
         } else if (install_media != null) {
             summary.add_property (_("System"), install_media.label);
@@ -415,10 +431,10 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.halign = Gtk.Align.CENTER;
         add_step (vbox, _("Review"), WizardPage.REVIEW);
 
-        label = new Gtk.Label (_("Will create a new box with the following properties:"));
-        label.get_style_context ().add_class ("boxes-wizard-label");
-        label.xalign = 0.0f;
-        vbox.pack_start (label, false, false);
+        review_label = new Gtk.Label (null);
+        review_label.get_style_context ().add_class ("boxes-wizard-label");
+        review_label.xalign = 0.0f;
+        vbox.pack_start (review_label, false, false);
 
         summary = new WizardSummary ();
         vbox.pack_start (summary.widget, true, true);
