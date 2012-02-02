@@ -37,10 +37,13 @@ private class Boxes.WizardSource: GLib.Object {
 
     private Boxes.MenuBox menubox;
     private Gtk.Notebook notebook;
+    private Gtk.Label url_label;
+    private Gtk.Image url_image;
     public Gtk.Entry url_entry;
 
     public WizardSource () {
         notebook = new Gtk.Notebook ();
+        notebook.width_request = 500;
         notebook.get_style_context ().add_class ("boxes-source-nb");
         notebook.show_tabs = false;
 
@@ -84,18 +87,25 @@ private class Boxes.WizardSource: GLib.Object {
         url_entry = new Gtk.Entry ();
         hbox.add (url_entry);
         hbox = add_entry (menubox);
-        var image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
+
+        url_image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
         // var image = new Gtk.Image.from_icon_name ("krfb", 0);
-        image.pixel_size = 96;
-        hbox.pack_start (image, false, false);
-        label = new Gtk.Label (null);
-        label.xalign = 0.0f;
-        label.set_markup (_("<b>Desktop Access</b>\n\nWill add boxes for all systems available from this account."));
-        label.set_use_markup (true);
-        label.wrap = true;
-        hbox.pack_start (label, true, true);
+        url_image.pixel_size = 96;
+        hbox.pack_start (url_image, false, false);
+
+        url_label = new Gtk.Label (null);
+        url_label.xalign = 0.0f;
+        url_label.set_markup (_("<b>Desktop Access</b>\n\nWill add boxes for all systems available from this account."));
+        url_label.set_use_markup (true);
+        url_label.wrap = true;
+        hbox.pack_start (url_label, true, true);
 
         notebook.show_all ();
+    }
+
+    public void update_url_page(string title, string text, string icon_name) {
+        url_label.set_markup ("<b>"  + title + "</b>\n\n" + text);
+        url_image.icon_name = icon_name;
     }
 
     private Gtk.HBox add_entry (MenuBox box, ClickedFunc? clicked = null) {

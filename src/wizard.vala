@@ -109,9 +109,26 @@ private class Boxes.Wizard: Boxes.UI {
                 next_button.sensitive = false;
         });
         wizard_source.url_entry.changed.connect (() => {
-            // FIXME: add uri checker
             next_button.sensitive = wizard_source.uri.length != 0;
+
+            var text = _("Please enter desktop or collection URI");
+            var icon = "preferences-desktop-remote-desktop";
+            try {
+                prepare_for_location (this.wizard_source.uri, true);
+
+                if (source != null && source.source_type == "libvirt") {
+                    text = _("Will add boxes for all systems available from this account.");
+                    icon = "network-workgroup";
+                } else
+                    text = _("Will add a single box.");
+
+            } catch (GLib.Error error) {
+                // ignore any parsing error
+            }
+
+            wizard_source.update_url_page (_("Desktop Access"), text, icon);
         });
+
         wizard_source.url_entry.activate.connect(() => {
             page = page + 1;
         });
@@ -149,16 +166,19 @@ private class Boxes.Wizard: Boxes.UI {
         return true;
     }
 
-    private void prepare_for_location (string location) throws GLib.Error {
+    private void prepare_for_location (string location, bool probing = false) throws GLib.Error {
+        source = null;
+
         if (location == "")
             throw new Boxes.Error.INVALID ("empty location");
 
         var file = File.new_for_commandline_arg (location);
 
-        if (file.is_native ())
+        if (file.is_native ()) {
             // FIXME: We should able to handle non-local URIs here too
-            prepare_for_installer (file.get_path ());
-        else {
+            if (!probing)
+                prepare_for_installer (file.get_path ());
+        } else {
             bool uncertain;
             var uri = file.get_uri ();
 
@@ -177,16 +197,10 @@ private class Boxes.Wizard: Boxes.UI {
         if (uri == null || uri.server == null)
             throw new Boxes.Error.INVALID ("the URI is invalid");
 
-        source = new CollectionSource (uri.server, uri.scheme, uri_as_text);
+        source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
-        if (uri.scheme == "spice") {
-            if (uri.query_raw == null && uri.query == null)
-                throw new Boxes.Error.INVALID ("the Spice URI is incomplete");
-
-            if (uri.port > 0)
-                throw new Boxes.Error.INVALID ("the Spice URI is invalid");
-        } else if (uri.scheme == "vnc") {
-            // accept any vnc:// uri
+        if (uri.scheme == "spice" || uri.scheme == "vnc") {
+            // accept any spice:// or vnc:// uri
         } else
             throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
     }
@@ -220,8 +234,6 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare () throws GLib.Error {
-        source = null;
-
         if (this.wizard_source.page == Boxes.SourcePage.URL ||
             this.wizard_source.page == Boxes.SourcePage.FILE)
             prepare_for_location (this.wizard_source.uri);
