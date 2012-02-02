@@ -207,7 +207,10 @@ private class Boxes.Wizard: Boxes.UI {
 
         try {
             install_media = InstallerMedia.instantiate.end (result);
-            resources = os_db.get_resources_for_os (install_media.os, install_media.os_media.architecture);
+            // FIXME: these values could be made editable somehow
+            var architecture = (install_media.os_media != null) ? install_media.os_media.architecture : "i686";
+
+            resources = os_db.get_resources_for_os (install_media.os, architecture);
             prep_progress.fraction = 1.0;
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
