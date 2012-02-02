@@ -68,9 +68,11 @@ private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
         owned get { return get_string ("source", "name"); }
         set {
             keyfile.set_string ("source", "name", value);
+            var had_file = has_file;
             this.delete ();
             _filename = null;
-            save ();
+            if (had_file)
+                save ();
         }
     }
     public string? source_type {
