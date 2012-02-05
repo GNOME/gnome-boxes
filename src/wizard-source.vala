@@ -123,6 +123,7 @@ private class Boxes.WizardSource: GLib.Object {
                                                 Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                                 Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
         dialog.show_hidden = false;
+        dialog.local_only = true;
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
             page = SourcePage.URL;
