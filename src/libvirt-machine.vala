@@ -90,6 +90,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stats = new MachineStat[STATS_SIZE];
     }
 
+    public void update_domain_config () {
+        try {
+            this.domain_config = domain.get_config (0);
+        } catch (GLib.Error error) {
+            critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
+        }
+    }
+
     public LibvirtMachine (CollectionSource source,
                            Boxes.App app,
                            GVir.Connection connection,
@@ -101,13 +109,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         this.domain = domain;
         this.domain_config = domain.get_config (0);
 
-        domain.updated.connect (() => {
-            try {
-                this.domain_config = domain.get_config (0);
-            } catch (GLib.Error error) {
-                critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
-            }
-        });
+        domain.updated.connect (update_domain_config);
 
         set_screenshot_enable (true);
         set_stats_enable (true);
@@ -263,6 +265,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         string type, port, socket, host;
 
         return_if_fail (_connect_display == true);
+
+        update_domain_config ();
 
         try {
             var xmldoc = domain_config.to_xml ();
