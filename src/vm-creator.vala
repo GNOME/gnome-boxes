@@ -13,7 +13,6 @@ private class Boxes.VMCreator {
     }
 
     public async Domain create_and_launch_vm (InstallerMedia install_media,
-                                              Resources      resources,
                                               Cancellable?   cancellable) throws GLib.Error {
         if (install_media is UnattendedInstaller)
             yield (install_media as UnattendedInstaller).setup (cancellable);
@@ -28,8 +27,8 @@ private class Boxes.VMCreator {
         for (var i = 1; connection.find_domain_by_name (domain_name) != null; i++)
             domain_name = name + "-" + i.to_string ();
 
-        var volume = yield create_target_volume (name, resources.storage);
-        var config = configurator.create_domain_config (install_media, domain_name, volume.get_path (), resources);
+        var volume = yield create_target_volume (name, install_media.resources.storage);
+        var config = configurator.create_domain_config (install_media, domain_name, volume.get_path ());
 
         Domain domain;
         if (install_media.live)

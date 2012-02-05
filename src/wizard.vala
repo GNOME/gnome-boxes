@@ -26,12 +26,10 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.VBox setup_vbox;
     private Gtk.Label review_label;
 
-    private OSDatabase os_db;
+    private MediaManager media_manager;
     private VMCreator vm_creator;
-    private GUdev.Client client;
 
     private InstallerMedia? install_media;
-    private Osinfo.Resources? resources;
 
     private WizardPage _page;
     private WizardPage page {
@@ -133,6 +131,8 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.url_entry.activate.connect(() => {
             page = page + 1;
         });
+
+        media_manager = new MediaManager ();
     }
 
     public Wizard (App app) {
@@ -148,7 +148,7 @@ private class Boxes.Wizard: Boxes.UI {
 
             next_button.sensitive = false;
             try {
-                yield vm_creator.create_and_launch_vm (install_media, resources, null);
+                yield vm_creator.create_and_launch_vm (install_media, null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
             } catch (GLib.Error error) {
                 warning (error.message);
@@ -156,7 +156,6 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             install_media = null;
-            resources = null;
             wizard_source.uri = "";
 
             return true;
@@ -211,25 +210,19 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare_for_installer (string path) throws GLib.Error {
-        if (client == null) {
-            client = new GUdev.Client ({"block"});
-            os_db = new OSDatabase ();
+        if (vm_creator == null) {
             vm_creator = new VMCreator (app);
         }
 
         next_button.sensitive = false;
-        InstallerMedia.instantiate.begin (path, os_db, client, null, on_installer_media_instantiated);
+        media_manager.create_installer_media_for_path.begin (path, null, on_installer_media_instantiated);
     }
 
     private void on_installer_media_instantiated (Object? source_object, AsyncResult result) {
         next_button.sensitive = true;
 
         try {
-            install_media = InstallerMedia.instantiate.end (result);
-            // FIXME: these values could be made editable somehow
-            var architecture = (install_media.os_media != null) ? install_media.os_media.architecture : "i686";
-
-            resources = os_db.get_resources_for_os (install_media.os, architecture);
+            install_media = media_manager.create_installer_media_for_path.end (result);
             prep_progress.fraction = 1.0;
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
@@ -305,7 +298,7 @@ private class Boxes.Wizard: Boxes.UI {
             }
         } else if (install_media != null) {
             summary.add_property (_("System"), install_media.label);
-            var memory = format_size (resources.ram, FormatSizeFlags.IEC_UNITS);
+            var memory = format_size (install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
 
             if (install_media is UnattendedInstaller) {
                 var media = install_media as UnattendedInstaller;
@@ -316,7 +309,7 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             summary.add_property (_("Memory"), memory);
-            memory = format_size (resources.storage, FormatSizeFlags.IEC_UNITS);
+            memory = format_size (install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
         }
     }

@@ -4,15 +4,11 @@ using Osinfo;
 using GVirConfig;
 
 private class Boxes.VMConfigurator {
-    public Domain create_domain_config (InstallerMedia install_media,
-                                        string         name,
-                                        string         target_path,
-                                        Resources      resources) {
-
+    public Domain create_domain_config (InstallerMedia install_media, string name, string target_path) {
         var domain = new Domain ();
         domain.name = name;
-        domain.memory = resources.ram / KIBIBYTES;
-        domain.vcpu = resources.n_cpus;
+        domain.memory = install_media.resources.ram / KIBIBYTES;
+        domain.vcpu = install_media.resources.n_cpus;
         domain.set_virt_type (DomainVirtType.KVM);
 
         set_os_config (domain, install_media);

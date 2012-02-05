@@ -4,7 +4,8 @@ using Osinfo;
 using GUdev;
 
 private class Boxes.InstallerMedia : Object {
-    public Os os;
+    public Os? os;
+    public Osinfo.Resources? resources;
     public Media os_media;
     public string label;
     public string device_file;
@@ -13,55 +14,26 @@ private class Boxes.InstallerMedia : Object {
 
     public bool live { get { return os_media == null || os_media.live; } }
 
-    public static async InstallerMedia instantiate (string       path,
-                                                    OSDatabase   os_db,
-                                                    Client       client,
-                                                    Cancellable? cancellable) throws GLib.Error {
+    public static async InstallerMedia create_for_path (string       path,
+                                                        MediaManager media_manager,
+                                                        Cancellable? cancellable) throws GLib.Error {
         var media = new InstallerMedia ();
-        yield media.setup_for_path (path, os_db, client, cancellable);
 
-        if (media.os == null)
-            return media;
-
-        switch (media.os.short_id) {
-        case "fedora14":
-        case "fedora15":
-        case "fedora16":
-            media = new FedoraInstaller.copy (media);
-
-            break;
-
-        case "win7":
-        case "win2k8":
-            media = new Win7Installer.copy (media);
-
-            break;
-
-        case "winxp":
-        case "win2k":
-        case "win2k3":
-            media = new WinXPInstaller.copy (media);
-
-            break;
-
-        default:
-            return media;
-        }
+        yield media.setup_for_path (path, media_manager, cancellable);
 
         return media;
     }
 
     private async void setup_for_path (string       path,
-                                       OSDatabase   os_db,
-                                       Client       client,
+                                       MediaManager media_manager,
                                        Cancellable? cancellable) throws GLib.Error {
-        var device = yield get_device_from_path (path, client, cancellable);
+        var device = yield get_device_from_path (path, media_manager.client, cancellable);
 
         if (device != null)
-            get_media_info_from_device (device, os_db);
+            get_media_info_from_device (device, media_manager.os_db);
         else {
             from_image = true;
-            os = yield os_db.guess_os_from_install_media (device_file, out os_media, cancellable);
+            os = yield media_manager.os_db.guess_os_from_install_media (device_file, out os_media, cancellable);
         }
 
         if (os != null)
@@ -69,6 +41,10 @@ private class Boxes.InstallerMedia : Object {
 
         if (label == null)
             label = Path.get_basename (device_file);
+
+        // FIXME: these values could be made editable somehow
+        var architecture = (os_media != null) ? os_media.architecture : "i686";
+        resources = media_manager.os_db.get_resources_for_os (os, architecture);
     }
 
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
