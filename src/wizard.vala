@@ -199,9 +199,8 @@ private class Boxes.Wizard: Boxes.UI {
 
         source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
-        if (uri.scheme == "spice" || uri.scheme == "vnc") {
-            // accept any spice:// or vnc:// uri
-        } else
+        // Accept any spice:// or vnc:// uri but not any other
+        if (uri.scheme != "spice" && uri.scheme != "vnc")
             throw new Boxes.Error.INVALID ("Unsupported protocol %s".printf (uri.scheme));
     }
 
