@@ -1,3 +1,48 @@
+3.3.5 - Feb 7, 2012
+===================
+
+Changes since 3.3.4.1:
+
+- Fix startup against latest gtk+.
+- Make sure VM image dir exists. This got broken when we started using
+  XDG_CONFIG_DIR as VM image directory.
+- Don't choke on unknown installer media.
+- Fix build against git master of libvirt-glib.
+- Confine file chooser dialog in creation wizard to local filesystem.
+- Be slightly helpful to users when they are typing URL manually in creation
+  wizard.
+- Fix recent regression in non-express installations.
+- Express install:
+  - Support 32-bit Windows 7.
+  - Add user to 'wheel' group in Fedora, rather than editing the sudoers file.
+- Disable screenshots on machine deletion.
+- Choose resources according to media architecture.
+- Don't use gettext since we're using intltool.
+- Mark comments string in About dialog as translatable and add
+  translation credits.
+- Added/updated translations:
+  - Polish
+- Many other functional and non-functional improvements and fixes.
+
+All bugs fixed in this release:
+
+668162 - boxes pick 64 bit configuration from osinfo on 32 bit OSes
+668230 - express,fedora: Add user to 'wheel' group
+668536 - Hangs at Analyzing installer media: "storage pool is not active"
+668653 - Need a follow-up release to boxes 3.3.4
+669409 - Several improvements during FOSDEM
+
+All contributors to this release:
+
+Christophe Fergeau <cfergeau@redhat.com>
+Frédéric Péters <fpeters@0d.be>
+Jeremy Bicha <jbicha@ubuntu.com>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Sebastian Keller <sebastien-keller@gmx.de>
+Stefano Facchini <stefano.facchini@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.3.4.1 - Jan 25, 2012
 ======================
 
