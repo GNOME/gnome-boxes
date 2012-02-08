@@ -239,8 +239,7 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare () throws GLib.Error {
-        if (this.wizard_source.page == Boxes.SourcePage.URL ||
-            this.wizard_source.page == Boxes.SourcePage.FILE)
+        if (this.wizard_source.page == Boxes.SourcePage.URL)
             prepare_for_location (this.wizard_source.uri);
     }
 

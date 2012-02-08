@@ -3,7 +3,6 @@
 private enum Boxes.SourcePage {
     MAIN,
     URL,
-    FILE,
 
     LAST,
 }
