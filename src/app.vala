@@ -55,6 +55,7 @@ private class Boxes.App: Boxes.UI {
     public App () {
         application = new Gtk.Application ("org.gnome.Boxes", 0);
         settings = new GLib.Settings ("org.gnome.boxes");
+        connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
 
         var action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => { quit (); });
@@ -117,7 +118,6 @@ private class Boxes.App: Boxes.UI {
             setup_ui ();
 
             collection = new Collection (this);
-            connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
             collection.item_added.connect ((item) => {
                 view.add_item (item);
             });
@@ -172,6 +172,10 @@ private class Boxes.App: Boxes.UI {
             warning (error.message);
         }
 
+        connections.insert (source.name, connection);
+        if (source.name == "QEMU Session")
+            notify_property ("default-connection");
+
         foreach (var domain in connection.get_domains ())
             add_domain (source, connection, domain);
 
@@ -187,8 +191,6 @@ private class Boxes.App: Boxes.UI {
         connection.domain_added.connect ((connection, domain) => {
             add_domain (source, connection, domain);
         });
-
-        connections.insert (source.name, connection);
     }
 
     public async void add_collection_source (CollectionSource source) {

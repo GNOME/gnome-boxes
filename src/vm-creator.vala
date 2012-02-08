@@ -4,12 +4,13 @@ using Osinfo;
 using GVir;
 
 private class Boxes.VMCreator {
-    private Connection connection;
+    private App app;
+    private Connection connection { get { return app.default_connection; } }
     private VMConfigurator configurator;
 
-    public VMCreator (App app) throws GLib.Error {
-        connection = app.default_connection;
+    public VMCreator (App app) {
         configurator = new VMConfigurator ();
+        this.app = app;
     }
 
     public async Domain create_and_launch_vm (InstallerMedia install_media,

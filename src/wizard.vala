@@ -102,7 +102,8 @@ private class Boxes.Wizard: Boxes.UI {
     construct {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
-        wizard_source = new Boxes.WizardSource ();
+        media_manager = new MediaManager ();
+        wizard_source = new Boxes.WizardSource (media_manager);
         wizard_source.notify["page"].connect(() => {
             if (wizard_source.page == Boxes.SourcePage.MAIN)
                 next_button.sensitive = false;
@@ -131,12 +132,11 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.url_entry.activate.connect(() => {
             page = page + 1;
         });
-
-        media_manager = new MediaManager ();
     }
 
     public Wizard (App app) {
         this.app = app;
+        vm_creator = new VMCreator (app);
 
         setup_ui ();
     }
@@ -210,10 +210,6 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare_for_installer (string path) throws GLib.Error {
-        if (vm_creator == null) {
-            vm_creator = new VMCreator (app);
-        }
-
         next_button.sensitive = false;
         media_manager.create_installer_media_for_path.begin (path, null, on_installer_media_instantiated);
     }
@@ -233,7 +229,16 @@ private class Boxes.Wizard: Boxes.UI {
 
     private void prepare () throws GLib.Error {
         if (this.wizard_source.page == Boxes.SourcePage.URL)
-            prepare_for_location (this.wizard_source.uri);
+            if (this.wizard_source.install_media != null) {
+                install_media = this.wizard_source.install_media;
+                prep_progress.fraction = 1.0;
+                Idle.add (() => {
+                    page = page + 1;
+
+                    return false;
+                });
+            } else
+                prepare_for_location (this.wizard_source.uri);
     }
 
     private bool setup () {

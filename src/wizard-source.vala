@@ -33,6 +33,7 @@ private class Boxes.WizardSource: GLib.Object {
         get { return url_entry.get_text (); }
         set { url_entry.set_text (value); }
     }
+    public InstallerMedia? install_media { get; private set; }
 
     private Boxes.MenuBox main_menubox;
     private Gtk.Notebook notebook;
@@ -40,7 +41,11 @@ private class Boxes.WizardSource: GLib.Object {
     private Gtk.Image url_image;
     public Gtk.Entry url_entry;
 
-    public WizardSource () {
+    MediaManager media_manager;
+
+    public WizardSource (MediaManager media_manager) {
+        this.media_manager = media_manager;
+
         notebook = new Gtk.Notebook ();
         notebook.width_request = 500;
         notebook.get_style_context ().add_class ("boxes-source-nb");
@@ -99,6 +104,8 @@ private class Boxes.WizardSource: GLib.Object {
         url_label.wrap = true;
         hbox.pack_start (url_label, true, true);
 
+        add_media_entries ();
+
         notebook.show_all ();
     }
 
@@ -107,12 +114,73 @@ private class Boxes.WizardSource: GLib.Object {
         url_image.icon_name = icon_name;
     }
 
-    private Gtk.HBox add_entry (MenuBox box, ClickedFunc? clicked = null) {
+    private async void add_media_entries () {
+        foreach (var media in media_manager.medias)
+            add_media_entry (media);
+
+        media_manager.media_available.connect ((media) => {
+            add_media_entry (media);
+        });
+
+        media_manager.media_unavailable.connect ((media) => {
+            foreach (var child in main_menubox.get_children ())
+                if (child.name != null && child.name.has_prefix (media.device_file))
+                    main_menubox.remove (child);
+
+            if (install_media != null && install_media.device_file == media.device_file) {
+                install_media = null;
+                uri = media.device_file;
+            }
+        });
+    }
+
+    private void add_media_entry (InstallerMedia media) {
+        var hbox = add_entry (main_menubox, () => {
+            install_media = media;
+            uri = media.device_file;
+            page = SourcePage.URL;
+        }, 5, 10, true, media.device_file + "-item");
+
+        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
+        image.pixel_size = 96;
+        hbox.pack_start (image, false, false);
+
+        var vbox = new Gtk.VBox (false, 0);
+        hbox.pack_start (vbox, true, true);
+
+        var label = new Gtk.Label (media.label);
+        label.xalign = 0.0f;
+        label.yalign = 0.2f;
+        vbox.pack_start (label, true, true);
+        label = new Gtk.Label (_("Local Machine: Will create a new local box"));
+        label.xalign = 0.0f;
+        label.yalign = 0.1f;
+        vbox.pack_start (label, true, true);
+
+        var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
+        separator.name = media.device_file + "-separator";
+        main_menubox.pack_start (separator, false, false);
+        main_menubox.reorder_child (separator, 1);
+
+        main_menubox.show_all ();
+    }
+
+    private Gtk.HBox add_entry (MenuBox            box,
+                                owned ClickedFunc? clicked = null,
+                                int                h_margin = 20,
+                                int                v_margin = 10,
+                                bool               beginning = false,
+                                string?            name = null) {
         var hbox = new Gtk.HBox (false, 20);
         var item = new MenuBox.Item (hbox);
         box.add (item);
-        hbox.margin_left = hbox.margin_right = 20;
-        hbox.margin_top = hbox.margin_bottom = 10;
+        if (beginning)
+            main_menubox.reorder_child (item, 0);
+        if (name != null)
+            item.name = name;
+
+        hbox.margin_left = hbox.margin_right = h_margin;
+        hbox.margin_top = hbox.margin_bottom = v_margin;
 
         if (clicked != null) {
             item.selectable = true;
