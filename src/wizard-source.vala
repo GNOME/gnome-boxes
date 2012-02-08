@@ -20,7 +20,7 @@ private class Boxes.WizardSource: GLib.Object {
             switch (page) {
             case SourcePage.MAIN:
                 // FIXME: grab first element in the menu list
-                menubox.grab_focus ();
+                main_menubox.grab_focus ();
                 break;
             case SourcePage.URL:
                 url_entry.changed ();
@@ -34,7 +34,7 @@ private class Boxes.WizardSource: GLib.Object {
         set { url_entry.set_text (value); }
     }
 
-    private Boxes.MenuBox menubox;
+    private Boxes.MenuBox main_menubox;
     private Gtk.Notebook notebook;
     private Gtk.Label url_label;
     private Gtk.Image url_image;
@@ -47,12 +47,12 @@ private class Boxes.WizardSource: GLib.Object {
         notebook.show_tabs = false;
 
         /* main page */
-        menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
-        menubox.margin_top = menubox.margin_bottom = 15;
-        menubox.grab_focus ();
-        notebook.append_page (menubox, null);
+        main_menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
+        main_menubox.margin_top = main_menubox.margin_bottom = 15;
+        main_menubox.grab_focus ();
+        notebook.append_page (main_menubox, null);
 
-        var hbox = add_entry (menubox, () => { page = SourcePage.URL; });
+        var hbox = add_entry (main_menubox, () => { page = SourcePage.URL; });
         var label = new Gtk.Label (_("Enter URL"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -60,9 +60,9 @@ private class Boxes.WizardSource: GLib.Object {
         hbox.pack_start (next, false, false);
 
         var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        menubox.pack_start (separator, false, false);
+        main_menubox.pack_start (separator, false, false);
 
-        hbox = add_entry (menubox, launch_file_selection_dialog);
+        hbox = add_entry (main_menubox, launch_file_selection_dialog);
         label = new Gtk.Label (_("Select a file"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -70,22 +70,22 @@ private class Boxes.WizardSource: GLib.Object {
         hbox.pack_start (next, false, false);
 
         /* URL page */
-        menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
-        menubox.margin_top = menubox.margin_bottom = 15;
-        notebook.append_page (menubox, null);
+        var url_menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
+        url_menubox.margin_top = url_menubox.margin_bottom = 15;
+        notebook.append_page (url_menubox, null);
 
-        hbox = add_entry (menubox, () => { page = SourcePage.MAIN; });
+        hbox = add_entry (url_menubox, () => { page = SourcePage.MAIN; });
         var prev = new Gtk.Label ("◀");
         hbox.pack_start (prev, false, false);
         label = new Gtk.Label (_("Enter URL"));
         label.get_style_context ().add_class ("boxes-source-label");
         hbox.pack_start (label, true, true);
         separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        menubox.add (separator);
-        hbox = add_entry (menubox);
+        url_menubox.add (separator);
+        hbox = add_entry (url_menubox);
         url_entry = new Gtk.Entry ();
         hbox.add (url_entry);
-        hbox = add_entry (menubox);
+        hbox = add_entry (url_menubox);
 
         url_image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
         // var image = new Gtk.Image.from_icon_name ("krfb", 0);
