@@ -228,17 +228,16 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare () throws GLib.Error {
-        if (this.wizard_source.page == Boxes.SourcePage.URL)
-            if (this.wizard_source.install_media != null) {
-                install_media = this.wizard_source.install_media;
-                prep_progress.fraction = 1.0;
-                Idle.add (() => {
-                    page = page + 1;
+        if (this.wizard_source.install_media != null) {
+            install_media = this.wizard_source.install_media;
+            prep_progress.fraction = 1.0;
+            Idle.add (() => {
+                page = page + 1;
 
-                    return false;
-                });
-            } else
-                prepare_for_location (this.wizard_source.uri);
+                return false;
+            });
+        } else
+            prepare_for_location (this.wizard_source.uri);
     }
 
     private bool setup () {

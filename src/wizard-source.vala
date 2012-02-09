@@ -138,7 +138,7 @@ private class Boxes.WizardSource: GLib.Object {
         var hbox = add_entry (main_menubox, () => {
             install_media = media;
             uri = media.device_file;
-            page = SourcePage.URL;
+            url_entry.activate ();
         }, 5, 10, true, media.device_file + "-item");
 
         var image = new Gtk.Image.from_icon_name ("media-optical", 0);
@@ -203,7 +203,7 @@ private class Boxes.WizardSource: GLib.Object {
         dialog.local_only = true;
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
-            page = SourcePage.URL;
+            url_entry.activate ();
         }
 
         dialog.hide ();
