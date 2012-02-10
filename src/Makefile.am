@@ -26,6 +26,7 @@ AM_VALAFLAGS =						\
 	--pkg libxml-2.0				\
 	--pkg posix					\
 	--pkg spice-client-gtk-3.0			\
+	--pkg tracker-sparql-0.14			\
 	$(NULL)
 
 bin_PROGRAMS = gnome-boxes

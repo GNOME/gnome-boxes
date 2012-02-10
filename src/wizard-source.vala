@@ -19,6 +19,7 @@ private class Boxes.WizardSource: GLib.Object {
             notebook.set_current_page (page);
             switch (page) {
             case SourcePage.MAIN:
+                add_media_entries.begin ();
                 // FIXME: grab first element in the menu list
                 main_menubox.grab_focus ();
                 break;
@@ -104,9 +105,9 @@ private class Boxes.WizardSource: GLib.Object {
         url_label.wrap = true;
         hbox.pack_start (url_label, true, true);
 
-        add_media_entries ();
-
         notebook.show_all ();
+
+        add_media_entries.begin ();
     }
 
     public void update_url_page(string title, string text, string icon_name) {
@@ -115,23 +116,36 @@ private class Boxes.WizardSource: GLib.Object {
     }
 
     private async void add_media_entries () {
-        foreach (var media in media_manager.medias)
-            add_media_entry (media);
+        var medias = yield media_manager.list_installer_medias ();
 
-        media_manager.media_available.connect ((media) => {
-            add_media_entry (media);
-        });
+        foreach (var child in main_menubox.get_children ()) {
+            if (child.name == null || !child.name.has_prefix ("installer-"))
+                continue;
 
-        media_manager.media_unavailable.connect ((media) => {
+            var obsolete = true;
+            foreach (var media in medias)
+                if (child.name.contains (media.device_file)) {
+                    obsolete = false;
+
+                    break;
+                }
+
+            if (obsolete)
+                main_menubox.remove (child);
+        }
+
+        foreach (var media in medias) {
+            var nouveau = true; // Everyone speaks some French, right? :)
             foreach (var child in main_menubox.get_children ())
-                if (child.name != null && child.name.has_prefix (media.device_file))
-                    main_menubox.remove (child);
+                if (child.name != null && child.name.contains (media.device_file)) {
+                    nouveau = false;
 
-            if (install_media != null && install_media.device_file == media.device_file) {
-                install_media = null;
-                uri = media.device_file;
-            }
-        });
+                    break;
+                }
+
+            if (nouveau)
+                add_media_entry (media);
+        }
     }
 
     private void add_media_entry (InstallerMedia media) {
@@ -139,26 +153,30 @@ private class Boxes.WizardSource: GLib.Object {
             install_media = media;
             uri = media.device_file;
             url_entry.activate ();
-        }, 5, 10, true, media.device_file + "-item");
+        }, 15, 5, true, "installer-" + media.device_file + "-item");
 
         var image = new Gtk.Image.from_icon_name ("media-optical", 0);
-        image.pixel_size = 96;
+        image.pixel_size = 64;
         hbox.pack_start (image, false, false);
 
-        var vbox = new Gtk.VBox (false, 0);
+        var vbox = new Gtk.VBox (true, 5);
         hbox.pack_start (vbox, true, true);
 
         var label = new Gtk.Label (media.label);
+        label.get_style_context ().add_class ("boxes-source-label");
         label.xalign = 0.0f;
-        label.yalign = 0.2f;
-        vbox.pack_start (label, true, true);
-        label = new Gtk.Label (_("Local Machine: Will create a new local box"));
-        label.xalign = 0.0f;
-        label.yalign = 0.1f;
         vbox.pack_start (label, true, true);
 
+        if (media.os_media != null) {
+            var architecture = (media.os_media.architecture == "x86") ? _("32-bit x86") : _("64-bit x86");
+            label = new Gtk.Label (architecture);
+            label.get_style_context ().add_class ("boxes-step-label");
+            label.xalign = 0.0f;
+            vbox.pack_start (label, true, true);
+        }
+
         var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        separator.name = media.device_file + "-separator";
+        separator.name =  "installer-" + media.device_file + "-separator";
         main_menubox.pack_start (separator, false, false);
         main_menubox.reorder_child (separator, 1);
 

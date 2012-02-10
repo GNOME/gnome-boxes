@@ -14,6 +14,19 @@ private class Boxes.InstallerMedia : Object {
 
     public bool live { get { return os_media == null || os_media.live; } }
 
+    public InstallerMedia.from_iso_info (string            path,
+                                         string            label,
+                                         Os                os,
+                                         Media             media,
+                                         Osinfo.Resources? resources) {
+        this.device_file = path;
+        this.label = label;
+        this.os = os;
+        this.os_media = media;
+        this.resources = resources;
+        from_image = true;
+    }
+
     public static async InstallerMedia create_for_path (string       path,
                                                         MediaManager media_manager,
                                                         Cancellable? cancellable) throws GLib.Error {
