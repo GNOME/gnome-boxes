@@ -155,8 +155,7 @@ private class Boxes.WizardSource: GLib.Object {
             url_entry.activate ();
         }, 15, 5, true, "installer-" + media.device_file + "-item");
 
-        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
-        image.pixel_size = 64;
+        var image = get_product_logo (media.os, 64);
         hbox.pack_start (image, false, false);
 
         var vbox = new Gtk.VBox (true, 5);
@@ -175,6 +174,10 @@ private class Boxes.WizardSource: GLib.Object {
             label.get_style_context ().add_class ("boxes-step-label");
             label.xalign = 0.0f;
             vbox.pack_start (label, true, true);
+
+            if (media.os.vendor != null)
+                // Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+                label.label += _(" from %s").printf (media.os.vendor);
         }
 
         var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);

@@ -25,6 +25,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.ProgressBar prep_progress;
     private Gtk.VBox setup_vbox;
     private Gtk.Label review_label;
+    private Gtk.Image installer_image;
 
     private MediaManager media_manager;
     private VMCreator vm_creator;
@@ -221,6 +222,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         try {
             install_media = media_manager.create_installer_media_for_path.end (result);
+            fetch_product_logo (installer_image, install_media.os, 128);
             prep_progress.fraction = 1.0;
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
@@ -231,6 +233,8 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare () throws GLib.Error {
+        installer_image.set_from_icon_name ("media-optical", 0); // Reset
+
         if (this.wizard_source.install_media != null) {
             install_media = this.wizard_source.install_media;
             prep_progress.fraction = 1.0;
@@ -385,6 +389,11 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.pack_start (wizard_source.widget, false, false);
         wizard_source.widget.hexpand = true;
         wizard_source.widget.halign = Gtk.Align.CENTER;
+        label = new Gtk.Label (_("Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."));
+        label.get_style_context ().add_class ("boxes-logo-notice-label");
+        label.wrap = true;
+        label.max_width_chars = 50;
+        vbox.pack_start (label, false, false);
         vbox.show_all ();
 
         /* Preparation */
@@ -404,9 +413,9 @@ private class Boxes.Wizard: Boxes.UI {
         hbox.halign = Gtk.Align.CENTER;
         vbox.pack_start (hbox, true, true);
 
-        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
-        image.pixel_size = 128;
-        hbox.pack_start (image, false, false);
+        installer_image = new Gtk.Image.from_icon_name ("media-optical", 0);
+        installer_image.pixel_size = 128;
+        hbox.pack_start (installer_image, false, false);
         var prep_vbox = new Gtk.VBox (true, 10);
         prep_vbox.valign = Gtk.Align.CENTER;
         hbox.pack_start (prep_vbox, true, true);

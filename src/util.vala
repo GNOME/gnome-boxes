@@ -270,6 +270,38 @@ namespace Boxes {
         return (devices.get_length () > 0) ? devices.get_nth (0) as Osinfo.Device : null;
     }
 
+    public Gtk.Image get_product_logo (Osinfo.Product? product, int size) {
+        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
+        image.pixel_size = size;
+
+        if (product != null)
+            fetch_product_logo (image, product, size);
+
+        return image;
+    }
+
+    public void fetch_product_logo (Gtk.Image image, Osinfo.Product product, int size) {
+        var path = get_logo_path (product);
+
+        if (path != null) {
+            try {
+                var pixbuf = new Gdk.Pixbuf.from_file_at_size (path, size, -1);
+                image.set_from_pixbuf (pixbuf);
+            } catch (GLib.Error error) {
+                warning ("Error loading logo file '%s': %s", path, error.message);
+            }
+        } else {
+            var derived = product.get_related (Osinfo.ProductRelationship.DERIVES_FROM);
+            if (derived.get_length () == 0)
+                return;
+
+            // FIXME: Does Osinfo allows deriving from multiple products?
+            var parent = derived.get_nth (0) as Osinfo.Product;
+
+            fetch_product_logo (image, parent, size);
+        }
+    }
+
     public int get_enum_value (string value_nick, Type enum_type) {
         var enum_class = (EnumClass) enum_type.class_ref ();
         var val = enum_class.get_value_by_nick (value_nick);
@@ -323,5 +355,18 @@ namespace Boxes {
         public new string? get (string key) {
             return params.lookup (key);
         }
+    }
+
+    private string? get_logo_path (Osinfo.Product product, string[] extensions = {".svg", ".png", ".jpg"}) {
+        if (extensions.length == 0)
+            return null;
+
+        var path = get_pixmap (product.short_id + extensions[0]);
+        var file = File.new_for_path (path);
+
+        if (file.query_exists ())
+            return path;
+        else
+            return get_logo_path (product, extensions[1:extensions.length]);
     }
 }

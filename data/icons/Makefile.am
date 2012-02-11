@@ -27,6 +27,9 @@ imagesdir = $(datadir)/gnome-boxes/pixmaps
 images_DATA =					\
 	boxes-create.png			\
 	boxes-grid.png				\
+	debianbuzz.svg				\
+	fedora1.svg				\
+	ubuntuhardy.svg				\
 	$(NULL)
 
 EXTRA_DIST =					\
