@@ -54,6 +54,11 @@ private class Boxes.VMCreator {
     }
 
     private void on_domain_stopped (Domain domain) {
+        if (domain.get_saved ())
+            // This means the domain was just saved and thefore this is not yet the time to take any post-install
+            // steps for this domain.
+            return;
+
         var volume = get_storage_volume (connection, domain);
 
         if (guest_installed_os (volume)) {
