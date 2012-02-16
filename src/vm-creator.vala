@@ -40,14 +40,34 @@ private class Boxes.VMCreator {
 
     public async Domain create_and_launch_vm (InstallerMedia install_media,
                                               Cancellable?   cancellable) throws GLib.Error {
-        if (install_media is UnattendedInstaller)
-            yield (install_media as UnattendedInstaller).setup (cancellable);
+        var fullscreen = true;
+        if (install_media is UnattendedInstaller) {
+            var unattended = install_media as UnattendedInstaller;
+
+            yield unattended.setup (cancellable);
+            fullscreen = !unattended.express_install;
+        }
 
         var name = yield create_domain_name_from_media (install_media);
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var config = configurator.create_domain_config (install_media, name, volume.get_path ());
 
         var domain = connection.create_domain (config);
+        ulong added_signal_id = 0;
+        ulong selected_signal_id = 0;
+        added_signal_id = app.collection.item_added.connect ((collection, item) => {
+            if (fullscreen && item is LibvirtMachine && (item as LibvirtMachine).domain == domain) {
+                app.select_item (item);
+                app.fullscreen = true;
+                app.collection.disconnect (added_signal_id);
+                app.disconnect (selected_signal_id);
+            }
+        });
+        selected_signal_id = app.item_selected.connect (() => {
+            app.collection.disconnect (added_signal_id);
+            app.disconnect (selected_signal_id);
+        });
+
         domain.start (0);
 
         return domain;

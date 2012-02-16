@@ -42,6 +42,7 @@ private class Boxes.App: Boxes.UI {
     public GLib.SimpleAction action_fullscreen;
 
     public signal void ready ();
+    public signal void item_selected (CollectionItem item);
     private Gtk.Application application;
     private Clutter.TableLayout box_table;
     private CollectionView view;
@@ -500,7 +501,7 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    public bool item_selected (CollectionItem item) {
+    public bool select_item (CollectionItem item) {
         if (ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
 
@@ -511,6 +512,8 @@ private class Boxes.App: Boxes.UI {
                 ui_state = UIState.CREDS;
             } else
                 warning ("unknown item, fix your code");
+
+            item_selected (item);
         }
 
         return false;

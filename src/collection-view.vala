@@ -217,7 +217,7 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view.set_selection_mode (Gtk.SelectionMode.SINGLE);
         icon_view.item_activated.connect ((view, path) => {
             var item = get_item_for_path (path);
-            app.item_selected (item);
+            app.select_item (item);
         });
         icon_view.selection_changed.connect (() => {
             app.notify_property ("selected-items");
