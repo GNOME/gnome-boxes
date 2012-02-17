@@ -97,7 +97,7 @@ private class Boxes.Wizard: Boxes.UI {
             steps.get (page).modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
 
             back_button.sensitive = page != WizardPage.INTRODUCTION;
-            next_button.label = page != WizardPage.REVIEW ? _("Continue") : _("Create");
+            next_button.label = page != WizardPage.REVIEW ? _("C_ontinue") : _("C_reate");
         }
     }
 
@@ -474,7 +474,7 @@ private class Boxes.Wizard: Boxes.UI {
             page = page - 1;
         });
 
-        next_button = new Gtk.Button.with_label (_("Continue"));
+        next_button = new Gtk.Button.with_mnemonic (_("C_ontinue"));
         tool_item = new Gtk.ToolItem ();
         tool_item.child = next_button;
         tool_item.margin_left = 5;
