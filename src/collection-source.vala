@@ -83,6 +83,10 @@ private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
         owned get { return get_string ("source", "uri"); }
         set { keyfile.set_string ("source", "uri", value); }
     }
+    public bool enabled {
+        get { return get_boolean ("source", "enabled", true); }
+        set { set_boolean ("source", "enabled", value); }
+    }
 
     construct {
         _keyfile = new KeyFile ();

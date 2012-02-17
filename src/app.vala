@@ -195,6 +195,9 @@ private class Boxes.App: Boxes.UI {
     }
 
     public async void add_collection_source (CollectionSource source) {
+        if (!source.enabled)
+            return;
+
         switch (source.source_type) {
         case "libvirt":
             yield setup_libvirt (source);
