@@ -468,7 +468,9 @@ private class Boxes.App: Boxes.UI {
             return;
 
         var message = (num_selected == 1) ? _("Box '%s' has been deleted").printf (selected_items.data.name) :
-                                            ngettext ("%u box has been deleted", "%u boxes have been deleted", num_selected).printf (num_selected);
+                                            ngettext ("%u box has been deleted",
+                                                      "%u boxes have been deleted",
+                                                      num_selected).printf (num_selected);
         foreach (var item in selected_items)
             view.remove_item (item);
 
