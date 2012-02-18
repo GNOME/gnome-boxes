@@ -29,6 +29,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         var source_path = get_unattended_dir ("fedora.ks");
 
         base.copy (media, source_path, "ks.cfg");
+        password_mandatory = true;
     }
 
     public override void set_direct_boot_params (GVirConfig.DomainOs os) {
