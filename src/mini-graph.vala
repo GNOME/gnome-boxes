@@ -74,6 +74,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
 
         Gdk.cairo_set_source_rgba (cr, style.get_border_color (get_state_flags ()));
         x = 0.0;
+        cr.move_to (0.0, 0.0);
         foreach (var p in points) {
             var y = height - p * dy;
             if (x == 0.0)
