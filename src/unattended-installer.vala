@@ -3,7 +3,8 @@
 using GVirConfig;
 
 public errordomain UnattendedInstallerError {
-    COMMAND_FAILED
+    COMMAND_FAILED,
+    SETUP_INCOMPLETE
 }
 
 private abstract class Boxes.UnattendedInstaller: InstallerMedia {
@@ -142,6 +143,15 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_target_dev ("sdb");
 
         return disk;
+    }
+
+    // Ensure needed information was provided by user
+    public virtual void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {
+        if (!express_toggle.active)
+            return;
+
+        if (username == "")
+            throw new UnattendedInstallerError.SETUP_INCOMPLETE (_("No username provided"));
     }
 
     protected virtual void setup_ui () {

@@ -53,12 +53,8 @@ private class Boxes.Wizard: Boxes.UI {
             if (forwards) {
                 switch (value) {
                 case WizardPage.PREPARATION:
-                    try {
-                        prepare ();
-                    } catch (GLib.Error error) {
-                        app.notificationbar.display_error (error.message);
+                    if (!prepare ())
                         return;
-                    }
                     break;
 
                 case WizardPage.SETUP:
@@ -67,7 +63,8 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.REVIEW:
-                    review ();
+                    if (!review ())
+                        return;
                     break;
 
                 case WizardPage.LAST:
@@ -232,7 +229,7 @@ private class Boxes.Wizard: Boxes.UI {
         }
     }
 
-    private void prepare () throws GLib.Error {
+    private bool prepare () {
         installer_image.set_from_icon_name ("media-optical", 0); // Reset
 
         if (this.wizard_source.install_media != null) {
@@ -243,8 +240,19 @@ private class Boxes.Wizard: Boxes.UI {
 
                 return false;
             });
-        } else
-            prepare_for_location (this.wizard_source.uri);
+
+            return true;
+        } else {
+            try {
+                prepare_for_location (this.wizard_source.uri);
+            } catch (GLib.Error error) {
+                app.notificationbar.display_error (error.message);
+
+                return false;
+            }
+
+            return true;
+        }
     }
 
     private bool setup () {
@@ -275,7 +283,17 @@ private class Boxes.Wizard: Boxes.UI {
         return true;
     }
 
-    private void review () {
+    private bool review () {
+        if (install_media != null && install_media is UnattendedInstaller) {
+            try {
+                (install_media as UnattendedInstaller).check_needed_info ();
+            } catch (UnattendedInstallerError.SETUP_INCOMPLETE error) {
+                app.notificationbar.display_error (error.message);
+
+                return false;
+            }
+        }
+
         summary.clear ();
 
         review_label.set_text (_("Will create a new box with the following properties:"));
@@ -323,6 +341,8 @@ private class Boxes.Wizard: Boxes.UI {
             memory = format_size (install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
         }
+
+        return true;
     }
 
     private void add_step (Gtk.Widget widget, string title, WizardPage page) {
