@@ -412,6 +412,7 @@ private class Boxes.App: Boxes.UI {
                 machine.disconnect_display ();
                 machine.update_screenshot.begin ();
             }
+            fullscreen = false;
             break;
 
         case UIState.PROPERTIES:
