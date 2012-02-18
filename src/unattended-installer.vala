@@ -27,6 +27,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
+    public bool password_mandatory { get; protected set; }
+
     protected string unattended_src_path;
     protected string unattended_dest_name;
     protected DataStreamNewlineType newline_type;
@@ -152,6 +154,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (username == "")
             throw new UnattendedInstallerError.SETUP_INCOMPLETE (_("No username provided"));
+
+        if (password_mandatory && password == "")
+            throw new UnattendedInstallerError.SETUP_INCOMPLETE
+                        (_("Password required for express installation of %s"), label);
     }
 
     protected virtual void setup_ui () {
@@ -238,7 +244,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected virtual string fill_unattended_data (string data) throws RegexError {
         var str = username_regex.replace (data, data.length, 0, username_entry.text);
-        str = password_regex.replace (str, str.length, 0, password_entry.text);
+        str = password_regex.replace (str, str.length, 0, password);
         str = timezone_regex.replace (str, str.length, 0, timezone);
         str = kbd_regex.replace (str, str.length, 0, kbd);
         str = lang_regex.replace (str, str.length, 0, lang);

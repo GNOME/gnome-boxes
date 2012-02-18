@@ -46,7 +46,9 @@ private class Boxes.VMConfigurator {
         if (install_media is UnattendedInstaller) {
             var unattended = install_media as UnattendedInstaller;
 
-            if (unattended.express_install && unattended.password != "")
+            // If guest requires password, we let it take care of authentications and free the user from one
+            // authentication layer.
+            if (unattended.express_install && !unattended.password_mandatory && unattended.password != "")
                 graphics.set_password (unattended.password);
         }
         domain.add_device (graphics);
