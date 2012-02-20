@@ -480,11 +480,14 @@ private class Boxes.App: Boxes.UI {
             view.remove_item (item);
 
         Notificationbar.OKFunc undo = () => {
-            foreach (var selected in selected_items)
+            debug ("Box deletion cancelled by user, re-adding to view");
+            foreach (var selected in selected_items) {
                 view.add_item (selected);
+            }
         };
 
         Notificationbar.CancelFunc really_remove = () => {
+            debug ("Box deletion, deleting now");
             foreach (var selected in selected_items) {
                 var machine = selected as Machine;
 

@@ -69,10 +69,10 @@ private class Boxes.Notificationbar: GLib.Object {
             timeout_id = 0;
             response_id = 0;
 
-            if (response == ResponseType.OK)
+            if (response == ResponseType.OK) {
                 if (ok_func != null)
                     ok_func ();
-            else {
+            } else {
                 if (cancel_func != null)
                     cancel_func ();
             }
