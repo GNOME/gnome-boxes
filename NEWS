@@ -1,3 +1,62 @@
+3.3.90 - Feb 20, 2012
+=====================
+
+Changes since 3.3.5.1:
+
+- Box creation wizard:
+   - Present bootable medias and user's ISO files on 'Source' page. For
+     fetching/tracking user's ISOs, we make use of Tracker.
+   - Teach the Wizard to accept 'qemu..://' sources.
+   - Move to 'Preparation' once file/media is selected.
+   - Display notification against errors during 'prepare' and 'create' steps.
+     In case of 'prepare', we go back to previous step since user is very
+     likely to be able to fix the issue.
+   - Add mnemonic accelerator to 'Continue' button.
+- More reliable tracking of installations. Previously, Boxes used to forget
+  ongoing installations once user quit the application and that would lead
+  to installations looping forever.
+- Don't take post-installation steps for saved domains. Saved domains are
+  stopped as well so them being stopped doesn't mean that first boot is done
+  and its time to perform post install setup.
+- Launch new domain in fullscreen, unless express installations is going to be
+  performed on it.
+- Make user deletion work for saved VMs.
+- Leave fullscreen when going back to collection view.
+- Fix the white triangle stats graph.
+- Ability to disable source by manually editing source file. Useful for
+  debugging.
+- Added/updated translations:
+  - Polish
+  - Italian
+- Some other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- libvirt-glib >= 0.0.5
+- tracker-sparql-0.14 >=0.13.1 (NEW)
+
+All bugs fixed in this release:
+
+666373 - wizard: Present bootable ISO files
+668211 - Unreliable post-install/live session setup
+668792 - Handle errors better
+669513 - Teach the Wizard to accept qemu..:// sources
+669771 - Present bootable medias on 'Source' page
+670174 - Don't take post-installation steps for saved domains
+670239 - installer: Launch new domains in fullscreen
+670256 - wizard: Add mnemonic accelerator to 'Continue' button
+670359 - Fix the white triangle stats graph
+670360 - Add enabled source field
+670361 - Leave fullscreen when in collection view state
+670362 - Delete libvirt machine even if its saved
+
+All contributors to this release:
+
+Luca Ferretti <lferrett@gnome.org>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.3.5.1 - Feb 8, 2012
 =====================
 
