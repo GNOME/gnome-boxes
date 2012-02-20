@@ -57,8 +57,12 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
 
         var nstep = (npoints == -1 ? points.length : npoints) - 1;
         var ymax = ymax_set ? ymax : max ();
-        var dx = (double)width / nstep;
-        var dy = (double)height / ymax;
+        var dy = 0.0;
+        var dx = 0.0;
+        if (nstep != 0)
+            dx = (double)width / nstep;
+        if (ymax != 0)
+            dy = (double)height / ymax;
 
         var x = 0.0;
         foreach (var p in points) {
@@ -74,7 +78,6 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
 
         Gdk.cairo_set_source_rgba (cr, style.get_border_color (get_state_flags ()));
         x = 0.0;
-        cr.move_to (0.0, 0.0);
         foreach (var p in points) {
             var y = height - p * dy;
             if (x == 0.0)
