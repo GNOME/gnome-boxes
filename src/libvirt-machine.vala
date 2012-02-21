@@ -104,6 +104,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                            GVir.Domain domain) throws GLib.Error {
         base (source, app, domain.get_name ());
 
+        debug ("new libvirt machine: " + name);
         this.config = new DisplayConfig (source, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
@@ -228,6 +229,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private uint stats_id;
     private void set_stats_enable (bool enable) {
         if (enable) {
+            debug ("enable statistics for " + name);
             if (stats_id != 0)
                 return;
 
@@ -236,6 +238,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 return true;
             });
         } else {
+            debug ("disable statistics for " + name);
             if (stats_id != 0)
                 GLib.Source.remove (stats_id);
             stats_id = 0;
@@ -331,6 +334,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override void delete (bool by_user = true) {
+        debug ("delete libvirt machine: " + name);
         base.delete (by_user);
 
         set_stats_enable (false);

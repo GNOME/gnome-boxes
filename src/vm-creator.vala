@@ -7,6 +7,7 @@ private class Boxes.VMCreator {
     private App app;
     private Connection connection { get { return app.default_connection; } }
     private VMConfigurator configurator;
+    private ulong stopped_id;
 
     public VMCreator (App app) {
         configurator = new VMConfigurator ();
@@ -30,9 +31,10 @@ private class Boxes.VMCreator {
 
             var state = machine.domain.get_info ().state;
             if (state == DomainState.SHUTOFF || state == DomainState.CRASHED || state == DomainState.NONE)
-                on_domain_stopped (machine.domain);
-            else
-                machine.domain.stopped.connect (on_domain_stopped);
+                on_domain_stopped (machine);
+            else {
+                stopped_id = machine.domain.stopped.connect (() => { on_domain_stopped (machine); });
+            }
         } catch (GLib.Error error) {
             warning ("Failed to get information on domain '%s': %s", machine.domain.get_name (), error.message);
         }
@@ -73,7 +75,12 @@ private class Boxes.VMCreator {
         return domain;
     }
 
-    private void on_domain_stopped (Domain domain) {
+    private void on_domain_stopped (LibvirtMachine machine) {
+        var domain = machine.domain;
+
+        if (machine.deleted)
+            return;
+
         if (domain.get_saved ())
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
             // steps for this domain.
@@ -83,7 +90,7 @@ private class Boxes.VMCreator {
 
         if (guest_installed_os (volume)) {
             post_install_setup (domain);
-            domain.stopped.disconnect (on_domain_stopped);
+            domain.disconnect (stopped_id);
         } else {
             try {
                 var config = domain.get_config (0);
@@ -92,7 +99,7 @@ private class Boxes.VMCreator {
                     return;
 
                 // No installation during live session, so lets delete the domain and its storage volume.
-                domain.stopped.disconnect (on_domain_stopped);
+                domain.disconnect (stopped_id);
                 domain.delete (0);
                 volume.delete (0);
             } catch (GLib.Error error) {
