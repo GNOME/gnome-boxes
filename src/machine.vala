@@ -62,6 +62,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             });
 
             disconnected_id = _display.disconnected.connect (() => {
+                message (@"display $name disconnected");
                 app.ui_state = Boxes.UIState.COLLECTION;
             });
 
@@ -74,9 +75,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             });
 
             _display.password = machine_actor.get_password ();
-
-            if (_connect_display)
-                display.connect_it ();
         }
     }
 
@@ -127,7 +125,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public abstract bool is_running ();
     public abstract string get_screenshot_prefix ();
 
-    protected bool _connect_display;
     public abstract void connect_display ();
     public abstract void disconnect_display ();
 

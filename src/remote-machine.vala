@@ -12,7 +12,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     }
 
     public override void connect_display () {
-        if (_connect_display == true)
+        if (display != null)
             return;
 
         try {
@@ -32,7 +32,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     }
 
     public override void disconnect_display () {
-        _connect_display = false;
+        if (display == null)
+            return;
 
         app.display_page.remove_display ();
 

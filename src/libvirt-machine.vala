@@ -22,20 +22,18 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override void disconnect_display () {
-        if (_connect_display == false)
+        if (display == null)
             return;
 
-        _connect_display = false;
         app.display_page.remove_display ();
+        display.disconnect_it ();
         display = null;
     }
 
     private ulong started_id;
     public override void connect_display () {
-        if (_connect_display) {
-            update_display ();
+        if (display != null)
             return;
-        }
 
         if (state != DomainState.RUNNING) {
             if (started_id != 0)
@@ -66,8 +64,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             }
         }
 
-        _connect_display = true;
         update_display ();
+        display.connect_it ();
     }
 
     struct MachineStat {
@@ -267,8 +265,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private void update_display () {
         string type, port, socket, host;
 
-        return_if_fail (_connect_display == true);
-
         update_domain_config ();
 
         try {
@@ -281,9 +277,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             warning (error.message);
             return;
         }
-
-        if (display != null)
-            display.disconnect_it ();
 
         if (host == null || host == "")
             host = "localhost";
