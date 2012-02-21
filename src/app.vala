@@ -41,7 +41,7 @@ private class Boxes.App: Boxes.UI {
     public GLib.SimpleAction action_properties;
     public GLib.SimpleAction action_fullscreen;
 
-    public signal void ready ();
+    public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
     private Gtk.Application application;
     private Clutter.TableLayout box_table;
@@ -99,8 +99,6 @@ private class Boxes.App: Boxes.UI {
         });
         application.add_action (action);
 
-
-
         application.startup.connect_after ((app) => {
             var menu = new GLib.Menu ();
             menu.append (_("New"), "app.new");
@@ -125,8 +123,9 @@ private class Boxes.App: Boxes.UI {
             collection.item_removed.connect ((item) => {
                 view.remove_item (item);
             });
-            setup_sources.begin ((obj, rest) => {
-                ready ();
+            setup_sources.begin ((obj, result) => {
+                var first_time = setup_sources.end (result);
+                ready (first_time);
             });
         });
 
@@ -215,8 +214,12 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
-    private async void setup_sources () {
+    private async bool setup_sources () {
+        var first_time = false;
+
         if (!has_pkgconfig_sources ()) {
+            first_time = true;
+
             var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
             var dst = File.new_for_path (get_pkgconfig_source ("QEMU Session"));
             try {
@@ -235,11 +238,13 @@ private class Boxes.App: Boxes.UI {
         if (default_connection == null) {
             printerr ("error: missing or failing default libvirt connection");
             application.release (); // will end application
-            return;
+            return false;
         }
 
         var dir = File.new_for_path (get_pkgconfig_source ());
         get_sources_from_dir.begin (dir);
+
+        return first_time;
     }
 
     private async void get_sources_from_dir (File dir) {
