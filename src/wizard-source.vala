@@ -168,7 +168,9 @@ private class Boxes.WizardSource: GLib.Object {
         vbox.pack_start (label, true, true);
 
         if (media.os_media != null) {
-            var architecture = (media.os_media.architecture == "x86") ? _("32-bit x86") : _("64-bit x86");
+            var architecture = (media.os_media.architecture == "i386") ?
+                               _("32-bit x86 system") :
+                               _("64-bit x86 system");
             label = new Gtk.Label (architecture);
             label.get_style_context ().add_class ("boxes-step-label");
             label.xalign = 0.0f;
