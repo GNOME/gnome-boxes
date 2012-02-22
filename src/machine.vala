@@ -16,6 +16,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private ulong disconnected_id;
     private ulong need_password_id;
     private ulong need_username_id;
+    private ulong ui_state_id;
     private uint screenshot_id;
     public static const int SCREENSHOT_WIDTH = 180;
     public static const int SCREENSHOT_HEIGHT = 134;
@@ -87,7 +88,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         pixbuf = draw_fallback_vm ();
         machine_actor = new MachineActor (this);
 
-        app.notify["ui-state"].connect (() => {
+        ui_state_id = app.notify["ui-state"].connect (() => {
             if (app.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
             else
@@ -222,8 +223,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 
+    public bool deleted;
     public virtual void delete (bool by_user = true) {
+        deleted = true;
+
         set_screenshot_enable (false);
+        if (ui_state_id != 0) {
+            app.disconnect (ui_state_id);
+            ui_state_id = 0;
+        }
     }
 
     public override void ui_state_changed () {
