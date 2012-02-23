@@ -82,6 +82,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         double net_write;
     }
 
+    private uint ram_update_timeout = 0;
+    private uint storage_update_timeout = 0;
+
     static const int STATS_SIZE = 20;
     private MachineStat[] stats;
     construct {
@@ -241,6 +244,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             add_string_property (ref list, _("URI"), display.uri);
             break;
 
+        case PropertiesPage.SYSTEM:
+            add_ram_property (ref list);
+            add_storage_property (ref list);
+            break;
+
         case PropertiesPage.DISPLAY:
             add_string_property (ref list, _("Protocol"), display.protocol);
             break;
@@ -331,7 +339,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             try {
                 if (connection == app.default_connection) {
-                    var volume = get_storage_volume (connection, domain);
+                    var volume = get_storage_volume (connection, domain, null);
                     if (volume != null)
                         volume.delete (0);
                 }
@@ -348,7 +356,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private GVir.DomainDisk? get_domain_disk () throws GLib.Error {
         var disk = null as GVir.DomainDisk;
-        var volume = get_storage_volume (connection, domain);
+        var volume = get_storage_volume (connection, domain, null);
 
         foreach (var device in domain.get_devices ()) {
             if (device is GVir.DomainDisk) {
@@ -382,5 +390,112 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         return net;
+    }
+
+    private void add_ram_property (ref List list) {
+        try {
+            var max_ram = connection.get_node_info ().memory;
+
+            add_size_property (ref list,
+                               _("RAM"),
+                               domain_config.memory,
+                               Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
+                               max_ram,
+                               Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
+                               on_ram_changed);
+        } catch (GLib.Error error) {}
+    }
+
+    private void on_ram_changed (uint64 value) {
+        // Ensure that we don't end-up changing RAM like a 1000 times a second while user moves the slider..
+        if (ram_update_timeout != 0)
+            Source.remove (ram_update_timeout);
+
+        ram_update_timeout = Timeout.add_seconds (1, () => {
+            domain_config.memory = value;
+            try {
+                domain.set_config (domain_config);
+                debug ("RAM changed to %llu", value);
+                notify_reboot_required ();
+            } catch (GLib.Error error) {
+                warning ("Failed to change RAM of box '%s' to %llu: %s",
+                         domain.get_name (),
+                         value,
+                         error.message);
+            }
+            ram_update_timeout = 0;
+
+            return false;
+        });
+    }
+
+    private void notify_reboot_required () {
+        Notificationbar.OKFunc reboot = () => {
+            debug ("Rebooting '%s'..", name);
+            try {
+                domain.reboot (0);
+            } catch (GLib.Error error) {
+                warning ("Failed to reboot '%s': %s", domain.get_name (), error.message);
+            }
+        };
+        var message = _("Changes require restart of '%s'. Attempt restart?").printf (name);
+        app.notificationbar.display_for_action (message, Gtk.Stock.YES, (owned) reboot);
+    }
+
+    private void add_storage_property (ref List list) {
+        StoragePool pool;
+
+        var volume = get_storage_volume (connection, domain, out pool);
+        if (volume == null)
+            return;
+
+        try {
+            var volume_info = volume.get_info ();
+            var pool_info = pool.get_info ();
+            var max_storage = (volume_info.capacity + pool_info.available)  / Osinfo.KIBIBYTES;
+
+            add_size_property (ref list,
+                               _("Storage"),
+                               volume_info.capacity / Osinfo.KIBIBYTES,
+                               volume_info.capacity / Osinfo.KIBIBYTES,
+                               max_storage,
+                               Osinfo.GIBIBYTES / Osinfo.KIBIBYTES,
+                               on_storage_changed);
+        } catch (GLib.Error error) {
+            warning ("Failed to get information on volume '%s' or it's parent pool: %s",
+                     volume.get_name (),
+                     error.message);
+        }
+    }
+
+    private void on_storage_changed (uint64 value) {
+        // Ensure that we don't end-up changing storage like a 1000 times a second while user moves the slider..
+        if (storage_update_timeout != 0)
+            Source.remove (storage_update_timeout);
+
+        storage_update_timeout = Timeout.add_seconds (1, () => {
+            var volume = get_storage_volume (connection, domain, null);
+            if (volume == null)
+                return false;
+
+            try {
+                if (is_running ()) {
+                    var disk = get_domain_disk ();
+                    if (disk != null)
+                        disk.resize (value, 0);
+                } else
+                    // Currently this never happens as properties page cant be reached without starting the machine
+                    volume.resize (value * Osinfo.KIBIBYTES, StorageVolResizeFlags.NONE);
+                debug ("Storage changed to %llu", value);
+            } catch (GLib.Error error) {
+                warning ("Failed to change storage capacity of volume '%s' to %llu: %s",
+                         volume.get_name (),
+                         value,
+                         error.message);
+            }
+            storage_update_timeout = 0;
+
+            return false;
+        });
     }
 }

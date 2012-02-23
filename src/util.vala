@@ -310,8 +310,10 @@ namespace Boxes {
         return val.value;
     }
 
-    public GVir.StorageVol? get_storage_volume (GVir.Connection connection, GVir.Domain domain) {
-        var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
+    public GVir.StorageVol? get_storage_volume (GVir.Connection connection,
+                                                GVir.Domain domain,
+                                                out GVir.StoragePool pool) {
+        pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
         if (pool == null)
             // Absence of our pool just means that disk was not created by us.
             return null;

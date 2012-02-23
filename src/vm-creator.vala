@@ -86,7 +86,7 @@ private class Boxes.VMCreator {
             // steps for this domain.
             return;
 
-        var volume = get_storage_volume (connection, domain);
+        var volume = get_storage_volume (connection, domain, null);
 
         if (guest_installed_os (volume)) {
             post_install_setup (domain);

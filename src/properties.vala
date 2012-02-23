@@ -3,6 +3,7 @@ using Gtk;
 
 private enum Boxes.PropertiesPage {
     LOGIN,
+    SYSTEM,
     DISPLAY,
     DEVICES,
 
@@ -28,6 +29,7 @@ private class Boxes.Properties: Boxes.UI {
     private class PageWidget {
         public Gtk.Widget widget;
         public string name;
+        public bool empty;
 
         private Gtk.Grid grid;
 
@@ -35,6 +37,10 @@ private class Boxes.Properties: Boxes.UI {
             switch (page) {
             case PropertiesPage.LOGIN:
                 name = _("Login");
+                break;
+
+            case PropertiesPage.SYSTEM:
+                name = _("System");
                 break;
 
             case PropertiesPage.DISPLAY:
@@ -59,27 +65,26 @@ private class Boxes.Properties: Boxes.UI {
             label.hexpand = false;
             grid.attach (label, 0, 0, 2, 1);
 
-            int current_row = 1;
-            foreach (var p in machine.get_properties (page)) {
-                var label_name = new Gtk.Label (p.first);
-                label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
-                label_name.margin_left = 25;
-                label_name.halign = Gtk.Align.START;
-                label_name.hexpand = false;
-                grid.attach (label_name, 0, current_row, 1, 1);
-                var widget = p.second;
-                widget.halign = Gtk.Align.START;
-                grid.attach (widget, 1, current_row, 1, 1);
+            var properties = machine.get_properties (page);
+            empty = properties.length () == 0;
+            if (!empty) {
+                int current_row = 1;
+                foreach (var property in properties) {
+                    var label_name = new Gtk.Label (property.first);
+                    label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
+                    label_name.margin_left = 25;
+                    label_name.halign = Gtk.Align.START;
+                    label_name.hexpand = false;
+                    grid.attach (label_name, 0, current_row, 1, 1);
+                    var widget = property.second;
+                    grid.attach (widget, 1, current_row, 1, 1);
 
-                current_row += 1;
+                    current_row += 1;
+                }
             }
 
             grid.show_all ();
             widget = grid;
-        }
-
-        public bool is_empty () {
-            return false;
         }
     }
 
@@ -105,10 +110,11 @@ private class Boxes.Properties: Boxes.UI {
             return;
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
-            var page = new PageWidget (i, app.current_item as Machine);
+            var machine = app.current_item as Machine;
+            var page = new PageWidget (i, machine);
             notebook.append_page (page.widget, null);
 
-            if (!page.is_empty ())
+            if (!page.empty)
                 list_append (listmodel, page.name);
         }
 

@@ -129,6 +129,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             var toggle = new Gtk.Switch ();
             gtk_session.bind_property ("auto-clipboard", toggle, "active",
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            toggle.halign = Gtk.Align.START;
             add_property (ref list, _("Share clipboard"), toggle);
 
             try {
@@ -136,6 +137,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
                 var display = get_display (0);
                 display.bind_property ("resize-guest", toggle, "active",
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                toggle.halign = Gtk.Align.START;
                 add_property (ref list, _("Resize guest"), toggle);
             } catch (Boxes.Error error) {
                 warning (error.message);
@@ -146,6 +148,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             var toggle = new Gtk.Switch ();
             gtk_session.bind_property ("auto-usbredir", toggle, "active",
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            toggle.halign = Gtk.Align.START;
             add_property (ref list, _("USB redirection"), toggle);
             break;
         }
