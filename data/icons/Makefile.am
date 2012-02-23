@@ -29,6 +29,7 @@ images_DATA =					\
 	boxes-grid.png				\
 	debianbuzz.svg				\
 	fedora1.svg				\
+	opensuse102.svg				\
 	ubuntuhardy.svg				\
 	$(NULL)
 
