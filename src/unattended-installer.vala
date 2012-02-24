@@ -50,6 +50,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     private static Regex timezone_regex;
     private static Regex kbd_regex;
     private static Regex lang_regex;
+    private static Fdo.Accounts accounts;
 
     static construct {
         try {
@@ -58,6 +59,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             timezone_regex = new Regex ("BOXES_TZ");
             kbd_regex = new Regex ("BOXES_KBD");
             lang_regex = new Regex ("BOXES_LANG");
+            try {
+                accounts = Bus.get_proxy_sync (BusType.SYSTEM, "org.freedesktop.Accounts", "/org/freedesktop/Accounts");
+            } catch (GLib.Error error) {
+                warning ("Failed to connect to D-Bus service '%s': %s", "org.freedesktop.Accounts", error.message);
+            }
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
@@ -163,15 +169,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_table.attach_defaults (express_toggle, 2, 3, 0, 1);
 
         // 2nd row (while user avatar spans over 2 rows)
-        var avatar_file = "/var/lib/AccountsService/icons/" + Environment.get_user_name ();
-        var file = File.new_for_path (avatar_file);
-        Gtk.Image avatar;
-        if (file.query_exists ())
-            avatar = new Gtk.Image.from_file (avatar_file);
-        else
-            avatar = new Gtk.Image.from_icon_name ("avatar-default", 0);
+        var avatar = new Gtk.Image.from_icon_name ("avatar-default", 0);
         avatar.pixel_size = 128;
         setup_table.attach_defaults (avatar, 0, 1, 1, 3);
+        avatar.show_all ();
+        fetch_user_avatar.begin (avatar);
 
         label = new Gtk.Label (_("Username"));
         label.halign = Gtk.Align.END;
@@ -346,5 +348,25 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                             out exit_status);
         if (exit_status != 0)
             throw new UnattendedInstallerError.COMMAND_FAILED ("Failed to execute: %s", string.joinv (" ", argv));
+    }
+
+    private async void fetch_user_avatar (Gtk.Image avatar) {
+        if (accounts == null)
+            return;
+
+        var username = Environment.get_user_name ();
+        var avatar_file = "/var/lib/AccountsService/icons/" + username;
+
+        try {
+            var path = yield accounts.FindUserByName (Environment.get_user_name ());
+            Fdo.AccountsUser user = yield Bus.get_proxy (BusType.SYSTEM, "org.freedesktop.Accounts", path);
+            avatar_file = user.IconFile;
+        } catch (GLib.IOError error) {
+            warning ("Failed to retrieve information about user '%s': %s", username, error.message);
+        }
+
+        var file = File.new_for_path (avatar_file);
+        if (file.query_exists ())
+            avatar.file = avatar_file;
     }
 }

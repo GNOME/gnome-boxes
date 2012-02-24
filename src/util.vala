@@ -369,4 +369,27 @@ namespace Boxes {
         else
             return get_logo_path (product, extensions[1:extensions.length]);
     }
+
+    [DBus (name = "org.freedesktop.Accounts")]
+    interface Fdo.Accounts : Object {
+        public abstract async string FindUserByName(string name) throws IOError;
+    }
+
+    [DBus (name = "org.freedesktop.Accounts.User")]
+    interface Fdo.AccountsUser : Object {
+        public abstract bool AutomaticLogin { get; }
+        public abstract bool Locked { get; }
+        public abstract bool SystemAccount { get; }
+        public abstract int32 AccountType { get; }
+        public abstract int32 PasswordMode { get; }
+        public abstract string Email { owned get; }
+        public abstract string HomeDirectory { owned get; }
+        public abstract string IconFile { owned get; }
+        public abstract string Language { owned get; }
+        public abstract string Location { owned get; }
+        public abstract string RealName { owned get; }
+        public abstract string Shell { owned get; }
+        public abstract string UserName { owned get; }
+        public abstract string XSession { owned get; }
+    }
 }
