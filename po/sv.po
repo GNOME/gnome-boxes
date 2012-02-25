@@ -1,14 +1,14 @@
 # Swedish translation for gnome-boxes.
-# Copyright (C) 2011 Free Software Foundation, Inc.
+# Copyright (C) 2011-2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-boxes package.
-# Daniel Nylander <po@danielnylander.se>, 2011.
+# Daniel Nylander <po@danielnylander.se>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-10 08:34+0100\n"
-"PO-Revision-Date: 2011-12-10 08:52+0100\n"
+"POT-Creation-Date: 2012-02-25 20:13+0100\n"
+"PO-Revision-Date: 2012-02-25 20:48+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: \n"
@@ -31,13 +31,13 @@ msgid "View and use virtual machines"
 msgstr "Visa och använd virtuella maskiner"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
-msgid "Animation duration"
-msgstr ""
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2
 #: ../src/sidebar.vala:148
 msgid "Collections"
 msgstr "Samlingar"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:2
+msgid "The list of boxes collections"
+msgstr "Listan över boxsamlingar"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -48,20 +48,20 @@ msgid "The interval in seconds between screenshot updates"
 msgstr "Intervallet i sekunder mellan uppdateringar av skärmbild"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "The list of boxes collections"
-msgstr ""
+msgid "Animation duration"
+msgstr "Animationslängd"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "The time it takes for transitions and animation, in ms."
-msgstr ""
+msgstr "Tiden det tar för övergångar och animation, i ms."
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:7
-msgid "Window maximized"
-msgstr "Fönster maximerat"
+msgid "Window size"
+msgstr "Fönsterstorlek"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:8
-msgid "Window maximized state"
-msgstr "Maximerat tillstånd för fönster"
+msgid "Window size (width and height)"
+msgstr "Fönsterstorlek (bredd och höjd)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position"
@@ -72,31 +72,77 @@ msgid "Window position (x and y)"
 msgstr "Fönsterposition (x och y)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:11
-msgid "Window size"
-msgstr "Fönsterstorlek"
+msgid "Window maximized"
+msgstr "Fönster maximerat"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:12
-msgid "Window size (width and height)"
-msgstr "Fönsterstorlek (bredd och höjd)"
+msgid "Window maximized state"
+msgstr "Maximerat tillstånd för fönster"
 
-#: ../src/libvirt-machine.vala:235
-msgid "Virtualizer"
+#: ../src/app.vala:91
+msgid "translator-credits"
 msgstr ""
+"Daniel Nylander <po@danielnylander.se>\n"
+"\n"
+"Skicka synpunkter på översättningen till\n"
+"<tp-sv@listor.tp-sv.se>."
 
-#: ../src/libvirt-machine.vala:236
-#: ../src/remote-machine.vala:63
+#: ../src/app.vala:92
+msgid "A simple GNOME 3 application to access remote or virtual systems"
+msgstr "Ett enkelt GNOME 3-program för att komma åt fjärrdatorer eller virtuella maskiner"
+
+#: ../src/app.vala:104
+#: ../src/topbar.vala:63
+msgid "New"
+msgstr "Ny"
+
+#: ../src/app.vala:107
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: ../src/app.vala:108
+msgid "Fullscreen"
+msgstr "Helskärm"
+
+#: ../src/app.vala:111
+msgid "About Boxes"
+msgstr "Om Boxes"
+
+#: ../src/app.vala:112
+msgid "Quit"
+msgstr "Avsluta"
+
+#: ../src/app.vala:480
+#, c-format
+msgid "Box '%s' has been deleted"
+msgstr "Boxen \"%s\" har tagits bort"
+
+#: ../src/app.vala:481
+#, c-format
+msgid "%u box has been deleted"
+msgid_plural "%u boxes have been deleted"
+msgstr[0] "%u box har tagits bort"
+msgstr[1] "%u boxar har tagits bort"
+
+#: ../src/libvirt-machine.vala:251
+msgid "Virtualizer"
+msgstr "Virtualiserare"
+
+#: ../src/libvirt-machine.vala:252
+#: ../src/remote-machine.vala:64
+#: ../src/wizard.vala:291
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:240
-#: ../src/remote-machine.vala:67
+#: ../src/libvirt-machine.vala:256
+#: ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Protokoll"
 
 #. 3rd row
-#: ../src/machine.vala:279
-#: ../src/unattended-installer.vala:167
-#: ../src/wizard.vala:282
+#: ../src/machine.vala:286
+#: ../src/unattended-installer.vala:189
+#: ../src/wizard.vala:318
 msgid "Password"
 msgstr "Lösenord"
 
@@ -106,37 +152,37 @@ msgstr "Visa versionsnummer"
 
 #: ../src/main.vala:10
 msgid "URI to display, broker or installer media"
-msgstr ""
+msgstr "URI att visa, hantera eller installationsmedia"
 
 #: ../src/main.vala:15
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Ett enkelt program för att komma åt fjärrdatorer eller virtuella maskiner"
 
-#: ../src/properties.vala:67
+#: ../src/properties.vala:37
 msgid "Login"
 msgstr "Logga in"
 
-#: ../src/properties.vala:71
+#: ../src/properties.vala:41
 msgid "Display"
-msgstr ""
+msgstr "Skärm"
 
-#: ../src/properties.vala:75
+#: ../src/properties.vala:45
 msgid "Devices"
 msgstr "Enheter"
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:187
 msgid "CPU:"
 msgstr "Processor:"
 
-#: ../src/properties.vala:224
+#: ../src/properties.vala:194
 msgid "I/O:"
 msgstr "In/Ut:"
 
-#: ../src/properties.vala:231
+#: ../src/properties.vala:201
 msgid "Net:"
 msgstr "Nätverk:"
 
-#: ../src/remote-machine.vala:60
+#: ../src/remote-machine.vala:61
 msgid "Name"
 msgstr "Namn"
 
@@ -157,7 +203,6 @@ msgid "Shared with you"
 msgstr "Delad med dig"
 
 #: ../src/sidebar.vala:162
-#: ../src/wizard.vala:99
 msgid "Create"
 msgstr "Skapa"
 
@@ -173,34 +218,32 @@ msgstr "Storleksändra gäst"
 msgid "USB redirection"
 msgstr "USB-omdirigering"
 
-#: ../src/topbar.vala:63
-msgid "New"
-msgstr "Ny"
-
 #: ../src/topbar.vala:155
 #, c-format
 msgid "%d selected"
-msgstr "%d markerat"
+msgid_plural "%d selected"
+msgstr[0] "%d markerad"
+msgstr[1] "%d markerade"
 
 #: ../src/topbar.vala:157
 msgid "Click on items to select them"
 msgstr "Klicka på objekt för att markera dem"
 
-#: ../src/unattended-installer.vala:122
+#: ../src/unattended-installer.vala:148
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "Välj expressinstallation för att automatiskt förkonfigurera boxen med optimala inställningar."
 
 #. First row
-#: ../src/unattended-installer.vala:134
+#: ../src/unattended-installer.vala:160
 msgid "Express Install"
 msgstr "Expressinstallation"
 
-#: ../src/unattended-installer.vala:156
-#: ../src/wizard.vala:281
+#: ../src/unattended-installer.vala:178
+#: ../src/wizard.vala:317
 msgid "Username"
 msgstr "Användarnamn"
 
-#: ../src/unattended-installer.vala:177
+#: ../src/unattended-installer.vala:199
 msgid "_Add Password"
 msgstr "_Lägg till lösenord"
 
@@ -208,109 +251,179 @@ msgstr "_Lägg till lösenord"
 msgid "Read-only"
 msgstr "Skrivskyddad"
 
-#: ../src/wizard-source.vala:54
-#: ../src/wizard-source.vala:78
+#. Microsoft Windows product key
+#: ../src/winxp-installer.vala:38
+msgid "Product Key"
+msgstr "Produktnyckel"
+
+#: ../src/winxp-installer.vala:45
+msgid "_Add Product Key"
+msgstr "_Lägg till produktnyckel"
+
+#: ../src/wizard-source.vala:62
+#: ../src/wizard-source.vala:86
 msgid "Enter URL"
 msgstr "Ange URL"
 
-#: ../src/wizard-source.vala:64
+#: ../src/wizard-source.vala:72
 msgid "Select a file"
 msgstr "Välj en fil"
 
-#: ../src/wizard-source.vala:93
+#: ../src/wizard-source.vala:103
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
 "Will add boxes for all systems available from this account."
 msgstr ""
+"<b>Skrivbordsåtkomst</b>\n"
+"\n"
+"Kommer att lägga till boxar för alla system tillgängliga från detta konto."
 
-#: ../src/wizard-source.vala:120
+#: ../src/wizard-source.vala:171
+msgid "32-bit x86 system"
+msgstr "32-bitars x86-system"
+
+#: ../src/wizard-source.vala:172
+msgid "64-bit x86 system"
+msgstr "64-bitars x86-system"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: ../src/wizard-source.vala:180
+#, c-format
+msgid " from %s"
+msgstr " från %s"
+
+#: ../src/wizard-source.vala:220
 msgid "Select a device or ISO file"
 msgstr "Välj en enhet eller ISO-fil"
 
-#: ../src/wizard.vala:99
-#: ../src/wizard.vala:445
-msgid "Continue"
-msgstr "Fortsätt"
+#: ../src/wizard.vala:78
+msgid "Box creation failed!"
+msgstr "Skapandet av boxen misslyckades!"
 
-#: ../src/wizard.vala:258
+#: ../src/wizard.vala:101
+#: ../src/wizard.vala:486
+msgid "C_ontinue"
+msgstr "F_ortsätt"
+
+#: ../src/wizard.vala:101
+msgid "C_reate"
+msgstr "S_kapa"
+
+#: ../src/wizard.vala:117
+msgid "Please enter desktop or collection URI"
+msgstr "Ange URI till skrivbord eller samling"
+
+#: ../src/wizard.vala:123
+msgid "Will add boxes for all systems available from this account."
+msgstr "Kommer att lägga till boxar för alla system tillgängliga från detta konto."
+
+#: ../src/wizard.vala:126
+msgid "Will add a single box."
+msgstr "Kommer att lägga till en enda box."
+
+#: ../src/wizard.vala:132
+msgid "Desktop Access"
+msgstr "Skrivbordsåtkomst"
+
+#: ../src/wizard.vala:201
+msgid "Invalid URI"
+msgstr "Ogiltig URI"
+
+#: ../src/wizard.vala:212
+#, c-format
+msgid "Unsupported protocol '%s'"
+msgstr "Protokollet \"%s\" stöds inte"
+
+#: ../src/wizard.vala:281
+msgid "Will create a new box with the following properties:"
+msgstr "Kommer att skapa en ny box med följande egenskaper:"
+
+#: ../src/wizard.vala:286
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/wizard.vala:259
+#: ../src/wizard.vala:289
 msgid "Host"
 msgstr "Värd"
 
-#: ../src/wizard.vala:265
-#: ../src/wizard.vala:271
+#: ../src/wizard.vala:297
+#: ../src/wizard.vala:303
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:298
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: ../src/wizard.vala:275
+#: ../src/wizard.vala:308
+msgid "Will add boxes for all systems available from this account:"
+msgstr "Kommer att lägga till boxar för alla system tillgängliga från detta konto:"
+
+#: ../src/wizard.vala:311
 msgid "System"
 msgstr "System"
 
-#: ../src/wizard.vala:286
+#: ../src/wizard.vala:322
 msgid "Memory"
 msgstr "Minne"
 
-#: ../src/wizard.vala:288
+#: ../src/wizard.vala:324
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:288
+#: ../src/wizard.vala:324
 #, c-format
 msgid "%s maximum"
 msgstr "%s maximalt"
 
-#: ../src/wizard.vala:331
+#: ../src/wizard.vala:367
 msgid "Introduction"
 msgstr "Introduktion"
 
-#: ../src/wizard.vala:335
+#: ../src/wizard.vala:371
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
 "You may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
+"Skapa en box kommer att låta dig använda ett annat operativsystem direkt från din befintliga inloggning.\n"
+"\n"
+"Du kan ansluta till en befintlig maskin <b><i>över nätverket</i></b> eller skapa en <b><i>virtuell maskin</i></b> som körs lokalt på din egna dator."
 
-#: ../src/wizard.vala:347
+#: ../src/wizard.vala:383
 msgid "Source Selection"
 msgstr "Val av källa"
 
-#: ../src/wizard.vala:348
+#: ../src/wizard.vala:384
 msgid "Insert operating system installation media or select a source below"
 msgstr "Mata in installationsmedia för operativsystemet eller välj en källa nedan"
 
-#: ../src/wizard.vala:363
+#: ../src/wizard.vala:392
+msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
+msgstr "Alla registrerade varumärken som visas ovan används endast för identifiering av programprodukter som du redan har köpt och tillhör respektive ägare."
+
+#: ../src/wizard.vala:404
 msgid "Preparation"
 msgstr "Förberedelse"
 
-#: ../src/wizard.vala:364
+#: ../src/wizard.vala:405
 msgid "Preparing to create new box"
 msgstr "Förbereder att skapa ny box"
 
-#: ../src/wizard.vala:381
+#: ../src/wizard.vala:422
 msgid "Analyzing installer media."
 msgstr "Analyserar installationsmedia."
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:433
 msgid "Setup"
 msgstr "Konfigurera"
 
-#: ../src/wizard.vala:399
+#: ../src/wizard.vala:440
 msgid "Review"
 msgstr "Granska"
 
-#: ../src/wizard.vala:401
-msgid "Will create a new box with the following properties:"
-msgstr "Kommer att skapa en ny box med följande egenskaper:"
-
-#: ../src/wizard.vala:419
+#: ../src/wizard.vala:460
 msgid "Create a Box"
 msgstr "Skapa en box"
 
