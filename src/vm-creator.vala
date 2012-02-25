@@ -26,8 +26,10 @@ private class Boxes.VMCreator {
 
         try {
             var config = machine.domain.get_config (0);
-            if (!configurator.is_install_config (config) && !configurator.is_live_config (config))
+            if (!configurator.is_install_config (config) && !configurator.is_live_config (config)) {
+                debug ("'%s' does not need post-installation setup", machine.name);
                 return;
+            }
 
             var state = machine.domain.get_info ().state;
             if (state == DomainState.SHUTOFF || state == DomainState.CRASHED || state == DomainState.NONE)
@@ -77,13 +79,17 @@ private class Boxes.VMCreator {
     private void on_domain_stopped (LibvirtMachine machine) {
         var domain = machine.domain;
 
-        if (machine.deleted)
+        if (machine.deleted) {
+            debug ("'%s' was deleted, no need for post-installation setup on it", machine.name);
             return;
+        }
 
-        if (domain.get_saved ())
+        if (domain.get_saved ()) {
+            debug ("'%s' has saved state, no need for post-installation setup on it", machine.name);
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
             // steps for this domain.
             return;
+        }
 
         var volume = get_storage_volume (connection, domain, null);
 
@@ -108,6 +114,7 @@ private class Boxes.VMCreator {
     }
 
     private void post_install_setup (Domain domain) {
+        debug ("Performing post-installation setup on '%s'", domain.get_name ());
         try {
             var config = domain.get_config (0);
             configurator.post_install_setup (config);
