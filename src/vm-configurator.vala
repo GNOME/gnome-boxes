@@ -151,6 +151,7 @@ private class Boxes.VMConfigurator {
         disk.set_source (target_path);
         disk.set_target_dev ("hda");
         disk.set_target_bus (DomainDiskBus.IDE);
+        disk.set_driver_cache (DomainDiskCacheType.NONE);
 
         domain.add_device (disk);
     }
