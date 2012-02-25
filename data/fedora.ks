@@ -9,13 +9,13 @@ selinux --enforcing
 timezone --utc BOXES_TZ
 bootloader --location=mbr
 zerombr
-clearpart --all --drives=sda
+clearpart --all --drives=vda
 
 firstboot --disable
 
 part biosboot --fstype=biosboot --size=1
-part /boot --fstype ext4 --recommended --ondisk=sda
-part pv.2 --size=1 --grow --ondisk=sda
+part /boot --fstype ext4 --recommended --ondisk=vda
+part pv.2 --size=1 --grow --ondisk=vda
 volgroup VolGroup00 --pesize=32768 pv.2
 logvol swap --fstype swap --name=LogVol01 --vgname=VolGroup00 --size=768 --grow --maxsize=1536
 logvol / --fstype ext4 --name=LogVol00 --vgname=VolGroup00 --size=1024 --grow

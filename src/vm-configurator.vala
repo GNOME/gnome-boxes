@@ -37,7 +37,7 @@ private class Boxes.VMConfigurator {
             clock.set_offset (DomainClockOffset.UTC);
         domain.set_clock (clock);
 
-        set_target_media_config (domain, target_path);
+        set_target_media_config (domain, target_path, install_media);
         set_unattended_disk_config (domain, install_media);
         set_source_media_config (domain, install_media);
 
@@ -142,16 +142,22 @@ private class Boxes.VMConfigurator {
         return pool;
     }
 
-    private void set_target_media_config (Domain domain, string target_path) {
+    private void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
         disk.set_driver_name ("qemu");
         disk.set_driver_type ("qcow2");
         disk.set_source (target_path);
-        disk.set_target_dev ("hda");
-        disk.set_target_bus (DomainDiskBus.IDE);
         disk.set_driver_cache (DomainDiskCacheType.NONE);
+        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_NAME, "virtio-block");
+        if (device != null) {
+            disk.set_target_bus (DomainDiskBus.VIRTIO);
+            disk.set_target_dev ("vda");
+        } else {
+            disk.set_target_bus (DomainDiskBus.IDE);
+            disk.set_target_dev ("hda");
+        }
 
         domain.add_device (disk);
     }
