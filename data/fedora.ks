@@ -40,7 +40,7 @@ xorg-x11-drv-qxl
 %post --erroronfail
 
 # Add user to admin group
-usermod BOXES_USERNAME -a -G wheel
+usermod -a -G wheel BOXES_USERNAME
 
 # Enable autologin
 echo "[daemon]
