@@ -90,7 +90,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public void update_domain_config () {
         try {
-            this.domain_config = domain.get_config (0);
+            domain_config = domain.get_config (0);
         } catch (GLib.Error error) {
             critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
         }
@@ -142,16 +142,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return;
 
         try {
-            // FIXME: switch to domain.get_devices () and loop over all interfaces
-            var xmldoc = domain_config.to_xml ();
-            var target_dev = extract_xpath (xmldoc,
-                "string(/domain/devices/disk[@type='file']/target/@dev)", true);
-            if (target_dev == "")
+            var disk = get_domain_disk ();
+            if (disk == null)
                 return;
 
-            var disk = GLib.Object.new (typeof (GVir.DomainDisk),
-                                        "path", target_dev,
-                                        "domain", domain) as GVir.DomainDisk;
             stat.disk = disk.get_stats ();
             var prev = stats[STATS_SIZE - 1];
             if (prev.disk != null) {
@@ -159,25 +153,19 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 stat.disk_write = (stat.disk.wr_bytes - prev.disk.wr_bytes);
             }
         } catch (GLib.Error err) {
+            warning ("Failed to fetch I/O statistics for %s: %s", name, err.message);
         }
     }
-
 
     private void update_net_stat (ref MachineStat stat) {
         if (!is_running ())
             return;
 
         try {
-            // FIXME: switch to domain.get_devices () and loop over all interfaces
-            var xmldoc = domain_config.to_xml ();
-            var target_dev = extract_xpath (xmldoc,
-                "string(/domain/devices/interface[@type='network']/target/@dev)", true);
-            if (target_dev == "")
+            var net = get_domain_network_interface ();
+            if (net == null)
                 return;
 
-            var net = GLib.Object.new (typeof (GVir.DomainInterface),
-                                       "path", target_dev,
-                                       "domain", domain) as GVir.DomainInterface;
             stat.net = net.get_stats ();
             var prev = stats[STATS_SIZE - 1];
             if (prev.net != null) {
@@ -185,6 +173,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 stat.net_write = (stat.net.tx_bytes - prev.net.tx_bytes);
             }
         } catch (GLib.Error err) {
+            warning ("Failed to fetch network statistics for %s: %s", name, err.message);
         }
     }
 
@@ -355,5 +344,43 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public async void suspend () throws GLib.Error {
         (save_on_quit) ? yield domain.save_async (0, null) : domain.suspend ();
+    }
+
+    private GVir.DomainDisk? get_domain_disk () throws GLib.Error {
+        var disk = null as GVir.DomainDisk;
+        var volume = get_storage_volume (connection, domain);
+
+        foreach (var device in domain.get_devices ()) {
+            if (device is GVir.DomainDisk) {
+                var disk_config = device.config as GVirConfig.DomainDisk;
+                var disk_type = disk_config.get_guest_device_type ();
+                var volume_path = (volume != null)? volume.get_path () : null;
+                var disk_source = (volume != null)? disk_config.get_source () : null;
+
+                // Prefer Boxes' managed volume over other disks
+                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.DISK && volume_path == disk_source) {
+                    disk = device as GVir.DomainDisk;
+
+                    break;
+                }
+            }
+        }
+
+        return disk;
+    }
+
+    private GVir.DomainInterface? get_domain_network_interface () throws GLib.Error {
+        var net = null as GVir.DomainInterface;
+
+        // FiXME: We currently only entertain one network interface
+        foreach (var device in domain.get_devices ()) {
+            if (device is GVir.DomainInterface) {
+                net = device as GVir.DomainInterface;
+
+                break;
+            }
+        }
+
+        return net;
     }
 }
