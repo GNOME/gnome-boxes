@@ -94,6 +94,14 @@ AC_ARG_ENABLE([strict-cc],
 AS_IF([test "x$enable_strict_cc" = "xyes"], [CFLAGS="$CFLAGS -Wall -Werror"],
       [CFLAGS="$CFLAGS -w"])
 
+dnl Distribute logos?
+AC_ARG_ENABLE([logos],
+              AS_HELP_STRING([--enable-logos],
+                             [Enable distribution of non-free logos]),
+              [enable_logos=$enableval],
+              [enable_logos=yes])
+AM_CONDITIONAL(ENABLE_LOGOS, test "x$enable_logos" != "xno")
+
 AC_CONFIG_FILES([
   Makefile
   data/Makefile
