@@ -5,16 +5,17 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-04 07:16+0000\n"
-"PO-Revision-Date: 2012-03-04 14:27+0300\n"
+"POT-Creation-Date: 2012-03-05 16:15+0000\n"
+"PO-Revision-Date: 2012-03-05 19:33+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:45
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:46
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -80,7 +81,8 @@ msgstr "Ігар Грачышка <ihar.hrachyshka@gmail.com>"
 
 #: ../src/app.vala:92
 msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "Простая праграма для GNOME 3 для доступу да аддаленых і віртуальных сістэм"
+msgstr ""
+"Простая праграма для GNOME 3 для доступу да аддаленых і віртуальных сістэм"
 
 #: ../src/app.vala:104 ../src/topbar.vala:63
 msgid "New"
@@ -115,18 +117,31 @@ msgstr[0] "%u машына была выдалена"
 msgstr[1] "%u машыны былі выдалены"
 msgstr[2] "%u машын былі выдалены"
 
-#: ../src/libvirt-machine.vala:240
+#: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "Віртуалізатар"
 
-#: ../src/libvirt-machine.vala:241 ../src/remote-machine.vala:64
+#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
 #: ../src/wizard.vala:291
 msgid "URI"
 msgstr "URI-адрас"
 
-#: ../src/libvirt-machine.vala:245 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Пратакол"
+
+#: ../src/libvirt-machine.vala:400
+msgid "RAM"
+msgstr "Памяць (RAM)"
+
+#: ../src/libvirt-machine.vala:441
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "Змены патрабуюць перазапуску \"%s\". Перазапусціць?"
+
+#: ../src/libvirt-machine.vala:458
+msgid "Storage"
+msgstr "Дыскавае сховішча"
 
 #. 3rd row
 #: ../src/machine.vala:286 ../src/unattended-installer.vala:189
@@ -138,36 +153,40 @@ msgstr "Пароль"
 msgid "Display version number"
 msgstr "Паказаць нумар версіі праграмы"
 
-#: ../src/main.vala:10
-#, fuzzy
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:11
 msgid "URI to display, broker or installer media"
-msgstr "URI-адрас для прагляду, носьбіт для ўсталявання ці брокера"
+msgstr "URI-адрас для прагляду, носьбіт для ўсталявання ці кіраўнік віртуалізацыі"
 
-#: ../src/main.vala:15
+#: ../src/main.vala:16
 msgid "- A simple application to access remote or virtual machines"
 msgstr " - простая праграма для для доступу да аддаленых і віртуальных сістэм"
 
-#: ../src/properties.vala:37
+#: ../src/properties.vala:39
 msgid "Login"
 msgstr "Уваход"
 
-#: ../src/properties.vala:41
+#: ../src/properties.vala:43 ../src/wizard.vala:311
+msgid "System"
+msgstr "Сістэма"
+
+#: ../src/properties.vala:47
 msgid "Display"
 msgstr "Паказ"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:51
 msgid "Devices"
 msgstr "Прыстасаванні"
 
-#: ../src/properties.vala:187
+#: ../src/properties.vala:193
 msgid "CPU:"
 msgstr "Працэсар:"
 
-#: ../src/properties.vala:194
+#: ../src/properties.vala:200
 msgid "I/O:"
 msgstr "Увод/вывад:"
 
-#: ../src/properties.vala:201
+#: ../src/properties.vala:207
 msgid "Net:"
 msgstr "Сетка:"
 
@@ -195,15 +214,15 @@ msgstr "Супольна даступнае для вас"
 msgid "Create"
 msgstr "Стварыць"
 
-#: ../src/spice-display.vala:132
+#: ../src/spice-display.vala:133
 msgid "Share clipboard"
 msgstr "Дзяліцца буферам абмену"
 
-#: ../src/spice-display.vala:139
+#: ../src/spice-display.vala:141
 msgid "Resize guest"
 msgstr "Змяніць памер гасцявой сістэмы"
 
-#: ../src/spice-display.vala:149
+#: ../src/spice-display.vala:152
 msgid "USB redirection"
 msgstr "Перанакіраванне USB"
 
@@ -224,7 +243,8 @@ msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr ""
-"Выберыце экспрэс-усталяванне для аўтаматычнай наладкі машыны з аптымальнымі настройкамі."
+"Выберыце экспрэс-усталяванне для аўтаматычнай наладкі машыны з аптымальнымі "
+"настройкамі."
 
 #. First row
 #: ../src/unattended-installer.vala:160
@@ -349,10 +369,6 @@ msgstr "TLS-порт"
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Дадасць машыны для ўсіх сістэм, даступных для гэтага конта:"
 
-#: ../src/wizard.vala:311
-msgid "System"
-msgstr "Сістэма"
-
 #: ../src/wizard.vala:322
 msgid "Memory"
 msgstr "Памяць"
@@ -378,10 +394,11 @@ msgid ""
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
-"Стварыўшы новую машыну, вы зможаце выкарыстоўваць іншую аперацыйную сістэму, не пакідаючы сеанса.\n"
+"Стварыўшы новую машыну, вы зможаце выкарыстоўваць іншую аперацыйную сістэму, "
+"не пакідаючы сеанса.\n"
 "\n"
-"Вы можаце злучыцца з наяўнай машынай <b><i>праз сетку</i></b> або "
-"стварыць <b><i>віртуальную машыну</i></b>, якая будзе працаваць на вашым камп'ютары."
+"Вы можаце злучыцца з наяўнай машынай <b><i>праз сетку</i></b> або стварыць "
+"<b><i>віртуальную машыну</i></b>, якая будзе працаваць на вашым камп'ютары."
 
 #: ../src/wizard.vala:383
 msgid "Source Selection"
@@ -389,7 +406,9 @@ msgstr "Выбар крыніцы"
 
 #: ../src/wizard.vala:384
 msgid "Insert operating system installation media or select a source below"
-msgstr "Устаўце носьбіт для ўсталявання аперацыйнай сістэмы або выберыце крыніцу ніжэй"
+msgstr ""
+"Устаўце носьбіт для ўсталявання аперацыйнай сістэмы або выберыце крыніцу "
+"ніжэй"
 
 #: ../src/wizard.vala:392
 msgid ""
@@ -397,7 +416,9 @@ msgid ""
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr ""
-"Любыя гандлёвыя знакі, паказаныя вышэй, выкарыстаны выключна дзеля ідэнтыфікацыі праграмных прадуктаў, якія вы набылі, і з'яўляюцца ўласнасцю адпаведных вытворцаў."
+"Любыя гандлёвыя знакі, паказаныя вышэй, выкарыстаны выключна дзеля "
+"ідэнтыфікацыі праграмных прадуктаў, якія вы набылі, і з'яўляюцца ўласнасцю "
+"адпаведных вытворцаў."
 
 #: ../src/wizard.vala:404
 msgid "Preparation"
