@@ -235,8 +235,8 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view.add_attribute(text_renderer, "text", ModelColumns.TITLE);
 
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
-// TODO: this should be set, but doesn't resize correctly the gtkactor..
-//        scrolled_window.hscrollbar_policy = Gtk.PolicyType.NEVER;
+        // TODO: this should be set, but doesn't resize correctly the gtkactor..
+        //        scrolled_window.hscrollbar_policy = Gtk.PolicyType.NEVER;
         scrolled_window.add (icon_view);
         scrolled_window.show_all ();
 
