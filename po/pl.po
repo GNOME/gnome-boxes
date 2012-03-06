@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-25 21:14+0100\n"
-"PO-Revision-Date: 2012-02-25 21:15+0100\n"
+"POT-Creation-Date: 2012-03-06 19:01+0100\n"
+"PO-Revision-Date: 2012-03-06 19:02+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-Language: Polish\n"
 "X-Poedit-Country: Poland\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:45
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:46
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -124,22 +124,37 @@ msgstr[0] "%u maszyna została usunięta"
 msgstr[1] "%u maszyny zostały usunięte"
 msgstr[2] "%u maszyn zostało usuniętych"
 
-#: ../src/libvirt-machine.vala:251
+#: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "Metoda wirtualizacji"
 
-#: ../src/libvirt-machine.vala:252 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:291
+#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "Adres URI"
 
-#: ../src/libvirt-machine.vala:256 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Protokół"
 
+#: ../src/libvirt-machine.vala:400
+msgid "RAM"
+msgstr "Pamięć RAM"
+
+#: ../src/libvirt-machine.vala:441
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr ""
+"Zmiany wymagają ponownego uruchomienia maszyny \"%s\". Spróbować ponownie "
+"uruchomić?"
+
+#: ../src/libvirt-machine.vala:458
+msgid "Storage"
+msgstr "Pamięć masowa"
+
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:189
-#: ../src/wizard.vala:318
+#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "Hasło"
 
@@ -147,35 +162,40 @@ msgstr "Hasło"
 msgid "Display version number"
 msgstr "Wyświetla numer wersji"
 
-#: ../src/main.vala:10
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:11
 msgid "URI to display, broker or installer media"
 msgstr "Adres URI do wyświetlenia, nośnik brokera lub instalatora"
 
-#: ../src/main.vala:15
+#: ../src/main.vala:16
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- prosty program do dostępu do maszyn zdalnych lub wirtualnych"
 
-#: ../src/properties.vala:37
+#: ../src/properties.vala:39
 msgid "Login"
 msgstr "Login"
 
-#: ../src/properties.vala:41
+#: ../src/properties.vala:43 ../src/wizard.vala:329
+msgid "System"
+msgstr "System"
+
+#: ../src/properties.vala:47
 msgid "Display"
 msgstr "Ekran"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:51
 msgid "Devices"
 msgstr "Urządzenia"
 
-#: ../src/properties.vala:187
+#: ../src/properties.vala:193
 msgid "CPU:"
 msgstr "Procesor:"
 
-#: ../src/properties.vala:194
+#: ../src/properties.vala:200
 msgid "I/O:"
 msgstr "Wejście/wyjście:"
 
-#: ../src/properties.vala:201
+#: ../src/properties.vala:207
 msgid "Net:"
 msgstr "Sieć:"
 
@@ -203,15 +223,15 @@ msgstr "Współdzielone"
 msgid "Create"
 msgstr "Utwórz"
 
-#: ../src/spice-display.vala:132
+#: ../src/spice-display.vala:133
 msgid "Share clipboard"
 msgstr "Współdziel schowek"
 
-#: ../src/spice-display.vala:139
+#: ../src/spice-display.vala:141
 msgid "Resize guest"
 msgstr "Zmień rozmiar gościa"
 
-#: ../src/spice-display.vala:149
+#: ../src/spice-display.vala:152
 msgid "USB redirection"
 msgstr "Przekierowanie USB"
 
@@ -227,7 +247,11 @@ msgstr[2] "%d wybranych"
 msgid "Click on items to select them"
 msgstr "Kliknięcie na elementach zaznacza je"
 
-#: ../src/unattended-installer.vala:148
+#: ../src/unattended-installer.vala:154
+msgid "No username provided"
+msgstr "Nie podano nazwy użytkownika"
+
+#: ../src/unattended-installer.vala:158
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -236,15 +260,15 @@ msgstr ""
 "optymalnych ustawień."
 
 #. First row
-#: ../src/unattended-installer.vala:160
+#: ../src/unattended-installer.vala:170
 msgid "Express Install"
 msgstr "Instalacja ekspresowa"
 
-#: ../src/unattended-installer.vala:178 ../src/wizard.vala:317
+#: ../src/unattended-installer.vala:188 ../src/wizard.vala:335
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: ../src/unattended-installer.vala:199
+#: ../src/unattended-installer.vala:209
 msgid "_Add Password"
 msgstr "_Dodaj hasło"
 
@@ -297,91 +321,87 @@ msgstr " od %s"
 msgid "Select a device or ISO file"
 msgstr "Wybór urządzenia lub pliku ISO"
 
-#: ../src/wizard.vala:78
+#: ../src/wizard.vala:75
 msgid "Box creation failed!"
 msgstr "Utworzenie maszyny się nie powiodło."
 
-#: ../src/wizard.vala:101 ../src/wizard.vala:486
+#: ../src/wizard.vala:98 ../src/wizard.vala:506
 msgid "C_ontinue"
 msgstr "K_ontynuuj"
 
-#: ../src/wizard.vala:101
+#: ../src/wizard.vala:98
 msgid "C_reate"
 msgstr "_Utwórz"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "Please enter desktop or collection URI"
 msgstr "Proszę podać adres URI pulpitu lub kolekcji"
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:120
 msgid "Will add boxes for all systems available from this account."
 msgstr ""
 "Zostaną dodane maszyny dla wszystkich systemów dostępnych z tego konta."
 
-#: ../src/wizard.vala:126
+#: ../src/wizard.vala:123
 msgid "Will add a single box."
 msgstr "Zostanie dodana jedna maszyna."
 
-#: ../src/wizard.vala:132
+#: ../src/wizard.vala:129
 msgid "Desktop Access"
 msgstr "Dostęp do pulpitu"
 
-#: ../src/wizard.vala:201
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "Nieprawidłowy adres URI"
 
-#: ../src/wizard.vala:212
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nieobsługiwany protokół \"%s\""
 
-#: ../src/wizard.vala:281
+#: ../src/wizard.vala:299
 msgid "Will create a new box with the following properties:"
 msgstr "Zostanie utworzona nowa maszyna o następujących właściwościach:"
 
-#: ../src/wizard.vala:286
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/wizard.vala:289
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "Komputer"
 
-#: ../src/wizard.vala:297 ../src/wizard.vala:303
+#: ../src/wizard.vala:315 ../src/wizard.vala:321
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:298
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:326
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Zostaną dodane maszyny dla wszystkich systemów dostępnych z tego konta:"
 
-#: ../src/wizard.vala:311
-msgid "System"
-msgstr "System"
-
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:340
 msgid "Memory"
 msgstr "Pamięć"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:342
 msgid "Disk"
 msgstr "Dysk"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:342
 #, c-format
 msgid "%s maximum"
 msgstr "Maksymalnie: %s"
 
-#: ../src/wizard.vala:367
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "Wprowadzenie"
 
-#: ../src/wizard.vala:371
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -395,17 +415,17 @@ msgstr ""
 "Można połączyć się z istniejącą maszyną <b><i>przez sieć</i></b> lub "
 "utworzyć <b><i>maszynę wirtualną</i></b> działającą lokalnie na komputerze."
 
-#: ../src/wizard.vala:383
+#: ../src/wizard.vala:403
 msgid "Source Selection"
 msgstr "Wybór źródła"
 
-#: ../src/wizard.vala:384
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Proszę włożyć nośnik instalacji systemu operacyjnego lub wybrać źródło "
 "poniżej"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:412
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -415,26 +435,26 @@ msgstr ""
 "posiadanych produktów oprogramowania i są własnością ich odpowiednich "
 "właścicieli."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "Przygotowanie"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr "Przygotowywanie do utworzenia nowej maszyny"
 
-#: ../src/wizard.vala:422
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
 msgstr "Analizowanie nośnika instalatora."
 
-#: ../src/wizard.vala:433
+#: ../src/wizard.vala:453
 msgid "Setup"
 msgstr "Ustawienia"
 
-#: ../src/wizard.vala:440
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr "Przegląd"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "Utwórz maszynę"
