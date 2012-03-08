@@ -127,6 +127,9 @@ private class Boxes.App: Boxes.UI {
                 var first_time = setup_sources.end (result);
                 ready (first_time);
             });
+
+            check_cpu_vt_capability ();
+            check_module_kvm_loaded ();
         });
 
         application.activate.connect_after ((app) => {

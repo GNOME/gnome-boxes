@@ -3,10 +3,13 @@ using Config;
 using Posix;
 
 private static bool version;
+private static bool checks;
 private static string[] uris;
 
 private const OptionEntry[] options = {
     { "version", 0, 0, OptionArg.NONE, ref version, N_("Display version number"), null },
+    // FIXME: make it translatable after string freeze
+    { "checks", 0, 0, OptionArg.NONE, ref checks, "Check virtualization capabilities", null },
     // A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
     { "", 0, 0, OptionArg.STRING_ARRAY, ref uris, N_("URI to display, broker or installer media"), null },
     { null }
@@ -37,6 +40,25 @@ private static void parse_args (ref unowned string[] args) {
         GLib.stdout.printf ("%s\n", Config.BUILD_VERSION);
         exit (0);
     }
+
+    if (checks) {
+        var loop = new GLib.MainLoop ();
+        run_checks.begin ((obj, res) => {
+            run_checks.end (res);
+            loop.quit ();
+        });
+        loop.run ();
+        exit (0);
+    }
+}
+
+private async void run_checks () {
+    var cpu = yield Boxes.check_cpu_vt_capability ();
+    var kvm = yield Boxes.check_module_kvm_loaded ();
+
+    // FIXME: make it translatable after string freeze, and add proper UI & docs
+    GLib.stdout.printf ("The CPU is capable of virtualization: %s\n".printf (Boxes.yes_no (cpu)));
+    GLib.stdout.printf ("The KVM module is loaded: %s\n".printf (Boxes.yes_no (kvm)));
 }
 
 public int main (string[] args) {

@@ -394,4 +394,49 @@ namespace Boxes {
         public abstract string UserName { owned get; }
         public abstract string XSession { owned get; }
     }
+
+    public string yes_no (bool value) {
+        // FIXME: make it translatable after string freeze
+        return value ? "yes" : "no";
+    }
+
+    public async bool check_cpu_vt_capability () {
+        var result = false;
+        var file = File.new_for_path ("/proc/cpuinfo");
+
+        try {
+            var stream = new DataInputStream (file.read ());
+            string line = null;
+            while ((line = yield stream.read_line_async (Priority.DEFAULT)) != null) {
+                result = /^flags.*(vmx|svm)/.match (line);
+                if (result)
+                    break;
+            }
+        } catch (GLib.Error error) {
+            GLib.error (error.message);
+        }
+
+        debug ("check_cpu_vt_capability: " + yes_no (result));
+        return result;
+    }
+
+    public async bool check_module_kvm_loaded () {
+        var result = false;
+        var file = File.new_for_path ("/proc/modules");
+
+        try {
+            var stream = new DataInputStream (file.read ());
+            string line = null;
+            while ((line = yield stream.read_line_async (Priority.DEFAULT)) != null) {
+                result = /^(kvm_intel|kvm_amd)/.match (line);
+                if (result)
+                    break;
+            }
+        } catch (GLib.Error error) {
+            GLib.error (error.message);
+        }
+
+        debug ("check_module_kvm_loaded: " + yes_no (result));
+        return result;
+    }
 }
