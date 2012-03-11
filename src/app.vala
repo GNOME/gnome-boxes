@@ -48,7 +48,9 @@ private class Boxes.App: Boxes.UI {
     private CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
+    private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { get { return connections.get ("QEMU Session"); } }
+    public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
 
     private uint configure_id;
     public static const uint configure_id_timeout = 100;  // 100ms
@@ -57,6 +59,7 @@ private class Boxes.App: Boxes.UI {
         application = new Gtk.Application ("org.gnome.Boxes", 0);
         settings = new GLib.Settings ("org.gnome.boxes");
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
+        sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
 
         var action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => { quit (); });
@@ -146,8 +149,10 @@ private class Boxes.App: Boxes.UI {
         view.category = category;
     }
 
-    private void add_domain (CollectionSource source,
-                             GVir.Connection connection, GVir.Domain domain) {
+    public void add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+        if (domain.get_data<LibvirtMachine> ("machine") != null)
+            return; // Already added
+
         try {
             var machine = new LibvirtMachine (source, this, connection, domain);
             collection.add_item (machine);
@@ -176,8 +181,11 @@ private class Boxes.App: Boxes.UI {
         }
 
         connections.insert (source.name, connection);
-        if (source.name == "QEMU Session")
+        sources.insert (source.name, source);
+        if (source.name == "QEMU Session") {
             notify_property ("default-connection");
+            notify_property ("default-source");
+        }
 
         foreach (var domain in connection.get_domains ())
             add_domain (source, connection, domain);
@@ -192,6 +200,7 @@ private class Boxes.App: Boxes.UI {
         });
 
         connection.domain_added.connect ((connection, domain) => {
+            debug ("New domain '%s'", domain.get_name ());
             add_domain (source, connection, domain);
         });
     }
