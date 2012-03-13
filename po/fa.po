@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-04 12:56+0000\n"
-"PO-Revision-Date: 2012-03-12 21:33+0330\n"
+"POT-Creation-Date: 2012-03-12 18:05+0000\n"
+"PO-Revision-Date: 2012-03-13 14:28+0330\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../src/main.vala:45
+#: ../src/main.vala:68
 msgid "Boxes"
 msgstr "جعبه‌ها"
 
@@ -110,72 +110,91 @@ msgstr "درباره جعبه‌ها"
 msgid "Quit"
 msgstr "خروج"
 
-#: ../src/app.vala:480
+#: ../src/app.vala:483
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "جعبه‌ی «%s» حذف شده است"
 
-#: ../src/app.vala:481
+#: ../src/app.vala:484
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%Iu جعبه حذف شدند"
 
-#: ../src/libvirt-machine.vala:240
+#: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "مجازی‌سازی"
 
-#: ../src/libvirt-machine.vala:241
+#: ../src/libvirt-machine.vala:244
 #: ../src/remote-machine.vala:64
-#: ../src/wizard.vala:291
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "آدرس"
 
-#: ../src/libvirt-machine.vala:245
+#: ../src/libvirt-machine.vala:253
 #: ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "پروتکل"
 
+#: ../src/libvirt-machine.vala:400
+msgid "RAM"
+msgstr "رم"
+
+#: ../src/libvirt-machine.vala:441
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "تغییرات احتیاج به راه‌اندازی مجدد «%s» دارند. تلاش برای راه‌اندازی مجدد؟"
+
+#: ../src/libvirt-machine.vala:458
+msgid "Storage"
+msgstr "حافظه"
+
 #. 3rd row
 #: ../src/machine.vala:286
-#: ../src/unattended-installer.vala:189
-#: ../src/wizard.vala:318
+#: ../src/unattended-installer.vala:199
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "گذرواژه"
 
-#: ../src/main.vala:9
+#: ../src/main.vala:10
 msgid "Display version number"
 msgstr "نمایش شماره نسخه"
 
-#: ../src/main.vala:10
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:14
 msgid "URI to display, broker or installer media"
 msgstr "آدرس جهت نمایش، برقراری ارتباط و یا نصاب رسانه"
 
-#: ../src/main.vala:15
+#: ../src/main.vala:19
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- یک برنامه ساده برای دسترسی به ماشین‌های مجازی و دوردست"
 
-#: ../src/properties.vala:37
+#: ../src/properties.vala:39
 msgid "Login"
 msgstr "ورود"
 
-#: ../src/properties.vala:41
+#: ../src/properties.vala:43
+#: ../src/wizard.vala:329
+msgid "System"
+msgstr "سیستم"
+
+#: ../src/properties.vala:47
 msgid "Display"
 msgstr "نمایش"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:51
 msgid "Devices"
 msgstr "دستگاه‌ها"
 
-#: ../src/properties.vala:187
+#: ../src/properties.vala:193
 msgid "CPU:"
 msgstr "سی‌پی‌یو:"
 
-#: ../src/properties.vala:194
+#: ../src/properties.vala:200
 msgid "I/O:"
 msgstr "ورودی/خروجی:"
 
-#: ../src/properties.vala:201
+#: ../src/properties.vala:207
 msgid "Net:"
 msgstr "خالص:"
 
@@ -203,15 +222,15 @@ msgstr "اشتراک‌گذاشته شده با شما"
 msgid "Create"
 msgstr "ساخت"
 
-#: ../src/spice-display.vala:132
+#: ../src/spice-display.vala:133
 msgid "Share clipboard"
 msgstr "اشتراک‌گذاری تخته‌گیره"
 
-#: ../src/spice-display.vala:139
+#: ../src/spice-display.vala:141
 msgid "Resize guest"
 msgstr "تغیره‌اندازه مهمان"
 
-#: ../src/spice-display.vala:149
+#: ../src/spice-display.vala:152
 msgid "USB redirection"
 msgstr "راهنمایی USB"
 
@@ -225,21 +244,25 @@ msgstr[0] "%d انتخاب شد"
 msgid "Click on items to select them"
 msgstr "بر روی موارد کلیک کنید تا انتخاب شوند"
 
-#: ../src/unattended-installer.vala:148
+#: ../src/unattended-installer.vala:154
+msgid "No username provided"
+msgstr "هیچ نام‌کاربری‌ای فراهم نشده است"
+
+#: ../src/unattended-installer.vala:158
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "برای پیکربندی خودکار جعبه با تنظیمات مطلوب گزینه‌ی نصب سریع را انتخاب کنید."
 
 #. First row
-#: ../src/unattended-installer.vala:160
+#: ../src/unattended-installer.vala:170
 msgid "Express Install"
 msgstr "نصب سریع"
 
-#: ../src/unattended-installer.vala:178
-#: ../src/wizard.vala:317
+#: ../src/unattended-installer.vala:188
+#: ../src/wizard.vala:335
 msgid "Username"
 msgstr "نام‌کاربری"
 
-#: ../src/unattended-installer.vala:199
+#: ../src/unattended-installer.vala:209
 msgid "_Add Password"
 msgstr "اضافه‌کردن گذرواژه"
 
@@ -293,91 +316,87 @@ msgstr "از %s"
 msgid "Select a device or ISO file"
 msgstr "یک دستگاه یا پرونده ISO انتخاب کنید"
 
-#: ../src/wizard.vala:78
+#: ../src/wizard.vala:75
 msgid "Box creation failed!"
 msgstr "ساخت جعبه شکست خورد!"
 
-#: ../src/wizard.vala:101
-#: ../src/wizard.vala:486
+#: ../src/wizard.vala:98
+#: ../src/wizard.vala:506
 msgid "C_ontinue"
 msgstr "_ادامه"
 
-#: ../src/wizard.vala:101
+#: ../src/wizard.vala:98
 msgid "C_reate"
 msgstr "_ساخت"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "Please enter desktop or collection URI"
 msgstr "لطفا رومیزی یا آدرس مجموعه را وارد کنید"
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:120
 msgid "Will add boxes for all systems available from this account."
 msgstr "تمام جعبه‌های موجود برای تمام سیستم‌ها را از این حساب اضافه خواهد کرد."
 
-#: ../src/wizard.vala:126
+#: ../src/wizard.vala:123
 msgid "Will add a single box."
 msgstr "یک جعبه اضافه می‌کند."
 
-#: ../src/wizard.vala:132
+#: ../src/wizard.vala:129
 msgid "Desktop Access"
 msgstr "دسترسی به رومیزی"
 
-#: ../src/wizard.vala:201
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "آدرس نامعتبر"
 
-#: ../src/wizard.vala:212
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "پروتکل پشتیبانی نشده «%s»"
 
-#: ../src/wizard.vala:281
+#: ../src/wizard.vala:299
 msgid "Will create a new box with the following properties:"
 msgstr "یک جعبه با ترجیحات مقابل را اضافه می‌کند:"
 
-#: ../src/wizard.vala:286
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "نوع"
 
-#: ../src/wizard.vala:289
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "میزبان"
 
-#: ../src/wizard.vala:297
-#: ../src/wizard.vala:303
+#: ../src/wizard.vala:315
+#: ../src/wizard.vala:321
 msgid "Port"
 msgstr "پورت"
 
-#: ../src/wizard.vala:298
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "پورت TLS"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:326
 msgid "Will add boxes for all systems available from this account:"
 msgstr "تمام جعبه‌های موجود برای تمام سیستم‌ها را از این حساب اضافه خواهد کرد:"
 
-#: ../src/wizard.vala:311
-msgid "System"
-msgstr "سیستم"
-
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:340
 msgid "Memory"
 msgstr "حافظه"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:342
 msgid "Disk"
 msgstr "دیسک"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:342
 #, c-format
 msgid "%s maximum"
 msgstr "%s بیشینه"
 
-#: ../src/wizard.vala:367
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "معرفی"
 
-#: ../src/wizard.vala:371
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
@@ -387,39 +406,39 @@ msgstr ""
 "\n"
 "شما ممکن است بخواهد از یک ماشین موجود <b><i>در اینترنت</i></b> استفاده کنید یا یک <b><i>ماشین مجازی</i></b> بسازید که بصورت محلی اجرا شود."
 
-#: ../src/wizard.vala:383
+#: ../src/wizard.vala:403
 msgid "Source Selection"
 msgstr "انتخاب منبع"
 
-#: ../src/wizard.vala:384
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
 msgstr "یک رسانه مربوط به نصب سیستم عامل وارد کنید و یا یک منبع از پایین انتخاب کنید"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:412
 msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
 msgstr "هرگونه علائم تجاری نشان داده شده در بالا تنها برای شناسایی محصولات نرم‌افزاری که شما از قبل آنها را تهیه کرده‌اید هستند و متعلق به مالکین مربوطه‌ی خود می‌باشند."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "آماده‌سازی"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr "درحال آماده‌سازی جهت ساخت یک جعبه"
 
-#: ../src/wizard.vala:422
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
 msgstr "درحال پایش رسانه‌ی نصاب."
 
-#: ../src/wizard.vala:433
+#: ../src/wizard.vala:453
 msgid "Setup"
 msgstr "برپاسازی"
 
-#: ../src/wizard.vala:440
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr "بازنگری"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "ساخت یک جعبه"
 
