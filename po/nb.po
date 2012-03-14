@@ -1,23 +1,23 @@
 # Norwegian bokmål translation of gnome-boxes.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2011.
+# Kjartan Maraas <kmaraas@gnome.org>, 2011-2012.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-14 20:09+0100\n"
-"PO-Revision-Date: 2011-11-14 20:14+0100\n"
+"POT-Creation-Date: 2012-03-14 10:10+0100\n"
+"PO-Revision-Date: 2012-03-14 10:21+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:45
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
 msgid "Boxes"
 msgstr "Bokser"
 
@@ -29,13 +29,13 @@ msgstr "Enkel visning/håndtering av virtuelle maskiner"
 msgid "View and use virtual machines"
 msgstr "Vis og bruk virtuelle maskiner"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1
-msgid "Animation duration"
-msgstr "Varighet for animasjon"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2 ../src/sidebar.vala:148
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
 msgid "Collections"
 msgstr "Samlinger"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:2
+msgid "The list of boxes collections"
+msgstr ""
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -46,91 +46,152 @@ msgid "The interval in seconds between screenshot updates"
 msgstr ""
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "The list of boxes collections"
-msgstr ""
+msgid "Animation duration"
+msgstr "Varighet for animasjon"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "The time it takes for transitions and animation, in ms."
 msgstr ""
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:7
-msgid "Window maximized"
-msgstr ""
+msgid "Window size"
+msgstr "Vindustørrelse"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:8
-msgid "Window maximized state"
+msgid "Window size (width and height)"
 msgstr ""
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position"
-msgstr ""
+msgstr "Vindusposisjon"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window position (x and y)"
 msgstr ""
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:11
-msgid "Window size"
+msgid "Window maximized"
 msgstr ""
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:12
-msgid "Window size (width and height)"
+msgid "Window maximized state"
 msgstr ""
 
-#: ../src/libvirt-machine.vala:233
+#: ../src/app.vala:91
+msgid "translator-credits"
+msgstr "Kjartan Maraas <kmaraas@gnome.org>"
+
+#: ../src/app.vala:92
+msgid "A simple GNOME 3 application to access remote or virtual systems"
+msgstr "Et enkelt GNOME 3 program for å aksessere eksterne eller virtuelle systemer"
+
+#: ../src/app.vala:104 ../src/topbar.vala:63
+msgid "New"
+msgstr "Ny"
+
+#: ../src/app.vala:107
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: ../src/app.vala:108
+msgid "Fullscreen"
+msgstr "Fullskjerm"
+
+#: ../src/app.vala:111
+msgid "About Boxes"
+msgstr "Om Bokser"
+
+#: ../src/app.vala:112
+msgid "Quit"
+msgstr "Avslutt"
+
+#: ../src/app.vala:483
+#, c-format
+msgid "Box '%s' has been deleted"
+msgstr "Boks «%s» er slettet"
+
+#: ../src/app.vala:484
+#, c-format
+msgid "%u box has been deleted"
+msgid_plural "%u boxes have been deleted"
+msgstr[0] "%u boks er slettet"
+msgstr[1] "%u bokser er slettet"
+
+#: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "Virtualiserer"
 
-#: ../src/libvirt-machine.vala:234 ../src/remote-machine.vala:63
+#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:238 ../src/remote-machine.vala:67
+#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Protokoll"
 
+#: ../src/libvirt-machine.vala:400
+msgid "RAM"
+msgstr "RAM"
+
+#: ../src/libvirt-machine.vala:441
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "Endringer krever omstart av «%s». Prøv omstart?"
+
+#: ../src/libvirt-machine.vala:458
+msgid "Storage"
+msgstr "Lagring"
+
 #. 3rd row
-#: ../src/machine.vala:279 ../src/unattended-installer.vala:129
+#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "Passord"
 
-#: ../src/main.vala:9
+#: ../src/main.vala:10
 msgid "Display version number"
 msgstr "Vis versjonsnummer"
 
-#: ../src/main.vala:10
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:14
+#, fuzzy
 msgid "URI to display, broker or installer media"
-msgstr ""
+msgstr "URI som skal vises..."
 
-#: ../src/main.vala:15
+#: ../src/main.vala:19
 msgid "- A simple application to access remote or virtual machines"
-msgstr ""
+msgstr "- Et enkelt program for å aksessere eksterne eller virtuelle maskiner"
 
-#: ../src/properties.vala:67
+#: ../src/properties.vala:39
 msgid "Login"
-msgstr ""
+msgstr "Logg inn"
 
-#: ../src/properties.vala:71
+#: ../src/properties.vala:43 ../src/wizard.vala:329
+msgid "System"
+msgstr "System"
+
+#: ../src/properties.vala:47
 msgid "Display"
-msgstr ""
+msgstr "Skjerm"
 
-#: ../src/properties.vala:75
+#: ../src/properties.vala:51
 msgid "Devices"
 msgstr "Enheter"
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:193
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:224
+#: ../src/properties.vala:200
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:231
+#: ../src/properties.vala:207
 msgid "Net:"
 msgstr "Nettverk:"
 
-#: ../src/remote-machine.vala:60
+#: ../src/remote-machine.vala:61
 msgid "Name"
 msgstr "Navn"
 
@@ -150,98 +211,184 @@ msgstr "Privat"
 msgid "Shared with you"
 msgstr "Delt med deg"
 
-#: ../src/sidebar.vala:162 ../src/wizard.vala:96
+#: ../src/sidebar.vala:162
 msgid "Create"
 msgstr "Lag"
 
-#: ../src/spice-display.vala:128
+#: ../src/spice-display.vala:133
 msgid "Share clipboard"
 msgstr "Del utklippstavle"
 
-#: ../src/spice-display.vala:135
+#: ../src/spice-display.vala:141
 msgid "Resize guest"
 msgstr "Endre størrelse på gjest"
 
-#: ../src/spice-display.vala:145
+#: ../src/spice-display.vala:152
 msgid "USB redirection"
-msgstr ""
-
-#: ../src/topbar.vala:63
-msgid "New"
-msgstr "Ny"
+msgstr "USB-omdirigering"
 
 #: ../src/topbar.vala:155
 #, c-format
 msgid "%d selected"
-msgstr "%d valgt"
+msgid_plural "%d selected"
+msgstr[0] "%d valgt"
+msgstr[1] "%d valgt"
 
 #: ../src/topbar.vala:157
 msgid "Click on items to select them"
-msgstr ""
+msgstr "Klikk på oppføringer for å velge dem"
 
-#: ../src/unattended-installer.vala:79
+#: ../src/unattended-installer.vala:154
+msgid "No username provided"
+msgstr "Ingen brukernavn oppgitt"
+
+#: ../src/unattended-installer.vala:158
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr ""
 
 #. First row
-#: ../src/unattended-installer.vala:91
+#: ../src/unattended-installer.vala:170
 msgid "Express Install"
 msgstr ""
 
-#: ../src/unattended-installer.vala:118
+#: ../src/unattended-installer.vala:188 ../src/wizard.vala:335
 msgid "Username"
 msgstr "Brukernavn"
 
-#: ../src/vnc-display.vala:131
-msgid "Read-only"
-msgstr ""
+#: ../src/unattended-installer.vala:209
+msgid "_Add Password"
+msgstr "_Legg til passord"
 
-#: ../src/wizard-source.vala:44 ../src/wizard-source.vala:69
+#: ../src/vnc-display.vala:134
+msgid "Read-only"
+msgstr "Skrivebeskyttet"
+
+#. Microsoft Windows product key
+#: ../src/winxp-installer.vala:38
+msgid "Product Key"
+msgstr "Produktnøkkel"
+
+#: ../src/winxp-installer.vala:45
+msgid "_Add Product Key"
+msgstr "_Legg til produktnøkkel"
+
+#: ../src/wizard-source.vala:62 ../src/wizard-source.vala:86
 msgid "Enter URL"
 msgstr "Oppgi URL"
 
-#: ../src/wizard-source.vala:55
+#: ../src/wizard-source.vala:72
 msgid "Select a file"
 msgstr "Velg en fil"
 
-#: ../src/wizard-source.vala:85
+#: ../src/wizard-source.vala:103
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
 "Will add boxes for all systems available from this account."
 msgstr ""
+"<b>Skrivebordstilgang</b>\n"
+"\n"
+"Vil legge til bokser for alle systemer som er tilgjengelige fra denne kontoen."
 
-#: ../src/wizard.vala:96 ../src/wizard.vala:408
-msgid "Continue"
-msgstr "Fortsett"
+#: ../src/wizard-source.vala:171
+msgid "32-bit x86 system"
+msgstr "32-bit x86-system"
 
-#: ../src/wizard.vala:249
+#: ../src/wizard-source.vala:172
+msgid "64-bit x86 system"
+msgstr "64-bit x86-system"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: ../src/wizard-source.vala:180
+#, c-format
+msgid " from %s"
+msgstr " fra %s"
+
+#: ../src/wizard-source.vala:220
+msgid "Select a device or ISO file"
+msgstr "Velg en enhet eller ISO-fil"
+
+#: ../src/wizard.vala:75
+msgid "Box creation failed!"
+msgstr "Oppretting av boks feilet!"
+
+#: ../src/wizard.vala:98 ../src/wizard.vala:506
+msgid "C_ontinue"
+msgstr "F_ortsett"
+
+#: ../src/wizard.vala:98
+msgid "C_reate"
+msgstr "_Lag"
+
+#: ../src/wizard.vala:114
+msgid "Please enter desktop or collection URI"
+msgstr "Vennligst oppgi URI til skrivebord eller samling"
+
+#: ../src/wizard.vala:120
+msgid "Will add boxes for all systems available from this account."
+msgstr ""
+
+#: ../src/wizard.vala:123
+msgid "Will add a single box."
+msgstr ""
+
+#: ../src/wizard.vala:129
+msgid "Desktop Access"
+msgstr "Skrivebordstilgang"
+
+#: ../src/wizard.vala:198
+msgid "Invalid URI"
+msgstr "Ugyldig URI"
+
+#: ../src/wizard.vala:209
+#, c-format
+msgid "Unsupported protocol '%s'"
+msgstr ""
+
+#: ../src/wizard.vala:299
+msgid "Will create a new box with the following properties:"
+msgstr ""
+
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "Type"
 
-#: ../src/wizard.vala:250
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "Vert"
 
-#: ../src/wizard.vala:256 ../src/wizard.vala:262
+#: ../src/wizard.vala:315 ../src/wizard.vala:321
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:257
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: ../src/wizard.vala:266
-msgid "System"
-msgstr "System"
+#: ../src/wizard.vala:326
+msgid "Will add boxes for all systems available from this account:"
+msgstr ""
 
-#: ../src/wizard.vala:309
+#: ../src/wizard.vala:340
+msgid "Memory"
+msgstr "Minne"
+
+#: ../src/wizard.vala:342
+msgid "Disk"
+msgstr "Disk"
+
+#: ../src/wizard.vala:342
+#, c-format
+msgid "%s maximum"
+msgstr "%s maksimum"
+
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "Innledning"
 
-#: ../src/wizard.vala:313
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -250,38 +397,41 @@ msgid ""
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
 
-#: ../src/wizard.vala:325
+#: ../src/wizard.vala:403
 msgid "Source Selection"
-msgstr ""
+msgstr "Valg av kilde"
 
-#: ../src/wizard.vala:326
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 
-#: ../src/wizard.vala:339
+#: ../src/wizard.vala:412
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "Forberedelse"
 
-#: ../src/wizard.vala:340
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr ""
 
-#: ../src/wizard.vala:358
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
-msgstr ""
+msgstr "Analyserer installasjonsmedie."
 
-#: ../src/wizard.vala:367
+#: ../src/wizard.vala:453
 msgid "Setup"
-msgstr ""
+msgstr "Oppsett"
 
-#: ../src/wizard.vala:374
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr ""
 
-#: ../src/wizard.vala:376
-msgid "Will create a new box with the following properties:"
-msgstr ""
-
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "Lag en boks"
