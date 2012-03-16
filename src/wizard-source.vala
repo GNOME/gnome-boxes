@@ -153,6 +153,7 @@ private class Boxes.WizardSource: GLib.Object {
             install_media = media;
             uri = media.device_file;
             url_entry.activate ();
+            page = SourcePage.URL;
         }, 15, 5, true, "installer-" + media.device_file + "-item");
 
         var image = get_product_logo (media.os, 64);
@@ -229,6 +230,7 @@ private class Boxes.WizardSource: GLib.Object {
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
             url_entry.activate ();
+            page = SourcePage.URL;
         }
 
         dialog.hide ();
