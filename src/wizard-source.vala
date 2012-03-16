@@ -224,6 +224,8 @@ private class Boxes.WizardSource: GLib.Object {
                                                 Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
         dialog.show_hidden = false;
         dialog.local_only = true;
+        dialog.filter = new Gtk.FileFilter ();
+        dialog.filter.add_mime_type ("application/x-cd-image");
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
             url_entry.activate ();
