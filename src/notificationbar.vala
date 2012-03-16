@@ -33,6 +33,10 @@ private class Boxes.Notificationbar: GLib.Object {
         display (message, MessageType.ERROR);
     }
 
+    public void cancel () {
+        info_bar.response (ResponseType.CANCEL);
+    }
+
     private void display (string            message,
                           MessageType       message_type,
                           string?           ok_label = null,

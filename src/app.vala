@@ -447,6 +447,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     public bool quit () {
+        notificationbar.cancel ();
         save_window_geometry ();
         window.destroy ();
 
