@@ -53,6 +53,14 @@ private class Boxes.VMConfigurator {
         }
         domain.add_device (graphics);
 
+        // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
+        var channel = new DomainChannel ();
+        channel.set_target_type (DomainChannelTargetType.VIRTIO);
+        channel.set_target_name ("com.redhat.spice.0");
+        var vmc = new DomainChardevSourceSpiceVmc ();
+        channel.set_source (vmc);
+        domain.add_device (channel);
+
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
