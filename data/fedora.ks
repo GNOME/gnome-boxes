@@ -1,7 +1,7 @@
 install
 keyboard BOXES_KBD
 lang BOXES_LANG
-network --device eth0 --bootproto dhcp
+network --onboot yes --device eth0 --bootproto dhcp --noipv6 --activate
 rootpw BOXES_PASSWORD
 firewall --disabled
 authconfig --enableshadow --enablemd5
@@ -23,6 +23,8 @@ reboot
 
 user --name=BOXES_USERNAME --password=BOXES_PASSWORD
 
+BOXES_FEDORA_REPOS
+
 %packages
 @base
 @core
@@ -32,8 +34,9 @@ user --name=BOXES_USERNAME --password=BOXES_PASSWORD
 @graphical-internet
 @sound-and-video
 
-# QXL video driver
+# QXL video driver and SPICE vdagent
 xorg-x11-drv-qxl
+spice-vdagent
 
 %end
 

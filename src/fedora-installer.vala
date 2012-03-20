@@ -10,6 +10,21 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     private string kernel_path;
     private string initrd_path;
 
+    // F16 ships buggly QXL package and spice-vdagent package won't be shipped until F17 so we install from
+    // up2date remote repos for anything less than F17.
+    private bool use_remote_repos { get { return express_install && uint64.parse (os.version) < 17; } }
+
+    private static Regex repo_regex;
+
+    static construct {
+        try {
+            repo_regex = new Regex ("BOXES_FEDORA_REPOS");
+        } catch (RegexError error) {
+            // This just can't fail
+            assert_not_reached ();
+        }
+    }
+
     public FedoraInstaller.copy (InstallerMedia media) throws GLib.Error {
         var source_path = get_unattended_dir ("fedora.ks");
 
@@ -23,6 +38,23 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         os.set_kernel (kernel_path);
         os.set_ramdisk (initrd_path);
         os.set_cmdline ("ks=hd:sdb:" + unattended_dest_name);
+    }
+
+    public override void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {
+        base.check_needed_info ();
+
+        if (!use_remote_repos)
+            return;
+
+        try {
+            var client = new SocketClient ();
+            client.connect_to_host ("fedoraproject.org", 80);
+        } catch (GLib.Error error) {
+            // FIXME: Mark for translation after string freeze
+            var message = "Internet access required for express installation of Fedora 16 and older";
+
+            throw new UnattendedInstallerError.SETUP_INCOMPLETE (message);
+        }
     }
 
     protected override async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {
@@ -53,6 +85,14 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
             initrd_file.delete ();
             debug ("Removed '%s'.", initrd_path);
         }
+    }
+
+    protected override string fill_unattended_data (string data) throws RegexError {
+        var str = base.fill_unattended_data (data);
+
+        var repos = (use_remote_repos) ? "repo --name=fedora\nrepo --name=updates" : "";
+
+        return repo_regex.replace (str, str.length, 0, repos);
     }
 
     private async void normal_clean_up (Cancellable? cancellable) throws GLib.Error {
