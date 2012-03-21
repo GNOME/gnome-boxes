@@ -59,8 +59,18 @@ private class Boxes.VMCreator {
         var machine = app.add_domain (app.default_source, app.default_connection, domain);
 
         if (machine != null && fullscreen) {
-            app.select_item (machine);
-            app.fullscreen = true;
+            ulong signal_id = 0;
+
+            signal_id = app.notify["ui-state"].connect (() => {
+                if (app.ui_state != UIState.COLLECTION)
+                    return;
+
+                app.select_item (machine);
+                app.fullscreen = true;
+                app.disconnect (signal_id);
+
+                return;
+            });
         }
     }
 
