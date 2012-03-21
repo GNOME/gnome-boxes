@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-05 17:24+0000\n"
-"PO-Revision-Date: 2012-03-05 23:42+0300\n"
+"POT-Creation-Date: 2012-03-20 16:54+0000\n"
+"PO-Revision-Date: 2012-03-21 23:29+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../src/main.vala:46
+#: ../src/main.vala:68
 msgid "Boxes"
 msgstr "Dėžės"
 
@@ -78,43 +78,43 @@ msgstr "Langas išdidintas"
 msgid "Window maximized state"
 msgstr "Lango išdidinimo būsena"
 
-#: ../src/app.vala:91
+#: ../src/app.vala:94
 msgid "translator-credits"
 msgstr ""
 "išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: ../src/app.vala:92
+#: ../src/app.vala:95
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti"
 
-#: ../src/app.vala:104
+#: ../src/app.vala:107
 #: ../src/topbar.vala:63
 msgid "New"
 msgstr "Nauja"
 
-#: ../src/app.vala:107
+#: ../src/app.vala:110
 msgid "Properties"
 msgstr "Savybės"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:111
 msgid "Fullscreen"
 msgstr "Visas ekranas"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:114
 msgid "About Boxes"
 msgstr "Apie dėžes"
 
-#: ../src/app.vala:112
+#: ../src/app.vala:115
 msgid "Quit"
 msgstr "Išeiti"
 
-#: ../src/app.vala:480
+#: ../src/app.vala:493
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: ../src/app.vala:481
+#: ../src/app.vala:494
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -128,7 +128,7 @@ msgstr "Virtualizacija"
 
 #: ../src/libvirt-machine.vala:244
 #: ../src/remote-machine.vala:64
-#: ../src/wizard.vala:291
+#: ../src/wizard.vala:310
 msgid "URI"
 msgstr "URI"
 
@@ -152,21 +152,21 @@ msgstr "Laikmenos"
 
 #. 3rd row
 #: ../src/machine.vala:286
-#: ../src/unattended-installer.vala:189
-#: ../src/wizard.vala:318
+#: ../src/unattended-installer.vala:199
+#: ../src/wizard.vala:337
 msgid "Password"
 msgstr "Slaptažodis"
 
-#: ../src/main.vala:9
+#: ../src/main.vala:10
 msgid "Display version number"
 msgstr "Vaizduoklio versijos numeris"
 
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:11
+#: ../src/main.vala:14
 msgid "URI to display, broker or installer media"
 msgstr "URI iki vaizduoklio, brokerio arba diegimo laikmenos"
 
-#: ../src/main.vala:16
+#: ../src/main.vala:19
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 
@@ -175,7 +175,7 @@ msgid "Login"
 msgstr "Prisijungti"
 
 #: ../src/properties.vala:43
-#: ../src/wizard.vala:311
+#: ../src/wizard.vala:330
 msgid "System"
 msgstr "Sistema"
 
@@ -247,21 +247,30 @@ msgstr[2] "%d pasirinkimų"
 msgid "Click on items to select them"
 msgstr "Spauskite ant elementų jų pasirinkimui"
 
-#: ../src/unattended-installer.vala:148
+#: ../src/unattended-installer.vala:26
+#| msgid "Password"
+msgid "no password"
+msgstr "nėra slaptažodžio"
+
+#: ../src/unattended-installer.vala:154
+msgid "No username provided"
+msgstr "Nepateiktas naudotojo vardas"
+
+#: ../src/unattended-installer.vala:158
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "Pasirinkite greitąjį diegimą automatiniam dėžės konfigūravimui su optimaliais nustatymais."
 
 #. First row
-#: ../src/unattended-installer.vala:160
+#: ../src/unattended-installer.vala:170
 msgid "Express Install"
 msgstr "Greitasis diegimas"
 
-#: ../src/unattended-installer.vala:178
-#: ../src/wizard.vala:317
+#: ../src/unattended-installer.vala:188
+#: ../src/wizard.vala:336
 msgid "Username"
 msgstr "Naudotojo vardas"
 
-#: ../src/unattended-installer.vala:199
+#: ../src/unattended-installer.vala:209
 msgid "_Add Password"
 msgstr "Pridėti sl_aptažodį"
 
@@ -315,87 +324,87 @@ msgstr " iš %s"
 msgid "Select a device or ISO file"
 msgstr "Pasirinkite įrenginį arba ISO failą"
 
-#: ../src/wizard.vala:78
+#: ../src/wizard.vala:75
 msgid "Box creation failed!"
 msgstr "Dėžės sukurti nepavyko!"
 
-#: ../src/wizard.vala:101
-#: ../src/wizard.vala:486
+#: ../src/wizard.vala:98
+#: ../src/wizard.vala:507
 msgid "C_ontinue"
 msgstr "_Tęsti"
 
-#: ../src/wizard.vala:101
+#: ../src/wizard.vala:98
 msgid "C_reate"
 msgstr "Suku_rti"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "Please enter desktop or collection URI"
 msgstr "Įveskite darbastalio arba kolekcijos URI"
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:120
 msgid "Will add boxes for all systems available from this account."
 msgstr "Pridės dėžes visoms šios paskyros prieinamoms sistemoms."
 
-#: ../src/wizard.vala:126
+#: ../src/wizard.vala:123
 msgid "Will add a single box."
 msgstr "Pridės vieną dėžę."
 
-#: ../src/wizard.vala:132
+#: ../src/wizard.vala:129
 msgid "Desktop Access"
 msgstr "Darbastalio prieiga"
 
-#: ../src/wizard.vala:201
+#: ../src/wizard.vala:199
 msgid "Invalid URI"
 msgstr "Netinkamas URI"
 
-#: ../src/wizard.vala:212
+#: ../src/wizard.vala:210
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nepalaikomas protokolas „%s“"
 
-#: ../src/wizard.vala:281
+#: ../src/wizard.vala:300
 msgid "Will create a new box with the following properties:"
 msgstr "Sukurs naują dėžę su šiomis savybėmis:"
 
-#: ../src/wizard.vala:286
+#: ../src/wizard.vala:305
 msgid "Type"
 msgstr "Tipas"
 
-#: ../src/wizard.vala:289
+#: ../src/wizard.vala:308
 msgid "Host"
 msgstr "Serveris"
 
-#: ../src/wizard.vala:297
-#: ../src/wizard.vala:303
+#: ../src/wizard.vala:316
+#: ../src/wizard.vala:322
 msgid "Port"
 msgstr "Prievadas"
 
-#: ../src/wizard.vala:298
+#: ../src/wizard.vala:317
 msgid "TLS Port"
 msgstr "TLS prievadas"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:327
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Pridės dėžes visoms šios paskyros prieinamoms sistemoms:"
 
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:341
 msgid "Memory"
 msgstr "Atmintis"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:343
 msgid "Disk"
 msgstr "Diskas"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:343
 #, c-format
 msgid "%s maximum"
 msgstr "daugiausia %s"
 
-#: ../src/wizard.vala:367
+#: ../src/wizard.vala:388
 msgid "Introduction"
 msgstr "Įvadas"
 
-#: ../src/wizard.vala:371
+#: ../src/wizard.vala:392
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
@@ -405,39 +414,39 @@ msgstr ""
 "\n"
 "Jūs galite prisijungti prie esamos mašinos <b><i>per tinklą</i></b> arba sukurti <b><i>virtualią mašiną</i></b>, kuri veikia lokaliai pas jus."
 
-#: ../src/wizard.vala:383
+#: ../src/wizard.vala:404
 msgid "Source Selection"
 msgstr "Šaltinio pasirinkimas"
 
-#: ../src/wizard.vala:384
+#: ../src/wizard.vala:405
 msgid "Insert operating system installation media or select a source below"
 msgstr "Įdėkite operacinės sistemos diegimo laikmeną arba pasirinkite šaltinį žemiau"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:413
 msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
 msgstr "Bet kokie prekių ženklai rodomi aukščiau yra tik jūsų įsigyto programinės įrangos produktų identifikavimui ir yra atitinkamų savininkų nuosavybė."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:425
 msgid "Preparation"
 msgstr "Paruošimas"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:426
 msgid "Preparing to create new box"
 msgstr "Ruošiamasi kurti naują dėžę"
 
-#: ../src/wizard.vala:422
+#: ../src/wizard.vala:443
 msgid "Analyzing installer media."
 msgstr "Analizuojama diegimo laikmena"
 
-#: ../src/wizard.vala:433
+#: ../src/wizard.vala:454
 msgid "Setup"
 msgstr "Nustatymas"
 
-#: ../src/wizard.vala:440
+#: ../src/wizard.vala:461
 msgid "Review"
 msgstr "Peržiūra"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:481
 msgid "Create a Box"
 msgstr "Sukurti dėžę"
 
