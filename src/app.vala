@@ -149,17 +149,20 @@ private class Boxes.App: Boxes.UI {
         view.category = category;
     }
 
-    public void add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
-        if (domain.get_data<LibvirtMachine> ("machine") != null)
-            return; // Already added
+    public LibvirtMachine? add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+        var machine = domain.get_data<LibvirtMachine> ("machine");
+        if (machine != null)
+            return machine; // Already added
 
         try {
-            var machine = new LibvirtMachine (source, this, connection, domain);
+            machine = new LibvirtMachine (source, this, connection, domain);
             collection.add_item (machine);
             domain.set_data<LibvirtMachine> ("machine", machine);
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
         }
+
+        return machine;
     }
 
     private async void setup_libvirt (CollectionSource source) {

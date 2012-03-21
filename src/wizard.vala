@@ -148,8 +148,7 @@ private class Boxes.Wizard: Boxes.UI {
 
             next_button.sensitive = false;
             try {
-                var domain = yield vm_creator.create_and_launch_vm (install_media, null);
-                app.add_domain (app.default_source, app.default_connection, domain);
+                yield vm_creator.create_and_launch_vm (install_media, null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
             } catch (GLib.Error error) {
                 warning (error.message);
