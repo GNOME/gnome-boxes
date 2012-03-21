@@ -40,8 +40,7 @@ private class Boxes.VMCreator {
         }
     }
 
-    public async Domain create_and_launch_vm (InstallerMedia install_media,
-                                              Cancellable?   cancellable) throws GLib.Error {
+    public async void create_and_launch_vm (InstallerMedia install_media, Cancellable? cancellable) throws GLib.Error {
         var fullscreen = true;
         if (install_media is UnattendedInstaller) {
             var unattended = install_media as UnattendedInstaller;
@@ -55,24 +54,14 @@ private class Boxes.VMCreator {
         var config = configurator.create_domain_config (install_media, name, volume.get_path ());
 
         var domain = connection.create_domain (config);
-        ulong added_signal_id = 0;
-        ulong selected_signal_id = 0;
-        added_signal_id = app.collection.item_added.connect ((collection, item) => {
-            if (fullscreen && item is LibvirtMachine && (item as LibvirtMachine).domain == domain) {
-                app.select_item (item);
-                app.fullscreen = true;
-                app.collection.disconnect (added_signal_id);
-                app.disconnect (selected_signal_id);
-            }
-        });
-        selected_signal_id = app.item_selected.connect (() => {
-            app.collection.disconnect (added_signal_id);
-            app.disconnect (selected_signal_id);
-        });
-
         domain.start (0);
 
-        return domain;
+        var machine = app.add_domain (app.default_source, app.default_connection, domain);
+
+        if (machine != null && fullscreen) {
+            app.select_item (machine);
+            app.fullscreen = true;
+        }
     }
 
     private void on_domain_stopped (LibvirtMachine machine) {
