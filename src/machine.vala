@@ -329,12 +329,16 @@ private class Boxes.MachineActor: Boxes.UI {
     public void set_password_needed (bool needed) {
         password_entry.visible = needed;
         password_entry.set_can_focus (needed);
-        if (needed)
+        if (needed) {
             password_entry.grab_focus ();
+            machine.display = null;
+        }
     }
 
     public void set_username_needed (bool needed) {
-        debug ("fixme");
+        debug ("FIXME: Do something about fetching username when required?");
+        if (needed)
+            machine.display = null;
     }
 
     public string get_password () {
