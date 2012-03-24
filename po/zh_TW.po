@@ -6,18 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-04 20:52+0000\n"
-"PO-Revision-Date: 2012-03-05 20:00+0800\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-03-25 06:45+0800\n"
+"PO-Revision-Date: 2012-03-23 11:34+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:45
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
 msgid "Boxes"
 msgstr "箱子"
 
@@ -29,15 +29,13 @@ msgstr "簡易虛擬機檢視器/管理員"
 msgid "View and use virtual machines"
 msgstr "檢視與使用虛擬機"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
-#, fuzzy
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1
+msgid "Animation duration"
+msgstr "動畫期間"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:2 ../src/sidebar.vala:148
 msgid "Collections"
 msgstr "收藏集"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2
-#, fuzzy
-msgid "The list of boxes collections"
-msgstr "箱子收藏集的清單"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -48,20 +46,20 @@ msgid "The interval in seconds between screenshot updates"
 msgstr "螢幕快照更新之間的間隔秒數"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "Animation duration"
-msgstr "動畫期間"
+msgid "The list of boxes collections"
+msgstr "箱子收藏集的清單"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "The time it takes for transitions and animation, in ms."
 msgstr "轉換與動畫的時間花費，單位為 ms。"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:7
-msgid "Window size"
-msgstr "視窗大小"
+msgid "Window maximized"
+msgstr "視窗最大化"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:8
-msgid "Window size (width and height)"
-msgstr "視窗大小 (寬度與高度)"
+msgid "Window maximized state"
+msgstr "視窗最大化狀態"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position"
@@ -72,107 +70,123 @@ msgid "Window position (x and y)"
 msgstr "視窗位置 (x 與 y)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:11
-msgid "Window maximized"
-msgstr "視窗最大化"
+msgid "Window size"
+msgstr "視窗大小"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:12
-msgid "Window maximized state"
-msgstr "視窗最大化狀態"
+msgid "Window size (width and height)"
+msgstr "視窗大小 (寬度與高度)"
 
-#: ../src/app.vala:91
+#: ../src/app.vala:94
 msgid "translator-credits"
 msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2012."
 
-#: ../src/app.vala:92
+#: ../src/app.vala:95
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "簡易 GNOME 3 應用程式，可存取遠端或虛擬系統"
 
-#: ../src/app.vala:104 ../src/topbar.vala:63
+#: ../src/app.vala:107 ../src/topbar.vala:63
 msgid "New"
 msgstr "新增"
 
-#: ../src/app.vala:107
+#: ../src/app.vala:110
 msgid "Properties"
 msgstr "屬性"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:111
 msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:114
 msgid "About Boxes"
 msgstr "關於箱子"
 
-#: ../src/app.vala:112
+#: ../src/app.vala:115
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/app.vala:480
+#: ../src/app.vala:493
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "「%s」箱子已刪除"
 
-#: ../src/app.vala:481
+#: ../src/app.vala:494
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 隻箱子已刪除"
 msgstr[1] "%u 隻箱子已刪除"
 
-#: ../src/libvirt-machine.vala:240
+#: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "虛擬器"
 
-#: ../src/libvirt-machine.vala:241 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:291
-#, fuzzy
+#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
+#: ../src/wizard.vala:310
 msgid "URI"
 msgstr "網址"
 
-#: ../src/libvirt-machine.vala:245 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "協定"
 
+#: ../src/libvirt-machine.vala:400
+msgid "RAM"
+msgstr "RAM"
+
+#: ../src/libvirt-machine.vala:441
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "變動需要「%s」重新啟動。試圖重新啟動？"
+
+#: ../src/libvirt-machine.vala:458
+msgid "Storage"
+msgstr "貯藏"
+
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:189
-#: ../src/wizard.vala:318
+#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
+#: ../src/wizard.vala:337
 msgid "Password"
 msgstr "密碼"
 
-#: ../src/main.vala:9
+#: ../src/main.vala:10
 msgid "Display version number"
 msgstr "顯示版本編號"
 
-#: ../src/main.vala:10
-#, fuzzy
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:14
 msgid "URI to display, broker or installer media"
 msgstr "要顯示的網址，或安裝程式媒體"
 
-#: ../src/main.vala:15
+#: ../src/main.vala:19
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- 可存取遠端機器或虛擬機的簡易應用程式"
 
-#: ../src/properties.vala:37
+#: ../src/properties.vala:39
 msgid "Login"
 msgstr "登入名稱"
 
-#: ../src/properties.vala:41
+#: ../src/properties.vala:43 ../src/wizard.vala:330
+msgid "System"
+msgstr "系統"
+
+#: ../src/properties.vala:47
 msgid "Display"
 msgstr "顯示"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:51
 msgid "Devices"
 msgstr "裝置"
 
-#: ../src/properties.vala:187
+#: ../src/properties.vala:193
 msgid "CPU:"
 msgstr "CPU："
 
-#: ../src/properties.vala:194
+#: ../src/properties.vala:200
 msgid "I/O:"
 msgstr "I/O："
 
-#: ../src/properties.vala:201
+#: ../src/properties.vala:207
 msgid "Net:"
 msgstr "網路："
 
@@ -200,16 +214,15 @@ msgstr "與您分享"
 msgid "Create"
 msgstr "建立"
 
-#: ../src/spice-display.vala:132
+#: ../src/spice-display.vala:133
 msgid "Share clipboard"
 msgstr "共享剪貼簿"
 
-#: ../src/spice-display.vala:139
+#: ../src/spice-display.vala:141
 msgid "Resize guest"
 msgstr "重新調整客端大小"
 
-#: ../src/spice-display.vala:149
-#, fuzzy
+#: ../src/spice-display.vala:152
 msgid "USB redirection"
 msgstr "USB 重新導引"
 
@@ -224,22 +237,30 @@ msgstr[1] "%d 個已選取"
 msgid "Click on items to select them"
 msgstr "點擊項目來選取它們"
 
-#: ../src/unattended-installer.vala:148
+#: ../src/unattended-installer.vala:26
+msgid "no password"
+msgstr "無密碼"
+
+#: ../src/unattended-installer.vala:154
+msgid "No username provided"
+msgstr "未提供使用者名稱"
+
+#: ../src/unattended-installer.vala:158
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr "選擇快速安裝能以最佳化設定值自動將箱子預先設定好。"
 
 #. First row
-#: ../src/unattended-installer.vala:160
+#: ../src/unattended-installer.vala:170
 msgid "Express Install"
 msgstr "快速安裝"
 
-#: ../src/unattended-installer.vala:178 ../src/wizard.vala:317
+#: ../src/unattended-installer.vala:188 ../src/wizard.vala:336
 msgid "Username"
 msgstr "使用者名稱"
 
-#: ../src/unattended-installer.vala:199
+#: ../src/unattended-installer.vala:209
 msgid "_Add Password"
 msgstr "加入密碼(_A)"
 
@@ -257,7 +278,6 @@ msgid "_Add Product Key"
 msgstr "加入捷徑鍵(_A)"
 
 #: ../src/wizard-source.vala:62 ../src/wizard-source.vala:86
-#, fuzzy
 msgid "Enter URL"
 msgstr "輸入網址"
 
@@ -293,91 +313,85 @@ msgstr " 來自 %s"
 msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
-#: ../src/wizard.vala:78
+#: ../src/wizard.vala:75
 msgid "Box creation failed!"
 msgstr "箱子建立失敗！"
 
-#: ../src/wizard.vala:101 ../src/wizard.vala:486
+#: ../src/wizard.vala:98 ../src/wizard.vala:507
 msgid "C_ontinue"
 msgstr "繼續(_O)"
 
-#: ../src/wizard.vala:101
+#: ../src/wizard.vala:98
 msgid "C_reate"
 msgstr "建立(_R)"
 
-#: ../src/wizard.vala:117
-#, fuzzy
+#: ../src/wizard.vala:114
 msgid "Please enter desktop or collection URI"
 msgstr "請輸入桌面或收藏集網址"
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:120
 msgid "Will add boxes for all systems available from this account."
 msgstr "會將此帳號所有可用的系統加入箱子。"
 
-#: ../src/wizard.vala:126
+#: ../src/wizard.vala:123
 msgid "Will add a single box."
 msgstr "會將入單一個箱子。"
 
-#: ../src/wizard.vala:132
+#: ../src/wizard.vala:129
 msgid "Desktop Access"
 msgstr "桌面存取"
 
-#: ../src/wizard.vala:201
-#, fuzzy
+#: ../src/wizard.vala:199
 msgid "Invalid URI"
 msgstr "無效網址"
 
-#: ../src/wizard.vala:212
+#: ../src/wizard.vala:210
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "未支援的協定「%s」"
 
-#: ../src/wizard.vala:281
+#: ../src/wizard.vala:300
 msgid "Will create a new box with the following properties:"
 msgstr "會以下列屬性建立新箱子："
 
-#: ../src/wizard.vala:286
+#: ../src/wizard.vala:305
 msgid "Type"
 msgstr "類型"
 
-#: ../src/wizard.vala:289
+#: ../src/wizard.vala:308
 msgid "Host"
 msgstr "主機"
 
-#: ../src/wizard.vala:297 ../src/wizard.vala:303
+#: ../src/wizard.vala:316 ../src/wizard.vala:322
 msgid "Port"
 msgstr "端口"
 
-#: ../src/wizard.vala:298
+#: ../src/wizard.vala:317
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:327
 msgid "Will add boxes for all systems available from this account:"
 msgstr "會為此帳號所有可用的系統加入箱子："
 
-#: ../src/wizard.vala:311
-msgid "System"
-msgstr "系統"
-
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:341
 msgid "Memory"
 msgstr "記憶體"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:343
 msgid "Disk"
 msgstr "磁碟"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:343
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大"
 
-#: ../src/wizard.vala:367
+#: ../src/wizard.vala:388
 msgid "Introduction"
 msgstr "簡介"
 
-#: ../src/wizard.vala:371
+#: ../src/wizard.vala:392
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -390,15 +404,15 @@ msgstr ""
 "您可以連接至<b><i>網路上</i></b>既有的機器，或可建立個在您本機運行的<b><i>虛"
 "擬機</i></b>。"
 
-#: ../src/wizard.vala:383
+#: ../src/wizard.vala:404
 msgid "Source Selection"
 msgstr "來源選取"
 
-#: ../src/wizard.vala:384
+#: ../src/wizard.vala:405
 msgid "Insert operating system installation media or select a source below"
 msgstr "插入作業系統安裝媒體，或從下方選取來源"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:413
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -407,26 +421,26 @@ msgstr ""
 "任何上方顯示的商標皆僅用來作為您已取得的軟體產品辨識之用，這些商標係為各擁有"
 "者的財產。"
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:425
 msgid "Preparation"
 msgstr "準備"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:426
 msgid "Preparing to create new box"
 msgstr "正在準備建立新箱子"
 
-#: ../src/wizard.vala:422
+#: ../src/wizard.vala:443
 msgid "Analyzing installer media."
 msgstr "正在分析安裝程式媒體。"
 
-#: ../src/wizard.vala:433
+#: ../src/wizard.vala:454
 msgid "Setup"
 msgstr "設置"
 
-#: ../src/wizard.vala:440
+#: ../src/wizard.vala:461
 msgid "Review"
 msgstr "檢閱"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:481
 msgid "Create a Box"
 msgstr "建立箱子"
