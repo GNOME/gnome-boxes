@@ -51,8 +51,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
             var client = new SocketClient ();
             client.connect_to_host ("fedoraproject.org", 80);
         } catch (GLib.Error error) {
-            // FIXME: Mark for translation after string freeze
-            var message = "Internet access required for express installation of Fedora 16 and older";
+            var message = _("Internet access required for express installation of Fedora 16 and older");
 
             throw new UnattendedInstallerError.SETUP_INCOMPLETE (message);
         }
