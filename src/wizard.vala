@@ -492,6 +492,7 @@ private class Boxes.Wizard: Boxes.UI {
         tool_item.child = cancel;
         toolbar.insert (tool_item, 1);
         cancel.clicked.connect (() => {
+            wizard_source.page = SourcePage.MAIN;
             app.ui_state = UIState.COLLECTION;
         });
 
