@@ -59,11 +59,7 @@ private class Boxes.Notificationbar: GLib.Object {
             info_bar.disconnect (response_id);
         }
 
-        timeout_id = Timeout.add_seconds (6, () => {
-            info_bar.response (ResponseType.CANCEL);
-
-            return false;
-        });
+        add_timeout ();
 
         response_id = info_bar.response.connect ((response) => {
             hide ();
@@ -83,6 +79,25 @@ private class Boxes.Notificationbar: GLib.Object {
         });
 
         show ();
+    }
+
+    private void add_timeout () {
+        if (!app.window.is_active) {
+            // Don't timeout before user gets a chance to see's the notification
+            ulong active_id = 0;
+            active_id = app.window.notify["is-active"].connect (() => {
+                add_timeout ();
+                app.window.disconnect (active_id);
+            });
+
+            return;
+        }
+
+        timeout_id = Timeout.add_seconds (6, () => {
+            info_bar.response (ResponseType.CANCEL);
+
+            return false;
+        });
     }
 
     private void setup_action_notify () {
