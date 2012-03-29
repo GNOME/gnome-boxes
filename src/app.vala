@@ -423,7 +423,7 @@ private class Boxes.App: Boxes.UI {
             actor_remove (sidebar.actor);
             actor_remove (view.actor);
             box.pack (topbar.actor, "column", 0, "row", 0,
-                      "x-expand", true, "y-expand", false);
+                      "x-expand", false, "y-expand", false);
             box.pack (view.actor, "column", 0, "row", 1,
                       "x-expand", true, "y-expand", true);
             if (current_item is Machine) {
