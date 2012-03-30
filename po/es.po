@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-20 16:54+0000\n"
-"PO-Revision-Date: 2012-03-20 18:29+0100\n"
+"POT-Creation-Date: 2012-03-29 12:43+0000\n"
+"PO-Revision-Date: 2012-03-30 11:45+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -121,6 +121,13 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
+#: ../src/fedora-installer.vala:54
+msgid ""
+"Internet access required for express installation of Fedora 16 and older"
+msgstr ""
+"Se requiere acceso a Internet para la instalación rápida de Fedora 16  y "
+"anteriores"
+
 #: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "Virtualizador"
@@ -148,7 +155,7 @@ msgid "Storage"
 msgstr "Almacenamiento"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
+#: ../src/machine.vala:286 ../src/unattended-installer.vala:205
 #: ../src/wizard.vala:337
 msgid "Password"
 msgstr "Contraseña"
@@ -242,15 +249,19 @@ msgid "Click on items to select them"
 msgstr "Pulse sobre los elementos para seleccionarlos"
 
 #: ../src/unattended-installer.vala:26
-#| msgid "Password"
 msgid "no password"
 msgstr "sin contraseña"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:156
 msgid "No username provided"
 msgstr "No se ha proporcionado ningún nombre de usuario"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:160
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Se necesita una contraseñas para la instalación rápida de %s"
+
+#: ../src/unattended-installer.vala:164
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -259,15 +270,15 @@ msgstr ""
 "la configuración óptima."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:176
 msgid "Express Install"
 msgstr "Instalación rápida"
 
-#: ../src/unattended-installer.vala:188 ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:194 ../src/wizard.vala:336
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:215
 msgid "_Add Password"
 msgstr "_Añadir contraseña"
 
@@ -302,21 +313,21 @@ msgstr ""
 "\n"
 "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:172
 msgid "32-bit x86 system"
 msgstr "sistema x86 de 32 bits"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:173
 msgid "64-bit x86 system"
 msgstr "sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:181
 #, c-format
 msgid " from %s"
 msgstr " de %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:221
 msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
@@ -324,7 +335,7 @@ msgstr "Seleccionar un dispositivo o una imagen ISO"
 msgid "Box creation failed!"
 msgstr "Falló la creación de la caja"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:507
+#: ../src/wizard.vala:98 ../src/wizard.vala:508
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
