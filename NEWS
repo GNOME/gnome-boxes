@@ -1,3 +1,63 @@
+3.4.0.1 - March 31, 2012
+========================
+
+Changes since 3.4.0:
+
+- Fix broken layouts.
+- Fix first-time connection to boxes requiring password.
+- Fix text color of notifications during selection mode.
+- Don't timeout notifications if main window isn't active so that user can't
+  easily miss them.
+- Box creation wizard:
+  - Remember the selected file/URL when going back to source selection page.
+  - Forget the selected file/URL when box creation is cancelled.
+  - Install Fedora 16 and older from remote repository.
+  - Add SPICE agent channel to newly created domains so that features like
+    copy&paste with client/host work for guests with vdagent drivers installed.
+  - Sane default sound and video devices for unknown OSs.
+- Rid of theme parser warnings.
+- Added/updated translations:
+  - German
+  - Indonesian
+  - Korean
+  - Norwegian bokmål
+  - Polish
+  - Slovenian
+  - Spanish
+  - Swedish
+  - Telugu
+
+Dependencies changed:
+
+- libvirt-gconfig >= 0.0.7
+
+All bugs fixed in this release:
+
+670306 - should do some kickstart sanity check before starting the installer
+672159 - gnome-boxes should remember the iso that was selected when going back
+         from the 'configuration' screen
+672160 - isos selected through boxes should appear in the "recently used"
+         section in the file selector
+672528 - "Cancel" button does not really cancel
+672853 - Assistant layout is broken
+672872 - Sane default sound & video devices for unknown OSs
+672983 - error message notification should not go away when the error is fatal
+673053 - error popups are not readable
+
+All contributors to this release:
+
+Andika Triwidada <andika@gmail.com>
+Christian Kirbach <Christian.Kirbach@googlemail.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Daniel Nylander <po@danielnylander.se>
+Kjartan Maraas <kmaraas@gnome.org>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Matej Urbančič <mateju@svn.gnome.org>
+Piotr Drąg <piotrdrag@gmail.com>
+Praveen Illa <mail2ipn@gmail.com>
+Seong-ho Cho <darkcircle.0426@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.4.0 - March 26, 2012
 ======================
 
