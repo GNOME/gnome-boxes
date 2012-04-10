@@ -106,20 +106,24 @@ private class Boxes.MediaManager : Object {
         if (media.os == null)
             return media;
 
-        switch (media.os.short_id) {
-        case "fedora14":
-        case "fedora15":
-        case "fedora16":
+        switch (media.os.distro) {
+        case "fedora":
             return new FedoraInstaller.copy (media);
 
-        case "win7":
-        case "win2k8":
-            return new Win7Installer.copy (media);
+        case "win":
+            switch (media.os.short_id) {
+            case "win7":
+            case "win2k8":
+                return new Win7Installer.copy (media);
 
-        case "winxp":
-        case "win2k":
-        case "win2k3":
-            return new WinXPInstaller.copy (media);
+            case "winxp":
+            case "win2k":
+            case "win2k3":
+                return new WinXPInstaller.copy (media);
+
+            default:
+                return media;
+            }
 
         default:
             return media;
