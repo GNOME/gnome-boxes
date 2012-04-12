@@ -85,6 +85,19 @@ private class Boxes.VMConfigurator {
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
         set_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
+
+        // Make source (installer/live media) optional
+        var devices = domain.get_devices ();
+        foreach (var device in devices) {
+            if (!(device is DomainDisk))
+                continue;
+
+            var disk = device as DomainDisk;
+            if (disk.get_guest_device_type () == DomainDiskGuestDeviceType.CDROM)
+                disk.set_startup_policy (DomainDiskStartupPolicy.OPTIONAL);
+        }
+
+        domain.set_devices (devices);
     }
 
     public bool is_install_config (Domain domain) {
@@ -150,6 +163,7 @@ private class Boxes.VMConfigurator {
         disk.set_source (install_media.device_file);
         disk.set_target_dev ("hdc");
         disk.set_target_bus (DomainDiskBus.IDE);
+        disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
 
         if (install_media.from_image)
             disk.set_type (DomainDiskType.FILE);
