@@ -1,3 +1,43 @@
+3.4.1 - April 16, 2012
+======================
+
+Changes since 3.4.0.1:
+
+- Express installation:
+  - Require password for Fedora express installation since Anaconda requires it.
+    To not complicate users' life more than needed in this case, we free them
+    from display (SPICE) authentication.
+  - Make use of 'distro' data from libosinfo. No need to hardcode each Fedora
+    version anymore.
+- Fix selection/fullscreen'ing of new machines.
+- Mark a user-visible string for translation.
+- Added/updated/fixed translations:
+  - British English
+  - Catalan
+  - Catalan (Valencian)
+  - French
+  - German
+  - Persian
+
+Dependencies changed:
+
+- libosinfo >= 0.1.1
+
+All bugs fixed in this release:
+
+670306 - should do some kickstart sanity check before starting the installer
+673847 - express: Make use of 'distro' data from libosinfo
+672567 - Launching of new machines not working
+
+All contributors to this release:
+
+Arash Mousavi <amousavi@src.gnome.org>
+Bruce Cowan <bruce@bcowan.me.uk>
+Bruno Brouard <annoa.b@gmail.com>
+Carles Ferrando <carles.ferrando@gmail.com>
+Jordi Serratosa <jordis@softcatala.cat>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.4.0.1 - March 31, 2012
 ========================
 
