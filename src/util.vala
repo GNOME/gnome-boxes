@@ -270,35 +270,27 @@ namespace Boxes {
         return (devices.get_length () > 0) ? devices.get_nth (0) as Osinfo.Device : null;
     }
 
-    public Gtk.Image get_product_logo (Osinfo.Product? product, int size) {
+    public Gtk.Image get_os_logo (Osinfo.Os? os, int size) {
         var image = new Gtk.Image.from_icon_name ("media-optical", 0);
         image.pixel_size = size;
 
-        if (product != null)
-            fetch_product_logo (image, product, size);
+        if (os != null)
+            fetch_os_logo (image, os, size);
 
         return image;
     }
 
-    public void fetch_product_logo (Gtk.Image image, Osinfo.Product product, int size) {
-        var path = get_logo_path (product);
+    public void fetch_os_logo (Gtk.Image image, Osinfo.Os os, int size) {
+        var path = get_logo_path (os);
 
-        if (path != null) {
-            try {
-                var pixbuf = new Gdk.Pixbuf.from_file_at_size (path, size, -1);
-                image.set_from_pixbuf (pixbuf);
-            } catch (GLib.Error error) {
-                warning ("Error loading logo file '%s': %s", path, error.message);
-            }
-        } else {
-            var derived = product.get_related (Osinfo.ProductRelationship.DERIVES_FROM);
-            if (derived.get_length () == 0)
-                return;
+        if (path == null)
+            return;
 
-            // FIXME: Does Osinfo allows deriving from multiple products?
-            var parent = derived.get_nth (0) as Osinfo.Product;
-
-            fetch_product_logo (image, parent, size);
+        try {
+            var pixbuf = new Gdk.Pixbuf.from_file_at_size (path, size, -1);
+            image.set_from_pixbuf (pixbuf);
+        } catch (GLib.Error error) {
+            warning ("Error loading logo file '%s': %s", path, error.message);
         }
     }
 
@@ -359,17 +351,21 @@ namespace Boxes {
         }
     }
 
-    private string? get_logo_path (Osinfo.Product product, string[] extensions = {".svg", ".png", ".jpg"}) {
+    private string? get_logo_path (Osinfo.Os os, string[] extensions = {".svg", ".png", ".jpg"}) {
         if (extensions.length == 0)
             return null;
 
-        var path = get_pixmap (product.short_id + extensions[0]);
+        var path = get_pixmap (os.short_id + extensions[0]);
         var file = File.new_for_path (path);
+        if (!file.query_exists ()) {
+            path = get_pixmap (os.distro + extensions[0]);
+            file = File.new_for_path (path);
+        }
 
         if (file.query_exists ())
             return path;
         else
-            return get_logo_path (product, extensions[1:extensions.length]);
+            return get_logo_path (os, extensions[1:extensions.length]);
     }
 
     [DBus (name = "org.freedesktop.Accounts")]

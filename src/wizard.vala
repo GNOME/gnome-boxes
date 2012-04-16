@@ -219,7 +219,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         try {
             install_media = media_manager.create_installer_media_for_path.end (result);
-            fetch_product_logo (installer_image, install_media.os, 128);
+            fetch_os_logo (installer_image, install_media.os, 128);
             prep_progress.fraction = 1.0;
             page = page + 1;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
