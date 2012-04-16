@@ -24,10 +24,10 @@ assets_DATA =					\
 	$(NULL)
 
 if ENABLE_LOGOS
-LOGOS = debianbuzz.svg	\
-	fedora1.svg	\
-	opensuse102.svg	\
-	ubuntuhardy.svg	\
+LOGOS = debian.svg	\
+	fedora.svg	\
+	opensuse.svg	\
+	ubuntu.svg	\
 	$(NULL)
 else
 LOGOS =

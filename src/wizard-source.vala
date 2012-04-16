@@ -156,7 +156,7 @@ private class Boxes.WizardSource: GLib.Object {
             page = SourcePage.URL;
         }, 15, 5, true, "installer-" + media.device_file + "-item");
 
-        var image = get_product_logo (media.os, 64);
+        var image = get_os_logo (media.os, 64);
         hbox.pack_start (image, false, false);
 
         var vbox = new Gtk.VBox (true, 5);
