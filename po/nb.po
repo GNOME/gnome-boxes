@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-boxes 0.1\n"
+"Project-Id-Version: gnome-boxes 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-29 09:37+0200\n"
-"PO-Revision-Date: 2012-03-29 09:39+0200\n"
+"POT-Creation-Date: 2012-04-18 20:50+0200\n"
+"PO-Revision-Date: 2012-04-18 20:52+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -35,11 +35,11 @@ msgstr "Samlinger"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:2
 msgid "The list of boxes collections"
-msgstr ""
+msgstr "Liste med samlinger av bokser"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
-msgstr ""
+msgstr "Skjermdumpintervall"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "The interval in seconds between screenshot updates"
@@ -67,11 +67,11 @@ msgstr "Vindusposisjon"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window position (x and y)"
-msgstr ""
+msgstr "Vindusposisjon (x og y)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized"
-msgstr ""
+msgstr "Vindu maksimert"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:12
 msgid "Window maximized state"
@@ -106,24 +106,29 @@ msgstr "Om Bokser"
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:496
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boks «%s» er slettet"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:497
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
+#: ../src/fedora-installer.vala:54
+msgid ""
+"Internet access required for express installation of Fedora 16 and older"
+msgstr "Tilgang til internett kreves for hurtiginstallasjon av Fedora 16 og eldre"
+
 #: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "Virtualiserer"
 
 #: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:310
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "URI"
 
@@ -145,8 +150,8 @@ msgid "Storage"
 msgstr "Lagring"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:337
+#: ../src/machine.vala:286 ../src/unattended-installer.vala:205
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "Passord"
 
@@ -156,9 +161,8 @@ msgstr "Vis versjonsnummer"
 
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
 #: ../src/main.vala:14
-#, fuzzy
 msgid "URI to display, broker or installer media"
-msgstr "URI som skal vises..."
+msgstr "URI som skal vises, VM-forhandler, eller installasjonsmedie"
 
 #: ../src/main.vala:19
 msgid "- A simple application to access remote or virtual machines"
@@ -168,7 +172,7 @@ msgstr "- Et enkelt program for å aksessere eksterne eller virtuelle maskiner"
 msgid "Login"
 msgstr "Logg inn"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:330
+#: ../src/properties.vala:43 ../src/wizard.vala:329
 msgid "System"
 msgstr "System"
 
@@ -198,7 +202,7 @@ msgstr "Navn"
 
 #: ../src/sidebar.vala:141
 msgid "New and Recent"
-msgstr ""
+msgstr "Nye og nylige"
 
 #: ../src/sidebar.vala:143
 msgid "Favorites"
@@ -243,26 +247,33 @@ msgstr "Klikk på oppføringer for å velge dem"
 msgid "no password"
 msgstr "ingen passord"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:156
 msgid "No username provided"
 msgstr "Ingen brukernavn oppgitt"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:160
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Passord kreves for hurtiginstallasjon av %s"
+
+#: ../src/unattended-installer.vala:164
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
-msgstr "Velg hurtig installasjon for å forhåndskonfigurere boksen med optimale innstillinger."
+msgstr ""
+"Velg hurtig installasjon for å forhåndskonfigurere boksen med optimale "
+"innstillinger."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:176
 msgid "Express Install"
 msgstr "Hurtig installering"
 
-#: ../src/unattended-installer.vala:188 ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:194 ../src/wizard.vala:335
 msgid "Username"
 msgstr "Brukernavn"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:215
 msgid "_Add Password"
 msgstr "_Legg til passord"
 
@@ -298,21 +309,21 @@ msgstr ""
 "Vil legge til bokser for alle systemer som er tilgjengelige fra denne "
 "kontoen."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:172
 msgid "32-bit x86 system"
 msgstr "32-bit x86-system"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:173
 msgid "64-bit x86 system"
 msgstr "64-bit x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:181
 #, c-format
 msgid " from %s"
 msgstr " fra %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:221
 msgid "Select a device or ISO file"
 msgstr "Velg en enhet eller ISO-fil"
 
@@ -334,7 +345,8 @@ msgstr "Vennligst oppgi URI til skrivebord eller samling"
 
 #: ../src/wizard.vala:120
 msgid "Will add boxes for all systems available from this account."
-msgstr "Vil legge til bokser for alle systemer som er tilgjengelig fra denne kontoen."
+msgstr ""
+"Vil legge til bokser for alle systemer som er tilgjengelig fra denne kontoen."
 
 #: ../src/wizard.vala:123
 msgid "Will add a single box."
@@ -344,57 +356,57 @@ msgstr "Legger til en enkelt boks."
 msgid "Desktop Access"
 msgstr "Skrivebordstilgang"
 
-#: ../src/wizard.vala:199
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "Ugyldig URI"
 
-#: ../src/wizard.vala:210
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Ikke støttet protokoll «%s»"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:299
 msgid "Will create a new box with the following properties:"
 msgstr "Vil lage en ny boks med følgende egenskaper:"
 
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "Type"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "Vert"
 
-#: ../src/wizard.vala:316 ../src/wizard.vala:322
+#: ../src/wizard.vala:315 ../src/wizard.vala:321
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:317
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:326
 msgid "Will add boxes for all systems available from this account:"
-msgstr ""
+msgstr "Vil legge til bokser for alle systemer som er tilgjengelige fra denne kontoen:"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:340
 msgid "Memory"
 msgstr "Minne"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 #, c-format
 msgid "%s maximum"
 msgstr "%s maksimum"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "Innledning"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -403,41 +415,41 @@ msgid ""
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:403
 msgid "Source Selection"
 msgstr "Valg av kilde"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
-msgstr ""
+msgstr "Sett inn installasjonsmedie for operativsystemet eller velg en kilde under"
 
-#: ../src/wizard.vala:413
+#: ../src/wizard.vala:412
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr ""
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "Forberedelse"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr "Forbereder å lage en ny boks"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
 msgstr "Analyserer installasjonsmedie."
 
-#: ../src/wizard.vala:454
+#: ../src/wizard.vala:453
 msgid "Setup"
 msgstr "Oppsett"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr "Gjennomgang"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "Lag en boks"
