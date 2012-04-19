@@ -87,7 +87,8 @@ private class Boxes.DisplayPage: GLib.Object {
 
                 if (y == 0) {
                     toolbar_event_stop ();
-                    set_overlay_toolbar_visible (true);
+                    if (event.motion.state == 0)
+                        set_overlay_toolbar_visible (true);
                 } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
                     toolbar_hide_id = Timeout.add (app.duration, () => {
