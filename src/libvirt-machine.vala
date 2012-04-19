@@ -84,11 +84,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private uint ram_update_timeout = 0;
     private uint storage_update_timeout = 0;
+    private uint stats_update_timeout;
+    private Cancellable stats_cancellable;
 
     static const int STATS_SIZE = 20;
     private MachineStat[] stats;
     construct {
         stats = new MachineStat[STATS_SIZE];
+        stats_cancellable = new Cancellable ();
     }
 
     public void update_domain_config () {
@@ -185,11 +188,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public double[] cpu_stats;
     public double[] io_stats;
     public double[] net_stats;
-    private void update_stats () {
+    private async void update_stats () {
         try {
             var now = get_monotonic_time ();
             var stat = MachineStat () { timestamp = now };
-            var info = domain.get_info ();
+            var info = yield domain.get_info_async (stats_cancellable);
 
             update_cpu_stat (info, ref stat);
             update_mem_stat (info, ref stat);
@@ -199,6 +202,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             stats = stats[1:STATS_SIZE];
             stats += stat;
 
+        } catch (IOError.CANCELLED err) {
+            return;
         } catch (GLib.Error err) {
             warning (err.message);
         }
@@ -216,22 +221,33 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stats_updated ();
     }
 
-    private uint stats_id;
     private void set_stats_enable (bool enable) {
         if (enable) {
             debug ("enable statistics for " + name);
-            if (stats_id != 0)
+            if (stats_update_timeout != 0)
                 return;
 
-            stats_id = Timeout.add_seconds (1, () => {
-                update_stats ();
+            stats_cancellable.reset ();
+            var stats_updating = false;
+            stats_update_timeout = Timeout.add_seconds (1, () => {
+                if (stats_updating) {
+                    warning ("Fetching of stats for '%s' is taking too long. Probably a libvirt bug.", name);
+
+                    return true;
+                }
+
+                stats_updating = true;
+                update_stats.begin (() => { stats_updating = false; });
+
                 return true;
             });
         } else {
             debug ("disable statistics for " + name);
-            if (stats_id != 0)
-                GLib.Source.remove (stats_id);
-            stats_id = 0;
+            if (stats_update_timeout != 0) {
+                stats_cancellable.cancel ();
+                GLib.Source.remove (stats_update_timeout);
+            }
+            stats_update_timeout = 0;
         }
     }
 
