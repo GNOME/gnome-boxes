@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 19:45+0200\n"
-"PO-Revision-Date: 2012-03-24 20:00+0200\n"
+"POT-Creation-Date: 2012-04-22 11:21+0300\n"
+"PO-Revision-Date: 2012-04-22 11:22+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <sh.yaron@gmail.com>\n"
 "Language: he\n"
@@ -34,13 +34,13 @@ msgid "View and use virtual machines"
 msgstr "צפייה ושימוש במכונות וירטואליות"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
-msgid "Animation duration"
-msgstr "משך ההנפשה"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2
 #: ../src/sidebar.vala:148
 msgid "Collections"
 msgstr "אוספים"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:2
+msgid "The list of boxes collections"
+msgstr "רשימת אוספי הקופסאות"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -51,20 +51,20 @@ msgid "The interval in seconds between screenshot updates"
 msgstr "המרווח בשניות בין עדכוני צילום המסך"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "The list of boxes collections"
-msgstr "רשימת אוספי הקופסאות"
+msgid "Animation duration"
+msgstr "משך ההנפשה"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "The time it takes for transitions and animation, in ms."
 msgstr "הזמן שלוקח למעברים ולהנפשות במילישניות."
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:7
-msgid "Window maximized"
-msgstr "חלון מוגדל"
+msgid "Window size"
+msgstr "גודל החלון"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:8
-msgid "Window maximized state"
-msgstr "מצב חלון מוגדל"
+msgid "Window size (width and height)"
+msgstr "גודל החלון (רוחב וגובה)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position"
@@ -75,12 +75,12 @@ msgid "Window position (x and y)"
 msgstr "מיקום החלון (צירים x ו־y)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:11
-msgid "Window size"
-msgstr "גודל החלון"
+msgid "Window maximized"
+msgstr "חלון מוגדל"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:12
-msgid "Window size (width and height)"
-msgstr "גודל החלון (רוחב וגובה)"
+msgid "Window maximized state"
+msgstr "מצב חלון מוגדל"
 
 #: ../src/app.vala:94
 msgid "translator-credits"
@@ -111,50 +111,54 @@ msgstr "על אודות קופסאות"
 msgid "Quit"
 msgstr "יציאה"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:496
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "הקופסה '%s' נמחקה"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:497
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "קופסה אחת נמחקה"
 msgstr[1] "%u קופסאות נמחקו"
 
-#: ../src/libvirt-machine.vala:243
+#: ../src/fedora-installer.vala:54
+msgid "Internet access required for express installation of Fedora 16 and older"
+msgstr "נדרשת גישה לאינטרנט לצורך ביצוע התקנה מהירה של פדורה 16 ומעלה"
+
+#: ../src/libvirt-machine.vala:259
 msgid "Virtualizer"
 msgstr "מחולל מכונות וירטואליות"
 
-#: ../src/libvirt-machine.vala:244
+#: ../src/libvirt-machine.vala:260
 #: ../src/remote-machine.vala:64
-#: ../src/wizard.vala:310
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "כתובת"
 
-#: ../src/libvirt-machine.vala:253
+#: ../src/libvirt-machine.vala:269
 #: ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "פרוטוקול"
 
-#: ../src/libvirt-machine.vala:400
+#: ../src/libvirt-machine.vala:416
 msgid "RAM"
 msgstr "זיכרון"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:457
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "השינויים דורשים את הפעלת '%s' מחדש. לעשות זאת?"
 
-#: ../src/libvirt-machine.vala:458
+#: ../src/libvirt-machine.vala:474
 msgid "Storage"
 msgstr "אחסון"
 
 #. 3rd row
 #: ../src/machine.vala:286
-#: ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:337
+#: ../src/unattended-installer.vala:205
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "ססמה"
 
@@ -176,7 +180,7 @@ msgid "Login"
 msgstr "כניסה"
 
 #: ../src/properties.vala:43
-#: ../src/wizard.vala:330
+#: ../src/wizard.vala:329
 msgid "System"
 msgstr "מערכת"
 
@@ -251,25 +255,30 @@ msgstr "יש ללחוץ על הפריטים כדי לבחור אותם"
 msgid "no password"
 msgstr "אין ססמה"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:156
 msgid "No username provided"
 msgstr "לא סופק שם משתמש"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:160
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "נדרשת ססמה לצורך ביצוע התקנה מהירה של %s"
+
+#: ../src/unattended-installer.vala:164
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "יש לבחור בהתקנה מהירה כדי להגדיר מראש אוטומטית את הקופסה עם ההגדרות הטובות ביותר."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:176
 msgid "Express Install"
 msgstr "התקנה מהירה"
 
-#: ../src/unattended-installer.vala:188
-#: ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:194
+#: ../src/wizard.vala:335
 msgid "Username"
 msgstr "שם משתמש"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:215
 msgid "_Add Password"
 msgstr "הוספת _ססמה"
 
@@ -305,21 +314,21 @@ msgstr ""
 "\n"
 "קופסאות יתווספו לכל המערכות הזמינות מחשבון זה."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:172
 msgid "32-bit x86 system"
 msgstr "מערכת 32-סיביות x86"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:173
 msgid "64-bit x86 system"
 msgstr "מערכת 64-סיביות x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:181
 #, c-format
 msgid " from %s"
 msgstr "מבית %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:221
 msgid "Select a device or ISO file"
 msgstr "בחירת התקן או קובץ ISO"
 
@@ -352,58 +361,58 @@ msgstr "תתווסף קופסה יחידה."
 msgid "Desktop Access"
 msgstr "גישה לשולחן עבודה"
 
-#: ../src/wizard.vala:199
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "כתובת שגויה"
 
-#: ../src/wizard.vala:210
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "הפרוטוקול '%s' אינו נתמך"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:299
 msgid "Will create a new box with the following properties:"
 msgstr "הפעולה תיצור קופסה חדשה עם המאפיינים הבאים:"
 
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "סוג"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "מארח"
 
-#: ../src/wizard.vala:316
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:315
+#: ../src/wizard.vala:321
 msgid "Port"
 msgstr "פתחה"
 
-#: ../src/wizard.vala:317
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "פתחת TLS"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:326
 msgid "Will add boxes for all systems available from this account:"
 msgstr "הפעולה תוסיף את קופסאות לכל המערכות הזמינות דרך חשבון זה:"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:340
 msgid "Memory"
 msgstr "זיכרון"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 msgid "Disk"
 msgstr "כונן"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 #, c-format
 msgid "%s maximum"
 msgstr "%s לכל היותר"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "היכרות"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
@@ -413,39 +422,39 @@ msgstr ""
 "\n"
 "באפשרותך להתחבר למכונה קיימת  <b>דרך הרשת</b> או ליצור <b>מכונה וירטואלית</b> שפועלת מקומית על המכונה שלך."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:403
 msgid "Source Selection"
 msgstr "בחירת המקור"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
 msgstr "נא להכניס מדיה לצורך התקנה של מערכת הפעלה או לבחור מקור להלן"
 
-#: ../src/wizard.vala:413
+#: ../src/wizard.vala:412
 msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
 msgstr "כל סימני המסחר המוצגים להלן משמשים אך ורק לצורך זיהוי של מוצרי תכנה שכבר רכשת והנך הבעלים החוקיים של נכסים אלה."
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "הכנות"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr "הכנות ליצירת קופסה חדשה"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
 msgstr "המדיה להתקנה נבדקת."
 
-#: ../src/wizard.vala:454
+#: ../src/wizard.vala:453
 msgid "Setup"
 msgstr "התקנה"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr "סקירה"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "יצירת קופסה"
 
