@@ -42,9 +42,11 @@ private class Boxes.WizardSource: GLib.Object {
     private Gtk.Image url_image;
     public Gtk.Entry url_entry;
 
-    MediaManager media_manager;
+    private MediaManager media_manager;
+    private Boxes.App app;
 
-    public WizardSource (MediaManager media_manager) {
+    public WizardSource (Boxes.App app, MediaManager media_manager) {
+        this.app = app;
         this.media_manager = media_manager;
 
         notebook = new Gtk.Notebook ();
@@ -219,7 +221,7 @@ private class Boxes.WizardSource: GLib.Object {
 
     private void launch_file_selection_dialog () {
         var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                null,
+                                                app.window,
                                                 Gtk.FileChooserAction.OPEN,
                                                 Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                                 Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);

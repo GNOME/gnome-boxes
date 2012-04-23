@@ -103,7 +103,12 @@ private class Boxes.Wizard: Boxes.UI {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
         media_manager = new MediaManager ();
-        wizard_source = new Boxes.WizardSource (media_manager);
+    }
+
+    public Wizard (App app) {
+        this.app = app;
+        vm_creator = new VMCreator (app);
+        wizard_source = new Boxes.WizardSource (app, media_manager);
         wizard_source.notify["page"].connect(() => {
             if (wizard_source.page == Boxes.SourcePage.MAIN)
                 next_button.sensitive = false;
@@ -132,11 +137,6 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.url_entry.activate.connect(() => {
             page = page + 1;
         });
-    }
-
-    public Wizard (App app) {
-        this.app = app;
-        vm_creator = new VMCreator (app);
 
         setup_ui ();
     }
