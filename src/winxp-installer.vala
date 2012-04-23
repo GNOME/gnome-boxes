@@ -51,6 +51,32 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         extra_iso = "win-tools.iso";
     }
 
+    public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
+        yield base.prepare_for_installation (vm_name, cancellable);
+
+        if (extra_iso == null)
+            return;
+
+        ISOExtractor extractor = new ISOExtractor (extra_iso);
+
+        yield extractor.mount_media (cancellable);
+
+        string driver_path = (os_media.architecture == "x86_64")?"preinst/winxp/amd64":"preinst/winxp/x86";
+
+        GLib.FileEnumerator enumerator = yield extractor.enumerate_children (driver_path, cancellable);
+        GLib.List<FileInfo> infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
+        while (infos != null) {
+            foreach (var info in infos) {
+                string relative_path = Path.build_filename (driver_path, info.get_name ());
+                string full_path = extractor.get_absolute_path (relative_path);
+                var unattended_file = new UnattendedRawFile (this, full_path, info.get_name ());
+                debug ("Copying %s from extra ISO to unattended floppy", relative_path);
+                yield unattended_file.copy (cancellable);
+            }
+            infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
+        }
+    }
+
     protected override void setup_ui () {
         base.setup_ui ();
 
