@@ -1,5 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+using GVirConfig;
+
 // Automated installer media for Windows 7 and 2008
 
 private class Boxes.Win7Installer: WindowsInstaller {
@@ -51,5 +53,6 @@ private class Boxes.Win7Installer: WindowsInstaller {
             critical ("'%s' is longer than 15 characters, expect %s express installation to fail!",
                       os.short_id,
                       os.name);
+        extra_iso = "win-tools.iso";
     }
 }

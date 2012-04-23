@@ -14,4 +14,10 @@ private abstract class Boxes.WindowsInstaller: UnattendedInstaller {
 
         return disk;
     }
+
+    public override void setup_domain_config (Domain domain) {
+        base.setup_domain_config (domain);
+        if (extra_iso != null)
+            add_extra_iso (domain);
+    }
 }

@@ -1,5 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+using GVirConfig;
+
 // Automated installer media for Windows XP, 2000 and 2003
 private class Boxes.WinXPInstaller: WindowsInstaller {
     private const uint[] allowed_dash_positions = { 5, 11, 17, 23 };
@@ -46,6 +48,7 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         unattended_source = get_unattended (name);
         add_unattended_file (new UnattendedTextFile (this, unattended_source, name));
         newline_type = DataStreamNewlineType.CR_LF;
+        extra_iso = "win-tools.iso";
     }
 
     protected override void setup_ui () {

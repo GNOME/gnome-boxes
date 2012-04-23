@@ -47,6 +47,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public DataStreamNewlineType newline_type;
     public File? disk_file;
 
+    private string _extra_iso;
+    protected string extra_iso {
+        owned get { return lookup_extra_iso (_extra_iso); }
+        set { _extra_iso = value; }
+    }
+
     protected GLib.List<UnattendedFile> unattended_files;
 
     protected Gtk.Table setup_table;
@@ -155,6 +161,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             return;
 
         domain.add_device (disk);
+    }
+
+    // Allows us to add an extra install media, for example with more windows drivers
+    public void add_extra_iso (Domain domain) {
+        if (extra_iso == null)
+            return;
+
+        add_cd_config (domain, DomainDiskType.FILE, extra_iso, "hdd", false);
     }
 
     public override void populate_setup_vbox (Gtk.VBox setup_vbox) {
@@ -320,6 +334,20 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         debug ("Creating disk image for unattended installation at '%s'..", disk_path);
         yield template_file.copy_async (disk_file, FileCopyFlags.OVERWRITE, Priority.DEFAULT, cancellable);
         debug ("Floppy image for unattended installation created at '%s'", disk_path);
+    }
+
+    private string? lookup_extra_iso (string name)
+    {
+        var path = get_user_pkgcache (name);
+
+        if (FileUtils.test (path, FileTest.IS_REGULAR))
+            return path;
+
+        path = get_unattended (name);
+        if (FileUtils.test (path, FileTest.IS_REGULAR))
+            return path;
+
+        return null;
     }
 
     private async void fetch_user_avatar (Gtk.Image avatar) {
