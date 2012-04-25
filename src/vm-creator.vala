@@ -139,12 +139,12 @@ private class Boxes.VMCreator {
     }
 
     private async string create_domain_name_from_media (InstallerMedia install_media) throws GLib.Error {
-        var base_name = (install_media.os != null) ? install_media.os.name : install_media.label;
+        var base_name = install_media.label;
         var name = base_name;
 
         var pool = yield get_storage_pool ();
-        for (var i = 1; connection.find_domain_by_name (name) != null || pool.get_volume (name) != null; i++)
-            name = base_name + "-" + i.to_string ();
+        for (var i = 2; connection.find_domain_by_name (name) != null || pool.get_volume (name) != null; i++)
+            name = base_name + " " + i.to_string ();
 
         return name;
     }
