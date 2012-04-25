@@ -25,6 +25,9 @@ private class Boxes.InstallerMedia : Object {
         this.os_media = media;
         this.resources = resources;
         from_image = true;
+
+        if (media.live)
+            this.label = _("%s (Live)").printf (label);
     }
 
     public static async InstallerMedia create_for_path (string       path,
@@ -51,6 +54,10 @@ private class Boxes.InstallerMedia : Object {
 
         if (os != null)
             label = os.get_name ();
+            if (os_media.live)
+                // Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+                //              http://en.wikipedia.org/wiki/Live_CD
+                label = _("%s (Live)").printf (label);
 
         if (label == null)
             label = Path.get_basename (device_file);
