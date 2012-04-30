@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-31 11:40+0000\n"
+"POT-Creation-Date: 2012-04-16 21:07+0000\n"
 "PO-Revision-Date: 2012-03-10 12:06+0100\n"
 "Last-Translator: Bruno Brouard, <annoa.b@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
@@ -113,24 +113,30 @@ msgstr "À propos de Machines"
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:496
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "La machine « %s » a été supprimée"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:497
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boîte a été supprimée"
 msgstr[1] "%u boîtes ont été supprimées"
 
+#: ../src/fedora-installer.vala:54
+msgid ""
+"Internet access required for express installation of Fedora 16 and older"
+msgstr ""
+"Accès internet requis pour l'installation rapide de Fedora 16 et antérieur"
+
 #: ../src/libvirt-machine.vala:243
 msgid "Virtualizer"
 msgstr "Virtualiseur"
 
 #: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:310
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "URI"
 
@@ -153,8 +159,8 @@ msgid "Storage"
 msgstr "Espace disque"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:337
+#: ../src/machine.vala:286 ../src/unattended-installer.vala:205
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -177,7 +183,7 @@ msgstr ""
 msgid "Login"
 msgstr "Identification"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:330
+#: ../src/properties.vala:43 ../src/wizard.vala:329
 msgid "System"
 msgstr "Système"
 
@@ -252,11 +258,16 @@ msgstr "Cliquer sur les éléments pour les sélectionner"
 msgid "no password"
 msgstr "aucun mot de passe"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:156
 msgid "No username provided"
 msgstr "Aucun nom d'utilisateur fourni"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:160
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Mot de passe requis pour l'installation rapide de %s"
+
+#: ../src/unattended-installer.vala:164
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -265,15 +276,15 @@ msgstr ""
 "boîte avec les réglages optimaux."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:176
 msgid "Express Install"
 msgstr "Installation rapide"
 
-#: ../src/unattended-installer.vala:188 ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:194 ../src/wizard.vala:335
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:215
 msgid "_Add Password"
 msgstr "_Ajouter un mot de passe"
 
@@ -330,7 +341,7 @@ msgstr "Choisissez un périphérique ou un fichier ISO"
 msgid "Box creation failed!"
 msgstr "La création de la machine a échoué !"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:508
+#: ../src/wizard.vala:98 ../src/wizard.vala:507
 msgid "C_ontinue"
 msgstr "C_ontinuer"
 
@@ -354,58 +365,58 @@ msgstr "Ajoutera une seule boîte."
 msgid "Desktop Access"
 msgstr "Accès au bureau"
 
-#: ../src/wizard.vala:199
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "L'URI n'est pas valide"
 
-#: ../src/wizard.vala:210
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Le protocole « %s » n'est pas pris en charge"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:299
 msgid "Will create a new box with the following properties:"
 msgstr "Créera une nouvelle boîte avec les propriétés suivantes :"
 
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "Type"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "Hôte"
 
-#: ../src/wizard.vala:316 ../src/wizard.vala:322
+#: ../src/wizard.vala:315 ../src/wizard.vala:321
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:317
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:326
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Ajoutera une boîtes pour chacun des systèmes accessible avec ce compte :"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:340
 msgid "Memory"
 msgstr "Mémoire"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 msgid "Disk"
 msgstr "Disque"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 #, c-format
 msgid "%s maximum"
 msgstr "Maximum %s"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "Introduction"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -420,17 +431,17 @@ msgstr ""
 "réseau</i></b> ou encore créer une <b><i>machine virtuelle</i></b> qui "
 "fonctionnera localement au-dessus de la vôtre."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:403
 msgid "Source Selection"
 msgstr "Sélection de la source"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Insérez le média d'installation du système d'exploitation ou sélectionnez "
 "une source ci-dessous"
 
-#: ../src/wizard.vala:413
+#: ../src/wizard.vala:412
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -440,26 +451,26 @@ msgstr ""
 "logiciels que vous possédez déjà et appartiennent à leurs propriétaires "
 "respectifs."
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "Préparation"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr "Préparation de la création d'une nouvelle boîte"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
 msgstr "Analyse du média d'installation."
 
-#: ../src/wizard.vala:454
+#: ../src/wizard.vala:453
 msgid "Setup"
 msgstr "Configuration"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr "Résumé"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "Créer une machine"
