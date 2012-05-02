@@ -403,10 +403,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         var net = null as GVir.DomainInterface;
 
         // FiXME: We currently only entertain one network interface
-        foreach (var device in domain.get_devices ()) {
-            if (device is GVir.DomainInterface) {
-                net = device as GVir.DomainInterface;
-
+        foreach (var device_config in domain_config.get_devices ()) {
+            if (device_config is GVirConfig.DomainInterface) {
+                net = Object.new (typeof (GVir.DomainInterface), "domain", domain, "config", device_config) as GVir.DomainInterface;
                 break;
             }
         }
