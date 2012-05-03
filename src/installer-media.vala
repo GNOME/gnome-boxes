@@ -67,6 +67,14 @@ private class Boxes.InstallerMedia : Object {
         resources = media_manager.os_db.get_resources_for_os (os, architecture);
     }
 
+    public bool is_architecture_compatible (string architecture) {
+        return os_media == null || // Unknown media
+               os_media.architecture == architecture ||
+               (os_media.architecture == "i386" && architecture == "i686") ||
+               (os_media.architecture == "i386" && architecture == "x86_64") ||
+               (os_media.architecture == "i686" && architecture == "x86_64");
+    }
+
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
         try {
             var mount_dir = File.new_for_commandline_arg (path);

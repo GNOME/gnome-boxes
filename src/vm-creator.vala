@@ -63,7 +63,8 @@ private class Boxes.VMCreator {
         }
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
-        var config = configurator.create_domain_config (install_media, volume.get_path ());
+        var caps = yield connection.get_capabilities_async (cancellable);
+        var config = configurator.create_domain_config (install_media, volume.get_path (), caps);
         config.name = name;
         config.title = title;
 

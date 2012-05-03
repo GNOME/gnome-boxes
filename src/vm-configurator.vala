@@ -3,6 +3,10 @@
 using Osinfo;
 using GVirConfig;
 
+private errordomain Boxes.VMConfiguratorError {
+    NO_GUEST_CAPS,
+}
+
 private class Boxes.VMConfigurator {
     private const string BOXES_NS = "boxes";
     private const string BOXES_NS_URI = "http://live.gnome.org/Boxes/";
@@ -13,7 +17,8 @@ private class Boxes.VMConfigurator {
     private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
     private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
 
-    public Domain create_domain_config (InstallerMedia install_media, string target_path) {
+    public Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
+                                        throws VMConfiguratorError {
         var domain = new Domain ();
 
         var xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
@@ -22,13 +27,24 @@ private class Boxes.VMConfigurator {
             domain.set_custom_xml (xml, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
 
+        var best_caps = get_best_guest_caps (caps, install_media);
         domain.memory = install_media.resources.ram / KIBIBYTES;
         domain.vcpu = install_media.resources.n_cpus;
-        domain.set_virt_type (DomainVirtType.KVM);
 
-        set_os_config (domain, install_media);
+        var virt_type = guest_kvm_enabled (best_caps) ? DomainVirtType.KVM : DomainVirtType.QEMU;
+        domain.set_virt_type (virt_type);
 
-        domain.set_features ({ "acpi", "apic", "pae" });
+        set_os_config (domain, install_media, best_caps);
+
+        string[] features = {};
+        if (guest_supports_feature (best_caps, "acpi"))
+            features += "acpi";
+        if (guest_supports_feature (best_caps, "apic"))
+            features += "apic";
+        if (guest_supports_feature (best_caps, "pae"))
+            features += "pae";
+        domain.set_features (features);
+
         var clock = new DomainClock ();
         if (install_media.os != null && install_media.os.short_id.contains ("win"))
             clock.set_offset (DomainClockOffset.LOCALTIME);
@@ -214,10 +230,10 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private void set_os_config (Domain domain, InstallerMedia install_media) {
+    private void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
-        os.set_arch ("x86_64");
+        os.set_arch (guest_caps.get_arch ().get_name ());
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
         set_direct_boot_params (os, install_media);
@@ -291,5 +307,64 @@ private class Boxes.VMConfigurator {
         debug ("no Boxes OS state for domain '%s'.", domain.get_name ());
 
         return null;
+    }
+
+    private CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
+                                                   throws VMConfiguratorError {
+        var guests_caps = caps.get_guests ();
+
+        // First find all compatible guest caps
+        var compat_guests_caps = new GLib.List<CapabilitiesGuest> ();
+        foreach (var guest_caps in guests_caps) {
+            var guest_arch = guest_caps.get_arch ().get_name ();
+
+            if (install_media.is_architecture_compatible (guest_arch))
+                compat_guests_caps.append (guest_caps);
+        }
+
+        // Now lets see if there is any KVM-enabled guest caps
+        foreach (var guest_caps in compat_guests_caps)
+            if (guest_kvm_enabled (guest_caps))
+                return guest_caps;
+
+        // No KVM-enabled guest caps :( We at least need Qemu
+        foreach (var guest_caps in compat_guests_caps)
+            if (guest_is_qemu (guest_caps))
+                return guest_caps;
+
+        // No guest caps or none compatible
+        // FIXME: Better error messsage than this please?
+        throw new VMConfiguratorError.NO_GUEST_CAPS (_("Incapable host system"));
+    }
+
+    private static bool guest_kvm_enabled (CapabilitiesGuest guest_caps) {
+        var arch = guest_caps.get_arch ();
+        foreach (var domain in arch.get_domains ())
+            if (domain.get_virt_type () == DomainVirtType.KVM)
+                return true;
+
+        return false;
+    }
+
+    private static bool guest_is_qemu (CapabilitiesGuest guest_caps) {
+        var arch = guest_caps.get_arch ();
+        foreach (var domain in arch.get_domains ())
+            if (domain.get_virt_type () == DomainVirtType.QEMU)
+                return true;
+
+        return false;
+    }
+
+    private static bool guest_supports_feature (CapabilitiesGuest guest_caps, string feature_name) {
+        var supports = false;
+
+        foreach (var feature in guest_caps.get_features ())
+            if (feature_name == feature.get_name ()) {
+                supports = true;
+
+                break;
+            }
+
+        return supports;
     }
 }
