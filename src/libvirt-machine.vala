@@ -6,13 +6,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Domain domain;
     public GVirConfig.Domain domain_config;
     public GVir.Connection connection;
-    public DomainState state {
-        get {
-            try {
-                return domain.get_info ().state;
-            } catch (GLib.Error error) {
-                return DomainState.NONE;
-            }
+
+    private DomainState get_state_sync () {
+        try {
+            return domain.get_info ().state;
+        } catch (GLib.Error error) {
+            return DomainState.NONE;
         }
     }
 
@@ -35,6 +34,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (display != null)
             return;
 
+        var state = get_state_sync ();
         if (state != DomainState.RUNNING) {
             if (started_id != 0)
                 return;
@@ -314,7 +314,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override bool is_running () {
-        return state == DomainState.RUNNING;
+        return get_state_sync () == DomainState.RUNNING;
     }
 
     public override async bool take_screenshot () throws GLib.Error {
