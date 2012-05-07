@@ -137,14 +137,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private void update_mem_stat (DomainInfo info, ref MachineStat stat) {
-        if (!is_running ())
+        if (info.state != DomainState.RUNNING)
             return;
 
         stat.memory_percent = info.memory * 100.0 / info.maxMem;
     }
 
-    private void update_io_stat (ref MachineStat stat) {
-        if (!is_running ())
+    private void update_io_stat (DomainInfo info, ref MachineStat stat) {
+        if (info.state != DomainState.RUNNING)
             return;
 
         try {
@@ -163,8 +163,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    private void update_net_stat (ref MachineStat stat) {
-        if (!is_running ())
+    private void update_net_stat (DomainInfo info, ref MachineStat stat) {
+        if (info.state != DomainState.RUNNING)
             return;
 
         try {
@@ -196,8 +196,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             update_cpu_stat (info, ref stat);
             update_mem_stat (info, ref stat);
-            update_io_stat (ref stat);
-            update_net_stat (ref stat);
+            update_io_stat (info, ref stat);
+            update_net_stat (info, ref stat);
 
             stats = stats[1:STATS_SIZE];
             stats += stat;
@@ -318,8 +318,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override async bool take_screenshot () throws GLib.Error {
-        if (state != DomainState.RUNNING &&
-            state != DomainState.PAUSED)
+        var state = DomainState.NONE;
+        try {
+            state = (yield domain.get_info_async (null)).state;
+        } catch (GLib.Error error) {
+            warning ("Failed to get information on '%s'", name);
+        }
+
+        if (state != DomainState.RUNNING && state != DomainState.PAUSED)
             return true;
 
         var stream = connection.get_stream (0);
