@@ -92,8 +92,11 @@ private class Boxes.VMConfigurator {
             if (!(device is DomainDisk))
                 continue;
 
+            // The ideal solution would be to automatically remove the floppy after installation but thats not as
+            // trivial as it sounds since some OSs need express install data after (e.g during first-boot setup).
             var disk = device as DomainDisk;
-            if (disk.get_guest_device_type () == DomainDiskGuestDeviceType.CDROM)
+            var disk_type = disk.get_guest_device_type ();
+            if (disk_type == DomainDiskGuestDeviceType.CDROM || disk_type == DomainDiskGuestDeviceType.FLOPPY)
                 disk.set_startup_policy (DomainDiskStartupPolicy.OPTIONAL);
         }
 
