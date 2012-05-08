@@ -146,7 +146,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stat.memory_percent = info.memory * 100.0 / info.maxMem;
     }
 
-    private void update_io_stat (DomainInfo info, ref MachineStat stat) {
+    private async void update_io_stat (DomainInfo info, MachineStat *stat) {
         if (info.state != DomainState.RUNNING)
             return;
 
@@ -155,7 +155,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (disk == null)
                 return;
 
-            stat.disk = disk.get_stats ();
+            yield run_in_thread ( () => {
+                    stat.disk = disk.get_stats ();
+                } );
             var prev = stats[STATS_SIZE - 1];
             if (prev.disk != null) {
                 stat.disk_read = (stat.disk.rd_bytes - prev.disk.rd_bytes);
@@ -166,7 +168,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    private void update_net_stat (DomainInfo info, ref MachineStat stat) {
+    private async void update_net_stat (DomainInfo info, MachineStat *stat) {
         if (info.state != DomainState.RUNNING)
             return;
 
@@ -175,7 +177,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (net == null)
                 return;
 
-            stat.net = net.get_stats ();
+            yield run_in_thread ( () => {
+                    stat.net = net.get_stats ();
+                } );
             var prev = stats[STATS_SIZE - 1];
             if (prev.net != null) {
                 stat.net_read = (stat.net.rx_bytes - prev.net.rx_bytes);
@@ -199,8 +203,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             update_cpu_stat (info, ref stat);
             update_mem_stat (info, ref stat);
-            update_io_stat (info, ref stat);
-            update_net_stat (info, ref stat);
+            yield update_io_stat (info, &stat);
+            yield update_net_stat (info, &stat);
 
             stats = stats[1:STATS_SIZE];
             stats += stat;
