@@ -21,6 +21,21 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public static const int SCREENSHOT_WIDTH = 180;
     public static const int SCREENSHOT_HEIGHT = 134;
 
+    public enum MachineState {
+        UNKNOWN,
+        STOPPED,
+        RUNNING,
+        PAUSED
+    }
+
+    private MachineState _state;
+    public MachineState state { get { return _state; }
+        protected set {
+            _state = value;
+            debug ("State of '%s' changed to %s", name, state.to_string ());
+        }
+    }
+
     private Display? _display;
     public Display? display {
         get { return _display; }
@@ -122,11 +137,14 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
 
-    public abstract bool is_running ();
     public abstract string get_screenshot_prefix ();
 
     public abstract void connect_display ();
     public abstract void disconnect_display ();
+
+    public bool is_running () {
+        return state == MachineState.RUNNING;
+    }
 
     public async void update_screenshot (int width = SCREENSHOT_WIDTH, int height = SCREENSHOT_HEIGHT) {
         try {

@@ -6,6 +6,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     public RemoteMachine (CollectionSource source, Boxes.App app) {
         base (source, app, source.name);
 
+        // assume the remote is running for now
+        state = MachineState.RUNNING;
+
         config = new DisplayConfig (source);
         source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
         update_screenshot.begin ();
@@ -76,11 +79,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
     public override string get_screenshot_prefix () {
         return source.filename;
-    }
-
-    public override bool is_running () {
-        // assume the remote is running for now
-        return true;
     }
 
     public override void delete (bool by_user = true) {
