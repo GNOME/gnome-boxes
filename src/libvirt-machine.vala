@@ -6,6 +6,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Domain domain;
     public GVirConfig.Domain domain_config;
     public GVir.Connection connection;
+    private string? storage_volume_path;
 
     private DomainState get_state_sync () {
         try {
@@ -97,6 +98,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public void update_domain_config () {
         try {
             domain_config = domain.get_config (0);
+            var volume = get_storage_volume (connection, domain, null);
+            storage_volume_path = (volume != null)? volume.get_path () : null;
         } catch (GLib.Error error) {
             critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
         }
@@ -112,8 +115,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         this.config = new DisplayConfig (source, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
-        this.domain_config = domain.get_config (0);
 
+        update_domain_config ();
         domain.updated.connect (update_domain_config);
 
         set_screenshot_enable (true);
@@ -378,17 +381,15 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private GVir.DomainDisk? get_domain_disk () throws GLib.Error {
         var disk = null as GVir.DomainDisk;
-        var volume = get_storage_volume (connection, domain, null);
 
         foreach (var device_config in domain_config.get_devices ()) {
             if (device_config is GVirConfig.DomainDisk) {
                 var disk_config = device_config as GVirConfig.DomainDisk;
                 var disk_type = disk_config.get_guest_device_type ();
-                var volume_path = (volume != null)? volume.get_path () : null;
-                var disk_source = (volume != null)? disk_config.get_source () : null;
 
                 // Prefer Boxes' managed volume over other disks
-                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.DISK && volume_path == disk_source) {
+                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.DISK &&
+                    disk_config.get_source () == storage_volume_path) {
                     disk = Object.new (typeof (GVir.DomainDisk), "domain", domain, "config", device_config) as GVir.DomainDisk;
 
                     break;
