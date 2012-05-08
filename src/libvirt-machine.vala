@@ -8,14 +8,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Connection connection;
     private string? storage_volume_path;
 
-    private DomainState get_state_sync () {
-        try {
-            return domain.get_info ().state;
-        } catch (GLib.Error error) {
-            return DomainState.NONE;
-        }
-    }
-
     public bool save_on_quit {
         get { return source.get_boolean ("source", "save-on-quit"); }
         set { source.set_boolean ("source", "save-on-quit", value); }
@@ -35,12 +27,40 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (display != null)
             return;
 
-        var state = get_state_sync ();
-        if (state != DomainState.RUNNING) {
+        try {
+            var s = domain.get_info ().state;
+            switch (s) {
+            case DomainState.RUNNING:
+            case DomainState.BLOCKED:
+                state = MachineState.RUNNING;
+                break;
+            case DomainState.PAUSED:
+                state = MachineState.PAUSED;
+                break;
+            case DomainState.SHUTDOWN:
+            case DomainState.SHUTOFF:
+            case DomainState.CRASHED:
+                state = MachineState.STOPPED;
+                break;
+            default:
+            case DomainState.NONE:
+                state = MachineState.UNKNOWN;
+                break;
+            }
+        } catch (GLib.Error error) {
+            state = MachineState.UNKNOWN;
+        }
+
+        domain.started.connect (() => { state = MachineState.RUNNING; });
+        domain.suspended.connect (() => { state = MachineState.PAUSED; });
+        domain.resumed.connect (() => { state = MachineState.RUNNING; });
+        domain.stopped.connect (() => { state = MachineState.STOPPED; });
+
+        if (state != MachineState.RUNNING) {
             if (started_id != 0)
                 return;
 
-            if (state == DomainState.PAUSED) {
+            if (state == MachineState.PAUSED) {
                 started_id = domain.resumed.connect (() => {
                     domain.disconnect (started_id);
                     started_id = 0;
@@ -318,10 +338,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public override string get_screenshot_prefix () {
         return domain.get_uuid ();
-    }
-
-    public override bool is_running () {
-        return get_state_sync () == DomainState.RUNNING;
     }
 
     public override async bool take_screenshot () throws GLib.Error {
