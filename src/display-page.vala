@@ -79,13 +79,13 @@ private class Boxes.DisplayPage: GLib.Object {
         this.app = app;
 
         event_box = new EventBox ();
-        event_box.set_events (EventMask.POINTER_MOTION_MASK);
+        event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
         event_box.above_child = true;
         event_box.event.connect ((event) => {
             if (app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
 
-                if (y == 0) {
+                if (y <= 0) {
                     toolbar_event_stop ();
                     if (event.motion.state == 0)
                         set_overlay_toolbar_visible (true);
