@@ -27,35 +27,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (display != null)
             return;
 
-        try {
-            var s = domain.get_info ().state;
-            switch (s) {
-            case DomainState.RUNNING:
-            case DomainState.BLOCKED:
-                state = MachineState.RUNNING;
-                break;
-            case DomainState.PAUSED:
-                state = MachineState.PAUSED;
-                break;
-            case DomainState.SHUTDOWN:
-            case DomainState.SHUTOFF:
-            case DomainState.CRASHED:
-                state = MachineState.STOPPED;
-                break;
-            default:
-            case DomainState.NONE:
-                state = MachineState.UNKNOWN;
-                break;
-            }
-        } catch (GLib.Error error) {
-            state = MachineState.UNKNOWN;
-        }
-
-        domain.started.connect (() => { state = MachineState.RUNNING; });
-        domain.suspended.connect (() => { state = MachineState.PAUSED; });
-        domain.resumed.connect (() => { state = MachineState.RUNNING; });
-        domain.stopped.connect (() => { state = MachineState.STOPPED; });
-
         if (state != MachineState.RUNNING) {
             if (started_id != 0)
                 return;
@@ -135,6 +106,35 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         this.config = new DisplayConfig (source, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
+
+        try {
+            var s = domain.get_info ().state;
+            switch (s) {
+            case DomainState.RUNNING:
+            case DomainState.BLOCKED:
+                state = MachineState.RUNNING;
+                break;
+            case DomainState.PAUSED:
+                state = MachineState.PAUSED;
+                break;
+            case DomainState.SHUTDOWN:
+            case DomainState.SHUTOFF:
+            case DomainState.CRASHED:
+                state = MachineState.STOPPED;
+                break;
+            default:
+            case DomainState.NONE:
+                state = MachineState.UNKNOWN;
+                break;
+            }
+        } catch (GLib.Error error) {
+            state = MachineState.UNKNOWN;
+        }
+
+        domain.started.connect (() => { state = MachineState.RUNNING; });
+        domain.suspended.connect (() => { state = MachineState.PAUSED; });
+        domain.resumed.connect (() => { state = MachineState.RUNNING; });
+        domain.stopped.connect (() => { state = MachineState.STOPPED; });
 
         update_domain_config ();
         domain.updated.connect (update_domain_config);
