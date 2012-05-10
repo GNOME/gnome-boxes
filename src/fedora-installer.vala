@@ -10,15 +10,19 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     private string kernel_path;
     private string initrd_path;
 
+    private string kbd;
+
     // F16 ships buggly QXL package and spice-vdagent package won't be shipped until F17 so we install from
     // up2date remote repos for anything less than F17.
     private bool use_remote_repos { get { return express_install && uint64.parse (os.version) < 17; } }
 
     private static Regex repo_regex;
+    private static Regex kbd_regex;
 
     static construct {
         try {
             repo_regex = new Regex ("BOXES_FEDORA_REPOS");
+            kbd_regex = new Regex ("BOXES_FEDORA_KBD");
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
@@ -30,6 +34,8 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
         base.copy (media, source_path, "ks.cfg");
         password_mandatory = true;
+
+        kbd = fetch_console_kbd_layout ();
     }
 
     public override void set_direct_boot_params (GVirConfig.DomainOs os) {
@@ -89,6 +95,8 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
     protected override string fill_unattended_data (string data) throws RegexError {
         var str = base.fill_unattended_data (data);
+
+        str = kbd_regex.replace (str, str.length, 0, kbd);
 
         var repos = (use_remote_repos) ? "repo --name=fedora\nrepo --name=updates" : "";
 
@@ -156,4 +164,115 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
         return dest_file;
     }
+
+    private struct KbdLayout {
+        public string xkb_layout;
+        public string xkb_variant;
+        public string console_layout;
+    }
+
+    private string fetch_console_kbd_layout () {
+        var settings = new GLib.Settings ("org.gnome.libgnomekbd.keyboard");
+        var layouts = settings.get_strv ("layouts");
+        var layout_str = layouts[0];
+        if (layout_str == null || layout_str == "") {
+            warning ("Failed to fetch prefered keyboard layout from user settings, falling back to 'us'..");
+
+            return "us";
+        }
+
+        var tokens = layout_str.split("\t");
+        var xkb_layout = tokens[0];
+        var xkb_variant = tokens[1];
+        var console_layout = (string) null;
+
+        for (var i = 0; i < kbd_layouts.length; i++)
+            if (xkb_layout == kbd_layouts[i].xkb_layout)
+                if (xkb_variant == kbd_layouts[i].xkb_variant) {
+                    console_layout = kbd_layouts[i].console_layout;
+
+                    // Exact match found already, no need to iterate anymore..
+                    break;
+                } else if (kbd_layouts[i].xkb_variant == null)
+                    console_layout = kbd_layouts[i].console_layout;
+
+        if (console_layout == null) {
+            debug ("Couldn't find a console layout for X layout '%s', falling back to 'us'..", layout_str);
+            console_layout = "us";
+        }
+        debug ("Using '%s' keyboard layout.", console_layout);
+
+        return console_layout;
+    }
+
+    // Modified copy of KeyboardModels._modelDict from system-config-keyboard project:
+    // https://fedorahosted.org/system-config-keyboard/
+    //
+    private const KbdLayout[] kbd_layouts = {
+        { "ara", null, "ar-azerty" },
+        { "ara", "azerty", "ar-azerty" },
+        { "ara", "azerty_digits", "ar-azerty-digits" },
+        { "ara", "digits", "ar-digits" },
+        { "ara", "qwerty", "ar-qwerty" },
+        { "ara", "qwerty_digits", "ar-qwerty-digits" },
+        { "be", null, "be-latin1" },
+        { "bg", null, "bg_bds-utf8" },
+        { "bg", "phonetic", "bg_pho-utf8" },
+        { "bg", "bas_phonetic", "bg_pho-utf8" },
+        { "br", null, "br-abnt2" },
+        { "ca(fr)", null, "cf" },
+        { "hr", null, "croat" },
+        { "cz", null, "cz-us-qwertz" },
+        { "cz", "qwerty", "cz-lat2" },
+        { "cz", "", "cz-us-qwertz" },
+        { "de", null, "de" },
+        { "de", "nodeadkeys", "de-latin1-nodeadkeys" },
+        { "dev", null, "dev" },
+        { "dk", null, "dk" },
+        { "dk", "dvorak", "dk-dvorak" },
+        { "es", null, "es" },
+        { "ee", null, "et" },
+        { "fi", null, "fi" },
+        { "fr", null, "fr" },
+        { "fr", "latin9", "fr-latin9" },
+        { "gr", null, "gr" },
+        { "gur", null, "gur" },
+        { "hu", null, "hu" },
+        { "hu", "qwerty", "hu101" },
+        { "ie", null, "ie" },
+        { "in", null, "us" },
+        { "in", "ben", "ben" },
+        { "in", "ben-probhat", "ben_probhat" },
+        { "in", "guj", "guj" },
+        { "in", "tam", "tml-inscript" },
+        { "in", "tam_TAB", "tml-uni" },
+        { "is", null, "is-latin1" },
+        { "it", null, "it" },
+        { "jp", null, "jp106" },
+        { "kr", null, "ko" },
+        { "latam", null, "la-latin1" },
+        { "mkd", null, "mk-utf" },
+        { "nl", null, "nl" },
+        { "no", null, "no" },
+        { "pl", null, "pl2" },
+        { "pt", null, "pt-latin1" },
+        { "ro", null, "ro" },
+        { "ro", "std", "ro-std" },
+        { "ro", "cedilla", "ro-cedilla" },
+        { "ro", "std_cedilla", "ro-std-cedilla" },
+        { "ru", null, "ru" },
+        { "rs", null, "sr-cy" },
+        { "rs", "latin", "sr-latin"},
+        { "se", null, "sv-latin1" },
+        { "ch", "de_nodeadkeys", "sg" },
+        { "ch", "fr", "fr_CH" },
+        { "sk", null, "sk-qwerty" },
+        { "si", null, "slovene" },
+        { "tj", null, "tj" },
+        { "tr", null, "trq" },
+        { "gb", null, "uk" },
+        { "ua", null, "ua-utf" },
+        { "us", null, "us" },
+        { "us", "intl", "us-acentos" }
+    };
 }
