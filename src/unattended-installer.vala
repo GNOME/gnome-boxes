@@ -45,13 +45,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     protected Gtk.Entry password_entry;
 
     protected string timezone;
-    protected string kbd;
     protected string lang;
 
     private static Regex username_regex;
     private static Regex password_regex;
     private static Regex timezone_regex;
-    private static Regex kbd_regex;
     private static Regex lang_regex;
     private static Fdo.Accounts accounts;
 
@@ -60,7 +58,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             username_regex = new Regex ("BOXES_USERNAME");
             password_regex = new Regex ("BOXES_PASSWORD");
             timezone_regex = new Regex ("BOXES_TZ");
-            kbd_regex = new Regex ("BOXES_KBD");
             lang_regex = new Regex ("BOXES_LANG");
             try {
                 accounts = Bus.get_proxy_sync (BusType.SYSTEM, "org.freedesktop.Accounts", "/org/freedesktop/Accounts");
@@ -92,10 +89,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var time = TimeVal ();
         var date = new DateTime.from_timeval_local (time);
         timezone = date.get_timezone_abbreviation ();
-
-        var settings = new GLib.Settings ("org.gnome.libgnomekbd.keyboard");
-        var layouts = settings.get_strv ("layouts");
-        kbd = layouts[0] ?? "us";
 
         var langs = Intl.get_language_names ();
         lang = langs[0];
@@ -246,7 +239,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var str = username_regex.replace (data, data.length, 0, username_entry.text);
         str = password_regex.replace (str, str.length, 0, password);
         str = timezone_regex.replace (str, str.length, 0, timezone);
-        str = kbd_regex.replace (str, str.length, 0, kbd);
         str = lang_regex.replace (str, str.length, 0, lang);
 
         return str;

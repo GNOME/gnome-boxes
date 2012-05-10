@@ -1,5 +1,5 @@
 install
-keyboard BOXES_KBD
+keyboard BOXES_FEDORA_KBD
 lang BOXES_LANG
 network --onboot yes --device eth0 --bootproto dhcp --noipv6 --activate
 rootpw BOXES_PASSWORD
