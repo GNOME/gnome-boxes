@@ -1,3 +1,74 @@
+3.4.2 - May 14, 2012
+====================
+
+Changes since 3.4.1:
+
+- Performance-related fixes and improvements:
+  - Asynchronously fetch VM information from libvirt to not block the UI.
+  - Cache VM information to reduce potentially costly periodic calls to libvirt.
+  - Unset cache on disk driver for main storage.
+  - Use virtio disk for OSs that support it out of the box.
+- Fix product logo fetching that broke against libosinfo 0.1.1.
+- Dragging window in Microsoft Windows 7 shouldn't bring topbar.
+- Make wizard file chooser dialog, modal.
+- Fix mouse scrollwheel not working.
+- Express installation:
+  - Mark CD-ROM and floppy devices/images as optional after installation.
+  - Fix Fedora 17 express installation.
+  - Translate X keyboard layout ID to console layout ID as Anaconda expects the
+    latter in the kickstart file.
+- Added/updated/fixed translations:
+  - Catalan
+  - Czech
+  - Belarusian
+  - Brazilian Portuguese
+  - Bulgarian
+  - French
+  - Galician
+  - German
+  - Italian
+  - Lithuanian
+  - Polish
+  - Serbian
+
+Dependencies changed:
+
+- libvirt-glib >= 0.0.8
+- libvirt-gconfig >= 0.0.8
+
+All bugs fixed in this release:
+
+670777 - Better disk performance
+673856 - Missing ISO source should not be treated as a fatal error
+674228 - Name logo files according to distro names
+674328 - Cannot differentiate similar ISOs in list of ISOs
+674352 - Getting statistics slow down VMs a lot
+674361 - Top toolbar in display shouldn't prevent win7 drag window top to
+         maximize
+674647 - Make wizard file chooser dialog, modal
+675615 - Mouse scrollwheel not working in local Windows XP guest
+675617 - Mark the express install floppy image as optional
+675663 - Don't do blocking calls on main threads when collecting stats
+675813 - Translate X kbd layout ID to console layout ID
+
+All contributors to this release:
+
+Alexander Larsson <alexl@redhat.com>
+Alexander Shopov <ash@kambanaria.org>
+Aurimas Černius <aurisc4@gmail.com>
+Bruno Brouard <annoa.b@gmail.com>
+Christian Kirbach <Christian.Kirbach@googlemail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Gil Forcada <gforcada@gnome.org>
+Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Jonh Wendell <jwendell@gnome.org>
+Luca Ferretti <lferrett@gnome.org>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Marek Černocký <marek@manet.cz>
+Piotr Drąg <piotrdrag@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Мирослав Николић <miroslavnikolic@rocketmail.com>
+
 3.4.1 - April 16, 2012
 ======================
 
