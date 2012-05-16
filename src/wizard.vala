@@ -25,6 +25,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.ProgressBar prep_progress;
     private Gtk.VBox setup_vbox;
     private Gtk.Label review_label;
+    private Gtk.Label nokvm_label;
     private Gtk.Image installer_image;
 
     private MediaManager media_manager;
@@ -307,6 +308,7 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private async bool review () {
+        nokvm_label.hide ();
         summary.clear ();
 
         if (install_media != null && install_media is UnattendedInstaller) {
@@ -366,6 +368,7 @@ private class Boxes.Wizard: Boxes.UI {
             summary.add_property (_("Memory"), memory);
             memory = format_size (install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
+            nokvm_label.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
         return true;
@@ -524,6 +527,11 @@ private class Boxes.Wizard: Boxes.UI {
 
         summary = new WizardSummary ();
         vbox.pack_start (summary.widget, true, true);
+        nokvm_label = new Gtk.Label (_("Virtualization extensions are unavailable on your system. Expect this box to be extremely slow. If your system is recent enough (made in or after 2008), these extensions are probably available on your system and you may need to enable them in your system's BIOS setup."));
+        nokvm_label.get_style_context ().add_class ("boxes-logo-notice-label");
+        nokvm_label.wrap = true;
+        nokvm_label.max_width_chars = 50;
+        vbox.pack_start (nokvm_label, false, false);
         vbox.show_all ();
 
         /* topbar */
