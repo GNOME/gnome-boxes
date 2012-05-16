@@ -16,6 +16,7 @@ private class Boxes.Wizard: Boxes.UI {
     private GtkClutter.Actor gtk_actor;
     private GenericArray<Gtk.Label> steps;
     private Gtk.Notebook notebook;
+    private Gtk.Button cancel_button;
     private Gtk.Button back_button;
     private Gtk.Button next_button;
     private Boxes.WizardSource wizard_source;
@@ -30,11 +31,14 @@ private class Boxes.Wizard: Boxes.UI {
     private VMCreator vm_creator;
 
     private InstallerMedia? install_media;
+    private LibvirtMachine? machine;
 
     private WizardPage _page;
     private WizardPage page {
         get { return _page; }
         set {
+            back_button.sensitive = value != WizardPage.INTRODUCTION;
+
             var forwards = value > page;
 
             switch (value) {
@@ -67,19 +71,32 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.REVIEW:
-                    if (!review ())
-                        return;
+                    back_button.sensitive = false;
+                    next_button.sensitive = false;
+                    cancel_button.sensitive = false;
+                    review.begin ((source, result) => {
+                        back_button.sensitive = true;
+                        next_button.sensitive = true;
+                        cancel_button.sensitive = true;
+
+                        if (!review.end (result))
+                            page = page - 1;
+                    });
                     break;
 
                 case WizardPage.LAST:
                     skip_review_for_live = false;
-                    create.begin ((source, result) => {
-                        if (create.end (result))
-                            App.app.ui_state = UIState.COLLECTION;
-                        else
-                            App.app.notificationbar.display_error (_("Box creation failed!"));
-                    });
+                    if (create ())
+                       App.app.ui_state = UIState.COLLECTION;
+                    else
+                       App.app.notificationbar.display_error (_("Box creation failed!"));
                     return;
+                }
+            } else {
+                switch (page) {
+                case WizardPage.REVIEW:
+                    destroy_machine ();
+                    break;
                 }
             }
 
@@ -97,7 +114,6 @@ private class Boxes.Wizard: Boxes.UI {
             /* highlight in white current page label */
             steps.get (page).modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
 
-            back_button.sensitive = page != WizardPage.INTRODUCTION;
             next_button.label = page != WizardPage.REVIEW ? _("C_ontinue") : _("C_reate");
         }
     }
@@ -157,22 +173,26 @@ private class Boxes.Wizard: Boxes.UI {
         setup_ui ();
     }
 
-    private async bool create () {
+    public void cleanup () {
+        destroy_machine ();
+    }
+
+    private bool create () {
         if (source == null) {
             if (install_media == null)
                 return false;
 
             next_button.sensitive = false;
             try {
-                var machine = yield vm_creator.create_vm (install_media, null);
                 vm_creator.launch_vm (machine, install_media);
-            } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
             } catch (GLib.Error error) {
                 warning (error.message);
+
                 return false;
             }
 
             install_media = null;
+            machine = null;
             wizard_source.uri = "";
 
             return true;
@@ -286,18 +306,21 @@ private class Boxes.Wizard: Boxes.UI {
         return true;
     }
 
-    private bool review () {
+    private async bool review () {
+        summary.clear ();
+
         if (install_media != null && install_media is UnattendedInstaller) {
             try {
                 (install_media as UnattendedInstaller).check_needed_info ();
-            } catch (UnattendedInstallerError.SETUP_INCOMPLETE error) {
+                machine = yield vm_creator.create_vm (install_media, null);
+            } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
+                return false;
+            } catch (GLib.Error error) {
                 App.app.notificationbar.display_error (error.message);
 
                 return false;
             }
         }
-
-        summary.clear ();
 
         review_label.set_text (_("Will create a new box with the following properties:"));
 
@@ -521,11 +544,12 @@ private class Boxes.Wizard: Boxes.UI {
         tool_item.child = label;
         toolbar.insert (tool_item, 0);
 
-        var cancel = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
+        cancel_button = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
         tool_item = new Gtk.ToolItem ();
-        tool_item.child = cancel;
+        tool_item.child = cancel_button;
         toolbar.insert (tool_item, 1);
-        cancel.clicked.connect (() => {
+        cancel_button.clicked.connect (() => {
+            destroy_machine ();
             wizard_source.page = SourcePage.MAIN;
             App.app.ui_state = UIState.COLLECTION;
         });
@@ -573,6 +597,13 @@ private class Boxes.Wizard: Boxes.UI {
         }
 
         fade_actor (actor, opacity);
+    }
+
+    private void destroy_machine () {
+        if (machine != null) {
+            machine.delete ();
+            machine = null;
+        }
     }
 
     private class WizardSummary: GLib.Object {

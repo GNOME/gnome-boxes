@@ -523,6 +523,8 @@ private class Boxes.App: Boxes.UI {
                     machine.suspend.begin ();
             }
 
+        wizard.cleanup ();
+
         return false;
     }
 
