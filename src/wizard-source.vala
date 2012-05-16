@@ -170,7 +170,7 @@ private class Boxes.WizardSource: GLib.Object {
         vbox.pack_start (label, true, true);
 
         if (media.os_media != null) {
-            var architecture = (media.os_media.architecture == "i386") ?
+            var architecture = (media.os_media.architecture == "i386" || media.os_media.architecture == "i686") ?
                                _("32-bit x86 system") :
                                _("64-bit x86 system");
             label = new Gtk.Label (architecture);
