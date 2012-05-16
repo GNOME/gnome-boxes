@@ -327,7 +327,6 @@ private class Boxes.Wizard: Boxes.UI {
             }
         } else if (install_media != null) {
             summary.add_property (_("System"), install_media.label);
-            var memory = format_size (install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
 
             if (install_media is UnattendedInstaller) {
                 var media = install_media as UnattendedInstaller;
@@ -337,6 +336,7 @@ private class Boxes.Wizard: Boxes.UI {
                 }
             }
 
+            var memory = format_size (install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Memory"), memory);
             memory = format_size (install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
