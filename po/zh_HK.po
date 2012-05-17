@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-18 18:15+0800\n"
-"PO-Revision-Date: 2012-04-18 18:15+0800\n"
+"POT-Creation-Date: 2012-05-17 18:49+0800\n"
+"PO-Revision-Date: 2012-05-17 18:49+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: \n"
@@ -117,40 +117,47 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 隻箱子已刪除"
 msgstr[1] "%u 隻箱子已刪除"
 
-#: ../src/fedora-installer.vala:54
+#: ../src/fedora-installer.vala:60
 msgid ""
 "Internet access required for express installation of Fedora 16 and older"
 msgstr "需要互聯網存取才能快速安裝 Fedora 16 或較舊版本"
 
-#: ../src/libvirt-machine.vala:243
+#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/installer-media.vala:30 ../src/installer-media.vala:60
+#, c-format
+msgid "%s (Live)"
+msgstr "%s (Live)"
+
+#: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr "虛擬器"
 
-#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
+#: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
 #: ../src/wizard.vala:309
 msgid "URI"
 msgstr "網址"
 
-#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:296 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "協定"
 
-#: ../src/libvirt-machine.vala:400
+#: ../src/libvirt-machine.vala:442
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:483
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "變動需要「%s」重新啟動。試圖重新啟動？"
 
-#: ../src/libvirt-machine.vala:458
+#: ../src/libvirt-machine.vala:500
 msgid "Storage"
 msgstr "貯藏"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:205
-#: ../src/wizard.vala:336
+#: ../src/machine.vala:304 ../src/unattended-installer.vala:198
+#: ../src/wizard.vala:335
 msgid "Password"
 msgstr "密碼"
 
@@ -195,7 +202,7 @@ msgstr "I/O："
 msgid "Net:"
 msgstr "網絡："
 
-#: ../src/remote-machine.vala:61
+#: ../src/remote-machine.vala:64
 msgid "Name"
 msgstr "名稱"
 
@@ -246,31 +253,31 @@ msgstr "點擊項目來選取它們"
 msgid "no password"
 msgstr "無密碼"
 
-#: ../src/unattended-installer.vala:156
+#: ../src/unattended-installer.vala:149
 msgid "No username provided"
 msgstr "未提供使用者名稱"
 
-#: ../src/unattended-installer.vala:160
+#: ../src/unattended-installer.vala:153
 #, c-format
 msgid "Password required for express installation of %s"
 msgstr "需要密碼才能快速安裝 %s"
 
-#: ../src/unattended-installer.vala:164
+#: ../src/unattended-installer.vala:157
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr "選擇快速安裝能以最佳化設定值自動將箱子預先設定好。"
 
 #. First row
-#: ../src/unattended-installer.vala:176
+#: ../src/unattended-installer.vala:169
 msgid "Express Install"
 msgstr "快速安裝"
 
-#: ../src/unattended-installer.vala:194 ../src/wizard.vala:335
+#: ../src/unattended-installer.vala:187 ../src/wizard.vala:334
 msgid "Username"
 msgstr "使用者名稱"
 
-#: ../src/unattended-installer.vala:215
+#: ../src/unattended-installer.vala:208
 msgid "_Add Password"
 msgstr "加入密碼(_A)"
 
@@ -285,17 +292,17 @@ msgstr "產品密碼匙"
 
 #: ../src/winxp-installer.vala:45
 msgid "_Add Product Key"
-msgstr "加入捷徑鍵(_A)"
+msgstr "加入產品密碼匙(_A)"
 
-#: ../src/wizard-source.vala:62 ../src/wizard-source.vala:86
+#: ../src/wizard-source.vala:64 ../src/wizard-source.vala:88
 msgid "Enter URL"
 msgstr "輸入網址"
 
-#: ../src/wizard-source.vala:72
+#: ../src/wizard-source.vala:74
 msgid "Select a file"
 msgstr "選取檔案"
 
-#: ../src/wizard-source.vala:103
+#: ../src/wizard-source.vala:105
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -305,21 +312,21 @@ msgstr ""
 "\n"
 "會為此帳號所有可用的系統加入箱子："
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:174
 msgid "32-bit x86 system"
 msgstr "32 位元 x86 系統"
 
-#: ../src/wizard-source.vala:173
+#: ../src/wizard-source.vala:175
 msgid "64-bit x86 system"
 msgstr "64 位元 x86 系統"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:181
+#: ../src/wizard-source.vala:183
 #, c-format
 msgid " from %s"
 msgstr " 來自 %s"
 
-#: ../src/wizard-source.vala:221
+#: ../src/wizard-source.vala:223
 msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
@@ -335,19 +342,19 @@ msgstr "繼續(_O)"
 msgid "C_reate"
 msgstr "建立(_R)"
 
-#: ../src/wizard.vala:114
+#: ../src/wizard.vala:119
 msgid "Please enter desktop or collection URI"
 msgstr "請輸入桌面或收藏集網址"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard.vala:125
 msgid "Will add boxes for all systems available from this account."
 msgstr "會將此帳號所有可用的系統加入箱子。"
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:128
 msgid "Will add a single box."
 msgstr "會將入單一個箱子。"
 
-#: ../src/wizard.vala:129
+#: ../src/wizard.vala:134
 msgid "Desktop Access"
 msgstr "桌面存取"
 
@@ -411,7 +418,7 @@ msgid ""
 msgstr ""
 "建立箱子讓你可以從你現在的登入中使用另一個作業系統。\n"
 "\n"
-"你可以連接至<b><i>網絡上</i></b>既有的機器，或可建立個在你本機運行的<b><i>虛擬機</i></b>。"
+"你可以連接至<b><i>網絡上</i></b> 既有的機器，或可建立個在你本機運行的<b><i>虛擬機</i></b>。"
 
 #: ../src/wizard.vala:403
 msgid "Source Selection"
