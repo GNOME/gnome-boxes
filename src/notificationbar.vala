@@ -130,7 +130,6 @@ private class Boxes.Notificationbar: GLib.Object {
         app.stage.add (actor);
         actor.hide ();
         actor.scale_y = 0f;
-        actor.depth = 1f; // Apear above every view
     }
 
     private void show () {
