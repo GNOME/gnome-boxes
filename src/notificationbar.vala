@@ -130,10 +130,10 @@ private class Boxes.Notificationbar: GLib.Object {
         app.stage.add (actor);
         actor.hide ();
         actor.scale_y = 0f;
-        actor.depth = 1f; // Apear above every view
     }
 
     private void show () {
+        app.stage.set_child_above_sibling (actor, null);
         actor.show ();
         actor.queue_redraw ();
         actor.animate (Clutter.AnimationMode.LINEAR, app.duration, "scale-y", 1f);

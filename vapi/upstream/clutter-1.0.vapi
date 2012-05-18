@@ -198,6 +198,7 @@ namespace Clutter {
 		public void reparent (Clutter.Actor new_parent);
 		public void set_anchor_point (float anchor_x, float anchor_y);
 		public void set_anchor_point_from_gravity (Clutter.Gravity gravity);
+		public void set_child_above_sibling (Clutter.Actor child, Clutter.Actor? sibling);
 		public void set_clip (float xoff, float yoff, float width, float height);
 		public void set_clip_to_allocation (bool clip_set);
 		public void set_depth (float depth);
