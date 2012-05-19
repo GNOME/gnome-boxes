@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-30 11:03+0200\n"
-"PO-Revision-Date: 2012-04-30 11:08+0200\n"
+"POT-Creation-Date: 2012-05-19 12:02+0200\n"
+"PO-Revision-Date: 2012-05-19 12:03+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -118,41 +118,48 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: ../src/fedora-installer.vala:54
+#: ../src/fedora-installer.vala:60
 msgid ""
 "Internet access required for express installation of Fedora 16 and older"
 msgstr ""
 "Tilgang til internett kreves for hurtiginstallasjon av Fedora 16 og eldre"
 
-#: ../src/libvirt-machine.vala:259
+#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/installer-media.vala:30 ../src/installer-media.vala:60
+#, c-format
+msgid "%s (Live)"
+msgstr "%s (Live)"
+
+#: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr "Virtualiserer"
 
-#: ../src/libvirt-machine.vala:260 ../src/remote-machine.vala:64
+#: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
 #: ../src/wizard.vala:309
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:269 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:296 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: ../src/libvirt-machine.vala:416
+#: ../src/libvirt-machine.vala:442
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:457
+#: ../src/libvirt-machine.vala:483
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Endringer krever omstart av «%s». Prøv omstart?"
 
-#: ../src/libvirt-machine.vala:474
+#: ../src/libvirt-machine.vala:500
 msgid "Storage"
 msgstr "Lagring"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:205
-#: ../src/wizard.vala:336
+#: ../src/machine.vala:304 ../src/unattended-installer.vala:198
+#: ../src/wizard.vala:335
 msgid "Password"
 msgstr "Passord"
 
@@ -197,7 +204,7 @@ msgstr "I/O:"
 msgid "Net:"
 msgstr "Nettverk:"
 
-#: ../src/remote-machine.vala:61
+#: ../src/remote-machine.vala:64
 msgid "Name"
 msgstr "Navn"
 
@@ -248,16 +255,16 @@ msgstr "Klikk på oppføringer for å velge dem"
 msgid "no password"
 msgstr "ingen passord"
 
-#: ../src/unattended-installer.vala:156
+#: ../src/unattended-installer.vala:149
 msgid "No username provided"
 msgstr "Ingen brukernavn oppgitt"
 
-#: ../src/unattended-installer.vala:160
+#: ../src/unattended-installer.vala:153
 #, c-format
 msgid "Password required for express installation of %s"
 msgstr "Passord kreves for hurtiginstallasjon av %s"
 
-#: ../src/unattended-installer.vala:164
+#: ../src/unattended-installer.vala:157
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -266,15 +273,15 @@ msgstr ""
 "innstillinger."
 
 #. First row
-#: ../src/unattended-installer.vala:176
+#: ../src/unattended-installer.vala:169
 msgid "Express Install"
 msgstr "Hurtig installering"
 
-#: ../src/unattended-installer.vala:194 ../src/wizard.vala:335
+#: ../src/unattended-installer.vala:187 ../src/wizard.vala:334
 msgid "Username"
 msgstr "Brukernavn"
 
-#: ../src/unattended-installer.vala:215
+#: ../src/unattended-installer.vala:208
 msgid "_Add Password"
 msgstr "_Legg til passord"
 
@@ -417,9 +424,11 @@ msgid ""
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
-"En boks vil la deg bruke et annet operativsystem direkte fra din eksisterende økt.\n"
+"En boks vil la deg bruke et annet operativsystem direkte fra din "
+"eksisterende økt.\n"
 "\n"
-"Du kan koble til en eksisterende maskin <b><i>over nettverket</i></b> eller lage en <b><i>virtuell maskin</i></b> som kjører lokalt på din egen."
+"Du kan koble til en eksisterende maskin <b><i>over nettverket</i></b> eller "
+"lage en <b><i>virtuell maskin</i></b> som kjører lokalt på din egen."
 
 #: ../src/wizard.vala:403
 msgid "Source Selection"
@@ -435,7 +444,10 @@ msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
-msgstr "Alle varemerker som vises over brukes kun for identifikasjon av programvareprodukter du allerede har skaffet til veie og eies av deres respektive eiere."
+msgstr ""
+"Alle varemerker som vises over brukes kun for identifikasjon av "
+"programvareprodukter du allerede har skaffet til veie og eies av deres "
+"respektive eiere."
 
 #: ../src/wizard.vala:424
 msgid "Preparation"
