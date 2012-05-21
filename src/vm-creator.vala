@@ -5,7 +5,7 @@ using GVir;
 
 private class Boxes.VMCreator {
     private App app;
-    private Connection connection { get { return app.default_connection; } }
+    private Connection? connection { get { return app.default_connection; } }
     private VMConfigurator configurator;
     private ulong stopped_id;
 
@@ -43,6 +43,17 @@ private class Boxes.VMCreator {
     }
 
     public async void create_and_launch_vm (InstallerMedia install_media, Cancellable? cancellable) throws GLib.Error {
+        if (connection == null) {
+            // Wait for needed libvirt connection
+            ulong handler = 0;
+            handler = app.notify["default-connection"].connect (() => {
+                create_and_launch_vm.callback ();
+                app.disconnect (handler);
+            });
+
+            yield;
+        }
+
         var name = yield create_domain_name_from_media (install_media);
         var fullscreen = true;
         if (install_media is UnattendedInstaller) {
