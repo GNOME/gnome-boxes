@@ -56,6 +56,9 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             if (display == null)
                 throw new Boxes.Error.INVALID ("invalid display");
 
+            display.mouse_grab.connect((status) => {
+                mouse_grabbed = status != 0;
+            });
             sync_config_with_display (display, display_saved_properties);
 
             display.scaling = true;
@@ -78,8 +81,14 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         // FIXME: vala does't want to put this in ctor..
         if (channel_new_id == 0)
             channel_new_id = session.channel_new.connect ((channel) => {
-                if (channel is Spice.MainChannel)
-                    channel.channel_event.connect (main_event);
+                if (channel is Spice.MainChannel) {
+                    var main = channel as Spice.MainChannel;
+                    main.channel_event.connect (main_event);
+                    main.notify["mouse-mode"].connect(() => {
+                        can_grab_mouse = main.mouse_mode != 2;
+                    });
+                    can_grab_mouse = main.mouse_mode != 2;
+                }
 
                 if (channel is Spice.DisplayChannel) {
                     var display = channel as DisplayChannel;
