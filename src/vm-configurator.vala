@@ -277,7 +277,7 @@ private class Boxes.VMConfigurator {
             } while (reader.next () == 1);
         }
 
-        warning ("Failed to find OS state for domain '%s'.", domain.get_name ());
+        debug ("no Boxes OS state for domain '%s'.", domain.get_name ());
 
         return null;
     }
