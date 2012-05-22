@@ -240,14 +240,7 @@ private class Boxes.VMConfigurator {
     }
 
     private void set_tablet_config (Domain domain, InstallerMedia install_media) {
-        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_NAME, "tablet");
-        if (device == null)
-            return;
-
         var input = new DomainInput ();
-        var bus = get_enum_value (device.get_bus_type (), typeof (DomainInputBus));
-        return_if_fail (bus != -1);
-        input.set_bus ((DomainInputBus) bus);
         input.set_device_type (DomainInputDeviceType.TABLET);
 
         domain.add_device (input);
