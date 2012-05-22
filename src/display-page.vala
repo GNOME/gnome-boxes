@@ -84,10 +84,9 @@ private class Boxes.DisplayPage: GLib.Object {
         event_box.event.connect ((event) => {
             if (app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
-
                 if (y <= 0) {
                     toolbar_event_stop ();
-                    if (event.motion.state == 0)
+                    if ((event.motion.state & ModifierType.MODIFIER_MASK) == 0)
                         set_overlay_toolbar_visible (true);
                 } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
