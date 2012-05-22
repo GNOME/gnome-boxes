@@ -4,7 +4,8 @@ using Config;
 using Xml;
 
 public errordomain Boxes.Error {
-    INVALID
+    INVALID,
+    COMMAND_FAILED
 }
 
 namespace Boxes {
@@ -456,5 +457,49 @@ namespace Boxes {
 
         if (e != null)
             throw e;
+    }
+
+    public async void exec (string[] argv, Cancellable? cancellable) throws GLib.Error {
+        SourceFunc continuation = exec.callback;
+        GLib.Error error = null;
+        var context = MainContext.get_thread_default ();
+
+        g_io_scheduler_push_job ((job) => {
+            try {
+                exec_sync (argv);
+            } catch (GLib.Error err) {
+                error = err;
+            }
+
+            var source = new IdleSource ();
+            source.set_callback (() => {
+                continuation ();
+
+                return false;
+            });
+            source.attach (context);
+
+            return false;
+        });
+
+        yield;
+
+        if (error != null)
+            throw error;
+    }
+
+    public void exec_sync (string[] argv) throws GLib.Error {
+        int exit_status = -1;
+
+        Process.spawn_sync (null,
+                            argv,
+                            null,
+                            SpawnFlags.SEARCH_PATH,
+                            null,
+                            null,
+                            null,
+                            out exit_status);
+        if (exit_status != 0)
+            throw new Boxes.Error.COMMAND_FAILED ("Failed to execute: %s", string.joinv (" ", argv));
     }
 }
