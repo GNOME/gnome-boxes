@@ -50,6 +50,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     private static Regex password_regex;
     private static Regex timezone_regex;
     private static Regex lang_regex;
+    private static Regex host_regex;
     private static Fdo.Accounts? accounts;
 
     static construct {
@@ -58,6 +59,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             password_regex = new Regex ("BOXES_PASSWORD");
             timezone_regex = new Regex ("BOXES_TZ");
             lang_regex = new Regex ("BOXES_LANG");
+            host_regex = new Regex ("BOXES_HOSTNAME");
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
@@ -102,7 +104,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_ui ();
     }
 
-    public async void setup (Cancellable? cancellable) throws GLib.Error {
+    public async void setup (string hostname, Cancellable? cancellable) throws GLib.Error {
         if (!express_toggle.active) {
             debug ("Unattended installation disabled.");
 
@@ -116,7 +118,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                 yield create_disk_image (cancellable);
 
             foreach (var unattended_file in unattended_files)
-                yield unattended_file.copy (cancellable);
+                yield unattended_file.copy (hostname, cancellable);
             yield prepare_direct_boot (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
@@ -160,11 +162,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                         (_("Password required for express installation of %s"), label);
     }
 
-    public virtual string fill_unattended_data (string data) throws RegexError {
+    public virtual string fill_unattended_data (string data, string hostname) throws RegexError {
         var str = username_regex.replace (data, data.length, 0, username_entry.text);
         str = password_regex.replace (str, str.length, 0, password);
         str = timezone_regex.replace (str, str.length, 0, timezone);
         str = lang_regex.replace (str, str.length, 0, lang);
+        str = host_regex.replace (str, str.length, 0, hostname);
 
         return str;
     }
@@ -314,8 +317,8 @@ private class Boxes.UnattendedFile {
        this.dest_name = dest_name;
     }
 
-    public async void copy (Cancellable? cancellable) throws GLib.Error {
-        var unattended_tmp = yield create (cancellable);
+    public async void copy (string hostname, Cancellable? cancellable) throws GLib.Error {
+        var unattended_tmp = yield create (hostname, cancellable);
 
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_path);
         // FIXME: Perhaps we should use libarchive for this?
@@ -330,7 +333,7 @@ private class Boxes.UnattendedFile {
         debug ("Deleted temporary file '%s'", unattended_tmp.get_path ());
     }
 
-    private async File create (Cancellable? cancellable)  throws GLib.Error {
+    private async File create (string hostname, Cancellable? cancellable)  throws GLib.Error {
         var source = File.new_for_path (src_path);
         var destination_path = get_user_unattended (dest_name);
         var destination = File.new_for_path (destination_path);
@@ -346,7 +349,7 @@ private class Boxes.UnattendedFile {
         data_stream.newline_type = DataStreamNewlineType.ANY;
         string? str;
         while ((str = yield data_stream.read_line_async (Priority.DEFAULT, cancellable)) != null) {
-            str = installer.fill_unattended_data (str);
+            str = installer.fill_unattended_data (str, hostname);
 
             str += (installer.newline_type == DataStreamNewlineType.LF) ? "\n" : "\r\n";
 

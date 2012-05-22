@@ -1,7 +1,7 @@
 install
 keyboard BOXES_FEDORA_KBD
 lang BOXES_LANG
-network --onboot yes --device eth0 --bootproto dhcp --noipv6 --activate
+network --onboot yes --device eth0 --bootproto dhcp --noipv6 --hostname=BOXES_HOSTNAME --activate
 rootpw BOXES_PASSWORD
 firewall --disabled
 authconfig --enableshadow --enablemd5

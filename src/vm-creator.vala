@@ -43,15 +43,15 @@ private class Boxes.VMCreator {
     }
 
     public async void create_and_launch_vm (InstallerMedia install_media, Cancellable? cancellable) throws GLib.Error {
+        var name = yield create_domain_name_from_media (install_media);
         var fullscreen = true;
         if (install_media is UnattendedInstaller) {
             var unattended = install_media as UnattendedInstaller;
 
-            yield unattended.setup (cancellable);
+            yield unattended.setup (name, cancellable);
             fullscreen = !unattended.express_install;
         }
 
-        var name = yield create_domain_name_from_media (install_media);
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var config = configurator.create_domain_config (install_media, name, volume.get_path ());
 

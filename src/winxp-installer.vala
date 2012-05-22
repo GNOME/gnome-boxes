@@ -71,8 +71,8 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         key_inserted_id = key_entry.insert_text.connect (on_key_text_inserted);
     }
 
-    protected override string fill_unattended_data (string data) throws RegexError {
-        var str = base.fill_unattended_data (data);
+    protected override string fill_unattended_data (string data, string hostname) throws RegexError {
+        var str = base.fill_unattended_data (data, hostname);
 
         return key_regex.replace (str, str.length, 0, key_entry.text);
     }
