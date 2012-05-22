@@ -104,6 +104,9 @@ private class Boxes.DisplayPage: GLib.Object {
                 }
             }
 
+            if (event.type == EventType.GRAB_BROKEN)
+                return false;
+
             if (event_box.get_child () != null)
                 event_box.get_child ().event (event);
 
