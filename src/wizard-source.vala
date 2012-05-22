@@ -21,7 +21,7 @@ private class Boxes.WizardSource: GLib.Object {
             case SourcePage.MAIN:
                 add_media_entries.begin ();
                 // FIXME: grab first element in the menu list
-                main_menubox.grab_focus ();
+                main_vbox.grab_focus ();
                 break;
             case SourcePage.URL:
                 url_entry.changed ();
@@ -36,7 +36,8 @@ private class Boxes.WizardSource: GLib.Object {
     }
     public InstallerMedia? install_media { get; private set; }
 
-    private Boxes.MenuBox main_menubox;
+    private Gtk.Box main_vbox;
+    private Gtk.Box media_vbox;
     private Gtk.Notebook notebook;
     private Gtk.Label url_label;
     private Gtk.Image url_image;
@@ -55,22 +56,23 @@ private class Boxes.WizardSource: GLib.Object {
         notebook.show_tabs = false;
 
         /* main page */
-        main_menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
-        main_menubox.margin_top = main_menubox.margin_bottom = 15;
-        main_menubox.grab_focus ();
-        notebook.append_page (main_menubox, null);
+        main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        main_vbox.get_style_context ().add_class ("boxes-menu");
+        main_vbox.margin_top = main_vbox.margin_bottom = 15;
+        main_vbox.grab_focus ();
+        notebook.append_page (main_vbox, null);
 
-        var hbox = add_entry (main_menubox, () => { page = SourcePage.URL; });
+        media_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        main_vbox.add (media_vbox);
+
+        var hbox = add_entry (main_vbox, () => { page = SourcePage.URL; });
         var label = new Gtk.Label (_("Enter URL"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
         var next = new Gtk.Label ("▶");
         hbox.pack_start (next, false, false);
 
-        var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        main_menubox.pack_start (separator, false, false);
-
-        hbox = add_entry (main_menubox, launch_file_selection_dialog);
+        hbox = add_entry (main_vbox, launch_file_selection_dialog);
         label = new Gtk.Label (_("Select a file"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -78,7 +80,8 @@ private class Boxes.WizardSource: GLib.Object {
         hbox.pack_start (next, false, false);
 
         /* URL page */
-        var url_menubox = new Boxes.MenuBox (Gtk.Orientation.VERTICAL);
+        var url_menubox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        url_menubox.get_style_context ().add_class ("boxes-menu");
         url_menubox.margin_top = url_menubox.margin_bottom = 15;
         notebook.append_page (url_menubox, null);
 
@@ -88,13 +91,13 @@ private class Boxes.WizardSource: GLib.Object {
         label = new Gtk.Label (_("Enter URL"));
         label.get_style_context ().add_class ("boxes-source-label");
         hbox.pack_start (label, true, true);
-        separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        url_menubox.add (separator);
-        hbox = add_entry (url_menubox);
-        url_entry = new Gtk.Entry ();
-        hbox.add (url_entry);
-        hbox = add_entry (url_menubox);
 
+        var vbox = add_entry (url_menubox);
+        vbox.set_orientation (Gtk.Orientation.VERTICAL);
+        url_entry = new Gtk.Entry ();
+        vbox.add (url_entry);
+
+        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         url_image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
         // var image = new Gtk.Image.from_icon_name ("krfb", 0);
         url_image.pixel_size = 96;
@@ -106,6 +109,7 @@ private class Boxes.WizardSource: GLib.Object {
         url_label.set_use_markup (true);
         url_label.wrap = true;
         hbox.pack_start (url_label, true, true);
+        vbox.add (hbox);
 
         notebook.show_all ();
 
@@ -120,30 +124,33 @@ private class Boxes.WizardSource: GLib.Object {
     private async void add_media_entries () {
         var medias = yield media_manager.list_installer_medias ();
 
-        foreach (var child in main_menubox.get_children ()) {
-            if (child.name == null || !child.name.has_prefix ("installer-"))
+        foreach (var child in media_vbox.get_children ()) {
+            var child_media = child.get_data<string> ("boxes-media");
+            if (child_media == null)
                 continue;
 
             var obsolete = true;
             foreach (var media in medias)
-                if (child.name.contains (media.device_file)) {
+                if (child_media == media.device_file) {
                     obsolete = false;
 
                     break;
                 }
 
             if (obsolete)
-                main_menubox.remove (child);
+                main_vbox.remove (child);
         }
 
         foreach (var media in medias) {
             var nouveau = true; // Everyone speaks some French, right? :)
-            foreach (var child in main_menubox.get_children ())
-                if (child.name != null && child.name.contains (media.device_file)) {
+            foreach (var child in media_vbox.get_children ()) {
+                var child_media = child.get_data<string> ("boxes-media");
+                if (child_media  != null && child_media == media.device_file) {
                     nouveau = false;
 
                     break;
                 }
+            }
 
             if (nouveau)
                 add_media_entry (media);
@@ -151,12 +158,12 @@ private class Boxes.WizardSource: GLib.Object {
     }
 
     private void add_media_entry (InstallerMedia media) {
-        var hbox = add_entry (main_menubox, () => {
+        var hbox = add_entry (media_vbox, () => {
             install_media = media;
             uri = media.device_file;
             url_entry.activate ();
             page = SourcePage.URL;
-        }, 15, 5, true, "installer-" + media.device_file + "-item");
+        }, 15, 5, media.device_file);
 
         var image = get_os_logo (media.os, 64);
         hbox.pack_start (image, false, false);
@@ -165,6 +172,7 @@ private class Boxes.WizardSource: GLib.Object {
         hbox.pack_start (vbox, true, true);
 
         var label = new Gtk.Label (media.label);
+        label.set_ellipsize (Pango.EllipsizeMode.END);
         label.get_style_context ().add_class ("boxes-source-label");
         label.xalign = 0.0f;
         vbox.pack_start (label, true, true);
@@ -174,6 +182,7 @@ private class Boxes.WizardSource: GLib.Object {
                                _("32-bit x86 system") :
                                _("64-bit x86 system");
             label = new Gtk.Label (architecture);
+            label.set_ellipsize (Pango.EllipsizeMode.END);
             label.get_style_context ().add_class ("boxes-step-label");
             label.xalign = 0.0f;
             vbox.pack_start (label, true, true);
@@ -183,38 +192,47 @@ private class Boxes.WizardSource: GLib.Object {
                 label.label += _(" from %s").printf (media.os.vendor);
         }
 
-        var separator = new Gtk.Separator (Gtk.Orientation.HORIZONTAL);
-        separator.name =  "installer-" + media.device_file + "-separator";
-        main_menubox.pack_start (separator, false, false);
-        main_menubox.reorder_child (separator, 1);
-
-        main_menubox.show_all ();
+        media_vbox.show_all ();
     }
 
-    private Gtk.HBox add_entry (MenuBox            box,
+    private Gtk.Box add_entry (Gtk.Box            box,
                                 owned ClickedFunc? clicked = null,
                                 int                h_margin = 20,
                                 int                v_margin = 10,
-                                bool               beginning = false,
-                                string?            name = null) {
-        var hbox = new Gtk.HBox (false, 20);
-        var item = new MenuBox.Item (hbox);
-        box.add (item);
-        if (beginning)
-            main_menubox.reorder_child (item, 0);
-        if (name != null)
-            item.name = name;
+                                string?            media = null) {
+        Gtk.Container row;
+        if (clicked != null) {
+            var button = new Gtk.Button ();
+            button.clicked.connect (() => {
+                clicked ();
+            });
+            row = button;
+        } else {
+            var bin = new Gtk.Alignment (0,0,1,1);
+            bin.draw.connect ((cr) => {
+                var context = bin.get_style_context ();
+                Gtk.Allocation allocation;
+                bin.get_allocation (out allocation);
+                context.render_background (cr,
+                                           0, 0,
+                                           allocation.width, allocation.height);
+                context.render_frame (cr,
+                                      0, 0,
+                                      allocation.width, allocation.height);
+                return false;
+            });
+            row = bin;
+        }
+        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+        row.add (hbox);
+        row.get_style_context ().add_class ("boxes-menu-row");
+
+        box.add (row);
+        if (media != null)
+            row.set_data ("boxes-media", media);
 
         hbox.margin_left = hbox.margin_right = h_margin;
         hbox.margin_top = hbox.margin_bottom = v_margin;
-
-        if (clicked != null) {
-            item.selectable = true;
-            box.selected.connect ((widget) => {
-                if (widget == item)
-                    clicked ();
-            });
-        }
 
         return hbox;
     }

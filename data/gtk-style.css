@@ -164,3 +164,36 @@ BoxesMenuBox .menuitem:focused {
 BoxesMenuBox .menuitem:prelight {
     background-color: shade (@boxes_bg2_color, 1.1);
 }
+
+.boxes-menu-row {
+    -GtkWidget-focus-line-width: 0;
+    border-style: ridge none none none;
+    border-color: shade (@boxes_bg2_color, 0.7);
+    border-width: 2px 0 0 0;
+    box-shadow: none;
+    border-image: none;
+    background-image: none;
+    background-color: @boxes_bg2_color;
+    border-radius: 0;
+}
+
+.boxes-menu-row:nth-child(first) {
+    border-radius: 15px 15px 0 0;
+    border-style: none;
+}
+
+.boxes-menu > .boxes-menu-row:nth-child(last) {
+    border-radius: 0 0 15px 15px;
+}
+
+.boxes-menu-row:prelight, .boxes-menu-row:focus {
+    background-color: shade (@boxes_bg2_color, 1.2);
+}
+
+.boxes-menu-row:active {
+    background-color: @theme_selected_bg_color;
+}
+
+.boxes-menu-row *:active {
+    color: #ffffff;
+}
