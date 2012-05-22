@@ -6,7 +6,7 @@ using GUdev;
 private class Boxes.InstallerMedia : Object {
     public Os? os;
     public Osinfo.Resources? resources;
-    public Media os_media;
+    public Media? os_media;
     public string label;
     public string device_file;
     public string mount_point;
@@ -17,7 +17,7 @@ private class Boxes.InstallerMedia : Object {
     public InstallerMedia.from_iso_info (string            path,
                                          string            label,
                                          Os                os,
-                                         Media             media,
+                                         Media?            media,
                                          Osinfo.Resources? resources) {
         this.device_file = path;
         this.label = label;
@@ -26,7 +26,7 @@ private class Boxes.InstallerMedia : Object {
         this.resources = resources;
         from_image = true;
 
-        if (media.live)
+        if (media != null && media.live)
             this.label = _("%s (Live)").printf (label);
     }
 
@@ -54,7 +54,7 @@ private class Boxes.InstallerMedia : Object {
 
         if (os != null)
             label = os.get_name ();
-            if (os_media.live)
+            if (os_media != null && os_media.live)
                 // Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
                 //              http://en.wikipedia.org/wiki/Live_CD
                 label = _("%s (Live)").printf (label);
