@@ -75,6 +75,12 @@ private class Boxes.DisplayPage: GLib.Object {
     private ulong display_id;
     private ulong cursor_id;
 
+    private Boxes.Display display;
+    private bool can_grab_mouse { get { return display.can_grab_mouse; } }
+    private bool grabbed { get { return display.mouse_grabbed; } }
+    private ulong display_can_grab_id;
+    private ulong display_grabbed_id;
+
     public DisplayPage (Boxes.App app) {
         this.app = app;
 
@@ -112,8 +118,8 @@ private class Boxes.DisplayPage: GLib.Object {
 
         overlay = new Overlay ();
         app.window.window_state_event.connect ((event) => {
-            toolbar.visible = !app.fullscreen;
-            set_overlay_toolbar_visible (false);
+            update_toolbar_visible ();
+
             return false;
         });
         overlay.margin = 0;
@@ -137,7 +143,21 @@ private class Boxes.DisplayPage: GLib.Object {
         }
     }
 
-    void set_overlay_toolbar_visible(bool visible) {
+     private void update_toolbar_visible() {
+         if (app.fullscreen && !can_grab_mouse)
+             toolbar.visible = false;
+         else
+             toolbar.visible = true;
+
+         set_overlay_toolbar_visible (false);
+     }
+
+     private void set_overlay_toolbar_visible(bool visible) {
+        if (visible && toolbar.visible) {
+            debug ("toolbar is visible, don't show overlay toolbar");
+            return;
+        }
+
         overlay_toolbar.visible = visible;
     }
 
@@ -155,15 +175,24 @@ private class Boxes.DisplayPage: GLib.Object {
         app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
-    public void show_display (Boxes.Machine machine, Widget display) {
+    public void show_display (Boxes.Display display, Widget widget) {
         remove_display ();
+
+        this.display = display;
+        display_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
+            update_title();
+        });
+        display_can_grab_id = display.notify["can-grab-mouse"].connect(() => {
+            update_toolbar_visible();
+        });
+
         set_overlay_toolbar_visible (false);
         overlay_toolbar.title = toolbar.title = machine.name;
-        display.set_events (display.get_events () & ~Gdk.EventMask.POINTER_MOTION_MASK);
-        event_box.add (display);
+        widget.set_events (widget.get_events () & ~Gdk.EventMask.POINTER_MOTION_MASK);
+        event_box.add (widget);
         event_box.show_all ();
 
-        display_id = display.event.connect ((event) => {
+        display_id = widget.event.connect ((event) => {
             switch (event.type) {
             case EventType.LEAVE_NOTIFY:
                 toolbar_event_stop ();
@@ -176,11 +205,11 @@ private class Boxes.DisplayPage: GLib.Object {
         });
 
         ulong draw_id = 0;
-        draw_id = display.draw.connect (() => {
-            display.disconnect (draw_id);
+        draw_id = widget.draw.connect (() => {
+            widget.disconnect (draw_id);
 
-            cursor_id = display.get_window ().notify["cursor"].connect (() => {
-                event_box.get_window ().set_cursor (display.get_window ().cursor);
+            cursor_id = widget.get_window ().notify["cursor"].connect (() => {
+                event_box.get_window ().set_cursor (widget.get_window ().cursor);
             });
 
             return false;
@@ -190,21 +219,31 @@ private class Boxes.DisplayPage: GLib.Object {
     }
 
     public Widget? remove_display () {
-        var display = event_box.get_child ();
+        if (display_grabbed_id != 0) {
+            display.disconnect (display_grabbed_id);
+            display_grabbed_id = 0;
+        }
+
+        if (display_can_grab_id != 0) {
+            display.disconnect (display_can_grab_id);
+            display_can_grab_id = 0;
+        }
+
+        var widget = event_box.get_child ();
 
         if (display_id != 0) {
-            display.disconnect (display_id);
+            widget.disconnect (display_id);
             display_id = 0;
         }
         if (cursor_id != 0) {
-            display.get_window ().disconnect (cursor_id);
+            widget.get_window ().disconnect (cursor_id);
             cursor_id = 0;
         }
 
-        if (display != null)
-            event_box.remove (display);
+        if (widget != null)
+            event_box.remove (widget);
 
-        return display;
+        return widget;
     }
 
 }

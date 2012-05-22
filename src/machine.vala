@@ -62,7 +62,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 Timeout.add (app.duration, () => {
                     try {
                         var widget = display.get_display (0);
-                        app.display_page.show_display (this, widget);
+                        app.display_page.show_display (display, widget);
                         widget.grab_focus ();
                     } catch (Boxes.Error error) {
                         warning (error.message);
@@ -404,7 +404,7 @@ private class Boxes.MachineActor: Boxes.UI {
                         display = null;
                         // FIXME: enable grabs
                         machine.display.set_enable_inputs (widget, true);
-                        machine.app.display_page.show_display (machine, widget);
+                        machine.app.display_page.show_display (machine.display, widget);
                     });
                 } else
                     machine.app.display_page.show ();
