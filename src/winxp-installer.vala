@@ -5,6 +5,7 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
     private const uint[] allowed_dash_positions = { 5, 11, 17, 23 };
 
     private static Regex key_regex;
+    private static Regex admin_pass_regex;
 
     private Gtk.Entry key_entry;
 
@@ -13,6 +14,7 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
     static construct {
         try {
             key_regex = new Regex ("BOXES_PRODUCT_KEY");
+            admin_pass_regex = new Regex ("BOXES_XP_ADMIN_PASSWORD");
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
@@ -73,6 +75,8 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
 
     protected override string fill_unattended_data (string data) throws RegexError {
         var str = base.fill_unattended_data (data);
+        var admin_pass = (password != "") ? password : "*";
+        str = admin_pass_regex.replace (str, str.length, 0, admin_pass);
 
         return key_regex.replace (str, str.length, 0, key_entry.text);
     }
