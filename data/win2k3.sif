@@ -16,8 +16,6 @@
 [GuiUnattended]
     AdminPassword="BOXES_PASSWORD"
     EncryptedAdminPassword=NO
-    AutoLogon=Yes
-    AutoLogonCount=1
     OEMSkipRegional=1
     TimeZone=35
     OemSkipWelcome=1
@@ -39,7 +37,7 @@
     InstallDefaultComponents=Yes
 
 [SetupParams]
-    UserExecute = "sc config TlntSvr start= auto"
+    UserExecute = "a:\winxp.cmd"
 
 [WindowsFirewall]
     Profiles = WindowsFirewall.TurnOffFirewall

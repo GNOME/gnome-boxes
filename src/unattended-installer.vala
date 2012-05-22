@@ -27,12 +27,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public bool password_mandatory { get; protected set; }
+    public DataStreamNewlineType newline_type;
+    public string disk_path;
 
-    protected string unattended_src_path;
-    protected string unattended_dest_name;
-    protected DataStreamNewlineType newline_type;
-
-    protected string disk_path;
+    protected GLib.List<UnattendedFile> unattended_files;
+    protected string unattended_src_path { get { return unattended_files.data.src_path; } }
+    protected string unattended_dest_name { get { return unattended_files.data.dest_name; } }
 
     private bool created_disk;
 
@@ -81,9 +81,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         resources = media.resources;
 
         disk_path = get_pkgcache (os.short_id + "-unattended.img");
-        this.unattended_src_path = unattended_src_path;
-        this.unattended_dest_name = unattended_dest_name;
         newline_type = DataStreamNewlineType.LF;
+
+        unattended_files = new GLib.List<UnattendedFile> ();
+        unattended_files.append (new UnattendedFile (this, unattended_src_path, unattended_dest_name));
 
         var time = TimeVal ();
         var date = new DateTime.from_timeval_local (time);
@@ -108,7 +109,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             else
                 yield create_disk_image (cancellable);
 
-            yield copy_unattended_file (cancellable);
+            foreach (var unattended_file in unattended_files)
+                yield unattended_file.copy (cancellable);
             yield prepare_direct_boot (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
@@ -150,6 +152,15 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         if (password_mandatory && password == "")
             throw new UnattendedInstallerError.SETUP_INCOMPLETE
                         (_("Password required for express installation of %s"), label);
+    }
+
+    public virtual string fill_unattended_data (string data) throws RegexError {
+        var str = username_regex.replace (data, data.length, 0, username_entry.text);
+        str = password_regex.replace (str, str.length, 0, password);
+        str = timezone_regex.replace (str, str.length, 0, timezone);
+        str = lang_regex.replace (str, str.length, 0, lang);
+
+        return str;
     }
 
     protected virtual void setup_ui () {
@@ -234,17 +245,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         debug ("Removed '%s'.", disk_path);
     }
 
-    protected virtual string fill_unattended_data (string data) throws RegexError {
-        var str = username_regex.replace (data, data.length, 0, username_entry.text);
-        str = password_regex.replace (str, str.length, 0, password);
-        str = timezone_regex.replace (str, str.length, 0, timezone);
-        str = lang_regex.replace (str, str.length, 0, lang);
-
-        return str;
-    }
-
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
 
+    protected void add_unattended_file (string unattended_src_path, string unattended_dest_name) {
+        unattended_files.append (new UnattendedFile (this, unattended_src_path, unattended_dest_name));
     }
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
@@ -257,50 +261,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         debug ("Floppy image for unattended installation created at '%s'", disk_path);
 
         created_disk = true;
-    }
-
-    private async void copy_unattended_file (Cancellable? cancellable) throws GLib.Error {
-        var unattended_src = File.new_for_path (unattended_src_path);
-        var unattended_tmp_path = get_user_unattended_dir (unattended_dest_name);
-        var unattended_tmp = File.new_for_path (unattended_tmp_path);
-
-        yield create_unattended_file (unattended_src, unattended_tmp, cancellable);
-
-        debug ("Copying unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
-        // FIXME: Perhaps we should use libarchive for this?
-        string[] argv = { "mcopy", "-n", "-o", "-i", disk_path,
-                                   unattended_tmp_path,
-                                   "::" + unattended_dest_name };
-        yield exec (argv, cancellable);
-        debug ("Copied unattended file '%s' into disk drive/image '%s'", unattended_dest_name, disk_path);
-
-        debug ("Deleting temporary file '%s'", unattended_tmp_path);
-        unattended_tmp.delete (cancellable);
-        debug ("Deleted temporary file '%s'", unattended_tmp_path);
-    }
-
-    private async void create_unattended_file (File         source,
-                                               File         destination,
-                                               Cancellable? cancellable)  throws GLib.Error {
-        debug ("Creating unattended file at '%s'..", destination.get_path ());
-        var input_stream = yield source.read_async (Priority.DEFAULT, cancellable);
-        var output_stream = yield destination.replace_async (null,
-                                                             false,
-                                                             FileCreateFlags.REPLACE_DESTINATION,
-                                                             Priority.DEFAULT,
-                                                             cancellable);
-        var data_stream = new DataInputStream (input_stream);
-        data_stream.newline_type = DataStreamNewlineType.ANY;
-        string? str;
-        while ((str = yield data_stream.read_line_async (Priority.DEFAULT, cancellable)) != null) {
-            str = fill_unattended_data (str);
-
-            str += (newline_type == DataStreamNewlineType.LF) ? "\n" : "\r\n";
-
-            yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
-        }
-        yield output_stream.close_async (Priority.DEFAULT, cancellable);
-        debug ("Created unattended file at '%s'..", destination.get_path ());
     }
 
     private async bool unattended_disk_exists (Cancellable? cancellable) {
@@ -333,5 +293,62 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var file = File.new_for_path (avatar_file);
         if (file.query_exists ())
             avatar.file = avatar_file;
+    }
+}
+
+private class Boxes.UnattendedFile {
+    public string src_path;
+    public string dest_name;
+
+    private UnattendedInstaller installer;
+
+    public UnattendedFile (UnattendedInstaller installer, string src_path, string dest_name) {
+       this.installer = installer;
+       this.src_path = src_path;
+       this.dest_name = dest_name;
+    }
+
+    public async void copy (Cancellable? cancellable) throws GLib.Error {
+        var unattended_tmp = yield create (cancellable);
+
+        debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_path);
+        // FIXME: Perhaps we should use libarchive for this?
+        string[] argv = { "mcopy", "-n", "-o", "-i", installer.disk_path,
+                                   unattended_tmp.get_path (),
+                                   "::" + dest_name };
+        yield exec (argv, cancellable);
+        debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_path);
+
+        debug ("Deleting temporary file '%s'", unattended_tmp.get_path ());
+        unattended_tmp.delete (cancellable);
+        debug ("Deleted temporary file '%s'", unattended_tmp.get_path ());
+    }
+
+    private async File create (Cancellable? cancellable)  throws GLib.Error {
+        var source = File.new_for_path (src_path);
+        var destination_path = get_user_unattended_dir (dest_name);
+        var destination = File.new_for_path (destination_path);
+
+        debug ("Creating unattended file at '%s'..", destination.get_path ());
+        var input_stream = yield source.read_async (Priority.DEFAULT, cancellable);
+        var output_stream = yield destination.replace_async (null,
+                                                             false,
+                                                             FileCreateFlags.REPLACE_DESTINATION,
+                                                             Priority.DEFAULT,
+                                                             cancellable);
+        var data_stream = new DataInputStream (input_stream);
+        data_stream.newline_type = DataStreamNewlineType.ANY;
+        string? str;
+        while ((str = yield data_stream.read_line_async (Priority.DEFAULT, cancellable)) != null) {
+            str = installer.fill_unattended_data (str);
+
+            str += (installer.newline_type == DataStreamNewlineType.LF) ? "\n" : "\r\n";
+
+            yield output_stream.write_async (str.data, Priority.DEFAULT, cancellable);
+        }
+        yield output_stream.close_async (Priority.DEFAULT, cancellable);
+        debug ("Created unattended file at '%s'..", destination.get_path ());
+
+        return destination;
     }
 }

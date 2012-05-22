@@ -23,6 +23,8 @@ unattended_DATA = fedora.ks			\
 		  win7.xml 			\
 		  win2k8.xml 			\
 		  winxp.sif 			\
+		  winxp.cmd 			\
+		  winxp.reg 			\
 		  win2k.sif 			\
 		  win2k3.sif 			\
 		  disk.img			\
