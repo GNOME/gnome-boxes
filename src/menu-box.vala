@@ -107,10 +107,12 @@ private class Boxes.MenuBox: Gtk.Box {
                     junction |= Gtk.JunctionSides.LEFT;
             }
 
+            ctxt.save ();
             ctxt.set_state (child.get_state_flags ());
             ctxt.set_junction_sides (junction);
             ctxt.render_background (cr, child_allocation.x, child_allocation.y,
                                     child_allocation.width, child_allocation.height);
+            ctxt.restore ();
         }
 
         return base.draw (cr);
