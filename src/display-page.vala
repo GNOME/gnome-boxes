@@ -4,8 +4,7 @@ using Gdk;
 
 private class Boxes.DisplayToolbar: Gtk.Toolbar {
     public string title {
-        get { return label.get_text (); }
-        set { label.set_text (value); }
+        set { label.set_markup (value); }
     }
     private Label label;
 
@@ -41,6 +40,7 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
         /* center title - unfortunately, metacity doesn't even center its
            own title.. sad panda */
         label = new Label ("Display");
+        label.use_markup = true;
         center_group.add (label);
 
         var right_box = new Box (Orientation.HORIZONTAL, 12);
@@ -175,19 +175,30 @@ private class Boxes.DisplayPage: GLib.Object {
         app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
+    public void update_title () {
+        var machine = app.current_item as Boxes.Machine;
+        return_if_fail (machine != null);
+
+        var title = machine.name;
+        if (grabbed)
+            title = _("%s <b>(press Ctrl+Alt keys to ungrab)</b>").printf (title);
+
+        overlay_toolbar.title = toolbar.title = title;
+    }
+
     public void show_display (Boxes.Display display, Widget widget) {
         remove_display ();
 
         this.display = display;
         display_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
-            update_title();
+            update_title ();
         });
         display_can_grab_id = display.notify["can-grab-mouse"].connect(() => {
-            update_toolbar_visible();
+            update_toolbar_visible ();
         });
 
         set_overlay_toolbar_visible (false);
-        overlay_toolbar.title = toolbar.title = machine.name;
+        update_title ();
         widget.set_events (widget.get_events () & ~Gdk.EventMask.POINTER_MOTION_MASK);
         event_box.add (widget);
         event_box.show_all ();
