@@ -45,6 +45,18 @@ spice-vdagent
 # Add user to admin group
 usermod -a -G wheel BOXES_USERNAME
 
+# Set user avatar
+mkdir /mnt/unattended-media
+mount /dev/sda /mnt/unattended-media
+cp /mnt/unattended-media/BOXES_USERNAME /var/lib/AccountsService/icons/
+umount /mnt/unattended-media
+echo "
+[User]
+Language=
+XSession=
+Icon=/var/lib/AccountsService/icons/BOXES_USERNAME
+" >> /var/lib/AccountsService/users/BOXES_USERNAME
+
 # Enable autologin
 echo "[daemon]
 AutomaticLoginEnable=true

@@ -48,7 +48,8 @@ private class Boxes.VMCreator {
         if (install_media is UnattendedInstaller) {
             var unattended = install_media as UnattendedInstaller;
 
-            yield unattended.setup (name, cancellable);
+            var hostname = name.replace (" ", "-");
+            yield unattended.setup (hostname, cancellable);
             fullscreen = !unattended.express_install;
         }
 

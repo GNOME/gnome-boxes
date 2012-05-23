@@ -46,6 +46,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     protected string timezone;
     protected string lang;
 
+    protected AvatarFormat avatar_format;
+
     private static Regex username_regex;
     private static Regex password_regex;
     private static Regex timezone_regex;
@@ -79,7 +81,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
     public UnattendedInstaller.copy (InstallerMedia media,
                                      string         unattended_src_path,
-                                     string         unattended_dest_name) throws GLib.Error {
+                                     string         unattended_dest_name,
+                                     AvatarFormat?  avatar_format = null) throws GLib.Error {
         os = media.os;
         os_media = media.os_media;
         label = media.label;
@@ -92,7 +95,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         newline_type = DataStreamNewlineType.LF;
 
         unattended_files = new GLib.List<UnattendedFile> ();
-        unattended_files.append (new UnattendedFile (this, unattended_src_path, unattended_dest_name));
+        unattended_files.append (new UnattendedTextFile (this, unattended_src_path, unattended_dest_name));
 
         var time = TimeVal ();
         var date = new DateTime.from_timeval_local (time);
@@ -100,6 +103,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         var langs = Intl.get_language_names ();
         lang = langs[0];
+
+        this.avatar_format = avatar_format;
+        if (avatar_format == null)
+            this.avatar_format = new AvatarFormat ();
 
         setup_ui ();
     }
@@ -256,8 +263,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
 
-    protected void add_unattended_file (string unattended_src_path, string unattended_dest_name) {
-        unattended_files.append (new UnattendedFile (this, unattended_src_path, unattended_dest_name));
+    protected void add_unattended_text_file (string unattended_src_path, string unattended_dest_name) {
+        unattended_files.append (new UnattendedTextFile (this, unattended_src_path, unattended_dest_name));
     }
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
@@ -289,33 +296,29 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             return;
 
         var username = Environment.get_user_name ();
-        var avatar_file = "/var/lib/AccountsService/icons/" + username;
+        var avatar_file = new UnattendedAvatarFile (this, "/var/lib/AccountsService/icons/" + username, avatar_format);
 
         try {
             var path = yield accounts.FindUserByName (Environment.get_user_name ());
             Fdo.AccountsUser user = yield Bus.get_proxy (BusType.SYSTEM, "org.freedesktop.Accounts", path);
-            avatar_file = user.IconFile;
+            avatar_file.src_path = user.IconFile;
         } catch (GLib.IOError error) {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 
-        var file = File.new_for_path (avatar_file);
-        if (file.query_exists ())
-            avatar.file = avatar_file;
+        var file = File.new_for_path (avatar_file.src_path);
+        if (file.query_exists ()) {
+            avatar.file = avatar_file.src_path;
+            unattended_files.append (avatar_file);
+        }
     }
 }
 
-private class Boxes.UnattendedFile {
-    public string src_path;
-    public string dest_name;
+private interface Boxes.UnattendedFile : GLib.Object {
+    public abstract string src_path { get; set; }
+    public abstract string dest_name { get; set; }
 
-    private UnattendedInstaller installer;
-
-    public UnattendedFile (UnattendedInstaller installer, string src_path, string dest_name) {
-       this.installer = installer;
-       this.src_path = src_path;
-       this.dest_name = dest_name;
-    }
+    protected abstract UnattendedInstaller installer  { get; set; }
 
     public async void copy (string hostname, Cancellable? cancellable) throws GLib.Error {
         var unattended_tmp = yield create (hostname, cancellable);
@@ -333,7 +336,22 @@ private class Boxes.UnattendedFile {
         debug ("Deleted temporary file '%s'", unattended_tmp.get_path ());
     }
 
-    private async File create (string hostname, Cancellable? cancellable)  throws GLib.Error {
+    protected abstract async File create (string hostname, Cancellable? cancellable)  throws GLib.Error;
+}
+
+private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
+    public string src_path { get; set; }
+    public string dest_name { get; set; }
+
+    protected UnattendedInstaller installer  { get; set; }
+
+    public UnattendedTextFile (UnattendedInstaller installer, string src_path, string dest_name) {
+       this.installer = installer;
+       this.src_path = src_path;
+       this.dest_name = dest_name;
+    }
+
+    protected async File create (string hostname, Cancellable? cancellable)  throws GLib.Error {
         var source = File.new_for_path (src_path);
         var destination_path = get_user_unattended (dest_name);
         var destination = File.new_for_path (destination_path);
@@ -359,5 +377,61 @@ private class Boxes.UnattendedFile {
         debug ("Created unattended file at '%s'..", destination.get_path ());
 
         return destination;
+    }
+}
+
+private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
+    public string src_path { get; set; }
+    public string dest_name { get; set; }
+
+    protected UnattendedInstaller installer  { get; set; }
+
+    private AvatarFormat dest_format;
+
+    public UnattendedAvatarFile (UnattendedInstaller installer, string src_path, AvatarFormat dest_format) {
+        this.installer = installer;
+        this.src_path = src_path;
+
+        this.dest_format = dest_format;
+    }
+
+    protected async File create (string hostname, Cancellable? cancellable)  throws GLib.Error {
+        dest_name = installer.username + dest_format.extension;
+        var destination_path = get_user_unattended (dest_name);
+
+        try {
+            var pixbuf = new Gdk.Pixbuf.from_file_at_scale (src_path, dest_format.width, dest_format.height, true);
+
+            if (!dest_format.alpha && pixbuf.get_has_alpha ())
+                pixbuf = remove_alpha (pixbuf);
+
+            debug ("Saving user avatar file at '%s'..", destination_path);
+            pixbuf.save (destination_path, dest_format.type);
+            debug ("Saved user avatar file at '%s'.", destination_path);
+        } catch (GLib.Error error) {
+            warning ("Failed to save user avatar: %s.", error.message);
+        }
+
+        return File.new_for_path (destination_path);
+    }
+}
+
+private class AvatarFormat {
+    public string type;
+    public string extension;
+    public bool alpha;
+    public int width;
+    public int height;
+
+    public AvatarFormat (string type = "png",
+                         string extension = "",
+                         bool   alpha = true,
+                         int    width = -1,
+                         int    height = -1) {
+        this.type = type;
+        this.extension = extension;
+        this.alpha = alpha;
+        this.width = width;
+        this.height = height;
     }
 }
