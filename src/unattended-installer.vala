@@ -50,7 +50,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     private static Regex password_regex;
     private static Regex timezone_regex;
     private static Regex lang_regex;
-    private static Fdo.Accounts accounts;
+    private static Fdo.Accounts? accounts;
 
     static construct {
         try {
@@ -58,17 +58,23 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             password_regex = new Regex ("BOXES_PASSWORD");
             timezone_regex = new Regex ("BOXES_TZ");
             lang_regex = new Regex ("BOXES_LANG");
-            try {
-                accounts = Bus.get_proxy_sync (BusType.SYSTEM, "org.freedesktop.Accounts", "/org/freedesktop/Accounts");
-            } catch (GLib.Error error) {
-                warning ("Failed to connect to D-Bus service '%s': %s", "org.freedesktop.Accounts", error.message);
-            }
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
         }
     }
 
+    construct {
+        /* We can't do this in the class constructor as the sync call can
+           cause deadlocks, see bug #676679. */
+        if (accounts == null) {
+            try {
+                accounts = Bus.get_proxy_sync (BusType.SYSTEM, "org.freedesktop.Accounts", "/org/freedesktop/Accounts");
+            } catch (GLib.Error error) {
+                warning ("Failed to connect to D-Bus service '%s': %s", "org.freedesktop.Accounts", error.message);
+            }
+        }
+    }
     public UnattendedInstaller.copy (InstallerMedia media,
                                      string         unattended_src_path,
                                      string         unattended_dest_name) throws GLib.Error {
