@@ -25,6 +25,10 @@ private class Boxes.CollectionView: Boxes.UI {
     }
     private Gtk.ListStore model;
 
+    public bool visible {
+        set { icon_view.visible = value; }
+    }
+
     public CollectionView (App app, Category category) {
         this.app = app;
         this.category = category;

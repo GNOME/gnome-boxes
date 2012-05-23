@@ -145,12 +145,27 @@ private class Boxes.App: Boxes.UI {
         return application.run ();
     }
 
+    public bool open (string name) {
+        ui_state = UIState.COLLECTION;
+        view.visible = false; // to avoid some glitches
+
+        // after "ready" all items should be listed
+        foreach (var item in collection.items.data) {
+            if (item.name != name)
+                continue;
+
+            return select_item (item);
+        }
+
+        return false;
+    }
+
     public void set_category (Category category) {
         topbar.label.set_text (category.name);
         view.category = category;
     }
 
-    public LibvirtMachine? add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+   public LibvirtMachine? add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         var machine = domain.get_data<LibvirtMachine> ("machine");
         if (machine != null)
             return machine; // Already added
@@ -431,6 +446,7 @@ private class Boxes.App: Boxes.UI {
                 machine.update_screenshot.begin ();
             }
             fullscreen = false;
+            view.visible = true;
             break;
 
         case UIState.PROPERTIES:
@@ -542,4 +558,3 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 }
-
