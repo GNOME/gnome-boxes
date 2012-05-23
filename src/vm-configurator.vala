@@ -180,11 +180,13 @@ private class Boxes.VMConfigurator {
         disk.set_driver_type ("qcow2");
         disk.set_source (target_path);
         disk.set_driver_cache (DomainDiskCacheType.NONE);
-        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_NAME, "virtio-block");
-        if (device != null) {
+
+        if (install_media.supports_virtio_disk) {
+            debug ("Using virtio controller for the main disk");
             disk.set_target_bus (DomainDiskBus.VIRTIO);
             disk.set_target_dev ("vda");
         } else {
+            debug ("Using IDE controller for the main disk");
             disk.set_target_bus (DomainDiskBus.IDE);
             disk.set_target_dev ("hda");
         }
