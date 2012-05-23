@@ -68,6 +68,7 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.LAST:
+                    skip_review_for_live = false;
                     create.begin ((source, result) => {
                         if (create.end (result))
                             app.ui_state = UIState.COLLECTION;
@@ -78,10 +79,8 @@ private class Boxes.Wizard: Boxes.UI {
                 }
             }
 
-            if (skip_page (value)) {
-                page = forwards ? value + 1 : value - 1;
+            if (skip_page (value))
                 return;
-            }
 
             _page = value;
             notebook.set_current_page (value);
@@ -135,7 +134,7 @@ private class Boxes.Wizard: Boxes.UI {
         });
 
         wizard_source.url_entry.activate.connect(() => {
-            page = page + 1;
+            page = WizardPage.PREPARATION;
         });
 
         setup_ui ();
@@ -221,11 +220,11 @@ private class Boxes.Wizard: Boxes.UI {
             install_media = media_manager.create_installer_media_for_path.end (result);
             fetch_os_logo (installer_image, install_media.os, 128);
             prep_progress.fraction = 1.0;
-            page = page + 1;
+            page = WizardPage.SETUP;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             app.notificationbar.display_error (error.message);
-            page = page - 1;
+            page = WizardPage.SOURCE;
         }
     }
 
@@ -236,7 +235,7 @@ private class Boxes.Wizard: Boxes.UI {
             install_media = this.wizard_source.install_media;
             prep_progress.fraction = 1.0;
             Idle.add (() => {
-                page = page + 1;
+                page = WizardPage.REVIEW;
 
                 return false;
             });
@@ -256,25 +255,14 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private bool setup () {
+        // there is no setup yet for direct source
         if (source != null)
             return true;
 
+        return_if_fail (install_media != null);
+
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
-
-        var skip_to = page;
-        if (install_media == null || install_media.live)
-            // No setup or review required for unknown and live media
-            skip_to = WizardPage.LAST;
-        else if (!(install_media is UnattendedInstaller))
-            // Nothing to do so just skip to the next page but let the current page change complete first
-            skip_to = WizardPage.REVIEW;
-
-        if (skip_to != page) {
-            page = skip_to;
-
-            return false;
-        }
 
         var installer = install_media as UnattendedInstaller;
         installer.populate_setup_vbox (setup_vbox);
@@ -361,17 +349,40 @@ private class Boxes.Wizard: Boxes.UI {
         steps.set (page, label);
     }
 
+    private bool skip_review_for_live;
+
     private bool skip_page (Boxes.WizardPage page) {
-        var backwards = page < this.page;
+        var forwards = page > this.page;
+        var skip_to = page;
 
         // remote-display case
-        if (this.source != null &&
+        if (source != null &&
             Boxes.WizardPage.SOURCE < page < Boxes.WizardPage.REVIEW)
-            return true;
+            skip_to = forwards ? page + 1 : page - 1;
 
-        if (backwards &&
+        // always skip preparation step backwards
+        if (!forwards &&
             page == Boxes.WizardPage.PREPARATION)
+            skip_to = page - 1;
+
+        if (install_media != null) {
+            // go to last if skip review for live
+            if (forwards &&
+                page == Boxes.WizardPage.SETUP &&
+                install_media.live && skip_review_for_live)
+                // No setup or review required for live media
+                skip_to = WizardPage.LAST;
+
+            // always skip SETUP page if not unattended installer
+            if (page == Boxes.WizardPage.SETUP &&
+                !(install_media is UnattendedInstaller))
+                skip_to = forwards ? page + 1 : page - 1;
+        }
+
+        if (skip_to != page) {
+            this.page = skip_to;
             return true;
+        }
 
         return false;
     }
@@ -518,8 +529,9 @@ private class Boxes.Wizard: Boxes.UI {
         notebook.show_all ();
     }
 
-    public void open_with_uri (string uri) {
+    public void open_with_uri (string uri, bool skip_review_for_live = true) {
         app.ui_state = UIState.WIZARD;
+        this.skip_review_for_live = skip_review_for_live;
 
         page = WizardPage.SOURCE;
         wizard_source.page = SourcePage.URL;
