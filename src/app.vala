@@ -127,8 +127,9 @@ private class Boxes.App: Boxes.UI {
                 view.remove_item (item);
             });
             setup_sources.begin ((obj, result) => {
-                var first_time = setup_sources.end (result);
-                ready (first_time);
+                setup_sources.end (result);
+                var no_items = collection.items.length == 0;
+                ready (no_items);
             });
 
             check_cpu_vt_capability ();
@@ -229,12 +230,9 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
-    private async bool setup_sources () {
-        var first_time = false;
+    private async void setup_sources () {
 
         if (!has_pkgconfig_sources ()) {
-            first_time = true;
-
             var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
             var dst = File.new_for_path (get_pkgconfig_source ("QEMU Session"));
             try {
@@ -253,13 +251,10 @@ private class Boxes.App: Boxes.UI {
         if (default_connection == null) {
             printerr ("error: missing or failing default libvirt connection");
             application.release (); // will end application
-            return false;
         }
 
         var dir = File.new_for_path (get_pkgconfig_source ());
-        get_sources_from_dir.begin (dir);
-
-        return first_time;
+        yield get_sources_from_dir (dir);
     }
 
     private async void get_sources_from_dir (File dir) {
