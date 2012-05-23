@@ -3,13 +3,14 @@ using Config;
 using Posix;
 
 private static bool version;
+private static bool fullscreen;
 private static bool checks;
 private static string[] uris;
 
 private const OptionEntry[] options = {
     { "version", 0, 0, OptionArg.NONE, ref version, N_("Display version number"), null },
-    // FIXME: make it translatable after string freeze
-    { "checks", 0, 0, OptionArg.NONE, ref checks, "Check virtualization capabilities", null },
+    { "full-screen", 'f', 0, OptionArg.NONE, ref fullscreen, N_("Open in full screen"), null },
+    { "checks", 0, 0, OptionArg.NONE, ref checks, N_("Check virtualization capabilities"), null },
     // A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
     { "", 0, 0, OptionArg.STRING_ARRAY, ref uris, N_("URI to display, broker or installer media"), null },
     { null }
@@ -103,6 +104,8 @@ public int main (string[] args) {
         } else if (first_time) {
             app.ui_state = Boxes.UIState.WIZARD;
         }
+
+        app.fullscreen = fullscreen;
     });
 
     return app.run ();
