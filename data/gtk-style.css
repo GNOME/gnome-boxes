@@ -165,6 +165,14 @@ BoxesMenuBox .menuitem:prelight {
     background-color: shade (@boxes_bg2_color, 1.1);
 }
 
+/* Ensure the viewport is transparent so the background don't
+   show through the rounded corners */
+.boxes-menu GtkViewport {
+    background-image: none;
+    background-color: transparent;
+    border-style: none;
+}
+
 .boxes-menu-row {
     -GtkWidget-focus-line-width: 0;
     border-style: ridge none none none;
@@ -180,6 +188,10 @@ BoxesMenuBox .menuitem:prelight {
 .boxes-menu-row:nth-child(first) {
     border-radius: 15px 15px 0 0;
     border-style: none;
+}
+
+.boxes-menu-scrolled .boxes-menu-row:nth-child(first) {
+    border-radius: 0;
 }
 
 .boxes-menu > .boxes-menu-row:nth-child(last) {

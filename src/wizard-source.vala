@@ -9,6 +9,46 @@ private enum Boxes.SourcePage {
 
 public delegate void ClickedFunc ();
 
+/* Subclass of ScrolledWindow that shows at allocates enough
+   space to not scroll for at most N children. */
+private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
+    private int num_visible;
+    public WizardScrolled (int num_visible) {
+        this.num_visible = num_visible;
+        this.get_style_context ().add_class ("boxes-menu-scrolled");
+        this.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
+        get_vscrollbar ().show.connect (() => {
+            this.get_style_context ().add_class ("boxes-menu-scrolled");
+            this.reset_style ();
+        });
+        get_vscrollbar ().hide.connect ( () => {
+            this.get_style_context ().remove_class ("boxes-menu-scrolled");
+            this.reset_style ();
+        });
+    }
+
+    public override void get_preferred_height (out int minimum_height, out int natural_height) {
+        base.get_preferred_height (out minimum_height, out natural_height);
+        var viewport = get_child () as Gtk.Viewport;
+        var box = viewport.get_child () as Gtk.Box;
+
+        int height = 0;
+        int i = 0;
+        foreach (var w in box.get_children ()) {
+            if (!w.get_visible ())
+                continue;
+            int child_height;
+            w.get_preferred_height (null, out child_height);
+            height += child_height;
+            i++;
+            if (i == num_visible)
+                break;
+        }
+        minimum_height = int.max (minimum_height, height);
+        natural_height = int.max (natural_height, height);
+    }
+}
+
 private class Boxes.WizardSource: GLib.Object {
     public Gtk.Widget widget { get { return notebook; } }
     private SourcePage _page;
@@ -38,6 +78,7 @@ private class Boxes.WizardSource: GLib.Object {
 
     private Gtk.Box main_vbox;
     private Gtk.Box media_vbox;
+    private Gtk.ScrolledWindow media_scrolled;
     private Gtk.Notebook notebook;
     private Gtk.Label url_label;
     private Gtk.Image url_image;
@@ -62,8 +103,12 @@ private class Boxes.WizardSource: GLib.Object {
         main_vbox.grab_focus ();
         notebook.append_page (main_vbox, null);
 
+        media_scrolled = new WizardScrolled (6);
+
         media_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        main_vbox.add (media_vbox);
+        media_scrolled.set_no_show_all (true);
+        media_scrolled.add_with_viewport (media_vbox);
+        main_vbox.add (media_scrolled);
 
         var hbox = add_entry (main_vbox, () => { page = SourcePage.URL; });
         var label = new Gtk.Label (_("Enter URL"));
@@ -155,6 +200,10 @@ private class Boxes.WizardSource: GLib.Object {
             if (nouveau)
                 add_media_entry (media);
         }
+
+        // In case we removed everything
+        if (media_vbox.get_children ().length () == 0)
+            media_scrolled.hide ();
     }
 
     private void add_media_entry (InstallerMedia media) {
@@ -193,6 +242,7 @@ private class Boxes.WizardSource: GLib.Object {
         }
 
         media_vbox.show_all ();
+        media_scrolled.show ();
     }
 
     private Gtk.Box add_entry (Gtk.Box            box,
