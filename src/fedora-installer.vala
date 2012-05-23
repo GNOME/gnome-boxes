@@ -30,7 +30,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     }
 
     public FedoraInstaller.copy (InstallerMedia media) throws GLib.Error {
-        var source_path = get_unattended_dir ("fedora.ks");
+        var source_path = get_unattended ("fedora.ks");
 
         base.copy (media, source_path, "ks.cfg");
         password_mandatory = true;
@@ -123,7 +123,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
             return;
         }
 
-        mount_point = get_user_unattended_dir (os.short_id);
+        mount_point = get_user_unattended (os.short_id);
         var dir = File.new_for_path (mount_point);
         try {
             dir.make_directory (null);
@@ -147,9 +147,9 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         if (!mounted)
             return;
 
-        kernel_path = get_user_unattended_dir (os.short_id + "-kernel");
+        kernel_path = get_user_unattended (os.short_id + "-kernel");
         kernel_file = yield copy_file (kernel_file, kernel_path, cancellable);
-        initrd_path = get_user_unattended_dir (os.short_id + "-initrd");
+        initrd_path = get_user_unattended (os.short_id + "-initrd");
         initrd_file = yield copy_file (initrd_file, initrd_path, cancellable);
     }
 

@@ -259,7 +259,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
         var disk_file = File.new_for_path (disk_path);
-        var template_path = get_unattended_dir ("disk.img");
+        var template_path = get_unattended ("disk.img");
         var template_file = File.new_for_path (template_path);
 
         debug ("Creating disk image for unattended installation at '%s'..", disk_path);
@@ -332,7 +332,7 @@ private class Boxes.UnattendedFile {
 
     private async File create (Cancellable? cancellable)  throws GLib.Error {
         var source = File.new_for_path (src_path);
-        var destination_path = get_user_unattended_dir (dest_name);
+        var destination_path = get_user_unattended (dest_name);
         var destination = File.new_for_path (destination_path);
 
         debug ("Creating unattended file at '%s'..", destination.get_path ());

@@ -26,7 +26,7 @@ namespace Boxes {
         return Path.build_filename (get_pkgdata (), "pixmaps", file_name);
     }
 
-    public string get_unattended_dir (string? file_name = null) {
+    public string get_unattended (string? file_name = null) {
         var dir = Path.build_filename (get_pkgdata (), "unattended");
 
         return Path.build_filename (dir, file_name);
@@ -36,7 +36,7 @@ namespace Boxes {
         return Path.build_filename (get_pkgdata (), "sources", file_name);
     }
 
-    public string get_user_unattended_dir (string? file_name = null) {
+    public string get_user_unattended (string? file_name = null) {
         var dir = Path.build_filename (get_user_pkgconfig (), "unattended");
 
         ensure_directory (dir);

@@ -32,7 +32,7 @@ private class Boxes.Win7Installer: WindowsInstaller {
     }
 
     public Win7Installer.copy (InstallerMedia media) throws GLib.Error {
-        var unattended_source = get_unattended_dir (media.os.short_id + ".xml");
+        var unattended_source = get_unattended (media.os.short_id + ".xml");
         base.copy (media, unattended_source, "Autounattend.xml");
 
         newline_type = DataStreamNewlineType.CR_LF;
