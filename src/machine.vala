@@ -128,7 +128,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public virtual string get_screenshot_filename (string ext = "ppm") {
-        return get_pkgcache (get_screenshot_prefix () + "-screenshot." + ext);
+        return get_user_pkgcache (get_screenshot_prefix () + "-screenshot." + ext);
     }
 
     public virtual async bool take_screenshot () throws GLib.Error {

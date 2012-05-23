@@ -7,7 +7,7 @@ private interface Boxes.IConfig {
     protected abstract bool has_file { get; set; }
 
     public void save () {
-        keyfile_save (keyfile, get_pkgconfig_source (filename), has_file);
+        keyfile_save (keyfile, get_user_pkgconfig_source (filename), has_file);
         has_file = true;
     }
 
@@ -27,7 +27,7 @@ private interface Boxes.IConfig {
         if (!has_file)
             throw new Boxes.Error.INVALID ("has_file is false");
 
-        keyfile.load_from_file (get_pkgconfig_source (filename),
+        keyfile.load_from_file (get_user_pkgconfig_source (filename),
                                 KeyFileFlags.KEEP_COMMENTS | KeyFileFlags.KEEP_TRANSLATIONS);
     }
 
@@ -108,7 +108,7 @@ private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
         if (!has_file)
             return;
 
-        FileUtils.unlink (get_pkgconfig_source (filename));
+        FileUtils.unlink (get_user_pkgconfig_source (filename));
         has_file = false;
     }
 }

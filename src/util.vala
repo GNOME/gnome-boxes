@@ -34,19 +34,19 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
+    public string get_pkgdata_source (string? file_name = null) {
+        return Path.build_filename (get_pkgdata (), "sources", file_name);
+    }
+
     public string get_user_unattended_dir (string? file_name = null) {
-        var dir = Path.build_filename (get_pkgconfig (), "unattended");
+        var dir = Path.build_filename (get_user_pkgconfig (), "unattended");
 
         ensure_directory (dir);
 
         return Path.build_filename (dir, file_name);
     }
 
-    public string get_pkgdata_source (string? file_name = null) {
-        return Path.build_filename (get_pkgdata (), "sources", file_name);
-    }
-
-    public string get_pkgcache (string? file_name = null) {
+    public string get_user_pkgcache (string? file_name = null) {
         var dir = Path.build_filename (Environment.get_user_cache_dir (), Config.PACKAGE_TARNAME);
 
         ensure_directory (dir);
@@ -54,7 +54,7 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
-    public string get_pkgconfig (string? file_name = null) {
+    public string get_user_pkgconfig (string? file_name = null) {
         var dir = Path.build_filename (Environment.get_user_config_dir (), Config.PACKAGE_TARNAME);
 
         ensure_directory (dir);
@@ -70,12 +70,12 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
-    public bool has_pkgconfig_sources () {
-        return FileUtils.test (Path.build_filename (get_pkgconfig (), "sources"), FileTest.IS_DIR);
+    public bool has_user_pkgconfig_sources () {
+        return FileUtils.test (Path.build_filename (get_user_pkgconfig (), "sources"), FileTest.IS_DIR);
     }
 
-    public string get_pkgconfig_source (string? file_name = null) {
-        var dir = Path.build_filename (get_pkgconfig (), "sources");
+    public string get_user_pkgconfig_source (string? file_name = null) {
+        var dir = Path.build_filename (get_user_pkgconfig (), "sources");
 
         ensure_directory (dir);
 

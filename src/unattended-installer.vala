@@ -86,7 +86,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         mount_point = media.mount_point;
         resources = media.resources;
 
-        disk_path = get_pkgcache (os.short_id + "-unattended.img");
+        disk_path = get_user_pkgcache (os.short_id + "-unattended.img");
         newline_type = DataStreamNewlineType.LF;
 
         unattended_files = new GLib.List<UnattendedFile> ();

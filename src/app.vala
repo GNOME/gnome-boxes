@@ -247,9 +247,9 @@ private class Boxes.App: Boxes.UI {
 
     private async void setup_sources () {
 
-        if (!has_pkgconfig_sources ()) {
+        if (!has_user_pkgconfig_sources ()) {
             var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
-            var dst = File.new_for_path (get_pkgconfig_source ("QEMU Session"));
+            var dst = File.new_for_path (get_user_pkgconfig_source ("QEMU Session"));
             try {
                 yield src.copy_async (dst, FileCopyFlags.NONE);
             } catch (GLib.Error error) {
@@ -268,7 +268,7 @@ private class Boxes.App: Boxes.UI {
             application.release (); // will end application
         }
 
-        var dir = File.new_for_path (get_pkgconfig_source ());
+        var dir = File.new_for_path (get_user_pkgconfig_source ());
         yield get_sources_from_dir (dir);
     }
 
