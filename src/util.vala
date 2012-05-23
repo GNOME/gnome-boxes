@@ -29,8 +29,6 @@ namespace Boxes {
     public string get_unattended_dir (string? file_name = null) {
         var dir = Path.build_filename (get_pkgdata (), "unattended");
 
-        ensure_directory (dir);
-
         return Path.build_filename (dir, file_name);
     }
 
