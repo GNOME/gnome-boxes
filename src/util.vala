@@ -393,8 +393,7 @@ namespace Boxes {
     }
 
     public string yes_no (bool value) {
-        // FIXME: make it translatable after string freeze
-        return value ? "yes" : "no";
+        return value ? N_("yes") : N_("no");
     }
 
     public async bool check_cpu_vt_capability () {

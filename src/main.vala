@@ -57,9 +57,9 @@ private async void run_checks () {
     var cpu = yield Boxes.check_cpu_vt_capability ();
     var kvm = yield Boxes.check_module_kvm_loaded ();
 
-    // FIXME: make it translatable after string freeze, and add proper UI & docs
-    GLib.stdout.printf ("The CPU is capable of virtualization: %s\n".printf (Boxes.yes_no (cpu)));
-    GLib.stdout.printf ("The KVM module is loaded: %s\n".printf (Boxes.yes_no (kvm)));
+    // FIXME: add proper UI & docs
+    GLib.stdout.printf (N_("The CPU is capable of virtualization: %s\n").printf (Boxes.yes_no (cpu)));
+    GLib.stdout.printf (N_("The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
 }
 
 public int main (string[] args) {
