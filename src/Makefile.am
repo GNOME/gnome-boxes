@@ -44,7 +44,6 @@ gnome_boxes_SOURCES =				\
 	installer-media.vala 			\
 	libvirt-machine.vala			\
 	machine.vala				\
-	menu-box.vala				\
 	media-manager.vala 			\
 	mini-graph.vala				\
 	main.vala				\
