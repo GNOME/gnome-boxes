@@ -101,7 +101,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         newline_type = DataStreamNewlineType.LF;
 
         unattended_files = new GLib.List<UnattendedFile> ();
-        unattended_files.append (new UnattendedTextFile (this, unattended_src_path, unattended_dest_name));
+        add_unattended_file (new UnattendedTextFile (this, unattended_src_path, unattended_dest_name));
 
         var time = TimeVal ();
         var date = new DateTime.from_timeval_local (time);
@@ -274,8 +274,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
 
-    protected void add_unattended_text_file (string unattended_src_path, string unattended_dest_name) {
-        unattended_files.append (new UnattendedTextFile (this, unattended_src_path, unattended_dest_name));
+    protected void add_unattended_file (UnattendedFile file) {
+        unattended_files.append (file);
     }
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
@@ -320,7 +320,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var file = File.new_for_path (avatar_path);
         if (file.query_exists ()) {
             avatar.file = avatar_path;
-            unattended_files.append (new UnattendedAvatarFile (this, avatar_path, avatar_format));
+            add_unattended_file (new UnattendedAvatarFile (this, avatar_path, avatar_format));
         }
     }
 }

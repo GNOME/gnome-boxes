@@ -28,12 +28,11 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
 
         var name = media.os.short_id + ".cmd";
         unattended_source = get_unattended (name);
-        add_unattended_text_file (unattended_source, name);
+        add_unattended_file (new UnattendedTextFile (this, unattended_source, name));
 
         name = media.os.short_id + ".reg";
         unattended_source = get_unattended (name);
-        add_unattended_text_file (unattended_source, name);
-
+        add_unattended_file (new UnattendedTextFile (this, unattended_source, name));
         newline_type = DataStreamNewlineType.CR_LF;
     }
 
