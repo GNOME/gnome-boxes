@@ -44,7 +44,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
         os.set_kernel (kernel_path);
         os.set_ramdisk (initrd_path);
-        os.set_cmdline ("ks=hd:sda:/" + unattended_dest_name);
+        os.set_cmdline ("ks=hd:sda:/ks.cfg");
     }
 
     public override void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {

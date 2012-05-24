@@ -37,8 +37,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public string disk_path;
 
     protected GLib.List<UnattendedFile> unattended_files;
-    protected string unattended_src_path { get { return unattended_files.data.src_path; } }
-    protected string unattended_dest_name { get { return unattended_files.data.dest_name; } }
 
     private bool created_disk;
 
@@ -308,27 +306,27 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             return;
 
         var username = Environment.get_user_name ();
-        var avatar_file = new UnattendedAvatarFile (this, "/var/lib/AccountsService/icons/" + username, avatar_format);
+        string avatar_path = "/var/lib/AccountsService/icons/" + username;
 
         try {
             var path = yield accounts.FindUserByName (Environment.get_user_name ());
             Fdo.AccountsUser user = yield Bus.get_proxy (BusType.SYSTEM, "org.freedesktop.Accounts", path);
-            avatar_file.src_path = user.IconFile;
+            avatar_path = user.IconFile;
         } catch (GLib.IOError error) {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 
-        var file = File.new_for_path (avatar_file.src_path);
+        var file = File.new_for_path (avatar_path);
         if (file.query_exists ()) {
-            avatar.file = avatar_file.src_path;
-            unattended_files.append (avatar_file);
+            avatar.file = avatar_path;
+            unattended_files.append (new UnattendedAvatarFile (this, avatar_path, avatar_format));
         }
     }
 }
 
 private interface Boxes.UnattendedFile : GLib.Object {
-    public abstract string src_path { get; set; }
-    public abstract string dest_name { get; set; }
+    protected abstract string src_path { get; set; }
+    protected abstract string dest_name { get; set; }
 
     protected abstract UnattendedInstaller installer  { get; set; }
 
@@ -352,8 +350,8 @@ private interface Boxes.UnattendedFile : GLib.Object {
 }
 
 private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
-    public string src_path { get; set; }
-    public string dest_name { get; set; }
+    protected string src_path { get; set; }
+    protected string dest_name { get; set; }
 
     protected UnattendedInstaller installer  { get; set; }
 
@@ -393,8 +391,8 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
 }
 
 private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
-    public string src_path { get; set; }
-    public string dest_name { get; set; }
+    protected string src_path { get; set; }
+    protected string dest_name { get; set; }
 
     protected UnattendedInstaller installer  { get; set; }
 
