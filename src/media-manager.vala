@@ -108,18 +108,18 @@ private class Boxes.MediaManager : Object {
 
         switch (media.os.distro) {
         case "fedora":
-            return new FedoraInstaller.copy (media);
+            return new FedoraInstaller.from_media (media);
 
         case "win":
             switch (media.os.short_id) {
             case "win7":
             case "win2k8":
-                return new Win7Installer.copy (media);
+                return new Win7Installer.from_media (media);
 
             case "winxp":
             case "win2k":
             case "win2k3":
-                return new WinXPInstaller.copy (media);
+                return new WinXPInstaller.from_media (media);
 
             default:
                 return media;

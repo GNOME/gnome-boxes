@@ -84,10 +84,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             }
         }
     }
-    public UnattendedInstaller.copy (InstallerMedia media,
-                                     string         unattended_src_path,
-                                     string         unattended_dest_name,
-                                     AvatarFormat?  avatar_format = null) throws GLib.Error {
+
+    public UnattendedInstaller.from_media (InstallerMedia media,
+                                           string         unattended_src_path,
+                                           string         unattended_dest_name,
+                                           AvatarFormat?  avatar_format = null) throws GLib.Error {
         os = media.os;
         os_media = media.os_media;
         label = media.label;

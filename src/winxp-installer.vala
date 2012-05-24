@@ -21,10 +21,10 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         }
     }
 
-    public WinXPInstaller.copy (InstallerMedia media) throws GLib.Error {
+    public WinXPInstaller.from_media (InstallerMedia media) throws GLib.Error {
         var unattended_source = get_unattended (media.os.short_id + ".sif");
         var avatar_format = new AvatarFormat ("bmp", ".bmp", false, 48, 48);
-        base.copy (media, unattended_source, "Winnt.sif", avatar_format);
+        base.from_media (media, unattended_source, "Winnt.sif", avatar_format);
 
         var name = media.os.short_id + ".cmd";
         unattended_source = get_unattended (name);
