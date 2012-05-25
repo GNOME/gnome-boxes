@@ -86,6 +86,7 @@ gnome_boxes_SOURCES =				\
 	fedora-installer.vala 			\
 	i-properties-provider.vala		\
 	installer-media.vala 			\
+	iso-extractor.vala			\
 	libvirt-machine.vala			\
 	machine.vala				\
 	main.vala				\
