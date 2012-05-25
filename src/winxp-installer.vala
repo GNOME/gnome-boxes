@@ -25,6 +25,14 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         }
     }
 
+    private bool has_viostor_drivers;
+
+    public override bool supports_virtio_disk {
+        get {
+            return has_viostor_drivers;
+        }
+    }
+
     static construct {
         try {
             key_regex = new Regex ("BOXES_PRODUCT_KEY");
@@ -52,28 +60,41 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
     }
 
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
+        bool have_viostor = false;
+        has_viostor_drivers = false;
+
         yield base.prepare_for_installation (vm_name, cancellable);
 
         if (extra_iso == null)
             return;
 
-        ISOExtractor extractor = new ISOExtractor (extra_iso);
+        try {
+            ISOExtractor extractor = new ISOExtractor (extra_iso);
 
-        yield extractor.mount_media (cancellable);
+            yield extractor.mount_media (cancellable);
 
-        string driver_path = (os_media.architecture == "x86_64")?"preinst/winxp/amd64":"preinst/winxp/x86";
+            string driver_path = (os_media.architecture == "x86_64")?"preinst/winxp/amd64":"preinst/winxp/x86";
 
-        GLib.FileEnumerator enumerator = yield extractor.enumerate_children (driver_path, cancellable);
-        GLib.List<FileInfo> infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
-        while (infos != null) {
-            foreach (var info in infos) {
-                string relative_path = Path.build_filename (driver_path, info.get_name ());
-                string full_path = extractor.get_absolute_path (relative_path);
-                var unattended_file = new UnattendedRawFile (this, full_path, info.get_name ());
-                debug ("Copying %s from extra ISO to unattended floppy", relative_path);
-                yield unattended_file.copy (cancellable);
+            GLib.FileEnumerator enumerator = yield extractor.enumerate_children (driver_path, cancellable);
+            GLib.List<FileInfo> infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
+            while (infos != null) {
+                foreach (var info in infos) {
+                    string relative_path = Path.build_filename (driver_path, info.get_name ());
+                    string full_path = extractor.get_absolute_path (relative_path);
+                    var unattended_file = new UnattendedRawFile (this, full_path, info.get_name ());
+                    debug ("Copying %s from extra ISO to unattended floppy", relative_path);
+                    yield unattended_file.copy (cancellable);
+                    if (info.get_name () == "viostor.sys")
+                        have_viostor = true;
+                }
+                infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
             }
-            infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
+
+            // If we arrived there with no exception, then everything is setup for
+            // the Windows installer to be able to use a virtio disk controller
+            has_viostor_drivers = have_viostor;
+        } catch (GLib.Error e) {
+            has_viostor_drivers = false;
         }
     }
 

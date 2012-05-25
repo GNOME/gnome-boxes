@@ -13,6 +13,12 @@ private class Boxes.Win7Installer: WindowsInstaller {
         }
     }
 
+    public override bool supports_virtio_disk {
+        get {
+            return (extra_iso != null);
+        }
+    }
+
     static construct {
         try {
             arch_regex = new Regex ("BOXES_CPU");
