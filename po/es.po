@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-08 14:14+0000\n"
-"PO-Revision-Date: 2012-05-09 12:46+0200\n"
+"POT-Creation-Date: 2012-05-25 13:13+0000\n"
+"PO-Revision-Date: 2012-05-25 16:13+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:69
 msgid "Boxes"
 msgstr "Cajas"
 
@@ -109,19 +109,19 @@ msgstr "Acerca de Cajas"
 msgid "Quit"
 msgstr "Salir"
 
-#: ../src/app.vala:496
+#: ../src/app.vala:507
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: ../src/app.vala:497
+#: ../src/app.vala:508
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: ../src/fedora-installer.vala:54
+#: ../src/fedora-installer.vala:60
 msgid ""
 "Internet access required for express installation of Fedora 16 and older"
 msgstr ""
@@ -135,56 +135,76 @@ msgstr ""
 msgid "%s (Live)"
 msgstr "%s (Live)"
 
-#: ../src/libvirt-machine.vala:266
+#: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr "Virtualizador"
 
-#: ../src/libvirt-machine.vala:267 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:309
+#: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
+#: ../src/wizard.vala:297
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:276 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:296 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/libvirt-machine.vala:426
+#: ../src/libvirt-machine.vala:442
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:467
+#: ../src/libvirt-machine.vala:483
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Los cambios requieren que se reinicie «%s». ¿Intentar reiniciar?"
 
-#: ../src/libvirt-machine.vala:484
+#: ../src/libvirt-machine.vala:500
 msgid "Storage"
 msgstr "Almacenamiento"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:205
-#: ../src/wizard.vala:336
+#: ../src/machine.vala:304 ../src/unattended-installer.vala:214
+#: ../src/wizard.vala:323
 msgid "Password"
 msgstr "Contraseña"
 
-#: ../src/main.vala:10
+#: ../src/main.vala:11
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
 
+#: ../src/main.vala:12
+#| msgid "Fullscreen"
+msgid "Open in full screen"
+msgstr "Abrir en pantalla completa"
+
+#: ../src/main.vala:13
+msgid "Check virtualization capabilities"
+msgstr "Comprobar la capacidad de virtualización"
+
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:14
+#: ../src/main.vala:15
 msgid "URI to display, broker or installer media"
 msgstr "URI que mostrar, agente o medio de instalación"
 
-#: ../src/main.vala:19
+#: ../src/main.vala:20
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
+
+#. FIXME: add proper UI & docs
+#: ../src/main.vala:61
+#, c-format
+msgid "The CPU is capable of virtualization: %s\n"
+msgstr "La CPU puede virtualizar: %s\n"
+
+#: ../src/main.vala:62
+#, c-format
+msgid "The KVM module is loaded: %s\n"
+msgstr "El módulo KVM está cargado: %s\n"
 
 #: ../src/properties.vala:39
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:329
+#: ../src/properties.vala:43 ../src/wizard.vala:317
 msgid "System"
 msgstr "Sistema"
 
@@ -208,7 +228,7 @@ msgstr "E/S:"
 msgid "Net:"
 msgstr "Red:"
 
-#: ../src/remote-machine.vala:61
+#: ../src/remote-machine.vala:64
 msgid "Name"
 msgstr "Nombre"
 
@@ -232,15 +252,15 @@ msgstr "Compartidas con usted"
 msgid "Create"
 msgstr "Crear"
 
-#: ../src/spice-display.vala:133
+#: ../src/spice-display.vala:142
 msgid "Share clipboard"
 msgstr "Compartir portapapeles"
 
-#: ../src/spice-display.vala:141
+#: ../src/spice-display.vala:150
 msgid "Resize guest"
 msgstr "Redimensionar invitado"
 
-#: ../src/spice-display.vala:152
+#: ../src/spice-display.vala:161
 msgid "USB redirection"
 msgstr "Redirección USB"
 
@@ -255,7 +275,7 @@ msgstr[1] "%d seleccionadas"
 msgid "Click on items to select them"
 msgstr "Pulse sobre los elementos para seleccionarlos"
 
-#: ../src/unattended-installer.vala:26
+#: ../src/unattended-installer.vala:25
 msgid "no password"
 msgstr "sin contraseña"
 
@@ -268,7 +288,7 @@ msgstr "No se ha proporcionado ningún nombre de usuario"
 msgid "Password required for express installation of %s"
 msgstr "Se necesita una contraseñas para la instalación rápida de %s"
 
-#: ../src/unattended-installer.vala:164
+#: ../src/unattended-installer.vala:173
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -277,15 +297,15 @@ msgstr ""
 "la configuración óptima."
 
 #. First row
-#: ../src/unattended-installer.vala:176
+#: ../src/unattended-installer.vala:185
 msgid "Express Install"
 msgstr "Instalación rápida"
 
-#: ../src/unattended-installer.vala:194 ../src/wizard.vala:335
+#: ../src/unattended-installer.vala:203 ../src/wizard.vala:322
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: ../src/unattended-installer.vala:215
+#: ../src/unattended-installer.vala:224
 msgid "_Add Password"
 msgstr "_Añadir contraseña"
 
@@ -294,23 +314,23 @@ msgid "Read-only"
 msgstr "Sólo lectura"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:38
+#: ../src/winxp-installer.vala:46
 msgid "Product Key"
 msgstr "Clave del producto"
 
-#: ../src/winxp-installer.vala:45
+#: ../src/winxp-installer.vala:53
 msgid "_Add Product Key"
 msgstr "_Añadir la clave del producto"
 
-#: ../src/wizard-source.vala:64 ../src/wizard-source.vala:88
+#: ../src/wizard-source.vala:114 ../src/wizard-source.vala:136
 msgid "Enter URL"
 msgstr "Introducir el URL"
 
-#: ../src/wizard-source.vala:74
+#: ../src/wizard-source.vala:121
 msgid "Select a file"
 msgstr "Seleccionar un archivo"
 
-#: ../src/wizard-source.vala:105
+#: ../src/wizard-source.vala:153
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -320,104 +340,104 @@ msgstr ""
 "\n"
 "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
 
-#: ../src/wizard-source.vala:174
+#: ../src/wizard-source.vala:231
 msgid "32-bit x86 system"
 msgstr "sistema x86 de 32 bits"
 
-#: ../src/wizard-source.vala:175
+#: ../src/wizard-source.vala:232
 msgid "64-bit x86 system"
 msgstr "sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:183
+#: ../src/wizard-source.vala:241
 #, c-format
 msgid " from %s"
 msgstr " de %s"
 
-#: ../src/wizard-source.vala:223
+#: ../src/wizard-source.vala:291
 msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
-#: ../src/wizard.vala:75
+#: ../src/wizard.vala:76
 msgid "Box creation failed!"
 msgstr "Falló la creación de la caja"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:507
+#: ../src/wizard.vala:97 ../src/wizard.vala:518
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
-#: ../src/wizard.vala:98
+#: ../src/wizard.vala:97
 msgid "C_reate"
 msgstr "C_rear"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard.vala:118
 msgid "Please enter desktop or collection URI"
 msgstr "Introduzca el escritorio o la colección de URI"
 
-#: ../src/wizard.vala:125
+#: ../src/wizard.vala:124
 msgid "Will add boxes for all systems available from this account."
 msgstr "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
 
-#: ../src/wizard.vala:128
+#: ../src/wizard.vala:127
 msgid "Will add a single box."
 msgstr "Se añadirá una sola caja."
 
-#: ../src/wizard.vala:134
+#: ../src/wizard.vala:133
 msgid "Desktop Access"
 msgstr "Acceso desde el escritorio"
 
-#: ../src/wizard.vala:198
+#: ../src/wizard.vala:197
 msgid "Invalid URI"
 msgstr "URI no válida"
 
-#: ../src/wizard.vala:209
+#: ../src/wizard.vala:208
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo «%s» no soportado"
 
-#: ../src/wizard.vala:299
+#: ../src/wizard.vala:287
 msgid "Will create a new box with the following properties:"
 msgstr "Se creará una caja nueva con las siguientes propiedades:"
 
-#: ../src/wizard.vala:304
+#: ../src/wizard.vala:292
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:307
+#: ../src/wizard.vala:295
 msgid "Host"
 msgstr "Servidor"
 
-#: ../src/wizard.vala:315 ../src/wizard.vala:321
+#: ../src/wizard.vala:303 ../src/wizard.vala:309
 msgid "Port"
 msgstr "Puerto"
 
-#: ../src/wizard.vala:316
+#: ../src/wizard.vala:304
 msgid "TLS Port"
 msgstr "Puerto TLS"
 
-#: ../src/wizard.vala:326
+#: ../src/wizard.vala:314
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Se añadirán cajas para todos los sistemas disponibles desde esta cuenta:"
 
-#: ../src/wizard.vala:340
+#: ../src/wizard.vala:328
 msgid "Memory"
 msgstr "Memoria"
 
-#: ../src/wizard.vala:342
+#: ../src/wizard.vala:330
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:342
+#: ../src/wizard.vala:330
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:387
+#: ../src/wizard.vala:398
 msgid "Introduction"
 msgstr "Introducción"
 
-#: ../src/wizard.vala:391
+#: ../src/wizard.vala:402
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -431,17 +451,17 @@ msgstr ""
 "Puede conectar con una máquina existente<b><i>mediante la red</i></b> o "
 "crear una <b><i>máquina virtual</i></b> que se ejecute localmente."
 
-#: ../src/wizard.vala:403
+#: ../src/wizard.vala:414
 msgid "Source Selection"
 msgstr "Selección de la fuente"
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:415
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Inserte el medio de instalación del sistema operativo o seleccione una "
 "fuente a continuación"
 
-#: ../src/wizard.vala:412
+#: ../src/wizard.vala:423
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -451,26 +471,26 @@ msgstr ""
 "identificación de productos de software que haya obtenido y pertenecen a sus "
 "respectivos propietarios."
 
-#: ../src/wizard.vala:424
+#: ../src/wizard.vala:435
 msgid "Preparation"
 msgstr "Preparación"
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:436
 msgid "Preparing to create new box"
 msgstr "Preparándose para crear la caja nueva"
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:453
 msgid "Analyzing installer media."
 msgstr "Analizando el instalador del medio."
 
-#: ../src/wizard.vala:453
+#: ../src/wizard.vala:464
 msgid "Setup"
 msgstr "Configuración"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:471
 msgid "Review"
 msgstr "Revisar"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:491
 msgid "Create a Box"
 msgstr "Crear una caja"
