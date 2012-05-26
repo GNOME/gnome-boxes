@@ -7,14 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-21 18:11+0000\n"
-"PO-Revision-Date: 2012-03-21 22:18+0300\n"
+"POT-Creation-Date: 2012-05-14 20:49+0000\n"
+"PO-Revision-Date: 2012-05-26 23:51+0300\n"
 "Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-Language: Russian\n"
+"X-Poedit-Country: RUSSIAN FEDERATION\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
 #: ../src/main.vala:68
@@ -107,12 +109,12 @@ msgstr "О программе"
 msgid "Quit"
 msgstr "Закончить"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:496
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Система «%s» была удалена"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:497
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -120,38 +122,42 @@ msgstr[0] "%u система была удалена"
 msgstr[1] "%u системы было удалено"
 msgstr[2] "%u систем было удалено"
 
-#: ../src/libvirt-machine.vala:243
+#: ../src/fedora-installer.vala:60
+msgid "Internet access required for express installation of Fedora 16 and older"
+msgstr "Для быстрой установки Fedora 16 или более новой версии требуется доступ в Интернет"
+
+#: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr "Виртуализатор"
 
-#: ../src/libvirt-machine.vala:244
-#: ../src/remote-machine.vala:64
-#: ../src/wizard.vala:310
+#: ../src/libvirt-machine.vala:287
+#: ../src/remote-machine.vala:67
+#: ../src/wizard.vala:309
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:253
-#: ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:296
+#: ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Протокол"
 
-#: ../src/libvirt-machine.vala:400
+#: ../src/libvirt-machine.vala:442
 msgid "RAM"
 msgstr "ОЗУ"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:483
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Изменения требуют перезапуска «%s». Перезапустить?"
 
-#: ../src/libvirt-machine.vala:458
+#: ../src/libvirt-machine.vala:500
 msgid "Storage"
 msgstr "Хранилище"
 
 #. 3rd row
-#: ../src/machine.vala:286
-#: ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:337
+#: ../src/machine.vala:304
+#: ../src/unattended-installer.vala:198
+#: ../src/wizard.vala:336
 msgid "Password"
 msgstr "Пароль"
 
@@ -173,7 +179,7 @@ msgid "Login"
 msgstr "Вход в систему"
 
 #: ../src/properties.vala:43
-#: ../src/wizard.vala:330
+#: ../src/wizard.vala:329
 msgid "System"
 msgstr "Система"
 
@@ -197,7 +203,7 @@ msgstr "Ввод/вывод:"
 msgid "Net:"
 msgstr "Сеть:"
 
-#: ../src/remote-machine.vala:61
+#: ../src/remote-machine.vala:64
 msgid "Name"
 msgstr "Имя"
 
@@ -246,29 +252,33 @@ msgid "Click on items to select them"
 msgstr "Выберите элемент, щёлкнув по нему"
 
 #: ../src/unattended-installer.vala:26
-#| msgid "Password"
 msgid "no password"
 msgstr "без пароля"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:149
 msgid "No username provided"
 msgstr "Не указано имя пользователя"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:153
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Для быстрой установки %s требуется пароль"
+
+#: ../src/unattended-installer.vala:157
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "Выберите быструю установку для автоматически настроенной системы с оптимальными параметрами."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:169
 msgid "Express Install"
 msgstr "Быстрая установка"
 
-#: ../src/unattended-installer.vala:188
-#: ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:187
+#: ../src/wizard.vala:335
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:208
 msgid "_Add Password"
 msgstr "_Добавить пароль"
 
@@ -285,16 +295,16 @@ msgstr "Ключ продукта"
 msgid "_Add Product Key"
 msgstr "_Добавить ключ продукта"
 
-#: ../src/wizard-source.vala:62
-#: ../src/wizard-source.vala:86
+#: ../src/wizard-source.vala:64
+#: ../src/wizard-source.vala:88
 msgid "Enter URL"
 msgstr "Введите URL"
 
-#: ../src/wizard-source.vala:72
+#: ../src/wizard-source.vala:74
 msgid "Select a file"
 msgstr "Выберите файл"
 
-#: ../src/wizard-source.vala:103
+#: ../src/wizard-source.vala:105
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -304,21 +314,21 @@ msgstr ""
 "\n"
 "Будут добавлены системы, доступные для этой учётной записи."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:174
 msgid "32-bit x86 system"
 msgstr "32-битная x86 система"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:175
 msgid "64-bit x86 system"
 msgstr "64-битная x86 система"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:183
 #, c-format
 msgid " from %s"
 msgstr " от %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:223
 msgid "Select a device or ISO file"
 msgstr "Выберите устройство или файл ISO"
 
@@ -335,74 +345,74 @@ msgstr "_Продолжить"
 msgid "C_reate"
 msgstr "_Создать"
 
-#: ../src/wizard.vala:114
+#: ../src/wizard.vala:119
 msgid "Please enter desktop or collection URI"
 msgstr "Введите рабочий стол или набор URI"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard.vala:125
 msgid "Will add boxes for all systems available from this account."
 msgstr "Будут добавлены системы, доступные для этой учётной записи."
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:128
 msgid "Will add a single box."
 msgstr "Будет добавлена одна система."
 
-#: ../src/wizard.vala:129
+#: ../src/wizard.vala:134
 msgid "Desktop Access"
 msgstr "Доступ к рабочему столу"
 
-#: ../src/wizard.vala:199
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "Некорректный URI"
 
-#: ../src/wizard.vala:210
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Протокол «%s» не поддерживается"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:299
 msgid "Will create a new box with the following properties:"
 msgstr "Будет создана система со следующими свойствами:"
 
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:304
 msgid "Type"
 msgstr "Тип"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:307
 msgid "Host"
 msgstr "Узел"
 
-#: ../src/wizard.vala:316
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:315
+#: ../src/wizard.vala:321
 msgid "Port"
 msgstr "Порт"
 
-#: ../src/wizard.vala:317
+#: ../src/wizard.vala:316
 msgid "TLS Port"
 msgstr "Порт TLS"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:326
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Будут добавлены системы, доступные для этой учётной записи:"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:340
 msgid "Memory"
 msgstr "Память"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 msgid "Disk"
 msgstr "Диск"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:342
 #, c-format
 msgid "%s maximum"
 msgstr "максимально — %s"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:387
 msgid "Introduction"
 msgstr "Введение"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:391
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
@@ -412,41 +422,41 @@ msgstr ""
 "\n"
 "Вы можете подключиться к машине <b><i>по сети</i></b> или создать <b><i>виртуальную машину</i></b>, которая работает на локальной машине."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:403
 msgid "Source Selection"
 msgstr "Выбор источника"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:404
 msgid "Insert operating system installation media or select a source below"
 msgstr "Вставьте установочный носитель операционной системы или выберите источник"
 
-#: ../src/wizard.vala:413
+#: ../src/wizard.vala:412
 msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
 msgstr "Любые торговые марки, указанные выше, используются для идентификации программных продуктов, полученных вами, и являются собственностью своих владельцев."
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:424
 msgid "Preparation"
 msgstr "Подготовка"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:425
 msgid "Preparing to create new box"
 msgstr "Подготовка к созданию новой системы"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:442
 msgid "Analyzing installer media."
 msgstr "Анализ установочного носителя."
 
-#: ../src/wizard.vala:454
+#: ../src/wizard.vala:453
 msgid "Setup"
 msgstr "Установка"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:460
 msgid "Review"
 msgstr ""
 "Предварительный\n"
 "просмотр"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:480
 msgid "Create a Box"
 msgstr "Создание системы"
 
