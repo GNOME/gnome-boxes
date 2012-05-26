@@ -14,8 +14,8 @@ private class Boxes.Win7Installer: WindowsInstaller {
         }
     }
 
-    protected override string fill_unattended_data (string data, string hostname) throws RegexError {
-        var str = base.fill_unattended_data (data, hostname);
+    protected override string fill_unattended_data (string data) throws RegexError {
+        var str = base.fill_unattended_data (data);
 
         switch (os_media.architecture) {
             case "x86_64":

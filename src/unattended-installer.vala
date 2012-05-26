@@ -51,6 +51,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected string timezone;
     protected string lang;
+    protected string hostname;
 
     protected AvatarFormat avatar_format;
 
@@ -117,12 +118,13 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_ui ();
     }
 
-    public async void setup (string hostname, Cancellable? cancellable) throws GLib.Error {
+    public async void setup (string vm_name, Cancellable? cancellable) throws GLib.Error {
         if (!express_toggle.active) {
             debug ("Unattended installation disabled.");
 
             return;
         }
+        this.hostname = vm_name.replace (" ", "-");
 
         try {
             if (yield unattended_disk_exists (cancellable))
@@ -131,7 +133,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                 yield create_disk_image (cancellable);
 
             foreach (var unattended_file in unattended_files)
-                yield unattended_file.copy (hostname, cancellable);
+                yield unattended_file.copy (cancellable);
             yield prepare_direct_boot (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
@@ -175,7 +177,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                         (_("Password required for express installation of %s"), label);
     }
 
-    public virtual string fill_unattended_data (string data, string hostname) throws RegexError {
+    public virtual string fill_unattended_data (string data) throws RegexError {
         var str = username_regex.replace (data, data.length, 0, username_entry.text);
         str = password_regex.replace (str, str.length, 0, password);
         str = timezone_regex.replace (str, str.length, 0, timezone);
@@ -330,8 +332,8 @@ private interface Boxes.UnattendedFile : GLib.Object {
 
     protected abstract UnattendedInstaller installer  { get; set; }
 
-    public async void copy (string hostname, Cancellable? cancellable) throws GLib.Error {
-        var unattended_tmp = yield create (hostname, cancellable);
+    public async void copy (Cancellable? cancellable) throws GLib.Error {
+        var unattended_tmp = yield create (cancellable);
 
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_path);
         // FIXME: Perhaps we should use libarchive for this?
@@ -346,7 +348,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
         debug ("Deleted temporary file '%s'", unattended_tmp.get_path ());
     }
 
-    protected abstract async File create (string hostname, Cancellable? cancellable)  throws GLib.Error;
+    protected abstract async File create (Cancellable? cancellable)  throws GLib.Error;
 }
 
 private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
@@ -361,7 +363,7 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
        this.dest_name = dest_name;
     }
 
-    protected async File create (string hostname, Cancellable? cancellable)  throws GLib.Error {
+    protected async File create (Cancellable? cancellable)  throws GLib.Error {
         var source = File.new_for_path (src_path);
         var destination_path = get_user_unattended (dest_name);
         var destination = File.new_for_path (destination_path);
@@ -377,7 +379,7 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
         data_stream.newline_type = DataStreamNewlineType.ANY;
         string? str;
         while ((str = yield data_stream.read_line_async (Priority.DEFAULT, cancellable)) != null) {
-            str = installer.fill_unattended_data (str, hostname);
+            str = installer.fill_unattended_data (str);
 
             str += (installer.newline_type == DataStreamNewlineType.LF) ? "\n" : "\r\n";
 
@@ -405,7 +407,7 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
         this.dest_format = dest_format;
     }
 
-    protected async File create (string hostname, Cancellable? cancellable)  throws GLib.Error {
+    protected async File create (Cancellable? cancellable)  throws GLib.Error {
         dest_name = installer.username + dest_format.extension;
         var destination_path = get_user_unattended (dest_name);
 

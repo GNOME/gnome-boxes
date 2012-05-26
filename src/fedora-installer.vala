@@ -91,8 +91,8 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         }
     }
 
-    protected override string fill_unattended_data (string data, string hostname) throws RegexError {
-        var str = base.fill_unattended_data (data, hostname);
+    protected override string fill_unattended_data (string data) throws RegexError {
+        var str = base.fill_unattended_data (data);
 
         str = kbd_regex.replace (str, str.length, 0, kbd);
 
