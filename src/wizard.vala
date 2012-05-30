@@ -235,13 +235,9 @@ private class Boxes.Wizard: Boxes.UI {
         if (this.wizard_source.install_media != null) {
             install_media = this.wizard_source.install_media;
             prep_progress.fraction = 1.0;
-            Idle.add (() => {
-                page = page + 1;
+            page = WizardPage.SETUP;
 
-                return false;
-            });
-
-            return true;
+            return false;
         } else {
             try {
                 prepare_for_location (this.wizard_source.uri);
