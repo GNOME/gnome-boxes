@@ -438,17 +438,20 @@ namespace Boxes {
     public async void run_in_thread (RunInThreadFunc func) throws GLib.Error {
         GLib.Error e = null;
         GLib.g_io_scheduler_push_job ((job, cancellable) => {
-                try {
-                    func ();
-                } catch (GLib.Error err) {
-                    e = err;
-                }
-                job.send_to_mainloop (() => {
-                        run_in_thread.callback ();
-                        return false;
-                    });
+            try {
+                func ();
+            } catch (GLib.Error err) {
+                e = err;
+            }
+
+            job.send_to_mainloop (() => {
+                run_in_thread.callback ();
+
                 return false;
             });
+
+            return false;
+        });
 
         yield;
 
