@@ -92,7 +92,13 @@ private class Boxes.DisplayPage: GLib.Object {
                 var y = event.motion.y;
                 if (y <= 0) {
                     toolbar_event_stop ();
-                    if ((event.motion.state & ModifierType.MODIFIER_MASK) == 0)
+                    if ((event.motion.state &
+                         (ModifierType.SHIFT_MASK | ModifierType.CONTROL_MASK |
+                          ModifierType.MOD1_MASK | ModifierType.SUPER_MASK |
+                          ModifierType.HYPER_MASK | ModifierType.META_MASK |
+                          ModifierType.BUTTON1_MASK | ModifierType.BUTTON2_MASK |
+                          ModifierType.BUTTON3_MASK | ModifierType.BUTTON4_MASK |
+                          ModifierType.BUTTON5_MASK)) == 0)
                         set_overlay_toolbar_visible (true);
                 } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
