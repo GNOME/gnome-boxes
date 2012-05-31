@@ -35,6 +35,13 @@ private class Boxes.VMConfigurator {
             clock.set_offset (DomainClockOffset.LOCALTIME);
         else
             clock.set_offset (DomainClockOffset.UTC);
+
+        DomainTimer timer = new DomainTimerRtc ();
+        timer.set_tick_policy (DomainTimerTickPolicy.CATCHUP);
+        clock.add_timer (timer);
+        timer = new DomainTimerPit ();
+        timer.set_tick_policy (DomainTimerTickPolicy.DELAY);
+        clock.add_timer (timer);
         domain.set_clock (clock);
 
         set_target_media_config (domain, target_path, install_media);
