@@ -21,8 +21,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     public string hidden_password {
         owned get {
-            return password_entry.text.length > 0 ?
-                   string.nfill (password_entry.text_length, '*') : _("no password");
+            if (password_entry.text.length > 0) {
+                var str = "";
+                for (var i = 0; i < password_entry.text_length; i++)
+                    str += password_entry.get_invisible_char ().to_string ();
+
+                return str;
+            } else
+                return _("no password");
         }
     }
 
