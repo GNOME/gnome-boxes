@@ -51,6 +51,7 @@ gnome_boxes_SOURCES =				\
 	i-properties-provider.vala		\
 	properties.vala				\
 	remote-machine.vala			\
+	revealer.vala				\
 	selectionbar.vala			\
 	sidebar.vala				\
 	spice-display.vala			\
