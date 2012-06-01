@@ -9,6 +9,7 @@ private enum Boxes.AppPage {
 }
 
 private class Boxes.App: Boxes.UI {
+    public static App app;
     public override Clutter.Actor actor { get { return stage; } }
     public Gtk.ApplicationWindow window;
     public bool fullscreen {
@@ -56,6 +57,7 @@ private class Boxes.App: Boxes.UI {
     public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
+        app = this;
         application = new Gtk.Application ("org.gnome.Boxes", 0);
         settings = new GLib.Settings ("org.gnome.boxes");
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
