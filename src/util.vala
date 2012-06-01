@@ -250,21 +250,21 @@ namespace Boxes {
         actor.restore_easing_state ();
     }
 
-    public void actor_add (Clutter.Actor actor, Clutter.Container container) {
-        if (actor.get_parent () == (Clutter.Actor) container)
+    public void actor_add (Clutter.Actor actor, Clutter.Actor container) {
+        if (actor.get_parent () == container)
             return;
 
         actor_remove (actor);
-        container.add (actor);
+        container.add_child (actor);
     }
 
     public void actor_remove (Clutter.Actor actor) {
-        var container = actor.get_parent () as Clutter.Container;
+        var container = actor.get_parent ();
 
         if (container == null)
             return;
 
-        container.remove (actor);
+        container.remove_child (actor);
     }
 
     public void actor_pin (Clutter.Actor actor) {
