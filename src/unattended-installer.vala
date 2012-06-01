@@ -237,7 +237,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         foreach (var child in setup_table.get_children ())
             if (child != express_toggle)
-                express_toggle.bind_property ("active", child, "sensitive", 0);
+                express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
     }
 
     protected virtual void clean_up () throws GLib.Error {
