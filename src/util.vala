@@ -267,15 +267,6 @@ namespace Boxes {
         container.remove_child (actor);
     }
 
-    public void actor_pin (Clutter.Actor actor) {
-        actor.set_geometry (actor.get_geometry ());
-    }
-
-    public void actor_unpin (Clutter.Actor actor) {
-        actor.set_size (-1, -1);
-        actor.set_position (-1, -1);
-    }
-
     public Osinfo.Device? get_os_device_by_prop (Osinfo.Os? os, string prop_name, string prop_value) {
         if (os == null)
             return null;
