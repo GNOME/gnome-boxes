@@ -29,7 +29,7 @@ private class Boxes.VMConfigurator {
 
         var best_caps = get_best_guest_caps (caps, install_media);
         domain.memory = install_media.resources.ram / KIBIBYTES;
-        domain.vcpu = install_media.resources.n_cpus;
+        set_cpu_config (domain, caps);
 
         var virt_type = guest_kvm_enabled (best_caps) ? DomainVirtType.KVM : DomainVirtType.QEMU;
         domain.set_virt_type (virt_type);
@@ -168,6 +168,17 @@ private class Boxes.VMConfigurator {
         pool.set_target (target);
 
         return pool;
+    }
+
+    private static void set_cpu_config (Domain domain, Capabilities caps) {
+        var topology = caps.get_host ().get_cpu ().get_topology ();
+
+        domain.vcpu = topology.get_sockets () * topology.get_cores () * topology.get_threads ();
+
+        var cpu = new DomainCpu ();
+        cpu.set_mode (DomainCpuMode.HOST_MODEL);
+        cpu.set_topology (topology);
+        domain.set_cpu (cpu);
     }
 
     private static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
