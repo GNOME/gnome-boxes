@@ -234,6 +234,22 @@ namespace Boxes {
         return tryname;
     }
 
+    public void fade_actor (Clutter.Actor actor, uint opacity) {
+        if (opacity != 0)
+            actor.show ();
+        // Don't react to use input while fading out
+        actor.set_reactive (opacity == 255);
+        actor.save_easing_state ();
+        actor.set_easing_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
+        actor.set_easing_duration (App.app.duration);
+        actor.opacity = opacity;
+        var t = actor.get_transition ("opacity");
+        t.completed.connect ( () => {
+            actor.visible = actor.opacity != 0;
+        });
+        actor.restore_easing_state ();
+    }
+
     public void actor_add (Clutter.Actor actor, Clutter.Container container) {
         if (actor.get_parent () == (Clutter.Actor) container)
             return;
