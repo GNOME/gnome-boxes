@@ -44,15 +44,17 @@ private class Boxes.Sidebar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
+            app.sidebar_revealer.unreveal ();
             notebook.page = SidebarPage.COLLECTION;
             break;
 
-        case UIState.DISPLAY:
-            actor_pin (actor);
-            break;
+		default:
+            app.sidebar_revealer.unreveal ();
+			break;
 
         case UIState.WIZARD:
         case UIState.PROPERTIES:
+            app.sidebar_revealer.reveal ();
             notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
         }
@@ -177,8 +179,5 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook.append_page (vbox, null);
 
         notebook.show_all ();
-
-        // FIXME: make it dynamic depending on sidebar size..:
-        app.state.set_key (null, "display", gtk_actor, "x", AnimationMode.EASE_OUT_QUAD, -(float) width, 0, 0);
     }
 }

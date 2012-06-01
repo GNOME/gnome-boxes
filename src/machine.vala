@@ -255,10 +255,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 }
 
 private class Boxes.MachineActor: Boxes.UI {
-    public override Clutter.Actor actor { get { return box; } }
-    public Clutter.Box box;
+    public override Clutter.Actor actor { get { return _actor; } }
+    public Clutter.Actor _actor;
 
-    private Clutter.BindConstraint yconstraint;
     private GtkClutter.Texture screenshot;
     private GtkClutter.Actor gtk_vbox;
     private GtkClutter.Actor? display;
@@ -267,8 +266,6 @@ private class Boxes.MachineActor: Boxes.UI {
     private Gtk.Entry password_entry;
     private Machine machine;
     private ulong height_id;
-
-    static const int properties_y = 200;
 
     ~MachineActor() {
         machine.app.actor.disconnect (height_id);
@@ -281,17 +278,22 @@ private class Boxes.MachineActor: Boxes.UI {
         var layout = new Clutter.BoxLayout ();
         layout.vertical = true;
         layout.spacing = 10;
-        box = new Clutter.Box (layout);
+        _actor = new Clutter.Actor ();
+        _actor.set_layout_manager (layout);
 
         screenshot = new GtkClutter.Texture ();
         screenshot.name = "screenshot";
         set_screenshot (machine.pixbuf);
-        scale_screenshot ();
-        actor_add (screenshot, box);
+        _actor.min_width = _actor.natural_width = Machine.SCREENSHOT_WIDTH;
+
         screenshot.keep_aspect_ratio = true;
+        _actor.add (screenshot);
 
         vbox = new Gtk.VBox (false, 0);
         gtk_vbox = new GtkClutter.Actor.with_contents (vbox);
+        // Ensure we have enough space to fit everything without changing
+        // size, as that causes weird re-animations
+        gtk_vbox.height = 80;
 
         gtk_vbox.get_widget ().get_style_context ().add_class ("boxes-bg");
 
@@ -299,6 +301,7 @@ private class Boxes.MachineActor: Boxes.UI {
         label.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
         machine.bind_property ("name", label, "label", BindingFlags.DEFAULT);
         vbox.add (label);
+        vbox.set_valign (Gtk.Align.START);
         password_entry = new Gtk.Entry ();
         password_entry.set_visibility (false);
         password_entry.set_placeholder_text (_("Password"));
@@ -319,21 +322,8 @@ private class Boxes.MachineActor: Boxes.UI {
         vbox.show_all ();
         password_entry.hide ();
 
-        actor_add (gtk_vbox, box);
-        actor.set_reactive (true);
-
-        yconstraint = new Clutter.BindConstraint (machine.app.actor, BindCoordinate.Y,
-                                                  machine.app.actor.height - properties_y);
-        height_id = machine.app.actor.notify["height"].connect (() => {
-            yconstraint.set_offset (machine.app.actor.height - properties_y);
-        });
-
-        yconstraint.enabled = false;
-    }
-
-    public void scale_screenshot (float scale = 1.5f) {
-        screenshot.set_size (Machine.SCREENSHOT_WIDTH * scale,
-                             Machine.SCREENSHOT_HEIGHT * scale);
+        _actor.add (gtk_vbox);
+        _actor.set_reactive (true);
     }
 
     public void set_screenshot (Gdk.Pixbuf pixbuf) {
@@ -345,6 +335,7 @@ private class Boxes.MachineActor: Boxes.UI {
     }
 
     public void set_password_needed (bool needed) {
+        _actor.queue_relayout ();
         password_entry.visible = needed;
         password_entry.set_can_focus (needed);
         if (needed) {
@@ -368,7 +359,6 @@ private class Boxes.MachineActor: Boxes.UI {
         int width, height;
         int x, y;
 
-        yconstraint.enabled = false;
         machine.app.display_page.get_size (out width, out height);
         machine.app.window.get_size (out window_width, out window_height);
         x = window_width - width;
@@ -376,44 +366,40 @@ private class Boxes.MachineActor: Boxes.UI {
 
         switch (ui_state) {
         case UIState.CREDS:
-            scale_screenshot (2.0f);
+            gtk_vbox.show ();
             break;
 
         case UIState.DISPLAY:
+            gtk_vbox.hide ();
             if (previous_ui_state == UIState.CREDS) {
-                password_entry.hide ();
-                label.hide ();
-                screenshot.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
-                                    "width", (float) width,
-                                    "height", (float) height);
-                actor.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
-                               "x", (float) x,
-                               "y", (float) y);
+                machine.app.overlay_bin.set_alignment (actor,
+                                                       Clutter.BinAlignment.FILL,
+                                                       Clutter.BinAlignment.FILL);
             } else {
                 if (display != null) {
                     // zoom in, back from properties
-                    var anim = display.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
-                                                "x", (float) x,
-                                                "y", (float) y,
-                                                "width", (float) width,
-                                                "height", (float) height);
-                    anim.completed.connect (() => {
-                        actor_remove (display);
-                        var widget = display.contents;
-                        display.contents = null;
-                        display = null;
-                        // FIXME: enable grabs
-                        machine.display.set_enable_inputs (widget, true);
-                        machine.app.display_page.show_display (machine.display, widget);
-                    });
+
+                    machine.app.overlay_bin.set_alignment (display,
+                                                           Clutter.BinAlignment.FILL,
+                                                           Clutter.BinAlignment.FILL);
+
+                    /* Todo: No good way to get the end of the transision yet? */
+                    Timeout.add (machine.app.duration, () => {
+                            var widget = display.contents;
+                            display.contents = null;
+                            display.destroy ();
+                            display = null;
+                            // FIXME: enable grabs
+                            machine.display.set_enable_inputs (widget, true);
+                            machine.app.display_page.show_display (machine.display, widget);
+                            return false;
+                        });
                 } else
                     machine.app.display_page.show ();
             }
-
             break;
 
         case UIState.COLLECTION:
-            scale_screenshot ();
             password_entry.set_can_focus (false);
             password_entry.hide ();
             label.show ();
@@ -423,20 +409,34 @@ private class Boxes.MachineActor: Boxes.UI {
             var widget = machine.app.display_page.remove_display ();
             machine.display.set_enable_inputs (widget, false);
             display = new GtkClutter.Actor.with_contents (widget);
-            display.x = 0.0f;
-            display.y = 0.0f;
-            display.width = (float) width;
-            display.height = (float) height;
-            actor_add (display, machine.app.stage);
-            display.add_constraint (yconstraint);
+            machine.app.overlay_bin.add (display,
+                                         Clutter.BinAlignment.FILL,
+                                         Clutter.BinAlignment.FILL);
 
-            display.animate (Clutter.AnimationMode.LINEAR, machine.app.duration,
-                             "x", 10.0f,
-                             "y", height - 200.0f,
-                             "width", 180.0f,
-                             "height", 130.0f).completed.connect (() => {
-                                 yconstraint.enabled = true;
-                             });
+            Clutter.ActorBox box = { 0, 0,  width, height};
+            display.allocate (box, 0);
+            display.show ();
+
+            // Temporarily hide toolbar in fullscreen so that the the animation
+            // actor doesn't get pushed down before zooming to the sidebar
+            if (machine.app.fullscreen)
+                machine.app.topbar.actor.hide ();
+
+            ulong id = 0;
+            id = machine.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
+                machine.app.properties.screenshot_placeholder.disconnect (id);
+                Idle.add_full (Priority.HIGH, () => {
+                    machine.app.topbar.actor.show ();
+                    machine.app.overlay_bin.set_alignment (display,
+                                                           Clutter.BinAlignment.FIXED,
+                                                           Clutter.BinAlignment.FIXED);
+                    display.x = alloc.x;
+                    display.y = alloc.y;
+                    display.width = alloc.width;
+                    display.height = alloc.height;
+                    return false;
+                });
+            });
 
             break;
 

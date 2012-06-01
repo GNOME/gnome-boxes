@@ -387,6 +387,7 @@ private class Boxes.Wizard: Boxes.UI {
         notebook.show_tabs = false;
         notebook.get_style_context ().add_class ("boxes-bg");
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor.opacity = 0;
 
         /* Introduction */
         var hbox = new Gtk.HBox (false, 10);
@@ -397,6 +398,8 @@ private class Boxes.Wizard: Boxes.UI {
         label.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
         label.set_use_markup (true);
         label.wrap = true;
+        // Work around clutter size allocation issue (bz#677260)
+        label.width_chars = 30;
         label.halign = Gtk.Align.START;
         hbox.add (label);
         hbox.show_all ();
@@ -410,6 +413,8 @@ private class Boxes.Wizard: Boxes.UI {
         label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
         label.get_style_context ().add_class ("boxes-wizard-label");
         label.wrap = true;
+        // Work around clutter size allocation issue (bz#677260)
+        label.width_chars = 30;
         label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
         vbox.pack_start (wizard_source.widget, false, false);
@@ -418,6 +423,8 @@ private class Boxes.Wizard: Boxes.UI {
         label = new Gtk.Label (_("Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."));
         label.get_style_context ().add_class ("boxes-logo-notice-label");
         label.wrap = true;
+        // Work around clutter size allocation issue (bz#677260)
+        label.width_chars = 30;
         label.max_width_chars = 50;
         vbox.pack_start (label, false, false);
         vbox.show_all ();
@@ -431,6 +438,8 @@ private class Boxes.Wizard: Boxes.UI {
         label = new Gtk.Label (_("Preparing to create new box"));
         label.get_style_context ().add_class ("boxes-wizard-label");
         label.wrap = true;
+        // Work around clutter size allocation issue (bz#677260)
+        label.width_chars = 30;
         label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
 
@@ -535,11 +544,15 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public override void ui_state_changed () {
+        uint opacity = 0;
         switch (ui_state) {
         case UIState.WIZARD:
             page = WizardPage.INTRODUCTION;
+            opacity = 255;
             break;
         }
+
+        fade_actor (actor, opacity);
     }
 
     private class WizardSummary: GLib.Object {

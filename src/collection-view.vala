@@ -6,7 +6,6 @@ private class Boxes.CollectionView: Boxes.UI {
 
     private App app;
     private GtkClutter.Actor gtkactor;
-    private Clutter.Box over_boxes; // a box on top of boxes list
 
     private Category _category;
     public Category category {
@@ -40,65 +39,38 @@ private class Boxes.CollectionView: Boxes.UI {
         });
     }
 
-    public void set_over_boxes (Clutter.Actor actor, bool center = false) {
-        if (center)
-            over_boxes.pack (actor,
-                             "x-align", Clutter.BinAlignment.CENTER,
-                             "y-align", Clutter.BinAlignment.CENTER);
-        else
-            over_boxes.pack (actor);
-
-        actor_add (over_boxes, app.stage);
-    }
-
     public override void ui_state_changed () {
+        uint opacity = 0;
         switch (ui_state) {
         case UIState.COLLECTION:
-            actor.show ();
+            opacity = 255;
             icon_view.unselect_all ();
-            actor_remove (app.wizard.actor);
-            actor_remove (over_boxes);
             if (app.current_item != null)
                 actor_remove (app.current_item.actor);
             break;
 
         case UIState.CREDS:
-            set_over_boxes (app.current_item.actor, true);
-            break;
+            var actor = app.current_item.actor;
+            app.overlay_bin.add (actor,
+                                 Clutter.BinAlignment.FIXED,
+                                 Clutter.BinAlignment.FIXED);
 
-        case UIState.DISPLAY: {
-            float x, y;
-            var display = app.current_item.actor;
-
-            actor.hide ();
-            actor_remove (app.properties.actor);
-
-            if (previous_ui_state == UIState.CREDS) {
-                /* move display/machine actor to stage, keep same position */
-                display.get_transformed_position (out x, out y);
-                actor_remove (display);
-                actor_add (display, app.stage);
-                display.set_position (x, y);
-            }
-            break;
-        }
-
-        case UIState.WIZARD:
-            if (app.current_item != null)
-                actor_remove (app.current_item.actor);
-            app.wizard.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
-            set_over_boxes (app.wizard.actor);
+            // TODO: How do I get the icon coords from the iconview?
+            Clutter.ActorBox box = { 20, 20, 20 + Machine.SCREENSHOT_WIDTH, 20 + Machine.SCREENSHOT_HEIGHT};
+            actor.allocate (box, 0);
+            actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
+            app.overlay_bin.set_alignment (actor,
+                                           Clutter.BinAlignment.CENTER,
+                                           Clutter.BinAlignment.CENTER);
             break;
 
         case UIState.PROPERTIES:
-            actor_remove (app.current_item.actor);
-            app.properties.actor.add_constraint (new Clutter.BindConstraint (over_boxes, BindCoordinate.SIZE, 0));
-            set_over_boxes (app.properties.actor);
-            break;
-
-        default:
+            var item_actor = app.current_item.actor;
+            item_actor.hide ();
             break;
         }
+
+        fade_actor (actor, opacity);
 
         if (app.current_item != null)
             app.current_item.ui_state = ui_state;
@@ -245,17 +217,5 @@ private class Boxes.CollectionView: Boxes.UI {
         scrolled_window.show_all ();
 
         gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
-
-        over_boxes = new Clutter.Box (new Clutter.BinLayout (Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL));
-        over_boxes.add_constraint_with_name ("top-box-size",
-                                             new Clutter.BindConstraint (gtkactor, BindCoordinate.SIZE, 0));
-        over_boxes.add_constraint_with_name ("top-box-position",
-                                             new Clutter.BindConstraint (gtkactor, BindCoordinate.POSITION, 0));
-
-        app.state.set_key (null, "creds", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
-        app.state.set_key (null, "display", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 0, 0, 0);
-        app.state.set_key (null, "collection", actor, "opacity", AnimationMode.EASE_OUT_QUAD, (uint) 255, 0, 0);
-        app.state.set_key (null, "display", over_boxes, "x", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
-        app.state.set_key (null, "display", over_boxes, "y", AnimationMode.EASE_OUT_QUAD, (float) 0, 0, 0);
     }
 }

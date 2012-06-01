@@ -25,11 +25,14 @@ private class Boxes.App: Boxes.UI {
     public Gtk.Notebook notebook;
     public GtkClutter.Embed embed;
     public Clutter.Stage stage;
-    public Clutter.State state;
-    public Clutter.Box box; // the whole app box
+    public Clutter.BinLayout stage_bin;
+    public Clutter.Actor overlay_bin_actor;
+    public Clutter.BinLayout overlay_bin;
     public CollectionItem current_item; // current object/vm manipulated
     public Topbar topbar;
     public Notificationbar notificationbar;
+    public Boxes.Revealer sidebar_revealer;
+    public Boxes.Revealer topbar_revealer;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
     public uint duration;
@@ -45,7 +48,6 @@ private class Boxes.App: Boxes.UI {
     public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
     private Gtk.Application application;
-    private Clutter.TableLayout box_table;
     private CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
@@ -364,55 +366,97 @@ private class Boxes.App: Boxes.UI {
         notebook.append_page (display_page.widget, null);
 
         stage = embed.get_stage () as Clutter.Stage;
-        stage.set_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
-
-        state = new Clutter.State ();
-        state.set_duration (null, null, duration);
+        stage.set_background_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
 
         window.delete_event.connect (() => { return quit (); });
 
         window.key_press_event.connect (on_key_pressed);
 
-        box_table = new Clutter.TableLayout ();
-        box = new Clutter.Box (box_table);
-        box.add_constraint (new Clutter.BindConstraint (stage, BindCoordinate.SIZE, 0));
-        stage.add_actor (box);
+        stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
+                                           Clutter.BinAlignment.FIXED);
+        stage.set_layout_manager (stage_bin);
 
         sidebar = new Sidebar (this);
         view = new CollectionView (this, sidebar.category);
         topbar = new Topbar (this);
         notificationbar = new Notificationbar (this);
-        notificationbar.actor.add_constraint (new Clutter.AlignConstraint (view.actor, AlignAxis.X_AXIS, 0.5f));
-        var yconstraint = new Clutter.BindConstraint (topbar.actor, BindCoordinate.Y, topbar.height);
-        notificationbar.actor.add_constraint (yconstraint);
-        topbar.actor.notify["height"].connect (() => {
-            yconstraint.set_offset (topbar.height);
-        });
-
         selectionbar = new Selectionbar (this);
-        selectionbar.actor.add_constraint (new Clutter.AlignConstraint (view.actor, AlignAxis.X_AXIS, 0.5f));
-        yconstraint = new Clutter.BindConstraint (view.actor, BindCoordinate.Y,
-                                                  view.actor.height - selectionbar.spacing);
-        selectionbar.actor.add_constraint (yconstraint);
-        view.actor.notify["height"].connect (() => {
-            yconstraint.set_offset (view.actor.height - selectionbar.spacing);
-        });
-        notebook.show_all ();
-
         wizard = new Wizard (this);
         properties = new Properties (this);
+
+        var vbox_actor = new Clutter.Actor ();
+        var vbox = new Clutter.BoxLayout ();
+        vbox_actor.set_layout_manager (vbox);
+        vbox.set_vertical (true);
+
+        stage_bin.add (vbox_actor,
+                       Clutter.BinAlignment.FILL,
+                       Clutter.BinAlignment.FILL);
+
+        topbar_revealer = new Boxes.Revealer (true);
+        vbox.pack (topbar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        topbar_revealer.add (topbar.actor);
+
+        var below_bin_actor = new Clutter.Actor ();
+        var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
+                                               Clutter.BinAlignment.FIXED);
+        below_bin_actor.set_layout_manager (below_bin);
+
+        vbox.pack (below_bin_actor, true, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+
+        below_bin.add (view.actor,
+                       Clutter.BinAlignment.FILL,
+                       Clutter.BinAlignment.FILL);
+
+        var hbox_actor = new Clutter.Actor ();
+        var hbox = new Clutter.BoxLayout ();
+        hbox_actor.set_layout_manager (hbox);
+
+        below_bin.add (hbox_actor,
+                       Clutter.BinAlignment.FILL,
+                       Clutter.BinAlignment.FILL);
+
+        overlay_bin_actor = new Clutter.Actor ();
+        overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
+                                             Clutter.BinAlignment.FIXED);
+        overlay_bin_actor.set_layout_manager (overlay_bin);
+        overlay_bin.set ("use-animations", true,
+                         "easing-mode", Clutter.AnimationMode.LINEAR,
+                         "easing-duration", duration);
+        below_bin.add (overlay_bin_actor,
+                       Clutter.BinAlignment.FILL,
+                       Clutter.BinAlignment.FILL);
+
+        sidebar_revealer = new Boxes.Revealer (false);
+        hbox.pack (sidebar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        sidebar_revealer.unreveal ();
+        sidebar_revealer.add (sidebar.actor);
+
+        var content_bin_actor = new Clutter.Actor ();
+        var content_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
+                                                 Clutter.BinAlignment.FILL);
+        content_bin_actor.set_layout_manager (content_bin);
+        hbox.pack (content_bin_actor, true, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+
+        below_bin.add (notificationbar.actor, Clutter.BinAlignment.CENTER, Clutter.BinAlignment.START);
+
+        content_bin.add (selectionbar.actor, Clutter.BinAlignment.CENTER, Clutter.BinAlignment.END);
+        content_bin_actor.add (wizard.actor);
+        content_bin_actor.add (properties.actor);
+
+        properties.actor.hide ();
+        selectionbar.actor.hide ();
+
+        notebook.show_all ();
 
         ui_state = UIState.COLLECTION;
     }
 
-    private void set_main_ui_state (string clutter_state) {
+    private void set_main_ui_state () {
         notebook.page = Boxes.AppPage.MAIN;
-        box.set_layout_manager (box_table);
-        state.set_state (clutter_state);
     }
 
     public override void ui_state_changed () {
-        box.set_layout_manager (box_table);
         action_fullscreen.set_enabled (ui_state == UIState.DISPLAY);
         action_properties.set_enabled (ui_state == UIState.DISPLAY);
 
@@ -421,26 +465,8 @@ private class Boxes.App: Boxes.UI {
         }
 
         switch (ui_state) {
-        case UIState.DISPLAY:
-            box.set_layout_manager (new Clutter.FixedLayout ());
-            state.set_state (fullscreen ? "display-fullscreen" : "display");
-            break;
-
-        case UIState.CREDS:
-            set_main_ui_state ("creds");
-            break;
-
         case UIState.COLLECTION:
-            set_main_ui_state ("collection");
-            actor_unpin (topbar.actor);
-            actor_unpin (view.actor);
-            actor_remove (topbar.actor);
-            actor_remove (sidebar.actor);
-            actor_remove (view.actor);
-            box.pack (topbar.actor, "column", 0, "row", 0,
-                      "x-expand", false, "y-expand", false);
-            box.pack (view.actor, "column", 0, "row", 1,
-                      "x-expand", true, "y-expand", true);
+            set_main_ui_state ();
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
@@ -451,18 +477,13 @@ private class Boxes.App: Boxes.UI {
             view.visible = true;
             break;
 
+        case UIState.CREDS:
         case UIState.PROPERTIES:
         case UIState.WIZARD:
-            actor_remove (topbar.actor);
-            actor_remove (sidebar.actor);
-            actor_remove (view.actor);
-            box.pack (topbar.actor, "column", 0, "row", 0, "column-span", 2,
-                      "x-expand", false, "y-expand", false);
-            box.pack (sidebar.actor, "column", 0, "row", 1,
-                      "x-expand", false, "y-expand", true);
-            box.pack (view.actor, "column", 1, "row", 1,
-                      "x-expand", true, "y-expand", true);
-            set_main_ui_state ("collection");
+            set_main_ui_state ();
+            break;
+
+        case UIState.DISPLAY:
             break;
 
         default:

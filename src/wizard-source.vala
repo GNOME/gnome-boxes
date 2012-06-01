@@ -153,6 +153,9 @@ private class Boxes.WizardSource: GLib.Object {
         url_label.set_markup (_("<b>Desktop Access</b>\n\nWill add boxes for all systems available from this account."));
         url_label.set_use_markup (true);
         url_label.wrap = true;
+        // Work around clutter size allocation issue (bz#677260)
+        url_label.width_chars = 30;
+
         hbox.pack_start (url_label, true, true);
         vbox.add (hbox);
 

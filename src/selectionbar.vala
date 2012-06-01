@@ -46,7 +46,6 @@ private class Boxes.Selectionbar: GLib.Object {
         toolbar.show_all ();
 
         actor.reactive = true;
-        actor.hide ();
 
         app.notify["selection-mode"].connect (() => {
             update_visible ();
@@ -55,8 +54,6 @@ private class Boxes.Selectionbar: GLib.Object {
         app.notify["selected-items"].connect (() => {
             update_visible ();
         });
-
-        app.stage.add (actor);
     }
 
     private void update_visible () {

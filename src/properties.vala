@@ -13,6 +13,7 @@ private enum Boxes.PropertiesPage {
 private class Boxes.Properties: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
 
+    public Gtk.Widget screenshot_placeholder;
     private GtkClutter.Actor gtk_actor;
     private Boxes.App app;
     private Gtk.Notebook notebook;
@@ -135,6 +136,7 @@ private class Boxes.Properties: Boxes.UI {
         notebook.show_tabs = false;
         notebook.get_style_context ().add_class ("boxes-bg");
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor.opacity = 0;
 
         /* topbar */
         var hbox = app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.HBox;
@@ -184,38 +186,43 @@ private class Boxes.Properties: Boxes.UI {
         vbox.pack_start (grid, false, false, 0);
         grid.column_homogeneous = true;
         grid.column_spacing = 2;
+        grid.row_spacing = 10;
         grid.margin_left = 10;
         grid.margin_right = 10;
-        /* this will need to be FIXME */
         grid.margin_bottom = 30;
-        grid.margin_top = 200;
+        grid.margin_top = 10;
+
+        screenshot_placeholder = new Gtk.Alignment (0.0f, 0.0f, 0.0f, 0.0f);
+        screenshot_placeholder.set_size_request (180, 130);
+        grid.attach (screenshot_placeholder, 0, 0, 6, 1);
 
         var label = new Gtk.Label (_("CPU:"));
         label.get_style_context ().add_class ("boxes-graph-label");
-        grid.attach (label, 0, 0, 1, 1);
+        grid.attach (label, 0, 1, 1, 1);
         cpu = new MiniGraph.with_ymax ({}, 100.0, 20);
         cpu.hexpand = true;
-        grid.attach (cpu, 1, 0, 1, 1);
+        grid.attach (cpu, 1, 1, 1, 1);
 
         label = new Gtk.Label (_("I/O:"));
         label.get_style_context ().add_class ("boxes-graph-label");
-        grid.attach (label, 2, 0, 1, 1);
+        grid.attach (label, 2, 1, 1, 1);
         io = new MiniGraph ({}, 20);
         io.hexpand = true;
-        grid.attach (io, 3, 0, 1, 1);
+        grid.attach (io, 3, 1, 1, 1);
 
         label = new Gtk.Label (_("Net:"));
         label.get_style_context ().add_class ("boxes-graph-label");
-        grid.attach (label, 4, 0, 1, 1);
+        grid.attach (label, 4, 1, 1, 1);
         net = new MiniGraph ({}, 20);
         net.hexpand = true;
-        grid.attach (net, 5, 0, 1, 1);
+        grid.attach (net, 5, 1, 1, 1);
 
         vbox.show_all ();
         notebook.show_all ();
     }
 
     public override void ui_state_changed () {
+        uint opacity = 0;
         if (stats_id != 0) {
             app.current_item.disconnect (stats_id);
             stats_id = 0;
@@ -225,7 +232,9 @@ private class Boxes.Properties: Boxes.UI {
         case UIState.PROPERTIES:
             toolbar_label_bind = app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
             populate ();
+            opacity = 255;
             break;
         }
+        fade_actor (actor, opacity);
     }
 }

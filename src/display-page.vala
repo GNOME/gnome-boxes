@@ -13,6 +13,9 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
         get_style_context ().add_class (STYLE_CLASS_MENUBAR);
         set_show_arrow (false);
 
+        // Make sure we're the same size as the normal toolbar
+        this.set_size_request (-1, (int) Topbar.height);
+
         var left_group = new ToolItem ();
         insert (left_group, 0);
 
@@ -28,6 +31,7 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
         size_group.add_widget (right_group);
 
         var left_box = new Box (Orientation.HORIZONTAL, 0);
+        left_box.valign = Gtk.Align.CENTER;
         left_group.add (left_box);
 
         var back = new Button ();
@@ -44,6 +48,7 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
         center_group.add (label);
 
         var right_box = new Box (Orientation.HORIZONTAL, 12);
+        right_box.valign = Gtk.Align.CENTER;
         right_group.add(right_box);
 
         var btn = new Button ();

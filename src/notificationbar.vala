@@ -2,12 +2,14 @@
 using Gtk;
 
 private class Boxes.Notificationbar: GLib.Object {
-    public Clutter.Actor actor { get; private set; }
+    public Clutter.Actor actor { get { return revealer; } }
     public static const float spacing = 60.0f;
 
     public delegate void OKFunc ();
     public delegate void CancelFunc ();
 
+    public GtkClutter.Actor gtk_actor;
+    public Revealer revealer;
     private App app;
     private InfoBar info_bar;
     private Label message_label;
@@ -101,6 +103,9 @@ private class Boxes.Notificationbar: GLib.Object {
     }
 
     private void setup_action_notify () {
+        revealer = new Revealer (true);
+        revealer.unreveal ();
+
         info_bar = new InfoBar ();
         info_bar.get_style_context ().add_class ("osd");
         info_bar.margin = 5;
@@ -126,22 +131,15 @@ private class Boxes.Notificationbar: GLib.Object {
 
         info_bar.show_all ();
 
-        actor = new GtkClutter.Actor.with_contents (info_bar);
-        app.stage.add (actor);
-        actor.hide ();
-        actor.scale_y = 0f;
+        gtk_actor = new GtkClutter.Actor.with_contents (info_bar);
+        revealer.add (gtk_actor);
     }
 
     private void show () {
-        app.stage.set_child_above_sibling (actor, null);
-        actor.show ();
-        actor.queue_redraw ();
-        actor.animate (Clutter.AnimationMode.LINEAR, app.duration, "scale-y", 1f);
+        revealer.reveal ();
     }
 
     private void hide () {
-        var animation = actor.animate (Clutter.AnimationMode.LINEAR, app.duration, "scale-y", 0f);
-        animation.completed.connect (() => { actor.hide (); });
+        revealer.unreveal ();
     }
 }
-
