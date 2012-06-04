@@ -133,7 +133,7 @@ private class Boxes.CollectionView: Boxes.UI {
             return;
         }
 
-        var iter = append (machine.pixbuf, machine.name, item);
+        var iter = append (machine.pixbuf, item.title, item);
         var pixbuf_id = machine.notify["pixbuf"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.SCREENSHOT, machine.pixbuf);
@@ -194,7 +194,7 @@ private class Boxes.CollectionView: Boxes.UI {
             if (item_a == null || item_b == null) // FIXME?!
                 return 0;
 
-            return strcmp (item_a.name.down (), item_b.name.down ());
+            return strcmp (item_a.title.down (), item_b.title.down ());
         });
         model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
 

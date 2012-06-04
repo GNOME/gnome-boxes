@@ -13,9 +13,8 @@ private class Boxes.VMConfigurator {
     private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
     private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
 
-    public Domain create_domain_config (InstallerMedia install_media, string name, string target_path) {
+    public Domain create_domain_config (InstallerMedia install_media, string target_path) {
         var domain = new Domain ();
-        domain.name = name;
 
         var xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
 

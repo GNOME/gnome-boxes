@@ -2,6 +2,17 @@
 
 private abstract class Boxes.CollectionItem: Boxes.UI {
     public string name { set; get; }
+    public string title {
+        set {
+            _title = value;
+        }
+
+        owned get {
+            return _title ?? name;
+        }
+    }
+
+    private string? _title;
 }
 
 private class Boxes.Collection: GLib.Object {

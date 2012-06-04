@@ -98,7 +98,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public LibvirtMachine (CollectionSource source,
                            GVir.Connection connection,
-                           GVir.Domain domain) throws GLib.Error {
+                           GVir.Domain     domain) throws GLib.Error {
         base (source, domain.get_name ());
 
         debug ("new libvirt machine: " + name);
@@ -136,6 +136,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         domain.stopped.connect (() => { state = MachineState.STOPPED; });
 
         update_domain_config ();
+        title = domain_config.get_title () ?? name;
         domain.updated.connect (update_domain_config);
 
         set_screenshot_enable (true);

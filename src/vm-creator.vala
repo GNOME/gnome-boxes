@@ -52,18 +52,20 @@ private class Boxes.VMCreator {
             yield;
         }
 
-        var name = yield create_domain_name_from_media (install_media);
+        string title;
+        var name = yield create_domain_name_and_title_from_media (install_media, out title);
         var fullscreen = true;
         if (install_media is UnattendedInstaller) {
             var unattended = install_media as UnattendedInstaller;
 
-            var hostname = name.replace (" ", "-");
-            yield unattended.setup (hostname, cancellable);
+            yield unattended.setup (name, cancellable);
             fullscreen = !unattended.express_install;
         }
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
-        var config = configurator.create_domain_config (install_media, name, volume.get_path ());
+        var config = configurator.create_domain_config (install_media, volume.get_path ());
+        config.name = name;
+        config.title = title;
 
         var domain = connection.create_domain (config);
         domain.start (0);
@@ -148,13 +150,22 @@ private class Boxes.VMCreator {
         }
     }
 
-    private async string create_domain_name_from_media (InstallerMedia install_media) throws GLib.Error {
-        var base_name = install_media.label;
+    private async string create_domain_name_and_title_from_media (InstallerMedia install_media,
+                                                                  out string     title) throws GLib.Error {
+        var base_title = install_media.label;
+        title = base_title;
+        var base_name = (install_media.os != null) ? install_media.os.short_id : base_title;
         var name = base_name;
 
         var pool = yield get_storage_pool ();
-        for (var i = 2; connection.find_domain_by_name (name) != null || pool.get_volume (name) != null; i++)
-            name = base_name + " " + i.to_string ();
+        for (var i = 2;
+             connection.find_domain_by_name (name) != null ||
+             connection.find_domain_by_name (title) != null || // We used to use title as name
+             pool.get_volume (name) != null; i++) {
+            // If you change the naming logic, you must address the issue of duplicate titles you'll be introducing
+            name = base_name + "-" + i.to_string ();
+            title = base_title + " " + i.to_string ();
+        }
 
         return name;
     }

@@ -40,5 +40,8 @@ private class Boxes.Win7Installer: WindowsInstaller {
         lang = lang.replace ("_", "-");
         // Remove '.' and everything after it
         lang = /\..*/i.replace (lang, -1, 0, "");
+
+        if (label.length > 15)
+            critical ("'%s' is longer than 15 characters, expect %s express installation to fail!", label, os.name);
     }
 }
