@@ -177,6 +177,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected virtual void setup_ui () {
         setup_label = new Gtk.Label (_("Choose express install to automatically preconfigure the box with optimal settings."));
+        setup_label.wrap = true;
+        setup_label.width_chars = 30;
         setup_label.halign = Gtk.Align.START;
         setup_hbox = new Gtk.HBox (false, 20);
         setup_hbox.valign = Gtk.Align.START;
