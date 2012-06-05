@@ -477,6 +477,8 @@ private class Boxes.Wizard: Boxes.UI {
         review_label = new Gtk.Label (null);
         review_label.get_style_context ().add_class ("boxes-wizard-label");
         review_label.xalign = 0.0f;
+        review_label.wrap = true;
+        review_label.width_chars = 30;
         vbox.pack_start (review_label, false, false);
 
         summary = new WizardSummary ();
