@@ -1,3 +1,130 @@
+3.5.2 - Jun 05, 2012
+====================
+
+Changes since 3.4.0:
+
+- All changes included in subsequent 3.4.x releases:
+  http://download.gnome.org/sources/gnome-boxes/3.4/gnome-boxes-3.4.2.news
+- Rework media menu to look good and allow scrolling.
+- Indicate live medias and VMs as such.
+- Correctly report 'i686' architecture as 32-bit.
+- Avoid deadlock during startup.
+- Fix toolbar not showing up.
+- Always automatically launch wizard on startup when Boxes is empty, not just
+  on the first run.
+- Update topbar title to help with ungrab.
+- Do not forward grab-broken events to box' display.
+- Allow to open a machine from command line. This allows calling
+  "gnome-boxes xp" to start and open that VM for example.
+- Add a command line argument to open in full screen.
+- Always install a tablet device.
+- Do not skip review page for unknown or live media when creating VM manually
+  from wizard.
+- Fix blurry notifications.
+- Fix escaping from fullscreen when caps/numlock are on.
+- Setup VM timers policies that fixes Windows 7 hangs.
+- Express installation:
+  - Set hostname based on its box's name for Windows XP and Fedora.
+  - Setup user account and autologon for Windows XP.
+  - Setup user's avatar for Windows XP and Fedora.
+  - Correctly setup admin password for Windows XP.
+  - Use gtk+ password character in Summary page.
+- Added/updated translations:
+  - Bulgarian
+  - Catalan (Valencian)
+  - French
+  - Galician
+  - German
+  - Greek
+  - Hebrew.
+  - Norwegian bokmål
+  - Persian
+  - Russian
+  - Simplified Chinese (zh_CN)
+  - Slovenian
+  - Spanish
+  - Traditional Chinese (Hong Kong and Taiwan)
+- Some other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- libvirt-glib >= 0.0.8
+- libvirt-gconfig >= 0.0.8
+- libosinfo >= 0.1.1
+
+All bugs fixed in this release:
+
+664239 - When going back from a fullscreened VM it should unfullscreen
+665562 - Remove now redundant hack for windows 7
+670306 - should do some kickstart sanity check before starting the installer
+670777 - Better disk performance
+672159 - gnome-boxes should remember the iso that was selected when going back
+         from the 'configuration' screen
+672160 - isos selected through boxes should appear in the "recently used"
+         section in the file selector
+672458 - The spice mouse is lagging (comparing to spicec)
+672528 - "Cancel" button does not really cancel
+672567 - Launching of new machines not working
+672601 - wizard: Don't explode the window with lots of medias
+672853 - Assistant layout is broken
+672872 - Sane default sound & video devices for unknown OSs
+672983 - error message notification should not go away when the error is fatal
+673053 - error popups are not readable
+673847 - express: Make use of 'distro' data from libosinfo
+673856 - Missing ISO source should not be treated as a fatal error
+674035 - gnome-boxes should set 'magic' clock parameters for kvm guests
+674228 - Name logo files according to distro names
+674328 - Cannot differentiate similar ISOs in list of ISOs
+674352 - Getting statistics slow down VMs a lot
+674361 - Top toolbar in display shouldn't prevent win7 drag window top to
+         maximize
+674647 - Make wizard file chooser dialog, modal
+674657 - creation assistant isn't running after quitting app first time
+674794 - in-app notifications are blurry
+675615 - Mouse scrollwheel not working in local Windows XP guest
+675617 - Mark the express install floppy image as optional
+675663 - Don't do blocking calls on main threads when collecting stats
+675813 - Translate X kbd layout ID to console layout ID
+676176 - Add units to the -shadow css properties
+676222 - no go back button when full screen in win XP
+676307 - Cannot leave full screen before system bootup (not even with keyboard)
+676320 - User is not created during unattended installation of WinXP
+676588 - boxes shouldn't be suprised with non-boxes vm
+676589 - Deal with Osinfo media == null
+676590 - Always install a tablet
+676591 - Do not forward grab-broken to display
+676631 - Allow to open a machine from command line
+676632 - Allow to open in full screen
+676648 - Mark strings as translatable
+676658 - Small improvements for Util::get_* functions
+676676 - Do not skip review page for unknown media
+676679 - Fix random deadlock/timeout
+676834 - A few express installation fixes/improvements
+677117 - wizard: go to setup step after prepare
+677177 - Use gtk+ password character in Summary
+
+All contributors to this release:
+
+Alexander Larsson <alexl@redhat.com>
+Alexander Shopov <ash@kambanaria.org>
+Alexandre Franke <alexandre.franke@gmail.com>
+Arash Mousavi <amousavi@src.gnome.org>
+Bruno Brouard <annoa.b@gmail.com>
+Carles Ferrando <carles.ferrando@gmail.com>
+Cheng-Chia Tseng <pswo10680@gmail.com>
+Christian Kirbach <Christian.Kirbach@googlemail.com>
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Matej Urbančič <mateju@svn.gnome.org>
+Tom Tryfonidis <tomtryf@gmail.com>
+tuhaihe <wangdianjin@linuxdeepin.com>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Yuri Myasoedov <omerta13@yandex.ru>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.4.0 - March 26, 2012
 ======================
 
