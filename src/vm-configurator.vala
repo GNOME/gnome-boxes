@@ -89,7 +89,7 @@ private class Boxes.VMConfigurator {
         try {
             domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
-        set_os_config (domain);
+        set_post_install_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
 
         // Make source (installer/live media) optional
@@ -200,16 +200,28 @@ private class Boxes.VMConfigurator {
         domain.add_device (disk);
     }
 
-    private void set_os_config (Domain domain, InstallerMedia? install_media = null) {
+    private void set_post_install_os_config (Domain domain) {
+        var os = new DomainOs ();
+        os.set_os_type (DomainOsType.HVM);
+
+        var old_os = domain.get_os ();
+        var boot_devices = old_os.get_boot_devices ();
+        boot_devices.remove (DomainOsBootDevice.CDROM);
+        os.set_boot_devices (boot_devices);
+
+        os.set_arch (old_os.get_arch ());
+
+        domain.set_os (os);
+    }
+
+    private void set_os_config (Domain domain, InstallerMedia install_media) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
         os.set_arch ("x86_64");
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
-        if (install_media != null) {
-            set_direct_boot_params (os, install_media);
-            boot_devices.append (DomainOsBootDevice.CDROM);
-        }
+        set_direct_boot_params (os, install_media);
+        boot_devices.append (DomainOsBootDevice.CDROM);
         boot_devices.append (DomainOsBootDevice.HD);
         os.set_boot_devices (boot_devices);
 
