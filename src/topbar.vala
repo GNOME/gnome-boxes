@@ -96,6 +96,9 @@ private class Boxes.Topbar: Boxes.UI {
             notebook.page = TopbarPage.SELECTION;
             app.selection_mode = true;
         });
+        update_select_btn_sensitivity ();
+        app.collection.item_added.connect (update_select_btn_sensitivity);
+        app.collection.item_removed.connect (update_select_btn_sensitivity);
         toolbar_end.insert (select_btn, 1);
 
         toolbar_end.set_show_arrow (false);
@@ -147,6 +150,10 @@ private class Boxes.Topbar: Boxes.UI {
 
         // FIXME: make it dynamic depending on topbar size..:
         app.state.set_key (null, "display-fullscreen", gtk_actor, "y", AnimationMode.EASE_OUT_QUAD, -(float) height, 0, 0);
+    }
+
+    private void update_select_btn_sensitivity () {
+        select_btn.sensitive = app.collection.items.length != 0;
     }
 
     private void update_selection_label () {
