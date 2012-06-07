@@ -6,15 +6,12 @@ private class Boxes.Selectionbar: GLib.Object {
     public Clutter.Actor actor { get { return gtk_actor; } }
     public static const float spacing = 60.0f;
 
-    private App app;
     private GtkClutter.Actor gtk_actor;
     private Gtk.Toolbar toolbar;
     private Gtk.ToggleToolButton favorite_btn;
     private Gtk.ToggleToolButton remove_btn;
 
-    public Selectionbar (App app) {
-        this.app = app;
-
+    public Selectionbar () {
         toolbar = new Gtk.Toolbar ();
         toolbar.show_arrow = false;
         toolbar.icon_size = Gtk.IconSize.LARGE_TOOLBAR;
@@ -27,7 +24,7 @@ private class Boxes.Selectionbar: GLib.Object {
         toolbar.insert (favorite_btn, 0);
         favorite_btn.icon_name = "emblem-favorite-symbolic";
         favorite_btn.clicked.connect (() => {
-           foreach (var item in app.selected_items) {
+           foreach (var item in App.app.selected_items) {
                var machine = item as Machine;
                if (machine != null)
                    machine.config.add_category ("favourite");
@@ -41,26 +38,26 @@ private class Boxes.Selectionbar: GLib.Object {
         toolbar.insert (remove_btn, 2);
         remove_btn.icon_name = "edit-delete-symbolic";
         remove_btn.clicked.connect (() => {
-            app.remove_selected_items ();
+            App.app.remove_selected_items ();
         });
         toolbar.show_all ();
 
         actor.reactive = true;
 
-        app.notify["selection-mode"].connect (() => {
+        App.app.notify["selection-mode"].connect (() => {
             update_visible ();
         });
 
-        app.notify["selected-items"].connect (() => {
+        App.app.notify["selected-items"].connect (() => {
             update_visible ();
         });
     }
 
     private void update_visible () {
-        if (!app.selection_mode)
+        if (!App.app.selection_mode)
             visible = false;
         else
-            visible = app.selected_items.length () > 0;
+            visible = App.app.selected_items.length () > 0;
     }
 
     private bool visible {
@@ -74,12 +71,12 @@ private class Boxes.Selectionbar: GLib.Object {
     private void show () {
         actor.show ();
         actor.queue_redraw ();
-        actor.animate (Clutter.AnimationMode.LINEAR, app.duration,
+        actor.animate (Clutter.AnimationMode.LINEAR, App.app.duration,
                        "opacity", 255);
     }
 
     private void hide () {
-        var anim = actor.animate (Clutter.AnimationMode.LINEAR, app.duration,
+        var anim = actor.animate (Clutter.AnimationMode.LINEAR, App.app.duration,
                                   "opacity", 0);
         anim.completed.connect (() => {
             actor.hide ();

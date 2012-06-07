@@ -5,7 +5,6 @@ private abstract class Boxes.CollectionItem: Boxes.UI {
 }
 
 private class Boxes.Collection: GLib.Object {
-    private Boxes.App app;
     public signal void item_added (CollectionItem item);
     public signal void item_removed (CollectionItem item);
 
@@ -15,8 +14,7 @@ private class Boxes.Collection: GLib.Object {
         items = new GenericArray<CollectionItem> ();
     }
 
-    public Collection (Boxes.App app) {
-        this.app = app;
+    public Collection () {
     }
 
     public void add_item (CollectionItem item) {

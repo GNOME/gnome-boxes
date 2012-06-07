@@ -16,7 +16,6 @@ private class Boxes.Sidebar: Boxes.UI {
     public TreeView user_tree_view;
     public Category category;
 
-    private App app;
     private uint width;
 
     private GtkClutter.Actor gtk_actor; // the sidebar box
@@ -34,8 +33,7 @@ private class Boxes.Sidebar: Boxes.UI {
         return selectable;
     }
 
-    public Sidebar (App app) {
-        this.app = app;
+    public Sidebar () {
         width = 200;
 
         setup_sidebar ();
@@ -44,17 +42,17 @@ private class Boxes.Sidebar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
-            app.sidebar_revealer.unreveal ();
+            App.app.sidebar_revealer.unreveal ();
             notebook.page = SidebarPage.COLLECTION;
             break;
 
 		default:
-            app.sidebar_revealer.unreveal ();
+            App.app.sidebar_revealer.unreveal ();
 			break;
 
         case UIState.WIZARD:
         case UIState.PROPERTIES:
-            app.sidebar_revealer.reveal ();
+            App.app.sidebar_revealer.reveal ();
             notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
         }
@@ -93,7 +91,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
             if (selectable) {
                 this.category = category;
-                app.set_category (category);
+                App.app.set_category (category);
             }
 
             (treeview == default_tree_view ? user_tree_view : default_tree_view).get_selection ().unselect_all ();
@@ -121,7 +119,7 @@ private class Boxes.Sidebar: Boxes.UI {
         var listmodel = user_tree_view.get_model () as Gtk.ListStore;
 
         listmodel.clear ();
-        foreach (var collection in app.settings.get_strv ("collections"))
+        foreach (var collection in App.app.settings.get_strv ("collections"))
             list_append (listmodel, new Category (_(collection)));
     }
 
@@ -167,7 +165,7 @@ private class Boxes.Sidebar: Boxes.UI {
         vbox.pack_end (create, false, false, 0);
         create.show ();
         create.clicked.connect (() => {
-            app.ui_state = UIState.WIZARD;
+            App.app.ui_state = UIState.WIZARD;
         });
 
         /* SidebarPage.WIZARD */

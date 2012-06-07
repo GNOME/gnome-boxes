@@ -8,7 +8,7 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
     }
     private Label label;
 
-    public DisplayToolbar (Boxes.App app) {
+    public DisplayToolbar () {
         icon_size = IconSize.MENU;
         get_style_context ().add_class (STYLE_CLASS_MENUBAR);
         set_show_arrow (false);
@@ -38,7 +38,7 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
         back.add (new Image.from_icon_name ("go-previous-symbolic",
                                             IconSize.MENU));
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
+        back.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
         left_box.pack_start (back, false, false, 0);
 
         /* center title - unfortunately, metacity doesn't even center its
@@ -55,14 +55,14 @@ private class Boxes.DisplayToolbar: Gtk.Toolbar {
         btn.add (new Image.from_icon_name ("view-fullscreen-symbolic",
                                            IconSize.MENU));
         btn.get_style_context ().add_class ("raised");
-        btn.clicked.connect ((button) => { app.fullscreen = !app.fullscreen; });
+        btn.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
         right_box.pack_start (btn, false, false, 0);
 
         var props = new Button ();
         props.add (new Image.from_icon_name ("utilities-system-monitor-symbolic",
                                              IconSize.MENU));
         props.get_style_context ().add_class ("raised");
-        props.clicked.connect ((button) => { app.ui_state = UIState.PROPERTIES; });
+        props.clicked.connect ((button) => { App.app.ui_state = UIState.PROPERTIES; });
         right_box.pack_start (props, false, false, 0);
     }
 }
@@ -71,7 +71,6 @@ private class Boxes.DisplayPage: GLib.Object {
     public Widget widget { get { return overlay; } }
 
     private Overlay overlay;
-    private Boxes.App app;
     private EventBox event_box;
     private Box box;
     private DisplayToolbar overlay_toolbar;
@@ -86,14 +85,12 @@ private class Boxes.DisplayPage: GLib.Object {
     private ulong display_can_grab_id;
     private ulong display_grabbed_id;
 
-    public DisplayPage (Boxes.App app) {
-        this.app = app;
-
+    public DisplayPage () {
         event_box = new EventBox ();
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
         event_box.above_child = true;
         event_box.event.connect ((event) => {
-            if (app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
+            if (App.app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
                 if (y <= 0) {
                     toolbar_event_stop ();
@@ -107,7 +104,7 @@ private class Boxes.DisplayPage: GLib.Object {
                         set_overlay_toolbar_visible (true);
                 } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
-                    toolbar_hide_id = Timeout.add (app.duration, () => {
+                    toolbar_hide_id = Timeout.add (App.app.duration, () => {
                         set_overlay_toolbar_visible (false);
                         toolbar_hide_id = 0;
                         return false;
@@ -124,14 +121,14 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
 
-        toolbar = new DisplayToolbar (app);
+        toolbar = new DisplayToolbar ();
 
         box = new Box (Orientation.VERTICAL, 0);
         box.pack_start (toolbar, false, false, 0);
         box.pack_start (event_box, true, true, 0);
 
         overlay = new Overlay ();
-        app.window.window_state_event.connect ((event) => {
+        App.app.window.window_state_event.connect ((event) => {
             update_toolbar_visible ();
 
             return false;
@@ -139,7 +136,7 @@ private class Boxes.DisplayPage: GLib.Object {
         overlay.margin = 0;
         overlay.add (box);
 
-        overlay_toolbar = new DisplayToolbar (app);
+        overlay_toolbar = new DisplayToolbar ();
         overlay_toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (overlay_toolbar);
@@ -149,16 +146,16 @@ private class Boxes.DisplayPage: GLib.Object {
     public void get_size (out int width, out int height) {
         int tb_height;
 
-        app.window.get_size (out width, out height);
+        App.app.window.get_size (out width, out height);
 
-        if (!app.fullscreen) {
+        if (!App.app.fullscreen) {
             toolbar.get_preferred_height (null, out tb_height);
             height -= tb_height;
         }
     }
 
      private void update_toolbar_visible() {
-         if (app.fullscreen && !can_grab_mouse)
+         if (App.app.fullscreen && !can_grab_mouse)
              toolbar.visible = false;
          else
              toolbar.visible = true;
@@ -186,11 +183,11 @@ private class Boxes.DisplayPage: GLib.Object {
     }
 
     public void show () {
-        app.notebook.page = Boxes.AppPage.DISPLAY;
+        App.app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
     public void update_title () {
-        var machine = app.current_item as Boxes.Machine;
+        var machine = App.app.current_item as Boxes.Machine;
         return_if_fail (machine != null);
 
         var title = machine.name;

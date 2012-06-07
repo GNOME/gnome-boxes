@@ -10,7 +10,6 @@ private class Boxes.Notificationbar: GLib.Object {
 
     public GtkClutter.Actor gtk_actor;
     public Revealer revealer;
-    private App app;
     private InfoBar info_bar;
     private Label message_label;
     private Button ok_button;
@@ -18,9 +17,7 @@ private class Boxes.Notificationbar: GLib.Object {
     private uint timeout_id;
     private ulong response_id;
 
-    public Notificationbar (App app) {
-        this.app = app;
-
+    public Notificationbar () {
         setup_action_notify ();
     }
 
@@ -84,12 +81,12 @@ private class Boxes.Notificationbar: GLib.Object {
     }
 
     private void add_timeout () {
-        if (!app.window.is_active) {
+        if (!App.app.window.is_active) {
             // Don't timeout before user gets a chance to see's the notification
             ulong active_id = 0;
-            active_id = app.window.notify["is-active"].connect (() => {
+            active_id = App.app.window.notify["is-active"].connect (() => {
                 add_timeout ();
-                app.window.disconnect (active_id);
+                App.app.window.disconnect (active_id);
             });
 
             return;

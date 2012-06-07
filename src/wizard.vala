@@ -14,7 +14,6 @@ private class Boxes.Wizard: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
 
     private GtkClutter.Actor gtk_actor;
-    private Boxes.App app;
     private GenericArray<Gtk.Label> steps;
     private Gtk.Notebook notebook;
     private Gtk.Button back_button;
@@ -71,9 +70,9 @@ private class Boxes.Wizard: Boxes.UI {
                     skip_review_for_live = false;
                     create.begin ((source, result) => {
                         if (create.end (result))
-                            app.ui_state = UIState.COLLECTION;
+                            App.app.ui_state = UIState.COLLECTION;
                         else
-                            app.notificationbar.display_error (_("Box creation failed!"));
+                            App.app.notificationbar.display_error (_("Box creation failed!"));
                     });
                     return;
                 }
@@ -104,10 +103,9 @@ private class Boxes.Wizard: Boxes.UI {
         media_manager = new MediaManager ();
     }
 
-    public Wizard (App app) {
-        this.app = app;
-        vm_creator = new VMCreator (app);
-        wizard_source = new Boxes.WizardSource (app, media_manager);
+    public Wizard () {
+        vm_creator = new VMCreator ();
+        wizard_source = new Boxes.WizardSource (media_manager);
         wizard_source.notify["page"].connect(() => {
             if (wizard_source.page == Boxes.SourcePage.MAIN)
                 next_button.sensitive = false;
@@ -161,7 +159,7 @@ private class Boxes.Wizard: Boxes.UI {
         }
 
         source.save ();
-        app.add_collection_source (source);
+        App.app.add_collection_source (source);
         return true;
     }
 
@@ -223,7 +221,7 @@ private class Boxes.Wizard: Boxes.UI {
             page = WizardPage.SETUP;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
-            app.notificationbar.display_error (error.message);
+            App.app.notificationbar.display_error (error.message);
             page = WizardPage.SOURCE;
         }
     }
@@ -240,7 +238,7 @@ private class Boxes.Wizard: Boxes.UI {
             try {
                 prepare_for_location (this.wizard_source.uri);
             } catch (GLib.Error error) {
-                app.notificationbar.display_error (error.message);
+                App.app.notificationbar.display_error (error.message);
 
                 return false;
             }
@@ -271,7 +269,7 @@ private class Boxes.Wizard: Boxes.UI {
             try {
                 (install_media as UnattendedInstaller).check_needed_info ();
             } catch (UnattendedInstallerError.SETUP_INCOMPLETE error) {
-                app.notificationbar.display_error (error.message);
+                App.app.notificationbar.display_error (error.message);
 
                 return false;
             }
@@ -332,7 +330,7 @@ private class Boxes.Wizard: Boxes.UI {
         notebook.append_page (widget, null);
 
         /* sidebar */
-        var vbox = app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.VBox;
+        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.VBox;
 
         var label = new Gtk.Label (title);
         label.margin_left = 25;
@@ -487,7 +485,7 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.show_all ();
 
         /* topbar */
-        hbox = app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.HBox;
+        hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.HBox;
 
         var toolbar = new Gtk.Toolbar ();
         toolbar.icon_size = Gtk.IconSize.MENU;
@@ -510,7 +508,7 @@ private class Boxes.Wizard: Boxes.UI {
         toolbar.insert (tool_item, 1);
         cancel.clicked.connect (() => {
             wizard_source.page = SourcePage.MAIN;
-            app.ui_state = UIState.COLLECTION;
+            App.app.ui_state = UIState.COLLECTION;
         });
 
         back_button = new Gtk.Button.from_stock (Gtk.Stock.GO_BACK);
@@ -537,7 +535,7 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
-        app.ui_state = UIState.WIZARD;
+        App.app.ui_state = UIState.WIZARD;
         this.skip_review_for_live = skip_review_for_live;
 
         page = WizardPage.SOURCE;

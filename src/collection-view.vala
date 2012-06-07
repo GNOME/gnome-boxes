@@ -4,7 +4,6 @@ using Clutter;
 private class Boxes.CollectionView: Boxes.UI {
     public override Clutter.Actor actor { get { return gtkactor; } }
 
-    private App app;
     private GtkClutter.Actor gtkactor;
 
     private Category _category;
@@ -28,13 +27,12 @@ private class Boxes.CollectionView: Boxes.UI {
         set { icon_view.visible = value; }
     }
 
-    public CollectionView (App app, Category category) {
-        this.app = app;
+    public CollectionView (Category category) {
         this.category = category;
 
         setup_view ();
-        app.notify["selection-mode"].connect (() => {
-            var mode = app.selection_mode ? Gtk.SelectionMode.MULTIPLE : Gtk.SelectionMode.SINGLE;
+        App.app.notify["selection-mode"].connect (() => {
+            var mode = App.app.selection_mode ? Gtk.SelectionMode.MULTIPLE : Gtk.SelectionMode.SINGLE;
             icon_view.set_selection_mode (mode);
         });
     }
@@ -45,35 +43,35 @@ private class Boxes.CollectionView: Boxes.UI {
         case UIState.COLLECTION:
             opacity = 255;
             icon_view.unselect_all ();
-            if (app.current_item != null)
-                actor_remove (app.current_item.actor);
+            if (App.app.current_item != null)
+                actor_remove (App.app.current_item.actor);
             break;
 
         case UIState.CREDS:
-            var actor = app.current_item.actor;
-            app.overlay_bin.add (actor,
-                                 Clutter.BinAlignment.FIXED,
-                                 Clutter.BinAlignment.FIXED);
+            var actor = App.app.current_item.actor;
+            App.app.overlay_bin.add (actor,
+                                     Clutter.BinAlignment.FIXED,
+                                     Clutter.BinAlignment.FIXED);
 
             // TODO: How do I get the icon coords from the iconview?
             Clutter.ActorBox box = { 20, 20, 20 + Machine.SCREENSHOT_WIDTH, 20 + Machine.SCREENSHOT_HEIGHT};
             actor.allocate (box, 0);
             actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
-            app.overlay_bin.set_alignment (actor,
-                                           Clutter.BinAlignment.CENTER,
-                                           Clutter.BinAlignment.CENTER);
+            App.app.overlay_bin.set_alignment (actor,
+                                               Clutter.BinAlignment.CENTER,
+                                               Clutter.BinAlignment.CENTER);
             break;
 
         case UIState.PROPERTIES:
-            var item_actor = app.current_item.actor;
+            var item_actor = App.app.current_item.actor;
             item_actor.hide ();
             break;
         }
 
         fade_actor (actor, opacity);
 
-        if (app.current_item != null)
-            app.current_item.ui_state = ui_state;
+        if (App.app.current_item != null)
+            App.app.current_item.ui_state = ui_state;
     }
 
     public void update_item_visible (CollectionItem item) {
@@ -193,10 +191,10 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view.set_selection_mode (Gtk.SelectionMode.SINGLE);
         icon_view.item_activated.connect ((view, path) => {
             var item = get_item_for_path (path);
-            app.select_item (item);
+            App.app.select_item (item);
         });
         icon_view.selection_changed.connect (() => {
-            app.notify_property ("selected-items");
+            App.app.notify_property ("selected-items");
         });
         var pixbuf_renderer = new Gtk.CellRendererPixbuf ();
         pixbuf_renderer.xalign = 0.5f;

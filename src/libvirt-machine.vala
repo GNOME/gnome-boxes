@@ -17,7 +17,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (display == null)
             return;
 
-        app.display_page.remove_display ();
+        App.app.display_page.remove_display ();
         display.disconnect_it ();
         display = null;
     }
@@ -97,10 +97,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public LibvirtMachine (CollectionSource source,
-                           Boxes.App app,
                            GVir.Connection connection,
                            GVir.Domain domain) throws GLib.Error {
-        base (source, app, domain.get_name ());
+        base (source, domain.get_name ());
 
         debug ("new libvirt machine: " + name);
         this.config = new DisplayConfig (source, domain.get_uuid ());
@@ -383,7 +382,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             }
 
             try {
-                if (connection == app.default_connection) {
+                if (connection == App.app.default_connection) {
                     var volume = get_storage_volume (connection, domain, null);
                     if (volume != null)
                         volume.delete (0);
@@ -481,7 +480,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             }
         };
         var message = _("Changes require restart of '%s'. Attempt restart?").printf (name);
-        app.notificationbar.display_for_action (message, Gtk.Stock.YES, (owned) reboot);
+        App.app.notificationbar.display_for_action (message, Gtk.Stock.YES, (owned) reboot);
     }
 
     private void add_storage_property (ref List list) {

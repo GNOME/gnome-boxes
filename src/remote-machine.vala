@@ -3,8 +3,8 @@ using Gtk;
 
 private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
-    public RemoteMachine (CollectionSource source, Boxes.App app) {
-        base (source, app, source.name);
+    public RemoteMachine (CollectionSource source) {
+        base (source, source.name);
 
         // assume the remote is running for now
         state = MachineState.RUNNING;
@@ -38,7 +38,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         if (display == null)
             return;
 
-        app.display_page.remove_display ();
+        App.app.display_page.remove_display ();
 
         if (display != null) {
             try {

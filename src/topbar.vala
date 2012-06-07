@@ -13,7 +13,6 @@ private class Boxes.Topbar: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
     public Gtk.Label label;
 
-    private App app;
     public const uint height = 50;
 
     private GtkClutter.Actor gtk_actor; // the topbar box
@@ -27,12 +26,10 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.Button new_btn;
     private Gtk.Label selection_label;
 
-    public Topbar (App app) {
-        this.app = app;
-
+    public Topbar () {
         setup_topbar ();
 
-        app.notify["selected-items"].connect (() => {
+        App.app.notify["selected-items"].connect (() => {
             update_selection_label ();
         });
     }
@@ -58,7 +55,7 @@ private class Boxes.Topbar: Boxes.UI {
         back_btn.valign = Gtk.Align.CENTER;
         back_btn.icon_name =  "go-previous-symbolic";
         back_btn.get_style_context ().add_class ("raised");
-        back_btn.clicked.connect ((button) => { app.ui_state = UIState.COLLECTION; });
+        back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
         toolbar_start.insert (back_btn, 0);
 
         new_btn = new Gtk.Button.with_label (_("New"));
@@ -67,7 +64,7 @@ private class Boxes.Topbar: Boxes.UI {
         var tool_item = new Gtk.ToolItem ();
         tool_item.child = new_btn;
         tool_item.valign = Gtk.Align.CENTER;
-        new_btn.clicked.connect ((button) => { app.ui_state = UIState.WIZARD; });
+        new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
         toolbar_start.insert (tool_item, 1);
 
         label = new Gtk.Label ("");
@@ -95,11 +92,11 @@ private class Boxes.Topbar: Boxes.UI {
         select_btn.valign = Gtk.Align.CENTER;
         select_btn.clicked.connect (() => {
             notebook.page = TopbarPage.SELECTION;
-            app.selection_mode = true;
+            App.app.selection_mode = true;
         });
         update_select_btn_sensitivity ();
-        app.collection.item_added.connect (update_select_btn_sensitivity);
-        app.collection.item_removed.connect (update_select_btn_sensitivity);
+        App.app.collection.item_added.connect (update_select_btn_sensitivity);
+        App.app.collection.item_removed.connect (update_select_btn_sensitivity);
         toolbar_end.insert (select_btn, 1);
 
         toolbar_end.set_show_arrow (false);
@@ -131,7 +128,7 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar_selection.insert (cancel_btn, 1);
         cancel_btn.clicked.connect (() => {
             select_btn.active = false;
-            app.selection_mode = false;
+            App.app.selection_mode = false;
             notebook.page = TopbarPage.COLLECTION;
         });
 
@@ -151,11 +148,11 @@ private class Boxes.Topbar: Boxes.UI {
     }
 
     private void update_select_btn_sensitivity () {
-        select_btn.sensitive = app.collection.items.length != 0;
+        select_btn.sensitive = App.app.collection.items.length != 0;
     }
 
     private void update_selection_label () {
-        var items = app.selected_items.length ();
+        var items = App.app.selected_items.length ();
         if (items > 0)
             selection_label.set_markup ("<b>" + ngettext ("%d selected", "%d selected", items).printf (items) + "</b>");
         else

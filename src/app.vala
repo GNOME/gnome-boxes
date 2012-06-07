@@ -120,7 +120,7 @@ private class Boxes.App: Boxes.UI {
 
             application.set_app_menu (menu);
 
-            collection = new Collection (this);
+            collection = new Collection ();
             duration = settings.get_int ("animation-duration");
             setup_ui ();
 
@@ -175,7 +175,7 @@ private class Boxes.App: Boxes.UI {
             return machine; // Already added
 
         try {
-            machine = new LibvirtMachine (source, this, connection, domain);
+            machine = new LibvirtMachine (source, connection, domain);
             collection.add_item (machine);
             domain.set_data<LibvirtMachine> ("machine", machine);
         } catch (GLib.Error error) {
@@ -239,7 +239,7 @@ private class Boxes.App: Boxes.UI {
 
         case "vnc":
         case "spice":
-            var machine = new RemoteMachine (source, this);
+            var machine = new RemoteMachine (source);
             collection.add_item (machine);
             break;
 
@@ -362,7 +362,7 @@ private class Boxes.App: Boxes.UI {
         embed = new GtkClutter.Embed ();
         notebook.append_page (embed, null);
 
-        display_page = new DisplayPage (this);
+        display_page = new DisplayPage ();
         notebook.append_page (display_page.widget, null);
 
         stage = embed.get_stage () as Clutter.Stage;
@@ -377,13 +377,13 @@ private class Boxes.App: Boxes.UI {
         stage.set_layout_manager (stage_bin);
         stage.name = "boxes-stage";
 
-        sidebar = new Sidebar (this);
-        view = new CollectionView (this, sidebar.category);
-        topbar = new Topbar (this);
-        notificationbar = new Notificationbar (this);
-        selectionbar = new Selectionbar (this);
-        wizard = new Wizard (this);
-        properties = new Properties (this);
+        sidebar = new Sidebar ();
+        view = new CollectionView (sidebar.category);
+        topbar = new Topbar ();
+        notificationbar = new Notificationbar ();
+        selectionbar = new Selectionbar ();
+        wizard = new Wizard ();
+        properties = new Properties ();
 
         var vbox_actor = new Clutter.Actor ();
         vbox_actor.name = "top-vbox";

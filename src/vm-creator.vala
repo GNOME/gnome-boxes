@@ -4,16 +4,14 @@ using Osinfo;
 using GVir;
 
 private class Boxes.VMCreator {
-    private App app;
-    private Connection? connection { get { return app.default_connection; } }
+    private Connection? connection { get { return App.app.default_connection; } }
     private VMConfigurator configurator;
     private ulong stopped_id;
 
-    public VMCreator (App app) {
+    public VMCreator () {
         configurator = new VMConfigurator ();
-        this.app = app;
 
-        app.collection.item_added.connect (on_item_added);
+        App.app.collection.item_added.connect (on_item_added);
     }
 
     private void on_item_added (Collection collection, CollectionItem item) {
@@ -46,9 +44,9 @@ private class Boxes.VMCreator {
         if (connection == null) {
             // Wait for needed libvirt connection
             ulong handler = 0;
-            handler = app.notify["default-connection"].connect (() => {
+            handler = App.app.notify["default-connection"].connect (() => {
                 create_and_launch_vm.callback ();
-                app.disconnect (handler);
+                App.app.disconnect (handler);
             });
 
             yield;
@@ -70,18 +68,18 @@ private class Boxes.VMCreator {
         var domain = connection.create_domain (config);
         domain.start (0);
 
-        var machine = app.add_domain (app.default_source, app.default_connection, domain);
+        var machine = App.app.add_domain (App.app.default_source, App.app.default_connection, domain);
 
         if (machine != null && fullscreen) {
             ulong signal_id = 0;
 
-            signal_id = app.notify["ui-state"].connect (() => {
-                if (app.ui_state != UIState.COLLECTION)
+            signal_id = App.app.notify["ui-state"].connect (() => {
+                if (App.app.ui_state != UIState.COLLECTION)
                     return;
 
-                app.select_item (machine);
-                app.fullscreen = true;
-                app.disconnect (signal_id);
+                App.app.select_item (machine);
+                App.app.fullscreen = true;
+                App.app.disconnect (signal_id);
 
                 return;
             });

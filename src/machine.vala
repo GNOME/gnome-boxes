@@ -5,7 +5,6 @@ using Gtk;
 
 private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
     public override Clutter.Actor actor { get { return machine_actor.actor; } }
-    public Boxes.App app;
     public MachineActor machine_actor;
     public Boxes.CollectionSource source;
     public Boxes.DisplayConfig config;
@@ -58,11 +57,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 return;
 
             show_id = _display.show.connect ((id) => {
-                app.ui_state = Boxes.UIState.DISPLAY;
-                Timeout.add (app.duration, () => {
+                App.app.ui_state = Boxes.UIState.DISPLAY;
+                Timeout.add (App.app.duration, () => {
                     try {
                         var widget = display.get_display (0);
-                        app.display_page.show_display (display, widget);
+                        App.app.display_page.show_display (display, widget);
                         widget.grab_focus ();
                     } catch (Boxes.Error error) {
                         warning (error.message);
@@ -73,12 +72,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             });
 
             hide_id = _display.hide.connect ((id) => {
-                app.display_page.remove_display ();
+                App.app.display_page.remove_display ();
             });
 
             disconnected_id = _display.disconnected.connect (() => {
                 message (@"display $name disconnected");
-                app.ui_state = Boxes.UIState.COLLECTION;
+                App.app.ui_state = Boxes.UIState.COLLECTION;
             });
 
             need_password_id = _display.notify["need-password"].connect (() => {
@@ -93,16 +92,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    public Machine (Boxes.CollectionSource source, Boxes.App app, string name) {
-        this.app = app;
+    public Machine (Boxes.CollectionSource source, string name) {
         this.name = name;
         this.source = source;
 
         pixbuf = draw_fallback_vm ();
         machine_actor = new MachineActor (this);
 
-        ui_state_id = app.notify["ui-state"].connect (() => {
-            if (app.ui_state == UIState.DISPLAY)
+        ui_state_id = App.app.notify["ui-state"].connect (() => {
+            if (App.app.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
             else
                 set_screenshot_enable (true);
@@ -114,7 +112,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (screenshot_id != 0)
                 return;
             update_screenshot.begin ();
-            var interval = app.settings.get_int ("screenshot-interval");
+            var interval = App.app.settings.get_int ("screenshot-interval");
             screenshot_id = Timeout.add_seconds (interval, () => {
                 update_screenshot.begin ();
 
@@ -244,7 +242,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
         set_screenshot_enable (false);
         if (ui_state_id != 0) {
-            app.disconnect (ui_state_id);
+            App.app.disconnect (ui_state_id);
             ui_state_id = 0;
         }
     }
@@ -269,7 +267,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
     ~MachineActor() {
         if (track_screenshot_id != 0)
-            machine.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+            App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
     }
 
     public MachineActor (Machine machine) {
@@ -359,8 +357,8 @@ private class Boxes.MachineActor: Boxes.UI {
         int width, height;
         int x, y;
 
-        machine.app.display_page.get_size (out width, out height);
-        machine.app.window.get_size (out window_width, out window_height);
+        App.app.display_page.get_size (out width, out height);
+        App.app.window.get_size (out window_width, out window_height);
         x = window_width - width;
         y = window_height - height;
 
@@ -372,33 +370,33 @@ private class Boxes.MachineActor: Boxes.UI {
         case UIState.DISPLAY:
             gtk_vbox.hide ();
             if (previous_ui_state == UIState.CREDS) {
-                machine.app.overlay_bin.set_alignment (actor,
-                                                       Clutter.BinAlignment.FILL,
-                                                       Clutter.BinAlignment.FILL);
+                App.app.overlay_bin.set_alignment (actor,
+                                                   Clutter.BinAlignment.FILL,
+                                                   Clutter.BinAlignment.FILL);
             } else {
                 if (display != null) {
                     // zoom in, back from properties
 
-                    machine.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+                    App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
                     track_screenshot_id = 0;
 
-                    machine.app.overlay_bin.set_alignment (display,
-                                                           Clutter.BinAlignment.FILL,
-                                                           Clutter.BinAlignment.FILL);
+                    App.app.overlay_bin.set_alignment (display,
+                                                       Clutter.BinAlignment.FILL,
+                                                       Clutter.BinAlignment.FILL);
 
                     /* Todo: No good way to get the end of the transision yet? */
-                    Timeout.add (machine.app.duration, () => {
+                    Timeout.add (App.app.duration, () => {
                             var widget = display.contents;
                             display.contents = null;
                             display.destroy ();
                             display = null;
                             // FIXME: enable grabs
                             machine.display.set_enable_inputs (widget, true);
-                            machine.app.display_page.show_display (machine.display, widget);
+                            App.app.display_page.show_display (machine.display, widget);
                             return false;
                         });
                 } else
-                    machine.app.display_page.show ();
+                    App.app.display_page.show ();
             }
             break;
 
@@ -409,13 +407,13 @@ private class Boxes.MachineActor: Boxes.UI {
             break;
 
         case UIState.PROPERTIES:
-            var widget = machine.app.display_page.remove_display ();
+            var widget = App.app.display_page.remove_display ();
             machine.display.set_enable_inputs (widget, false);
             display = new GtkClutter.Actor.with_contents (widget);
             display.name = "properties-thumbnail";
-            machine.app.overlay_bin.add (display,
-                                         Clutter.BinAlignment.FILL,
-                                         Clutter.BinAlignment.FILL);
+            App.app.overlay_bin.add (display,
+                                     Clutter.BinAlignment.FILL,
+                                     Clutter.BinAlignment.FILL);
 
             Clutter.ActorBox box = { 0, 0,  width, height};
             display.allocate (box, 0);
@@ -423,15 +421,15 @@ private class Boxes.MachineActor: Boxes.UI {
 
             // Temporarily hide toolbar in fullscreen so that the the animation
             // actor doesn't get pushed down before zooming to the sidebar
-            if (machine.app.fullscreen)
-                machine.app.topbar.actor.hide ();
+            if (App.app.fullscreen)
+                App.app.topbar.actor.hide ();
 
-            track_screenshot_id = machine.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
+            track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
                 Idle.add_full (Priority.HIGH, () => {
-                    machine.app.topbar.actor.show ();
-                    machine.app.overlay_bin.set_alignment (display,
-                                                           Clutter.BinAlignment.FIXED,
-                                                           Clutter.BinAlignment.FIXED);
+                    App.app.topbar.actor.show ();
+                    App.app.overlay_bin.set_alignment (display,
+                                                       Clutter.BinAlignment.FIXED,
+                                                       Clutter.BinAlignment.FIXED);
                     display.x = alloc.x;
                     display.y = alloc.y;
                     display.width = alloc.width;

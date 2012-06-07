@@ -15,7 +15,6 @@ private class Boxes.Properties: Boxes.UI {
 
     public Gtk.Widget screenshot_placeholder;
     private GtkClutter.Actor gtk_actor;
-    private Boxes.App app;
     private Gtk.Notebook notebook;
     private Gtk.ToolButton back;
     private Gtk.Label toolbar_label;
@@ -89,9 +88,7 @@ private class Boxes.Properties: Boxes.UI {
         }
     }
 
-    public Properties (App app) {
-        this.app = app;
-
+    public Properties () {
         setup_ui ();
     }
 
@@ -107,11 +104,11 @@ private class Boxes.Properties: Boxes.UI {
         for (var i = 0; i < PropertiesPage.LAST; i++)
             notebook.remove_page (-1);
 
-        if (app.current_item == null)
+        if (App.app.current_item == null)
             return;
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
-            var machine = app.current_item as Machine;
+            var machine = App.app.current_item as Machine;
             var page = new PageWidget (i, machine);
             notebook.append_page (page.widget, null);
 
@@ -121,7 +118,7 @@ private class Boxes.Properties: Boxes.UI {
 
         tree_view.get_selection ().select_path (new Gtk.TreePath.from_string ("0"));
 
-        var machine = app.current_item as LibvirtMachine;
+        var machine = App.app.current_item as LibvirtMachine;
         if (machine != null) {
             stats_id = machine.stats_updated.connect (() => {
                 cpu.points = machine.cpu_stats;
@@ -140,7 +137,7 @@ private class Boxes.Properties: Boxes.UI {
         gtk_actor.opacity = 0;
 
         /* topbar */
-        var hbox = app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.HBox;
+        var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.HBox;
 
         var toolbar = new Toolbar ();
         toolbar.set_valign (Align.CENTER);
@@ -158,14 +155,14 @@ private class Boxes.Properties: Boxes.UI {
         box.add (toolbar_label);
         back = new ToolButton (box, null);
         back.get_style_context ().add_class ("raised");
-        back.clicked.connect ((button) => { app.ui_state = UIState.DISPLAY; });
+        back.clicked.connect ((button) => { App.app.ui_state = UIState.DISPLAY; });
         toolbar.insert (back, 0);
         hbox.pack_start (toolbar_box, true, true, 0);
 
         hbox.show_all ();
 
         /* sidebar */
-        var vbox = app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.VBox;
+        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.VBox;
 
         tree_view = new Gtk.TreeView ();
         var selection = tree_view.get_selection ();
@@ -225,13 +222,13 @@ private class Boxes.Properties: Boxes.UI {
     public override void ui_state_changed () {
         uint opacity = 0;
         if (stats_id != 0) {
-            app.current_item.disconnect (stats_id);
+            App.app.current_item.disconnect (stats_id);
             stats_id = 0;
         }
 
         switch (ui_state) {
         case UIState.PROPERTIES:
-            toolbar_label_bind = app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
+            toolbar_label_bind = App.app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
             populate ();
             opacity = 255;
             break;
