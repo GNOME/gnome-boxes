@@ -43,19 +43,34 @@ private class Boxes.CollectionView: Boxes.UI {
         case UIState.COLLECTION:
             opacity = 255;
             icon_view.unselect_all ();
-            if (App.app.current_item != null)
-                actor_remove (App.app.current_item.actor);
+            if (App.app.current_item != null) {
+                var actor = App.app.current_item.actor;
+                App.app.overlay_bin.set_alignment (actor,
+                                                   Clutter.BinAlignment.FIXED,
+                                                   Clutter.BinAlignment.FIXED);
+                // TODO: How do I get the icon coords from the iconview?
+                actor.x = 20;
+                actor.y = 20;
+                actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
+                actor.transitions_completed.connect (() => {
+                    if (App.app.ui_state == UIState.COLLECTION ||
+                        App.app.current_item.actor != actor)
+                        actor_remove (actor);
+                });
+            }
             break;
 
         case UIState.CREDS:
             var actor = App.app.current_item.actor;
-            App.app.overlay_bin.add (actor,
-                                     Clutter.BinAlignment.FIXED,
-                                     Clutter.BinAlignment.FIXED);
+            if (App.app.current_item.actor.get_parent () == null) {
+                App.app.overlay_bin.add (actor,
+                                         Clutter.BinAlignment.FIXED,
+                                         Clutter.BinAlignment.FIXED);
 
-            // TODO: How do I get the icon coords from the iconview?
-            Clutter.ActorBox box = { 20, 20, 20 + Machine.SCREENSHOT_WIDTH, 20 + Machine.SCREENSHOT_HEIGHT};
-            actor.allocate (box, 0);
+                // TODO: How do I get the icon coords from the iconview?
+                Clutter.ActorBox box = { 20, 20, 20 + Machine.SCREENSHOT_WIDTH, 20 + Machine.SCREENSHOT_HEIGHT * 2};
+                actor.allocate (box, 0);
+            }
             actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
             App.app.overlay_bin.set_alignment (actor,
                                                Clutter.BinAlignment.CENTER,
