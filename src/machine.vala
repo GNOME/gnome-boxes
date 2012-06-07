@@ -386,17 +386,15 @@ private class Boxes.MachineActor: Boxes.UI {
                                                        Clutter.BinAlignment.FILL,
                                                        Clutter.BinAlignment.FILL);
 
-                    /* Todo: No good way to get the end of the transision yet? */
-                    Timeout.add (App.app.duration, () => {
-                            var widget = display.contents;
-                            display.contents = null;
-                            display.destroy ();
-                            display = null;
-                            // FIXME: enable grabs
-                            machine.display.set_enable_inputs (widget, true);
-                            App.app.display_page.show_display (machine.display, widget);
-                            return false;
-                        });
+                    display.transitions_completed.connect (() => {
+                        var widget = display.contents;
+                        display.contents = null;
+                        display.destroy ();
+                        display = null;
+                        // FIXME: enable grabs
+                        machine.display.set_enable_inputs (widget, true);
+                        App.app.display_page.show_display (machine.display, widget);
+                    });
                 } else
                     App.app.display_page.show ();
             }
