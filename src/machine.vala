@@ -265,8 +265,11 @@ private class Boxes.MachineActor: Boxes.UI {
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
     private Machine machine;
+    ulong track_screenshot_id = 0;
 
     ~MachineActor() {
+        if (track_screenshot_id != 0)
+            machine.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
     }
 
     public MachineActor (Machine machine) {
@@ -376,6 +379,9 @@ private class Boxes.MachineActor: Boxes.UI {
                 if (display != null) {
                     // zoom in, back from properties
 
+                    machine.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+                    track_screenshot_id = 0;
+
                     machine.app.overlay_bin.set_alignment (display,
                                                            Clutter.BinAlignment.FILL,
                                                            Clutter.BinAlignment.FILL);
@@ -420,9 +426,7 @@ private class Boxes.MachineActor: Boxes.UI {
             if (machine.app.fullscreen)
                 machine.app.topbar.actor.hide ();
 
-            ulong id = 0;
-            id = machine.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
-                machine.app.properties.screenshot_placeholder.disconnect (id);
+            track_screenshot_id = machine.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
                 Idle.add_full (Priority.HIGH, () => {
                     machine.app.topbar.actor.show ();
                     machine.app.overlay_bin.set_alignment (display,
