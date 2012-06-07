@@ -59,6 +59,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             show_id = _display.show.connect ((id) => {
                 App.app.ui_state = Boxes.UIState.DISPLAY;
                 Timeout.add (App.app.duration, () => {
+                    if  (App.app.ui_state != Boxes.UIState.DISPLAY)
+                          return false;
                     try {
                         var widget = display.get_display (0);
                         App.app.display_page.show_display (display, widget);
