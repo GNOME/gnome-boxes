@@ -265,11 +265,8 @@ private class Boxes.MachineActor: Boxes.UI {
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
     private Machine machine;
-    private ulong height_id;
 
     ~MachineActor() {
-        machine.app.actor.disconnect (height_id);
-        height_id = 0;
     }
 
     public MachineActor (Machine machine) {
