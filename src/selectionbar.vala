@@ -62,24 +62,7 @@ private class Boxes.Selectionbar: GLib.Object {
 
     private bool visible {
         set {
-            if (value)
-                show ();
-            else
-                hide ();
+			fade_actor (actor, value ? 255 : 0);
         }
-    }
-    private void show () {
-        actor.show ();
-        actor.queue_redraw ();
-        actor.animate (Clutter.AnimationMode.LINEAR, App.app.duration,
-                       "opacity", 255);
-    }
-
-    private void hide () {
-        var anim = actor.animate (Clutter.AnimationMode.LINEAR, App.app.duration,
-                                  "opacity", 0);
-        anim.completed.connect (() => {
-            actor.hide ();
-        });
     }
 }
