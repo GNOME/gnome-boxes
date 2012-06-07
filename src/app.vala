@@ -375,6 +375,7 @@ private class Boxes.App: Boxes.UI {
         stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
                                            Clutter.BinAlignment.FIXED);
         stage.set_layout_manager (stage_bin);
+        stage.name = "boxes-stage";
 
         sidebar = new Sidebar (this);
         view = new CollectionView (this, sidebar.category);
@@ -385,6 +386,7 @@ private class Boxes.App: Boxes.UI {
         properties = new Properties (this);
 
         var vbox_actor = new Clutter.Actor ();
+        vbox_actor.name = "top-vbox";
         var vbox = new Clutter.BoxLayout ();
         vbox_actor.set_layout_manager (vbox);
         vbox.set_vertical (true);
@@ -394,10 +396,12 @@ private class Boxes.App: Boxes.UI {
                        Clutter.BinAlignment.FILL);
 
         topbar_revealer = new Boxes.Revealer (true);
+        topbar_revealer.name = "topbar-revealer";
         vbox.pack (topbar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
         topbar_revealer.add (topbar.actor);
 
         var below_bin_actor = new Clutter.Actor ();
+        below_bin_actor.name = "below-bin";
         var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
                                                Clutter.BinAlignment.FIXED);
         below_bin_actor.set_layout_manager (below_bin);
@@ -409,6 +413,7 @@ private class Boxes.App: Boxes.UI {
                        Clutter.BinAlignment.FILL);
 
         var hbox_actor = new Clutter.Actor ();
+        hbox_actor.name = "top-hbox";
         var hbox = new Clutter.BoxLayout ();
         hbox_actor.set_layout_manager (hbox);
 
@@ -417,6 +422,7 @@ private class Boxes.App: Boxes.UI {
                        Clutter.BinAlignment.FILL);
 
         overlay_bin_actor = new Clutter.Actor ();
+        overlay_bin_actor.name = "overlay-bin";
         overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
                                              Clutter.BinAlignment.FIXED);
         overlay_bin_actor.set_layout_manager (overlay_bin);
@@ -428,11 +434,13 @@ private class Boxes.App: Boxes.UI {
                        Clutter.BinAlignment.FILL);
 
         sidebar_revealer = new Boxes.Revealer (false);
+        sidebar_revealer.name = "sidebar-revealer";
         hbox.pack (sidebar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
         sidebar_revealer.unreveal ();
         sidebar_revealer.add (sidebar.actor);
 
         var content_bin_actor = new Clutter.Actor ();
+        content_bin_actor.name = "content-bin";
         var content_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
                                                  Clutter.BinAlignment.FILL);
         content_bin_actor.set_layout_manager (content_bin);

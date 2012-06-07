@@ -136,6 +136,7 @@ private class Boxes.Properties: Boxes.UI {
         notebook.show_tabs = false;
         notebook.get_style_context ().add_class ("boxes-bg");
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor.name = "properties";
         gtk_actor.opacity = 0;
 
         /* topbar */

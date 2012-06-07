@@ -41,6 +41,7 @@ private class Boxes.Topbar: Boxes.UI {
         notebook = new Gtk.Notebook ();
         notebook.set_size_request (50, (int) height);
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor.name = "topbar";
 
         /* TopbarPage.COLLECTION */
         var hbox = new Gtk.HBox (false, 0);

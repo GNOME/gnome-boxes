@@ -217,5 +217,6 @@ private class Boxes.CollectionView: Boxes.UI {
         scrolled_window.show_all ();
 
         gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
+        gtkactor.name = "collection-view";
     }
 }

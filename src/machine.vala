@@ -409,6 +409,7 @@ private class Boxes.MachineActor: Boxes.UI {
             var widget = machine.app.display_page.remove_display ();
             machine.display.set_enable_inputs (widget, false);
             display = new GtkClutter.Actor.with_contents (widget);
+            display.name = "properties-thumbnail";
             machine.app.overlay_bin.add (display,
                                          Clutter.BinAlignment.FILL,
                                          Clutter.BinAlignment.FILL);
