@@ -377,6 +377,18 @@ private class Boxes.App: Boxes.UI {
         stage.set_layout_manager (stage_bin);
         stage.name = "boxes-stage";
 
+        var background = new GtkClutter.Texture ();
+        background.name = "background";
+        try {
+            var pixbuf = new Gdk.Pixbuf.from_file (get_style ("assets/boxes-dark.png"));
+            background.set_from_pixbuf (pixbuf);
+        } catch (GLib.Error e) {
+        }
+        background.set_repeat (true, true);
+        stage_bin.add (background,
+                       Clutter.BinAlignment.FILL,
+                       Clutter.BinAlignment.FILL);
+
         sidebar = new Sidebar ();
         view = new CollectionView (sidebar.category);
         topbar = new Topbar ();

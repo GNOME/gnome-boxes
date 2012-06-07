@@ -17,19 +17,11 @@
     -GtkWidget-separator-height: 1;
 }
 
-.view {
-    background-color: @boxes_bg_color;
-/*
-  this is broken in clutter-gtk? atm
-  background-image: url("assets/boxes-dark.png");
-  background-repeat: repeat;
-*/
-}
-
+.view,
+GtkClutterOffscreen,
 .boxes-bg {
-    background-color: @boxes_bg_color;
-    background-image: url("assets/boxes-dark.png");
-    background-repeat: repeat;
+    background-color: transparent;
+    background-image: none;
 }
 
 .boxes-sidebar-bg {
