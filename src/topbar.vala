@@ -19,7 +19,7 @@ private class Boxes.Topbar: Boxes.UI {
     public Notebook notebook;
 
     private Gtk.Spinner spinner;
-    private Gtk.ToggleToolButton select_btn;
+    private Gtk.ToolButton select_btn;
     private Gtk.ToolButton cancel_btn;
     private Gtk.ToolButton spinner_btn;
     private Gtk.ToolButton back_btn;
@@ -86,7 +86,7 @@ private class Boxes.Topbar: Boxes.UI {
         spinner_btn.get_style_context ().add_class ("raised");
         toolbar_end.insert (spinner_btn, 0);
 
-        select_btn = new Gtk.ToggleToolButton ();
+        select_btn = new Gtk.ToolButton (null, null);
         select_btn.icon_name = "emblem-default-symbolic";
         select_btn.get_style_context ().add_class ("raised");
         select_btn.valign = Gtk.Align.CENTER;
@@ -127,7 +127,6 @@ private class Boxes.Topbar: Boxes.UI {
         cancel_btn.valign = Gtk.Align.CENTER;
         toolbar_selection.insert (cancel_btn, 1);
         cancel_btn.clicked.connect (() => {
-            select_btn.active = false;
             App.app.selection_mode = false;
             notebook.page = TopbarPage.COLLECTION;
         });
