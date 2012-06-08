@@ -91,9 +91,13 @@ private class Boxes.Topbar: Boxes.UI {
         select_btn.get_style_context ().add_class ("raised");
         select_btn.valign = Gtk.Align.CENTER;
         select_btn.clicked.connect (() => {
-            notebook.page = TopbarPage.SELECTION;
             App.app.selection_mode = true;
         });
+        App.app.notify["selection-mode"].connect (() => {
+            notebook.page = App.app.selection_mode ?
+                TopbarPage.SELECTION : notebook.page = TopbarPage.COLLECTION;
+        });
+
         update_select_btn_sensitivity ();
         App.app.collection.item_added.connect (update_select_btn_sensitivity);
         App.app.collection.item_removed.connect (update_select_btn_sensitivity);
@@ -128,7 +132,6 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar_selection.insert (cancel_btn, 1);
         cancel_btn.clicked.connect (() => {
             App.app.selection_mode = false;
-            notebook.page = TopbarPage.COLLECTION;
         });
 
         /* TopbarPage.WIZARD */

@@ -578,6 +578,9 @@ private class Boxes.App: Boxes.UI {
         if (event.keyval == Gdk.Key.F11) {
             fullscreen = !fullscreen;
             return true;
+        } else if (event.keyval == Gdk.Key.Escape) {
+            if (selection_mode && ui_state == UIState.COLLECTION)
+               selection_mode = false;
         }
 
         return false;
