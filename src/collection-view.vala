@@ -32,7 +32,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
         setup_view ();
         App.app.notify["selection-mode"].connect (() => {
-            var mode = App.app.selection_mode ? Gtk.SelectionMode.MULTIPLE : Gtk.SelectionMode.SINGLE;
+            var mode = App.app.selection_mode ? Gtk.SelectionMode.MULTIPLE : Gtk.SelectionMode.NONE;
             icon_view.set_selection_mode (mode);
         });
     }
@@ -203,7 +203,7 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view.column_spacing = 20;
         icon_view.margin = 16;
         icon_view_activate_on_single_click (icon_view, true);
-        icon_view.set_selection_mode (Gtk.SelectionMode.SINGLE);
+        icon_view.set_selection_mode (Gtk.SelectionMode.NONE);
         icon_view.item_activated.connect ((view, path) => {
             var item = get_item_for_path (path);
             App.app.select_item (item);
