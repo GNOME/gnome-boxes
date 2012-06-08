@@ -2,35 +2,36 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # Tom Tryfonidis <tomtryf@gmail.com>, 2012.
+# Mel <CyBunnyDragon@gmail.com>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-10 11:08+0000\n"
-"PO-Revision-Date: 2012-03-11 03:50+0200\n"
+"POT-Creation-Date: 2012-06-08 13:08+0000\n"
+"PO-Revision-Date: 2012-06-09 01:37+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
-"Language-Team: Greek <team@lists.gnome.gr>\n"
+"Language-Team: Greek, Modern (1453-) <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../src/main.vala:68
+#: ../src/main.vala:69
 msgid "Boxes"
 msgstr "Κουτιά"
 
 #: ../data/gnome-boxes.desktop.in.in.h:2
 msgid "Simple virtual machine viewer/manager"
-msgstr ""
+msgstr "Απλός προβολέας/διαχειριστής εικονικών μηχανών"
 
 #: ../data/gnome-boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "Προβολή και χρήση εικονικών μηχανών"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
-#: ../src/sidebar.vala:148
+#: ../src/sidebar.vala:149
 msgid "Collections"
 msgstr "Συλλογές"
 
@@ -40,11 +41,11 @@ msgstr "Λίστα με τις συλλογές κουτιών"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
-msgstr ""
+msgstr "Διάστημα μεταξύ στιγμιοτύπων"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "The interval in seconds between screenshot updates"
-msgstr ""
+msgstr "Το διάστημα σε δευτερόλεπτα μεταξύ στιγμιοτύπων"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "Animation duration"
@@ -78,103 +79,140 @@ msgstr "Μεγιστοποιημένο παράθυρο"
 msgid "Window maximized state"
 msgstr "Κατάσταση μεγιστοποίησης παραθύρου"
 
-#: ../src/app.vala:91
+#: ../src/app.vala:98
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
 "Θάνος Τρυφωνίδης <tomtryf@gmail.com>"
 
-#: ../src/app.vala:92
+#: ../src/app.vala:99
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε απομακρυσμένα ή εικονικά συστήματα"
 
-#: ../src/app.vala:104
-#: ../src/topbar.vala:63
+#: ../src/app.vala:111
+#: ../src/topbar.vala:61
 msgid "New"
 msgstr "Νέο"
 
-#: ../src/app.vala:107
+#: ../src/app.vala:114
 msgid "Properties"
 msgstr "Ιδιότητες"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:115
 msgid "Fullscreen"
 msgstr "Πλήρης οθόνη"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:118
 msgid "About Boxes"
 msgstr "Περί Κουτιά"
 
-#: ../src/app.vala:112
+#: ../src/app.vala:119
 msgid "Quit"
 msgstr "Έξοδος"
 
-#: ../src/app.vala:483
+#: ../src/app.vala:550
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Έχει διαγραφεί το κουτί '%s'"
 
-#: ../src/app.vala:484
+#: ../src/app.vala:551
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Έχει διαγραφεί %u κουτί"
 msgstr[1] "Έχουν διαγραφεί %u κουτιά"
 
-#: ../src/libvirt-machine.vala:243
+#: ../src/display-page.vala:195
+#, c-format
+msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
+msgstr ""
+
+#: ../src/fedora-installer.vala:60
+msgid "Internet access required for express installation of Fedora 16 and older"
+msgstr "Είναι απαραίτητη η σύνδεση στο διαδίκτυο για εγκατάσταση του Fedora 16 και παλαιότερου"
+
+#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/installer-media.vala:30
+#: ../src/installer-media.vala:60
+#, c-format
+msgid "%s (Live)"
+msgstr "%s (Live)"
+
+#: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr ""
 
-#: ../src/libvirt-machine.vala:244
-#: ../src/remote-machine.vala:64
-#: ../src/wizard.vala:309
+#: ../src/libvirt-machine.vala:287
+#: ../src/remote-machine.vala:67
+#: ../src/wizard.vala:290
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:253
-#: ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:296
+#: ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Πρωτόκολλο"
 
-#: ../src/libvirt-machine.vala:400
+#: ../src/libvirt-machine.vala:442
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:483
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Οι αλλαγές απαιτούν επανεκκίνηση του '%s'. Προσπάθεια για επανεκκίνηση;"
 
-#: ../src/libvirt-machine.vala:458
+#: ../src/libvirt-machine.vala:500
 msgid "Storage"
 msgstr "Αποθήκευση"
 
 #. 3rd row
-#: ../src/machine.vala:286
-#: ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:336
+#: ../src/machine.vala:307
+#: ../src/unattended-installer.vala:232
+#: ../src/wizard.vala:316
 msgid "Password"
 msgstr "Κωδικός πρόσβασης"
 
-#: ../src/main.vala:10
+#: ../src/main.vala:11
 msgid "Display version number"
 msgstr "Εμφάνιση αριθμού έκδοσης"
 
+#: ../src/main.vala:12
+#| msgid "Fullscreen"
+msgid "Open in full screen"
+msgstr "Άνοιγμα σε πλήρη οθόνη"
+
+#: ../src/main.vala:13
+msgid "Check virtualization capabilities"
+msgstr ""
+
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:14
+#: ../src/main.vala:15
 msgid "URI to display, broker or installer media"
 msgstr ""
 
-#: ../src/main.vala:19
+#: ../src/main.vala:20
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Μια απλή εφαρμογή για να έχετε πρόσβαση σε απομακρυσμένα ή εικονικά συστήματα"
+
+#. FIXME: add proper UI & docs
+#: ../src/main.vala:61
+#, c-format
+msgid "The CPU is capable of virtualization: %s\n"
+msgstr ""
+
+#: ../src/main.vala:62
+#, c-format
+msgid "The KVM module is loaded: %s\n"
+msgstr "Έχει φορτωθεί το άρθρωμα KVM: %s\n"
 
 #: ../src/properties.vala:39
 msgid "Login"
 msgstr "Σύνδεση"
 
 #: ../src/properties.vala:43
-#: ../src/wizard.vala:329
+#: ../src/wizard.vala:310
 msgid "System"
 msgstr "Σύστημα"
 
@@ -186,84 +224,94 @@ msgstr "Οθόνη"
 msgid "Devices"
 msgstr "Συσκευές"
 
-#: ../src/properties.vala:193
+#: ../src/properties.vala:197
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:200
+#: ../src/properties.vala:204
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:207
+#: ../src/properties.vala:211
 msgid "Net:"
 msgstr "Δίκτυο:"
 
-#: ../src/remote-machine.vala:61
+#: ../src/remote-machine.vala:64
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../src/sidebar.vala:141
+#: ../src/sidebar.vala:142
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: ../src/sidebar.vala:143
+#: ../src/sidebar.vala:144
 msgid "Favorites"
 msgstr "Αγαπημένα"
 
-#: ../src/sidebar.vala:144
+#: ../src/sidebar.vala:145
 msgid "Private"
 msgstr "Ιδιωτικό"
 
-#: ../src/sidebar.vala:145
+#: ../src/sidebar.vala:146
 msgid "Shared with you"
 msgstr "Από κοινού με εσάς"
 
-#: ../src/sidebar.vala:162
+#: ../src/sidebar.vala:163
 msgid "Create"
 msgstr "Δημιουργία"
 
-#: ../src/spice-display.vala:133
+#: ../src/spice-display.vala:142
 msgid "Share clipboard"
 msgstr "Διαμοιρασμός του πρόχειρου"
 
-#: ../src/spice-display.vala:141
+#: ../src/spice-display.vala:150
 msgid "Resize guest"
 msgstr "Αλλαγή μεγέθους επισκέπτη"
 
-#: ../src/spice-display.vala:152
+#: ../src/spice-display.vala:161
 msgid "USB redirection"
 msgstr "Ανακατεύθυνση USB"
 
-#: ../src/topbar.vala:155
+#: ../src/topbar.vala:157
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d επιλεγμένο"
 msgstr[1] "%d επιλεγμένα"
 
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:159
 msgid "Click on items to select them"
 msgstr "Κάντε κλικ στα αντικείμενα για να τα επιλέξετε "
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:31
+#| msgid "Password"
+msgid "no password"
+msgstr "Δεν δόθηκε συνθηματικό"
+
+#: ../src/unattended-installer.vala:171
 msgid "No username provided"
 msgstr "Δεν έχει δοθεί όνομα χρήστη"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:175
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Απαιτείται συνθηματικό για τη γρήγορη εγκατάσταση του %s"
+
+#: ../src/unattended-installer.vala:189
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "Επιλέξτε τη γρήγορη εγκατάσταση για να προρρυθμίσετε αυτόματα το κουτί σας με τις βέλτιστες ρυθμίσεις."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:203
 msgid "Express Install"
 msgstr "Γρήγορη εγκατάσταση"
 
-#: ../src/unattended-installer.vala:188
-#: ../src/wizard.vala:335
+#: ../src/unattended-installer.vala:221
+#: ../src/wizard.vala:315
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:242
 msgid "_Add Password"
 msgstr "_Προσθήκη κωδικού πρόσβασης"
 
@@ -272,24 +320,24 @@ msgid "Read-only"
 msgstr "Μόνο ανάγνωση"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:38
+#: ../src/winxp-installer.vala:49
 msgid "Product Key"
 msgstr "Κλειδί προιόντος"
 
-#: ../src/winxp-installer.vala:45
+#: ../src/winxp-installer.vala:56
 msgid "_Add Product Key"
 msgstr "_Προσθήκη κλειδιού προιόντος"
 
-#: ../src/wizard-source.vala:62
-#: ../src/wizard-source.vala:86
+#: ../src/wizard-source.vala:112
+#: ../src/wizard-source.vala:134
 msgid "Enter URL"
 msgstr "Εισάγετε URL"
 
-#: ../src/wizard-source.vala:72
+#: ../src/wizard-source.vala:119
 msgid "Select a file"
 msgstr "Επιλέξτε ένα αρχείο"
 
-#: ../src/wizard-source.vala:103
+#: ../src/wizard-source.vala:151
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -299,21 +347,21 @@ msgstr ""
 "\n"
 "Θα προστεθούν κουτιά για όλα τα συστήματα που διατίθενται από αυτόν το λογαριασμό."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:232
 msgid "32-bit x86 system"
 msgstr "32-bit x86 σύστημα"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:233
 msgid "64-bit x86 system"
 msgstr "64-bit x86 σύστημα"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:242
 #, c-format
 msgid " from %s"
 msgstr " από %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:292
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
@@ -321,83 +369,83 @@ msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 msgid "Box creation failed!"
 msgstr "Απέτυχε η δημιουργία του κουτιού!"
 
-#: ../src/wizard.vala:98
-#: ../src/wizard.vala:506
+#: ../src/wizard.vala:96
+#: ../src/wizard.vala:523
 msgid "C_ontinue"
 msgstr "Σ_υνέχεια"
 
-#: ../src/wizard.vala:98
+#: ../src/wizard.vala:96
 msgid "C_reate"
 msgstr "Δ_ημιουργία"
 
-#: ../src/wizard.vala:114
+#: ../src/wizard.vala:116
 msgid "Please enter desktop or collection URI"
 msgstr "Παρακαλούμε εισάγετε το URI της επιφάνεια εργασίας ή της συλλογής"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard.vala:122
 msgid "Will add boxes for all systems available from this account."
 msgstr "Θα προστεθούν κουτιά για όλα τα συστήματα που διατίθενται από αυτόν το λογαριασμό."
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:125
 msgid "Will add a single box."
 msgstr "Θα προστεθεί μόνο ένα κουτί."
 
-#: ../src/wizard.vala:129
+#: ../src/wizard.vala:131
 msgid "Desktop Access"
 msgstr "Πρόσβαση στην επιφάνεια εργασίας"
 
-#: ../src/wizard.vala:198
+#: ../src/wizard.vala:195
 msgid "Invalid URI"
 msgstr "Μη έγκυρο URI"
 
-#: ../src/wizard.vala:209
+#: ../src/wizard.vala:206
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Μη υποστηριζόμενο πρωτόκολλο '%s'"
 
-#: ../src/wizard.vala:299
+#: ../src/wizard.vala:280
 msgid "Will create a new box with the following properties:"
 msgstr "Θα δημιουργήσετε ένα νέο κουτί με τις ακόλουθες ιδιότητες:"
 
-#: ../src/wizard.vala:304
+#: ../src/wizard.vala:285
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../src/wizard.vala:307
+#: ../src/wizard.vala:288
 msgid "Host"
 msgstr "Σύστημα"
 
-#: ../src/wizard.vala:315
-#: ../src/wizard.vala:321
+#: ../src/wizard.vala:296
+#: ../src/wizard.vala:302
 msgid "Port"
 msgstr "Πόρτα"
 
-#: ../src/wizard.vala:316
+#: ../src/wizard.vala:297
 msgid "TLS Port"
 msgstr "Πόρτα TLS"
 
-#: ../src/wizard.vala:326
+#: ../src/wizard.vala:307
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Θα προστεθούν κουτιά για όλα τα συστήματα που διατίθενται από αυτόν το λογαριασμό:"
 
-#: ../src/wizard.vala:340
+#: ../src/wizard.vala:321
 msgid "Memory"
 msgstr "Μνήμη"
 
-#: ../src/wizard.vala:342
+#: ../src/wizard.vala:323
 msgid "Disk"
 msgstr "Δίσκος"
 
-#: ../src/wizard.vala:342
+#: ../src/wizard.vala:323
 #, c-format
 msgid "%s maximum"
 msgstr "%s μέγιστο"
 
-#: ../src/wizard.vala:387
+#: ../src/wizard.vala:393
 msgid "Introduction"
 msgstr "Εισαγωγή"
 
-#: ../src/wizard.vala:391
+#: ../src/wizard.vala:397
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
@@ -407,39 +455,39 @@ msgstr ""
 "\n"
 "Μπορείτε να συνδεθείτε σε μια υπάρχουσα μηχανή <b><i>μέσω του δικτύου</i></b> ή να δημιουργήσετε μια <b><i>εικονική μηχανή</i></b> όπου θα τρέχει τοπικά."
 
-#: ../src/wizard.vala:403
+#: ../src/wizard.vala:411
 msgid "Source Selection"
 msgstr "Επιλογή πηγής"
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:412
 msgid "Insert operating system installation media or select a source below"
 msgstr "Τοποθετήστε το μέσο εγκατάστασης του λειτουργικού συστήματος ή επιλέξτε μια πηγή από κάτω"
 
-#: ../src/wizard.vala:412
+#: ../src/wizard.vala:422
 msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
 msgstr "Τυχόν εμπορικά σήματα που εμφανίζονται παραπάνω χρησιμοποιούνται απλώς για την ταυτοποίηση του λογισμικού που έχει ήδη ληφθεί και είναι ιδιοκτησία των αντίστοιχων ιδιοκτητών τους."
 
-#: ../src/wizard.vala:424
+#: ../src/wizard.vala:436
 msgid "Preparation"
 msgstr "Προετοιμασία"
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:437
 msgid "Preparing to create new box"
 msgstr "Προετοιμασία για τη δημιουργία νέου κουτιού"
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:456
 msgid "Analyzing installer media."
 msgstr ""
 
-#: ../src/wizard.vala:453
+#: ../src/wizard.vala:467
 msgid "Setup"
 msgstr "Ρύθμιση"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:474
 msgid "Review"
 msgstr "Επισκόπηση"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:496
 msgid "Create a Box"
 msgstr "Δημιουργήστε ένα κουτί"
 
