@@ -51,12 +51,15 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 
 private class Boxes.WizardSource: GLib.Object {
     public Gtk.Widget widget { get { return notebook; } }
+    public Gtk.Widget? selected { get; set; }
     private SourcePage _page;
     public SourcePage page {
         get { return _page; }
         set {
             _page = value;
             notebook.set_current_page (page);
+            if (selected != null)
+                selected.grab_focus ();
             switch (page) {
             case SourcePage.MAIN:
                 add_media_entries.begin ();
@@ -212,7 +215,6 @@ private class Boxes.WizardSource: GLib.Object {
             install_media = media;
             uri = media.device_file;
             url_entry.activate ();
-            page = SourcePage.URL;
         }, 15, 5, media.device_file);
 
         var image = get_os_logo (media.os, 64);
@@ -255,6 +257,7 @@ private class Boxes.WizardSource: GLib.Object {
         if (clicked != null) {
             var button = new Gtk.Button ();
             button.clicked.connect (() => {
+                selected = button;
                 clicked ();
             });
             row = button;
@@ -301,7 +304,6 @@ private class Boxes.WizardSource: GLib.Object {
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
             url_entry.activate ();
-            page = SourcePage.URL;
         }
 
         dialog.hide ();

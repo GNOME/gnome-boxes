@@ -103,14 +103,15 @@ private class Boxes.Wizard: Boxes.UI {
         media_manager = new MediaManager ();
     }
 
-    public Wizard () {
-        vm_creator = new VMCreator ();
-        wizard_source = new Boxes.WizardSource (media_manager);
-        wizard_source.notify["page"].connect(() => {
-            if (wizard_source.page == Boxes.SourcePage.MAIN)
-                next_button.sensitive = false;
-        });
-        wizard_source.url_entry.changed.connect (() => {
+    private void wizard_source_update_next () {
+        next_button.sensitive = false;
+
+        switch (wizard_source.page) {
+        case Boxes.SourcePage.MAIN:
+            next_button.sensitive = wizard_source.selected != null;
+            break;
+
+        case Boxes.SourcePage.URL:
             next_button.sensitive = wizard_source.uri.length != 0;
 
             var text = _("Please enter desktop or collection URI");
@@ -129,7 +130,20 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             wizard_source.update_url_page (_("Desktop Access"), text, icon);
-        });
+            break;
+
+        default:
+            warn_if_reached ();
+            break;
+        }
+    }
+
+    public Wizard () {
+        vm_creator = new VMCreator ();
+        wizard_source = new Boxes.WizardSource (media_manager);
+        wizard_source.notify["page"].connect(wizard_source_update_next);
+        wizard_source.notify["selected"].connect(wizard_source_update_next);
+        wizard_source.url_entry.changed.connect (wizard_source_update_next);
 
         wizard_source.url_entry.activate.connect(() => {
             page = WizardPage.PREPARATION;
