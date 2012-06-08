@@ -361,12 +361,9 @@ private class Boxes.Wizard: Boxes.UI {
             skip_to = page - 1;
 
         if (install_media != null) {
-            // go to last if skip review for live
-            if (forwards &&
-                page == Boxes.WizardPage.SETUP &&
-                install_media.live && skip_review_for_live)
-                // No setup or review required for live media
-                skip_to = WizardPage.LAST;
+            if (forwards && page == Boxes.WizardPage.SETUP && install_media.live)
+                // No setup required for live media and also skip review if told to do so
+                skip_to = skip_review_for_live ? WizardPage.LAST : WizardPage.REVIEW;
 
             // always skip SETUP page if not unattended installer
             if (page == Boxes.WizardPage.SETUP &&
