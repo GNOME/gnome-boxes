@@ -177,6 +177,7 @@ private class Boxes.Properties: Boxes.UI {
         tree_view.headers_visible = false;
         var renderer = new CellRendererText ();
         renderer.xpad = 20;
+        renderer.weight = Pango.Weight.BOLD;
         tree_view.insert_column_with_attributes (-1, "", renderer, "text", 0);
         vbox.pack_start (tree_view, true, true, 0);
 
