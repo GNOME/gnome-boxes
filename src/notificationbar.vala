@@ -102,6 +102,7 @@ private class Boxes.Notificationbar: GLib.Object {
     private void setup_action_notify () {
         revealer = new Revealer (true);
         revealer.unreveal ();
+        revealer.name = "notificationbar-revealer";
 
         info_bar = new InfoBar ();
         info_bar.get_style_context ().add_class ("osd");
@@ -129,6 +130,7 @@ private class Boxes.Notificationbar: GLib.Object {
         info_bar.show_all ();
 
         gtk_actor = new GtkClutter.Actor.with_contents (info_bar);
+        gtk_actor.name = "notificationbar";
         revealer.add (gtk_actor);
     }
 
