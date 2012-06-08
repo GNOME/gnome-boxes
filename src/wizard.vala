@@ -253,12 +253,14 @@ private class Boxes.Wizard: Boxes.UI {
             return true;
 
         return_if_fail (install_media != null);
+        // Setup only needed for Unattended installers
+        if (!(install_media is UnattendedInstaller))
+            return true;
 
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
 
-        var installer = install_media as UnattendedInstaller;
-        installer.populate_setup_vbox (setup_vbox);
+        (install_media as UnattendedInstaller).populate_setup_vbox (setup_vbox);
         setup_vbox.show_all ();
 
         return true;
