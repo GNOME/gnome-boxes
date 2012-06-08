@@ -46,9 +46,9 @@ private class Boxes.Sidebar: Boxes.UI {
             notebook.page = SidebarPage.COLLECTION;
             break;
 
-		default:
+        default:
             App.app.sidebar_revealer.unreveal ();
-			break;
+            break;
 
         case UIState.WIZARD:
         case UIState.PROPERTIES:
