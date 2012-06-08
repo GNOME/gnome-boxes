@@ -194,7 +194,7 @@ private class Boxes.CollectionView: Boxes.UI {
             if (item_a == null || item_b == null) // FIXME?!
                 return 0;
 
-            return strcmp (item_a.title.down (), item_b.title.down ());
+            return item_a.title.collate (item_b.title);
         });
         model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
 
