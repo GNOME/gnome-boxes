@@ -41,7 +41,9 @@ private class Boxes.Win7Installer: WindowsInstaller {
         // Remove '.' and everything after it
         lang = /\..*/i.replace (lang, -1, 0, "");
 
-        if (label.length > 15)
-            critical ("'%s' is longer than 15 characters, expect %s express installation to fail!", label, os.name);
+        if (os != null && os.short_id.length > 15)
+            critical ("'%s' is longer than 15 characters, expect %s express installation to fail!",
+                      os.short_id,
+                      os.name);
     }
 }
