@@ -6,13 +6,28 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     public override string protocol { get { return "SPICE"; } }
     public override string uri { owned get { return session.uri; } }
 
-    private Session session;
-    private unowned GtkSession gtk_session;
-    private unowned Audio audio;
+    private Spice.Session session;
+    private unowned Spice.GtkSession gtk_session;
+    private unowned Spice.Audio audio;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
     private Display.SavedProperty[] display_saved_properties;
     private Display.SavedProperty[] gtk_session_saved_properties;
+
+    public bool resize_guest { get; set; }
+    private void ui_state_changed () {
+        // TODO: multi display
+        try {
+            var display = get_display (0) as Spice.Display;
+            if (App.app.ui_state == UIState.PROPERTIES) {
+                // disable resize guest when minimizing guest widget
+                display.resize_guest = false;
+            } else if (App.app.ui_state == UIState.DISPLAY) {
+                display.resize_guest = resize_guest;
+            }
+        } catch (Boxes.Error error) {
+        }
+    }
 
     construct {
         display_saved_properties = {
@@ -32,6 +47,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         this.notify["config"].connect (() => {
             sync_config_with_display (gtk_session, gtk_session_saved_properties);
         });
+
+        App.app.notify["ui-state"].connect (ui_state_changed);
     }
 
     public SpiceDisplay (DisplayConfig config, string host, int port) {
@@ -59,8 +76,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             display.mouse_grab.connect((status) => {
                 mouse_grabbed = status != 0;
             });
-            sync_config_with_display (display, display_saved_properties);
-
+            sync_config_with_display (this, display_saved_properties);
             display.scaling = true;
 
             displays.replace (n, display);
@@ -141,16 +157,11 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             toggle.halign = Gtk.Align.START;
             add_property (ref list, _("Share clipboard"), toggle);
 
-            try {
-                toggle = new Gtk.Switch ();
-                var display = get_display (0);
-                display.bind_property ("resize-guest", toggle, "active",
-                                       BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-                toggle.halign = Gtk.Align.START;
-                add_property (ref list, _("Resize guest"), toggle);
-            } catch (Boxes.Error error) {
-                warning (error.message);
-            }
+            toggle = new Gtk.Switch ();
+            this.bind_property ("resize-guest", toggle, "active",
+                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            toggle.halign = Gtk.Align.START;
+            add_property (ref list, _("Resize guest"), toggle);
             break;
 
         case PropertiesPage.DEVICES:
