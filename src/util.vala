@@ -9,10 +9,6 @@ public errordomain Boxes.Error {
 }
 
 namespace Boxes {
-    // FIXME: Remove these when we can use Vala release that provides binding for gdkkeysyms.h
-    public const uint F10_KEY = 0xffc7;
-    public const uint F11_KEY = 0xffc8;
-    public const uint F12_KEY = 0xffc9;
 
     public string get_pkgdata (string? file_name = null) {
         return Path.build_filename (DATADIR, Config.PACKAGE_TARNAME, file_name);

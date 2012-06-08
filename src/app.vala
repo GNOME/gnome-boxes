@@ -575,7 +575,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
-        if (event.keyval == F11_KEY) {
+        if (event.keyval == Gdk.Key.F11) {
             fullscreen = !fullscreen;
             return true;
         }
