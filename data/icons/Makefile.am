@@ -19,6 +19,7 @@ noinst_DATA =					\
 
 assetsdir = $(datadir)/gnome-boxes/style/assets
 assets_DATA =					\
+	boxes-arrow.svg				\
 	boxes-dark.png				\
 	boxes-gray.png				\
 	$(NULL)

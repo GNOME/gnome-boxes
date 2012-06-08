@@ -1,6 +1,6 @@
 @define-color boxes_bg_color shade (@theme_bg_color, 0.5);
 @define-color boxes_bg2_color mix (@theme_bg_color, @boxes_bg_color, 0.5);
-@define-color boxes_selected_color #5f8dd3;
+@define-color boxes_selected_color #3465a4;
 
 #TopbarLabel {
     font-size: 14;
@@ -15,6 +15,26 @@
 .separator {
     -GtkWidget-wide-separators: true;
     -GtkWidget-separator-height: 1;
+}
+
+.sidebar GtkTreeView:selected {
+    background-color: @boxes_selected_color;
+    border-width: 2px 8px 2px 0;
+    border-color: transparent;
+    border-image-source: url("assets/boxes-arrow.svg");
+    border-image-slice: 0 8 0 0;
+    border-image-width: 2px 8px 2px 0;
+    border-image-repeat: stretch;
+    border-style: solid;
+}
+
+.sidebar GtkTreeView {
+    -GtkTreeView-vertical-separator: 8;
+}
+
+.sidebar .cell {
+    font-size: 14;
+    font-weight: bold;
 }
 
 .view,

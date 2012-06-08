@@ -169,6 +169,7 @@ private class Boxes.Sidebar: Boxes.UI {
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
         gtk_actor.name = "sidebar";
         bin_actor.add_child (gtk_actor);
+        notebook.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
         notebook.get_style_context ().add_class ("boxes-bg");
         notebook.set_size_request ((int) width, 100);
         notebook.show_tabs = false;
