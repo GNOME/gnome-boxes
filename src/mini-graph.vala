@@ -52,9 +52,6 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         cr.rectangle (0, 0, width, height);
         cr.fill ();
 
-        Gdk.cairo_set_source_rgba (cr, style.get_color (Gtk.StateFlags.NORMAL));
-        cr.set_line_width (1.5);
-
         var nstep = (npoints == -1 ? points.length : npoints) - 1;
         var ymax = ymax_set ? ymax : max ();
         var dy = 0.0;
@@ -64,20 +61,8 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         if (ymax != 0)
             dy = (double)height / ymax;
 
+        Gdk.cairo_set_source_rgba (cr, style.get_color (Gtk.StateFlags.NORMAL));
         var x = 0.0;
-        foreach (var p in points) {
-            var y = height - p * dy;
-
-            if (x == 0.0)
-                cr.move_to (x, y);
-            else
-                cr.line_to (x, y);
-            x += dx;
-        }
-        cr.stroke ();
-
-        Gdk.cairo_set_source_rgba (cr, style.get_border_color (get_state_flags ()));
-        x = 0.0;
         foreach (var p in points) {
             var y = height - p * dy;
             if (x == 0.0)
@@ -89,6 +74,20 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         cr.line_to (x - dx, height);
         cr.line_to (0, height);
         cr.fill ();
+
+        Gdk.cairo_set_source_rgba (cr, style.get_border_color (get_state_flags ()));
+        cr.set_line_width (1.0);
+		x = 0.0;
+        foreach (var p in points) {
+            var y = height - p * dy;
+
+            if (x == 0.0)
+                cr.move_to (x, y);
+            else
+                cr.line_to (x, y);
+            x += dx;
+        }
+        cr.stroke ();
 
         return true;
     }
