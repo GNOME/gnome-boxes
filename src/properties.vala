@@ -186,7 +186,7 @@ private class Boxes.Properties: Boxes.UI {
         grid.column_spacing = 2;
         grid.row_spacing = 10;
         grid.margin_left = 10;
-        grid.margin_right = 10;
+        grid.margin_right = 10 + Sidebar.shadow_width;
         grid.margin_bottom = 30;
         grid.margin_top = 10;
 

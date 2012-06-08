@@ -10,7 +10,7 @@ private enum Boxes.SidebarPage {
 }
 
 private class Boxes.Sidebar: Boxes.UI {
-    public override Clutter.Actor actor { get { return gtk_actor; } }
+    public override Clutter.Actor actor { get { return bin_actor; } }
     public Notebook notebook;
     public TreeView default_tree_view;
     public TreeView user_tree_view;
@@ -18,6 +18,8 @@ private class Boxes.Sidebar: Boxes.UI {
 
     private uint width;
 
+    public static const int shadow_width = 7;
+    private Clutter.Actor bin_actor;
     private GtkClutter.Actor gtk_actor; // the sidebar box
 
     private bool selection_func (Gtk.TreeSelection selection,
@@ -124,10 +126,50 @@ private class Boxes.Sidebar: Boxes.UI {
     }
 
     private void setup_sidebar () {
+        bin_actor = new Clutter.Actor ();
+        var bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
+                                         Clutter.BinAlignment.FILL);
+        bin_actor.set_layout_manager (bin);
+        bin_actor.name = "sidebar-bin";
+
+        var shadow = new Clutter.Actor ();
+        shadow.set_width (shadow_width);
+        var canvas = new Clutter.Canvas ();
+        canvas.draw.connect ( (cr, w, h) => {
+            var p = new Cairo.Pattern.linear (0, 0, w, 0);
+            p.add_color_stop_rgba (0, 0, 0, 0, 0.4);
+            p.add_color_stop_rgba (0.7, 0, 0, 0, 0.0);
+            cr.set_source (p);
+            cr.set_operator (Cairo.Operator.SOURCE);
+            cr.rectangle (0, 0, w, h);
+            cr.fill ();
+
+            return true;
+        });
+        canvas.set_size (shadow_width, 1);
+        shadow.set_content (canvas);
+        shadow.set_content_gravity (Clutter.ContentGravity.RESIZE_FILL);
+        shadow.set_content_scaling_filters (Clutter.ScalingFilter.NEAREST, Clutter.ScalingFilter.NEAREST);
+        bin.add (shadow,
+                 Clutter.BinAlignment.END,
+                 Clutter.BinAlignment.FILL);
+
+        var background = new GtkClutter.Texture ();
+        background.name = "sidebar-background";
+        try {
+            var pixbuf = new Gdk.Pixbuf.from_file (get_style ("assets/boxes-gray.png"));
+            background.set_from_pixbuf (pixbuf);
+        } catch (GLib.Error e) {
+        }
+        background.set_repeat (true, true);
+        background.set_margin_right (shadow_width);
+        bin.add (background, Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL);
+
         notebook = new Gtk.Notebook ();
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
         gtk_actor.name = "sidebar";
-        notebook.get_style_context ().add_class ("boxes-sidebar-bg");
+        bin_actor.add_child (gtk_actor);
+        notebook.get_style_context ().add_class ("boxes-bg");
         notebook.set_size_request ((int) width, 100);
         notebook.show_tabs = false;
 
