@@ -1,3 +1,61 @@
+3.4.3 - June 08, 2012
+=====================
+
+Changes since 3.4.2:
+
+- Correctly report 'i686' architecture as 32-bit.
+- Avoid deadlock during startup.
+- Fix toolbar not showing up.
+- Always automatically launch wizard on startup when Boxes is empty, not just
+  on the first run.
+- Update topbar title to help with ungrab.
+- Do not forward grab-broken events to box' display.
+- Always install a tablet device.
+- Fix blurry notifications.
+- Fix escaping from fullscreen when caps/numlock are on.
+- Setup VM timers policies that fixes Windows 7 hangs.
+- Express installation:
+  - Setup user account and autologon for Windows XP.
+  - Correctly setup admin password for Windows XP.
+  - Use gtk+ password character in Summary page.
+- Added/updated translations:
+  - Catalan (Valencian)
+  - Indonesian
+  - Latvian
+  - Russian
+  - Simplified Chinese (zh_CN)
+- Some other functional and non-functional improvements and fixes.
+
+All bugs fixed in this release:
+
+674035 - gnome-boxes should set 'magic' clock parameters for kvm guests
+674657 - creation assistant isn't running after quitting app first time
+674794 - in-app notifications are blurry
+676176 - Add units to the -shadow css properties
+676222 - no go back button when full screen in win XP
+676307 - Cannot leave full screen before system bootup (not even with keyboard)
+676320 - User is not created during unattended installation of WinXP
+676588 - boxes shouldn't be suprised with non-boxes vm
+676590 - Always install a tablet
+676591 - Do not forward grab-broken to display
+676679 - Fix random deadlock/timeout
+676834 - A few express installation fixes/improvements
+677117 - wizard: go to setup step after prepare
+677177 - Use gtk+ password character in Summary
+
+All contributors to this release:
+
+Aleksej Kabanov <ak099@mail.ru>
+Alexander Larsson <alexl@redhat.com>
+Andika Triwidada <andika@gmail.com>
+Carles Ferrando <carles.ferrando@gmail.com>
+Christophe Fergeau <cfergeau@redhat.com>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+tuhaihe <wangdianjin@linuxdeepin.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.4.2 - May 14, 2012
 ====================
 
