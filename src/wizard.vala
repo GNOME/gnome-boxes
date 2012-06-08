@@ -51,6 +51,11 @@ private class Boxes.Wizard: Boxes.UI {
 
             if (forwards) {
                 switch (value) {
+                case WizardPage.SOURCE:
+                    wizard_source.selected = null;
+                    wizard_source.page = SourcePage.MAIN;
+                    break;
+
                 case WizardPage.PREPARATION:
                     if (!prepare ())
                         return;
