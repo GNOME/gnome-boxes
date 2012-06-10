@@ -375,12 +375,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set_stats_enable (false);
 
         if (by_user) {
-            try {
-                if (is_running ())
-                    domain.stop (0);
-            } catch (GLib.Error err) {
-                // ignore stop error
-            }
+            force_shutdown (false);
 
             try {
                 if (connection == App.app.default_connection) {
@@ -397,6 +392,25 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public async void suspend () throws GLib.Error {
         (save_on_quit) ? yield domain.save_async (0, null) : domain.suspend ();
+    }
+
+    public void force_shutdown (bool confirm = true) {
+        if (confirm) {
+            var dialog = new Gtk.MessageDialog (App.app.window, Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.QUESTION, Gtk.ButtonsType.OK_CANCEL, _("When you force shutdown, the box may lose data."));
+            var response = dialog.run ();
+            dialog.destroy ();
+
+            if (response != Gtk.ResponseType.OK)
+                return;
+        }
+
+        debug ("Force shutdown '%s'..", name);
+        try {
+            if (is_running ())
+                domain.stop (0);
+        } catch (GLib.Error error) {
+            warning ("Failed to shutdown '%s': %s", domain.get_name (), error.message);
+        }
     }
 
     private GVir.DomainDisk? get_domain_disk () throws GLib.Error {
