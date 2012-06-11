@@ -144,10 +144,10 @@ namespace Boxes {
             icon_view.disconnect (id);
             icon_view.set_data<ulong> ("boxes-icon-view-activate", 0);
         } else if (id == 0 && should_activate) {
-            id = icon_view.button_press_event.connect ((w, event) => {
+            id = icon_view.button_release_event.connect ((w, event) => {
                 Gtk.TreePath? path;
 
-                if (event.button == 1 && event.type == Gdk.EventType.BUTTON_PRESS) {
+                if (event.button == 1) {
                     path = icon_view.get_path_at_pos ((int) event.x, (int) event.y);
                     if (path != null)
                         icon_view.item_activated (path);
