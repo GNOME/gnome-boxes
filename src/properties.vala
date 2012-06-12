@@ -228,7 +228,7 @@ private class Boxes.Properties: Boxes.UI {
 
         switch (ui_state) {
         case UIState.PROPERTIES:
-            toolbar_label_bind = App.app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
+            toolbar_label_bind = App.app.current_item.bind_property ("title", toolbar_label, "label", BindingFlags.SYNC_CREATE);
             populate ();
             opacity = 255;
             break;

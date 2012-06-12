@@ -190,7 +190,7 @@ private class Boxes.DisplayPage: GLib.Object {
         var machine = App.app.current_item as Boxes.Machine;
         return_if_fail (machine != null);
 
-        var title = machine.name;
+        var title = machine.title;
         if (grabbed)
             title = _("%s <b>(press Ctrl+Alt keys to ungrab)</b>").printf (title);
 
