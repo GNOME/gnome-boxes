@@ -46,6 +46,7 @@ CLUTTER_MIN_VERSION=1.11.14
 GLIB_MIN_VERSION=2.32.0
 AC_SUBST(GLIB_MIN_VERSION)
 GOBJECT_INTROSPECTION_MIN_VERSION=0.9.6
+GOVIRT_MIN_VERSION=0.0.3
 GTK_MIN_VERSION=3.5.5
 GTK_VNC_MIN_VERSION=0.4.4
 LIBVIRT_GLIB_MIN_VERSION=0.1.5
@@ -54,6 +55,7 @@ LIBXML2_MIN_VERSION=2.7.8
 SPICE_GTK_MIN_VERSION=0.12.101
 GUDEV_MIN_VERSION=165
 OSINFO_MIN_VERSION=0.2.3
+REST_MIN_VERSION=0.7.90
 TRACKER_SPARQL=0.13.1
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.38
@@ -92,7 +94,16 @@ VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
 VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
 
-VALA_CHECK([0.17.3], [
+PKG_CHECK_MODULES(OVIRT, [govirt-1.0 >= $GOVIRT_MIN_VERSION rest-0.7 >= $REST_MIN_VERSION],
+                  [have_govirt=yes], [have_govirt=no])
+if test "x$have_govirt" = "xyes"; then
+  AC_DEFINE([HAVE_OVIRT], [1], [Build with oVirt support?])
+else
+  AC_DEFINE([HAVE_OVIRT], [0], [Build with oVirt support?])
+fi
+AM_CONDITIONAL([HAVE_OVIRT], [test "x$have_govirt" = "xyes"])
+
+VALA_CHECK([0.18.0], [
   clutter-gtk-1.0
   cogl-1.0
   gdk-pixbuf-2.0
@@ -105,6 +116,7 @@ VALA_CHECK([0.17.3], [
   libvirt-gobject-1.0
   libxml-2.0
   posix
+  rest-0.7
   spice-client-gtk-3.0
   libsoup-2.4
 ])
