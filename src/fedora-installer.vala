@@ -81,15 +81,13 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         base.clean_up ();
 
         if (kernel_file != null) {
-            debug ("Removing '%s'..", kernel_path);
-            kernel_file.delete ();
-            debug ("Removed '%s'.", kernel_path);
+            delete_file (kernel_file);
+            kernel_file = null;
         }
 
         if (initrd_file != null) {
-            debug ("Removing '%s'..", initrd_path);
-            initrd_file.delete ();
-            debug ("Removed '%s'.", initrd_path);
+            delete_file (initrd_file);
+            initrd_file = null;
         }
     }
 
@@ -110,9 +108,11 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         debug ("Unmounting '%s'..", mount_point);
         string[] argv = { "fusermount", "-u", mount_point };
         yield exec (argv, cancellable);
+        mounted = false;
         debug ("Unmounted '%s'.", mount_point);
 
         source_dir.delete ();
+        mount_point = null;
         debug ("Removed '%s'.", mount_point);
     }
 

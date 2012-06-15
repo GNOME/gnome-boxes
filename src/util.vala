@@ -559,4 +559,14 @@ namespace Boxes {
             return false;
          });
     }
+
+    public void delete_file (File file) throws GLib.Error {
+        try {
+            debug ("Removing '%s'..", file.get_path ());
+            file.delete ();
+            debug ("Removed '%s'.", file.get_path ());
+        } catch (IOError.NOT_FOUND e) {
+            debug ("File '%s' was already deleted", file.get_path ());
+        }
+    }
 }
