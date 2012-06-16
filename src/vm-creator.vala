@@ -71,6 +71,8 @@ private class Boxes.VMCreator {
     public void launch_vm (LibvirtMachine machine, InstallerMedia install_media) throws GLib.Error {
         machine.domain.start (0);
 
+        post_install_setup (machine.domain);
+
         if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
             ulong signal_id = 0;
 
@@ -105,7 +107,11 @@ private class Boxes.VMCreator {
         var volume = get_storage_volume (connection, domain, null);
 
         if (guest_installed_os (volume)) {
-            post_install_setup (domain);
+            try {
+                domain.start (0);
+            } catch (GLib.Error error) {
+                warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
+            }
             domain.disconnect (stopped_id);
         } else {
             try {
@@ -129,9 +135,7 @@ private class Boxes.VMCreator {
         try {
             var config = domain.get_config (0);
             configurator.post_install_setup (config);
-
             domain.set_config (config);
-            domain.start (0);
         } catch (GLib.Error error) {
             warning ("Post-install setup failed for domain '%s': %s", domain.get_uuid (), error.message);
         }
