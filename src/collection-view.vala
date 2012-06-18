@@ -27,9 +27,8 @@ private class Boxes.CollectionView: Boxes.UI {
         set { icon_view.visible = value; }
     }
 
-    public CollectionView (Category category) {
-        this.category = category;
-
+    public CollectionView () {
+        category = new Category (_("New and Recent"), Category.Kind.NEW);
         setup_view ();
         App.app.notify["selection-mode"].connect (() => {
             var mode = App.app.selection_mode ? Gtk.SelectionMode.MULTIPLE : Gtk.SelectionMode.NONE;

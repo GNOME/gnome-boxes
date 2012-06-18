@@ -170,12 +170,7 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    public void set_category (Category category) {
-        topbar.label.set_text (category.name);
-        view.category = category;
-    }
-
-   public LibvirtMachine? add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+    public LibvirtMachine? add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         var machine = domain.get_data<LibvirtMachine> ("machine");
         if (machine != null)
             return machine; // Already added
@@ -396,7 +391,7 @@ private class Boxes.App: Boxes.UI {
                        Clutter.BinAlignment.FILL);
 
         sidebar = new Sidebar ();
-        view = new CollectionView (sidebar.category);
+        view = new CollectionView ();
         topbar = new Topbar ();
         notificationbar = new Notificationbar ();
         selectionbar = new Selectionbar ();
