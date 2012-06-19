@@ -164,7 +164,8 @@ private class Boxes.Wizard: Boxes.UI {
 
             next_button.sensitive = false;
             try {
-                yield vm_creator.create_and_launch_vm (install_media, null);
+                var machine = yield vm_creator.create_vm (install_media, null);
+                vm_creator.launch_vm (machine, install_media);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
             } catch (GLib.Error error) {
                 warning (error.message);

@@ -40,12 +40,12 @@ private class Boxes.VMCreator {
         }
     }
 
-    public async void create_and_launch_vm (InstallerMedia install_media, Cancellable? cancellable) throws GLib.Error {
+    public async LibvirtMachine create_vm (InstallerMedia install_media, Cancellable? cancellable) throws GLib.Error {
         if (connection == null) {
             // Wait for needed libvirt connection
             ulong handler = 0;
             handler = App.app.notify["default-connection"].connect (() => {
-                create_and_launch_vm.callback ();
+                create_vm.callback ();
                 App.app.disconnect (handler);
             });
 
@@ -54,13 +54,8 @@ private class Boxes.VMCreator {
 
         string title;
         var name = yield create_domain_name_and_title_from_media (install_media, out title);
-        var fullscreen = true;
-        if (install_media is UnattendedInstaller) {
-            var unattended = install_media as UnattendedInstaller;
-
-            yield unattended.setup (name, cancellable);
-            fullscreen = !unattended.express_install;
-        }
+        if (install_media is UnattendedInstaller)
+            yield (install_media as UnattendedInstaller).setup (name, cancellable);
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var caps = yield connection.get_capabilities_async (cancellable);
@@ -69,11 +64,14 @@ private class Boxes.VMCreator {
         config.title = title;
 
         var domain = connection.create_domain (config);
-        domain.start (0);
 
-        var machine = App.app.add_domain (App.app.default_source, App.app.default_connection, domain);
+        return App.app.add_domain (App.app.default_source, App.app.default_connection, domain);
+    }
 
-        if (machine != null && fullscreen) {
+    public void launch_vm (LibvirtMachine machine, InstallerMedia install_media) throws GLib.Error {
+        machine.domain.start (0);
+
+        if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
             ulong signal_id = 0;
 
             signal_id = App.app.notify["ui-state"].connect (() => {
