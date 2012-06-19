@@ -45,6 +45,8 @@ private class Boxes.CollectionView: Boxes.UI {
             icon_view.unselect_all ();
             if (current_item != null) {
                 var actor = current_item.actor;
+                actor.show ();
+
                 App.app.overlay_bin.set_alignment (actor,
                                                    Clutter.BinAlignment.FIXED,
                                                    Clutter.BinAlignment.FIXED);
