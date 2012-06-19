@@ -28,7 +28,6 @@ private class Boxes.Sidebar: Boxes.UI {
         switch (ui_state) {
         case UIState.COLLECTION:
             App.app.sidebar_revealer.unreveal ();
-            notebook.page = SidebarPage.COLLECTION;
             break;
 
         default:
