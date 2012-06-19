@@ -170,20 +170,26 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    public LibvirtMachine? add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+
+    public LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
+                                      throws GLib.Error {
         var machine = domain.get_data<LibvirtMachine> ("machine");
         if (machine != null)
             return machine; // Already added
 
+        machine = new LibvirtMachine (source, connection, domain);
+        collection.add_item (machine);
+        domain.set_data<LibvirtMachine> ("machine", machine);
+
+        return machine;
+    }
+
+    private void try_add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         try {
-            machine = new LibvirtMachine (source, connection, domain);
-            collection.add_item (machine);
-            domain.set_data<LibvirtMachine> ("machine", machine);
+            add_domain (source, connection, domain);
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
         }
-
-        return machine;
     }
 
     private async void setup_libvirt (CollectionSource source) {
@@ -212,7 +218,7 @@ private class Boxes.App: Boxes.UI {
         }
 
         foreach (var domain in connection.get_domains ())
-            add_domain (source, connection, domain);
+            try_add_domain (source, connection, domain);
 
         connection.domain_removed.connect ((connection, domain) => {
             var machine = domain.get_data<LibvirtMachine> ("machine");
@@ -225,7 +231,7 @@ private class Boxes.App: Boxes.UI {
 
         connection.domain_added.connect ((connection, domain) => {
             debug ("New domain '%s'", domain.get_name ());
-            add_domain (source, connection, domain);
+            try_add_domain (source, connection, domain);
         });
     }
 
