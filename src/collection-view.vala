@@ -82,6 +82,11 @@ private class Boxes.CollectionView: Boxes.UI {
                                                Clutter.BinAlignment.CENTER);
             break;
 
+        case UIState.WIZARD:
+            if (current_item != null)
+                actor_remove (current_item.actor);
+            break;
+
         case UIState.PROPERTIES:
             current_item.actor.hide ();
             break;
