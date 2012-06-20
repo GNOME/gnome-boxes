@@ -493,7 +493,6 @@ private class Boxes.App: Boxes.UI {
                 var machine = current_item as Machine;
 
                 machine.disconnect_display ();
-                machine.update_screenshot.begin ();
             }
             fullscreen = false;
             view.visible = true;

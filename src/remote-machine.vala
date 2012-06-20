@@ -11,7 +11,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         config = new DisplayConfig (source);
         source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
-        update_screenshot.begin ();
+
+        load_screenshot ();
     }
 
     public override void connect_display () {
@@ -27,32 +28,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             display.connect_it ();
         } catch (GLib.Error error) {
             warning (error.message);
-        }
-    }
-
-    public override string get_screenshot_filename (string ext = "jpg") {
-        return base.get_screenshot_filename (ext);
-    }
-
-    public override void disconnect_display () {
-        if (display == null)
-            return;
-
-        App.app.display_page.remove_display ();
-
-        if (display != null) {
-            try {
-                var pixbuf = display.get_pixbuf (0);
-                if (pixbuf != null) {
-                    pixbuf.save (get_screenshot_filename (), "jpeg");
-                    update_screenshot ();
-                }
-            } catch (GLib.Error err) {
-                warning (err.message);
-            }
-
-            display.disconnect_it ();
-            display = null;
         }
     }
 

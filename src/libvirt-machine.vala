@@ -13,15 +13,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
-    public override void disconnect_display () {
-        if (display == null)
-            return;
-
-        App.app.display_page.remove_display ();
-        display.disconnect_it ();
-        display = null;
-    }
-
     private ulong started_id;
     public override void connect_display () {
         if (display != null)
@@ -139,6 +130,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         title = domain_config.get_title () ?? name;
         domain.updated.connect (update_domain_config);
 
+        load_screenshot ();
         set_screenshot_enable (true);
         set_stats_enable (true);
     }
@@ -340,7 +332,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return domain.get_uuid ();
     }
 
-    public override async bool take_screenshot () throws GLib.Error {
+    public override async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
         var state = DomainState.NONE;
         try {
             state = (yield domain.get_info_async (null)).state;
@@ -349,23 +341,24 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         if (state != DomainState.RUNNING && state != DomainState.PAUSED)
-            return true;
+            return null;
 
         var stream = connection.get_stream (0);
-        var file_name = get_screenshot_filename ();
-        var file = File.new_for_path (file_name);
-        var output_stream = yield file.replace_async (null, false, FileCreateFlags.REPLACE_DESTINATION);
-        var input_stream = stream.get_input_stream ();
-        domain.screenshot (stream, 0, 0);
+        yield run_in_thread (()=> {
+            domain.screenshot (stream, 0, 0);
+        });
 
+        var loader = new Gdk.PixbufLoader ();
+        var input_stream = stream.get_input_stream ();
         var buffer = new uint8[65535];
         ssize_t length = 0;
         do {
             length = yield input_stream.read_async (buffer);
-            yield output_stream_write (output_stream, buffer[0:length]);
+            loader.write (buffer[0:length]);
         } while (length > 0);
+        loader.close ();
 
-        return true;
+        return loader.get_pixbuf ();
     }
 
     public override void delete (bool by_user = true) {

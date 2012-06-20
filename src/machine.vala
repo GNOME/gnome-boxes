@@ -19,6 +19,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private uint screenshot_id;
     public static const int SCREENSHOT_WIDTH = 180;
     public static const int SCREENSHOT_HEIGHT = 134;
+    private static Cairo.Surface grid_surface;
+    private bool updating_screenshot;
 
     public enum MachineState {
         UNKNOWN,
@@ -94,6 +96,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    static construct {
+        grid_surface = new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png"));
+    }
+
     public Machine (Boxes.CollectionSource source, string name) {
         this.name = name;
         this.source = source;
@@ -107,13 +113,22 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             else
                 set_screenshot_enable (true);
         });
+
+    }
+
+    public void load_screenshot () {
+        try {
+            var screenshot = new Gdk.Pixbuf.from_file (get_screenshot_filename ());
+            set_screenshot (screenshot, false);
+        } catch (GLib.Error error) {
+        }
     }
 
     public void set_screenshot_enable (bool enable) {
         if (enable) {
             if (screenshot_id != 0)
                 return;
-            update_screenshot.begin ();
+            update_screenshot.begin (false, true);
             var interval = App.app.settings.get_int ("screenshot-interval");
             screenshot_id = Timeout.add_seconds (interval, () => {
                 update_screenshot.begin ();
@@ -127,12 +142,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    public virtual string get_screenshot_filename (string ext = "ppm") {
-        return get_user_pkgcache (get_screenshot_prefix () + "-screenshot." + ext);
+    public string get_screenshot_filename () {
+        return get_user_pkgcache (get_screenshot_prefix () + "-screenshot.png");
     }
 
-    public virtual async bool take_screenshot () throws GLib.Error {
-        return false;
+    public async virtual Gdk.Pixbuf? take_screenshot () throws GLib.Error {
+        return null;
     }
 
     public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
@@ -140,51 +155,91 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public abstract string get_screenshot_prefix ();
 
     public abstract void connect_display ();
-    public abstract void disconnect_display ();
+
+    public virtual void disconnect_display () {
+        if (display == null)
+            return;
+
+        try {
+            var pixbuf = display.get_pixbuf (0);
+            if (pixbuf != null)
+                set_screenshot (pixbuf, true);
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+
+        App.app.display_page.remove_display ();
+        display.disconnect_it ();
+        display = null;
+    }
 
     public bool is_running () {
         return state == MachineState.RUNNING;
     }
 
-    public async void update_screenshot (int width = SCREENSHOT_WIDTH, int height = SCREENSHOT_HEIGHT) {
-        try {
-            yield take_screenshot ();
-            pixbuf = new Gdk.Pixbuf.from_file (get_screenshot_filename ());
-            machine_actor.set_screenshot (pixbuf); // high resolution
-            pixbuf = draw_vm (pixbuf, width, height);
-        } catch (GLib.Error error) {
-            if (!(error is FileError.NOENT))
-                warning ("%s: %s".printf (name, error.message));
-        }
+    public void set_screenshot (Gdk.Pixbuf? large_screenshot, bool save) {
+        if (large_screenshot != null) {
+            var pw = large_screenshot.get_width ();
+            var ph = large_screenshot.get_height ();
+            var s = double.min ((double)SCREENSHOT_WIDTH / pw, (double)SCREENSHOT_HEIGHT / ph);
+            int w = (int) (pw * s);
+            int h = (int) (ph * s);
 
-        if (pixbuf == null) {
-            pixbuf = draw_fallback_vm (width, height);
+            var small_screenshot = new Gdk.Pixbuf (Gdk.Colorspace.RGB, large_screenshot.has_alpha, 8, w, h);
+            large_screenshot.scale (small_screenshot, 0, 0, w, h, 0, 0, s, s, Gdk.InterpType.HYPER);
+
+            pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
+            machine_actor.set_screenshot (large_screenshot); // high resolution
+
+            if (save) {
+                try {
+                    pixbuf.save (get_screenshot_filename (), "png");
+                } catch (GLib.Error error) {
+                }
+            }
+        } else if (pixbuf == null) {
+            pixbuf = draw_fallback_vm (SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
             machine_actor.set_screenshot (pixbuf);
         }
+    }
+
+    int screenshot_counter;
+    public async void update_screenshot (bool force_save = false, bool first_check = false) {
+        if (updating_screenshot)
+            return;
+
+        updating_screenshot = true;
+
+        Gdk.Pixbuf? large_screenshot = null;
+        try {
+            large_screenshot = yield take_screenshot ();
+            // There is some kind of bug in libvirt, so the first time we
+            // take a screenshot after displaying the box we get the old
+            // screenshot from before connecting to the box
+            if (first_check)
+                large_screenshot = yield take_screenshot ();
+        } catch (GLib.Error error) {
+        }
+        // Save the screenshot first time and every 60 sec
+        set_screenshot (large_screenshot, force_save || screenshot_counter++ % 12 == 0);
+
+        updating_screenshot = false;
     }
 
     private Gdk.Pixbuf draw_vm (Gdk.Pixbuf pixbuf, int width, int height) {
         var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
         var context = new Cairo.Context (surface);
 
-        var pw = (double)pixbuf.get_width ();
-        var ph = (double)pixbuf.get_height ();
-        var sw = width / pw;
-        var sh = height / ph;
-        var x = 0.0;
-        var y = 0.0;
+        var pw = pixbuf.get_width ();
+        var ph = pixbuf.get_height ();
+        var x = (width - pw) / 2;
+        var y = (height - ph) / 2;
 
-        if (pw > ph) {
-            y = (height - (ph * sw)) / 2;
-            sh = sw;
-        }
-
-        context.rectangle (x, y, width - x * 2, height - y * 2);
+        context.rectangle (x, y, pw, ph);
         context.clip ();
 
-        context.scale (sw, sh);
-        Gdk.cairo_set_source_pixbuf (context, pixbuf, x / sw, y / sh);
-        context.get_source ().set_filter (Cairo.Filter.BEST); // FIXME: cairo scaling is crap
+        Gdk.cairo_set_source_pixbuf (context, pixbuf, 0, 0);
+        context.set_operator (Cairo.Operator.SOURCE);
         context.paint ();
 
         if (!is_running ()) {
@@ -194,7 +249,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             context.identity_matrix ();
             context.scale (0.1875 / SCREENSHOT_WIDTH * width, 0.1875 / SCREENSHOT_HEIGHT * height);
-            var grid = new Cairo.Pattern.for_surface (new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png")));
+            var grid = new Cairo.Pattern.for_surface (grid_surface);
             grid.set_extend (Cairo.Extend.REPEAT);
             context.set_source_rgba (0, 0, 0, 1);
             context.set_operator (Cairo.Operator.OVER);
