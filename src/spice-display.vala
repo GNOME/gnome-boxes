@@ -91,6 +91,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         if (tls_port != 0)
             session.tls_port = tls_port.to_string ();
+
+        // FIXME: remove this once libgovirt has proper support for
+        // getting the SPICE host subject, it's useful for testing purpose
+        // in the mean time
+        session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
     }
 
     public SpiceDisplay.with_uri (BoxConfig config, string uri) {
