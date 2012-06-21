@@ -38,12 +38,13 @@ private class Boxes.CollectionView: Boxes.UI {
 
     public override void ui_state_changed () {
         uint opacity = 0;
+        var current_item = App.app.current_item;
         switch (ui_state) {
         case UIState.COLLECTION:
             opacity = 255;
             icon_view.unselect_all ();
-            if (App.app.current_item != null) {
-                var actor = App.app.current_item.actor;
+            if (current_item != null) {
+                var actor = current_item.actor;
                 App.app.overlay_bin.set_alignment (actor,
                                                    Clutter.BinAlignment.FIXED,
                                                    Clutter.BinAlignment.FIXED);
@@ -51,7 +52,10 @@ private class Boxes.CollectionView: Boxes.UI {
                 actor.x = 20;
                 actor.y = 20;
                 actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
-                actor.transitions_completed.connect (() => {
+
+                ulong completed_id = 0;
+                completed_id = actor.transitions_completed.connect (() => {
+                    actor.disconnect (completed_id);
                     if (App.app.ui_state == UIState.COLLECTION ||
                         App.app.current_item.actor != actor)
                         actor_remove (actor);
@@ -60,8 +64,8 @@ private class Boxes.CollectionView: Boxes.UI {
             break;
 
         case UIState.CREDS:
-            var actor = App.app.current_item.actor;
-            if (App.app.current_item.actor.get_parent () == null) {
+            var actor = current_item.actor;
+            if (actor.get_parent () == null) {
                 App.app.overlay_bin.add (actor,
                                          Clutter.BinAlignment.FIXED,
                                          Clutter.BinAlignment.FIXED);
@@ -77,15 +81,14 @@ private class Boxes.CollectionView: Boxes.UI {
             break;
 
         case UIState.PROPERTIES:
-            var item_actor = App.app.current_item.actor;
-            item_actor.hide ();
+            current_item.actor.hide ();
             break;
         }
 
         fade_actor (actor, opacity);
 
-        if (App.app.current_item != null)
-            App.app.current_item.ui_state = ui_state;
+        if (current_item != null)
+            current_item.ui_state = ui_state;
     }
 
     public void update_item_visible (CollectionItem item) {
