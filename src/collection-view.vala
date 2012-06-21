@@ -184,6 +184,11 @@ private class Boxes.CollectionView: Boxes.UI {
         item.disconnect (pixbuf_id);
     }
 
+    private Gtk.TreePath get_path_for_item (CollectionItem item) {
+        var iter = item.get_data<Gtk.TreeIter?> ("iter");
+        return model.get_path (iter);
+    }
+
     private CollectionItem get_item_for_path (Gtk.TreePath path) {
         Gtk.TreeIter iter;
         GLib.Value value;
