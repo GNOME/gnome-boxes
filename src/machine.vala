@@ -437,6 +437,7 @@ private class Boxes.MachineActor: Boxes.UI {
                     App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
                     track_screenshot_id = 0;
 
+                    display.set_easing_duration (App.app.duration);
                     App.app.overlay_bin.set_alignment (display,
                                                        Clutter.BinAlignment.FILL,
                                                        Clutter.BinAlignment.FILL);
@@ -466,6 +467,7 @@ private class Boxes.MachineActor: Boxes.UI {
             machine.display.set_enable_inputs (widget, false);
             display = new GtkClutter.Actor.with_contents (widget);
             display.name = "properties-thumbnail";
+            display.set_easing_mode (Clutter.AnimationMode.LINEAR);
             App.app.overlay_bin.add (display,
                                      Clutter.BinAlignment.FILL,
                                      Clutter.BinAlignment.FILL);
@@ -479,16 +481,30 @@ private class Boxes.MachineActor: Boxes.UI {
             if (App.app.fullscreen)
                 App.app.topbar.actor.hide ();
 
+            bool completed_zoom = false;
+            ulong completed_id = 0;
+            completed_id = display.transitions_completed.connect (() => {
+                display.disconnect (completed_id);
+                completed_zoom = true;
+            });
+
             track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
                 Idle.add_full (Priority.HIGH, () => {
                     App.app.topbar.actor.show ();
                     App.app.overlay_bin.set_alignment (display,
                                                        Clutter.BinAlignment.FIXED,
                                                        Clutter.BinAlignment.FIXED);
+
+                    // Don't animate x/y/width/height
+                    display.set_easing_duration (0);
                     display.x = alloc.x;
                     display.y = alloc.y;
                     display.width = alloc.width;
                     display.height = alloc.height;
+
+                    if (!completed_zoom)
+                        display.set_easing_duration (App.app.duration);
+
                     return false;
                 });
             });

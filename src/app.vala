@@ -439,9 +439,6 @@ private class Boxes.App: Boxes.UI {
         overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
                                              Clutter.BinAlignment.FIXED);
         overlay_bin_actor.set_layout_manager (overlay_bin);
-        overlay_bin.set ("use-animations", true,
-                         "easing-mode", Clutter.AnimationMode.LINEAR,
-                         "easing-duration", duration);
         below_bin.add (overlay_bin_actor,
                        Clutter.BinAlignment.FILL,
                        Clutter.BinAlignment.FILL);

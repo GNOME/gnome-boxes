@@ -45,6 +45,7 @@ private class Boxes.CollectionView: Boxes.UI {
             icon_view.unselect_all ();
             if (current_item != null) {
                 var actor = current_item.actor;
+                actor.set_easing_duration (0);
                 actor.show ();
 
                 App.app.overlay_bin.set_alignment (actor,
@@ -55,6 +56,7 @@ private class Boxes.CollectionView: Boxes.UI {
                 actor.y = 20;
                 actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
 
+                actor.set_easing_duration (App.app.duration);
                 ulong completed_id = 0;
                 completed_id = actor.transitions_completed.connect (() => {
                     actor.disconnect (completed_id);
@@ -71,15 +73,18 @@ private class Boxes.CollectionView: Boxes.UI {
                 App.app.overlay_bin.add (actor,
                                          Clutter.BinAlignment.FIXED,
                                          Clutter.BinAlignment.FIXED);
+                actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
 
                 // TODO: How do I get the icon coords from the iconview?
                 Clutter.ActorBox box = { 20, 20, 20 + Machine.SCREENSHOT_WIDTH, 20 + Machine.SCREENSHOT_HEIGHT * 2};
                 actor.allocate (box, 0);
+
             }
             actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
             App.app.overlay_bin.set_alignment (actor,
                                                Clutter.BinAlignment.CENTER,
                                                Clutter.BinAlignment.CENTER);
+            actor.set_easing_duration (App.app.duration);
             break;
 
         case UIState.WIZARD:
