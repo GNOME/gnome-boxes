@@ -51,15 +51,26 @@ private class Boxes.CollectionView: Boxes.UI {
                 App.app.overlay_bin.set_alignment (actor,
                                                    Clutter.BinAlignment.FIXED,
                                                    Clutter.BinAlignment.FIXED);
-                // TODO: How do I get the icon coords from the iconview?
-                actor.x = 20;
-                actor.y = 20;
+                Gdk.Rectangle rect;
+                icon_view.get_cell_rect (get_path_for_item (current_item), null, out rect);
+                actor.x = rect.x;
+                actor.y = rect.y;
                 actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
 
                 actor.set_easing_duration (App.app.duration);
+                var id = icon_view.size_allocate.connect ((allocation) => {
+                    Idle.add_full (Priority.HIGH, () => {
+                        Gdk.Rectangle rect2;
+                        icon_view.get_cell_rect (get_path_for_item (current_item), null, out rect2);
+                        actor.x = rect2.x;
+                        actor.y = rect2.y;
+                        return false;
+                    });
+                });
                 ulong completed_id = 0;
                 completed_id = actor.transitions_completed.connect (() => {
                     actor.disconnect (completed_id);
+                    icon_view.disconnect (id);
                     if (App.app.ui_state == UIState.COLLECTION ||
                         App.app.current_item.actor != actor)
                         actor_remove (actor);
@@ -75,8 +86,10 @@ private class Boxes.CollectionView: Boxes.UI {
                                          Clutter.BinAlignment.FIXED);
                 actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
 
-                // TODO: How do I get the icon coords from the iconview?
-                Clutter.ActorBox box = { 20, 20, 20 + Machine.SCREENSHOT_WIDTH, 20 + Machine.SCREENSHOT_HEIGHT * 2};
+                Gdk.Rectangle rect;
+                icon_view.get_cell_rect (get_path_for_item (current_item), null, out rect);
+
+                Clutter.ActorBox box = { rect.x, rect.y, rect.x + Machine.SCREENSHOT_WIDTH, rect.y + Machine.SCREENSHOT_HEIGHT * 2};
                 actor.allocate (box, 0);
 
             }
