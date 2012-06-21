@@ -99,13 +99,7 @@ GtkClutterOffscreen,
     font-family: monospace;
 }
 
-.osd {
-    background-image: none;
-    background-color: alpha(#000, 0.0);
-    color: #ffffff;
-}
-
-.osd .toolbar {
+.selectionbar {
     padding: 6px 6px;
     border-style: none;
     border-radius: 5px;
@@ -118,46 +112,43 @@ GtkClutterOffscreen,
     icon-shadow: 1px 1px black;
 }
 
-.osd .toolbar .favorite {
-    color: shade(@theme_selected_bg_color, 1.20);
+.selectionbar .toolbar {
+    background-color: transparent;
 }
 
-.osd .toolbar .separator {
-    color: alpha(@theme_tooltip_fg_color, 0.30);
+.selectionbar .button * {
+    color: #bdbdbd;
 }
 
-.osd .toolbar .button:hover {
+.selectionbar .button *:active {
+    color: #ffffff;
+}
+
+.selectionbar .button {
+    border-image: none;
+    border-style: none;
+    border-radius: 2px;
+    border-width: 0;
+}
+
+.selectionbar .button:hover {
     background-image: -gtk-gradient(linear, left top, left bottom,
                                     from(alpha(@theme_tooltip_fg_color, 0.00)),
                                     color-stop(0.50, alpha(@theme_tooltip_fg_color, 0.15)),
                                     to(alpha(@theme_tooltip_fg_color, 0.00)));
-
-    border-image: none;
-    border-style: none;
-    border-radius: 2px;
-    border-width: 0;
 }
 
-.osd .toolbar .button:active {
+
+.selectionbar .button:active {
     background-image: none;
     background-color: alpha(@theme_tooltip_fg_color, 0.15);
-
-    border-image: none;
-    border-style: none;
-    border-radius: 2px;
-    border-width: 0;
 }
 
-.osd .toolbar .button:active:hover {
+.selectionbar .button:active:hover {
     background-image: -gtk-gradient(linear, left top, left bottom,
                                     from(alpha(@theme_tooltip_fg_color, 0.15)),
                                     color-stop(0.50, alpha(@theme_tooltip_fg_color, 0.30)),
                                     to(alpha(@theme_tooltip_fg_color, 0.15)));
-
-    border-style: none;
-    border-image: none;
-    border-radius: 2px;
-    border-width: 0;
 }
 
 GtkInfoBar {

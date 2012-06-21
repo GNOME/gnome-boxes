@@ -16,9 +16,13 @@ private class Boxes.Selectionbar: GLib.Object {
         toolbar.show_arrow = false;
         toolbar.icon_size = Gtk.IconSize.LARGE_TOOLBAR;
 
-        gtk_actor = new GtkClutter.Actor.with_contents (toolbar);
+        var bin = new Gtk.Alignment (0,0,1,1);
+        draw_as_css_box (bin);
+        bin.add (toolbar);
+        bin.get_style_context ().add_class ("selectionbar");
+
+        gtk_actor = new GtkClutter.Actor.with_contents (bin);
         gtk_actor.opacity = 0;
-        gtk_actor.get_widget ().get_style_context ().add_class ("osd");
 
         favorite_btn = new Gtk.ToggleToolButton ();
         toolbar.insert (favorite_btn, 0);
