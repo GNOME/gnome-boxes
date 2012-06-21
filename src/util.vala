@@ -544,4 +544,19 @@ namespace Boxes {
                                          rowstride,
                                          null);
     }
+
+    public void draw_as_css_box (Widget widget) {
+        widget.draw.connect ((cr) => {
+            var context = widget.get_style_context ();
+            Gtk.Allocation allocation;
+            widget.get_allocation (out allocation);
+            context.render_background (cr,
+                                       0, 0,
+                                       allocation.width, allocation.height);
+            context.render_frame (cr,
+                                  0, 0,
+                                  allocation.width, allocation.height);
+            return false;
+         });
+    }
 }

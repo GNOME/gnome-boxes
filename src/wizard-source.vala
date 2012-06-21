@@ -263,18 +263,7 @@ private class Boxes.WizardSource: GLib.Object {
             row = button;
         } else {
             var bin = new Gtk.Alignment (0,0,1,1);
-            bin.draw.connect ((cr) => {
-                var context = bin.get_style_context ();
-                Gtk.Allocation allocation;
-                bin.get_allocation (out allocation);
-                context.render_background (cr,
-                                           0, 0,
-                                           allocation.width, allocation.height);
-                context.render_frame (cr,
-                                      0, 0,
-                                      allocation.width, allocation.height);
-                return false;
-            });
+			draw_as_css_box (bin);
             row = bin;
         }
         var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
