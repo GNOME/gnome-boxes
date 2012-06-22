@@ -8,6 +8,7 @@ private class Boxes.Notificationbar: GLib.Object {
 
     public delegate void OKFunc ();
     public delegate void CancelFunc ();
+    public delegate void AuthenticateFunc (string username, string password);
 
     private GtkClutter.Actor gtk_actor;
     private Gtk.Grid top_grid;
@@ -45,6 +46,99 @@ private class Boxes.Notificationbar: GLib.Object {
                                                owned CancelFunc? ignore_func = null,
                                                int               timeout = DEFAULT_TIMEOUT) {
         return display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
+    }
+
+    public Gd.Notification display_for_authentication (string broker_name,
+                                                       owned AuthenticateFunc? auth_func,
+                                                       owned CancelFunc? cancel_func) {
+        Notificationbar.OKFunc next_auth_step = () => {
+            display_for_auth_next (broker_name, (owned) auth_func, (owned) cancel_func);
+        };
+        return display_for_action (_("Not connected to %s").printf (broker_name), _("Sign In"), (owned) next_auth_step, (owned) cancel_func, -1);
+    }
+
+    private Gd.Notification display_for_auth_next (string auth_string,
+                                                   owned AuthenticateFunc? auth_func,
+                                                   owned CancelFunc? cancel_func) {
+        var notification = new Gd.Notification ();
+        notification.valign = Gtk.Align.START;
+        notification.timeout = -1;
+        notification.show_close_button = false;
+
+        active_notifications.prepend (notification);
+
+        notification.dismissed.connect ( () => {
+            active_notifications.remove (notification);
+        });
+
+        var title_label = new Gtk.Label (null);
+        string title_str = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(auth_string) + "</span>";
+
+        title_label.set_markup (title_str);
+        title_label.halign = Gtk.Align.START;
+        title_label.margin_bottom = 18;
+
+        var username_label = new Gtk.Label.with_mnemonic (_("_Username"));
+        var username_entry = new Gtk.Entry ();
+        username_entry.focus_in_event.connect ( () => {
+            App.app.searchbar.enable_key_handler = false;
+            return false;
+        });
+        username_entry.focus_out_event.connect ( () => {
+            App.app.searchbar.enable_key_handler = true;
+            return false;
+        });
+        username_entry.map.connect ( () => {
+            username_entry.grab_focus ();
+        });
+        username_label.mnemonic_widget = username_entry;
+        username_label.margin_left = 12;
+        var password_label = new Gtk.Label.with_mnemonic (_("_Password"));
+        var password_entry = new Gtk.Entry ();
+        password_entry.visibility = false;
+        password_entry.focus_in_event.connect ( () => {
+            App.app.searchbar.enable_key_handler = false;
+            return false;
+        });
+        password_entry.focus_out_event.connect ( () => {
+            App.app.searchbar.enable_key_handler = true;
+            return false;
+        });
+        password_label.mnemonic_widget = password_entry;
+        password_label.margin_left = 12;
+
+        var auth_button = new Button.from_stock (_("Sign In"));
+        auth_button.halign = Gtk.Align.END;
+
+        auth_button.clicked.connect ( () => {
+            if (auth_func != null)
+                 auth_func (username_entry.get_text (), password_entry.get_text ());
+            notification.dismiss ();
+        });
+
+        username_entry.activate.connect (() => {
+            password_entry.grab_focus ();
+        });
+        password_entry.activate.connect (() => {
+            auth_button.activate ();
+        });
+
+        var grid = new Gtk.Grid ();
+        grid.column_spacing = 12;
+        grid.row_spacing = 6;
+        grid.border_width = 6;
+        grid.attach (title_label, 0, 0, 2, 1);
+        grid.attach (username_label, 0, 1, 1, 1);
+        grid.attach (username_entry, 1, 1, 1, 1);
+        grid.attach (password_label, 0, 2, 1, 1);
+        grid.attach (password_entry, 1, 2, 1, 1);
+        grid.attach (auth_button, 1, 3, 1, 1);
+        notification.add (grid);
+
+        add_notification (notification);
+        notification.show_all ();
+
+        return notification;
     }
 
     public Gd.Notification display_error (string message, int timeout = DEFAULT_TIMEOUT) {

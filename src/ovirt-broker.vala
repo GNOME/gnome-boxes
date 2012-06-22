@@ -41,6 +41,21 @@ private class Boxes.OvirtBroker : Boxes.Broker {
 
         var proxy = new Ovirt.Proxy (uri.save ());
 
+        proxy.authenticate.connect ((proxy, auth, retrying) => {
+            if (retrying)
+                return false;
+
+            Notificationbar.AuthenticateFunc auth_cb = (username, password) => {
+                proxy.username = username;
+                proxy.password = password;
+                auth.unpause ();
+            };
+            App.app.notificationbar.display_for_authentication ("oVirt broker", (owned) auth_cb, null);
+            auth.pause ();
+
+            return false;
+        });
+
         try {
             yield proxy.fetch_ca_certificate_async (null);
             yield proxy.fetch_vms_async (null);
