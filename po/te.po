@@ -4,15 +4,15 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Sasi Bhushan <sasi@swecha.net>", 2012.
 # Praveen Illa <mail2ipn@gmail.com>, 2012.
-# GVS.Giri<gvs.giri947@gmail.com>,2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-06-08 16:58+0000\n"
-"PO-Revision-Date: 2012-06-13 20:37+0530\n"
-"Last-Translator: GVS.Giri<gvs.giri947@gmail.com>\n"
+"POT-Creation-Date: 2012-06-20 10:26+0000\n"
+"PO-Revision-Date: 2012-06-22 14:26+0530\n"
+"Last-Translator: Sasi Bhushan <sasi@swecha.net>\n"
 "Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: te\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:69
 msgid "Boxes"
 msgstr "పెట్టెలు"
 
@@ -32,7 +32,7 @@ msgstr "సరళ వాస్తవ యంత్ర వీక్షకము/�
 msgid "View and use virtual machines"
 msgstr "వాస్తవ యంత్రాలను వీక్షించండి మరియు ఉపయోగించండి"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
 msgstr "సేకరణలు"
 
@@ -80,62 +80,73 @@ msgstr "గరిష్టీకరించబడిన కిటికీ"
 msgid "Window maximized state"
 msgstr "కిటికీ గరిష్టీకరణ స్థితి"
 
-#: ../src/app.vala:94
+#: ../src/app.vala:103
 msgid "translator-credits"
 msgstr "Praveen Illa <mail2ipn@gmail.com>, 2012."
 
-#: ../src/app.vala:95
+#: ../src/app.vala:104
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "సుదూర లేదా వాస్తవ వ్యవస్థల ప్రాప్తికై రూపొందించిన ఒక సరళమైన గ్నోమ్ 3 అనువర్తనం"
 
-#: ../src/app.vala:107 ../src/topbar.vala:63
+#: ../src/app.vala:116 ../src/topbar.vala:61
 msgid "New"
 msgstr "కొత్తది"
 
-#: ../src/app.vala:110
+#: ../src/app.vala:119
 msgid "Properties"
 msgstr "లక్షణాలు"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:120
 msgid "Fullscreen"
 msgstr "పూర్తితెర"
 
-#: ../src/app.vala:114
+#: ../src/app.vala:121
+msgid "Force shutdown"
+msgstr "బలం గా మూసివేత "
+
+#: ../src/app.vala:124
 msgid "About Boxes"
 msgstr "పెట్టెల గురించి"
 
-#: ../src/app.vala:115
+#: ../src/app.vala:125
 msgid "Quit"
 msgstr "నిష్క్రమించు"
 
-#: ../src/app.vala:491
+#: ../src/app.vala:552
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' పెట్టె తొలగించబడింది"
 
-#: ../src/app.vala:492
+#: ../src/app.vala:553
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u పెట్టె తొలగించబడింది"
 msgstr[1] "%u పెట్టెలు తొలగించబడ్డాయి"
 
-#: ../src/display-page.vala:193
+#: ../src/display-page.vala:195
 #, c-format
 msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
-msgstr "%s <b> (అన్ గ్రబ్ కు Ctrl+Alt మీటలు నోకండి) </b>"
+msgstr "%s <b>(నిర్భందించకుండా ఉండడానికి  Ctrl+Alt కీలను నొక్కుము )</b>"
 
 #: ../src/fedora-installer.vala:60
 msgid ""
 "Internet access required for express installation of Fedora 16 and older"
 msgstr "ఫెడోరా 16 మరియు అంతకంటే పాత వాటిని త్వరగా స్థాపించుటకు అంతర్జాల ప్రాప్తి అవసరం."
 
+#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/installer-media.vala:30 ../src/installer-media.vala:60
+#, c-format
+msgid "%s (Live)"
+msgstr "%s (నివసిస్తూ)"
+
 #: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr "వర్ట్యులైజర్"
 
 #: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:311
 msgid "URI"
 msgstr "URI"
 
@@ -143,43 +154,67 @@ msgstr "URI"
 msgid "Protocol"
 msgstr "ప్రోటోకాల్"
 
-#: ../src/libvirt-machine.vala:442
+#: ../src/libvirt-machine.vala:399
+msgid "When you force shutdown, the box may lose data."
+msgstr "మీరు మూసివేత బలవంతం చేసినప్పుడు, బాక్స్ డేటా కోల్పోవచ్చు."
+
+#: ../src/libvirt-machine.vala:456
 msgid "RAM"
 msgstr "ర్యామ్"
 
-#: ../src/libvirt-machine.vala:483
+#: ../src/libvirt-machine.vala:497
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "మార్పుల వలన '%s' పునఃప్రారంభించాలి. పునఃప్రారంభించుటకు యత్నించాలా?"
 
-#: ../src/libvirt-machine.vala:500
+#: ../src/libvirt-machine.vala:514
 msgid "Storage"
 msgstr "నిల్వ"
 
 #. 3rd row
-#: ../src/machine.vala:304 ../src/unattended-installer.vala:222
-#: ../src/wizard.vala:331
+#: ../src/machine.vala:307 ../src/unattended-installer.vala:232
+#: ../src/wizard.vala:337
 msgid "Password"
 msgstr "సంకేతపదం"
 
-#: ../src/main.vala:10
+#: ../src/main.vala:11
 msgid "Display version number"
 msgstr "రూపాంతర సంఖ్యను చూపించు"
 
+#: ../src/main.vala:12
+#| msgid "Fullscreen"
+msgid "Open in full screen"
+msgstr "పూర్తితెరను తెరువుము "
+
+#: ../src/main.vala:13
+msgid "Check virtualization capabilities"
+msgstr "వాస్తవీకరణ సామర్ధ్యాలు తనిఖీ "
+
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:14
+#: ../src/main.vala:15
 msgid "URI to display, broker or installer media"
 msgstr "ప్రదర్శించాల్సిన URI, మధ్యవర్తి లేదా స్థాపక మాధ్యమం"
 
-#: ../src/main.vala:19
+#: ../src/main.vala:20
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- సుదూర లేదా వాస్తవ యంత్రాల ప్రాప్తికై రూపొందించిన ఒక సరళమైన అనువర్తనం"
+
+#. FIXME: add proper UI & docs
+#: ../src/main.vala:61
+#, c-format
+msgid "The CPU is capable of virtualization: %s\n"
+msgstr "CPU వాస్తవీకరణ సామర్ధ్యం కలిగి ఉంటుంది:%s\n"
+
+#: ../src/main.vala:62
+#, c-format
+msgid "The KVM module is loaded: %s\n"
+msgstr "KVM మాడ్యూల్ లోడ్ అయినది:%s\n"
 
 #: ../src/properties.vala:39
 msgid "Login"
 msgstr "ప్రవేశించండి"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:325
+#: ../src/properties.vala:43 ../src/wizard.vala:331
 msgid "System"
 msgstr "వ్యవస్థ"
 
@@ -191,15 +226,15 @@ msgstr "తెర"
 msgid "Devices"
 msgstr "పరికరాలు"
 
-#: ../src/properties.vala:193
+#: ../src/properties.vala:198
 msgid "CPU:"
 msgstr "సిపియు:"
 
-#: ../src/properties.vala:200
+#: ../src/properties.vala:205
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:207
+#: ../src/properties.vala:212
 msgid "Net:"
 msgstr "నెట్:"
 
@@ -207,46 +242,26 @@ msgstr "నెట్:"
 msgid "Name"
 msgstr "పేరు"
 
-#: ../src/sidebar.vala:141
-msgid "New and Recent"
-msgstr "కొత్తది మరియు ఇటీవలి"
-
-#: ../src/sidebar.vala:143
-msgid "Favorites"
-msgstr "ప్రియమైనవి"
-
-#: ../src/sidebar.vala:144
-msgid "Private"
-msgstr "గోప్యం"
-
-#: ../src/sidebar.vala:145
-msgid "Shared with you"
-msgstr "మీతో పంచుకున్నారు"
-
-#: ../src/sidebar.vala:162
-msgid "Create"
-msgstr "సృష్టించండి"
-
-#: ../src/spice-display.vala:142
+#: ../src/spice-display.vala:158
 msgid "Share clipboard"
 msgstr "కీబోర్డును పంచుకొను"
 
-#: ../src/spice-display.vala:150
+#: ../src/spice-display.vala:164
 msgid "Resize guest"
 msgstr "అథితి పరిమాణంమార్చు"
 
-#: ../src/spice-display.vala:161
+#: ../src/spice-display.vala:172
 msgid "USB redirection"
 msgstr "USB రీడైరెక్షన్"
 
-#: ../src/topbar.vala:162
+#: ../src/topbar.vala:159
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d ఎంపికచేయబడింది"
 msgstr[1] "%d ఎంపికచేయబడినవి"
 
-#: ../src/topbar.vala:164
+#: ../src/topbar.vala:161
 msgid "Click on items to select them"
 msgstr "అంశములను ఎంపికచేయుటకు వాటిపై నొక్కండి"
 
@@ -254,31 +269,31 @@ msgstr "అంశములను ఎంపికచేయుటకు వాట�
 msgid "no password"
 msgstr "సంకేతపదం లేదు"
 
-#: ../src/unattended-installer.vala:162
+#: ../src/unattended-installer.vala:171
 msgid "No username provided"
 msgstr "ఏ వాడుకరిపేరు ఇవ్వలేదు"
 
-#: ../src/unattended-installer.vala:166
+#: ../src/unattended-installer.vala:175
 #, c-format
 msgid "Password required for express installation of %s"
 msgstr "%sని త్వరగా స్థాపించుటకు అంతర్జాల ప్రాప్తి అవసరం."
 
-#: ../src/unattended-installer.vala:179
+#: ../src/unattended-installer.vala:189
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr "అనుకూల అమరికలతో స్వరూపణాన్ని స్వయంచలకంగా స్వరూపించుటకు ఎక్స్‍ప్రెస్ స్థాపనను ఎంచుకోండి."
 
 #. First row
-#: ../src/unattended-installer.vala:193
+#: ../src/unattended-installer.vala:203
 msgid "Express Install"
 msgstr "ఎక్స్‍ప్రెస్ స్థాపన"
 
-#: ../src/unattended-installer.vala:211 ../src/wizard.vala:330
+#: ../src/unattended-installer.vala:221 ../src/wizard.vala:336
 msgid "Username"
 msgstr "వాడుకరిపేరు"
 
-#: ../src/unattended-installer.vala:232
+#: ../src/unattended-installer.vala:242
 msgid "_Add Password"
 msgstr "సంకేతపదాన్ని జతచేయి (_A)"
 
@@ -287,23 +302,23 @@ msgid "Read-only"
 msgstr "చదువుటకు-మాత్రమే"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:48
+#: ../src/winxp-installer.vala:49
 msgid "Product Key"
 msgstr "ప్రొడక్ట్ కీ"
 
-#: ../src/winxp-installer.vala:55
+#: ../src/winxp-installer.vala:56
 msgid "_Add Product Key"
 msgstr "ప్రొడక్ట్ కీని జతచేయండి (_A)"
 
-#: ../src/wizard-source.vala:64 ../src/wizard-source.vala:88
+#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
 msgid "Enter URL"
 msgstr "URL ప్రవేశపెట్టండి"
 
-#: ../src/wizard-source.vala:74
+#: ../src/wizard-source.vala:122
 msgid "Select a file"
 msgstr "ఒక ఫైలును ఎంచుకోండి"
 
-#: ../src/wizard-source.vala:105
+#: ../src/wizard-source.vala:154
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -313,103 +328,103 @@ msgstr ""
 "\n"
 "ఈ ఖాతా నుండి అందుబాటులో ఉన్న వ్యవస్థలన్నిటికీ పెట్టెలను జతచేస్తుంది."
 
-#: ../src/wizard-source.vala:174
+#: ../src/wizard-source.vala:234
 msgid "32-bit x86 system"
 msgstr "32-బిట్ x86 వ్యవస్థ"
 
-#: ../src/wizard-source.vala:175
+#: ../src/wizard-source.vala:235
 msgid "64-bit x86 system"
 msgstr "64-బిట్ x86 వ్యవస్థ"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:183
+#: ../src/wizard-source.vala:244
 #, c-format
 msgid " from %s"
 msgstr " %s నుండి"
 
-#: ../src/wizard-source.vala:223
+#: ../src/wizard-source.vala:295
 msgid "Select a device or ISO file"
 msgstr "ఒక పరికరాన్ని లేదా ISO ఫైలును ఎంచుకోండి"
 
-#: ../src/wizard.vala:75
+#: ../src/wizard.vala:80
 msgid "Box creation failed!"
 msgstr "పెట్టె సృష్టించుటలో విఫలమైంది!"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:505
+#: ../src/wizard.vala:101 ../src/wizard.vala:541
 msgid "C_ontinue"
 msgstr "కొనసాగు (_o)"
 
-#: ../src/wizard.vala:98
+#: ../src/wizard.vala:101
 msgid "C_reate"
 msgstr "సృష్టించు (_r)"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard.vala:122
 msgid "Please enter desktop or collection URI"
 msgstr "దయచేసి డెస్క్‍టాప్ లేదా URI సేకరణను ప్రవేశపెట్టండి"
 
-#: ../src/wizard.vala:125
+#: ../src/wizard.vala:128
 msgid "Will add boxes for all systems available from this account."
 msgstr "ఈ ఖాతా నుండి అందుబాటులో ఉన్న వ్యవస్థలన్నిటికీ పెట్టెలను జతచేస్తుంది."
 
-#: ../src/wizard.vala:128
+#: ../src/wizard.vala:131
 msgid "Will add a single box."
 msgstr "ఒకే పెట్టెను జతచేస్తుంది."
 
-#: ../src/wizard.vala:134
+#: ../src/wizard.vala:137
 msgid "Desktop Access"
 msgstr "డెస్క్‍టాప్ ప్రాప్తి"
 
-#: ../src/wizard.vala:198
+#: ../src/wizard.vala:214
 msgid "Invalid URI"
 msgstr "చెల్లని URI"
 
-#: ../src/wizard.vala:209
+#: ../src/wizard.vala:225
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "మద్ధతులేని ప్రోటోకాల్ '%s'"
 
-#: ../src/wizard.vala:295
+#: ../src/wizard.vala:301
 msgid "Will create a new box with the following properties:"
 msgstr "క్రింద పేర్కొన్న లక్షణాలతో ఒక కొత్త పెట్టెను సృష్టిస్తుంది:"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:306
 msgid "Type"
 msgstr "రకం"
 
-#: ../src/wizard.vala:303
+#: ../src/wizard.vala:309
 msgid "Host"
 msgstr "హోస్టు"
 
-#: ../src/wizard.vala:311 ../src/wizard.vala:317
+#: ../src/wizard.vala:317 ../src/wizard.vala:323
 msgid "Port"
 msgstr "పోర్టు"
 
-#: ../src/wizard.vala:312
+#: ../src/wizard.vala:318
 msgid "TLS Port"
 msgstr "TLS పోర్టు"
 
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:328
 msgid "Will add boxes for all systems available from this account:"
 msgstr "ఈ ఖాతా నుండి అందుబాటులో ఉన్న వ్యవస్థలన్నిటికీ పెట్టెలను జతచేస్తుంది."
 
-#: ../src/wizard.vala:336
+#: ../src/wizard.vala:342
 msgid "Memory"
 msgstr "జ్ఞాపకశక్తి"
 
-#: ../src/wizard.vala:338
+#: ../src/wizard.vala:344
 msgid "Disk"
 msgstr "డిస్క్"
 
-#: ../src/wizard.vala:338
+#: ../src/wizard.vala:344
 #, c-format
 msgid "%s maximum"
 msgstr "%s గరిష్టం"
 
-#: ../src/wizard.vala:383
+#: ../src/wizard.vala:411
 msgid "Introduction"
 msgstr "పరిచయం"
 
-#: ../src/wizard.vala:387
+#: ../src/wizard.vala:415
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -423,15 +438,15 @@ msgstr ""
 "మీరు <b><i>నెట్‌వర్క్ ద్వారా</i></b> అనుసంధానమవ్వవచ్చు లేక ఒక కొత్త <b><i>వాస్తవ యంత్రాన్ని</i></"
 "b> సృష్టించినట్టయితే, దానిని స్థానికంగా వాడుకోవచ్చును."
 
-#: ../src/wizard.vala:399
+#: ../src/wizard.vala:429
 msgid "Source Selection"
 msgstr "మూలం ఎంపిక"
 
-#: ../src/wizard.vala:400
+#: ../src/wizard.vala:430
 msgid "Insert operating system installation media or select a source below"
 msgstr "నిర్వహణ వ్యవస్థ స్థాపక మాధ్యమాన్ని చొప్పించండి లేదా క్రింద ఉన్న మూలాన్ని ఎంచుకోండి"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:440
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -440,26 +455,41 @@ msgstr ""
 "ఇక్కడ చూపించిన వాణిజ్యగుర్తులు కేవలం సాఫ్ట్‍వేర్ ఉత్పత్తులను గుర్తుంచుటకు మాత్రమే, వాటిపై సర్వహక్కులు "
 "సంబంధిత యజమానులు కలిగివున్నారు."
 
-#: ../src/wizard.vala:420
+#: ../src/wizard.vala:454
 msgid "Preparation"
 msgstr "తయారుచేస్తుంది"
 
-#: ../src/wizard.vala:421
+#: ../src/wizard.vala:455
 msgid "Preparing to create new box"
 msgstr "కొత్త పెట్టెను సృష్టించుటకు సిద్ధంచేస్తున్నది"
 
-#: ../src/wizard.vala:438
+#: ../src/wizard.vala:474
 msgid "Analyzing installer media."
 msgstr "స్థాపక మాధ్యమాన్ని విశ్లేషిస్తున్నది."
 
-#: ../src/wizard.vala:449
+#: ../src/wizard.vala:485
 msgid "Setup"
 msgstr "అమరిక"
 
-#: ../src/wizard.vala:456
+#: ../src/wizard.vala:492
 msgid "Review"
 msgstr "సమీక్ష"
 
-#: ../src/wizard.vala:478
+#: ../src/wizard.vala:514
 msgid "Create a Box"
 msgstr "ఒక పెట్టెను సృష్టించండి"
+
+#~ msgid "New and Recent"
+#~ msgstr "కొత్తది మరియు ఇటీవలి"
+
+#~ msgid "Favorites"
+#~ msgstr "ప్రియమైనవి"
+
+#~ msgid "Private"
+#~ msgstr "గోప్యం"
+
+#~ msgid "Shared with you"
+#~ msgstr "మీతో పంచుకున్నారు"
+
+#~ msgid "Create"
+#~ msgstr "సృష్టించండి"
