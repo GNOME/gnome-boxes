@@ -62,7 +62,7 @@ private class Boxes.Selectionbar: GLib.Object {
 
     private bool visible {
         set {
-			fade_actor (actor, value ? 255 : 0);
+            fade_actor (actor, value ? 255 : 0);
         }
     }
 }
