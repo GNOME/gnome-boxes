@@ -80,9 +80,8 @@ namespace Boxes {
         try {
             var file = GLib.File.new_for_path (dir);
             file.make_directory_with_parents (null);
+        } catch (IOError.EXISTS error) {
         } catch (GLib.Error error) {
-            if (error is IOError.EXISTS)
-                return;
             warning (error.message);
         }
     }
