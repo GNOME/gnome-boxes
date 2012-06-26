@@ -34,11 +34,9 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     public bool password_mandatory { get; protected set; }
     public DataStreamNewlineType newline_type;
-    public string disk_path;
+    public File? disk_file;
 
     protected GLib.List<UnattendedFile> unattended_files;
-
-    private bool created_disk;
 
     protected Gtk.Table setup_table;
     protected Gtk.Label setup_label;
@@ -97,7 +95,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         mount_point = media.mount_point;
         resources = media.resources;
 
-        disk_path = get_user_pkgcache (os.short_id + "-unattended.img");
         newline_type = DataStreamNewlineType.LF;
 
         unattended_files = new GLib.List<UnattendedFile> ();
@@ -126,10 +123,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         this.hostname = vm_name.replace (" ", "-");
 
         try {
-            if (yield unattended_disk_exists (cancellable))
-                debug ("Found previously created unattended disk image for '%s', re-using..", os.short_id);
-            else
-                yield create_disk_image (cancellable);
+            yield create_disk_image (cancellable);
 
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
@@ -152,12 +146,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         if (!express_toggle.active)
             return null;
 
+        return_val_if_fail (disk_file != null, null);
+
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
         disk.set_driver_name ("qemu");
         disk.set_driver_type ("raw");
-        disk.set_source (disk_path);
+        disk.set_source (disk_file.get_path ());
         disk.set_target_dev ("sdb");
 
         return disk;
@@ -184,6 +180,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         str = host_regex.replace (str, str.length, 0, hostname);
 
         return str;
+    }
+
+    public string get_user_unattended (string? suffix = null) {
+        var filename = hostname;
+        if (suffix != null)
+            filename += "-" + suffix;
+
+        return get_user_pkgcache (filename);
     }
 
     protected virtual void setup_ui () {
@@ -262,14 +266,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     protected virtual void clean_up () throws GLib.Error {
-        if (!created_disk)
-            return;
+        if (disk_file != null) {
+            delete_file (disk_file);
 
-        var disk_file = File.new_for_path (disk_path);
-
-        disk_file.delete ();
-
-        debug ("Removed '%s'.", disk_path);
+            disk_file = null;
+        }
     }
 
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
@@ -279,27 +280,15 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
-        var disk_file = File.new_for_path (disk_path);
+        var disk_path = get_user_unattended ("unattended.img");
+        disk_file = File.new_for_path (disk_path);
+
         var template_path = get_unattended ("disk.img");
         var template_file = File.new_for_path (template_path);
 
         debug ("Creating disk image for unattended installation at '%s'..", disk_path);
-        yield template_file.copy_async (disk_file, 0, Priority.DEFAULT, cancellable);
+        yield template_file.copy_async (disk_file, FileCopyFlags.OVERWRITE, Priority.DEFAULT, cancellable);
         debug ("Floppy image for unattended installation created at '%s'", disk_path);
-
-        created_disk = true;
-    }
-
-    private async bool unattended_disk_exists (Cancellable? cancellable) {
-        var file = File.new_for_path (disk_path);
-
-        try {
-            yield file.read_async (Priority.DEFAULT, cancellable);
-        } catch (IOError.NOT_FOUND not_found_error) {
-            return false;
-        } catch (GLib.Error error) {}
-
-        return true;
     }
 
     private async void fetch_user_avatar (Gtk.Image avatar) {
@@ -334,13 +323,13 @@ private interface Boxes.UnattendedFile : GLib.Object {
     public async void copy (Cancellable? cancellable) throws GLib.Error {
         var unattended_tmp = yield create (cancellable);
 
-        debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_path);
+        debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
         // FIXME: Perhaps we should use libarchive for this?
-        string[] argv = { "mcopy", "-n", "-o", "-i", installer.disk_path,
+        string[] argv = { "mcopy", "-n", "-o", "-i", installer.disk_file.get_path (),
                                    unattended_tmp.get_path (),
                                    "::" + dest_name };
         yield exec (argv, cancellable);
-        debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_path);
+        debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
 
         debug ("Deleting temporary file '%s'", unattended_tmp.get_path ());
         unattended_tmp.delete (cancellable);
@@ -364,7 +353,7 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
 
     protected async File create (Cancellable? cancellable)  throws GLib.Error {
         var source = File.new_for_path (src_path);
-        var destination_path = get_user_unattended (dest_name);
+        var destination_path = installer.get_user_unattended (dest_name);
         var destination = File.new_for_path (destination_path);
 
         debug ("Creating unattended file at '%s'..", destination.get_path ());
@@ -408,7 +397,7 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
 
     protected async File create (Cancellable? cancellable)  throws GLib.Error {
         dest_name = installer.username + dest_format.extension;
-        var destination_path = get_user_unattended (dest_name);
+        var destination_path = installer.get_user_unattended (dest_name);
 
         try {
             var pixbuf = new Gdk.Pixbuf.from_file_at_scale (src_path, dest_format.width, dest_format.height, true);
