@@ -120,10 +120,9 @@ private class Boxes.VMCreator {
                 if (!configurator.is_live_config (config))
                     return;
 
-                // No installation during live session, so lets delete the domain and its storage volume.
+                // No installation during live session, so lets delete the VM
                 domain.disconnect (stopped_id);
-                domain.delete (0);
-                volume.delete (0);
+                App.app.delete_machine (machine);
             } catch (GLib.Error error) {
                 warning ("Failed to delete domain '%s' or its volume: %s", domain.get_name (), error.message);
             }

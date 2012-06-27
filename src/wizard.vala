@@ -609,7 +609,7 @@ private class Boxes.Wizard: Boxes.UI {
 
     private void destroy_machine () {
         if (machine != null) {
-            machine.delete ();
+            App.app.delete_machine (machine);
             machine = null;
         }
     }

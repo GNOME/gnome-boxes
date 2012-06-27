@@ -192,6 +192,11 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
+    public void delete_machine (Machine machine, bool by_user = true) {
+        machine.delete (by_user);         // Will also delete associated storage volume if by_user is 'true'
+        collection.remove_item (machine);
+    }
+
     private async void setup_libvirt (CollectionSource source) {
         if (connections.lookup (source.name) != null)
             return;
@@ -225,8 +230,7 @@ private class Boxes.App: Boxes.UI {
             if (machine == null)
                 return; // Looks like we removed the domain ourselves. Nothing to do then..
 
-            machine.delete (false);
-            collection.remove_item (machine);
+            delete_machine (machine, false);
         });
 
         connection.domain_added.connect ((connection, domain) => {
