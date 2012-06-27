@@ -102,9 +102,6 @@ private class Boxes.VMConfigurator {
     }
 
     public static void post_install_setup (Domain domain) {
-        try {
-            domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
-        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
         set_post_install_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
 
@@ -123,6 +120,12 @@ private class Boxes.VMConfigurator {
         }
 
         domain.set_devices (devices);
+    }
+
+    public static void mark_as_installed (Domain domain) {
+        try {
+            domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
+        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
     }
 
     public static bool is_install_config (Domain domain) {

@@ -95,6 +95,7 @@ private class Boxes.VMCreator {
         var volume = get_storage_volume (connection, domain, null);
 
         if (guest_installed_os (volume)) {
+            mark_as_installed (domain);
             try {
                 domain.start (0);
             } catch (GLib.Error error) {
@@ -126,6 +127,17 @@ private class Boxes.VMCreator {
             domain.set_config (config);
         } catch (GLib.Error error) {
             warning ("Failed to set post-install configuration on '%s' failed: %s", domain.get_uuid (), error.message);
+        }
+    }
+
+    private void mark_as_installed (Domain domain) {
+        debug ("Marking '%s' as installed.", domain.get_name ());
+        try {
+            var config = domain.get_config (0);
+            VMConfigurator.mark_as_installed (config);
+            domain.set_config (config);
+        } catch (GLib.Error error) {
+            warning ("Failed to marking domain '%s' as installed: %s", domain.get_uuid (), error.message);
         }
     }
 
