@@ -427,6 +427,8 @@ private class Boxes.Wizard: Boxes.UI {
 
     private void setup_ui () {
         notebook = new Gtk.Notebook ();
+        notebook.margin = 15;
+        notebook.width_request = 500;
         notebook.show_tabs = false;
         notebook.get_style_context ().add_class ("boxes-bg");
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
@@ -435,16 +437,16 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* Introduction */
         var hbox = new Gtk.HBox (false, 10);
+        hbox.halign = Gtk.Align.CENTER;
         add_step (hbox, _("Introduction"), WizardPage.INTRODUCTION);
         hbox.add (new Gtk.Image.from_file (get_pixmap ("boxes-create.png")));
         var label = new Gtk.Label (null);
         label.get_style_context ().add_class ("boxes-wizard-label");
         label.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
-        label.set_use_markup (true);
         label.wrap = true;
         // Work around clutter size allocation issue (bz#677260)
         label.width_chars = 30;
-        label.halign = Gtk.Align.START;
+        label.max_width_chars = 40;
         hbox.add (label);
         hbox.show_all ();
 
@@ -452,7 +454,6 @@ private class Boxes.Wizard: Boxes.UI {
         var vbox = new Gtk.VBox (false, 30);
         vbox.valign = Gtk.Align.CENTER;
         vbox.halign = Gtk.Align.CENTER;
-        vbox.margin = 15;
         add_step (vbox, _("Source Selection"), WizardPage.SOURCE);
         label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
         label.get_style_context ().add_class ("boxes-wizard-label");
@@ -477,7 +478,6 @@ private class Boxes.Wizard: Boxes.UI {
         vbox = new Gtk.VBox (false, 30);
         vbox.valign = Gtk.Align.CENTER;
         vbox.halign = Gtk.Align.CENTER;
-        vbox.margin = 15;
         add_step (vbox, _("Preparation"), WizardPage.PREPARATION);
         label = new Gtk.Label (_("Preparing to create new box"));
         label.get_style_context ().add_class ("boxes-wizard-label");
