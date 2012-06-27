@@ -70,7 +70,7 @@ private class Boxes.CollectionView: Boxes.UI {
         fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
-    public void update_item_visible (CollectionItem item) {
+    private void update_item_visible (CollectionItem item) {
         var visible = false;
 
         // FIXME
