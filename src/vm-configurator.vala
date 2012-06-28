@@ -17,7 +17,7 @@ private class Boxes.VMConfigurator {
     private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
     private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
 
-    public Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
+    public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
@@ -101,7 +101,7 @@ private class Boxes.VMConfigurator {
         return domain;
     }
 
-    public void post_install_setup (Domain domain) {
+    public static void post_install_setup (Domain domain) {
         try {
             domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
@@ -125,15 +125,15 @@ private class Boxes.VMConfigurator {
         domain.set_devices (devices);
     }
 
-    public bool is_install_config (Domain domain) {
+    public static bool is_install_config (Domain domain) {
         return get_os_state (domain) == INSTALLATION_STATE;
     }
 
-    public bool is_live_config (Domain domain) {
+    public static bool is_live_config (Domain domain) {
         return get_os_state (domain) == LIVE_STATE;
     }
 
-    public StorageVol create_volume_config (string name, int64 storage) throws GLib.Error {
+    public static StorageVol create_volume_config (string name, int64 storage) throws GLib.Error {
         var volume = new StorageVol ();
         volume.set_name (name);
         volume.set_capacity (storage);
@@ -146,7 +146,7 @@ private class Boxes.VMConfigurator {
         return volume;
     }
 
-    public StoragePool get_pool_config () throws GLib.Error {
+    public static StoragePool get_pool_config () throws GLib.Error {
         var pool_path = get_user_pkgdata ("images");
         ensure_directory (pool_path);
 
@@ -167,7 +167,7 @@ private class Boxes.VMConfigurator {
         return pool;
     }
 
-    private void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
+    private static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
@@ -187,7 +187,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (disk);
     }
 
-    private void set_source_media_config (Domain domain, InstallerMedia install_media) {
+    private static void set_source_media_config (Domain domain, InstallerMedia install_media) {
         var disk = new DomainDisk ();
         disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
         disk.set_driver_name ("qemu");
@@ -205,7 +205,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (disk);
     }
 
-    private void set_unattended_disk_config (Domain domain, InstallerMedia install_media) {
+    private static void set_unattended_disk_config (Domain domain, InstallerMedia install_media) {
         if (!(install_media is UnattendedInstaller))
             return;
 
@@ -216,7 +216,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (disk);
     }
 
-    private void set_post_install_os_config (Domain domain) {
+    private static void set_post_install_os_config (Domain domain) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
 
@@ -230,7 +230,7 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps) {
+    private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
         os.set_arch (guest_caps.get_arch ().get_name ());
@@ -244,14 +244,14 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private void set_direct_boot_params (DomainOs os, InstallerMedia install_media) {
+    private static void set_direct_boot_params (DomainOs os, InstallerMedia install_media) {
         if (!(install_media is UnattendedInstaller))
             return;
 
         (install_media as UnattendedInstaller).set_direct_boot_params (os);
     }
 
-    private void set_video_config (Domain domain, InstallerMedia install_media) {
+    private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
         var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_CLASS, "video");
         var model = (device != null)? get_enum_value (device.get_name (), typeof (DomainVideoModel)) :
@@ -262,7 +262,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (video);
     }
 
-    private void set_sound_config (Domain domain, InstallerMedia install_media) {
+    private static void set_sound_config (Domain domain, InstallerMedia install_media) {
         var sound = new DomainSound ();
         var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_CLASS, "audio");
         var model = (device != null)? get_enum_value (device.get_name (), typeof (DomainSoundModel)) :
@@ -273,14 +273,14 @@ private class Boxes.VMConfigurator {
         domain.add_device (sound);
     }
 
-    private void set_tablet_config (Domain domain, InstallerMedia install_media) {
+    private static void set_tablet_config (Domain domain, InstallerMedia install_media) {
         var input = new DomainInput ();
         input.set_device_type (DomainInputDeviceType.TABLET);
 
         domain.add_device (input);
     }
 
-    private StoragePermissions get_default_permissions () {
+    private static StoragePermissions get_default_permissions () {
         var permissions = new StoragePermissions ();
 
         permissions.set_owner ((uint) Posix.getuid ());
@@ -290,7 +290,7 @@ private class Boxes.VMConfigurator {
         return permissions;
     }
 
-    private string? get_os_state (Domain domain) {
+    private static string? get_os_state (Domain domain) {
         var xml = domain.get_custom_xml (BOXES_NS_URI);
         if (xml != null) {
             var reader = new Xml.TextReader.for_memory ((char []) xml.data,
@@ -309,8 +309,8 @@ private class Boxes.VMConfigurator {
         return null;
     }
 
-    private CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
-                                                   throws VMConfiguratorError {
+    private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
+                                                          throws VMConfiguratorError {
         var guests_caps = caps.get_guests ();
 
         // First find all compatible guest caps

@@ -5,11 +5,9 @@ using GVir;
 
 private class Boxes.VMCreator {
     private Connection? connection { get { return App.app.default_connection; } }
-    private VMConfigurator configurator;
     private ulong stopped_id;
 
     public VMCreator () {
-        configurator = new VMConfigurator ();
 
         App.app.collection.item_added.connect (on_item_added);
     }
@@ -24,7 +22,7 @@ private class Boxes.VMCreator {
 
         try {
             var config = machine.domain.get_config (0);
-            if (!configurator.is_install_config (config) && !configurator.is_live_config (config)) {
+            if (!VMConfigurator.is_install_config (config) && !VMConfigurator.is_live_config (config)) {
                 debug ("'%s' does not need post-installation setup", machine.name);
                 return;
             }
@@ -59,7 +57,7 @@ private class Boxes.VMCreator {
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var caps = yield connection.get_capabilities_async (cancellable);
-        var config = configurator.create_domain_config (install_media, volume.get_path (), caps);
+        var config = VMConfigurator.create_domain_config (install_media, volume.get_path (), caps);
         config.name = name;
         config.title = title;
 
@@ -117,7 +115,7 @@ private class Boxes.VMCreator {
             try {
                 var config = domain.get_config (0);
 
-                if (!configurator.is_live_config (config))
+                if (!VMConfigurator.is_live_config (config))
                     return;
 
                 // No installation during live session, so lets delete the VM
@@ -133,7 +131,7 @@ private class Boxes.VMCreator {
         debug ("Performing post-installation setup on '%s'", domain.get_name ());
         try {
             var config = domain.get_config (0);
-            configurator.post_install_setup (config);
+            VMConfigurator.post_install_setup (config);
             domain.set_config (config);
         } catch (GLib.Error error) {
             warning ("Post-install setup failed for domain '%s': %s", domain.get_uuid (), error.message);
@@ -175,7 +173,7 @@ private class Boxes.VMCreator {
     private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
         var pool = yield get_storage_pool ();
 
-        var config = configurator.create_volume_config (name, storage);
+        var config = VMConfigurator.create_volume_config (name, storage);
         var volume = pool.create_volume (config);
 
         return volume;
@@ -184,7 +182,7 @@ private class Boxes.VMCreator {
     private async StoragePool get_storage_pool () throws GLib.Error {
         var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
         if (pool == null) {
-            var config = configurator.get_pool_config ();
+            var config = VMConfigurator.get_pool_config ();
             pool = connection.create_storage_pool (config, 0);
             yield pool.build_async (0, null);
             yield pool.start_async (0, null);
