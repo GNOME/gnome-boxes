@@ -238,7 +238,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         context.rectangle (x, y, pw, ph);
         context.clip ();
 
-        Gdk.cairo_set_source_pixbuf (context, pixbuf, 0, 0);
+        Gdk.cairo_set_source_pixbuf (context, pixbuf, x, y);
         context.set_operator (Cairo.Operator.SOURCE);
         context.paint ();
 
