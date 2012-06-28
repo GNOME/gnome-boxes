@@ -36,6 +36,14 @@ private class Boxes.CollectionView: Boxes.UI {
         });
     }
 
+    private void get_item_pos (CollectionItem item, out float x, out float y) {
+        Gdk.Rectangle rect;
+        var path = get_path_for_item (item);
+        icon_view.get_cell_rect (path, null, out rect);
+        x = rect.x;
+        y = rect.y;
+    }
+
     public override void ui_state_changed () {
         uint opacity = 0;
         var current_item = App.app.current_item;
@@ -51,19 +59,19 @@ private class Boxes.CollectionView: Boxes.UI {
                 App.app.overlay_bin.set_alignment (actor,
                                                    Clutter.BinAlignment.FIXED,
                                                    Clutter.BinAlignment.FIXED);
-                Gdk.Rectangle rect;
-                icon_view.get_cell_rect (get_path_for_item (current_item), null, out rect);
-                actor.x = rect.x;
-                actor.y = rect.y;
+                float item_x, item_y;
+                get_item_pos (current_item, out item_x, out item_y);
+                actor.x = item_x;
+                actor.y = item_y;
                 actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
 
                 actor.set_easing_duration (App.app.duration);
                 var id = icon_view.size_allocate.connect ((allocation) => {
                     Idle.add_full (Priority.HIGH, () => {
-                        Gdk.Rectangle rect2;
-                        icon_view.get_cell_rect (get_path_for_item (current_item), null, out rect2);
-                        actor.x = rect2.x;
-                        actor.y = rect2.y;
+                        float item_x2, item_y2;
+                        get_item_pos (current_item, out item_x2, out item_y2);
+                        actor.x = item_x2;
+                        actor.y = item_y2;
                         return false;
                     });
                 });
@@ -86,10 +94,9 @@ private class Boxes.CollectionView: Boxes.UI {
                                          Clutter.BinAlignment.FIXED);
                 actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
 
-                Gdk.Rectangle rect;
-                icon_view.get_cell_rect (get_path_for_item (current_item), null, out rect);
-
-                Clutter.ActorBox box = { rect.x, rect.y, rect.x + Machine.SCREENSHOT_WIDTH, rect.y + Machine.SCREENSHOT_HEIGHT * 2};
+                float item_x, item_y;
+                get_item_pos (current_item, out item_x, out item_y);
+                Clutter.ActorBox box = { item_x, item_y, item_x + Machine.SCREENSHOT_WIDTH, item_y + Machine.SCREENSHOT_HEIGHT * 2};
                 actor.allocate (box, 0);
 
             }
