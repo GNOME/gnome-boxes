@@ -97,7 +97,17 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     static construct {
-        grid_surface = new Cairo.ImageSurface.from_png (get_pixmap ("boxes-grid.png"));
+        grid_surface = new Cairo.ImageSurface (Cairo.Format.A8, 2, 2);
+        var cr = new Cairo.Context (grid_surface);
+        cr.set_source_rgba (0, 0, 0, 0);
+        cr.paint ();
+
+        cr.set_source_rgba (1, 1, 1, 1);
+        cr.set_operator (Cairo.Operator.SOURCE);
+        cr.rectangle (0, 0, 1, 1);
+        cr.fill ();
+        cr.rectangle (1, 1, 1, 1);
+        cr.fill ();
     }
 
     public Machine (Boxes.CollectionSource source, string name) {
@@ -247,12 +257,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             context.set_operator (Cairo.Operator.HSL_SATURATION);
             context.paint ();
 
-            context.identity_matrix ();
-            context.scale (0.1875 / SCREENSHOT_WIDTH * width, 0.1875 / SCREENSHOT_HEIGHT * height);
+            context.scale (2.0, 2.0);
             var grid = new Cairo.Pattern.for_surface (grid_surface);
             grid.set_extend (Cairo.Extend.REPEAT);
-            context.set_source_rgba (0, 0, 0, 1);
-            context.set_operator (Cairo.Operator.OVER);
+            context.set_source_rgba (0.2, 0.2, 0.2, 1);
+            context.set_operator (Cairo.Operator.ADD);
             context.mask (grid);
         }
 

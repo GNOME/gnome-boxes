@@ -37,7 +37,6 @@ endif
 imagesdir = $(datadir)/gnome-boxes/pixmaps
 images_DATA =					\
 	boxes-create.png			\
-	boxes-grid.png				\
 	$(LOGOS)				\
 	$(NULL)
 
