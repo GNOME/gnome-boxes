@@ -29,9 +29,8 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.Image installer_image;
 
     private MediaManager media_manager;
-    private VMCreator vm_creator;
 
-    private InstallerMedia? install_media;
+    private VMCreator? vm_creator;
     private LibvirtMachine? machine;
 
     private WizardPage _page;
@@ -161,7 +160,6 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public Wizard () {
-        vm_creator = new VMCreator ();
         wizard_source = new Boxes.WizardSource (media_manager);
         wizard_source.notify["page"].connect(wizard_source_update_next);
         wizard_source.notify["selected"].connect(wizard_source_update_next);
@@ -180,19 +178,19 @@ private class Boxes.Wizard: Boxes.UI {
 
     private bool create () {
         if (source == null) {
-            if (install_media == null)
+            if (vm_creator == null)
                 return false;
 
             next_button.sensitive = false;
             try {
-                vm_creator.launch_vm (machine, install_media);
+                vm_creator.launch_vm (machine);
             } catch (GLib.Error error) {
                 warning (error.message);
 
                 return false;
             }
 
-            install_media = null;
+            vm_creator = null;
             machine = null;
             wizard_source.uri = "";
 
@@ -256,7 +254,8 @@ private class Boxes.Wizard: Boxes.UI {
         next_button.sensitive = true;
 
         try {
-            install_media = media_manager.create_installer_media_for_path.end (result);
+            var install_media = media_manager.create_installer_media_for_path.end (result);
+            vm_creator = new VMCreator (install_media);
             fetch_os_logo (installer_image, install_media.os, 128);
             prep_progress.fraction = 1.0;
             page = WizardPage.SETUP;
@@ -271,7 +270,7 @@ private class Boxes.Wizard: Boxes.UI {
         installer_image.set_from_icon_name ("media-optical", 0); // Reset
 
         if (this.wizard_source.install_media != null) {
-            install_media = this.wizard_source.install_media;
+            vm_creator = new VMCreator (this.wizard_source.install_media);
             prep_progress.fraction = 1.0;
             page = WizardPage.SETUP;
             return false;
@@ -293,15 +292,15 @@ private class Boxes.Wizard: Boxes.UI {
         if (source != null)
             return true;
 
-        return_if_fail (install_media != null);
+        return_if_fail (vm_creator != null);
         // Setup only needed for Unattended installers
-        if (!(install_media is UnattendedInstaller))
+        if (!(vm_creator.install_media is UnattendedInstaller))
             return true;
 
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
 
-        (install_media as UnattendedInstaller).populate_setup_vbox (setup_vbox);
+        (vm_creator.install_media as UnattendedInstaller).populate_setup_vbox (setup_vbox);
         setup_vbox.show_all ();
 
         return true;
@@ -311,10 +310,10 @@ private class Boxes.Wizard: Boxes.UI {
         nokvm_label.hide ();
         summary.clear ();
 
-        if (install_media != null && install_media is UnattendedInstaller) {
+        if (vm_creator != null && vm_creator.install_media is UnattendedInstaller) {
             try {
-                (install_media as UnattendedInstaller).check_needed_info ();
-                machine = yield vm_creator.create_vm (install_media, null);
+                (vm_creator.install_media as UnattendedInstaller).check_needed_info ();
+                machine = yield vm_creator.create_vm (null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;
             } catch (GLib.Error error) {
@@ -353,20 +352,20 @@ private class Boxes.Wizard: Boxes.UI {
             if (source.source_type == "libvirt") {
                 review_label.set_text (_("Will add boxes for all systems available from this account:"));
             }
-        } else if (install_media != null) {
-            summary.add_property (_("System"), install_media.label);
+        } else if (vm_creator != null) {
+            summary.add_property (_("System"), vm_creator.install_media.label);
 
-            if (install_media is UnattendedInstaller) {
-                var media = install_media as UnattendedInstaller;
+            if (vm_creator.install_media is UnattendedInstaller) {
+                var media = vm_creator.install_media as UnattendedInstaller;
                 if (media.express_install) {
                     summary.add_property (_("Username"), media.username);
                     summary.add_property (_("Password"), media.hidden_password);
                 }
             }
 
-            var memory = format_size (install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
+            var memory = format_size (vm_creator.install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Memory"), memory);
-            memory = format_size (install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
+            memory = format_size (vm_creator.install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
             nokvm_label.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
@@ -406,14 +405,14 @@ private class Boxes.Wizard: Boxes.UI {
             page == Boxes.WizardPage.PREPARATION)
             skip_to = page - 1;
 
-        if (install_media != null) {
-            if (forwards && page == Boxes.WizardPage.SETUP && install_media.live)
+        if (vm_creator != null) {
+            if (forwards && page == Boxes.WizardPage.SETUP && vm_creator.install_media.live)
                 // No setup required for live media and also skip review if told to do so
                 skip_to = skip_review_for_live ? WizardPage.LAST : WizardPage.REVIEW;
 
             // always skip SETUP page if not unattended installer
             if (page == Boxes.WizardPage.SETUP &&
-                !(install_media is UnattendedInstaller))
+                !(vm_creator.install_media is UnattendedInstaller))
                 skip_to = forwards ? page + 1 : page - 1;
         }
 

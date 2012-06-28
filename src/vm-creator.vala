@@ -4,10 +4,13 @@ using Osinfo;
 using GVir;
 
 private class Boxes.VMCreator {
+    public InstallerMedia install_media { get; private set; }
+
     private Connection? connection { get { return App.app.default_connection; } }
     private ulong stopped_id;
 
-    public VMCreator () {
+    public VMCreator (InstallerMedia install_media) {
+        this.install_media = install_media;
 
         App.app.collection.item_added.connect (on_item_added);
     }
@@ -38,7 +41,7 @@ private class Boxes.VMCreator {
         }
     }
 
-    public async LibvirtMachine create_vm (InstallerMedia install_media, Cancellable? cancellable) throws GLib.Error {
+    public async LibvirtMachine create_vm (Cancellable? cancellable) throws GLib.Error {
         if (connection == null) {
             // Wait for needed libvirt connection
             ulong handler = 0;
@@ -51,7 +54,7 @@ private class Boxes.VMCreator {
         }
 
         string title;
-        var name = yield create_domain_name_and_title_from_media (install_media, out title);
+        var name = yield create_domain_name_and_title_from_media (out title);
         if (install_media is UnattendedInstaller)
             yield (install_media as UnattendedInstaller).setup (name, cancellable);
 
@@ -66,7 +69,7 @@ private class Boxes.VMCreator {
         return App.app.add_domain (App.app.default_source, App.app.default_connection, domain);
     }
 
-    public void launch_vm (LibvirtMachine machine, InstallerMedia install_media) throws GLib.Error {
+    public void launch_vm (LibvirtMachine machine) throws GLib.Error {
         machine.domain.start (0);
 
         post_install_setup (machine.domain);
@@ -150,8 +153,7 @@ private class Boxes.VMCreator {
         }
     }
 
-    private async string create_domain_name_and_title_from_media (InstallerMedia install_media,
-                                                                  out string     title) throws GLib.Error {
+    private async string create_domain_name_and_title_from_media (out string title) throws GLib.Error {
         var base_title = install_media.label;
         title = base_title;
         var base_name = (install_media.os != null) ? install_media.os.short_id : base_title;
