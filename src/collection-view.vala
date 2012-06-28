@@ -231,6 +231,7 @@ private class Boxes.CollectionView: Boxes.UI {
         model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
 
         icon_view = new Gtk.IconView.with_model (model);
+        icon_view.get_style_context ().add_class ("boxes-bg");
         icon_view.button_press_event.connect ((event) => {
             if (App.app.selection_mode)
                 event.state |= icon_view.get_modifier_mask (Gdk.ModifierIntent.MODIFY_SELECTION);

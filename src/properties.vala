@@ -165,6 +165,7 @@ private class Boxes.Properties: Boxes.UI {
         var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.VBox;
 
         tree_view = new Gtk.TreeView ();
+        tree_view.get_style_context ().add_class ("boxes-bg");
         var selection = tree_view.get_selection ();
         selection.set_mode (Gtk.SelectionMode.BROWSE);
         tree_view_activate_on_single_click (tree_view, true);
