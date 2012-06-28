@@ -193,7 +193,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             if (save) {
                 try {
-                    pixbuf.save (get_screenshot_filename (), "png");
+                    small_screenshot.save (get_screenshot_filename (), "png");
                 } catch (GLib.Error error) {
                 }
             }
