@@ -39,9 +39,14 @@ private class Boxes.CollectionView: Boxes.UI {
     private void get_item_pos (CollectionItem item, out float x, out float y) {
         Gdk.Rectangle rect;
         var path = get_path_for_item (item);
-        icon_view.get_cell_rect (path, null, out rect);
-        x = rect.x;
-        y = rect.y;
+        if (path != null) {
+            icon_view.get_cell_rect (path, null, out rect);
+            x = rect.x;
+            y = rect.y;
+        } else {
+            x = 0.0f;
+            y = 0.0f;
+        }
     }
 
     public override void ui_state_changed () {
@@ -204,8 +209,10 @@ private class Boxes.CollectionView: Boxes.UI {
         item.disconnect (pixbuf_id);
     }
 
-    private Gtk.TreePath get_path_for_item (CollectionItem item) {
+    private Gtk.TreePath? get_path_for_item (CollectionItem item) {
         var iter = item.get_data<Gtk.TreeIter?> ("iter");
+        if (iter == null)
+            return null;
         return model.get_path (iter);
     }
 
