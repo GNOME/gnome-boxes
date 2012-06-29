@@ -72,7 +72,7 @@ private class Boxes.VMCreator {
     public void launch_vm (LibvirtMachine machine) throws GLib.Error {
         machine.domain.start (0);
 
-        post_install_setup (machine.domain);
+        set_post_install_config (machine.domain);
 
         if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
             ulong signal_id = 0;
@@ -130,14 +130,14 @@ private class Boxes.VMCreator {
         }
     }
 
-    private void post_install_setup (Domain domain) {
-        debug ("Performing post-installation setup on '%s'", domain.get_name ());
+    private void set_post_install_config (Domain domain) {
+        debug ("Setting post-installation configuration on '%s'", domain.get_name ());
         try {
             var config = domain.get_config (0);
             VMConfigurator.post_install_setup (config);
             domain.set_config (config);
         } catch (GLib.Error error) {
-            warning ("Post-install setup failed for domain '%s': %s", domain.get_uuid (), error.message);
+            warning ("Failed to set post-install configuration on '%s' failed: %s", domain.get_uuid (), error.message);
         }
     }
 
