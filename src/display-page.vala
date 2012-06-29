@@ -140,6 +140,7 @@ private class Boxes.DisplayPage: GLib.Object {
         overlay_toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (overlay_toolbar);
+        overlay.get_style_context ().add_class ("boxes-toplevel");
         overlay.show_all ();
     }
 
