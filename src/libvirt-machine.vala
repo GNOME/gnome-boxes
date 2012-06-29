@@ -8,6 +8,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Connection connection;
     private string? storage_volume_path;
 
+    public VMCreator? vm_creator; // Under installation if this is set to non-null
+
     public bool save_on_quit {
         get { return source.get_boolean ("source", "save-on-quit"); }
         set { source.set_boolean ("source", "save-on-quit", value); }

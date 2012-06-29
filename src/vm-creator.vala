@@ -4,41 +4,20 @@ using Osinfo;
 using GVir;
 
 private class Boxes.VMCreator {
-    public InstallerMedia install_media { get; private set; }
+    public InstallerMedia? install_media { get; private set; }
 
     private Connection? connection { get { return App.app.default_connection; } }
-    private ulong stopped_id;
+    private ulong state_changed_id;
 
     public VMCreator (InstallerMedia install_media) {
         this.install_media = install_media;
-
-        App.app.collection.item_added.connect (on_item_added);
     }
 
-    private void on_item_added (Collection collection, CollectionItem item) {
-        if (!(item is LibvirtMachine))
-            return;
+    public VMCreator.for_install_completion (LibvirtMachine machine) {
+        state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
+        machine.vm_creator = this;
 
-        var machine = item as LibvirtMachine;
-        if (machine.connection != connection)
-            return;
-
-        try {
-            var config = machine.domain.get_config (0);
-            if (!VMConfigurator.is_install_config (config) && !VMConfigurator.is_live_config (config)) {
-                debug ("'%s' does not need post-installation setup", machine.name);
-                return;
-            }
-
-            var state = machine.domain.get_info ().state;
-            if (state == DomainState.SHUTOFF || state == DomainState.CRASHED || state == DomainState.NONE)
-                on_domain_stopped (machine);
-            else {
-                stopped_id = machine.domain.stopped.connect (() => { on_domain_stopped (machine); });
-            }
-        } catch (GLib.Error error) {
-            warning ("Failed to get information on domain '%s': %s", machine.domain.get_name (), error.message);
-        }
+        on_machine_state_changed (machine);
     }
 
     public async LibvirtMachine create_vm (Cancellable? cancellable) throws GLib.Error {
@@ -88,9 +67,17 @@ private class Boxes.VMCreator {
                 return;
             });
         }
+
+        state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
+        machine.vm_creator = this;
     }
 
-    private void on_domain_stopped (LibvirtMachine machine) {
+    private void on_machine_state_changed (GLib.Object object, GLib.ParamSpec? pspec = null) {
+        var machine = object as LibvirtMachine;
+
+        if (machine.state != Machine.MachineState.STOPPED && machine.state != Machine.MachineState.UNKNOWN)
+            return;
+
         var domain = machine.domain;
 
         if (machine.deleted) {
@@ -113,7 +100,8 @@ private class Boxes.VMCreator {
             } catch (GLib.Error error) {
                 warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
             }
-            domain.disconnect (stopped_id);
+            machine.disconnect (state_changed_id);
+            machine.vm_creator = null;
         } else {
             try {
                 var config = domain.get_config (0);
@@ -122,7 +110,7 @@ private class Boxes.VMCreator {
                     return;
 
                 // No installation during live session, so lets delete the VM
-                domain.disconnect (stopped_id);
+                machine.disconnect (state_changed_id);
                 App.app.delete_machine (machine);
             } catch (GLib.Error error) {
                 warning ("Failed to delete domain '%s' or its volume: %s", domain.get_name (), error.message);

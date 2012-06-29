@@ -184,9 +184,25 @@ private class Boxes.App: Boxes.UI {
         return machine;
     }
 
-    private void try_add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+    // New == Added after Boxes launch
+    private void try_add_new_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         try {
             add_domain (source, connection, domain);
+        } catch (GLib.Error error) {
+            warning ("Failed to create source '%s': %s", source.name, error.message);
+        }
+    }
+
+    // Existing == Existed before Boxes was launched
+    private void try_add_existing_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+        try {
+            var machine = add_domain (source, connection, domain);
+            var config = machine.domain_config;
+
+            if (VMConfigurator.is_install_config (config) || VMConfigurator.is_live_config (config)) {
+                debug ("Continuing installation/live session for '%s', ..", machine.name);
+                new VMCreator.for_install_completion (machine); // This instance will take care of its own lifecycle
+            }
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
         }
@@ -223,7 +239,7 @@ private class Boxes.App: Boxes.UI {
         }
 
         foreach (var domain in connection.get_domains ())
-            try_add_domain (source, connection, domain);
+            try_add_existing_domain (source, connection, domain);
 
         connection.domain_removed.connect ((connection, domain) => {
             var machine = domain.get_data<LibvirtMachine> ("machine");
@@ -235,7 +251,7 @@ private class Boxes.App: Boxes.UI {
 
         connection.domain_added.connect ((connection, domain) => {
             debug ("New domain '%s'", domain.get_name ());
-            try_add_domain (source, connection, domain);
+            try_add_new_domain (source, connection, domain);
         });
     }
 
