@@ -432,6 +432,7 @@ private class Boxes.Wizard: Boxes.UI {
         notebook.show_tabs = false;
         notebook.get_style_context ().add_class ("boxes-bg");
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "wizard";
         gtk_actor.opacity = 0;
 

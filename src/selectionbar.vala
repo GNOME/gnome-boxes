@@ -22,6 +22,7 @@ private class Boxes.Selectionbar: GLib.Object {
         bin.get_style_context ().add_class ("selectionbar");
 
         gtk_actor = new GtkClutter.Actor.with_contents (bin);
+        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.opacity = 0;
 
         favorite_btn = new Gtk.ToggleToolButton ();

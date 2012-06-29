@@ -84,6 +84,7 @@ private class Boxes.Sidebar: Boxes.UI {
 
         notebook = new Gtk.Notebook ();
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "sidebar";
         bin_actor.add_child (gtk_actor);
         notebook.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);

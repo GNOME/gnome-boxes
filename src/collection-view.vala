@@ -283,6 +283,7 @@ private class Boxes.CollectionView: Boxes.UI {
         scrolled_window.show_all ();
 
         gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
+        gtkactor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtkactor.name = "collection-view";
     }
 }
