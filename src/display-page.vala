@@ -87,6 +87,7 @@ private class Boxes.DisplayPage: GLib.Object {
 
     public DisplayPage () {
         event_box = new EventBox ();
+        event_box.get_style_context ().add_class ("boxes-toplevel");
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
         event_box.above_child = true;
         event_box.event.connect ((event) => {
