@@ -90,6 +90,9 @@ private class Boxes.VMCreator {
             debug ("'%s' has saved state, no need for post-installation setup on it", machine.name);
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
             // steps for this domain.
+            if (VMConfigurator.is_install_config (machine.domain_config))
+                domain.start_async.begin (0, null);
+
             return;
         }
 
