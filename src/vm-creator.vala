@@ -51,7 +51,7 @@ private class Boxes.VMCreator {
     public void launch_vm (LibvirtMachine machine) throws GLib.Error {
         machine.domain.start (0);
 
-        set_post_install_config (machine.domain);
+        set_post_install_config (machine);
 
         if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
             ulong signal_id = 0;
@@ -99,7 +99,7 @@ private class Boxes.VMCreator {
         var volume = get_storage_volume (connection, domain, null);
 
         if (guest_installed_os (volume)) {
-            mark_as_installed (domain);
+            mark_as_installed (machine);
             try {
                 domain.start (0);
             } catch (GLib.Error error) {
@@ -108,40 +108,37 @@ private class Boxes.VMCreator {
             machine.disconnect (state_changed_id);
             machine.vm_creator = null;
         } else {
-            try {
-                var config = domain.get_config (0);
+            if (!VMConfigurator.is_live_config (machine.domain_config))
+                return;
 
-                if (!VMConfigurator.is_live_config (config))
-                    return;
-
-                // No installation during live session, so lets delete the VM
-                machine.disconnect (state_changed_id);
-                App.app.delete_machine (machine);
-            } catch (GLib.Error error) {
-                warning ("Failed to delete domain '%s' or its volume: %s", domain.get_name (), error.message);
-            }
+            // No installation during live session, so lets delete the VM
+            machine.disconnect (state_changed_id);
+            App.app.delete_machine (machine);
         }
     }
 
-    private void set_post_install_config (Domain domain) {
-        debug ("Setting post-installation configuration on '%s'", domain.get_name ());
+    private void set_post_install_config (LibvirtMachine machine) {
+        debug ("Setting post-installation configuration on '%s'", machine.name);
         try {
-            var config = domain.get_config (0);
-            VMConfigurator.post_install_setup (config);
-            domain.set_config (config);
+            // We need to clone the domain_config as that is supposed to reflect the active config while we are
+            // modifying the inactive config, which are different when domain is running.
+            var config_xml = machine.domain_config.to_xml ();
+            var post_install_config = new GVirConfig.Domain.from_xml (config_xml);
+            VMConfigurator.post_install_setup (post_install_config);
+            machine.domain.set_config (post_install_config);
         } catch (GLib.Error error) {
-            warning ("Failed to set post-install configuration on '%s' failed: %s", domain.get_uuid (), error.message);
+            warning ("Failed to set post-install configuration on '%s' failed: %s", machine.name, error.message);
         }
     }
 
-    private void mark_as_installed (Domain domain) {
-        debug ("Marking '%s' as installed.", domain.get_name ());
+    private void mark_as_installed (LibvirtMachine machine) requires (machine.state == Machine.MachineState.STOPPED ||
+                                                                      machine.state == Machine.MachineState.UNKNOWN) {
+        debug ("Marking '%s' as installed.", machine.name);
         try {
-            var config = domain.get_config (0);
-            VMConfigurator.mark_as_installed (config);
-            domain.set_config (config);
+            VMConfigurator.mark_as_installed (machine.domain_config);
+            machine.domain.set_config (machine.domain_config);
         } catch (GLib.Error error) {
-            warning ("Failed to marking domain '%s' as installed: %s", domain.get_uuid (), error.message);
+            warning ("Failed to marking domain '%s' as installed: %s", machine.name, error.message);
         }
     }
 
