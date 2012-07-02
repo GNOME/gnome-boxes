@@ -200,6 +200,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_table.row_spacing = 10;
 
         // First row
+        // Translators: 'Express Install' means that the new box installation will be fully automated, the user
+        // won't be asked anything while it's performed.
         var label = new Gtk.Label (_("Express Install"));
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
