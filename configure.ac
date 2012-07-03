@@ -96,6 +96,17 @@ AC_ARG_ENABLE([strict-cc],
 AS_IF([test "x$enable_strict_cc" = "xyes"], [CFLAGS="$CFLAGS -Wall -Werror"],
       [CFLAGS="$CFLAGS -w"])
 
+dnl Debugging
+AC_ARG_ENABLE(debug,
+	AS_HELP_STRING([--enable-debug],[enable debugging]),,
+        enable_debug=no)
+if test "x$enable_debug" = "xyes"; then
+        CFLAGS="$CFLAGS -O0 -ggdb3"
+        VALA_DEBUG_FLAGS="-g"
+fi
+
+AC_SUBST(VALA_DEBUG_FLAGS)
+
 dnl Distribute logos?
 AC_ARG_ENABLE([logos],
               AS_HELP_STRING([--enable-logos],

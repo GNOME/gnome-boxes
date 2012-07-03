@@ -27,6 +27,7 @@ AM_VALAFLAGS =						\
 	--pkg posix					\
 	--pkg spice-client-gtk-3.0			\
 	--pkg tracker-sparql-0.14			\
+	$(VALA_DEBUG_FLAGS)			        \
 	$(NULL)
 
 bin_PROGRAMS = gnome-boxes

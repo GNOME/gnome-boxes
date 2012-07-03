@@ -9,5 +9,5 @@ autoreconf -v --force --install
 intltoolize -f
 
 if [ -z "$NOCONFIGURE" ]; then
-    "$srcdir"/configure --enable-maintainer-mode --enable-vala ${1+"$@"}
+    "$srcdir"/configure --enable-maintainer-mode --enable-vala --enable-debug ${1+"$@"}
 fi
