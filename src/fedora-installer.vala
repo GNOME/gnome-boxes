@@ -112,8 +112,8 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         debug ("Unmounted '%s'.", mount_point);
 
         source_dir.delete ();
-        mount_point = null;
         debug ("Removed '%s'.", mount_point);
+        mount_point = null;
     }
 
     private async void mount_media (Cancellable? cancellable) throws GLib.Error {
