@@ -310,9 +310,10 @@ private class Boxes.Wizard: Boxes.UI {
         nokvm_label.hide ();
         summary.clear ();
 
-        if (vm_creator != null && vm_creator.install_media is UnattendedInstaller) {
+        if (vm_creator != null) {
             try {
-                (vm_creator.install_media as UnattendedInstaller).check_needed_info ();
+                if (vm_creator.install_media is UnattendedInstaller)
+                    (vm_creator.install_media as UnattendedInstaller).check_needed_info ();
                 machine = yield vm_creator.create_vm (null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;
