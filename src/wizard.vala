@@ -178,8 +178,7 @@ private class Boxes.Wizard: Boxes.UI {
 
     private bool create () {
         if (source == null) {
-            if (vm_creator == null)
-                return false;
+            return_val_if_fail (vm_creator != null, false); // Shouldn't arrive here with source & vm_creator being null
 
             next_button.sensitive = false;
             try {
