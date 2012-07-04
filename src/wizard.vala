@@ -391,15 +391,17 @@ private class Boxes.Wizard: Boxes.UI {
             page == Boxes.WizardPage.PREPARATION)
             skip_to = page - 1;
 
-        if (vm_creator != null) {
-            if (forwards && page == Boxes.WizardPage.SETUP && vm_creator.install_media.live)
-                // No setup required for live media and also skip review if told to do so
-                skip_to = skip_review_for_live ? WizardPage.LAST : WizardPage.REVIEW;
+        if (vm_creator != null && page == Boxes.WizardPage.SETUP) {
+            var live = vm_creator.install_media.live;
 
-            // always skip SETUP page if not unattended installer
-            if (page == Boxes.WizardPage.SETUP &&
-                !(vm_creator.install_media is UnattendedInstaller))
+            // No setup required by live media and unattended installers
+            if (live || !(vm_creator.install_media is UnattendedInstaller)) {
                 skip_to = forwards ? page + 1 : page - 1;
+
+                // Also skip review for live media if told to do so
+                if (live && forwards && skip_review_for_live)
+                    skip_to += 1;
+            }
         }
 
         if (skip_to != page) {
