@@ -89,8 +89,10 @@ private class Boxes.App: Boxes.UI {
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
-                "Zeeshan Ali (Khattak) <zeeshanak@gnome.org>",
-                "Marc-André Lureau <marcandre.lureau@gmail.com>"
+                "Alexander Larsson <alexl@redhat.com>",
+                "Christophe Fergeau <cfergeau@redhat.com>",
+                "Marc-André Lureau <marcandre.lureau@gmail.com>",
+                "Zeeshan Ali (Khattak) <zeeshanak@gnome.org>"
             };
             string[] artists = {
                 "Jon McCann <jmccann@redhat.com>",
