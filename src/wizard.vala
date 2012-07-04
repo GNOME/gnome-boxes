@@ -317,7 +317,8 @@ private class Boxes.Wizard: Boxes.UI {
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;
             } catch (GLib.Error error) {
-                App.app.notificationbar.display_error (error.message);
+                App.app.notificationbar.display_error (_("Box setup failed!"));
+                warning (error.message);
 
                 return false;
             }
