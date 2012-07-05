@@ -138,11 +138,14 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
+
             yield prepare_direct_boot (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
 
             throw error;
+        } finally {
+            unattended_files = null;
         }
     }
 
@@ -353,22 +356,18 @@ private interface Boxes.UnattendedFile : GLib.Object {
     protected abstract UnattendedInstaller installer  { get; set; }
 
     public async void copy (Cancellable? cancellable) throws GLib.Error {
-        var unattended_tmp = yield create (cancellable);
+        var source_file = yield get_source_file (cancellable);
 
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
         // FIXME: Perhaps we should use libarchive for this?
         string[] argv = { "mcopy", "-n", "-o", "-i", installer.disk_file.get_path (),
-                                   unattended_tmp.get_path (),
+                                   source_file.get_path (),
                                    "::" + dest_name };
         yield exec (argv, cancellable);
         debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
-
-        debug ("Deleting temporary file '%s'", unattended_tmp.get_path ());
-        unattended_tmp.delete (cancellable);
-        debug ("Deleted temporary file '%s'", unattended_tmp.get_path ());
     }
 
-    protected abstract async File create (Cancellable? cancellable)  throws GLib.Error;
+    protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
 }
 
 private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
@@ -377,13 +376,23 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
 
     protected UnattendedInstaller installer  { get; set; }
 
+    private File unattended_tmp;
+
     public UnattendedTextFile (UnattendedInstaller installer, string src_path, string dest_name) {
        this.installer = installer;
        this.src_path = src_path;
        this.dest_name = dest_name;
     }
 
-    protected async File create (Cancellable? cancellable)  throws GLib.Error {
+    ~UnattendedTextFile () {
+        try {
+            delete_file (unattended_tmp);
+        } catch (GLib.Error e) {
+            warning ("Error deleting %s: %s", unattended_tmp.get_path (), e.message);
+        }
+    }
+
+    protected async File get_source_file (Cancellable? cancellable)  throws GLib.Error {
         var source = File.new_for_path (src_path);
         var destination_path = installer.get_user_unattended (dest_name);
         var destination = File.new_for_path (destination_path);
@@ -407,6 +416,7 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
         }
         yield output_stream.close_async (Priority.DEFAULT, cancellable);
         debug ("Created unattended file at '%s'..", destination.get_path ());
+        unattended_tmp = destination;
 
         return destination;
     }
@@ -418,6 +428,8 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
 
     protected UnattendedInstaller installer  { get; set; }
 
+    private File unattended_tmp;
+
     private AvatarFormat dest_format;
 
     public UnattendedAvatarFile (UnattendedInstaller installer, string src_path, AvatarFormat dest_format) {
@@ -427,7 +439,15 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
         this.dest_format = dest_format;
     }
 
-    protected async File create (Cancellable? cancellable)  throws GLib.Error {
+    ~UnattendedAvatarFile () {
+        try {
+            delete_file (unattended_tmp);
+        } catch (GLib.Error e) {
+            warning ("Error deleting %s: %s", unattended_tmp.get_path (), e.message);
+        }
+    }
+
+    protected async File get_source_file (Cancellable? cancellable)  throws GLib.Error {
         dest_name = installer.username + dest_format.extension;
         var destination_path = installer.get_user_unattended (dest_name);
 
@@ -444,7 +464,9 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
             warning ("Failed to save user avatar: %s.", error.message);
         }
 
-        return File.new_for_path (destination_path);
+        unattended_tmp = File.new_for_path (destination_path);
+
+        return unattended_tmp;
     }
 }
 
