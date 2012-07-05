@@ -370,6 +370,23 @@ private interface Boxes.UnattendedFile : GLib.Object {
     protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
 }
 
+private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
+    protected string src_path { get; set; }
+    protected string dest_name { get; set; }
+
+    protected UnattendedInstaller installer  { get; set; }
+
+    public UnattendedRawFile (UnattendedInstaller installer, string src_path, string dest_name) {
+       this.installer = installer;
+       this.src_path = src_path;
+       this.dest_name = dest_name;
+    }
+
+    protected async File get_source_file (Cancellable? cancellable)  throws GLib.Error {
+        return File.new_for_path (src_path);
+    }
+}
+
 private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
     protected string src_path { get; set; }
     protected string dest_name { get; set; }
