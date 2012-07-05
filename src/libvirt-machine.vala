@@ -391,7 +391,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public void force_shutdown (bool confirm = true) {
         if (confirm) {
-            var dialog = new Gtk.MessageDialog (App.app.window, Gtk.DialogFlags.DESTROY_WITH_PARENT, Gtk.MessageType.QUESTION, Gtk.ButtonsType.OK_CANCEL, _("When you force shutdown, the box may lose data."));
+            var dialog = new Gtk.MessageDialog (App.app.window,
+                                                Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                Gtk.MessageType.QUESTION,
+                                                Gtk.ButtonsType.OK_CANCEL,
+                                                _("When you force shutdown, the box may lose data."));
             var response = dialog.run ();
             dialog.destroy ();
 
