@@ -138,8 +138,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
-
-            yield prepare_direct_boot (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
 
@@ -276,8 +274,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             disk_file = null;
         }
     }
-
-    protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
 
     protected virtual DomainDisk? get_unattended_disk_config () {
         if (!express_toggle.active)

@@ -7,9 +7,6 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         }
     }
 
-    private bool mounted;
-
-    private File source_dir;
     private File kernel_file;
     private File initrd_file;
 
@@ -43,18 +40,20 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         os.set_cmdline ("ks=hd:sda:/ks.cfg");
     }
 
-    protected override async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {
+    public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
+        yield base.prepare_for_installation (vm_name, cancellable);
+
         if (!express_toggle.active)
             return;
 
         if (os_media.kernel_path == null || os_media.initrd_path == null)
             return;
 
-        yield mount_media (cancellable);
+        var extractor = new ISOExtractor (device_file);
 
-        yield extract_boot_files (cancellable);
+        yield extractor.mount_media (cancellable);
 
-        yield normal_clean_up (cancellable);
+        yield extract_boot_files (extractor, cancellable);
     }
 
     protected override void clean_up () throws GLib.Error {
@@ -77,52 +76,12 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         return kbd_regex.replace (str, str.length, 0, kbd);
     }
 
-    private async void normal_clean_up (Cancellable? cancellable) throws GLib.Error {
-        if (!mounted)
-            return;
-
-        debug ("Unmounting '%s'..", mount_point);
-        string[] argv = { "fusermount", "-u", mount_point };
-        yield exec (argv, cancellable);
-        mounted = false;
-        debug ("Unmounted '%s'.", mount_point);
-
-        source_dir.delete ();
-        debug ("Removed '%s'.", mount_point);
-        mount_point = null;
-    }
-
-    private async void mount_media (Cancellable? cancellable) throws GLib.Error {
-        if (mount_point != null) {
-            source_dir = File.new_for_path (mount_point);
-
-            return;
-        }
-
-        mount_point = get_user_unattended ();
-        var dir = File.new_for_path (mount_point);
-        try {
-            dir.make_directory (null);
-        } catch (IOError.EXISTS error) {}
-        source_dir = dir;
-
-        debug ("Mounting '%s' on '%s'..", device_file, mount_point);
-        string[] argv = { "fuseiso", device_file, mount_point };
-        yield exec (argv, cancellable);
-        debug ("'%s' now mounted on '%s'.", device_file, mount_point);
-
-        mounted = true;
-    }
-
-    private async void extract_boot_files (Cancellable? cancellable) throws GLib.Error {
-        if (!mounted)
-            return;
-
-        string src_path = Path.build_filename (mount_point, os_media.kernel_path);
+    private async void extract_boot_files (ISOExtractor extractor, Cancellable? cancellable) throws GLib.Error {
+        string src_path = extractor.get_absolute_path (os_media.kernel_path);
         string dest_path = get_user_unattended ("kernel");
         kernel_file = yield copy_file (src_path, dest_path, cancellable);
 
-        src_path = Path.build_filename (mount_point, os_media.initrd_path);
+        src_path = extractor.get_absolute_path (os_media.initrd_path);
         dest_path = get_user_unattended ("initrd");
         initrd_file = yield copy_file (src_path, dest_path, cancellable);
     }
