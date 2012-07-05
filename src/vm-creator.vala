@@ -81,6 +81,7 @@ private class Boxes.VMCreator {
         var domain = machine.domain;
 
         if (machine.deleted) {
+            machine.disconnect (state_changed_id);
             debug ("'%s' was deleted, no need for post-installation setup on it", machine.name);
             return;
         }
