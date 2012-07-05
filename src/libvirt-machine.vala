@@ -405,8 +405,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         debug ("Force shutdown '%s'..", name);
         try {
-            if (is_running ())
-                domain.stop (0);
+            domain.stop (0);
         } catch (GLib.Error error) {
             warning ("Failed to shutdown '%s': %s", domain.get_name (), error.message);
         }
