@@ -24,20 +24,9 @@ assets_DATA =					\
 	boxes-gray.png				\
 	$(NULL)
 
-if ENABLE_LOGOS
-LOGOS = debian.svg	\
-	fedora.svg	\
-	opensuse.svg	\
-	ubuntu.svg	\
-	$(NULL)
-else
-LOGOS =
-endif
-
 imagesdir = $(datadir)/gnome-boxes/pixmaps
 images_DATA =					\
 	boxes-create.png			\
-	$(LOGOS)				\
 	$(NULL)
 
 EXTRA_DIST =					\

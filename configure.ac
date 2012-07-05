@@ -107,14 +107,6 @@ fi
 
 AC_SUBST(VALA_DEBUG_FLAGS)
 
-dnl Distribute logos?
-AC_ARG_ENABLE([logos],
-              AS_HELP_STRING([--enable-logos],
-                             [Enable distribution of non-free logos]),
-              [enable_logos=$enableval],
-              [enable_logos=yes])
-AM_CONDITIONAL(ENABLE_LOGOS, test "x$enable_logos" != "xno")
-
 AC_CONFIG_FILES([
   Makefile
   data/Makefile
