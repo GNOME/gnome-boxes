@@ -5,7 +5,7 @@ using Gtk;
 
 private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
     public override Clutter.Actor actor { get { return machine_actor.actor; } }
-    public MachineActor machine_actor;
+    private MachineActor machine_actor;
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
@@ -185,7 +185,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     }
 
-    public void load_screenshot () {
+    protected void load_screenshot () {
         try {
             var screenshot = new Gdk.Pixbuf.from_file (get_screenshot_filename ());
             set_screenshot (screenshot, false);
@@ -193,7 +193,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    public void set_screenshot_enable (bool enable) {
+    protected void set_screenshot_enable (bool enable) {
         if (enable) {
             if (screenshot_id != 0)
                 return;
@@ -236,7 +236,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     protected virtual async void save_real () throws GLib.Error {
     }
 
-    public virtual async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
+    protected virtual async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
         return null;
     }
 
@@ -332,7 +332,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return energy / h;
     }
 
-    public void set_screenshot (Gdk.Pixbuf? large_screenshot, bool save) {
+    private void set_screenshot (Gdk.Pixbuf? large_screenshot, bool save) {
         if (large_screenshot != null) {
             var pw = large_screenshot.get_width ();
             var ph = large_screenshot.get_height ();
@@ -368,7 +368,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     int screenshot_counter;
-    public async void update_screenshot (bool force_save = false, bool first_check = false) {
+    private async void update_screenshot (bool force_save = false, bool first_check = false) {
         if (updating_screenshot)
             return;
 

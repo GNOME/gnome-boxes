@@ -336,7 +336,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    public override async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
+    protected override async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
         var state = DomainState.NONE;
         try {
             state = (yield domain.get_info_async (null)).state;
