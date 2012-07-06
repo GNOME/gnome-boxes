@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-06-26 14:35+0000\n"
-"PO-Revision-Date: 2012-06-26 20:14+0200\n"
+"POT-Creation-Date: 2012-07-02 15:43+0000\n"
+"PO-Revision-Date: 2012-07-06 11:52+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -114,12 +114,12 @@ msgstr "Acerca de Cajas"
 msgid "Quit"
 msgstr "Salir"
 
-#: ../src/app.vala:556
+#: ../src/app.vala:560
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: ../src/app.vala:557
+#: ../src/app.vala:561
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -130,7 +130,7 @@ msgstr[1] "Se han eliminado %u cajas"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/display-page.vala:195
+#: ../src/display-page.vala:197
 #, c-format
 msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
 msgstr "%s <b>(pulse Ctrl+Alt para deseleccionar)</b>"
@@ -180,7 +180,7 @@ msgid "Storage"
 msgstr "Almacenamiento"
 
 #. 3rd row
-#: ../src/machine.vala:362 ../src/unattended-installer.vala:232
+#: ../src/machine.vala:371 ../src/unattended-installer.vala:234
 #: ../src/wizard.vala:363
 msgid "Password"
 msgstr "Contraseña"
@@ -233,15 +233,15 @@ msgstr "Pantalla"
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../src/properties.vala:198
+#: ../src/properties.vala:200
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:205
+#: ../src/properties.vala:207
 msgid "I/O:"
 msgstr "E/S:"
 
-#: ../src/properties.vala:212
+#: ../src/properties.vala:214
 msgid "Net:"
 msgstr "Red:"
 
@@ -294,17 +294,25 @@ msgstr ""
 "la configuración óptima."
 
 #. First row
-#: ../src/unattended-installer.vala:203
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
+#. won't be asked anything while it's performed.
+#: ../src/unattended-installer.vala:205
 msgid "Express Install"
 msgstr "Instalación rápida"
 
-#: ../src/unattended-installer.vala:221 ../src/wizard.vala:362
+#: ../src/unattended-installer.vala:223 ../src/wizard.vala:362
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: ../src/unattended-installer.vala:242
+#: ../src/unattended-installer.vala:244
 msgid "_Add Password"
 msgstr "_Añadir contraseña"
+
+#. No guest caps or none compatible
+#. FIXME: Better error messsage than this please?
+#: ../src/vm-configurator.vala:337
+msgid "Incapable host system"
+msgstr "Equipo no capacitado"
 
 #: ../src/vnc-display.vala:134
 msgid "Read-only"
@@ -359,7 +367,7 @@ msgstr "Seleccionar un dispositivo o una imagen ISO"
 msgid "Box creation failed!"
 msgstr "Falló la creación de la caja"
 
-#: ../src/wizard.vala:118 ../src/wizard.vala:574
+#: ../src/wizard.vala:118 ../src/wizard.vala:575
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
@@ -430,11 +438,11 @@ msgstr "Disco"
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:438
+#: ../src/wizard.vala:442
 msgid "Introduction"
 msgstr "Introducción"
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:446
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -448,17 +456,17 @@ msgstr ""
 "Puede conectar con una máquina existente<b><i>mediante la red</i></b> o "
 "crear una <b><i>máquina virtual</i></b> que se ejecute localmente."
 
-#: ../src/wizard.vala:456
+#: ../src/wizard.vala:458
 msgid "Source Selection"
 msgstr "Selección de la fuente"
 
-#: ../src/wizard.vala:457
+#: ../src/wizard.vala:459
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Inserte el medio de instalación del sistema operativo o seleccione una "
 "fuente a continuación"
 
-#: ../src/wizard.vala:467
+#: ../src/wizard.vala:469
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -468,27 +476,27 @@ msgstr ""
 "identificación de productos de software que haya obtenido y pertenecen a sus "
 "respectivos propietarios."
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:482
 msgid "Preparation"
 msgstr "Preparación"
 
-#: ../src/wizard.vala:482
+#: ../src/wizard.vala:483
 msgid "Preparing to create new box"
 msgstr "Preparándose para crear la caja nueva"
 
-#: ../src/wizard.vala:501
+#: ../src/wizard.vala:502
 msgid "Analyzing installer media."
 msgstr "Analizando el instalador del medio."
 
-#: ../src/wizard.vala:512
+#: ../src/wizard.vala:513
 msgid "Setup"
 msgstr "Configuración"
 
-#: ../src/wizard.vala:519
+#: ../src/wizard.vala:520
 msgid "Review"
 msgstr "Revisar"
 
-#: ../src/wizard.vala:530
+#: ../src/wizard.vala:531
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -501,7 +509,7 @@ msgstr ""
 "estén probablemente disponibles en su sistema, y deba activarlas en la "
 "configuración de su BIOS."
 
-#: ../src/wizard.vala:546
+#: ../src/wizard.vala:547
 msgid "Create a Box"
 msgstr "Crear una caja"
 
