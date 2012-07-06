@@ -11,7 +11,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
                          Ovirt.Vm vm) throws GLib.Error {
         base (source, vm.name);
 
-        debug ("New ovirt machine: " + name);
+        debug ("new ovirt machine: " + name);
         create_display_config (vm.uuid);
         this.proxy = proxy;
         this.vm = vm;
@@ -19,7 +19,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         this.update_state ();
 
         load_screenshot ();
-        set_screenshot_enable (false);
+        set_screenshot_enable (true);
     }
 
     public override async void connect_display () throws GLib.Error {

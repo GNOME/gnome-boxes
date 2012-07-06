@@ -236,8 +236,17 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     protected virtual async void save_real () throws GLib.Error {
     }
 
-    protected virtual async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
-        return null;
+    // this implementation of take_screenshot is not really useful since
+    // screenshots will only be taken while the box is maximized/fullscreen,
+    // and the disconnect_display () logic takes care of taking a screenshot
+    // just before going back to the collection view. Taking regular
+    // screenshots can have its use in case of an abnormal gnome-boxes
+    // termination.
+    protected async virtual Gdk.Pixbuf? take_screenshot () throws GLib.Error {
+        if (display == null)
+            return null;
+
+        return display.get_pixbuf (0);
     }
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
