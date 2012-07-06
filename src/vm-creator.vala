@@ -49,10 +49,6 @@ private class Boxes.VMCreator {
     }
 
     public void launch_vm (LibvirtMachine machine) throws GLib.Error {
-        machine.domain.start (0);
-
-        set_post_install_config (machine);
-
         if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
             ulong signal_id = 0;
 
@@ -60,13 +56,16 @@ private class Boxes.VMCreator {
                 if (App.app.ui_state != UIState.COLLECTION)
                     return;
 
-                App.app.select_item (machine);
+                App.app.select_item (machine); // This also starts the domain for us
                 App.app.fullscreen = true;
                 App.app.disconnect (signal_id);
 
                 return;
             });
-        }
+        } else
+            machine.domain.start (0);
+
+        set_post_install_config (machine);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
