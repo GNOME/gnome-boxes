@@ -20,14 +20,12 @@ private class Boxes.InstallerMedia : Object {
                                          Media?            media,
                                          Osinfo.Resources? resources) {
         this.device_file = path;
-        this.label = label;
         this.os = os;
         this.os_media = media;
         this.resources = resources;
         from_image = true;
 
-        if (media != null && media.live)
-            this.label = _("%s (Live)").printf (label);
+        setup_label (label);
     }
 
     public static async InstallerMedia create_for_path (string       path,
@@ -52,15 +50,7 @@ private class Boxes.InstallerMedia : Object {
             os = yield media_manager.os_db.guess_os_from_install_media (device_file, out os_media, cancellable);
         }
 
-        if (os != null)
-            label = os.get_name ();
-            if (os_media != null && os_media.live)
-                // Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
-                //              http://en.wikipedia.org/wiki/Live_CD
-                label = _("%s (Live)").printf (label);
-
-        if (label == null)
-            label = Path.get_basename (device_file);
+        setup_label ();
 
         // FIXME: these values could be made editable somehow
         var architecture = (os_media != null) ? os_media.architecture : "i686";
@@ -110,5 +100,23 @@ private class Boxes.InstallerMedia : Object {
             if (media_id != null)
                 os_media = os_db.get_media_by_id (os, media_id);
         }
+    }
+
+    private void setup_label (string? label = null) {
+        if (label != null)
+            this.label = label;
+        else if (os != null)
+            this.label = os.get_name ();
+        else {
+            // No appropriate label? :( Lets just use filename then
+            this.label = Path.get_basename (device_file);
+
+            return;
+        }
+
+        if (os_media != null && os_media.live)
+            // Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+            //              http://en.wikipedia.org/wiki/Live_CD
+            this.label = _("%s (Live)").printf (this.label);
     }
 }
