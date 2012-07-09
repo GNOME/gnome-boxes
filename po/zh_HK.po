@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 18:13+0800\n"
-"PO-Revision-Date: 2012-06-04 18:13+0800\n"
+"POT-Creation-Date: 2012-07-09 19:08+0800\n"
+"PO-Revision-Date: 2012-07-09 19:08+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "Language: \n"
@@ -29,7 +29,7 @@ msgstr "簡易虛擬機檢視器/管理員"
 msgid "View and use virtual machines"
 msgstr "檢視與使用虛擬機"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
 msgstr "收藏集"
 
@@ -77,45 +77,58 @@ msgstr "視窗最大化"
 msgid "Window maximized state"
 msgstr "視窗最大化狀態"
 
-#: ../src/app.vala:94
+#: ../src/app.vala:105
 msgid "translator-credits"
 msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2012."
 
-#: ../src/app.vala:95
+#: ../src/app.vala:106
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "簡易 GNOME 3 應用程式，可存取遠端或虛擬系統"
 
-#: ../src/app.vala:107 ../src/topbar.vala:63
+#: ../src/app.vala:118 ../src/topbar.vala:61
 msgid "New"
 msgstr "新增"
 
-#: ../src/app.vala:110
+#: ../src/app.vala:121
 msgid "Properties"
 msgstr "屬性"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:122
 msgid "Fullscreen"
 msgstr "全螢幕"
 
-#: ../src/app.vala:114
+#: ../src/app.vala:123
+msgid "Force shutdown"
+msgstr "強迫關機"
+
+#: ../src/app.vala:126
 msgid "About Boxes"
 msgstr "關於箱子"
 
-#: ../src/app.vala:115
+#: ../src/app.vala:127
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/app.vala:507
+#: ../src/app.vala:578
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "「%s」箱子已刪除"
 
-#: ../src/app.vala:508
+#: ../src/app.vala:579
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 隻箱子已刪除"
 msgstr[1] "%u 隻箱子已刪除"
+
+#: ../src/collection-view.vala:31
+msgid "New and Recent"
+msgstr "新增與最近使用"
+
+#: ../src/display-page.vala:197
+#, c-format
+msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
+msgstr "%s <b>(按下 Ctrl+Alt 按鍵組合取消抓取)</b>"
 
 #: ../src/fedora-installer.vala:60
 msgid ""
@@ -129,35 +142,39 @@ msgstr "需要互聯網存取才能快速安裝 Fedora 16 或較舊版本"
 msgid "%s (Live)"
 msgstr "%s (Live)"
 
-#: ../src/libvirt-machine.vala:286
+#: ../src/libvirt-machine.vala:280
 msgid "Virtualizer"
 msgstr "虛擬器"
 
-#: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
-#: ../src/wizard.vala:292
+#: ../src/libvirt-machine.vala:281 ../src/remote-machine.vala:42
+#: ../src/wizard.vala:337
 msgid "URI"
 msgstr "網址"
 
-#: ../src/libvirt-machine.vala:296 ../src/remote-machine.vala:71
+#: ../src/libvirt-machine.vala:290 ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "協定"
 
-#: ../src/libvirt-machine.vala:442
+#: ../src/libvirt-machine.vala:398
+msgid "When you force shutdown, the box may lose data."
+msgstr "當你強迫關機時，箱子可能會遺失資料。"
+
+#: ../src/libvirt-machine.vala:454
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:483
+#: ../src/libvirt-machine.vala:495
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "變動需要「%s」重新啟動。試圖重新啟動？"
 
-#: ../src/libvirt-machine.vala:500
+#: ../src/libvirt-machine.vala:512
 msgid "Storage"
 msgstr "貯藏"
 
 #. 3rd row
-#: ../src/machine.vala:304 ../src/unattended-installer.vala:224
-#: ../src/wizard.vala:318
+#: ../src/machine.vala:371 ../src/unattended-installer.vala:239
+#: ../src/wizard.vala:363
 msgid "Password"
 msgstr "密碼"
 
@@ -197,7 +214,7 @@ msgstr "KVM 模組已載入：%s\n"
 msgid "Login"
 msgstr "登入名稱"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:312
+#: ../src/properties.vala:43 ../src/wizard.vala:357
 msgid "System"
 msgstr "系統"
 
@@ -209,119 +226,107 @@ msgstr "顯示"
 msgid "Devices"
 msgstr "裝置"
 
-#: ../src/properties.vala:193
+#: ../src/properties.vala:200
 msgid "CPU:"
 msgstr "CPU："
 
-#: ../src/properties.vala:200
+#: ../src/properties.vala:207
 msgid "I/O:"
 msgstr "I/O："
 
-#: ../src/properties.vala:207
+#: ../src/properties.vala:214
 msgid "Net:"
 msgstr "網絡："
 
-#: ../src/remote-machine.vala:64
+#: ../src/remote-machine.vala:39
 msgid "Name"
 msgstr "名稱"
 
-#: ../src/sidebar.vala:141
-msgid "New and Recent"
-msgstr "新增與最近使用"
-
-#: ../src/sidebar.vala:143
-msgid "Favorites"
-msgstr "喜愛"
-
-#: ../src/sidebar.vala:144
-msgid "Private"
-msgstr "私人"
-
-#: ../src/sidebar.vala:145
-msgid "Shared with you"
-msgstr "與你分享"
-
-#: ../src/sidebar.vala:162
-msgid "Create"
-msgstr "建立"
-
-#: ../src/spice-display.vala:142
+#: ../src/spice-display.vala:157
 msgid "Share clipboard"
 msgstr "共享剪貼簿"
 
-#: ../src/spice-display.vala:150
+#: ../src/spice-display.vala:163
 msgid "Resize guest"
 msgstr "重新調整客端大小"
 
-#: ../src/spice-display.vala:161
+#: ../src/spice-display.vala:171
 msgid "USB redirection"
 msgstr "USB 重新導引"
 
-#: ../src/topbar.vala:155
+#: ../src/topbar.vala:159
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d 個已選取"
 msgstr[1] "%d 個已選取"
 
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:161
 msgid "Click on items to select them"
 msgstr "點擊項目來選取它們"
 
-#: ../src/unattended-installer.vala:25
+#: ../src/unattended-installer.vala:31
 msgid "no password"
 msgstr "無密碼"
 
-#: ../src/unattended-installer.vala:165
+#: ../src/unattended-installer.vala:168
 msgid "No username provided"
 msgstr "未提供使用者名稱"
 
-#: ../src/unattended-installer.vala:169
+#: ../src/unattended-installer.vala:172
 #, c-format
 msgid "Password required for express installation of %s"
 msgstr "需要密碼才能快速安裝 %s"
 
-#: ../src/unattended-installer.vala:183
+#: ../src/unattended-installer.vala:194
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr "選擇快速安裝能以最佳化設定值自動將箱子預先設定好。"
 
 #. First row
-#: ../src/unattended-installer.vala:195
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
+#. won't be asked anything while it's performed.
+#: ../src/unattended-installer.vala:210
 msgid "Express Install"
 msgstr "快速安裝"
 
-#: ../src/unattended-installer.vala:213 ../src/wizard.vala:317
+#: ../src/unattended-installer.vala:228 ../src/wizard.vala:362
 msgid "Username"
 msgstr "使用者名稱"
 
-#: ../src/unattended-installer.vala:234
+#: ../src/unattended-installer.vala:249
 msgid "_Add Password"
 msgstr "加入密碼(_A)"
+
+#. No guest caps or none compatible
+#. FIXME: Better error messsage than this please?
+#: ../src/vm-configurator.vala:340
+msgid "Incapable host system"
+msgstr "無能力的主控系統"
 
 #: ../src/vnc-display.vala:134
 msgid "Read-only"
 msgstr "唯讀"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:49
+#: ../src/winxp-installer.vala:48
 msgid "Product Key"
 msgstr "產品密碼匙"
 
-#: ../src/winxp-installer.vala:56
+#: ../src/winxp-installer.vala:55
 msgid "_Add Product Key"
 msgstr "加入產品密碼匙(_A)"
 
-#: ../src/wizard-source.vala:114 ../src/wizard-source.vala:136
+#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
 msgid "Enter URL"
 msgstr "輸入網址"
 
-#: ../src/wizard-source.vala:121
+#: ../src/wizard-source.vala:122
 msgid "Select a file"
 msgstr "選取檔案"
 
-#: ../src/wizard-source.vala:153
+#: ../src/wizard-source.vala:154
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -331,103 +336,109 @@ msgstr ""
 "\n"
 "會為此帳號所有可用的系統加入箱子："
 
-#: ../src/wizard-source.vala:231
+#: ../src/wizard-source.vala:234
 msgid "32-bit x86 system"
 msgstr "32 位元 x86 系統"
 
-#: ../src/wizard-source.vala:232
+#: ../src/wizard-source.vala:235
 msgid "64-bit x86 system"
 msgstr "64 位元 x86 系統"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:241
+#: ../src/wizard-source.vala:244
 #, c-format
 msgid " from %s"
 msgstr " 來自 %s"
 
-#: ../src/wizard-source.vala:291
+#: ../src/wizard-source.vala:284
 msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
-#: ../src/wizard.vala:76
+#: ../src/wizard.vala:92
 msgid "Box creation failed!"
 msgstr "箱子建立失敗！"
 
-#: ../src/wizard.vala:97 ../src/wizard.vala:513
+#: ../src/wizard.vala:117 ../src/wizard.vala:575
 msgid "C_ontinue"
 msgstr "繼續(_O)"
 
-#: ../src/wizard.vala:97
+#: ../src/wizard.vala:117
 msgid "C_reate"
 msgstr "建立(_R)"
 
-#: ../src/wizard.vala:118
+#: ../src/wizard.vala:138
 msgid "Please enter desktop or collection URI"
 msgstr "請輸入桌面或收藏集網址"
 
-#: ../src/wizard.vala:124
+#: ../src/wizard.vala:144
 msgid "Will add boxes for all systems available from this account."
 msgstr "會將此帳號所有可用的系統加入箱子。"
 
-#: ../src/wizard.vala:127
+#: ../src/wizard.vala:147
 msgid "Will add a single box."
 msgstr "會加入單一個箱子。"
 
-#: ../src/wizard.vala:133
+#: ../src/wizard.vala:153
 msgid "Desktop Access"
 msgstr "桌面存取"
 
-#: ../src/wizard.vala:197
+#: ../src/wizard.vala:233
 msgid "Invalid URI"
 msgstr "無效網址"
 
-#: ../src/wizard.vala:208
+#: ../src/wizard.vala:244
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "未支援的協定「%s」"
 
-#: ../src/wizard.vala:282
+#: ../src/wizard.vala:320
+#, fuzzy
+#| msgid "Box creation failed!"
+msgid "Box setup failed!"
+msgstr "箱子建立失敗！"
+
+#: ../src/wizard.vala:327
 msgid "Will create a new box with the following properties:"
 msgstr "會以下列屬性建立新箱子："
 
-#: ../src/wizard.vala:287
+#: ../src/wizard.vala:332
 msgid "Type"
 msgstr "類型"
 
-#: ../src/wizard.vala:290
+#: ../src/wizard.vala:335
 msgid "Host"
 msgstr "主機"
 
-#: ../src/wizard.vala:298 ../src/wizard.vala:304
+#: ../src/wizard.vala:343 ../src/wizard.vala:349
 msgid "Port"
 msgstr "端口"
 
-#: ../src/wizard.vala:299
+#: ../src/wizard.vala:344
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: ../src/wizard.vala:309
+#: ../src/wizard.vala:354
 msgid "Will add boxes for all systems available from this account:"
 msgstr "會為此帳號所有可用的系統加入箱子："
 
-#: ../src/wizard.vala:323
+#: ../src/wizard.vala:368
 msgid "Memory"
 msgstr "記憶體"
 
-#: ../src/wizard.vala:325
+#: ../src/wizard.vala:370
 msgid "Disk"
 msgstr "磁碟"
 
-#: ../src/wizard.vala:325
+#: ../src/wizard.vala:370
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大"
 
-#: ../src/wizard.vala:393
+#: ../src/wizard.vala:442
 msgid "Introduction"
 msgstr "簡介"
 
-#: ../src/wizard.vala:397
+#: ../src/wizard.vala:446
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -439,41 +450,61 @@ msgstr ""
 "\n"
 "你可以連接至<b><i>網絡上</i></b> 既有的機器，或可建立個在你本機運行的<b><i>虛擬機</i></b>。"
 
-#: ../src/wizard.vala:409
+#: ../src/wizard.vala:458
 msgid "Source Selection"
 msgstr "來源選取"
 
-#: ../src/wizard.vala:410
+#: ../src/wizard.vala:459
 msgid "Insert operating system installation media or select a source below"
 msgstr "插入作業系統安裝媒體，或從下方選取來源"
 
-#: ../src/wizard.vala:418
+#: ../src/wizard.vala:469
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr "任何上方顯示的商標皆僅用來作為你已取得的軟件產品辨識之用，這些商標係為各擁有者的財產。"
 
-#: ../src/wizard.vala:430
+#: ../src/wizard.vala:482
 msgid "Preparation"
 msgstr "準備"
 
-#: ../src/wizard.vala:431
+#: ../src/wizard.vala:483
 msgid "Preparing to create new box"
 msgstr "正在準備建立新箱子"
 
-#: ../src/wizard.vala:448
+#: ../src/wizard.vala:502
 msgid "Analyzing installer media."
 msgstr "正在分析安裝程式媒體。"
 
-#: ../src/wizard.vala:459
+#: ../src/wizard.vala:513
 msgid "Setup"
 msgstr "設置"
 
-#: ../src/wizard.vala:466
+#: ../src/wizard.vala:520
 msgid "Review"
 msgstr "檢閱"
 
-#: ../src/wizard.vala:486
+#: ../src/wizard.vala:531
+msgid ""
+"Virtualization extensions are unavailable on your system. Expect this box to "
+"be extremely slow. If your system is recent enough (made in or after 2008), "
+"these extensions are probably available on your system and you may need to "
+"enable them in your system's BIOS setup."
+msgstr "虛擬化擴充功能不能在你的系統上使用。可以預期這個箱子將異常緩慢。如果你的系統硬件夠新 (2008 或之後製造)，你的系統很可能有這些擴充功能，而你可能需要在你系統的 BIOS 設置上啟用它們。"
+
+#: ../src/wizard.vala:547
 msgid "Create a Box"
 msgstr "建立箱子"
+
+#~ msgid "Favorites"
+#~ msgstr "喜愛"
+
+#~ msgid "Private"
+#~ msgstr "私人"
+
+#~ msgid "Shared with you"
+#~ msgstr "與您分享"
+
+#~ msgid "Create"
+#~ msgstr "建立"
