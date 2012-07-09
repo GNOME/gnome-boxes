@@ -89,7 +89,7 @@ private class Boxes.Wizard: Boxes.UI {
                     if (create ())
                        App.app.ui_state = UIState.COLLECTION;
                     else
-                       App.app.notificationbar.display_error (_("Box creation failed!"));
+                       App.app.notificationbar.display_error (_("Box creation failed"));
                     return;
                 }
             } else {
@@ -317,7 +317,7 @@ private class Boxes.Wizard: Boxes.UI {
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;
             } catch (GLib.Error error) {
-                App.app.notificationbar.display_error (_("Box setup failed!"));
+                App.app.notificationbar.display_error (_("Box setup failed"));
                 warning (error.message);
 
                 return false;
