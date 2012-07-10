@@ -14,11 +14,11 @@ private class Boxes.InstallerMedia : Object {
 
     public bool live { get { return os_media == null || os_media.live; } }
 
-    public InstallerMedia.from_iso_info (string            path,
-                                         string            label,
-                                         Os                os,
-                                         Media?            media,
-                                         Osinfo.Resources? resources) {
+    public InstallerMedia.from_iso_info (string           path,
+                                         string           label,
+                                         Os               os,
+                                         Media            media,
+                                         Osinfo.Resources resources) {
         this.device_file = path;
         this.os = os;
         this.os_media = media;
