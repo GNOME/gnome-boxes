@@ -84,7 +84,7 @@ private class Boxes.MediaManager : Object {
     }
 
     private static int compare_media (InstallerMedia media_a, InstallerMedia media_b) {
-        return strcmp (media_b.label, media_a.label);
+        return strcmp (media_a.label, media_b.label);
     }
 
     private async InstallerMedia create_installer_media_from_iso_info (string  path,
