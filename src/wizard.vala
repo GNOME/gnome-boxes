@@ -346,15 +346,8 @@ private class Boxes.Wizard: Boxes.UI {
                 review_label.set_text (_("Will add boxes for all systems available from this account:"));
             }
         } else if (vm_creator != null) {
-            summary.add_property (_("System"), vm_creator.install_media.label);
-
-            if (vm_creator.install_media is UnattendedInstaller) {
-                var media = vm_creator.install_media as UnattendedInstaller;
-                if (media.express_install) {
-                    summary.add_property (_("Username"), media.username);
-                    summary.add_property (_("Password"), media.hidden_password);
-                }
-            }
+            foreach (var property in vm_creator.install_media.get_vm_properties ())
+                summary.add_property (property.first, property.second);
 
             var memory = format_size (vm_creator.install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
             summary.add_property (_("Memory"), memory);

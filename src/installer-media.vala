@@ -83,6 +83,14 @@ private class Boxes.InstallerMedia : GLib.Object {
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
     public virtual void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {}
 
+    public virtual GLib.List<Pair<string,string>> get_vm_properties () {
+        var properties = new GLib.List<Pair<string,string>> ();
+
+        properties.append (new Pair<string,string> (_("System"), label));
+
+        return properties;
+    }
+
     public bool is_architecture_compatible (string architecture) {
         return os_media == null || // Unknown media
                os_media.architecture == architecture ||

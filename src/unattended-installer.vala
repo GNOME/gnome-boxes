@@ -174,6 +174,17 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                         (_("Password required for express installation of %s"), label);
     }
 
+    public override List<Pair> get_vm_properties () {
+        var properties = base.get_vm_properties ();
+
+        if (express_install) {
+            properties.append (new Pair<string,string> (_("Username"), username));
+            properties.append (new Pair<string,string> (_("Password"), hidden_password));
+        }
+
+        return properties;
+    }
+
     public virtual string fill_unattended_data (string data) throws RegexError {
         var str = username_regex.replace (data, data.length, 0, username_entry.text);
         str = password_regex.replace (str, str.length, 0, password);
