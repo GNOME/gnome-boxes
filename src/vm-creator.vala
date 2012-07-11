@@ -34,8 +34,7 @@ private class Boxes.VMCreator {
 
         string title;
         var name = yield create_domain_name_and_title_from_media (out title);
-        if (install_media is UnattendedInstaller)
-            yield (install_media as UnattendedInstaller).setup (name, cancellable);
+        yield install_media.prepare_for_installation (name, cancellable);
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var caps = yield connection.get_capabilities_async (cancellable);

@@ -114,7 +114,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_ui ();
     }
 
-    public async void setup (string vm_name, Cancellable? cancellable) throws GLib.Error {
+    public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
         if (!express_toggle.active) {
             debug ("Unattended installation disabled.");
 

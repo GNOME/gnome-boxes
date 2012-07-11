@@ -59,6 +59,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual void set_direct_boot_params (DomainOs os) {}
+    public virtual async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {}
 
     public bool is_architecture_compatible (string architecture) {
         return os_media == null || // Unknown media
