@@ -140,7 +140,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_vbox.pack_start (setup_hbox, false, false);
     }
 
-    public virtual void set_direct_boot_params (DomainOs os) {}
 
     public virtual DomainDisk? get_unattended_disk_config () {
         if (!express_toggle.active)

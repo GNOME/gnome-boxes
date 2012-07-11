@@ -250,19 +250,12 @@ private class Boxes.VMConfigurator {
         os.set_arch (guest_caps.get_arch ().get_name ());
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
-        set_direct_boot_params (os, install_media);
+        install_media.set_direct_boot_params (os);
         boot_devices.append (DomainOsBootDevice.CDROM);
         boot_devices.append (DomainOsBootDevice.HD);
         os.set_boot_devices (boot_devices);
 
         domain.set_os (os);
-    }
-
-    private static void set_direct_boot_params (DomainOs os, InstallerMedia install_media) {
-        if (!(install_media is UnattendedInstaller))
-            return;
-
-        (install_media as UnattendedInstaller).set_direct_boot_params (os);
     }
 
     private static void set_video_config (Domain domain, InstallerMedia install_media) {

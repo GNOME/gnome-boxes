@@ -2,8 +2,9 @@
 
 using Osinfo;
 using GUdev;
+using GVirConfig;
 
-private class Boxes.InstallerMedia : Object {
+private class Boxes.InstallerMedia : GLib.Object {
     public Os? os;
     public Osinfo.Resources? resources;
     public Media? os_media;
@@ -56,6 +57,8 @@ private class Boxes.InstallerMedia : Object {
         var architecture = (os_media != null) ? os_media.architecture : "i686";
         resources = media_manager.os_db.get_resources_for_os (os, architecture);
     }
+
+    public virtual void set_direct_boot_params (DomainOs os) {}
 
     public bool is_architecture_compatible (string architecture) {
         return os_media == null || // Unknown media
