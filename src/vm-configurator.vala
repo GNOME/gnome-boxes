@@ -64,14 +64,7 @@ private class Boxes.VMConfigurator {
 
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (true);
-        if (install_media is UnattendedInstaller) {
-            var unattended = install_media as UnattendedInstaller;
-
-            // If guest requires password, we let it take care of authentications and free the user from one
-            // authentication layer.
-            if (unattended.express_install && !unattended.password_mandatory && unattended.password != "")
-                graphics.set_password (unattended.password);
-        }
+        install_media.setup_spice_config (graphics);
         domain.add_device (graphics);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.

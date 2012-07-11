@@ -79,6 +79,8 @@ private class Boxes.InstallerMedia : GLib.Object {
         domain.add_device (disk);
     }
 
+    public virtual void setup_spice_config (DomainGraphicsSpice graphics) {}
+
     public bool is_architecture_compatible (string architecture) {
         return os_media == null || // Unknown media
                os_media.architecture == architecture ||

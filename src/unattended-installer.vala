@@ -32,10 +32,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public bool password_mandatory { get; protected set; }
     public DataStreamNewlineType newline_type;
     public File? disk_file;
 
+    protected bool password_mandatory;
     protected GLib.List<UnattendedFile> unattended_files;
 
     protected Gtk.Table setup_table;
@@ -150,6 +150,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         domain.add_device (disk);
     }
 
+    public override void setup_spice_config (DomainGraphicsSpice graphics) {
+        // If guest requires password, we let it take care of authentications and free the user from one
+        // authentication layer.
+        if (express_install && !password_mandatory && password != "")
+            graphics.set_password (password);
+    }
 
 
     }
