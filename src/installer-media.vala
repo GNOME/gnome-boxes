@@ -13,6 +13,11 @@ private class Boxes.InstallerMedia : GLib.Object {
     public string mount_point;
     public bool from_image;
 
+    public virtual bool need_user_input_for_vm_creation {
+        get {
+            return false;
+        }
+    }
     public bool live { get { return os_media == null || os_media.live; } }
 
     public InstallerMedia.from_iso_info (string           path,

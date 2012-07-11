@@ -7,6 +7,12 @@ public errordomain UnattendedInstallerError {
 }
 
 private abstract class Boxes.UnattendedInstaller: InstallerMedia {
+    public override bool need_user_input_for_vm_creation {
+        get {
+            return !live; // No setup required by live media (and unknown medias are not UnattendedInstaller instances)
+        }
+    }
+
     public bool express_install {
         get { return express_toggle.active; }
     }
