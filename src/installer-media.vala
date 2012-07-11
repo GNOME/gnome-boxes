@@ -61,6 +61,24 @@ private class Boxes.InstallerMedia : GLib.Object {
     public virtual void set_direct_boot_params (DomainOs os) {}
     public virtual async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {}
 
+    public virtual void setup_domain_config (Domain domain) {
+        var disk = new DomainDisk ();
+        disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
+        disk.set_driver_name ("qemu");
+        disk.set_driver_type ("raw");
+        disk.set_source (device_file);
+        disk.set_target_dev ("hdc");
+        disk.set_target_bus (DomainDiskBus.IDE);
+        disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
+
+        if (from_image)
+            disk.set_type (DomainDiskType.FILE);
+        else
+            disk.set_type (DomainDiskType.BLOCK);
+
+        domain.add_device (disk);
+    }
+
     public bool is_architecture_compatible (string architecture) {
         return os_media == null || // Unknown media
                os_media.architecture == architecture ||

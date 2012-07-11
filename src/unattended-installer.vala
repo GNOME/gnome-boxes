@@ -140,22 +140,18 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_vbox.pack_start (setup_hbox, false, false);
     }
 
+    public override void setup_domain_config (Domain domain) {
+        base.setup_domain_config (domain);
 
-    public virtual DomainDisk? get_unattended_disk_config () {
-        if (!express_toggle.active)
-            return null;
+        var disk = get_unattended_disk_config ();
+        if (disk == null)
+            return;
 
-        return_val_if_fail (disk_file != null, null);
+        domain.add_device (disk);
+    }
 
-        var disk = new DomainDisk ();
-        disk.set_type (DomainDiskType.FILE);
-        disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
-        disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
-        disk.set_source (disk_file.get_path ());
-        disk.set_target_dev ("sdb");
 
-        return disk;
+
     }
 
     // Ensure needed information was provided by user
@@ -273,6 +269,23 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     protected virtual async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {}
+
+    protected virtual DomainDisk? get_unattended_disk_config () {
+        if (!express_toggle.active)
+            return null;
+
+        return_val_if_fail (disk_file != null, null);
+
+        var disk = new DomainDisk ();
+        disk.set_type (DomainDiskType.FILE);
+        disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
+        disk.set_driver_name ("qemu");
+        disk.set_driver_type ("raw");
+        disk.set_source (disk_file.get_path ());
+        disk.set_target_dev ("sdb");
+
+        return disk;
+    }
 
     protected void add_unattended_file (UnattendedFile file) {
         unattended_files.append (file);

@@ -4,7 +4,7 @@ using GVirConfig;
 
 // Automated installer media for Windows.
 private abstract class Boxes.WindowsInstaller: UnattendedInstaller {
-    public override DomainDisk? get_unattended_disk_config () {
+    protected override DomainDisk? get_unattended_disk_config () {
         var disk = base.get_unattended_disk_config ();
         if (disk == null)
             return null;

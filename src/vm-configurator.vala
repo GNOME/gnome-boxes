@@ -60,8 +60,7 @@ private class Boxes.VMConfigurator {
         domain.set_clock (clock);
 
         set_target_media_config (domain, target_path, install_media);
-        set_unattended_disk_config (domain, install_media);
-        set_source_media_config (domain, install_media);
+        install_media.setup_domain_config (domain);
 
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (true);
@@ -197,35 +196,6 @@ private class Boxes.VMConfigurator {
             disk.set_target_bus (DomainDiskBus.IDE);
             disk.set_target_dev ("hda");
         }
-
-        domain.add_device (disk);
-    }
-
-    private static void set_source_media_config (Domain domain, InstallerMedia install_media) {
-        var disk = new DomainDisk ();
-        disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
-        disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
-        disk.set_source (install_media.device_file);
-        disk.set_target_dev ("hdc");
-        disk.set_target_bus (DomainDiskBus.IDE);
-        disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
-
-        if (install_media.from_image)
-            disk.set_type (DomainDiskType.FILE);
-        else
-            disk.set_type (DomainDiskType.BLOCK);
-
-        domain.add_device (disk);
-    }
-
-    private static void set_unattended_disk_config (Domain domain, InstallerMedia install_media) {
-        if (!(install_media is UnattendedInstaller))
-            return;
-
-        var disk = (install_media as UnattendedInstaller).get_unattended_disk_config ();
-        if (disk == null)
-            return;
 
         domain.add_device (disk);
     }
