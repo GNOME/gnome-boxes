@@ -292,15 +292,8 @@ private class Boxes.Wizard: Boxes.UI {
             return true;
 
         return_if_fail (vm_creator != null);
-        // Setup only needed for Unattended installers
-        if (!(vm_creator.install_media is UnattendedInstaller))
-            return true;
 
-        foreach (var child in setup_vbox.get_children ())
-            setup_vbox.remove (child);
-
-        (vm_creator.install_media as UnattendedInstaller).populate_setup_vbox (setup_vbox);
-        setup_vbox.show_all ();
+        vm_creator.install_media.populate_setup_vbox (setup_vbox);
 
         return true;
     }

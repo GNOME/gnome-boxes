@@ -135,11 +135,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {
-        setup_vbox.pack_start (setup_label, false, false);
-        setup_vbox.pack_start (setup_hbox, false, false);
-    }
-
     public override void setup_domain_config (Domain domain) {
         base.setup_domain_config (domain);
 
@@ -157,7 +152,13 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             graphics.set_password (password);
     }
 
+    public override void populate_setup_vbox (Gtk.VBox setup_vbox) {
+        foreach (var child in setup_vbox.get_children ())
+            setup_vbox.remove (child);
 
+        setup_vbox.pack_start (setup_label, false, false);
+        setup_vbox.pack_start (setup_hbox, false, false);
+        setup_vbox.show_all ();
     }
 
     // Ensure needed information was provided by user

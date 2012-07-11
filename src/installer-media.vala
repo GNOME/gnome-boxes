@@ -80,6 +80,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual void setup_spice_config (DomainGraphicsSpice graphics) {}
+    public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
 
     public bool is_architecture_compatible (string architecture) {
         return os_media == null || // Unknown media
