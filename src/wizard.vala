@@ -304,8 +304,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         if (vm_creator != null) {
             try {
-                if (vm_creator.install_media is UnattendedInstaller)
-                    (vm_creator.install_media as UnattendedInstaller).check_needed_info ();
+                vm_creator.install_media.check_needed_info ();
                 machine = yield vm_creator.create_vm (null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;

@@ -162,7 +162,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     // Ensure needed information was provided by user
-    public virtual void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {
+    public override void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {
         if (!express_toggle.active)
             return;
 
