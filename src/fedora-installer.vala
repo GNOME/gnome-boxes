@@ -115,27 +115,26 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     }
 
     private async void extract_boot_files (Cancellable? cancellable) throws GLib.Error {
-        string kernel_path = Path.build_filename (mount_point, os_media.kernel_path);
-        kernel_file = File.new_for_path (kernel_path);
-        string initrd_path = Path.build_filename (mount_point, os_media.initrd_path);
-        initrd_file = File.new_for_path (initrd_path);
-
         if (!mounted)
             return;
 
-        kernel_path = get_user_unattended ("kernel");
-        kernel_file = yield copy_file (kernel_file, kernel_path, cancellable);
-        initrd_path = get_user_unattended ("initrd");
-        initrd_file = yield copy_file (initrd_file, initrd_path, cancellable);
+        string src_path = Path.build_filename (mount_point, os_media.kernel_path);
+        string dest_path = get_user_unattended ("kernel");
+        kernel_file = yield copy_file (src_path, dest_path, cancellable);
+
+        src_path = Path.build_filename (mount_point, os_media.initrd_path);
+        dest_path = get_user_unattended ("initrd");
+        initrd_file = yield copy_file (src_path, dest_path, cancellable);
     }
 
-    private async File copy_file (File file, string dest_path, Cancellable? cancellable) throws GLib.Error {
+    private async File copy_file (string src_path, string dest_path, Cancellable? cancellable) throws GLib.Error {
+        var src_file = File.new_for_path (src_path);
         var dest_file = File.new_for_path (dest_path);
 
         try {
-            debug ("Copying '%s' to '%s'..", file.get_path (), dest_path);
-            yield file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable);
-            debug ("Copied '%s' to '%s'.", file.get_path (), dest_path);
+            debug ("Copying '%s' to '%s'..", src_path, dest_path);
+            yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable);
+            debug ("Copied '%s' to '%s'.", src_path, dest_path);
         } catch (IOError.EXISTS error) {}
 
         return dest_file;
