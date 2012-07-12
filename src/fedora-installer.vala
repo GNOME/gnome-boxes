@@ -13,9 +13,6 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     private File kernel_file;
     private File initrd_file;
 
-    private string kernel_path;
-    private string initrd_path;
-
     private string kbd;
 
     private static Regex kbd_regex;
@@ -38,11 +35,11 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     }
 
     public override void set_direct_boot_params (GVirConfig.DomainOs os) {
-        if (kernel_path == null || initrd_path == null)
+        if (kernel_file == null || initrd_file == null)
             return;
 
-        os.set_kernel (kernel_path);
-        os.set_ramdisk (initrd_path);
+        os.set_kernel (kernel_file.get_path ());
+        os.set_ramdisk (initrd_file.get_path ());
         os.set_cmdline ("ks=hd:sda:/ks.cfg");
     }
 
@@ -118,9 +115,9 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     }
 
     private async void extract_boot_files (Cancellable? cancellable) throws GLib.Error {
-        kernel_path = Path.build_filename (mount_point, os_media.kernel_path);
+        string kernel_path = Path.build_filename (mount_point, os_media.kernel_path);
         kernel_file = File.new_for_path (kernel_path);
-        initrd_path = Path.build_filename (mount_point, os_media.initrd_path);
+        string initrd_path = Path.build_filename (mount_point, os_media.initrd_path);
         initrd_file = File.new_for_path (initrd_path);
 
         if (!mounted)
