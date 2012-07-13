@@ -462,32 +462,9 @@ namespace Boxes {
     }
 
     public async void exec (string[] argv, Cancellable? cancellable) throws GLib.Error {
-        SourceFunc continuation = exec.callback;
-        GLib.Error error = null;
-        var context = MainContext.get_thread_default ();
-
-        g_io_scheduler_push_job ((job) => {
-            try {
-                exec_sync (argv);
-            } catch (GLib.Error err) {
-                error = err;
-            }
-
-            var source = new IdleSource ();
-            source.set_callback (() => {
-                continuation ();
-
-                return false;
-            });
-            source.attach (context);
-
-            return false;
+        yield run_in_thread (() => {
+            exec_sync (argv);
         });
-
-        yield;
-
-        if (error != null)
-            throw error;
     }
 
     public void exec_sync (string[] argv) throws GLib.Error {
