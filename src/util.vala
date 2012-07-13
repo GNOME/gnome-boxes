@@ -437,7 +437,7 @@ namespace Boxes {
     }
 
     public delegate void RunInThreadFunc () throws  GLib.Error;
-    public async void run_in_thread (RunInThreadFunc func) throws GLib.Error {
+    public async void run_in_thread (RunInThreadFunc func, Cancellable? cancellable = null) throws GLib.Error {
         GLib.Error e = null;
         GLib.g_io_scheduler_push_job ((job, cancellable) => {
             try {
@@ -453,7 +453,7 @@ namespace Boxes {
             });
 
             return false;
-        });
+        }, GLib.Priority.DEFAULT, cancellable);
 
         yield;
 
