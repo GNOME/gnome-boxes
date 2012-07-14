@@ -1,3 +1,101 @@
+3.5.4.1 - Jul 15, 2012
+======================
+
+Changes since 3.5.3:
+
+- Create VM based on host capabilities: Choose the virtualization type (KVM or
+  Qemu), architecture and features (acpi, apic and pae) of the created domain
+  based on host capabilities. This means we now allow creation of VMs even when
+  KVM is not available.
+- Warn about unavailability of KVM.
+- Assign best possible CPU configuration to VMs.
+- Reduce the chances of failures at review page of wizard by pre-creating VMs
+  (i-e moving failure points to setup page).
+- Error out on failure to create VMs.
+- More reliable post-installation setup.
+- Automatically resume saved installations on launch.
+- Friendlier error on new VM setup failure.
+- Fix collisions in multiple express installations of the same OS.
+- Don't shutdown guest after win7/win2k8 express installation.
+- Avoid redundant number suffix in live VMs.
+- Fix the regression of 'SETUP' not being skipped for live medias when going
+  backwords in wizard.
+- Fix layout of initial wizard page.
+- Fix creation of VM from hardware CDROM media.
+- Sort media in ascending order, not descending.
+- Fix not showing selection in file chooser dialog.
+- Drop non-free logo files. These files are not provided by a separate package:
+  - Repository: http://git.gnome.org/browse/gnome-boxes-nonfree/
+  - Source tarballs: http://download.gnome.org/sources/gnome-boxes-nonfree/
+- Don't crash when zooming out of a removed box.
+- Fixes to box thumbnail drawing/animations.
+- Make paused/saved state of dark thumbnails more visible.
+- Fix color of toolbar in fullscreen.
+- Fix transparent topbar.
+- Fix nasty flashing when clicking on toolbar.
+- Add translator comment to explain 'Express Install'.
+- Add missing files to POTFILES.in and POTFILES.skip.
+- Add --debug configure option to set Vala & C debug flags.
+- Remove exclamation mark from error messages.
+- Added/updated translations:
+  - Bulgarian
+  - French
+  - Galician
+  - Norwegian bokmål
+  - Spanish
+  - Traditional Chinese (Hong Kong and Taiwan)
+  - Vietnamese
+
+Dependencies changed:
+
+- libvirt-gconfig >= 0.1.0
+
+All bugs fixed in this release:
+
+671251 - do not include non-free content
+673850 - Cannot see selection in file open dialog
+674209 - Support VM creation on host w/o KVM
+676029 - Make use of multicore
+676256 - Cannot create VM from Live Media
+677274 - Use layout managers to lay out our widgets
+678455 - screenshot handling poor
+678769 - Introductory banner too wide
+678849 - wrong wizard step shown with live cd
+678876 - Fix parsing of CSS stylesheet with gtk+ 3.4
+678888 - Set post install config soon after starting domain
+678894 - Live VM regressions (deleted before launch and not automatically deleted at postinstall)
+678900 - express installation files not unique enough
+678902 - Ugly error message when boxes creation fails
+678933 - Unify deletion of machines a bit
+679040 - crash in boxes_collection_view_get_path_for_item
+679066 - No longer reboots during win7 unattended install
+679121 - Lots of transparent with latest Adwaita
+679229 - "Express Install" needs translator comment"
+679293 - Add --debug configure option to set Vala & C debug flags
+679429 - Remove a redundant check
+679430 - vm-creator: Unhook from state-changed signal on machine deletion
+679482 - vm-creator: Don't start the domain twice
+679645 - Remove exclamation mark from error messages
+679646 - Failed to boot from CD-ROM
+679657 - Few small live box creation fixes/improvements
+679666 - Improve git diff output for vala files
+679706 - Remove most of 'is UnattendedInstaller' checks
+
+All contributors to this release:
+
+Alexander Larsson <alexl@redhat.com>
+Alexander Shopov <ash@kambanaria.org>
+Bruno Brouard <annoa.b@gmail.com>
+Cheng-Chia Tseng <pswo10680@gmail.com>
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Nguyễn Thái Ngọc Duy <pclouds@gmail.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.5.3 - Jun 26, 2012
 ====================
 
