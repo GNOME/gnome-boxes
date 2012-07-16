@@ -68,22 +68,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     public virtual async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {}
 
     public virtual void setup_domain_config (Domain domain) {
-        var disk = new DomainDisk ();
-
-        if (from_image)
-            disk.set_type (DomainDiskType.FILE);
-        else
-            disk.set_type (DomainDiskType.BLOCK);
-
-        disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
-        disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
-        disk.set_source (device_file);
-        disk.set_target_dev ("hdc");
-        disk.set_target_bus (DomainDiskBus.IDE);
-        disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
-
-        domain.add_device (disk);
+        add_cd_config (domain, from_image?DomainDiskType.FILE:DomainDiskType.BLOCK, device_file, "hdc", true);
     }
 
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
@@ -102,6 +87,23 @@ private class Boxes.InstallerMedia : GLib.Object {
                (os_media.architecture == "i386" && architecture == "i686") ||
                (os_media.architecture == "i386" && architecture == "x86_64") ||
                (os_media.architecture == "i686" && architecture == "x86_64");
+    }
+
+    protected void add_cd_config (Domain domain, DomainDiskType type, string iso_path, string device_name, bool mandatory = false)
+    {
+        var disk = new DomainDisk ();
+
+        disk.set_type (type);
+        disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
+        disk.set_driver_name ("qemu");
+        disk.set_driver_type ("raw");
+        disk.set_target_dev (device_name);
+        disk.set_source (iso_path);
+        disk.set_target_bus (DomainDiskBus.IDE);
+        if (mandatory)
+            disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
+
+        domain.add_device (disk);
     }
 
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
