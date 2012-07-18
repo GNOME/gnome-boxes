@@ -25,7 +25,7 @@ private class Boxes.Win7Installer: WindowsInstaller {
                 return arch_regex.replace (str, str.length, 0, "x86");
 
             default:
-                warning("Unexpected osinfo win7 arch: %s", os_media.architecture);
+                warning ("Unexpected osinfo win7 arch: %s", os_media.architecture);
 
                 return arch_regex.replace (str, str.length, 0, "x86");
         }
