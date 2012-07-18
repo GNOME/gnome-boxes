@@ -7,7 +7,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVirConfig.Domain domain_config;
     public GVir.Connection connection;
     private string? storage_volume_path;
-
     public VMCreator? vm_creator; // Under installation if this is set to non-null
 
     public bool save_on_quit {
@@ -92,9 +91,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public LibvirtMachine (CollectionSource source,
                            GVir.Connection connection,
                            GVir.Domain     domain) throws GLib.Error {
-        base (source, domain.get_name ());
+        var config = domain.get_config (0);
+        var item_name = config.get_title () ?? domain.get_name ();
+        base (source, item_name);
 
-        debug ("new libvirt machine: " + name);
+        debug ("new libvirt machine: " + domain.get_name ());
         this.config = new DisplayConfig (source, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
@@ -129,7 +130,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         domain.stopped.connect (() => { state = MachineState.STOPPED; });
 
         update_domain_config ();
-        title = domain_config.get_title () ?? name;
         domain.updated.connect (update_domain_config);
 
         load_screenshot ();
