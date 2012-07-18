@@ -94,3 +94,10 @@ from the Rygel Coding Style.
     default:
         ...
     }
+
+ * If a function returns several equally important values, they should
+   all be given as out arguments. IOW, prefer this:
+
+     void get_a_and_b (out string a, out string b)
+
+   rather than the un-even, string get_a_and_b (out b)

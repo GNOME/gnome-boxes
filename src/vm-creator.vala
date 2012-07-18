@@ -32,8 +32,8 @@ private class Boxes.VMCreator {
             yield;
         }
 
-        string title;
-        var name = yield create_domain_name_and_title_from_media (out title);
+        string title, name;
+        yield create_domain_name_and_title_from_media (out name, out title);
         yield install_media.prepare_for_installation (name, cancellable);
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
@@ -152,13 +152,13 @@ private class Boxes.VMCreator {
         }
     }
 
-    private async string create_domain_name_and_title_from_media (out string title) throws GLib.Error {
+    private async void create_domain_name_and_title_from_media (out string name, out string title) throws GLib.Error {
         var base_title = install_media.label;
         title = base_title;
         var base_name = (install_media.os != null) ? install_media.os.short_id : base_title;
         if (install_media.live)
             base_name += "-live";
-        var name = base_name;
+        name = base_name;
 
         var pool = yield get_storage_pool ();
         for (var i = 2;
@@ -169,8 +169,6 @@ private class Boxes.VMCreator {
             name = base_name + "-" + i.to_string ();
             title = base_title + " " + i.to_string ();
         }
-
-        return name;
     }
 
     private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
