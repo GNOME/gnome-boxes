@@ -80,7 +80,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public void update_domain_config () {
         try {
-            domain_config = domain.get_config (0);
+            domain_config = domain.get_config (GVir.DomainXMLFlags.NONE);
+
             var volume = get_storage_volume (connection, domain, null);
             storage_volume_path = (volume != null)? volume.get_path () : null;
         } catch (GLib.Error error) {
