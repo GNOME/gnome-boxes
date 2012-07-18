@@ -81,6 +81,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public void update_domain_config () {
         try {
             domain_config = domain.get_config (GVir.DomainXMLFlags.NONE);
+            domain_config.bind_property ("title", this, "name", BindingFlags.DEFAULT);
 
             var volume = get_storage_volume (connection, domain, null);
             storage_volume_path = (volume != null)? volume.get_path () : null;
@@ -92,7 +93,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public LibvirtMachine (CollectionSource source,
                            GVir.Connection connection,
                            GVir.Domain     domain) throws GLib.Error {
-        var config = domain.get_config (0);
+        var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
         var item_name = config.get_title () ?? domain.get_name ();
         base (source, item_name);
 
@@ -273,11 +274,28 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
+    public void try_change_name (string name) throws Boxes.Error {
+        try {
+            // We use libvirt "title" for free form user name
+            domain_config.title = name;
+
+            // This will take effect only after next reboot, but we use pending/inactive config for name and title
+            domain.set_config (domain_config);
+        } catch (GLib.Error error) {
+            warning ("Failed to change title of box '%s' to '%s': %s",
+                     domain.get_name (), name, error.message);
+            throw new Boxes.Error.INVALID ("Invalid libvirt title");
+        }
+    }
+
     public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
         var list = new List<Pair<string, Widget>> ();
 
         switch (page) {
         case PropertiesPage.LOGIN:
+            add_string_property (ref list, _("Name"), name, (name) => {
+                try_change_name (name);
+            });
             add_string_property (ref list, _("Virtualizer"), source.uri);
             add_string_property (ref list, _("URI"), display.uri);
             break;
