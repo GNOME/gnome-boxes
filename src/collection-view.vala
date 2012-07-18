@@ -179,6 +179,12 @@ private class Boxes.CollectionView: Boxes.UI {
         });
         item.set_data<ulong> ("pixbuf_id", pixbuf_id);
 
+        var name_id = item.notify["name"].connect (() => {
+            // apparently iter is stable after insertion/removal/sort
+            model.set (iter, ModelColumns.TITLE, item.name);
+        });
+        item.set_data<ulong> ("name_id", name_id);
+
         item.ui_state = UIState.COLLECTION;
         actor_remove (item.actor);
 
@@ -197,8 +203,6 @@ private class Boxes.CollectionView: Boxes.UI {
 
     public void remove_item (CollectionItem item) {
         var iter = item.get_data<Gtk.TreeIter?> ("iter");
-        var pixbuf_id = item.get_data<ulong> ("pixbuf_id");
-
         if (iter == null) {
             debug ("item not in view or already removed");
             return;
@@ -206,7 +210,11 @@ private class Boxes.CollectionView: Boxes.UI {
 
         model.remove (iter);
         item.set_data<Gtk.TreeIter?> ("iter", null);
+
+        var pixbuf_id = item.get_data<ulong> ("pixbuf_id");
         item.disconnect (pixbuf_id);
+        var name_id = item.get_data<ulong> ("name_id");
+        item.disconnect (name_id);
     }
 
     private Gtk.TreePath? get_path_for_item (CollectionItem item) {
