@@ -24,6 +24,8 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
         entry.editing_done.connect (() => {
             try {
                 changed (entry.text);
+            } catch (Boxes.Error.INVALID error) {
+                entry.start_editing ();
             } catch (Boxes.Error error) {
                 warning (error.message);
             }

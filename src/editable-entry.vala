@@ -116,7 +116,7 @@ private class Boxes.EditableEntry: Alignment {
         update_entry_font (entry);
     }
 
-    private void start_editing () {
+    public void start_editing () {
         notebook.page = Page.ENTRY;
     }
 
