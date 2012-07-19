@@ -466,17 +466,39 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return net;
     }
 
+    private void update_ram_property (Boxes.Property property) {
+        try {
+            var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+
+            // we uses KiB unit, convert to MiB
+            var actual = domain_config.memory / 1024;
+            var pending = config.memory / 1024;
+
+            debug ("RAM actual: %llu, pending: %llu", actual, pending);
+            // somehow, there are rounded errors, so let's forget about 1Mb diff
+            property.changes_pending = (actual - pending) > 1; // no need for abs()
+
+        } catch (GLib.Error e) {}
+    }
+
     private void add_ram_property (ref List list) {
         try {
             var max_ram = connection.get_node_info ().memory;
 
-            add_size_property (ref list,
-                               _("RAM"),
-                               domain_config.memory,
-                               Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
-                               max_ram,
-                               Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
-                               on_ram_changed);
+            var property = add_size_property (ref list,
+                                              _("RAM"),
+                                              domain_config.memory,
+                                              Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
+                                              max_ram,
+                                              Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
+                                              on_ram_changed);
+
+            this.notify["state"].connect (() => {
+                if (state == MachineState.STOPPED)
+                    property.changes_pending = false;
+            });
+
+            update_ram_property (property);
         } catch (GLib.Error error) {}
     }
 
@@ -499,6 +521,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          error.message);
             }
             ram_update_timeout = 0;
+            update_ram_property (property);
 
             return false;
         });
