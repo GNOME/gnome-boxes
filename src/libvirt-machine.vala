@@ -81,7 +81,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public void update_domain_config () {
         try {
             domain_config = domain.get_config (GVir.DomainXMLFlags.NONE);
-            domain_config.bind_property ("title", this, "name", BindingFlags.DEFAULT);
 
             var volume = get_storage_volume (connection, domain, null);
             storage_volume_path = (volume != null)? volume.get_path () : null;
@@ -276,11 +275,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public void try_change_name (string name) throws Boxes.Error {
         try {
-            // We use libvirt "title" for free form user name
-            domain_config.title = name;
-
+            var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+            // Te use libvirt "title" for free form user name
+            config.title = name;
             // This will take effect only after next reboot, but we use pending/inactive config for name and title
-            domain.set_config (domain_config);
+            domain.set_config (config);
+
+            this.name = name;
         } catch (GLib.Error error) {
             warning ("Failed to change title of box '%s' to '%s': %s",
                      domain.get_name (), name, error.message);
@@ -485,9 +486,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             Source.remove (ram_update_timeout);
 
         ram_update_timeout = Timeout.add_seconds (1, () => {
-            domain_config.memory = value;
             try {
-                domain.set_config (domain_config);
+                var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+                config.memory = value;
+                domain.set_config (config);
                 debug ("RAM changed to %llu", value);
                 notify_reboot_required ();
             } catch (GLib.Error error) {
