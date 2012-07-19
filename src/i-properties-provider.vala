@@ -62,7 +62,6 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
 
         scale.set_value (size);
         scale.hexpand = true;
-        scale.vexpand = true;
         scale.margin_bottom = 20;
 
         var property = add_property (ref list, name, scale);
