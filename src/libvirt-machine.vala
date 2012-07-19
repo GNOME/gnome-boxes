@@ -293,7 +293,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         switch (page) {
         case PropertiesPage.LOGIN:
-            add_string_property (ref list, _("Name"), name, (name) => {
+            add_string_property (ref list, _("Name"), name, (property, name) => {
                 try_change_name (name);
             });
             add_string_property (ref list, _("Virtualizer"), source.uri);
@@ -479,7 +479,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         } catch (GLib.Error error) {}
     }
 
-    private void on_ram_changed (uint64 value) {
+    private void on_ram_changed (Boxes.Property property, uint64 value) {
         // Ensure that we don't end-up changing RAM like a 1000 times a second while user moves the slider..
         if (ram_update_timeout != 0)
             Source.remove (ram_update_timeout);
@@ -541,7 +541,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    private void on_storage_changed (uint64 value) {
+    private void on_storage_changed (Boxes.Property property, uint64 value) {
         // Ensure that we don't end-up changing storage like a 1000 times a second while user moves the slider..
         if (storage_update_timeout != 0)
             Source.remove (storage_update_timeout);

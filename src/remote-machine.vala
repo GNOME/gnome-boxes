@@ -36,7 +36,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         switch (page) {
         case PropertiesPage.LOGIN:
-            add_string_property (ref list, _("Name"), source.name, (name) => {
+            add_string_property (ref list, _("Name"), source.name, (property, name) => {
                 source.name = name;
             });
             add_string_property (ref list, _("URI"), source.uri);

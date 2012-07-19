@@ -11,8 +11,8 @@ private class Boxes.Property: GLib.Object {
     }
 }
 
-public delegate void PropertyStringChanged (string value) throws Boxes.Error;
-public delegate void PropertySizeChanged (uint64 value) throws Boxes.Error;
+private delegate void PropertyStringChanged (Boxes.Property property, string value) throws Boxes.Error;
+private delegate void PropertySizeChanged (Boxes.Property property, uint64 value) throws Boxes.Error;
 
 private interface Boxes.IPropertiesProvider: GLib.Object {
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
@@ -36,7 +36,7 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
         var property = add_property (ref list, name, entry);
         entry.editing_done.connect (() => {
             try {
-                changed (entry.text);
+                changed (property, entry.text);
             } catch (Boxes.Error.INVALID error) {
                 entry.start_editing ();
             } catch (Boxes.Error error) {
@@ -69,7 +69,7 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
         if (changed != null)
             scale.value_changed.connect (() => {
                 try {
-                    changed ((uint64) scale.get_value ());
+                    changed (property, (uint64) scale.get_value ());
                 } catch (Boxes.Error error) {
                     warning (error.message);
                 }
