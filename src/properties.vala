@@ -26,12 +26,32 @@ private class Boxes.Properties: Boxes.UI {
     private MiniGraph net;
     private ulong stats_id;
 
-    private class PageWidget {
+    private class PageWidget: Object {
         public Gtk.Widget widget;
         public string name;
         public bool empty;
 
         private Gtk.Grid grid;
+        private Gtk.InfoBar infobar;
+        private List<Boxes.Property> properties;
+
+        public void update_infobar () {
+            var show_it = false;
+            foreach (var property in properties) {
+                if (property.changes_pending) {
+                    show_it = true;
+                    break;
+                }
+            }
+            infobar.visible = show_it;
+        }
+
+        ~PageWidget () {
+            foreach (var property in properties) {
+                message ("disconnecting %s", property.description);
+                SignalHandler.disconnect_by_func (property, (void*)update_infobar, this);
+            }
+        }
 
         public PageWidget (PropertiesPage page, Machine machine) {
             switch (page) {
@@ -65,10 +85,20 @@ private class Boxes.Properties: Boxes.UI {
             label.hexpand = false;
             grid.attach (label, 0, 0, 2, 1);
 
-            var properties = machine.get_properties (page);
+            infobar = new Gtk.InfoBar ();
+            infobar.no_show_all = true;
+            var infobar_container = infobar.get_content_area () as Gtk.Container;
+            label = new Gtk.Label (_("Some changes may take effect only after reboot"));
+            label.visible = true;
+            infobar_container.add (label);
+            infobar.message_type = Gtk.MessageType.INFO;
+            infobar.hexpand = true;
+            grid.attach (infobar, 0, 1, 2, 1);
+
+            properties = machine.get_properties (page);
             empty = properties.length () == 0;
             if (!empty) {
-                int current_row = 1;
+                int current_row = 2;
                 foreach (var property in properties) {
                     var label_name = new Gtk.Label (property.description);
                     label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
@@ -77,10 +107,13 @@ private class Boxes.Properties: Boxes.UI {
                     label_name.hexpand = false;
                     grid.attach (label_name, 0, current_row, 1, 1);
                     var widget = property.widget;
+                    widget.hexpand = true;
                     grid.attach (widget, 1, current_row, 1, 1);
-
+                    property.notify["changes-pending"].connect (update_infobar);
                     current_row += 1;
                 }
+
+                update_infobar ();
             }
 
             grid.show_all ();
@@ -111,6 +144,7 @@ private class Boxes.Properties: Boxes.UI {
             var machine = App.app.current_item as Machine;
             var page = new PageWidget (i, machine);
             notebook.append_page (page.widget, null);
+            notebook.set_data<PageWidget> (@"boxes-property-$i", page);
 
             if (!page.empty)
                 list_append (listmodel, page.name);
