@@ -28,17 +28,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return;
 
         _connect_display = true;
-        try {
-            if (state != MachineState.RUNNING) {
-                if (state == MachineState.PAUSED) {
-                    domain.resume ();
-                } else {
-                    domain.start (0);
-                }
-            }
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        start ();
 
         update_display ();
         display.connect_it ();
@@ -530,11 +520,35 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         });
     }
 
+    public void start () {
+        if (state == MachineState.RUNNING)
+            return;
+
+        try {
+            if (state == MachineState.PAUSED)
+                domain.resume ();
+            else
+                domain.start (0);
+        } catch (GLib.Error error) {
+            warning ("Failed to start '%s': %s", domain.get_name (), error.message);
+        }
+    }
+
     private void notify_reboot_required () {
         Notificationbar.OKFunc reboot = () => {
             debug ("Rebooting '%s'..", name);
+            stay_on_display = true;
+            ulong state_id = 0;
+            state_id = this.notify["state"].connect (() => {
+                if (state == MachineState.STOPPED) {
+                    start ();
+                    this.disconnect (state_id);
+                }
+            });
+
             try {
-                domain.reboot (0);
+                domain.shutdown (GVir.DomainShutdownFlags.ACPI_POWER_BTN |
+                                 GVir.DomainShutdownFlags.GUEST_AGENT);
             } catch (GLib.Error error) {
                 warning ("Failed to reboot '%s': %s", domain.get_name (), error.message);
             }
