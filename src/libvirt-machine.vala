@@ -14,38 +14,30 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
-    private ulong started_id;
+    private bool _connect_display;
+    public override void disconnect_display () {
+        stay_on_display = false;
+
+        base.disconnect_display ();
+
+        _connect_display = false;
+    }
+
     public override void connect_display () {
-        if (display != null)
+        if (_connect_display)
             return;
 
-        if (state != MachineState.RUNNING) {
-            if (started_id != 0)
-                return;
-
-            if (state == MachineState.PAUSED) {
-                started_id = domain.resumed.connect (() => {
-                    domain.disconnect (started_id);
-                    started_id = 0;
-                    connect_display ();
-                });
-                try {
+        _connect_display = true;
+        try {
+            if (state != MachineState.RUNNING) {
+                if (state == MachineState.PAUSED) {
                     domain.resume ();
-                } catch (GLib.Error error) {
-                    warning (error.message);
-                }
-            } else {
-                started_id = domain.started.connect (() => {
-                    domain.disconnect (started_id);
-                    started_id = 0;
-                    connect_display ();
-                });
-                try {
+                } else {
                     domain.start (0);
-                } catch (GLib.Error error) {
-                    warning (error.message);
                 }
             }
+        } catch (GLib.Error error) {
+            warning (error.message);
         }
 
         update_display ();
@@ -78,7 +70,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         stats_cancellable = new Cancellable ();
     }
 
-    public void update_domain_config () {
+    private void update_domain_config () {
         try {
             domain_config = domain.get_config (GVir.DomainXMLFlags.NONE);
 
@@ -87,6 +79,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         } catch (GLib.Error error) {
             critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
         }
+    }
+
+    private void reconnect_display () {
+        if (!_connect_display)
+            return;
+
+        disconnect_display ();
+        connect_display ();
     }
 
     public LibvirtMachine (CollectionSource source,
@@ -125,7 +125,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             state = MachineState.UNKNOWN;
         }
 
-        domain.started.connect (() => { state = MachineState.RUNNING; });
+        domain.started.connect (() => {
+            state = MachineState.RUNNING;
+            reconnect_display ();
+        });
         domain.suspended.connect (() => { state = MachineState.PAUSED; });
         domain.resumed.connect (() => { state = MachineState.RUNNING; });
         domain.stopped.connect (() => { state = MachineState.STOPPED; });

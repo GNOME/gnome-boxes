@@ -9,6 +9,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Boxes.CollectionSource source;
     public Boxes.DisplayConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
+    public bool stay_on_display;
 
     private ulong show_id;
     private ulong hide_id;
@@ -81,7 +82,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             disconnected_id = _display.disconnected.connect (() => {
                 message (@"display $name disconnected");
-                App.app.ui_state = Boxes.UIState.COLLECTION;
+                if (!stay_on_display)
+                    App.app.ui_state = Boxes.UIState.COLLECTION;
             });
 
             need_password_id = _display.notify["need-password"].connect (() => {
