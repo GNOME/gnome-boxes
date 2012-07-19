@@ -123,8 +123,8 @@ private class Boxes.VncDisplay: Boxes.Display {
             display.close ();
     }
 
-    public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
-        var list = new List<Pair<string, Widget>> ();
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
+        var list = new List<Boxes.Property> ();
 
         switch (page) {
         case PropertiesPage.DISPLAY:

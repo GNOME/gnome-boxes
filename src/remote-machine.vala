@@ -31,8 +31,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         }
     }
 
-    public override List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page) {
-        var list = new List<Pair<string, Widget>> ();
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
+        var list = new List<Boxes.Property> ();
 
         switch (page) {
         case PropertiesPage.LOGIN:

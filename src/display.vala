@@ -28,7 +28,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public abstract void connect_it ();
     public abstract void disconnect_it ();
 
-    public abstract List<Pair<string, Widget>> get_properties (Boxes.PropertiesPage page);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
 
     protected HashTable<int, Gtk.Widget?> displays;
     construct {
