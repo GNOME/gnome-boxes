@@ -200,6 +200,9 @@ private class Boxes.DisplayPage: GLib.Object {
     }
 
     public void show_display (Boxes.Display display, Widget widget) {
+        if (event_box.get_child () == widget)
+            return;
+
         remove_display ();
 
         this.display = display;
