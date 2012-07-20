@@ -35,6 +35,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         protected set {
             _state = value;
             debug ("State of '%s' changed to %s", name, state.to_string ());
+            if (value != MachineState.RUNNING)
+                load_screenshot ();
         }
     }
 
