@@ -96,6 +96,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         // FIXME: vala does't want to put this in ctor..
         if (channel_new_id == 0)
             channel_new_id = session.channel_new.connect ((channel) => {
+                var id = channel.channel_id;
+
                 if (channel is Spice.MainChannel) {
                     var main = channel as Spice.MainChannel;
                     main.channel_event.connect (main_event);
@@ -106,11 +108,18 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
                 }
 
                 if (channel is Spice.DisplayChannel) {
-                    var display = channel as DisplayChannel;
+                    if (id != 0)
+                        return;
 
-                    // FIXME: should show only when mark received? not reliable yet:
-                    show (display.channel_id);
-                    // display.display_mark.connect ((mark) => { show (display.channel_id); });
+                    try {
+                        var display = get_display (id) as Spice.Display;
+                        display.notify["ready"].connect (() => {
+                            if (display.ready)
+                                show (display.channel_id);
+                            else
+                                hide (display.channel_id);
+                        });
+                    } catch (Boxes.Error error) { warning (error.message); }
                 }
             });
 
