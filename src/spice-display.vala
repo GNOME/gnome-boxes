@@ -80,11 +80,16 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         main_cleanup ();
     }
 
-    public SpiceDisplay (BoxConfig config, string host, int port) {
+    public SpiceDisplay (BoxConfig config, string host, int port, int tls_port = 0)
+        requires (port != 0 || tls_port != 0) {
         this.config = config;
 
-        session.port = port.to_string ();
         session.host = host;
+        if (port != 0)
+            session.port = port.to_string ();
+
+        if (tls_port != 0)
+            session.tls_port = tls_port.to_string ();
     }
 
     public SpiceDisplay.with_uri (BoxConfig config, string uri) {
