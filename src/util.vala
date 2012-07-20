@@ -245,6 +245,8 @@ namespace Boxes {
         actor.restore_easing_state ();
     }
 
+    public delegate void ActorFunc (Clutter.Actor actor);
+
     public void actor_add (Clutter.Actor actor, Clutter.Actor container) {
         if (actor.get_parent () == container)
             return;

@@ -420,6 +420,46 @@ private class Boxes.MachineActor: Boxes.UI {
         return password_entry.text;
     }
 
+    public void update_display (Gtk.Widget widget, bool zoom = true) {
+        if (display != null) {
+            actor_remove (display);
+            display.contents = null;
+        }
+
+        if (ui_state == UIState.PROPERTIES) {
+            display = new GtkClutter.Actor.with_contents (widget);
+            display.name = "properties-thumbnail";
+            App.app.overlay_bin.add (display,
+                                     Clutter.BinAlignment.FILL,
+                                     Clutter.BinAlignment.FILL);
+
+            machine.display.set_enable_inputs (widget, false);
+
+            Boxes.ActorFunc update_screenshot_alloc = (display) => {
+                Gtk.Allocation alloc;
+
+                App.app.properties.screenshot_placeholder.get_allocation (out alloc);
+                App.app.topbar.actor.show ();
+                App.app.overlay_bin.set_alignment (display,
+                                                   Clutter.BinAlignment.FIXED,
+                                                   Clutter.BinAlignment.FIXED);
+                display.x = alloc.x;
+                display.y = alloc.y;
+                display.width = alloc.width;
+                display.height = alloc.height;
+            };
+
+            if (track_screenshot_id != 0)
+                App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+            track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect (() => { update_screenshot_alloc (display); });
+
+            if (!zoom) {
+                display.set_easing_duration (0);
+                update_screenshot_alloc (display);
+            }
+        }
+    }
+
     public override void ui_state_changed () {
         int window_width, window_height;
         int width, height;
@@ -475,50 +515,24 @@ private class Boxes.MachineActor: Boxes.UI {
 
         case UIState.PROPERTIES:
             var widget = App.app.display_page.remove_display ();
-            machine.display.set_enable_inputs (widget, false);
-            display = new GtkClutter.Actor.with_contents (widget);
-            display.name = "properties-thumbnail";
-            display.set_easing_mode (Clutter.AnimationMode.LINEAR);
-            App.app.overlay_bin.add (display,
-                                     Clutter.BinAlignment.FILL,
-                                     Clutter.BinAlignment.FILL);
-
+            update_display (widget);
             Clutter.ActorBox box = { 0, 0,  width, height};
             display.allocate (box, 0);
-            display.show ();
 
             // Temporarily hide toolbar in fullscreen so that the the animation
             // actor doesn't get pushed down before zooming to the sidebar
             if (App.app.fullscreen)
                 App.app.topbar.actor.hide ();
 
-            bool completed_zoom = false;
+            display.set_easing_mode (Clutter.AnimationMode.LINEAR);
+            display.set_easing_duration (App.app.duration / 2); // FIXME / 2 why?
             ulong completed_id = 0;
             completed_id = display.transitions_completed.connect (() => {
                 display.disconnect (completed_id);
-                completed_zoom = true;
+                display.set_easing_duration (0);
             });
 
-            track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect ( (alloc) => {
-                Idle.add_full (Priority.HIGH, () => {
-                    App.app.topbar.actor.show ();
-                    App.app.overlay_bin.set_alignment (display,
-                                                       Clutter.BinAlignment.FIXED,
-                                                       Clutter.BinAlignment.FIXED);
-
-                    // Don't animate x/y/width/height
-                    display.set_easing_duration (0);
-                    display.x = alloc.x;
-                    display.y = alloc.y;
-                    display.width = alloc.width;
-                    display.height = alloc.height;
-
-                    if (!completed_zoom)
-                        display.set_easing_duration (App.app.duration);
-
-                    return false;
-                });
-            });
+            display.show ();
 
             break;
 
