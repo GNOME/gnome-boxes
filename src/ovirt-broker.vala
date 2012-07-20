@@ -16,6 +16,15 @@ private class Boxes.OvirtBroker : Boxes.Broker {
         proxies = new HashTable<string, Ovirt.Proxy> (str_hash, str_equal);
     }
 
+   private void add_vm (CollectionSource source, Ovirt.Proxy proxy, Ovirt.Vm vm) {
+        try {
+            var machine = new OvirtMachine (source, proxy, vm);
+            App.app.collection.add_item (machine);
+        } catch (GLib.Error error) {
+            warning ("Failed to create source '%s': %s", source.name, error.message);
+        }
+    }
+
     public override async void add_source (CollectionSource source) {
         if (proxies.lookup (source.name) != null)
             return;
@@ -33,11 +42,16 @@ private class Boxes.OvirtBroker : Boxes.Broker {
         var proxy = new Ovirt.Proxy (uri.save ());
 
         try {
+            yield proxy.fetch_ca_certificate_async (null);
             yield proxy.fetch_vms_async (null);
         } catch (GLib.Error error) {
             debug ("Failed to connect to broker: %s", error.message);
             App.app.notificationbar.display_error (_("Connection to oVirt broker failed"));
         }
         proxies.insert (source.name, proxy);
+
+        foreach (var vm in proxy.get_vms ()) {
+            add_vm (source, proxy, vm);
+        }
     }
 }
