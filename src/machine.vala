@@ -38,6 +38,27 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    private void show_display () {
+        Gtk.Widget widget;
+        try {
+            widget = display.get_display (0);
+        } catch (Boxes.Error error) {
+            warning (error.message);
+            return;
+        }
+
+        switch (App.app.ui_state) {
+        case Boxes.UIState.DISPLAY:
+            App.app.display_page.show_display (display, widget);
+            widget.grab_focus ();
+            break;
+
+        case Boxes.UIState.PROPERTIES:
+            machine_actor.update_display (widget, false);
+            break;
+        }
+    }
+
     private Display? _display;
     public Display? display {
         get { return _display; }
@@ -60,20 +81,20 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 return;
 
             show_id = _display.show.connect ((id) => {
-                App.app.ui_state = Boxes.UIState.DISPLAY;
-                Timeout.add (App.app.duration, () => {
-                    if  (App.app.ui_state != Boxes.UIState.DISPLAY)
-                          return false;
-                    try {
-                        var widget = display.get_display (0);
-                        App.app.display_page.show_display (display, widget);
-                        widget.grab_focus ();
-                    } catch (Boxes.Error error) {
-                        warning (error.message);
-                    }
+                switch (App.app.ui_state) {
+                case Boxes.UIState.CREDS:
+                    App.app.ui_state = Boxes.UIState.DISPLAY;
+                    Timeout.add (App.app.duration, () => {
+                        show_display ();
+                        return false;
+                     });
+                    break;
 
-                    return false;
-                });
+                case Boxes.UIState.DISPLAY:
+                case Boxes.UIState.PROPERTIES:
+                    show_display ();
+                    break;
+                }
             });
 
             hide_id = _display.hide.connect ((id) => {
