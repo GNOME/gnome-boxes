@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-09 14:39+0200\n"
-"PO-Revision-Date: 2012-07-09 14:41+0200\n"
+"POT-Creation-Date: 2012-07-23 12:32+0200\n"
+"PO-Revision-Date: 2012-07-23 12:32+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -137,9 +137,13 @@ msgid ""
 msgstr ""
 "Tilgang til internett kreves for hurtiginstallasjon av Fedora 16 og eldre"
 
+#: ../src/installer-media.vala:95 ../src/properties.vala:43
+msgid "System"
+msgstr "System"
+
 #. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/installer-media.vala:30 ../src/installer-media.vala:60
+#: ../src/installer-media.vala:160
 #, c-format
 msgid "%s (Live)"
 msgstr "%s (Live)"
@@ -149,7 +153,7 @@ msgid "Virtualizer"
 msgstr "Virtualiserer"
 
 #: ../src/libvirt-machine.vala:281 ../src/remote-machine.vala:42
-#: ../src/wizard.vala:337
+#: ../src/wizard.vala:329
 msgid "URI"
 msgstr "URI"
 
@@ -175,8 +179,8 @@ msgid "Storage"
 msgstr "Lagring"
 
 #. 3rd row
-#: ../src/machine.vala:371 ../src/unattended-installer.vala:239
-#: ../src/wizard.vala:363
+#: ../src/machine.vala:371 ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:258
 msgid "Password"
 msgstr "Passord"
 
@@ -215,10 +219,6 @@ msgstr "KVM-modulen er lastet: %s\n"
 #: ../src/properties.vala:39
 msgid "Login"
 msgstr "Logg inn"
-
-#: ../src/properties.vala:43 ../src/wizard.vala:357
-msgid "System"
-msgstr "System"
 
 #: ../src/properties.vala:47
 msgid "Display"
@@ -267,20 +267,24 @@ msgstr[1] "%d valgt"
 msgid "Click on items to select them"
 msgstr "Klikk på oppføringer for å velge dem"
 
-#: ../src/unattended-installer.vala:31
+#: ../src/unattended-installer.vala:37
 msgid "no password"
 msgstr "ingen passord"
 
-#: ../src/unattended-installer.vala:168
+#: ../src/unattended-installer.vala:176
 msgid "No username provided"
 msgstr "Ingen brukernavn oppgitt"
 
-#: ../src/unattended-installer.vala:172
+#: ../src/unattended-installer.vala:180
 #, c-format
 msgid "Password required for express installation of %s"
 msgstr "Passord kreves for hurtiginstallasjon av %s"
 
-#: ../src/unattended-installer.vala:194
+#: ../src/unattended-installer.vala:187 ../src/unattended-installer.vala:247
+msgid "Username"
+msgstr "Brukernavn"
+
+#: ../src/unattended-installer.vala:213
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -291,23 +295,19 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:210
+#: ../src/unattended-installer.vala:229
 msgid "Express Install"
 msgstr "Hurtig installering"
 
-#: ../src/unattended-installer.vala:228 ../src/wizard.vala:362
-msgid "Username"
-msgstr "Brukernavn"
-
-#: ../src/unattended-installer.vala:249
+#: ../src/unattended-installer.vala:268
 msgid "_Add Password"
 msgstr "_Legg til passord"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:340
+#: ../src/vm-configurator.vala:307
 msgid "Incapable host system"
-msgstr ""
+msgstr "Vertssystemet kan ikke brukes"
 
 #: ../src/vnc-display.vala:134
 msgid "Read-only"
@@ -360,10 +360,10 @@ msgid "Select a device or ISO file"
 msgstr "Velg en enhet eller ISO-fil"
 
 #: ../src/wizard.vala:92
-msgid "Box creation failed!"
-msgstr "Oppretting av boks feilet!"
+msgid "Box creation failed"
+msgstr "Oppretting av boks feilet"
 
-#: ../src/wizard.vala:117 ../src/wizard.vala:575
+#: ../src/wizard.vala:117 ../src/wizard.vala:559
 msgid "C_ontinue"
 msgstr "F_ortsett"
 
@@ -397,54 +397,54 @@ msgstr "Ugyldig URI"
 msgid "Unsupported protocol '%s'"
 msgstr "Ikke støttet protokoll «%s»"
 
-#: ../src/wizard.vala:320
-msgid "Box setup failed!"
-msgstr "Oppsett av boks feilet!"
+#: ../src/wizard.vala:312
+msgid "Box setup failed"
+msgstr "Oppsett av boks feilet"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:319
 msgid "Will create a new box with the following properties:"
 msgstr "Vil lage en ny boks med følgende egenskaper:"
 
-#: ../src/wizard.vala:332
+#: ../src/wizard.vala:324
 msgid "Type"
 msgstr "Type"
 
-#: ../src/wizard.vala:335
+#: ../src/wizard.vala:327
 msgid "Host"
 msgstr "Vert"
 
-#: ../src/wizard.vala:343 ../src/wizard.vala:349
+#: ../src/wizard.vala:335 ../src/wizard.vala:341
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:344
+#: ../src/wizard.vala:336
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: ../src/wizard.vala:354
+#: ../src/wizard.vala:346
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Vil legge til bokser for alle systemer som er tilgjengelige fra denne "
 "kontoen:"
 
-#: ../src/wizard.vala:368
+#: ../src/wizard.vala:353
 msgid "Memory"
 msgstr "Minne"
 
-#: ../src/wizard.vala:370
+#: ../src/wizard.vala:355
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:370
+#: ../src/wizard.vala:355
 #, c-format
 msgid "%s maximum"
 msgstr "%s maksimum"
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:426
 msgid "Introduction"
 msgstr "Innledning"
 
-#: ../src/wizard.vala:446
+#: ../src/wizard.vala:430
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -458,16 +458,16 @@ msgstr ""
 "Du kan koble til en eksisterende maskin <b><i>over nettverket</i></b> eller "
 "lage en <b><i>virtuell maskin</i></b> som kjører lokalt på din egen."
 
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:442
 msgid "Source Selection"
 msgstr "Valg av kilde"
 
-#: ../src/wizard.vala:459
+#: ../src/wizard.vala:443
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Sett inn installasjonsmedie for operativsystemet eller velg en kilde under"
 
-#: ../src/wizard.vala:469
+#: ../src/wizard.vala:453
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -477,34 +477,38 @@ msgstr ""
 "programvareprodukter du allerede har skaffet til veie og eies av deres "
 "respektive eiere."
 
-#: ../src/wizard.vala:482
+#: ../src/wizard.vala:466
 msgid "Preparation"
 msgstr "Forberedelse"
 
-#: ../src/wizard.vala:483
+#: ../src/wizard.vala:467
 msgid "Preparing to create new box"
 msgstr "Forbereder å lage en ny boks"
 
-#: ../src/wizard.vala:502
+#: ../src/wizard.vala:486
 msgid "Analyzing installer media."
 msgstr "Analyserer installasjonsmedie."
 
-#: ../src/wizard.vala:513
+#: ../src/wizard.vala:497
 msgid "Setup"
 msgstr "Oppsett"
 
-#: ../src/wizard.vala:520
+#: ../src/wizard.vala:504
 msgid "Review"
 msgstr "Gjennomgang"
 
-#: ../src/wizard.vala:531
+#: ../src/wizard.vala:515
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
 "these extensions are probably available on your system and you may need to "
 "enable them in your system's BIOS setup."
-msgstr "Utvidelser for virtualisering er ikke tilgjengelige på ditt system. Du kan forvente at denne boksen er veldig treg. Hvis systemet ditt er nytt nok (laget i eller etter 2008) er utvidelsene sannsynligvis tilgjengelige på systemet og du må kanskje slå dem på i systemets BIOS oppsett."
+msgstr ""
+"Utvidelser for virtualisering er ikke tilgjengelige på ditt system. Du kan "
+"forvente at denne boksen er veldig treg. Hvis systemet ditt er nytt nok "
+"(laget i eller etter 2008) er utvidelsene sannsynligvis tilgjengelige på "
+"systemet og du må kanskje slå dem på i systemets BIOS oppsett."
 
-#: ../src/wizard.vala:547
+#: ../src/wizard.vala:531
 msgid "Create a Box"
 msgstr "Lag en boks"
