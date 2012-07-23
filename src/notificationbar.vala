@@ -3,13 +3,12 @@ using Gtk;
 
 private class Boxes.Notificationbar: GLib.Object {
     public Clutter.Actor actor { get { return revealer; } }
-    public static const float spacing = 60.0f;
 
     public delegate void OKFunc ();
     public delegate void CancelFunc ();
 
-    public GtkClutter.Actor gtk_actor;
-    public Revealer revealer;
+    private GtkClutter.Actor gtk_actor;
+    private Revealer revealer;
     private InfoBar info_bar;
     private Label message_label;
     private Button ok_button;
