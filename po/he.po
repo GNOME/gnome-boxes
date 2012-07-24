@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-11 00:15+0300\n"
-"PO-Revision-Date: 2012-07-11 00:17+0200\n"
+"POT-Creation-Date: 2012-07-24 22:39+0300\n"
+"PO-Revision-Date: 2012-07-24 22:46+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <sh.yaron@gmail.com>\n"
 "Language: he\n"
@@ -133,15 +133,20 @@ msgstr "חדשים ואחרונים"
 #: ../src/display-page.vala:197
 #, c-format
 msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
-msgstr ""
+msgstr "%s <b>(יש ללחוץ על המקשים Ctrl+Alt כדי לבטל את הלכידה)</b>"
 
 #: ../src/fedora-installer.vala:60
 msgid "Internet access required for express installation of Fedora 16 and older"
 msgstr "נדרשת גישה לאינטרנט לצורך ביצוע התקנה מהירה של פדורה 16 ומעלה"
 
+#: ../src/installer-media.vala:95
+#: ../src/properties.vala:43
+msgid "System"
+msgstr "מערכת"
+
 #. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/installer-media.vala:120
+#: ../src/installer-media.vala:160
 #, c-format
 msgid "%s (Live)"
 msgstr "%s (חי)"
@@ -152,7 +157,7 @@ msgstr "מחולל מכונות וירטואליות"
 
 #: ../src/libvirt-machine.vala:281
 #: ../src/remote-machine.vala:42
-#: ../src/wizard.vala:337
+#: ../src/wizard.vala:329
 msgid "URI"
 msgstr "כתובת"
 
@@ -163,7 +168,7 @@ msgstr "פרוטוקול"
 
 #: ../src/libvirt-machine.vala:398
 msgid "When you force shutdown, the box may lose data."
-msgstr ""
+msgstr "בעת אילוץ כיבוי, הקופסה עלול לאבד נתונים."
 
 #: ../src/libvirt-machine.vala:454
 msgid "RAM"
@@ -180,8 +185,8 @@ msgstr "אחסון"
 
 #. 3rd row
 #: ../src/machine.vala:371
-#: ../src/unattended-installer.vala:239
-#: ../src/wizard.vala:363
+#: ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:258
 msgid "Password"
 msgstr "ססמה"
 
@@ -220,11 +225,6 @@ msgstr "מודול ה־KVM טעון: %s\n"
 #: ../src/properties.vala:39
 msgid "Login"
 msgstr "כניסה"
-
-#: ../src/properties.vala:43
-#: ../src/wizard.vala:357
-msgid "System"
-msgstr "מערכת"
 
 #: ../src/properties.vala:47
 msgid "Display"
@@ -273,42 +273,42 @@ msgstr[1] "נבחרו %d"
 msgid "Click on items to select them"
 msgstr "יש ללחוץ על הפריטים כדי לבחור אותם"
 
-#: ../src/unattended-installer.vala:31
+#: ../src/unattended-installer.vala:37
 msgid "no password"
 msgstr "אין ססמה"
 
-#: ../src/unattended-installer.vala:168
+#: ../src/unattended-installer.vala:176
 msgid "No username provided"
 msgstr "לא סופק שם משתמש"
 
-#: ../src/unattended-installer.vala:172
+#: ../src/unattended-installer.vala:180
 #, c-format
 msgid "Password required for express installation of %s"
 msgstr "נדרשת ססמה לצורך ביצוע התקנה מהירה של %s"
 
-#: ../src/unattended-installer.vala:194
+#: ../src/unattended-installer.vala:187
+#: ../src/unattended-installer.vala:247
+msgid "Username"
+msgstr "שם משתמש"
+
+#: ../src/unattended-installer.vala:213
 msgid "Choose express install to automatically preconfigure the box with optimal settings."
 msgstr "יש לבחור בהתקנה מהירה כדי להגדיר מראש אוטומטית את הקופסה עם ההגדרות הטובות ביותר."
 
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:210
+#: ../src/unattended-installer.vala:229
 msgid "Express Install"
 msgstr "התקנה מהירה"
 
-#: ../src/unattended-installer.vala:228
-#: ../src/wizard.vala:362
-msgid "Username"
-msgstr "שם משתמש"
-
-#: ../src/unattended-installer.vala:249
+#: ../src/unattended-installer.vala:268
 msgid "_Add Password"
 msgstr "הוספת _ססמה"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:351
+#: ../src/vm-configurator.vala:307
 msgid "Incapable host system"
 msgstr "מערכת האירוח אינה מסוגלת לכך"
 
@@ -367,7 +367,7 @@ msgid "Box creation failed"
 msgstr "יצירת הקופסה נכשלה"
 
 #: ../src/wizard.vala:117
-#: ../src/wizard.vala:575
+#: ../src/wizard.vala:559
 msgid "C_ontinue"
 msgstr "המ_שך"
 
@@ -400,53 +400,53 @@ msgstr "כתובת שגויה"
 msgid "Unsupported protocol '%s'"
 msgstr "הפרוטוקול '%s' אינו נתמך"
 
-#: ../src/wizard.vala:320
+#: ../src/wizard.vala:312
 msgid "Box setup failed"
 msgstr "הגדרת הקופסה נכשלה"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:319
 msgid "Will create a new box with the following properties:"
 msgstr "הפעולה תיצור קופסה חדשה עם המאפיינים הבאים:"
 
-#: ../src/wizard.vala:332
+#: ../src/wizard.vala:324
 msgid "Type"
 msgstr "סוג"
 
-#: ../src/wizard.vala:335
+#: ../src/wizard.vala:327
 msgid "Host"
 msgstr "מארח"
 
-#: ../src/wizard.vala:343
-#: ../src/wizard.vala:349
+#: ../src/wizard.vala:335
+#: ../src/wizard.vala:341
 msgid "Port"
 msgstr "פתחה"
 
-#: ../src/wizard.vala:344
+#: ../src/wizard.vala:336
 msgid "TLS Port"
 msgstr "פתחת TLS"
 
-#: ../src/wizard.vala:354
+#: ../src/wizard.vala:346
 msgid "Will add boxes for all systems available from this account:"
 msgstr "הפעולה תוסיף את קופסאות לכל המערכות הזמינות דרך חשבון זה:"
 
-#: ../src/wizard.vala:368
+#: ../src/wizard.vala:353
 msgid "Memory"
 msgstr "זיכרון"
 
-#: ../src/wizard.vala:370
+#: ../src/wizard.vala:355
 msgid "Disk"
 msgstr "כונן"
 
-#: ../src/wizard.vala:370
+#: ../src/wizard.vala:355
 #, c-format
 msgid "%s maximum"
 msgstr "%s לכל היותר"
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:426
 msgid "Introduction"
 msgstr "היכרות"
 
-#: ../src/wizard.vala:446
+#: ../src/wizard.vala:430
 msgid ""
 "Creating a Box will allow you to use another operating system directly from your existing login.\n"
 "\n"
@@ -456,43 +456,43 @@ msgstr ""
 "\n"
 "באפשרותך להתחבר למכונה קיימת  <b>דרך הרשת</b> או ליצור <b>מכונה וירטואלית</b> שפועלת מקומית על המכונה שלך."
 
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:442
 msgid "Source Selection"
 msgstr "בחירת המקור"
 
-#: ../src/wizard.vala:459
+#: ../src/wizard.vala:443
 msgid "Insert operating system installation media or select a source below"
 msgstr "נא להכניס מדיה לצורך התקנה של מערכת הפעלה או לבחור מקור להלן"
 
-#: ../src/wizard.vala:469
+#: ../src/wizard.vala:453
 msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
 msgstr "כל סימני המסחר המוצגים להלן משמשים אך ורק לצורך זיהוי של מוצרי תכנה שכבר רכשת והנך הבעלים החוקיים של נכסים אלה."
 
-#: ../src/wizard.vala:482
+#: ../src/wizard.vala:466
 msgid "Preparation"
 msgstr "הכנות"
 
-#: ../src/wizard.vala:483
+#: ../src/wizard.vala:467
 msgid "Preparing to create new box"
 msgstr "הכנות ליצירת קופסה חדשה"
 
-#: ../src/wizard.vala:502
+#: ../src/wizard.vala:486
 msgid "Analyzing installer media."
 msgstr "המדיה להתקנה נבדקת."
 
-#: ../src/wizard.vala:513
+#: ../src/wizard.vala:497
 msgid "Setup"
 msgstr "התקנה"
 
-#: ../src/wizard.vala:520
+#: ../src/wizard.vala:504
 msgid "Review"
 msgstr "סקירה"
 
-#: ../src/wizard.vala:531
+#: ../src/wizard.vala:515
 msgid "Virtualization extensions are unavailable on your system. Expect this box to be extremely slow. If your system is recent enough (made in or after 2008), these extensions are probably available on your system and you may need to enable them in your system's BIOS setup."
-msgstr ""
+msgstr "הרחבות הווירטואליזציה אינן זמינות למערכת שלך. הקופסה שלך צפויה להיות אטית להחריד. אם המערכת שלך עדכנית מספיק (נוצרה לאחר 2008), הרחבות אלה כפי הנראה זמינות במערכת שלך ועליך להפעיל אותן בהגדרות ה־BIOS של המערכת שלך."
 
-#: ../src/wizard.vala:547
+#: ../src/wizard.vala:531
 msgid "Create a Box"
 msgstr "יצירת קופסה"
 
