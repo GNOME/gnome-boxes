@@ -29,10 +29,11 @@ private class Boxes.App: Boxes.UI {
     public Clutter.Actor overlay_bin_actor;
     public Clutter.BinLayout overlay_bin;
     public CollectionItem current_item; // current object/vm manipulated
+    public Searchbar searchbar;
     public Topbar topbar;
     public Notificationbar notificationbar;
     public Boxes.Revealer sidebar_revealer;
-    public Boxes.Revealer topbar_revealer;
+    public Boxes.Revealer searchbar_revealer;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
     public uint duration;
@@ -50,7 +51,7 @@ private class Boxes.App: Boxes.UI {
     public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
     private Gtk.Application application;
-    private CollectionView view;
+    public CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
     private HashTable<string,CollectionSource> sources;
@@ -419,6 +420,7 @@ private class Boxes.App: Boxes.UI {
 
         sidebar = new Sidebar ();
         view = new CollectionView ();
+        searchbar = new Searchbar ();
         topbar = new Topbar ();
         notificationbar = new Notificationbar ();
         selectionbar = new Selectionbar ();
@@ -435,10 +437,17 @@ private class Boxes.App: Boxes.UI {
                        Clutter.BinAlignment.FILL,
                        Clutter.BinAlignment.FILL);
 
-        topbar_revealer = new Boxes.Revealer (true);
+        var topbar_revealer = new Boxes.Revealer (true);
         topbar_revealer.name = "topbar-revealer";
         vbox.pack (topbar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
         topbar_revealer.add (topbar.actor);
+
+        searchbar_revealer = new Boxes.Revealer (true);
+        searchbar_revealer.resize = true;
+        searchbar_revealer.unreveal ();
+        searchbar_revealer.name = "searchbar-revealer";
+        vbox.pack (searchbar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        searchbar_revealer.add (searchbar.actor);
 
         var below_bin_actor = new Clutter.Actor ();
         below_bin_actor.name = "below-bin";
@@ -506,7 +515,7 @@ private class Boxes.App: Boxes.UI {
         action_properties.set_enabled (ui_state == UIState.DISPLAY);
         action_shutdown.set_enabled (ui_state == UIState.DISPLAY && current_item is LibvirtMachine);
 
-        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, wizard, properties }) {
+        foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, wizard, properties }) {
             ui.ui_state = ui_state;
         }
 
@@ -520,11 +529,14 @@ private class Boxes.App: Boxes.UI {
             }
             fullscreen = false;
             view.visible = true;
+            searchbar_revealer.revealed = searchbar.visible;
+
             break;
 
         case UIState.CREDS:
         case UIState.PROPERTIES:
         case UIState.WIZARD:
+            searchbar_revealer.revealed = false;
             set_main_ui_state ();
             break;
 

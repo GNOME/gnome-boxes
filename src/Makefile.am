@@ -11,11 +11,13 @@ AM_CPPFLAGS =						\
 AM_VALAFLAGS =						\
 	--enable-experimental				\
 	--vapidir=$(srcdir)/				\
+	--vapidir=$(top_srcdir)/libgd                   \
 	--vapidir=$(top_srcdir)/vapi                    \
 	--vapidir=$(top_srcdir)/vapi/upstream           \
 	--pkg clutter-gtk-1.0				\
 	--pkg cogl-1.0					\
 	--pkg config					\
+	--pkg gd-1.0					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
@@ -42,17 +44,19 @@ gnome_boxes_SOURCES =				\
 	display.vala				\
 	editable-entry.vala			\
 	fedora-installer.vala 			\
+	i-properties-provider.vala		\
 	installer-media.vala 			\
 	libvirt-machine.vala			\
 	machine.vala				\
+	main.vala				\
 	media-manager.vala 			\
 	mini-graph.vala				\
-	main.vala				\
+	notificationbar.vala			\
 	os-database.vala 			\
-	i-properties-provider.vala		\
 	properties.vala				\
 	remote-machine.vala			\
 	revealer.vala				\
+	searchbar.vala				\
 	selectionbar.vala			\
 	sidebar.vala				\
 	spice-display.vala			\
@@ -60,18 +64,17 @@ gnome_boxes_SOURCES =				\
 	ui.vala					\
 	unattended-installer.vala 		\
 	util.vala				\
-	vm-creator.vala 			\
 	vm-configurator.vala 			\
+	vm-creator.vala 			\
 	vnc-display.vala			\
-	windows-installer.vala 			\
 	win7-installer.vala 			\
+	windows-installer.vala 			\
 	winxp-installer.vala 			\
 	wizard-source.vala			\
 	wizard.vala				\
-	notificationbar.vala			\
 	$(NULL)
 
-gnome_boxes_LDADD = $(BOXES_LIBS)
+gnome_boxes_LDADD = $(BOXES_LIBS) $(top_builddir)/libgd/libgdprivate-1.0.la
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
 
 MAINTAINERCLEANFILES =				\
