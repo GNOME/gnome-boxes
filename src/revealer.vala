@@ -5,6 +5,7 @@ public class Boxes.Revealer: Clutter.Actor {
     private bool horizontal;
     private bool revealed;
     public uint duration;
+    public bool resize;
 
     public Revealer (bool horizontal) {
         this.horizontal = horizontal;
@@ -31,6 +32,14 @@ public class Boxes.Revealer: Clutter.Actor {
     }
 
     public void reveal () {
+        if (resize) {
+            if (horizontal)
+                height = 0.0f;
+            else
+                width = 0.0f;
+        }
+
+        var max = 0.0f;
         foreach (var child in get_children ()) {
             if (!revealed)
                 child.show ();
@@ -39,6 +48,7 @@ public class Boxes.Revealer: Clutter.Actor {
                     float height;
                     child.get_preferred_height (-1, null, out height);
                     child.y = -height;
+                    max = float.max (max, height);
                 }
                 child.animate (Clutter.AnimationMode.EASE_IN_QUAD, duration, "y", 0f);
             } else {
@@ -46,10 +56,19 @@ public class Boxes.Revealer: Clutter.Actor {
                     float width;
                     child.get_preferred_width (-1, null, out width);
                     child.x = -width;
+                    max = float.max (max, width);
                 }
                 child.animate (Clutter.AnimationMode.EASE_IN_QUAD, duration, "x", 0f);
             }
         }
+
+        if (resize) {
+            if (horizontal)
+                animate (Clutter.AnimationMode.EASE_IN_QUAD, duration, "height", max);
+            else
+                animate (Clutter.AnimationMode.EASE_IN_QUAD, duration, "width", max);
+        }
+
         revealed = true;
     }
 
@@ -70,6 +89,13 @@ public class Boxes.Revealer: Clutter.Actor {
                 child.hide ();
                 revealed = false;
             });
+        }
+
+        if (resize) {
+            if (horizontal)
+                animate (Clutter.AnimationMode.EASE_OUT_QUAD, duration, "height", 0.0f);
+            else
+                animate (Clutter.AnimationMode.EASE_OUT_QUAD, duration, "width", 0.0f);
         }
     }
 
