@@ -70,7 +70,6 @@ PKG_CHECK_MODULES(BOXES, [
   tracker-sparql-0.14 >= $TRACKER_SPARQL
 ])
 
-
 VALA_ADD_STAMP([src/gnome_boxes_vala.stamp])
 
 VALA_CHECK([0.14.0], [
@@ -87,6 +86,16 @@ VALA_CHECK([0.14.0], [
   libxml-2.0
   posix
   spice-client-gtk-3.0
+])
+
+dnl libgd
+AC_CHECK_LIBM
+AC_SUBST(LIBM)
+
+PKG_CHECK_MODULES(LIBGD, [
+  glib-2.0 >= $GLIB_MIN_VERSION
+  gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
+  gtk+-3.0 >= $GTK_MIN_VERSION
 ])
 
 dnl Strict compiler
@@ -112,6 +121,7 @@ AC_CONFIG_FILES([
   data/Makefile
   data/gnome-boxes.desktop.in
   data/icons/Makefile
+  libgd/Makefile
   po/Makefile.in
   src/Makefile
   vapi/Makefile
