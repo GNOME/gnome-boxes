@@ -70,7 +70,8 @@ PKG_CHECK_MODULES(BOXES, [
   tracker-sparql-0.14 >= $TRACKER_SPARQL
 ])
 
-VALA_ADD_STAMP([src/gnome_boxes_vala.stamp])
+VALA_ADD_CHECKFILE([src/gnome_boxes_vala.stamp])
+VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
 
 VALA_CHECK([0.14.0], [
   clutter-gtk-1.0

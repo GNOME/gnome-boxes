@@ -64,3 +64,18 @@ Gd_1_0_gir_FILES =				\
 	$(gdprivate_source_h:%=$(srcdir)/%)	\
 	$(gdprivate_source_c:%=$(srcdir)/%)	\
 	$(NULL)
+
+VAPIS = gd-1.0.vapi
+BUILT_SOURCES = $(VAPIS)
+
+gd-1.0.vapi: $(builddir)/Gd-1.0.gir
+	$(AM_V_GEN)$(VAPIGEN)			\
+		--library gd-1.0		\
+		--pkg gio-2.0			\
+		--pkg gobject-2.0		\
+		--pkg gtk+-3.0			\
+		$<
+
+EXTRA_DIST = $(VAPIS)
+
+MAINTAINERCLEANFILES = $(INTROSPECTION_GIRS) $(VAPIS)
