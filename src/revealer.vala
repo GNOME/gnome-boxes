@@ -3,14 +3,32 @@ using Clutter;
 
 public class Boxes.Revealer: Clutter.Actor {
     private bool horizontal;
-    private bool revealed;
+    private bool children_visible;
     public uint duration;
     public bool resize;
+
+    private bool _revealed;
+    public bool revealed {
+        get {
+            return _revealed;
+        }
+        set {
+            if (_revealed == value)
+                return;
+
+            _revealed = value;
+            if (value)
+                reveal ();
+            else
+                unreveal ();
+        }
+    }
+
 
     public Revealer (bool horizontal) {
         this.horizontal = horizontal;
         clip_to_allocation = true;
-        revealed = true;
+        children_visible = true;
         duration = 250;
 
         if (horizontal) {
@@ -24,7 +42,7 @@ public class Boxes.Revealer: Clutter.Actor {
         }
 
         this.actor_added.connect ( (child) => {
-            if (revealed)
+            if (children_visible)
                 child.show ();
             else
                 child.hide ();
@@ -41,10 +59,10 @@ public class Boxes.Revealer: Clutter.Actor {
 
         var max = 0.0f;
         foreach (var child in get_children ()) {
-            if (!revealed)
+            if (!children_visible)
                 child.show ();
             if (horizontal) {
-                if (!revealed) {
+                if (!children_visible) {
                     float height;
                     child.get_preferred_height (-1, null, out height);
                     child.y = -height;
@@ -52,7 +70,7 @@ public class Boxes.Revealer: Clutter.Actor {
                 }
                 child.animate (Clutter.AnimationMode.EASE_IN_QUAD, duration, "y", 0f);
             } else {
-                if (!revealed) {
+                if (!children_visible) {
                     float width;
                     child.get_preferred_width (-1, null, out width);
                     child.x = -width;
@@ -69,7 +87,7 @@ public class Boxes.Revealer: Clutter.Actor {
                 animate (Clutter.AnimationMode.EASE_IN_QUAD, duration, "width", max);
         }
 
-        revealed = true;
+        children_visible = true;
     }
 
     private void unreveal_child (Clutter.Actor child) {
@@ -79,7 +97,7 @@ public class Boxes.Revealer: Clutter.Actor {
             var anim = child.animate (Clutter.AnimationMode.EASE_OUT_QUAD, duration, "y", -height);
             anim.completed.connect (() => {
                 child.hide ();
-                revealed = false;
+                children_visible = false;
             });
         } else {
             float width;
@@ -87,7 +105,7 @@ public class Boxes.Revealer: Clutter.Actor {
             var anim = child.animate (Clutter.AnimationMode.EASE_OUT_QUAD, duration, "x", -width);
             anim.completed.connect (() => {
                 child.hide ();
-                revealed = false;
+                children_visible = false;
             });
         }
 
@@ -100,7 +118,7 @@ public class Boxes.Revealer: Clutter.Actor {
     }
 
     public void unreveal () {
-        if (!revealed)
+        if (!children_visible)
             return;
 
         bool found_child = false;
@@ -109,6 +127,6 @@ public class Boxes.Revealer: Clutter.Actor {
             unreveal_child (child);
         }
         if (!found_child)
-            revealed = false;
+            children_visible = false;
     }
 }
