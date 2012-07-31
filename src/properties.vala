@@ -48,7 +48,6 @@ private class Boxes.Properties: Boxes.UI {
 
         ~PageWidget () {
             foreach (var property in properties) {
-                message ("disconnecting %s", property.description);
                 SignalHandler.disconnect_by_func (property, (void*)update_infobar, this);
             }
         }
