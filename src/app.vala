@@ -157,21 +157,19 @@ private class Boxes.App: Boxes.UI {
         return application.run ();
     }
 
-    public bool open (string name) {
+    public void open (string name) {
         ui_state = UIState.COLLECTION;
         view.visible = false; // to avoid some glitches
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
-            if (item.name != name)
-                continue;
+            if (item.name == name) {
+                select_item (item);
 
-            return select_item (item);
+                break;
+            }
         }
-
-        return false;
     }
-
 
     public LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
                                       throws GLib.Error {
@@ -614,7 +612,7 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    public bool select_item (CollectionItem item) {
+    public void select_item (CollectionItem item) {
         if (ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
 
@@ -628,7 +626,5 @@ private class Boxes.App: Boxes.UI {
 
             item_selected (item);
         }
-
-        return false;
     }
 }
