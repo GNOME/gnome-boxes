@@ -115,13 +115,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             state = MachineState.UNKNOWN;
         }
 
-        domain.started.connect (() => {
-            state = MachineState.RUNNING;
-            reconnect_display ();
-        });
+        domain.started.connect (() => { state = MachineState.RUNNING; });
         domain.suspended.connect (() => { state = MachineState.PAUSED; });
         domain.resumed.connect (() => { state = MachineState.RUNNING; });
         domain.stopped.connect (() => { state = MachineState.STOPPED; });
+        notify["state"].connect (() => {
+            if (state == MachineState.RUNNING)
+                reconnect_display ();
+        });
 
         update_domain_config ();
         domain.updated.connect (update_domain_config);
