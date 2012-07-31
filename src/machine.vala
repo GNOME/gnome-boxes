@@ -189,7 +189,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public abstract string get_screenshot_prefix ();
 
-    public abstract void connect_display ();
+    public abstract async void connect_display ();
 
     public virtual void disconnect_display () {
         if (display == null)
@@ -399,7 +399,7 @@ private class Boxes.MachineActor: Boxes.UI {
             if (event.keyval == Gdk.Key.KP_Enter ||
                 event.keyval == Gdk.Key.ISO_Enter ||
                 event.keyval == Gdk.Key.Return) {
-                machine.connect_display ();
+                machine.connect_display.begin ();
 
                 return true;
             }

@@ -619,7 +619,7 @@ private class Boxes.App: Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                machine.connect_display ();
+                machine.connect_display.begin ();
                 ui_state = UIState.CREDS;
             } else
                 warning ("unknown item, fix your code");

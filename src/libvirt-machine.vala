@@ -23,12 +23,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         _connect_display = false;
     }
 
-    public override void connect_display () {
+    public override async void connect_display () {
         if (_connect_display)
             return;
 
         _connect_display = true;
-        start ();
+        yield start ();
 
         update_display ();
         display.connect_it ();
@@ -76,7 +76,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return;
 
         disconnect_display ();
-        connect_display ();
+        connect_display.begin ();
     }
 
     public LibvirtMachine (CollectionSource source,
@@ -521,15 +521,15 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         });
     }
 
-    public void start () {
+    public async void start () {
         if (state == MachineState.RUNNING)
             return;
 
         try {
             if (state == MachineState.PAUSED)
-                domain.resume ();
+                yield domain.resume_async (null);
             else
-                domain.start (0);
+                yield domain.start_async (0, null);
         } catch (GLib.Error error) {
             warning ("Failed to start '%s': %s", domain.get_name (), error.message);
         }
@@ -542,7 +542,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             ulong state_id = 0;
             state_id = this.notify["state"].connect (() => {
                 if (state == MachineState.STOPPED) {
-                    start ();
+                    start.begin ();
                     this.disconnect (state_id);
                 }
             });
