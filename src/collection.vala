@@ -28,6 +28,18 @@ private class Boxes.Collection: GLib.Object {
     }
 }
 
+private class Boxes.CollectionFilter: GLib.Object {
+    public string text;
+
+    public bool filter (CollectionItem item) {
+        if (text == null)
+            return true;
+
+        var text = text.casefold ();
+        return item.name.casefold ().index_of (text) != -1;
+    }
+}
+
 private class Boxes.Category: GLib.Object {
     public enum Kind {
         USER,

@@ -22,6 +22,7 @@ private class Boxes.CollectionView: Boxes.UI {
         ITEM
     }
     private Gtk.ListStore model;
+    private Gtk.TreeModelFilter model_filter;
 
     public bool visible {
         set { icon_view.visible = value; }
@@ -221,17 +222,38 @@ private class Boxes.CollectionView: Boxes.UI {
         var iter = item.get_data<Gtk.TreeIter?> ("iter");
         if (iter == null)
             return null;
-        return model.get_path (iter);
+
+        Gtk.TreeIter filter_iter;
+        if (!model_filter.convert_child_iter_to_iter (out filter_iter, iter))
+            return null;
+
+        return model_filter.get_path (filter_iter);
     }
 
-    private CollectionItem get_item_for_path (Gtk.TreePath path) {
-        Gtk.TreeIter iter;
+    private CollectionItem get_item_for_iter (Gtk.TreeIter iter) {
         GLib.Value value;
 
-        model.get_iter (out iter, path);
         model.get_value (iter, ModelColumns.ITEM, out value);
 
         return (CollectionItem) value;
+    }
+
+
+    private CollectionItem get_item_for_path (Gtk.TreePath path) {
+        Gtk.TreeIter filter_iter, iter;
+
+        model_filter.get_iter (out filter_iter, path);
+        model_filter.convert_iter_to_child_iter (out iter, filter_iter);
+
+        return get_item_for_iter (iter);
+    }
+
+    private bool model_visible (Gtk.TreeModel model, Gtk.TreeIter iter) {
+        return App.app.filter.filter (get_item_for_iter (iter));
+    }
+
+    public void refilter () {
+        model_filter.refilter ();
     }
 
     private void setup_view () {
@@ -251,8 +273,10 @@ private class Boxes.CollectionView: Boxes.UI {
             return item_a.name.collate (item_b.name);
         });
         model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
+        model_filter = new Gtk.TreeModelFilter (model, null);
+        model_filter.set_visible_func (model_visible);
 
-        icon_view = new Gtk.IconView.with_model (model);
+        icon_view = new Gtk.IconView.with_model (model_filter);
         icon_view.get_style_context ().add_class ("boxes-bg");
         icon_view.button_press_event.connect ((event) => {
             if (App.app.selection_mode)

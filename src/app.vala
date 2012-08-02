@@ -42,6 +42,7 @@ private class Boxes.App: Boxes.UI {
     public DisplayPage display_page;
     public string? uri { get; set; }
     public Collection collection;
+    public CollectionFilter filter;
     public GLib.SimpleAction action_properties;
     public GLib.SimpleAction action_fullscreen;
     public GLib.SimpleAction action_shutdown;
@@ -65,7 +66,7 @@ private class Boxes.App: Boxes.UI {
         settings = new GLib.Settings ("org.gnome.boxes");
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
-
+        filter = new Boxes.CollectionFilter ();
         var action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => { quit (); });
         application.add_action (action);
