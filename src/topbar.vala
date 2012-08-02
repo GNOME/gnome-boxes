@@ -19,6 +19,7 @@ private class Boxes.Topbar: Boxes.UI {
     public Notebook notebook;
 
     private Gtk.Spinner spinner;
+    private Gtk.ToggleToolButton search_btn;
     private Gtk.ToolButton select_btn;
     private Gtk.ToolButton cancel_btn;
     private Gtk.ToolButton spinner_btn;
@@ -103,6 +104,19 @@ private class Boxes.Topbar: Boxes.UI {
         App.app.collection.item_removed.connect (update_select_btn);
         toolbar_end.insert (select_btn, 1);
 
+        search_btn = new Gtk.ToggleToolButton ();
+        search_btn.icon_name = "edit-find-symbolic";
+        search_btn.get_style_context ().add_class ("raised");
+        search_btn.valign = Gtk.Align.CENTER;
+        search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
+        App.app.notify["search-visible"].connect (() => {
+            search_btn.active = App.app.searchbar.visible;
+        });
+        update_search_btn ();
+        App.app.collection.item_added.connect (update_search_btn);
+        App.app.collection.item_removed.connect (update_search_btn);
+        toolbar_end.insert (search_btn, 1);
+
         toolbar_end.set_show_arrow (false);
         hbox.pack_start (toolbar_end, false, false, 0);
 
@@ -149,6 +163,10 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.show_all ();
     }
 
+    private void update_search_btn () {
+        search_btn.sensitive = App.app.collection.items.length != 0;
+    }
+
     private void update_select_btn () {
         select_btn.sensitive = App.app.collection.items.length != 0;
     }
@@ -168,6 +186,7 @@ private class Boxes.Topbar: Boxes.UI {
             back_btn.hide ();
             spinner_btn.hide ();
             select_btn.show ();
+            search_btn.show ();
             new_btn.show ();
             break;
 
@@ -176,6 +195,7 @@ private class Boxes.Topbar: Boxes.UI {
             back_btn.show ();
             spinner_btn.show ();
             select_btn.hide ();
+            search_btn.hide ();
             break;
 
         case UIState.DISPLAY:
