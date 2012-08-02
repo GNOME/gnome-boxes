@@ -98,9 +98,9 @@ private class Boxes.Topbar: Boxes.UI {
                 TopbarPage.SELECTION : notebook.page = TopbarPage.COLLECTION;
         });
 
-        update_select_btn_sensitivity ();
-        App.app.collection.item_added.connect (update_select_btn_sensitivity);
-        App.app.collection.item_removed.connect (update_select_btn_sensitivity);
+        update_select_btn ();
+        App.app.collection.item_added.connect (update_select_btn);
+        App.app.collection.item_removed.connect (update_select_btn);
         toolbar_end.insert (select_btn, 1);
 
         toolbar_end.set_show_arrow (false);
@@ -149,7 +149,7 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.show_all ();
     }
 
-    private void update_select_btn_sensitivity () {
+    private void update_select_btn () {
         select_btn.sensitive = App.app.collection.items.length != 0;
     }
 
