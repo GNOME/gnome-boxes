@@ -256,6 +256,13 @@ private class Boxes.CollectionView: Boxes.UI {
         model_filter.refilter ();
     }
 
+    public void activate () {
+        if (model_filter.iter_n_children (null) == 1) {
+            Gtk.TreePath path = new Gtk.TreePath.from_string ("0");
+            icon_view.item_activated (path);
+        }
+    }
+
     private void setup_view () {
         model = new Gtk.ListStore (3,
                                    typeof (Gdk.Pixbuf),
