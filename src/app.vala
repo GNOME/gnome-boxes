@@ -578,12 +578,12 @@ private class Boxes.App: Boxes.UI {
                                                       "%u boxes have been deleted",
                                                       num_selected).printf (num_selected);
         foreach (var item in selected_items)
-            view.remove_item (item);
+            collection.remove_item (item);
 
         Notificationbar.OKFunc undo = () => {
             debug ("Box deletion cancelled by user, re-adding to view");
             foreach (var selected in selected_items) {
-                view.add_item (selected);
+                collection.add_item (selected);
             }
         };
 
