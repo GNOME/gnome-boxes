@@ -463,13 +463,26 @@ namespace Boxes {
             throw e;
     }
 
-    public async void exec (string[] argv, Cancellable? cancellable) throws GLib.Error {
+    public async void exec (string[] argv,
+                            Cancellable? cancellable,
+                            out string? standard_output = null,
+                            out string? standard_error = null) throws GLib.Error {
+
+        // FIXME: https://bugzilla.gnome.org/show_bug.cgi?id=681136
+        string std_output = "";
+        string std_error = "";
+
         yield run_in_thread (() => {
-            exec_sync (argv);
-        });
+           exec_sync (argv, out std_output, out std_error);
+        }, cancellable);
+
+        standard_output = std_output;
+        standard_error = std_error;
     }
 
-    public void exec_sync (string[] argv) throws GLib.Error {
+    public void exec_sync (string[] argv,
+                           out string? standard_output = null,
+                           out string? standard_error = null) throws GLib.Error {
         int exit_status = -1;
 
         Process.spawn_sync (null,
@@ -477,9 +490,10 @@ namespace Boxes {
                             null,
                             SpawnFlags.SEARCH_PATH,
                             null,
-                            null,
-                            null,
+                            out standard_output,
+                            out standard_error,
                             out exit_status);
+
         if (exit_status != 0)
             throw new Boxes.Error.COMMAND_FAILED ("Failed to execute: %s", string.joinv (" ", argv));
     }
