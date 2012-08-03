@@ -61,11 +61,14 @@ private async void run_checks () {
     var selinux_context_default = yield Boxes.check_selinux_context_default (out selinux_context_diagnosis);
 
     // FIXME: add proper UI & docs
-    GLib.stdout.printf (N_("The CPU is capable of virtualization: %s\n").printf (Boxes.yes_no (cpu)));
-    GLib.stdout.printf (N_("The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
-    GLib.stdout.printf (N_("The SELinux context is default: %s\n").printf (Boxes.yes_no (selinux_context_default)));
+    GLib.stdout.printf (N_("• The CPU is capable of virtualization: %s\n").printf (Boxes.yes_no (cpu)));
+    GLib.stdout.printf (N_("• The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
+    GLib.stdout.printf (N_("• The SELinux context is default: %s\n").printf (Boxes.yes_no (selinux_context_default)));
     if (selinux_context_diagnosis.length != 0)
         GLib.stdout.printf (Boxes.indent ("    ", selinux_context_diagnosis) + "\n");
+    GLib.stdout.printf ("\n");
+    GLib.stdout.printf (N_("Report bugs to <%s>.\n"), Config.PACKAGE_BUGREPORT);
+    GLib.stdout.printf (N_("%s home page: <%s>.\n"), Environment.get_application_name (), Config.PACKAGE_URL);
 }
 
 public int main (string[] args) {

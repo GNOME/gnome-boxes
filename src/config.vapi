@@ -7,4 +7,6 @@ namespace Config {
         public const string GETTEXT_PACKAGE;
         public const string GNOMELOCALEDIR;
         public const string DATADIR;
+        public const string PACKAGE_BUGREPORT;
+        public const string PACKAGE_URL;
 }
