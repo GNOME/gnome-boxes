@@ -445,6 +445,25 @@ namespace Boxes {
         return false;
     }
 
+    public async bool check_libvirt_kvm () {
+        try {
+            string standard_output;
+
+            string[] argv = {"virsh", "capabilities"};
+
+            yield exec (argv, null, out standard_output);
+            var kvm = extract_xpath (standard_output, "string(/capabilities/guest[os_type='hvm']/arch/domain[@type='kvm']/emulator)");
+            return kvm.length != 0;
+
+        } catch (GLib.SpawnError.NOEXEC error) {
+            critical ("libvirt is not installed correctly");
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+
+        return false;
+    }
+
     public async bool check_cpu_vt_capability () {
         var result = false;
         var file = File.new_for_path ("/proc/cpuinfo");

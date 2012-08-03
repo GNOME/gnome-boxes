@@ -54,15 +54,19 @@ private static void parse_args (ref unowned string[] args) {
 }
 
 private async void run_checks () {
+    string selinux_context_diagnosis = "";
+
+    // FIXME do all this in parallel, but how?
     var cpu = yield Boxes.check_cpu_vt_capability ();
     var kvm = yield Boxes.check_module_kvm_loaded ();
-
-    string selinux_context_diagnosis = "";
+    var libvirt_kvm = yield Boxes.check_libvirt_kvm ();
     var selinux_context_default = yield Boxes.check_selinux_context_default (out selinux_context_diagnosis);
 
     // FIXME: add proper UI & docs
     GLib.stdout.printf (N_("• The CPU is capable of virtualization: %s\n").printf (Boxes.yes_no (cpu)));
     GLib.stdout.printf (N_("• The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
+    GLib.stdout.printf (N_("• Libvirt KVM guest available: %s\n").printf (Boxes.yes_no (libvirt_kvm)));
+
     GLib.stdout.printf (N_("• The SELinux context is default: %s\n").printf (Boxes.yes_no (selinux_context_default)));
     if (selinux_context_diagnosis.length != 0)
         GLib.stdout.printf (Boxes.indent ("    ", selinux_context_diagnosis) + "\n");
@@ -119,4 +123,3 @@ public int main (string[] args) {
 
     return app.run ();
 }
-
