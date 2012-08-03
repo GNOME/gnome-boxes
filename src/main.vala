@@ -57,9 +57,15 @@ private async void run_checks () {
     var cpu = yield Boxes.check_cpu_vt_capability ();
     var kvm = yield Boxes.check_module_kvm_loaded ();
 
+    string selinux_context_diagnosis = "";
+    var selinux_context_default = yield Boxes.check_selinux_context_default (out selinux_context_diagnosis);
+
     // FIXME: add proper UI & docs
     GLib.stdout.printf (N_("The CPU is capable of virtualization: %s\n").printf (Boxes.yes_no (cpu)));
     GLib.stdout.printf (N_("The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
+    GLib.stdout.printf (N_("The SELinux context is default: %s\n").printf (Boxes.yes_no (selinux_context_default)));
+    if (selinux_context_diagnosis.length != 0)
+        GLib.stdout.printf (Boxes.indent ("    ", selinux_context_diagnosis) + "\n");
 }
 
 public int main (string[] args) {

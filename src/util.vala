@@ -398,6 +398,53 @@ namespace Boxes {
         return value ? N_("yes") : N_("no");
     }
 
+    public string indent (string space, string text) {
+        var indented = "";
+
+        foreach (var l in text.split ("\n")) {
+            if (indented.length != 0)
+                indented += "\n";
+
+            if (l.length != 0)
+                indented += space + l;
+        }
+
+        return indented;
+    }
+
+    public async bool check_selinux_context_default (out string diagnosis) {
+        diagnosis = "";
+
+        try {
+            string standard_output;
+
+            string[] argv = {"restorecon",
+                             "-nrv",
+                             get_user_pkgconfig (),
+                             get_user_pkgdata (),
+                             get_user_pkgcache ()};
+
+            yield exec (argv, null, out standard_output);
+
+            if (standard_output.length == 0)
+                return true;
+
+            argv[1] = "-r";
+
+            diagnosis = _("Your SELinux context looks incorrect, you can try to fix it by running:\n%s").printf (string.joinv (" ", argv));
+            return false;
+
+        } catch (GLib.SpawnError.NOEXEC error) {
+            diagnosis = _("SELinux not installed?");
+            return true;
+
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+
+        return false;
+    }
+
     public async bool check_cpu_vt_capability () {
         var result = false;
         var file = File.new_for_path ("/proc/cpuinfo");
