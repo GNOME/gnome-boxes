@@ -111,6 +111,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
                     if (id != 0)
                         return;
 
+                    access_start ();
                     try {
                         var display = get_display (id) as Spice.Display;
                         display.notify["ready"].connect (() => {
@@ -128,6 +129,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
                 if (channel is Spice.DisplayChannel) {
                     var display = channel as DisplayChannel;
                     hide (display.channel_id);
+                    access_finish ();
                 }
             });
 
