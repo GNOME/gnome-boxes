@@ -59,7 +59,12 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
     }
 
     public void load_display_property (Object display, string property_name, Value default_value) {
-        var value = Value (display.get_class ().find_property (property_name).value_type);
+        var property = display.get_class ().find_property (property_name);
+        if (property == null) {
+            debug ("You forgot the property '%s' needs to have public getter!", property_name);
+        }
+
+        var value = Value (property.value_type);
 
         try {
             if (value.type () == typeof (string))
