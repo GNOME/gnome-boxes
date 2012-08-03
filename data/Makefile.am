@@ -51,4 +51,8 @@ DISTCLEANFILES =				\
 	$(desktop_DATA)				\
 	$(NULL)
 
+MAINTAINERCLEANFILES =				\
+	org.gnome.boxes.gschema.valid		\
+	$(NULL)
+
 -include $(top_srcdir)/git.mk

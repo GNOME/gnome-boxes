@@ -79,3 +79,5 @@ gd-1.0.vapi: $(builddir)/Gd-1.0.gir
 EXTRA_DIST = $(VAPIS)
 
 MAINTAINERCLEANFILES = $(INTROSPECTION_GIRS) $(VAPIS)
+
+-include $(top_srcdir)/git.mk

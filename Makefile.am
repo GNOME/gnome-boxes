@@ -40,6 +40,12 @@ MAINTAINERCLEANFILES =				\
 	build-aux/ltmain.sh			\
 	build-aux/missing			\
 	build-aux/mkinstalldirs			\
+	m4/intltool.m4				\
+	m4/libtool.m4				\
+	m4/ltoptions.m4				\
+	m4/ltsugar.m4				\
+	m4/ltversion.m4				\
+	m4/lt~obsolete.m4			\
 	po/Makefile.in.in			\
 	po/Makevars.template			\
 	po/Rules-quot				\
@@ -48,7 +54,7 @@ MAINTAINERCLEANFILES =				\
 	po/en@quot.header			\
 	po/insert-header.sin			\
 	po/quot.sed				\
-	po/remove-potcdate.sin
+	po/remove-potcdate.sin			\
 	$(NULL)
 
 # see git-version-gen

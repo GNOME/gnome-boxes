@@ -1,4 +1,5 @@
 NULL =
+MAINTAINERCLEANFILES = *.stamp
 
 AM_CPPFLAGS =						\
 	-include config.h				\
@@ -77,10 +78,7 @@ gnome_boxes_SOURCES =				\
 gnome_boxes_LDADD = $(BOXES_LIBS) $(top_builddir)/libgd/libgdprivate-1.0.la
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
 
-MAINTAINERCLEANFILES =				\
-	$(gnome_boxes_SOURCES:.vala=.c)		\
-	*.stamp					\
-	$(NULL)
+MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
 
 EXTRA_DIST = config.vapi
 
