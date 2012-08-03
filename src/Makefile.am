@@ -82,6 +82,17 @@ gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
 
+libexec_PROGRAMS = gnome-boxes-search-provider
+
+gnome_boxes_search_provider_SOURCES =		\
+	gnome-boxes-search-provider.vala	\
+	$(NULL)
+
+gnome_boxes_search_provider_LDADD = $(BOXES_SEARCH_LIBS)
+gnome_boxes_search_provider_CFLAGS = $(BOXES_SEARCH_CFLAGS)
+
+MAINTAINERCLEANFILES += $(gnome_boxes_search_provider_SOURCES:.vala=.c)
+
 EXTRA_DIST = config.vapi
 
 -include $(top_srcdir)/git.mk
