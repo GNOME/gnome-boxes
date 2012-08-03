@@ -49,6 +49,10 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
 
         if (value.type () == typeof (string))
             keyfile.set_string (group, property_name, value.get_string ());
+        else if (value.type () == typeof (uint64))
+            keyfile.set_uint64 (group, property_name, value.get_uint64 ());
+        else if (value.type () == typeof (int64))
+            keyfile.set_int64 (group, property_name, value.get_int64 ());
         else if (value.type () == typeof (bool))
             keyfile.set_boolean (group, property_name, value.get_boolean ());
         else
@@ -69,6 +73,10 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         try {
             if (value.type () == typeof (string))
                 value = keyfile.get_string (group, property_name);
+            if (value.type () == typeof (uint64))
+                value = keyfile.get_uint64 (group, property_name);
+            if (value.type () == typeof (int64))
+                value = keyfile.get_int64 (group, property_name);
             if (value.type () == typeof (bool))
                 value = keyfile.get_boolean (group, property_name);
         } catch (GLib.Error err) {
