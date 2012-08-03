@@ -9,7 +9,7 @@ private class Boxes.VncDisplay: Boxes.Display {
     private string host;
     private int port;
     private Gtk.Window window;
-    private Display.SavedProperty[] saved_properties;
+    private DisplayProperties.SavedProperty[] saved_properties;
 
     construct {
         saved_properties = {

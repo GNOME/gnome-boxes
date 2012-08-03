@@ -11,8 +11,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     private unowned Spice.Audio audio;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
-    private Display.SavedProperty[] display_saved_properties;
-    private Display.SavedProperty[] gtk_session_saved_properties;
+    private DisplayProperties.SavedProperty[] display_saved_properties;
+    private DisplayProperties.SavedProperty[] gtk_session_saved_properties;
 
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
