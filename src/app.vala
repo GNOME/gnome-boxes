@@ -173,6 +173,26 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
+    public bool open_uuid (string uuid) {
+        ui_state = UIState.COLLECTION;
+        view.visible = false; // to avoid some glitches
+
+        // after "ready" all items should be listed
+        foreach (var item in collection.items.data) {
+            if (!(item is Boxes.Machine))
+                continue;
+            var machine = item as Boxes.Machine;
+
+            if (machine.config.uuid != uuid)
+                continue;
+
+            select_item (item);
+            return true;
+        }
+
+        return false;
+    }
+
     public LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
                                       throws GLib.Error {
         var machine = domain.get_data<LibvirtMachine> ("machine");

@@ -5,12 +5,14 @@ using Posix;
 private static bool version;
 private static bool fullscreen;
 private static bool checks;
+private static string open_uuid;
 private static string[] uris;
 
 private const OptionEntry[] options = {
     { "version", 0, 0, OptionArg.NONE, ref version, N_("Display version number"), null },
     { "full-screen", 'f', 0, OptionArg.NONE, ref fullscreen, N_("Open in full screen"), null },
     { "checks", 0, 0, OptionArg.NONE, ref checks, N_("Check virtualization capabilities"), null },
+    { "open-uuid", 0, 0, OptionArg.STRING, ref open_uuid, N_("Open box with UUID"), null },
     // A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
     { "", 0, 0, OptionArg.STRING_ARRAY, ref uris, N_("URI to display, broker or installer media"), null },
     { null }
@@ -35,6 +37,12 @@ private static void parse_args (ref unowned string[] args) {
         exit (1);
     } catch (OptionError error) {
         warning (error.message);
+    }
+
+    if (uris.length > 1 ||
+        (open_uuid != null && uris != null)) {
+        GLib.stderr.printf (_("Too many command line arguments specified.\n"));
+        exit (1);
     }
 
     if (version) {
@@ -105,8 +113,9 @@ public int main (string[] args) {
     var app = new Boxes.App ();
 
     app.ready.connect ((first_time) => {
-        if (uris != null) {
-            // FIXME: We only handle a single URI from commandline
+        if (open_uuid != null) {
+            app.open_uuid (open_uuid);
+        } else if (uris != null) {
             var arg = uris[0];
             var file = File.new_for_commandline_arg (arg);
 
