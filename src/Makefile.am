@@ -42,6 +42,7 @@ gnome_boxes_SOURCES =				\
 	collection.vala				\
 	display-config.vala			\
 	display-page.vala			\
+	display-properties.vala			\
 	display.vala				\
 	editable-entry.vala			\
 	fedora-installer.vala 			\
