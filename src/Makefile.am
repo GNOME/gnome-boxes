@@ -85,7 +85,11 @@ MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
 libexec_PROGRAMS = gnome-boxes-search-provider
 
 gnome_boxes_search_provider_SOURCES =		\
+	collection-source.vala			\
+	display-config.vala			\
+	display-properties.vala			\
 	gnome-boxes-search-provider.vala	\
+	util.vala				\
 	$(NULL)
 
 gnome_boxes_search_provider_LDADD = $(BOXES_SEARCH_LIBS)

@@ -48,6 +48,19 @@ private interface Boxes.IConfig {
             return null;
         }
     }
+
+    public string[] get_groups (string with_prefix = "") {
+        string[] groups = {};
+
+        foreach (var group in keyfile.get_groups ()) {
+            if (!group.has_prefix (with_prefix))
+                continue;
+
+            groups += group;
+        }
+
+        return groups;
+    }
 }
 
 private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
