@@ -87,7 +87,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         base (source, item_name);
 
         debug ("new libvirt machine: " + domain.get_name ());
-        this.config = new DisplayConfig (source, domain.get_uuid ());
+        this.config = new DisplayConfig (source, this.name, domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
 

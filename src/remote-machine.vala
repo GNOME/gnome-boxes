@@ -9,7 +9,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         // assume the remote is running for now
         state = MachineState.RUNNING;
 
-        config = new DisplayConfig (source);
+        config = new DisplayConfig (source, this.name);
         source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
 
         load_screenshot ();

@@ -17,17 +17,26 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
 
     private string group;
 
+    public string? last_seen_name {
+        owned get { return get_string (group, "last-seen-name"); }
+        private set { keyfile.set_string (group, "last-seen-name", value); }
+    }
+
     public string[]? categories {
         owned get { return get_string_list (group, "categories"); }
         set { keyfile.set_string_list (group, "categories", value); }
     }
 
-    public DisplayConfig (CollectionSource source, string? subgroup = null) {
+    public DisplayConfig (CollectionSource source, string last_seen_name, string? subgroup = null) {
         this.source = source;
-
         this.group = "display";
         if (subgroup != null)
             this.group += " " + subgroup;
+
+        if (this.last_seen_name != last_seen_name) {
+            this.last_seen_name = last_seen_name;
+            save ();
+        }
     }
 
     public void add_category (string category) {

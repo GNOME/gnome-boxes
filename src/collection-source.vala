@@ -7,6 +7,8 @@ private interface Boxes.IConfig {
     protected abstract bool has_file { get; set; }
 
     public void save () {
+        // FIXME: https://bugzilla.gnome.org/show_bug.cgi?id=681191
+        // avoid writing if the keyfile is not modified
         keyfile_save (keyfile, get_user_pkgconfig_source (filename), has_file);
         has_file = true;
     }
