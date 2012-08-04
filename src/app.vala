@@ -302,25 +302,11 @@ private class Boxes.App: Boxes.UI {
         }
 
         var dir = File.new_for_path (get_user_pkgconfig_source ());
-        yield get_sources_from_dir (dir);
-    }
-
-    private async void get_sources_from_dir (File dir) {
-        try {
-            var enumerator = yield dir.enumerate_children_async (FileAttribute.STANDARD_NAME, 0);
-            while (true) {
-                var files = yield enumerator.next_files_async (10);
-                if (files == null)
-                    break;
-
-                foreach (var file in files) {
-                    var source = new CollectionSource.with_file (file.get_name ());
-                    add_collection_source.begin (source);
-                }
-            }
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        yield foreach_filename_from_dir (dir, (filename) => {
+            var source = new CollectionSource.with_file (filename);
+            add_collection_source.begin (source);
+            return false;
+        });
     }
 
     private void save_window_geometry () {

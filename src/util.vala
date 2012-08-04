@@ -627,4 +627,24 @@ namespace Boxes {
             debug ("File '%s' was already deleted", file.get_path ());
         }
     }
+
+    public delegate bool ForeachFilenameFromDirFunc (string filename) throws GLib.Error;
+
+    public async void foreach_filename_from_dir (File dir, ForeachFilenameFromDirFunc func) {
+        try {
+            var enumerator = yield dir.enumerate_children_async (FileAttribute.STANDARD_NAME, 0);
+            while (true) {
+                var files = yield enumerator.next_files_async (10);
+                if (files == null)
+                    break;
+
+                foreach (var file in files) {
+                    if (func (file.get_name ()))
+                        break;
+                }
+            }
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+    }
 }
