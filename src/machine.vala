@@ -208,6 +208,28 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         display = null;
     }
 
+    protected void create_display_config (string? uuid = null)
+        requires (this.config == null)
+        ensures (this.config != null) {
+
+        var group = "display";
+        if (uuid != null)
+            group += " " + uuid;
+
+        config = new DisplayConfig.with_group (source, group);
+        if (config.last_seen_name != name)
+            config.last_seen_name = name;
+
+        if (uuid != null &&
+            config.uuid != uuid)
+            config.uuid = uuid;
+
+        if (config.uuid == null)
+            config.uuid = uuid_generate ();
+
+        config.save ();
+    }
+
     public bool is_running () {
         return state == MachineState.RUNNING;
     }

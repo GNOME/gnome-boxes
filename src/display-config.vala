@@ -19,7 +19,12 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
 
     public string? last_seen_name {
         owned get { return get_string (group, "last-seen-name"); }
-        private set { keyfile.set_string (group, "last-seen-name", value); }
+        set { keyfile.set_string (group, "last-seen-name", value); }
+    }
+
+    public string? uuid {
+        owned get { return get_string (group, "uuid"); }
+        set { keyfile.set_string (group, "uuid", value); }
     }
 
     public string[]? categories {
@@ -27,16 +32,11 @@ private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         set { keyfile.set_string_list (group, "categories", value); }
     }
 
-    public DisplayConfig (CollectionSource source, string last_seen_name, string? subgroup = null) {
+    public DisplayConfig.with_group (CollectionSource source, string group) {
         this.source = source;
-        this.group = "display";
-        if (subgroup != null)
-            this.group += " " + subgroup;
 
-        if (this.last_seen_name != last_seen_name) {
-            this.last_seen_name = last_seen_name;
-            save ();
-        }
+        warn_if_fail (group.has_prefix ("display"));
+        this.group = group;
     }
 
     public void add_category (string category) {
