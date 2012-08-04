@@ -178,16 +178,14 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public string get_screenshot_filename () {
-        return get_user_pkgcache (get_screenshot_prefix () + "-screenshot.png");
+        return get_user_pkgcache (config.uuid + "-screenshot.png");
     }
 
-    public async virtual Gdk.Pixbuf? take_screenshot () throws GLib.Error {
+    public virtual async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
         return null;
     }
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
-
-    public abstract string get_screenshot_prefix ();
 
     public abstract async void connect_display ();
 

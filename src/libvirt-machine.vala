@@ -344,10 +344,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    public override string get_screenshot_prefix () {
-        return domain.get_uuid ();
-    }
-
     public override async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
         var state = DomainState.NONE;
         try {

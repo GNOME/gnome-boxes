@@ -52,10 +52,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         return list;
     }
 
-    public override string get_screenshot_prefix () {
-        return source.filename;
-    }
-
     public override void delete (bool by_user = true) {
         return_if_fail (by_user);
 
