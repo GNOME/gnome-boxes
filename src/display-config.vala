@@ -1,6 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-private class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
+public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
     private CollectionSource source;
 
     private bool has_file {

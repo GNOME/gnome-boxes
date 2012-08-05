@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 // too bad we can't make it just a mixin
-private class Boxes.DisplayProperties: GLib.Object {
+public class Boxes.DisplayProperties: GLib.Object {
     protected struct SavedProperty {
         string name;
         Value default_value;

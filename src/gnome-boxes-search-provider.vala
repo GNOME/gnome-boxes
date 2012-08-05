@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 [DBus (name = "org.gnome.Shell.SearchProvider")]
-private class Boxes.SearchProvider: Object {
+public class Boxes.SearchProvider: Object {
     private SearchProviderApp app;
     private bool loading;
     public bool loaded { get; set; }

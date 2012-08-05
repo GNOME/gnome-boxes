@@ -1,4 +1,5 @@
 NULL =
+BUILT_SOURCES =
 MAINTAINERCLEANFILES = *.stamp
 
 AM_CPPFLAGS =						\
@@ -18,6 +19,7 @@ AM_VALAFLAGS =						\
 	--pkg clutter-gtk-1.0				\
 	--pkg cogl-1.0					\
 	--pkg config					\
+	--pkg common					\
 	--pkg gd-1.0					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg glib-2.0					\
@@ -33,16 +35,46 @@ AM_VALAFLAGS =						\
 	$(VALA_DEBUG_FLAGS)			        \
 	$(NULL)
 
+noinst_LIBRARIES = libcommon.a
+libcommon_a_VALASOURCES =			\
+	collection-source.vala			\
+	display-config.vala			\
+	display-properties.vala			\
+	util.vala				\
+	$(NULL)
+
+libcommon_a_DEPENDENCIES =			\
+	common.vapi				\
+	libcommon.h				\
+	libcommon_vala.stamp			\
+	$(NULL)
+
+libcommon_a_SOURCES =				\
+	$(libcommon_a_VALASOURCES:.vala=.c)	\
+	$(NULL)
+
+libcommon_a_CFLAGS = $(BOXES_COMMON_CFLAGS)
+
+libcommon_vala.stamp common.vapi: $(libcommon_a_VALASOURCES)
+	$(AM_V_VALAC)$(VALAC) $(VALAFLAGS) $(VALA_DEBUG_FLAGS)	\
+	--enable-experimental					\
+	--vapidir=$(srcdir)/					\
+	--pkg config						\
+	--pkg glib-2.0						\
+	--pkg gio-2.0						\
+	-C -H libcommon.h --library common $^
+	@touch $(libcommon_a_DEPENDENCIES)
+
+BUILT_SOURCES += $(libcommon_a_DEPENDENCIES)
+MAINTAINERCLEANFILES += $(libcommon_a_SOURCES) $(libcommon_a_DEPENDENCIES)
+
 bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
 	app.vala				\
-	collection-source.vala			\
 	collection-view.vala			\
 	collection.vala				\
-	display-config.vala			\
 	display-page.vala			\
-	display-properties.vala			\
 	display.vala				\
 	editable-entry.vala			\
 	fedora-installer.vala 			\
@@ -65,7 +97,6 @@ gnome_boxes_SOURCES =				\
 	topbar.vala				\
 	ui.vala					\
 	unattended-installer.vala 		\
-	util.vala				\
 	util-app.vala				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\
@@ -77,7 +108,12 @@ gnome_boxes_SOURCES =				\
 	wizard.vala				\
 	$(NULL)
 
-gnome_boxes_LDADD = $(BOXES_LIBS) $(top_builddir)/libgd/libgdprivate-1.0.la
+gnome_boxes_LDADD =					\
+	$(BOXES_LIBS)					\
+	$(top_builddir)/libgd/libgdprivate-1.0.la	\
+	libcommon.a					\
+	$(NULL)
+
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
@@ -85,15 +121,11 @@ MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
 libexec_PROGRAMS = gnome-boxes-search-provider
 
 gnome_boxes_search_provider_SOURCES =		\
-	collection-source.vala			\
-	display-config.vala			\
-	display-properties.vala			\
 	gnome-boxes-search-provider.vala	\
-	util.vala				\
 	$(NULL)
 
-gnome_boxes_search_provider_LDADD = $(BOXES_SEARCH_LIBS)
-gnome_boxes_search_provider_CFLAGS = $(BOXES_SEARCH_CFLAGS)
+gnome_boxes_search_provider_LDADD = $(BOXES_COMMON_LIBS) libcommon.a
+gnome_boxes_search_provider_CFLAGS = $(BOXES_COMMON_CFLAGS)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_search_provider_SOURCES:.vala=.c)
 

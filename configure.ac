@@ -74,11 +74,12 @@ PKG_CHECK_MODULES(BOXES, [
 
 VALA_ADD_CHECKFILE([src/gnome_boxes_vala.stamp])
 
-PKG_CHECK_MODULES(BOXES_SEARCH, [
+PKG_CHECK_MODULES(BOXES_COMMON, [
   glib-2.0 >= $GLIB_MIN_VERSION
   gio-2.0 >= $GLIB_MIN_VERSION
 ])
 
+VALA_ADD_CHECKFILE([src/libcommon_a_vala.stamp])
 VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
 VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])

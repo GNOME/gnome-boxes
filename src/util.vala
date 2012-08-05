@@ -326,12 +326,12 @@ namespace Boxes {
     }
 
     [DBus (name = "org.freedesktop.Accounts")]
-    interface Fdo.Accounts : Object {
+    public interface Fdo.Accounts : Object {
         public abstract async string FindUserByName(string name) throws IOError;
     }
 
     [DBus (name = "org.freedesktop.Accounts.User")]
-    interface Fdo.AccountsUser : Object {
+    public interface Fdo.AccountsUser : Object {
         public abstract bool AutomaticLogin { get; }
         public abstract bool Locked { get; }
         public abstract bool SystemAccount { get; }

@@ -1,6 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-private interface Boxes.IConfig {
+public interface Boxes.IConfig {
 
     protected abstract KeyFile keyfile { get; }
     public abstract string? filename { get; set; }
@@ -63,7 +63,7 @@ private interface Boxes.IConfig {
     }
 }
 
-private class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
+public class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
     private KeyFile _keyfile;
     private KeyFile keyfile { get { return _keyfile; } }
 
