@@ -178,7 +178,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public string get_screenshot_filename () {
-        return get_user_pkgcache (config.uuid + "-screenshot.png");
+        return Boxes.get_screenshot_filename (config.uuid);
     }
 
     public virtual async Gdk.Pixbuf? take_screenshot () throws GLib.Error {
@@ -232,6 +232,14 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return state == MachineState.RUNNING;
     }
 
+    private void save_pixbuf_as_screenshot (Gdk.Pixbuf? pixbuf) {
+        try {
+            pixbuf.save (get_screenshot_filename (), "png");
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+    }
+
     public void set_screenshot (Gdk.Pixbuf? large_screenshot, bool save) {
         if (large_screenshot != null) {
             var pw = large_screenshot.get_width ();
@@ -245,15 +253,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
             machine_actor.set_screenshot (large_screenshot); // high resolution
+            if (save)
+                save_pixbuf_as_screenshot (small_screenshot);
 
-            if (save) {
-                try {
-                    small_screenshot.save (get_screenshot_filename (), "png");
-                } catch (GLib.Error error) {
-                }
-            }
         } else if (pixbuf == null) {
-            pixbuf = draw_fallback_vm (SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
+            pixbuf = draw_fallback_vm ();
             machine_actor.set_screenshot (pixbuf);
         }
     }

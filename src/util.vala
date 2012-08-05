@@ -74,6 +74,10 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
+    public string get_screenshot_filename (string prefix) {
+        return get_user_pkgcache (prefix + "-screenshot.png");
+    }
+
     public void ensure_directory (string dir) {
         try {
             var file = GLib.File.new_for_path (dir);
