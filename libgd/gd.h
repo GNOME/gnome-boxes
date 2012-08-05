@@ -27,6 +27,7 @@
 G_BEGIN_DECLS
 
 #include <libgd/gd-entry-focus-hack.h>
+#include <libgd/gd-main-toolbar.h>
 #include <libgd/gd-margin-container.h>
 #include <libgd/gd-tagged-entry.h>
 

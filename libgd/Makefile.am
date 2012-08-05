@@ -12,12 +12,14 @@ gdprivate_cflags =				\
 gdprivate_source_h =				\
 	gd.h					\
 	gd-entry-focus-hack.h			\
+	gd-main-toolbar.h			\
 	gd-margin-container.h			\
 	gd-tagged-entry.h			\
 	$(NULL)
 
 gdprivate_source_c =				\
 	gd-entry-focus-hack.c			\
+	gd-main-toolbar.c			\
 	gd-margin-container.c			\
 	gd-tagged-entry.c			\
 	$(NULL)
