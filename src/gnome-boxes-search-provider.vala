@@ -148,6 +148,23 @@ private class Boxes.SearchProvider: Object {
 
         debug ("ActivateResult (%s)", search_id);
 
+        var box = boxes.lookup (search_id);
+        if (box == null) {
+            warning ("Can't find id: " + search_id);
+            app.release ();
+            return;
+        }
+
+        string uuid = box.config.uuid;
+        try {
+            var cmd = "gnome-boxes --open-uuid " + uuid;
+            if (!Process.spawn_command_line_async (cmd))
+                stderr.printf ("Failed to launch Boxes with uuid '%s'\n", uuid);
+        } catch (SpawnError error) {
+            stderr.printf ("Failed to launch Boxes with uuid '%s'\n", uuid);
+            warning (error.message);
+        }
+
         app.release ();
     }
 }
