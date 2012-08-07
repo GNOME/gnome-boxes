@@ -13,11 +13,9 @@ private class Boxes.InstallerMedia : GLib.Object {
     public string mount_point;
     public bool from_image;
 
-    public virtual bool need_user_input_for_vm_creation {
-        get {
-            return false;
-        }
-    }
+    public virtual bool need_user_input_for_vm_creation { get { return false; } }
+    public virtual bool user_data_for_vm_creation_available { get { return true; } }
+
     public bool live { get { return os_media == null || os_media.live; } }
 
     public InstallerMedia.from_iso_info (string           path,
@@ -86,7 +84,6 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
-    public virtual void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {}
 
     public virtual GLib.List<Pair<string,string>> get_vm_properties () {
         var properties = new GLib.List<Pair<string,string>> ();

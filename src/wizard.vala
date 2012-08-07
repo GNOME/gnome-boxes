@@ -293,6 +293,9 @@ private class Boxes.Wizard: Boxes.UI {
 
         return_if_fail (vm_creator != null);
 
+        vm_creator.install_media.bind_property ("user-data-for-vm-creation-available",
+                                                next_button, "sensitive",
+                                                BindingFlags.SYNC_CREATE);
         vm_creator.install_media.populate_setup_vbox (setup_vbox);
 
         return true;
@@ -304,7 +307,6 @@ private class Boxes.Wizard: Boxes.UI {
 
         if (vm_creator != null) {
             try {
-                vm_creator.install_media.check_needed_info ();
                 machine = yield vm_creator.create_vm (null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;

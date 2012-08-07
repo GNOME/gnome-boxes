@@ -13,6 +13,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
+    public override bool user_data_for_vm_creation_available {
+        get {
+            return !express_toggle.active || username != "";
+        }
+    }
+
     public bool express_install {
         get { return express_toggle.active; }
     }
@@ -159,15 +165,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_vbox.show_all ();
     }
 
-    // Ensure needed information was provided by user
-    public override void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {
-        if (!express_toggle.active)
-            return;
-
-        if (username == "")
-            throw new UnattendedInstallerError.SETUP_INCOMPLETE (_("No username provided"));
-    }
-
     public override List<Pair> get_vm_properties () {
         var properties = base.get_vm_properties ();
 
@@ -223,6 +220,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         express_toggle.active = !os_media.live;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
+        express_toggle.notify["active"].connect (() => { notify_property ("user-data-for-vm-creation-available"); });
         setup_table.attach_defaults (express_toggle, 2, 3, 0, 1);
 
         // 2nd row (while user avatar spans over 2 rows)
@@ -236,8 +234,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
         setup_table.attach_defaults (label, 1, 2, 1, 2);
-        username_entry = new Gtk.Entry ();
-        username_entry.text = Environment.get_user_name ();
+        username_entry = create_input_entry (Environment.get_user_name ());
         username_entry.halign = Gtk.Align.START;
         username_entry.valign = Gtk.Align.CENTER;
         setup_table.attach_defaults (username_entry, 2, 3, 1, 2);
@@ -256,10 +253,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
         button.visible = true;
         notebook.append_page (button);
-        password_entry = new Gtk.Entry ();
-        password_entry.visibility = false;
-        password_entry.visible = true;
-        password_entry.text = "";
+        password_entry = create_input_entry ("", false, false);
         notebook.append_page (password_entry);
         button.clicked.connect (() => {
             notebook.next_page ();
@@ -301,6 +295,20 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected void add_unattended_file (UnattendedFile file) {
         unattended_files.append (file);
+    }
+
+    protected Gtk.Entry create_input_entry (string text, bool mandatory = true, bool visibility = true) {
+        var entry = new Gtk.Entry ();
+        entry.visibility = visibility;
+        entry.visible = true;
+        entry.text = text;
+
+        if (mandatory)
+            entry.notify["text"].connect (() => {
+                notify_property ("user-data-for-vm-creation-available");
+            });
+
+        return entry;
     }
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
