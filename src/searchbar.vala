@@ -66,10 +66,13 @@ private class Boxes.Searchbar: Boxes.UI {
         if (ui_state != UIState.COLLECTION)
             return handled;
 
-        if (!entry.get_realized ())
-            // This will realize the widget so it can receive events, but
-            // won't actually show it
+        if (!entry.get_realized ()) {
             actor.show ();
+            // should not needed since searchbar actor
+            // is inside hidden revealer, but it ensure
+            // it's not visible..
+            actor.hide ();
+        }
 
         var preedit_changed = false;
         var preedit_changed_id =
