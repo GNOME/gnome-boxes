@@ -16,7 +16,7 @@ private class Boxes.Properties: Boxes.UI {
     public Gtk.Widget screenshot_placeholder;
     private GtkClutter.Actor gtk_actor;
     private Gtk.Notebook notebook;
-    private Gtk.ToolButton back;
+    private Gtk.Button back;
     private Gtk.Label toolbar_label;
     private Gtk.ListStore listmodel;
     private Gtk.TreeView tree_view;
@@ -173,25 +173,17 @@ private class Boxes.Properties: Boxes.UI {
         /* topbar */
         var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.HBox;
 
-        var toolbar = new Toolbar ();
-        toolbar.set_valign (Align.CENTER);
-        toolbar.icon_size = IconSize.MENU;
-        toolbar.get_style_context ().add_class (STYLE_CLASS_MENUBAR);
-        toolbar.set_show_arrow (false);
-
-        var toolbar_box = new Gtk.HBox (false, 0);
-        toolbar_box.set_size_request (50, (int) Boxes.Topbar.height);
-        toolbar_box.add (toolbar);
-
         var box = new Gtk.HBox (false, 5);
         box.add (new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU));
         toolbar_label = new Gtk.Label ("label");
         box.add (toolbar_label);
-        back = new ToolButton (box, null);
-        back.get_style_context ().add_class ("raised");
+        box.vexpand = true;
+
+        var toolbar = new Gd.MainToolbar ();
+        hbox.pack_start (toolbar, true, true, 0);
+        back = toolbar.add_button (null, null, true) as Gtk.Button;
+        back.child = box;
         back.clicked.connect ((button) => { App.app.ui_state = UIState.DISPLAY; });
-        toolbar.insert (back, 0);
-        hbox.pack_start (toolbar_box, true, true, 0);
 
         hbox.show_all ();
 

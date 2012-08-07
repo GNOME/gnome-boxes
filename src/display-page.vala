@@ -2,68 +2,18 @@
 using Gtk;
 using Gdk;
 
-private class Boxes.DisplayToolbar: Gtk.Toolbar {
-    public string title {
-        set { label.set_markup (value); }
-    }
-    private Label label;
-
+private class Boxes.DisplayToolbar: Gd.MainToolbar {
     public DisplayToolbar () {
-        icon_size = IconSize.MENU;
-        get_style_context ().add_class (STYLE_CLASS_MENUBAR);
-        set_show_arrow (false);
+        get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
 
-        // Make sure we're the same size as the normal toolbar
-        this.set_size_request (-1, (int) Topbar.height);
-
-        var left_group = new ToolItem ();
-        insert (left_group, 0);
-
-        var center_group = new ToolItem ();
-        center_group.set_expand (true);
-        insert (center_group, -1);
-
-        var right_group = new ToolItem ();
-        insert (right_group, -1);
-
-        var size_group = new SizeGroup (SizeGroupMode.HORIZONTAL);
-        size_group.add_widget (left_group);
-        size_group.add_widget (right_group);
-
-        var left_box = new Box (Orientation.HORIZONTAL, 0);
-        left_box.valign = Gtk.Align.CENTER;
-        left_group.add (left_box);
-
-        var back = new Button ();
-        back.add (new Image.from_icon_name ("go-previous-symbolic",
-                                            IconSize.MENU));
-        back.get_style_context ().add_class ("raised");
+        var back = add_button ("go-previous-symbolic", null, true) as Gtk.Button;
         back.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
-        left_box.pack_start (back, false, false, 0);
 
-        /* center title - unfortunately, metacity doesn't even center its
-           own title.. sad panda */
-        label = new Label ("Display");
-        label.use_markup = true;
-        center_group.add (label);
+        var fullscreen = add_button ("view-fullscreen-symbolic", null, false) as Gtk.Button;
+        fullscreen.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
 
-        var right_box = new Box (Orientation.HORIZONTAL, 12);
-        right_box.valign = Gtk.Align.CENTER;
-        right_group.add(right_box);
-
-        var btn = new Button ();
-        btn.add (new Image.from_icon_name ("view-fullscreen-symbolic",
-                                           IconSize.MENU));
-        btn.get_style_context ().add_class ("raised");
-        btn.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
-        right_box.pack_start (btn, false, false, 0);
-
-        var props = new Button ();
-        props.add (new Image.from_icon_name ("utilities-system-monitor-symbolic",
-                                             IconSize.MENU));
-        props.get_style_context ().add_class ("raised");
+        var props = add_button ("utilities-system-monitor-symbolic", null, false) as Gtk.Button;
         props.clicked.connect ((button) => { App.app.ui_state = UIState.PROPERTIES; });
-        right_box.pack_start (props, false, false, 0);
     }
 }
 
@@ -193,10 +143,12 @@ private class Boxes.DisplayPage: GLib.Object {
         return_if_fail (machine != null);
 
         var title = machine.name;
+        string? hint = null;
         if (grabbed)
-            title = _("%s <b>(press Ctrl+Alt keys to ungrab)</b>").printf (title);
+            hint = _("(press Ctrl+Alt keys to ungrab)");
 
-        overlay_toolbar.title = toolbar.title = title;
+        overlay_toolbar.set_labels (title, hint);
+        toolbar.set_labels (title, hint);
     }
 
     public void show_display (Boxes.Display display, Widget widget) {

@@ -523,46 +523,33 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* topbar */
         hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.HBox;
-
-        var toolbar = new Gtk.Toolbar ();
-        toolbar.icon_size = Gtk.IconSize.MENU;
-        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
-        toolbar.set_show_arrow (false);
-        hbox.pack_start (toolbar, true, true, 0);
-
         label = new Gtk.Label (_("Create a Box"));
         label.name = "TopbarLabel";
         label.halign = Gtk.Align.START;
         label.margin_left = 15;
-        var tool_item = new Gtk.ToolItem ();
-        tool_item.set_expand (true);
-        tool_item.child = label;
-        toolbar.insert (tool_item, 0);
+        hbox.pack_start (label, false, false, 0);
 
-        cancel_button = new Gtk.Button.from_stock (Gtk.Stock.CANCEL);
-        tool_item = new Gtk.ToolItem ();
-        tool_item.child = cancel_button;
-        toolbar.insert (tool_item, 1);
+        var toolbar = new Gd.MainToolbar ();
+        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar.toolbar_style = Gtk.ToolbarStyle.TEXT;
+        hbox.pack_start (toolbar, true, true, 0);
+
+        cancel_button = toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
+        cancel_button.use_underline = true;
         cancel_button.clicked.connect (() => {
             destroy_machine ();
             wizard_source.page = SourcePage.MAIN;
             App.app.ui_state = UIState.COLLECTION;
         });
 
-        back_button = new Gtk.Button.from_stock (Gtk.Stock.GO_BACK);
-        tool_item = new Gtk.ToolItem ();
-        tool_item.child = back_button;
-        tool_item.margin_left = 20;
-        toolbar.insert (tool_item, 2);
+        back_button = toolbar.add_button (null, _("_Back"), false) as Gtk.Button;
+        back_button.use_underline = true;
         back_button.clicked.connect (() => {
             page = page - 1;
         });
 
-        next_button = new Gtk.Button.with_mnemonic (_("C_ontinue"));
-        tool_item = new Gtk.ToolItem ();
-        tool_item.child = next_button;
-        tool_item.margin_left = 5;
-        toolbar.insert (tool_item, 3);
+        next_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
+        next_button.use_underline = true;
         next_button.get_style_context ().add_class ("boxes-continue");
         next_button.clicked.connect (() => {
             page = page + 1;
