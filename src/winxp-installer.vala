@@ -11,6 +11,12 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
 
     private ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
+    public override bool user_data_for_vm_creation_available {
+        get {
+            return base.user_data_for_vm_creation_available && key_entry.text_length == 29;
+        }
+    }
+
     static construct {
         try {
             key_regex = new Regex ("BOXES_PRODUCT_KEY");
@@ -49,23 +55,11 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         label.halign = Gtk.Align.START;
         hbox.pack_start (label, true, true, 0);
 
-        var notebook = new Gtk.Notebook ();
-        notebook.show_tabs = false;
-        notebook.show_border = false;
-        var button = new Gtk.Button.with_mnemonic (_("_Add Product Key"));
-        notebook.append_page (button);
-        key_entry = new Gtk.Entry ();
+        key_entry = create_input_entry ("");
         key_entry.width_chars = 29;
         key_entry.max_length = 29;
         key_entry.get_style_context ().add_class ("boxes-product-key-entry");
-        notebook.append_page (key_entry);
-
-        button.clicked.connect (() => {
-            notebook.next_page ();
-            key_entry.is_focus = true;
-        });
-
-        hbox.pack_start (notebook, true, true, 0);
+        hbox.pack_start (key_entry, true, true, 0);
         setup_table.attach_defaults (hbox, 0, setup_table.n_columns, setup_table.n_rows - 1, setup_table.n_rows);
 
         express_toggle.bind_property ("active", hbox, "sensitive", 0);
