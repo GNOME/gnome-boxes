@@ -144,8 +144,8 @@ private class Boxes.App: Boxes.UI {
                 ready (no_items);
             });
 
-            check_cpu_vt_capability ();
-            check_module_kvm_loaded ();
+            check_cpu_vt_capability.begin ();
+            check_module_kvm_loaded.begin ();
         });
 
         application.activate.connect_after ((app) => {
@@ -313,7 +313,7 @@ private class Boxes.App: Boxes.UI {
 
                 foreach (var file in files) {
                     var source = new CollectionSource.with_file (file.get_name ());
-                    add_collection_source (source);
+                    add_collection_source.begin (source);
                 }
             }
         } catch (GLib.Error error) {

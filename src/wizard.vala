@@ -197,7 +197,7 @@ private class Boxes.Wizard: Boxes.UI {
         }
 
         source.save ();
-        App.app.add_collection_source (source);
+        App.app.add_collection_source.begin (source);
         return true;
     }
 
