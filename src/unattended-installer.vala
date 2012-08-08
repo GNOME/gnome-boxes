@@ -41,7 +41,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
     public DataStreamNewlineType newline_type;
     public File? disk_file;
 
-    protected bool password_mandatory;
     protected GLib.List<UnattendedFile> unattended_files;
 
     protected Gtk.Table setup_table;
@@ -167,10 +166,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (username == "")
             throw new UnattendedInstallerError.SETUP_INCOMPLETE (_("No username provided"));
-
-        if (password_mandatory && password == "")
-            throw new UnattendedInstallerError.SETUP_INCOMPLETE
-                        (_("Password required for express installation of %s"), label);
     }
 
     public override List<Pair> get_vm_properties () {

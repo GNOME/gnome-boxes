@@ -2,7 +2,7 @@ install
 keyboard BOXES_FEDORA_KBD
 lang BOXES_LANG
 network --onboot yes --device eth0 --bootproto dhcp --noipv6 --hostname=BOXES_HOSTNAME --activate
-rootpw BOXES_PASSWORD
+rootpw dummyPa55w0rd # Actual password set (or unset) in %post below
 firewall --disabled
 authconfig --enableshadow --enablemd5
 selinux --enforcing
@@ -21,7 +21,6 @@ logvol swap --fstype swap --name=LogVol01 --vgname=VolGroup00 --size=768 --grow 
 logvol / --fstype ext4 --name=LogVol00 --vgname=VolGroup00 --size=1024 --grow
 reboot
 
-user --name=BOXES_USERNAME --password=BOXES_PASSWORD
 
 %packages
 @base
@@ -38,8 +37,15 @@ BOXES_FEDORA_SPICE_PACKAGES
 
 %post --erroronfail
 
-# Add user to admin group
-usermod -a -G wheel BOXES_USERNAME
+useradd -G wheel BOXES_USERNAME # Add user
+if test -z BOXES_PASSWORD; then
+    # Make both user and root account passwordless
+    passwd -d BOXES_USERNAME
+    passwd -d root
+else
+    echo BOXES_PASSWORD |passwd --stdin BOXES_USERNAME
+    echo BOXES_PASSWORD |passwd --stdin root
+fi
 
 # Set user avatar
 mkdir /mnt/unattended-media

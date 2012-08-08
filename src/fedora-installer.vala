@@ -32,7 +32,6 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         var source_path = get_unattended ("fedora.ks");
 
         base.from_media (media, source_path, "ks.cfg");
-        password_mandatory = true;
 
         kbd = fetch_console_kbd_layout ();
     }
