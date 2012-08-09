@@ -249,7 +249,11 @@ private class Boxes.CollectionView: Boxes.UI {
     }
 
     private bool model_visible (Gtk.TreeModel model, Gtk.TreeIter iter) {
-        return App.app.filter.filter (get_item_for_iter (iter));
+        var item = get_item_for_iter (iter);
+        if (item  == null)
+            return false;
+
+        return App.app.filter.filter (item);
     }
 
     public void refilter () {
