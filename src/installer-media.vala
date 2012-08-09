@@ -112,7 +112,7 @@ private class Boxes.InstallerMedia : GLib.Object {
             var root_dir = mount.get_root ();
             if (root_dir.get_path () == mount_dir.get_path ()) {
                 var volume = mount.get_volume ();
-                device_file = volume.get_identifier (VOLUME_IDENTIFIER_KIND_UNIX_DEVICE);
+                device_file = volume.get_identifier (VolumeIdentifier.UNIX_DEVICE);
                 mount_point = path;
             } else
                 // Assume direct path to device node/image
