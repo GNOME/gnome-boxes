@@ -23,8 +23,6 @@ reboot
 
 user --name=BOXES_USERNAME --password=BOXES_PASSWORD
 
-BOXES_FEDORA_REPOS
-
 %packages
 @base
 @core
@@ -34,9 +32,7 @@ BOXES_FEDORA_REPOS
 @graphical-internet
 @sound-and-video
 
-# QXL video driver and SPICE vdagent
-xorg-x11-drv-qxl
-spice-vdagent
+BOXES_FEDORA_SPICE_PACKAGES
 
 %end
 

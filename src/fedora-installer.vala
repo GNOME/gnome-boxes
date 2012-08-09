@@ -12,16 +12,15 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
     private string kbd;
 
-    // F16 ships buggly QXL package and spice-vdagent package won't be shipped until F17 so we install from
-    // up2date remote repos for anything less than F17.
-    private bool use_remote_repos { get { return express_install && uint64.parse (os.version) < 17; } }
+    // F16 ships buggly QXL package and spice-vdagent package so simply not install those on F16 and older
+    private bool install_spice_goodies { get { return uint64.parse (os.version) >= 17; } }
 
-    private static Regex repo_regex;
+    private static Regex spice_packages_regex;
     private static Regex kbd_regex;
 
     static construct {
         try {
-            repo_regex = new Regex ("BOXES_FEDORA_REPOS");
+            spice_packages_regex = new Regex ("BOXES_FEDORA_SPICE_PACKAGES");
             kbd_regex = new Regex ("BOXES_FEDORA_KBD");
         } catch (RegexError error) {
             // This just can't fail
@@ -45,22 +44,6 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
         os.set_kernel (kernel_path);
         os.set_ramdisk (initrd_path);
         os.set_cmdline ("ks=hd:sda:/ks.cfg");
-    }
-
-    public override void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {
-        base.check_needed_info ();
-
-        if (!use_remote_repos)
-            return;
-
-        try {
-            var client = new SocketClient ();
-            client.connect_to_host ("fedoraproject.org", 80);
-        } catch (GLib.Error error) {
-            var message = _("Internet access required for express installation of Fedora 16 and older");
-
-            throw new UnattendedInstallerError.SETUP_INCOMPLETE (message);
-        }
     }
 
     protected override async void prepare_direct_boot (Cancellable? cancellable) throws GLib.Error {
@@ -96,9 +79,9 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
         str = kbd_regex.replace (str, str.length, 0, kbd);
 
-        var repos = (use_remote_repos) ? "repo --name=fedora\nrepo --name=updates" : "";
+        var spice_packages = (install_spice_goodies) ? "xorg-x11-drv-qxl\nspice-vdagent" : "";
 
-        return repo_regex.replace (str, str.length, 0, repos);
+        return spice_packages_regex.replace (str, str.length, 0, spice_packages);
     }
 
     private async void normal_clean_up (Cancellable? cancellable) throws GLib.Error {
