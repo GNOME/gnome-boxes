@@ -151,13 +151,6 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         domain.add_device (disk);
     }
 
-    public override void setup_spice_config (DomainGraphicsSpice graphics) {
-        // If guest requires password, we let it take care of authentications and free the user from one
-        // authentication layer.
-        if (express_install && !password_mandatory && password != "")
-            graphics.set_password (password);
-    }
-
     public override void populate_setup_vbox (Gtk.VBox setup_vbox) {
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);

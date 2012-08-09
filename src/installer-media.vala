@@ -85,7 +85,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         domain.add_device (disk);
     }
 
-    public virtual void setup_spice_config (DomainGraphicsSpice graphics) {}
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
     public virtual void check_needed_info () throws UnattendedInstallerError.SETUP_INCOMPLETE {}
 
