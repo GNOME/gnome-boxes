@@ -118,12 +118,9 @@ private class Boxes.VMCreator {
     private void set_post_install_config (LibvirtMachine machine) {
         debug ("Setting post-installation configuration on '%s'", machine.name);
         try {
-            // We need to clone the domain_config as that is supposed to reflect the active config while we are
-            // modifying the inactive config, which are different when domain is running.
-            var config_xml = machine.domain_config.to_xml ();
-            var post_install_config = new GVirConfig.Domain.from_xml (config_xml);
-            VMConfigurator.post_install_setup (post_install_config);
-            machine.domain.set_config (post_install_config);
+            var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+            VMConfigurator.post_install_setup (config);
+            machine.domain.set_config (config);
         } catch (GLib.Error error) {
             warning ("Failed to set post-install configuration on '%s' failed: %s", machine.name, error.message);
         }
@@ -133,8 +130,9 @@ private class Boxes.VMCreator {
                                                                       machine.state == Machine.MachineState.UNKNOWN) {
         debug ("Marking '%s' as installed.", machine.name);
         try {
-            VMConfigurator.mark_as_installed (machine.domain_config);
-            machine.domain.set_config (machine.domain_config);
+            var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+            VMConfigurator.mark_as_installed (config);
+            machine.domain.set_config (config);
         } catch (GLib.Error error) {
             warning ("Failed to marking domain '%s' as installed: %s", machine.name, error.message);
         }
