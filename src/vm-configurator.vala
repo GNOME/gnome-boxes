@@ -10,6 +10,7 @@ private errordomain Boxes.VMConfiguratorError {
 private class Boxes.VMConfigurator {
     private const string BOXES_NS = "boxes";
     private const string BOXES_NS_URI = "http://live.gnome.org/Boxes/";
+    private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
     private const string LIVE_STATE = "live";
     private const string INSTALLATION_STATE = "installation";
     private const string INSTALLED_STATE = "installed";
@@ -17,14 +18,22 @@ private class Boxes.VMConfigurator {
     private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
     private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
 
+    private const string OS_ID_XML = "<os-id>%s</os-id>";
+    private const string MEDIA_ID_XML = "<media-id>%s</media-id>";
+
     public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
-        var xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
+        var custom_xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
+        if (install_media.os != null)
+            custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
+        if (install_media.os_media != null)
+            custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
 
+        custom_xml = BOXES_XML.printf (custom_xml);
         try {
-            domain.set_custom_xml (xml, BOXES_NS, BOXES_NS_URI);
+            domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
 
         var best_caps = get_best_guest_caps (caps, install_media);
@@ -166,10 +175,18 @@ private class Boxes.VMConfigurator {
         return pool;
     }
 
+    public static string? get_os_id (Domain domain) {
+        return get_custom_xml_node (domain, "os-id");
+    }
+
+    public static string? get_os_media_id (Domain domain) {
+        return get_custom_xml_node (domain, "media-id");
+    }
 
     private static void mark_as_installed (Domain domain) {
         try {
-            domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
+            var custom_xml = BOXES_XML.printf (INSTALLED_XML);
+            domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
     }
 
@@ -277,6 +294,10 @@ private class Boxes.VMConfigurator {
     }
 
     private static string? get_os_state (Domain domain) {
+        return get_custom_xml_node (domain, "os-state");
+    }
+
+    private static string? get_custom_xml_node (Domain domain, string node_name) {
         var xml = domain.get_custom_xml (BOXES_NS_URI);
         if (xml != null) {
             var reader = new Xml.TextReader.for_memory ((char []) xml.data,
@@ -284,13 +305,24 @@ private class Boxes.VMConfigurator {
                                                         BOXES_NS_URI,
                                                         null,
                                                         Xml.ParserOption.COMPACT);
-            do {
-                if (reader.name () == "boxes:os-state")
-                    return reader.read_string ();
-            } while (reader.next () == 1);
+            reader.next (); // Go to first node
+
+            var node = reader.expand ();
+            if (node != null) {
+                // Newer configurations have nodes of interest under a toplevel 'gnome-boxes' element
+                if (node->name == "gnome-boxes")
+                    node = node->children;
+
+                while (node != null) {
+                    if (node->name == node_name)
+                        return node->children->content;
+
+                    node = node->next;
+                }
+            }
         }
 
-        debug ("no Boxes OS state for domain '%s'.", domain.get_name ());
+        debug ("No XML node %s' for domain '%s'.", node_name, domain.get_name ());
 
         return null;
     }
