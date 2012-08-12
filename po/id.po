@@ -6,17 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-26 16:47+0000\n"
-"PO-Revision-Date: 2012-03-29 17:07+0700\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"boxes&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-08-09 12:01+0000\n"
+"PO-Revision-Date: 2012-08-12 15:50+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:82
 msgid "Boxes"
 msgstr "Kotak"
 
@@ -28,7 +30,7 @@ msgstr "Manajer/penilik mesin virtual yang sederhana"
 msgid "View and use virtual machines"
 msgstr "Tilik dan pakai mesin virtual"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
 msgstr "Koleksi"
 
@@ -76,211 +78,283 @@ msgstr "Jendela dimaksimalkan"
 msgid "Window maximized state"
 msgstr "Jendela dalam keadaan termaksimumkan"
 
-#: ../src/app.vala:94
+#: ../src/app.vala:107
 msgid "translator-credits"
 msgstr "Andika Triwidada <andika@gmail.com>, 2012"
 
-#: ../src/app.vala:95
+#: ../src/app.vala:108
 msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "Suatu aplikasi sederhana GNOME 3 untuk mengakses sistem jauh atau virtual"
+msgstr ""
+"Suatu aplikasi sederhana GNOME 3 untuk mengakses sistem jauh atau virtual"
 
-#: ../src/app.vala:107 ../src/topbar.vala:63
+#: ../src/app.vala:120 ../src/topbar.vala:62
 msgid "New"
 msgstr "Baru"
 
-#: ../src/app.vala:110
+#: ../src/app.vala:123
 msgid "Properties"
 msgstr "Properti"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:124
 msgid "Fullscreen"
 msgstr "Layar-penuh"
 
-#: ../src/app.vala:114
+#: ../src/app.vala:125
+msgid "Force shutdown"
+msgstr "Paksa mati"
+
+#: ../src/app.vala:128
 msgid "About Boxes"
 msgstr "Tentang Kotak"
 
-#: ../src/app.vala:115
+#: ../src/app.vala:129
 msgid "Quit"
 msgstr "Keluar"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:589
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Kotak '%s' telah dihapus"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:590
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u kotak telah dihapus"
 
-#: ../src/libvirt-machine.vala:243
+#: ../src/collection-view.vala:32
+msgid "New and Recent"
+msgstr "Baru dan Terkini"
+
+#: ../src/display-page.vala:197
+#, c-format
+msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
+msgstr "%s <b>(tekan tombol Ctrl+Alt untuk melepas)</b>"
+
+#: ../src/fedora-installer.vala:60
+msgid ""
+"Internet access required for express installation of Fedora 16 and older"
+msgstr ""
+"Perlu akses internet untuk instalasi kilat Fedora 16 dan yang lebih tua"
+
+#: ../src/installer-media.vala:95 ../src/properties.vala:62
+msgid "System"
+msgstr "Sistem"
+
+#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/installer-media.vala:160
+#, c-format
+msgid "%s (Live)"
+msgstr "%s (Live)"
+
+#: ../src/libvirt-machine.vala:291 ../src/remote-machine.vala:39
+msgid "Name"
+msgstr "Nama"
+
+#: ../src/libvirt-machine.vala:294
 msgid "Virtualizer"
 msgstr "Virtualizer"
 
-#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:310
+#: ../src/libvirt-machine.vala:295 ../src/remote-machine.vala:42
+#: ../src/wizard.vala:329
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:304 ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/libvirt-machine.vala:400
+#: ../src/libvirt-machine.vala:412
+msgid "When you force shutdown, the box may lose data."
+msgstr "Ketika Anda memaksa mematikan, kotak mungkin kehilangan data."
+
+#: ../src/libvirt-machine.vala:483
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:557
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Perubahan memerlukan start ulang '%s'. Mencoba start ulang?"
 
-#: ../src/libvirt-machine.vala:458
+#: ../src/libvirt-machine.vala:574
 msgid "Storage"
 msgstr "Penyimpanan"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:337
+#: ../src/machine.vala:396 ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:258
 msgid "Password"
 msgstr "Kata sandi"
 
-#: ../src/main.vala:10
+#: ../src/main.vala:11
 msgid "Display version number"
 msgstr "Tampilkan nomor versi"
 
+#: ../src/main.vala:12
+#| msgid "Fullscreen"
+msgid "Open in full screen"
+msgstr "Buka di layar-penuh"
+
+#: ../src/main.vala:13
+msgid "Check virtualization capabilities"
+msgstr "Periksa kapabilitas virtualisasi"
+
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:14
+#: ../src/main.vala:15
 msgid "URI to display, broker or installer media"
 msgstr "URI untuk ditampilkan, broker, atau media pemasangan"
 
-#: ../src/main.vala:19
+#: ../src/main.vala:20
 msgid "- A simple application to access remote or virtual machines"
-msgstr "- Suatu aplikasi sederhana GNOME 3 untuk mengakses sistem jauh atau virtual"
+msgstr "- Suatu aplikasi sederhana untuk mengakses sistem jauh atau virtual"
 
-#: ../src/properties.vala:39
+#. FIXME: add proper UI & docs
+#: ../src/main.vala:66
+#, c-format
+msgid "• The CPU is capable of virtualization: %s\n"
+msgstr "• CPU kapable virtualisasi: %s\n"
+
+#: ../src/main.vala:67
+#, c-format
+msgid "• The KVM module is loaded: %s\n"
+msgstr "• Modul KVM dimuat: %s\n"
+
+#: ../src/main.vala:68
+#, c-format
+msgid "• Libvirt KVM guest available: %s\n"
+msgstr "• Guest Libvirt KVM tersedia: %s\n"
+
+#: ../src/main.vala:70
+#, c-format
+msgid "• The SELinux context is default: %s\n"
+msgstr "• Konteks SELinux baku: %s\n"
+
+#: ../src/main.vala:74
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr "Laporkan kutu ke <%s>.\n"
+
+#: ../src/main.vala:75
+#, c-format
+msgid "%s home page: <%s>.\n"
+msgstr "situs web %s: <%s>.\n"
+
+#: ../src/properties.vala:58
 msgid "Login"
 msgstr "Log masuk"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:330
-msgid "System"
-msgstr "Sistem"
-
-#: ../src/properties.vala:47
+#: ../src/properties.vala:66
 msgid "Display"
 msgstr "Tampilan"
 
-#: ../src/properties.vala:51
+#: ../src/properties.vala:70
 msgid "Devices"
 msgstr "Perangkat"
 
-#: ../src/properties.vala:193
+#: ../src/properties.vala:90
+msgid "Some changes may take effect only after reboot"
+msgstr "Beberapa perubahan mungkin berdampak hanya setelah boot ulang"
+
+#: ../src/properties.vala:233
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:200
+#: ../src/properties.vala:240
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:207
+#: ../src/properties.vala:247
 msgid "Net:"
 msgstr "Net:"
 
-#: ../src/remote-machine.vala:61
-msgid "Name"
-msgstr "Nama"
-
-#: ../src/sidebar.vala:141
-msgid "New and Recent"
-msgstr "Baru dan Terkini"
-
-#: ../src/sidebar.vala:143
-msgid "Favorites"
-msgstr "Favorit"
-
-#: ../src/sidebar.vala:144
-msgid "Private"
-msgstr "Privat"
-
-#: ../src/sidebar.vala:145
-msgid "Shared with you"
-msgstr "Berbagi dengan Anda"
-
-#: ../src/sidebar.vala:162
-msgid "Create"
-msgstr "Buat"
-
-#: ../src/spice-display.vala:133
+#: ../src/spice-display.vala:166
 msgid "Share clipboard"
 msgstr "Berbagi papan klip"
 
-#: ../src/spice-display.vala:141
+#: ../src/spice-display.vala:172
 msgid "Resize guest"
 msgstr "Ubah ukuran guest"
 
-#: ../src/spice-display.vala:152
+#: ../src/spice-display.vala:180
 msgid "USB redirection"
 msgstr "Pengalihan USB"
 
-#: ../src/topbar.vala:155
+#: ../src/topbar.vala:177
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d dipilih"
 
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:179
 msgid "Click on items to select them"
 msgstr "Klik pada butir untuk memilihnya"
 
-#: ../src/unattended-installer.vala:26
+#: ../src/unattended-installer.vala:37
 msgid "no password"
 msgstr "tanpa kata sandi"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:176
 msgid "No username provided"
 msgstr "Nama pengguna tak diberikan"
 
-#: ../src/unattended-installer.vala:158
-msgid "Choose express install to automatically preconfigure the box with optimal settings."
-msgstr "Pilih pemasangan kilat untuk memprakonfigurasi otomatis kotak dengan pengaturan optimal."
+#: ../src/unattended-installer.vala:180
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Perlu sandi untuk instalasi kilat %s"
 
-#. First row
-#: ../src/unattended-installer.vala:170
-msgid "Express Install"
-msgstr "Pemasangan Kilat"
-
-#: ../src/unattended-installer.vala:188 ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:187 ../src/unattended-installer.vala:247
 msgid "Username"
 msgstr "Nama pengguna"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:213
+msgid ""
+"Choose express install to automatically preconfigure the box with optimal "
+"settings."
+msgstr ""
+"Pilih pemasangan kilat untuk memprakonfigurasi otomatis kotak dengan "
+"pengaturan optimal."
+
+#. First row
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
+#. won't be asked anything while it's performed.
+#: ../src/unattended-installer.vala:229
+msgid "Express Install"
+msgstr "Pemasangan Kilat"
+
+#: ../src/unattended-installer.vala:268
 msgid "_Add Password"
 msgstr "T_ambah Kata Sandi"
+
+#. No guest caps or none compatible
+#. FIXME: Better error messsage than this please?
+#: ../src/vm-configurator.vala:307
+msgid "Incapable host system"
+msgstr "Sistem host yang tak kapabel"
 
 #: ../src/vnc-display.vala:134
 msgid "Read-only"
 msgstr "Hanya-baca"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:38
+#: ../src/winxp-installer.vala:48
 msgid "Product Key"
 msgstr "Kunci produk"
 
-#: ../src/winxp-installer.vala:45
+#: ../src/winxp-installer.vala:55
 msgid "_Add Product Key"
 msgstr "T_ambahkan Kunci Produk"
 
-#: ../src/wizard-source.vala:62 ../src/wizard-source.vala:86
+#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
 msgid "Enter URL"
 msgstr "Masukkan URL"
 
-#: ../src/wizard-source.vala:72
+#: ../src/wizard-source.vala:122
 msgid "Select a file"
 msgstr "Pilih sebuah berkas"
 
-#: ../src/wizard-source.vala:103
+#: ../src/wizard-source.vala:154
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -290,145 +364,175 @@ msgstr ""
 "\n"
 "Akan menambahkan kotak bagi semua sistem yang tersedia dari akun ini."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:234
 msgid "32-bit x86 system"
-msgstr "Sistem x86 32-bit."
+msgstr "Sistem x86 32-bit"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:235
 msgid "64-bit x86 system"
 msgstr "Sistem x86 64-bit"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:244
 #, c-format
 msgid " from %s"
 msgstr " dari %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:284
 msgid "Select a device or ISO file"
 msgstr "Pilih suatu perangkat atau berkas ISO"
 
-#: ../src/wizard.vala:75
-msgid "Box creation failed!"
-msgstr "Gagal membuat kotak!"
+#: ../src/wizard.vala:92
+#| msgid "Box creation failed!"
+msgid "Box creation failed"
+msgstr "Gagal membuat Kotak!"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:507
+#: ../src/wizard.vala:117 ../src/wizard.vala:559
 msgid "C_ontinue"
 msgstr "_Lanjut"
 
-#: ../src/wizard.vala:98
+#: ../src/wizard.vala:117
 msgid "C_reate"
 msgstr "_Buat"
 
-#: ../src/wizard.vala:114
+#: ../src/wizard.vala:138
 msgid "Please enter desktop or collection URI"
 msgstr "Silakan masukkan URI koleksi atau desktop"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard.vala:144
 msgid "Will add boxes for all systems available from this account."
-msgstr "Akan menambahkan kotak-kotak bagi semua sistem yang tersedia dari akun ini."
+msgstr ""
+"Akan menambahkan kotak-kotak bagi semua sistem yang tersedia dari akun ini."
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:147
 msgid "Will add a single box."
 msgstr "Akan menambahkan suatu kotak tunggal."
 
-#: ../src/wizard.vala:129
+#: ../src/wizard.vala:153
 msgid "Desktop Access"
 msgstr "Akses Desktop"
 
-#: ../src/wizard.vala:199
+#: ../src/wizard.vala:233
 msgid "Invalid URI"
 msgstr "URI tak valid"
 
-#: ../src/wizard.vala:210
+#: ../src/wizard.vala:244
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protokol tak didukung '%s'"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:312
+#| msgid "Box creation failed!"
+msgid "Box setup failed"
+msgstr "Gagal menyiapkan Kotak!"
+
+#: ../src/wizard.vala:319
 msgid "Will create a new box with the following properties:"
 msgstr "Akan membuat suatu kotak baru dengan properti berikut:"
 
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:324
 msgid "Type"
 msgstr "Tipe"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:327
 msgid "Host"
 msgstr "Host"
 
-#: ../src/wizard.vala:316 ../src/wizard.vala:322
+#: ../src/wizard.vala:335 ../src/wizard.vala:341
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:317
+#: ../src/wizard.vala:336
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:346
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Akan menambahkan kotak bagi semua sistem yang tersedia dari akun ini:"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:353
 msgid "Memory"
 msgstr "Memori"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:355
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:355
 #, c-format
 msgid "%s maximum"
 msgstr "maksimal %s"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:426
 msgid "Introduction"
 msgstr "Perkenalan"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:430
 msgid ""
-"Creating a Box will allow you to use another operating system directly from your existing login.\n"
+"Creating a Box will allow you to use another operating system directly from "
+"your existing login.\n"
 "\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."
+"You may connect to an existing machine <b><i>over the network</i></b> or "
+"create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
-"Membuat suatu Box akan memungkinkan Anda memakai sistem operasi lain secara langsung dari login Anda yang ada.\n"
+"Membuat suatu Box akan memungkinkan Anda memakai sistem operasi lain secara "
+"langsung dari login Anda yang ada.\n"
 "\n"
-"Anda boleh menyambung ke mesin yang telah ada <b><i>melalui jaringan</i></b> atau membuat suatu <b><i>mesin virtual</i></b> yang berjalan secara lokal di tempatmu sendiri."
+"Anda boleh menyambung ke mesin yang telah ada <b><i>melalui jaringan</i></b> "
+"atau membuat suatu <b><i>mesin virtual</i></b> yang berjalan secara lokal di "
+"tempatmu sendiri."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:442
 msgid "Source Selection"
 msgstr "Pilihan Sumber"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:443
 msgid "Insert operating system installation media or select a source below"
-msgstr "Sisipkan media pemasangan sistem operasi atau pilih suatu sumber di bawah"
+msgstr ""
+"Sisipkan media pemasangan sistem operasi atau pilih suatu sumber di bawah"
 
-#: ../src/wizard.vala:413
-msgid "Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."
-msgstr "Merek dagang yang ditampilkan di atas hanya dipakai untuk identifikasi produk perangkat lunak yang telah Anda peroleh dan merupakan properti dari masing-masing pemiliknya."
+#: ../src/wizard.vala:453
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Merek dagang yang ditampilkan di atas hanya dipakai untuk identifikasi "
+"produk perangkat lunak yang telah Anda peroleh dan merupakan properti dari "
+"masing-masing pemiliknya."
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:466
 msgid "Preparation"
 msgstr "Persiapan"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:467
 msgid "Preparing to create new box"
 msgstr "Bersiap membuat kotak baru"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:486
 msgid "Analyzing installer media."
 msgstr "Menganalisis media pemasang."
 
-#: ../src/wizard.vala:454
+#: ../src/wizard.vala:497
 msgid "Setup"
 msgstr "Setup"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:504
 msgid "Review"
 msgstr "Ulasan"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:515
+msgid ""
+"Virtualization extensions are unavailable on your system. Expect this box to "
+"be extremely slow. If your system is recent enough (made in or after 2008), "
+"these extensions are probably available on your system and you may need to "
+"enable them in your system's BIOS setup."
+msgstr ""
+"Ekstensi virtualisasi tak tersedia pada sistem Anda. Bersiaplah bahwa kotak "
+"ini akan sangat lambat. Bila sistem Anda cukup terkini (dibuat pada atau "
+"setelah 2008), ekstensi ini mungkin tersedia pada sistem Anda dan Anda "
+"mungkin perlu mengaktifkannya dalam penyiapan BIOS sistem Anda."
+
+#: ../src/wizard.vala:531
 msgid "Create a Box"
 msgstr "Buat Sebuah Kotak"
-
