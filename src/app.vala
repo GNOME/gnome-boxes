@@ -161,7 +161,9 @@ private class Boxes.App: Boxes.UI {
 
     public void open (string name) {
         ui_state = UIState.COLLECTION;
-        view.visible = false; // to avoid some glitches
+        // we don't want to show the collection items as it will
+        // appear as a glitch when opening a box immediately
+        view.visible = false;
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
@@ -175,7 +177,9 @@ private class Boxes.App: Boxes.UI {
 
     public bool open_uuid (string uuid) {
         ui_state = UIState.COLLECTION;
-        view.visible = false; // to avoid some glitches
+        // we don't want to show the collection items as it will
+        // appear as a glitch when opening a box immediately
+        view.visible = false;
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
