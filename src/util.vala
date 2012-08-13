@@ -267,6 +267,10 @@ namespace Boxes {
         }
     }
 
+    public bool is_set (string? str) {
+        return str != null && str != "";
+    }
+
     public string yes_no (bool value) {
         return value ? N_("yes") : N_("no");
     }
@@ -283,6 +287,38 @@ namespace Boxes {
         }
 
         return indented;
+    }
+
+    // shamelessly copied form gnome-contacts
+    private static unichar strip_char (unichar ch) {
+        switch (ch.type ()) {
+        case UnicodeType.CONTROL:
+        case UnicodeType.FORMAT:
+        case UnicodeType.UNASSIGNED:
+        case UnicodeType.NON_SPACING_MARK:
+        case UnicodeType.COMBINING_MARK:
+        case UnicodeType.ENCLOSING_MARK:
+            /* Ignore those */
+            return 0;
+        default:
+            return ch.tolower ();
+        }
+    }
+
+    // shamelessly copied form gnome-contacts
+    public static string canonicalize_for_search (string str) {
+        unowned string s;
+        var buf = new unichar[18];
+        var res = new StringBuilder ();
+        for (s = str; s[0] != 0; s = s.next_char ()) {
+            var c = strip_char (s.get_char ());
+            if (c != 0) {
+                var size = c.fully_decompose (false, buf);
+                if (size > 0)
+                    res.append_unichar (buf[0]);
+            }
+        }
+        return res.str;
     }
 
     [DBus (name = "org.freedesktop.Accounts")]
