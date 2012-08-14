@@ -81,7 +81,7 @@ private class Boxes.Topbar: Boxes.UI {
         hbox = new Gtk.HBox (false, 0);
         notebook.append_page (hbox, null);
         selection_toolbar = new Gd.MainToolbar ();
-        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        selection_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (selection_toolbar, true, true, 0);
 
         update_selection_label ();
