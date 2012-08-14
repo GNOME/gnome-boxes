@@ -198,9 +198,11 @@ namespace Boxes {
                             out string? standard_error = null) throws GLib.Error {
         string std_output = "";
         string std_error = "";
+        // make sure vala makes a copy of argv that will be kept alive until run_in_thread finishes
+        string[] argv_copy = argv;
 
         yield run_in_thread (() => {
-           exec_sync (argv, out std_output, out std_error);
+           exec_sync (argv_copy, out std_output, out std_error);
         }, cancellable);
 
         standard_output = std_output;
