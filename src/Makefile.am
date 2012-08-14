@@ -55,7 +55,7 @@ libcommon_a_SOURCES =				\
 
 libcommon_a_CFLAGS = $(BOXES_COMMON_CFLAGS)
 
-libcommon_vala.stamp common.vapi: $(libcommon_a_VALASOURCES)
+libcommon_vala.stamp common.vapi libcommon.h: $(libcommon_a_VALASOURCES)
 	$(AM_V_VALAC)$(VALAC) $(VALAFLAGS) $(VALA_DEBUG_FLAGS)	\
 	--enable-experimental					\
 	--vapidir=$(srcdir)/					\
