@@ -84,7 +84,7 @@ VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
 VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
 
-VALA_CHECK([0.16.0], [
+VALA_CHECK([0.17.2], [
   clutter-gtk-1.0
   cogl-1.0
   gdk-pixbuf-2.0
