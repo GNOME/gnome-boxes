@@ -30,6 +30,10 @@ G_BEGIN_DECLS
 #include <libgd/gd-main-toolbar.h>
 #include <libgd/gd-margin-container.h>
 #include <libgd/gd-tagged-entry.h>
+#include <libgd/gd-toggle-pixbuf-renderer.h>
+#include <libgd/gd-two-lines-renderer.h>
+#include <libgd/gd-main-view-generic.h>
+#include <libgd/gd-main-icon-view.h>
 
 G_END_DECLS
 

@@ -22,6 +22,8 @@ assets_DATA =					\
 	boxes-arrow.svg				\
 	boxes-dark.png				\
 	boxes-gray.png				\
+	grid-selection-checked.svg		\
+	grid-selection-unchecked.svg		\
 	$(NULL)
 
 imagesdir = $(datadir)/gnome-boxes/pixmaps

@@ -15,6 +15,10 @@ gdprivate_source_h =				\
 	gd-main-toolbar.h			\
 	gd-margin-container.h			\
 	gd-tagged-entry.h			\
+	gd-toggle-pixbuf-renderer.h		\
+	gd-two-lines-renderer.h			\
+	gd-main-view-generic.h			\
+	gd-main-icon-view.h			\
 	$(NULL)
 
 gdprivate_source_c =				\
@@ -22,6 +26,10 @@ gdprivate_source_c =				\
 	gd-main-toolbar.c			\
 	gd-margin-container.c			\
 	gd-tagged-entry.c			\
+	gd-toggle-pixbuf-renderer.c		\
+	gd-two-lines-renderer.c			\
+	gd-main-view-generic.c			\
+	gd-main-icon-view.c			\
 	$(NULL)
 
 pkglib_LTLIBRARIES = libgdprivate-1.0.la
