@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-13 23:29+0300\n"
-"PO-Revision-Date: 2012-08-13 23:33+0200\n"
+"POT-Creation-Date: 2012-08-15 07:49+0300\n"
+"PO-Revision-Date: 2012-08-15 07:50+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <sh.yaron@gmail.com>\n"
 "Language: he\n"
@@ -90,7 +90,7 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "יישום פשוט ל־GNOME 3 לגישה מרחוק או למערכות וירטואליות"
 
 #: ../src/app.vala:120
-#: ../src/topbar.vala:62
+#: ../src/topbar.vala:48
 msgid "New"
 msgstr "חדש"
 
@@ -130,10 +130,9 @@ msgstr[1] "%u קופסאות נמחקו"
 msgid "New and Recent"
 msgstr "חדשים ואחרונים"
 
-#: ../src/display-page.vala:197
-#, c-format
-msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
-msgstr "%s <b>(יש ללחוץ על המקשים Ctrl+Alt כדי לבטל את הלכידה)</b>"
+#: ../src/display-page.vala:148
+msgid "(press Ctrl+Alt keys to ungrab)"
+msgstr "(יש ללחוץ על המקשים Ctrl+Alt כדי לבטל את הלכידה)"
 
 #: ../src/installer-media.vala:91
 #: ../src/properties.vala:62
@@ -268,15 +267,15 @@ msgstr "התקנים"
 msgid "Some changes may take effect only after reboot"
 msgstr "חלק מהשינויים ייכנסו לתוקף רק לאחר הפעלה מחדש"
 
-#: ../src/properties.vala:233
+#: ../src/properties.vala:225
 msgid "CPU:"
 msgstr "מעבד:"
 
-#: ../src/properties.vala:240
+#: ../src/properties.vala:232
 msgid "I/O:"
 msgstr "קלט/פלט:"
 
-#: ../src/properties.vala:247
+#: ../src/properties.vala:239
 msgid "Net:"
 msgstr "רשת:"
 
@@ -292,14 +291,19 @@ msgstr "שינוי גודל האורח"
 msgid "USB redirection"
 msgstr "הפניית USB"
 
-#: ../src/topbar.vala:177
+#: ../src/topbar.vala:89
+#: ../src/wizard.vala:537
+msgid "_Cancel"
+msgstr "_ביטול"
+
+#: ../src/topbar.vala:118
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "נבחרה אחת"
 msgstr[1] "נבחרו %d"
 
-#: ../src/topbar.vala:179
+#: ../src/topbar.vala:120
 msgid "Click on items to select them"
 msgstr "יש ללחוץ על הפריטים כדי לבחור אותם"
 
@@ -326,6 +330,19 @@ msgstr "התקנה מהירה"
 #: ../src/unattended-installer.vala:253
 msgid "_Add Password"
 msgstr "הוספת _ססמה"
+
+#: ../src/util-app.vala:216
+#, c-format
+msgid ""
+"Your SELinux context looks incorrect, you can try to fix it by running:\n"
+"%s"
+msgstr ""
+"הקשר ה־SELinux שלך נראה שגוי, ניתן לנסות לתקן אותו על ידי הרצת הפקודה:\n"
+"%s"
+
+#: ../src/util-app.vala:220
+msgid "SELinux not installed?"
+msgstr "האם SELinux לא מותקן?"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
@@ -384,7 +401,7 @@ msgid "Box creation failed"
 msgstr "יצירת הקופסה נכשלה"
 
 #: ../src/wizard.vala:117
-#: ../src/wizard.vala:561
+#: ../src/wizard.vala:551
 msgid "C_ontinue"
 msgstr "המ_שך"
 
@@ -509,9 +526,13 @@ msgstr "סקירה"
 msgid "Virtualization extensions are unavailable on your system. Expect this box to be extremely slow. If your system is recent enough (made in or after 2008), these extensions are probably available on your system and you may need to enable them in your system's BIOS setup."
 msgstr "הרחבות הווירטואליזציה אינן זמינות למערכת שלך. הקופסה שלך צפויה להיות אטית להחריד. אם המערכת שלך עדכנית מספיק (נוצרה לאחר 2008), הרחבות אלה כפי הנראה זמינות במערכת שלך ועליך להפעיל אותן בהגדרות ה־BIOS של המערכת שלך."
 
-#: ../src/wizard.vala:533
+#: ../src/wizard.vala:526
 msgid "Create a Box"
 msgstr "יצירת קופסה"
+
+#: ../src/wizard.vala:545
+msgid "_Back"
+msgstr "ח_זרה"
 
 #~ msgid ""
 #~ "Internet access required for express installation of Fedora 16 and older"
