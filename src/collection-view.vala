@@ -17,7 +17,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
     private enum ModelColumns {
         SCREENSHOT = Gd.MainColumns.ICON,
-        TITLE = Gd.MainColumns.TITLE,
+        TITLE = Gd.MainColumns.PRIMARY_TEXT,
         SELECTED = Gd.MainColumns.SELECTED,
         ITEM = Gd.MainColumns.LAST,
 

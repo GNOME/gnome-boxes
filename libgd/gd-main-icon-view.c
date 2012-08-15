@@ -116,9 +116,9 @@ gd_main_icon_view_constructed (GObject *obj)
                 NULL);
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (self), cell, FALSE);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (self), cell,
-                                 "text", GD_MAIN_COLUMN_TITLE);
+                                 "text", GD_MAIN_COLUMN_PRIMARY_TEXT);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (self), cell,
-                                 "line-two", GD_MAIN_COLUMN_AUTHOR);
+                                 "line-two", GD_MAIN_COLUMN_SECONDARY_TEXT);
 
   gtk_icon_view_enable_model_drag_source (GTK_ICON_VIEW (self),
                                           GDK_BUTTON1_MASK,
