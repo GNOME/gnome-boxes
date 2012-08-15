@@ -223,7 +223,12 @@ private class Boxes.WizardSource: GLib.Object {
         var vbox = new Gtk.VBox (true, 5);
         hbox.pack_start (vbox, true, true);
 
-        var label = new Gtk.Label (media.label);
+        var media_label = media.label;
+        if (media.os_media != null && media.os_media.live)
+            // Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+            //              http://en.wikipedia.org/wiki/Live_CD
+            media_label += " (" +  _("Live") + ")";
+        var label = new Gtk.Label (media_label);
         label.set_ellipsize (Pango.EllipsizeMode.END);
         label.get_style_context ().add_class ("boxes-source-label");
         label.xalign = 0.0f;

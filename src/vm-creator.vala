@@ -154,8 +154,6 @@ private class Boxes.VMCreator {
         var base_title = install_media.label;
         title = base_title;
         var base_name = (install_media.os != null) ? install_media.os.short_id : base_title;
-        if (install_media.live)
-            base_name += "-live";
         name = base_name;
 
         var pool = yield get_storage_pool ();

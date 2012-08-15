@@ -18,6 +18,7 @@ private class Boxes.CollectionView: Boxes.UI {
     private enum ModelColumns {
         SCREENSHOT = Gd.MainColumns.ICON,
         TITLE = Gd.MainColumns.PRIMARY_TEXT,
+        INFO = Gd.MainColumns.SECONDARY_TEXT,
         SELECTED = Gd.MainColumns.SELECTED,
         ITEM = Gd.MainColumns.LAST,
 
@@ -156,6 +157,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
     private Gtk.TreeIter append (Gdk.Pixbuf pixbuf,
                                  string title,
+                                 string? info,
                                  CollectionItem item)
     {
         Gtk.TreeIter iter;
@@ -163,6 +165,8 @@ private class Boxes.CollectionView: Boxes.UI {
         model.append (out iter);
         model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
         model.set (iter, ModelColumns.TITLE, title);
+        if (info != null)
+            model.set (iter, ModelColumns.INFO, info);
         model.set (iter, ModelColumns.SELECTED, false);
         model.set (iter, ModelColumns.ITEM, item);
 
@@ -179,7 +183,7 @@ private class Boxes.CollectionView: Boxes.UI {
             return;
         }
 
-        var iter = append (machine.pixbuf, machine.name, item);
+        var iter = append (machine.pixbuf, machine.name, machine.info, item);
         var pixbuf_id = machine.notify["pixbuf"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.SCREENSHOT, machine.pixbuf);
@@ -191,6 +195,12 @@ private class Boxes.CollectionView: Boxes.UI {
             model.set (iter, ModelColumns.TITLE, item.name);
         });
         item.set_data<ulong> ("name_id", name_id);
+
+        var info_id = machine.notify["info"].connect (() => {
+            // apparently iter is stable after insertion/removal/sort
+            model.set (iter, ModelColumns.INFO, machine.info);
+        });
+        item.set_data<ulong> ("info_id", info_id);
 
         item.ui_state = UIState.COLLECTION;
         actor_remove (item.actor);
@@ -231,6 +241,8 @@ private class Boxes.CollectionView: Boxes.UI {
         item.disconnect (pixbuf_id);
         var name_id = item.get_data<ulong> ("name_id");
         item.disconnect (name_id);
+        var info_id = item.get_data<ulong> ("info_id");
+        item.disconnect (info_id);
     }
 
     private Gtk.TreePath? get_path_for_item (CollectionItem item) {

@@ -14,6 +14,20 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
+    public override string? info {
+        get {
+            if (domain_config == null)
+                return null;
+
+            if (VMConfigurator.is_live_config (domain_config))
+                return _("Live");
+            else if (VMConfigurator.is_install_config (domain_config))
+                return _("Installing...");
+            else
+                return null;
+        }
+    }
+
     private bool _connect_display;
     public override void disconnect_display () {
         stay_on_display = false;
@@ -66,6 +80,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             var volume = get_storage_volume (connection, domain, null);
             storage_volume_path = (volume != null)? volume.get_path () : null;
+
+            notify_property ("info");
         } catch (GLib.Error error) {
             critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
         }

@@ -149,10 +149,5 @@ private class Boxes.InstallerMedia : GLib.Object {
 
             return;
         }
-
-        if (os_media != null && os_media.live)
-            // Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
-            //              http://en.wikipedia.org/wiki/Live_CD
-            this.label = _("%s (Live)").printf (this.label);
     }
 }
