@@ -35,7 +35,9 @@ typedef enum {
   GD_MAIN_COLUMN_AUTHOR,
   GD_MAIN_COLUMN_ICON,
   GD_MAIN_COLUMN_MTIME,
-  GD_MAIN_COLUMN_SELECTED
+  GD_MAIN_COLUMN_SELECTED,
+
+  GD_MAIN_COLUMN_LAST
 } GdMainColumns;
 
 #define GD_TYPE_MAIN_VIEW_GENERIC gd_main_view_generic_get_type()

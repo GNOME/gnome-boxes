@@ -215,3 +215,22 @@ BoxesMiniGraph {
 .boxes-toplevel {
     background-color: @theme_bg_color;
 }
+
+.boxes-icon-view {
+    background-color: transparent;
+    background-image: none;
+}
+
+GtkIconView.boxes-icon-view {
+    -GdMainIconView-icon-size: 40;
+}
+
+GtkIconView.boxes-icon-view.check {
+    background-image: url("assets/grid-selection-unchecked.svg");
+    background-color: transparent;
+}
+
+GtkIconView.boxes-icon-view.check:active {
+    background-image: url("assets/grid-selection-checked.svg");
+    background-color: transparent;
+}
