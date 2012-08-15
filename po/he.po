@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-15 07:49+0300\n"
-"PO-Revision-Date: 2012-08-15 07:50+0200\n"
+"POT-Creation-Date: 2012-08-16 01:56+0300\n"
+"PO-Revision-Date: 2012-08-16 01:57+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <sh.yaron@gmail.com>\n"
 "Language: he\n"
@@ -126,7 +126,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "קופסה אחת נמחקה"
 msgstr[1] "%u קופסאות נמחקו"
 
-#: ../src/collection-view.vala:32
+#: ../src/collection-view.vala:39
 msgid "New and Recent"
 msgstr "חדשים ואחרונים"
 
@@ -139,52 +139,56 @@ msgstr "(יש ללחוץ על המקשים Ctrl+Alt כדי לבטל את הלכ�
 msgid "System"
 msgstr "מערכת"
 
-#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/installer-media.vala:156
-#, c-format
-msgid "%s (Live)"
-msgstr "%s (חי)"
+#: ../src/libvirt-machine.vala:23
+#: ../src/wizard-source.vala:230
+msgid "Live"
+msgstr "חי"
 
-#: ../src/libvirt-machine.vala:291
+#: ../src/libvirt-machine.vala:25
+msgid "Installing..."
+msgstr "מתבצעת התקנה..."
+
+#: ../src/libvirt-machine.vala:307
 #: ../src/remote-machine.vala:39
 msgid "Name"
 msgstr "שם"
 
-#: ../src/libvirt-machine.vala:294
+#: ../src/libvirt-machine.vala:310
 msgid "Virtualizer"
 msgstr "מחולל מכונות וירטואליות"
 
-#: ../src/libvirt-machine.vala:295
+#: ../src/libvirt-machine.vala:311
 #: ../src/remote-machine.vala:42
 #: ../src/wizard.vala:331
 msgid "URI"
 msgstr "כתובת"
 
-#: ../src/libvirt-machine.vala:304
+#: ../src/libvirt-machine.vala:320
 #: ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "פרוטוקול"
 
-#: ../src/libvirt-machine.vala:408
+#: ../src/libvirt-machine.vala:424
 msgid "When you force shutdown, the box may lose data."
 msgstr "בעת אילוץ כיבוי, הקופסה עלול לאבד נתונים."
 
-#: ../src/libvirt-machine.vala:479
+#: ../src/libvirt-machine.vala:495
 msgid "RAM"
 msgstr "זיכרון"
 
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:569
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "השינויים דורשים את הפעלת '%s' מחדש. לעשות זאת?"
 
-#: ../src/libvirt-machine.vala:570
+#: ../src/libvirt-machine.vala:586
 msgid "Storage"
 msgstr "אחסון"
 
 #. 3rd row
-#: ../src/machine.vala:420
+#: ../src/machine.vala:421
 #: ../src/unattended-installer.vala:173
 #: ../src/unattended-installer.vala:243
 msgid "Password"
@@ -378,21 +382,21 @@ msgstr ""
 "\n"
 "קופסאות יתווספו לכל המערכות הזמינות מחשבון זה."
 
-#: ../src/wizard-source.vala:234
+#: ../src/wizard-source.vala:239
 msgid "32-bit x86 system"
 msgstr "מערכת 32-סיביות x86"
 
-#: ../src/wizard-source.vala:235
+#: ../src/wizard-source.vala:240
 msgid "64-bit x86 system"
 msgstr "מערכת 64-סיביות x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:249
 #, c-format
 msgid " from %s"
 msgstr "מבית %s"
 
-#: ../src/wizard-source.vala:284
+#: ../src/wizard-source.vala:289
 msgid "Select a device or ISO file"
 msgstr "בחירת התקן או קובץ ISO"
 
