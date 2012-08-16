@@ -1,22 +1,25 @@
-# Galician translations for PACKAGE package.
-# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Galician translations for gnome-boxes package.
+# Copyright (C) 2012 Leandro Regueiro
+# This file is distributed under the same license as the gnome-boxes package.
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://www.trasno.net
 # Fran Dieguez <frandieguez@gnome.org>, 2012.
-#
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-14 11:48+0200\n"
-"PO-Revision-Date: 2012-08-14 11:50+0200\n"
+"POT-Creation-Date: 2012-08-17 01:11+0200\n"
+"PO-Revision-Date: 2012-08-17 01:12+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
-"Language: gl_ES\n"
+"Language-Team: gnome-l10n-gl@gnome.org\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
 msgid "Boxes"
@@ -123,7 +126,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "Eliminouse %u caixa"
 msgstr[1] "Elimináronse %u caixas"
 
-#: ../src/collection-view.vala:32
+#: ../src/collection-view.vala:39
 msgid "New and Recent"
 msgstr "Novo e recente"
 
@@ -135,49 +138,52 @@ msgstr "(prema as teclas Ctrl+Alt para descapturar)"
 msgid "System"
 msgstr "Sistema"
 
-#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/installer-media.vala:156
-#, c-format
-msgid "%s (Live)"
-msgstr "%s (Live)"
+#: ../src/libvirt-machine.vala:23 ../src/wizard-source.vala:230
+msgid "Live"
+msgstr "Vivo"
 
-#: ../src/libvirt-machine.vala:291 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:25
+msgid "Installing..."
+msgstr "Instalando…"
+
+#: ../src/libvirt-machine.vala:307 ../src/remote-machine.vala:39
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/libvirt-machine.vala:294
+#: ../src/libvirt-machine.vala:310
 msgid "Virtualizer"
 msgstr "Virtualizador"
 
-#: ../src/libvirt-machine.vala:295 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
 #: ../src/wizard.vala:331
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:304 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:320 ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/libvirt-machine.vala:408
+#: ../src/libvirt-machine.vala:424
 msgid "When you force shutdown, the box may lose data."
 msgstr "Ao forzar o apagado, a caixa podería perder datos."
 
-#: ../src/libvirt-machine.vala:479
+#: ../src/libvirt-machine.vala:495
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:569
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Os cambios requiren que se reinicie «%s». Desexa tentar reiniciar?"
 
-#: ../src/libvirt-machine.vala:570
+#: ../src/libvirt-machine.vala:586
 msgid "Storage"
 msgstr "Almacenamento"
 
 #. 3rd row
-#: ../src/machine.vala:420 ../src/unattended-installer.vala:173
+#: ../src/machine.vala:421 ../src/unattended-installer.vala:173
 #: ../src/unattended-installer.vala:243
 msgid "Password"
 msgstr "Contrasinal"
@@ -236,7 +242,7 @@ msgstr "• O contexto SELinux e o predeterminado: %s\n"
 #: ../src/main.vala:82
 #, c-format
 msgid "Report bugs to <%s>.\n"
-msgstr "Informe de erros a <%s>.\n"
+msgstr "Informe de fallos a <%s>.\n"
 
 #: ../src/main.vala:83
 #, c-format
@@ -325,6 +331,20 @@ msgstr "Instalación rápida"
 msgid "_Add Password"
 msgstr "_Engadir contrasinal"
 
+#: ../src/util-app.vala:216
+#, c-format
+msgid ""
+"Your SELinux context looks incorrect, you can try to fix it by running:\n"
+"%s"
+msgstr ""
+"O contexto de SELinux semella incorrecto, pode intentar arranxalo "
+"executando:\n"
+"%s"
+
+#: ../src/util-app.vala:220
+msgid "SELinux not installed?"
+msgstr "Está SELinux instalado?"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
 #: ../src/vm-configurator.vala:306
@@ -358,27 +378,27 @@ msgstr ""
 "\n"
 "Engadira todas as caixas para todos os sistemas dispoñíbeis para esta conta."
 
-#: ../src/wizard-source.vala:234
+#: ../src/wizard-source.vala:239
 msgid "32-bit x86 system"
 msgstr "Sistema x86 de 32 bits"
 
-#: ../src/wizard-source.vala:235
+#: ../src/wizard-source.vala:240
 msgid "64-bit x86 system"
 msgstr "Sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:249
 #, c-format
 msgid " from %s"
 msgstr " desde %s"
 
-#: ../src/wizard-source.vala:284
+#: ../src/wizard-source.vala:289
 msgid "Select a device or ISO file"
 msgstr "Seleccione un dispositivo ou ficheiro ISO"
 
 #: ../src/wizard.vala:92
 msgid "Box creation failed"
-msgstr "Produciuse un fallo ao crear a caixa"
+msgstr "Produciuse un erro ao crear a caixa"
 
 #: ../src/wizard.vala:117 ../src/wizard.vala:551
 msgid "C_ontinue"
@@ -415,7 +435,7 @@ msgstr "Protocolo «%s» non admitido"
 
 #: ../src/wizard.vala:314
 msgid "Box setup failed"
-msgstr "Produciuse un fallo ao configurar a caixa"
+msgstr "Produciuse un erro ao configurar a caixa"
 
 #: ../src/wizard.vala:321
 msgid "Will create a new box with the following properties:"
