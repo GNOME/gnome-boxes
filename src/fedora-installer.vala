@@ -12,15 +12,10 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
     private string kbd;
 
-    // F16 ships buggly QXL package and spice-vdagent package so simply not install those on F16 and older
-    private bool install_spice_goodies { get { return uint64.parse (os.version) >= 17; } }
-
-    private static Regex spice_packages_regex;
     private static Regex kbd_regex;
 
     static construct {
         try {
-            spice_packages_regex = new Regex ("BOXES_FEDORA_SPICE_PACKAGES");
             kbd_regex = new Regex ("BOXES_FEDORA_KBD");
         } catch (RegexError error) {
             // This just can't fail
@@ -76,11 +71,7 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     protected override string fill_unattended_data (string data) throws RegexError {
         var str = base.fill_unattended_data (data);
 
-        str = kbd_regex.replace (str, str.length, 0, kbd);
-
-        var spice_packages = (install_spice_goodies) ? "xorg-x11-drv-qxl\nspice-vdagent" : "";
-
-        return spice_packages_regex.replace (str, str.length, 0, spice_packages);
+        return kbd_regex.replace (str, str.length, 0, kbd);
     }
 
     private async void normal_clean_up (Cancellable? cancellable) throws GLib.Error {

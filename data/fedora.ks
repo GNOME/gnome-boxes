@@ -31,7 +31,9 @@ reboot
 @graphical-internet
 @sound-and-video
 
-BOXES_FEDORA_SPICE_PACKAGES
+# QXL video driver and SPICE vdagent
+xorg-x11-drv-qxl
+spice-vdagent
 
 %end
 
