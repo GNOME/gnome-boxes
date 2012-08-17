@@ -145,16 +145,31 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
     }
 
     private string fetch_console_kbd_layout () {
-        var settings = new GLib.Settings ("org.gnome.libgnomekbd.keyboard");
-        var layouts = settings.get_strv ("layouts");
-        var layout_str = layouts[0];
-        if (layout_str == null || layout_str == "") {
+        string method = null;
+        string layout_str = null;
+
+        // Don't crash if the schema is not installed
+        var schemas = GLib.Settings.list_schemas ();
+        foreach (var s in schemas) {
+            if (s == "org.gnome.desktop.input-sources") {
+                var settings = new GLib.Settings (s);
+                Variant sources = settings.get_value ("sources");
+                uint current = settings.get_uint ("current");
+                if (current > sources.n_children ())
+                    current = 0;
+
+                if (sources.n_children () > 0)
+                    sources.get_child (current, "(ss)", out method, out layout_str);
+                break;
+            }
+        }
+
+        if (method != "xkb" || layout_str == null) {
             warning ("Failed to fetch prefered keyboard layout from user settings, falling back to 'us'..");
 
             return "us";
         }
-
-        var tokens = layout_str.split("\t");
+        var tokens = layout_str.split("+");
         var xkb_layout = tokens[0];
         var xkb_variant = tokens[1];
         var console_layout = (string) null;
