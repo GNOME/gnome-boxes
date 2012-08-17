@@ -102,13 +102,14 @@ VALA_CHECK([0.17.2], [
 ])
 
 dnl libgd
-AC_CHECK_LIBM
-AC_SUBST(LIBM)
-
-PKG_CHECK_MODULES(LIBGD, [
-  glib-2.0 >= $GLIB_MIN_VERSION
-  gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
-  gtk+-3.0 >= $GTK_MIN_VERSION
+LIBGD_INIT([
+  gtk-hacks
+  main-toolbar
+  main-icon-view
+  margin-container
+  static
+  tagged-entry
+  vapi
 ])
 
 dnl Strict compiler

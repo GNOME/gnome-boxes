@@ -9,7 +9,7 @@ AM_CPPFLAGS =						\
 	-DDATADIR=\""$(datadir)"\"			\
 	$(DISABLE_DEPRECATED)				\
 	-DG_LOG_DOMAIN=\""Boxes"\"			\
-	-I$(top_srcdir)					\
+	-I$(top_srcdir)/libgd                           \
 	$(NULL)
 
 AM_VALAFLAGS =						\
@@ -22,7 +22,7 @@ AM_VALAFLAGS =						\
 	--pkg cogl-1.0					\
 	--pkg config					\
 	--pkg common					\
-	--pkg gd-1.0					\
+	--pkg gd					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
@@ -113,10 +113,10 @@ gnome_boxes_SOURCES =				\
 	wizard.vala				\
 	$(NULL)
 
-gnome_boxes_LDADD =					\
-	$(BOXES_LIBS)					\
-	$(top_builddir)/libgd/libgdprivate-1.0.la	\
-	libcommon.a					\
+gnome_boxes_LDADD =				\
+	$(BOXES_LIBS)				\
+	$(top_builddir)/libgd/libgd.la		\
+	libcommon.a				\
 	$(NULL)
 
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
