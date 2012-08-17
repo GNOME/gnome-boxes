@@ -1,4 +1,5 @@
 NULL =
+EXTRA_DIST =
 
 gdprivate_cflags =				\
 	-I$(top_srcdir)				\
@@ -53,6 +54,7 @@ libgdprivate_1_0_la_SOURCES =			\
 include $(INTROSPECTION_MAKEFILE)
 
 INTROSPECTION_GIRS = Gd-1.0.gir
+EXTRA_DIST += $(srcdir)/Gd-1.0.gir
 
 Gd-1.0.gir: libgdprivate-1.0.la Makefile
 Gd_1_0_gir_NAMESPACE = Gd
@@ -75,19 +77,18 @@ Gd_1_0_gir_FILES =				\
 	$(gdprivate_source_c:%=$(srcdir)/%)	\
 	$(NULL)
 
-VAPIS = gd-1.0.vapi
-BUILT_SOURCES = $(VAPIS)
+VAPIS = $(srcdir)/gd-1.0.vapi
 
-gd-1.0.vapi: $(builddir)/Gd-1.0.gir
+$(srcdir)/gd-1.0.vapi: $(srcdir)/Gd-1.0.gir
 	$(AM_V_GEN)$(VAPIGEN)				\
-		--vapidir=$(top_srcdir)/vapi/upstream	\
 		--library gd-1.0			\
 		--pkg gio-2.0				\
 		--pkg gobject-2.0			\
 		--pkg gtk+-3.0				\
 		$<
 
-EXTRA_DIST = $(VAPIS)
+EXTRA_DIST += $(VAPIS)
+noinst_DATA = $(VAPIS)
 
 MAINTAINERCLEANFILES = $(INTROSPECTION_GIRS) $(VAPIS)
 

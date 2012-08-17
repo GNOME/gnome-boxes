@@ -43,6 +43,7 @@ disk.img:
 
 EXTRA_DIST =					\
 	gnome-boxes.desktop.in			\
+	gnome-boxes-search-provider.ini.in      \
 	org.gnome.boxes.gschema.xml.in		\
 	$(desktop_in_files)			\
 	$(source_DATA)				\
@@ -52,18 +53,14 @@ EXTRA_DIST =					\
 	$(service_in_files)			\
 	$(NULL)
 
-CLEANFILES =					\
-	$(desktop_DATA)				\
-	$(NULL)
-
 DISTCLEANFILES =				\
-	org.gnome.boxes.gschema.xml		\
+	$(gsettings_SCHEMAS)			\
+	$(service_DATA)				\
 	$(desktop_DATA)				\
 	$(NULL)
 
 MAINTAINERCLEANFILES =				\
 	gnome-boxes-search-provider.ini		\
-	org.gnome.Boxes.SearchProvider.service  \
 	org.gnome.boxes.gschema.valid		\
 	$(NULL)
 

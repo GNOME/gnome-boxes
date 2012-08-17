@@ -1,5 +1,6 @@
 NULL =
 BUILT_SOURCES =
+EXTRA_DIST =
 MAINTAINERCLEANFILES = *.stamp
 
 AM_CPPFLAGS =						\
@@ -8,6 +9,7 @@ AM_CPPFLAGS =						\
 	-DDATADIR=\""$(datadir)"\"			\
 	$(DISABLE_DEPRECATED)				\
 	-DG_LOG_DOMAIN=\""Boxes"\"			\
+	-I$(top_srcdir)					\
 	$(NULL)
 
 AM_VALAFLAGS =						\
@@ -55,7 +57,7 @@ libcommon_a_SOURCES =				\
 
 libcommon_a_CFLAGS = $(BOXES_COMMON_CFLAGS)
 
-libcommon_vala.stamp common.vapi libcommon.h: $(libcommon_a_VALASOURCES)
+libcommon_vala.stamp: $(libcommon_a_VALASOURCES)
 	$(AM_V_VALAC)$(VALAC) $(VALAFLAGS) $(VALA_DEBUG_FLAGS)	\
 	--enable-experimental					\
 	--vapidir=$(srcdir)/					\
@@ -65,8 +67,11 @@ libcommon_vala.stamp common.vapi libcommon.h: $(libcommon_a_VALASOURCES)
 	-C -H libcommon.h --library common $^
 	@touch $(libcommon_a_DEPENDENCIES)
 
-BUILT_SOURCES += $(libcommon_a_DEPENDENCIES)
+common.vapi libcommon.h: libcommon_vala.stamp
+$(libcommon_a_SOURCES): libcommon_vala.stamp
+
 MAINTAINERCLEANFILES += $(libcommon_a_SOURCES) $(libcommon_a_DEPENDENCIES)
+EXTRA_DIST += $(libcommon_a_DEPENDENCIES) $(libcommon_a_VALASOURCES)
 
 bin_PROGRAMS = gnome-boxes
 
@@ -115,6 +120,7 @@ gnome_boxes_LDADD =					\
 	$(NULL)
 
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
+gnome_boxes_DEPENDENCIES = $(libcommon_a_DEPENDENCIES)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
 
@@ -129,6 +135,6 @@ gnome_boxes_search_provider_CFLAGS = $(BOXES_COMMON_CFLAGS)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_search_provider_SOURCES:.vala=.c)
 
-EXTRA_DIST = config.vapi
+EXTRA_DIST += config.vapi
 
 -include $(top_srcdir)/git.mk
