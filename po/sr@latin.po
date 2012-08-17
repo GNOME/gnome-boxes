@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-07 17:19+0000\n"
-"PO-Revision-Date: 2012-08-08 09:41+0200\n"
+"POT-Creation-Date: 2012-08-15 21:24+0000\n"
+"PO-Revision-Date: 2012-08-17 14:18+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:78
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
 msgid "Boxes"
 msgstr "Kutije"
 
@@ -79,45 +79,45 @@ msgstr "Uvećan prozor"
 msgid "Window maximized state"
 msgstr "Stanje uvećanog prozora"
 
-#: ../src/app.vala:105
+#: ../src/app.vala:107
 msgid "translator-credits"
 msgstr "  Miroslav Nikolić <mirosavnikoic@rocketmailcom>"
 
-#: ../src/app.vala:106
+#: ../src/app.vala:108
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednostavan program Gnoma 3 za pristup udaljenim ili virtuelnim sistemima"
 
-#: ../src/app.vala:118 ../src/topbar.vala:61
+#: ../src/app.vala:120 ../src/topbar.vala:48
 msgid "New"
 msgstr "Novi"
 
-#: ../src/app.vala:121
+#: ../src/app.vala:123
 msgid "Properties"
 msgstr "Svojstva"
 
-#: ../src/app.vala:122
+#: ../src/app.vala:124
 msgid "Fullscreen"
 msgstr "Preko celog ekrana"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:125
 msgid "Force shutdown"
 msgstr "Primoraj gašenje"
 
-#: ../src/app.vala:126
+#: ../src/app.vala:128
 msgid "About Boxes"
 msgstr "O Kutijama"
 
-#: ../src/app.vala:127
+#: ../src/app.vala:129
 msgid "Quit"
 msgstr "Izađi"
 
-#: ../src/app.vala:576
+#: ../src/app.vala:599
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Kutija „%s“ je obrisana"
 
-#: ../src/app.vala:577
+#: ../src/app.vala:600
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -126,162 +126,177 @@ msgstr[1] "%u kutije su obrisane"
 msgstr[2] "%u kutija je obrisano"
 msgstr[3] "Jedna kutija je obrisana"
 
-#: ../src/collection-view.vala:31
+#: ../src/collection-view.vala:39
 msgid "New and Recent"
 msgstr "Nove i skorašnje"
 
-#: ../src/display-page.vala:197
-#, c-format
-msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
-msgstr "%s <b>(pritisnite tastere Ktrl+Alt da otpustite)</b>"
+#: ../src/display-page.vala:148
+#| msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
+msgid "(press Ctrl+Alt keys to ungrab)"
+msgstr "(pritisnite tastere Ktrl+Alt da otpustite)"
 
-#: ../src/fedora-installer.vala:60
-msgid ""
-"Internet access required for express installation of Fedora 16 and older"
-msgstr ""
-"Potreban je pristup Internetu za brzu instalaciju Fedore 16 i starijih izdanja"
-
-#: ../src/installer-media.vala:95 ../src/properties.vala:63
+#: ../src/installer-media.vala:91 ../src/properties.vala:62
 msgid "System"
 msgstr "Sistem"
 
-#. Translators: We are appending " (Live)" suffix to name of OS media to indication that it's live.
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/installer-media.vala:160
-#, c-format
-msgid "%s (Live)"
-msgstr "%s (Živi)"
+#: ../src/libvirt-machine.vala:23 ../src/wizard-source.vala:230
+#| msgid "%s (Live)"
+msgid "Live"
+msgstr "Živi"
 
-#: ../src/libvirt-machine.vala:291 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:25
+msgid "Installing..."
+msgstr "Instaliram..."
+
+#: ../src/libvirt-machine.vala:307 ../src/remote-machine.vala:39
 msgid "Name"
 msgstr "Naziv"
 
-#: ../src/libvirt-machine.vala:294
+#: ../src/libvirt-machine.vala:310
 msgid "Virtualizer"
 msgstr "Virtualizator"
 
-#: ../src/libvirt-machine.vala:295 ../src/remote-machine.vala:42
-#: ../src/wizard.vala:329
+#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
+#: ../src/wizard.vala:331
 msgid "URI"
 msgstr "Adresa"
 
-#: ../src/libvirt-machine.vala:304 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:320 ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/libvirt-machine.vala:412
+#: ../src/libvirt-machine.vala:424
 msgid "When you force shutdown, the box may lose data."
 msgstr "Kada primorate na gašenje, kutija može da izgubi podatke."
 
-#: ../src/libvirt-machine.vala:483
+#: ../src/libvirt-machine.vala:495
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:557
+#: ../src/libvirt-machine.vala:569
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Izmene zahtevaju ponovno pokretanje „%s“. Da pokušam ponovno pokretanje?"
 
-#: ../src/libvirt-machine.vala:574
+#: ../src/libvirt-machine.vala:586
 msgid "Storage"
 msgstr "Skladištenje"
 
 #. 3rd row
-#: ../src/machine.vala:396 ../src/unattended-installer.vala:188
-#: ../src/unattended-installer.vala:258
+#: ../src/machine.vala:421 ../src/unattended-installer.vala:173
+#: ../src/unattended-installer.vala:243
 msgid "Password"
 msgstr "Lozinka"
 
-#: ../src/main.vala:11
+#: ../src/main.vala:12
 msgid "Display version number"
 msgstr "Prikazuje broj izdanja"
 
-#: ../src/main.vala:12
+#: ../src/main.vala:13
 msgid "Open in full screen"
 msgstr "Otvara preko celog ekrana"
 
-#: ../src/main.vala:13
+#: ../src/main.vala:14
 msgid "Check virtualization capabilities"
 msgstr "Proverava sposobnosti virtuelizacije"
 
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
 #: ../src/main.vala:15
+msgid "Open box with UUID"
+msgstr "Otvara kutiju sa UUID-om"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:17
 msgid "URI to display, broker or installer media"
 msgstr "Putanja za prikaz, komisionara ili instalacionog medija"
 
-#: ../src/main.vala:20
+#: ../src/main.vala:22
 msgid "- A simple application to access remote or virtual machines"
 msgstr "— Jednostavan program za pristup udaljenim ili virtuelnim sistemima"
 
-#. FIXME: add proper UI & docs
-#: ../src/main.vala:64
+#: ../src/main.vala:44
 #, c-format
-#| msgid "The CPU is capable of virtualization: %s\n"
+msgid "Too many command line arguments specified.\n"
+msgstr "Navedeno je previše argumenata linije naredbi.\n"
+
+#. FIXME: add proper UI & docs
+#: ../src/main.vala:74
+#, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• Procesor podržava virtuelizaciju: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:75
 #, c-format
-#| msgid "The KVM module is loaded: %s\n"
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM modul je učitan: %s\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:76
+#, c-format
+#| msgid "• The KVM module is loaded: %s\n"
+msgid "• Libvirt KVM guest available: %s\n"
+msgstr "• Dostupan je libvirt KVM gosta: %s\n"
+
+#: ../src/main.vala:78
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinuks kontekst je osnovni: %s\n"
 
-#: ../src/main.vala:70
+#: ../src/main.vala:82
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Greške prijavite na <%s>.\n"
 
-#: ../src/main.vala:71
+#: ../src/main.vala:83
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Matična stranica „%s“: <%s>.\n"
 
-#: ../src/properties.vala:59
+#: ../src/properties.vala:58
 msgid "Login"
 msgstr "Prijavi"
 
-#: ../src/properties.vala:67
+#: ../src/properties.vala:66
 msgid "Display"
 msgstr "Prikaži"
 
-#: ../src/properties.vala:71
+#: ../src/properties.vala:70
 msgid "Devices"
 msgstr "Uređaji"
 
-#: ../src/properties.vala:91
+#: ../src/properties.vala:90
 msgid "Some changes may take effect only after reboot"
 msgstr "Neke izmene će stupiti na snagu nakon ponovnog pokretanja"
 
-#: ../src/properties.vala:234
+#: ../src/properties.vala:225
 msgid "CPU:"
 msgstr "Procesor:"
 
-#: ../src/properties.vala:241
+#: ../src/properties.vala:232
 msgid "I/O:"
 msgstr "U/I:"
 
-#: ../src/properties.vala:248
+#: ../src/properties.vala:239
 msgid "Net:"
 msgstr "Mreža:"
 
-#: ../src/spice-display.vala:166
+#: ../src/spice-display.vala:168
 msgid "Share clipboard"
 msgstr "Podeli ostavu"
 
-#: ../src/spice-display.vala:172
+#: ../src/spice-display.vala:174
 msgid "Resize guest"
 msgstr "Promeni veličinu gosta"
 
-#: ../src/spice-display.vala:180
+#: ../src/spice-display.vala:182
 msgid "USB redirection"
 msgstr "Preusmeravanje USB-a"
 
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:89 ../src/wizard.vala:537
+msgid "_Cancel"
+msgstr "_Otkaži"
+
+#: ../src/topbar.vala:118
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -290,28 +305,19 @@ msgstr[1] "%d izabrane"
 msgstr[2] "%d izabranih"
 msgstr[3] "Jedna izabrana"
 
-#: ../src/topbar.vala:161
+#: ../src/topbar.vala:120
 msgid "Click on items to select them"
 msgstr "Kliknite na stavke da ih izaberete"
 
-#: ../src/unattended-installer.vala:37
+#: ../src/unattended-installer.vala:43
 msgid "no password"
 msgstr "bez lozinke"
 
-#: ../src/unattended-installer.vala:176
-msgid "No username provided"
-msgstr "Nije dostavljeno korisničko ime"
-
-#: ../src/unattended-installer.vala:180
-#, c-format
-msgid "Password required for express installation of %s"
-msgstr "Potrebna je lozinka za brzu instalaciju „%s“"
-
-#: ../src/unattended-installer.vala:187 ../src/unattended-installer.vala:247
+#: ../src/unattended-installer.vala:172 ../src/unattended-installer.vala:233
 msgid "Username"
 msgstr "Korisničko ime"
 
-#: ../src/unattended-installer.vala:213
+#: ../src/unattended-installer.vala:198
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -322,32 +328,42 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:229
+#: ../src/unattended-installer.vala:214
 msgid "Express Install"
 msgstr "Brzo instaliraj"
 
-#: ../src/unattended-installer.vala:268
+#: ../src/unattended-installer.vala:253
 msgid "_Add Password"
 msgstr "Dodaj _lozinku"
 
+#: ../src/util-app.vala:216
+#, c-format
+msgid ""
+"Your SELinux context looks incorrect, you can try to fix it by running:\n"
+"%s"
+msgstr ""
+"Vaš SELinuks sadržaj izgleda netačno, možete da probate da ga popravite "
+"pokrenuvši:\n"
+"%s"
+
+#: ../src/util-app.vala:220
+msgid "SELinux not installed?"
+msgstr "SELinuks nije instaliran?"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:307
+#: ../src/vm-configurator.vala:306
 msgid "Incapable host system"
 msgstr "Nemogućstven sistem domaćina"
 
-#: ../src/vnc-display.vala:134
+#: ../src/vnc-display.vala:136
 msgid "Read-only"
 msgstr "Samo čitanje"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:48
+#: ../src/winxp-installer.vala:54
 msgid "Product Key"
 msgstr "Šifra proizvoda"
-
-#: ../src/winxp-installer.vala:55
-msgid "_Add Product Key"
-msgstr "_Dodaj šifru proizvoda"
 
 #: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
 msgid "Enter URL"
@@ -367,21 +383,21 @@ msgstr ""
 "\n"
 "Dodaće kutije za sve sisteme dostupne sa ovog naloga."
 
-#: ../src/wizard-source.vala:234
+#: ../src/wizard-source.vala:239
 msgid "32-bit x86 system"
 msgstr "32-bitni x86 sistem"
 
-#: ../src/wizard-source.vala:235
+#: ../src/wizard-source.vala:240
 msgid "64-bit x86 system"
 msgstr "64-bitni x86 sistem"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:249
 #, c-format
 msgid " from %s"
 msgstr " prodavca „%s“"
 
-#: ../src/wizard-source.vala:284
+#: ../src/wizard-source.vala:289
 msgid "Select a device or ISO file"
 msgstr "Izaberite uređaj ili ISO datoteku"
 
@@ -389,7 +405,7 @@ msgstr "Izaberite uređaj ili ISO datoteku"
 msgid "Box creation failed"
 msgstr "Stvaranje kutije nije uspelo"
 
-#: ../src/wizard.vala:117 ../src/wizard.vala:559
+#: ../src/wizard.vala:117 ../src/wizard.vala:551
 msgid "C_ontinue"
 msgstr "Na_stavi"
 
@@ -422,52 +438,52 @@ msgstr "Neispravna adresa"
 msgid "Unsupported protocol '%s'"
 msgstr "Protokol „%s“ nije podržan"
 
-#: ../src/wizard.vala:312
+#: ../src/wizard.vala:314
 msgid "Box setup failed"
 msgstr "Podešavanje kutije nije uspelo"
 
-#: ../src/wizard.vala:319
+#: ../src/wizard.vala:321
 msgid "Will create a new box with the following properties:"
 msgstr "Napraviće novu kutiju sa sledećim svojstvima:"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:326
 msgid "Type"
 msgstr "Vrsta"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:329
 msgid "Host"
 msgstr "Domaćin"
 
-#: ../src/wizard.vala:335 ../src/wizard.vala:341
+#: ../src/wizard.vala:337 ../src/wizard.vala:343
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:336
+#: ../src/wizard.vala:338
 msgid "TLS Port"
 msgstr "TLS port"
 
-#: ../src/wizard.vala:346
+#: ../src/wizard.vala:348
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Dodaće kutije za sve sisteme dostupne sa ovog naloga:"
 
-#: ../src/wizard.vala:353
+#: ../src/wizard.vala:355
 msgid "Memory"
 msgstr "Memorija"
 
-#: ../src/wizard.vala:355
+#: ../src/wizard.vala:357
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:355
+#: ../src/wizard.vala:357
 #, c-format
 msgid "%s maximum"
 msgstr "%s najviše"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:428
 msgid "Introduction"
 msgstr "Uvod"
 
-#: ../src/wizard.vala:430
+#: ../src/wizard.vala:432
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -482,16 +498,16 @@ msgstr ""
 "napravite <b><i>virtuelnu mašinu</i></b> koja će raditi lokalno na vašem "
 "računaru."
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:444
 msgid "Source Selection"
 msgstr "Izbor izvora"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:445
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Umetnite instalacioni medij operativnog sistema ili izaberite izvor ispod"
 
-#: ../src/wizard.vala:453
+#: ../src/wizard.vala:455
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -501,27 +517,27 @@ msgstr ""
 "proizvoda koje ste već nabavili i u vlasništvu su njihovih odgovarajućih "
 "vlasnika."
 
-#: ../src/wizard.vala:466
+#: ../src/wizard.vala:468
 msgid "Preparation"
 msgstr "Priprema"
 
-#: ../src/wizard.vala:467
+#: ../src/wizard.vala:469
 msgid "Preparing to create new box"
 msgstr "Pripremam stvaranje nove kutije"
 
-#: ../src/wizard.vala:486
+#: ../src/wizard.vala:488
 msgid "Analyzing installer media."
 msgstr "Pregledam instalacioni medij."
 
-#: ../src/wizard.vala:497
+#: ../src/wizard.vala:499
 msgid "Setup"
 msgstr "Podešavanja"
 
-#: ../src/wizard.vala:504
+#: ../src/wizard.vala:506
 msgid "Review"
 msgstr "Pregled"
 
-#: ../src/wizard.vala:515
+#: ../src/wizard.vala:517
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -533,6 +549,25 @@ msgstr ""
 "2008 ili kassnije), ta proširenja su verovatno dostupna na vašem sistemu ali "
 "ćete možda morati da ih uključite u podešavanjima BIOS-a vašeg sistema."
 
-#: ../src/wizard.vala:531
+#: ../src/wizard.vala:526
 msgid "Create a Box"
 msgstr "Napravite Kutiju"
+
+#: ../src/wizard.vala:545
+msgid "_Back"
+msgstr "_Nazad"
+
+#~ msgid ""
+#~ "Internet access required for express installation of Fedora 16 and older"
+#~ msgstr ""
+#~ "Potreban je pristup Internetu za brzu instalaciju Fedore 16 i starijih "
+#~ "izdanja"
+
+#~ msgid "No username provided"
+#~ msgstr "Nije dostavljeno korisničko ime"
+
+#~ msgid "Password required for express installation of %s"
+#~ msgstr "Potrebna je lozinka za brzu instalaciju „%s“"
+
+#~ msgid "_Add Product Key"
+#~ msgstr "_Dodaj šifru proizvoda"
