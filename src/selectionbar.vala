@@ -55,6 +55,7 @@ private class Boxes.Selectionbar: GLib.Object {
 
         App.app.notify["selected-items"].connect (() => {
             update_visible ();
+            update_favorite_btn ();
         });
     }
 
@@ -63,6 +64,28 @@ private class Boxes.Selectionbar: GLib.Object {
             visible = false;
         else
             visible = App.app.selected_items.length () > 0;
+    }
+
+    private void update_favorite_btn () {
+        var active = false;
+        var sensitive = App.app.selected_items.length () > 0;
+
+        foreach (var item in App.app.selected_items) {
+            var machine = item as Machine;
+            if (machine == null)
+                continue;
+
+            var is_favorite = "favorite" in machine.config.categories;
+            if (!active) {
+                active = is_favorite;
+            } else if (!is_favorite) {
+                sensitive = false;
+                break;
+            }
+        }
+
+        favorite_btn.active = active;
+        favorite_btn.sensitive = sensitive;
     }
 
     private bool visible {
