@@ -39,7 +39,17 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         this.group = group;
     }
 
-    public void add_category (string category) {
+    private void remove_category (string category) {
+        string[] categories = {};
+
+        foreach (var it in this.categories)
+            if (it != category)
+                categories += it;
+
+        this.categories = categories;
+    }
+
+    private void add_category (string category) {
         if (category in categories)
             return;
 
@@ -47,6 +57,13 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         string[] categories = categories;
         categories += category;
         this.categories = categories;
+    }
+
+    public void set_category (string category, bool enabled) {
+        if (enabled)
+            add_category (category);
+        else
+            remove_category (category);
 
         save ();
     }
