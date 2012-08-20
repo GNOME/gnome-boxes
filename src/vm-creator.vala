@@ -107,12 +107,16 @@ private class Boxes.VMCreator {
             machine.disconnect (state_changed_id);
             machine.vm_creator = null;
         } else {
-            if (!VMConfigurator.is_live_config (machine.domain_config))
-                return;
-
-            // No installation during live session, so lets delete the VM
-            machine.disconnect (state_changed_id);
-            App.app.delete_machine (machine);
+            if (VMConfigurator.is_live_config (machine.domain_config)) {
+                // No installation during live session, so lets delete the VM
+                machine.disconnect (state_changed_id);
+                App.app.delete_machine (machine);
+            } else
+                try {
+                    domain.start (0);
+                } catch (GLib.Error error) {
+                    warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
+                }
         }
     }
 
