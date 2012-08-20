@@ -17,6 +17,12 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         }
     }
 
+    public override uint64 installed_size {
+        get {
+            return express_install? 1169436672 : 0;
+        }
+    }
+
     static construct {
         try {
             key_regex = new Regex ("BOXES_PRODUCT_KEY");

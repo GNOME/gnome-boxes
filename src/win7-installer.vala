@@ -5,6 +5,12 @@
 private class Boxes.Win7Installer: WindowsInstaller {
     private static Regex arch_regex;
 
+    public override uint64 installed_size {
+        get {
+            return express_install? 7554351104 : 0;
+        }
+    }
+
     static construct {
         try {
             arch_regex = new Regex ("BOXES_CPU");

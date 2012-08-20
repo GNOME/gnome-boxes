@@ -13,6 +13,9 @@ private class Boxes.InstallerMedia : GLib.Object {
     public string mount_point;
     public bool from_image;
 
+    // FIXME: Currently our OS-specific subclasses provide this info but once we start using libosinfo's API for
+    //        express installation, this info should come from there.
+    public virtual uint64 installed_size { get { return 0; } }
     public virtual bool need_user_input_for_vm_creation { get { return false; } }
     public virtual bool user_data_for_vm_creation_available { get { return true; } }
 
