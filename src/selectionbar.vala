@@ -31,8 +31,9 @@ private class Boxes.Selectionbar: GLib.Object {
         favorite_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
                var machine = item as Machine;
-               if (machine != null)
-                   machine.config.add_category ("favourite");
+               if (machine == null)
+                   continue;
+               machine.config.set_category ("favorite", favorite_btn.active);
            }
         });
 
