@@ -357,4 +357,14 @@ namespace Boxes {
 
         return (string) udn;
     }
+
+    // shamelessly copied from gnome-documents
+    public GLib.Icon create_symbolic_emblem (string name) {
+        var pix = Gd.create_symbolic_icon (name, 128);
+
+        if (pix == null)
+            pix = new GLib.ThemedIcon (name);
+
+        return pix;
+    }
 }
