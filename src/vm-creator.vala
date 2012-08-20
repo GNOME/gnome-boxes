@@ -16,6 +16,7 @@ private class Boxes.VMCreator {
     public VMCreator.for_install_completion (LibvirtMachine machine) {
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
+        update_machine_info (machine);
 
         on_machine_state_changed (machine);
     }
@@ -69,6 +70,7 @@ private class Boxes.VMCreator {
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
+        update_machine_info (machine);
     }
 
     private void on_machine_state_changed (GLib.Object object, GLib.ParamSpec? pspec = null) {
@@ -106,6 +108,7 @@ private class Boxes.VMCreator {
             }
             machine.disconnect (state_changed_id);
             machine.vm_creator = null;
+            machine.info = null;
         } else {
             if (VMConfigurator.is_live_config (machine.domain_config)) {
                 // No installation during live session, so lets delete the VM
@@ -118,6 +121,13 @@ private class Boxes.VMCreator {
                     warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
                 }
         }
+    }
+
+    private void update_machine_info (LibvirtMachine machine) {
+        if (VMConfigurator.is_install_config (machine.domain_config))
+            machine.info = _("Installing...");
+        else
+            machine.info = _("Live");
     }
 
     private void set_post_install_config (LibvirtMachine machine) {

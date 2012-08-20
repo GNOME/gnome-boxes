@@ -10,7 +10,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Boxes.DisplayConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
     public bool stay_on_display;
-    public virtual string? info { get { return null; } }
+    public string? info { get; set; }
 
     private ulong show_id;
     private ulong hide_id;
