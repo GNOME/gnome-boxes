@@ -57,14 +57,15 @@ private class Boxes.VMCreator {
 
                 App.app.select_item (machine); // This also starts the domain for us
                 App.app.fullscreen = true;
+                set_post_install_config (machine);
                 App.app.disconnect (signal_id);
 
                 return;
             });
-        } else
+        } else {
             machine.domain.start (0);
-
-        set_post_install_config (machine);
+            set_post_install_config (machine);
+        }
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
