@@ -155,20 +155,50 @@ private class Boxes.CollectionView: Boxes.UI {
         item.actor.visible = visible;
     }
 
-    private Gtk.TreeIter append (Gdk.Pixbuf pixbuf,
-                                 string title,
+    private void update_screenshot (Gtk.TreeIter iter) {
+        CollectionItem item;
+        GLib.Icon[] emblem_icons = {};
+
+        model.get (iter, ModelColumns.ITEM, out item);
+        Machine machine = item as Machine;
+        return_if_fail (machine != null);
+        var pixbuf = machine.pixbuf;
+
+        if ("favorite" in machine.config.categories)
+            emblem_icons += create_symbolic_emblem ("emblem-favorite");
+
+        if (emblem_icons.length > 0) {
+            var emblemed_icon = new GLib.EmblemedIcon (pixbuf, null);
+            foreach (var emblem_icon in emblem_icons)
+                emblemed_icon.add_emblem (new GLib.Emblem (emblem_icon));
+
+            var theme = Gtk.IconTheme.get_default ();
+
+            try {
+                var size = int.max (pixbuf.width, pixbuf.height);
+                var icon_info = theme.lookup_by_gicon (emblemed_icon, size,
+                                                       Gtk.IconLookupFlags.FORCE_SIZE);
+                pixbuf = icon_info.load_icon ();
+            } catch (GLib.Error error) {
+                warning ("Unable to render the emblem: " + error.message);
+            }
+        }
+
+        model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
+    }
+
+    private Gtk.TreeIter append (string title,
                                  string? info,
-                                 CollectionItem item)
-    {
+                                 CollectionItem item) {
         Gtk.TreeIter iter;
 
         model.append (out iter);
-        model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
         model.set (iter, ModelColumns.TITLE, title);
         if (info != null)
             model.set (iter, ModelColumns.INFO, info);
         model.set (iter, ModelColumns.SELECTED, false);
         model.set (iter, ModelColumns.ITEM, item);
+        update_screenshot (iter);
 
         item.set_data<Gtk.TreeIter?> ("iter", iter);
 
@@ -183,12 +213,18 @@ private class Boxes.CollectionView: Boxes.UI {
             return;
         }
 
-        var iter = append (machine.pixbuf, machine.name, machine.info, item);
+        var iter = append (machine.name, machine.info, item);
         var pixbuf_id = machine.notify["pixbuf"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
-            model.set (iter, ModelColumns.SCREENSHOT, machine.pixbuf);
+            update_screenshot (iter);
         });
         item.set_data<ulong> ("pixbuf_id", pixbuf_id);
+
+        var categories_id = machine.config.notify["categories"].connect (() => {
+            // apparently iter is stable after insertion/removal/sort
+            update_screenshot (iter);
+        });
+        item.set_data<ulong> ("categories_id", categories_id);
 
         var name_id = item.notify["name"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
@@ -243,6 +279,12 @@ private class Boxes.CollectionView: Boxes.UI {
         item.disconnect (name_id);
         var info_id = item.get_data<ulong> ("info_id");
         item.disconnect (info_id);
+
+        if (item as Machine != null) {
+            var machine = item as Machine;
+            var categories_id = item.get_data<ulong> ("categories_id");
+            machine.config.disconnect (categories_id);
+        }
     }
 
     private Gtk.TreePath? get_path_for_item (CollectionItem item) {
