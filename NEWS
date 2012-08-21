@@ -1,3 +1,70 @@
+3.5.90 - Aug 21, 2012
+=====================
+
+Changes since 3.5.5:
+
+- Add search feature, both inside Boxes and in GNOME Shell.
+- Selection view now looks a lot prettier (i-e like in gnome-documents) and we
+  now retain the selection when switching away from selection view.
+- Add an info text column under the box in collection view. Currently its used
+  to indicate installation or live status of VMs.
+- Asynchronously launch machines so the UI doesn't hang and user sees that
+  something is actually happening.
+- Make 'favorite' button in selection view, actually work.
+- Express installation:
+  - Use the new info text column to show the progress of the installation.
+  - Don't set SPICE password. Our own created VMs are supposed to be private to
+    user (at least by default) so there is no need to add password protection
+    to display connection.
+  - Allow password-less Fedora VM, just like Windows XP and 7.
+  - Require user to input product key for Windows XP.
+  - Remove work around for broken QXL drivers on Fedora 16 ISOs.
+  - Use the new schemas for detecting the keyboard layout.
+- 'check' commandline option:
+   - Add a check for SELinux context.
+   - Add check for whether we have the kvm capability on qemu:///session.
+   - Prettier output.
+- Add 'open-uuid' commandline option that allows to open a box by its UUID.
+- Fixes to satisfy recent valac.
+- Fix issue of Fedora installations looping forever.
+- Fix a series of small issues in the UI.
+- Added/updated translations:
+  - Assamese
+  - Belarusian
+  - Galician
+  - Hebrew
+  - Hindi
+  - Indonesian
+  - Marathi
+  - Serbian
+  - Slovenian
+  - Spanish
+  - Traditional Chinese (Hong Kong and Taiwan)
+
+Dependencies changed:
+
+- uuid >= 1.41.3 (new depenency)
+- libvirt-gobject >= 0.1.2
+- vala >= 0.17.2
+
+All contributors to this release:
+
+Alexander Larsson <alexl@redhat.com>
+Andika Triwidada <andika@gmail.com>
+chandankumar <chandankumar@git.gnome.org>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Martin Srebotnjak <miles@filmsi.net>
+Nilamdyuti Goswami <nilamdyuti@gmail.com>
+Sandeep Sheshrao Shedmake <sshedmak@redhat.com>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Мирослав Николић <miroslavnikolic@rocketmail.com>
+
 3.5.5 - Aug 06, 2012
 ====================
 
