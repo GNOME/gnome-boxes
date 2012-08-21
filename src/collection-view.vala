@@ -185,6 +185,7 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
+        icon_view.queue_draw ();
     }
 
     private Gtk.TreeIter append (string title,
@@ -229,12 +230,14 @@ private class Boxes.CollectionView: Boxes.UI {
         var name_id = item.notify["name"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.TITLE, item.name);
+            icon_view.queue_draw ();
         });
         item.set_data<ulong> ("name_id", name_id);
 
         var info_id = machine.notify["info"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.INFO, machine.info);
+            icon_view.queue_draw ();
         });
         item.set_data<ulong> ("info_id", info_id);
 
