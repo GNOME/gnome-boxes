@@ -22,7 +22,7 @@ AM_VALAFLAGS =						\
 	--pkg cogl-1.0					\
 	--pkg config					\
 	--pkg common					\
-	--pkg gd					\
+	--pkg gd-1.0					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
