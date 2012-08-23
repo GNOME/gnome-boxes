@@ -217,8 +217,12 @@ private class Boxes.WizardSource: GLib.Object {
             url_entry.activate ();
         }, 15, 5, media.device_file);
 
-        var image = get_os_logo (media.os, 64);
+        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
+        image.pixel_size = 64;
         hbox.pack_start (image, false, false);
+
+        if (media.os != null)
+            Downloader.fetch_os_logo.begin (image, media.os, 64);
 
         var vbox = new Gtk.VBox (true, 5);
         hbox.pack_start (vbox, true, true);

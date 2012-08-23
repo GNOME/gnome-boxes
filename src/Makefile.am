@@ -113,6 +113,7 @@ gnome_boxes_SOURCES =				\
 	winxp-installer.vala 			\
 	wizard-source.vala			\
 	wizard.vala				\
+	downloader.vala				\
 	$(NULL)
 
 gnome_boxes_LDADD =				\

@@ -38,6 +38,9 @@ unattended_DATA = fedora.ks			\
 		  disk.img			\
 		  $(NULL)
 
+logosdbdir= $(datadir)/gnome-boxes
+logosdb_DATA= gnome-boxes-logos-db.xml
+
 disk.img:
 	rm -f disk.img && qemu-img create -f raw disk.img 1440k && mkfs.msdos -s 1 disk.img
 
@@ -50,6 +53,7 @@ EXTRA_DIST =					\
 	$(style_DATA)				\
 	$(unattended_DATA)			\
 	$(searchprovider_DATA)			\
+	$(logosdb_DATA)				\
 	$(service_in_files)			\
 	$(NULL)
 

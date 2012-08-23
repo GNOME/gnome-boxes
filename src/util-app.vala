@@ -142,30 +142,6 @@ namespace Boxes {
         return (devices.get_length () > 0) ? devices.get_nth (0) as Osinfo.Device : null;
     }
 
-    public Gtk.Image get_os_logo (Osinfo.Os? os, int size) {
-        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
-        image.pixel_size = size;
-
-        if (os != null)
-            fetch_os_logo (image, os, size);
-
-        return image;
-    }
-
-    public void fetch_os_logo (Gtk.Image image, Osinfo.Os os, int size) {
-        var path = get_logo_path (os);
-
-        if (path == null)
-            return;
-
-        try {
-            var pixbuf = new Gdk.Pixbuf.from_file_at_size (path, size, -1);
-            image.set_from_pixbuf (pixbuf);
-        } catch (GLib.Error error) {
-            warning ("Error loading logo file '%s': %s", path, error.message);
-        }
-    }
-
     public GVir.StorageVol? get_storage_volume (GVir.Connection connection,
                                                 GVir.Domain domain,
                                                 out GVir.StoragePool pool) {

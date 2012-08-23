@@ -255,9 +255,19 @@ private class Boxes.Wizard: Boxes.UI {
         try {
             var install_media = media_manager.create_installer_media_for_path.end (result);
             vm_creator = new VMCreator (install_media);
-            fetch_os_logo (installer_image, install_media.os, 128);
-            prep_progress.fraction = 1.0;
-            page = WizardPage.SETUP;
+            if (install_media.os == null) {
+                 prep_progress.fraction = 1.0;
+                 page = WizardPage.SETUP;
+
+                return;
+            }
+
+            Downloader.fetch_os_logo.begin (installer_image, install_media.os, 128, (object, result) => {
+                Downloader.fetch_os_logo.end (result);
+
+                prep_progress.fraction = 1.0;
+                page = WizardPage.SETUP;
+            });
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             App.app.notificationbar.display_error (error.message);

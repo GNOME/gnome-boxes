@@ -31,6 +31,7 @@ private class Boxes.OSDatabase {
     public OSDatabase () throws GLib.Error {
         var loader = new Loader ();
         loader.process_default_path ();
+        loader.process_path (get_logos_db ()); // Load our custom database
         db = loader.get_db ();
     }
 
