@@ -52,6 +52,10 @@ private class Boxes.EditableEntry: Alignment {
     }
 
     private Pango.Weight _weight = Pango.Weight.NORMAL;
+	/* This is disabled for now since its impossible to
+	   declare a default for the paramspec, and the number that
+	   valac picks (0) is invalid for the Pango.Weight enum.
+
     public Pango.Weight weight {
         get { return _weight; }
         set {
@@ -63,7 +67,8 @@ private class Boxes.EditableEntry: Alignment {
 
             update_fonts ();
         }
-    }
+	}
+	*/
     public bool weight_set { get; set; }
 
     private double _scale = 1.0;
@@ -95,7 +100,7 @@ private class Boxes.EditableEntry: Alignment {
         entry.override_font (null);
         var desc = entry.get_style_context ().get_font (entry.get_state_flags ());
         if (weight_set)
-            desc.set_weight (weight);
+            desc.set_weight (_weight);
         if (scale_set)
             desc.set_size ((int)(scale * desc.get_size ()));
         entry.override_font (desc);
@@ -109,7 +114,7 @@ private class Boxes.EditableEntry: Alignment {
         if (scale_set)
             attrs.insert (Pango.attr_scale_new (scale));
         if (weight_set)
-            attrs.insert (Pango.attr_weight_new (weight));
+            attrs.insert (Pango.attr_weight_new (_weight));
 
         label.set_attributes (attrs);
         (button.get_child () as Label).set_attributes (attrs);
