@@ -491,10 +491,21 @@ private class Boxes.MachineActor: Boxes.UI {
                 App.app.overlay_bin.set_alignment (display,
                                                    Clutter.BinAlignment.FIXED,
                                                    Clutter.BinAlignment.FIXED);
+
+                // We disable implicit animations while setting the
+                // properties because we don't want to animate these individually
+                // we just want them to change instantly, causing a relayout
+                // and recalculation of the allocation rect, which will then
+                // be animated. Animating a rectangle between two states and
+                // animating position and size individually looks completely
+                // different.
+                var d = display.get_easing_duration ();
+                display.set_easing_duration (0);
                 display.x = alloc.x;
                 display.y = alloc.y;
                 display.width = alloc.width;
                 display.height = alloc.height;
+                display.set_easing_duration (d);
             };
 
             if (track_screenshot_id != 0)
@@ -580,7 +591,7 @@ private class Boxes.MachineActor: Boxes.UI {
                 App.app.topbar.actor.hide ();
 
             display.set_easing_mode (Clutter.AnimationMode.LINEAR);
-            display.set_easing_duration (App.app.duration / 2); // FIXME / 2 why?
+            display.set_easing_duration (App.app.duration);
             ulong completed_id = 0;
             completed_id = display.transitions_completed.connect (() => {
                 display.disconnect (completed_id);
