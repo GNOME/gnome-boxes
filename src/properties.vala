@@ -180,6 +180,7 @@ private class Boxes.Properties: Boxes.UI {
         box.vexpand = true;
 
         var toolbar = new Gd.MainToolbar ();
+        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (toolbar, true, true, 0);
         back = toolbar.add_button (null, null, true) as Gtk.Button;
         back.child = box;
