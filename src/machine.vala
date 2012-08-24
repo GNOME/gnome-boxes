@@ -499,7 +499,14 @@ private class Boxes.MachineActor: Boxes.UI {
 
             if (track_screenshot_id != 0)
                 App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
-            track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect (() => { update_screenshot_alloc (display); });
+            track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect (() => {
+                // We need to update in an idle to avoid changing layout stuff in a layout cycle
+                // (i.e. inside the size_allocate)
+                Idle.add_full (Priority.HIGH, () => {
+                    update_screenshot_alloc (display);
+                    return false;
+                });
+            });
 
             if (!zoom) {
                 display.set_easing_duration (0);
