@@ -369,6 +369,11 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view.get_style_context ().add_class ("boxes-icon-view");
         icon_view.button_press_event.connect (on_button_press_event);
         icon_view.button_release_event.connect (on_button_release_event);
+        icon_view_activate_on_single_click (icon_view, true);
+        icon_view.item_activated.connect ((view, path) => {
+            var item = get_item_for_path (path);
+            App.app.select_item (item);
+        });
 
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
         // TODO: this should be set, but doesn't resize correctly the gtkactor..
@@ -426,8 +431,8 @@ private class Boxes.CollectionView: Boxes.UI {
 
         if (App.app.selection_mode)
             return on_button_release_selection_mode (event, entered_mode, path);
-        else
-            return on_button_release_view_mode (event, path);
+
+        return false;
     }
 
     private bool on_button_release_selection_mode (Gdk.EventButton event, bool entered_mode, Gtk.TreePath path) {
@@ -445,14 +450,6 @@ private class Boxes.CollectionView: Boxes.UI {
         icon_view.queue_draw ();
 
         App.app.notify_property ("selected-items");
-
-        return false;
-    }
-
-    private bool on_button_release_view_mode (Gdk.EventButton event, Gtk.TreePath path) {
-        var item = get_item_for_path (path);
-        if (item != null)
-            App.app.select_item (item);
 
         return false;
     }
