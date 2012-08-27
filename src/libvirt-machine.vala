@@ -380,18 +380,26 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set_stats_enable (false);
 
         if (by_user) {
-            force_shutdown (false);
+            GVir.StorageVol? volume = null;
+            if (connection == App.app.default_connection)
+                volume = get_storage_volume (connection, domain, null);
+            var domain = this.domain; // Don't reference self in thread
 
-            try {
-                if (connection == App.app.default_connection) {
-                    var volume = get_storage_volume (connection, domain, null);
+            /* Run all the slow operations in a separate thread
+               to avoid blocking the UI */
+            run_in_thread.begin ( () => {
+                try {
+                    // This undefines the domain, causing it to be transient
+                    domain.delete (DomainDeleteFlags.SAVED_STATE);
+                    // Ensure that the domain is stopped before we touch any data
+                    domain.stop (0);
+                    // Remove any images controlled by boxes
                     if (volume != null)
                         volume.delete (0);
+                } catch (GLib.Error err) {
+                    warning (err.message);
                 }
-                domain.delete (DomainDeleteFlags.SAVED_STATE);
-            } catch (GLib.Error err) {
-                warning (err.message);
-            }
+            });
         }
     }
 
