@@ -168,7 +168,7 @@ namespace Boxes {
     }
 
     public delegate void RunInThreadFunc () throws  GLib.Error;
-    public async void run_in_thread (RunInThreadFunc func, Cancellable? cancellable = null) throws GLib.Error {
+    public async void run_in_thread (owned RunInThreadFunc func, Cancellable? cancellable = null) throws GLib.Error {
         GLib.Error e = null;
         GLib.IOSchedulerJob.push ((job, cancellable) => {
             try {
