@@ -554,8 +554,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             });
 
             try {
-                domain.shutdown (GVir.DomainShutdownFlags.ACPI_POWER_BTN |
-                                 GVir.DomainShutdownFlags.GUEST_AGENT);
+                domain.shutdown (0);
             } catch (GLib.Error error) {
                 warning ("Failed to reboot '%s': %s", domain.get_name (), error.message);
             }
