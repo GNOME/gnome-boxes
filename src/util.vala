@@ -276,7 +276,7 @@ namespace Boxes {
     }
 
     public string yes_no (bool value) {
-        return value ? N_("yes") : N_("no");
+        return value ? _("yes") : _("no");
     }
 
     public string indent (string space, string text) {
