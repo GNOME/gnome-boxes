@@ -214,7 +214,7 @@ private class Boxes.VMCreator {
         if (progress < 0)
             return;
 
-        machine.info = _("%d%% Installed").printf (progress);
+        machine.info = ngettext ("%d%% installed", "%d%% installed", progress).printf (progress);
         prev_progress = progress;
         updating_install_progress = false;
     }
