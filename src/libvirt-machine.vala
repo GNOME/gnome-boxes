@@ -389,16 +389,26 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                to avoid blocking the UI */
             run_in_thread.begin ( () => {
                 try {
-                    // This undefines the domain, causing it to be transient
+                    // This undefines the domain, causing it to be transient if it was running
                     domain.delete (DomainDeleteFlags.SAVED_STATE);
-                    // Ensure that the domain is stopped before we touch any data
-                    domain.stop (0);
-                    // Remove any images controlled by boxes
-                    if (volume != null)
-                        volume.delete (0);
                 } catch (GLib.Error err) {
                     warning (err.message);
                 }
+
+                try {
+                    // Ensure that the domain is stopped before we touch any data
+                    domain.stop (0);
+                } catch (GLib.Error err) {
+                    debug (err.message); // No warning cause this can easily fail for legitimate reasons
+                }
+
+                // Remove any images controlled by boxes
+                if (volume != null)
+                    try {
+                        volume.delete (0);
+                    } catch (GLib.Error err) {
+                        warning (err.message);
+                    }
             });
         }
     }
