@@ -9,17 +9,17 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-05-14 20:49+0000\n"
-"PO-Revision-Date: 2012-04-19 09:45+0800\n"
+"POT-Creation-Date: 2012-08-28 13:04+0000\n"
+"PO-Revision-Date: 2012-08-01 14:54+0800\n"
 "Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
+#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -31,7 +31,7 @@ msgstr "简单的虚拟机查看器/管理器"
 msgid "View and use virtual machines"
 msgstr "查看和使用虚拟机"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
 msgstr "收藏"
 
@@ -79,225 +79,302 @@ msgstr "窗口最大化"
 msgid "Window maximized state"
 msgstr "窗口最大化状态"
 
-#: ../src/app.vala:94
+#: ../src/app.vala:107
 msgid "translator-credits"
 msgstr ""
 "tuhaihe <wangdianjin@linuxdeepin.com>, 2012\n"
 "YunQiang Su <wzssyqa@gmail.com>, 2012"
 
-#: ../src/app.vala:95
+#: ../src/app.vala:108
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "一个简单的可访问远程或虚拟系统的 GNOME 3 应用程序"
 
-#: ../src/app.vala:107 ../src/topbar.vala:63
+#: ../src/app.vala:120 ../src/topbar.vala:48
 msgid "New"
 msgstr "新建"
 
-#: ../src/app.vala:110
+#: ../src/app.vala:123
 msgid "Properties"
 msgstr "属性"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:124
 msgid "Fullscreen"
 msgstr "全屏"
 
-#: ../src/app.vala:114
+#: ../src/app.vala:125
+msgid "Force shutdown"
+msgstr "强制关机"
+
+#: ../src/app.vala:128
 msgid "About Boxes"
 msgstr "关于 Boxes"
 
-#: ../src/app.vala:115
+#: ../src/app.vala:129
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/app.vala:496
+#: ../src/app.vala:599
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box %s 已被删除"
 
-#: ../src/app.vala:497
+#: ../src/app.vala:600
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 个 box 已经被删除"
 
-#: ../src/fedora-installer.vala:60
-msgid ""
-"Internet access required for express installation of Fedora 16 and older"
-msgstr "快速安装 Fedora 16 及更早版本需要访问互联网"
+#: ../src/collection-view.vala:39
+msgid "New and Recent"
+msgstr "新建和最近的"
 
-#: ../src/libvirt-machine.vala:286
+#: ../src/display-page.vala:148
+msgid "(press Ctrl+Alt keys to ungrab)"
+msgstr "按 Ctrl+Alt 按键释放"
+
+#: ../src/installer-media.vala:94 ../src/properties.vala:62
+msgid "System"
+msgstr "系统"
+
+#: ../src/libvirt-machine.vala:291 ../src/remote-machine.vala:39
+msgid "Name"
+msgstr "名称"
+
+#: ../src/libvirt-machine.vala:294
 msgid "Virtualizer"
 msgstr "虚拟化"
 
-#: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
-#: ../src/wizard.vala:309
+#: ../src/libvirt-machine.vala:295 ../src/remote-machine.vala:42
+#: ../src/wizard.vala:331
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:296 ../src/remote-machine.vala:71
+#: ../src/libvirt-machine.vala:304 ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "协议"
 
-#: ../src/libvirt-machine.vala:442
+#: ../src/libvirt-machine.vala:416
+msgid "When you force shutdown, the box may lose data."
+msgstr "当您强制关机时，虚拟机可能丢失数据。"
+
+#: ../src/libvirt-machine.vala:489
 msgid "RAM"
 msgstr "内存"
 
-#: ../src/libvirt-machine.vala:483
+#: ../src/libvirt-machine.vala:562
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "更改需要重启 '%s'。尝试重启？"
 
-#: ../src/libvirt-machine.vala:500
+#: ../src/libvirt-machine.vala:579
 msgid "Storage"
 msgstr "存储"
 
 #. 3rd row
-#: ../src/machine.vala:304 ../src/unattended-installer.vala:198
-#: ../src/wizard.vala:336
+#: ../src/machine.vala:421 ../src/unattended-installer.vala:173
+#: ../src/unattended-installer.vala:243
 msgid "Password"
 msgstr "密码"
 
-#: ../src/main.vala:10
+#: ../src/main.vala:12
 msgid "Display version number"
 msgstr "显示版本号"
 
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:13
+msgid "Open in full screen"
+msgstr "以全屏模式打开"
+
 #: ../src/main.vala:14
+msgid "Check virtualization capabilities"
+msgstr "检查虚拟化功能"
+
+#: ../src/main.vala:15
+msgid "Open box with UUID"
+msgstr "根据 UUID 打开 Box"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/main.vala:17
 msgid "URI to display, broker or installer media"
 msgstr "显示器，虚拟机管理器或安装介质的 URI"
 
-#: ../src/main.vala:19
+#: ../src/main.vala:22
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- 一个简单的可访问远程系统或虚拟机的应用程序"
 
-#: ../src/properties.vala:39
+#: ../src/main.vala:44
+#, c-format
+msgid "Too many command line arguments specified.\n"
+msgstr ""
+
+#. FIXME: add proper UI & docs
+#: ../src/main.vala:74
+msgid "• The CPU is capable of virtualization: %s\n"
+msgstr "CPU 的虚拟化功能：%s\n"
+
+#: ../src/main.vala:75
+msgid "• The KVM module is loaded: %s\n"
+msgstr "KVM 模块已加载：%s\n"
+
+#: ../src/main.vala:76
+#, c-format
+msgid "• Libvirt KVM guest available: %s\n"
+msgstr ""
+
+#: ../src/main.vala:78
+#, c-format
+msgid "• The SELinux context is default: %s\n"
+msgstr ""
+
+#: ../src/main.vala:82
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr ""
+
+#: ../src/main.vala:83
+#, c-format
+msgid "%s home page: <%s>.\n"
+msgstr ""
+
+#: ../src/properties.vala:58
 msgid "Login"
 msgstr "登陆"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:329
-msgid "System"
-msgstr "系统"
-
-#: ../src/properties.vala:47
+#: ../src/properties.vala:66
 msgid "Display"
 msgstr "显示"
 
-#: ../src/properties.vala:51
+#: ../src/properties.vala:70
 msgid "Devices"
 msgstr "设备"
 
-#: ../src/properties.vala:193
+#: ../src/properties.vala:90
+msgid "Some changes may take effect only after reboot"
+msgstr "部分更改仅在重启后生效"
+
+#: ../src/properties.vala:226
 msgid "CPU:"
 msgstr "处理器："
 
-#: ../src/properties.vala:200
+#: ../src/properties.vala:233
 msgid "I/O:"
 msgstr "I/O："
 
-#: ../src/properties.vala:207
+#: ../src/properties.vala:240
 msgid "Net:"
 msgstr "网络："
 
-#: ../src/remote-machine.vala:64
-msgid "Name"
-msgstr "名称"
-
-#: ../src/sidebar.vala:141
-msgid "New and Recent"
-msgstr "新建和最近的"
-
-#: ../src/sidebar.vala:143
-msgid "Favorites"
-msgstr "收藏"
-
-#: ../src/sidebar.vala:144
-msgid "Private"
-msgstr "私人"
-
-#: ../src/sidebar.vala:145
-msgid "Shared with you"
-msgstr "分享给您的"
-
-#: ../src/sidebar.vala:162
-msgid "Create"
-msgstr "创建"
-
-#: ../src/spice-display.vala:133
+#: ../src/spice-display.vala:168
 msgid "Share clipboard"
 msgstr "分享剪贴板"
 
-#: ../src/spice-display.vala:141
+#: ../src/spice-display.vala:174
 msgid "Resize guest"
 msgstr "调整虚拟机大小"
 
-#: ../src/spice-display.vala:152
+#: ../src/spice-display.vala:182
 msgid "USB redirection"
 msgstr "USB 重定向"
 
-#: ../src/topbar.vala:155
+#: ../src/topbar.vala:89 ../src/wizard.vala:537
+msgid "_Cancel"
+msgstr ""
+
+#: ../src/topbar.vala:118
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "已选中 %d 项"
 
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:120
 msgid "Click on items to select them"
 msgstr "点击条目以选中它们"
 
-#: ../src/unattended-installer.vala:26
+#: ../src/unattended-installer.vala:43
 msgid "no password"
 msgstr "没有密码"
 
-#: ../src/unattended-installer.vala:149
-msgid "No username provided"
-msgstr "没有提供用户名"
+#: ../src/unattended-installer.vala:172 ../src/unattended-installer.vala:233
+msgid "Username"
+msgstr "用户名"
 
-#: ../src/unattended-installer.vala:153
-#, c-format
-msgid "Password required for express installation of %s"
-msgstr "快速安装 %s 需要密码"
-
-#: ../src/unattended-installer.vala:157
+#: ../src/unattended-installer.vala:198
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr "选择快速安装可自动预设 box 为最佳设置。"
 
 #. First row
-#: ../src/unattended-installer.vala:169
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
+#. won't be asked anything while it's performed.
+#: ../src/unattended-installer.vala:214
 msgid "Express Install"
 msgstr "快速安装"
 
-#: ../src/unattended-installer.vala:187 ../src/wizard.vala:335
-msgid "Username"
-msgstr "用户名"
-
-#: ../src/unattended-installer.vala:208
+#: ../src/unattended-installer.vala:253
 msgid "_Add Password"
 msgstr "添加密码(_A)"
 
-#: ../src/vnc-display.vala:134
+#: ../src/util.vala:279
+msgid "yes"
+msgstr ""
+
+#: ../src/util.vala:279
+msgid "no"
+msgstr ""
+
+#: ../src/util-app.vala:216
+#, c-format
+msgid ""
+"Your SELinux context looks incorrect, you can try to fix it by running:\n"
+"%s"
+msgstr ""
+
+#: ../src/util-app.vala:220
+msgid "SELinux not installed?"
+msgstr "未安装 SELinux？"
+
+#. No guest caps or none compatible
+#. FIXME: Better error messsage than this please?
+#: ../src/vm-configurator.vala:306
+msgid "Incapable host system"
+msgstr ""
+
+#: ../src/vm-creator.vala:133
+msgid "Installing..."
+msgstr "正在安装..."
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/vm-creator.vala:137 ../src/wizard-source.vala:230
+#, fuzzy
+#| msgid "%s (Live)"
+msgid "Live"
+msgstr "%s (体验)"
+
+#: ../src/vm-creator.vala:217
+#, c-format
+msgid "%d%% Installed"
+msgid_plural "%d%% Installed"
+msgstr[0] "已安装 %d%%"
+
+#: ../src/vnc-display.vala:136
 msgid "Read-only"
 msgstr "只读"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:38
+#: ../src/winxp-installer.vala:60
 msgid "Product Key"
 msgstr "序列号"
 
-#: ../src/winxp-installer.vala:45
-msgid "_Add Product Key"
-msgstr "添加序列号(_A)"
-
-#: ../src/wizard-source.vala:64 ../src/wizard-source.vala:88
+#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
 msgid "Enter URL"
 msgstr "输入 URL"
 
-#: ../src/wizard-source.vala:74
+#: ../src/wizard-source.vala:122
 msgid "Select a file"
 msgstr "选择文件"
 
-#: ../src/wizard-source.vala:105
+#: ../src/wizard-source.vala:154
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -307,103 +384,107 @@ msgstr ""
 "\n"
 "将添加所有该帐户可访问系统的 box。"
 
-#: ../src/wizard-source.vala:174
+#: ../src/wizard-source.vala:239
 msgid "32-bit x86 system"
 msgstr "32位 x86 系统"
 
-#: ../src/wizard-source.vala:175
+#: ../src/wizard-source.vala:240
 msgid "64-bit x86 system"
 msgstr "64位 x86 系统"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:183
+#: ../src/wizard-source.vala:249
 #, c-format
 msgid " from %s"
 msgstr "从 %s"
 
-#: ../src/wizard-source.vala:223
+#: ../src/wizard-source.vala:289
 msgid "Select a device or ISO file"
 msgstr "选择一个设备或 ISO 文件"
 
-#: ../src/wizard.vala:75
-msgid "Box creation failed!"
-msgstr "Box 创建失败！"
+#: ../src/wizard.vala:92
+msgid "Box creation failed"
+msgstr "Box 创建失败"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:507
+#: ../src/wizard.vala:117 ../src/wizard.vala:551
 msgid "C_ontinue"
 msgstr "继续(_O)"
 
-#: ../src/wizard.vala:98
+#: ../src/wizard.vala:117
 msgid "C_reate"
 msgstr "创建(_R)"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard.vala:138
 msgid "Please enter desktop or collection URI"
 msgstr "请输入桌面或收集 URI"
 
-#: ../src/wizard.vala:125
+#: ../src/wizard.vala:144
 msgid "Will add boxes for all systems available from this account."
 msgstr "将添加所有该帐户可访问系统的 box。"
 
-#: ../src/wizard.vala:128
+#: ../src/wizard.vala:147
 msgid "Will add a single box."
 msgstr "将添加一个 box。"
 
-#: ../src/wizard.vala:134
+#: ../src/wizard.vala:153
 msgid "Desktop Access"
 msgstr "桌面访问"
 
-#: ../src/wizard.vala:198
+#: ../src/wizard.vala:233
 msgid "Invalid URI"
 msgstr "URI 不可见"
 
-#: ../src/wizard.vala:209
+#: ../src/wizard.vala:244
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "不支持协议 '%s'"
 
-#: ../src/wizard.vala:299
+#: ../src/wizard.vala:314
+msgid "Box setup failed"
+msgstr "Box 设置失败"
+
+#: ../src/wizard.vala:321
 msgid "Will create a new box with the following properties:"
 msgstr "将创建一个新 box，属性如下："
 
-#: ../src/wizard.vala:304
+#: ../src/wizard.vala:326
 msgid "Type"
 msgstr "类型"
 
-#: ../src/wizard.vala:307
+#: ../src/wizard.vala:329
 msgid "Host"
 msgstr "主机"
 
-#: ../src/wizard.vala:315 ../src/wizard.vala:321
+#: ../src/wizard.vala:337 ../src/wizard.vala:343
 msgid "Port"
 msgstr "端口"
 
-#: ../src/wizard.vala:316
+#: ../src/wizard.vala:338
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: ../src/wizard.vala:326
+#: ../src/wizard.vala:348
 msgid "Will add boxes for all systems available from this account:"
 msgstr "将添加所有该帐户可访问系统的 box："
 
-#: ../src/wizard.vala:340
+#: ../src/wizard.vala:355
 msgid "Memory"
 msgstr "内存"
 
-#: ../src/wizard.vala:342
+#: ../src/wizard.vala:357
 msgid "Disk"
 msgstr "磁盘"
 
-#: ../src/wizard.vala:342
+#: ../src/wizard.vala:357
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大值"
 
-#: ../src/wizard.vala:387
+#: ../src/wizard.vala:428
 msgid "Introduction"
 msgstr "简介"
 
-#: ../src/wizard.vala:391
+#: ../src/wizard.vala:432
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -416,41 +497,81 @@ msgstr ""
 "您可以<b><i>通过网络</i></b>连接到一个已存在的机器或创建一个运行在本地的"
 "<b><i>虚拟机</i></b>。"
 
-#: ../src/wizard.vala:403
+#: ../src/wizard.vala:444
 msgid "Source Selection"
 msgstr "源选择"
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:445
 msgid "Insert operating system installation media or select a source below"
 msgstr "插入操作系统安装介质或从下面选择一个源文件"
 
-#: ../src/wizard.vala:412
+#: ../src/wizard.vala:455
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr "任何上面显示的商标仅用作您已拥有的软件产品标识，版权归原所有者。"
 
-#: ../src/wizard.vala:424
+#: ../src/wizard.vala:468
 msgid "Preparation"
 msgstr "准备"
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:469
 msgid "Preparing to create new box"
 msgstr "正在准备创建新 box"
 
-#: ../src/wizard.vala:442
+#: ../src/wizard.vala:488
 msgid "Analyzing installer media."
 msgstr "正在分析安装介质。"
 
-#: ../src/wizard.vala:453
+#: ../src/wizard.vala:499
 msgid "Setup"
 msgstr "设置"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:506
 msgid "Review"
 msgstr "配置回顾"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:517
+msgid ""
+"Virtualization extensions are unavailable on your system. Expect this box to "
+"be extremely slow. If your system is recent enough (made in or after 2008), "
+"these extensions are probably available on your system and you may need to "
+"enable them in your system's BIOS setup."
+msgstr ""
+"虚拟化扩展无法在您的系统上安装。预计该虚拟机速度将极慢。如果您的系统够新(生产"
+"于 2008 年或之后)，这些扩展可能可以安装在您的系统上且您需要在系统的 BIOS 设置"
+"上启用它们。"
+
+#: ../src/wizard.vala:526
 msgid "Create a Box"
 msgstr "创建一个 Box"
+
+#: ../src/wizard.vala:545
+msgid "_Back"
+msgstr "后退(_B)"
+
+#~ msgid ""
+#~ "Internet access required for express installation of Fedora 16 and older"
+#~ msgstr "快速安装 Fedora 16 及更早版本需要访问互联网"
+
+#~ msgid "No username provided"
+#~ msgstr "没有提供用户名"
+
+#~ msgid "Password required for express installation of %s"
+#~ msgstr "快速安装 %s 需要密码"
+
+#~ msgid "_Add Product Key"
+#~ msgstr "添加序列号(_A)"
+
+#~ msgid "Favorites"
+#~ msgstr "收藏"
+
+#~ msgid "Private"
+#~ msgstr "私人"
+
+#~ msgid "Shared with you"
+#~ msgstr "分享给您的"
+
+#~ msgid "Create"
+#~ msgstr "创建"
