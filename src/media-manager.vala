@@ -72,7 +72,7 @@ private class Boxes.MediaManager : Object {
                     var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id);
 
                     list.insert_sorted (media, compare_media);
-                } catch (Error error) {
+                } catch (GLib.Error error) {
                     warning ("Failed to use ISO '%s': %s", path, error.message);
                 }
             }
