@@ -189,7 +189,7 @@ private class Boxes.Properties: Boxes.UI {
         hbox.pack_start (toolbar, true, true, 0);
         back = toolbar.add_button (null, null, true) as Gtk.Button;
         back.child = box;
-        back.clicked.connect ((button) => { App.app.ui_state = UIState.DISPLAY; });
+        back.clicked.connect ((button) => { App.app.ui_state = App.app.previous_ui_state; });
 
         hbox.show_all ();
 

@@ -315,7 +315,7 @@ private class Boxes.Wizard: Boxes.UI {
         nokvm_label.hide ();
         summary.clear ();
 
-        if (vm_creator != null) {
+        if (vm_creator != null && machine == null) {
             try {
                 machine = yield vm_creator.create_vm (null);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
@@ -385,6 +385,11 @@ private class Boxes.Wizard: Boxes.UI {
 
             nokvm_label.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
+
+        summary.append_customize_button (() => {
+            // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
+            App.app.select_item (machine);
+        });
 
         return true;
     }
@@ -601,7 +606,10 @@ private class Boxes.Wizard: Boxes.UI {
         uint opacity = 0;
         switch (ui_state) {
         case UIState.WIZARD:
-            page = WizardPage.INTRODUCTION;
+            if (previous_ui_state == UIState.PROPERTIES)
+                review.begin ();
+            else
+                page = WizardPage.INTRODUCTION;
             opacity = 255;
             break;
         }
@@ -617,12 +625,14 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private class WizardSummary: GLib.Object {
+        public delegate void CustomizeFunc ();
+
         public Gtk.Widget widget { get { return table; } }
         private Gtk.Table table;
         private uint current_row;
 
         public WizardSummary () {
-            table = new Gtk.Table (1, 2, false);
+            table = new Gtk.Table (1, 3, false);
             table.row_spacing = 10;
             table.column_spacing = 20;
 
@@ -645,6 +655,15 @@ private class Boxes.Wizard: Boxes.UI {
 
             current_row += 1;
             table.show_all ();
+        }
+
+        public void append_customize_button (CustomizeFunc cutomize_func) {
+            var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
+            button.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
+            table.attach_defaults (button, 2, 3, current_row - 1, current_row);
+            button.show ();
+
+            button.clicked.connect (() => { cutomize_func (); });
         }
 
         public void clear () {

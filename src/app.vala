@@ -526,7 +526,9 @@ private class Boxes.App: Boxes.UI {
         action_properties.set_enabled (ui_state == UIState.DISPLAY);
         action_shutdown.set_enabled (ui_state == UIState.DISPLAY && current_item is LibvirtMachine);
 
-        foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, wizard, properties }) {
+        // The order is important for some widgets here (e.g properties must change its state before wizard so it can
+        // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
+        foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, properties, wizard }) {
             ui.ui_state = ui_state;
         }
 
@@ -656,6 +658,10 @@ private class Boxes.App: Boxes.UI {
                 warning ("unknown item, fix your code");
 
             item_selected (item);
+        } else if (ui_state == UIState.WIZARD) {
+            current_item = item;
+
+            ui_state = UIState.PROPERTIES;
         }
     }
 }

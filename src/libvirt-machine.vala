@@ -293,13 +293,22 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
         var list = new List<Boxes.Property> ();
 
+        var display = this.display;
+        if (display == null)
+            try {
+                display = create_display ();
+            } catch (GLib.Error error) {
+                warning (error.message);
+            }
+
         switch (page) {
         case PropertiesPage.LOGIN:
             add_string_property (ref list, _("Name"), name, (property, name) => {
                 try_change_name (name);
             });
             add_string_property (ref list, _("Virtualizer"), source.uri);
-            add_string_property (ref list, _("URI"), display.uri);
+            if (display != null)
+                add_string_property (ref list, _("URI"), display.uri);
             break;
 
         case PropertiesPage.SYSTEM:
@@ -308,46 +317,48 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             break;
 
         case PropertiesPage.DISPLAY:
-            add_string_property (ref list, _("Protocol"), display.protocol);
+            if (display != null)
+                add_string_property (ref list, _("Protocol"), display.protocol);
             break;
         }
 
-        list.concat (display.get_properties (page));
+        if (display != null)
+            list.concat (display.get_properties (page));
 
         return list;
     }
 
     private void update_display () {
-        string type, port, socket, host;
-
         update_domain_config ();
 
         try {
-            var xmldoc = domain_config.to_xml ();
-            type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
-            port = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
-            socket = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@socket)");
-            host = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@listen)");
+            display = create_display ();
         } catch (GLib.Error error) {
             warning (error.message);
-            return;
         }
+    }
+
+    private Display? create_display () throws Boxes.Error {
+        string type, port, socket, host;
+
+        var xmldoc = domain_config.to_xml ();
+        type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
+        port = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
+        socket = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@socket)");
+        host = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@listen)");
 
         if (host == null || host == "")
             host = "localhost";
 
         switch (type) {
         case "spice":
-            display = new SpiceDisplay (config, host, int.parse (port));
-            break;
+            return new SpiceDisplay (config, host, int.parse (port));
 
         case "vnc":
-            display = new VncDisplay (config, host, int.parse (port));
-            break;
+            return new VncDisplay (config, host, int.parse (port));
 
         default:
-            warning ("unsupported display of type " + type);
-            break;
+            throw new Boxes.Error.INVALID ("unsupported display of type " + type);
         }
     }
 
@@ -527,7 +538,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 config.memory = value;
                 domain.set_config (config);
                 debug ("RAM changed to %llu", value);
-                notify_reboot_required ();
+                if (state == MachineState.RUNNING || state == MachineState.PAUSED)
+                    notify_reboot_required ();
             } catch (GLib.Error error) {
                 warning ("Failed to change RAM of box '%s' to %llu: %s",
                          domain.get_name (),
@@ -535,7 +547,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          error.message);
             }
 
-            update_ram_property (property);
+            if (state == MachineState.RUNNING || state == MachineState.PAUSED)
+                update_ram_property (property);
 
             return false;
         };
