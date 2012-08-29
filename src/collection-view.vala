@@ -241,7 +241,7 @@ private class Boxes.CollectionView: Boxes.UI {
         });
         item.set_data<ulong> ("info_id", info_id);
 
-        item.ui_state = UIState.COLLECTION;
+        item.ui_state = App.app.ui_state;
         actor_remove (item.actor);
 
         update_item_visible (item);
