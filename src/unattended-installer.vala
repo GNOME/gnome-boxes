@@ -146,6 +146,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                 yield unattended_file.copy (cancellable);
         } catch (GLib.Error error) {
             clean_up ();
+            // An error occurred when trying to setup unattended installation, but it's likely that a non-unattended installation
+            // will work. When this happens, just disable unattended installs, and let the caller decide if it wants to retry a
+            // non-automatic install or to just abort the box creation..
+            express_toggle.active = false;
 
             throw error;
         } finally {
