@@ -357,14 +357,32 @@ private class Boxes.Wizard: Boxes.UI {
             if (source.source_type == "libvirt") {
                 review_label.set_text (_("Will add boxes for all systems available from this account:"));
             }
-        } else if (vm_creator != null) {
+        } else if (machine != null) {
             foreach (var property in vm_creator.install_media.get_vm_properties ())
                 summary.add_property (property.first, property.second);
 
-            var memory = format_size (vm_creator.install_media.resources.ram, FormatSizeFlags.IEC_UNITS);
-            summary.add_property (_("Memory"), memory);
-            memory = format_size (vm_creator.install_media.resources.storage, FormatSizeFlags.IEC_UNITS);
-            summary.add_property (_("Disk"),  _("%s maximum".printf (memory)));
+            try {
+                var config = null as GVirConfig.Domain;
+                yield run_in_thread (() => { config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE); });
+
+                var memory = format_size (config.memory * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS);
+                summary.add_property (_("Memory"), memory);
+            } catch (GLib.Error error) {
+                warning ("Failed to get configuration for machine '%s': %s", machine.name, error.message);
+            }
+
+            if (machine.storage_volume != null) {
+                try {
+                    var volume_info = machine.storage_volume.get_info ();
+                    var capacity = format_size (volume_info.capacity, FormatSizeFlags.IEC_UNITS);
+                    summary.add_property (_("Disk"),  _("%s maximum".printf (capacity)));
+                } catch (GLib.Error error) {
+                    warning ("Failed to get information on volume '%s': %s",
+                             machine.storage_volume.get_name (),
+                             error.message);
+                }
+            }
+
             nokvm_label.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
