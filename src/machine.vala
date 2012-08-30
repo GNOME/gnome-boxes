@@ -31,13 +31,21 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         PAUSED
     }
 
+    // The current screenshot without running status applied
+    private Gdk.Pixbuf? orig_pixbuf;
+
     private MachineState _state;
     public MachineState state { get { return _state; }
         protected set {
             _state = value;
             debug ("State of '%s' changed to %s", name, state.to_string ());
-            if (value != MachineState.RUNNING)
-                load_screenshot ();
+            if (value == MachineState.STOPPED)
+                set_screenshot (null, false);
+            else {
+                // Update existing screenshot based on machine status
+                if (orig_pixbuf != null)
+                    pixbuf = draw_vm (orig_pixbuf, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
+            }
         }
     }
 
@@ -252,13 +260,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             var small_screenshot = new Gdk.Pixbuf (Gdk.Colorspace.RGB, large_screenshot.has_alpha, 8, w, h);
             large_screenshot.scale (small_screenshot, 0, 0, w, h, 0, 0, s, s, Gdk.InterpType.HYPER);
 
+            orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
             machine_actor.set_screenshot (large_screenshot); // high resolution
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
-        } else if (pixbuf == null) {
-            pixbuf = draw_fallback_vm ();
+        } else {
+            orig_pixbuf = null;
+            pixbuf = draw_stopped_vm ();
             machine_actor.set_screenshot (pixbuf);
         }
     }
@@ -281,7 +291,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         } catch (GLib.Error error) {
         }
         // Save the screenshot first time and every 60 sec
-        set_screenshot (large_screenshot, force_save || screenshot_counter++ % 12 == 0);
+        if (large_screenshot != null)
+            set_screenshot (large_screenshot, force_save || screenshot_counter++ % 12 == 0);
 
         updating_screenshot = false;
     }
@@ -315,6 +326,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             context.mask (grid);
         }
 
+        return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
+    }
+
+    private static Gdk.Pixbuf draw_stopped_vm (int width = SCREENSHOT_WIDTH,
+                                               int height = SCREENSHOT_HEIGHT) {
+        var surface = new Cairo.ImageSurface (Cairo.Format.RGB24, width, height);
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 

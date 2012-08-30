@@ -127,7 +127,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         update_domain_config ();
         domain.updated.connect (update_domain_config);
 
-        load_screenshot ();
+        if (state != MachineState.STOPPED)
+            load_screenshot ();
         set_screenshot_enable (true);
         set_stats_enable (true);
     }
