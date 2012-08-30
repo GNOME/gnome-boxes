@@ -249,6 +249,31 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    /* Calculates the average energy intensity of a pixmap.
+     * Being a square of an 8bit value this is a 16bit value. */
+    private int pixbuf_energy (Gdk.Pixbuf pixbuf) {
+        unowned uint8[] pixels = pixbuf.get_pixels ();
+        int w = pixbuf.get_width ();
+        int h = pixbuf.get_height ();
+        int rowstride = pixbuf.get_rowstride ();
+        int n_channels = pixbuf.get_n_channels ();
+
+        int energy = 0;
+        int row_start = 0;
+        for (int y = 0; y < h; y++) {
+            int row_energy = 0;
+            int i = row_start;
+            for (int x = 0; x < w; x++) {
+                int avg = (pixels[i+0] + pixels[i+1] + pixels[i+2]) / 3;
+                row_energy += avg * avg;
+                i += n_channels;
+            }
+            energy += row_energy / w;
+            row_start += rowstride;
+        }
+        return energy / h;
+    }
+
     public void set_screenshot (Gdk.Pixbuf? large_screenshot, bool save) {
         if (large_screenshot != null) {
             var pw = large_screenshot.get_width ();
@@ -259,6 +284,17 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             var small_screenshot = new Gdk.Pixbuf (Gdk.Colorspace.RGB, large_screenshot.has_alpha, 8, w, h);
             large_screenshot.scale (small_screenshot, 0, 0, w, h, 0, 0, s, s, Gdk.InterpType.HYPER);
+
+            /* We don't accept black or almost-black screenshots as they are
+               generally just screensavers/lock screens, which are not very helpful,
+               and can easily be mistaken for turned off boxes.
+
+               The number 100 is somewhat arbitrary, picked to not allow the gnome 3
+               lock screen, nor a fullscreen white-on-black terminal with a single
+               shell prompt, but do allow the terminal with a few lines of text.
+            */
+            if (pixbuf_energy (small_screenshot) < 100)
+                return;
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
