@@ -4,7 +4,7 @@ using Gtk;
 private class Boxes.Property: GLib.Object {
     public string description { get; construct set; }
     public Gtk.Widget widget { get; construct set; }
-    public bool changes_pending { get; set; }
+    public bool reboot_required { get; set; }
 
     public Property (string description, Gtk.Widget widget) {
         base (description: description, widget: widget);

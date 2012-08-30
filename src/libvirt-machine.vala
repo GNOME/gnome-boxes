@@ -495,7 +495,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             debug ("RAM actual: %llu, pending: %llu", actual, pending);
             // somehow, there are rounded errors, so let's forget about 1Mb diff
-            property.changes_pending = (actual - pending) > 1; // no need for abs()
+            property.reboot_required = (actual - pending) > 1; // no need for abs()
 
         } catch (GLib.Error e) {}
     }
@@ -514,7 +514,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             this.notify["state"].connect (() => {
                 if (state == MachineState.STOPPED)
-                    property.changes_pending = false;
+                    property.reboot_required = false;
             });
 
             update_ram_property (property);

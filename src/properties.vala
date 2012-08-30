@@ -38,7 +38,7 @@ private class Boxes.Properties: Boxes.UI {
         public void update_infobar () {
             var show_it = false;
             foreach (var property in properties) {
-                if (property.changes_pending) {
+                if (property.reboot_required) {
                     show_it = true;
                     break;
                 }
@@ -108,7 +108,7 @@ private class Boxes.Properties: Boxes.UI {
                     var widget = property.widget;
                     widget.hexpand = true;
                     grid.attach (widget, 1, current_row, 1, 1);
-                    property.notify["changes-pending"].connect (update_infobar);
+                    property.notify["reboot-required"].connect (update_infobar);
                     current_row += 1;
                 }
 
