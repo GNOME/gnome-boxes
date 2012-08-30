@@ -6,7 +6,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Domain domain;
     public GVirConfig.Domain domain_config;
     public GVir.Connection connection;
-    private string? storage_volume_path;
+    public GVir.StorageVol? storage_volume;
     public VMCreator? vm_creator; // Under installation if this is set to non-null
 
     public bool save_on_quit {
@@ -63,9 +63,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private void update_domain_config () {
         try {
             domain_config = domain.get_config (GVir.DomainXMLFlags.NONE);
-
-            var volume = get_storage_volume (connection, domain, null);
-            storage_volume_path = (volume != null)? volume.get_path () : null;
+            storage_volume = get_storage_volume (connection, domain);
         } catch (GLib.Error error) {
             critical ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
         }
@@ -391,9 +389,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set_stats_enable (false);
 
         if (by_user) {
-            GVir.StorageVol? volume = null;
-            if (connection == App.app.default_connection)
-                volume = get_storage_volume (connection, domain, null);
             var domain = this.domain; // Don't reference self in thread
 
             /* Run all the slow operations in a separate thread
@@ -414,9 +409,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 }
 
                 // Remove any images controlled by boxes
-                if (volume != null)
+                if (storage_volume != null)
                     try {
-                        volume.delete (0);
+                        storage_volume.delete (0);
                     } catch (GLib.Error err) {
                         warning (err.message);
                     }
@@ -457,6 +452,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (device_config is GVirConfig.DomainDisk) {
                 var disk_config = device_config as GVirConfig.DomainDisk;
                 var disk_type = disk_config.get_guest_device_type ();
+                var storage_volume_path = (storage_volume != null)? storage_volume.get_path () : null;
 
                 // Prefer Boxes' managed volume over other disks
                 if (disk_type == GVirConfig.DomainDiskGuestDeviceType.DISK &&
@@ -594,14 +590,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private void add_storage_property (ref List list) {
-        StoragePool pool;
-
-        var volume = get_storage_volume (connection, domain, out pool);
-        if (volume == null)
+        if (storage_volume == null)
             return;
 
         try {
-            var volume_info = volume.get_info ();
+            var volume_info = storage_volume.get_info ();
+            var pool = get_storage_pool (connection);
             var pool_info = pool.get_info ();
             var max_storage = (volume_info.capacity + pool_info.available)  / Osinfo.KIBIBYTES;
 
@@ -614,7 +608,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                                on_storage_changed);
         } catch (GLib.Error error) {
             warning ("Failed to get information on volume '%s' or it's parent pool: %s",
-                     volume.get_name (),
+                     storage_volume.get_name (),
                      error.message);
         }
     }
@@ -625,8 +619,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             Source.remove (storage_update_timeout);
 
         storage_update_timeout = Timeout.add_seconds (1, () => {
-            var volume = get_storage_volume (connection, domain, null);
-            if (volume == null)
+            if (storage_volume == null)
                 return false;
 
             try {
@@ -636,11 +629,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                         disk.resize (value, 0);
                 } else
                     // Currently this never happens as properties page cant be reached without starting the machine
-                    volume.resize (value * Osinfo.KIBIBYTES, StorageVolResizeFlags.NONE);
+                    storage_volume.resize (value * Osinfo.KIBIBYTES, StorageVolResizeFlags.NONE);
                 debug ("Storage changed to %llu", value);
             } catch (GLib.Error error) {
                 warning ("Failed to change storage capacity of volume '%s' to %llu: %s",
-                         volume.get_name (),
+                         storage_volume.get_name (),
                          value,
                          error.message);
             }

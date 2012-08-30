@@ -106,9 +106,7 @@ private class Boxes.VMCreator {
             return;
         }
 
-        var volume = get_storage_volume (connection, domain, null);
-
-        if (guest_installed_os (volume)) {
+        if (guest_installed_os (machine.storage_volume)) {
             mark_as_installed (machine);
             try {
                 domain.start (0);
@@ -188,8 +186,7 @@ private class Boxes.VMCreator {
         if (!install_trackable ())
             return;
 
-        var volume = get_storage_volume (connection, machine.domain, null);
-        return_if_fail (volume != null);
+        return_if_fail (machine.storage_volume != null);
 
         Timeout.add_seconds (6, () => {
             if (prev_progress == 100) {
@@ -199,22 +196,24 @@ private class Boxes.VMCreator {
             }
 
             if (!updating_install_progress)
-                update_install_progress.begin (machine, volume);
+                update_install_progress.begin (machine);
 
             return true;
         });
     }
 
-    private async void update_install_progress (LibvirtMachine machine, GVir.StorageVol volume) {
+    private async void update_install_progress (LibvirtMachine machine) {
         updating_install_progress = true;
 
         int progress = 0;
         try {
             yield run_in_thread (() => {
-                progress = get_progress (volume);
+                progress = get_progress (machine.storage_volume);
             });
         } catch (GLib.Error error) {
-            warning ("Failed to get information from volume '%s': %s", volume.get_name (), error.message);
+            warning ("Failed to get information from volume '%s': %s",
+                     machine.storage_volume.get_name (),
+                     error.message);
         }
         if (progress < 0)
             return;
