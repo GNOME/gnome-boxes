@@ -482,7 +482,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         try {
             var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
 
-            // we uses KiB unit, convert to MiB
+            // we use KiB unit, convert to MiB
             var actual = domain_config.memory / 1024;
             var pending = config.memory / 1024;
 
