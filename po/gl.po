@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en http://www.trasno.net
-# Fran Dieguez <frandieguez@gnome.org>, 2012.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
+# Fran Dieguez <frandieguez@gnome.org>, 2012.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-17 01:11+0200\n"
-"PO-Revision-Date: 2012-08-17 01:12+0200\n"
+"POT-Creation-Date: 2012-08-30 03:58+0200\n"
+"PO-Revision-Date: 2012-08-30 03:59+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: gnome-l10n-gl@gnome.org\n"
+"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Gtranslator 2.91.5\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
@@ -134,51 +135,41 @@ msgstr "Novo e recente"
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(prema as teclas Ctrl+Alt para descapturar)"
 
-#: ../src/installer-media.vala:91 ../src/properties.vala:62
+#: ../src/installer-media.vala:94 ../src/properties.vala:62
 msgid "System"
 msgstr "Sistema"
 
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:23 ../src/wizard-source.vala:230
-msgid "Live"
-msgstr "Vivo"
-
-#: ../src/libvirt-machine.vala:25
-msgid "Installing..."
-msgstr "Instalando…"
-
-#: ../src/libvirt-machine.vala:307 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:291 ../src/remote-machine.vala:39
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/libvirt-machine.vala:310
+#: ../src/libvirt-machine.vala:294
 msgid "Virtualizer"
 msgstr "Virtualizador"
 
-#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine.vala:295 ../src/remote-machine.vala:42
 #: ../src/wizard.vala:331
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:320 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:304 ../src/remote-machine.vala:46
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/libvirt-machine.vala:424
+#: ../src/libvirt-machine.vala:416
 msgid "When you force shutdown, the box may lose data."
 msgstr "Ao forzar o apagado, a caixa podería perder datos."
 
-#: ../src/libvirt-machine.vala:495
+#: ../src/libvirt-machine.vala:489
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:569
+#: ../src/libvirt-machine.vala:562
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Os cambios requiren que se reinicie «%s». Desexa tentar reiniciar?"
 
-#: ../src/libvirt-machine.vala:586
+#: ../src/libvirt-machine.vala:579
 msgid "Storage"
 msgstr "Almacenamento"
 
@@ -265,15 +256,15 @@ msgstr "Dispositivos"
 msgid "Some changes may take effect only after reboot"
 msgstr "Algúns dos cambios serán efectivos só despois de reiniciar"
 
-#: ../src/properties.vala:225
+#: ../src/properties.vala:226
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:232
+#: ../src/properties.vala:233
 msgid "I/O:"
 msgstr "E/S:"
 
-#: ../src/properties.vala:239
+#: ../src/properties.vala:240
 msgid "Net:"
 msgstr "Rede:"
 
@@ -331,6 +322,14 @@ msgstr "Instalación rápida"
 msgid "_Add Password"
 msgstr "_Engadir contrasinal"
 
+#: ../src/util.vala:279
+msgid "yes"
+msgstr "si"
+
+#: ../src/util.vala:279
+msgid "no"
+msgstr "non"
+
 #: ../src/util-app.vala:216
 #, c-format
 msgid ""
@@ -351,12 +350,29 @@ msgstr "Está SELinux instalado?"
 msgid "Incapable host system"
 msgstr "Equipo non capacitado"
 
+#: ../src/vm-creator.vala:133
+msgid "Installing..."
+msgstr "Instalando…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/vm-creator.vala:137 ../src/wizard-source.vala:230
+msgid "Live"
+msgstr "Vivo"
+
+#: ../src/vm-creator.vala:217
+#, c-format
+msgid "%d%% Installed"
+msgid_plural "%d%% Installed"
+msgstr[0] "%d%% Instalado"
+msgstr[1] "%d%% Instalados"
+
 #: ../src/vnc-display.vala:136
 msgid "Read-only"
 msgstr "Só lectura"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:54
+#: ../src/winxp-installer.vala:60
 msgid "Product Key"
 msgstr "Chave de produto"
 
