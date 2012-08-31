@@ -28,7 +28,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         UNKNOWN,
         STOPPED,
         RUNNING,
-        PAUSED
+        PAUSED,
+        SAVED
     }
 
     // The current screenshot without running status applied

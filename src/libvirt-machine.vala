@@ -103,6 +103,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 break;
             case DomainState.SHUTDOWN:
             case DomainState.SHUTOFF:
+                if (domain.get_saved ())
+                    state = MachineState.SAVED;
+                else
+                    state = MachineState.STOPPED;
+                break;
             case DomainState.CRASHED:
                 state = MachineState.STOPPED;
                 break;
@@ -118,7 +123,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         domain.started.connect (() => { state = MachineState.RUNNING; });
         domain.suspended.connect (() => { state = MachineState.PAUSED; });
         domain.resumed.connect (() => { state = MachineState.RUNNING; });
-        domain.stopped.connect (() => { state = MachineState.STOPPED; });
+        domain.stopped.connect (() => {
+            if (Signal.get_invocation_hint (domain).detail == Quark.from_string ("saved"))
+                state = MachineState.SAVED;
+            else
+                state = MachineState.STOPPED;
+        });
         notify["state"].connect (() => {
             if (state == MachineState.RUNNING)
                 reconnect_display ();
