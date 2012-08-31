@@ -19,12 +19,6 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
         }
     }
 
-    public override uint64 installed_size {
-        get {
-            return express_install? 1169436672 : 0;
-        }
-    }
-
     private bool has_viostor_drivers;
 
     public override bool supports_virtio_disk {

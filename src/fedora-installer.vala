@@ -1,12 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 private class Boxes.FedoraInstaller: UnattendedInstaller {
-    public override uint64 installed_size {
-        get {
-            return express_install? 2922930176 : 0;
-        }
-    }
-
     private File kernel_file;
     private File initrd_file;
 

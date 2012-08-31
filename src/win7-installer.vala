@@ -7,12 +7,6 @@ using GVirConfig;
 private class Boxes.Win7Installer: WindowsInstaller {
     private static Regex arch_regex;
 
-    public override uint64 installed_size {
-        get {
-            return express_install? 7554351104 : 0;
-        }
-    }
-
     public override bool supports_virtio_disk {
         get {
             return (extra_iso != null);
