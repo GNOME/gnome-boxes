@@ -203,12 +203,14 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         if (display == null)
             return;
 
-        try {
-            var pixbuf = display.get_pixbuf (0);
-            if (pixbuf != null)
-                set_screenshot (pixbuf, true);
-        } catch (GLib.Error error) {
-            warning (error.message);
+        if (state != MachineState.STOPPED) {
+            try {
+                var pixbuf = display.get_pixbuf (0);
+                if (pixbuf != null)
+                    set_screenshot (pixbuf, true);
+            } catch (GLib.Error error) {
+                warning (error.message);
+            }
         }
 
         App.app.display_page.remove_display ();
