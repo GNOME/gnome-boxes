@@ -265,8 +265,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             int row_energy = 0;
             int i = row_start;
             for (int x = 0; x < w; x++) {
-                int avg = (pixels[i+0] + pixels[i+1] + pixels[i+2]) / 3;
-                row_energy += avg * avg;
+                int max = int.max (int.max (pixels[i+0], pixels[i+1]), pixels[i+2]);
+                row_energy += max * max;
                 i += n_channels;
             }
             energy += row_energy / w;
@@ -294,7 +294,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                lock screen, nor a fullscreen white-on-black terminal with a single
                shell prompt, but do allow the terminal with a few lines of text.
             */
-            if (pixbuf_energy (small_screenshot) < 100)
+            if (pixbuf_energy (small_screenshot) < 500)
                 return;
 
             orig_pixbuf = small_screenshot;
