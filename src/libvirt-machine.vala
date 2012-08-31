@@ -48,8 +48,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         double net_write;
     }
 
-    private uint ram_update_timeout = 0;
-    private uint storage_update_timeout = 0;
     private uint stats_update_timeout;
     private Cancellable stats_cancellable;
 
@@ -523,10 +521,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private void on_ram_changed (Boxes.Property property, uint64 value) {
         // Ensure that we don't end-up changing RAM like a 1000 times a second while user moves the slider..
-        if (ram_update_timeout != 0)
-            Source.remove (ram_update_timeout);
-
-        ram_update_timeout = Timeout.add_seconds (1, () => {
+        property.deferred_change = () => {
             try {
                 var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
                 config.memory = value;
@@ -539,11 +534,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          value,
                          error.message);
             }
-            ram_update_timeout = 0;
+
             update_ram_property (property);
 
             return false;
-        });
+        };
     }
 
     public async void start () {
@@ -615,10 +610,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private void on_storage_changed (Boxes.Property property, uint64 value) {
         // Ensure that we don't end-up changing storage like a 1000 times a second while user moves the slider..
-        if (storage_update_timeout != 0)
-            Source.remove (storage_update_timeout);
-
-        storage_update_timeout = Timeout.add_seconds (1, () => {
+        property.deferred_change = () => {
             if (storage_volume == null)
                 return false;
 
@@ -637,9 +629,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          value,
                          error.message);
             }
-            storage_update_timeout = 0;
 
             return false;
-        });
+        };
     }
 }

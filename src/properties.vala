@@ -118,6 +118,11 @@ private class Boxes.Properties: Boxes.UI {
             grid.show_all ();
             widget = grid;
         }
+
+        public void flush_changes () {
+            foreach (var property in properties)
+                property.flush ();
+        }
     }
 
     public Properties () {
@@ -260,6 +265,14 @@ private class Boxes.Properties: Boxes.UI {
             toolbar_label_bind = App.app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
             populate ();
             opacity = 255;
+            break;
+        default:
+            if (previous_ui_state == UIState.PROPERTIES)
+                for (var i = 0; i < PropertiesPage.LAST; i++) {
+                    var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
+
+                    page.flush_changes ();
+                }
             break;
         }
         fade_actor (actor, opacity);

@@ -6,8 +6,44 @@ private class Boxes.Property: GLib.Object {
     public Gtk.Widget widget { get; construct set; }
     public bool reboot_required { get; set; }
 
+    public uint defer_interval { get; set; default = 1; } // In seconds
+
+    private uint deferred_change_id;
+    private SourceFunc? _deferred_change;
+    public SourceFunc? deferred_change {
+        get {
+            return _deferred_change;
+        }
+
+        owned set {
+            if (deferred_change_id != 0) {
+                Source.remove (deferred_change_id);
+                deferred_change_id = 0;
+            }
+
+            _deferred_change = (owned) value;
+            if (_deferred_change == null)
+                return;
+
+            deferred_change_id = Timeout.add_seconds (defer_interval, () => {
+                flush ();
+
+                return false;
+            });
+        }
+    }
+
     public Property (string description, Gtk.Widget widget) {
         base (description: description, widget: widget);
+    }
+
+    public void flush () {
+        if (deferred_change == null)
+            return;
+
+        deferred_change ();
+
+        deferred_change = null;
     }
 }
 
