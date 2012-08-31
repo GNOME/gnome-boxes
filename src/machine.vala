@@ -294,7 +294,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                lock screen, nor a fullscreen white-on-black terminal with a single
                shell prompt, but do allow the terminal with a few lines of text.
             */
-            if (pixbuf_energy (small_screenshot) < 500)
+            if (pixbuf_energy (small_screenshot) < 50)
                 return;
 
             orig_pixbuf = small_screenshot;
