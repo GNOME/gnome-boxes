@@ -59,6 +59,7 @@ private class Boxes.App: Boxes.UI {
     public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
 
     private uint configure_id;
+    private ulong status_id;
     public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
@@ -534,6 +535,10 @@ private class Boxes.App: Boxes.UI {
             set_main_ui_state ();
             if (current_item is Machine) {
                 var machine = current_item as Machine;
+                if (status_id != 0) {
+                    machine.disconnect (status_id);
+                    status_id = 0;
+                }
 
                 machine.disconnect_display ();
             }
@@ -642,6 +647,9 @@ private class Boxes.App: Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
+                status_id = machine.notify["status"].connect ( () => {
+                    topbar.set_status (machine.status);
+                });
                 machine.connect_display.begin ();
                 ui_state = UIState.CREDS;
             } else

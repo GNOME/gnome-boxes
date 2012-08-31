@@ -557,8 +557,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         try {
             if (state == MachineState.PAUSED)
                 yield domain.resume_async (null);
-            else
+            else {
+                if (domain.get_saved ())
+                    status = _("Restoring %s from disk").printf (name);
+                else
+                    status = _("Starting %s").printf (name);
                 yield domain.start_async (0, null);
+            }
         } catch (GLib.Error error) {
             warning ("Failed to start '%s': %s", domain.get_name (), error.message);
         }

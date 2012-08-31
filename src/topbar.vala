@@ -23,6 +23,7 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.Button back_btn;
     private Gtk.Button new_btn;
     private Gd.MainToolbar selection_toolbar;
+    private Gd.MainToolbar collection_toolbar;
 
     public Topbar () {
         setup_topbar ();
@@ -42,6 +43,7 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.append_page (hbox, null);
 
         var toolbar = new Gd.MainToolbar ();
+        collection_toolbar = toolbar;
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (toolbar, true, true, 0);
 
@@ -112,6 +114,10 @@ private class Boxes.Topbar: Boxes.UI {
         select_btn.sensitive = App.app.collection.items.length != 0;
     }
 
+    public void set_status (string? text) {
+        collection_toolbar.set_labels (text, null);
+    }
+
     private void update_selection_label () {
         var items = App.app.selected_items.length ();
         if (items > 0)
@@ -123,6 +129,7 @@ private class Boxes.Topbar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
+            set_status (null);
             notebook.page = TopbarPage.COLLECTION;
             back_btn.hide ();
             spinner_btn.hide ();

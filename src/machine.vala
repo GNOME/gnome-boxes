@@ -11,6 +11,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Gdk.Pixbuf? pixbuf { get; set; }
     public bool stay_on_display;
     public string? info { get; set; }
+    public string? status { get; set; }
 
     private ulong show_id;
     private ulong hide_id;
@@ -92,6 +93,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (_display == null)
                 return;
 
+            status = _("Connecting to %s").printf (name);
+
             show_id = _display.show.connect ((id) => {
                 switch (App.app.ui_state) {
                 case Boxes.UIState.CREDS:
@@ -120,6 +123,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             });
 
             need_password_id = _display.notify["need-password"].connect (() => {
+                status = _("Enter password for %s").printf (name);
                 machine_actor.set_password_needed (display.need_password);
             });
 
