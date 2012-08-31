@@ -77,6 +77,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             });
             sync_config_with_display (this, display_saved_properties);
             display.scaling = true;
+            if (display.get_class ().find_property ("only-downscale") != null)
+                display.set ("only-downscale", true);
 
             displays.replace (n, display);
         }
