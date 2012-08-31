@@ -123,7 +123,7 @@ gnome_boxes_LDADD =				\
 	$(NULL)
 
 gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
-gnome_boxes_DEPENDENCIES = $(libcommon_a_DEPENDENCIES)
+$(srcdir)/gnome_boxes_vala.stamp: $(libcommon_a_DEPENDENCIES)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)
 
@@ -135,6 +135,7 @@ gnome_boxes_search_provider_SOURCES =		\
 
 gnome_boxes_search_provider_LDADD = $(BOXES_COMMON_LIBS) libcommon.a
 gnome_boxes_search_provider_CFLAGS = $(BOXES_COMMON_CFLAGS)
+$(srcdir)/gnome_boxes_search_provider_vala.stamp: $(libcommon_a_DEPENDENCIES)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_search_provider_SOURCES:.vala=.c)
 
