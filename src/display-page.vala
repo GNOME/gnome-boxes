@@ -26,6 +26,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private DisplayToolbar overlay_toolbar;
     private DisplayToolbar toolbar;
     private uint toolbar_hide_id;
+    private uint toolbar_show_id;
     private ulong cursor_id;
 
     private Boxes.Display display;
@@ -42,7 +43,7 @@ private class Boxes.DisplayPage: GLib.Object {
         event_box.event.connect ((event) => {
             if (App.app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
                 var y = event.motion.y;
-                if (y <= 0) {
+                if (y <= 0 && toolbar_show_id == 0) {
                     toolbar_event_stop ();
                     if ((event.motion.state &
                          (ModifierType.SHIFT_MASK | ModifierType.CONTROL_MASK |
@@ -50,8 +51,13 @@ private class Boxes.DisplayPage: GLib.Object {
                           ModifierType.HYPER_MASK | ModifierType.META_MASK |
                           ModifierType.BUTTON1_MASK | ModifierType.BUTTON2_MASK |
                           ModifierType.BUTTON3_MASK | ModifierType.BUTTON4_MASK |
-                          ModifierType.BUTTON5_MASK)) == 0)
-                        set_overlay_toolbar_visible (true);
+                          ModifierType.BUTTON5_MASK)) == 0) {
+                        toolbar_show_id = Timeout.add (App.app.duration, () => {
+                            set_overlay_toolbar_visible (true);
+                            toolbar_show_id = 0;
+                            return false;
+                        });
+                    }
                 } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
                     toolbar_hide_id = Timeout.add (App.app.duration, () => {
@@ -131,6 +137,9 @@ private class Boxes.DisplayPage: GLib.Object {
         if (toolbar_hide_id != 0)
             GLib.Source.remove (toolbar_hide_id);
         toolbar_hide_id = 0;
+        if (toolbar_show_id != 0)
+            GLib.Source.remove (toolbar_show_id);
+        toolbar_show_id = 0;
     }
 
     public void show () {
