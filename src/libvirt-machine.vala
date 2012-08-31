@@ -509,7 +509,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             var max_ram = connection.get_node_info ().memory;
 
             var property = add_size_property (ref list,
-                                              _("RAM"),
+                                              _("Memory"),
                                               domain_config.memory,
                                               Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
                                               max_ram,
@@ -604,7 +604,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             var max_storage = (volume_info.capacity + pool_info.available)  / Osinfo.KIBIBYTES;
 
             add_size_property (ref list,
-                               _("Storage"),
+                               _("Maximum Disk Size"),
                                volume_info.capacity / Osinfo.KIBIBYTES,
                                volume_info.capacity / Osinfo.KIBIBYTES,
                                max_storage,
