@@ -26,7 +26,6 @@ private class Boxes.DisplayPage: GLib.Object {
     private DisplayToolbar overlay_toolbar;
     private DisplayToolbar toolbar;
     private uint toolbar_hide_id;
-    private ulong display_id;
     private ulong cursor_id;
 
     private Boxes.Display display;
@@ -171,18 +170,6 @@ private class Boxes.DisplayPage: GLib.Object {
         event_box.add (widget);
         event_box.show_all ();
 
-        display_id = widget.event.connect ((event) => {
-            switch (event.type) {
-            case EventType.LEAVE_NOTIFY:
-                toolbar_event_stop ();
-                break;
-            case EventType.ENTER_NOTIFY:
-                toolbar_event_stop ();
-                break;
-            }
-            return false;
-        });
-
         ulong draw_id = 0;
         draw_id = widget.draw.connect (() => {
             widget.disconnect (draw_id);
@@ -210,10 +197,6 @@ private class Boxes.DisplayPage: GLib.Object {
 
         var widget = event_box.get_child ();
 
-        if (display_id != 0) {
-            widget.disconnect (display_id);
-            display_id = 0;
-        }
         if (cursor_id != 0) {
             widget.get_window ().disconnect (cursor_id);
             cursor_id = 0;
