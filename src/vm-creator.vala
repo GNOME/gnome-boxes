@@ -52,7 +52,7 @@ private class Boxes.VMCreator {
 
         var domain = connection.create_domain (config);
 
-        return App.app.add_domain (App.app.default_source, App.app.default_connection, domain);
+        return LibvirtBroker.get_default ().add_domain (App.app.default_source, App.app.default_connection, domain);
     }
 
     public void launch_vm (LibvirtMachine machine) throws GLib.Error {

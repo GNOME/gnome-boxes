@@ -22,10 +22,26 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         return broker.connections.get (name);
     }
 
+    public LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
+                                      throws GLib.Error {
+        return_if_fail (broker != null);
+
+        var machine = domain.get_data<LibvirtMachine> ("machine");
+        if (machine != null)
+            return machine; // Already added
+
+        machine = new LibvirtMachine (source, connection, domain);
+        machine.suspend_at_exit = (connection == App.app.default_connection);
+        App.app.collection.add_item (machine);
+        domain.set_data<LibvirtMachine> ("machine", machine);
+
+        return machine;
+    }
+
     // New == Added after Boxes launch
     private void try_add_new_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         try {
-            App.app.add_domain (source, connection, domain);
+            add_domain (source, connection, domain);
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
         }
@@ -34,7 +50,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
     // Existing == Existed before Boxes was launched
     private void try_add_existing_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         try {
-            var machine = App.app.add_domain (source, connection, domain);
+            var machine = add_domain (source, connection, domain);
             var config = machine.domain_config;
 
             if (VMConfigurator.is_install_config (config) || VMConfigurator.is_live_config (config)) {

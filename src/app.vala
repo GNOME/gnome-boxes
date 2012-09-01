@@ -337,20 +337,6 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    public LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
-                                      throws GLib.Error {
-        var machine = domain.get_data<LibvirtMachine> ("machine");
-        if (machine != null)
-            return machine; // Already added
-
-        machine = new LibvirtMachine (source, connection, domain);
-        machine.suspend_at_exit = (connection == default_connection);
-        collection.add_item (machine);
-        domain.set_data<LibvirtMachine> ("machine", machine);
-
-        return machine;
-    }
-
     public void delete_machine (Machine machine, bool by_user = true) {
         machine.delete (by_user);         // Will also delete associated storage volume if by_user is 'true'
         collection.remove_item (machine);
