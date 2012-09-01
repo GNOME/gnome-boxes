@@ -82,9 +82,8 @@ private class Boxes.App: Boxes.UI {
     public CollectionView view;
 
     private HashTable<string,Broker> brokers;
-    private HashTable<string,GVir.Connection> connections;
     private HashTable<string,CollectionSource> sources;
-    public GVir.Connection default_connection { get { return connections.get ("QEMU Session"); } }
+    public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
     public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
 
     private uint configure_id;
@@ -96,7 +95,6 @@ private class Boxes.App: Boxes.UI {
         app = this;
         application = new Boxes.Application ();
         settings = new GLib.Settings ("org.gnome.boxes");
-        connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
         filter = new Boxes.CollectionFilter ();
@@ -173,6 +171,9 @@ private class Boxes.App: Boxes.UI {
         collection.item_removed.connect ((item) => {
             view.remove_item (item);
         });
+
+        brokers.insert ("libvirt", LibvirtBroker.get_default ());
+
         setup_sources.begin ((obj, result) => {
             setup_sources.end (result);
             is_ready = true;
@@ -350,78 +351,9 @@ private class Boxes.App: Boxes.UI {
         return machine;
     }
 
-    // New == Added after Boxes launch
-    private void try_add_new_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
-        try {
-            add_domain (source, connection, domain);
-        } catch (GLib.Error error) {
-            warning ("Failed to create source '%s': %s", source.name, error.message);
-        }
-    }
-
-    // Existing == Existed before Boxes was launched
-    private void try_add_existing_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
-        try {
-            var machine = add_domain (source, connection, domain);
-            var config = machine.domain_config;
-
-            if (VMConfigurator.is_install_config (config) || VMConfigurator.is_live_config (config)) {
-                debug ("Continuing installation/live session for '%s', ..", machine.name);
-                new VMCreator.for_install_completion (machine); // This instance will take care of its own lifecycle
-            }
-        } catch (GLib.Error error) {
-            warning ("Failed to create source '%s': %s", source.name, error.message);
-        }
-    }
-
     public void delete_machine (Machine machine, bool by_user = true) {
         machine.delete (by_user);         // Will also delete associated storage volume if by_user is 'true'
         collection.remove_item (machine);
-    }
-
-    private async void setup_libvirt (CollectionSource source) {
-        if (connections.lookup (source.name) != null)
-            return;
-
-        var connection = new GVir.Connection (source.uri);
-
-        try {
-            yield connection.open_async (null);
-            yield connection.fetch_domains_async (null);
-            yield connection.fetch_storage_pools_async (null);
-            var pool = Boxes.get_storage_pool (connection);
-            if (pool != null) {
-                if (pool.get_info ().state == GVir.StoragePoolState.INACTIVE)
-                    yield pool.start_async (0, null);
-                // If default storage pool exists, we should refresh it already
-                yield pool.refresh_async (null);
-            }
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
-
-        connections.insert (source.name, connection);
-        sources.insert (source.name, source);
-        if (source.name == "QEMU Session") {
-            notify_property ("default-connection");
-            notify_property ("default-source");
-        }
-
-        foreach (var domain in connection.get_domains ())
-            try_add_existing_domain (source, connection, domain);
-
-        connection.domain_removed.connect ((connection, domain) => {
-            var machine = domain.get_data<LibvirtMachine> ("machine");
-            if (machine == null)
-                return; // Looks like we removed the domain ourselves. Nothing to do then..
-
-            delete_machine (machine, false);
-        });
-
-        connection.domain_added.connect ((connection, domain) => {
-            debug ("New domain '%s'", domain.get_name ());
-            try_add_new_domain (source, connection, domain);
-        });
     }
 
     public async void add_collection_source (CollectionSource source) {
@@ -429,10 +361,6 @@ private class Boxes.App: Boxes.UI {
             return;
 
         switch (source.source_type) {
-        case "libvirt":
-            yield setup_libvirt (source);
-            break;
-
         case "vnc":
         case "spice":
             try {
@@ -448,6 +376,10 @@ private class Boxes.App: Boxes.UI {
             if (broker != null) {
                 yield broker.add_source (source);
                 sources.insert (source.name, source);
+                if (source.name == "QEMU Session") {
+                    notify_property ("default-connection");
+                    notify_property ("default-source");
+                }
             } else {
                 warning ("Unsupported source type %s", source.source_type);
             }

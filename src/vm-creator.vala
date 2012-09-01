@@ -10,7 +10,7 @@ private class Boxes.VMCreator {
 
     public InstallerMedia? install_media { get; private set; }
 
-    private Connection? connection { get { return App.app.default_connection; } }
+    private Connection? connection { owned get { return App.app.default_connection; } }
     private ulong state_changed_id;
 
     private uint num_reboots { get; private set; }
