@@ -3,6 +3,10 @@ using Gtk;
 using Gdk;
 using Clutter;
 
+private abstract class Boxes.Broker : GLib.Object {
+    public abstract async void add_source (CollectionSource source);
+}
+
 private enum Boxes.AppPage {
     MAIN,
     DISPLAY
@@ -77,6 +81,7 @@ private class Boxes.App: Boxes.UI {
     private Boxes.Application application;
     public CollectionView view;
 
+    private HashTable<string,Broker> brokers;
     private HashTable<string,GVir.Connection> connections;
     private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { get { return connections.get ("QEMU Session"); } }
@@ -93,6 +98,7 @@ private class Boxes.App: Boxes.UI {
         settings = new GLib.Settings ("org.gnome.boxes");
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
+        brokers = new HashTable<string,Broker> (str_hash, str_equal);
         filter = new Boxes.CollectionFilter ();
         var action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => { quit (); });
@@ -438,7 +444,13 @@ private class Boxes.App: Boxes.UI {
             break;
 
         default:
-            warning ("Unsupported source type %s", source.source_type);
+            Broker? broker = brokers.lookup(source.source_type);
+            if (broker != null) {
+                yield broker.add_source (source);
+                sources.insert (source.name, source);
+            } else {
+                warning ("Unsupported source type %s", source.source_type);
+            }
             break;
         }
     }
