@@ -16,7 +16,7 @@ private class Boxes.OSDatabase {
     // dependent on the OS/guest.
     private const int64 DEFAULT_STORAGE = 20 * (int64) GIBIBYTES;
 
-    private Db db;
+    private Db? db;
 
     private static Resources get_default_resources () {
         var resources = new Resources ("whatever", "x86_64");
@@ -28,7 +28,7 @@ private class Boxes.OSDatabase {
         return resources;
     }
 
-    public OSDatabase () throws GLib.Error {
+    public void load () throws GLib.Error {
         var loader = new Loader ();
         loader.process_default_path ();
         loader.process_path (get_logos_db ()); // Load our custom database
@@ -38,12 +38,20 @@ private class Boxes.OSDatabase {
     public async Os? guess_os_from_install_media (string media_path,
                                                   out Media os_media,
                                                   Cancellable? cancellable) throws GLib.Error {
+        os_media = null;
+
+        if (db == null)
+            return null;
+
         var media = yield Media.create_from_location_async (media_path, Priority.DEFAULT, cancellable);
 
         return db.guess_os_from_media (media, out os_media);
     }
 
     public Os get_os_by_id (string id) throws OSDatabaseError {
+        if (db == null)
+            throw new OSDatabaseError.UNKNOWN_OS_ID ("Unknown OS ID '%s'", id);
+
         var os = db.get_os (id);
         if (os == null)
             throw new OSDatabaseError.UNKNOWN_OS_ID ("Unknown OS ID '%s'", id);
