@@ -73,4 +73,7 @@ version.h: $(top_srcdir)/.version
 vala-clean:
 	rm -f `find . -name "*.stamp"`
 
+win-tools.iso:
+	@wget -O $@ http://people.gnome.org/~teuf/gnome-boxes/boxes-unattended-win-drivers/boxes-unattended-win-drivers-LATEST.iso
+
 -include $(top_srcdir)/git.mk
