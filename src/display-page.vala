@@ -29,9 +29,17 @@ private class Boxes.DisplayPage: GLib.Object {
     private uint toolbar_show_id;
     private ulong cursor_id;
 
-    private Boxes.Display display;
-    private bool can_grab_mouse { get { return display.can_grab_mouse; } }
-    private bool grabbed { get { return display.mouse_grabbed; } }
+    private Boxes.Display? display;
+    private bool can_grab_mouse {
+        get {
+            return display != null ? display.can_grab_mouse : false;
+        }
+    }
+    private bool grabbed {
+        get {
+            return display != null ? display.mouse_grabbed : false;
+        }
+    }
     private ulong display_can_grab_id;
     private ulong display_grabbed_id;
 
