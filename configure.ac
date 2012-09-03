@@ -55,7 +55,6 @@ LIBXML2_MIN_VERSION=2.7.8
 SPICE_GTK_MIN_VERSION=0.12.101
 GUDEV_MIN_VERSION=165
 OSINFO_MIN_VERSION=0.2.3
-REST_MIN_VERSION=0.7.90
 TRACKER_SPARQL=0.13.1
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.38
@@ -94,7 +93,7 @@ VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
 VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
 
-PKG_CHECK_MODULES(OVIRT, [govirt-1.0 >= $GOVIRT_MIN_VERSION rest-0.7 >= $REST_MIN_VERSION],
+PKG_CHECK_MODULES(OVIRT, [govirt-1.0 >= $GOVIRT_MIN_VERSION],
                   [have_govirt=yes], [have_govirt=no])
 if test "x$have_govirt" = "xyes"; then
   AC_DEFINE([HAVE_OVIRT], [1], [Build with oVirt support?])

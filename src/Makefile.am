@@ -130,6 +130,7 @@ $(srcdir)/gnome_boxes_vala.stamp: $(libcommon_a_DEPENDENCIES)
 
 AM_VALAFLAGS += --pkg govirt-1.0 --pkg rest-0.7
 if HAVE_OVIRT
+gnome_boxes_SOURCES += ovirt-broker.vala
 gnome_boxes_LDADD += $(OVIRT_LIBS)
 gnome_boxes_CFLAGS += $(OVIRT_CFLAGS)
 endif

@@ -173,6 +173,8 @@ private class Boxes.App: Boxes.UI {
         });
 
         brokers.insert ("libvirt", LibvirtBroker.get_default ());
+        if (Config.HAVE_OVIRT)
+            brokers.insert ("ovirt", OvirtBroker.get_default ());
 
         setup_sources.begin ((obj, result) => {
             setup_sources.end (result);
