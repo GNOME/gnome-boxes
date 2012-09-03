@@ -559,8 +559,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 yield domain.resume_async (null);
             else {
                 if (domain.get_saved ())
+                    // Translators: The %s will be expanded with the name of the vm
                     status = _("Restoring %s from disk").printf (name);
                 else
+                    // Translators: The %s will be expanded with the name of the vm
                     status = _("Starting %s").printf (name);
                 yield domain.start_async (0, null);
             }

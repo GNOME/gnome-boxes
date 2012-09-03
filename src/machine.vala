@@ -93,6 +93,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (_display == null)
                 return;
 
+            // Translators: The %s will be expanded with the name of the vm
             status = _("Connecting to %s").printf (name);
 
             show_id = _display.show.connect ((id) => {
@@ -123,6 +124,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             });
 
             need_password_id = _display.notify["need-password"].connect (() => {
+                // Translators: The %s will be expanded with the name of the vm
                 status = _("Enter password for %s").printf (name);
                 machine_actor.set_password_needed (display.need_password);
             });
