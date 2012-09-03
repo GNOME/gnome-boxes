@@ -150,7 +150,7 @@ private class Boxes.Wizard: Boxes.UI {
             try {
                 prepare_for_location (this.wizard_source.uri, true);
 
-                if (source != null && source.source_type == "libvirt") {
+                if (source != null && App.app.has_broker_for_source_type (source.source_type)) {
                     text = _("Will add boxes for all systems available from this account.");
                     icon = "network-workgroup";
                 } else
@@ -259,6 +259,8 @@ private class Boxes.Wizard: Boxes.UI {
         } else if (uri.scheme.has_prefix ("qemu")) {
             // accept any qemu..:// uri
             source.source_type = "libvirt";
+        } else if (App.app.has_broker_for_source_type (uri.scheme)) {
+            source.source_type = uri.scheme;
         } else
             throw new Boxes.Error.INVALID (_("Unsupported protocol '%s'").printf (uri.scheme));
     }
@@ -419,7 +421,7 @@ private class Boxes.Wizard: Boxes.UI {
                 break;
             }
 
-            if (source.source_type == "libvirt") {
+            if (App.app.has_broker_for_source_type (source.source_type)) {
                 review_label.set_text (_("Will add boxes for all systems available from this account:"));
             }
         } else if (libvirt_machine != null) {
