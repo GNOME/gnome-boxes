@@ -91,7 +91,12 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     }
 
     public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
-        return (get_display (n) as Spice.Display).get_pixbuf ();
+        var display = get_display (n) as Spice.Display;
+
+        if (!display.ready)
+            return null;
+
+        return display.get_pixbuf ();
     }
 
     public override void connect_it () {
