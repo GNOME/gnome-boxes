@@ -4,12 +4,14 @@
 # pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
 # gnomepl@aviary.pl
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Piotr Drąg <piotrdrag@gmail.com>, 2011-2012.
+# Aviary.pl <gnomepl@aviary.pl>, 2011-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 21:22+0200\n"
-"PO-Revision-Date: 2012-08-31 21:23+0200\n"
+"POT-Creation-Date: 2012-09-03 16:00+0200\n"
+"PO-Revision-Date: 2012-09-03 16:03+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -81,46 +83,48 @@ msgstr "Maksymalizacja okna"
 msgid "Window maximized state"
 msgstr "Stan maksymalizacji okna"
 
-#: ../src/app.vala:107
-msgid "translator-credits"
-msgstr "Aviary.pl <gnomepl@aviary.pl>, 2011, 2012"
-
 #: ../src/app.vala:108
+msgid "translator-credits"
+msgstr ""
+"Piotr Drąg <piotrdrag@gmail.com>, 2011-2012\n"
+"Aviary.pl <gnomepl@aviary.pl>, 2011-2012"
+
+#: ../src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Prosty program do dostępu do maszyn zdalnych lub wirtualnych dla środowiska "
 "GNOME 3"
 
-#: ../src/app.vala:120 ../src/topbar.vala:48
+#: ../src/app.vala:121 ../src/topbar.vala:50
 msgid "New"
 msgstr "Nowa"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Properties"
 msgstr "Właściwości"
 
-#: ../src/app.vala:124
+#: ../src/app.vala:125
 msgid "Fullscreen"
 msgstr "Pełny ekran"
 
-#: ../src/app.vala:125
+#: ../src/app.vala:126
 msgid "Force shutdown"
 msgstr "Wymuś wyłączenie"
 
-#: ../src/app.vala:128
+#: ../src/app.vala:129
 msgid "About Boxes"
 msgstr "O programie Boxes"
 
-#: ../src/app.vala:129
+#: ../src/app.vala:130
 msgid "Quit"
 msgstr "Zakończ"
 
-#: ../src/app.vala:599
+#: ../src/app.vala:604
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Maszyna \"%s\" została usunięta"
 
-#: ../src/app.vala:600
+#: ../src/app.vala:605
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -132,7 +136,7 @@ msgstr[2] "%u maszyn zostało usuniętych"
 msgid "New and Recent"
 msgstr "Nowe i ostatnie"
 
-#: ../src/display-page.vala:148
+#: ../src/display-page.vala:156
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(naciśnięcie klawiszy Ctrl+Alt zwolni przechwycenie)"
 
@@ -161,23 +165,47 @@ msgstr "Protokół"
 msgid "When you force shutdown, the box may lose data."
 msgstr "Wymuszenie wyłączenia może spowodować utratę danych w maszynie."
 
-#: ../src/libvirt-machine.vala:512
-msgid "RAM"
-msgstr "Pamięć RAM"
+#: ../src/libvirt-machine.vala:512 ../src/wizard.vala:365
+msgid "Memory"
+msgstr "Pamięć"
 
-#: ../src/libvirt-machine.vala:585
+#. Translators: The %s will be expanded with the name of the vm
+#: ../src/libvirt-machine.vala:563
+#, c-format
+msgid "Restoring %s from disk"
+msgstr "Przywracanie maszyny %s z dysku"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: ../src/libvirt-machine.vala:566
+#, c-format
+msgid "Starting %s"
+msgstr "Uruchamianie maszyny %s"
+
+#: ../src/libvirt-machine.vala:592
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr ""
 "Zmiany wymagają ponownego uruchomienia maszyny \"%s\". Spróbować ponownie "
 "uruchomić?"
 
-#: ../src/libvirt-machine.vala:602
-msgid "Storage"
-msgstr "Pamięć masowa"
+#: ../src/libvirt-machine.vala:609
+msgid "Maximum Disk Size"
+msgstr "Maksymalny rozmiar dysku"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: ../src/machine.vala:97
+#, c-format
+msgid "Connecting to %s"
+msgstr "Łączenie z maszyną %s"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: ../src/machine.vala:128
+#, c-format
+msgid "Enter password for %s"
+msgstr "Proszę wprowadzić hasło dla maszyny %s"
 
 #. 3rd row
-#: ../src/machine.vala:475 ../src/unattended-installer.vala:192
+#: ../src/machine.vala:483 ../src/unattended-installer.vala:192
 #: ../src/unattended-installer.vala:262
 msgid "Password"
 msgstr "Hasło"
@@ -283,11 +311,11 @@ msgstr "Zmień rozmiar gościa"
 msgid "USB redirection"
 msgstr "Przekierowanie USB"
 
-#: ../src/topbar.vala:89 ../src/wizard.vala:547
+#: ../src/topbar.vala:91 ../src/wizard.vala:547
 msgid "_Cancel"
 msgstr "_Anuluj"
 
-#: ../src/topbar.vala:118
+#: ../src/topbar.vala:124
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -295,7 +323,7 @@ msgstr[0] "%d wybrana"
 msgstr[1] "%d wybrane"
 msgstr[2] "%d wybranych"
 
-#: ../src/topbar.vala:120
+#: ../src/topbar.vala:126
 msgid "Click on items to select them"
 msgstr "Kliknięcie na elementach zaznacza je"
 
@@ -489,10 +517,6 @@ msgstr "Port TLS"
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Zostaną dodane maszyny dla wszystkich systemów dostępnych z tego konta:"
-
-#: ../src/wizard.vala:365
-msgid "Memory"
-msgstr "Pamięć"
 
 #: ../src/wizard.vala:367
 msgid "Disk"
