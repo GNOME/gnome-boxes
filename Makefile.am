@@ -31,6 +31,7 @@ MAINTAINERCLEANFILES =				\
 	ABOUT-NLS				\
 	aclocal.m4				\
 	config.h.in				\
+	build-aux/ar-lib			\
 	build-aux/compile			\
 	build-aux/config.guess			\
 	build-aux/config.rpath			\
