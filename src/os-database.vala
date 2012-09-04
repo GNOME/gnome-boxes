@@ -30,8 +30,16 @@ private class Boxes.OSDatabase {
 
     public void load () throws GLib.Error {
         var loader = new Loader ();
-        loader.process_default_path ();
-        loader.process_path (get_logos_db ()); // Load our custom database
+        try {
+            loader.process_default_path ();
+        } catch (GLib.Error e) {
+            warning ("Error loading default libosinfo database: %s", e.message);
+        }
+        try {
+            loader.process_path (get_logos_db ()); // Load our custom database
+        } catch (GLib.Error e) {
+            warning ("Error loading GNOME Boxes libosinfo database: %s", e.message);
+        }
         db = loader.get_db ();
     }
 
