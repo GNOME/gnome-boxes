@@ -361,6 +361,13 @@ private class Boxes.CollectionView: Boxes.UI {
             return item_a.name.collate (item_b.name);
         });
         model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
+        model.row_deleted.connect (() => {
+            App.app.notify_property ("selected-items");
+        });
+        model.row_inserted.connect (() => {
+            App.app.notify_property ("selected-items");
+        });
+
         model_filter = new Gtk.TreeModelFilter (model, null);
         model_filter.set_visible_func (model_visible);
 
