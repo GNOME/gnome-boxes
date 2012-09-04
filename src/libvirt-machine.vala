@@ -293,13 +293,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
         var list = new List<Boxes.Property> ();
 
-        var display = this.display;
+        // the wizard may want to modify display properties, before connect_display()
         if (display == null)
-            try {
-                display = create_display ();
-            } catch (GLib.Error error) {
-                warning (error.message);
-            }
+            update_display ();
 
         switch (page) {
         case PropertiesPage.LOGIN:
