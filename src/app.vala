@@ -628,6 +628,11 @@ private class Boxes.App: Boxes.UI {
         };
 
         notificationbar.display_for_action (message, Gtk.Stock.UNDO, (owned) undo, (owned) really_remove);
+
+        // go out of selection mode if there are no more boxes
+        if (App.app.collection.items.length == 0) {
+            App.app.selection_mode = false;
+        }
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
