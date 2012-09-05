@@ -696,6 +696,10 @@ private class Boxes.Wizard: Boxes.UI {
         }
 
         public void append_customize_button (CustomizeFunc cutomize_func) {
+            // there is nothing to customize if review page is empty
+            if (current_row == 0)
+                return;
+
             var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
             button.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
             table.attach_defaults (button, 2, 3, current_row - 1, current_row);
