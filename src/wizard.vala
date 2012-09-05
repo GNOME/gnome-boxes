@@ -31,7 +31,7 @@ private class Boxes.Wizard: Boxes.UI {
     private MediaManager media_manager;
 
     private VMCreator? vm_creator;
-    private LibvirtMachine? machine;
+    protected LibvirtMachine? machine { get; set; }
 
     private WizardPage _page;
     private WizardPage page {
@@ -82,10 +82,12 @@ private class Boxes.Wizard: Boxes.UI {
 
                 case WizardPage.LAST:
                     skip_review_for_live = false;
-                    if (create ())
-                       App.app.ui_state = UIState.COLLECTION;
-                    else
-                       App.app.notificationbar.display_error (_("Box creation failed"));
+                    create.begin ((obj, result) => {
+                       if (create.end (result))
+                          App.app.ui_state = UIState.COLLECTION;
+                       else
+                          App.app.notificationbar.display_error (_("Box creation failed"));
+                    });
                     return;
                 }
             } else {
@@ -172,10 +174,21 @@ private class Boxes.Wizard: Boxes.UI {
         destroy_machine ();
     }
 
-    private bool create () {
+    private async bool create () {
         if (source == null) {
             return_val_if_fail (vm_creator != null, false); // Shouldn't arrive here with source & vm_creator being null
 
+            if (machine == null) {
+                return_val_if_fail (review_cancellable != null, false);
+                // wait until the machine is ready or not
+                var wait = notify["machine"].connect (() => {
+                   create.callback ();
+                });
+                yield;
+                disconnect (wait);
+                if (machine == null)
+                    return false;
+            }
             next_button.sensitive = false;
             try {
                 vm_creator.launch_vm (machine);
@@ -330,11 +343,14 @@ private class Boxes.Wizard: Boxes.UI {
             try {
                 machine = yield vm_creator.create_vm (review_cancellable);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
-                return false;
             } catch (GLib.Error error) {
                 App.app.notificationbar.display_error (_("Box setup failed"));
                 warning (error.message);
+            }
 
+            if (machine == null) {
+                // notify the VM creation failed
+                notify_property ("machine");
                 return false;
             }
         }
