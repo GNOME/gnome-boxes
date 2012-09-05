@@ -410,7 +410,7 @@ private class Boxes.App: Boxes.UI {
 
         window.delete_event.connect (() => { return quit (); });
 
-        window.key_press_event.connect (on_key_pressed);
+        window.key_press_event.connect_after (on_key_pressed);
 
         stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
                                            Clutter.BinAlignment.FIXED);
