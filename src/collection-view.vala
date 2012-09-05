@@ -68,13 +68,10 @@ private class Boxes.CollectionView: Boxes.UI {
                 actor.set_easing_duration (0);
                 actor.show ();
 
-                App.app.overlay_bin.set_alignment (actor,
-                                                   Clutter.BinAlignment.FIXED,
-                                                   Clutter.BinAlignment.FIXED);
                 float item_x, item_y;
                 get_item_pos (current_item, out item_x, out item_y);
-                actor.x = item_x;
-                actor.y = item_y;
+                actor.fixed_x = item_x;
+                actor.fixed_y = item_y;
                 actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
 
                 actor.set_easing_duration (App.app.duration);
@@ -101,10 +98,9 @@ private class Boxes.CollectionView: Boxes.UI {
         case UIState.CREDS:
             var actor = current_item.actor;
             if (actor.get_parent () == null) {
-                App.app.overlay_bin.add (actor,
-                                         Clutter.BinAlignment.FIXED,
-                                         Clutter.BinAlignment.FIXED);
+                App.app.overlay_bin_actor.add_child (actor);
                 actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
+                actor.set_easing_duration (0);
 
                 float item_x, item_y;
                 get_item_pos (current_item, out item_x, out item_y);
@@ -113,9 +109,9 @@ private class Boxes.CollectionView: Boxes.UI {
 
             }
             actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
-            App.app.overlay_bin.set_alignment (actor,
-                                               Clutter.BinAlignment.CENTER,
-                                               Clutter.BinAlignment.CENTER);
+            actor.fixed_position_set = false;
+            actor.x_align = Clutter.ActorAlign.CENTER;
+            actor.y_align = Clutter.ActorAlign.CENTER;
             actor.set_easing_duration (App.app.duration);
             break;
 
@@ -391,6 +387,8 @@ private class Boxes.CollectionView: Boxes.UI {
         gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
         gtkactor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtkactor.name = "collection-view";
+        gtkactor.x_align = Clutter.ActorAlign.FILL;
+        gtkactor.y_align = Clutter.ActorAlign.FILL;
     }
 
     private bool on_button_press_event (Gtk.Widget view, Gdk.EventButton event) {

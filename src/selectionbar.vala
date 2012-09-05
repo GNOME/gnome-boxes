@@ -24,6 +24,8 @@ private class Boxes.Selectionbar: GLib.Object {
         gtk_actor = new GtkClutter.Actor.with_contents (bin);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.opacity = 0;
+        gtk_actor.x_align = Clutter.ActorAlign.CENTER;
+        gtk_actor.y_align = Clutter.ActorAlign.END;
 
         favorite_btn = new Gtk.ToggleToolButton ();
         toolbar.insert (favorite_btn, 0);

@@ -130,6 +130,8 @@ private class Boxes.Notificationbar: GLib.Object {
         gtk_actor.get_widget ().get_style_context ().add_class ("notificationbar");
         gtk_actor.name = "notificationbar";
         revealer.add (gtk_actor);
+        revealer.x_align = Clutter.ActorAlign.CENTER;
+        revealer.y_align = Clutter.ActorAlign.START;
     }
 
     private void show () {

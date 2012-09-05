@@ -412,8 +412,8 @@ private class Boxes.App: Boxes.UI {
 
         window.key_press_event.connect_after (on_key_pressed);
 
-        stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
-                                           Clutter.BinAlignment.FIXED);
+        stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
+                                           Clutter.BinAlignment.FILL);
         stage.set_layout_manager (stage_bin);
         stage.name = "boxes-stage";
 
@@ -425,9 +425,9 @@ private class Boxes.App: Boxes.UI {
         } catch (GLib.Error e) {
         }
         background.set_repeat (true, true);
-        stage_bin.add (background,
-                       Clutter.BinAlignment.FILL,
-                       Clutter.BinAlignment.FILL);
+        background.x_align = Clutter.ActorAlign.FILL;
+        background.y_align = Clutter.ActorAlign.FILL;
+        stage.add_child (background);
 
         sidebar = new Sidebar ();
         view = new CollectionView ();
@@ -443,10 +443,10 @@ private class Boxes.App: Boxes.UI {
         var vbox = new Clutter.BoxLayout ();
         vbox_actor.set_layout_manager (vbox);
         vbox.set_vertical (true);
+        vbox_actor.x_align = Clutter.ActorAlign.FILL;
+        vbox_actor.y_align = Clutter.ActorAlign.FILL;
 
-        stage_bin.add (vbox_actor,
-                       Clutter.BinAlignment.FILL,
-                       Clutter.BinAlignment.FILL);
+        stage.add_child (vbox_actor);
 
         var topbar_revealer = new Boxes.Revealer (true);
         topbar_revealer.name = "topbar-revealer";
@@ -462,33 +462,31 @@ private class Boxes.App: Boxes.UI {
 
         var below_bin_actor = new Clutter.Actor ();
         below_bin_actor.name = "below-bin";
-        var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
-                                               Clutter.BinAlignment.FIXED);
+        var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
+                                               Clutter.BinAlignment.FILL);
         below_bin_actor.set_layout_manager (below_bin);
 
         vbox.pack (below_bin_actor, true, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
 
-        below_bin.add (view.actor,
-                       Clutter.BinAlignment.FILL,
-                       Clutter.BinAlignment.FILL);
+        below_bin_actor.add_child (view.actor);
 
         var hbox_actor = new Clutter.Actor ();
         hbox_actor.name = "top-hbox";
         var hbox = new Clutter.BoxLayout ();
         hbox_actor.set_layout_manager (hbox);
+        hbox_actor.x_align = Clutter.ActorAlign.FILL;
+        hbox_actor.y_align = Clutter.ActorAlign.FILL;
 
-        below_bin.add (hbox_actor,
-                       Clutter.BinAlignment.FILL,
-                       Clutter.BinAlignment.FILL);
+        below_bin_actor.add_child (hbox_actor);
 
         overlay_bin_actor = new Clutter.Actor ();
         overlay_bin_actor.name = "overlay-bin";
-        overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.FIXED,
-                                             Clutter.BinAlignment.FIXED);
+        overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
+                                             Clutter.BinAlignment.CENTER);
         overlay_bin_actor.set_layout_manager (overlay_bin);
-        below_bin.add (overlay_bin_actor,
-                       Clutter.BinAlignment.FILL,
-                       Clutter.BinAlignment.FILL);
+        overlay_bin_actor.x_align = Clutter.ActorAlign.FILL;
+        overlay_bin_actor.y_align = Clutter.ActorAlign.FILL;
+        below_bin_actor.add_child (overlay_bin_actor);
 
         sidebar_revealer = new Boxes.Revealer (false);
         sidebar_revealer.name = "sidebar-revealer";
@@ -503,9 +501,9 @@ private class Boxes.App: Boxes.UI {
         content_bin_actor.set_layout_manager (content_bin);
         hbox.pack (content_bin_actor, true, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
 
-        below_bin.add (notificationbar.actor, Clutter.BinAlignment.CENTER, Clutter.BinAlignment.START);
+        below_bin_actor.add_child (notificationbar.actor);
 
-        content_bin.add (selectionbar.actor, Clutter.BinAlignment.CENTER, Clutter.BinAlignment.END);
+        content_bin_actor.add_child (selectionbar.actor);
         content_bin_actor.add (wizard.actor);
         content_bin_actor.add (properties.actor);
 

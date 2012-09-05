@@ -542,9 +542,9 @@ private class Boxes.MachineActor: Boxes.UI {
         if (ui_state == UIState.PROPERTIES) {
             display = new GtkClutter.Actor.with_contents (widget);
             display.name = "properties-thumbnail";
-            App.app.overlay_bin.add (display,
-                                     Clutter.BinAlignment.FILL,
-                                     Clutter.BinAlignment.FILL);
+            display.x_align = Clutter.ActorAlign.FILL;
+            display.y_align = Clutter.ActorAlign.FILL;
+            App.app.overlay_bin_actor.add_child (display);
 
             machine.display.set_enable_inputs (widget, false);
 
@@ -553,9 +553,6 @@ private class Boxes.MachineActor: Boxes.UI {
 
                 App.app.properties.screenshot_placeholder.get_allocation (out alloc);
                 App.app.topbar.actor.show ();
-                App.app.overlay_bin.set_alignment (display,
-                                                   Clutter.BinAlignment.FIXED,
-                                                   Clutter.BinAlignment.FIXED);
 
                 // We disable implicit animations while setting the
                 // properties because we don't want to animate these individually
@@ -566,10 +563,10 @@ private class Boxes.MachineActor: Boxes.UI {
                 // different.
                 var d = display.get_easing_duration ();
                 display.set_easing_duration (0);
-                display.x = alloc.x;
-                display.y = alloc.y;
-                display.width = alloc.width;
-                display.height = alloc.height;
+                display.fixed_x = alloc.x;
+                display.fixed_y = alloc.y;
+                display.min_width = display.natural_width = alloc.width;
+                display.min_height = display.natural_height = alloc.height;
                 display.set_easing_duration (d);
             };
 
@@ -609,9 +606,10 @@ private class Boxes.MachineActor: Boxes.UI {
         case UIState.DISPLAY:
             gtk_vbox.hide ();
             if (previous_ui_state == UIState.CREDS) {
-                App.app.overlay_bin.set_alignment (actor,
-                                                   Clutter.BinAlignment.FILL,
-                                                   Clutter.BinAlignment.FILL);
+                actor.x_align = Clutter.ActorAlign.FILL;
+                actor.y_align = Clutter.ActorAlign.FILL;
+                actor.natural_width_set = false;
+                actor.natural_height_set = false;
             } else {
                 if (display != null) {
                     // zoom in, back from properties
@@ -620,9 +618,11 @@ private class Boxes.MachineActor: Boxes.UI {
                     track_screenshot_id = 0;
 
                     display.set_easing_duration (App.app.duration);
-                    App.app.overlay_bin.set_alignment (display,
-                                                       Clutter.BinAlignment.FILL,
-                                                       Clutter.BinAlignment.FILL);
+                    display.x_align = Clutter.ActorAlign.FILL;
+                    display.y_align = Clutter.ActorAlign.FILL;
+                    display.fixed_position_set = false;
+                    display.min_width_set = display.natural_width_set = false;
+                    display.min_height_set = display.natural_height_set = false;
 
                     display.transitions_completed.connect (() => {
                         var widget = display.contents;
