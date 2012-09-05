@@ -608,8 +608,10 @@ private class Boxes.Wizard: Boxes.UI {
         case UIState.WIZARD:
             if (previous_ui_state == UIState.PROPERTIES)
                 review.begin ();
-            else
+            else {
+                wizard_source.uri = "";
                 page = WizardPage.INTRODUCTION;
+            }
             opacity = 255;
             break;
         }
