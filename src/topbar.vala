@@ -60,9 +60,6 @@ private class Boxes.Topbar: Boxes.UI {
 
         search_btn = toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
         search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
-        App.app.notify["search-visible"].connect (() => {
-            search_btn.active = App.app.searchbar.visible;
-        });
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
