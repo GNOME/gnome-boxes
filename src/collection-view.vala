@@ -443,9 +443,12 @@ private class Boxes.CollectionView: Boxes.UI {
     }
 
     private bool on_button_release_selection_mode (Gdk.EventButton event, bool entered_mode, Gtk.TreePath path) {
-        Gtk.TreeIter iter;
-        if (!model.get_iter (out iter, path))
+        Gtk.TreeIter filter_iter, iter;
+
+        if (!model_filter.get_iter (out filter_iter, path))
             return false;
+
+        model_filter.convert_iter_to_child_iter (out iter, filter_iter);
 
         bool selected;
         model.get (iter, ModelColumns.SELECTED, out selected);
