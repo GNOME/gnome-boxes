@@ -121,6 +121,8 @@ private class Boxes.Topbar: Boxes.UI {
     private void update_selection_label () {
         var items = App.app.selected_items.length ();
         if (items > 0)
+            // This goes with the "Click on items to select them" string and is about selection of items (boxes)
+            // when the main collection view is in selection mode.
             selection_toolbar.set_labels (ngettext ("%d selected", "%d selected", items).printf (items), null);
         else
             selection_toolbar.set_labels (null, _("Click on items to select them"));

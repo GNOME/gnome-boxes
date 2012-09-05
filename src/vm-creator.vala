@@ -218,6 +218,7 @@ private class Boxes.VMCreator {
         if (progress < 0)
             return;
 
+        // This string is about automatic installation progress
         machine.info = ngettext ("%d%% Installed", "%d%% Installed", progress).printf (progress);
         prev_progress = progress;
         updating_install_progress = false;
