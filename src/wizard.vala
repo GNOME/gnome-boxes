@@ -71,14 +71,10 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.REVIEW:
-                    back_button.sensitive = false;
                     next_button.sensitive = false;
-                    cancel_button.sensitive = false;
-                    review.begin ((source, result) => {
-                        back_button.sensitive = true;
-                        next_button.sensitive = true;
-                        cancel_button.sensitive = true;
 
+                    review.begin ((obj, result) => {
+                        next_button.sensitive = true;
                         if (!review.end (result))
                             page = page - 1;
                     });
@@ -311,13 +307,28 @@ private class Boxes.Wizard: Boxes.UI {
         return true;
     }
 
+    private Cancellable? review_cancellable;
+
     private async bool review () {
+        // only one outstanding review () permitted
+        return_if_fail (review_cancellable == null);
+
+        review_cancellable = new Cancellable ();
+        var result = yield do_review_cancellable ();
+        review_cancellable = null;
+
+        return result;
+    }
+
+    private async bool do_review_cancellable () {
+        return_if_fail (review_cancellable != null);
+
         nokvm_label.hide ();
         summary.clear ();
 
         if (vm_creator != null && machine == null) {
             try {
-                machine = yield vm_creator.create_vm (null);
+                machine = yield vm_creator.create_vm (review_cancellable);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
                 return false;
             } catch (GLib.Error error) {
@@ -327,6 +338,9 @@ private class Boxes.Wizard: Boxes.UI {
                 return false;
             }
         }
+
+        if (review_cancellable.is_cancelled ())
+            return false;
 
         review_label.set_text (_("Will create a new box with the following properties:"));
 
@@ -623,6 +637,9 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void destroy_machine () {
+        if (review_cancellable != null)
+            review_cancellable.cancel ();
+
         if (machine != null) {
             App.app.delete_machine (machine);
             machine = null;
