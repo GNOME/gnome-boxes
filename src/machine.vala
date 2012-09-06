@@ -15,6 +15,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     private ulong show_id;
     private ulong hide_id;
+    private uint show_timeout_id;
     private ulong disconnected_id;
     private ulong need_password_id;
     private ulong need_username_id;
@@ -79,6 +80,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (_display != null) {
                 _display.disconnect (show_id);
                 show_id = 0;
+                if (show_timeout_id != 0)
+                    GLib.Source.remove (show_timeout_id);
+                show_timeout_id = 0;
                 _display.disconnect (hide_id);
                 hide_id = 0;
                 _display.disconnect (disconnected_id);
@@ -100,7 +104,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 switch (App.app.ui_state) {
                 case Boxes.UIState.CREDS:
                     App.app.ui_state = Boxes.UIState.DISPLAY;
-                    Timeout.add (App.app.duration, () => {
+                    show_timeout_id = Timeout.add (App.app.duration, () => {
+                        show_timeout_id = 0;
                         show_display ();
                         return false;
                      });
