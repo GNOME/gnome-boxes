@@ -425,6 +425,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
 
         config.delete ();
+        FileUtils.unlink (get_screenshot_filename ());
     }
 
     public override void ui_state_changed () {
