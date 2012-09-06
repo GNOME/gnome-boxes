@@ -39,6 +39,15 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         this.group = group;
     }
 
+    public void delete () {
+        try {
+            keyfile.remove_group (group);
+        } catch (GLib.Error error) {
+        }
+
+        save ();
+    }
+
     private void remove_category (string category) {
         string[] categories = {};
 

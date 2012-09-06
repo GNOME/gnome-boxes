@@ -423,6 +423,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             App.app.disconnect (ui_state_id);
             ui_state_id = 0;
         }
+
+        config.delete ();
     }
 
     public override void ui_state_changed () {
