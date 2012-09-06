@@ -81,7 +81,6 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.LAST:
-                    skip_review_for_live = false;
                     create.begin ((obj, result) => {
                        if (create.end (result))
                           App.app.ui_state = UIState.COLLECTION;
@@ -330,6 +329,7 @@ private class Boxes.Wizard: Boxes.UI {
         var result = yield do_review_cancellable ();
         review_cancellable = null;
 
+        skip_review_for_live = false;
         return result;
     }
 
