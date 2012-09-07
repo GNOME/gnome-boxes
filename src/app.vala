@@ -305,7 +305,7 @@ private class Boxes.App: Boxes.UI {
 
     private async void setup_sources () {
 
-        if (!has_user_pkgconfig_sources ()) {
+        if (!FileUtils.test (get_user_pkgconfig_source ("QEMU Session"), FileTest.IS_REGULAR)) {
             var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
             var dst = File.new_for_path (get_user_pkgconfig_source ("QEMU Session"));
             try {
