@@ -102,18 +102,10 @@ namespace Boxes {
 
     public bool keyfile_save (KeyFile key_file, string file_name, bool overwrite = false) {
         try {
-            var file = File.new_for_path (file_name);
+            if (!overwrite && FileUtils.test (file_name, FileTest.EXISTS))
+                return false;
 
-            if (file.query_exists ())
-                if (!overwrite)
-                    return false;
-                else
-                    file.delete ();
-
-            var stream = new DataOutputStream (file.create (FileCreateFlags.REPLACE_DESTINATION));
-            stream.put_string (key_file.to_data (null));
-
-            return true;
+            return FileUtils.set_contents(file_name, key_file.to_data (null));
         } catch (GLib.Error error) {
             warning (error.message);
             return false;
