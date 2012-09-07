@@ -322,7 +322,7 @@ private class Boxes.App: Boxes.UI {
             warning (error.message);
         }
         if (default_connection == null) {
-            printerr ("error: missing or failing default libvirt connection");
+            printerr ("Missing or failing default libvirt connection\n");
             application.release (); // will end application
         }
 
