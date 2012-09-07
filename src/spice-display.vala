@@ -50,6 +50,26 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         App.app.notify["ui-state"].connect (ui_state_changed);
     }
 
+    Spice.MainChannel? main_channel;
+    ulong main_event_id;
+    ulong main_mouse_mode_id;
+
+    private void main_cleanup () {
+        if (main_channel == null)
+            return;
+
+        var o = main_channel as Object;
+        o.disconnect (main_event_id);
+        main_event_id = 0;
+        o.disconnect (main_mouse_mode_id);
+        main_mouse_mode_id = 0;
+        main_channel = null;
+    }
+
+    ~SpiceDisplay () {
+        main_cleanup ();
+    }
+
     public SpiceDisplay (DisplayConfig config, string host, int port) {
         this.config = config;
 
@@ -100,18 +120,20 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     }
 
     public override void connect_it () {
+        main_cleanup ();
+
         // FIXME: vala does't want to put this in ctor..
         if (channel_new_id == 0)
             channel_new_id = session.channel_new.connect ((channel) => {
                 var id = channel.channel_id;
 
                 if (channel is Spice.MainChannel) {
-                    var main = channel as Spice.MainChannel;
-                    main.channel_event.connect (main_event);
-                    main.notify["mouse-mode"].connect(() => {
-                        can_grab_mouse = main.mouse_mode != 2;
+                    main_channel = channel as Spice.MainChannel;
+                    main_event_id = main_channel.channel_event.connect (main_event);
+                    main_mouse_mode_id = main_channel.notify["mouse-mode"].connect(() => {
+                        can_grab_mouse = main_channel.mouse_mode != 2;
                     });
-                    can_grab_mouse = main.mouse_mode != 2;
+                    can_grab_mouse = main_channel.mouse_mode != 2;
                 }
 
                 if (channel is Spice.DisplayChannel) {
