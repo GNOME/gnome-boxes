@@ -198,7 +198,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    private string get_screenshot_filename () {
+    private string get_screenshot_filename () throws Boxes.Error {
+        if (config.uuid == null)
+            throw new Boxes.Error.INVALID ("no uuid, cannot build screenshot filename");
+
         return Boxes.get_screenshot_filename (config.uuid);
     }
 
@@ -430,7 +433,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
 
         config.delete ();
-        FileUtils.unlink (get_screenshot_filename ());
+        try {
+            FileUtils.unlink (get_screenshot_filename ());
+        } catch (Boxes.Error e) {
+            debug("Could not delete screenshot: %s", e.message);
+        }
     }
 
     public override void ui_state_changed () {
