@@ -535,6 +535,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             try {
                 var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
                 config.memory = value;
+                if (config.get_class ().find_property ("current-memory") != null)
+                    config.set ("current-memory", value);
                 domain.set_config (config);
                 debug ("RAM changed to %llu", value);
                 if (state == MachineState.RUNNING || state == MachineState.PAUSED)
