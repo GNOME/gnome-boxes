@@ -198,7 +198,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    public string get_screenshot_filename () {
+    private string get_screenshot_filename () {
         return Boxes.get_screenshot_filename (config.uuid);
     }
 
