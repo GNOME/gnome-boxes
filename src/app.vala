@@ -154,15 +154,6 @@ private class Boxes.App: Boxes.UI {
         application.activate.connect_after ((app) => {
             window.present ();
         });
-        application.shutdown.connect (() => {
-            MainLoop loop = new MainLoop ();
-            Idle.add (() => {
-                suspend_machines.begin (() => { loop.quit (); });
-                return false;
-                });
-            loop.run ();
-        });
-
     }
 
     public int run () {
@@ -573,29 +564,19 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
-    private async void suspend_machines () {
-        var waiting_counter = 0;
-        debug ("Suspending running boxes");
+    public bool quit () {
+        notificationbar.cancel ();
+        save_window_geometry ();
+        window.hide ();
+
         foreach (var item in collection.items.data)
             if (item is LibvirtMachine) {
                 var machine = item as LibvirtMachine;
 
-                if (machine.connection == default_connection) {
-                    waiting_counter++;
-                    machine.suspend.begin (() => { suspend_machines.callback (); });
-                }
+                if (machine.connection == default_connection)
+                    machine.suspend.begin ();
             }
 
-        while (waiting_counter > 0) {
-            yield;
-            waiting_counter--;
-        }
-        debug ("Running boxes suspended");
-    }
-
-    public bool quit () {
-        notificationbar.cancel ();
-        save_window_geometry ();
         wizard.cleanup ();
         window.destroy ();
 
