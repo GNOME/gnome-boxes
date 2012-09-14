@@ -205,6 +205,7 @@ private class Boxes.App: Boxes.UI {
             return machine; // Already added
 
         machine = new LibvirtMachine (source, connection, domain);
+        machine.suspend_at_exit = (connection == default_connection);
         collection.add_item (machine);
         domain.set_data<LibvirtMachine> ("machine", machine);
 
@@ -573,7 +574,7 @@ private class Boxes.App: Boxes.UI {
             if (item is LibvirtMachine) {
                 var machine = item as LibvirtMachine;
 
-                if (machine.connection == default_connection)
+                if (machine.suspend_at_exit)
                     machine.suspend.begin ();
             }
 

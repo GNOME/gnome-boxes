@@ -12,6 +12,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public bool stay_on_display;
     public string? info { get; set; }
     public string? status { get; set; }
+    public bool suspend_at_exit;
 
     private ulong show_id;
     private ulong hide_id;
