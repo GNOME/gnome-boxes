@@ -130,5 +130,10 @@ public int main (string[] args) {
         app.fullscreen = fullscreen;
     });
 
-    return app.run ();
+    var exit_status = app.run ();
+
+    app.shutdown ();
+    app.suspend_machines ();
+
+    return exit_status;
 }

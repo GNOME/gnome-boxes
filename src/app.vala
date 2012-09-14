@@ -160,6 +160,13 @@ private class Boxes.App: Boxes.UI {
         return application.run ();
     }
 
+    // To be called to tell App to release the resources it's handling.
+    // Currently this only releases the GtkApplication we use, but
+    // more shutdown work could be done here in the future
+    public void shutdown () {
+        application = null;
+    }
+
     public void open (string name) {
         ui_state = UIState.COLLECTION;
         // we don't want to show the collection items as it will
@@ -565,19 +572,41 @@ private class Boxes.App: Boxes.UI {
         }
     }
 
-    public bool quit () {
-        notificationbar.cancel ();
-        save_window_geometry ();
-        window.hide ();
+    public void suspend_machines () {
+        debug ("Suspending running boxes");
 
-        foreach (var item in collection.items.data)
+        var waiting_counter = 0;
+        // use a private main context to suspend the VMs to avoid
+        // DBus or other callbacks being fired while we suspend
+        // the VMs during Boxes shutdown.
+        var context = new MainContext ();
+
+        context.push_thread_default ();
+        foreach (var item in collection.items.data) {
             if (item is LibvirtMachine) {
                 var machine = item as LibvirtMachine;
 
-                if (machine.suspend_at_exit)
-                    machine.suspend.begin ();
+                if (machine.suspend_at_exit) {
+                    waiting_counter++;
+                    machine.suspend.begin (() => {
+                            debug ("%s suspended", machine.name);
+                            waiting_counter--;
+                    });
+                }
             }
+        }
+        context.pop_thread_default ();
 
+        // wait for async methods to complete
+        while (waiting_counter > 0)
+            context.iteration (true);
+
+        debug ("Running boxes suspended");
+    }
+
+    public bool quit () {
+        notificationbar.cancel ();
+        save_window_geometry ();
         wizard.cleanup ();
         window.destroy ();
 
