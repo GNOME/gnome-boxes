@@ -15,7 +15,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         load_screenshot ();
     }
 
-    public override async void connect_display () {
+    public override async void connect_display () throws GLib.Error {
         if (display != null)
             return;
 

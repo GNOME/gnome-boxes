@@ -686,7 +686,14 @@ private class Boxes.App: Boxes.UI {
                 status_id = machine.notify["status"].connect ( () => {
                     topbar.set_status (machine.status);
                 });
-                machine.connect_display.begin ();
+                machine.connect_display.begin ( (obj, res) => {
+                    try {
+                        machine.connect_display.end (res);
+                    } catch (GLib.Error e) {
+                        ui_state = UIState.COLLECTION;
+                        warning ("connect display failed: %s", e.message);
+                    }
+                });
                 ui_state = UIState.CREDS;
             } else
                 warning ("unknown item, fix your code");

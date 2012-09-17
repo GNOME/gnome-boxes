@@ -25,7 +25,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         _reconnect_display = true;
     }
 
-    public override async void connect_display () {
+    public override async void connect_display () throws GLib.Error {
         if (_connect_display)
             return;
 

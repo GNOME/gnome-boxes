@@ -212,7 +212,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
 
-    public abstract async void connect_display ();
+    public abstract async void connect_display () throws GLib.Error;
 
     public virtual void disconnect_display () {
         if (display == null)
