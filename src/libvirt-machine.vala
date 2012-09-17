@@ -555,26 +555,23 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         };
     }
 
-    private async void start () {
+    private async void start () throws GLib.Error {
         if (state == MachineState.RUNNING)
             return;
 
-        try {
-            if (state == MachineState.PAUSED)
-                yield domain.resume_async (null);
-            else {
-                if (domain.get_saved ())
-                    // Translators: The %s will be expanded with the name of the vm
-                    status = _("Restoring %s from disk").printf (name);
-                else
-                    // Translators: The %s will be expanded with the name of the vm
-                    status = _("Starting %s").printf (name);
-                yield domain.start_async (0, null);
-            }
-        } catch (GLib.Error error) {
-            warning ("Failed to start '%s': %s", domain.get_name (), error.message);
+        if (state == MachineState.PAUSED)
+            yield domain.resume_async (null);
+        else {
+            if (domain.get_saved ())
+                // Translators: The %s will be expanded with the name of the vm
+                status = _("Restoring %s from disk").printf (name);
+            else
+                // Translators: The %s will be expanded with the name of the vm
+                status = _("Starting %s").printf (name);
+            yield domain.start_async (0, null);
         }
     }
+
 
     private void notify_reboot_required () {
         Notificationbar.OKFunc reboot = () => {
@@ -583,7 +580,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             ulong state_id = 0;
             state_id = this.notify["state"].connect (() => {
                 if (state == MachineState.STOPPED) {
-                    start.begin ();
+                    start.begin ((obj, res) => {
+                        try {
+                            start.end (res);
+                        } catch (GLib.Error error) {
+                            warning ("Failed to start '%s': %s", domain.get_name (), error.message);
+                        }
+                    });
                     this.disconnect (state_id);
                 }
             });
