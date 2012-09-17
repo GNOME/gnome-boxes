@@ -695,7 +695,7 @@ private class Boxes.Wizard: Boxes.UI {
             table.show_all ();
         }
 
-        public void append_customize_button (CustomizeFunc cutomize_func) {
+        public void append_customize_button (CustomizeFunc customize_func) {
             // there is nothing to customize if review page is empty
             if (current_row == 0)
                 return;
@@ -705,7 +705,7 @@ private class Boxes.Wizard: Boxes.UI {
             table.attach_defaults (button, 2, 3, current_row - 1, current_row);
             button.show ();
 
-            button.clicked.connect (() => { cutomize_func (); });
+            button.clicked.connect (() => { customize_func (); });
         }
 
         public void clear () {
