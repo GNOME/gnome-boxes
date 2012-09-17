@@ -119,7 +119,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         return display.get_pixbuf ();
     }
 
-    public override void connect_it () {
+    public override void connect_it () throws GLib.Error {
         main_cleanup ();
 
         // FIXME: vala does't want to put this in ctor..

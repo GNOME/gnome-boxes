@@ -111,7 +111,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         return display.get_pixbuf ();
     }
 
-    public override void connect_it () {
+    public override void connect_it () throws GLib.Error {
         // FIXME: we ignore return value which seems to be inconsistent
         display.set_credential (DisplayCredential.USERNAME, username);
         display.set_credential (DisplayCredential.PASSWORD, password);

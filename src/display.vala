@@ -20,7 +20,7 @@ private abstract class Boxes.Display: Boxes.DisplayProperties, Boxes.IProperties
     public abstract Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error;
     public abstract void set_enable_inputs (Gtk.Widget widget, bool enable);
 
-    public abstract void connect_it ();
+    public abstract void connect_it () throws GLib.Error;
     public abstract void disconnect_it ();
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
