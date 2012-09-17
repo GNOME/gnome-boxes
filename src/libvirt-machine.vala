@@ -298,7 +298,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         // the wizard may want to modify display properties, before connect_display()
         if (display == null)
-            update_display ();
+            try {
+                update_display ();
+            } catch (GLib.Error e) {
+                warning (e.message);
+            }
 
         switch (page) {
         case PropertiesPage.LOGIN:
@@ -327,14 +331,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return list;
     }
 
-    private void update_display () {
+    private void update_display () throws GLib.Error {
         update_domain_config ();
 
-        try {
-            display = create_display ();
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        display = create_display ();
     }
 
     private Display? create_display () throws Boxes.Error {
