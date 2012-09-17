@@ -19,16 +19,12 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         if (display != null)
             return;
 
-        try {
-            if (source.source_type == "spice")
-                display = new SpiceDisplay.with_uri (config, source.uri);
-            else if (source.source_type == "vnc")
-                display = new VncDisplay.with_uri (config, source.uri);
+        if (source.source_type == "spice")
+            display = new SpiceDisplay.with_uri (config, source.uri);
+        else if (source.source_type == "vnc")
+            display = new VncDisplay.with_uri (config, source.uri);
 
-            display.connect_it ();
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        display.connect_it ();
     }
 
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
