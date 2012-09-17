@@ -555,7 +555,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         };
     }
 
-    public async void start () {
+    private async void start () {
         if (state == MachineState.RUNNING)
             return;
 
