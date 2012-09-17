@@ -301,6 +301,8 @@ private class Boxes.WizardSource: GLib.Object {
         dialog.filter.add_mime_type ("application/x-cd-image");
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
+            // clean install_media as this may be set already when going back in the wizard
+            install_media = null;
             url_entry.activate ();
         }
 
