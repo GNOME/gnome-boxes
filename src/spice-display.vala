@@ -17,14 +17,11 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
         // TODO: multi display
-        try {
-            if (App.app.ui_state == UIState.PROPERTIES ||
-                App.app.ui_state == UIState.DISPLAY) {
-                // disable resize guest when minimizing guest widget
-                var display = get_display (0) as Spice.Display;
-                display.resize_guest = App.app.ui_state == UIState.DISPLAY ? resize_guest : false;
-            }
-        } catch (Boxes.Error error) {
+        if (App.app.ui_state == UIState.PROPERTIES ||
+            App.app.ui_state == UIState.DISPLAY) {
+            // disable resize guest when minimizing guest widget
+            var display = get_display (0) as Spice.Display;
+            display.resize_guest = App.app.ui_state == UIState.DISPLAY ? resize_guest : false;
         }
     }
 
@@ -83,14 +80,11 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         session.uri = uri;
     }
 
-    public override Gtk.Widget get_display (int n) throws Boxes.Error {
+    public override Gtk.Widget get_display (int n) {
         var display = displays.lookup (n) as Spice.Display;
 
         if (display == null) {
             display = new Spice.Display (session, n);
-
-            if (display == null)
-                throw new Boxes.Error.INVALID ("invalid display");
 
             display.mouse_grab.connect((status) => {
                 mouse_grabbed = status != 0;
@@ -110,7 +104,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         (widget as Spice.Display).disable_inputs = !enable;
     }
 
-    public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
+    public override Gdk.Pixbuf? get_pixbuf (int n) {
         var display = get_display (n) as Spice.Display;
 
         if (!display.ready)
@@ -119,7 +113,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         return display.get_pixbuf ();
     }
 
-    public override void connect_it () throws GLib.Error {
+    public override void connect_it () {
         main_cleanup ();
 
         // FIXME: vala does't want to put this in ctor..
@@ -141,15 +135,13 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
                         return;
 
                     access_start ();
-                    try {
-                        var display = get_display (id) as Spice.Display;
-                        display.notify["ready"].connect (() => {
-                            if (display.ready)
-                                show (display.channel_id);
-                            else
-                                hide (display.channel_id);
-                        });
-                    } catch (Boxes.Error error) { warning (error.message); }
+                    var display = get_display (id) as Spice.Display;
+                    display.notify["ready"].connect (() => {
+                        if (display.ready)
+                            show (display.channel_id);
+                        else
+                            hide (display.channel_id);
+                    });
                 }
             });
 

@@ -55,12 +55,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     private void show_display () {
         Gtk.Widget widget;
-        try {
-            widget = display.get_display (0);
-        } catch (Boxes.Error error) {
-            warning (error.message);
-            return;
-        }
+
+        widget = display.get_display (0);
 
         switch (App.app.ui_state) {
         case Boxes.UIState.DISPLAY:

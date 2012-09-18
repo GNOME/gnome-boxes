@@ -16,7 +16,7 @@ private abstract class Boxes.Display: Boxes.DisplayProperties, Boxes.IProperties
     public signal void hide (int display_id);
     public signal void disconnected ();
 
-    public abstract Gtk.Widget get_display (int n) throws Boxes.Error;
+    public abstract Gtk.Widget get_display (int n);
     public abstract Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error;
     public abstract void set_enable_inputs (Gtk.Widget widget, bool enable);
 

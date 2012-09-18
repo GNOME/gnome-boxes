@@ -97,7 +97,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         this.port = uri.port <= 0 ? 5900 : uri.port;
     }
 
-    public override Gtk.Widget get_display (int n) throws Boxes.Error {
+    public override Gtk.Widget get_display (int n) {
         window.remove (display);
 
         return display;
