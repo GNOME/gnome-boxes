@@ -55,6 +55,7 @@ GUDEV_MIN_VERSION=165
 OSINFO_MIN_VERSION=0.2.0
 TRACKER_SPARQL=0.13.1
 UUID_REQUIRED=1.41.3
+LIBSOUP_REQUIRED=2.38
 
 PKG_CHECK_MODULES(BOXES, [
   clutter-gtk-1.0 >= $CLUTTER_GTK_MIN_VERSION
@@ -71,6 +72,7 @@ PKG_CHECK_MODULES(BOXES, [
   libosinfo-1.0 >= $OSINFO_MIN_VERSION
   tracker-sparql-0.14 >= $TRACKER_SPARQL
   uuid >= $UUID_REQUIRED
+  libsoup-2.4 >= $LIBSOUP_REQUIRED
 ])
 
 VALA_ADD_CHECKFILE([src/gnome_boxes_vala.stamp])
@@ -99,6 +101,7 @@ VALA_CHECK([0.17.2], [
   libxml-2.0
   posix
   spice-client-gtk-3.0
+  libsoup-2.4
 ])
 
 dnl libgd

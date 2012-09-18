@@ -28,6 +28,7 @@ AM_VALAFLAGS =						\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
 	--pkg gudev-1.0					\
+	--pkg libsoup-2.4             			\
 	--pkg libosinfo-1.0				\
 	--pkg libvirt-gconfig-1.0			\
 	--pkg libvirt-gobject-1.0			\
