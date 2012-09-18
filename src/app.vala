@@ -691,7 +691,8 @@ private class Boxes.App: Boxes.UI {
                         machine.connect_display.end (res);
                     } catch (GLib.Error e) {
                         ui_state = UIState.COLLECTION;
-                        warning ("connect display failed: %s", e.message);
+                        App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (machine.name));
+                        debug ("connect display failed: %s", e.message);
                     }
                 });
                 ui_state = UIState.CREDS;
