@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-05 10:06+0000\n"
-"PO-Revision-Date: 2012-09-12 17:36+0530\n"
+"POT-Creation-Date: 2012-09-19 07:58+0000\n"
+"PO-Revision-Date: 2012-09-20 13:22+0530\n"
 "Last-Translator: Sandeep Shedmake <sshedmak@redhat.com>\n"
 "Language-Team: Marathi <maajhe-sanganak@freelists.org>\n"
 "Language: mr\n"
@@ -111,24 +111,29 @@ msgstr "बॉक्सेस् विषयी"
 msgid "Quit"
 msgstr "बाहेर पडा"
 
-#: ../src/app.vala:606
+#: ../src/app.vala:635
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "बॉक्स '%s' नष्ट केले"
 
-#: ../src/app.vala:607
+#: ../src/app.vala:636
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u बॉक्स नष्ट केले आहे"
 msgstr[1] "%u बॉक्सेस् नष्ट केले आहे"
 
+#: ../src/app.vala:694
+#, c-format
+#| msgid "Connecting to %s"
+msgid "Connection to '%s' failed"
+msgstr "'%s' सह जोडणी अपयशी"
+
 #: ../src/collection-view.vala:39
 msgid "New and Recent"
 msgstr "नविन व नुकतेच"
 
 #: ../src/display-page.vala:164
-#| msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(ग्रॅबअशक्य करण्यासाठी Ctrl+Alt किज् दाबा)"
 
@@ -136,28 +141,28 @@ msgstr "(ग्रॅबअशक्य करण्यासाठी Ctrl+Alt 
 msgid "System"
 msgstr "प्रणाली"
 
-#: ../src/libvirt-machine.vala:306 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
 msgid "Name"
 msgstr "नाव"
 
-#: ../src/libvirt-machine.vala:309
+#: ../src/libvirt-machine.vala:312
 msgid "Virtualizer"
 msgstr "वर्च्युअलाइजर"
 
-#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
-#: ../src/wizard.vala:341
+#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
+#: ../src/wizard.vala:371
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:321 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
 msgid "Protocol"
 msgstr "प्रोटोकॉल"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:440
 msgid "When you force shutdown, the box may lose data."
 msgstr "पूर्णपणे बंद करतेवेळी, बॉक्समधील डाटा गमवणे शक्य आहे."
 
-#: ../src/libvirt-machine.vala:517 ../src/wizard.vala:369
+#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
 msgid "Memory"
 msgstr "मेमरि"
 
@@ -173,30 +178,29 @@ msgstr "डिस्क पासून %s पूर्वस्थितीत 
 msgid "Starting %s"
 msgstr "%s सुरू करत आहे"
 
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:600
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "'%s' ला पुनःसुरू करण्यासाठी बदल आवश्यक. पुनः सुरू करायचे?"
 
-#: ../src/libvirt-machine.vala:611
+#: ../src/libvirt-machine.vala:615
 msgid "Maximum Disk Size"
 msgstr "कमाल डिस्क आकार"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:97
+#: ../src/machine.vala:98
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s सह जोडणी करत आहे"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:128
+#: ../src/machine.vala:130
 #, c-format
-#| msgid "no password"
 msgid "Enter password for %s"
 msgstr "%s करीता पासवर्ड द्या"
 
 #. 3rd row
-#: ../src/machine.vala:483 ../src/unattended-installer.vala:192
+#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
 #: ../src/unattended-installer.vala:262
 msgid "Password"
 msgstr "पासवर्ड"
@@ -290,30 +294,32 @@ msgstr "I/O:"
 msgid "Net:"
 msgstr "नेट:"
 
-#: ../src/spice-display.vala:175
+#: ../src/spice-display.vala:189
 msgid "Share clipboard"
 msgstr "क्लिपबोर्डचा एकत्र वापर करा"
 
-#: ../src/spice-display.vala:181
+#: ../src/spice-display.vala:195
 msgid "Resize guest"
 msgstr "अतिथीला पुनःआकार द्या"
 
-#: ../src/spice-display.vala:189
+#: ../src/spice-display.vala:203
 msgid "USB redirection"
 msgstr "USB पुनःनिर्देशन"
 
-#: ../src/topbar.vala:91 ../src/wizard.vala:570
+#: ../src/topbar.vala:88 ../src/wizard.vala:603
 msgid "_Cancel"
 msgstr "रद्द करा (_C)"
 
-#: ../src/topbar.vala:124
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
+#: ../src/topbar.vala:123
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d निवडले"
 msgstr[1] "%d निवडले"
 
-#: ../src/topbar.vala:126
+#: ../src/topbar.vala:125
 msgid "Click on items to select them"
 msgstr "निवडण्याकरीता घटकांवर क्लिक करा"
 
@@ -344,11 +350,11 @@ msgstr "एक्सप्रेस प्रतिष्ठापन"
 msgid "_Add Password"
 msgstr "पासवर्ड समाविष्ट करा (_A)"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "yes"
 msgstr "होय"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "no"
 msgstr "नाही"
 
@@ -384,11 +390,11 @@ msgstr "प्रतिष्ठापीत करत आहे..."
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: ../src/vm-creator.vala:140 ../src/wizard-source.vala:234
-#| msgid "%s (Live)"
 msgid "Live"
 msgstr "लाइव्ह"
 
-#: ../src/vm-creator.vala:221
+#. This string is about automatic installation progress
+#: ../src/vm-creator.vala:222
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -440,85 +446,85 @@ msgstr " %s पासून"
 msgid "Select a device or ISO file"
 msgstr "साधन किंवा ISO फाइल नीवडा"
 
-#: ../src/wizard.vala:92
+#: ../src/wizard.vala:88
 msgid "Box creation failed"
 msgstr "बॉक्स निर्माण अपयशी"
 
-#: ../src/wizard.vala:117 ../src/wizard.vala:584
+#: ../src/wizard.vala:114 ../src/wizard.vala:617
 msgid "C_ontinue"
 msgstr "सुरू ठेवा (_o)"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "C_reate"
 msgstr "निर्माण करा (_r)"
 
-#: ../src/wizard.vala:138
+#: ../src/wizard.vala:135
 msgid "Please enter desktop or collection URI"
 msgstr "कृपया डेस्कटॉप किंवा कलेक्शन URI द्या"
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:141
 msgid "Will add boxes for all systems available from this account."
 msgstr "या खात्यामधील सर्व उपलब्ध प्रणालींकरीता बॉक्सेस् समाविष्ट करेल."
 
-#: ../src/wizard.vala:147
+#: ../src/wizard.vala:144
 msgid "Will add a single box."
 msgstr "एक बॉक्स समाविष्ट करेल."
 
-#: ../src/wizard.vala:153
+#: ../src/wizard.vala:150
 msgid "Desktop Access"
 msgstr "डेस्कटॉप प्रवेश"
 
-#: ../src/wizard.vala:233
+#: ../src/wizard.vala:241
 msgid "Invalid URI"
 msgstr "अवैध URI"
 
-#: ../src/wizard.vala:244
+#: ../src/wizard.vala:252
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "असमर्थीत प्रोटोकॉल '%s'"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:347
 msgid "Box setup failed"
 msgstr "बॉक्स सेटअप अपयशी"
 
-#: ../src/wizard.vala:331
+#: ../src/wizard.vala:361
 msgid "Will create a new box with the following properties:"
 msgstr "खालील गुणधर्मांच्या नवीन बॉक्स निर्माण करेल:"
 
-#: ../src/wizard.vala:336
+#: ../src/wizard.vala:366
 msgid "Type"
 msgstr "प्रकार"
 
-#: ../src/wizard.vala:339
+#: ../src/wizard.vala:369
 msgid "Host"
 msgstr "यजमान"
 
-#: ../src/wizard.vala:347 ../src/wizard.vala:353
+#: ../src/wizard.vala:377 ../src/wizard.vala:383
 msgid "Port"
 msgstr "पोर्ट"
 
-#: ../src/wizard.vala:348
+#: ../src/wizard.vala:378
 msgid "TLS Port"
 msgstr "TLS पोर्ट"
 
-#: ../src/wizard.vala:358
+#: ../src/wizard.vala:388
 msgid "Will add boxes for all systems available from this account:"
 msgstr "या खात्यापासून सर्व उपलब्ध प्रणालींकरीता बॉक्सेस् समाविष्ट करेल:"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 msgid "Disk"
 msgstr "डिस्क"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 #, c-format
 msgid "%s maximum"
 msgstr "%s कमाल"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:494
 msgid "Introduction"
 msgstr "परिचय"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:498
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -533,16 +539,16 @@ msgstr ""
 "अस्तित्वातील मशीनसह तुम्ही <b><i>नेटवर्क वरील</i></b> जोडणी करू शकता किंवा "
 "स्थानीयरित्या स्वतः चालण्याजोगी <b><i>वर्च्युअल मशीन</i></b> निर्माण करा."
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:510
 msgid "Source Selection"
 msgstr "स्रोत नीवड"
 
-#: ../src/wizard.vala:478
+#: ../src/wizard.vala:511
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "ऑपरेटिंग सिस्टम प्रतिष्ठापन मिडिया अंतर्भुत करा किंवा खालील स्रोत नीवडा"
 
-#: ../src/wizard.vala:488
+#: ../src/wizard.vala:521
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -552,27 +558,27 @@ msgstr ""
 "मालकांच्या "
 "ओळखकरीता होतो."
 
-#: ../src/wizard.vala:501
+#: ../src/wizard.vala:534
 msgid "Preparation"
 msgstr "तयारी"
 
-#: ../src/wizard.vala:502
+#: ../src/wizard.vala:535
 msgid "Preparing to create new box"
 msgstr "नवीन बॉक्स निर्माण करत आहे"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:554
 msgid "Analyzing installer media."
 msgstr "इंस्टॉलर मिडिया विश्लेषीत करत आहे."
 
-#: ../src/wizard.vala:532
+#: ../src/wizard.vala:565
 msgid "Setup"
 msgstr "सेटअप"
 
-#: ../src/wizard.vala:539
+#: ../src/wizard.vala:572
 msgid "Review"
 msgstr "पुनरावलोकन"
 
-#: ../src/wizard.vala:550
+#: ../src/wizard.vala:583
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -585,15 +591,15 @@ msgstr ""
 "प्रणालीवर उपलब्ध आहे "
 "व प्रणालीच्या BIOS सेटअपमध्ये त्यास समर्थीत करणे आवश्यक आहे."
 
-#: ../src/wizard.vala:559
+#: ../src/wizard.vala:592
 msgid "Create a Box"
 msgstr "बॉक्स निर्माण करा"
 
-#: ../src/wizard.vala:578
+#: ../src/wizard.vala:611
 msgid "_Back"
 msgstr "मागे (_B)"
 
-#: ../src/wizard.vala:661
+#: ../src/wizard.vala:703
 msgid "C_ustomize..."
 msgstr "पसंतीचे करा (_u)..."
 
