@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-12 23:25+0100\n"
-"PO-Revision-Date: 2012-09-12 23:30+0100\n"
+"POT-Creation-Date: 2012-09-20 22:07+0100\n"
+"PO-Revision-Date: 2012-09-20 22:10+0100\n"
 "Last-Translator: Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Language-Team: Portuguese <gnome_pt@yahoogroups.com>\n"
 "Language: pt\n"
@@ -110,17 +110,22 @@ msgstr "Sobre o Caixas"
 msgid "Quit"
 msgstr "Sair"
 
-#: ../src/app.vala:604
+#: ../src/app.vala:635
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A caixa '%s' foi apagada"
 
-#: ../src/app.vala:605
+#: ../src/app.vala:636
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Foi apagada %u caixa"
 msgstr[1] "Foram apagadas %u caixas"
+
+#: ../src/app.vala:694
+#, c-format
+msgid "Connection to '%s' failed"
+msgstr "Falha ao estabelecer ligação a '%s'"
 
 #: ../src/collection-view.vala:39
 msgid "New and Recent"
@@ -134,20 +139,20 @@ msgstr "(prima as teclas Ctrl+Alt para sair da caixa)"
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/libvirt-machine.vala:305 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/libvirt-machine.vala:308
+#: ../src/libvirt-machine.vala:312
 msgid "Virtualizer"
 msgstr "Virtualizador"
 
-#: ../src/libvirt-machine.vala:310 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
 #: ../src/wizard.vala:371
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:320 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
 msgid "Protocol"
 msgstr "Protocolo"
 
@@ -160,40 +165,40 @@ msgid "Memory"
 msgstr "Memória"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:566
+#: ../src/libvirt-machine.vala:567
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "A restaurar %s de disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:569
+#: ../src/libvirt-machine.vala:570
 #, c-format
 msgid "Starting %s"
 msgstr "A iniciar %s"
 
-#: ../src/libvirt-machine.vala:595
+#: ../src/libvirt-machine.vala:600
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "As alterações requerem reiniciar '%s'. Tentar reiniciar?"
 
-#: ../src/libvirt-machine.vala:610
+#: ../src/libvirt-machine.vala:615
 msgid "Maximum Disk Size"
 msgstr "Tamanho Máximo do Disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:101
+#: ../src/machine.vala:98
 #, c-format
 msgid "Connecting to %s"
 msgstr "A ligar a %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:133
+#: ../src/machine.vala:130
 #, c-format
 msgid "Enter password for %s"
 msgstr "Introduza a senha para %s"
 
 #. 3rd row
-#: ../src/machine.vala:491 ../src/unattended-installer.vala:192
+#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
 #: ../src/unattended-installer.vala:262
 msgid "Password"
 msgstr "Senha"
@@ -287,15 +292,15 @@ msgstr "E/S:"
 msgid "Net:"
 msgstr "Rede:"
 
-#: ../src/spice-display.vala:197
+#: ../src/spice-display.vala:189
 msgid "Share clipboard"
 msgstr "Partilhar área de transferência"
 
-#: ../src/spice-display.vala:203
+#: ../src/spice-display.vala:195
 msgid "Resize guest"
 msgstr "Redimensionar albergada"
 
-#: ../src/spice-display.vala:211
+#: ../src/spice-display.vala:203
 msgid "USB redirection"
 msgstr "Redireccionamento USB"
 
@@ -357,7 +362,8 @@ msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
 msgstr ""
-"O seu contexto SELinux parece incorrecto, pode tentar corrigi-lo executando:\n"
+"O seu contexto SELinux parece incorrecto, pode tentar corrigi-lo "
+"executando:\n"
 "%s"
 
 #: ../src/util-app.vala:222
@@ -374,7 +380,8 @@ msgstr "Sistema anfitrião incapaz"
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
-"Ocorreu um erro durante a preparação da instalação. Instalação Expresso desactivada."
+"Ocorreu um erro durante a preparação da instalação. Instalação Expresso "
+"desactivada."
 
 #: ../src/vm-creator.vala:136
 msgid "Installing..."
