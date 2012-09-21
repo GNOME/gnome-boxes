@@ -55,6 +55,8 @@ private class Boxes.Topbar: Boxes.UI {
         back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
         spinner = new Gtk.Spinner ();
+        spinner.vexpand = true;
+        spinner.hexpand = true;
         spinner_btn = toolbar.add_button (null, null, false) as Gtk.Button;
         spinner_btn.add (spinner);
 
