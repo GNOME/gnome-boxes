@@ -14,27 +14,17 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
-    private bool _connect_display;
-    private bool _reconnect_display;
     public override void disconnect_display () {
         stay_on_display = false;
 
         base.disconnect_display ();
-
-        _connect_display = false;
-        _reconnect_display = true;
     }
 
     public override async void connect_display () throws GLib.Error {
-        if (_connect_display)
-            return;
-
-        _connect_display = true;
         yield start ();
 
         update_display ();
         display.connect_it ();
-        _reconnect_display = true;
     }
 
     struct MachineStat {
@@ -71,7 +61,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private void reconnect_display () {
-        if (!_reconnect_display)
+        // If we haven't connected yet, don't reconnect
+        if (display == null)
             return;
 
         disconnect_display ();
@@ -334,7 +325,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private void update_display () throws GLib.Error {
         update_domain_config ();
 
-        display = create_display ();
+        if (display == null)
+            display = create_display ();
     }
 
     private Display? create_display () throws Boxes.Error {
