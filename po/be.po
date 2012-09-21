@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-05 10:06+0000\n"
-"PO-Revision-Date: 2012-09-07 19:14+0300\n"
+"POT-Creation-Date: 2012-09-19 07:58+0000\n"
+"PO-Revision-Date: 2012-09-21 20:06+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -109,18 +109,23 @@ msgstr "Аб Boxes"
 msgid "Quit"
 msgstr "Выйсці"
 
-#: ../src/app.vala:606
+#: ../src/app.vala:635
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Машына \"%s\" была выдалена"
 
-#: ../src/app.vala:607
+#: ../src/app.vala:636
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u машына была выдалена"
 msgstr[1] "%u машыны былі выдалены"
 msgstr[2] "%u машын былі выдалены"
+
+#: ../src/app.vala:694
+#, c-format
+msgid "Connection to '%s' failed"
+msgstr "Не ўдалося злучыцца з \"%s\""
 
 #: ../src/collection-view.vala:39
 msgid "New and Recent"
@@ -134,28 +139,28 @@ msgstr "(націсніце Ctrl+Alt, каб разблакіраваць)"
 msgid "System"
 msgstr "Сістэма"
 
-#: ../src/libvirt-machine.vala:306 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
 msgid "Name"
 msgstr "Назва"
 
-#: ../src/libvirt-machine.vala:309
+#: ../src/libvirt-machine.vala:312
 msgid "Virtualizer"
 msgstr "Віртуалізатар"
 
-#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
-#: ../src/wizard.vala:341
+#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
+#: ../src/wizard.vala:371
 msgid "URI"
 msgstr "URI-адрас"
 
-#: ../src/libvirt-machine.vala:321 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
 msgid "Protocol"
 msgstr "Пратакол"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:440
 msgid "When you force shutdown, the box may lose data."
 msgstr "Пры прымусовым выключэнні машына можа страціць некаторыя даныя."
 
-#: ../src/libvirt-machine.vala:517 ../src/wizard.vala:369
+#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
 msgid "Memory"
 msgstr "Памяць"
 
@@ -171,29 +176,29 @@ msgstr "Аднаўленне %s з дыска"
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:600
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Змены патрабуюць перазапуску \"%s\". Перазапусціць?"
 
-#: ../src/libvirt-machine.vala:611
+#: ../src/libvirt-machine.vala:615
 msgid "Maximum Disk Size"
 msgstr "Максімальны памер дыска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:97
+#: ../src/machine.vala:98
 #, c-format
 msgid "Connecting to %s"
 msgstr "Злучэнне з %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:128
+#: ../src/machine.vala:130
 #, c-format
 msgid "Enter password for %s"
 msgstr "Увядзіце пароль для %s"
 
 #. 3rd row
-#: ../src/machine.vala:483 ../src/unattended-installer.vala:192
+#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
 #: ../src/unattended-installer.vala:262
 msgid "Password"
 msgstr "Пароль"
@@ -288,23 +293,25 @@ msgstr "Увод/вывад:"
 msgid "Net:"
 msgstr "Сетка:"
 
-#: ../src/spice-display.vala:175
+#: ../src/spice-display.vala:189
 msgid "Share clipboard"
 msgstr "Дзяліцца буферам абмену"
 
-#: ../src/spice-display.vala:181
+#: ../src/spice-display.vala:195
 msgid "Resize guest"
 msgstr "Змяніць памер гасцявой сістэмы"
 
-#: ../src/spice-display.vala:189
+#: ../src/spice-display.vala:203
 msgid "USB redirection"
 msgstr "Перанакіраванне USB"
 
-#: ../src/topbar.vala:91 ../src/wizard.vala:570
+#: ../src/topbar.vala:88 ../src/wizard.vala:603
 msgid "_Cancel"
 msgstr "_Скасаваць"
 
-#: ../src/topbar.vala:124
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
+#: ../src/topbar.vala:123
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -312,7 +319,7 @@ msgstr[0] "вылучана: %d"
 msgstr[1] "вылучана: %d"
 msgstr[2] "вылучана: %d"
 
-#: ../src/topbar.vala:126
+#: ../src/topbar.vala:125
 msgid "Click on items to select them"
 msgstr "Пстрыкайце ў элементы, каб вылучыць іх"
 
@@ -343,11 +350,11 @@ msgstr "Экспрэс-усталяванне"
 msgid "_Add Password"
 msgstr "_Дадаць пароль"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "yes"
 msgstr "так"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "no"
 msgstr "не"
 
@@ -375,7 +382,8 @@ msgstr "Няздольная да віртуалізацыі хост-сістэ
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
-"Падчас падрыхтоўкі да ўсталявання ўзнікла памылка. Экспрэс-усталяванне выключана."
+"Падчас падрыхтоўкі да ўсталявання ўзнікла памылка. Экспрэс-усталяванне "
+"выключана."
 
 #: ../src/vm-creator.vala:136
 msgid "Installing..."
@@ -387,7 +395,8 @@ msgstr "Усталяванне..."
 msgid "Live"
 msgstr "Live"
 
-#: ../src/vm-creator.vala:221
+#. This string is about automatic installation progress
+#: ../src/vm-creator.vala:222
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -440,85 +449,85 @@ msgstr " ад %s"
 msgid "Select a device or ISO file"
 msgstr "Выберыце прыстасаванне ці ISO-файл"
 
-#: ../src/wizard.vala:92
+#: ../src/wizard.vala:88
 msgid "Box creation failed"
 msgstr "Не ўдалося стварыць машыну"
 
-#: ../src/wizard.vala:117 ../src/wizard.vala:584
+#: ../src/wizard.vala:114 ../src/wizard.vala:617
 msgid "C_ontinue"
 msgstr "_Працягнуць"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "C_reate"
 msgstr "_Стварыць"
 
-#: ../src/wizard.vala:138
+#: ../src/wizard.vala:135
 msgid "Please enter desktop or collection URI"
 msgstr "Увядзіце URI-адрас працоўнага асяроддзя ці калекцыі"
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:141
 msgid "Will add boxes for all systems available from this account."
 msgstr "Дадасць машыны для ўсіх сістэм, даступных з гэтага конта."
 
-#: ../src/wizard.vala:147
+#: ../src/wizard.vala:144
 msgid "Will add a single box."
 msgstr "Дадасць адну машыну."
 
-#: ../src/wizard.vala:153
+#: ../src/wizard.vala:150
 msgid "Desktop Access"
 msgstr "Доступ да стала"
 
-#: ../src/wizard.vala:233
+#: ../src/wizard.vala:241
 msgid "Invalid URI"
 msgstr "Хібны URI-адрас"
 
-#: ../src/wizard.vala:244
+#: ../src/wizard.vala:252
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Невядомы пратакол \"%s\""
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:347
 msgid "Box setup failed"
 msgstr "Не ўдалося наладзіць машыну"
 
-#: ../src/wizard.vala:331
+#: ../src/wizard.vala:361
 msgid "Will create a new box with the following properties:"
 msgstr "Створыць новую машыну з наступнымі ўласцівасцямі:"
 
-#: ../src/wizard.vala:336
+#: ../src/wizard.vala:366
 msgid "Type"
 msgstr "Тып"
 
-#: ../src/wizard.vala:339
+#: ../src/wizard.vala:369
 msgid "Host"
 msgstr "Хост"
 
-#: ../src/wizard.vala:347 ../src/wizard.vala:353
+#: ../src/wizard.vala:377 ../src/wizard.vala:383
 msgid "Port"
 msgstr "Порт"
 
-#: ../src/wizard.vala:348
+#: ../src/wizard.vala:378
 msgid "TLS Port"
 msgstr "TLS-порт"
 
-#: ../src/wizard.vala:358
+#: ../src/wizard.vala:388
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Дадасць машыны для ўсіх сістэм, даступных для гэтага конта:"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 msgid "Disk"
 msgstr "Дыск"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 #, c-format
 msgid "%s maximum"
 msgstr "не больш за %s"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:494
 msgid "Introduction"
 msgstr "Уводзіны"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:498
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -532,17 +541,17 @@ msgstr ""
 "Вы можаце злучыцца з наяўнай машынай <b><i>праз сетку</i></b> або стварыць "
 "<b><i>віртуальную машыну</i></b>, якая будзе працаваць на вашым камп'ютары."
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:510
 msgid "Source Selection"
 msgstr "Выбар крыніцы"
 
-#: ../src/wizard.vala:478
+#: ../src/wizard.vala:511
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Устаўце носьбіт для ўсталявання аперацыйнай сістэмы або выберыце крыніцу "
 "ніжэй"
 
-#: ../src/wizard.vala:488
+#: ../src/wizard.vala:521
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -552,27 +561,27 @@ msgstr ""
 "ідэнтыфікацыі праграмных прадуктаў, якія вы набылі, і з'яўляюцца ўласнасцю "
 "адпаведных вытворцаў."
 
-#: ../src/wizard.vala:501
+#: ../src/wizard.vala:534
 msgid "Preparation"
 msgstr "Падрыхтоўка"
 
-#: ../src/wizard.vala:502
+#: ../src/wizard.vala:535
 msgid "Preparing to create new box"
 msgstr "Падрыхтоўка да стварэння новай машыны"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:554
 msgid "Analyzing installer media."
 msgstr "Вывучэнне носьбіта для ўсталявання."
 
-#: ../src/wizard.vala:532
+#: ../src/wizard.vala:565
 msgid "Setup"
 msgstr "Наладка"
 
-#: ../src/wizard.vala:539
+#: ../src/wizard.vala:572
 msgid "Review"
 msgstr "Праверка"
 
-#: ../src/wizard.vala:550
+#: ../src/wizard.vala:583
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -584,15 +593,14 @@ msgstr ""
 "(выраблена ў 2008 годзе ці пазней), хутчэй за ўсё, пашырэнні прысутнічаюць, "
 "але вам трэба ўключыць іх падтрымку ў настройках BIOS."
 
-#: ../src/wizard.vala:559
+#: ../src/wizard.vala:592
 msgid "Create a Box"
 msgstr "Стварыць машыну"
 
-#: ../src/wizard.vala:578
+#: ../src/wizard.vala:611
 msgid "_Back"
 msgstr "_Назад"
 
-#: ../src/wizard.vala:661
+#: ../src/wizard.vala:703
 msgid "C_ustomize..."
 msgstr "_Прыстасаваць..."
-
