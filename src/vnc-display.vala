@@ -10,6 +10,7 @@ private class Boxes.VncDisplay: Boxes.Display {
     private int port;
     private Gtk.Window window;
     private DisplayProperties.SavedProperty[] saved_properties;
+    private bool connected;
 
     construct {
         saved_properties = {
@@ -112,6 +113,11 @@ private class Boxes.VncDisplay: Boxes.Display {
     }
 
     public override void connect_it () throws GLib.Error {
+        // We only initiate connection once
+        if (connected)
+            return;
+        connected = true;
+
         // FIXME: we ignore return value which seems to be inconsistent
         display.set_credential (DisplayCredential.USERNAME, username);
         display.set_credential (DisplayCredential.PASSWORD, password);

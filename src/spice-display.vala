@@ -13,6 +13,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     private ulong channel_destroy_id;
     private DisplayProperties.SavedProperty[] display_saved_properties;
     private DisplayProperties.SavedProperty[] gtk_session_saved_properties;
+    private bool connected;
 
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
@@ -114,6 +115,11 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     }
 
     public override void connect_it () {
+        // We only initiate connection once
+        if (connected)
+            return;
+        connected = true;
+
         main_cleanup ();
 
         // FIXME: vala does't want to put this in ctor..
