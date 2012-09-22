@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 13:49+0100\n"
-"PO-Revision-Date: 2012-09-05 13:50+0100\n"
+"POT-Creation-Date: 2012-09-22 11:27+0100\n"
+"PO-Revision-Date: 2012-09-22 11:28+0100\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
@@ -110,17 +110,22 @@ msgstr "About Boxes"
 msgid "Quit"
 msgstr "Quit"
 
-#: ../src/app.vala:606
+#: ../src/app.vala:635
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box '%s' has been deleted"
 
-#: ../src/app.vala:607
+#: ../src/app.vala:636
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box has been deleted"
 msgstr[1] "%u boxes have been deleted"
+
+#: ../src/app.vala:694
+#, c-format
+msgid "Connection to '%s' failed"
+msgstr "Connection to '%s' failed"
 
 #: ../src/collection-view.vala:39
 msgid "New and Recent"
@@ -134,28 +139,28 @@ msgstr "(press Ctrl+Alt keys to ungrab)"
 msgid "System"
 msgstr "System"
 
-#: ../src/libvirt-machine.vala:306 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
 msgid "Name"
 msgstr "Name"
 
-#: ../src/libvirt-machine.vala:309
+#: ../src/libvirt-machine.vala:312
 msgid "Virtualizer"
 msgstr "Virtualiser"
 
-#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
-#: ../src/wizard.vala:341
+#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
+#: ../src/wizard.vala:371
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:321 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
 msgid "Protocol"
 msgstr "Protocol"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:440
 msgid "When you force shutdown, the box may lose data."
 msgstr "When you force shutdown, the box may lose data."
 
-#: ../src/libvirt-machine.vala:517 ../src/wizard.vala:369
+#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
 msgid "Memory"
 msgstr "Memory"
 
@@ -171,29 +176,29 @@ msgstr "Restoring %s from disk"
 msgid "Starting %s"
 msgstr "Starting %s"
 
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:600
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Changes require restart of '%s'. Attempt restart?"
 
-#: ../src/libvirt-machine.vala:611
+#: ../src/libvirt-machine.vala:615
 msgid "Maximum Disk Size"
 msgstr "Maximum Disk Size"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:97
+#: ../src/machine.vala:98
 #, c-format
 msgid "Connecting to %s"
 msgstr "Connecting to %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:128
+#: ../src/machine.vala:130
 #, c-format
 msgid "Enter password for %s"
 msgstr "Enter password for %s"
 
 #. 3rd row
-#: ../src/machine.vala:483 ../src/unattended-installer.vala:192
+#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
 #: ../src/unattended-installer.vala:262
 msgid "Password"
 msgstr "Password"
@@ -287,30 +292,32 @@ msgstr "I/O:"
 msgid "Net:"
 msgstr "Net:"
 
-#: ../src/spice-display.vala:175
+#: ../src/spice-display.vala:189
 msgid "Share clipboard"
 msgstr "Share clipboard"
 
-#: ../src/spice-display.vala:181
+#: ../src/spice-display.vala:195
 msgid "Resize guest"
 msgstr "Resize guest"
 
-#: ../src/spice-display.vala:189
+#: ../src/spice-display.vala:203
 msgid "USB redirection"
 msgstr "USB redirection"
 
-#: ../src/topbar.vala:91 ../src/wizard.vala:570
+#: ../src/topbar.vala:88 ../src/wizard.vala:603
 msgid "_Cancel"
 msgstr "_Cancel"
 
-#: ../src/topbar.vala:124
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
+#: ../src/topbar.vala:123
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d selected"
 msgstr[1] "%d selected"
 
-#: ../src/topbar.vala:126
+#: ../src/topbar.vala:125
 msgid "Click on items to select them"
 msgstr "Click on items to select them"
 
@@ -341,11 +348,11 @@ msgstr "Express Install"
 msgid "_Add Password"
 msgstr "_Add Password"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "yes"
 msgstr "yes"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "no"
 msgstr "no"
 
@@ -384,7 +391,8 @@ msgstr "Installing…"
 msgid "Live"
 msgstr "Live"
 
-#: ../src/vm-creator.vala:221
+#. This string is about automatic installation progress
+#: ../src/vm-creator.vala:222
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -436,85 +444,85 @@ msgstr " from %s"
 msgid "Select a device or ISO file"
 msgstr "Select a device or ISO file"
 
-#: ../src/wizard.vala:92
+#: ../src/wizard.vala:88
 msgid "Box creation failed"
 msgstr "Box creation failed"
 
-#: ../src/wizard.vala:117 ../src/wizard.vala:584
+#: ../src/wizard.vala:114 ../src/wizard.vala:617
 msgid "C_ontinue"
 msgstr "C_ontinue"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "C_reate"
 msgstr "C_reate"
 
-#: ../src/wizard.vala:138
+#: ../src/wizard.vala:135
 msgid "Please enter desktop or collection URI"
 msgstr "Please enter desktop or collection URI"
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:141
 msgid "Will add boxes for all systems available from this account."
 msgstr "Will add boxes for all systems available from this account."
 
-#: ../src/wizard.vala:147
+#: ../src/wizard.vala:144
 msgid "Will add a single box."
 msgstr "Will add a single box."
 
-#: ../src/wizard.vala:153
+#: ../src/wizard.vala:150
 msgid "Desktop Access"
 msgstr "Desktop Access"
 
-#: ../src/wizard.vala:233
+#: ../src/wizard.vala:241
 msgid "Invalid URI"
 msgstr "Invalid URI"
 
-#: ../src/wizard.vala:244
+#: ../src/wizard.vala:252
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Unsupported protocol '%s'"
 
-#: ../src/wizard.vala:324
+#: ../src/wizard.vala:347
 msgid "Box setup failed"
 msgstr "Box setup failed"
 
-#: ../src/wizard.vala:331
+#: ../src/wizard.vala:361
 msgid "Will create a new box with the following properties:"
 msgstr "Will create a new box with the following properties:"
 
-#: ../src/wizard.vala:336
+#: ../src/wizard.vala:366
 msgid "Type"
 msgstr "Type"
 
-#: ../src/wizard.vala:339
+#: ../src/wizard.vala:369
 msgid "Host"
 msgstr "Host"
 
-#: ../src/wizard.vala:347 ../src/wizard.vala:353
+#: ../src/wizard.vala:377 ../src/wizard.vala:383
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:348
+#: ../src/wizard.vala:378
 msgid "TLS Port"
 msgstr "TLS Port"
 
-#: ../src/wizard.vala:358
+#: ../src/wizard.vala:388
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Will add boxes for all systems available from this account:"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 #, c-format
 msgid "%s maximum"
 msgstr "%s maximum"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:494
 msgid "Introduction"
 msgstr "Introduction"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:498
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -528,15 +536,15 @@ msgstr ""
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:510
 msgid "Source Selection"
 msgstr "Source Selection"
 
-#: ../src/wizard.vala:478
+#: ../src/wizard.vala:511
 msgid "Insert operating system installation media or select a source below"
 msgstr "Insert operating system installation medium or select a source below"
 
-#: ../src/wizard.vala:488
+#: ../src/wizard.vala:521
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -546,27 +554,27 @@ msgstr ""
 "products you have already obtained and are the property of their respective "
 "owners."
 
-#: ../src/wizard.vala:501
+#: ../src/wizard.vala:534
 msgid "Preparation"
 msgstr "Preparation"
 
-#: ../src/wizard.vala:502
+#: ../src/wizard.vala:535
 msgid "Preparing to create new box"
 msgstr "Preparing to create new box"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:554
 msgid "Analyzing installer media."
 msgstr "Analysing installer media."
 
-#: ../src/wizard.vala:532
+#: ../src/wizard.vala:565
 msgid "Setup"
 msgstr "Setup"
 
-#: ../src/wizard.vala:539
+#: ../src/wizard.vala:572
 msgid "Review"
 msgstr "Review"
 
-#: ../src/wizard.vala:550
+#: ../src/wizard.vala:583
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -578,15 +586,15 @@ msgstr ""
 "these extensions are probably available on your system and you may need to "
 "enable them in your system's BIOS setup."
 
-#: ../src/wizard.vala:559
+#: ../src/wizard.vala:592
 msgid "Create a Box"
 msgstr "Create a Box"
 
-#: ../src/wizard.vala:578
+#: ../src/wizard.vala:611
 msgid "_Back"
 msgstr "_Back"
 
-#: ../src/wizard.vala:661
+#: ../src/wizard.vala:703
 msgid "C_ustomize..."
 msgstr "C_ustomise…"
 
