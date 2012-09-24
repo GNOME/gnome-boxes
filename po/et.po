@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-21 07:57+0000\n"
-"PO-Revision-Date: 2012-03-21 10:34+0200\n"
+"POT-Creation-Date: 2012-09-22 22:49+0000\n"
+"PO-Revision-Date: 2012-09-23 19:25+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -79,6 +79,9 @@ msgstr "Omadused"
 msgid "Fullscreen"
 msgstr "Täisekraan"
 
+msgid "Force shutdown"
+msgstr "Jõuga sulgemine"
+
 msgid "About Boxes"
 msgstr "Boxes'ist lähemalt"
 
@@ -95,6 +98,22 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u masin kustutati"
 msgstr[1] "%u masinat kustutati"
 
+#, c-format
+msgid "Connection to '%s' failed"
+msgstr "Ühendus '%s'-ga nurjus"
+
+msgid "New and Recent"
+msgstr "Uued ja hiljutised"
+
+msgid "(press Ctrl+Alt keys to ungrab)"
+msgstr "(vabastamiseks vajuta Ctrl+Alt)"
+
+msgid "System"
+msgstr "Süsteem"
+
+msgid "Name"
+msgstr "Nimi"
+
 msgid "Virtualizer"
 msgstr "Virtualiseerija"
 
@@ -104,15 +123,38 @@ msgstr "URI"
 msgid "Protocol"
 msgstr "Protokoll"
 
-msgid "RAM"
-msgstr "RAM"
+msgid "When you force shutdown, the box may lose data."
+msgstr "Kui sa sunnid jõuga väljalülitamise, võib masin kaotada andmeid."
+
+msgid "Memory"
+msgstr "Mälu"
+
+#. Translators: The %s will be expanded with the name of the vm
+#, c-format
+msgid "Restoring %s from disk"
+msgstr "%s taastamine kettalt"
+
+#. Translators: The %s will be expanded with the name of the vm
+#, c-format
+msgid "Starting %s"
+msgstr "%s käivitamine"
 
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Muudatused nõuavad '%s' taaskäivitust. Kas taaskäivitada?"
 
-msgid "Storage"
-msgstr "Andmeruum"
+msgid "Maximum Disk Size"
+msgstr "Maksimaalne ketta suurus"
+
+#. Translators: The %s will be expanded with the name of the vm
+#, c-format
+msgid "Connecting to %s"
+msgstr "Ühendumine masinaga %s"
+
+#. Translators: The %s will be expanded with the name of the vm
+#, c-format
+msgid "Enter password for %s"
+msgstr "Sisesta %s parool"
 
 #. 3rd row
 msgid "Password"
@@ -121,6 +163,15 @@ msgstr "Parool"
 msgid "Display version number"
 msgstr "Versiooninumbri kuvamine"
 
+msgid "Open in full screen"
+msgstr "Avatakse täisekraanil"
+
+msgid "Check virtualization capabilities"
+msgstr "Virtualiseerimise võimekuse kontrollimine"
+
+msgid "Open box with UUID"
+msgstr "Ava masin UUID-ga"
+
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
 msgid "URI to display, broker or installer media"
 msgstr "Kuvamise URI, vahendaja või paigaldusmeedia"
@@ -128,17 +179,46 @@ msgstr "Kuvamise URI, vahendaja või paigaldusmeedia"
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Lihtne rakendus ligipääsuks kaug- või virtuaalmasinatele"
 
+#, c-format
+msgid "Too many command line arguments specified.\n"
+msgstr "Määratud on liiga palju käsurea argumente.\n"
+
+#. FIXME: add proper UI & docs
+#, c-format
+msgid "• The CPU is capable of virtualization: %s\n"
+msgstr "• CPU-l on virtualiseerimise võimalus: %s\n"
+
+#, c-format
+msgid "• The KVM module is loaded: %s\n"
+msgstr "• KVM moodul on laaditud: %s\n"
+
+#, c-format
+msgid "• Libvirt KVM guest available: %s\n"
+msgstr "• Libvirt KVM guest on saadaval: %s\n"
+
+#, c-format
+msgid "• The SELinux context is default: %s\n"
+msgstr "• SELinux kontekst on vaikimisi: %s\n"
+
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr "Vigadest raporteeri aadressil <%s>.\n"
+
+#, c-format
+msgid "%s home page: <%s>.\n"
+msgstr "%s koduleht: <%s>.\n"
+
 msgid "Login"
 msgstr "Sisselogimine"
-
-msgid "System"
-msgstr "Süsteem"
 
 msgid "Display"
 msgstr "Kuva"
 
 msgid "Devices"
 msgstr "Seadmed"
+
+msgid "Some changes may take effect only after reboot"
+msgstr "Mõned muudatused jõustuvad alles pärast taaskäivitamist"
 
 msgid "CPU:"
 msgstr "CPU:"
@@ -149,24 +229,6 @@ msgstr "I/O:"
 msgid "Net:"
 msgstr "Võrk:"
 
-msgid "Name"
-msgstr "Nimi"
-
-msgid "New and Recent"
-msgstr "Uued ja hiljutised"
-
-msgid "Favorites"
-msgstr "Lemmikud"
-
-msgid "Private"
-msgstr "Privaatne"
-
-msgid "Shared with you"
-msgstr "Sinuga jagatud"
-
-msgid "Create"
-msgstr "Loo"
-
 msgid "Share clipboard"
 msgstr "Lõikepuhvri jagamine"
 
@@ -176,6 +238,11 @@ msgstr "Akna suuruse muutmine"
 msgid "USB redirection"
 msgstr "USB suunamine"
 
+msgid "_Cancel"
+msgstr "_Loobu"
+
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -188,8 +255,8 @@ msgstr "Kirjete valimiseks klõpsa nendel"
 msgid "no password"
 msgstr "parooli pole"
 
-msgid "No username provided"
-msgstr "Kasutajanime ei antud"
+msgid "Username"
+msgstr "Kasutajanimi"
 
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
@@ -198,14 +265,55 @@ msgstr ""
 "Masina automaatseks seadistamiseks optimaalsete sätetega vali kiirpaigaldus."
 
 #. First row
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
+#. won't be asked anything while it's performed.
 msgid "Express Install"
 msgstr "Kiirpaigaldus"
 
-msgid "Username"
-msgstr "Kasutajanimi"
-
 msgid "_Add Password"
 msgstr "_Lisa parool"
+
+msgid "yes"
+msgstr "jah"
+
+msgid "no"
+msgstr "ei"
+
+#, c-format
+msgid ""
+"Your SELinux context looks incorrect, you can try to fix it by running:\n"
+"%s"
+msgstr ""
+"Sinu SELinux kontekst paistab sobimatu, sa võid proovida seda parandada "
+"käivitades käsu:\n"
+"%s"
+
+msgid "SELinux not installed?"
+msgstr "Kas SELinux pole paigaldatud?"
+
+#. No guest caps or none compatible
+#. FIXME: Better error messsage than this please?
+msgid "Incapable host system"
+msgstr "Võimetu hostsüsteem"
+
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr "Paigalduse ettevalmistamisel esines viga. Kiirpaigaldus on keelatud."
+
+msgid "Installing..."
+msgstr "Paigaldamine..."
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+msgid "Live"
+msgstr "Otse"
+
+#. This string is about automatic installation progress
+#, c-format
+msgid "%d%% Installed"
+msgid_plural "%d%% Installed"
+msgstr[0] "%d%% paigaldatud"
+msgstr[1] "%d%% paigaldatud"
 
 msgid "Read-only"
 msgstr "Kirjutuskaitsega"
@@ -213,9 +321,6 @@ msgstr "Kirjutuskaitsega"
 #. Microsoft Windows product key
 msgid "Product Key"
 msgstr "Toote võti"
-
-msgid "_Add Product Key"
-msgstr "_Lisa toote võti"
 
 msgid "Enter URL"
 msgstr "Sisesta URL"
@@ -246,8 +351,8 @@ msgstr " - %s"
 msgid "Select a device or ISO file"
 msgstr "Seadme või ISO faili valimine"
 
-msgid "Box creation failed!"
-msgstr "Masina loomine nurjus!"
+msgid "Box creation failed"
+msgstr "Masina loomine nurjus"
 
 msgid "C_ontinue"
 msgstr "_Jätka"
@@ -274,6 +379,9 @@ msgstr "Vigane URI"
 msgid "Unsupported protocol '%s'"
 msgstr "Protokoll '%s' pole toetatud"
 
+msgid "Box setup failed"
+msgstr "Masina häälestamine nurjus"
+
 msgid "Will create a new box with the following properties:"
 msgstr "Luuakse uus masin järgnevate omadustega:"
 
@@ -291,9 +399,6 @@ msgstr "TLS port"
 
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Lisab masinad kõigile selle konto alt ligipääsetavatele süsteemidele:"
-
-msgid "Memory"
-msgstr "Mälu"
 
 msgid "Disk"
 msgstr "Ketas"
@@ -348,5 +453,22 @@ msgstr "Seadistus"
 msgid "Review"
 msgstr "Ülevaade"
 
+msgid ""
+"Virtualization extensions are unavailable on your system. Expect this box to "
+"be extremely slow. If your system is recent enough (made in or after 2008), "
+"these extensions are probably available on your system and you may need to "
+"enable them in your system's BIOS setup."
+msgstr ""
+"Virtualiseerimise laiendused pole sinu masinas saadaval. Virtuaalmasin on "
+"seetõttu eriti aeglane. Kui su arvuti on piisavalt uus (valmistatud pärast "
+"aastat 2008), on need laiendused tõenäoliselt su süsteemile siiski saadaval "
+"ja sa pead need lubama süsteemi BIOSist."
+
 msgid "Create a Box"
 msgstr "Masina loomine"
+
+msgid "_Back"
+msgstr "_Tagasi"
+
+msgid "C_ustomize..."
+msgstr "_Kohanda..."
