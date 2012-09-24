@@ -15,6 +15,25 @@ private class Boxes.Downloader : GLib.Object {
         return downloader;
     }
 
+    private static string fetch_os_logo_url (Osinfo.Os os) {
+        if (os.logo != null)
+            return os.logo;
+
+        string logo_url = null;
+        var derived = os.get_related (Osinfo.ProductRelationship.DERIVES_FROM);
+        while (derived.get_length () > 0 && logo_url == null) {
+            // FIXME: Does Osinfo allows deriving from multiple OSs?
+            var parent = derived.get_nth (0) as Osinfo.Os;
+
+            if (parent.logo != null)
+                logo_url = parent.logo;
+            else
+                derived = parent.get_related (Osinfo.ProductRelationship.DERIVES_FROM);
+        }
+
+        return logo_url;
+    }
+
     private Downloader () {
         downloads = new GLib.HashTable <string,File> (str_hash, str_equal);
     }
@@ -52,26 +71,20 @@ private class Boxes.Downloader : GLib.Object {
     }
 
     public static async void fetch_os_logo (Gtk.Image image, Osinfo.Os os, int size) {
-        if (os.logo != null) {
-            debug ("%s has logo '%s'.", os.name, os.logo);
+        var logo_url = fetch_os_logo_url (os);
+        if (logo_url == null)
+            return;
 
-            var remote_file = File.new_for_uri (os.logo);
-            var cached_path = get_logo_cache (remote_file.get_basename ());
-            try {
-                var cached_file = yield get_instance ().download (remote_file, cached_path);
-                var pixbuf = new Gdk.Pixbuf.from_file_at_size (cached_file.get_path (), size, size);
-                image.set_from_pixbuf (pixbuf);
-            } catch (GLib.Error error) {
-                warning ("Error loading logo file '%s': %s", os.logo, error.message);
-            }
-        } else {
-            var derived = os.get_related (Osinfo.ProductRelationship.DERIVES_FROM);
-            if (derived.get_length () > 0) {
-                // FIXME: Does Osinfo allows deriving from multiple OSs?
-                var parent = derived.get_nth (0) as Osinfo.Os;
+        debug ("%s has logo '%s'.", os.name, logo_url);
 
-                yield fetch_os_logo (image, parent, size);
-            }
+        var remote_file = File.new_for_uri (logo_url);
+        var cached_path = get_logo_cache (remote_file.get_basename ());
+        try {
+            var cached_file = yield get_instance ().download (remote_file, cached_path);
+            var pixbuf = new Gdk.Pixbuf.from_file_at_size (cached_file.get_path (), size, size);
+            image.set_from_pixbuf (pixbuf);
+        } catch (GLib.Error error) {
+            warning ("Error loading logo file '%s': %s", logo_url, error.message);
         }
     }
 
