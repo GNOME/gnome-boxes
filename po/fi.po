@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-03 14:18+0000\n"
-"PO-Revision-Date: 2012-09-08 14:04+0300\n"
+"POT-Creation-Date: 2012-09-19 07:58+0000\n"
+"PO-Revision-Date: 2012-09-23 14:47+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,23 +116,29 @@ msgstr "Tietoja laatikoista"
 msgid "Quit"
 msgstr "Lopeta"
 
-#: ../src/app.vala:606
+#: ../src/app.vala:635
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Laatikko '%s' on poistettu"
 
-#: ../src/app.vala:607
+#: ../src/app.vala:636
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u laatikko on poistettu"
 msgstr[1] "%u laatikkoa on poistettu"
 
+#: ../src/app.vala:694
+#, c-format
+#| msgid "Connecting to %s"
+msgid "Connection to '%s' failed"
+msgstr "Yhteys kohteeseen \"%s\" epäonnistui"
+
 #: ../src/collection-view.vala:39
 msgid "New and Recent"
 msgstr "Uudet ja viimeisimmät"
 
-#: ../src/display-page.vala:156
+#: ../src/display-page.vala:164
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(paina Ctrl+Alt poistaaksesi sieppauksen)"
 
@@ -140,28 +146,28 @@ msgstr "(paina Ctrl+Alt poistaaksesi sieppauksen)"
 msgid "System"
 msgstr "Järjestelmä"
 
-#: ../src/libvirt-machine.vala:306 ../src/remote-machine.vala:39
+#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
 msgid "Name"
 msgstr "Nimi"
 
-#: ../src/libvirt-machine.vala:309
+#: ../src/libvirt-machine.vala:312
 msgid "Virtualizer"
 msgstr "Virtualisoija"
 
-#: ../src/libvirt-machine.vala:311 ../src/remote-machine.vala:42
-#: ../src/wizard.vala:341
+#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
+#: ../src/wizard.vala:371
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:321 ../src/remote-machine.vala:46
+#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
 msgid "Protocol"
 msgstr "Protokolla"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:440
 msgid "When you force shutdown, the box may lose data."
 msgstr "Kun pakotat sammutuksen, laatikossa olevia tietoja saatetaan menettää."
 
-#: ../src/libvirt-machine.vala:517 ../src/wizard.vala:369
+#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
 msgid "Memory"
 msgstr "Muisti"
 
@@ -177,31 +183,31 @@ msgstr "Palautetaan %s levyltä"
 msgid "Starting %s"
 msgstr "Käynnistetään %s"
 
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:600
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr ""
 "Muutokset vaativat, että \"%s\" käynnistetään uudelleen. Yritetäänkö "
 "käynnistää uudelleen?"
 
-#: ../src/libvirt-machine.vala:611
+#: ../src/libvirt-machine.vala:615
 msgid "Maximum Disk Size"
 msgstr "Levyn enimmäiskoko"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:97
+#: ../src/machine.vala:98
 #, c-format
 msgid "Connecting to %s"
 msgstr "Yhdistetään kohteeseen %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:128
+#: ../src/machine.vala:130
 #, c-format
 msgid "Enter password for %s"
 msgstr "Anna kohteen %s salasana"
 
 #. 3rd row
-#: ../src/machine.vala:483 ../src/unattended-installer.vala:192
+#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
 #: ../src/unattended-installer.vala:262
 msgid "Password"
 msgstr "Salasana"
@@ -211,7 +217,6 @@ msgid "Display version number"
 msgstr "Näytä versionumero"
 
 #: ../src/main.vala:13
-#| msgid "Fullscreen"
 msgid "Open in full screen"
 msgstr "Avaa koko näytön tilassa"
 
@@ -288,45 +293,46 @@ msgstr ""
 
 #: ../src/properties.vala:231
 msgid "CPU:"
-msgstr ""
+msgstr "Suoritin:"
 
 #: ../src/properties.vala:238
 msgid "I/O:"
-msgstr ""
+msgstr "I/O:"
 
 #: ../src/properties.vala:245
 msgid "Net:"
 msgstr "Verkko:"
 
-#: ../src/spice-display.vala:170
+#: ../src/spice-display.vala:189
 msgid "Share clipboard"
 msgstr "Jaa leikepöytä"
 
-#: ../src/spice-display.vala:176
+#: ../src/spice-display.vala:195
 msgid "Resize guest"
 msgstr "Mahdollista näytön tarkkuuden muuttaminen"
 
-#: ../src/spice-display.vala:184
+#: ../src/spice-display.vala:203
 msgid "USB redirection"
 msgstr "USB-laitteiden uudelleenohjaus"
 
-#: ../src/topbar.vala:91 ../src/wizard.vala:570
+#: ../src/topbar.vala:88 ../src/wizard.vala:603
 msgid "_Cancel"
 msgstr "_Peru"
 
-#: ../src/topbar.vala:124
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
+#: ../src/topbar.vala:123
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valittu"
 msgstr[1] "%d valittu"
 
-#: ../src/topbar.vala:126
+#: ../src/topbar.vala:125
 msgid "Click on items to select them"
 msgstr "Napsauta kohteita valitaksesi ne"
 
 #: ../src/unattended-installer.vala:43
-#| msgid "Password"
 msgid "no password"
 msgstr "ei salasanaa"
 
@@ -353,11 +359,11 @@ msgstr "Pika-asennus"
 msgid "_Add Password"
 msgstr "_Lisää salasana"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "yes"
 msgstr "kyllä"
 
-#: ../src/util.vala:293
+#: ../src/util.vala:285
 msgid "no"
 msgstr "ei"
 
@@ -395,7 +401,8 @@ msgstr "Asennetaan..."
 msgid "Live"
 msgstr "Live"
 
-#: ../src/vm-creator.vala:221
+#. This string is about automatic installation progress
+#: ../src/vm-creator.vala:222
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -444,87 +451,85 @@ msgstr " tekijä %s"
 msgid "Select a device or ISO file"
 msgstr "Valitse laite tai ISO-tiedosto"
 
-#: ../src/wizard.vala:92
-#| msgid "Box creation failed!"
+#: ../src/wizard.vala:88
 msgid "Box creation failed"
 msgstr "Laatikon luonti epäonnistui"
 
-#: ../src/wizard.vala:117 ../src/wizard.vala:584
+#: ../src/wizard.vala:114 ../src/wizard.vala:617
 msgid "C_ontinue"
 msgstr "J_atka"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:114
 msgid "C_reate"
 msgstr "_Luo"
 
-#: ../src/wizard.vala:138
+#: ../src/wizard.vala:135
 msgid "Please enter desktop or collection URI"
 msgstr "Anna työpöydän tai kokoelman osoite"
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:141
 msgid "Will add boxes for all systems available from this account."
 msgstr ""
 
-#: ../src/wizard.vala:147
+#: ../src/wizard.vala:144
 msgid "Will add a single box."
 msgstr ""
 
-#: ../src/wizard.vala:153
+#: ../src/wizard.vala:150
 msgid "Desktop Access"
 msgstr "Työpöydän käyttö"
 
-#: ../src/wizard.vala:233
+#: ../src/wizard.vala:241
 msgid "Invalid URI"
 msgstr ""
 
-#: ../src/wizard.vala:244
+#: ../src/wizard.vala:252
 #, c-format
 msgid "Unsupported protocol '%s'"
-msgstr ""
+msgstr "Protokolla \"%s\" ei ole tuettu"
 
-#: ../src/wizard.vala:324
-#| msgid "Box creation failed!"
+#: ../src/wizard.vala:347
 msgid "Box setup failed"
 msgstr "Laatikon asetuksissa tapahtui virhe"
 
-#: ../src/wizard.vala:331
+#: ../src/wizard.vala:361
 msgid "Will create a new box with the following properties:"
 msgstr "Luodaan uusi laatikko seuraavin ominaisuuksin:"
 
-#: ../src/wizard.vala:336
+#: ../src/wizard.vala:366
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ../src/wizard.vala:339
+#: ../src/wizard.vala:369
 msgid "Host"
 msgstr "Isäntä"
 
-#: ../src/wizard.vala:347 ../src/wizard.vala:353
+#: ../src/wizard.vala:377 ../src/wizard.vala:383
 msgid "Port"
 msgstr "Portti"
 
-#: ../src/wizard.vala:348
+#: ../src/wizard.vala:378
 msgid "TLS Port"
 msgstr "TLS-portti"
 
-#: ../src/wizard.vala:358
+#: ../src/wizard.vala:388
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 msgid "Disk"
 msgstr "Levy"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:408
 #, c-format
 msgid "%s maximum"
 msgstr "%s enintään"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:494
 msgid "Introduction"
 msgstr "Johdanto"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:498
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -538,45 +543,45 @@ msgstr ""
 "Voit yhdistää olemassa olevaan koneeseen <b><i>verkon yli</i></b> tai luoda "
 "<b><i>virtuaalikoneen</i></b>, joka toimii paikallisesti tietokoneessasi."
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:510
 msgid "Source Selection"
 msgstr "Lähteen valinta"
 
-#: ../src/wizard.vala:478
+#: ../src/wizard.vala:511
 msgid "Insert operating system installation media or select a source below"
 msgstr "Syötä käyttöjärjestelmän asennusmedia tai valitse lähde alta"
 
-#: ../src/wizard.vala:488
+#: ../src/wizard.vala:521
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr ""
 "Yllä mahdollisesti näytettävät tavaramerkit ovat esillä vain ohjelmiston "
-"tunnistamista varten. Kyseisten tavaramerkkien oikeudet kuuluvat "
-"niiden omistajille."
+"tunnistamista varten. Kyseisten tavaramerkkien oikeudet kuuluvat niiden "
+"omistajille."
 
-#: ../src/wizard.vala:501
+#: ../src/wizard.vala:534
 msgid "Preparation"
 msgstr "Valmistelu"
 
-#: ../src/wizard.vala:502
+#: ../src/wizard.vala:535
 msgid "Preparing to create new box"
 msgstr "Valmistaudutaan uuden laatikon luontiin"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:554
 msgid "Analyzing installer media."
 msgstr "Analysoidaan asennusmediaa."
 
-#: ../src/wizard.vala:532
+#: ../src/wizard.vala:565
 msgid "Setup"
 msgstr "Asetukset"
 
-#: ../src/wizard.vala:539
+#: ../src/wizard.vala:572
 msgid "Review"
 msgstr "Viimeistely"
 
-#: ../src/wizard.vala:550
+#: ../src/wizard.vala:583
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -584,22 +589,19 @@ msgid ""
 "enable them in your system's BIOS setup."
 msgstr ""
 "Virtualisointilaajennukset eivät ole käytettävissä järjestelmässäsi. Tämä "
-"laatikko "
-"on mitä luultavimmin erittäin hidas. Jos tietokoneesi on melko uusi (tehty "
-"vuonna "
-"2008 tai sen jälkeen), tietokoneesi tukee todennäköisesti "
-"virtualisointilaajennuksia, "
-"mutta ne tulee ottaa käyttöön BIOS-asetuksista."
+"laatikko on mitä luultavimmin erittäin hidas. Jos tietokoneesi on melko uusi "
+"(tehty vuonna 2008 tai sen jälkeen), tietokoneesi tukee todennäköisesti "
+"virtualisointilaajennuksia, mutta ne tulee ottaa käyttöön BIOS-asetuksista."
 
-#: ../src/wizard.vala:559
+#: ../src/wizard.vala:592
 msgid "Create a Box"
 msgstr "Luo uusi laatikko"
 
-#: ../src/wizard.vala:578
+#: ../src/wizard.vala:611
 msgid "_Back"
 msgstr "_Takaisin"
 
-#: ../src/wizard.vala:661
+#: ../src/wizard.vala:703
 msgid "C_ustomize..."
 msgstr "_Muokkaa"
 
