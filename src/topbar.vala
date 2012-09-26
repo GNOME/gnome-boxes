@@ -81,12 +81,14 @@ private class Boxes.Topbar: Boxes.UI {
         hbox = new Gtk.HBox (false, 0);
         notebook.append_page (hbox, null);
         selection_toolbar = new Gd.MainToolbar ();
+        selection_toolbar.get_style_context ().add_class ("selection-mode");
         selection_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (selection_toolbar, true, true, 0);
 
         update_selection_label ();
 
         cancel_btn = selection_toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
+        cancel_btn.get_style_context().add_class("suggested-action");
         cancel_btn.use_stock = true;
         cancel_btn.clicked.connect (() => {
             App.app.selection_mode = false;
