@@ -18,7 +18,7 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.Spinner spinner;
     private Gtk.ToggleButton search_btn;
     private Gtk.Button select_btn;
-    private Gtk.Button cancel_btn;
+    private Gtk.Button done_btn;
     private Gtk.Button back_btn;
     private Gtk.Button new_btn;
     private Gd.MainToolbar selection_toolbar;
@@ -87,10 +87,10 @@ private class Boxes.Topbar: Boxes.UI {
 
         update_selection_label ();
 
-        cancel_btn = selection_toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
-        cancel_btn.get_style_context().add_class("suggested-action");
-        cancel_btn.use_stock = true;
-        cancel_btn.clicked.connect (() => {
+        done_btn = selection_toolbar.add_button (null, _("_Done"), false) as Gtk.Button;
+        done_btn.get_style_context().add_class("suggested-action");
+        done_btn.use_stock = true;
+        done_btn.clicked.connect (() => {
             App.app.selection_mode = false;
         });
 
