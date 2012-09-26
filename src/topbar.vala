@@ -19,7 +19,6 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.ToggleButton search_btn;
     private Gtk.Button select_btn;
     private Gtk.Button cancel_btn;
-    private Gtk.Button spinner_btn;
     private Gtk.Button back_btn;
     private Gtk.Button new_btn;
     private Gd.MainToolbar selection_toolbar;
@@ -55,10 +54,10 @@ private class Boxes.Topbar: Boxes.UI {
         back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
         spinner = new Gtk.Spinner ();
-        spinner.vexpand = true;
+        spinner.start ();
         spinner.hexpand = true;
-        spinner_btn = toolbar.add_button (null, null, false) as Gtk.Button;
-        spinner_btn.add (spinner);
+        spinner.vexpand = true;
+        toolbar.add_widget (spinner, false);
 
         search_btn = toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
         search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
@@ -133,7 +132,7 @@ private class Boxes.Topbar: Boxes.UI {
             set_status (null);
             notebook.page = TopbarPage.COLLECTION;
             back_btn.hide ();
-            spinner_btn.hide ();
+            spinner.hide ();
             select_btn.show ();
             search_btn.show ();
             new_btn.show ();
@@ -142,7 +141,7 @@ private class Boxes.Topbar: Boxes.UI {
         case UIState.CREDS:
             new_btn.hide ();
             back_btn.show ();
-            spinner_btn.show ();
+            spinner.show ();
             select_btn.hide ();
             search_btn.hide ();
             break;
