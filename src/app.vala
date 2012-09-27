@@ -23,7 +23,7 @@ private class Boxes.App: Boxes.UI {
     }
     private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
     public Gtk.Notebook notebook;
-    public GtkClutter.Embed embed;
+    public ClutterWidget embed;
     public Clutter.Stage stage;
     public Clutter.BinLayout stage_bin;
     public Clutter.Actor overlay_bin_actor;
@@ -407,7 +407,7 @@ private class Boxes.App: Boxes.UI {
         notebook.show_border = false;
         notebook.show_tabs = false;
         window.add (notebook);
-        embed = new GtkClutter.Embed ();
+        embed = new ClutterWidget ();
         notebook.append_page (embed, null);
 
         display_page = new DisplayPage ();

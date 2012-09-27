@@ -77,6 +77,7 @@ EXTRA_DIST += $(libcommon_a_DEPENDENCIES) $(libcommon_a_VALASOURCES)
 bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
+	clutter-widget.vala			\
 	app.vala				\
 	collection-view.vala			\
 	collection.vala				\
