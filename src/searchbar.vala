@@ -88,7 +88,28 @@ private class Boxes.Searchbar: Boxes.UI {
             return true;
         }
 
-        var res = entry.event ((Gdk.Event)(&event));
+        var res = false;
+
+        // Don't pass on keynav keys
+        if (event.keyval != Gdk.Key.Tab &&
+            event.keyval != Gdk.Key.KP_Tab &&
+            event.keyval != Gdk.Key.Up &&
+            event.keyval != Gdk.Key.KP_Up &&
+            event.keyval != Gdk.Key.Down &&
+            event.keyval != Gdk.Key.KP_Down &&
+            event.keyval != Gdk.Key.Left &&
+            event.keyval != Gdk.Key.KP_Left &&
+            event.keyval != Gdk.Key.Right &&
+            event.keyval != Gdk.Key.KP_Right &&
+            event.keyval != Gdk.Key.Home &&
+            event.keyval != Gdk.Key.KP_Home &&
+            event.keyval != Gdk.Key.End &&
+            event.keyval != Gdk.Key.KP_End &&
+            event.keyval != Gdk.Key.Page_Up &&
+            event.keyval != Gdk.Key.KP_Page_Up &&
+            event.keyval != Gdk.Key.Page_Down &&
+            event.keyval != Gdk.Key.KP_Page_Down)
+            res = entry.event ((Gdk.Event)(&event));
         var new_text = text;
 
         entry.disconnect (preedit_changed_id);
