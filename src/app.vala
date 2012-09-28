@@ -671,6 +671,10 @@ private class Boxes.App: Boxes.UI {
         } else if (event.keyval == Gdk.Key.Escape) {
             if (selection_mode && ui_state == UIState.COLLECTION)
                selection_mode = false;
+        } else if (event.keyval == Gdk.Key.q &&
+                   (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.CONTROL_MASK) {
+            quit ();
+            return true;
         }
 
         return false;
