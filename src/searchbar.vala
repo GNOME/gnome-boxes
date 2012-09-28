@@ -90,7 +90,7 @@ private class Boxes.Searchbar: Boxes.UI {
 
         var res = false;
 
-        // Don't pass on keynav keys
+        // Don't pass on keynav keys, or CTRL/ALT using keys to search
         if (event.keyval != Gdk.Key.Tab &&
             event.keyval != Gdk.Key.KP_Tab &&
             event.keyval != Gdk.Key.Up &&
@@ -108,7 +108,8 @@ private class Boxes.Searchbar: Boxes.UI {
             event.keyval != Gdk.Key.Page_Up &&
             event.keyval != Gdk.Key.KP_Page_Up &&
             event.keyval != Gdk.Key.Page_Down &&
-            event.keyval != Gdk.Key.KP_Page_Down)
+            event.keyval != Gdk.Key.KP_Page_Down &&
+            ((event.state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.MOD1_MASK)) == 0))
             res = entry.event ((Gdk.Event)(&event));
         var new_text = text;
 
