@@ -383,6 +383,8 @@ private class Boxes.CollectionView: Boxes.UI {
         //        scrolled_window.hscrollbar_policy = Gtk.PolicyType.NEVER;
         scrolled_window.add (icon_view);
         scrolled_window.show_all ();
+        scrolled_window.set_shadow_type (Gtk.ShadowType.IN);
+        scrolled_window.get_style_context ().add_class ("documents-scrolledwin");
 
         gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
         gtkactor.get_widget ().get_style_context ().add_class ("boxes-bg");
