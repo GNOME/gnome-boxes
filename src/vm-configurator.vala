@@ -164,6 +164,9 @@ private class Boxes.VMConfigurator {
     private static void set_cpu_config (Domain domain, Capabilities caps) {
         var topology = caps.get_host ().get_cpu ().get_topology ();
 
+        if (topology == null)
+            return;
+
         domain.vcpu = topology.get_sockets () * topology.get_cores () * topology.get_threads ();
 
         var cpu = new DomainCpu ();
