@@ -67,15 +67,12 @@ private class Boxes.VMCreator {
 
                 App.app.select_item (machine); // This also starts the domain for us
                 App.app.fullscreen = true;
-                set_post_install_config (machine);
                 App.app.disconnect (signal_id);
 
                 return;
             });
-        } else {
+        } else
             machine.domain.start (0);
-            set_post_install_config (machine);
-        }
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
@@ -110,7 +107,7 @@ private class Boxes.VMCreator {
         }
 
         if (guest_installed_os (machine.storage_volume)) {
-            mark_as_installed (machine);
+            set_post_install_config (machine);
             try {
                 domain.start (0);
             } catch (GLib.Error error) {
@@ -151,18 +148,6 @@ private class Boxes.VMCreator {
             machine.domain.set_config (config);
         } catch (GLib.Error error) {
             warning ("Failed to set post-install configuration on '%s': %s", machine.name, error.message);
-        }
-    }
-
-    private void mark_as_installed (LibvirtMachine machine) requires (machine.state == Machine.MachineState.STOPPED ||
-                                                                      machine.state == Machine.MachineState.UNKNOWN) {
-        debug ("Marking '%s' as installed.", machine.name);
-        try {
-            var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-            VMConfigurator.mark_as_installed (config);
-            machine.domain.set_config (config);
-        } catch (GLib.Error error) {
-            warning ("Failed to marking domain '%s' as installed: %s", machine.name, error.message);
         }
     }
 

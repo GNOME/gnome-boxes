@@ -120,12 +120,8 @@ private class Boxes.VMConfigurator {
         }
 
         domain.set_devices (devices);
-    }
 
-    public static void mark_as_installed (Domain domain) {
-        try {
-            domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
-        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+        mark_as_installed (domain);
     }
 
     public static bool is_install_config (Domain domain) {
@@ -168,6 +164,13 @@ private class Boxes.VMConfigurator {
         pool.set_target (target);
 
         return pool;
+    }
+
+
+    private static void mark_as_installed (Domain domain) {
+        try {
+            domain.set_custom_xml (INSTALLED_XML, BOXES_NS, BOXES_NS_URI);
+        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
     }
 
     private static void set_cpu_config (Domain domain, Capabilities caps) {
