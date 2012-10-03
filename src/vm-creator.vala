@@ -13,6 +13,8 @@ private class Boxes.VMCreator {
     private Connection? connection { get { return App.app.default_connection; } }
     private ulong state_changed_id;
 
+    private uint num_reboots { get; private set; }
+
     public VMCreator (InstallerMedia install_media) {
         this.install_media = install_media;
     }
@@ -106,7 +108,9 @@ private class Boxes.VMCreator {
             return;
         }
 
-        if (guest_installed_os (machine.storage_volume)) {
+        num_reboots++;
+
+        if (guest_installed_os (machine)) {
             set_post_install_config (machine);
             try {
                 domain.start (0);
@@ -151,11 +155,17 @@ private class Boxes.VMCreator {
         }
     }
 
-    private bool guest_installed_os (StorageVol volume) {
+
+    private bool guest_installed_os (LibvirtMachine machine) {
+        var volume = machine.storage_volume;
+
         try {
             if (install_trackable ())
                 // Great! We know how much storage installed guest consumes
                 return get_progress (volume) == INSTALL_COMPLETE_PERCENT;
+            else if (install_media != null && install_media.os_media != null &&
+                     VMConfigurator.is_install_config (machine.domain_config))
+                return (num_reboots == install_media.os_media.installer_reboots);
             else {
                 var info = volume.get_info ();
 
