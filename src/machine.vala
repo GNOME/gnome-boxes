@@ -32,7 +32,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         STOPPED,
         RUNNING,
         PAUSED,
-        SAVED
+        SAVED,
+        SLEEPING
     }
 
     // The current screenshot without running status applied

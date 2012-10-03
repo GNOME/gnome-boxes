@@ -115,6 +115,16 @@ LIBGD_INIT([
   vapi
 ])
 
+old_LIBS=$LIBS
+LIBS="$LIBS $BOXES_LIBS"
+AC_CHECK_FUNCS([gvir_domain_wakeup_async],
+        [AC_DEFINE([HAVE_WAKEUP], [1], [Runtime check version hack])],
+        [AC_DEFINE([HAVE_WAKEUP], [0], [Runtime check version hack])
+         # define these to nothing so we still build
+         AC_DEFINE([gvir_domain_wakeup_async], [], [Runtime check version hack])
+         AC_DEFINE([gvir_domain_wakeup_finish], [], [Runtime check version hack])])
+LIBS=$old_libs
+
 dnl Strict compiler
 AC_ARG_ENABLE([strict-cc],
   AS_HELP_STRING([--enable-strict-cc],[Enable strict C compiler]))

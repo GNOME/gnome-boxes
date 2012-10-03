@@ -9,6 +9,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.StorageVol? storage_volume;
     public VMCreator? vm_creator; // Under installation if this is set to non-null
 
+    private const GVir.DomainState DomainStatePMSUSPENDED = (GVir.DomainState)7; //DomainState.PMSUSPENDED, but we don't want a hard compile dependency
+
     public bool save_on_quit {
         get { return source.get_boolean ("source", "save-on-quit"); }
         set { source.set_boolean ("source", "save-on-quit", value); }
@@ -101,6 +103,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             case DomainState.CRASHED:
                 state = MachineState.STOPPED;
                 break;
+            case DomainStatePMSUSPENDED:
+                state = MachineState.SLEEPING;
+                break;
             default:
             case DomainState.NONE:
                 state = MachineState.UNKNOWN;
@@ -119,6 +124,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             else
                 state = MachineState.STOPPED;
         });
+        var pmsuspended_id = Signal.lookup ("pmsuspended", domain.get_type ());
+        if (pmsuspended_id != 0) {
+            Signal.connect_object(domain, "pmsuspended", (GLib.Callback) LibvirtMachine.pmsuspended_callback, this, 0);
+        }
         notify["state"].connect (() => {
             if (state == MachineState.RUNNING)
                 reconnect_display ();
@@ -131,6 +140,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             load_screenshot ();
         set_screenshot_enable (true);
         set_stats_enable (true);
+    }
+
+    // This is done as a method and not a lambda as we don't want a hard build
+    // dep on the new pmsuspended signal yet.
+    private static void pmsuspended_callback (GVir.Domain domain, LibvirtMachine machine) {
+        machine.state = MachineState.SLEEPING;
     }
 
     private void update_cpu_stat (DomainInfo info, ref MachineStat stat) {
@@ -361,7 +376,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             warning ("Failed to get information on '%s'", name);
         }
 
-        if (state != DomainState.RUNNING && state != DomainState.PAUSED)
+        if (state != DomainState.RUNNING && state != DomainState.PAUSED && state != DomainStatePMSUSPENDED)
             return null;
 
         var stream = connection.get_stream (0);
@@ -531,7 +546,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                     config.set ("current-memory", value);
                 domain.set_config (config);
                 debug ("RAM changed to %llu", value);
-                if (state == MachineState.RUNNING || state == MachineState.PAUSED)
+                if (state == MachineState.RUNNING || state == MachineState.PAUSED || state == MachineState.SLEEPING)
                     notify_reboot_required ();
             } catch (GLib.Error error) {
                 warning ("Failed to change RAM of box '%s' to %llu: %s",
@@ -540,7 +555,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          error.message);
             }
 
-            if (state == MachineState.RUNNING || state == MachineState.PAUSED)
+            if (state == MachineState.RUNNING || state == MachineState.PAUSED || state == MachineState.SLEEPING)
                 update_ram_property (property);
 
             return false;
@@ -553,7 +568,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         if (state == MachineState.PAUSED)
             yield domain.resume_async (null);
-        else {
+        else if (state == MachineState.SLEEPING) {
+            if (Config.HAVE_WAKEUP)
+                yield ((BoxesGVir.Domain)domain).wakeup_async (0, null);
+            else
+                throw new Boxes.Error.INVALID ("Wakeup not supported");
+        } else {
             if (domain.get_saved ())
                 // Translators: The %s will be expanded with the name of the vm
                 status = _("Restoring %s from disk").printf (name);
