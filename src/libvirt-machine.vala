@@ -114,7 +114,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         domain.suspended.connect (() => { state = MachineState.PAUSED; });
         domain.resumed.connect (() => { state = MachineState.RUNNING; });
         domain.stopped.connect (() => {
-            if (Signal.get_invocation_hint (domain).detail == Quark.from_string ("saved"))
+            if (Signal.get_invocation_hint (this.domain).detail == Quark.from_string ("saved"))
                 state = MachineState.SAVED;
             else
                 state = MachineState.STOPPED;
