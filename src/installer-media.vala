@@ -93,8 +93,11 @@ private class Boxes.InstallerMedia : GLib.Object {
                (os_media.architecture == "i686" && architecture == "x86_64");
     }
 
-    protected void add_cd_config (Domain domain, DomainDiskType type, string iso_path, string device_name, bool mandatory = false)
-    {
+    protected void add_cd_config (Domain         domain,
+                                  DomainDiskType type,
+                                  string         iso_path,
+                                  string         device_name,
+                                  bool           mandatory = false) {
         var disk = new DomainDisk ();
 
         disk.set_type (type);
