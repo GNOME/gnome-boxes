@@ -256,6 +256,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return state == MachineState.RUNNING;
     }
 
+    public bool is_on () {
+        return state == MachineState.RUNNING ||
+            state == MachineState.PAUSED ||
+            state == MachineState.SLEEPING;
+    }
+
     private void save_pixbuf_as_screenshot (Gdk.Pixbuf? pixbuf) {
         try {
             pixbuf.save (get_screenshot_filename (), "png");

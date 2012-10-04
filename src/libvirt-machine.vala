@@ -546,7 +546,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                     config.set ("current-memory", value);
                 domain.set_config (config);
                 debug ("RAM changed to %llu", value);
-                if (state == MachineState.RUNNING || state == MachineState.PAUSED || state == MachineState.SLEEPING)
+                if (is_on ())
                     notify_reboot_required ();
             } catch (GLib.Error error) {
                 warning ("Failed to change RAM of box '%s' to %llu: %s",
@@ -555,7 +555,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          error.message);
             }
 
-            if (state == MachineState.RUNNING || state == MachineState.PAUSED || state == MachineState.SLEEPING)
+            if (is_on ())
                 update_ram_property (property);
 
             return false;
