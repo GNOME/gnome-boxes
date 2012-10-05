@@ -129,7 +129,7 @@ private class Boxes.Wizard: Boxes.UI {
     construct {
         steps = new GenericArray<Gtk.Label> ();
         steps.length = WizardPage.LAST;
-        media_manager = new MediaManager ();
+        media_manager = MediaManager.get_instance ();
     }
 
     private void wizard_source_update_next () {

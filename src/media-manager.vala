@@ -5,6 +5,7 @@ using GUdev;
 using Tracker;
 
 private class Boxes.MediaManager : Object {
+    private static MediaManager media_manager;
     private const string SPARQL_QUERY = "SELECT nie:url(?iso) nie:title(?iso) osinfo:id(?iso) osinfo:mediaId(?iso)" +
                                         " { ?iso nfo:isBootable true }";
 
@@ -13,15 +14,11 @@ private class Boxes.MediaManager : Object {
 
     private Sparql.Connection connection;
 
-    public MediaManager () {
-        client = new GUdev.Client ({"block"});
-        os_db = new OSDatabase ();
-        os_db.load.begin ();
-        try {
-            connection = Sparql.Connection.get ();
-        } catch (GLib.Error error) {
-            critical ("Error connecting to Tracker: %s", error.message);
-        }
+    public static MediaManager get_instance () {
+        if (media_manager == null)
+            media_manager = new MediaManager ();
+
+        return media_manager;
     }
 
     public async InstallerMedia create_installer_media_for_path (string       path,
@@ -81,6 +78,17 @@ private class Boxes.MediaManager : Object {
         }
 
         return list;
+    }
+
+    private MediaManager () {
+        client = new GUdev.Client ({"block"});
+        os_db = new OSDatabase ();
+        os_db.load.begin ();
+        try {
+            connection = Sparql.Connection.get ();
+        } catch (GLib.Error error) {
+            critical ("Error connecting to Tracker: %s", error.message);
+        }
     }
 
     private static int compare_media (InstallerMedia media_a, InstallerMedia media_b) {
