@@ -85,7 +85,7 @@ private class Boxes.VMCreator {
     private void on_machine_state_changed (GLib.Object object, GLib.ParamSpec? pspec = null) {
         var machine = object as LibvirtMachine;
 
-        if (machine.state != Machine.MachineState.STOPPED && machine.state != Machine.MachineState.UNKNOWN)
+        if (machine.is_on ())
             return;
 
         var domain = machine.domain;
@@ -96,7 +96,7 @@ private class Boxes.VMCreator {
             return;
         }
 
-        if (domain.get_saved ()) {
+        if (machine.state == Machine.MachineState.SAVED) {
             debug ("'%s' has saved state, no need for post-installation setup on it", machine.name);
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
             // steps for this domain.
