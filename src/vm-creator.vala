@@ -147,7 +147,7 @@ private class Boxes.VMCreator {
             VMConfigurator.post_install_setup (config);
             machine.domain.set_config (config);
         } catch (GLib.Error error) {
-            warning ("Failed to set post-install configuration on '%s' failed: %s", machine.name, error.message);
+            warning ("Failed to set post-install configuration on '%s': %s", machine.name, error.message);
         }
     }
 
