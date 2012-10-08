@@ -136,6 +136,7 @@ private class Boxes.WizardSource: GLib.Object {
         notebook.append_page (url_menubox, null);
 
         hbox = add_entry (url_menubox, () => {
+            selected = null;
             page = SourcePage.MAIN;
 
             return false;
