@@ -7,7 +7,7 @@ private enum Boxes.SourcePage {
     LAST,
 }
 
-public delegate void ClickedFunc ();
+public delegate bool ClickedFunc ();
 
 /* Subclass of ScrolledWindow that shows at allocates enough
    space to not scroll for at most N children. */
@@ -111,7 +111,11 @@ private class Boxes.WizardSource: GLib.Object {
         media_scrolled.add_with_viewport (media_vbox);
         main_vbox.add (media_scrolled);
 
-        var hbox = add_entry (main_vbox, () => { page = SourcePage.URL; });
+        var hbox = add_entry (main_vbox, () => {
+            page = SourcePage.URL;
+
+            return false;
+        });
         var label = new Gtk.Label (_("Enter URL"));
         label.xalign = 0.0f;
         hbox.pack_start (label, true, true);
@@ -131,7 +135,11 @@ private class Boxes.WizardSource: GLib.Object {
         url_menubox.margin_top = url_menubox.margin_bottom = 15;
         notebook.append_page (url_menubox, null);
 
-        hbox = add_entry (url_menubox, () => { page = SourcePage.MAIN; });
+        hbox = add_entry (url_menubox, () => {
+            page = SourcePage.MAIN;
+
+            return false;
+        });
         var prev = new Gtk.Label ("◀");
         hbox.pack_start (prev, false, false);
         label = new Gtk.Label (_("Enter URL"));
@@ -215,6 +223,8 @@ private class Boxes.WizardSource: GLib.Object {
             install_media = media;
             uri = media.device_file;
             url_entry.activate ();
+
+            return true;
         }, 15, 5, media.device_file);
 
         var image = new Gtk.Image.from_icon_name ("media-optical", 0);
@@ -266,8 +276,8 @@ private class Boxes.WizardSource: GLib.Object {
         if (clicked != null) {
             var button = new Gtk.Button ();
             button.clicked.connect (() => {
-                selected = button;
-                clicked ();
+                if (clicked ())
+                    selected = button;
             });
             row = button;
         } else {
@@ -289,7 +299,7 @@ private class Boxes.WizardSource: GLib.Object {
         return hbox;
     }
 
-    private void launch_file_selection_dialog () {
+    private bool launch_file_selection_dialog () {
         var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
                                                 App.app.window,
                                                 Gtk.FileChooserAction.OPEN,
@@ -299,13 +309,18 @@ private class Boxes.WizardSource: GLib.Object {
         dialog.local_only = true;
         dialog.filter = new Gtk.FileFilter ();
         dialog.filter.add_mime_type ("application/x-cd-image");
+        var ret = false;
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
             // clean install_media as this may be set already when going back in the wizard
             install_media = null;
             url_entry.activate ();
+
+            ret = true;
         }
 
         dialog.hide ();
+
+        return ret;
     }
 }
