@@ -19,6 +19,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.Button cancel_button;
     private Gtk.Button back_button;
     private Gtk.Button next_button;
+    private Gtk.SizeGroup toolbar_sizegroup;
     private Boxes.WizardSource wizard_source;
     private WizardSummary summary;
     private CollectionSource? source;
@@ -601,6 +602,7 @@ private class Boxes.Wizard: Boxes.UI {
         toolbar.toolbar_style = Gtk.ToolbarStyle.TEXT;
         hbox.pack_start (toolbar, true, true, 0);
 
+        toolbar_sizegroup = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
         cancel_button = toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
         cancel_button.use_underline = true;
         cancel_button.clicked.connect (() => {
@@ -608,12 +610,14 @@ private class Boxes.Wizard: Boxes.UI {
             wizard_source.page = SourcePage.MAIN;
             App.app.ui_state = UIState.COLLECTION;
         });
+        toolbar_sizegroup.add_widget (cancel_button);
 
         back_button = toolbar.add_button (null, _("_Back"), false) as Gtk.Button;
         back_button.use_underline = true;
         back_button.clicked.connect (() => {
             page = page - 1;
         });
+        toolbar_sizegroup.add_widget (back_button);
 
         next_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
         next_button.use_underline = true;
@@ -621,6 +625,7 @@ private class Boxes.Wizard: Boxes.UI {
         next_button.clicked.connect (() => {
             page = page + 1;
         });
+        toolbar_sizegroup.add_widget (next_button);
 
         hbox.show_all ();
         notebook.show_all ();
