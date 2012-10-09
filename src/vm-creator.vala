@@ -96,6 +96,9 @@ private class Boxes.VMCreator {
             return;
         }
 
+        if (machine.state == Machine.MachineState.FORCE_STOPPED)
+            return;
+
         if (machine.state == Machine.MachineState.SAVED) {
             debug ("'%s' has saved state, no need for post-installation setup on it", machine.name);
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
