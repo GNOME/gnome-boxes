@@ -82,6 +82,15 @@ private class Boxes.VMConfigurator {
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.DESTROY);
         domain.set_lifecycle (DomainLifecycleEvent.ON_CRASH, DomainLifecycleAction.DESTROY);
 
+        if (Config.HAVE_PM) {
+            // FIXME: Remove BoxesGVirConfig hack and the condition once we can depend on libvirt-gconfig >= 0.1.4
+            var pm = new BoxesGVirConfig.DomainPowerManagement ();
+            // Disable S3 and S4 states for now due to many issues with it currently in qemu/libvirt
+            pm.set_mem_suspend_enabled (false);
+            pm.set_disk_suspend_enabled (false);
+            ((BoxesGVirConfig.Domain) domain).set_power_management (pm);
+        }
+
         var console = new DomainConsole ();
         console.set_source (new DomainChardevSourcePty ());
         domain.add_device (console);

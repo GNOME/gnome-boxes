@@ -123,6 +123,15 @@ AC_CHECK_FUNCS([gvir_domain_wakeup_async],
          # define these to nothing so we still build
          AC_DEFINE([gvir_domain_wakeup_async], [], [Runtime check version hack])
          AC_DEFINE([gvir_domain_wakeup_finish], [], [Runtime check version hack])])
+AC_CHECK_FUNCS([gvir_config_domain_set_power_management],
+        [AC_DEFINE([HAVE_PM], [1], [Runtime check version hack])],
+        [AC_DEFINE([HAVE_PM], [0], [Runtime check version hack])
+         # define these to nothing so we still build
+         AC_DEFINE([GVirConfigDomainPowerManagement], [void *], [Runtime check version hack])
+         AC_DEFINE([gvir_config_domain_set_power_management], [], [Runtime check version hack])
+         AC_DEFINE([gvir_config_domain_power_management_new()], [NULL], [Runtime check version hack])
+         AC_DEFINE([gvir_config_domain_power_management_set_mem_suspend_enabled], [], [Runtime check version hack])
+         AC_DEFINE([gvir_config_domain_power_management_set_disk_suspend_enabled], [], [Runtime check version hack])])
 LIBS=$old_libs
 
 dnl Strict compiler

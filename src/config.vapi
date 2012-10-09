@@ -10,4 +10,5 @@ namespace Config {
         public const string PACKAGE_BUGREPORT;
         public const string PACKAGE_URL;
         public const bool HAVE_WAKEUP;
+        public const bool HAVE_PM;
 }
