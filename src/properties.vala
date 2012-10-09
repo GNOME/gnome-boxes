@@ -154,7 +154,7 @@ private class Boxes.Properties: Boxes.UI {
                 list_append (listmodel, page.name);
         }
 
-        tree_view.get_selection ().select_path (new Gtk.TreePath.from_string ("0"));
+        PropertiesPage current_page;
 
         var machine = App.app.current_item as LibvirtMachine;
         if (machine != null) {
@@ -163,7 +163,14 @@ private class Boxes.Properties: Boxes.UI {
                 net.points = machine.net_stats;
                 io.points = machine.io_stats;
             });
-        }
+
+            current_page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.LOGIN;
+        } else
+            current_page = PropertiesPage.LOGIN;
+
+        var path = new Gtk.TreePath.from_indices (current_page);
+        tree_view.get_selection ().select_path (path);
+        notebook.set_current_page (current_page);
     }
 
     private void setup_ui () {
