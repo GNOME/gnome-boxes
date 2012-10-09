@@ -19,6 +19,8 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.Button cancel_button;
     private Gtk.Button back_button;
     private Gtk.Button next_button;
+    private Gtk.Button continue_button;
+    private Gtk.Button create_button;
     private Gtk.SizeGroup toolbar_sizegroup;
     private Boxes.WizardSource wizard_source;
     private WizardSummary summary;
@@ -44,6 +46,9 @@ private class Boxes.Wizard: Boxes.UI {
 
             switch (value) {
             case WizardPage.INTRODUCTION:
+                create_button.visible = false;
+                continue_button.visible = true;
+                next_button = continue_button;
                 next_button.sensitive = true;
                 next_button.grab_focus (); // FIXME: doesn't work?!
                 break;
@@ -72,6 +77,9 @@ private class Boxes.Wizard: Boxes.UI {
                     break;
 
                 case WizardPage.REVIEW:
+                    continue_button.visible = false;
+                    create_button.visible = true;
+                    next_button = create_button;
                     next_button.sensitive = false;
 
                     review.begin ((obj, result) => {
@@ -93,6 +101,9 @@ private class Boxes.Wizard: Boxes.UI {
             } else {
                 switch (page) {
                 case WizardPage.REVIEW:
+                    create_button.visible = false;
+                    continue_button.visible = true;
+                    next_button = continue_button;
                     destroy_machine ();
                     break;
                 }
@@ -111,8 +122,6 @@ private class Boxes.Wizard: Boxes.UI {
 
             /* highlight in white current page label */
             steps.get (page).modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
-
-            next_button.label = page != WizardPage.REVIEW ? _("C_ontinue") : _("C_reate");
         }
     }
 
@@ -313,7 +322,7 @@ private class Boxes.Wizard: Boxes.UI {
         return_if_fail (vm_creator != null);
 
         vm_creator.install_media.bind_property ("user-data-for-vm-creation-available",
-                                                next_button, "sensitive",
+                                                continue_button, "sensitive",
                                                 BindingFlags.SYNC_CREATE);
         vm_creator.install_media.populate_setup_vbox (setup_vbox);
 
@@ -619,13 +628,21 @@ private class Boxes.Wizard: Boxes.UI {
         });
         toolbar_sizegroup.add_widget (back_button);
 
-        next_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
-        next_button.use_underline = true;
-        next_button.get_style_context ().add_class ("boxes-continue");
-        next_button.clicked.connect (() => {
+        continue_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
+        continue_button.use_underline = true;
+        continue_button.get_style_context ().add_class ("boxes-continue");
+        continue_button.clicked.connect (() => {
             page = page + 1;
         });
-        toolbar_sizegroup.add_widget (next_button);
+        toolbar_sizegroup.add_widget (continue_button);
+
+        create_button = toolbar.add_button (null, _("C_reate"), false) as Gtk.Button;
+        create_button.use_underline = true;
+        create_button.get_style_context ().add_class ("boxes-continue");
+        create_button.clicked.connect (() => {
+            page = page + 1;
+        });
+        toolbar_sizegroup.add_widget (create_button);
 
         hbox.show_all ();
         notebook.show_all ();
