@@ -30,6 +30,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public enum MachineState {
         UNKNOWN,
         STOPPED,
+        FORCE_STOPPED,
         RUNNING,
         PAUSED,
         SAVED,

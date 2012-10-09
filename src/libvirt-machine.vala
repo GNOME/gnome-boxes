@@ -119,6 +119,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         domain.suspended.connect (() => { state = MachineState.PAUSED; });
         domain.resumed.connect (() => { state = MachineState.RUNNING; });
         domain.stopped.connect (() => {
+            if (state == MachineState.FORCE_STOPPED)
+                return; // State already set by us when machine is forced to shutdown
+
             if (Signal.get_invocation_hint (this.domain).detail == Quark.from_string ("saved"))
                 state = MachineState.SAVED;
             else
@@ -454,6 +457,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         debug ("Force shutdown '%s'..", name);
         try {
+            state = MachineState.FORCE_STOPPED;
             domain.stop (0);
         } catch (GLib.Error error) {
             warning ("Failed to shutdown '%s': %s", domain.get_name (), error.message);
