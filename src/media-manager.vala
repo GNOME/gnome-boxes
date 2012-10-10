@@ -57,6 +57,9 @@ private class Boxes.MediaManager : Object {
             }
         }
 
+        if (connection == null)
+            return list;
+
         // Now ISO files
         try {
             var cursor = yield connection.query_async (SPARQL_QUERY);
