@@ -89,6 +89,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             case DomainState.RUNNING:
             case DomainState.BLOCKED:
                 state = MachineState.RUNNING;
+                set_stats_enable (true);
                 break;
             case DomainState.PAUSED:
                 state = MachineState.PAUSED;
@@ -132,8 +133,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             Signal.connect_object(domain, "pmsuspended", (GLib.Callback) LibvirtMachine.pmsuspended_callback, this, 0);
         }
         notify["state"].connect (() => {
-            if (state == MachineState.RUNNING)
+            if (state == MachineState.RUNNING) {
                 reconnect_display ();
+                set_stats_enable (true);
+            } else
+                set_stats_enable (false);
         });
 
         update_domain_config ();
@@ -142,7 +146,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (state != MachineState.STOPPED)
             load_screenshot ();
         set_screenshot_enable (true);
-        set_stats_enable (true);
     }
 
     // This is done as a method and not a lambda as we don't want a hard build
