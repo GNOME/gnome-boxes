@@ -532,7 +532,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                                               on_ram_changed);
 
             this.notify["state"].connect (() => {
-                if (state == MachineState.STOPPED)
+                if (!is_on ())
                     property.reboot_required = false;
             });
 
