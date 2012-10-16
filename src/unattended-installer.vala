@@ -278,6 +278,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             notebook.next_page ();
             password_entry.is_focus = true;
         });
+        password_entry.focus_out_event.connect (() => {
+            if (password_entry.text_length == 0)
+                notebook.prev_page ();
+            return false;
+        });
         setup_table.attach_defaults (notebook, 2, 3, 2, 3);
 
         foreach (var child in setup_table.get_children ())
