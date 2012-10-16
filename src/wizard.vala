@@ -137,6 +137,7 @@ private class Boxes.Wizard: Boxes.UI {
         switch (wizard_source.page) {
         case Boxes.SourcePage.MAIN:
             next_button.sensitive = wizard_source.selected != null;
+            source = null;
             break;
 
         case Boxes.SourcePage.URL:
@@ -220,8 +221,6 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     private void prepare_for_location (string location, bool probing = false) throws GLib.Error {
-        source = null;
-
         if (location == "")
             throw new Boxes.Error.INVALID ("empty location");
 
