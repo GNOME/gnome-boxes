@@ -41,6 +41,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         double net_write;
     }
 
+    private uint shutdown_timeout;
+
     private uint stats_update_timeout;
     private Cancellable stats_cancellable;
 
@@ -402,6 +404,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         base.delete (by_user);
 
         set_stats_enable (false);
+        if (shutdown_timeout != 0) {
+            Source.remove (shutdown_timeout);
+            shutdown_timeout = 0;
+        }
 
         if (by_user) {
             var domain = this.domain; // Don't reference self in thread
@@ -592,8 +598,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             debug ("Rebooting '%s'..", name);
             stay_on_display = true;
             ulong state_id = 0;
+            Gd.Notification notification = null;
+
             state_id = this.notify["state"].connect (() => {
-                if (state == MachineState.STOPPED) {
+                if (state == MachineState.STOPPED || state == MachineState.FORCE_STOPPED) {
+                    debug ("'%s' stopped.", name);
                     start.begin ((obj, res) => {
                         try {
                             start.end (res);
@@ -602,7 +611,33 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                         }
                     });
                     this.disconnect (state_id);
+                    if (shutdown_timeout != 0) {
+                        Source.remove (shutdown_timeout);
+                        shutdown_timeout = 0;
+                    }
+                    if (notification != null) {
+                        notification.dismiss ();
+                        notification = null;
+                    }
                 }
+            });
+
+            shutdown_timeout = Timeout.add_seconds (5, () => {
+                // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
+                Notificationbar.OKFunc really_force_shutdown = () => {
+                    notification = null;
+                    force_shutdown (false);
+                };
+
+                var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (name);
+                notification = App.app.notificationbar.display_for_action (message,
+                                                                           Gtk.Stock.YES,
+                                                                           (owned) really_force_shutdown,
+                                                                           null,
+                                                                           -1);
+                shutdown_timeout = 0;
+
+                return false;
             });
 
             try {
