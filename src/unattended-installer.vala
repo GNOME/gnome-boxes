@@ -13,9 +13,11 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public override bool user_data_for_vm_creation_available {
+    public virtual bool ready_for_express { get { return username != ""; } }
+
+    public override bool ready_to_create {
         get {
-            return !express_toggle.active || username != "";
+            return !express_toggle.active || ready_for_express;
         }
     }
 
@@ -239,7 +241,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         express_toggle.active = !os_media.live;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
-        express_toggle.notify["active"].connect (() => { notify_property ("user-data-for-vm-creation-available"); });
+        express_toggle.notify["active"].connect (() => { notify_property ("ready-to-create"); });
         setup_table.attach_defaults (express_toggle, 2, 3, 0, 1);
 
         // 2nd row (while user avatar spans over 2 rows)
@@ -327,7 +329,7 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (mandatory)
             entry.notify["text"].connect (() => {
-                notify_property ("user-data-for-vm-creation-available");
+                notify_property ("ready-to-create");
             });
 
         return entry;

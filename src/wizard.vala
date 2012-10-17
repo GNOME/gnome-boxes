@@ -320,7 +320,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         return_if_fail (vm_creator != null);
 
-        vm_creator.install_media.bind_property ("user-data-for-vm-creation-available",
+        vm_creator.install_media.bind_property ("ready-to-create",
                                                 continue_button, "sensitive",
                                                 BindingFlags.SYNC_CREATE);
         vm_creator.install_media.populate_setup_vbox (setup_vbox);
