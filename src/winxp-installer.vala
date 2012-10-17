@@ -13,9 +13,9 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
 
     private ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
-    public override bool user_data_for_vm_creation_available {
+    public override bool ready_for_express {
         get {
-            return base.user_data_for_vm_creation_available && key_entry.text_length == 29;
+            return base.ready_for_express && key_entry.text_length == 29;
         }
     }
 
