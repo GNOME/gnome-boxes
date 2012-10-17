@@ -288,6 +288,39 @@ namespace Boxes {
         return result;
     }
 
+    public async bool check_storage_pool (out string diagnosis) {
+        string pool_path;
+        diagnosis = "";
+        try {
+            string standard_output;
+
+            string[] argv = {"virsh", "pool-dumpxml", Config.PACKAGE_TARNAME};
+
+            yield exec (argv, null, out standard_output);
+            pool_path = extract_xpath (standard_output, "string(/pool[@type='dir']/target/path)");
+        } catch (GLib.Error error) {
+            debug (error.message);
+            diagnosis = _("Could not get 'gnome-boxes' storage pool information from libvirt. Make sure 'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working.");
+            return false;
+        }
+
+        if (!FileUtils.test (pool_path, FileTest.EXISTS)) {
+            diagnosis = _("%s is known to libvirt as GNOME Boxes's storage pool but this directory does not exist").printf (pool_path);
+            return false;
+        }
+        if (!FileUtils.test (pool_path, FileTest.IS_DIR)) {
+            diagnosis = _("%s is known to libvirt as GNOME Boxes's storage pool but is not a directory").printf (pool_path);
+            return false;
+        }
+        if (Posix.access (pool_path, Posix.R_OK | Posix.W_OK | Posix.X_OK) != 0) {
+            diagnosis = _("%s is known to libvirt as GNOME Boxes's storage pool but is not user-readable/writable").printf (pool_path);
+            return false;
+        }
+
+        return true;
+    }
+
+
     // FIXME: Better ways to remove alpha more than welcome
     private Gdk.Pixbuf remove_alpha (Gdk.Pixbuf pixbuf) {
         const uint8 ALPHA_TRESHOLD = 50;
