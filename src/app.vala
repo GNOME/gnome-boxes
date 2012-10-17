@@ -258,7 +258,7 @@ private class Boxes.App: Boxes.UI {
             yield connection.open_async (null);
             yield connection.fetch_domains_async (null);
             yield connection.fetch_storage_pools_async (null);
-            var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
+            var pool = Boxes.get_storage_pool (connection);
             if (pool != null)
                 // If default storage pool exists, we should refresh it already
                 yield pool.refresh_async (null);

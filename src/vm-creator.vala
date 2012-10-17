@@ -273,7 +273,7 @@ private class Boxes.VMCreator {
     }
 
     private async StoragePool get_storage_pool () throws GLib.Error {
-        var pool = connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
+        var pool = Boxes.get_storage_pool (connection);
         if (pool == null) {
             var config = VMConfigurator.get_pool_config ();
             pool = connection.create_storage_pool (config, 0);
