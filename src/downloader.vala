@@ -39,7 +39,7 @@ private class Boxes.Downloader : GLib.Object {
         downloads = new GLib.HashTable <string,File> (str_hash, str_equal);
 
         session = new Soup.SessionAsync ();
-		session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
+        session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
     }
 
     public async File download (File remote_file, string cached_path) throws GLib.Error {
