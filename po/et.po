@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-22 22:49+0000\n"
-"PO-Revision-Date: 2012-09-23 19:25+0300\n"
+"POT-Creation-Date: 2012-10-20 17:29+0000\n"
+"PO-Revision-Date: 2012-10-21 03:48+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -197,6 +197,10 @@ msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM guest on saadaval: %s\n"
 
 #, c-format
+msgid "• Boxes storage pool available: %s\n"
+msgstr "• Boxes andmetsoon on saadaval: %s\n"
+
+#, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux kontekst on vaikimisi: %s\n"
 
@@ -291,6 +295,34 @@ msgstr ""
 msgid "SELinux not installed?"
 msgstr "Kas SELinux pole paigaldatud?"
 
+msgid ""
+"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
+"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
+msgstr ""
+"'gnome-boxes' andmetsooni andmeid polnud võimalik libvirt'ist hankida. "
+"Kontrolli, kas 'virsh -c qemu:///session pool-dumpxml gnome-boxes' töötab."
+
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
+"not exist"
+msgstr ""
+"%s on GNOME Boxes'i jaoks tuntud andmetsoonina, kuid seda kataloogi pole "
+"olemas"
+
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
+msgstr "%s on GNOME Boxes'i jaoks tuntud andmetsoonina, kuid see pole kataloog"
+
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
+"readable/writable"
+msgstr ""
+"%s on GNOME Boxes'i jaoks tuntud andmetsoonina, kuid see pole kasutajale "
+"loetav või kirjutatav"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
 msgid "Incapable host system"
@@ -353,12 +385,6 @@ msgstr "Seadme või ISO faili valimine"
 
 msgid "Box creation failed"
 msgstr "Masina loomine nurjus"
-
-msgid "C_ontinue"
-msgstr "_Jätka"
-
-msgid "C_reate"
-msgstr "_Loo"
 
 msgid "Please enter desktop or collection URI"
 msgstr "Palun sisesta töölaua või kogu URI"
@@ -469,6 +495,12 @@ msgstr "Masina loomine"
 
 msgid "_Back"
 msgstr "_Tagasi"
+
+msgid "C_ontinue"
+msgstr "_Jätka"
+
+msgid "C_reate"
+msgstr "_Loo"
 
 msgid "C_ustomize..."
 msgstr "_Kohanda..."
