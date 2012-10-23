@@ -95,24 +95,25 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
     protected override void setup_ui () {
         base.setup_ui ();
 
-        setup_table.resize (setup_table.n_rows + 1, setup_table.n_columns);
-
-        var hbox = new Gtk.HBox (false, 10);
-        hbox.margin_top = 12;
-
         // Microsoft Windows product key
         var label = new Gtk.Label (_("Product Key"));
-        label.halign = Gtk.Align.START;
-        hbox.pack_start (label, true, true, 0);
+        label.margin_top = 15;
+        label.margin_right = 10;
+        label.halign = Gtk.Align.END;
+        label.valign = Gtk.Align.CENTER;
+        setup_grid.attach (label, 0, setup_grid_n_rows, 2, 1);
+        express_toggle.bind_property ("active", label, "sensitive", 0);
 
         key_entry = create_input_entry ("");
         key_entry.width_chars = 29;
         key_entry.max_length = 29;
+        key_entry.margin_top = 15;
+        key_entry.halign = Gtk.Align.FILL;
+        key_entry.valign = Gtk.Align.CENTER;
         key_entry.get_style_context ().add_class ("boxes-product-key-entry");
-        hbox.pack_start (key_entry, true, true, 0);
-        setup_table.attach_defaults (hbox, 0, setup_table.n_columns, setup_table.n_rows - 1, setup_table.n_rows);
-
-        express_toggle.bind_property ("active", hbox, "sensitive", 0);
+        setup_grid.attach (key_entry, 2, setup_grid_n_rows, 1, 1);
+        express_toggle.bind_property ("active", key_entry, "sensitive", 0);
+        setup_grid_n_rows++;
 
         key_inserted_id = key_entry.insert_text.connect (on_key_text_inserted);
     }

@@ -57,7 +57,9 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 
     protected GLib.List<UnattendedFile> unattended_files;
 
-    protected Gtk.Table setup_table;
+    protected Gtk.Grid setup_grid;
+    protected int setup_grid_n_rows;
+
     protected Gtk.Label setup_label;
     protected Gtk.HBox setup_hbox;
     protected Gtk.Switch express_toggle;
@@ -220,57 +222,71 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
         setup_label.wrap = true;
         setup_label.width_chars = 30;
         setup_label.halign = Gtk.Align.START;
-        setup_hbox = new Gtk.HBox (false, 20);
+        setup_hbox = new Gtk.HBox (false, 0);
         setup_hbox.valign = Gtk.Align.START;
         setup_hbox.margin = 24;
 
-        setup_table = new Gtk.Table (3, 3, false);
-        setup_hbox.pack_start (setup_table, false, false);
-        setup_table.column_spacing = 10;
-        setup_table.row_spacing = 10;
+        setup_grid = new Gtk.Grid ();
+        setup_hbox.pack_start (setup_grid, false, false);
+        setup_grid.column_spacing = 0;
+        setup_grid.column_homogeneous = false;
+        setup_grid.row_spacing = 0;
+        setup_grid.row_homogeneous = true;
 
         // First row
         // Translators: 'Express Install' means that the new box installation will be fully automated, the user
         // won't be asked anything while it's performed.
         var label = new Gtk.Label (_("Express Install"));
+        label.margin_right = 10;
+        label.margin_bottom = 15;
         label.halign = Gtk.Align.END;
         label.valign = Gtk.Align.CENTER;
-        setup_table.attach_defaults (label, 1, 2, 0, 1);
+        setup_grid.attach (label, 0, 0, 2, 1);
 
         express_toggle = new Gtk.Switch ();
         express_toggle.active = !os_media.live;
+        express_toggle.margin_bottom = 15;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
         express_toggle.notify["active"].connect (() => { notify_property ("ready-to-create"); });
-        setup_table.attach_defaults (express_toggle, 2, 3, 0, 1);
+        setup_grid.attach (express_toggle, 2, 0, 1, 1);
+        setup_grid_n_rows++;
 
         // 2nd row (while user avatar spans over 2 rows)
         var avatar = new Gtk.Image.from_icon_name ("avatar-default", 0);
-        avatar.pixel_size = 128;
-        setup_table.attach_defaults (avatar, 0, 1, 1, 3);
+        avatar.pixel_size = 64;
+        avatar.margin_right = 15;
+        avatar.valign = Gtk.Align.CENTER;
+        avatar.halign = Gtk.Align.CENTER;
+        setup_grid.attach (avatar, 0, 1, 1, 2);
         avatar.show_all ();
         fetch_user_avatar.begin (avatar);
 
         label = new Gtk.Label (_("Username"));
+        label.margin_right = 10;
+        label.margin_bottom  = 10;
         label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.CENTER;
-        setup_table.attach_defaults (label, 1, 2, 1, 2);
+        label.valign = Gtk.Align.END;
+        setup_grid.attach (label, 1, 1, 1, 1);
         username_entry = create_input_entry (Environment.get_user_name ());
-        username_entry.halign = Gtk.Align.START;
-        username_entry.valign = Gtk.Align.CENTER;
-        setup_table.attach_defaults (username_entry, 2, 3, 1, 2);
+        username_entry.margin_bottom  = 10;
+        username_entry.halign = Gtk.Align.FILL;
+        username_entry.valign = Gtk.Align.END;
+        setup_grid.attach (username_entry, 2, 1, 1, 1);
+        setup_grid_n_rows++;
 
         // 3rd row
         label = new Gtk.Label (_("Password"));
+        label.margin_right = 10;
         label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.CENTER;
-        setup_table.attach_defaults (label, 1, 2, 2, 3);
+        label.valign = Gtk.Align.START;
+        setup_grid.attach (label, 1, 2, 1, 1);
 
         var notebook = new Gtk.Notebook ();
         notebook.show_tabs = false;
         notebook.show_border = false;
-        notebook.halign = Gtk.Align.START;
-        notebook.valign = Gtk.Align.CENTER;
+        notebook.halign = Gtk.Align.FILL;
+        notebook.valign = Gtk.Align.START;
         var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
         button.visible = true;
         notebook.append_page (button);
@@ -285,9 +301,10 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
                 notebook.prev_page ();
             return false;
         });
-        setup_table.attach_defaults (notebook, 2, 3, 2, 3);
+        setup_grid.attach (notebook, 2, 2, 1, 1);
+        setup_grid_n_rows++;
 
-        foreach (var child in setup_table.get_children ())
+        foreach (var child in setup_grid.get_children ())
             if (child != express_toggle)
                 express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
     }
@@ -376,10 +393,12 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 
-        var file = File.new_for_path (avatar_path);
-        if (file.query_exists ()) {
-            avatar.file = avatar_path;
+        try {
+            var pixbuf = new Gdk.Pixbuf.from_file_at_scale (avatar_path, 64, 64, true);
+            avatar.pixbuf = pixbuf;
             add_unattended_file (new UnattendedAvatarFile (this, avatar_path, avatar_format));
+        } catch (GLib.Error error) {
+            debug ("Failed to load user avatar file '%s': %s", avatar_path, error.message);
         }
     }
 }
