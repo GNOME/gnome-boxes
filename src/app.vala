@@ -259,11 +259,12 @@ private class Boxes.App: Boxes.UI {
             yield connection.fetch_domains_async (null);
             yield connection.fetch_storage_pools_async (null);
             var pool = Boxes.get_storage_pool (connection);
-            if (pool != null)
+            if (pool != null) {
                 if (pool.get_info ().state == GVir.StoragePoolState.INACTIVE)
                     yield pool.start_async (0, null);
                 // If default storage pool exists, we should refresh it already
                 yield pool.refresh_async (null);
+            }
         } catch (GLib.Error error) {
             warning (error.message);
         }
