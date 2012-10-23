@@ -395,19 +395,14 @@ private class Boxes.CollectionView: Boxes.UI {
 
     private bool on_button_press_event (Gtk.Widget view, Gdk.EventButton event) {
         Gtk.TreePath path = icon_view.get_path_at_pos ((int) event.x, (int) event.y);
-        if (path != null)
-            button_press_item_path = path.to_string ();
-
-        if (!App.app.selection_mode || path == null)
+        if (path == null)
             return false;
 
+        button_press_item_path = path.to_string ();
         CollectionItem item = get_item_for_path (path);
         bool found = item != null;
 
-        /* if we did not find the item in the selection, block
-         * drag and drop, while in selection mode
-         */
-        return !found;
+        return !found; // if we did not find the item, block drag and drop
     }
 
     private bool on_button_release_event (Gtk.Widget view, Gdk.EventButton event) {
