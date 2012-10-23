@@ -75,7 +75,7 @@ public class Boxes.SearchProvider: Object {
         return 0;
     }
 
-    private async string[] search (string[] terms) {
+    private async string[] search (owned string[] terms) {
         app.hold ();
         string[] normalized_terms = canonicalize_for_search (string.joinv(" ", terms)).split(" ");
         var matches = new GenericArray<DisplayProperties> ();
@@ -107,7 +107,7 @@ public class Boxes.SearchProvider: Object {
         return yield search (new_terms);
     }
 
-    public async HashTable<string, Variant>[] GetResultMetas (string[] ids) {
+    public async HashTable<string, Variant>[] get_metas (owned string[] ids) {
         var metas = new HashTable<string, Variant>[ids.length];
         app.hold ();
 
@@ -141,6 +141,12 @@ public class Boxes.SearchProvider: Object {
 
         app.release ();
         return metas[0:n];
+    }
+
+    /* We have to put this in a separate method because vala does not seem to honor "owned"
+       in the dbus method handler. I.e. it doesn't copy the ids array. */
+    public async HashTable<string, Variant>[] GetResultMetas (string[] ids) {
+        return yield get_metas (ids);
     }
 
     public void ActivateResult (string search_id) {
