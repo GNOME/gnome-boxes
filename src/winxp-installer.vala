@@ -67,7 +67,7 @@ private class Boxes.WinXPInstaller: WindowsInstaller {
 
             yield extractor.mount_media (cancellable);
 
-            string driver_path = (os_media.architecture == "x86_64")?"preinst/winxp/amd64":"preinst/winxp/x86";
+            string driver_path = (os_media.architecture == "x86_64")? "preinst/winxp/amd64" : "preinst/winxp/x86";
 
             GLib.FileEnumerator enumerator = yield extractor.enumerate_children (driver_path, cancellable);
             GLib.List<FileInfo> infos = yield enumerator.next_files_async (4, GLib.Priority.DEFAULT, cancellable);
