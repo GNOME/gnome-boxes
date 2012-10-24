@@ -1,6 +1,11 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
+    public struct SyncProperty {
+        string name;
+        Value default_value;
+    }
+
     private CollectionSource source;
 
     private bool has_file {
@@ -77,10 +82,10 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         save ();
     }
 
-    public void save_display_property (Object display, string property_name) {
-        var value = Value (display.get_class ().find_property (property_name).value_type);
+    public void save_property (Object object, string property_name) {
+        var value = Value (object.get_class ().find_property (property_name).value_type);
 
-        display.get_property (property_name, ref value);
+        object.get_property (property_name, ref value);
 
         if (value.type () == typeof (string))
             keyfile.set_string (group, property_name, value.get_string ());
@@ -97,8 +102,8 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         save ();
     }
 
-    public void load_display_property (Object display, string property_name, Value default_value) {
-        var property = display.get_class ().find_property (property_name);
+    public void load_property (Object object, string property_name, Value default_value) {
+        var property = object.get_class ().find_property (property_name);
         if (property == null) {
             debug ("You forgot the property '%s' needs to have public getter!", property_name);
         }
@@ -118,6 +123,19 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
             value = default_value;
         }
 
-        display.set_property (property_name, value);
+        object.set_property (property_name, value);
+    }
+
+    public void sync_properties (Object object, SyncProperty[] properties) {
+        foreach (var prop in properties)
+            load_property (object, prop.name, prop.default_value);
+
+        object.notify.connect ((pspec) => {
+            foreach (var prop in properties)
+                if (pspec.name == prop.name) {
+                    save_property (object, pspec.name);
+                    break;
+                }
+        });
     }
 }

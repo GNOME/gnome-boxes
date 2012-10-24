@@ -9,12 +9,12 @@ private class Boxes.VncDisplay: Boxes.Display {
     private string host;
     private int port;
     private Gtk.Window window;
-    private DisplayProperties.SavedProperty[] saved_properties;
+    private DisplayConfig.SyncProperty[] sync_properties;
     private bool connected;
 
     construct {
-        saved_properties = {
-            SavedProperty () { name = "read-only", default_value = false }
+        sync_properties = {
+            DisplayConfig.SyncProperty () { name = "read-only", default_value = false }
         };
         need_password = false;
 
@@ -72,7 +72,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         });
 
         this.notify["config"].connect (() => {
-            sync_config_with_display (display, saved_properties);
+            config.sync_properties (display, sync_properties);
         });
     }
 

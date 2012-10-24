@@ -2,11 +2,6 @@
 
 // too bad we can't make it just a mixin
 public class Boxes.DisplayProperties: GLib.Object {
-    protected struct SavedProperty {
-        string name;
-        Value default_value;
-    }
-
     private int64 started_time;
     protected void access_start () {
         if (started_time != 0)
@@ -35,19 +30,17 @@ public class Boxes.DisplayProperties: GLib.Object {
     public int64 access_first_time { set; get; }
     public int64 access_total_time { set; get; } // in seconds
     public int64 access_ntimes { set; get; }
-    private SavedProperty[] access_saved_properties;
+    private DisplayConfig.SyncProperty[] access_properties;
 
     construct {
-        access_saved_properties = {
-            SavedProperty () { name = "access-last-time", default_value = (int64)(-1) },
-            SavedProperty () { name = "access-first-time", default_value = (int64)(-1) },
-            SavedProperty () { name = "access-total-time", default_value = (int64)(-1) },
-            SavedProperty () { name = "access-ntimes", default_value = (uint64)0 }
+        access_properties = {
+            DisplayConfig.SyncProperty () { name = "access-last-time", default_value = (int64)(-1) },
+            DisplayConfig.SyncProperty () { name = "access-first-time", default_value = (int64)(-1) },
+            DisplayConfig.SyncProperty () { name = "access-total-time", default_value = (int64)(-1) },
+            DisplayConfig.SyncProperty () { name = "access-ntimes", default_value = (uint64)0 }
         };
 
-        this.notify["config"].connect (() => {
-            sync_config_with_display (this, access_saved_properties);
-        });
+        config.sync_properties (this, access_properties);
     }
 
     public DisplayProperties.with_config (DisplayConfig config) {
@@ -61,22 +54,6 @@ public class Boxes.DisplayProperties: GLib.Object {
     }
 
     public DisplayConfig? config { get; set; }
-
-    public void sync_config_with_display (Object display, SavedProperty[] saved_properties) {
-        if (config == null)
-            return;
-
-        foreach (var prop in saved_properties)
-            config.load_display_property (display, prop.name, prop.default_value);
-
-        display.notify.connect ((pspec) => {
-            foreach (var prop in saved_properties)
-                if (pspec.name == prop.name) {
-                    config.save_display_property (display, pspec.name);
-                    break;
-                }
-        });
-    }
 
     private string filter_data;
 

@@ -11,8 +11,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     private unowned Spice.Audio audio;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
-    private DisplayProperties.SavedProperty[] display_saved_properties;
-    private DisplayProperties.SavedProperty[] gtk_session_saved_properties;
+    private DisplayConfig.SyncProperty[] display_sync_properties;
+    private DisplayConfig.SyncProperty[] gtk_session_sync_properties;
     private bool connected;
 
     public bool resize_guest { get; set; }
@@ -27,13 +27,13 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     }
 
     construct {
-        display_saved_properties = {
-            SavedProperty () { name = "resize-guest", default_value = true }
+        display_sync_properties = {
+            DisplayConfig.SyncProperty () { name = "resize-guest", default_value = true }
         };
 
-        gtk_session_saved_properties = {
-            SavedProperty () { name = "auto-clipboard", default_value = true },
-            SavedProperty () { name = "auto-usbredir", default_value = false }
+        gtk_session_sync_properties = {
+            DisplayConfig.SyncProperty () { name = "auto-clipboard", default_value = true },
+            DisplayConfig.SyncProperty () { name = "auto-usbredir", default_value = false }
         };
 
         need_password = false;
@@ -42,7 +42,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         gtk_session = GtkSession.get (session);
 
         this.notify["config"].connect (() => {
-            sync_config_with_display (gtk_session, gtk_session_saved_properties);
+            config.sync_properties (gtk_session, gtk_session_sync_properties);
         });
 
         App.app.notify["ui-state"].connect (ui_state_changed);
@@ -90,7 +90,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
             display.mouse_grab.connect((status) => {
                 mouse_grabbed = status != 0;
             });
-            sync_config_with_display (this, display_saved_properties);
+            config.sync_properties (this, display_sync_properties);
             display.scaling = true;
             if (display.get_class ().find_property ("only-downscale") != null)
                 display.set ("only-downscale", true);
