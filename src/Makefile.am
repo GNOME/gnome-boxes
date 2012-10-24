@@ -44,7 +44,6 @@ noinst_LIBRARIES = libcommon.a
 libcommon_a_VALASOURCES =			\
 	box-config.vala                         \
 	collection-source.vala			\
-	display-properties.vala			\
 	util.vala				\
 	$(NULL)
 
