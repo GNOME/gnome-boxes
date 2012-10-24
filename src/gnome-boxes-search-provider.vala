@@ -5,15 +5,15 @@ public class Boxes.SearchProvider: Object {
     private SearchProviderApp app;
     private bool loading;
     public bool loaded { get; set; }
-    private HashTable<string, DisplayProperties> boxes;
+    private HashTable<string, DisplayConfig> boxes;
     private uint next_id;
 
     public SearchProvider (SearchProviderApp app) {
         this.app = app;
-        boxes = new HashTable<string, DisplayProperties> (str_hash, str_equal);
+        boxes = new HashTable<string, DisplayConfig> (str_hash, str_equal);
     }
 
-    private void add_box (DisplayProperties box) {
+    private void add_box (DisplayConfig box) {
         var id = next_id++.to_string ();
         box.set_data ("search-id", id);
 
@@ -42,8 +42,7 @@ public class Boxes.SearchProvider: Object {
                 return false;
 
             foreach (var group in source.get_groups ("display")) {
-                var config = new DisplayConfig.with_group (source, group);
-                var box = new DisplayProperties.with_config (config);
+                var box = new DisplayConfig.with_group (source, group);
                 add_box (box);
             }
 
@@ -54,13 +53,13 @@ public class Boxes.SearchProvider: Object {
         loading = false;
     }
 
-    private static int compare_boxes (DisplayProperties a, DisplayProperties b) {
+    private static int compare_boxes (DisplayConfig a, DisplayConfig b) {
         // sort first by last time used
         if (a.access_last_time > b.access_last_time)
             return -1;
 
-        var a_name = a.config.last_seen_name;
-        var b_name = b.config.last_seen_name;
+        var a_name = a.last_seen_name;
+        var b_name = b.last_seen_name;
 
         // then by name
         if (is_set (a_name) && is_set (b_name))
@@ -78,7 +77,7 @@ public class Boxes.SearchProvider: Object {
     private async string[] search (owned string[] terms) {
         app.hold ();
         string[] normalized_terms = canonicalize_for_search (string.joinv(" ", terms)).split(" ");
-        var matches = new GenericArray<DisplayProperties> ();
+        var matches = new GenericArray<DisplayConfig> ();
 
         debug ("search (%s)", string.joinv (", ", terms));
         if (!loaded)
@@ -89,7 +88,7 @@ public class Boxes.SearchProvider: Object {
                 matches.add (box);
         }
 
-        matches.sort((CompareFunc<DisplayProperties>) compare_boxes);
+        matches.sort((CompareFunc<DisplayConfig>) compare_boxes);
         var results = new string[matches.length];
         for (int i = 0; i < matches.length; i++)
             results[i] = matches[i].get_data ("search-id");
@@ -123,9 +122,9 @@ public class Boxes.SearchProvider: Object {
             n++;
 
             meta.insert ("id", new Variant.string (id));
-            meta.insert ("name", new Variant.string (box.config.last_seen_name));
+            meta.insert ("name", new Variant.string (box.last_seen_name));
 
-            var file = File.new_for_path (Boxes.get_screenshot_filename (box.config.uuid));
+            var file = File.new_for_path (Boxes.get_screenshot_filename (box.uuid));
             FileInfo? info = null;
             try {
                 info = yield file.query_info_async (FileAttribute.STANDARD_TYPE, FileQueryInfoFlags.NONE);
@@ -161,7 +160,7 @@ public class Boxes.SearchProvider: Object {
             return;
         }
 
-        string uuid = box.config.uuid;
+        string uuid = box.uuid;
         try {
             var cmd = "gnome-boxes --open-uuid " + uuid;
             if (!Process.spawn_command_line_async (cmd))

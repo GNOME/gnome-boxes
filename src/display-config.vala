@@ -37,11 +37,28 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         set { keyfile.set_string_list (group, "categories", value); }
     }
 
+    public int64 access_last_time { set; get; }
+    public int64 access_first_time { set; get; }
+    public int64 access_total_time { set; get; } // in seconds
+    public int64 access_ntimes { set; get; }
+    private SyncProperty[] access_properties;
+
+    construct {
+        access_properties = {
+            SyncProperty () { name = "access-last-time", default_value = (int64)(-1) },
+            SyncProperty () { name = "access-first-time", default_value = (int64)(-1) },
+            SyncProperty () { name = "access-total-time", default_value = (int64)(-1) },
+            SyncProperty () { name = "access-ntimes", default_value = (uint64)0 }
+        };
+    }
+
     public DisplayConfig.with_group (CollectionSource source, string group) {
         this.source = source;
 
         warn_if_fail (group.has_prefix ("display"));
         this.group = group;
+
+        sync_properties (this, access_properties);
     }
 
     public void delete () {
@@ -137,5 +154,31 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
                     break;
                 }
         });
+    }
+
+    private string? filter_data;
+
+    private void update_filter_data () {
+        var builder = new StringBuilder ();
+
+        if (last_seen_name != null) {
+            builder.append (canonicalize_for_search (last_seen_name));
+            builder.append_unichar (' ');
+        }
+
+        // add categories, url? other metadata etc..
+
+        filter_data = builder.str;
+    }
+
+    public bool contains_strings (string[] strings) {
+        if (filter_data == null)
+            update_filter_data ();
+
+        foreach (string i in strings) {
+            if (! (i in filter_data))
+                return false;
+        }
+        return true;
     }
 }
