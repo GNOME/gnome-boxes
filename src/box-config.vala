@@ -99,7 +99,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         save ();
     }
 
-    public void save_property (Object object, string property_name) {
+    private void save_property (Object object, string property_name) {
         var value = Value (object.get_class ().find_property (property_name).value_type);
 
         object.get_property (property_name, ref value);
@@ -119,7 +119,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         save ();
     }
 
-    public void load_property (Object object, string property_name, Value default_value) {
+    private void load_property (Object object, string property_name, Value default_value) {
         var property = object.get_class ().find_property (property_name);
         if (property == null) {
             debug ("You forgot the property '%s' needs to have public getter!", property_name);
