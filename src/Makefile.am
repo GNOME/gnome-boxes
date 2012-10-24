@@ -42,8 +42,8 @@ AM_VALAFLAGS =						\
 
 noinst_LIBRARIES = libcommon.a
 libcommon_a_VALASOURCES =			\
+	box-config.vala                         \
 	collection-source.vala			\
-	display-config.vala			\
 	display-properties.vala			\
 	util.vala				\
 	$(NULL)

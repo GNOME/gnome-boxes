@@ -1,6 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
+public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
     public struct SyncProperty {
         string name;
         Value default_value;
@@ -52,7 +52,7 @@ public class Boxes.DisplayConfig: GLib.Object, Boxes.IConfig {
         };
     }
 
-    public DisplayConfig.with_group (CollectionSource source, string group) {
+    public BoxConfig.with_group (CollectionSource source, string group) {
         this.source = source;
 
         warn_if_fail (group.has_prefix ("display"));

@@ -5,15 +5,15 @@ public class Boxes.SearchProvider: Object {
     private SearchProviderApp app;
     private bool loading;
     public bool loaded { get; set; }
-    private HashTable<string, DisplayConfig> boxes;
+    private HashTable<string, BoxConfig> boxes;
     private uint next_id;
 
     public SearchProvider (SearchProviderApp app) {
         this.app = app;
-        boxes = new HashTable<string, DisplayConfig> (str_hash, str_equal);
+        boxes = new HashTable<string, BoxConfig> (str_hash, str_equal);
     }
 
-    private void add_box (DisplayConfig box) {
+    private void add_box (BoxConfig box) {
         var id = next_id++.to_string ();
         box.set_data ("search-id", id);
 
@@ -42,7 +42,7 @@ public class Boxes.SearchProvider: Object {
                 return false;
 
             foreach (var group in source.get_groups ("display")) {
-                var box = new DisplayConfig.with_group (source, group);
+                var box = new BoxConfig.with_group (source, group);
                 add_box (box);
             }
 
@@ -53,7 +53,7 @@ public class Boxes.SearchProvider: Object {
         loading = false;
     }
 
-    private static int compare_boxes (DisplayConfig a, DisplayConfig b) {
+    private static int compare_boxes (BoxConfig a, BoxConfig b) {
         // sort first by last time used
         if (a.access_last_time > b.access_last_time)
             return -1;
@@ -77,7 +77,7 @@ public class Boxes.SearchProvider: Object {
     private async string[] search (owned string[] terms) {
         app.hold ();
         string[] normalized_terms = canonicalize_for_search (string.joinv(" ", terms)).split(" ");
-        var matches = new GenericArray<DisplayConfig> ();
+        var matches = new GenericArray<BoxConfig> ();
 
         debug ("search (%s)", string.joinv (", ", terms));
         if (!loaded)
@@ -88,7 +88,7 @@ public class Boxes.SearchProvider: Object {
                 matches.add (box);
         }
 
-        matches.sort((CompareFunc<DisplayConfig>) compare_boxes);
+        matches.sort((CompareFunc<BoxConfig>) compare_boxes);
         var results = new string[matches.length];
         for (int i = 0; i < matches.length; i++)
             results[i] = matches[i].get_data ("search-id");

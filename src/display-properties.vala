@@ -30,5 +30,5 @@ public class Boxes.DisplayProperties: GLib.Object {
         access_finish ();
     }
 
-    public DisplayConfig? config { get; set; }
+    public BoxConfig? config { get; set; }
 }

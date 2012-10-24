@@ -9,12 +9,12 @@ private class Boxes.VncDisplay: Boxes.Display {
     private string host;
     private int port;
     private Gtk.Window window;
-    private DisplayConfig.SyncProperty[] sync_properties;
+    private BoxConfig.SyncProperty[] sync_properties;
     private bool connected;
 
     construct {
         sync_properties = {
-            DisplayConfig.SyncProperty () { name = "read-only", default_value = false }
+            BoxConfig.SyncProperty () { name = "read-only", default_value = false }
         };
         need_password = false;
 
@@ -76,14 +76,14 @@ private class Boxes.VncDisplay: Boxes.Display {
         });
     }
 
-    public VncDisplay (DisplayConfig config, string host, int port) {
+    public VncDisplay (BoxConfig config, string host, int port) {
         this.config = config;
 
         this.host = host;
         this.port = port;
     }
 
-    public VncDisplay.with_uri (DisplayConfig config, string _uri) throws Boxes.Error {
+    public VncDisplay.with_uri (BoxConfig config, string _uri) throws Boxes.Error {
         this.config = config;
 
         var uri = Xml.URI.parse (_uri);

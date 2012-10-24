@@ -11,8 +11,8 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
     private unowned Spice.Audio audio;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
-    private DisplayConfig.SyncProperty[] display_sync_properties;
-    private DisplayConfig.SyncProperty[] gtk_session_sync_properties;
+    private BoxConfig.SyncProperty[] display_sync_properties;
+    private BoxConfig.SyncProperty[] gtk_session_sync_properties;
     private bool connected;
 
     public bool resize_guest { get; set; }
@@ -28,12 +28,12 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
 
     construct {
         display_sync_properties = {
-            DisplayConfig.SyncProperty () { name = "resize-guest", default_value = true }
+            BoxConfig.SyncProperty () { name = "resize-guest", default_value = true }
         };
 
         gtk_session_sync_properties = {
-            DisplayConfig.SyncProperty () { name = "auto-clipboard", default_value = true },
-            DisplayConfig.SyncProperty () { name = "auto-usbredir", default_value = false }
+            BoxConfig.SyncProperty () { name = "auto-clipboard", default_value = true },
+            BoxConfig.SyncProperty () { name = "auto-usbredir", default_value = false }
         };
 
         need_password = false;
@@ -68,14 +68,14 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         main_cleanup ();
     }
 
-    public SpiceDisplay (DisplayConfig config, string host, int port) {
+    public SpiceDisplay (BoxConfig config, string host, int port) {
         this.config = config;
 
         session.port = port.to_string ();
         session.host = host;
     }
 
-    public SpiceDisplay.with_uri (DisplayConfig config, string uri) {
+    public SpiceDisplay.with_uri (BoxConfig config, string uri) {
         this.config = config;
 
         session.uri = uri;

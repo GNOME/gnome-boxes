@@ -7,7 +7,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public override Clutter.Actor actor { get { return machine_actor.actor; } }
     public MachineActor machine_actor;
     public Boxes.CollectionSource source;
-    public Boxes.DisplayConfig config;
+    public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
     public bool stay_on_display;
     public string? info { get; set; }
@@ -239,7 +239,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         if (uuid != null)
             group += " " + uuid;
 
-        config = new DisplayConfig.with_group (source, group);
+        config = new BoxConfig.with_group (source, group);
         if (config.last_seen_name != name)
             config.last_seen_name = name;
 
