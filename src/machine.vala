@@ -506,7 +506,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             machine_actor.update_thumbnail (null, false);
             disconnect_display ();
         }
+    }
 
+    public override int compare (CollectionItem other) {
+        if (other is Machine)
+            return config.compare ((other as Machine).config);
+        else
+            return -1; // Machines are listed before non-machines
     }
 }
 

@@ -181,4 +181,30 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         }
         return true;
     }
+
+    public int compare (BoxConfig other) {
+        // sort first by last time used
+        if (access_last_time > 0 && other.access_last_time > 0) {
+            if (access_last_time > other.access_last_time)
+                return -1;
+            else if (access_last_time < other.access_last_time)
+                return 1;
+        }
+
+        var name = last_seen_name;
+        var other_name = other.last_seen_name;
+
+        // then by name
+        if (is_set (name) && is_set (other_name))
+            return name.collate (other_name);
+
+        // Sort empty names last
+        if (is_set (name))
+            return -1;
+        if (is_set (other_name))
+            return 1;
+
+        return 0;
+    }
+
 }

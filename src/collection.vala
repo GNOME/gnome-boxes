@@ -2,6 +2,25 @@
 
 private abstract class Boxes.CollectionItem: Boxes.UI {
     public string name { set; get; }
+
+    public virtual int compare (CollectionItem other) {
+        // First machines before non-machines
+        if (other is Machine)
+            return 1;
+
+        // Then non-machine
+        // First by name
+        if (is_set (name) && is_set (other.name))
+            return name.collate (other.name);
+
+        // Sort empty names last
+        if (is_set (name))
+            return -1;
+        if (is_set (other.name))
+            return 1;
+
+        return 0;
+    }
 }
 
 private class Boxes.Collection: GLib.Object {

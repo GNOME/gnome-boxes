@@ -293,7 +293,7 @@ private class Boxes.CollectionView: Boxes.UI {
             if (item_a == null || item_b == null) // FIXME?!
                 return 0;
 
-            return item_a.name.collate (item_b.name);
+            return item_a.compare (item_b);
         });
         model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
         model.row_deleted.connect (() => {

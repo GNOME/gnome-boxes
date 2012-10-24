@@ -53,27 +53,6 @@ public class Boxes.SearchProvider: Object {
         loading = false;
     }
 
-    private static int compare_boxes (BoxConfig a, BoxConfig b) {
-        // sort first by last time used
-        if (a.access_last_time > b.access_last_time)
-            return -1;
-
-        var a_name = a.last_seen_name;
-        var b_name = b.last_seen_name;
-
-        // then by name
-        if (is_set (a_name) && is_set (b_name))
-            return a_name.collate (b_name);
-
-        // Sort empty names last
-        if (is_set (a_name))
-            return -1;
-        if (is_set (b_name))
-            return -1;
-
-        return 0;
-    }
-
     private async string[] search (owned string[] terms) {
         app.hold ();
         string[] normalized_terms = canonicalize_for_search (string.joinv(" ", terms)).split(" ");
@@ -88,7 +67,7 @@ public class Boxes.SearchProvider: Object {
                 matches.add (box);
         }
 
-        matches.sort((CompareFunc<BoxConfig>) compare_boxes);
+        matches.sort( (a, b) => { return a.compare (b); });
         var results = new string[matches.length];
         for (int i = 0; i < matches.length; i++)
             results[i] = matches[i].get_data ("search-id");
