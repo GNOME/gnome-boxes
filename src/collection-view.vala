@@ -46,6 +46,8 @@ private class Boxes.CollectionView: Boxes.UI {
         setup_view ();
         App.app.notify["selection-mode"].connect (() => {
             icon_view.set_selection_mode (App.app.selection_mode);
+            if (!App.app.selection_mode)
+                icon_view.unselect_all (); // Reset selection on exiting selection mode
         });
     }
 
