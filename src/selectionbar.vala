@@ -9,6 +9,7 @@ private class Boxes.Selectionbar: GLib.Object {
     private GtkClutter.Actor gtk_actor;
     private Gtk.Toolbar toolbar;
     private Gtk.ToggleToolButton favorite_btn;
+    private Gtk.ToolButton pause_btn;
     private Gtk.ToggleToolButton remove_btn;
 
     public Selectionbar () {
@@ -36,6 +37,24 @@ private class Boxes.Selectionbar: GLib.Object {
                if (machine == null)
                    continue;
                machine.config.set_category ("favorite", favorite_btn.active);
+           }
+        });
+
+        pause_btn = new Gtk.ToolButton (null, null);
+        toolbar.insert (pause_btn, -1);
+        pause_btn.icon_name = "media-playback-pause-symbolic";
+        pause_btn.clicked.connect (() => {
+           foreach (var item in App.app.selected_items) {
+               var machine = item as Machine;
+               if (machine == null)
+                   continue;
+               machine.save.begin ( (obj, result) => {
+                   try {
+                       machine.save.end (result);
+                   } catch (GLib.Error e) {
+                       App.app.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
+                   }
+               });
            }
         });
 
