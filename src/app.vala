@@ -84,6 +84,18 @@ private class Boxes.App: Boxes.UI {
         action_properties.activate.connect (() => { ui_state = UIState.PROPERTIES; });
         application.add_action (action_properties);
 
+        action = new GLib.SimpleAction ("select-all", null);
+        action.activate.connect (() => { view.select (Selection.ALL); });
+        application.add_action (action);
+
+        action = new GLib.SimpleAction ("select-running", null);
+        action.activate.connect (() => { view.select (Selection.RUNNING); });
+        application.add_action (action);
+
+        action = new GLib.SimpleAction ("select-none", null);
+        action.activate.connect (() => { view.select (Selection.NONE); });
+        application.add_action (action);
+
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
@@ -669,6 +681,10 @@ private class Boxes.App: Boxes.UI {
                selection_mode = false;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.CONTROL_MASK) {
+            quit ();
+            return true;
+        } else if (event.keyval == Gdk.Key.a &&
+                   (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.MOD1_MASK) {
             quit ();
             return true;
         }

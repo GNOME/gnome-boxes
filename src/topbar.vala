@@ -83,6 +83,13 @@ private class Boxes.Topbar: Boxes.UI {
         selection_toolbar = new Gd.MainToolbar ();
         selection_toolbar.get_style_context ().add_class ("selection-mode");
         selection_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+
+        var menu = new GLib.Menu ();
+        menu.append (_("Select All"), "app.select-all");
+        menu.append (_("Select Running"), "app.select-running");
+        menu.append (_("Select None"), "app.select-none");
+
+        selection_toolbar.set_labels_menu (menu);
         hbox.pack_start (selection_toolbar, true, true, 0);
 
         update_selection_label ();

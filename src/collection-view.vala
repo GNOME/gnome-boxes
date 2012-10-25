@@ -1,6 +1,12 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Clutter;
 
+public enum Boxes.Selection {
+    ALL,
+    NONE,
+    RUNNING
+}
+
 private class Boxes.CollectionView: Boxes.UI {
     public override Clutter.Actor actor { get { return gtkactor; } }
 
@@ -458,4 +464,34 @@ private class Boxes.CollectionView: Boxes.UI {
 
         return false;
     }
+
+    public void select (Selection selection) {
+        App.app.selection_mode = true;
+
+        model_filter.foreach ( (filter_model, filter_path, filter_iter) => {
+            Gtk.TreeIter iter;
+            model_filter.convert_iter_to_child_iter (out iter, filter_iter);
+            bool selected;
+            switch (selection) {
+            default:
+            case Selection.ALL:
+                selected = true;
+                break;
+            case Selection.NONE:
+                selected = false;
+                break;
+            case Selection.RUNNING:
+                CollectionItem item;
+                model.get (iter, ModelColumns.ITEM, out item);
+                selected = item != null && item is Machine &&
+                    (item as Machine).is_running ();
+                break;
+            }
+            model.set (iter, ModelColumns.SELECTED, selected);
+            return false;
+        });
+        icon_view.queue_draw ();
+        App.app.notify_property ("selected-items");
+    }
+
 }
