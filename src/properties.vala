@@ -141,11 +141,12 @@ private class Boxes.Properties: Boxes.UI {
         for (var i = 0; i < PropertiesPage.LAST; i++)
             notebook.remove_page (-1);
 
-        if (App.app.current_item == null)
+        var machine = App.app.current_item as Machine;
+
+        if (machine == null)
             return;
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
-            var machine = App.app.current_item as Machine;
             var page = new PageWidget (i, machine);
             notebook.append_page (page.widget, null);
             notebook.set_data<PageWidget> (@"boxes-property-$i", page);
@@ -156,7 +157,7 @@ private class Boxes.Properties: Boxes.UI {
 
         PropertiesPage current_page;
 
-        var libvirt_machine = App.app.current_item as LibvirtMachine;
+        var libvirt_machine = machine as LibvirtMachine;
         if (libvirt_machine != null) {
             stats_id = libvirt_machine.stats_updated.connect (() => {
                 cpu.points = libvirt_machine.cpu_stats;
