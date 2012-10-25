@@ -20,6 +20,7 @@ private class Boxes.Properties: Boxes.UI {
     private Gtk.Label toolbar_label;
     private Gtk.ListStore listmodel;
     private Gtk.TreeView tree_view;
+    private Gtk.Button shutdown_button;
     private GLib.Binding toolbar_label_bind;
     private MiniGraph cpu;
     private MiniGraph io;
@@ -143,6 +144,8 @@ private class Boxes.Properties: Boxes.UI {
 
         var machine = App.app.current_item as Machine;
 
+        shutdown_button.sensitive = machine != null && machine is LibvirtMachine;
+
         if (machine == null)
             return;
 
@@ -256,6 +259,14 @@ private class Boxes.Properties: Boxes.UI {
         net = new MiniGraph ({}, 20);
         net.hexpand = true;
         grid.attach (net, 5, 1, 1, 1);
+
+        shutdown_button = new Button.with_label (_("Force Shutdown"));
+        shutdown_button.clicked.connect ( () => {
+            var machine = App.app.current_item as LibvirtMachine;
+            if (machine != null)
+                machine.force_shutdown ();
+        });
+        grid.attach (shutdown_button, 0, 2, 6, 1);
 
         vbox.show_all ();
         notebook.show_all ();
