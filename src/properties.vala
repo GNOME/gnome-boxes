@@ -156,12 +156,12 @@ private class Boxes.Properties: Boxes.UI {
 
         PropertiesPage current_page;
 
-        var machine = App.app.current_item as LibvirtMachine;
-        if (machine != null) {
-            stats_id = machine.stats_updated.connect (() => {
-                cpu.points = machine.cpu_stats;
-                net.points = machine.net_stats;
-                io.points = machine.io_stats;
+        var libvirt_machine = App.app.current_item as LibvirtMachine;
+        if (libvirt_machine != null) {
+            stats_id = libvirt_machine.stats_updated.connect (() => {
+                cpu.points = libvirt_machine.cpu_stats;
+                net.points = libvirt_machine.net_stats;
+                io.points = libvirt_machine.io_stats;
             });
 
             current_page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.LOGIN;
