@@ -132,7 +132,7 @@ private class Boxes.Topbar: Boxes.UI {
             // when the main collection view is in selection mode.
             selection_toolbar.set_labels (ngettext ("%d selected", "%d selected", items).printf (items), null);
         else
-            selection_toolbar.set_labels (null, _("Click on items to select them"));
+            selection_toolbar.set_labels (null, _("(Click on items to select them)"));
     }
 
     public override void ui_state_changed () {
