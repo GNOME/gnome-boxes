@@ -46,7 +46,6 @@ private class Boxes.App: Boxes.UI {
     public CollectionFilter filter;
     public GLib.SimpleAction action_properties;
     public GLib.SimpleAction action_fullscreen;
-    public GLib.SimpleAction action_shutdown;
 
     public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
@@ -85,10 +84,6 @@ private class Boxes.App: Boxes.UI {
         action_properties.activate.connect (() => { ui_state = UIState.PROPERTIES; });
         application.add_action (action_properties);
 
-        action_shutdown = new GLib.SimpleAction ("display.shutdown", null);
-        action_shutdown.activate.connect (() => { (current_item as LibvirtMachine).force_shutdown (); });
-        application.add_action (action_shutdown);
-
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
@@ -123,7 +118,6 @@ private class Boxes.App: Boxes.UI {
             var display_section = new GLib.Menu ();
             display_section.append (_("Properties"), "app.display.properties");
             display_section.append (_("Fullscreen"), "app.display.fullscreen");
-            display_section.append (_("Force shutdown"), "app.display.shutdown");
             menu.append_section (null, display_section);
 
             menu.append (_("About Boxes"), "app.about");
@@ -533,7 +527,6 @@ private class Boxes.App: Boxes.UI {
     public override void ui_state_changed () {
         action_fullscreen.set_enabled (ui_state == UIState.DISPLAY);
         action_properties.set_enabled (ui_state == UIState.DISPLAY);
-        action_shutdown.set_enabled (ui_state == UIState.DISPLAY && current_item is LibvirtMachine);
 
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
