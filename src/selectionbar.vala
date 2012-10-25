@@ -28,7 +28,7 @@ private class Boxes.Selectionbar: GLib.Object {
         gtk_actor.y_align = Clutter.ActorAlign.END;
 
         favorite_btn = new Gtk.ToggleToolButton ();
-        toolbar.insert (favorite_btn, 0);
+        toolbar.insert (favorite_btn, -1);
         favorite_btn.icon_name = "emblem-favorite-symbolic";
         favorite_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
@@ -40,10 +40,10 @@ private class Boxes.Selectionbar: GLib.Object {
         });
 
         var separator = new Gtk.SeparatorToolItem();
-        toolbar.insert(separator, 1);
+        toolbar.insert(separator, -1);
 
         remove_btn = new Gtk.ToggleToolButton ();
-        toolbar.insert (remove_btn, 2);
+        toolbar.insert (remove_btn, -1);
         remove_btn.icon_name = "edit-delete-symbolic";
         remove_btn.clicked.connect (() => {
             App.app.remove_selected_items ();
