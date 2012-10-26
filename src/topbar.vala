@@ -65,7 +65,7 @@ private class Boxes.Topbar: Boxes.UI {
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
 
-        select_btn = toolbar.add_button ("emblem-default-symbolic", null, false) as Gtk.Button;
+        select_btn = toolbar.add_button ("object-select-symbolic", null, false) as Gtk.Button;
         select_btn.clicked.connect (() => {
             App.app.selection_mode = true;
         });
