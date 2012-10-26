@@ -143,8 +143,9 @@ private class Boxes.Properties: Boxes.UI {
             notebook.remove_page (-1);
 
         var machine = App.app.current_item as Machine;
+        var libvirt_machine = App.app.current_item as LibvirtMachine;
 
-        shutdown_button.sensitive = machine != null && machine is LibvirtMachine;
+        shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
 
         if (machine == null)
             return;
@@ -160,7 +161,6 @@ private class Boxes.Properties: Boxes.UI {
 
         PropertiesPage current_page;
 
-        var libvirt_machine = machine as LibvirtMachine;
         if (libvirt_machine != null) {
             stats_id = libvirt_machine.stats_updated.connect (() => {
                 cpu.points = libvirt_machine.cpu_stats;
