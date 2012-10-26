@@ -17,6 +17,7 @@ private class Boxes.Topbar: Boxes.UI {
 
     private Gtk.Spinner spinner;
     private Gtk.ToggleButton search_btn;
+    private Gtk.ToggleButton search2_btn;
     private Gtk.Button select_btn;
     private Gtk.Button done_btn;
     private Gtk.Button back_btn;
@@ -61,9 +62,6 @@ private class Boxes.Topbar: Boxes.UI {
 
         search_btn = toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
         search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
-        update_search_btn ();
-        App.app.collection.item_added.connect (update_search_btn);
-        App.app.collection.item_removed.connect (update_search_btn);
 
         select_btn = toolbar.add_button ("emblem-default-symbolic", null, false) as Gtk.Button;
         select_btn.clicked.connect (() => {
@@ -94,6 +92,9 @@ private class Boxes.Topbar: Boxes.UI {
 
         update_selection_label ();
 
+        search2_btn = selection_toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
+        search2_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
+
         done_btn = selection_toolbar.add_button (null, _("_Done"), false) as Gtk.Button;
         done_btn.get_style_context().add_class("suggested-action");
         done_btn.use_stock = true;
@@ -109,12 +110,18 @@ private class Boxes.Topbar: Boxes.UI {
         hbox = new Gtk.HBox (false, 0);
         notebook.append_page (hbox, null);
 
+
+        update_search_btn ();
+        App.app.collection.item_added.connect (update_search_btn);
+        App.app.collection.item_removed.connect (update_search_btn);
+
         notebook.show_tabs = false;
         notebook.show_all ();
     }
 
     private void update_search_btn () {
         search_btn.sensitive = App.app.collection.items.length != 0;
+        search2_btn.sensitive = App.app.collection.items.length != 0;
     }
 
     private void update_select_btn () {
