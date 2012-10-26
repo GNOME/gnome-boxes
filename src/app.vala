@@ -12,6 +12,7 @@ private class Boxes.App: Boxes.UI {
     public static App app;
     public override Clutter.Actor actor { get { return stage; } }
     public Gtk.ApplicationWindow window;
+    [CCode (notify = false)]
     public bool fullscreen {
         get { return WindowState.FULLSCREEN in window.get_window ().get_state (); }
         set {
@@ -21,6 +22,7 @@ private class Boxes.App: Boxes.UI {
                 window.unfullscreen ();
         }
     }
+
     private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
     public Gtk.Notebook notebook;
     public ClutterWidget embed;
@@ -398,7 +400,10 @@ private class Boxes.App: Boxes.UI {
 
             return false;
         });
-        window.window_state_event.connect (() => {
+        window.window_state_event.connect ((event) => {
+            if (WindowState.FULLSCREEN in event.changed_mask)
+                this.notify_property ("fullscreen");
+
             if (fullscreen)
                 return false;
 
