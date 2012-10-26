@@ -63,7 +63,7 @@ private class Boxes.Topbar: Boxes.UI {
         search_btn = toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
         search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
-        select_btn = toolbar.add_button ("emblem-default-symbolic", null, false) as Gtk.Button;
+        select_btn = toolbar.add_button ("object-select-symbolic", null, false) as Gtk.Button;
         select_btn.clicked.connect (() => {
             App.app.selection_mode = true;
         });
