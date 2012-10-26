@@ -46,6 +46,8 @@ private class Boxes.Searchbar: Boxes.UI {
             App.app.searchbar_revealer.revealed = value;
             if (value)
                 grab_focus ();
+            else
+                text = "";
 
             _visible = value;
         }
