@@ -665,12 +665,16 @@ private class Boxes.MachineActor: Boxes.UI {
             break;
 
         case UIState.PROPERTIES:
-            if (previous_ui_state == UIState.WIZARD)
-                // FIXME: We should draw a CD instead as in the mockup:
-                //        https://github.com/gnome-design-team/gnome-mockups/raw/master/boxes/boxes-install5.5.png
-                break;
-
             var widget = App.app.display_page.remove_display ();
+            if (widget == null) {
+                if (previous_ui_state == UIState.WIZARD) {
+                    // FIXME: We should draw a CD instead as in the mockup:
+                    //        https://github.com/gnome-design-team/gnome-mockups/raw/master/boxes/boxes-install5.5.png
+                }
+
+                break;
+            }
+
             update_display (widget);
             Clutter.ActorBox box = { 0, 0,  width, height};
             display.allocate (box, 0);
