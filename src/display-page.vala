@@ -10,6 +10,13 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
         back.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
         var fullscreen = add_button ("view-fullscreen-symbolic", null, false) as Gtk.Button;
+        App.app.notify["fullscreen"].connect_after ( () => {
+            var image = fullscreen.get_child() as Gtk.Image;
+            if (App.app.fullscreen)
+                image.icon_name = "view-restore-symbolic";
+            else
+                image.icon_name = "view-fullscreen-symbolic";
+        });
         fullscreen.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
 
         var props = add_button ("utilities-system-monitor-symbolic", null, false) as Gtk.Button;
