@@ -11,6 +11,7 @@ private class Boxes.Selectionbar: GLib.Object {
     private Gtk.ToggleButton favorite_btn;
     private Gtk.Button pause_btn;
     private Gtk.ToggleButton remove_btn;
+    private Gtk.Button properties_btn;
 
     public Selectionbar () {
         toolbar = new Gtk.Toolbar ();
@@ -78,6 +79,14 @@ private class Boxes.Selectionbar: GLib.Object {
         remove_btn.clicked.connect (() => {
             App.app.remove_selected_items ();
         });
+
+        properties_btn = new Gtk.Button ();
+        rightbox.add (properties_btn);
+        properties_btn.image = new Gtk.Image.from_icon_name ("preferences-system-symbolic", Gtk.IconSize.MENU);
+        properties_btn.clicked.connect (() => {
+            App.app.show_properties ();
+        });
+
         toolbar.show_all ();
 
         actor.reactive = true;
@@ -89,6 +98,7 @@ private class Boxes.Selectionbar: GLib.Object {
         App.app.notify["selected-items"].connect (() => {
             update_visible ();
             update_favorite_btn ();
+            update_properties_btn ();
         });
     }
 
@@ -119,6 +129,12 @@ private class Boxes.Selectionbar: GLib.Object {
 
         favorite_btn.active = active;
         favorite_btn.sensitive = sensitive;
+    }
+
+    private void update_properties_btn () {
+        var sensitive = App.app.selected_items.length () == 1;
+
+        properties_btn.sensitive = sensitive;
     }
 
     private bool visible {

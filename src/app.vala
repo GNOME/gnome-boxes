@@ -634,6 +634,17 @@ private class Boxes.App: Boxes.UI {
         owned get { return view.get_selected_items (); }
     }
 
+    public void show_properties () {
+        var selected_items = view.get_selected_items ();
+
+        // Show for the first selected item
+        foreach (var item in selected_items) {
+            current_item = item;
+            ui_state = UIState.PROPERTIES;
+            break;
+        }
+    }
+
     public void remove_selected_items () {
         var selected_items = view.get_selected_items ();
         var num_selected = selected_items.length ();
