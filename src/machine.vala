@@ -561,6 +561,11 @@ private class Boxes.MachineActor: Boxes.UI {
 
         if (ui_state == UIState.PROPERTIES) {
             display = new GtkClutter.Actor.with_contents (widget);
+            var click = new Clutter.ClickAction ();
+            display.add_action (click);
+            click.clicked.connect (() => {
+                App.app.ui_state = Boxes.UIState.DISPLAY;
+            });
             display.name = "properties-thumbnail";
             display.x_align = Clutter.ActorAlign.FILL;
             display.y_align = Clutter.ActorAlign.FILL;
