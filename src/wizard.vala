@@ -251,9 +251,10 @@ private class Boxes.Wizard: Boxes.UI {
 
         source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
-        if (uri.scheme == "spice" ||
-            uri.scheme == "vnc") {
-            // accept any vnc:// or spice:// uri
+        if (uri.scheme == "spice") {
+            spice_validate_uri (uri_as_text);
+        } else if (uri.scheme == "vnc") {
+            // accept any vnc:// uri
         } else if (uri.scheme.has_prefix ("qemu")) {
             // accept any qemu..:// uri
             source.source_type = "libvirt";
@@ -381,10 +382,18 @@ private class Boxes.Wizard: Boxes.UI {
 
             switch (uri.scheme) {
             case "spice":
-                var query = new Query (uri.query_raw ?? uri.query);
+                try {
+                    int port = 0, tls_port = 0;
 
-                summary.add_property (_("Port"), query.get ("port"));
-                summary.add_property (_("TLS Port"), query.get ("tls-port"));
+                    spice_validate_uri (source.uri, out port, out tls_port);
+                    if (port > 0)
+                        summary.add_property (_("Port"), port.to_string ());
+                    if (tls_port > 0)
+                        summary.add_property (_("TLS Port"), tls_port.to_string ());
+                } catch (Boxes.Error error) {
+                    // this shouldn't happen, since the URI was validated before
+                    critical (error.message);
+                }
                 break;
 
             case "vnc":

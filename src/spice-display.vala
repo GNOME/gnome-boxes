@@ -213,3 +213,32 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         return list;
     }
 }
+
+// FIXME: this kind of function should be part of spice-gtk
+static void spice_validate_uri (string uri_as_text,
+                                out int? port = null,
+                                out int? tls_port = null) throws Boxes.Error {
+    var uri = Xml.URI.parse (uri_as_text);
+
+    if (uri == null)
+        throw new Boxes.Error.INVALID (_("Invalid URI"));
+
+    tls_port = 0;
+    port = uri.port;
+    var query_str = uri.query_raw ?? uri.query;
+
+    if (query_str != null) {
+        var query = new Boxes.Query (query_str);
+        if (query.get ("port") != null) {
+            if (port > 0)
+                throw new Boxes.Error.INVALID (_("The port must be specified once"));
+            port = int.parse (query.get ("port"));
+        }
+
+        if (query.get ("tls-port") != null)
+            tls_port = int.parse (query.get ("tls-port"));
+    }
+
+    if (port <= 0 && tls_port <= 0)
+        throw new Boxes.Error.INVALID (_("Missing port in Spice URI"));
+}
