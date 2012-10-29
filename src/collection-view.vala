@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Clutter;
 
-public enum Boxes.Selection {
+public enum Boxes.SelectionCriteria {
     ALL,
     NONE,
     RUNNING
@@ -465,7 +465,7 @@ private class Boxes.CollectionView: Boxes.UI {
         return false;
     }
 
-    public void select (Selection selection) {
+    public void select (SelectionCriteria selection) {
         App.app.selection_mode = true;
 
         model_filter.foreach ( (filter_model, filter_path, filter_iter) => {
@@ -474,13 +474,13 @@ private class Boxes.CollectionView: Boxes.UI {
             bool selected;
             switch (selection) {
             default:
-            case Selection.ALL:
+            case SelectionCriteria.ALL:
                 selected = true;
                 break;
-            case Selection.NONE:
+            case SelectionCriteria.NONE:
                 selected = false;
                 break;
-            case Selection.RUNNING:
+            case SelectionCriteria.RUNNING:
                 CollectionItem item;
                 model.get (iter, ModelColumns.ITEM, out item);
                 selected = item != null && item is Machine &&

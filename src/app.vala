@@ -87,15 +87,15 @@ private class Boxes.App: Boxes.UI {
         application.add_action (action_properties);
 
         action = new GLib.SimpleAction ("select-all", null);
-        action.activate.connect (() => { view.select (Selection.ALL); });
+        action.activate.connect (() => { view.select (SelectionCriteria.ALL); });
         application.add_action (action);
 
         action = new GLib.SimpleAction ("select-running", null);
-        action.activate.connect (() => { view.select (Selection.RUNNING); });
+        action.activate.connect (() => { view.select (SelectionCriteria.RUNNING); });
         application.add_action (action);
 
         action = new GLib.SimpleAction ("select-none", null);
-        action.activate.connect (() => { view.select (Selection.NONE); });
+        action.activate.connect (() => { view.select (SelectionCriteria.NONE); });
         application.add_action (action);
 
         action = new GLib.SimpleAction ("about", null);
