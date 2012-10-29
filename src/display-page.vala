@@ -27,10 +27,10 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
 private class Boxes.DisplayPage: GLib.Object {
     public Widget widget { get { return box; } }
 
-    private Overlay overlay;
     private EventBox event_box;
     private Box box;
     private DisplayToolbar overlay_toolbar;
+    private EventBox overlay_toolbar_box;
     private DisplayToolbar toolbar;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
@@ -97,22 +97,26 @@ private class Boxes.DisplayPage: GLib.Object {
         box = new Box (Orientation.VERTICAL, 0);
         box.pack_start (toolbar, false, false, 0);
 
-        overlay = new Overlay ();
+        var grid = new Gtk.Grid ();
         App.app.window.window_state_event.connect ((event) => {
             update_toolbar_visible ();
 
             return false;
         });
-        overlay.margin = 0;
-        overlay.add (event_box);
+        event_box.hexpand = true;
+        event_box.vexpand = true;
 
-        box.pack_start (overlay, true, true, 0);
+        box.pack_start (grid, true, true, 0);
 
         overlay_toolbar = new DisplayToolbar ();
-        overlay_toolbar.set_valign (Gtk.Align.START);
+        overlay_toolbar_box = new EventBox ();
+        overlay_toolbar_box.add (overlay_toolbar);
+        overlay_toolbar_box.valign = Gtk.Align.START;
+        overlay_toolbar_box.vexpand = false;
 
-        overlay.add_overlay (overlay_toolbar);
-        overlay.get_style_context ().add_class ("boxes-toplevel");
+        grid.attach (event_box, 0, 0, 1, 3);
+        grid.attach (overlay_toolbar_box, 0, 0, 1, 1);
+
         box.show_all ();
     }
 
@@ -142,7 +146,7 @@ private class Boxes.DisplayPage: GLib.Object {
             return;
         }
 
-        overlay_toolbar.visible = visible;
+        overlay_toolbar_box.visible = visible;
     }
 
     ~DisplayPage () {
