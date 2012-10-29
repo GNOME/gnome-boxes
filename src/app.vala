@@ -312,8 +312,12 @@ private class Boxes.App: Boxes.UI {
 
         case "vnc":
         case "spice":
-            var machine = new RemoteMachine (source);
-            collection.add_item (machine);
+            try {
+                var machine = new RemoteMachine (source);
+                collection.add_item (machine);
+            } catch (Boxes.Error error) {
+                warning (error.message);
+            }
             break;
 
         default:

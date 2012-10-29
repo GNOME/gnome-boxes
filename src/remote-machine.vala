@@ -3,7 +3,11 @@ using Gtk;
 
 private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
-    public RemoteMachine (CollectionSource source) {
+    public RemoteMachine (CollectionSource source) throws Boxes.Error {
+        if (source.source_type != "spice" &&
+            source.source_type != "vnc")
+            throw new Boxes.Error.INVALID ("source is not remote machine: %s", source.uri);
+
         base (source, source.name);
 
         // assume the remote is running for now
