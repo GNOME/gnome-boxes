@@ -110,6 +110,7 @@ LIBGD_INIT([
   main-toolbar
   main-icon-view
   margin-container
+  notification
   static
   tagged-entry
   vapi
