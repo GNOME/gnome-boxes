@@ -15,14 +15,24 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         load_screenshot ();
     }
 
-    public override async void connect_display () throws GLib.Error {
-        if (display != null)
-            return;
+    private Display? create_display () throws Boxes.Error {
+        var type = source.source_type;
 
-        if (source.source_type == "spice")
-            display = new SpiceDisplay.with_uri (config, source.uri);
-        else if (source.source_type == "vnc")
-            display = new VncDisplay.with_uri (config, source.uri);
+        switch (type) {
+        case "spice":
+            return new SpiceDisplay.with_uri (config, source.uri);
+
+        case "vnc":
+            return new VncDisplay.with_uri (config, source.uri);
+
+        default:
+            throw new Boxes.Error.INVALID ("unsupported display of type " + type);
+        }
+    }
+
+    public override async void connect_display () throws GLib.Error {
+        if (display == null)
+            display = create_display ();
 
         display.connect_it ();
     }
@@ -43,7 +53,14 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             break;
         }
 
-        list.concat (display.get_properties (page));
+        try {
+            if (display == null)
+                display = create_display ();
+
+            list.concat (display.get_properties (page));
+        } catch (Boxes.Error error) {
+            warning (error.message);
+        }
 
         return list;
     }
