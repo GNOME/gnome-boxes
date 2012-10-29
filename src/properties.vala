@@ -19,6 +19,7 @@ private class Boxes.Properties: Boxes.UI {
     private Gtk.Button back;
     private Gtk.Label toolbar_label;
     private Gtk.ListStore listmodel;
+    private Gtk.TreeModelFilter model_filter;
     private Gtk.TreeView tree_view;
     private GLib.Binding toolbar_label_bind;
     private MiniGraph cpu;
@@ -129,11 +130,12 @@ private class Boxes.Properties: Boxes.UI {
         setup_ui ();
     }
 
-    private void list_append (Gtk.ListStore listmodel, string label) {
+    private void list_append (Gtk.ListStore listmodel, string label, bool visible) {
         Gtk.TreeIter iter;
 
         listmodel.append (out iter);
         listmodel.set (iter, 0, label);
+        listmodel.set (iter, 1, visible);
     }
 
     private void populate () {
@@ -150,8 +152,7 @@ private class Boxes.Properties: Boxes.UI {
             notebook.append_page (page.widget, null);
             notebook.set_data<PageWidget> (@"boxes-property-$i", page);
 
-            if (!page.empty)
-                list_append (listmodel, page.name);
+            list_append (listmodel, page.name, !page.empty);
         }
 
         PropertiesPage current_page;
@@ -209,11 +210,17 @@ private class Boxes.Properties: Boxes.UI {
         selection.set_mode (Gtk.SelectionMode.BROWSE);
         tree_view_activate_on_single_click (tree_view, true);
         tree_view.row_activated.connect ( (treeview, path, column) => {
-            notebook.page = path.get_indices ()[0];
+            Gtk.TreeIter filter_iter, iter;
+            model_filter.get_iter (out filter_iter, path);
+            model_filter.convert_iter_to_child_iter (out iter, filter_iter);
+            notebook.page = listmodel.get_path (iter).get_indices ()[0];
         });
 
-        listmodel = new Gtk.ListStore (1, typeof (string));
-        tree_view.set_model (listmodel);
+        listmodel = new Gtk.ListStore (2, typeof (string), typeof (bool));
+        model_filter = new Gtk.TreeModelFilter (listmodel, null);
+        model_filter.set_visible_column (1);
+
+        tree_view.set_model (model_filter);
         tree_view.headers_visible = false;
         var renderer = new CellRendererText ();
         renderer.xpad = 20;
