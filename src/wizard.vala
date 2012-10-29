@@ -210,14 +210,13 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             vm_creator = null;
-            machine = null;
             wizard_source.uri = "";
-
-            return true;
+        } else {
+            source.save ();
+            App.app.add_collection_source.begin (source);
         }
 
-        source.save ();
-        App.app.add_collection_source.begin (source);
+        machine = null;
         return true;
     }
 
@@ -350,7 +349,13 @@ private class Boxes.Wizard: Boxes.UI {
         nokvm_label.hide ();
         summary.clear ();
 
-        if (vm_creator != null && libvirt_machine == null) {
+        if (source != null) {
+            try {
+                machine = new RemoteMachine (source);
+            } catch (Boxes.Error error) {
+                warning (error.message);
+            }
+        } else if (vm_creator != null && libvirt_machine == null) {
             try {
                 machine = yield vm_creator.create_vm (review_cancellable);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
@@ -435,11 +440,10 @@ private class Boxes.Wizard: Boxes.UI {
             nokvm_label.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
-        if (libvirt_machine != null) // Only allow customization of VMs for now
-            summary.append_customize_button (() => {
-                // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
-                App.app.select_item (machine);
-            });
+        summary.append_customize_button (() => {
+            // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
+            App.app.select_item (machine);
+        });
 
         return true;
     }
