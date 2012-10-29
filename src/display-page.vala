@@ -25,7 +25,7 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
 }
 
 private class Boxes.DisplayPage: GLib.Object {
-    public Widget widget { get { return overlay; } }
+    public Widget widget { get { return box; } }
 
     private Overlay overlay;
     private EventBox event_box;
@@ -96,7 +96,6 @@ private class Boxes.DisplayPage: GLib.Object {
 
         box = new Box (Orientation.VERTICAL, 0);
         box.pack_start (toolbar, false, false, 0);
-        box.pack_start (event_box, true, true, 0);
 
         overlay = new Overlay ();
         App.app.window.window_state_event.connect ((event) => {
@@ -105,14 +104,16 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
         overlay.margin = 0;
-        overlay.add (box);
+        overlay.add (event_box);
+
+        box.pack_start (overlay, true, true, 0);
 
         overlay_toolbar = new DisplayToolbar ();
         overlay_toolbar.set_valign (Gtk.Align.START);
 
         overlay.add_overlay (overlay_toolbar);
         overlay.get_style_context ().add_class ("boxes-toplevel");
-        overlay.show_all ();
+        box.show_all ();
     }
 
     public void get_size (out int width, out int height) {
