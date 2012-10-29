@@ -31,6 +31,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private Box box;
     private DisplayToolbar overlay_toolbar;
     private EventBox overlay_toolbar_box;
+    private Grid notification_grid;
     private DisplayToolbar toolbar;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
@@ -114,10 +115,29 @@ private class Boxes.DisplayPage: GLib.Object {
         overlay_toolbar_box.valign = Gtk.Align.START;
         overlay_toolbar_box.vexpand = false;
 
+        notification_grid = new Grid ();
+        notification_grid.valign = Gtk.Align.START;
+        notification_grid.halign = Gtk.Align.CENTER;
+        notification_grid.vexpand = false;
+
+        // We need one expanding row, or otherwise in the case
+        // where overlay_toolbar_box is hidden we will get zero
+        // expanding rows, which means all empty rows get
+        // to divide all remaining space, so the notifications
+        // are centered
+        var empty_grid = new Grid ();
+        empty_grid.vexpand = true;
+
         grid.attach (event_box, 0, 0, 1, 3);
         grid.attach (overlay_toolbar_box, 0, 0, 1, 1);
+        grid.attach (notification_grid, 0, 1, 1, 1);
+        grid.attach (empty_grid, 0, 2, 1, 1);
 
         box.show_all ();
+    }
+
+    public void add_notification (Widget w) {
+        notification_grid.attach (w, 0, 0, 1, 1);
     }
 
     public void get_size (out int width, out int height) {
