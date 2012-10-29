@@ -34,7 +34,8 @@ private class Boxes.Wizard: Boxes.UI {
     private MediaManager media_manager;
 
     private VMCreator? vm_creator;
-    protected LibvirtMachine? machine { get; set; }
+    protected Machine? machine { get; set; }
+    private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
     private WizardPage _page;
     private WizardPage page {
@@ -188,7 +189,7 @@ private class Boxes.Wizard: Boxes.UI {
         if (source == null) {
             return_val_if_fail (vm_creator != null, false); // Shouldn't arrive here with source & vm_creator being null
 
-            if (machine == null) {
+            if (libvirt_machine == null) {
                 return_val_if_fail (review_cancellable != null, false);
                 // wait until the machine is ready or not
                 var wait = notify["machine"].connect (() => {
@@ -196,12 +197,12 @@ private class Boxes.Wizard: Boxes.UI {
                 });
                 yield;
                 disconnect (wait);
-                if (machine == null)
+                if (libvirt_machine == null)
                     return false;
             }
             next_button.sensitive = false;
             try {
-                vm_creator.launch_vm (machine);
+                vm_creator.launch_vm (libvirt_machine);
             } catch (GLib.Error error) {
                 warning (error.message);
 
@@ -349,7 +350,7 @@ private class Boxes.Wizard: Boxes.UI {
         nokvm_label.hide ();
         summary.clear ();
 
-        if (vm_creator != null && machine == null) {
+        if (vm_creator != null && libvirt_machine == null) {
             try {
                 machine = yield vm_creator.create_vm (review_cancellable);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
@@ -358,7 +359,7 @@ private class Boxes.Wizard: Boxes.UI {
                 warning (error.message);
             }
 
-            if (machine == null) {
+            if (libvirt_machine == null) {
                 // notify the VM creation failed
                 notify_property ("machine");
                 return false;
@@ -405,36 +406,36 @@ private class Boxes.Wizard: Boxes.UI {
             if (source.source_type == "libvirt") {
                 review_label.set_text (_("Will add boxes for all systems available from this account:"));
             }
-        } else if (machine != null) {
+        } else if (libvirt_machine != null) {
             foreach (var property in vm_creator.install_media.get_vm_properties ())
                 summary.add_property (property.first, property.second);
 
             try {
                 var config = null as GVirConfig.Domain;
-                yield run_in_thread (() => { config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE); });
+                yield run_in_thread (() => { config = libvirt_machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE); });
 
                 var memory = format_size (config.memory * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS);
                 summary.add_property (_("Memory"), memory);
             } catch (GLib.Error error) {
-                warning ("Failed to get configuration for machine '%s': %s", machine.name, error.message);
+                warning ("Failed to get configuration for machine '%s': %s", libvirt_machine.name, error.message);
             }
 
-            if (machine.storage_volume != null) {
+            if (libvirt_machine.storage_volume != null) {
                 try {
-                    var volume_info = machine.storage_volume.get_info ();
+                    var volume_info = libvirt_machine.storage_volume.get_info ();
                     var capacity = format_size (volume_info.capacity, FormatSizeFlags.IEC_UNITS);
                     summary.add_property (_("Disk"),  _("%s maximum".printf (capacity)));
                 } catch (GLib.Error error) {
                     warning ("Failed to get information on volume '%s': %s",
-                             machine.storage_volume.get_name (),
+                             libvirt_machine.storage_volume.get_name (),
                              error.message);
                 }
             }
 
-            nokvm_label.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
+            nokvm_label.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
-        if (machine != null) // Only allow customization of VMs for now
+        if (libvirt_machine != null) // Only allow customization of VMs for now
             summary.append_customize_button (() => {
                 // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
                 App.app.select_item (machine);
