@@ -110,6 +110,15 @@ private class Boxes.Properties: Boxes.UI {
                     var widget = property.widget;
                     widget.hexpand = true;
                     grid.attach (widget, 1, current_row, 1, 1);
+
+                    widget = property.extra_widget;
+                    if (widget != null) {
+                        current_row += 1;
+                        widget.margin_left = 25;
+                        widget.hexpand = true;
+                        grid.attach (widget, 0, current_row, 2, 1);
+                    }
+
                     property.notify["reboot-required"].connect (update_infobar);
                     current_row += 1;
                 }

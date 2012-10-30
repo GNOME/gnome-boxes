@@ -4,6 +4,7 @@ using Gtk;
 private class Boxes.Property: GLib.Object {
     public string description { get; construct set; }
     public Gtk.Widget widget { get; construct set; }
+    public Gtk.Widget? extra_widget { get; construct set; }
     public bool reboot_required { get; set; }
 
     public uint defer_interval { get; set; default = 1; } // In seconds
@@ -33,8 +34,8 @@ private class Boxes.Property: GLib.Object {
         }
     }
 
-    public Property (string description, Gtk.Widget widget) {
-        base (description: description, widget: widget);
+    public Property (string description, Gtk.Widget widget, Gtk.Widget? extra_widget) {
+        base (description: description, widget: widget, extra_widget: extra_widget);
     }
 
     public void flush () {
@@ -53,8 +54,8 @@ private delegate void PropertySizeChanged (Boxes.Property property, uint64 value
 private interface Boxes.IPropertiesProvider: GLib.Object {
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
 
-    protected Boxes.Property add_property (ref List<Boxes.Property> list, string name, Widget widget) {
-        var property = new Property (name, widget);
+    protected Boxes.Property add_property (ref List<Boxes.Property> list, string name, Widget widget, Widget? extra_widget = null) {
+        var property = new Property (name, widget, extra_widget);
         list.append (property);
         return property;
     }
