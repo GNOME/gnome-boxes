@@ -646,6 +646,8 @@ private class Boxes.App: Boxes.UI {
     public void show_properties () {
         var selected_items = view.get_selected_items ();
 
+        selection_mode = false;
+
         // Show for the first selected item
         foreach (var item in selected_items) {
             current_item = item;
