@@ -91,17 +91,31 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
                                                 uint64                         max,
                                                 uint64                         step,
                                                 PropertySizeChanged?           changed = null) {
+        var label = new Gtk.Label (format_size (((uint64) size) * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
+        label.halign = Gtk.Align.CENTER;
+
         var scale = new Gtk.HScale.with_range (min, max, step);
 
-        scale.format_value.connect ((scale, value) => {
-            return format_size (((uint64) value) * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS);
+        scale.add_mark (min, Gtk.PositionType.BOTTOM,
+                        format_size (min * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
+        scale.add_mark (max, Gtk.PositionType.BOTTOM,
+                        "%s (maximum)".printf (format_size (max * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS)));
+
+        scale.value_changed.connect (() => {
+                uint64 v = (uint64)scale.get_value ();
+                label.set_text (format_size (v * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
+                scale.set_fill_level (v);
         });
 
+        scale.set_show_fill_level (true);
+        scale.set_restrict_to_fill_level (false);
         scale.set_value (size);
+        scale.set_fill_level (size);
+        scale.set_draw_value (false);
         scale.hexpand = true;
         scale.margin_bottom = 20;
 
-        var property = add_property (ref list, name, scale);
+        var property = add_property (ref list, name, label, scale);
         if (changed != null)
             scale.value_changed.connect (() => {
                 try {
