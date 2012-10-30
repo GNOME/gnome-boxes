@@ -79,27 +79,20 @@ private class Boxes.Properties: Boxes.UI {
             grid.column_spacing = 20;
             grid.valign = Gtk.Align.START;
 
-            var label = new Gtk.Label (name);
-            label.get_style_context ().add_class ("boxes-step-label");
-            label.margin_bottom = 10;
-            label.xalign = 0.0f;
-            label.hexpand = false;
-            grid.attach (label, 0, 0, 2, 1);
-
             infobar = new Gtk.InfoBar ();
             infobar.no_show_all = true;
             var infobar_container = infobar.get_content_area () as Gtk.Container;
-            label = new Gtk.Label (_("Some changes may take effect only after reboot"));
+            var label = new Gtk.Label (_("Some changes may take effect only after reboot"));
             label.visible = true;
             infobar_container.add (label);
             infobar.message_type = Gtk.MessageType.INFO;
             infobar.hexpand = true;
-            grid.attach (infobar, 0, 1, 2, 1);
+            grid.attach (infobar, 0, 0, 2, 1);
 
             properties = machine.get_properties (page);
             empty = properties.length () == 0;
             if (!empty) {
-                int current_row = 2;
+                int current_row = 1;
                 foreach (var property in properties) {
                     var label_name = new Gtk.Label (property.description);
                     label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
