@@ -51,7 +51,7 @@ private class Boxes.CollectionView: Boxes.UI {
         });
     }
 
-    private void get_item_pos (CollectionItem item, out float x, out float y) {
+    public void get_item_pos (CollectionItem item, out float x, out float y) {
         Gdk.Rectangle rect;
         var path = get_path_for_item (item);
         if (path != null) {
@@ -104,23 +104,6 @@ private class Boxes.CollectionView: Boxes.UI {
             break;
 
         case UIState.CREDS:
-            var actor = current_item.actor;
-            if (actor.get_parent () == null) {
-                App.app.overlay_bin_actor.add_child (actor);
-                actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
-                actor.set_easing_duration (0);
-
-                float item_x, item_y;
-                get_item_pos (current_item, out item_x, out item_y);
-                Clutter.ActorBox box = { item_x, item_y, item_x + Machine.SCREENSHOT_WIDTH, item_y + Machine.SCREENSHOT_HEIGHT * 2};
-                actor.allocate (box, 0);
-
-            }
-            actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
-            actor.fixed_position_set = false;
-            actor.x_align = Clutter.ActorAlign.CENTER;
-            actor.y_align = Clutter.ActorAlign.CENTER;
-            actor.set_easing_duration (App.app.duration);
             break;
 
         case UIState.WIZARD:

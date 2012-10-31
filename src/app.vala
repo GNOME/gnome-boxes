@@ -712,6 +712,47 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
+    public void connect_to (Machine machine, float x, float y) {
+        current_item = machine;
+
+        // Set up actor for CREDS animation
+        var actor = machine.actor;
+        if (actor.get_parent () == null) {
+            App.app.overlay_bin_actor.add_child (actor);
+            actor.set_easing_duration (0);
+
+            Clutter.ActorBox box = { x, y, x + Machine.SCREENSHOT_WIDTH, y + Machine.SCREENSHOT_HEIGHT * 2};
+            actor.allocate (box, 0);
+        }
+        actor.show ();
+        actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
+        actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
+        actor.fixed_position_set = false;
+        actor.x_align = Clutter.ActorAlign.CENTER;
+        actor.y_align = Clutter.ActorAlign.CENTER;
+        actor.set_easing_duration (App.app.duration);
+
+        // Track machine status in toobar
+        topbar.set_status (machine.status);
+        status_id = machine.notify["status"].connect ( () => {
+                topbar.set_status (machine.status);
+        });
+
+        // Connect to the display
+        machine.connect_display.begin ( (obj, res) => {
+            try {
+                machine.connect_display.end (res);
+            } catch (GLib.Error e) {
+                ui_state = UIState.COLLECTION;
+                App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (machine.name));
+                debug ("connect display failed: %s", e.message);
+            }
+            });
+
+        // Start the CREDS state
+        ui_state = UIState.CREDS;
+    }
+
     public void select_item (CollectionItem item) {
         if (ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
@@ -719,19 +760,10 @@ private class Boxes.App: Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                status_id = machine.notify["status"].connect ( () => {
-                    topbar.set_status (machine.status);
-                });
-                machine.connect_display.begin ( (obj, res) => {
-                    try {
-                        machine.connect_display.end (res);
-                    } catch (GLib.Error e) {
-                        ui_state = UIState.COLLECTION;
-                        App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (machine.name));
-                        debug ("connect display failed: %s", e.message);
-                    }
-                });
-                ui_state = UIState.CREDS;
+                float item_x, item_y;
+                view.get_item_pos (item, out item_x, out item_y);
+
+                connect_to (machine, item_x, item_y);
             } else
                 warning ("unknown item, fix your code");
 
