@@ -450,6 +450,19 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public override void ui_state_changed () {
         machine_actor.ui_state = ui_state;
+
+        switch (ui_state) {
+        case Boxes.UIState.DISPLAY:
+        case Boxes.UIState.PROPERTIES:
+        case Boxes.UIState.CREDS:
+            /* These are allowed display states */
+            break;
+        default:
+            /* Disconnect if we go to any other state */
+            disconnect_display ();
+            break;
+        }
+
     }
 }
 

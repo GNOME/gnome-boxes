@@ -564,8 +564,6 @@ private class Boxes.App: Boxes.UI {
                     machine.disconnect (status_id);
                     status_id = 0;
                 }
-
-                machine.disconnect_display ();
             }
             fullscreen = false;
             view.visible = true;
