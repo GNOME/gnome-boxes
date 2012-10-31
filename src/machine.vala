@@ -459,6 +459,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
         default:
             /* Disconnect if we go to any other state */
+            machine_actor.update_thumbnail (null, false);
             disconnect_display ();
             break;
         }
@@ -472,7 +473,8 @@ private class Boxes.MachineActor: Boxes.UI {
 
     private GtkClutter.Texture screenshot;
     private GtkClutter.Actor gtk_vbox;
-    private GtkClutter.Actor? thumbnail;
+    private Clutter.Actor? thumbnail;
+    private GtkClutter.Texture? thumbnail_screenshot;
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
@@ -541,6 +543,8 @@ private class Boxes.MachineActor: Boxes.UI {
     public void set_screenshot (Gdk.Pixbuf pixbuf) {
         try {
             screenshot.set_from_pixbuf (pixbuf);
+            if (thumbnail_screenshot != null)
+                thumbnail_screenshot.set_from_pixbuf (pixbuf);
         } catch (GLib.Error err) {
             warning (err.message);
         }
@@ -566,25 +570,58 @@ private class Boxes.MachineActor: Boxes.UI {
         return password_entry.text;
     }
 
-    public void update_thumbnail (Gtk.Widget widget, bool zoom = true) {
+    private Widget? steal_display_widget_from_thumbnail () {
+        Widget? widget = null;
+        if (thumbnail is GtkClutter.Actor)
+            widget = (thumbnail as GtkClutter.Actor).contents;
+        thumbnail.destroy ();
+        thumbnail = null;
+        thumbnail_screenshot = null;
+        if (widget != null) {
+            // FIXME: enable grabs
+            machine.display.set_enable_inputs (widget, true);
+        }
+        return widget;
+    }
+
+    public void update_thumbnail (Gtk.Widget? display_widget, bool zoom = true) {
+        if (track_screenshot_id != 0)
+            App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+        track_screenshot_id = 0;
+
         if (thumbnail != null) {
             actor_remove (thumbnail);
-            thumbnail.contents = null;
+            thumbnail.destroy ();
+            thumbnail = null;
+            thumbnail_screenshot = null;
         }
 
         if (ui_state == UIState.PROPERTIES) {
-            thumbnail = new GtkClutter.Actor.with_contents (widget);
-            var click = new Clutter.ClickAction ();
-            thumbnail.add_action (click);
-            click.clicked.connect (() => {
-                App.app.ui_state = Boxes.UIState.DISPLAY;
-            });
+            if (display_widget != null) {
+                thumbnail = new GtkClutter.Actor.with_contents (display_widget);
+            } else {
+                thumbnail_screenshot = new GtkClutter.Texture ();
+                try {
+                    thumbnail_screenshot.set_from_pixbuf (machine.pixbuf);
+                } catch (GLib.Error err) {
+                    warning (err.message);
+                }
+                thumbnail = thumbnail_screenshot;
+            }
             thumbnail.name = "properties-thumbnail";
             thumbnail.x_align = Clutter.ActorAlign.FILL;
             thumbnail.y_align = Clutter.ActorAlign.FILL;
             App.app.overlay_bin_actor.add_child (thumbnail);
 
-            machine.display.set_enable_inputs (widget, false);
+            if (display_widget != null) {
+                var click = new Clutter.ClickAction ();
+                thumbnail.add_action (click);
+                click.clicked.connect (() => {
+                    App.app.ui_state = Boxes.UIState.DISPLAY;
+                });
+
+                machine.display.set_enable_inputs (display_widget, false);
+            }
 
             Boxes.ActorFunc update_screenshot_alloc = (thumbnail) => {
                 Gtk.Allocation alloc;
@@ -608,8 +645,6 @@ private class Boxes.MachineActor: Boxes.UI {
                 thumbnail.set_easing_duration (d);
             };
 
-            if (track_screenshot_id != 0)
-                App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
             track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect (() => {
                 // We need to update in an idle to avoid changing layout stuff in a layout cycle
                 // (i.e. inside the size_allocate)
@@ -663,13 +698,9 @@ private class Boxes.MachineActor: Boxes.UI {
                     thumbnail.min_height_set = thumbnail.natural_height_set = false;
 
                     thumbnail.transitions_completed.connect (() => {
-                        var widget = thumbnail.contents;
-                        thumbnail.contents = null;
-                        thumbnail.destroy ();
-                        thumbnail = null;
-                        // FIXME: enable grabs
-                        machine.display.set_enable_inputs (widget, true);
-                        App.app.display_page.show_display (machine.display, widget);
+                        var widget = steal_display_widget_from_thumbnail ();
+                        if (widget != null)
+                            App.app.display_page.show_display (machine.display, widget);
                     });
                 } else
                     App.app.display_page.show ();
@@ -683,32 +714,29 @@ private class Boxes.MachineActor: Boxes.UI {
             break;
 
         case UIState.PROPERTIES:
-            var widget = App.app.display_page.remove_display ();
-            if (widget == null) {
-                if (previous_ui_state == UIState.WIZARD) {
-                    // FIXME: We should draw a CD instead as in the mockup:
-                    //        https://github.com/gnome-design-team/gnome-mockups/raw/master/boxes/boxes-install5.5.png
-                }
+            var display_widget = App.app.display_page.remove_display ();
+            var zoom = display_widget != null;
 
-                break;
+            update_thumbnail (display_widget, zoom);
+
+
+            if (zoom) {
+                Clutter.ActorBox box = { 0, 0,  width, height};
+                thumbnail.allocate (box, 0);
+
+                // Temporarily hide toolbar in fullscreen so that the the animation
+                // actor doesn't get pushed down before zooming to the sidebar
+                if (App.app.fullscreen)
+                    App.app.topbar.actor.hide ();
+
+                thumbnail.set_easing_mode (Clutter.AnimationMode.LINEAR);
+                thumbnail.set_easing_duration (App.app.duration);
+                ulong completed_id = 0;
+                completed_id = thumbnail.transitions_completed.connect (() => {
+                    thumbnail.disconnect (completed_id);
+                    thumbnail.set_easing_duration (0);
+                });
             }
-
-            update_thumbnail (widget);
-            Clutter.ActorBox box = { 0, 0,  width, height};
-            thumbnail.allocate (box, 0);
-
-            // Temporarily hide toolbar in fullscreen so that the the animation
-            // actor doesn't get pushed down before zooming to the sidebar
-            if (App.app.fullscreen)
-                App.app.topbar.actor.hide ();
-
-            thumbnail.set_easing_mode (Clutter.AnimationMode.LINEAR);
-            thumbnail.set_easing_duration (App.app.duration);
-            ulong completed_id = 0;
-            completed_id = thumbnail.transitions_completed.connect (() => {
-                thumbnail.disconnect (completed_id);
-                thumbnail.set_easing_duration (0);
-            });
 
             thumbnail.show ();
 
