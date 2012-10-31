@@ -45,7 +45,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         protected set {
             _state = value;
             debug ("State of '%s' changed to %s", name, state.to_string ());
-            if (value == MachineState.STOPPED)
+            if (value == MachineState.STOPPED || value == MachineState.FORCE_STOPPED)
                 set_screenshot (null, false);
             else {
                 // Update existing screenshot based on machine status
@@ -219,7 +219,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         if (display == null)
             return;
 
-        if (state != MachineState.STOPPED) {
+        if (state != MachineState.STOPPED && state != MachineState.FORCE_STOPPED) {
             try {
                 var pixbuf = display.get_pixbuf (0);
                 if (pixbuf != null)
