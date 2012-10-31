@@ -155,6 +155,7 @@ private class Boxes.Topbar: Boxes.UI {
             break;
 
         case UIState.CREDS:
+            notebook.page = TopbarPage.COLLECTION;
             new_btn.hide ();
             back_btn.show ();
             spinner.show ();

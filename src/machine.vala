@@ -601,6 +601,7 @@ private class Boxes.MachineActor: Boxes.UI {
                 thumbnail = new GtkClutter.Actor.with_contents (display_widget);
             } else {
                 thumbnail_screenshot = new GtkClutter.Texture ();
+                thumbnail_screenshot.set_reactive (true);
                 try {
                     thumbnail_screenshot.set_from_pixbuf (machine.pixbuf);
                 } catch (GLib.Error err) {
@@ -613,14 +614,20 @@ private class Boxes.MachineActor: Boxes.UI {
             thumbnail.y_align = Clutter.ActorAlign.FILL;
             App.app.overlay_bin_actor.add_child (thumbnail);
 
+            var click = new Clutter.ClickAction ();
+            thumbnail.add_action (click);
+
             if (display_widget != null) {
-                var click = new Clutter.ClickAction ();
-                thumbnail.add_action (click);
                 click.clicked.connect (() => {
                     App.app.ui_state = Boxes.UIState.DISPLAY;
                 });
 
                 machine.display.set_enable_inputs (display_widget, false);
+            } else {
+                click.clicked.connect (() => {
+                    App.app.connect_to (machine, thumbnail.allocation.x1, thumbnail.allocation.y1);
+                    update_thumbnail (null, false);
+                });
             }
 
             Boxes.ActorFunc update_screenshot_alloc = (thumbnail) => {
