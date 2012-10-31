@@ -602,8 +602,20 @@ private class Boxes.MachineActor: Boxes.UI {
             } else {
                 thumbnail_screenshot = new GtkClutter.Texture ();
                 thumbnail_screenshot.set_reactive (true);
+
+                Gdk.Pixbuf pixbuf = null;
+                if (previous_ui_state == UIState.WIZARD) {
+                    var theme = Gtk.IconTheme.get_for_screen (App.app.window.get_screen ());
+                    try {
+                        pixbuf = theme.load_icon ("media-optical", Machine.SCREENSHOT_HEIGHT, 0);
+                    } catch (GLib.Error err) {
+                        warning (err.message);
+                    }
+                } else {
+                    pixbuf = machine.pixbuf;
+                }
                 try {
-                    thumbnail_screenshot.set_from_pixbuf (machine.pixbuf);
+                    thumbnail_screenshot.set_from_pixbuf (pixbuf);
                 } catch (GLib.Error err) {
                     warning (err.message);
                 }
@@ -623,7 +635,7 @@ private class Boxes.MachineActor: Boxes.UI {
                 });
 
                 machine.display.set_enable_inputs (display_widget, false);
-            } else {
+            } else if (previous_ui_state != UIState.WIZARD) {
                 click.clicked.connect (() => {
                     App.app.connect_to (machine, thumbnail.allocation.x1, thumbnail.allocation.y1);
                     update_thumbnail (null, false);
