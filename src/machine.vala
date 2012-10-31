@@ -67,7 +67,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
 
         case Boxes.UIState.PROPERTIES:
-            machine_actor.update_display (widget, false);
+            machine_actor.update_thumbnail (widget, false);
             break;
         }
     }
@@ -459,7 +459,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
     private GtkClutter.Texture screenshot;
     private GtkClutter.Actor gtk_vbox;
-    private GtkClutter.Actor? display;
+    private GtkClutter.Actor? thumbnail;
     private Gtk.Label label;
     private Gtk.VBox vbox; // and the vbox under it
     private Gtk.Entry password_entry;
@@ -553,27 +553,27 @@ private class Boxes.MachineActor: Boxes.UI {
         return password_entry.text;
     }
 
-    public void update_display (Gtk.Widget widget, bool zoom = true) {
-        if (display != null) {
-            actor_remove (display);
-            display.contents = null;
+    public void update_thumbnail (Gtk.Widget widget, bool zoom = true) {
+        if (thumbnail != null) {
+            actor_remove (thumbnail);
+            thumbnail.contents = null;
         }
 
         if (ui_state == UIState.PROPERTIES) {
-            display = new GtkClutter.Actor.with_contents (widget);
+            thumbnail = new GtkClutter.Actor.with_contents (widget);
             var click = new Clutter.ClickAction ();
-            display.add_action (click);
+            thumbnail.add_action (click);
             click.clicked.connect (() => {
                 App.app.ui_state = Boxes.UIState.DISPLAY;
             });
-            display.name = "properties-thumbnail";
-            display.x_align = Clutter.ActorAlign.FILL;
-            display.y_align = Clutter.ActorAlign.FILL;
-            App.app.overlay_bin_actor.add_child (display);
+            thumbnail.name = "properties-thumbnail";
+            thumbnail.x_align = Clutter.ActorAlign.FILL;
+            thumbnail.y_align = Clutter.ActorAlign.FILL;
+            App.app.overlay_bin_actor.add_child (thumbnail);
 
             machine.display.set_enable_inputs (widget, false);
 
-            Boxes.ActorFunc update_screenshot_alloc = (display) => {
+            Boxes.ActorFunc update_screenshot_alloc = (thumbnail) => {
                 Gtk.Allocation alloc;
 
                 App.app.properties.screenshot_placeholder.get_allocation (out alloc);
@@ -586,13 +586,13 @@ private class Boxes.MachineActor: Boxes.UI {
                 // be animated. Animating a rectangle between two states and
                 // animating position and size individually looks completely
                 // different.
-                var d = display.get_easing_duration ();
-                display.set_easing_duration (0);
-                display.fixed_x = alloc.x;
-                display.fixed_y = alloc.y;
-                display.min_width = display.natural_width = alloc.width;
-                display.min_height = display.natural_height = alloc.height;
-                display.set_easing_duration (d);
+                var d = thumbnail.get_easing_duration ();
+                thumbnail.set_easing_duration (0);
+                thumbnail.fixed_x = alloc.x;
+                thumbnail.fixed_y = alloc.y;
+                thumbnail.min_width = thumbnail.natural_width = alloc.width;
+                thumbnail.min_height = thumbnail.natural_height = alloc.height;
+                thumbnail.set_easing_duration (d);
             };
 
             if (track_screenshot_id != 0)
@@ -601,14 +601,14 @@ private class Boxes.MachineActor: Boxes.UI {
                 // We need to update in an idle to avoid changing layout stuff in a layout cycle
                 // (i.e. inside the size_allocate)
                 Idle.add_full (Priority.HIGH, () => {
-                    update_screenshot_alloc (display);
+                    update_screenshot_alloc (thumbnail);
                     return false;
                 });
             });
 
             if (!zoom) {
-                display.set_easing_duration (0);
-                update_screenshot_alloc (display);
+                thumbnail.set_easing_duration (0);
+                update_screenshot_alloc (thumbnail);
             }
         }
     }
@@ -636,24 +636,24 @@ private class Boxes.MachineActor: Boxes.UI {
                 actor.natural_width_set = false;
                 actor.natural_height_set = false;
             } else {
-                if (display != null) {
+                if (thumbnail != null) {
                     // zoom in, back from properties
 
                     App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
                     track_screenshot_id = 0;
 
-                    display.set_easing_duration (App.app.duration);
-                    display.x_align = Clutter.ActorAlign.FILL;
-                    display.y_align = Clutter.ActorAlign.FILL;
-                    display.fixed_position_set = false;
-                    display.min_width_set = display.natural_width_set = false;
-                    display.min_height_set = display.natural_height_set = false;
+                    thumbnail.set_easing_duration (App.app.duration);
+                    thumbnail.x_align = Clutter.ActorAlign.FILL;
+                    thumbnail.y_align = Clutter.ActorAlign.FILL;
+                    thumbnail.fixed_position_set = false;
+                    thumbnail.min_width_set = thumbnail.natural_width_set = false;
+                    thumbnail.min_height_set = thumbnail.natural_height_set = false;
 
-                    display.transitions_completed.connect (() => {
-                        var widget = display.contents;
-                        display.contents = null;
-                        display.destroy ();
-                        display = null;
+                    thumbnail.transitions_completed.connect (() => {
+                        var widget = thumbnail.contents;
+                        thumbnail.contents = null;
+                        thumbnail.destroy ();
+                        thumbnail = null;
                         // FIXME: enable grabs
                         machine.display.set_enable_inputs (widget, true);
                         App.app.display_page.show_display (machine.display, widget);
@@ -680,24 +680,24 @@ private class Boxes.MachineActor: Boxes.UI {
                 break;
             }
 
-            update_display (widget);
+            update_thumbnail (widget);
             Clutter.ActorBox box = { 0, 0,  width, height};
-            display.allocate (box, 0);
+            thumbnail.allocate (box, 0);
 
             // Temporarily hide toolbar in fullscreen so that the the animation
             // actor doesn't get pushed down before zooming to the sidebar
             if (App.app.fullscreen)
                 App.app.topbar.actor.hide ();
 
-            display.set_easing_mode (Clutter.AnimationMode.LINEAR);
-            display.set_easing_duration (App.app.duration);
+            thumbnail.set_easing_mode (Clutter.AnimationMode.LINEAR);
+            thumbnail.set_easing_duration (App.app.duration);
             ulong completed_id = 0;
-            completed_id = display.transitions_completed.connect (() => {
-                display.disconnect (completed_id);
-                display.set_easing_duration (0);
+            completed_id = thumbnail.transitions_completed.connect (() => {
+                thumbnail.disconnect (completed_id);
+                thumbnail.set_easing_duration (0);
             });
 
-            display.show ();
+            thumbnail.show ();
 
             break;
 
