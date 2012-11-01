@@ -8,7 +8,7 @@ public errordomain Boxes.OSDatabaseError {
     UNKNOWN_MEDIA_ID
 }
 
-private class Boxes.OSDatabase {
+private class Boxes.OSDatabase : GLib.Object {
     private const int DEFAULT_VCPUS = 1;
     private const int64 DEFAULT_RAM = 500 * (int64) MEBIBYTES;
 
