@@ -18,6 +18,10 @@ private class Boxes.OSDatabase : GLib.Object {
 
     private Db? db;
 
+    private bool db_loading;
+
+    private signal void db_loaded ();
+
     private static Resources get_default_resources () {
         var resources = new Resources ("whatever", "x86_64");
 
@@ -28,19 +32,22 @@ private class Boxes.OSDatabase : GLib.Object {
         return resources;
     }
 
-    public void load () {
+    public async void load () {
+        db_loading = true;
         var loader = new Loader ();
         try {
-            loader.process_default_path ();
+            yield run_in_thread (() => { loader.process_default_path (); });
         } catch (GLib.Error e) {
             warning ("Error loading default libosinfo database: %s", e.message);
         }
         try {
-            loader.process_path (get_logos_db ()); // Load our custom database
+            yield run_in_thread (() => { loader.process_path (get_logos_db ()); }); // Load our custom database
         } catch (GLib.Error e) {
             warning ("Error loading GNOME Boxes libosinfo database: %s", e.message);
         }
         db = loader.get_db ();
+        db_loading = false;
+        db_loaded ();
     }
 
     public async Os? guess_os_from_install_media (string media_path,
@@ -48,7 +55,7 @@ private class Boxes.OSDatabase : GLib.Object {
                                                   Cancellable? cancellable) throws GLib.Error {
         os_media = null;
 
-        if (db == null)
+        if (!yield ensure_db_loaded ())
             return null;
 
         var media = yield Media.create_from_location_async (media_path, Priority.DEFAULT, cancellable);
@@ -56,8 +63,8 @@ private class Boxes.OSDatabase : GLib.Object {
         return db.guess_os_from_media (media, out os_media);
     }
 
-    public Os get_os_by_id (string id) throws OSDatabaseError {
-        if (db == null)
+    public async Os get_os_by_id (string id) throws OSDatabaseError {
+        if (!yield ensure_db_loaded ())
             throw new OSDatabaseError.UNKNOWN_OS_ID ("Unknown OS ID '%s'", id);
 
         var os = db.get_os (id);
@@ -141,5 +148,23 @@ private class Boxes.OSDatabase : GLib.Object {
             // Assumption: There is only one resources instance of each type
             // (minimum/recommended) of each architecture for each OS.
             return filtered.get_nth (0) as Resources;
+    }
+
+    private async bool ensure_db_loaded () {
+        if (db != null)
+            return true;
+
+        if (db_loading) { // Wait for the DB to load..
+            ulong db_loaded_id = 0;
+
+            db_loaded_id = db_loaded.connect (() => {
+                ensure_db_loaded.callback ();
+                disconnect (db_loaded_id);
+            });
+
+            yield;
+        }
+
+        return (db != null);
     }
 }

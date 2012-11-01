@@ -16,7 +16,7 @@ private class Boxes.MediaManager : Object {
     public MediaManager () {
         client = new GUdev.Client ({"block"});
         os_db = new OSDatabase ();
-        os_db.load ();
+        os_db.load.begin ();
         try {
             connection = Sparql.Connection.get ();
         } catch (GLib.Error error) {
@@ -94,7 +94,7 @@ private class Boxes.MediaManager : Object {
         if (label == null || os_id == null || media_id == null)
             return yield create_installer_media_for_path (path, null);
 
-        var os = os_db.get_os_by_id (os_id);
+        var os = yield os_db.get_os_by_id (os_id);
         var os_media = os_db.get_media_by_id (os, media_id);
         var resources = os_db.get_resources_for_os (os, os_media.architecture);
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
