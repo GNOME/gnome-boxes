@@ -16,11 +16,7 @@ private class Boxes.MediaManager : Object {
     public MediaManager () {
         client = new GUdev.Client ({"block"});
         os_db = new OSDatabase ();
-        try {
-            os_db.load ();
-        } catch (GLib.Error error) {
-            critical ("Error fetching default OS database: %s", error.message);
-        }
+        os_db.load ();
         try {
             connection = Sparql.Connection.get ();
         } catch (GLib.Error error) {

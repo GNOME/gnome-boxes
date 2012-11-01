@@ -28,7 +28,7 @@ private class Boxes.OSDatabase {
         return resources;
     }
 
-    public void load () throws GLib.Error {
+    public void load () {
         var loader = new Loader ();
         try {
             loader.process_default_path ();
