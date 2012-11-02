@@ -701,14 +701,15 @@ private class Boxes.Wizard: Boxes.UI {
     private class WizardSummary: GLib.Object {
         public delegate void CustomizeFunc ();
 
-        public Gtk.Widget widget { get { return table; } }
-        private Gtk.Table table;
-        private uint current_row;
+        public Gtk.Widget widget { get { return grid; } }
+        private Gtk.Grid grid;
+        private int current_row;
 
         public WizardSummary () {
-            table = new Gtk.Table (1, 3, false);
-            table.row_spacing = 10;
-            table.column_spacing = 20;
+            grid = new Gtk.Grid ();
+            grid.row_spacing = 10;
+            grid.column_spacing = 20;
+            current_row = 0;
 
             clear ();
         }
@@ -720,15 +721,15 @@ private class Boxes.Wizard: Boxes.UI {
             var label_name = new Gtk.Label (name);
             label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
             label_name.xalign = 1.0f;
-            table.attach_defaults (label_name, 0, 1, current_row, current_row + 1);
+            grid.attach (label_name, 0, current_row, 1, 1);
 
             var label_value = new Gtk.Label (value);
             label_value.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
             label_value.xalign = 0.0f;
-            table.attach_defaults (label_value, 1, 2, current_row, current_row + 1);
+            grid.attach (label_value, 1, current_row, 1, 1);
 
             current_row += 1;
-            table.show_all ();
+            grid.show_all ();
         }
 
         public void append_customize_button (CustomizeFunc customize_func) {
@@ -738,18 +739,17 @@ private class Boxes.Wizard: Boxes.UI {
 
             var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
             button.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
-            table.attach_defaults (button, 2, 3, current_row - 1, current_row);
+            grid.attach (button, 2, current_row - 1, 1, 1);
             button.show ();
 
             button.clicked.connect (() => { customize_func (); });
         }
 
         public void clear () {
-            foreach (var child in table.get_children ()) {
-                table.remove (child);
+            foreach (var child in grid.get_children ()) {
+                grid.remove (child);
             }
 
-            table.resize (1, 2);
             current_row = 0;
         }
     }
