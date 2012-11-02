@@ -9,8 +9,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.StorageVol? storage_volume;
     public VMCreator? vm_creator; // Under installation if this is set to non-null
 
-    private const GVir.DomainState DomainStatePMSUSPENDED = (GVir.DomainState)7; //DomainState.PMSUSPENDED, but we don't want a hard compile dependency
-
     public bool save_on_quit {
         get { return source.get_boolean ("source", "save-on-quit"); }
         set { source.set_boolean ("source", "save-on-quit", value); }
@@ -104,7 +102,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             case DomainState.CRASHED:
                 state = MachineState.STOPPED;
                 break;
-            case DomainStatePMSUSPENDED:
+            case DomainState.PMSUSPENDED:
                 state = MachineState.SLEEPING;
                 break;
             default:
@@ -128,10 +126,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             else
                 state = MachineState.STOPPED;
         });
-        var pmsuspended_id = Signal.lookup ("pmsuspended", domain.get_type ());
-        if (pmsuspended_id != 0) {
-            Signal.connect_object(domain, "pmsuspended", (GLib.Callback) LibvirtMachine.pmsuspended_callback, this, 0);
-        }
+        domain.pmsuspended.connect (() => {
+            state = MachineState.SLEEPING;
+        });
         notify["state"].connect (() => {
             if (state == MachineState.RUNNING) {
                 reconnect_display ();
@@ -146,12 +143,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (state != MachineState.STOPPED)
             load_screenshot ();
         set_screenshot_enable (true);
-    }
-
-    // This is done as a method and not a lambda as we don't want a hard build
-    // dep on the new pmsuspended signal yet.
-    private static void pmsuspended_callback (GVir.Domain domain, LibvirtMachine machine) {
-        machine.state = MachineState.SLEEPING;
     }
 
     private void update_cpu_stat (DomainInfo info, ref MachineStat stat) {
@@ -382,7 +373,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             warning ("Failed to get information on '%s'", name);
         }
 
-        if (state != DomainState.RUNNING && state != DomainState.PAUSED && state != DomainStatePMSUSPENDED)
+        if (state != DomainState.RUNNING && state != DomainState.PAUSED && state != DomainState.PMSUSPENDED)
             return null;
 
         var stream = connection.get_stream (0);
@@ -580,10 +571,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (state == MachineState.PAUSED)
             yield domain.resume_async (null);
         else if (state == MachineState.SLEEPING) {
-            if (Config.HAVE_WAKEUP)
-                yield ((BoxesGVir.Domain)domain).wakeup_async (0, null);
-            else
-                throw new Boxes.Error.INVALID ("Wakeup not supported");
+            yield domain.wakeup_async (0, null);
         } else {
             if (domain.get_saved ())
                 // Translators: The %s will be expanded with the name of the vm

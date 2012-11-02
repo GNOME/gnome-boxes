@@ -22,7 +22,6 @@ AM_VALAFLAGS =						\
 	--pkg cogl-1.0					\
 	--pkg config					\
 	--pkg common					\
-	--pkg libvirt-workaround			\
 	--pkg gd-1.0					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg gio-2.0-workaround			\

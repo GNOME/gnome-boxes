@@ -47,8 +47,8 @@ GLIB_MIN_VERSION=2.29.90
 GOBJECT_INTROSPECTION_MIN_VERSION=0.9.6
 GTK_MIN_VERSION=3.5.5
 GTK_VNC_MIN_VERSION=0.4.4
-LIBVIRT_GLIB_MIN_VERSION=0.1.2
-LIBVIRT_GCONFIG_MIN_VERSION=0.1.0
+LIBVIRT_GLIB_MIN_VERSION=0.1.4
+LIBVIRT_GCONFIG_MIN_VERSION=0.1.4
 LIBXML2_MIN_VERSION=2.7.8
 SPICE_GTK_MIN_VERSION=0.12.101
 GUDEV_MIN_VERSION=165
@@ -115,25 +115,6 @@ LIBGD_INIT([
   tagged-entry
   vapi
 ])
-
-old_LIBS=$LIBS
-LIBS="$LIBS $BOXES_LIBS"
-AC_CHECK_FUNCS([gvir_domain_wakeup_async],
-        [AC_DEFINE([HAVE_WAKEUP], [1], [Runtime check version hack])],
-        [AC_DEFINE([HAVE_WAKEUP], [0], [Runtime check version hack])
-         # define these to nothing so we still build
-         AC_DEFINE([gvir_domain_wakeup_async], [], [Runtime check version hack])
-         AC_DEFINE([gvir_domain_wakeup_finish], [], [Runtime check version hack])])
-AC_CHECK_FUNCS([gvir_config_domain_set_power_management],
-        [AC_DEFINE([HAVE_PM], [1], [Runtime check version hack])],
-        [AC_DEFINE([HAVE_PM], [0], [Runtime check version hack])
-         # define these to nothing so we still build
-         AC_DEFINE([GVirConfigDomainPowerManagement], [void *], [Runtime check version hack])
-         AC_DEFINE([gvir_config_domain_set_power_management], [], [Runtime check version hack])
-         AC_DEFINE([gvir_config_domain_power_management_new()], [NULL], [Runtime check version hack])
-         AC_DEFINE([gvir_config_domain_power_management_set_mem_suspend_enabled], [], [Runtime check version hack])
-         AC_DEFINE([gvir_config_domain_power_management_set_disk_suspend_enabled], [], [Runtime check version hack])])
-LIBS=$old_libs
 
 dnl Strict compiler
 AC_ARG_ENABLE([strict-cc],
