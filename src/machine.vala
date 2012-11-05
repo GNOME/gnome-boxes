@@ -572,8 +572,10 @@ private class Boxes.MachineActor: Boxes.UI {
 
     private Widget? steal_display_widget_from_thumbnail () {
         Widget? widget = null;
-        if (thumbnail is GtkClutter.Actor)
+        if (thumbnail is GtkClutter.Actor) {
             widget = (thumbnail as GtkClutter.Actor).contents;
+            (thumbnail as GtkClutter.Actor).contents = null;
+        }
         thumbnail.destroy ();
         thumbnail = null;
         thumbnail_screenshot = null;
