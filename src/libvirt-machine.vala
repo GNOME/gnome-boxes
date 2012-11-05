@@ -331,6 +331,28 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (display != null)
                 add_string_property (ref list, _("Protocol"), display.protocol);
             break;
+
+        case PropertiesPage.DEVICES:
+            bool has_usb_redir = false;
+            // We look at the INACTIVE config here, because we want to show the usb
+            // widgetry if usb has been added already but we have not rebooted
+            try {
+                var inactive_config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+                foreach (var device in inactive_config.get_devices ()) {
+                    if (device is GVirConfig.DomainRedirdev) {
+                        has_usb_redir = true;
+                        break;
+                    }
+                }
+            } catch (GLib.Error error) {
+                warning ("Failed to fetch configuration for domain '%s': %s", domain.get_name (), error.message);
+            }
+
+            if (!has_usb_redir)
+                flags |= PropertyCreationFlag.NO_USB;
+            }
+
+            break;
         }
 
         if (display != null)

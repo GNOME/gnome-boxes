@@ -55,7 +55,8 @@ private delegate void PropertySizeChanged (Boxes.Property property, uint64 value
 
 [Flags]
 public enum PropertyCreationFlag {
-    NONE = 0
+    NONE = 0,
+    NO_USB = 1<<0
 }
 
 private interface Boxes.IPropertiesProvider: GLib.Object {

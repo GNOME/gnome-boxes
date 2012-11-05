@@ -202,11 +202,13 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case PropertiesPage.DEVICES:
-            var toggle = new Gtk.Switch ();
-            gtk_session.bind_property ("auto-usbredir", toggle, "active",
-                                       BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            toggle.halign = Gtk.Align.START;
-            add_property (ref list, _("USB redirection"), toggle);
+            if (!(PropertyCreationFlag.NO_USB in flags)) {
+                var toggle = new Gtk.Switch ();
+                gtk_session.bind_property ("auto-usbredir", toggle, "active",
+                                           BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                toggle.halign =  Gtk.Align.START;
+                add_property (ref list, _("Redirect new USB devices"), toggle);
+            }
             break;
         }
 
