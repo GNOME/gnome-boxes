@@ -74,6 +74,10 @@ private class Boxes.VMConfigurator {
         channel.set_source (vmc);
         domain.add_device (channel);
 
+        // Only add usb support if we'er 100% sure it works, as it breaks migration (i.e. save) on older qemu
+        if (Config.HAVE_USBREDIR)
+            add_usb_support (domain);
+
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
@@ -289,6 +293,40 @@ private class Boxes.VMConfigurator {
         debug ("no Boxes OS state for domain '%s'.", domain.get_name ());
 
         return null;
+    }
+
+    public static void add_usb_support (Domain domain) {
+        // 4 USB redirection channels
+        for (int i = 0; i < 4; i++) {
+            var usb_redir = new DomainRedirdev ();
+            usb_redir.set_bus (DomainRedirdevBus.USB);
+            var vmc = new DomainChardevSourceSpiceVmc ();
+            usb_redir.set_source (vmc);
+            domain.add_device (usb_redir);
+        }
+
+        // USB controllers
+        var master_controller = create_usb_controller (DomainControllerUsbModel.ICH9_EHCI1);
+        domain.add_device (master_controller);
+        var controller = create_usb_controller (DomainControllerUsbModel.ICH9_UHCI1, master_controller, 0, 0);
+        domain.add_device (controller);
+        controller = create_usb_controller (DomainControllerUsbModel.ICH9_UHCI2, master_controller, 0, 2);
+        domain.add_device (controller);
+        controller = create_usb_controller (DomainControllerUsbModel.ICH9_UHCI3, master_controller, 0, 4);
+        domain.add_device (controller);
+    }
+
+    private static DomainControllerUsb create_usb_controller (DomainControllerUsbModel model,
+                                                              DomainControllerUsb?     master = null,
+                                                              uint                     index = 0,
+                                                              uint                     start_port = 0) {
+        var controller = new DomainControllerUsb ();
+        controller.set_model (model);
+        controller.set_index (index);
+        if (master != null)
+            controller.set_master (master, start_port);
+
+        return controller;
     }
 
     private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
