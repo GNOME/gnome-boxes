@@ -2,6 +2,8 @@
 using Gtk;
 
 private class Boxes.Notificationbar: GLib.Object {
+    public const int DEFAULT_TIMEOUT = 6;
+
     public Clutter.Actor actor { get { return gtk_actor; } }
 
     public delegate void OKFunc ();
@@ -38,12 +40,13 @@ private class Boxes.Notificationbar: GLib.Object {
     public void display_for_action (string            message,
                                     string            action_label,
                                     owned OKFunc      action_func,
-                                    owned CancelFunc? ignore_func = null) {
-        display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func);
+                                    owned CancelFunc? ignore_func = null,
+                                    int               timeout = DEFAULT_TIMEOUT) {
+        display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
     }
 
-    public void display_error (string message) {
-        display (message, MessageType.ERROR);
+    public void display_error (string message, int timeout = DEFAULT_TIMEOUT) {
+        display (message, MessageType.ERROR, null, null, null, timeout);
     }
 
     public void cancel () {
@@ -61,12 +64,13 @@ private class Boxes.Notificationbar: GLib.Object {
 
     private void display (string            message,
                           MessageType       message_type,
-                          string?           ok_label = null,
-                          owned OKFunc?     ok_func = null,
-                          owned CancelFunc? cancel_func = null) {
+                          string?           ok_label,
+                          owned OKFunc?     ok_func,
+                          owned CancelFunc? cancel_func,
+                          int               timeout) {
         var notification = new Gd.Notification ();
         notification.valign = Gtk.Align.START;
-        notification.timeout = 6;
+        notification.timeout = timeout;
 
         active_notifications.prepend (notification);
 
