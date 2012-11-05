@@ -51,8 +51,13 @@ private class Boxes.Property: GLib.Object {
 private delegate void PropertyStringChanged (Boxes.Property property, string value) throws Boxes.Error;
 private delegate void PropertySizeChanged (Boxes.Property property, uint64 value) throws Boxes.Error;
 
+[Flags]
+public enum PropertyCreationFlag {
+    NONE = 0
+}
+
 private interface Boxes.IPropertiesProvider: GLib.Object {
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
 
     protected Boxes.Property add_property (ref List<Boxes.Property> list, string name, Widget widget, Widget? extra_widget = null) {
         var property = new Property (name, widget, extra_widget);

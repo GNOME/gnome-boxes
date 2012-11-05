@@ -183,7 +183,7 @@ private class Boxes.SpiceDisplay: Boxes.Display, Boxes.IPropertiesProvider {
         }
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags) {
         var list = new List<Boxes.Property> ();
 
         switch (page) {

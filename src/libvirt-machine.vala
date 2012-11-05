@@ -301,7 +301,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags) {
         var list = new List<Boxes.Property> ();
 
         // the wizard may want to modify display properties, before connect_display()
@@ -334,7 +334,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         if (display != null)
-            list.concat (display.get_properties (page));
+            list.concat (display.get_properties (page,
+                                                 flags));
 
         return list;
     }

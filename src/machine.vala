@@ -211,7 +211,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return null;
     }
 
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
 
     public abstract async void connect_display () throws GLib.Error;
 
