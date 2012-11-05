@@ -37,16 +37,16 @@ private class Boxes.Notificationbar: GLib.Object {
         });
     }
 
-    public void display_for_action (string            message,
-                                    string            action_label,
-                                    owned OKFunc      action_func,
-                                    owned CancelFunc? ignore_func = null,
-                                    int               timeout = DEFAULT_TIMEOUT) {
-        display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
+    public Gd.Notification display_for_action (string            message,
+                                               string            action_label,
+                                               owned OKFunc      action_func,
+                                               owned CancelFunc? ignore_func = null,
+                                               int               timeout = DEFAULT_TIMEOUT) {
+        return display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
     }
 
-    public void display_error (string message, int timeout = DEFAULT_TIMEOUT) {
-        display (message, MessageType.ERROR, null, null, null, timeout);
+    public Gd.Notification display_error (string message, int timeout = DEFAULT_TIMEOUT) {
+        return display (message, MessageType.ERROR, null, null, null, timeout);
     }
 
     public void cancel () {
@@ -62,12 +62,12 @@ private class Boxes.Notificationbar: GLib.Object {
             App.app.display_page.add_notification (w);
     }
 
-    private void display (string            message,
-                          MessageType       message_type,
-                          string?           ok_label,
-                          owned OKFunc?     ok_func,
-                          owned CancelFunc? cancel_func,
-                          int               timeout) {
+    private Gd.Notification display (string            message,
+                                     MessageType       message_type,
+                                     string?           ok_label,
+                                     owned OKFunc?     ok_func,
+                                     owned CancelFunc? cancel_func,
+                                     int               timeout) {
         var notification = new Gd.Notification ();
         notification.valign = Gtk.Align.START;
         notification.timeout = timeout;
@@ -107,5 +107,7 @@ private class Boxes.Notificationbar: GLib.Object {
 
         add_notification (notification);
         notification.show_all ();
+
+        return notification;
     }
 }
