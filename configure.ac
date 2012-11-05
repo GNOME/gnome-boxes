@@ -116,6 +116,13 @@ LIBGD_INIT([
   vapi
 ])
 
+AC_ARG_ENABLE(usbredir,
+	AS_HELP_STRING([--enable-usbredir],[Enable usb redirection (requires qemu 1.3)]),,
+        enable_usbredir=no)
+AS_IF([test "x$enable_usbredir" = "xyes"],
+      [AC_DEFINE([HAVE_USBREDIR], [1], [Qemu supports usbredir])],
+      [AC_DEFINE([HAVE_USBREDIR], [0], [Qemu supports usbredir])])
+
 dnl Strict compiler
 AC_ARG_ENABLE([strict-cc],
   AS_HELP_STRING([--enable-strict-cc],[Enable strict C compiler]))
