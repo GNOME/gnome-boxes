@@ -301,6 +301,21 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
+    public void try_enable_usb_redir () throws GLib.Error {
+        var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+
+        // Remove any old usb configuration from old config
+        VMConfigurator.remove_usb_controllers (config);
+
+        // Add usb redirection channel and usb2 controllers
+        VMConfigurator.add_usb_support (config);
+
+        // This will take effect only after next reboot
+        domain.set_config (config);
+        if (is_on ())
+            notify_reboot_required ();
+    }
+
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags) {
         var list = new List<Boxes.Property> ();
 
@@ -350,6 +365,22 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             if (!has_usb_redir)
                 flags |= PropertyCreationFlag.NO_USB;
+
+            /* Only add usb support to guests if HAVE_USBREDIR, as older
+             * qemu versions break migration with it. */
+            if (!has_usb_redir && Config.HAVE_USBREDIR) {
+                var button = new Gtk.Button.with_label (_("Add support to guest"));
+                button.halign = Gtk.Align.START;
+                var property = add_property (ref list, _("USB device support"), button);
+                button.clicked.connect (() => {
+                    try {
+                        try_enable_usb_redir ();
+                        update_domain_config ();
+                        property.refresh_properties ();
+                    } catch (GLib.Error error) {
+                        warning ("Failed to enable usb");
+                    }
+                });
             }
 
             break;

@@ -329,6 +329,18 @@ private class Boxes.VMConfigurator {
         return controller;
     }
 
+    // Remove all existing usb controllers. This is used when upgrading from the old usb1 controllers to usb2
+    public static void remove_usb_controllers (Domain domain) throws Boxes.Error {
+        GLib.List<GVirConfig.DomainDevice> devices = null;
+        foreach (var device in domain.get_devices ()) {
+            if (!(device is DomainControllerUsb)) {
+                devices.prepend (device);
+            }
+        }
+        devices.reverse ();
+        domain.set_devices (devices);
+    }
+
     private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
                                                           throws VMConfiguratorError {
         var guests_caps = caps.get_guests ();
