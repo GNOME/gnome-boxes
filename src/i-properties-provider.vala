@@ -7,6 +7,8 @@ private class Boxes.Property: GLib.Object {
     public Gtk.Widget? extra_widget { get; construct set; }
     public bool reboot_required { get; set; }
 
+    public signal void refresh_properties ();
+
     public uint defer_interval { get; set; default = 1; } // In seconds
 
     private uint deferred_change_id;

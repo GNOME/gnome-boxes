@@ -37,6 +37,8 @@ private class Boxes.Properties: Boxes.UI {
         private Gtk.InfoBar infobar;
         private List<Boxes.Property> properties;
 
+        public signal void refresh_properties ();
+
         public void update_infobar () {
             var show_it = false;
             foreach (var property in properties) {
@@ -113,6 +115,9 @@ private class Boxes.Properties: Boxes.UI {
                     }
 
                     property.notify["reboot-required"].connect (update_infobar);
+                    property.refresh_properties.connect (() => {
+                        this.refresh_properties ();
+                     });
                     current_row += 1;
                 }
 
@@ -158,6 +163,14 @@ private class Boxes.Properties: Boxes.UI {
             var page = new PageWidget (i, machine);
             notebook.append_page (page.widget, null);
             notebook.set_data<PageWidget> (@"boxes-property-$i", page);
+
+            page.refresh_properties.connect (() => {
+                var current_page = notebook.page;
+                this.populate ();
+                var path = new Gtk.TreePath.from_indices (current_page);
+                tree_view.get_selection ().select_path (path);
+                notebook.page = current_page;
+            });
 
             list_append (listmodel, page.name, !page.empty);
         }
