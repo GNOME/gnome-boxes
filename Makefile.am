@@ -10,7 +10,6 @@ INTLTOOL_FILES =				\
 	$(NULL)
 
 DISTCLEANFILES =				\
-	gnome-doc-utils.make			\
 	intltool-extract			\
 	intltool-merge				\
 	intltool-update				\
