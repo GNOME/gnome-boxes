@@ -288,7 +288,8 @@ private class Boxes.Wizard: Boxes.UI {
             });
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
-            App.app.notificationbar.display_error (error.message);
+            debug("Failed to analyze installer image: %s", error.message);
+            App.app.notificationbar.display_error (_("Failed to analyze installer media. Corrupted or incomplete media?"));
             page = WizardPage.SOURCE;
         }
     }
