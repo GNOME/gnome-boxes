@@ -240,6 +240,43 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                            BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
                 toggle.halign =  Gtk.Align.START;
                 add_property (ref list, _("Redirect new USB devices"), toggle);
+
+                if (connected) {
+                    bool found_dev = false;
+                    try {
+                        var manager = UsbDeviceManager.get (session);
+                        var devs = manager.get_devices ();
+                        for (int i = 0; i < devs.length; i++) {
+                            var dev = devs[i];
+
+                            var dev_toggle = new Gtk.Switch ();
+                            dev_toggle.halign =  Gtk.Align.START;
+
+                            if (!found_dev)
+                                add_property (ref list, "USB devices", new Gtk.Label (""));
+                            found_dev = true;
+                            add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
+                            dev_toggle.active = manager.is_device_connected (dev);
+
+                            dev_toggle.notify["active"].connect ( () => {
+                                if (dev_toggle.active) {
+                                    manager.connect_device_async.begin (dev, null, (obj, res) => {
+                                        try {
+                                            manager.connect_device_async.end (res);
+                                        } catch (GLib.Error err) {
+                                            dev_toggle.active = false;
+                                            got_error (_("Error connecting %s: %s").printf (dev.get_description ("%1$s %2$s"),
+                                                                                            err.message));
+                                        }
+                                    });
+                                } else {
+                                    manager.disconnect_device (dev);
+                                }
+                            });
+                        }
+                    } catch (GLib.Error error) {
+                    }
+                }
             }
             break;
         }
