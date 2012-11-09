@@ -22,6 +22,10 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public abstract void set_enable_inputs (Gtk.Widget widget, bool enable);
     public abstract void set_enable_audio (bool enable);
 
+    public virtual bool should_keep_alive () {
+        return false;
+    }
+
     public abstract void connect_it () throws GLib.Error;
     public abstract void disconnect_it ();
 

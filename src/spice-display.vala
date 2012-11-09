@@ -14,6 +14,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private BoxConfig.SyncProperty[] display_sync_properties;
     private BoxConfig.SyncProperty[] gtk_session_sync_properties;
     private bool connected;
+    private bool closed;
 
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
@@ -101,6 +102,24 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         return display;
     }
 
+    private bool has_usb_device_connected () {
+        try {
+            var manager = UsbDeviceManager.get (session);
+            var devs = manager.get_devices ();
+            for (int i = 0; i < devs.length; i++) {
+                var dev = devs[i];
+                if (manager.is_device_connected (dev))
+                    return true;
+            }
+        } catch (GLib.Error error) {
+        }
+        return false;
+    }
+
+    public override bool should_keep_alive () {
+        return !closed && has_usb_device_connected ();
+    }
+
     public override void set_enable_audio (bool enable) {
         session.enable_audio = enable;
     }
@@ -175,6 +194,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private void main_event (ChannelEvent event) {
         switch (event) {
         case ChannelEvent.CLOSED:
+            closed = true;
             disconnected ();
             break;
 
