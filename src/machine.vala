@@ -14,6 +14,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public string? status { get; set; }
     public bool suspend_at_exit;
 
+    public signal void got_error (string message);
+
     private ulong show_id;
     private ulong hide_id;
     private uint show_timeout_id;
@@ -21,6 +23,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private ulong need_password_id;
     private ulong need_username_id;
     private ulong ui_state_id;
+    private ulong got_error_id;
     private uint screenshot_id;
     public static const int SCREENSHOT_WIDTH = 180;
     public static const int SCREENSHOT_HEIGHT = 134;
@@ -99,6 +102,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 need_password_id = 0;
                 _display.disconnect (need_username_id);
                 need_username_id = 0;
+                _display.disconnect (got_error_id);
+                got_error_id = 0;
             }
 
             _display = value;
@@ -112,6 +117,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             hide_id = _display.hide.connect ((id) => {
                 App.app.display_page.remove_display ();
+            });
+
+            got_error_id = _display.got_error.connect ((message) => {
+                    got_error (message);
             });
 
             disconnected_id = _display.disconnected.connect (() => {

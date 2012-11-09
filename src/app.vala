@@ -61,6 +61,7 @@ private class Boxes.App: Boxes.UI {
 
     private uint configure_id;
     private ulong status_id;
+    private ulong got_error_id;
     public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
@@ -564,6 +565,10 @@ private class Boxes.App: Boxes.UI {
                     machine.disconnect (status_id);
                     status_id = 0;
                 }
+                if (got_error_id != 0) {
+                    machine.disconnect (got_error_id);
+                    got_error_id = 0;
+                }
             }
             fullscreen = false;
             view.visible = true;
@@ -736,6 +741,10 @@ private class Boxes.App: Boxes.UI {
         topbar.set_status (machine.status);
         status_id = machine.notify["status"].connect ( () => {
                 topbar.set_status (machine.status);
+        });
+
+        got_error_id = machine.got_error.connect ( (message) => {
+            App.app.notificationbar.display_error (message);
         });
 
         // Start the CREDS state
