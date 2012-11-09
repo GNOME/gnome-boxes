@@ -61,6 +61,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         widget = display.get_display (0);
 
         switch (App.app.ui_state) {
+        case Boxes.UIState.CREDS:
+            App.app.ui_state = Boxes.UIState.DISPLAY;
+            show_timeout_id = Timeout.add (App.app.duration, () => {
+                show_timeout_id = 0;
+                show_display ();
+                return false;
+            });
+            break;
+
         case Boxes.UIState.DISPLAY:
             App.app.display_page.show_display (display, widget);
             widget.grab_focus ();
@@ -99,23 +108,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             // Translators: The %s will be expanded with the name of the vm
             status = _("Connecting to %s").printf (name);
 
-            show_id = _display.show.connect ((id) => {
-                switch (App.app.ui_state) {
-                case Boxes.UIState.CREDS:
-                    App.app.ui_state = Boxes.UIState.DISPLAY;
-                    show_timeout_id = Timeout.add (App.app.duration, () => {
-                        show_timeout_id = 0;
-                        show_display ();
-                        return false;
-                     });
-                    break;
-
-                case Boxes.UIState.DISPLAY:
-                case Boxes.UIState.PROPERTIES:
-                    show_display ();
-                    break;
-                }
-            });
+            show_id = _display.show.connect ((id) => { show_display (); });
 
             hide_id = _display.hide.connect ((id) => {
                 App.app.display_page.remove_display ();
