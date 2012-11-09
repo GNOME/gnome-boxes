@@ -101,6 +101,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         return display;
     }
 
+    public override void set_enable_audio (bool enable) {
+        session.enable_audio = enable;
+    }
+
     public override void set_enable_inputs (Gtk.Widget widget, bool enable) {
         (widget as Spice.Display).disable_inputs = !enable;
     }
