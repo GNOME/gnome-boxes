@@ -738,6 +738,9 @@ private class Boxes.App: Boxes.UI {
                 topbar.set_status (machine.status);
         });
 
+        // Start the CREDS state
+        ui_state = UIState.CREDS;
+
         // Connect to the display
         machine.connect_display.begin ( (obj, res) => {
             try {
@@ -749,8 +752,6 @@ private class Boxes.App: Boxes.UI {
             }
             });
 
-        // Start the CREDS state
-        ui_state = UIState.CREDS;
     }
 
     public void select_item (CollectionItem item) {

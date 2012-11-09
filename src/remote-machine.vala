@@ -35,10 +35,13 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     }
 
     public override async void connect_display () throws GLib.Error {
-        if (display == null)
+        if (display == null) {
             display = create_display ();
-
-        display.connect_it ();
+            display.connect_it ();
+        } else {
+            show_display ();
+            display.set_enable_audio (true);
+        }
     }
 
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags) {

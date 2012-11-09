@@ -23,8 +23,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public override async void connect_display () throws GLib.Error {
         yield start ();
 
-        update_display ();
-        display.connect_it ();
+        if (update_display ()) {
+            display.connect_it ();
+        } else {
+            show_display ();
+            display.set_enable_audio (true);
+        }
     }
 
     struct MachineStat {
@@ -393,11 +397,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return list;
     }
 
-    private void update_display () throws GLib.Error {
+    private bool update_display () throws GLib.Error {
         update_domain_config ();
 
+        var created_display = display == null;
         if (display == null)
             display = create_display ();
+        return created_display;
     }
 
     private Display? create_display () throws Boxes.Error {

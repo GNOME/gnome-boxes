@@ -55,7 +55,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    private void show_display () {
+    protected void show_display () {
         Gtk.Widget widget;
 
         widget = display.get_display (0);
@@ -223,8 +223,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
 
         App.app.display_page.remove_display ();
-        display.disconnect_it ();
-        display = null;
+        if (!display.should_keep_alive ()) {
+            display.disconnect_it ();
+            display = null;
+        } else {
+            display.set_enable_audio (false);
+        }
     }
 
     protected void create_display_config (string? uuid = null)
