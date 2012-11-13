@@ -78,6 +78,17 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
+    public string get_utf8_basename (string path) {
+        var file = File.new_for_path (path);
+        string name = file.get_parse_name ();
+        try {
+            var info = file.query_info (FileAttribute.STANDARD_DISPLAY_NAME, 0);
+            name = info.get_display_name ();
+        } catch (GLib.Error e) {
+        }
+        return name;
+    }
+
     public string get_logo_cache (string? file_name = null) {
         var dir = Path.build_filename (get_user_pkgcache (), "logos");
 
