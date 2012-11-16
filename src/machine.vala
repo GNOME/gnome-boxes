@@ -457,17 +457,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public override void ui_state_changed () {
         machine_actor.ui_state = ui_state;
 
-        switch (ui_state) {
-        case Boxes.UIState.DISPLAY:
-        case Boxes.UIState.PROPERTIES:
-        case Boxes.UIState.CREDS:
-            /* These are allowed display states */
-            break;
-        default:
+        if (ui_state != Boxes.UIState.DISPLAY &&
+            ui_state != Boxes.UIState.PROPERTIES &&
+            ui_state != Boxes.UIState.CREDS) {
             /* Disconnect if we go to any other state */
             machine_actor.update_thumbnail (null, false);
             disconnect_display ();
-            break;
         }
 
     }

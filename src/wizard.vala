@@ -672,15 +672,13 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        switch (ui_state) {
-        case UIState.WIZARD:
+        if (ui_state == UIState.WIZARD) {
             if (previous_ui_state == UIState.PROPERTIES)
                 review.begin ();
             else {
                 wizard_source.uri = "";
                 page = WizardPage.INTRODUCTION;
             }
-            break;
         }
 
         fade_actor (actor, ui_state == UIState.WIZARD ? 255 : 0);

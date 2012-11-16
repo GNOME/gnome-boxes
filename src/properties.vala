@@ -294,8 +294,7 @@ private class Boxes.Properties: Boxes.UI {
             stats_id = 0;
         }
 
-        switch (ui_state) {
-        case UIState.PROPERTIES:
+        if (ui_state == UIState.PROPERTIES) {
             if (App.app.current_item is LibvirtMachine) {
                 var libvirt_machine = App.app.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
@@ -311,15 +310,11 @@ private class Boxes.Properties: Boxes.UI {
             else
                 toolbar_label.label = "";
             populate ();
-            break;
-        default:
-            if (previous_ui_state == UIState.PROPERTIES)
-                for (var i = 0; i < PropertiesPage.LAST; i++) {
-                    var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
-
-                    page.flush_changes ();
-                }
-            break;
+        } else if (previous_ui_state == UIState.PROPERTIES) {
+            for (var i = 0; i < PropertiesPage.LAST; i++) {
+                var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
+                page.flush_changes ();
+            }
         }
 
         fade_actor (actor, ui_state == UIState.PROPERTIES ? 255 : 0);

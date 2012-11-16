@@ -546,6 +546,21 @@ private class Boxes.App: Boxes.UI {
         notebook.page = Boxes.AppPage.MAIN;
     }
 
+    private void position_item_actor_at_icon (CollectionItem item) {
+        float item_x, item_y;
+        view.get_item_pos (item, out item_x, out item_y);
+        var actor = item.actor;
+        var old_duration = actor.get_easing_duration ();
+        // We temporarily set the duration to 0 because we don't want to animate
+        // fixed_x/y, but rather immidiately set it to the target value and then
+        // animate actor.allocation which is set based on these.
+        actor.set_easing_duration (0);
+        actor.fixed_x = item_x;
+        actor.fixed_y = item_y;
+        actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
+        actor.set_easing_duration (old_duration);
+    }
+
     public override void ui_state_changed () {
         action_fullscreen.set_enabled (ui_state == UIState.DISPLAY);
         action_properties.set_enabled (ui_state == UIState.DISPLAY);
@@ -579,24 +594,16 @@ private class Boxes.App: Boxes.UI {
 
             // Animate current_item actor to collection position
             if (current_item != null) {
-                float item_x, item_y;
-                view.get_item_pos (current_item, out item_x, out item_y);
-
                 var actor = current_item.actor;
-                actor.set_easing_duration (0);
+
                 actor.show ();
+                position_item_actor_at_icon (current_item);
 
-                actor.fixed_x = item_x;
-                actor.fixed_y = item_y;
-                actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
-
-                actor.set_easing_duration (App.app.duration);
+                // Also track size changes in the icon_view during the animation
                 var id = view.icon_view.size_allocate.connect ((allocation) => {
+                    // We do this in an idle to avoid causing a layout inside a size_allocate cycle
                     Idle.add_full (Priority.HIGH, () => {
-                        float item_x2, item_y2;
-                        view.get_item_pos (current_item, out item_x2, out item_y2);
-                        actor.x = item_x2;
-                        actor.y = item_y2;
+                        position_item_actor_at_icon (current_item);
                         return false;
                     });
                 });

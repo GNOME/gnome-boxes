@@ -26,18 +26,14 @@ private class Boxes.Sidebar: Boxes.UI {
 
     public override void ui_state_changed () {
         switch (ui_state) {
-        case UIState.COLLECTION:
-            App.app.sidebar_revealer.unreveal ();
-            break;
-
-        default:
-            App.app.sidebar_revealer.unreveal ();
-            break;
-
         case UIState.WIZARD:
         case UIState.PROPERTIES:
             App.app.sidebar_revealer.reveal ();
             notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
+            break;
+
+        default:
+            App.app.sidebar_revealer.unreveal ();
             break;
         }
     }

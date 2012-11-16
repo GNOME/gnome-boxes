@@ -157,11 +157,5 @@ private class Boxes.Searchbar: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        switch (ui_state) {
-        case UIState.COLLECTION:
-            break;
-        default:
-            break;
-        }
     }
 }
