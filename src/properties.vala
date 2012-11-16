@@ -177,15 +177,9 @@ private class Boxes.Properties: Boxes.UI {
 
         PropertiesPage current_page;
 
-        if (libvirt_machine != null) {
-            stats_id = libvirt_machine.stats_updated.connect (() => {
-                cpu.points = libvirt_machine.cpu_stats;
-                net.points = libvirt_machine.net_stats;
-                io.points = libvirt_machine.io_stats;
-            });
-
+        if (libvirt_machine != null)
             current_page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.LOGIN;
-        } else
+        else
             current_page = PropertiesPage.LOGIN;
 
         var path = new Gtk.TreePath.from_indices (current_page);
@@ -303,6 +297,15 @@ private class Boxes.Properties: Boxes.UI {
 
         switch (ui_state) {
         case UIState.PROPERTIES:
+            if (App.app.current_item is LibvirtMachine) {
+                var libvirt_machine = App.app.current_item as LibvirtMachine;
+                stats_id = libvirt_machine.stats_updated.connect (() => {
+                    cpu.points = libvirt_machine.cpu_stats;
+                    net.points = libvirt_machine.net_stats;
+                    io.points = libvirt_machine.io_stats;
+                });
+            }
+
             toolbar_label_bind = null;
             if (previous_ui_state != UIState.COLLECTION)
                 toolbar_label_bind = App.app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
