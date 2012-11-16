@@ -60,7 +60,7 @@ private class Boxes.App: Boxes.UI {
     public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
 
     private uint configure_id;
-    private ulong status_id;
+    private GLib.Binding status_bind;
     private ulong got_error_id;
     public static const uint configure_id_timeout = 100;  // 100ms
 
@@ -559,12 +559,10 @@ private class Boxes.App: Boxes.UI {
         switch (ui_state) {
         case UIState.COLLECTION:
             set_main_ui_state ();
+            topbar.status = null;
+            status_bind = null;
             if (current_item is Machine) {
                 var machine = current_item as Machine;
-                if (status_id != 0) {
-                    machine.disconnect (status_id);
-                    status_id = 0;
-                }
                 if (got_error_id != 0) {
                     machine.disconnect (got_error_id);
                     got_error_id = 0;
@@ -738,10 +736,7 @@ private class Boxes.App: Boxes.UI {
         actor.set_easing_duration (App.app.duration);
 
         // Track machine status in toobar
-        topbar.set_status (machine.status);
-        status_id = machine.notify["status"].connect ( () => {
-                topbar.set_status (machine.status);
-        });
+        status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
 
         got_error_id = machine.got_error.connect ( (message) => {
             App.app.notificationbar.display_error (message);

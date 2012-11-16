@@ -25,6 +25,12 @@ private class Boxes.Topbar: Boxes.UI {
     private Gd.MainToolbar selection_toolbar;
     private Gd.MainToolbar collection_toolbar;
 
+    public string? _status;
+    public string? status {
+        get { return _status; }
+        set { _status = value; collection_toolbar.set_labels (_status, null); }
+    }
+
     public Topbar () {
         setup_topbar ();
 
@@ -128,10 +134,6 @@ private class Boxes.Topbar: Boxes.UI {
         select_btn.sensitive = App.app.collection.items.length != 0;
     }
 
-    public void set_status (string? text) {
-        collection_toolbar.set_labels (text, null);
-    }
-
     private void update_selection_label () {
         var items = App.app.selected_items.length ();
         if (items > 0)
@@ -145,7 +147,6 @@ private class Boxes.Topbar: Boxes.UI {
     public override void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
-            set_status (null);
             notebook.page = TopbarPage.COLLECTION;
             back_btn.hide ();
             spinner.hide ();
