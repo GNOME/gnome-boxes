@@ -559,6 +559,9 @@ private class Boxes.App: Boxes.UI {
         if (ui_state != UIState.DISPLAY)
             set_main_ui_state ();
 
+        if (ui_state != UIState.COLLECTION)
+            searchbar_revealer.revealed = false;
+
         switch (ui_state) {
         case UIState.COLLECTION:
             topbar.status = null;
@@ -579,7 +582,6 @@ private class Boxes.App: Boxes.UI {
         case UIState.CREDS:
         case UIState.PROPERTIES:
         case UIState.WIZARD:
-            searchbar_revealer.revealed = false;
             break;
 
         case UIState.DISPLAY:
