@@ -65,21 +65,8 @@ private class Boxes.CollectionView: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        switch (ui_state) {
-        case UIState.COLLECTION:
+        if (ui_state == UIState.COLLECTION)
             icon_view.unselect_all ();
-            break;
-
-        case UIState.CREDS:
-            break;
-
-        case UIState.WIZARD:
-            break;
-
-        case UIState.PROPERTIES:
-            break;
-        }
-
         fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
