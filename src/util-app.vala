@@ -98,6 +98,17 @@ namespace Boxes {
         return obj->stringval;
     }
 
+    // This can be used to ensure a specific initial allocation for a previously unallocated actor
+    public void allocate_actor_no_animation (Clutter.Actor actor,
+                                             float x, float y,
+                                             float width, float height) {
+        var old_duration = actor.get_easing_duration ();
+        actor.set_easing_duration (0);
+        Clutter.ActorBox box = { x, y, x + width, y + height};
+        actor.allocate (box, 0);
+        actor.set_easing_duration (old_duration);
+    }
+
     public void fade_actor (Clutter.Actor actor, uint opacity) {
         if (opacity != 0)
             actor.show ();

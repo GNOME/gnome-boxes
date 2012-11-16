@@ -748,8 +748,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
 
             if (zoom) {
-                Clutter.ActorBox box = { 0, 0,  width, height};
-                thumbnail.allocate (box, 0);
+                allocate_actor_no_animation (thumbnail, 0, 0, width, height);
 
                 // Temporarily hide toolbar in fullscreen so that the the animation
                 // actor doesn't get pushed down before zooming to the sidebar

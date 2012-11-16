@@ -768,10 +768,9 @@ private class Boxes.App: Boxes.UI {
         var actor = machine.actor;
         if (actor.get_parent () == null) {
             App.app.overlay_bin_actor.add_child (actor);
-            actor.set_easing_duration (0);
-
-            Clutter.ActorBox box = { x, y, x + Machine.SCREENSHOT_WIDTH, y + Machine.SCREENSHOT_HEIGHT * 2};
-            actor.allocate (box, 0);
+            allocate_actor_no_animation (actor, x, y,
+                                         Machine.SCREENSHOT_WIDTH,
+                                         Machine.SCREENSHOT_HEIGHT * 2);
         }
         actor.show ();
         actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
