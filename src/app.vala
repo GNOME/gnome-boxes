@@ -577,11 +577,51 @@ private class Boxes.App: Boxes.UI {
             view.visible = true;
             searchbar_revealer.revealed = searchbar.visible;
 
+            // Animate current_item actor to collection position
+            if (current_item != null) {
+                float item_x, item_y;
+                view.get_item_pos (current_item, out item_x, out item_y);
+
+                var actor = current_item.actor;
+                actor.set_easing_duration (0);
+                actor.show ();
+
+                actor.fixed_x = item_x;
+                actor.fixed_y = item_y;
+                actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
+
+                actor.set_easing_duration (App.app.duration);
+                var id = view.icon_view.size_allocate.connect ((allocation) => {
+                    Idle.add_full (Priority.HIGH, () => {
+                        float item_x2, item_y2;
+                        view.get_item_pos (current_item, out item_x2, out item_y2);
+                        actor.x = item_x2;
+                        actor.y = item_y2;
+                        return false;
+                    });
+                });
+                ulong completed_id = 0;
+                completed_id = actor.transitions_completed.connect (() => {
+                    actor.disconnect (completed_id);
+                    view.icon_view.disconnect (id);
+                    if (App.app.ui_state == UIState.COLLECTION ||
+                        App.app.current_item.actor != actor)
+                        actor_remove (actor);
+                });
+            }
+
             break;
 
         case UIState.CREDS:
-        case UIState.PROPERTIES:
+            break;
+
         case UIState.WIZARD:
+            if (current_item != null)
+                actor_remove (current_item.actor);
+            break;
+
+        case UIState.PROPERTIES:
+            current_item.actor.hide ();
             break;
 
         case UIState.DISPLAY:
@@ -591,6 +631,9 @@ private class Boxes.App: Boxes.UI {
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
             break;
         }
+
+        if (current_item != null)
+            current_item.ui_state = ui_state;
     }
 
     public void suspend_machines () {

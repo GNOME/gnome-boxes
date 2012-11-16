@@ -31,7 +31,7 @@ private class Boxes.CollectionView: Boxes.UI {
         LAST
     }
 
-    private Gd.MainIconView icon_view;
+    public Gd.MainIconView icon_view;
     private Gtk.ListStore model;
     private Gtk.TreeModelFilter model_filter;
 
@@ -66,60 +66,23 @@ private class Boxes.CollectionView: Boxes.UI {
 
     public override void ui_state_changed () {
         uint opacity = 0;
-        var current_item = App.app.current_item;
         switch (ui_state) {
         case UIState.COLLECTION:
             opacity = 255;
             icon_view.unselect_all ();
-            if (current_item != null) {
-                var actor = current_item.actor;
-                actor.set_easing_duration (0);
-                actor.show ();
-
-                float item_x, item_y;
-                get_item_pos (current_item, out item_x, out item_y);
-                actor.fixed_x = item_x;
-                actor.fixed_y = item_y;
-                actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
-
-                actor.set_easing_duration (App.app.duration);
-                var id = icon_view.size_allocate.connect ((allocation) => {
-                    Idle.add_full (Priority.HIGH, () => {
-                        float item_x2, item_y2;
-                        get_item_pos (current_item, out item_x2, out item_y2);
-                        actor.x = item_x2;
-                        actor.y = item_y2;
-                        return false;
-                    });
-                });
-                ulong completed_id = 0;
-                completed_id = actor.transitions_completed.connect (() => {
-                    actor.disconnect (completed_id);
-                    icon_view.disconnect (id);
-                    if (App.app.ui_state == UIState.COLLECTION ||
-                        App.app.current_item.actor != actor)
-                        actor_remove (actor);
-                });
-            }
             break;
 
         case UIState.CREDS:
             break;
 
         case UIState.WIZARD:
-            if (current_item != null)
-                actor_remove (current_item.actor);
             break;
 
         case UIState.PROPERTIES:
-            current_item.actor.hide ();
             break;
         }
 
         fade_actor (actor, opacity);
-
-        if (current_item != null)
-            current_item.ui_state = ui_state;
     }
 
     public void update_item_visible (CollectionItem item) {
