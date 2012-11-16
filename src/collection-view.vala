@@ -65,10 +65,8 @@ private class Boxes.CollectionView: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        uint opacity = 0;
         switch (ui_state) {
         case UIState.COLLECTION:
-            opacity = 255;
             icon_view.unselect_all ();
             break;
 
@@ -82,7 +80,7 @@ private class Boxes.CollectionView: Boxes.UI {
             break;
         }
 
-        fade_actor (actor, opacity);
+        fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
     public void update_item_visible (CollectionItem item) {

@@ -672,7 +672,6 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        uint opacity = 0;
         switch (ui_state) {
         case UIState.WIZARD:
             if (previous_ui_state == UIState.PROPERTIES)
@@ -681,11 +680,10 @@ private class Boxes.Wizard: Boxes.UI {
                 wizard_source.uri = "";
                 page = WizardPage.INTRODUCTION;
             }
-            opacity = 255;
             break;
         }
 
-        fade_actor (actor, opacity);
+        fade_actor (actor, ui_state == UIState.WIZARD ? 255 : 0);
     }
 
     private void destroy_machine () {

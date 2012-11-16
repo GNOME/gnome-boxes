@@ -289,7 +289,6 @@ private class Boxes.Properties: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        uint opacity = 0;
         if (stats_id != 0) {
             App.app.current_item.disconnect (stats_id);
             stats_id = 0;
@@ -312,7 +311,6 @@ private class Boxes.Properties: Boxes.UI {
             else
                 toolbar_label.label = "";
             populate ();
-            opacity = 255;
             break;
         default:
             if (previous_ui_state == UIState.PROPERTIES)
@@ -323,6 +321,7 @@ private class Boxes.Properties: Boxes.UI {
                 }
             break;
         }
-        fade_actor (actor, opacity);
+
+        fade_actor (actor, ui_state == UIState.PROPERTIES ? 255 : 0);
     }
 }
