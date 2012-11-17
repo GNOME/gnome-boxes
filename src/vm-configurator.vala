@@ -297,6 +297,26 @@ private class Boxes.VMConfigurator {
         return get_custom_xml_node (domain, "os-state");
     }
 
+    public static string? get_source_media_path (Domain domain) {
+        string path = null;
+
+        var devices = domain.get_devices ();
+        foreach (var device in devices) {
+            if (!(device is DomainDisk))
+                continue;
+
+            var disk = device as DomainDisk;
+            var disk_type = disk.get_guest_device_type ();
+            if (disk_type == DomainDiskGuestDeviceType.CDROM) {
+                path = disk.get_source ().dup ();
+
+                break;
+            }
+        }
+
+        return path;
+    }
+
     private static string? get_custom_xml_node (Domain domain, string node_name) {
         var xml = domain.get_custom_xml (BOXES_NS_URI);
         if (xml != null) {
