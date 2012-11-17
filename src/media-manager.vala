@@ -28,6 +28,40 @@ private class Boxes.MediaManager : Object {
         return create_installer_media_from_media (media);
     }
 
+    public async InstallerMedia create_installer_media_from_config (GVirConfig.Domain config) {
+        var path = VMConfigurator.get_source_media_path (config);
+        var label = config.title;
+
+        Os? os = null;
+        Media? os_media = null;
+
+        try {
+            var os_id = VMConfigurator.get_os_id (config);
+            if (os_id != null) {
+                os = yield os_db.get_os_by_id (os_id);
+
+                var media_id = VMConfigurator.get_os_media_id (config);
+                if (media_id != null)
+                    os_media = os_db.get_media_by_id (os, media_id);
+            }
+        } catch (OSDatabaseError error) {
+            warning ("%s", error.message);
+        }
+
+        var architecture = (os_media != null) ? os_media.architecture : null;
+        var resources = os_db.get_resources_for_os (os, architecture);
+
+        var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
+
+        try {
+            media = create_installer_media_from_media (media);
+        } catch (GLib.Error error) {
+            debug ("%s", error.message); // We just failed to create more specific media instance, no biggie!
+        }
+
+        return media;
+    }
+
     public async GLib.List<InstallerMedia> list_installer_medias () {
         var list = new GLib.List<InstallerMedia> ();
 
