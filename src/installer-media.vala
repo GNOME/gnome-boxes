@@ -27,8 +27,8 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public InstallerMedia.from_iso_info (string           path,
                                          string           label,
-                                         Os               os,
-                                         Media            media,
+                                         Os?              os,
+                                         Media?           media,
                                          Osinfo.Resources resources) {
         this.device_file = path;
         this.os = os;
