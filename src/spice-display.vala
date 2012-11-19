@@ -41,14 +41,17 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session = new Session ();
         audio = Spice.Audio.get (session, null);
         gtk_session = GtkSession.get (session);
-        var manager = UsbDeviceManager.get (session);
-        manager.auto_connect_failed.connect ( (dev, err) => {
-            got_error (err.message);
-        });
+        try {
+            var manager = UsbDeviceManager.get (session);
+            manager.auto_connect_failed.connect ( (dev, err) => {
+                    got_error (err.message);
+            });
 
-        manager.device_error.connect ( (dev, err) => {
-            got_error (err.message);
-        });
+            manager.device_error.connect ( (dev, err) => {
+                    got_error (err.message);
+            });
+        } catch (GLib.Error error) {
+        }
 
         this.notify["config"].connect (() => {
             config.sync_properties (gtk_session, gtk_session_sync_properties);
