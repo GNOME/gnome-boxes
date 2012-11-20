@@ -159,7 +159,7 @@ private class Boxes.VMCreator {
         debug ("Setting post-installation configuration on '%s'", machine.name);
         try {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-            VMConfigurator.post_install_setup (config);
+            VMConfigurator.post_install_setup (config, install_media);
             machine.domain.set_config (config);
         } catch (GLib.Error error) {
             warning ("Failed to set post-install configuration on '%s': %s", machine.name, error.message);

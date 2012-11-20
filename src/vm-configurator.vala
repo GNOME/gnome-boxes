@@ -25,16 +25,7 @@ private class Boxes.VMConfigurator {
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
-        var custom_xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
-        if (install_media.os != null)
-            custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
-        if (install_media.os_media != null)
-            custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
-
-        custom_xml = BOXES_XML.printf (custom_xml);
-        try {
-            domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
-        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+        update_custom_xml (domain, install_media);
 
         var best_caps = get_best_guest_caps (caps, install_media);
         domain.memory = install_media.resources.ram / KIBIBYTES;
@@ -110,7 +101,7 @@ private class Boxes.VMConfigurator {
         return domain;
     }
 
-    public static void post_install_setup (Domain domain) {
+    public static void post_install_setup (Domain domain, InstallerMedia install_media) {
         set_post_install_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
 
@@ -130,7 +121,7 @@ private class Boxes.VMConfigurator {
 
         domain.set_devices (devices);
 
-        mark_as_installed (domain);
+        mark_as_installed (domain, install_media);
     }
 
     public static bool is_install_config (Domain domain) {
@@ -183,11 +174,8 @@ private class Boxes.VMConfigurator {
         return get_custom_xml_node (domain, "media-id");
     }
 
-    private static void mark_as_installed (Domain domain) {
-        try {
-            var custom_xml = BOXES_XML.printf (INSTALLED_XML);
-            domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
-        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+    private static void mark_as_installed (Domain domain, InstallerMedia install_media) {
+        update_custom_xml (domain, install_media, true);
     }
 
     private static void set_cpu_config (Domain domain, Capabilities caps) {
@@ -345,6 +333,25 @@ private class Boxes.VMConfigurator {
         debug ("No XML node %s' for domain '%s'.", node_name, domain.get_name ());
 
         return null;
+    }
+
+    private static void update_custom_xml (Domain domain, InstallerMedia install_media, bool installed = false) {
+        string custom_xml;
+
+        if (installed)
+            custom_xml = INSTALLED_XML;
+        else
+            custom_xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
+
+        if (install_media.os != null)
+            custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
+        if (install_media.os_media != null)
+            custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
+
+        custom_xml = BOXES_XML.printf (custom_xml);
+        try {
+            domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
+        } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
     }
 
     public static void add_usb_support (Domain domain) {
