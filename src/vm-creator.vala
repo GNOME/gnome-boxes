@@ -20,12 +20,7 @@ private class Boxes.VMCreator {
     }
 
     public VMCreator.for_install_completion (LibvirtMachine machine) {
-        state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
-        machine.vm_creator = this;
-        update_machine_info (machine);
-
-        if (machine.state == Machine.MachineState.SAVED && VMConfigurator.is_install_config (machine.domain_config))
-            machine.domain.start_async.begin (0, null);
+        continue_installation.begin (machine);
     }
 
     public async LibvirtMachine create_vm (Cancellable? cancellable) throws GLib.Error {
@@ -80,6 +75,23 @@ private class Boxes.VMCreator {
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
         update_machine_info (machine);
+    }
+
+    private async void continue_installation (LibvirtMachine machine) {
+        install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
+
+        state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
+        machine.vm_creator = this;
+        update_machine_info (machine);
+
+        on_machine_state_changed (machine);
+
+        if (machine.state == Machine.MachineState.SAVED && VMConfigurator.is_install_config (machine.domain_config))
+            try {
+                yield machine.domain.start_async (0, null);
+            } catch (GLib.Error e) {
+                warning ("Failed to start '%s': %s", machine.name, e.message);
+            }
     }
 
     private void on_machine_state_changed (GLib.Object object, GLib.ParamSpec? pspec = null) {
@@ -162,8 +174,7 @@ private class Boxes.VMCreator {
             if (install_trackable ())
                 // Great! We know how much storage installed guest consumes
                 return get_progress (volume) == INSTALL_COMPLETE_PERCENT;
-            else if (install_media != null && install_media.os_media != null &&
-                     VMConfigurator.is_install_config (machine.domain_config))
+            else if (install_media.os_media != null && VMConfigurator.is_install_config (machine.domain_config))
                 return (num_reboots == install_media.os_media.installer_reboots);
             else {
                 var info = volume.get_info ();
@@ -222,7 +233,7 @@ private class Boxes.VMCreator {
     }
 
     private bool install_trackable () {
-        return (install_media != null && install_media.installed_size > 0);
+        return (install_media.installed_size > 0);
     }
 
     private int get_progress (GVir.StorageVol volume) throws GLib.Error {
