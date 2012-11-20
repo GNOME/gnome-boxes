@@ -55,6 +55,16 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 if (orig_pixbuf != null)
                     pixbuf = draw_vm (orig_pixbuf, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
             }
+
+            // If the display is active and the VM goes to a non-running
+            // state, we got to exit, as there is no way for the user
+            // to progress in the vm display anymore
+            if (display != null && !stay_on_display &&
+                App.app.current_item == this &&
+                value != MachineState.RUNNING &&
+                value != MachineState.UNKNOWN) {
+                App.app.ui_state = Boxes.UIState.COLLECTION;
+            }
         }
     }
 
