@@ -644,6 +644,11 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void suspend_machines () {
+        // if we are not the main Boxes instance, 'collection' won't
+        // be set as it's created in GtkApplication::startup()
+        if (collection == null)
+            return;
+
         debug ("Suspending running boxes");
 
         var waiting_counter = 0;
