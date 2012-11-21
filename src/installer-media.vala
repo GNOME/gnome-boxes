@@ -72,7 +72,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     public virtual async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {}
 
     public virtual void setup_domain_config (Domain domain) {
-        add_cd_config (domain, from_image?DomainDiskType.FILE:DomainDiskType.BLOCK, device_file, "hdc", true);
+        add_cd_config (domain, from_image? DomainDiskType.FILE : DomainDiskType.BLOCK, device_file, "hdc", true);
     }
 
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
