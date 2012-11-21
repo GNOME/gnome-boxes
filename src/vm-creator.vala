@@ -24,7 +24,8 @@ private class Boxes.VMCreator {
         machine.vm_creator = this;
         update_machine_info (machine);
 
-        on_machine_state_changed (machine);
+        if (machine.state == Machine.MachineState.SAVED && VMConfigurator.is_install_config (machine.domain_config))
+            machine.domain.start_async.begin (0, null);
     }
 
     public async LibvirtMachine create_vm (Cancellable? cancellable) throws GLib.Error {
@@ -99,11 +100,9 @@ private class Boxes.VMCreator {
             return;
 
         if (machine.state == Machine.MachineState.SAVED) {
-            debug ("'%s' has saved state, no need for post-installation setup on it", machine.name);
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
             // steps for this domain.
-            if (VMConfigurator.is_install_config (machine.domain_config))
-                domain.start_async.begin (0, null);
+            debug ("'%s' has saved state, no need for post-installation setup on it", machine.name);
 
             return;
         }
