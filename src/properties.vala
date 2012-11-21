@@ -96,15 +96,22 @@ private class Boxes.Properties: Boxes.UI {
             if (!empty) {
                 int current_row = 1;
                 foreach (var property in properties) {
-                    var label_name = new Gtk.Label (property.description);
-                    label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
-                    label_name.margin_left = 25;
-                    label_name.halign = Gtk.Align.START;
-                    label_name.hexpand = false;
-                    grid.attach (label_name, 0, current_row, 1, 1);
-                    var widget = property.widget;
-                    widget.hexpand = true;
-                    grid.attach (widget, 1, current_row, 1, 1);
+                    if (property.description != null) {
+                        var label_name = new Gtk.Label (property.description);
+                        label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
+                        label_name.margin_left = 25;
+                        label_name.halign = Gtk.Align.START;
+                        label_name.hexpand = false;
+                        grid.attach (label_name, 0, current_row, 1, 1);
+                        var widget = property.widget;
+                        widget.hexpand = true;
+                        grid.attach (widget, 1, current_row, 1, 1);
+                    } else {
+                        var widget = property.widget;
+                        widget.hexpand = true;
+                        widget.margin_left = 25;
+                        grid.attach (widget, 0, current_row, 2, 1);
+                    }
 
                     widget = property.extra_widget;
                     if (widget != null) {
