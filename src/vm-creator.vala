@@ -79,6 +79,7 @@ private class Boxes.VMCreator {
 
     private async void continue_installation (LibvirtMachine machine) {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
+        num_reboots = VMConfigurator.get_num_reboots (machine.domain_config);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
@@ -119,7 +120,7 @@ private class Boxes.VMCreator {
             return;
         }
 
-        num_reboots++;
+        increment_num_reboots (machine);
 
         if (guest_installed_os (machine)) {
             set_post_install_config (machine);
@@ -166,6 +167,16 @@ private class Boxes.VMCreator {
         }
     }
 
+    private void increment_num_reboots (LibvirtMachine machine) {
+        num_reboots++;
+        try {
+            var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+            VMConfigurator.set_num_reboots (config, install_media, num_reboots);
+            machine.domain.set_config (config);
+        } catch (GLib.Error error) {
+            warning ("Failed to update configuration on '%s': %s", machine.name, error.message);
+        }
+    }
 
     private bool guest_installed_os (LibvirtMachine machine) {
         var volume = machine.storage_volume;

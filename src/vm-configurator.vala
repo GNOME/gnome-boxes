@@ -20,6 +20,7 @@ private class Boxes.VMConfigurator {
 
     private const string OS_ID_XML = "<os-id>%s</os-id>";
     private const string MEDIA_ID_XML = "<media-id>%s</media-id>";
+    private const string NUM_REBOOTS_XML = "<num-reboots>%u</num-reboots>";
 
     public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
                                         throws VMConfiguratorError {
@@ -174,8 +175,17 @@ private class Boxes.VMConfigurator {
         return get_custom_xml_node (domain, "media-id");
     }
 
+    public static uint get_num_reboots (Domain domain) {
+        var str = get_custom_xml_node (domain, "num-reboots");
+        return (str != null)? int.parse (str) : 0;
+    }
+
+    public static void set_num_reboots (Domain domain, InstallerMedia install_media, uint num_reboots) {
+        update_custom_xml (domain, install_media, num_reboots);
+    }
+
     private static void mark_as_installed (Domain domain, InstallerMedia install_media) {
-        update_custom_xml (domain, install_media, true);
+        update_custom_xml (domain, install_media, 0, true);
     }
 
     private static void set_cpu_config (Domain domain, Capabilities caps) {
@@ -335,7 +345,10 @@ private class Boxes.VMConfigurator {
         return null;
     }
 
-    private static void update_custom_xml (Domain domain, InstallerMedia install_media, bool installed = false) {
+    private static void update_custom_xml (Domain domain,
+                                           InstallerMedia install_media,
+                                           uint num_reboots = 0,
+                                           bool installed = false) {
         string custom_xml;
 
         if (installed)
@@ -347,6 +360,9 @@ private class Boxes.VMConfigurator {
             custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
         if (install_media.os_media != null)
             custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
+
+        if (num_reboots != 0)
+            custom_xml += NUM_REBOOTS_XML.printf (num_reboots);
 
         custom_xml = BOXES_XML.printf (custom_xml);
         try {
