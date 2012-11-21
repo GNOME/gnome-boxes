@@ -306,7 +306,6 @@ private class Boxes.WizardSource: GLib.Object {
                                                 Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
                                                 Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
         dialog.show_hidden = false;
-        dialog.local_only = true;
         dialog.filter = new Gtk.FileFilter ();
         dialog.filter.add_mime_type ("application/x-cd-image");
         foreach (var extension in InstalledMedia.supported_extensions)
