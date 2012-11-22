@@ -2,7 +2,7 @@
 using Gtk;
 
 private class Boxes.Property: GLib.Object {
-    public string description { get; construct set; }
+    public string? description { get; construct set; }
     public Gtk.Widget widget { get; construct set; }
     public Gtk.Widget? extra_widget { get; construct set; }
     public bool reboot_required { get; set; }
@@ -36,7 +36,7 @@ private class Boxes.Property: GLib.Object {
         }
     }
 
-    public Property (string description, Gtk.Widget widget, Gtk.Widget? extra_widget) {
+    public Property (string? description, Gtk.Widget widget, Gtk.Widget? extra_widget) {
         base (description: description, widget: widget, extra_widget: extra_widget);
     }
 
@@ -62,7 +62,7 @@ public enum PropertyCreationFlag {
 private interface Boxes.IPropertiesProvider: GLib.Object {
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
 
-    protected Boxes.Property add_property (ref List<Boxes.Property> list, string name, Widget widget, Widget? extra_widget = null) {
+    protected Boxes.Property add_property (ref List<Boxes.Property> list, string? name, Widget widget, Widget? extra_widget = null) {
         var property = new Property (name, widget, extra_widget);
         list.append (property);
         return property;
