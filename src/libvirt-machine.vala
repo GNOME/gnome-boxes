@@ -320,6 +320,51 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             notify_reboot_required ();
     }
 
+    private string collect_logs () {
+        var builder = new StringBuilder ();
+
+        builder.append_printf ("Domain: %s\n", domain.get_name ());
+        builder.append_printf ("UUID: %s\n", domain.get_uuid ());
+        builder.append_printf ("Persistent: %s\n", domain.get_persistent () ? "yes" : "no");
+        try {
+            var info = domain.get_info ();
+            builder.append_printf ("Cpu time: %"+uint64.FORMAT_MODIFIER+"d\n", info.cpuTime);
+            builder.append_printf ("Memory: %"+uint64.FORMAT_MODIFIER+"d\n", info.memory);
+            builder.append_printf ("Max memory: %"+uint64.FORMAT_MODIFIER+"d\n", info.maxMem);
+            builder.append_printf ("CPUs: %d\n", info.nrVirtCpu);
+            builder.append_printf ("State: %s\n", info.state.to_string ());
+        } catch (GLib.Error e) {
+        }
+
+        if (display != null)
+            display.collect_logs (builder);
+
+
+        try {
+            var conf = domain.get_config (GVir.DomainXMLFlags.NONE);
+            builder.append_printf ("\nDomain config:\n");
+            builder.append_printf ("------------------------------------------------------------\n");
+
+            builder.append (conf.to_xml ());
+            builder.append_printf ("\n" +
+                                   "------------------------------------------------------------\n");
+        } catch (GLib.Error error) {
+        }
+
+        try {
+            var logfile = Path.build_filename (Environment.get_user_cache_dir (), "libvirt/qemu/log", domain.get_name ()  + ".log");
+            string data;
+            FileUtils.get_contents (logfile, out data);
+            builder.append_printf ("\nQEMU log:\n");
+            builder.append_printf ("------------------------------------------------------------\n");
+
+            builder.append (data);
+            builder.append_printf ("------------------------------------------------------------\n");
+        } catch (GLib.Error e) {
+        }
+        return builder.str;
+    }
+
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags) {
         var list = new List<Boxes.Property> ();
 
@@ -344,6 +389,65 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         case PropertiesPage.SYSTEM:
             add_ram_property (ref list);
             add_storage_property (ref list);
+
+            var button = new Gtk.Button.with_label (_("Troubleshooting log"));
+            button.halign = Gtk.Align.START;
+            add_property (ref list, null, button);
+            button.clicked.connect (() => {
+                var log = collect_logs ();
+                var dialog = new Gtk.Dialog.with_buttons (_("Troubleshooting log"),
+                                                          App.app.window,
+                                                          DialogFlags.DESTROY_WITH_PARENT,
+                                                          Stock.SAVE, 100,
+                                                          _("Copy to clipboard"), 101,
+                                                          Stock.CLOSE, ResponseType.OK);
+                dialog.set_default_size (640, 480);
+                var text = new Gtk.TextView ();
+                text.editable = false;
+                var scroll = new Gtk.ScrolledWindow (null, null);
+                scroll.add (text);
+                scroll.vexpand = true;
+
+                dialog.get_content_area ().add (scroll);
+                text.buffer.set_text (log);
+                dialog.show_all ();
+
+                dialog.response.connect ( (response_id) => {
+                    if (response_id == 100) {
+                        var chooser = new Gtk.FileChooserDialog (_("Save log"), App.app.window,
+                                                                 Gtk.FileChooserAction.SAVE,
+                                                                 Stock.SAVE, ResponseType.OK);
+                        chooser.local_only = false;
+                        chooser.do_overwrite_confirmation = true;
+                        chooser.response.connect ((response_id) => {
+                            if (response_id == ResponseType.OK) {
+                                var file = chooser.get_file ();
+                                try {
+                                    file.replace_contents (log.data, null, false,
+                                                           FileCreateFlags.REPLACE_DESTINATION, null);
+                                } catch (GLib.Error e) {
+                                    var m = new Gtk.MessageDialog (chooser,
+                                                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                                   Gtk.MessageType.ERROR,
+                                                                   Gtk.ButtonsType.CLOSE,
+                                                                   _("Error saving: %s").printf (e.message));
+                                    m.show_all ();
+                                    m.response.connect ( () => { m.destroy (); });
+                                    return;
+                                }
+                                chooser.destroy ();
+                            } else {
+                                chooser.destroy ();
+                            }
+                        });
+                        chooser.show_all ();
+                    } else if (response_id == 101){
+                        Gtk.Clipboard.get_for_display (dialog.get_display (), Gdk.SELECTION_CLIPBOARD).set_text (log, -1);
+                    } else {
+                        dialog.destroy ();
+                    }
+                });
+            });
             break;
 
         case PropertiesPage.DISPLAY:

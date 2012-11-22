@@ -148,6 +148,31 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         return display.get_pixbuf ();
     }
 
+    public override void collect_logs (StringBuilder builder) {
+        builder.append_printf ("URI: %s\n", uri);
+        builder.append_printf ("Auto resize guest: %s\n", resize_guest ? "yes" : "no");
+        if (gtk_session != null) {
+            builder.append_printf ("Auto redirect USB: %s\n", gtk_session.auto_usbredir ? "yes" : "no");
+            builder.append_printf ("Auto clipboard sync: %s\n", gtk_session.auto_clipboard ? "yes" : "no");
+        }
+        if (main_channel != null) {
+            builder.append_printf ("Spice-gtk version %s\n", Spice.util_get_version_string ());
+            builder.append_printf ("Mouse mode: %s\n", main_channel.mouse_mode == 1 ? "server" : "client");
+            builder.append_printf ("Agent: %s\n", main_channel.agent_connected ? "connected" : "disconnected");
+        }
+
+        try {
+            var manager = UsbDeviceManager.get (session);
+            var devs = manager.get_devices ();
+            for (int i = 0; i < devs.length; i++) {
+                var dev = devs[i];
+                if (manager.is_device_connected (dev))
+                    builder.append_printf ("USB device redirected: %s\n", dev.get_description ("%s %s %s at %d-%d"));
+            }
+        } catch (GLib.Error error) {
+        }
+    }
+
     public override void connect_it () {
         // We only initiate connection once
         if (connected)
