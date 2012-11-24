@@ -71,6 +71,8 @@ private class Boxes.Selectionbar: GLib.Object {
                    }
                });
            }
+
+           pause_btn.sensitive = false;
         });
 
         remove_btn = new Gtk.ToggleButton ();
