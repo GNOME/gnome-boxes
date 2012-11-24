@@ -99,6 +99,7 @@ private class Boxes.Selectionbar: GLib.Object {
             update_visible ();
             update_favorite_btn ();
             update_properties_btn ();
+            update_pause_btn ();
         });
     }
 
@@ -135,6 +136,23 @@ private class Boxes.Selectionbar: GLib.Object {
         var sensitive = App.app.selected_items.length () == 1;
 
         properties_btn.sensitive = sensitive;
+    }
+
+    private void update_pause_btn () {
+        var sensitive = false;
+        foreach (var item in App.app.selected_items) {
+            if (!(item is Machine))
+                continue;
+
+            var machine = item as Machine;
+            if (machine.can_save && machine.state != Machine.MachineState.SAVED) {
+                sensitive = true;
+
+                break;
+            }
+        }
+
+        pause_btn.sensitive = sensitive;
     }
 
     private bool visible {
