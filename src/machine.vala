@@ -218,7 +218,17 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return Boxes.get_screenshot_filename (config.uuid);
     }
 
-    public virtual async void save () throws GLib.Error {
+    public async void save () throws GLib.Error {
+        var info = this.info;
+        this.info = (info != null)? info + "\n" : "";
+        this.info += _("Saving...");
+
+        yield save_real ();
+
+        this.info = info;
+    }
+
+    protected virtual async void save_real () throws GLib.Error {
     }
 
     public virtual async Gdk.Pixbuf? take_screenshot () throws GLib.Error {

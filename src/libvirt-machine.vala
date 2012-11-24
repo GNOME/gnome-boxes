@@ -683,12 +683,15 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    public async override void save () throws GLib.Error {
+    public async override void save_real () throws GLib.Error {
         yield domain.save_async (0, null);
     }
 
     public async void suspend () throws GLib.Error {
-        (save_on_quit) ? yield domain.save_async (0, null) : domain.suspend ();
+        if (save_on_quit)
+            yield save ();
+        else
+            domain.suspend ();
     }
 
     public void force_shutdown (bool confirm = true) {
