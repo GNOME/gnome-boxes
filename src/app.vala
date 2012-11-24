@@ -665,8 +665,8 @@ private class Boxes.App: Boxes.UI {
                 if (machine.suspend_at_exit) {
                     waiting_counter++;
                     machine.suspend.begin (() => {
-                            debug ("%s suspended", machine.name);
-                            waiting_counter--;
+                        debug ("%s suspended", machine.name);
+                        waiting_counter--;
                     });
                 }
             }
