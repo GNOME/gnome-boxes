@@ -58,6 +58,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     construct {
         stats = new MachineStat[STATS_SIZE];
         stats_cancellable = new Cancellable ();
+        can_save = true;
     }
 
     private void update_domain_config () {

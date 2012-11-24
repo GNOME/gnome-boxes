@@ -14,6 +14,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public string? status { get; set; }
     public bool suspend_at_exit;
 
+    public bool can_save { get; protected set; default = false; }
+
     public signal void got_error (string message);
 
     private ulong show_id;
