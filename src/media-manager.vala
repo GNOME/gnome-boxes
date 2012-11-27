@@ -133,6 +133,9 @@ private class Boxes.MediaManager : Object {
                                                                        string? label,
                                                                        string? os_id,
                                                                        string? media_id) throws GLib.Error {
+        if (!FileUtils.test (path, FileTest.EXISTS))
+            throw new Boxes.Error.INVALID (_("No such file %s").printf (path));
+
         if (label == null || os_id == null || media_id == null)
             return yield create_installer_media_for_path (path, null);
 
