@@ -265,7 +265,7 @@ private class Boxes.VMCreator {
     private async void create_domain_name_and_title_from_media (out string name, out string title) throws GLib.Error {
         var base_title = install_media.label;
         title = base_title;
-        var base_name = (install_media.os != null) ? install_media.os.short_id : base_title;
+        var base_name = (install_media.os != null) ? install_media.os.short_id : "boxes-unknown";
         name = base_name;
 
         var pool = yield get_storage_pool ();
