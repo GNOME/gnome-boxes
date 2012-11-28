@@ -157,7 +157,7 @@ private class Boxes.InstallerMedia : GLib.Object {
             this.label = os.get_name ();
         else {
             // No appropriate label? :( Lets just use filename then
-            this.label = Path.get_basename (device_file);
+            this.label = get_utf8_basename (device_file);
 
             return;
         }
