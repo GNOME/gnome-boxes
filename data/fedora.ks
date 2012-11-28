@@ -23,7 +23,6 @@ reboot
 
 
 %packages
-@base
 @core
 @hardware-support
 @base-x
