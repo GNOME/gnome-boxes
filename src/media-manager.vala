@@ -151,27 +151,14 @@ private class Boxes.MediaManager : Object {
         if (media.os == null)
             return media;
 
-        switch (media.os.distro) {
-        case "fedora":
-            return new FedoraInstaller.from_media (media);
+        var install_scripts = media.os.get_install_script_list ();
+        var filter = new Filter ();
+        filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
+        install_scripts = install_scripts.new_filtered (filter);
 
-        case "win":
-            switch (media.os.short_id) {
-            case "win7":
-            case "win2k8":
-                return new Win7Installer.from_media (media);
-
-            case "winxp":
-            case "win2k":
-            case "win2k3":
-                return new WinXPInstaller.from_media (media);
-
-            default:
-                return media;
-            }
-
-        default:
+        if (install_scripts.get_length () > 0)
+            return new UnattendedInstaller.from_media (media, install_scripts);
+        else
             return media;
-        }
     }
 }
