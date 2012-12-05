@@ -404,8 +404,8 @@ private abstract class Boxes.UnattendedInstaller: InstallerMedia {
 }
 
 private interface Boxes.UnattendedFile : GLib.Object {
-    protected abstract string src_path { get; set; }
-    protected abstract string dest_name { get; set; }
+    public abstract string src_path { get; set; }
+    public abstract string dest_name { get; set; }
 
     protected abstract UnattendedInstaller installer  { get; set; }
 
@@ -425,8 +425,8 @@ private interface Boxes.UnattendedFile : GLib.Object {
 }
 
 private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
-    protected string src_path { get; set; }
-    protected string dest_name { get; set; }
+    public string dest_name { get; set; }
+    public string src_path { get; set; }
 
     protected UnattendedInstaller installer  { get; set; }
 
@@ -442,8 +442,8 @@ private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
 }
 
 private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
-    protected string src_path { get; set; }
-    protected string dest_name { get; set; }
+    public string dest_name { get; set; }
+    public string src_path { get; set; }
 
     protected UnattendedInstaller installer  { get; set; }
 
@@ -494,8 +494,8 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
 }
 
 private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
-    protected string src_path { get; set; }
-    protected string dest_name { get; set; }
+    public string dest_name { get; set; }
+    public string src_path { get; set; }
 
     protected UnattendedInstaller installer  { get; set; }
 
