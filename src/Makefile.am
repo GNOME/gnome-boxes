@@ -84,7 +84,6 @@ gnome_boxes_SOURCES =				\
 	display-page.vala			\
 	display.vala				\
 	editable-entry.vala			\
-	fedora-installer.vala 			\
 	i-properties-provider.vala		\
 	installer-media.vala 			\
 	iso-extractor.vala			\
@@ -109,9 +108,6 @@ gnome_boxes_SOURCES =				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\
 	vnc-display.vala			\
-	win7-installer.vala 			\
-	windows-installer.vala 			\
-	winxp-installer.vala 			\
 	wizard-source.vala			\
 	wizard.vala				\
 	downloader.vala				\

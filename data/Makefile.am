@@ -27,15 +27,7 @@ servicedir = $(datadir)/dbus-1/services
 service_DATA = $(service_in_files:.service.in=.service)
 
 unattendeddir = $(datadir)/gnome-boxes/unattended
-unattended_DATA = fedora.ks			\
-		  win7.xml 			\
-		  win2k8.xml 			\
-		  winxp.sif 			\
-		  winxp.cmd 			\
-		  winxp.reg 			\
-		  win2k.sif 			\
-		  win2k3.sif 			\
-		  disk.img			\
+unattended_DATA = disk.img			\
 		  $(NULL)
 
 logosdbdir= $(datadir)/gnome-boxes
