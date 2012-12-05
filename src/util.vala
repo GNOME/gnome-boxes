@@ -97,6 +97,14 @@ namespace Boxes {
         return Path.build_filename (dir, file_name);
     }
 
+    public string get_drivers_cache (string? file_name = null) {
+        var dir = Path.build_filename (get_user_pkgcache (), "drivers");
+
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
     public string get_screenshot_filename (string prefix) {
         return get_user_pkgcache (prefix + "-screenshot.png");
     }

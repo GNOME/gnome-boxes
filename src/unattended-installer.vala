@@ -144,6 +144,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         try {
             yield create_disk_image (cancellable);
 
+            yield setup_pre_install_drivers (cancellable);
+
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
 
@@ -209,6 +211,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             config.set_avatar_disk (config.get_script_disk ());
         }
 
+        config.set_pre_install_drivers_disk (config.get_script_disk ());
     }
 
     public override void populate_setup_vbox (Gtk.VBox setup_vbox) {
@@ -579,6 +582,55 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         return null;
+    }
+
+    private async void setup_pre_install_drivers (Cancellable? cancellable) {
+        foreach (var d in os.get_device_drivers ().get_elements ()) {
+            var driver = d as DeviceDriver;
+            if (driver.get_architecture () != os_media.architecture || !driver.get_pre_installable ())
+                continue;
+
+            foreach (var s in scripts.get_elements ()) {
+                var script = s as InstallScript;
+                if (!script.get_can_pre_install_drivers ())
+                    continue;
+
+                try {
+                    yield setup_pre_install_driver_for_script (driver, script, cancellable);
+                } catch (GLib.Error e) {
+                    debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
+                }
+            }
+        }
+    }
+
+    private async void setup_pre_install_driver_for_script (DeviceDriver driver,
+                                                            InstallScript script,
+                                                            Cancellable? cancellable) throws GLib.Error {
+        var downloader = Downloader.get_instance ();
+
+        var location = driver.get_location ();
+        foreach (var filename in driver.get_files ()) {
+            var file_uri = location + "/" + filename;
+            var file = File.new_for_uri (file_uri);
+            var cached_path = get_drivers_cache (os.short_id + "-" + file.get_basename ());
+
+            // FIXME: Although this will only download a driver once (on first usage), this should be done at the
+            //        'preparation' phase of wizard and not when going from 'setup' to 'review'.
+            file = yield downloader.download (file, cached_path);
+
+            add_unattended_file (new UnattendedRawFile (this, cached_path, filename));
+        }
+
+        foreach (var d in driver.get_devices ().get_elements ()) {
+            var device = d as Device;
+
+            if (device.get_name () == "virtio-block") {
+                has_viostor_drivers = true;
+
+                break;
+            }
+        }
     }
 }
 
