@@ -68,22 +68,22 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private bool has_viostor_drivers;
     private string? product_key_format;
 
-    protected GLib.List<UnattendedFile> unattended_files;
+    private GLib.List<UnattendedFile> unattended_files;
     private UnattendedAvatarFile avatar_file;
 
-    protected Gtk.Grid setup_grid;
-    protected int setup_grid_n_rows;
+    private Gtk.Grid setup_grid;
+    private int setup_grid_n_rows;
 
-    protected Gtk.Label setup_label;
-    protected Gtk.HBox setup_hbox;
-    protected Gtk.Switch express_toggle;
-    protected Gtk.Entry username_entry;
-    protected Gtk.Entry password_entry;
+    private Gtk.Label setup_label;
+    private Gtk.HBox setup_hbox;
+    private Gtk.Switch express_toggle;
+    private Gtk.Entry username_entry;
+    private Gtk.Entry password_entry;
     private Gtk.Entry key_entry;
 
-    protected string timezone;
-    protected string lang;
-    protected string hostname;
+    private string timezone;
+    private string lang;
+    private string hostname;
     private string kbd;
 
     ulong key_inserted_id; // ID of key_entry.insert_text signal handler
@@ -255,7 +255,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return get_user_pkgcache (filename);
     }
 
-    protected virtual void setup_ui () {
+    private void setup_ui () {
         setup_label = new Gtk.Label (_("Choose express install to automatically preconfigure the box with optimal settings."));
         setup_label.wrap = true;
         setup_label.width_chars = 30;
@@ -426,7 +426,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         Signal.stop_emission_by_name (key_entry, "insert-text");
     }
 
-    protected virtual void clean_up () throws GLib.Error {
+    private void clean_up () throws GLib.Error {
         if (disk_file != null) {
             delete_file (disk_file);
             disk_file = null;
@@ -443,7 +443,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    protected virtual DomainDisk? get_unattended_disk_config () {
+    private DomainDisk? get_unattended_disk_config () {
         if (!express_toggle.active)
             return null;
 
@@ -480,11 +480,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    protected void add_unattended_file (UnattendedFile file) {
+    private void add_unattended_file (UnattendedFile file) {
         unattended_files.append (file);
     }
 
-    protected Gtk.Entry create_input_entry (string text, bool mandatory = true, bool visibility = true) {
+    private Gtk.Entry create_input_entry (string text, bool mandatory = true, bool visibility = true) {
         var entry = new Gtk.Entry ();
         entry.visibility = visibility;
         entry.visible = true;
