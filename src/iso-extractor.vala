@@ -41,15 +41,6 @@ private class Boxes.ISOExtractor: GLib.Object {
         mounted = true;
     }
 
-    public async GLib.FileEnumerator enumerate_children (string rel_path, Cancellable? cancellable) throws GLib.Error
-                                                         requires (mounted) {
-
-        string abs_src_path = Path.build_filename (mount_point, rel_path);
-        File dir = File.new_for_path (abs_src_path);
-
-        return yield dir.enumerate_children_async (FileAttribute.STANDARD_NAME, 0, GLib.Priority.DEFAULT, cancellable);
-    }
-
     public string get_absolute_path (string relative_path) throws GLib.Error
                                      requires (mounted) {
         return Path.build_filename (mount_point, relative_path);
