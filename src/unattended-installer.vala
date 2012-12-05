@@ -688,6 +688,9 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
     }
 
     ~UnattendedTextFile () {
+        if (unattended_tmp == null)
+            return;
+
         try {
             delete_file (unattended_tmp);
         } catch (GLib.Error e) {
@@ -746,6 +749,9 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
     }
 
     ~UnattendedAvatarFile () {
+        if (unattended_tmp == null)
+            return;
+
         try {
             delete_file (unattended_tmp);
         } catch (GLib.Error e) {
