@@ -25,7 +25,7 @@ private class Boxes.MediaManager : Object {
                                                                  Cancellable? cancellable) throws GLib.Error {
         var media = yield InstallerMedia.create_for_path (path, this, cancellable);
 
-        return create_installer_media_from_media (media);
+        return yield create_installer_media_from_media (media);
     }
 
     public async InstallerMedia create_installer_media_from_config (GVirConfig.Domain config) {
@@ -54,7 +54,7 @@ private class Boxes.MediaManager : Object {
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
 
         try {
-            media = create_installer_media_from_media (media);
+            media = yield create_installer_media_from_media (media);
         } catch (GLib.Error error) {
             debug ("%s", error.message); // We just failed to create more specific media instance, no biggie!
         }
@@ -144,10 +144,10 @@ private class Boxes.MediaManager : Object {
         var resources = os_db.get_resources_for_os (os, os_media.architecture);
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
 
-        return create_installer_media_from_media (media);
+        return yield create_installer_media_from_media (media);
     }
 
-    private InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
+    private async InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
         if (media.os == null)
             return media;
 
