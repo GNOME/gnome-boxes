@@ -131,6 +131,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         product_key_format = get_product_key_format ();
 
         setup_ui ();
+
+        yield setup_pre_install_drivers ();
     }
 
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
@@ -143,8 +145,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         try {
             yield create_disk_image (cancellable);
-
-            yield setup_pre_install_drivers (cancellable);
 
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
@@ -584,7 +584,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return null;
     }
 
-    private async void setup_pre_install_drivers (Cancellable? cancellable) {
+    private async void setup_pre_install_drivers (Cancellable? cancellable = null) {
         foreach (var d in os.get_device_drivers ().get_elements ()) {
             var driver = d as DeviceDriver;
             if (driver.get_architecture () != os_media.architecture || !driver.get_pre_installable ())
@@ -615,8 +615,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var file = File.new_for_uri (file_uri);
             var cached_path = get_drivers_cache (os.short_id + "-" + file.get_basename ());
 
-            // FIXME: Although this will only download a driver once (on first usage), this should be done at the
-            //        'preparation' phase of wizard and not when going from 'setup' to 'review'.
             file = yield downloader.download (file, cached_path);
 
             add_unattended_file (new UnattendedRawFile (this, cached_path, filename));
