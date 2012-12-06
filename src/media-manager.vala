@@ -157,7 +157,7 @@ private class Boxes.MediaManager : Object {
         install_scripts = install_scripts.new_filtered (filter);
 
         if (install_scripts.get_length () > 0)
-            return new UnattendedInstaller.from_media (media, install_scripts);
+            return yield new UnattendedInstaller.from_media (media, install_scripts);
         else
             return media;
     }
