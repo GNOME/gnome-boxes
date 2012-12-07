@@ -199,11 +199,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         if (os.distro == "win")
             config.set_target_disk ("C");
         else
-            config.set_target_disk (supports_virtio_disk? "vda" : "sda");
+            config.set_target_disk (supports_virtio_disk? "/dev/vda" : "/dev/sda");
 
         string device_name;
         get_unattended_disk_info (script.path_format, out device_name);
-        config.set_script_disk (device_name);
+        config.set_script_disk (device_name_to_path (script.path_format, device_name));
 
         if (avatar_file != null) {
             var location = ((script.path_format == PathFormat.UNIX)? "/" : "\\") + avatar_file.dest_name;
@@ -478,6 +478,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
             return DomainDiskGuestDeviceType.DISK;
         }
+    }
+
+    private string device_name_to_path (PathFormat path_format, string name) {
+        return (path_format == PathFormat.UNIX)? "/dev/" + name : name;
     }
 
     private void add_unattended_file (UnattendedFile file) {
