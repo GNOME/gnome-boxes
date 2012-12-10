@@ -60,6 +60,12 @@ private class Boxes.Downloader : GLib.Object {
 
         try {
             var msg = new Soup.Message ("GET", uri);
+            var address = msg.get_address ();
+            var connectable = new NetworkAddress (address.name, (uint16) address.port);
+            var network_monitor = NetworkMonitor.get_default ();
+            if (!(yield network_monitor.can_reach_async (connectable)))
+                throw new Boxes.Error.INVALID ("Failed to reach host '%s' on port '%d'", address.name, address.port);
+
             session.queue_message (msg, (session, msg) => {
                 download.callback ();
             });
