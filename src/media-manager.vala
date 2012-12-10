@@ -154,7 +154,7 @@ private class Boxes.MediaManager : Object {
         var install_scripts = media.os.get_install_script_list ();
         var filter = new Filter ();
         filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
-        install_scripts = install_scripts.new_filtered (filter);
+        install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
 
         if (install_scripts.get_length () > 0)
             return yield new UnattendedInstaller.from_media (media, install_scripts);

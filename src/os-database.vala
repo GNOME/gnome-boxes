@@ -141,7 +141,7 @@ private class Boxes.OSDatabase : GLib.Object {
 
         var filter = new Filter ();
         filter.add_constraint (RESOURCES_PROP_ARCHITECTURE, prefs[0]);
-        var filtered = list.new_filtered (filter);
+        var filtered = (list as Osinfo.List).new_filtered (filter) as ResourcesList;
         if (filtered.get_length () <= 0)
             return get_prefered_resources (list, prefs[1:prefs.length]);
         else
