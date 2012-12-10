@@ -613,6 +613,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                                                             Cancellable? cancellable) throws GLib.Error {
         var downloader = Downloader.get_instance ();
 
+        var driver_files = new GLib.List<UnattendedFile> ();
         var location = driver.get_location ();
         foreach (var filename in driver.get_files ()) {
             var file_uri = location + "/" + filename;
@@ -621,8 +622,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
             file = yield downloader.download (file, cached_path);
 
-            add_unattended_file (new UnattendedRawFile (this, cached_path, filename));
+            driver_files.append (new UnattendedRawFile (this, cached_path, filename));
         }
+
+        // We don't do this in above loop to ensure we have all the driver files
+        foreach (var driver_file in driver_files)
+            add_unattended_file (driver_file);
 
         foreach (var d in driver.get_devices ().get_elements ()) {
             var device = d as Device;
