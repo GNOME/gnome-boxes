@@ -618,7 +618,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         foreach (var filename in driver.get_files ()) {
             var file_uri = location + "/" + filename;
             var file = File.new_for_uri (file_uri);
-            var cached_path = get_drivers_cache (os.short_id + "-" + file.get_basename ());
+            var cached_path = get_drivers_cache (os.short_id + "-" +
+                                                 driver.get_architecture () + "-" +
+                                                 file.get_basename ());
 
             file = yield downloader.download (file, cached_path);
 
