@@ -102,6 +102,31 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
+    private string get_preferred_language (InstallerMedia media) {
+        var system_langs = Intl.get_language_names ();
+        var media_langs = new HashTable<string, unowned string> (str_hash, str_equal);
+        var media_langs_list = media.os_media.languages;
+
+        foreach (var lang in media_langs_list)
+            media_langs.add (lang);
+
+        foreach (var lang in system_langs) {
+            if (lang in media_langs) {
+                debug ("matched %s", lang);
+                return lang;
+            }
+        }
+
+        if (media_langs_list != null) {
+            debug ("Failed to match system locales with media languages, falling back to %s media language", media_langs_list.nth_data (0));
+            return media_langs_list.nth_data (0);
+        }
+
+        debug ("No media language, using %s locale", system_langs[0]);
+
+        return system_langs[0];
+    }
+
     public async UnattendedInstaller.from_media (InstallerMedia media, InstallScriptList scripts) throws GLib.Error {
         os = media.os;
         os_media = media.os_media;
@@ -125,8 +150,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var date = new DateTime.from_timeval_local (time);
         timezone = date.get_timezone_abbreviation ();
 
-        var langs = Intl.get_language_names ();
-        lang = langs[0];
+        lang = get_preferred_language (media);
         kbd = lang;
         product_key_format = get_product_key_format ();
 
