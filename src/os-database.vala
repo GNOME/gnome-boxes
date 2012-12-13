@@ -50,17 +50,17 @@ private class Boxes.OSDatabase : GLib.Object {
         db_loaded ();
     }
 
-    public async Os? guess_os_from_install_media (string media_path,
-                                                  out Media os_media,
-                                                  Cancellable? cancellable) throws GLib.Error {
-        os_media = null;
-
+    public async Media? guess_os_from_install_media (string media_path,
+                                                     Cancellable? cancellable) throws GLib.Error {
         if (!yield ensure_db_loaded ())
             return null;
 
         var media = yield Media.create_from_location_async (media_path, Priority.DEFAULT, cancellable);
 
-        return db.guess_os_from_media (media, out os_media);
+        if (db.identify_media (media))
+            return media;
+
+        return null;
     }
 
     public async Os get_os_by_id (string id) throws OSDatabaseError {
