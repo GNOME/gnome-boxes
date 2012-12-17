@@ -26,6 +26,8 @@ private class Boxes.Wizard: Boxes.UI {
     private WizardSummary summary;
     private CollectionSource? source;
     private Gtk.ProgressBar prep_progress;
+    private Gtk.Label prep_media_label;
+    private Gtk.Label prep_status_label;
     private Gtk.VBox setup_vbox;
     private Gtk.Label review_label;
     private Gtk.Label nokvm_label;
@@ -576,9 +578,14 @@ private class Boxes.Wizard: Boxes.UI {
         var prep_vbox = new Gtk.VBox (true, 10);
         prep_vbox.valign = Gtk.Align.CENTER;
         hbox.pack_start (prep_vbox, true, true);
-        label = new Gtk.Label (_("Analyzing installer media."));
-        label.get_style_context ().add_class ("boxes-wizard-label");
-        prep_vbox.pack_start (label, false, false);
+        prep_media_label = new Gtk.Label (_("Unknown installer media"));
+        prep_media_label.get_style_context ().add_class ("boxes-wizard-media-os-label");
+        prep_media_label.halign = Gtk.Align.START;
+        prep_vbox.pack_start (prep_media_label, false, false);
+        prep_status_label = new Gtk.Label (_("Analyzing...")); // Translators: Analyzing installer media
+        prep_status_label.get_style_context ().add_class ("boxes-wizard-label");
+        prep_status_label.halign = Gtk.Align.START;
+        prep_vbox.pack_start (prep_status_label, false, false);
         prep_progress = new Gtk.ProgressBar ();
         prep_vbox.pack_start (prep_progress, false, false);
         vbox.show_all ();
