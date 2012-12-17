@@ -604,16 +604,14 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private async void setup_pre_install_drivers (Cancellable? cancellable = null) {
-        foreach (var d in os.get_device_drivers ().get_elements ()) {
-            var driver = d as DeviceDriver;
-            if (driver.get_architecture () != os_media.architecture || !driver.get_pre_installable ())
-                continue;
+        var drivers = get_pre_installable_drivers ();
+        var scripts = get_pre_installer_scripts ();
 
-            foreach (var s in scripts.get_elements ()) {
-                var script = s as InstallScript;
-                if (!script.get_can_pre_install_drivers ())
-                    continue;
+        if (drivers.length () == 0 || scripts.length () == 0)
+            return;
 
+        foreach (var driver in drivers) {
+            foreach (var script in scripts) {
                 try {
                     yield setup_pre_install_driver_for_script (driver, script, cancellable);
                 } catch (GLib.Error e) {
@@ -656,6 +654,33 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             }
         }
     }
+
+    private GLib.List<DeviceDriver> get_pre_installable_drivers () {
+        var drivers = new GLib.List<DeviceDriver> ();
+
+        foreach (var d in os.get_device_drivers ().get_elements ()) {
+            var driver = d as DeviceDriver;
+
+            if (driver.get_architecture () == os_media.architecture && driver.get_pre_installable ())
+                drivers.append (driver);
+        }
+
+        return drivers;
+    }
+
+    private GLib.List<InstallScript> get_pre_installer_scripts () {
+        var scripts = new GLib.List<InstallScript> ();
+
+        foreach (var s in this.scripts.get_elements ()) {
+            var script = s as InstallScript;
+
+            if (script.get_can_pre_install_drivers ())
+                scripts.append (script);
+        }
+
+        return scripts;
+    }
+
 
     private string get_preferred_language () {
         var system_langs = Intl.get_language_names ();
