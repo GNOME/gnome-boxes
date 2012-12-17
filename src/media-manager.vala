@@ -12,6 +12,8 @@ private class Boxes.MediaManager : Object {
     public OSDatabase os_db { get; private set; }
     public Client client { get; private set; }
 
+    public delegate void InstallerRecognized (Osinfo.Media os_media, Osinfo.Os os);
+
     private Sparql.Connection connection;
 
     public static MediaManager get_instance () {
@@ -21,11 +23,13 @@ private class Boxes.MediaManager : Object {
         return media_manager;
     }
 
-    public async InstallerMedia create_installer_media_for_path (string       path,
-                                                                 Cancellable? cancellable) throws GLib.Error {
+    public async InstallerMedia create_installer_media_for_path
+                                (string               path,
+                                 InstallerRecognized? on_installer_recognized = null,
+                                 Cancellable?         cancellable = null) throws GLib.Error {
         var media = yield InstallerMedia.create_for_path (path, this, cancellable);
 
-        return yield create_installer_media_from_media (media);
+        return yield create_installer_media_from_media (media, on_installer_recognized, progress);
     }
 
     public async InstallerMedia create_installer_media_from_config (GVirConfig.Domain config) {
@@ -76,7 +80,7 @@ private class Boxes.MediaManager : Object {
 
             var path = device.get_device_file ();
             try {
-                var media = yield create_installer_media_for_path (path, null);
+                var media = yield create_installer_media_for_path (path);
 
                 list.append (media);
             } catch (GLib.Error error) {
@@ -137,7 +141,7 @@ private class Boxes.MediaManager : Object {
             throw new Boxes.Error.INVALID (_("No such file %s").printf (path));
 
         if (label == null || os_id == null || media_id == null)
-            return yield create_installer_media_for_path (path, null);
+            return yield create_installer_media_for_path (path);
 
         var os = yield os_db.get_os_by_id (os_id);
         var os_media = os_db.get_media_by_id (os, media_id);
@@ -147,9 +151,15 @@ private class Boxes.MediaManager : Object {
         return yield create_installer_media_from_media (media);
     }
 
-    private async InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
+    private async InstallerMedia create_installer_media_from_media
+                                (InstallerMedia       media,
+                                 InstallerRecognized? on_installer_recognized = null,
+                                 Cancellable?         cancellable = null) throws GLib.Error {
         if (media.os == null)
             return media;
+
+        if (on_installer_recognized != null)
+            on_installer_recognized (media.os_media, media.os);
 
         var install_scripts = media.os.get_install_script_list ();
         var filter = new Filter ();

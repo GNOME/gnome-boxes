@@ -266,7 +266,19 @@ private class Boxes.Wizard: Boxes.UI {
 
     private void prepare_for_installer (string path) throws GLib.Error {
         next_button.sensitive = false;
-        media_manager.create_installer_media_for_path.begin (path, null, on_installer_media_instantiated);
+
+        prep_media_label.label = _("Unknown installer media");
+        prep_status_label.label = _("Analyzing..."); // Translators: Analyzing installer media
+
+        media_manager.create_installer_media_for_path.begin (path,
+                                                             on_installer_recognized,
+                                                             null,
+                                                             on_installer_media_instantiated);
+    }
+
+    private void on_installer_recognized (Osinfo.Media os_media, Osinfo.Os os) {
+        prep_media_label.label = os.name;
+        Downloader.fetch_os_logo.begin (installer_image, os, 128);
     }
 
     private void on_installer_media_instantiated (Object? source_object, AsyncResult result) {
@@ -275,19 +287,8 @@ private class Boxes.Wizard: Boxes.UI {
         try {
             var install_media = media_manager.create_installer_media_for_path.end (result);
             vm_creator = new VMCreator (install_media);
-            if (install_media.os == null) {
-                 prep_progress.fraction = 1.0;
-                 page = WizardPage.SETUP;
-
-                return;
-            }
-
-            Downloader.fetch_os_logo.begin (installer_image, install_media.os, 128, (object, result) => {
-                Downloader.fetch_os_logo.end (result);
-
-                prep_progress.fraction = 1.0;
-                page = WizardPage.SETUP;
-            });
+            prep_progress.fraction = 1.0;
+            page = WizardPage.SETUP;
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             debug("Failed to analyze installer image: %s", error.message);
@@ -578,11 +579,11 @@ private class Boxes.Wizard: Boxes.UI {
         var prep_vbox = new Gtk.VBox (true, 10);
         prep_vbox.valign = Gtk.Align.CENTER;
         hbox.pack_start (prep_vbox, true, true);
-        prep_media_label = new Gtk.Label (_("Unknown installer media"));
+        prep_media_label = new Gtk.Label (null);
         prep_media_label.get_style_context ().add_class ("boxes-wizard-media-os-label");
         prep_media_label.halign = Gtk.Align.START;
         prep_vbox.pack_start (prep_media_label, false, false);
-        prep_status_label = new Gtk.Label (_("Analyzing...")); // Translators: Analyzing installer media
+        prep_status_label = new Gtk.Label (null);
         prep_status_label.get_style_context ().add_class ("boxes-wizard-label");
         prep_status_label.halign = Gtk.Align.START;
         prep_vbox.pack_start (prep_status_label, false, false);
