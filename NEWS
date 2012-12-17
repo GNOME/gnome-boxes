@@ -1,3 +1,53 @@
+3.7.3 - Dec 17, 2012
+====================
+
+Apart from the user-visible changes listed below, this is the first release
+that makes use of new automated installation API of libosinfo.
+
+- More robust VM naming for unknown media.
+- Ensure media presented in wizard are actually available.
+- Provide visual indication of boxes being saved.
+- The 'pause' button should only be enabled if any of the selected
+  machines support saving and is not already in saved state.
+- Don't lose tracking of installation if user quits Boxes during installation.
+- Exit to collection view if the VM goes to a non-running state
+- Exit to collection view on display disconnect only for current item.
+- Don't crash when running Boxes while it's already running.
+- Make it actually possible to pause VMs under installation.
+- Add support for changing the CD-ROM device/ISO from properties.
+- Add troubleshooting log viewer to system properties.
+- Add usbredir on/off status to configure output.
+- Remove 'Simple' from the generic name so Boxes doesn't show in gnome-shell's
+  search result when searching for this term.
+- Automatically download & install pre-installation drivers libosinfo knows
+  about (currently only virtio storage driver). This makes manual download of
+  win-tools ISO redudant.
+- Added/updated translations:
+  - Assamese
+  - Kannada
+  - Tamil
+  - Galician
+- Some other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- libosinfo >= 0.2.2
+- glib-2.0 >= 2.32
+- valac >= 0.17.3 (build-time only)
+
+All contributors to this release:
+
+Aleksander Morgado <aleksander@lanedo.com>
+Alexander Larsson <alexl@redhat.com>
+Christophe Fergeau <cfergeau@redhat.com>
+Dr.T.Vasudevan <drtvasudevan@gmail.com>
+Fabiano Fidêncio <fabiano@fidencio.org>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Nilamdyuti Goswami <ngoswami@redhat.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Shankar Prasad <svenkate@redhat.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.7.2 - Nov 19, 2012
 ====================
 
