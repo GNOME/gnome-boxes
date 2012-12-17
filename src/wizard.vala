@@ -270,8 +270,16 @@ private class Boxes.Wizard: Boxes.UI {
         prep_media_label.label = _("Unknown installer media");
         prep_status_label.label = _("Analyzing..."); // Translators: Analyzing installer media
 
+        var progress = new ActivityProgress ();
+        progress.notify["progress"].connect (() => {
+            if (progress.progress - prep_progress.fraction >= 0.01) // Only entertain >= 1% change
+                prep_progress.fraction = progress.progress;
+        });
+        progress.bind_property ("info", prep_status_label, "label");
+
         media_manager.create_installer_media_for_path.begin (path,
                                                              on_installer_recognized,
+                                                             progress,
                                                              null,
                                                              on_installer_media_instantiated);
     }
