@@ -42,12 +42,14 @@ private class Boxes.Downloader : GLib.Object {
         session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
     }
 
-    public async File download (File remote_file, string cached_path) throws GLib.Error {
+    public async File download (File             remote_file,
+                                string           cached_path,
+                                ActivityProgress progress = new ActivityProgress ()) throws GLib.Error {
         var uri = remote_file.get_uri ();
 
         if (downloads.contains (uri))
             // Already being downloaded
-            return yield await_download (uri, cached_path);
+            return yield await_download (uri, cached_path); // FIXME: No progress report in this case.
 
         var cached_file = File.new_for_path (cached_path);
         if (cached_file.query_exists ()) {
@@ -65,6 +67,20 @@ private class Boxes.Downloader : GLib.Object {
             var network_monitor = NetworkMonitor.get_default ();
             if (!(yield network_monitor.can_reach_async (connectable)))
                 throw new Boxes.Error.INVALID ("Failed to reach host '%s' on port '%d'", address.name, address.port);
+
+            int64 total_num_bytes = 0;
+            msg.got_headers.connect (() => {
+                total_num_bytes =  msg.response_headers.get_content_length ();
+            });
+
+            int64 current_num_bytes = 0;
+            msg.got_chunk.connect ((msg, chunk) => {
+                if (total_num_bytes <= 0)
+                    return;
+
+                current_num_bytes += chunk.length;
+                progress.progress = (double) current_num_bytes / total_num_bytes;
+            });
 
             session.queue_message (msg, (session, msg) => {
                 download.callback ();
