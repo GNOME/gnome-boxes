@@ -296,6 +296,23 @@ namespace Boxes {
         }
     }
 
+    public class ActivityProgress : GLib.Object {
+        public double progress { get; set; }
+        public string info { get; set; default = ""; }
+
+        public ActivityProgress add_child_activity (double scale) {
+            var child_progress = new ActivityProgress ();
+            var last_child_progress = 0d;
+            child_progress.notify["progress"].connect (() => {
+                var child_progress_delta = child_progress.progress - last_child_progress;
+                this.progress += child_progress_delta * scale;
+                last_child_progress = child_progress.progress;
+            });
+
+            return child_progress;
+        }
+    }
+
     public bool is_set (string? str) {
         return str != null && str != "";
     }
