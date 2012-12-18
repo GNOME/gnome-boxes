@@ -321,6 +321,17 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             notify_reboot_required ();
     }
 
+    public void try_enable_smartcard () throws GLib.Error {
+        var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+
+        VMConfigurator.add_smartcard_support (config);
+
+        // This will take effect only after next reboot
+        domain.set_config (config);
+        if (is_on ())
+            notify_reboot_required ();
+    }
+
     private string collect_logs () {
         var builder = new StringBuilder ();
 
@@ -536,6 +547,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             }
 
             bool has_usb_redir = false;
+            bool has_smartcard = false;
             // We look at the INACTIVE config here, because we want to show the usb
             // widgetry if usb has been added already but we have not rebooted
             try {
@@ -543,7 +555,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 foreach (var device in inactive_config.get_devices ()) {
                     if (device is GVirConfig.DomainRedirdev) {
                         has_usb_redir = true;
-                        break;
+                    }
+                    if (device is GVirConfig.DomainSmartcard) {
+                        has_smartcard = true;
                     }
                 }
             } catch (GLib.Error error) {
@@ -566,6 +580,23 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                         property.refresh_properties ();
                     } catch (GLib.Error error) {
                         warning ("Failed to enable usb");
+                    }
+                });
+            }
+
+            // Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+            // without smartcard support will not start vms with it.
+            if (!has_smartcard && Config.HAVE_SMARTCARD) {
+                var button = new Gtk.Button.with_label (_("Add support to guest"));
+                button.halign = Gtk.Align.START;
+                var property = add_property (ref list, _("Smartcard support"), button);
+                button.clicked.connect (() => {
+                    try {
+                        try_enable_smartcard ();
+                        update_domain_config ();
+                        property.refresh_properties ();
+                    } catch (GLib.Error error) {
+                        warning ("Failed to enable smartcard");
                     }
                 });
             }

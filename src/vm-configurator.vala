@@ -79,6 +79,9 @@ private class Boxes.VMConfigurator {
         if (Config.HAVE_USBREDIR)
             add_usb_support (domain);
 
+        if (Config.HAVE_SMARTCARD)
+            add_smartcard_support (domain);
+
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
@@ -368,6 +371,13 @@ private class Boxes.VMConfigurator {
         try {
             domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+    }
+
+    public static void add_smartcard_support (Domain domain) {
+        var smartcard = new DomainSmartcardPassthrough ();
+        var vmc = new DomainChardevSourceSpiceVmc ();
+        smartcard.set_source (vmc);
+        domain.add_device (smartcard);
     }
 
     public static void add_usb_support (Domain domain) {

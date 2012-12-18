@@ -124,6 +124,14 @@ AS_IF([test "x$enable_usbredir" = "xyes"],
       [AC_DEFINE([HAVE_USBREDIR], [1], [Qemu supports usbredir]) AC_MSG_RESULT([yes])],
       [AC_DEFINE([HAVE_USBREDIR], [0], [Qemu supports usbredir]) AC_MSG_RESULT([no])])
 
+AC_MSG_CHECKING([whether smartcard support was enabled with --enable-smartcard])
+AC_ARG_ENABLE(smartcard,
+	AS_HELP_STRING([--enable-smartcard],[Enable smartcard support]),,
+        enable_smartcard=no)
+AS_IF([test "x$enable_smartcard" = "xyes"],
+      [AC_DEFINE([HAVE_SMARTCARD], [1], [Qemu supports smartcard]) AC_MSG_RESULT([yes])],
+      [AC_DEFINE([HAVE_SMARTCARD], [0], [Qemu supports smartcard]) AC_MSG_RESULT([no])])
+
 dnl Strict compiler
 AC_ARG_ENABLE([strict-cc],
   AS_HELP_STRING([--enable-strict-cc],[Enable strict C compiler]))
@@ -165,4 +173,6 @@ AC_MSG_NOTICE([
         prefix:                   ${prefix}
         c compiler:               ${CC} ${CFLAGS}
         build from vala sources:  $enable_vala
+        USB redirection support:  $enable_usbredir
+        Smartcard support:        $enable_smartcard
 ])
