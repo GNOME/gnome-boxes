@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-20 17:29+0000\n"
-"PO-Revision-Date: 2012-10-21 03:48+0300\n"
+"POT-Creation-Date: 2012-12-19 13:43+0000\n"
+"PO-Revision-Date: 2012-12-19 15:48+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -21,11 +21,14 @@ msgstr ""
 msgid "Boxes"
 msgstr "Boxes"
 
-msgid "Simple virtual machine viewer/manager"
-msgstr "Lihtne virtuaalmasinate kuvaja/haldur"
+msgid "Virtual machine viewer/manager"
+msgstr "Virtuaalmasinate kuvaja/haldur"
 
 msgid "View and use virtual machines"
 msgstr "Virtuaalmasinate vaatamine ja kasutamine"
+
+msgid "virtual machine;vm;"
+msgstr "virtuaalmasin;vm;"
 
 msgid "Collections"
 msgstr "Kollektsioonid"
@@ -79,9 +82,6 @@ msgstr "Omadused"
 msgid "Fullscreen"
 msgstr "Täisekraan"
 
-msgid "Force shutdown"
-msgstr "Jõuga sulgemine"
-
 msgid "About Boxes"
 msgstr "Boxes'ist lähemalt"
 
@@ -120,8 +120,48 @@ msgstr "Virtualiseerija"
 msgid "URI"
 msgstr "URI"
 
+msgid "Troubleshooting log"
+msgstr "Probleemilahenduse logi"
+
+msgid "Copy to clipboard"
+msgstr "Lõikepuhvrisse kopeerimine"
+
+msgid "Save log"
+msgstr "Salvesta logi"
+
+#, c-format
+msgid "Error saving: %s"
+msgstr "Viga salvestamisel: %s"
+
 msgid "Protocol"
 msgstr "Protokoll"
+
+#. Translators: This is the text on the button to select an iso for the cd
+msgid "Select"
+msgstr "Vali"
+
+#. Translators: empty is listed as the filename for a non-mounted CD
+msgid "empty"
+msgstr "tühi"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+msgid "Remove"
+msgstr "Eemalda"
+
+msgid "Select a device or ISO file"
+msgstr "Seadme või ISO faili valimine"
+
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+msgid "Add support to guest"
+msgstr "Külalise jaoks toe lisamine"
+
+msgid "USB device support"
+msgstr "USB-seadmete tugi"
+
+msgid "Smartcard support"
+msgstr "Smartcardi tugi (ID-kaart)"
 
 msgid "When you force shutdown, the box may lose data."
 msgstr "Kui sa sunnid jõuga väljalülitamise, võib masin kaotada andmeid."
@@ -140,6 +180,10 @@ msgid "Starting %s"
 msgstr "%s käivitamine"
 
 #, c-format
+msgid "Restart of '%s' is taking too long. Force it to shutdown?"
+msgstr "'%s' taaskäivituseks kulub liiga kaua. Kas sundida see jõuga lõpetama?"
+
+#, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Muudatused nõuavad '%s' taaskäivitust. Kas taaskäivitada?"
 
@@ -155,6 +199,9 @@ msgstr "Ühendumine masinaga %s"
 #, c-format
 msgid "Enter password for %s"
 msgstr "Sisesta %s parool"
+
+msgid "Saving..."
+msgstr "Salvestamine..."
 
 #. 3rd row
 msgid "Password"
@@ -233,17 +280,46 @@ msgstr "I/O:"
 msgid "Net:"
 msgstr "Võrk:"
 
+msgid "Force Shutdown"
+msgstr "Jõuga sulgemine"
+
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "'%s' pausimine nurjus"
+
 msgid "Share clipboard"
 msgstr "Lõikepuhvri jagamine"
 
 msgid "Resize guest"
 msgstr "Akna suuruse muutmine"
 
-msgid "USB redirection"
-msgstr "USB suunamine"
+msgid "Redirect new USB devices"
+msgstr "Uute USB seadmete edasisuunamine"
 
-msgid "_Cancel"
-msgstr "_Loobu"
+#, c-format
+msgid "Error connecting %s: %s"
+msgstr "Viga ühendumisel masinaga %s: %s"
+
+msgid "Invalid URI"
+msgstr "Vigane URI"
+
+msgid "The port must be specified once"
+msgstr "Porti saab määra ainult üks kord"
+
+msgid "Missing port in Spice URI"
+msgstr "Port puudub Spice URI-s"
+
+msgid "Select All"
+msgstr "Vali kõik"
+
+msgid "Select Running"
+msgstr "Käimasoleva valimine"
+
+msgid "Select None"
+msgstr "Tühista valik"
+
+msgid "_Done"
+msgstr "_Valmis"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
@@ -253,8 +329,8 @@ msgid_plural "%d selected"
 msgstr[0] "%d valitud"
 msgstr[1] "%d valitud"
 
-msgid "Click on items to select them"
-msgstr "Kirjete valimiseks klõpsa nendel"
+msgid "(Click on items to select them)"
+msgstr "(kirjete valimiseks klõpsa neil)"
 
 msgid "no password"
 msgstr "parooli pole"
@@ -276,6 +352,9 @@ msgstr "Kiirpaigaldus"
 
 msgid "_Add Password"
 msgstr "_Lisa parool"
+
+msgid "Product Key"
+msgstr "Toote võti"
 
 msgid "yes"
 msgstr "jah"
@@ -350,39 +429,6 @@ msgstr[1] "%d%% paigaldatud"
 msgid "Read-only"
 msgstr "Kirjutuskaitsega"
 
-#. Microsoft Windows product key
-msgid "Product Key"
-msgstr "Toote võti"
-
-msgid "Enter URL"
-msgstr "Sisesta URL"
-
-msgid "Select a file"
-msgstr "Faili valimine"
-
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-"<b>Töölaualigipääs</b>\n"
-"\n"
-"Lisab masinad kõigile selle konto alt ligipääsetavatele süsteemidele."
-
-msgid "32-bit x86 system"
-msgstr "32-biti x86 süsteem"
-
-msgid "64-bit x86 system"
-msgstr "64-biti x86 süsteem"
-
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#, c-format
-msgid " from %s"
-msgstr " - %s"
-
-msgid "Select a device or ISO file"
-msgstr "Seadme või ISO faili valimine"
-
 msgid "Box creation failed"
 msgstr "Masina loomine nurjus"
 
@@ -398,12 +444,13 @@ msgstr "Lisab ühe masina."
 msgid "Desktop Access"
 msgstr "Töölaualigipääs"
 
-msgid "Invalid URI"
-msgstr "Vigane URI"
-
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protokoll '%s' pole toetatud"
+
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"Paigaldusmeediumi analüüs nurjus. Kas meedium on rikutud või pole täielik?"
 
 msgid "Box setup failed"
 msgstr "Masina häälestamine nurjus"
@@ -493,6 +540,9 @@ msgstr ""
 msgid "Create a Box"
 msgstr "Masina loomine"
 
+msgid "_Cancel"
+msgstr "_Loobu"
+
 msgid "_Back"
 msgstr "_Tagasi"
 
@@ -504,3 +554,29 @@ msgstr "_Loo"
 
 msgid "C_ustomize..."
 msgstr "_Kohanda..."
+
+msgid "Enter URL"
+msgstr "Sisesta URL"
+
+msgid "Select a file"
+msgstr "Faili valimine"
+
+msgid ""
+"<b>Desktop Access</b>\n"
+"\n"
+"Will add boxes for all systems available from this account."
+msgstr ""
+"<b>Töölaualigipääs</b>\n"
+"\n"
+"Lisab masinad kõigile selle konto alt ligipääsetavatele süsteemidele."
+
+msgid "32-bit x86 system"
+msgstr "32-biti x86 süsteem"
+
+msgid "64-bit x86 system"
+msgstr "64-biti x86 süsteem"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#, c-format
+msgid " from %s"
+msgstr " - %s"
