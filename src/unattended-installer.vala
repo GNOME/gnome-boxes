@@ -98,10 +98,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    private string get_preferred_language (InstallerMedia media) {
+    private string get_preferred_language () {
         var system_langs = Intl.get_language_names ();
         var media_langs = new HashTable<string, unowned string> (str_hash, str_equal);
-        var media_langs_list = media.os_media.languages;
+        var media_langs_list = os_media.languages;
 
         foreach (var lang in media_langs_list)
             media_langs.add (lang);
@@ -146,7 +146,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var date = new DateTime.from_timeval_local (time);
         timezone = date.get_timezone_abbreviation ();
 
-        lang = get_preferred_language (media);
+        lang = get_preferred_language ();
         kbd = lang;
         product_key_format = get_product_key_format ();
 
