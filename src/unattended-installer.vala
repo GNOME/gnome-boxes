@@ -114,7 +114,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         foreach (var s in scripts.get_elements ()) {
             var script = s as InstallScript;
             var filename = script.get_expected_filename ();
-            add_unattended_file (new UnattendedTextFile (this, script, filename));
+            add_unattended_file (new UnattendedScriptFile (this, script, filename));
         }
 
         var time = TimeVal ();
@@ -702,7 +702,7 @@ private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
     }
 }
 
-private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
+private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
     public string dest_name { get; set; }
     public string src_path { get; set; }
 
@@ -711,13 +711,13 @@ private class Boxes.UnattendedTextFile : GLib.Object, Boxes.UnattendedFile {
 
     private File unattended_tmp;
 
-    public UnattendedTextFile (UnattendedInstaller installer, InstallScript script, string dest_name) {
+    public UnattendedScriptFile (UnattendedInstaller installer, InstallScript script, string dest_name) {
        this.installer = installer;
        this.script = script;
        this.dest_name = dest_name;
     }
 
-    ~UnattendedTextFile () {
+    ~UnattendedScriptFile () {
         if (unattended_tmp == null)
             return;
 
