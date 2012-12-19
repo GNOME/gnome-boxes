@@ -639,12 +639,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         var driver_files = new GLib.List<UnattendedFile> ();
         var location = driver.get_location ();
+        var location_checksum = Checksum.compute_for_string (ChecksumType.MD5, location);
         foreach (var filename in driver.get_files ()) {
             var file_uri = location + "/" + filename;
             var file = File.new_for_uri (file_uri);
-            var cached_path = get_drivers_cache (os.short_id + "-" +
-                                                 driver.get_architecture () + "-" +
-                                                 file.get_basename ());
+
+            var cached_path = get_drivers_cache (location_checksum + "-" + file.get_basename ());
 
             file = yield downloader.download (file, cached_path);
 
