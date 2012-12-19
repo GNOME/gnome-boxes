@@ -3,10 +3,6 @@
 using GVirConfig;
 using Osinfo;
 
-public errordomain UnattendedInstallerError {
-    SETUP_INCOMPLETE
-}
-
 private class Boxes.UnattendedInstaller: InstallerMedia {
     public override bool need_user_input_for_vm_creation {
         get {
