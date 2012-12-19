@@ -104,6 +104,7 @@ gnome_boxes_SOURCES =				\
 	topbar.vala				\
 	ui.vala					\
 	unattended-installer.vala 		\
+	unattended-file.vala 			\
 	util-app.vala				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\
