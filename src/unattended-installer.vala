@@ -264,6 +264,29 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         os.set_cmdline (cmdline);
     }
 
+    public override void clean_up () {
+        base.clean_up ();
+
+        try {
+            if (disk_file != null) {
+                delete_file (disk_file);
+                disk_file = null;
+            }
+
+            if (kernel_file != null) {
+                delete_file (kernel_file);
+                kernel_file = null;
+            }
+
+            if (initrd_file != null) {
+                delete_file (initrd_file);
+                initrd_file = null;
+            }
+        } catch (GLib.Error error) {
+            debug ("Failed to clean-up: %s", error.message);
+        }
+    }
+
     public string get_user_unattended (string? suffix = null) {
         var filename = hostname;
         if (suffix != null)
@@ -441,23 +464,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         Signal.stop_emission_by_name (key_entry, "insert-text");
-    }
-
-    private void clean_up () throws GLib.Error {
-        if (disk_file != null) {
-            delete_file (disk_file);
-            disk_file = null;
-        }
-
-        if (kernel_file != null) {
-            delete_file (kernel_file);
-            kernel_file = null;
-        }
-
-        if (initrd_file != null) {
-            delete_file (initrd_file);
-            initrd_file = null;
-        }
     }
 
     private DomainDisk? get_unattended_disk_config () {

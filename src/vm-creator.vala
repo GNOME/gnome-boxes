@@ -126,6 +126,7 @@ private class Boxes.VMCreator {
 
         if (guest_installed_os (machine)) {
             set_post_install_config (machine);
+            install_media.clean_up ();
             try {
                 domain.start (0);
             } catch (GLib.Error error) {
@@ -139,6 +140,7 @@ private class Boxes.VMCreator {
             if (VMConfigurator.is_live_config (machine.domain_config)) {
                 // No installation during live session, so lets delete the VM
                 machine.disconnect (state_changed_id);
+                install_media.clean_up ();
                 App.app.delete_machine (machine);
             } else
                 try {
