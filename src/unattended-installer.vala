@@ -130,13 +130,28 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         yield setup_pre_install_drivers ();
     }
 
+    public override void prepare_to_continue_installation (string vm_name) {
+        this.hostname = vm_name.replace (" ", "-");
+
+        var path = get_user_unattended ("unattended.img");
+        disk_file = File.new_for_path (path);
+
+        if (os_media.kernel_path != null && os_media.initrd_path != null) {
+            path = get_user_unattended ("kernel");
+            kernel_file = File.new_for_path (path);
+            path = get_user_unattended ("initrd");
+            initrd_file = File.new_for_path (path);
+        }
+    }
+
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
         if (!express_toggle.active) {
             debug ("Unattended installation disabled.");
 
             return;
         }
-        this.hostname = vm_name.replace (" ", "-");
+
+        prepare_to_continue_installation (vm_name);
 
         try {
             yield create_disk_image (cancellable);
@@ -498,15 +513,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
-        var disk_path = get_user_unattended ("unattended.img");
-        disk_file = File.new_for_path (disk_path);
-
         var template_path = get_unattended ("disk.img");
         var template_file = File.new_for_path (template_path);
 
-        debug ("Creating disk image for unattended installation at '%s'..", disk_path);
+        debug ("Creating disk image for unattended installation at '%s'..", disk_file.get_path ());
         yield template_file.copy_async (disk_file, FileCopyFlags.OVERWRITE, Priority.DEFAULT, cancellable);
-        debug ("Floppy image for unattended installation created at '%s'", disk_path);
+        debug ("Floppy image for unattended installation created at '%s'", disk_file.get_path ());
     }
 
     private async void fetch_user_avatar (Gtk.Image avatar) {
@@ -545,25 +557,20 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     private async void extract_boot_files (ISOExtractor extractor, Cancellable cancellable) throws GLib.Error {
         string src_path = extractor.get_absolute_path (os_media.kernel_path);
-        string dest_path = get_user_unattended ("kernel");
-        kernel_file = yield copy_file (src_path, dest_path, cancellable);
+        var src_file = File.new_for_path (src_path);
+        yield copy_file (src_file, kernel_file, cancellable);
 
         src_path = extractor.get_absolute_path (os_media.initrd_path);
-        dest_path = get_user_unattended ("initrd");
-        initrd_file = yield copy_file (src_path, dest_path, cancellable);
+        src_file = File.new_for_path (src_path);
+        yield copy_file (src_file, initrd_file, cancellable);
     }
 
-    private async File copy_file (string src_path, string dest_path, Cancellable cancellable) throws GLib.Error {
-        var src_file = File.new_for_path (src_path);
-        var dest_file = File.new_for_path (dest_path);
-
+    private async void copy_file (File src_file, File dest_file, Cancellable cancellable) throws GLib.Error {
         try {
-            debug ("Copying '%s' to '%s'..", src_path, dest_path);
+            debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
             yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable);
-            debug ("Copied '%s' to '%s'.", src_path, dest_path);
+            debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
         } catch (IOError.EXISTS error) {}
-
-        return dest_file;
     }
 
     private string? get_product_key_format () {

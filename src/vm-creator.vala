@@ -80,6 +80,8 @@ private class Boxes.VMCreator {
     private async void continue_installation (LibvirtMachine machine) {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
         num_reboots = VMConfigurator.get_num_reboots (machine.domain_config);
+        var name = machine.domain.get_name ();
+        install_media.prepare_to_continue_installation (name);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
