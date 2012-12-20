@@ -78,7 +78,10 @@ private class Boxes.InstallerMedia : GLib.Object {
         add_cd_config (domain, from_image? DomainDiskType.FILE : DomainDiskType.BLOCK, device_file, "hdc", true);
     }
 
-    public virtual void setup_post_install_domain_config (Domain domain) {}
+    public virtual void setup_post_install_domain_config (Domain domain) {
+        if (!live)
+            remove_disk_from_domain_config (domain, device_file);
+    }
 
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
 
@@ -116,6 +119,23 @@ private class Boxes.InstallerMedia : GLib.Object {
             disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
 
         domain.add_device (disk);
+    }
+
+    protected void remove_disk_from_domain_config (Domain domain, string disk_path) {
+        var devices = domain.get_devices ();
+        foreach (var device in devices) {
+            if (!(device is DomainDisk))
+                continue;
+
+            var disk = device as DomainDisk;
+            if (disk.get_source () == disk_path) {
+                devices.remove (device);
+
+                break;
+            }
+        }
+
+        domain.set_devices (devices);
     }
 
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {

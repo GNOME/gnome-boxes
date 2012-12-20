@@ -227,20 +227,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override void setup_post_install_domain_config (Domain domain) {
         base.setup_post_install_domain_config (domain);
 
-        var devices = domain.get_devices ();
-        foreach (var device in devices) {
-            if (!(device is DomainDisk))
-                continue;
-
-            var disk = device as DomainDisk;
-            if (disk.get_source () == disk_file.get_path ()) {
-                devices.remove (device);
-
-                break;
-            }
-        }
-
-        domain.set_devices (devices);
+        var path = disk_file.get_path ();
+        remove_disk_from_domain_config (domain, path);
     }
 
     public override void populate_setup_vbox (Gtk.VBox setup_vbox) {
