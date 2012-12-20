@@ -78,6 +78,8 @@ private class Boxes.InstallerMedia : GLib.Object {
         add_cd_config (domain, from_image? DomainDiskType.FILE : DomainDiskType.BLOCK, device_file, "hdc", true);
     }
 
+    public virtual void setup_post_install_domain_config (Domain domain) {}
+
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
 
     public virtual GLib.List<Pair<string,string>> get_vm_properties () {
