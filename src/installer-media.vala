@@ -80,8 +80,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual void setup_post_install_domain_config (Domain domain) {
-        if (!live)
-            remove_disk_from_domain_config (domain, device_file);
+        eject_cdrom_media (domain);
     }
 
     public virtual void populate_setup_vbox (Gtk.VBox setup_vbox) {}
@@ -188,4 +187,25 @@ private class Boxes.InstallerMedia : GLib.Object {
             return;
         }
     }
+
+    private void eject_cdrom_media (Domain domain) {
+        var devices = domain.get_devices ();
+        foreach (var device in devices) {
+            if (!(device is DomainDisk))
+                continue;
+
+            var disk = device as DomainDisk;
+            var disk_type = disk.get_guest_device_type ();
+            if (disk_type == DomainDiskGuestDeviceType.CDROM) {
+                // Make source (installer/live media) optional
+                disk.set_startup_policy (DomainDiskStartupPolicy.OPTIONAL);
+                if (!live) {
+                    // eject CDROM contain in the CD drive as it will not be useful after installation
+                    disk.set_source ("");
+                }
+            }
+        }
+        domain.set_devices (devices);
+    }
+
 }

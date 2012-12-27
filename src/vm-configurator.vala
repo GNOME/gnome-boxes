@@ -109,20 +109,6 @@ private class Boxes.VMConfigurator {
         set_post_install_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
 
-        // Make source (installer/live media) optional
-        var devices = domain.get_devices ();
-        foreach (var device in devices) {
-            if (!(device is DomainDisk))
-                continue;
-
-            var disk = device as DomainDisk;
-            var disk_type = disk.get_guest_device_type ();
-            if (disk_type == DomainDiskGuestDeviceType.CDROM)
-                disk.set_startup_policy (DomainDiskStartupPolicy.OPTIONAL);
-        }
-
-        domain.set_devices (devices);
-
         install_media.setup_post_install_domain_config (domain);
 
         mark_as_installed (domain, install_media);
