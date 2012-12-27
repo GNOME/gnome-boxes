@@ -720,4 +720,21 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         return system_langs[0];
     }
+
+    private void remove_disk_from_domain_config (Domain domain, string disk_path) {
+        var devices = domain.get_devices ();
+        foreach (var device in devices) {
+            if (!(device is DomainDisk))
+                continue;
+
+            var disk = device as DomainDisk;
+            if (disk.get_source () == disk_path) {
+                devices.remove (device);
+
+                break;
+            }
+        }
+
+        domain.set_devices (devices);
+    }
 }

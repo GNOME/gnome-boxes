@@ -121,23 +121,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         domain.add_device (disk);
     }
 
-    protected void remove_disk_from_domain_config (Domain domain, string disk_path) {
-        var devices = domain.get_devices ();
-        foreach (var device in devices) {
-            if (!(device is DomainDisk))
-                continue;
-
-            var disk = device as DomainDisk;
-            if (disk.get_source () == disk_path) {
-                devices.remove (device);
-
-                break;
-            }
-        }
-
-        domain.set_devices (devices);
-    }
-
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
         try {
             var mount_dir = File.new_for_commandline_arg (path);
