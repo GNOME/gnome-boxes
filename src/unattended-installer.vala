@@ -716,9 +716,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             return media_langs_list.nth_data (0);
         }
 
-        debug ("No media language, using %s locale", system_langs[0]);
+        var lang = system_langs[0].replace (".utf8", "");
+        debug ("No media language, using %s locale", lang);
 
-        return system_langs[0];
+        return lang;
     }
 
     private void remove_disk_from_domain_config (Domain domain, string disk_path) {
