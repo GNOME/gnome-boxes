@@ -3,20 +3,22 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2012.
+# Balázs Úr <urbalazs at gmail dot com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-22 08:35+0100\n"
-"PO-Revision-Date: 2012-03-22 08:35+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"boxes&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-23 15:02+0000\n"
+"PO-Revision-Date: 2012-12-29 12:58+0100\n"
+"Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:68
 msgid "Boxes"
@@ -30,13 +32,13 @@ msgstr "Egyszerű virtuálisgép-megjelenítő és -kezelő"
 msgid "View and use virtual machines"
 msgstr "Virtuális gépek megjelenítése és használata"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1
-msgid "Animation duration"
-msgstr "Animáció hossza"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2 ../src/sidebar.vala:148
+#: ../data/org.gnome.boxes.gschema.xml.in.h:1 ../src/sidebar.vala:148
 msgid "Collections"
 msgstr "Gyűjtemények"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:2
+msgid "The list of boxes collections"
+msgstr "A Gépek gyűjteményének listája"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -47,20 +49,20 @@ msgid "The interval in seconds between screenshot updates"
 msgstr "Képernyőképek frissítései közti idő másodpercben"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "The list of boxes collections"
-msgstr "A Gépek gyűjteményének listája"
+msgid "Animation duration"
+msgstr "Animáció hossza"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "The time it takes for transitions and animation, in ms."
 msgstr "Átmenetek és animációk ideje ezredmásodpercben."
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:7
-msgid "Window maximized"
-msgstr "Ablak teljes méretű"
+msgid "Window size"
+msgstr "Ablakméret"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:8
-msgid "Window maximized state"
-msgstr "Az ablak maximalizált állapota"
+msgid "Window size (width and height)"
+msgstr "Ablak mérete (szélesség és magasság)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position"
@@ -71,12 +73,12 @@ msgid "Window position (x and y)"
 msgstr "Ablakpozíció (x és y)"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:11
-msgid "Window size"
-msgstr "Ablakméret"
+msgid "Window maximized"
+msgstr "Ablak teljes méretű"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:12
-msgid "Window size (width and height)"
-msgstr "Ablak mérete (szélesség és magasság)"
+msgid "Window maximized state"
+msgstr "Az ablak maximalizált állapota"
 
 #: ../src/app.vala:94
 msgid "translator-credits"
@@ -84,7 +86,8 @@ msgstr "Kelemen Gábor <kelemeng at gnome dot hu>"
 
 #: ../src/app.vala:95
 msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "Egyszerű GNOME 3 alkalmazás távoli vagy virtuális rendszerek eléréséhez"
+msgstr ""
+"Egyszerű GNOME 3 alkalmazás távoli vagy virtuális rendszerek eléréséhez"
 
 #: ../src/app.vala:107 ../src/topbar.vala:63
 msgid "New"
@@ -106,47 +109,59 @@ msgstr "A Gépek névjegye"
 msgid "Quit"
 msgstr "Kilépés"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:491
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A(z) „%s” gép törlésre került"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:492
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u gép törlésre került"
 msgstr[1] "%u gép törlésre került"
 
-#: ../src/libvirt-machine.vala:243
+#: ../src/display-page.vala:193
+#, c-format
+msgid "%s <b>(press Ctrl+Alt keys to ungrab)</b>"
+msgstr "%s <b>(nyomja le a Ctrl+Alt billentyűket az eleresztéshez)</b>"
+
+#: ../src/fedora-installer.vala:60
+msgid ""
+"Internet access required for express installation of Fedora 16 and older"
+msgstr ""
+"Internet-kapcsolat szükséges a Fedora 16 és régebbi gyors telepítéséhez"
+
+#: ../src/libvirt-machine.vala:286
 msgid "Virtualizer"
 msgstr "Virtualizáló"
 
-#: ../src/libvirt-machine.vala:244 ../src/remote-machine.vala:64
-#: ../src/wizard.vala:310
+#: ../src/libvirt-machine.vala:287 ../src/remote-machine.vala:67
+#: ../src/wizard.vala:305
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:253 ../src/remote-machine.vala:68
+#: ../src/libvirt-machine.vala:296 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: ../src/libvirt-machine.vala:400
+#: ../src/libvirt-machine.vala:442
 msgid "RAM"
 msgstr "RAM"
 
-#: ../src/libvirt-machine.vala:441
+#: ../src/libvirt-machine.vala:483
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr "A módosítások a(z) „%s” újraindítását igénylik. Megkísérli az újraindítást?"
+msgstr ""
+"A módosítások a(z) „%s” újraindítását igénylik. Megkísérli az újraindítást?"
 
-#: ../src/libvirt-machine.vala:458
+#: ../src/libvirt-machine.vala:500
 msgid "Storage"
 msgstr "Tárhely"
 
 #. 3rd row
-#: ../src/machine.vala:286 ../src/unattended-installer.vala:199
-#: ../src/wizard.vala:337
+#: ../src/machine.vala:304 ../src/unattended-installer.vala:222
+#: ../src/wizard.vala:331
 msgid "Password"
 msgstr "Jelszó"
 
@@ -167,7 +182,7 @@ msgstr "– Egyszerű alkalmazás távoli vagy virtuális gépek eléréséhez"
 msgid "Login"
 msgstr "Bejelentkezés"
 
-#: ../src/properties.vala:43 ../src/wizard.vala:330
+#: ../src/properties.vala:43 ../src/wizard.vala:325
 msgid "System"
 msgstr "Rendszer"
 
@@ -191,7 +206,7 @@ msgstr "I/O:"
 msgid "Net:"
 msgstr "Hálózat:"
 
-#: ../src/remote-machine.vala:61
+#: ../src/remote-machine.vala:64
 msgid "Name"
 msgstr "Név"
 
@@ -215,38 +230,43 @@ msgstr "Megosztva Önnel"
 msgid "Create"
 msgstr "Felvétel"
 
-#: ../src/spice-display.vala:133
+#: ../src/spice-display.vala:142
 msgid "Share clipboard"
 msgstr "Vágólap megosztása"
 
-#: ../src/spice-display.vala:141
+#: ../src/spice-display.vala:150
 msgid "Resize guest"
 msgstr "Vendég átméretezése"
 
-#: ../src/spice-display.vala:152
+#: ../src/spice-display.vala:161
 msgid "USB redirection"
 msgstr "USB átirányítása"
 
-#: ../src/topbar.vala:155
+#: ../src/topbar.vala:162
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d kiválasztva"
 msgstr[1] "%d kiválasztva"
 
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:164
 msgid "Click on items to select them"
 msgstr "Kattintson az elemekre a kiválasztásukhoz"
 
-#: ../src/unattended-installer.vala:26
+#: ../src/unattended-installer.vala:31
 msgid "no password"
 msgstr "nincs jelszó"
 
-#: ../src/unattended-installer.vala:154
+#: ../src/unattended-installer.vala:162
 msgid "No username provided"
 msgstr "Nincs megadva felhasználónév"
 
-#: ../src/unattended-installer.vala:158
+#: ../src/unattended-installer.vala:166
+#, c-format
+msgid "Password required for express installation of %s"
+msgstr "Jelszó szükséges a(z) %s gyors telepítéséhez"
+
+#: ../src/unattended-installer.vala:179
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -255,15 +275,15 @@ msgstr ""
 "optimális beállításokkal."
 
 #. First row
-#: ../src/unattended-installer.vala:170
+#: ../src/unattended-installer.vala:193
 msgid "Express Install"
 msgstr "Expressz telepítés"
 
-#: ../src/unattended-installer.vala:188 ../src/wizard.vala:336
+#: ../src/unattended-installer.vala:211 ../src/wizard.vala:330
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: ../src/unattended-installer.vala:209
+#: ../src/unattended-installer.vala:232
 msgid "_Add Password"
 msgstr "Jelszó _hozzáadása"
 
@@ -272,23 +292,23 @@ msgid "Read-only"
 msgstr "Csak olvasható"
 
 #. Microsoft Windows product key
-#: ../src/winxp-installer.vala:38
+#: ../src/winxp-installer.vala:48
 msgid "Product Key"
 msgstr "Termékkulcs"
 
-#: ../src/winxp-installer.vala:45
+#: ../src/winxp-installer.vala:55
 msgid "_Add Product Key"
 msgstr "Termékkulcs hozzá_adása"
 
-#: ../src/wizard-source.vala:62 ../src/wizard-source.vala:86
+#: ../src/wizard-source.vala:64 ../src/wizard-source.vala:88
 msgid "Enter URL"
 msgstr "Adja meg az URL-címet"
 
-#: ../src/wizard-source.vala:72
+#: ../src/wizard-source.vala:74
 msgid "Select a file"
 msgstr "Válasszon egy fájlt"
 
-#: ../src/wizard-source.vala:103
+#: ../src/wizard-source.vala:105
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -298,21 +318,21 @@ msgstr ""
 "\n"
 "Gépek felvétele az erről a fiókról elérhető összes rendszerhez."
 
-#: ../src/wizard-source.vala:171
+#: ../src/wizard-source.vala:174
 msgid "32-bit x86 system"
 msgstr "32 bites x86 rendszer"
 
-#: ../src/wizard-source.vala:172
+#: ../src/wizard-source.vala:175
 msgid "64-bit x86 system"
 msgstr "64 bites x86 rendszer"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:180
+#: ../src/wizard-source.vala:183
 #, c-format
 msgid " from %s"
 msgstr " gyártó: %s"
 
-#: ../src/wizard-source.vala:220
+#: ../src/wizard-source.vala:223
 msgid "Select a device or ISO file"
 msgstr "Válasszon egy eszközt vagy ISO fájlt"
 
@@ -320,7 +340,7 @@ msgstr "Válasszon egy eszközt vagy ISO fájlt"
 msgid "Box creation failed!"
 msgstr "A gép felvétele meghiúsult!"
 
-#: ../src/wizard.vala:98 ../src/wizard.vala:507
+#: ../src/wizard.vala:98 ../src/wizard.vala:505
 msgid "C_ontinue"
 msgstr "_Folytatás"
 
@@ -328,73 +348,73 @@ msgstr "_Folytatás"
 msgid "C_reate"
 msgstr "F_elvétel"
 
-#: ../src/wizard.vala:114
+#: ../src/wizard.vala:119
 msgid "Please enter desktop or collection URI"
 msgstr "Adja meg az asztal vagy gyűjtemény URI-címét"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard.vala:125
 msgid "Will add boxes for all systems available from this account."
 msgstr "Gépek felvétele az erről a fiókról elérhető összes rendszerhez."
 
-#: ../src/wizard.vala:123
+#: ../src/wizard.vala:128
 msgid "Will add a single box."
 msgstr "Egyetlen gép felvétele."
 
-#: ../src/wizard.vala:129
+#: ../src/wizard.vala:134
 msgid "Desktop Access"
 msgstr "Asztal elérése"
 
-#: ../src/wizard.vala:199
+#: ../src/wizard.vala:198
 msgid "Invalid URI"
 msgstr "Érvénytelen URI"
 
-#: ../src/wizard.vala:210
+#: ../src/wizard.vala:209
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nem támogatott protokoll: „%s”"
 
-#: ../src/wizard.vala:300
+#: ../src/wizard.vala:295
 msgid "Will create a new box with the following properties:"
 msgstr "Új gép felvétele a következő tulajdonságokkal:"
 
-#: ../src/wizard.vala:305
+#: ../src/wizard.vala:300
 msgid "Type"
 msgstr "Típus"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:303
 msgid "Host"
 msgstr "Kiszolgáló"
 
-#: ../src/wizard.vala:316 ../src/wizard.vala:322
+#: ../src/wizard.vala:311 ../src/wizard.vala:317
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:317
+#: ../src/wizard.vala:312
 msgid "TLS Port"
 msgstr "TLS port"
 
-#: ../src/wizard.vala:327
+#: ../src/wizard.vala:322
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Gépek felvétele az erről a fiókról elérhető összes rendszerhez:"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:336
 msgid "Memory"
 msgstr "Memória"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:338
 msgid "Disk"
 msgstr "Lemez"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:338
 #, c-format
 msgid "%s maximum"
 msgstr "%s maximum"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:383
 msgid "Introduction"
 msgstr "Bevezetés"
 
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:387
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -408,17 +428,17 @@ msgstr ""
 "létrehozhat egy <b><i>virtuális gépet</i></b>, amely helyileg fut a saját "
 "gépén."
 
-#: ../src/wizard.vala:404
+#: ../src/wizard.vala:399
 msgid "Source Selection"
 msgstr "Forrásválasztás"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:400
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Helyezze be egy operációs rendszer telepítőmédiáját, vagy válasszon alább "
 "egy forrást"
 
-#: ../src/wizard.vala:413
+#: ../src/wizard.vala:408
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -427,27 +447,27 @@ msgstr ""
 "A fent megjelenő védjegyek csak az Ön által már beszerzett szoftvertermékek "
 "azonosítására szolgálnak, és a megfelelő tulajdonosaik tulajdonát képezik."
 
-#: ../src/wizard.vala:425
+#: ../src/wizard.vala:420
 msgid "Preparation"
 msgstr "Előkészítés"
 
-#: ../src/wizard.vala:426
+#: ../src/wizard.vala:421
 msgid "Preparing to create new box"
 msgstr "Felkészülés új gép felvételére"
 
-#: ../src/wizard.vala:443
+#: ../src/wizard.vala:438
 msgid "Analyzing installer media."
 msgstr "Telepítőmédia elemzése."
 
-#: ../src/wizard.vala:454
+#: ../src/wizard.vala:449
 msgid "Setup"
 msgstr "Beállítás"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:456
 msgid "Review"
 msgstr "Áttekintés"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:478
 msgid "Create a Box"
 msgstr "Gép felvétele"
 
