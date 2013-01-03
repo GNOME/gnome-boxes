@@ -3,8 +3,6 @@ NULL =
 # This is the directory where we put upstream vapi bindings when they
 # are outdated and we need a version with additional fixes.
 EXTRA_DIST =					\
-	cogl-1.0.deps				\
-	cogl-1.0.vapi				\
 	gdk-3.0.deps				\
 	gdk-3.0.vapi				\
 	gtk+-3.0.deps				\
