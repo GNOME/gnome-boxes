@@ -105,10 +105,7 @@ private class Boxes.VMConfigurator {
         console.set_source (new DomainChardevSourcePty ());
         domain.add_device (console);
 
-        var iface = new DomainInterfaceUser ();
-        if (install_media.supports_virtio_net)
-            iface.set_model ("virtio");
-        domain.add_device (iface);
+        add_network_interface (domain, is_libvirt_bridge_net_available (), install_media.supports_virtio_net);
 
         return domain;
     }
@@ -398,6 +395,25 @@ private class Boxes.VMConfigurator {
         domain.add_device (controller);
         controller = create_usb_controller (DomainControllerUsbModel.ICH9_UHCI3, master_controller, 0, 4);
         domain.add_device (controller);
+    }
+
+    public static void add_network_interface (Domain domain, bool bridge, bool virtio) {
+        DomainInterface iface;
+
+        if (bridge) {
+            debug ("Adding bridge network to %s", domain.get_name ());
+            var bridge_iface = new DomainInterfaceBridge ();
+            bridge_iface.set_source ("virbr0");
+            iface = bridge_iface;
+        } else {
+            debug ("Adding user network to %s", domain.get_name ());
+            iface = new DomainInterfaceUser ();
+        }
+
+        if (virtio)
+            iface.set_model ("virtio");
+
+        domain.add_device (iface);
     }
 
     private static DomainControllerUsb create_usb_controller (DomainControllerUsbModel model,
