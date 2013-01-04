@@ -102,7 +102,7 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
         var label = new Gtk.Label (format_size (((uint64) size) * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
         label.halign = Gtk.Align.CENTER;
 
-        var scale = new Gtk.HScale.with_range (min, max, step);
+        var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
 
         scale.add_mark (min, Gtk.PositionType.BOTTOM,
                         format_size (min * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));

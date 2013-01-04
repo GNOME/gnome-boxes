@@ -24,9 +24,9 @@ namespace Boxes {
         return style.get_background_color (0);
     }
 
-    public Gdk.Color get_color (string desc) {
-        Gdk.Color color;
-        Gdk.Color.parse (desc, out color);
+    public Gdk.RGBA get_color (string desc) {
+        Gdk.RGBA color =  Gdk.RGBA ();
+        color.parse (desc);
         return color;
     }
 

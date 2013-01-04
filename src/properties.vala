@@ -98,7 +98,7 @@ private class Boxes.Properties: Boxes.UI {
                 foreach (var property in properties) {
                     if (property.description != null) {
                         var label_name = new Gtk.Label (property.description);
-                        label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
+                        label_name.get_style_context ().add_class ("boxes-property-name-label");
                         label_name.margin_left = 25;
                         label_name.halign = Gtk.Align.START;
                         label_name.hexpand = false;
@@ -204,9 +204,9 @@ private class Boxes.Properties: Boxes.UI {
         gtk_actor.opacity = 0;
 
         /* topbar */
-        var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.HBox;
+        var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;
 
-        var box = new Gtk.HBox (false, 5);
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
         box.add (new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU));
         toolbar_label = new Gtk.Label ("label");
         box.add (toolbar_label);
@@ -222,7 +222,7 @@ private class Boxes.Properties: Boxes.UI {
         hbox.show_all ();
 
         /* sidebar */
-        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.VBox;
+        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.Box;
 
         tree_view = new Gtk.TreeView ();
         tree_view.get_style_context ().add_class ("boxes-bg");

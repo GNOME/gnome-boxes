@@ -89,16 +89,16 @@ private class Boxes.Sidebar: Boxes.UI {
         notebook.show_tabs = false;
 
         /* SidebarPage.COLLECTION */
-        var vbox = new Gtk.VBox (false, 0);
+        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         notebook.append_page (vbox, null);
 
         /* SidebarPage.WIZARD */
-        vbox = new Gtk.VBox (false, 0);
+        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         vbox.margin_top = 20;
         notebook.append_page (vbox, null);
 
         /* SidebarPage.PROPERTIES */
-        vbox = new Gtk.VBox (false, 10);
+        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
         notebook.append_page (vbox, null);
 
         notebook.show_all ();

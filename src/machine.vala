@@ -504,7 +504,7 @@ private class Boxes.MachineActor: Boxes.UI {
     private Clutter.Actor? thumbnail;
     private GtkClutter.Texture? thumbnail_screenshot;
     private Gtk.Label label;
-    private Gtk.VBox vbox; // and the vbox under it
+    private Gtk.Box vbox; // and the vbox under it
     private Gtk.Entry password_entry;
     private Machine machine;
     ulong track_screenshot_id = 0;
@@ -531,7 +531,7 @@ private class Boxes.MachineActor: Boxes.UI {
         screenshot.keep_aspect_ratio = true;
         _actor.add (screenshot);
 
-        vbox = new Gtk.VBox (false, 0);
+        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         gtk_vbox = new GtkClutter.Actor.with_contents (vbox);
         // Ensure we have enough space to fit everything without changing
         // size, as that causes weird re-animations
@@ -540,7 +540,7 @@ private class Boxes.MachineActor: Boxes.UI {
         gtk_vbox.get_widget ().get_style_context ().add_class ("boxes-bg");
 
         label = new Gtk.Label (machine.name);
-        label.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
+        label.get_style_context ().add_class ("boxes-machine-name-label");
         machine.bind_property ("name", label, "label", BindingFlags.DEFAULT);
         vbox.add (label);
         vbox.set_valign (Gtk.Align.START);

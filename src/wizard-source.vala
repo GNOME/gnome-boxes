@@ -235,7 +235,8 @@ private class Boxes.WizardSource: GLib.Object {
         if (media.os != null)
             Downloader.fetch_os_logo.begin (image, media.os, 64);
 
-        var vbox = new Gtk.VBox (true, 5);
+        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
+        vbox.homogeneous = true;
         hbox.pack_start (vbox, true, true);
 
         var media_label = media.label;

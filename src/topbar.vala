@@ -45,7 +45,7 @@ private class Boxes.Topbar: Boxes.UI {
         gtk_actor.name = "topbar";
 
         /* TopbarPage.COLLECTION */
-        var hbox = new Gtk.HBox (false, 0);
+        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
 
         var toolbar = new Gd.MainToolbar ();
@@ -82,7 +82,7 @@ private class Boxes.Topbar: Boxes.UI {
         App.app.collection.item_removed.connect (update_select_btn);
 
         /* TopbarPage.SELECTION */
-        hbox = new Gtk.HBox (false, 0);
+        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
         selection_toolbar = new Gd.MainToolbar ();
         selection_toolbar.get_style_context ().add_class ("selection-mode");
@@ -109,11 +109,11 @@ private class Boxes.Topbar: Boxes.UI {
         });
 
         /* TopbarPage.WIZARD */
-        hbox = new Gtk.HBox (false, 0);
+        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
 
         /* TopbarPage.PROPERTIES */
-        hbox = new Gtk.HBox (false, 0);
+        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
 
 

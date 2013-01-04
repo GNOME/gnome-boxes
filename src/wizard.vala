@@ -28,7 +28,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.ProgressBar prep_progress;
     private Gtk.Label prep_media_label;
     private Gtk.Label prep_status_label;
-    private Gtk.VBox setup_vbox;
+    private Gtk.Box setup_vbox;
     private Gtk.Label review_label;
     private Gtk.Label nokvm_label;
     private Gtk.Image installer_image;
@@ -120,11 +120,10 @@ private class Boxes.Wizard: Boxes.UI {
 
             for (var i = 0; i < steps.length; i++) {
                 var label = steps.get (i);
-                label.modify_fg (Gtk.StateType.NORMAL, null);
+                label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
             }
 
-            /* highlight in white current page label */
-            steps.get (page).modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
+            steps.get (page).get_style_context ().add_class ("boxes-wizard-current-page-label");
         }
     }
 
@@ -464,7 +463,7 @@ private class Boxes.Wizard: Boxes.UI {
         notebook.append_page (widget, null);
 
         /* sidebar */
-        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.VBox;
+        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.Box;
 
         var label = new Gtk.Label (title);
         label.margin_left = 25;
@@ -525,7 +524,7 @@ private class Boxes.Wizard: Boxes.UI {
         gtk_actor.opacity = 0;
 
         /* Introduction */
-        var hbox = new Gtk.HBox (false, 10);
+        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
         hbox.halign = Gtk.Align.CENTER;
         add_step (hbox, _("Introduction"), WizardPage.INTRODUCTION);
         hbox.add (new Gtk.Image.from_file (get_pixmap ("boxes-create.png")));
@@ -540,7 +539,7 @@ private class Boxes.Wizard: Boxes.UI {
         hbox.show_all ();
 
         /* Source */
-        var vbox = new Gtk.VBox (false, 30);
+        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
         vbox.valign = Gtk.Align.CENTER;
         vbox.halign = Gtk.Align.CENTER;
         add_step (vbox, _("Source Selection"), WizardPage.SOURCE);
@@ -564,7 +563,7 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.show_all ();
 
         /* Preparation */
-        vbox = new Gtk.VBox (false, 30);
+        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
         vbox.valign = Gtk.Align.CENTER;
         vbox.halign = Gtk.Align.CENTER;
         add_step (vbox, _("Preparation"), WizardPage.PREPARATION);
@@ -576,7 +575,7 @@ private class Boxes.Wizard: Boxes.UI {
         label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
 
-        hbox = new Gtk.HBox (false, 10);
+        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
         hbox.valign = Gtk.Align.CENTER;
         hbox.halign = Gtk.Align.CENTER;
         vbox.pack_start (hbox, true, true);
@@ -584,7 +583,8 @@ private class Boxes.Wizard: Boxes.UI {
         installer_image = new Gtk.Image.from_icon_name ("media-optical", 0);
         installer_image.pixel_size = 128;
         hbox.pack_start (installer_image, false, false);
-        var prep_vbox = new Gtk.VBox (true, 10);
+        var prep_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+        prep_vbox.homogeneous = true;
         prep_vbox.valign = Gtk.Align.CENTER;
         hbox.pack_start (prep_vbox, true, true);
         prep_media_label = new Gtk.Label (null);
@@ -600,14 +600,14 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.show_all ();
 
         /* Setup */
-        setup_vbox = new Gtk.VBox (false, 30);
+        setup_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
         setup_vbox.valign = Gtk.Align.CENTER;
         setup_vbox.halign = Gtk.Align.CENTER;
         add_step (setup_vbox, _("Setup"), WizardPage.SETUP);
         setup_vbox.show_all ();
 
         /* Review */
-        vbox = new Gtk.VBox (false, 30);
+        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
         vbox.valign = Gtk.Align.CENTER;
         vbox.halign = Gtk.Align.CENTER;
         add_step (vbox, _("Review"), WizardPage.REVIEW);
@@ -629,7 +629,7 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.show_all ();
 
         /* topbar */
-        hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.HBox;
+        hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.Box;
         label = new Gtk.Label (_("Create a Box"));
         label.name = "TopbarLabel";
         label.halign = Gtk.Align.START;
@@ -732,12 +732,12 @@ private class Boxes.Wizard: Boxes.UI {
                 return;
 
             var label_name = new Gtk.Label (name);
-            label_name.modify_fg (Gtk.StateType.NORMAL, get_color ("grey"));
+            label_name.get_style_context ().add_class ("boxes-wizard-summary-prop-name-label");
             label_name.xalign = 1.0f;
             grid.attach (label_name, 0, current_row, 1, 1);
 
             var label_value = new Gtk.Label (value);
-            label_value.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
+            label_value.get_style_context ().add_class ("boxes-wizard-summary-prop-value-label");
             label_value.xalign = 0.0f;
             grid.attach (label_value, 1, current_row, 1, 1);
 
@@ -751,7 +751,7 @@ private class Boxes.Wizard: Boxes.UI {
                 return;
 
             var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
-            button.modify_fg (Gtk.StateType.NORMAL, get_color ("white"));
+            button.get_style_context ().add_class ("boxes-wizard-summary-customize-button");
             grid.attach (button, 2, current_row - 1, 1, 1);
             button.show ();
 

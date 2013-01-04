@@ -71,7 +71,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private int setup_grid_n_rows;
 
     private Gtk.Label setup_label;
-    private Gtk.HBox setup_hbox;
+    private Gtk.Box setup_hbox;
     private Gtk.Switch express_toggle;
     private Gtk.Entry username_entry;
     private Gtk.Entry password_entry;
@@ -233,7 +233,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         remove_disk_from_domain_config (domain, path);
     }
 
-    public override void populate_setup_vbox (Gtk.VBox setup_vbox) {
+    public override void populate_setup_vbox (Gtk.Box setup_vbox) {
         foreach (var child in setup_vbox.get_children ())
             setup_vbox.remove (child);
 
@@ -302,7 +302,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         setup_label.wrap = true;
         setup_label.width_chars = 30;
         setup_label.halign = Gtk.Align.START;
-        setup_hbox = new Gtk.HBox (false, 0);
+        setup_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         setup_hbox.valign = Gtk.Align.START;
         setup_hbox.margin = 24;
 

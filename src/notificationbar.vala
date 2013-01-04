@@ -97,7 +97,7 @@ private class Boxes.Notificationbar: GLib.Object {
             ok_button.halign = Gtk.Align.END;
             grid.add (ok_button);
 
-            ok_button.pressed.connect ( () => {
+            ok_button.clicked.connect ( () => {
                 ok_pressed = true;
                 if (ok_func != null)
                     ok_func ();
