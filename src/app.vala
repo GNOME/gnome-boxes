@@ -46,8 +46,6 @@ private class Boxes.App: Boxes.UI {
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
-    public GLib.SimpleAction action_properties;
-    public GLib.SimpleAction action_fullscreen;
 
     public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
@@ -78,14 +76,6 @@ private class Boxes.App: Boxes.UI {
         action = new GLib.SimpleAction ("new", null);
         action.activate.connect (() => { ui_state = UIState.WIZARD; });
         application.add_action (action);
-
-        action_fullscreen = new GLib.SimpleAction ("display.fullscreen", null);
-        action_fullscreen.activate.connect (() => { fullscreen = true; });
-        application.add_action (action_fullscreen);
-
-        action_properties = new GLib.SimpleAction ("display.properties", null);
-        action_properties.activate.connect (() => { ui_state = UIState.PROPERTIES; });
-        application.add_action (action_properties);
 
         action = new GLib.SimpleAction ("select-all", null);
         action.activate.connect (() => { view.select (SelectionCriteria.ALL); });
@@ -131,8 +121,6 @@ private class Boxes.App: Boxes.UI {
             menu.append (_("New"), "app.new");
 
             var display_section = new GLib.Menu ();
-            display_section.append (_("Properties"), "app.display.properties");
-            display_section.append (_("Fullscreen"), "app.display.fullscreen");
             menu.append_section (null, display_section);
 
             menu.append (_("About Boxes"), "app.about");
@@ -579,9 +567,6 @@ private class Boxes.App: Boxes.UI {
     }
 
     public override void ui_state_changed () {
-        action_fullscreen.set_enabled (ui_state == UIState.DISPLAY);
-        action_properties.set_enabled (ui_state == UIState.DISPLAY);
-
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, properties, wizard }) {
