@@ -63,9 +63,8 @@ private class Boxes.Sidebar: Boxes.UI {
         shadow.set_content (canvas);
         shadow.set_content_gravity (Clutter.ContentGravity.RESIZE_FILL);
         shadow.set_content_scaling_filters (Clutter.ScalingFilter.NEAREST, Clutter.ScalingFilter.NEAREST);
-        bin.add (shadow,
-                 Clutter.BinAlignment.END,
-                 Clutter.BinAlignment.FILL);
+        shadow.x_align = Clutter.ActorAlign.END;
+        bin_actor.add_child (shadow);
 
         var background = new GtkClutter.Texture ();
         background.name = "sidebar-background";
@@ -76,7 +75,7 @@ private class Boxes.Sidebar: Boxes.UI {
         }
         background.set_repeat (true, true);
         background.set_margin_right (shadow_width);
-        bin.add (background, Clutter.BinAlignment.FILL, Clutter.BinAlignment.FILL);
+        bin_actor.add (background);
 
         notebook = new Gtk.Notebook ();
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);

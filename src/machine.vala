@@ -518,7 +518,7 @@ private class Boxes.MachineActor: Boxes.UI {
         this.machine = machine;
 
         var layout = new Clutter.BoxLayout ();
-        layout.vertical = true;
+        layout.orientation = Clutter.Orientation.VERTICAL;
         layout.spacing = 10;
         _actor = new Clutter.Actor ();
         _actor.set_layout_manager (layout);

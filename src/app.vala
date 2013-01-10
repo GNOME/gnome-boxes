@@ -469,7 +469,7 @@ private class Boxes.App: Boxes.UI {
         vbox_actor.name = "top-vbox";
         var vbox = new Clutter.BoxLayout ();
         vbox_actor.set_layout_manager (vbox);
-        vbox.set_vertical (true);
+        vbox.orientation = Clutter.Orientation.VERTICAL;
         vbox_actor.x_align = Clutter.ActorAlign.FILL;
         vbox_actor.y_align = Clutter.ActorAlign.FILL;
 
@@ -477,14 +477,16 @@ private class Boxes.App: Boxes.UI {
 
         var topbar_revealer = new Boxes.Revealer (true);
         topbar_revealer.name = "topbar-revealer";
-        vbox.pack (topbar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        topbar_revealer.x_expand = true;
+        vbox_actor.add_child (topbar_revealer);
         topbar_revealer.add (topbar.actor);
 
         searchbar_revealer = new Boxes.Revealer (true);
         searchbar_revealer.resize = true;
         searchbar_revealer.unreveal ();
         searchbar_revealer.name = "searchbar-revealer";
-        vbox.pack (searchbar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        searchbar_revealer.x_expand = true;
+        vbox_actor.add_child (searchbar_revealer);
         searchbar_revealer.add (searchbar.actor);
 
         var below_bin_actor = new Clutter.Actor ();
@@ -493,7 +495,9 @@ private class Boxes.App: Boxes.UI {
                                                Clutter.BinAlignment.FILL);
         below_bin_actor.set_layout_manager (below_bin);
 
-        vbox.pack (below_bin_actor, true, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        below_bin_actor.x_expand = true;
+        below_bin_actor.y_expand = true;
+        vbox_actor.add_child (below_bin_actor);
 
         below_bin_actor.add_child (view.actor);
 
@@ -517,7 +521,8 @@ private class Boxes.App: Boxes.UI {
 
         sidebar_revealer = new Boxes.Revealer (false);
         sidebar_revealer.name = "sidebar-revealer";
-        hbox.pack (sidebar_revealer, false, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        sidebar_revealer.y_expand = true;
+        hbox_actor.add_child (sidebar_revealer);
         sidebar_revealer.unreveal ();
         sidebar_revealer.add (sidebar.actor);
 
@@ -526,7 +531,9 @@ private class Boxes.App: Boxes.UI {
         var content_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
                                                  Clutter.BinAlignment.FILL);
         content_bin_actor.set_layout_manager (content_bin);
-        hbox.pack (content_bin_actor, true, true, true, Clutter.BoxAlignment.START, Clutter.BoxAlignment.START);
+        content_bin_actor.x_expand = true;
+        content_bin_actor.y_expand = true;
+        hbox_actor.add_child (content_bin_actor);
 
         below_bin_actor.add_child (notificationbar.actor);
 
