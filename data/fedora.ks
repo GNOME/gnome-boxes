@@ -23,13 +23,7 @@ reboot
 
 
 %packages
-@base
-@core
-@hardware-support
-@base-x
-@gnome-desktop
-@graphical-internet
-@sound-and-video
+BOXES_FEDORA_PACKAGES
 
 # QXL video driver and SPICE vdagent
 xorg-x11-drv-qxl

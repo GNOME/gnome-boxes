@@ -1,16 +1,34 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 private class Boxes.FedoraInstaller: UnattendedInstaller {
+    public const string PRE_F18_PACKAGES = "@base\n" +
+                                           "@core\n" +
+                                           "@hardware-support\n" +
+                                           "@base-x\n" +
+                                           "@gnome-desktop\n" +
+                                           "@graphical-internet\n" +
+                                           "@sound-and-video";
+    public const string F18_PACKAGES = "@standard\n" +
+                                       "@core\n" +
+                                       "@hardware-support\n" +
+                                       "@base-x\n" +
+                                       "@gnome-desktop\n" +
+                                       "@epiphany\n" +
+                                       "@firefox\n" +
+                                       "@multimedia";
+
     private File kernel_file;
     private File initrd_file;
 
     private string kbd;
 
     private static Regex kbd_regex;
+    private static Regex packages_regex;
 
     static construct {
         try {
             kbd_regex = new Regex ("BOXES_FEDORA_KBD");
+            packages_regex = new Regex ("BOXES_FEDORA_PACKAGES");
         } catch (RegexError error) {
             // This just can't fail
             assert_not_reached ();
@@ -66,6 +84,12 @@ private class Boxes.FedoraInstaller: UnattendedInstaller {
 
     protected override string fill_unattended_data (string data) throws RegexError {
         var str = base.fill_unattended_data (data);
+
+        var version = int.parse (os.version);
+        if (version < 18)
+            str = packages_regex.replace (str, str.length, 0, PRE_F18_PACKAGES);
+        else
+            str = packages_regex.replace (str, str.length, 0, F18_PACKAGES);
 
         return kbd_regex.replace (str, str.length, 0, kbd);
     }
