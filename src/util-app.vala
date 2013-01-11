@@ -237,6 +237,34 @@ namespace Boxes {
         return pool.get_volume (domain.get_name ());
     }
 
+    private static bool libvirt_bridge_net_checked = false;
+    private static bool libvirt_bridge_net_available = false;
+
+    public bool is_libvirt_bridge_net_available () {
+        if (libvirt_bridge_net_checked)
+            return libvirt_bridge_net_available;
+
+        var connection = new GVir.Connection ("qemu:///system");
+
+        try {
+            connection.open_read_only ();
+
+            var file = File.new_for_path ("/etc/qemu/bridge.conf");
+            uint8[] contents;
+            file.load_contents (null, out contents, null);
+
+            libvirt_bridge_net_available = (Regex.match_simple ("^allow.*virbr0", (string) contents));
+        } catch (GLib.Error error) {
+            debug ("%s", error.message);
+
+            libvirt_bridge_net_available = false;
+        }
+
+        libvirt_bridge_net_checked = true;
+
+        return libvirt_bridge_net_available;
+    }
+
     private string? get_logo_path (Osinfo.Os os, string[] extensions = {".svg", ".png", ".jpg"}) {
         if (extensions.length == 0)
             return null;
