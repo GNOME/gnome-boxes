@@ -12,7 +12,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         this.machine = machine;
     }
 
-    public bool try_change_name (string name) {
+    private bool try_change_name (string name) {
         try {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             // Te use libvirt "title" for free form user name
@@ -29,7 +29,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
     }
 
-    public void try_enable_usb_redir () throws GLib.Error {
+    private void try_enable_usb_redir () throws GLib.Error {
         var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
 
         // Remove any old usb configuration from old config
@@ -43,7 +43,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         notify_reboot_required ();
     }
 
-    public void try_enable_smartcard () throws GLib.Error {
+    private void try_enable_smartcard () throws GLib.Error {
         var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
 
         VMConfigurator.add_smartcard_support (config);
