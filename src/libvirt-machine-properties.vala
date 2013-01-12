@@ -53,6 +53,18 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         notify_reboot_required ();
     }
 
+    private void try_change_network_interface (bool bridge, bool virtio) throws GLib.Error {
+        var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+
+        VMConfigurator.remove_network_interface (config);
+        VMConfigurator.add_network_interface (config, bridge, virtio);
+
+        // This will take effect only after next reboot
+        machine.domain.set_config (config);
+        if (machine.is_on ())
+            notify_reboot_required ();
+    }
+
     private string collect_logs () {
         var builder = new StringBuilder ();
 
@@ -205,6 +217,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             bool has_usb_redir = false;
             bool has_smartcard = false;
+            bool bridge_net = false;
+            bool virtio_net = false;
             // We look at the INACTIVE config here, because we want to show the usb
             // widgetry if usb has been added already but we have not rebooted
             try {
@@ -215,6 +229,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     }
                     if (device is GVirConfig.DomainSmartcard) {
                         has_smartcard = true;
+                    }
+                    if (device is GVirConfig.DomainInterfaceBridge) {
+                        bridge_net = true;
+                    }
+                    if (device is GVirConfig.DomainInterface) {
+                        virtio_net = (device as GVirConfig.DomainInterface).get_model () == "virtio";
                     }
                 }
             } catch (GLib.Error error) {
@@ -254,6 +274,25 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         property.refresh_properties ();
                     } catch (GLib.Error error) {
                         warning ("Failed to enable smartcard");
+                    }
+                });
+            }
+
+            var combo = new Gtk.ComboBoxText ();
+            combo.halign = Gtk.Align.START;
+            combo.insert_text (0, _("Fastest"));
+            combo.insert_text (1, _("Most secure"));
+            combo.active = bridge_net? 0 : 1;
+            add_property (ref list, _("Network"), combo);
+            if (!bridge_net && !is_libvirt_bridge_net_available ())
+                combo.sensitive = false;
+            else {
+                combo.changed.connect (() => {
+                    try {
+                        try_change_network_interface (combo.get_active() == 0, virtio_net);
+                        machine.update_domain_config ();
+                    } catch (GLib.Error error) {
+                        warning ("Failed to change network interface");
                     }
                 });
             }
