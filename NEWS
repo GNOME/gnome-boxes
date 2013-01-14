@@ -1,3 +1,61 @@
+3.7.4 - Jan 14, 2013
+====================
+
+Changes since 3.7.3:
+
+- Make use of new libosinfo API to avoid starting installation in language
+  unsupported by installer media.
+- Add smartcard support. If --enable-smartcard support is passed we create new
+  VMs with smartcard support, or let you add it to old VMs.
+- Ensure driver files cache is up2date and unique.
+- Once installation is complete,
+  - Eject CDROM.
+  - Delete installer files.
+- Make the progressbar on wizard's preparation page more useful by showing
+  progress of media detection and drivers download and keeping user informed
+  about current activity.
+- Adapt to Clutter 1.12 and Gtk+ 3.2.
+- Added/updated/fixed translations:
+  - Assamese
+  - Belarusian
+  - Bulgarian
+  - Estonian
+  - Galician
+  - Hebrew
+  - Hungarian
+  - Lithuanian
+  - Norwegian bokmål
+  - Polish
+  - Slovenian
+  - Spanish
+- Remove now redundant Vala API files.
+- Some other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- libosinfo >= 0.2.3
+- libvirt-gobject >= 0.1.5
+- libvirt-gconfig >= 0.1.5
+
+All contributors to this release:
+
+Alexander Larsson <alexl@redhat.com>
+Aurimas Černius <aurisc4@gmail.com>
+Balázs Úr <urbalazs@src.gnome.org>
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Fabiano Fidêncio <fabiano@fidencio.org>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Krasimir Chonov <mk2616@abv.bg>
+Matej Urbančič <mateju@svn.gnome.org>
+Mattias Põldaru <mahfiaz@gmail.com>
+Nilamdyuti Goswami <ngoswami@redhat.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.7.3 - Dec 17, 2012
 ====================
 
