@@ -522,6 +522,10 @@ private class Boxes.Wizard: Boxes.UI {
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "wizard";
         gtk_actor.opacity = 0;
+        gtk_actor.x_align = Clutter.ActorAlign.FILL;
+        gtk_actor.y_align = Clutter.ActorAlign.FILL;
+        gtk_actor.x_expand = true;
+        gtk_actor.y_expand = true;
 
         /* Introduction */
         var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);

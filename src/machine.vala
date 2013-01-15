@@ -722,6 +722,10 @@ private class Boxes.MachineActor: Boxes.UI {
 
         switch (ui_state) {
         case UIState.CREDS:
+            actor.x_align = Clutter.ActorAlign.CENTER;
+            actor.y_align = Clutter.ActorAlign.CENTER;
+            actor.x_expand = true;
+            actor.y_expand = true;
             gtk_vbox.show ();
             break;
 
@@ -730,6 +734,8 @@ private class Boxes.MachineActor: Boxes.UI {
             if (previous_ui_state == UIState.CREDS) {
                 actor.x_align = Clutter.ActorAlign.FILL;
                 actor.y_align = Clutter.ActorAlign.FILL;
+                actor.x_expand = true;
+                actor.y_expand = true;
                 actor.natural_width_set = false;
                 actor.natural_height_set = false;
             } else {
@@ -742,6 +748,8 @@ private class Boxes.MachineActor: Boxes.UI {
                     thumbnail.set_easing_duration (App.app.duration);
                     thumbnail.x_align = Clutter.ActorAlign.FILL;
                     thumbnail.y_align = Clutter.ActorAlign.FILL;
+                    thumbnail.x_expand = true;
+                    thumbnail.y_expand = true;
                     thumbnail.fixed_position_set = false;
                     thumbnail.min_width_set = thumbnail.natural_width_set = false;
                     thumbnail.min_height_set = thumbnail.natural_height_set = false;
@@ -757,6 +765,8 @@ private class Boxes.MachineActor: Boxes.UI {
             break;
 
         case UIState.COLLECTION:
+            actor.x_expand = false;
+            actor.y_expand = false;
             password_entry.set_can_focus (false);
             password_entry.hide ();
             label.show ();

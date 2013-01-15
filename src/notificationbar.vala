@@ -24,6 +24,8 @@ private class Boxes.Notificationbar: GLib.Object {
         gtk_actor.name = "notificationbar";
         gtk_actor.x_align = Clutter.ActorAlign.CENTER;
         gtk_actor.y_align = Clutter.ActorAlign.START;
+        gtk_actor.x_expand = true;
+        gtk_actor.y_expand = true;
         Gdk.RGBA transparent = { 0, 0, 0, 0};
         gtk_actor.get_widget ().override_background_color (0, transparent);
 

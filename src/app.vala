@@ -439,8 +439,8 @@ private class Boxes.App: Boxes.UI {
 
         window.key_press_event.connect_after (on_key_pressed);
 
-        stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
-                                           Clutter.BinAlignment.FILL);
+        stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                           Clutter.BinAlignment.START);
         stage.set_layout_manager (stage_bin);
         stage.name = "boxes-stage";
 
@@ -454,6 +454,8 @@ private class Boxes.App: Boxes.UI {
         background.set_repeat (true, true);
         background.x_align = Clutter.ActorAlign.FILL;
         background.y_align = Clutter.ActorAlign.FILL;
+        background.x_expand = true;
+        background.y_expand = true;
         stage.add_child (background);
 
         sidebar = new Sidebar ();
@@ -472,6 +474,8 @@ private class Boxes.App: Boxes.UI {
         vbox.orientation = Clutter.Orientation.VERTICAL;
         vbox_actor.x_align = Clutter.ActorAlign.FILL;
         vbox_actor.y_align = Clutter.ActorAlign.FILL;
+        vbox_actor.x_expand = true;
+        vbox_actor.y_expand = true;
 
         stage.add_child (vbox_actor);
 
@@ -491,8 +495,8 @@ private class Boxes.App: Boxes.UI {
 
         var below_bin_actor = new Clutter.Actor ();
         below_bin_actor.name = "below-bin";
-        var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
-                                               Clutter.BinAlignment.FILL);
+        var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                               Clutter.BinAlignment.START);
         below_bin_actor.set_layout_manager (below_bin);
 
         below_bin_actor.x_expand = true;
@@ -507,16 +511,20 @@ private class Boxes.App: Boxes.UI {
         hbox_actor.set_layout_manager (hbox);
         hbox_actor.x_align = Clutter.ActorAlign.FILL;
         hbox_actor.y_align = Clutter.ActorAlign.FILL;
+        hbox_actor.x_expand = true;
+        hbox_actor.y_expand = true;
 
         below_bin_actor.add_child (hbox_actor);
 
         overlay_bin_actor = new Clutter.Actor ();
         overlay_bin_actor.name = "overlay-bin";
-        overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
-                                             Clutter.BinAlignment.CENTER);
+        overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                             Clutter.BinAlignment.START);
         overlay_bin_actor.set_layout_manager (overlay_bin);
         overlay_bin_actor.x_align = Clutter.ActorAlign.FILL;
         overlay_bin_actor.y_align = Clutter.ActorAlign.FILL;
+        overlay_bin_actor.x_expand = true;
+        overlay_bin_actor.y_expand = true;
         below_bin_actor.add_child (overlay_bin_actor);
 
         sidebar_revealer = new Boxes.Revealer (false);
@@ -528,11 +536,13 @@ private class Boxes.App: Boxes.UI {
 
         var content_bin_actor = new Clutter.Actor ();
         content_bin_actor.name = "content-bin";
-        var content_bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
-                                                 Clutter.BinAlignment.FILL);
-        content_bin_actor.set_layout_manager (content_bin);
+        content_bin_actor.x_align = Clutter.ActorAlign.FILL;
+        content_bin_actor.y_align = Clutter.ActorAlign.FILL;
         content_bin_actor.x_expand = true;
         content_bin_actor.y_expand = true;
+        var content_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                                 Clutter.BinAlignment.START);
+        content_bin_actor.set_layout_manager (content_bin);
         hbox_actor.add_child (content_bin_actor);
 
         below_bin_actor.add_child (notificationbar.actor);
@@ -795,8 +805,6 @@ private class Boxes.App: Boxes.UI {
         actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
         actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
         actor.fixed_position_set = false;
-        actor.x_align = Clutter.ActorAlign.CENTER;
-        actor.y_align = Clutter.ActorAlign.CENTER;
         actor.set_easing_duration (App.app.duration);
 
         // Track machine status in toobar

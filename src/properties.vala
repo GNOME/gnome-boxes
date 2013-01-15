@@ -202,6 +202,10 @@ private class Boxes.Properties: Boxes.UI {
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "properties";
         gtk_actor.opacity = 0;
+        gtk_actor.x_align = Clutter.ActorAlign.FILL;
+        gtk_actor.y_align = Clutter.ActorAlign.FILL;
+        gtk_actor.x_expand = true;
+        gtk_actor.y_expand = true;
 
         /* topbar */
         var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;

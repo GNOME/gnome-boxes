@@ -42,6 +42,8 @@ private class Boxes.Selectionbar: GLib.Object {
         gtk_actor.set_margin_bottom (32);
         gtk_actor.x_align = Clutter.ActorAlign.CENTER;
         gtk_actor.y_align = Clutter.ActorAlign.END;
+        gtk_actor.x_expand = true;
+        gtk_actor.y_expand = true;
 
         favorite_btn = new Gtk.ToggleButton ();
         leftbox.add (favorite_btn);

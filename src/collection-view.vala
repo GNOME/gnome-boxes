@@ -330,6 +330,8 @@ private class Boxes.CollectionView: Boxes.UI {
         gtkactor.name = "collection-view";
         gtkactor.x_align = Clutter.ActorAlign.FILL;
         gtkactor.y_align = Clutter.ActorAlign.FILL;
+        gtkactor.x_expand = true;
+        gtkactor.y_expand = true;
     }
 
     private bool on_button_press_event (Gtk.Widget view, Gdk.EventButton event) {

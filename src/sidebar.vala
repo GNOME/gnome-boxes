@@ -40,8 +40,8 @@ private class Boxes.Sidebar: Boxes.UI {
 
     private void setup_sidebar () {
         bin_actor = new Clutter.Actor ();
-        var bin = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
-                                         Clutter.BinAlignment.FILL);
+        var bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                         Clutter.BinAlignment.START);
         bin_actor.set_layout_manager (bin);
         bin_actor.name = "sidebar-bin";
 
@@ -64,6 +64,8 @@ private class Boxes.Sidebar: Boxes.UI {
         shadow.set_content_gravity (Clutter.ContentGravity.RESIZE_FILL);
         shadow.set_content_scaling_filters (Clutter.ScalingFilter.NEAREST, Clutter.ScalingFilter.NEAREST);
         shadow.x_align = Clutter.ActorAlign.END;
+        shadow.x_expand = true;
+        shadow.y_expand = true;
         bin_actor.add_child (shadow);
 
         var background = new GtkClutter.Texture ();
@@ -75,12 +77,16 @@ private class Boxes.Sidebar: Boxes.UI {
         }
         background.set_repeat (true, true);
         background.set_margin_right (shadow_width);
+        background.x_expand = true;
+        background.y_expand = true;
         bin_actor.add (background);
 
         notebook = new Gtk.Notebook ();
         gtk_actor = new GtkClutter.Actor.with_contents (notebook);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "sidebar";
+        gtk_actor.x_expand = true;
+        gtk_actor.y_expand = true;
         bin_actor.add_child (gtk_actor);
         notebook.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
         notebook.get_style_context ().add_class ("boxes-bg");
