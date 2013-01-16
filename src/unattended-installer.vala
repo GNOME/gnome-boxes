@@ -580,14 +580,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         yield copy_file (src_file, initrd_file, cancellable);
     }
 
-    private async void copy_file (File src_file, File dest_file, Cancellable cancellable) throws GLib.Error {
-        try {
-            debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
-            yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable);
-            debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
-        } catch (IOError.EXISTS error) {}
-    }
-
     private string? get_product_key_format () {
         // FIXME: We don't support the case of multiple scripts requiring different kind of product keys.
         foreach (var s in scripts.get_elements ()) {

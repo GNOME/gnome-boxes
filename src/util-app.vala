@@ -386,6 +386,14 @@ namespace Boxes {
          });
     }
 
+    public async void copy_file (File src_file, File dest_file, Cancellable? cancellable = null) throws GLib.Error {
+        try {
+            debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
+            yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable);
+            debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
+        } catch (IOError.EXISTS error) {}
+    }
+
     namespace UUID {
         [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
         internal extern static void generate ([CCode (array_length = false)] uchar[] uuid);
