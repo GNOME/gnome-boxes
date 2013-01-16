@@ -46,7 +46,6 @@ private class Boxes.Downloader : GLib.Object {
                                 string           cached_path,
                                 ActivityProgress progress = new ActivityProgress ()) throws GLib.Error {
         var uri = remote_file.get_uri ();
-
         if (downloads.contains (uri))
             // Already being downloaded
             return yield await_download (uri, cached_path); // FIXME: No progress report in this case.
@@ -61,34 +60,10 @@ private class Boxes.Downloader : GLib.Object {
         downloads.set (uri, cached_file);
 
         try {
-            var msg = new Soup.Message ("GET", uri);
-            var address = msg.get_address ();
-            var connectable = new NetworkAddress (address.name, (uint16) address.port);
-            var network_monitor = NetworkMonitor.get_default ();
-            if (!(yield network_monitor.can_reach_async (connectable)))
-                throw new Boxes.Error.INVALID ("Failed to reach host '%s' on port '%d'", address.name, address.port);
-
-            int64 total_num_bytes = 0;
-            msg.got_headers.connect (() => {
-                total_num_bytes =  msg.response_headers.get_content_length ();
-            });
-
-            int64 current_num_bytes = 0;
-            msg.got_chunk.connect ((msg, chunk) => {
-                if (total_num_bytes <= 0)
-                    return;
-
-                current_num_bytes += chunk.length;
-                progress.progress = (double) current_num_bytes / total_num_bytes;
-            });
-
-            session.queue_message (msg, (session, msg) => {
-                download.callback ();
-            });
-            yield;
-            if (msg.status_code != Soup.KnownStatusCode.OK)
-                throw new Boxes.Error.INVALID (msg.reason_phrase);
-            yield cached_file.replace_contents_async (msg.response_body.data, null, false, 0, null, null);
+            if (remote_file.has_uri_scheme ("http") || remote_file.has_uri_scheme ("https"))
+                yield download_from_http (uri, cached_file, progress);
+            else
+                yield copy_file (remote_file, cached_file); // FIXME: No progress report in this case.
         } catch (GLib.Error error) {
             download_failed (uri, cached_file, error);
 
@@ -101,6 +76,39 @@ private class Boxes.Downloader : GLib.Object {
         downloaded (uri, cached_file);
 
         return cached_file;
+    }
+
+    private async void download_from_http (string           uri,
+                                           File             cached_file,
+                                           ActivityProgress progress) throws GLib.Error {
+        var msg = new Soup.Message ("GET", uri);
+        var address = msg.get_address ();
+        var connectable = new NetworkAddress (address.name, (uint16) address.port);
+        var network_monitor = NetworkMonitor.get_default ();
+        if (!(yield network_monitor.can_reach_async (connectable)))
+            throw new Boxes.Error.INVALID ("Failed to reach host '%s' on port '%d'", address.name, address.port);
+
+        int64 total_num_bytes = 0;
+        msg.got_headers.connect (() => {
+            total_num_bytes =  msg.response_headers.get_content_length ();
+        });
+
+        int64 current_num_bytes = 0;
+        msg.got_chunk.connect ((msg, chunk) => {
+            if (total_num_bytes <= 0)
+                return;
+
+            current_num_bytes += chunk.length;
+            progress.progress = (double) current_num_bytes / total_num_bytes;
+        });
+
+        session.queue_message (msg, (session, msg) => {
+            download_from_http.callback ();
+        });
+        yield;
+        if (msg.status_code != Soup.KnownStatusCode.OK)
+            throw new Boxes.Error.INVALID (msg.reason_phrase);
+        yield cached_file.replace_contents_async (msg.response_body.data, null, false, 0, null, null);
     }
 
     public static async void fetch_os_logo (Gtk.Image image, Osinfo.Os os, int size) {
