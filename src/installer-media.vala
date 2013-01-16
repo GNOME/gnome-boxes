@@ -94,11 +94,12 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public bool is_architecture_compatible (string architecture) {
-        return os_media == null || // Unknown media
-               os_media.architecture == architecture ||
-               (os_media.architecture == "i386" && architecture == "i686") ||
-               (os_media.architecture == "i386" && architecture == "x86_64") ||
-               (os_media.architecture == "i686" && architecture == "x86_64");
+        if (os_media == null) // Unknown media
+            return true;
+
+        var compatibility = compare_cpu_architectures (architecture, os_media.architecture);
+
+        return compatibility != CPUArchCompatibity.INCOMPATIBLE;
     }
 
     protected void add_cd_config (Domain         domain,

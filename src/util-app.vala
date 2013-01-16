@@ -394,6 +394,75 @@ namespace Boxes {
         } catch (IOError.EXISTS error) {}
     }
 
+    // Warning: architecture compability is not computative. e.g "i386" is compatible with "i686" but "i686" is
+    // incompatible with "i386".
+    public enum CPUArchCompatibity {
+        INCOMPATIBLE             = -1, // First architecture is incompatible to second one
+        IDENTICAL                = 0,  // First architecture is identical to second one
+        COMPATIBLE               = 1,  // First architecture is compatible with second one
+        COMPATIBLE_DIFF_WORDSIZE = 2,  // First architecture is more modern than but compatible
+                                      // with second one but has different word-size
+    }
+
+    public CPUArchCompatibity compare_cpu_architectures (string arch1, string arch2) {
+        switch (arch2) {
+        case "i386":
+            switch (arch1) {
+            case "i386":
+                return CPUArchCompatibity.IDENTICAL;
+            case "i486":
+            case "i586":
+            case "i686":
+                return CPUArchCompatibity.COMPATIBLE;
+            case "x86_64":
+                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+            default:
+                return CPUArchCompatibity.INCOMPATIBLE;
+            }
+        case "i486":
+            switch (arch1) {
+            case "i486":
+                return CPUArchCompatibity.IDENTICAL;
+            case "i586":
+            case "i686":
+                return CPUArchCompatibity.COMPATIBLE;
+            case "x86_64":
+                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+            default:
+                return CPUArchCompatibity.INCOMPATIBLE;
+            }
+        case "i586":
+            switch (arch1) {
+            case "i586":
+                return CPUArchCompatibity.IDENTICAL;
+            case "i686":
+                return CPUArchCompatibity.COMPATIBLE;
+            case "x86_64":
+                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+            default:
+                return CPUArchCompatibity.INCOMPATIBLE;
+            }
+        case "i686":
+            switch (arch1) {
+            case "i686":
+                return CPUArchCompatibity.IDENTICAL;
+            case "x86_64":
+                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+            default:
+                return CPUArchCompatibity.INCOMPATIBLE;
+            }
+        case "x86_64":
+            switch (arch1) {
+            case "x86_64":
+                return CPUArchCompatibity.IDENTICAL;
+            default:
+                return CPUArchCompatibity.INCOMPATIBLE;
+            }
+        default:
+            return CPUArchCompatibity.INCOMPATIBLE;
+        }
+    }
+
     namespace UUID {
         [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
         internal extern static void generate ([CCode (array_length = false)] uchar[] uuid);
