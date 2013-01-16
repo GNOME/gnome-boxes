@@ -666,7 +666,13 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         foreach (var d in os.get_device_drivers ().get_elements ()) {
             var driver = d as DeviceDriver;
 
-            if (driver.get_architecture () == os_media.architecture && driver.get_pre_installable ())
+            if (!driver.get_pre_installable ())
+                continue;
+
+            var compatibility = compare_cpu_architectures (os_media.architecture, driver.get_architecture ());
+            if (compatibility == CPUArchCompatibity.IDENTICAL || compatibility == CPUArchCompatibity.COMPATIBLE)
+                // We don't entertain compatiblity when word-size is different because 32-bit drivers
+                // are not guaranteed to work on 64-bit architectures in all OSs.
                 drivers.append (driver);
         }
 
