@@ -1,14 +1,14 @@
 # Serbian translation for gnome-boxes.
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-18 13:45+0000\n"
-"PO-Revision-Date: 2012-10-18 19:37+0200\n"
+"POT-Creation-Date: 2013-01-15 18:27+0000\n"
+"PO-Revision-Date: 2013-01-17 11:13+0200\n"
 "Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -19,17 +19,24 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:95
+#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:95
 msgid "Boxes"
 msgstr "Кутије"
 
 #: ../data/gnome-boxes.desktop.in.in.h:2
-msgid "Simple virtual machine viewer/manager"
-msgstr "Једноставан прегледач/управник виртуелних машина"
+#| msgid "Simple virtual machine viewer/manager"
+msgid "Virtual machine viewer/manager"
+msgstr "Управник/прегледач виртуелних машина"
 
 #: ../data/gnome-boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "Прикажите и користите виртуелне машине"
+
+#: ../data/gnome-boxes.desktop.in.in.h:4
+#| msgid "View and use virtual machines"
+msgid "virtual machine;vm;"
+msgstr "виртуална машина;вм;"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
@@ -79,45 +86,44 @@ msgstr "Увећан прозор"
 msgid "Window maximized state"
 msgstr "Стање увећаног прозора"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:118
 msgid "translator-credits"
-msgstr "  Мирослав Николић <mirosavnikoic@rocketmailcom>"
+msgstr ""
+"  Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"\n"
+"http://prevod.org — превод на српски језик"
 
-#: ../src/app.vala:109
+#: ../src/app.vala:119
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Једноставан програм Гнома 3 за приступ удаљеним или виртуелним системима"
 
-#: ../src/app.vala:121 ../src/topbar.vala:49
+#: ../src/app.vala:131 ../src/topbar.vala:56
 msgid "New"
 msgstr "Нови"
 
-#: ../src/app.vala:124
+#: ../src/app.vala:134
 msgid "Properties"
 msgstr "Својства"
 
-#: ../src/app.vala:125
+#: ../src/app.vala:135
 msgid "Fullscreen"
 msgstr "Преко целог екрана"
 
-#: ../src/app.vala:126
-msgid "Force shutdown"
-msgstr "Приморај гашење"
-
-#: ../src/app.vala:129
+#: ../src/app.vala:138
 msgid "About Boxes"
 msgstr "О Кутијама"
 
-#: ../src/app.vala:130
+#: ../src/app.vala:139
 msgid "Quit"
 msgstr "Изађи"
 
-#: ../src/app.vala:635
+#: ../src/app.vala:731
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Кутија „%s“ је обрисана"
 
-#: ../src/app.vala:636
+#: ../src/app.vala:732
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -126,84 +132,148 @@ msgstr[1] "%u кутије су обрисане"
 msgstr[2] "%u кутија је обрисано"
 msgstr[3] "Једна кутија је обрисана"
 
-#: ../src/app.vala:698
+#: ../src/app.vala:818
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Повезивање на „%s“ није успело"
 
-#: ../src/collection-view.vala:39
+#: ../src/collection-view.vala:45
 msgid "New and Recent"
 msgstr "Нове и скорашње"
 
-#: ../src/display-page.vala:164
+#: ../src/display-page.vala:187
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(притисните тастере Ктрл+Алт да отпустите)"
 
-#: ../src/installer-media.vala:83 ../src/properties.vala:62
+#: ../src/installer-media.vala:91 ../src/properties.vala:66
 msgid "System"
 msgstr "Систем"
 
-#: ../src/libvirt-machine.vala:321 ../src/remote-machine.vala:35
+#: ../src/libvirt-machine.vala:393 ../src/remote-machine.vala:52
 msgid "Name"
 msgstr "Назив"
 
-#: ../src/libvirt-machine.vala:324
+#: ../src/libvirt-machine.vala:396
 msgid "Virtualizer"
 msgstr "Виртуализатор"
 
-#: ../src/libvirt-machine.vala:326 ../src/remote-machine.vala:38
-#: ../src/wizard.vala:380
+#: ../src/libvirt-machine.vala:398 ../src/remote-machine.vala:55
+#: ../src/wizard.vala:398
 msgid "URI"
 msgstr "Адреса"
 
-#: ../src/libvirt-machine.vala:336 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine.vala:405 ../src/libvirt-machine.vala:410
+msgid "Troubleshooting log"
+msgstr "Дневник решавања проблема"
+
+#: ../src/libvirt-machine.vala:414
+#| msgid "Share clipboard"
+msgid "Copy to clipboard"
+msgstr "Умножите у оставу"
+
+#: ../src/libvirt-machine.vala:429
+msgid "Save log"
+msgstr "Сачувајте дневник"
+
+#: ../src/libvirt-machine.vala:445
+#, c-format
+msgid "Error saving: %s"
+msgstr "Грешка чувања: %s"
+
+#: ../src/libvirt-machine.vala:467 ../src/remote-machine.vala:59
 msgid "Protocol"
 msgstr "Протокол"
 
-#: ../src/libvirt-machine.vala:453
+#. Translators: This is the text on the button to select an iso for the cd
+#: ../src/libvirt-machine.vala:495 ../src/libvirt-machine.vala:537
+#| msgid "Select a file"
+msgid "Select"
+msgstr "Изабери"
+
+#. Translators: empty is listed as the filename for a non-mounted CD
+#: ../src/libvirt-machine.vala:497 ../src/libvirt-machine.vala:538
+msgid "empty"
+msgstr "празно"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+#: ../src/libvirt-machine.vala:500 ../src/libvirt-machine.vala:522
+msgid "Remove"
+msgstr "Уклони"
+
+#: ../src/libvirt-machine.vala:506 ../src/wizard-source.vala:305
+msgid "Select a device or ISO file"
+msgstr "Изаберите уређај или ИСО датотеку"
+
+#: ../src/libvirt-machine.vala:545
+msgid "CD/DVD"
+msgstr "ЦД/ДВД"
+
+#: ../src/libvirt-machine.vala:573 ../src/libvirt-machine.vala:590
+msgid "Add support to guest"
+msgstr "Додајте подршку госту"
+
+#: ../src/libvirt-machine.vala:575
+msgid "USB device support"
+msgstr "Подршка УСБ уређаја"
+
+#: ../src/libvirt-machine.vala:592
+msgid "Smartcard support"
+msgstr "Подршка паметних картица"
+
+#: ../src/libvirt-machine.vala:734
 msgid "When you force shutdown, the box may lose data."
 msgstr "Када приморате на гашење, кутија може да изгуби податке."
 
-#: ../src/libvirt-machine.vala:530 ../src/wizard.vala:408
+#: ../src/libvirt-machine.vala:811 ../src/wizard.vala:434
 msgid "Memory"
 msgstr "Меморија"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:586
+#: ../src/libvirt-machine.vala:864
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Враћам „%s“ са диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:589
+#: ../src/libvirt-machine.vala:867
 #, c-format
 msgid "Starting %s"
 msgstr "Покрећем „%s“"
 
-#: ../src/libvirt-machine.vala:619
+#: ../src/libvirt-machine.vala:909
+#, c-format
+msgid "Restart of '%s' is taking too long. Force it to shutdown?"
+msgstr "Поновно покретање „%s“ траје предуго. Да га приморам на гашење?"
+
+#: ../src/libvirt-machine.vala:926
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Измене захтевају поновно покретање „%s“. Да покушам поновно покретање?"
 
-#: ../src/libvirt-machine.vala:634
+#: ../src/libvirt-machine.vala:941
 msgid "Maximum Disk Size"
 msgstr "Највећа величина диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:100
+#: ../src/machine.vala:126
 #, c-format
 msgid "Connecting to %s"
 msgstr "Повезујем се са „%s“"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:132
+#: ../src/machine.vala:146
 #, c-format
 msgid "Enter password for %s"
 msgstr "Унесите лозинку за „%s“"
 
+#: ../src/machine.vala:229
+#| msgid "Installing..."
+msgid "Saving..."
+msgstr "Чувам..."
+
 #. 3rd row
-#: ../src/machine.vala:503 ../src/unattended-installer.vala:192
-#: ../src/unattended-installer.vala:262
+#: ../src/machine.vala:549 ../src/unattended-installer.vala:250
+#: ../src/unattended-installer.vala:359
 msgid "Password"
 msgstr "Лозинка"
 
@@ -255,7 +325,6 @@ msgstr "• Доступан је либвирт КВМ госта: %s\n"
 
 #: ../src/main.vala:79
 #, c-format
-#| msgid "• Libvirt KVM guest available: %s\n"
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Доступан је складишни депо за Кутије: %s\n"
 
@@ -274,53 +343,96 @@ msgstr "Грешке пријавите на <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Матична страница „%s“: <%s>.\n"
 
-#: ../src/properties.vala:58
+#: ../src/properties.vala:62
 msgid "Login"
 msgstr "Пријави"
 
-#: ../src/properties.vala:66
+#: ../src/properties.vala:70
 msgid "Display"
 msgstr "Прикажи"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:74
 msgid "Devices"
 msgstr "Уређаји"
 
-#: ../src/properties.vala:90
+#: ../src/properties.vala:87
 msgid "Some changes may take effect only after reboot"
 msgstr "Неке измене ће ступити на снагу након поновног покретања"
 
-#: ../src/properties.vala:238
+#: ../src/properties.vala:265
 msgid "CPU:"
 msgstr "Процесор:"
 
-#: ../src/properties.vala:245
+#: ../src/properties.vala:272
 msgid "I/O:"
 msgstr "У/И:"
 
-#: ../src/properties.vala:252
+#: ../src/properties.vala:279
 msgid "Net:"
 msgstr "Мрежа:"
 
-#: ../src/spice-display.vala:195
+#: ../src/properties.vala:286
+#| msgid "Force shutdown"
+msgid "Force Shutdown"
+msgstr "Приморај гашење"
+
+#: ../src/selectionbar.vala:70
+#, c-format
+#| msgid "Connection to '%s' failed"
+msgid "Pausing '%s' failed"
+msgstr "Привремено заустављање „%s“ није успело"
+
+#: ../src/spice-display.vala:255
 msgid "Share clipboard"
 msgstr "Подели оставу"
 
-#: ../src/spice-display.vala:201
+#: ../src/spice-display.vala:261
 msgid "Resize guest"
 msgstr "Промени величину госта"
 
-#: ../src/spice-display.vala:209
-msgid "USB redirection"
-msgstr "Преусмеравање УСБ-а"
+#: ../src/spice-display.vala:270
+msgid "Redirect new USB devices"
+msgstr "Преусмери нови УСБ уређај"
 
-#: ../src/topbar.vala:90 ../src/wizard.vala:614
-msgid "_Cancel"
-msgstr "_Откажи"
+#: ../src/spice-display.vala:296
+#, c-format
+#| msgid "Connecting to %s"
+msgid "Error connecting %s: %s"
+msgstr "Грешка повезивања „%s“: %s"
+
+#: ../src/spice-display.vala:323 ../src/wizard.vala:251
+msgid "Invalid URI"
+msgstr "Неисправна адреса"
+
+#: ../src/spice-display.vala:333
+msgid "The port must be specified once"
+msgstr "Прикључник мора бити наведен једном"
+
+#: ../src/spice-display.vala:342
+msgid "Missing port in Spice URI"
+msgstr "Недостаје прикључник у путањи Спајса"
+
+#: ../src/topbar.vala:92
+#| msgid "Select a file"
+msgid "Select All"
+msgstr "Изабери све"
+
+#: ../src/topbar.vala:93
+msgid "Select Running"
+msgstr "Изабери покренуто"
+
+#: ../src/topbar.vala:94
+#| msgid "Select a file"
+msgid "Select None"
+msgstr "Поништи избор"
+
+#: ../src/topbar.vala:104
+msgid "_Done"
+msgstr "_Урађено"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:126
+#: ../src/topbar.vala:142
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -329,19 +441,20 @@ msgstr[1] "%d изабране"
 msgstr[2] "%d изабраних"
 msgstr[3] "Једна изабрана"
 
-#: ../src/topbar.vala:128
-msgid "Click on items to select them"
-msgstr "Кликните на ставке да их изаберете"
+#: ../src/topbar.vala:144
+#| msgid "Click on items to select them"
+msgid "(Click on items to select them)"
+msgstr "(Кликните на ставке да их изаберете)"
 
-#: ../src/unattended-installer.vala:43
+#: ../src/unattended-installer.vala:54
 msgid "no password"
 msgstr "без лозинке"
 
-#: ../src/unattended-installer.vala:191 ../src/unattended-installer.vala:252
+#: ../src/unattended-installer.vala:249 ../src/unattended-installer.vala:345
 msgid "Username"
 msgstr "Корисничко име"
 
-#: ../src/unattended-installer.vala:217
+#: ../src/unattended-installer.vala:301
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -352,23 +465,31 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:233
+#: ../src/unattended-installer.vala:319
 msgid "Express Install"
 msgstr "Брзо инсталирај"
 
-#: ../src/unattended-installer.vala:272
+#: ../src/unattended-installer.vala:370
 msgid "_Add Password"
 msgstr "Додај _лозинку"
 
-#: ../src/util.vala:285
+#: ../src/unattended-installer.vala:394
+msgid "Product Key"
+msgstr "Шифра производа"
+
+#: ../src/unattended-installer.vala:615
+msgid "Downloading device drivers..."
+msgstr "Преузимам управљачке програме уређаја..."
+
+#: ../src/util.vala:321
 msgid "yes"
 msgstr "да"
 
-#: ../src/util.vala:285
+#: ../src/util.vala:321
 msgid "no"
 msgstr "не"
 
-#: ../src/util-app.vala:218
+#: ../src/util-app.vala:229
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -378,20 +499,20 @@ msgstr ""
 "покренувши:\n"
 "%s"
 
-#: ../src/util-app.vala:222
+#: ../src/util-app.vala:233
 msgid "SELinux not installed?"
 msgstr "СЕЛинукс није инсталиран?"
 
-#: ../src/util-app.vala:303
+#: ../src/util-app.vala:314
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
 msgstr ""
-"Не могу да добавим податке о складишном депоу „гномових-кутија“ из "
-"библвирт-а. Уверите се да ради наредба „virsh -c qemu:///session pool-"
-"dumpxml gnome-boxes“."
+"Не могу да добавим податке о складишном депоу „гномових-кутија“ из библвирт-"
+"а. Уверите се да ради наредба „virsh -c qemu:///session pool-dumpxml gnome-"
+"boxes“."
 
-#: ../src/util-app.vala:308
+#: ../src/util-app.vala:319
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -400,7 +521,7 @@ msgstr ""
 "%s је познат библвирту као складишни депо Гномових кутија али тај "
 "директоријум не постоји"
 
-#: ../src/util-app.vala:312
+#: ../src/util-app.vala:323
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -408,7 +529,7 @@ msgstr ""
 "%s је познат библвирту као складишни депо Гномових кутија али није "
 "директоријум"
 
-#: ../src/util-app.vala:316
+#: ../src/util-app.vala:327
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -419,29 +540,29 @@ msgstr ""
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:320
+#: ../src/vm-configurator.vala:440
 msgid "Incapable host system"
 msgstr "Немогућствен систем домаћина"
 
-#: ../src/vm-creator.vala:45
+#: ../src/vm-creator.vala:43
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Дошло је до грешке приликом припремања инсталације. Брза инсталација је "
 "искључена."
 
-#: ../src/vm-creator.vala:139
+#: ../src/vm-creator.vala:156
 msgid "Installing..."
 msgstr "Инсталирам..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:143 ../src/wizard-source.vala:245
+#: ../src/vm-creator.vala:160 ../src/wizard-source.vala:246
 msgid "Live"
 msgstr "Живи"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:225
+#: ../src/vm-creator.vala:245
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -450,18 +571,181 @@ msgstr[1] "Инсталирана су %d%%"
 msgstr[2] "Инсталирано је %d%%"
 msgstr[3] "Инсталиран је 1%%"
 
-#: ../src/vnc-display.vala:142
+#: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "Само читање"
 
-#. Microsoft Windows product key
-#: ../src/winxp-installer.vala:104
-msgid "Product Key"
-msgstr "Шифра производа"
+#: ../src/wizard.vala:100
+msgid "Box creation failed"
+msgstr "Стварање кутије није успело"
+
+#: ../src/wizard.vala:148
+msgid "Please enter desktop or collection URI"
+msgstr "Унесите адресу радне површи или збирке"
+
+#: ../src/wizard.vala:154
+msgid "Will add boxes for all systems available from this account."
+msgstr "Додаће кутије за све системе доступне са овог налога."
+
+#: ../src/wizard.vala:157
+msgid "Will add a single box."
+msgstr "Додаће једну кутију."
+
+#: ../src/wizard.vala:163
+msgid "Desktop Access"
+msgstr "Приступ радној површи"
+
+#: ../src/wizard.vala:263
+#, c-format
+msgid "Unsupported protocol '%s'"
+msgstr "Протокол „%s“ није подржан"
+
+#: ../src/wizard.vala:269
+#| msgid "Analyzing installer media."
+msgid "Unknown installer media"
+msgstr "Непознат инсталациони медиј"
+
+#: ../src/wizard.vala:270
+#| msgid "Installing..."
+msgid "Analyzing..."
+msgstr "Испитујем..."
+
+#: ../src/wizard.vala:302
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"Нисам успео да испитам инсталациони медиј. Можда је медиј оштећен или "
+"непотпун?"
+
+#: ../src/wizard.vala:374
+msgid "Box setup failed"
+msgstr "Подешавање кутије није успело"
+
+#: ../src/wizard.vala:388
+msgid "Will create a new box with the following properties:"
+msgstr "Направиће нову кутију са следећим својствима:"
+
+#: ../src/wizard.vala:393
+msgid "Type"
+msgstr "Врста"
+
+#: ../src/wizard.vala:396
+msgid "Host"
+msgstr "Домаћин"
+
+#: ../src/wizard.vala:407 ../src/wizard.vala:418
+msgid "Port"
+msgstr "Порт"
+
+#: ../src/wizard.vala:409
+msgid "TLS Port"
+msgstr "ТЛС порт"
+
+#: ../src/wizard.vala:423
+msgid "Will add boxes for all systems available from this account:"
+msgstr "Додаће кутије за све системе доступне са овог налога:"
+
+#: ../src/wizard.vala:443
+msgid "Disk"
+msgstr "Диск"
+
+#: ../src/wizard.vala:443
+#, c-format
+msgid "%s maximum"
+msgstr "%s највише"
+
+#: ../src/wizard.vala:529
+msgid "Introduction"
+msgstr "Увод"
+
+#: ../src/wizard.vala:533
+msgid ""
+"Creating a Box will allow you to use another operating system directly from "
+"your existing login.\n"
+"\n"
+"You may connect to an existing machine <b><i>over the network</i></b> or "
+"create a <b><i>virtual machine</i></b> that runs locally on your own."
+msgstr ""
+"Прављење Кутије ће вам омогућити да користите други оперативни систем "
+"непосредно из ваше постојеће пријаве.\n"
+"\n"
+"Можете да се повежете на постојећи рачунар <b><i>преко мреже</i></b> или да "
+"направите <b><i>виртуелну машину</i></b> која ће радити локално на вашем "
+"рачунару."
+
+#: ../src/wizard.vala:545
+msgid "Source Selection"
+msgstr "Избор извора"
+
+#: ../src/wizard.vala:546
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Уметните инсталациони медиј оперативног система или изаберите извор испод"
+
+#: ../src/wizard.vala:556
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Све горе приказане робне марке се користе само за одређивање софтверских "
+"производа које сте већ набавили и у власништву су њихових одговарајућих "
+"власника."
+
+#: ../src/wizard.vala:569
+msgid "Preparation"
+msgstr "Припрема"
+
+#: ../src/wizard.vala:570
+msgid "Preparing to create new box"
+msgstr "Припремам стварање нове кутије"
+
+#: ../src/wizard.vala:606
+msgid "Setup"
+msgstr "Подешавања"
+
+#: ../src/wizard.vala:613
+msgid "Review"
+msgstr "Преглед"
+
+#: ../src/wizard.vala:624
+msgid ""
+"Virtualization extensions are unavailable on your system. Expect this box to "
+"be extremely slow. If your system is recent enough (made in or after 2008), "
+"these extensions are probably available on your system and you may need to "
+"enable them in your system's BIOS setup."
+msgstr ""
+"Проширења виртуелизације нису доступна на вашем систему. Очекујте да ова "
+"кутија буде врло спора. Ако је ваш систем поприлично скорашњи (направљен "
+"2008 или кассније), та проширења су вероватно доступна на вашем систему али "
+"ћете можда морати да их укључите у подешавањима БИОС-а вашег система."
+
+#: ../src/wizard.vala:633
+msgid "Create a Box"
+msgstr "Направите Кутију"
+
+#: ../src/wizard.vala:645
+msgid "_Cancel"
+msgstr "_Откажи"
+
+#: ../src/wizard.vala:654
+msgid "_Back"
+msgstr "_Назад"
+
+#: ../src/wizard.vala:661
+msgid "C_ontinue"
+msgstr "На_стави"
+
+#: ../src/wizard.vala:669
+msgid "C_reate"
+msgstr "На_прави"
+
+#: ../src/wizard.vala:753
+msgid "C_ustomize..."
+msgstr "_Прилагоди..."
 
 #: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
 msgid "Enter URL"
-msgstr "Унеси адресу"
+msgstr "Унесите адресу"
 
 #: ../src/wizard-source.vala:126
 msgid "Select a file"
@@ -477,176 +761,19 @@ msgstr ""
 "\n"
 "Додаће кутије за све системе доступне са овог налога."
 
-#: ../src/wizard-source.vala:254
+#: ../src/wizard-source.vala:255
 msgid "32-bit x86 system"
 msgstr "32-битни x86 систем"
 
-#: ../src/wizard-source.vala:255
+#: ../src/wizard-source.vala:256
 msgid "64-bit x86 system"
 msgstr "64-битни x86 систем"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:264
+#: ../src/wizard-source.vala:265
 #, c-format
 msgid " from %s"
 msgstr " продавца „%s“"
 
-#: ../src/wizard-source.vala:304
-msgid "Select a device or ISO file"
-msgstr "Изаберите уређај или ИСО датотеку"
-
-#: ../src/wizard.vala:97
-msgid "Box creation failed"
-msgstr "Стварање кутије није успело"
-
-#: ../src/wizard.vala:146
-msgid "Please enter desktop or collection URI"
-msgstr "Унесите адресу радне површи или збирке"
-
-#: ../src/wizard.vala:152
-msgid "Will add boxes for all systems available from this account."
-msgstr "Додаће кутије за све системе доступне са овог налога."
-
-#: ../src/wizard.vala:155
-msgid "Will add a single box."
-msgstr "Додаће једну кутију."
-
-#: ../src/wizard.vala:161
-msgid "Desktop Access"
-msgstr "Приступ радне површи"
-
-#: ../src/wizard.vala:250
-msgid "Invalid URI"
-msgstr "Неисправна адреса"
-
-#: ../src/wizard.vala:261
-#, c-format
-msgid "Unsupported protocol '%s'"
-msgstr "Протокол „%s“ није подржан"
-
-#: ../src/wizard.vala:356
-msgid "Box setup failed"
-msgstr "Подешавање кутије није успело"
-
-#: ../src/wizard.vala:370
-msgid "Will create a new box with the following properties:"
-msgstr "Направиће нову кутију са следећим својствима:"
-
-#: ../src/wizard.vala:375
-msgid "Type"
-msgstr "Врста"
-
-#: ../src/wizard.vala:378
-msgid "Host"
-msgstr "Домаћин"
-
-#: ../src/wizard.vala:386 ../src/wizard.vala:392
-msgid "Port"
-msgstr "Порт"
-
-#: ../src/wizard.vala:387
-msgid "TLS Port"
-msgstr "ТЛС порт"
-
-#: ../src/wizard.vala:397
-msgid "Will add boxes for all systems available from this account:"
-msgstr "Додаће кутије за све системе доступне са овог налога:"
-
-#: ../src/wizard.vala:417
-msgid "Disk"
-msgstr "Диск"
-
-#: ../src/wizard.vala:417
-#, c-format
-msgid "%s maximum"
-msgstr "%s највише"
-
-#: ../src/wizard.vala:504
-msgid "Introduction"
-msgstr "Увод"
-
-#: ../src/wizard.vala:508
-msgid ""
-"Creating a Box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"Прављење Кутије ће вам омогућити да користите други оперативни систем "
-"непосредно из ваше постојеће пријаве.\n"
-"\n"
-"Можете да се повежете на постојећи рачунар <b><i>преко мреже</i></b> или да "
-"направите <b><i>виртуелну машину</i></b> која ће радити локално на вашем "
-"рачунару."
-
-#: ../src/wizard.vala:520
-msgid "Source Selection"
-msgstr "Избор извора"
-
-#: ../src/wizard.vala:521
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Уметните инсталациони медиј оперативног система или изаберите извор испод"
-
-#: ../src/wizard.vala:531
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Све горе приказане робне марке се користе само за одређивање софтверских "
-"производа које сте већ набавили и у власништву су њихових одговарајућих "
-"власника."
-
-#: ../src/wizard.vala:544
-msgid "Preparation"
-msgstr "Припрема"
-
-#: ../src/wizard.vala:545
-msgid "Preparing to create new box"
-msgstr "Припремам стварање нове кутије"
-
-#: ../src/wizard.vala:564
-msgid "Analyzing installer media."
-msgstr "Прегледам инсталациони медиј."
-
-#: ../src/wizard.vala:575
-msgid "Setup"
-msgstr "Подешавања"
-
-#: ../src/wizard.vala:582
-msgid "Review"
-msgstr "Преглед"
-
-#: ../src/wizard.vala:593
-msgid ""
-"Virtualization extensions are unavailable on your system. Expect this box to "
-"be extremely slow. If your system is recent enough (made in or after 2008), "
-"these extensions are probably available on your system and you may need to "
-"enable them in your system's BIOS setup."
-msgstr ""
-"Проширења виртуелизације нису доступна на вашем систему. Очекујте да ова "
-"кутија буде врло спора. Ако је ваш систем поприлично скорашњи (направљен "
-"2008 или кассније), та проширења су вероватно доступна на вашем систему али "
-"ћете можда морати да их укључите у подешавањима БИОС-а вашег система."
-
-#: ../src/wizard.vala:602
-msgid "Create a Box"
-msgstr "Направите Кутију"
-
-#: ../src/wizard.vala:623
-msgid "_Back"
-msgstr "_Назад"
-
-#: ../src/wizard.vala:630
-msgid "C_ontinue"
-msgstr "На_стави"
-
-#: ../src/wizard.vala:638
-msgid "C_reate"
-msgstr "На_прави"
-
-#: ../src/wizard.vala:725
-msgid "C_ustomize..."
-msgstr "_Прилагоди..."
+#~ msgid "USB redirection"
+#~ msgstr "Преусмеравање УСБ-а"
