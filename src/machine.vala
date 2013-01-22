@@ -703,10 +703,9 @@ private class Boxes.MachineActor: Boxes.UI {
                 });
             });
 
-            if (!zoom) {
+            if (!zoom)
                 thumbnail.set_easing_duration (0);
-                update_screenshot_alloc (thumbnail);
-            }
+            update_screenshot_alloc (thumbnail);
         }
     }
 
