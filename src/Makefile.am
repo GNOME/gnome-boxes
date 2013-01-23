@@ -112,6 +112,7 @@ gnome_boxes_SOURCES =				\
 	wizard-source.vala			\
 	wizard.vala				\
 	downloader.vala				\
+	empty-boxes.vala			\
 	$(NULL)
 
 gnome_boxes_LDADD =				\

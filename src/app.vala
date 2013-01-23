@@ -66,6 +66,7 @@ private class Boxes.App: Boxes.UI {
     public Wizard wizard;
     public Properties properties;
     public DisplayPage display_page;
+    public EmptyBoxes empty_boxes;
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
@@ -593,6 +594,7 @@ private class Boxes.App: Boxes.UI {
         selectionbar = new Selectionbar ();
         wizard = new Wizard ();
         properties = new Properties ();
+        empty_boxes = new EmptyBoxes ();
 
         var vbox_actor = new Clutter.Actor ();
         vbox_actor.name = "top-vbox";
@@ -677,9 +679,11 @@ private class Boxes.App: Boxes.UI {
 
         content_bin_actor.add (wizard.actor);
         content_bin_actor.add (properties.actor);
+        below_bin_actor.add_child (empty_boxes.actor);
 
         properties.actor.hide ();
         selectionbar.actor.hide ();
+        empty_boxes.actor.hide ();
 
         notebook.show_all ();
 
@@ -708,7 +712,7 @@ private class Boxes.App: Boxes.UI {
     public override void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
-        foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, properties, wizard }) {
+        foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, properties, wizard, empty_boxes }) {
             ui.ui_state = ui_state;
         }
 
