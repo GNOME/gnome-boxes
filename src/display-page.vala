@@ -114,6 +114,7 @@ private class Boxes.DisplayPage: GLib.Object {
         overlay_toolbar_box.add (overlay_toolbar);
         overlay_toolbar_box.valign = Gtk.Align.START;
         overlay_toolbar_box.vexpand = false;
+        overlay_toolbar.get_style_context ().add_class ("boxes-overlay-toolbar");
 
         notification_grid = new Grid ();
         notification_grid.valign = Gtk.Align.START;
