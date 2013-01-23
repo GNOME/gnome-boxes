@@ -634,19 +634,16 @@ private class Boxes.Wizard: Boxes.UI {
 
         /* topbar */
         hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.Box;
-        label = new Gtk.Label (_("Create a Box"));
-        label.name = "TopbarLabel";
-        label.halign = Gtk.Align.START;
-        label.margin_left = 15;
-        hbox.pack_start (label, false, false, 0);
 
         var toolbar = new Gd.MainToolbar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         toolbar.toolbar_style = Gtk.ToolbarStyle.TEXT;
         hbox.pack_start (toolbar, true, true, 0);
 
+        toolbar.set_labels (_("Create a Box"), null);
+
         toolbar_sizegroup = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
-        cancel_button = toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
+        cancel_button = toolbar.add_button (null, _("_Cancel"), true) as Gtk.Button;
         cancel_button.use_underline = true;
         cancel_button.clicked.connect (() => {
             destroy_machine ();
