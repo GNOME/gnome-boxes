@@ -3,15 +3,32 @@ using Gtk;
 using Gdk;
 
 private class Boxes.DisplayToolbar: Gd.MainToolbar {
-    public DisplayToolbar () {
-        get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+    private bool overlay;
+    /* The left/right containers of Gd.MainToolbar are GtkGrids, which don't support first/last theming,
+       which the osd css uses, so we need to add our own GtkBoxes instead. */
+    private Gtk.Box leftbox;
+    private Gtk.Box rightbox;
 
-        var back = add_button ("go-previous-symbolic", null, true) as Gtk.Button;
+    public DisplayToolbar (bool overlay) {
+        this.overlay = overlay;
+        if (overlay)
+            get_style_context ().add_class ("osd");
+        else
+            get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+
+        int spacing = overlay ? 0 : 12;
+        leftbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, spacing);
+        add_widget (leftbox, true);
+
+        rightbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, spacing);
+        add_widget (rightbox, false);
+
+        var back = add_image_button ("go-previous-symbolic", true);
         back.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
-        var fullscreen = add_button ("view-fullscreen-symbolic", null, false) as Gtk.Button;
+        var fullscreen = add_image_button ("view-fullscreen-symbolic", false);
         App.app.notify["fullscreen"].connect_after ( () => {
-            var image = fullscreen.get_child() as Gtk.Image;
+            var image = fullscreen.get_image() as Gtk.Image;
             if (App.app.fullscreen)
                 image.icon_name = "view-restore-symbolic";
             else
@@ -19,8 +36,24 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
         });
         fullscreen.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
 
-        var props = add_button ("utilities-system-monitor-symbolic", null, false) as Gtk.Button;
+        var props = add_image_button ("utilities-system-monitor-symbolic", false);
         props.clicked.connect ((button) => { App.app.ui_state = UIState.PROPERTIES; });
+    }
+
+    private Gtk.Button add_image_button (string icon_name, bool pack_start) {
+        var button = new Gtk.Button ();
+        var img = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.MENU);
+        img.show ();
+        button.image = img;
+        if (pack_start)
+            leftbox.add (button);
+        else
+            rightbox.add (button);
+
+        if (!overlay)
+            button.get_style_context ().add_class ("raised");
+        button.get_style_context ().add_class ("image-button");
+        return button;
     }
 }
 
@@ -93,7 +126,7 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
 
-        toolbar = new DisplayToolbar ();
+        toolbar = new DisplayToolbar (false);
 
         box = new Box (Orientation.VERTICAL, 0);
         box.pack_start (toolbar, false, false, 0);
@@ -109,12 +142,11 @@ private class Boxes.DisplayPage: GLib.Object {
 
         box.pack_start (grid, true, true, 0);
 
-        overlay_toolbar = new DisplayToolbar ();
+        overlay_toolbar = new DisplayToolbar (true);
         overlay_toolbar_box = new EventBox ();
         overlay_toolbar_box.add (overlay_toolbar);
         overlay_toolbar_box.valign = Gtk.Align.START;
         overlay_toolbar_box.vexpand = false;
-        overlay_toolbar.get_style_context ().add_class ("boxes-overlay-toolbar");
 
         notification_grid = new Grid ();
         notification_grid.valign = Gtk.Align.START;
