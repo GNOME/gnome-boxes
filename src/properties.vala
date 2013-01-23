@@ -13,11 +13,18 @@ private enum Boxes.PropertiesPage {
 private class Boxes.Properties: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
 
+    public string title {
+        set {
+            // Translators: The %s will be replaced with the name of the VM
+            toolbar.set_labels (_("%s - Properties").printf (App.app.current_item.name), null);
+        }
+    }
+
     public Gtk.Widget screenshot_placeholder;
     private GtkClutter.Actor gtk_actor;
     private Gtk.Notebook notebook;
     private Gtk.Button back;
-    private Gtk.Label toolbar_label;
+    private Gd.MainToolbar toolbar;
     private Gtk.ListStore listmodel;
     private Gtk.TreeModelFilter model_filter;
     private Gtk.TreeView tree_view;
@@ -210,17 +217,10 @@ private class Boxes.Properties: Boxes.UI {
         /* topbar */
         var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;
 
-        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 5);
-        box.add (new Gtk.Image.from_icon_name ("go-previous-symbolic", Gtk.IconSize.MENU));
-        toolbar_label = new Gtk.Label ("label");
-        box.add (toolbar_label);
-        box.vexpand = true;
-
-        var toolbar = new Gd.MainToolbar ();
+        toolbar = new Gd.MainToolbar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (toolbar, true, true, 0);
-        back = toolbar.add_button (null, null, true) as Gtk.Button;
-        back.child = box;
+        back = toolbar.add_button ("go-previous-symbolic", null, true) as Gtk.Button;
         back.clicked.connect ((button) => { App.app.ui_state = App.app.previous_ui_state; });
 
         hbox.show_all ();
@@ -315,12 +315,8 @@ private class Boxes.Properties: Boxes.UI {
                 });
             }
 
-            toolbar_label_bind = null;
-            if (previous_ui_state != UIState.COLLECTION)
-                toolbar_label_bind = App.app.current_item.bind_property ("name", toolbar_label, "label", BindingFlags.SYNC_CREATE);
-            else
-                toolbar_label.label = "";
             populate ();
+            toolbar_label_bind = App.app.current_item.bind_property ("name", this, "title", BindingFlags.SYNC_CREATE);
         } else if (previous_ui_state == UIState.PROPERTIES) {
             for (var i = 0; i < PropertiesPage.LAST; i++) {
                 var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
