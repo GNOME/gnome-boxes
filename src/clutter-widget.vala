@@ -15,6 +15,7 @@ using Clutter;
 private class Boxes.ClutterWidget: GtkClutter.Embed {
     public ClutterWidget () {
 		set_can_focus (false);
+        set ("use-layout-size", true);
     }
 	public override bool key_press_event (Gdk.EventKey event) {
 		return false;
