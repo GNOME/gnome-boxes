@@ -534,8 +534,8 @@ private class Boxes.App: Boxes.UI {
         hbox_actor.add_child (content_bin_actor);
 
         below_bin_actor.add_child (notificationbar.actor);
+        below_bin_actor.add_child (selectionbar.actor);
 
-        content_bin_actor.add_child (selectionbar.actor);
         content_bin_actor.add (wizard.actor);
         content_bin_actor.add (properties.actor);
 
