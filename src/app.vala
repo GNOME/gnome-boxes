@@ -65,6 +65,7 @@ private class Boxes.App: Boxes.UI {
     public Collection collection;
     public CollectionFilter filter;
 
+    private bool is_ready;
     public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
     private Boxes.Application application;
@@ -159,12 +160,22 @@ private class Boxes.App: Boxes.UI {
         });
         setup_sources.begin ((obj, result) => {
             setup_sources.end (result);
+            is_ready = true;
             var no_items = collection.items.length == 0;
             ready (no_items);
         });
 
         check_cpu_vt_capability.begin ();
         check_module_kvm_loaded.begin ();
+    }
+
+    public delegate void CallReadyFunc (bool first_time);
+    public void call_when_ready (CallReadyFunc func) {
+        if (is_ready)
+            func (false);
+        ready.connect ((first_time) => {
+            func (first_time);
+        });
     }
 
     public void activate () {
