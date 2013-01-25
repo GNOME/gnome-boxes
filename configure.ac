@@ -112,13 +112,13 @@ VALA_CHECK([0.18.0], [
   gtk-vnc-2.0
   gudev-1.0
   libosinfo-1.0
+  libsoup-2.4
   libvirt-gconfig-1.0
   libvirt-gobject-1.0
   libxml-2.0
   posix
   rest-0.7
   spice-client-gtk-3.0
-  libsoup-2.4
 ])
 
 dnl libgd
