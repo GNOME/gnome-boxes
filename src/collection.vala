@@ -29,7 +29,7 @@ private class Boxes.Collection: GLib.Object {
 }
 
 private class Boxes.CollectionFilter: GLib.Object {
-    string [] terms;
+    private string [] terms;
 
     public string text {
         set {

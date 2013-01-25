@@ -195,12 +195,14 @@ private class Boxes.App: Boxes.UI {
     static bool opt_help;
     static string opt_open_uuid;
     static string[] opt_uris;
+    static string[] opt_search;
     static const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
         { "help", 'h', OptionFlags.HIDDEN, OptionArg.NONE, ref opt_help, null, null },
         { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
+        { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
         // A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
         { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URI to display, broker or installer media"), null },
         { null }
@@ -211,6 +213,7 @@ private class Boxes.App: Boxes.UI {
         opt_help = false;
         opt_open_uuid = null;
         opt_uris = null;
+        opt_search = null;
 
         var parameter_string = _("- A simple application to access remote or virtual machines");
         var opt_context = new OptionContext (parameter_string);
@@ -262,6 +265,15 @@ private class Boxes.App: Boxes.UI {
             }
         }
 
+        if (opt_search != null) {
+            call_when_ready (() => {
+                searchbar.text = string.joinv (" ", opt_search);
+                searchbar.visible = true;
+                if (ui_state == UIState.COLLECTION) {
+                    searchbar_revealer.revealed = true;
+                }
+            });
+        }
 
         if (opt_fullscreen)
             app.fullscreen = true;

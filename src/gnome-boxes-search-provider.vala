@@ -1,6 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-[DBus (name = "org.gnome.Shell.SearchProvider")]
+[DBus (name = "org.gnome.Shell.SearchProvider2")]
 public class Boxes.SearchProvider: Object {
     private SearchProviderApp app;
     private bool loading;
@@ -148,7 +148,7 @@ public class Boxes.SearchProvider: Object {
         return yield get_metas (ids);
     }
 
-    public void ActivateResult (string search_id) {
+    public void ActivateResult (string search_id, string[] terms, uint32 timestamp) {
         app.hold ();
 
         debug ("ActivateResult (%s)", search_id);
@@ -167,6 +167,28 @@ public class Boxes.SearchProvider: Object {
                 stderr.printf ("Failed to launch Boxes with uuid '%s'\n", uuid);
         } catch (SpawnError error) {
             stderr.printf ("Failed to launch Boxes with uuid '%s'\n", uuid);
+            warning (error.message);
+        }
+
+        app.release ();
+    }
+
+    public void LaunchSearch (string[] terms, uint32 timestamp) {
+        app.hold ();
+
+        debug ("LaunchSearch (%s)", string.joinv (", ", terms));
+
+        try {
+            string[] args = {};
+            args += "gnome-boxes";
+            foreach (var term in terms) {
+                args += "--search";
+                args += term;
+            }
+            if (!Process.spawn_async (null, args, null, SpawnFlags.SEARCH_PATH, null, null))
+                stderr.printf ("Failed to launch Boxes for search\n");
+        } catch (SpawnError error) {
+            stderr.printf ("Failed to launch Boxes for search\n");
             warning (error.message);
         }
 
