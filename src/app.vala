@@ -8,6 +8,24 @@ private enum Boxes.AppPage {
     DISPLAY
 }
 
+// Ideally Boxes.App should inherit from, Gtk.Application, but we can't also inherit from Boxes.UI,
+// so we make it a separate object that calls into Boxes.App
+private class Boxes.Application: Gtk.Application {
+    public Application () {
+        application_id = "org.gnome.Boxes";
+    }
+
+    public override void startup () {
+        base.startup ();
+        App.app.startup ();
+    }
+
+    public override void activate () {
+        base.activate ();
+        App.app.activate ();
+    }
+}
+
 private class Boxes.App: Boxes.UI {
     public static App app;
     public override Clutter.Actor actor { get { return stage; } }
@@ -49,7 +67,7 @@ private class Boxes.App: Boxes.UI {
 
     public signal void ready (bool first_time);
     public signal void item_selected (CollectionItem item);
-    private Gtk.Application application;
+    private Boxes.Application application;
     public CollectionView view;
 
     private HashTable<string,GVir.Connection> connections;
@@ -64,7 +82,7 @@ private class Boxes.App: Boxes.UI {
 
     public App () {
         app = this;
-        application = new Gtk.Application ("org.gnome.Boxes", 0);
+        application = new Boxes.Application ();
         settings = new GLib.Settings ("org.gnome.boxes");
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
@@ -115,42 +133,42 @@ private class Boxes.App: Boxes.UI {
                                    "wrap-license", true);
         });
         application.add_action (action);
+    }
 
-        application.startup.connect_after ((app) => {
-            var menu = new GLib.Menu ();
-            menu.append (_("New"), "app.new");
+    public void startup () {
+        var menu = new GLib.Menu ();
+        menu.append (_("New"), "app.new");
 
-            var display_section = new GLib.Menu ();
-            menu.append_section (null, display_section);
+        var display_section = new GLib.Menu ();
+        menu.append_section (null, display_section);
 
-            menu.append (_("About Boxes"), "app.about");
-            menu.append (_("Quit"), "app.quit");
+        menu.append (_("About Boxes"), "app.about");
+        menu.append (_("Quit"), "app.quit");
 
-            application.set_app_menu (menu);
+        application.set_app_menu (menu);
 
-            collection = new Collection ();
-            duration = settings.get_int ("animation-duration");
-            setup_ui ();
+        collection = new Collection ();
+        duration = settings.get_int ("animation-duration");
+        setup_ui ();
 
-            collection.item_added.connect ((item) => {
-                view.add_item (item);
-            });
-            collection.item_removed.connect ((item) => {
-                view.remove_item (item);
-            });
-            setup_sources.begin ((obj, result) => {
-                setup_sources.end (result);
-                var no_items = collection.items.length == 0;
-                ready (no_items);
-            });
-
-            check_cpu_vt_capability.begin ();
-            check_module_kvm_loaded.begin ();
+        collection.item_added.connect ((item) => {
+            view.add_item (item);
+        });
+        collection.item_removed.connect ((item) => {
+            view.remove_item (item);
+        });
+        setup_sources.begin ((obj, result) => {
+            setup_sources.end (result);
+            var no_items = collection.items.length == 0;
+            ready (no_items);
         });
 
-        application.activate.connect_after ((app) => {
-            window.present ();
-        });
+        check_cpu_vt_capability.begin ();
+        check_module_kvm_loaded.begin ();
+    }
+
+    public void activate () {
+        window.present ();
     }
 
     public int run () {
