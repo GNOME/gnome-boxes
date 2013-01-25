@@ -13,6 +13,7 @@ private enum Boxes.AppPage {
 private class Boxes.Application: Gtk.Application {
     public Application () {
         application_id = "org.gnome.Boxes";
+        flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
     }
 
     public override void startup () {
@@ -23,6 +24,10 @@ private class Boxes.Application: Gtk.Application {
     public override void activate () {
         base.activate ();
         App.app.activate ();
+    }
+
+    public override int command_line (GLib.ApplicationCommandLine cmdline) {
+        return App.app.command_line (cmdline);
     }
 }
 
@@ -137,6 +142,10 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void startup () {
+        string [] args = {};
+        unowned string [] args2 = args;
+        GtkClutter.init (ref args2);
+
         var menu = new GLib.Menu ();
         menu.append (_("New"), "app.new");
 
@@ -150,7 +159,6 @@ private class Boxes.App: Boxes.UI {
 
         collection = new Collection ();
         duration = settings.get_int ("animation-duration");
-        setup_ui ();
 
         collection.item_added.connect ((item) => {
             view.add_item (item);
@@ -179,11 +187,95 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void activate () {
+        setup_ui ();
         window.present ();
     }
 
-    public int run () {
-        return application.run ();
+    static bool opt_fullscreen;
+    static bool opt_help;
+    static string opt_open_uuid;
+    static string[] opt_uris;
+    static const OptionEntry[] options = {
+        { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
+        { "help", 'h', OptionFlags.HIDDEN, OptionArg.NONE, ref opt_help, null, null },
+        { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },
+        { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
+        { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
+        // A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+        { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URI to display, broker or installer media"), null },
+        { null }
+    };
+
+    public int command_line (GLib.ApplicationCommandLine cmdline) {
+        opt_fullscreen = false;
+        opt_help = false;
+        opt_open_uuid = null;
+        opt_uris = null;
+
+        var parameter_string = _("- A simple application to access remote or virtual machines");
+        var opt_context = new OptionContext (parameter_string);
+        opt_context.add_main_entries (options, null);
+        opt_context.set_help_enabled (false);
+
+        try {
+            string[] args1 = cmdline.get_arguments();
+            unowned string[] args2 = args1;
+            opt_context.parse (ref args2);
+        } catch (OptionError error) {
+            cmdline.printerr ("%s\n", error.message);
+            cmdline.printerr (opt_context.get_help (true, null));
+            return 1;
+        }
+
+        if (opt_help) {
+            cmdline.printerr (opt_context.get_help (true, null));
+            return 1;
+        }
+
+        if (opt_uris.length > 1 ||
+            (opt_open_uuid != null && opt_uris != null)) {
+            cmdline.printerr (_("Too many command line arguments specified.\n"));
+            cmdline.printerr (opt_context.get_help (true, null));
+            return 1;
+        }
+
+        application.activate ();
+
+        var app = this;
+        if (opt_open_uuid != null) {
+            var uuid = opt_open_uuid;
+            call_when_ready (() => {
+                    app.open_uuid (uuid);
+            });
+        } else if (opt_uris != null) {
+            var arg = opt_uris[0];
+            var file = File.new_for_commandline_arg (arg);
+
+            if (file.query_exists () || Uri.parse_scheme (arg) != null) {
+                call_when_ready (() => {
+                    wizard.open_with_uri (file.get_uri ());
+                });
+            } else {
+                call_when_ready (() => {
+                    open (arg);
+                });
+            }
+        } else {
+            call_when_ready ((first_time) => {
+                if (first_time)
+                    app.ui_state = Boxes.UIState.WIZARD;
+            });
+        }
+
+
+        if (opt_fullscreen)
+            app.fullscreen = true;
+
+        return 0;
+    }
+
+    public int run (string [] args) {
+        return application.run (args);
     }
 
     // To be called to tell App to release the resources it's handling.
@@ -388,7 +480,25 @@ private class Boxes.App: Boxes.UI {
         settings.set_value ("window-position", new int[] { x, y });
     }
 
+    private bool ui_is_setup;
     private void setup_ui () {
+        if (ui_is_setup)
+            return;
+        ui_is_setup = true;
+        Gtk.Window.set_default_icon_name ("gnome-boxes");
+        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+
+        var provider = new Gtk.CssProvider ();
+        try {
+            var sheet = Boxes.get_style ("gtk-style.css");
+            provider.load_from_path (sheet);
+            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
+                                                      provider,
+                                                      600);
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+
         window = new Gtk.ApplicationWindow (application);
         window.show_menubar = false;
         window.hide_titlebar_when_maximized = true;
