@@ -29,14 +29,23 @@ private class Boxes.Collection: GLib.Object {
 }
 
 private class Boxes.CollectionFilter: GLib.Object {
-    public string text;
+    string [] terms;
+
+    public string text {
+        set {
+            terms = value.split(" ");
+            for (int i = 0; i < terms.length; i++)
+                terms[i] = canonicalize_for_search (terms[i]);
+        }
+    }
 
     public bool filter (CollectionItem item) {
-        if (text == null)
-            return true;
-
-        var text = text.casefold ();
-        return item.name.casefold ().index_of (text) != -1;
+        var name = canonicalize_for_search (item.name);
+        foreach (var term in terms) {
+            if (! (term in name))
+                return false;
+        }
+        return true;
     }
 }
 
