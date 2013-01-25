@@ -594,20 +594,23 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var drivers = get_pre_installable_drivers ();
         var scripts = get_pre_installer_scripts ();
 
-        if (drivers.length () == 0 || scripts.length () == 0)
+        if (drivers.length () == 0 || scripts.length () == 0) {
+            progress.progress = 1.0;
             return;
+        }
 
         progress.info = _("Downloading device drivers...");
         var driver_progress_scale = 1d / drivers.length () / scripts.length ();
 
         foreach (var driver in drivers) {
             foreach (var script in scripts) {
+                var driver_progress = progress.add_child_activity (driver_progress_scale);
                 try {
-                    var driver_progress = progress.add_child_activity (driver_progress_scale);
                     yield setup_pre_install_driver_for_script (driver, script, driver_progress, cancellable);
-                    driver_progress.progress = 1.0; // Ensure progress reaches 100%
                 } catch (GLib.Error e) {
                     debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
+                } finally {
+                    driver_progress.progress = 1.0; // Ensure progress reaches 100%
                 }
             }
         }
