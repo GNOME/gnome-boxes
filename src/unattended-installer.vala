@@ -55,7 +55,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public File? disk_file;
+    public File? disk_file;           // Used for installer scripts, user avatar and pre-installation drivers
+    public File? secondary_disk_file; // Used for post-installation drivers that won't fit on 1.44M primary disk
     public File? kernel_file;
     public File? initrd_file;
     public InstallConfig config;
@@ -65,6 +66,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private string? product_key_format;
 
     private GLib.List<UnattendedFile> unattended_files;
+    private GLib.List<UnattendedFile> secondary_unattended_files;
     private UnattendedAvatarFile avatar_file;
 
     private Gtk.Grid setup_grid;
@@ -85,6 +87,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
     private static Fdo.Accounts? accounts;
+
+    private static string escape_mkisofs_path (string path) {
+        var str = path.replace ("\\", "\\\\");
+
+        return str.replace ("=", "\\=");
+    }
 
     construct {
         /* We can't do this in the class constructor as the sync call can
@@ -113,6 +121,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         config = new InstallConfig ("http://live.gnome.org/Boxes/unattended");
 
         unattended_files = new GLib.List<UnattendedFile> ();
+        secondary_unattended_files = new GLib.List<UnattendedFile> ();
         foreach (var s in scripts.get_elements ()) {
             var script = s as InstallScript;
             var filename = script.get_expected_filename ();
@@ -137,6 +146,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         var path = get_user_unattended ("unattended.img");
         disk_file = File.new_for_path (path);
+        if (secondary_unattended_files.length () > 0) {
+            path = get_user_unattended ("unattended.iso");
+            secondary_disk_file = File.new_for_path (path);
+        }
 
         if (os_media.kernel_path != null && os_media.initrd_path != null) {
             path = get_user_unattended ("kernel");
@@ -161,6 +174,22 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
 
+            if (secondary_disk_file != null) {
+                var secondary_disk_path = secondary_disk_file.get_path ();
+
+                debug ("Creating secondary disk image '%s'...", secondary_disk_path);
+                string[] argv = { "mkisofs", "-graft-points", "-J", "-rock", "-o", secondary_disk_path };
+                foreach (var unattended_file in secondary_unattended_files) {
+                    var dest_path = escape_mkisofs_path (unattended_file.dest_name);
+                    var src_path = escape_mkisofs_path (unattended_file.src_path);
+
+                    argv += dest_path + "=" + src_path;
+                }
+
+                yield exec (argv, cancellable);
+                debug ("Created secondary disk image '%s'...", secondary_disk_path);
+            }
+
             //FIXME: Linux-specific. Any generic way to achieve this?
             if (os_media.kernel_path != null && os_media.initrd_path != null) {
                 var extractor = new ISOExtractor (device_file);
@@ -179,15 +208,23 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             throw error;
         } finally {
             unattended_files = null;
+            secondary_unattended_files = null;
         }
     }
 
     public override void setup_domain_config (Domain domain) {
         base.setup_domain_config (domain);
 
+        if (!express_toggle.active)
+            return;
+
+        return_if_fail (disk_file != null);
         var disk = get_unattended_disk_config ();
-        if (disk != null)
+        domain.add_device (disk);
+        if (secondary_disk_file != null) {
+            disk = get_secondary_unattended_disk_config ();
             domain.add_device (disk);
+        }
     }
 
     public void configure_install_script (InstallScript script) {
@@ -227,10 +264,14 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public override void setup_post_install_domain_config (Domain domain) {
-        base.setup_post_install_domain_config (domain);
-
         var path = disk_file.get_path ();
         remove_disk_from_domain_config (domain, path);
+        if (secondary_disk_file != null) {
+            path = secondary_disk_file.get_path ();
+            remove_disk_from_domain_config (domain, path);
+        }
+
+        base.setup_post_install_domain_config (domain);
     }
 
     public override void populate_setup_vbox (Gtk.Box setup_vbox) {
@@ -273,6 +314,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             if (disk_file != null) {
                 delete_file (disk_file);
                 disk_file = null;
+            }
+
+            if (secondary_disk_file != null) {
+                delete_file (secondary_disk_file);
+                secondary_disk_file = null;
             }
 
             if (kernel_file != null) {
@@ -469,11 +515,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private DomainDisk? get_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
-        if (!express_toggle.active)
-            return null;
-
-        return_val_if_fail (disk_file != null, null);
-
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_driver_name ("qemu");
@@ -498,12 +539,29 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return disk;
     }
 
+    private DomainDisk? get_secondary_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
+        var disk = new DomainDisk ();
+        disk.set_type (DomainDiskType.FILE);
+        disk.set_driver_name ("qemu");
+        disk.set_driver_type ("raw");
+        disk.set_source (secondary_disk_file.get_path ());
+        disk.set_target_dev ((path_format == PathFormat.DOS)? "E" : "hdd");
+        disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
+        disk.set_target_bus (DomainDiskBus.IDE);
+
+        return disk;
+    }
+
     private string device_name_to_path (PathFormat path_format, string name) {
         return (path_format == PathFormat.UNIX)? "/dev/" + name : name;
     }
 
     private void add_unattended_file (UnattendedFile file) {
         unattended_files.append (file);
+    }
+
+    private void add_secondary_unattended_file (UnattendedFile file) {
+        secondary_unattended_files.append (file);
     }
 
     private Gtk.Entry create_input_entry (string text, bool mandatory = true, bool visibility = true) {
