@@ -714,13 +714,23 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
+    private delegate bool DriverTestFunction (DeviceDriver driver);
+
     private GLib.List<DeviceDriver> get_pre_installable_drivers () {
+        return get_drivers ((driver) => { return driver.get_pre_installable (); });
+    }
+
+    private GLib.List<DeviceDriver> get_post_installable_drivers () {
+        return get_drivers ((driver) => { return !driver.get_pre_installable (); });
+    }
+
+    private GLib.List<DeviceDriver> get_drivers (DriverTestFunction test_func) {
         var drivers = new GLib.List<DeviceDriver> ();
 
         foreach (var d in os.get_device_drivers ().get_elements ()) {
             var driver = d as DeviceDriver;
 
-            if (!driver.get_pre_installable ())
+            if (!test_func (driver))
                 continue;
 
             var compatibility = compare_cpu_architectures (os_media.architecture, driver.get_architecture ());
