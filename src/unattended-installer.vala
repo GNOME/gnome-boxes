@@ -484,6 +484,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         if (os.distro == "win") {
             disk.set_target_dev ((path_format == PathFormat.DOS)? "A" : "fd");
             disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
+            disk.set_target_bus (DomainDiskBus.FDC);
         } else {
             // Path format checks below are most probably practically redundant but a small price for future safety
             if (supports_virtio_disk)
@@ -491,6 +492,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             else
                 disk.set_target_dev ((path_format == PathFormat.UNIX)? "sdb" : "E");
             disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
+            disk.set_target_bus (DomainDiskBus.USB);
         }
 
         return disk;
