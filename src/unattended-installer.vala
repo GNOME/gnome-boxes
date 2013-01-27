@@ -261,6 +261,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         config.set_pre_install_drivers_disk (config.get_script_disk ());
+        if (secondary_disk_file != null) {
+            disk_config = get_secondary_unattended_disk_config (script.path_format);
+            device_path = device_name_to_path (script.path_format, disk_config.get_target_dev ());
+            config.set_post_install_drivers_disk (device_path);
+        }
     }
 
     public override void setup_post_install_domain_config (Domain domain) {
@@ -657,9 +662,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var scripts = get_pre_installer_scripts ();
 
         if (drivers.length () != 0 && scripts.length () != 0) {
+            var drivers_progress = progress.add_child_activity (0.5);
             var setup_drivers = yield setup_drivers_for_scripts (drivers,
                                                                  scripts,
-                                                                 progress,
+                                                                 drivers_progress,
                                                                  add_unattended_file,
                                                                  cancellable);
 
@@ -675,6 +681,19 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 }
             }
         } else
+            progress.progress = 0.5;
+
+        drivers = get_post_installable_drivers ();
+        scripts = get_post_installer_scripts ();
+
+        if (drivers.length () != 0 && scripts.length () != 0) {
+            var drivers_progress = progress.add_child_activity (0.5);
+            yield setup_drivers_for_scripts (drivers,
+                                             scripts,
+                                             drivers_progress,
+                                             add_secondary_unattended_file,
+                                             cancellable);
+        } else
             progress.progress = 1.0;
     }
 
@@ -685,7 +704,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                                  AddUnattendedFileFunc    add_func,
                                  Cancellable?             cancellable = null) {
         var setup_drivers = new GLib.List<DeviceDriver> ();
-
         var driver_progress_scale = 1d / drivers.length () / scripts.length ();
 
         foreach (var driver in drivers) {
