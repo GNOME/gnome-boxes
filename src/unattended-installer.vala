@@ -213,9 +213,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         else
             config.set_target_disk (supports_virtio_disk? "/dev/vda" : "/dev/sda");
 
-        string device_name;
-        get_unattended_disk_info (script.path_format, out device_name);
-        config.set_script_disk (device_name_to_path (script.path_format, device_name));
+        var disk_config = get_unattended_disk_config (script.path_format);
+        var device_path = device_name_to_path (script.path_format, disk_config.get_target_dev ());
+        config.set_script_disk (device_path);
 
         if (avatar_file != null) {
             var location = ((script.path_format == PathFormat.UNIX)? "/" : "\\") + avatar_file.dest_name;
@@ -468,7 +468,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         Signal.stop_emission_by_name (key_entry, "insert-text");
     }
 
-    private DomainDisk? get_unattended_disk_config () {
+    private DomainDisk? get_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
         if (!express_toggle.active)
             return null;
 
@@ -480,29 +480,20 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_driver_type ("raw");
         disk.set_source (disk_file.get_path ());
 
-        string device_name;
-        var device_type = get_unattended_disk_info (PathFormat.UNIX, out device_name);
-        disk.set_guest_device_type (device_type);
-        disk.set_target_dev (device_name);
-
-        return disk;
-    }
-
-    private DomainDiskGuestDeviceType get_unattended_disk_info (PathFormat path_format, out string device_name) {
         // FIXME: Ideally, we shouldn't need to check for distro
         if (os.distro == "win") {
-            device_name = (path_format == PathFormat.DOS)? "A" : "fd";
-
-            return DomainDiskGuestDeviceType.FLOPPY;
+            disk.set_target_dev ((path_format == PathFormat.DOS)? "A" : "fd");
+            disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
         } else {
             // Path format checks below are most probably practically redundant but a small price for future safety
             if (supports_virtio_disk)
-                device_name = (path_format == PathFormat.UNIX)? "sda" : "E";
+                disk.set_target_dev ((path_format == PathFormat.UNIX)? "sda" : "E");
             else
-                device_name = (path_format == PathFormat.UNIX)? "sdb" : "E";
-
-            return DomainDiskGuestDeviceType.DISK;
+                disk.set_target_dev ((path_format == PathFormat.UNIX)? "sdb" : "E");
+            disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
         }
+
+        return disk;
     }
 
     private string device_name_to_path (PathFormat path_format, string name) {
