@@ -733,13 +733,23 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return drivers;
     }
 
+    private delegate bool ScriptTestFunction (InstallScript script);
+
     private GLib.List<InstallScript> get_pre_installer_scripts () {
+        return get_scripts ((script) => { return script.get_can_pre_install_drivers (); });
+    }
+
+    private GLib.List<InstallScript> get_post_installer_scripts () {
+        return get_scripts ((script) => { return script.get_can_post_install_drivers (); });
+    }
+
+    private GLib.List<InstallScript> get_scripts (ScriptTestFunction test_func) {
         var scripts = new GLib.List<InstallScript> ();
 
         foreach (var s in this.scripts.get_elements ()) {
             var script = s as InstallScript;
 
-            if (script.get_can_pre_install_drivers ())
+            if (test_func (script))
                 scripts.append (script);
         }
 
