@@ -138,7 +138,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         setup_ui ();
 
-        yield setup_pre_install_drivers (progress);
+        yield setup_drivers (progress);
     }
 
     public override void prepare_to_continue_installation (string vm_name) {
@@ -648,23 +648,56 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return null;
     }
 
-    private async void setup_pre_install_drivers (ActivityProgress progress, Cancellable? cancellable = null) {
+    private delegate void AddUnattendedFileFunc (UnattendedFile file);
+
+    private async void setup_drivers (ActivityProgress progress, Cancellable? cancellable = null) {
+        progress.info = _("Downloading device drivers...");
+
         var drivers = get_pre_installable_drivers ();
         var scripts = get_pre_installer_scripts ();
 
-        if (drivers.length () == 0 || scripts.length () == 0) {
-            progress.progress = 1.0;
-            return;
-        }
+        if (drivers.length () != 0 && scripts.length () != 0) {
+            var setup_drivers = yield setup_drivers_for_scripts (drivers,
+                                                                 scripts,
+                                                                 progress,
+                                                                 add_unattended_file,
+                                                                 cancellable);
 
-        progress.info = _("Downloading device drivers...");
+            foreach (var driver in setup_drivers) {
+                foreach (var d in driver.get_devices ().get_elements ()) {
+                    var device = d as Device;
+
+                    if (device.get_name () == "virtio-block") {
+                        has_viostor_drivers = true;
+
+                        break;
+                    }
+                }
+            }
+        } else
+            progress.progress = 1.0;
+    }
+
+    private async GLib.List<DeviceDriver> setup_drivers_for_scripts
+                                (GLib.List<DeviceDriver>  drivers,
+                                 GLib.List<InstallScript> scripts,
+                                 ActivityProgress         progress,
+                                 AddUnattendedFileFunc    add_func,
+                                 Cancellable?             cancellable = null) {
+        var setup_drivers = new GLib.List<DeviceDriver> ();
+
         var driver_progress_scale = 1d / drivers.length () / scripts.length ();
 
         foreach (var driver in drivers) {
             foreach (var script in scripts) {
                 var driver_progress = progress.add_child_activity (driver_progress_scale);
                 try {
-                    yield setup_pre_install_driver_for_script (driver, script, driver_progress, cancellable);
+                    yield setup_driver_for_script (driver,
+                                                   script,
+                                                   driver_progress,
+                                                   add_func,
+                                                   cancellable);
+                    setup_drivers.append (driver);
                 } catch (GLib.Error e) {
                     debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
                 } finally {
@@ -672,12 +705,16 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 }
             }
         }
+
+        return setup_drivers;
     }
 
-    private async void setup_pre_install_driver_for_script (DeviceDriver driver,
-                                                            InstallScript script,
-                                                            ActivityProgress progress,
-                                                            Cancellable? cancellable) throws GLib.Error {
+    private async void setup_driver_for_script (DeviceDriver          driver,
+                                                InstallScript         script,
+                                                ActivityProgress      progress,
+                                                AddUnattendedFileFunc add_func,
+                                                Cancellable?          cancellable) throws GLib.Error {
+
         var downloader = Downloader.get_instance ();
 
         var driver_files = new GLib.List<UnattendedFile> ();
@@ -701,17 +738,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         // We don't do this in above loop to ensure we have all the driver files
         foreach (var driver_file in driver_files)
-            add_unattended_file (driver_file);
-
-        foreach (var d in driver.get_devices ().get_elements ()) {
-            var device = d as Device;
-
-            if (device.get_name () == "virtio-block") {
-                has_viostor_drivers = true;
-
-                break;
-            }
-        }
+            add_func (driver_file);
     }
 
     private delegate bool DriverTestFunction (DeviceDriver driver);
