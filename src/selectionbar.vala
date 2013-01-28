@@ -10,7 +10,7 @@ private class Boxes.Selectionbar: GLib.Object {
     private Gtk.Toolbar toolbar;
     private Gtk.ToggleButton favorite_btn;
     private Gtk.Button pause_btn;
-    private Gtk.ToggleButton remove_btn;
+    private Gtk.Button remove_btn;
     private Gtk.Button properties_btn;
 
     public Selectionbar () {
@@ -77,16 +77,14 @@ private class Boxes.Selectionbar: GLib.Object {
            pause_btn.sensitive = false;
         });
 
-        remove_btn = new Gtk.ToggleButton ();
+        remove_btn = new Gtk.Button.from_stock (Gtk.Stock.DELETE);
         rightbox.add (remove_btn);
-        remove_btn.image = new Gtk.Image.from_icon_name ("edit-delete-symbolic", Gtk.IconSize.MENU);
         remove_btn.clicked.connect (() => {
             App.app.remove_selected_items ();
         });
 
-        properties_btn = new Gtk.Button ();
+        properties_btn = new Gtk.Button.from_stock (Gtk.Stock.PROPERTIES);
         rightbox.add (properties_btn);
-        properties_btn.image = new Gtk.Image.from_icon_name ("preferences-system-symbolic", Gtk.IconSize.MENU);
         properties_btn.clicked.connect (() => {
             App.app.show_properties ();
         });
