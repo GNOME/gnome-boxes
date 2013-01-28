@@ -255,6 +255,7 @@ private class Boxes.DisplayPage: GLib.Object {
         });
 
         show ();
+        widget.grab_focus ();
     }
 
     public Widget? remove_display () {
