@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-10 22:28+0000\n"
-"PO-Revision-Date: 2013-01-13 10:05+0100\n"
+"POT-Creation-Date: 2013-01-28 14:39+0000\n"
+"PO-Revision-Date: 2013-01-28 21:48+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.4\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:95
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
 msgstr "Škatle"
 
@@ -87,41 +87,62 @@ msgstr "Razpeto okno"
 msgid "Window maximized state"
 msgstr "Stanje razpetega glavnega okna"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:132
 msgid "translator-credits"
 msgstr "Martin Srebotnjak"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:133
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Enostaven program GNOME 3 za dostop do oddaljenih ali navideznih sistemov"
 
-#: ../src/app.vala:131 ../src/topbar.vala:56
+#: ../src/app.vala:150 ../src/topbar.vala:56
 msgid "New"
 msgstr "Novo"
 
-#: ../src/app.vala:134
-msgid "Properties"
-msgstr "Lastnosti"
-
-#: ../src/app.vala:135
-msgid "Fullscreen"
-msgstr "Celozaslonski način"
-
-#: ../src/app.vala:138
+#: ../src/app.vala:155
 msgid "About Boxes"
 msgstr "O programu Škatle"
 
-#: ../src/app.vala:139
+#: ../src/app.vala:156
 msgid "Quit"
 msgstr "Končaj"
 
-#: ../src/app.vala:731
+#: ../src/app.vala:199 ../src/main.vala:9
+msgid "Display version number"
+msgstr "Pokaži številko različice"
+
+#: ../src/app.vala:201
+msgid "Open in full screen"
+msgstr "Odpri v celozaslonskem načinu"
+
+#: ../src/app.vala:202 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "Preveri zmožnosti virtualizacije"
+
+#: ../src/app.vala:203
+msgid "Open box with UUID"
+msgstr "Odpri škatlo z UUID"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:205
+msgid "URI to display, broker or installer media"
+msgstr "Naslov URI do nosilca namestilnika oziroma upravljalnika"
+
+#: ../src/app.vala:215
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- Enostaven program za dostop do oddaljenih ali navideznih sistemov"
+
+#: ../src/app.vala:237
+msgid "Too many command line arguments specified.\n"
+msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
+
+#: ../src/app.vala:865
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Škatla '%s' je bila izbrisana"
 
-#: ../src/app.vala:732
+#: ../src/app.vala:866
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -130,7 +151,7 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: ../src/app.vala:818
+#: ../src/app.vala:950
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Povezava z '%s' je spodletela"
@@ -139,11 +160,11 @@ msgstr "Povezava z '%s' je spodletela"
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#: ../src/display-page.vala:187
+#: ../src/display-page.vala:220
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pritisk krmilke+izmenjalke sprosti predmet)"
 
-#: ../src/installer-media.vala:91 ../src/properties.vala:66
+#: ../src/installer-media.vala:91 ../src/properties.vala:73
 msgid "System"
 msgstr "Sistem"
 
@@ -274,105 +295,81 @@ msgstr "Shranjevanje ..."
 msgid "Password"
 msgstr "Geslo"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "Pokaži številko različice"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "Odpri v celozaslonskem načinu"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "Preveri zmožnosti virtualizacije"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "Odpri škatlo z UUID"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "Naslov URI do nosilca namestilnika oziroma upravljalnika"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- Enostaven program za dostop do oddaljenih ali navideznih sistemov"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:76
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• CPE podpira ustvarjanje navideznih namizij: %s\n"
 
-#: ../src/main.vala:77
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• Modul KVM je naložen: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Gost Libvirt KVM je na voljo: %s\n"
 
-#: ../src/main.vala:79
+#: ../src/main.vala:57
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Na voljo je hranilnik podatkov: %s\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• Sistem SELinux je omogočen privzeto: %s\n"
 
-#: ../src/main.vala:87
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "O hroščih poročajte <%s>.\n"
 
-#: ../src/main.vala:88
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Domača stran %s: <%s>.\n"
 
-#: ../src/properties.vala:62
+#. Translators: The %s will be replaced with the name of the VM
+#: ../src/properties.vala:19
+#, c-format
+msgid "%s - Properties"
+msgstr "%s - lastnosti"
+
+#: ../src/properties.vala:69
 msgid "Login"
 msgstr "Prijava"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:77
 msgid "Display"
 msgstr "Zaslon"
 
-#: ../src/properties.vala:74
+#: ../src/properties.vala:81
 msgid "Devices"
 msgstr "Naprave"
 
-#: ../src/properties.vala:87
+#: ../src/properties.vala:94
 msgid "Some changes may take effect only after reboot"
 msgstr "Nekatere spremembe bodo uveljavljene šele po ponovnem zagonu sistema"
 
-#: ../src/properties.vala:265
+#: ../src/properties.vala:269
 msgid "CPU:"
 msgstr "CPE:"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:276
 msgid "I/O:"
 msgstr "V/I:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:283
 msgid "Net:"
 msgstr "Omrežje:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:290
 msgid "Force Shutdown"
 msgstr "Vsili izklop"
 
-#: ../src/selectionbar.vala:70
+#: ../src/selectionbar.vala:72
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Premor '%s' je spodletel"
@@ -468,7 +465,7 @@ msgstr "_Dodaj geslo"
 msgid "Product Key"
 msgstr "Ključ izdelka"
 
-#: ../src/unattended-installer.vala:615
+#: ../src/unattended-installer.vala:607
 msgid "Downloading device drivers..."
 msgstr "Prejemanje gonilnikov naprave ..."
 
@@ -641,11 +638,11 @@ msgstr "Disk"
 msgid "%s maximum"
 msgstr "Največ %s"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:533
 msgid "Introduction"
 msgstr "Uvod"
 
-#: ../src/wizard.vala:533
+#: ../src/wizard.vala:537
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -660,16 +657,16 @@ msgstr ""
 "ustvarite <b><i>navidezni računalnik</i></b>, ki deluje na vašem obstoječem "
 "računalniku."
 
-#: ../src/wizard.vala:545
+#: ../src/wizard.vala:549
 msgid "Source Selection"
 msgstr "Izbor vira"
 
-#: ../src/wizard.vala:546
+#: ../src/wizard.vala:550
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Vnesite nosilec namestitve operacijskega sistema ali izberite vir spodaj"
 
-#: ../src/wizard.vala:556
+#: ../src/wizard.vala:560
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -678,23 +675,23 @@ msgstr ""
 "Vse zgoraj prikazane zaščitene znamke so uporabljene zgolj za določevanje "
 "programskih izdelkov, ki jih že posedujete in so last njihovih lastnikov."
 
-#: ../src/wizard.vala:569
+#: ../src/wizard.vala:573
 msgid "Preparation"
 msgstr "Priprava"
 
-#: ../src/wizard.vala:570
+#: ../src/wizard.vala:574
 msgid "Preparing to create new box"
 msgstr "Priprava na ustvarjanje nove škatle"
 
-#: ../src/wizard.vala:606
+#: ../src/wizard.vala:610
 msgid "Setup"
 msgstr "Nastavitve"
 
-#: ../src/wizard.vala:613
+#: ../src/wizard.vala:617
 msgid "Review"
 msgstr "Pregled"
 
-#: ../src/wizard.vala:624
+#: ../src/wizard.vala:628
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -706,27 +703,27 @@ msgstr ""
 "razširitve najverjetneje na voljo, vendar jih je treba omogočiti v "
 "nastavitvah zagonskega sistema BIOS."
 
-#: ../src/wizard.vala:633
+#: ../src/wizard.vala:643
 msgid "Create a Box"
 msgstr "Ustvari škatlo"
 
-#: ../src/wizard.vala:645
+#: ../src/wizard.vala:646
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
-#: ../src/wizard.vala:654
+#: ../src/wizard.vala:655
 msgid "_Back"
 msgstr "_Nazaj"
 
-#: ../src/wizard.vala:661
+#: ../src/wizard.vala:662
 msgid "C_ontinue"
 msgstr "N_adaljuj"
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:670
 msgid "C_reate"
 msgstr "_Ustvari"
 
-#: ../src/wizard.vala:753
+#: ../src/wizard.vala:754
 msgid "C_ustomize..."
 msgstr "Prila_godi ..."
 
@@ -761,6 +758,9 @@ msgstr "64-bitni sistem x86"
 #, c-format
 msgid " from %s"
 msgstr " - %s"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Celozaslonski način"
 
 #~ msgid "USB redirection"
 #~ msgstr "Preusmeritev USB"
