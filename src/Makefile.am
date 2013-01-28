@@ -116,11 +116,12 @@ gnome_boxes_SOURCES =				\
 
 gnome_boxes_LDADD =				\
 	$(BOXES_LIBS)				\
+	$(TRACKER_LIBS)				\
 	$(top_builddir)/libgd/libgd.la		\
 	libcommon.a				\
 	$(NULL)
 
-gnome_boxes_CFLAGS = $(BOXES_CFLAGS)
+gnome_boxes_CFLAGS = $(BOXES_CFLAGS) $(TRACKER_CFLAGS)
 $(srcdir)/gnome_boxes_vala.stamp: $(libcommon_a_DEPENDENCIES)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_SOURCES:.vala=.c)

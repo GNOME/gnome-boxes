@@ -70,10 +70,14 @@ PKG_CHECK_MODULES(BOXES, [
   spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
   gudev-1.0 >= $GUDEV_MIN_VERSION
   libosinfo-1.0 >= $OSINFO_MIN_VERSION
-  tracker-sparql-0.14 >= $TRACKER_SPARQL
   uuid >= $UUID_REQUIRED
   libsoup-2.4 >= $LIBSOUP_REQUIRED
 ])
+
+PKG_CHECK_MODULES(TRACKER, [tracker-sparql-0.16 >= $TRACKER_SPARQL], [] ,
+   [PKG_CHECK_MODULES(TRACKER, [tracker-sparql-0.14 >= $TRACKER_SPARQL])]
+)
+
 
 VALA_ADD_CHECKFILE([src/gnome_boxes_vala.stamp])
 
