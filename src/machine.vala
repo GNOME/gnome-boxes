@@ -636,8 +636,14 @@ private class Boxes.MachineActor: Boxes.UI {
                 Gdk.Pixbuf pixbuf = null;
                 if (previous_ui_state == UIState.WIZARD) {
                     var theme = Gtk.IconTheme.get_for_screen (App.app.window.get_screen ());
+                    pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, true, 8,
+                                             Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT);
+                    pixbuf.fill (0x00000000); // Transparent
                     try {
-                        pixbuf = theme.load_icon ("media-optical", Machine.SCREENSHOT_HEIGHT, 0);
+                        var icon = theme.load_icon ("media-optical", Machine.SCREENSHOT_HEIGHT, 0);
+                        // Center icon in pixbuf
+                        icon.copy_area (0, 0, Machine.SCREENSHOT_HEIGHT, Machine.SCREENSHOT_HEIGHT, pixbuf,
+                                        (Machine.SCREENSHOT_WIDTH - Machine.SCREENSHOT_HEIGHT) / 2, 0);
                     } catch (GLib.Error err) {
                         warning (err.message);
                     }
