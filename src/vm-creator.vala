@@ -64,7 +64,6 @@ private class Boxes.VMCreator {
                     return;
 
                 App.app.select_item (machine); // This also starts the domain for us
-                App.app.fullscreen = true;
                 App.app.disconnect (signal_id);
 
                 return;
