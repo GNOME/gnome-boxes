@@ -653,8 +653,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private async void setup_drivers (ActivityProgress progress, Cancellable? cancellable = null) {
         progress.info = _("Downloading device drivers...");
 
-        var drivers = get_pre_installable_drivers ();
         var scripts = get_pre_installer_scripts ();
+        var drivers = get_pre_installable_drivers (scripts);
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
@@ -662,8 +662,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         } else
             progress.progress = 0.5;
 
-        drivers = get_post_installable_drivers ();
         scripts = get_post_installer_scripts ();
+        drivers = get_post_installable_drivers (scripts);
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
@@ -695,7 +695,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                                      ActivityProgress      progress,
                                      AddUnattendedFileFunc add_func,
                                      Cancellable?          cancellable) throws GLib.Error {
-
         var downloader = Downloader.get_instance ();
 
         var driver_files = new GLib.List<UnattendedFile> ();
@@ -724,12 +723,46 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     private delegate bool DriverTestFunction (DeviceDriver driver);
 
-    private GLib.List<DeviceDriver> get_pre_installable_drivers () {
-        return get_drivers ((driver) => { return driver.get_pre_installable (); });
+    private GLib.List<DeviceDriver> get_pre_installable_drivers (GLib.List<InstallScript> preinst_scripts) {
+        return get_installable_drivers (preinst_scripts,
+                                        (driver) => { return driver.get_pre_installable (); },
+                                        (script) => { return script.get_pre_install_drivers_signing_req (); });
     }
 
-    private GLib.List<DeviceDriver> get_post_installable_drivers () {
-        return get_drivers ((driver) => { return !driver.get_pre_installable (); });
+    private GLib.List<DeviceDriver> get_post_installable_drivers (GLib.List<InstallScript> postinst_scripts) {
+        return get_installable_drivers (postinst_scripts,
+                                        (driver) => { return !driver.get_pre_installable (); },
+                                        (script) => { return script.get_post_install_drivers_signing_req (); });
+    }
+
+    private delegate bool DriverInstallableFunc (DeviceDriver driver);
+    private delegate DeviceDriverSigningReq ScriptDriverSigningReqFunc (InstallScript script);
+
+    private GLib.List<DeviceDriver> get_installable_drivers (GLib.List<InstallScript>   scripts,
+                                                             DriverInstallableFunc      installable_func,
+                                                             ScriptDriverSigningReqFunc signing_req_func) {
+
+        var signing_required = false;
+        foreach (var script in scripts)
+            if (signing_req_func (script) != DeviceDriverSigningReq.NONE) {
+                debug ("Script '%s' requires signed drivers.", script.id);
+                signing_required = true;
+
+                break;
+            }
+
+        return get_drivers ((driver) => {
+            if (!installable_func (driver))
+                return false;
+
+            if (!driver.get_signed () && signing_required) {
+                debug ("Driver from location '%s' is not signed. Ignoring..", driver.get_location ());
+
+                return false;
+            }
+
+            return true;
+        });
     }
 
     private GLib.List<DeviceDriver> get_drivers (DriverTestFunction test_func) {
