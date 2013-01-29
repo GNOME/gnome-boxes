@@ -90,6 +90,7 @@ gnome_boxes_SOURCES =				\
 	iso-extractor.vala			\
 	libvirt-broker.vala			\
 	libvirt-machine.vala			\
+	libvirt-machine-properties.vala		\
 	machine.vala				\
 	main.vala				\
 	media-manager.vala 			\
