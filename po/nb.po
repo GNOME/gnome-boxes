@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Kjartan Maraas <kmaraas@gnome.org>, 2011-2013.
 #
+#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.7.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-21 11:11+0100\n"
-"PO-Revision-Date: 2013-01-21 11:15+0100\n"
+"POT-Creation-Date: 2013-01-29 19:04+0100\n"
+"PO-Revision-Date: 2013-01-29 19:05+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -18,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:95
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
 msgstr "Bokser"
 
@@ -82,48 +83,69 @@ msgstr "Vindu maksimert"
 msgid "Window maximized state"
 msgstr "Maksimert tilstand for vindu"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:133
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:134
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Et enkelt GNOME 3 program for å aksessere eksterne eller virtuelle systemer"
 
-#: ../src/app.vala:131 ../src/topbar.vala:56
+#: ../src/app.vala:151 ../src/topbar.vala:56
 msgid "New"
 msgstr "Ny"
 
-#: ../src/app.vala:134
-msgid "Properties"
-msgstr "Egenskaper"
-
-#: ../src/app.vala:135
-msgid "Fullscreen"
-msgstr "Fullskjerm"
-
-#: ../src/app.vala:138
+#: ../src/app.vala:156
 msgid "About Boxes"
 msgstr "Om Bokser"
 
-#: ../src/app.vala:139
+#: ../src/app.vala:157
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../src/app.vala:731
+#: ../src/app.vala:199 ../src/main.vala:9
+msgid "Display version number"
+msgstr "Vis versjonsnummer"
+
+#: ../src/app.vala:201
+msgid "Open in full screen"
+msgstr "Åpne i fullskjerm"
+
+#: ../src/app.vala:202 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "Sjekk virtualiseringsstøtte"
+
+#: ../src/app.vala:203
+msgid "Open box with UUID"
+msgstr "Åpne boks med UUID"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:205
+msgid "URI to display, broker or installer media"
+msgstr "URI som skal vises, VM-forhandler, eller installasjonsmedie"
+
+#: ../src/app.vala:215
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- Et enkelt program for å aksessere eksterne eller virtuelle maskiner"
+
+#: ../src/app.vala:237
+msgid "Too many command line arguments specified.\n"
+msgstr "For mange kommandolinjeargumenter oppgitt.\n"
+
+#: ../src/app.vala:863
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boks «%s» er slettet"
 
-#: ../src/app.vala:732
+#: ../src/app.vala:864
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: ../src/app.vala:818
+#: ../src/app.vala:948
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Tilkobling til «%s» feilet"
@@ -132,11 +154,11 @@ msgstr "Tilkobling til «%s» feilet"
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
-#: ../src/display-page.vala:187
+#: ../src/display-page.vala:220
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(trykk Ctrl+Alt-tastene for å fjerne fokus)"
 
-#: ../src/installer-media.vala:91 ../src/properties.vala:66
+#: ../src/installer-media.vala:91 ../src/properties.vala:73
 msgid "System"
 msgstr "System"
 
@@ -265,105 +287,81 @@ msgstr "Lagrer …"
 msgid "Password"
 msgstr "Passord"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "Vis versjonsnummer"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "Åpne i fullskjerm"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "Sjekk virtualiseringsstøtte"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "Åpne boks med UUID"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "URI som skal vises, VM-forhandler, eller installasjonsmedie"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- Et enkelt program for å aksessere eksterne eller virtuelle maskiner"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "For mange kommandolinjeargumenter oppgitt.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:76
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• CPUen støtter virtualisering: %s\n"
 
-#: ../src/main.vala:77
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM-modulen er lastet: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM gjest tilgjengelig: %s\n"
 
-#: ../src/main.vala:79
+#: ../src/main.vala:57
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Lagringskapasitet tilgjengelig for Bokser: %s\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux-kontekst er forvalgt: %s\n"
 
-#: ../src/main.vala:87
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Rapporter feil til <%s>.\n"
 
-#: ../src/main.vala:88
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Hjemmeside for %s: <%s>.\n"
 
-#: ../src/properties.vala:62
+#. Translators: The %s will be replaced with the name of the VM
+#: ../src/properties.vala:19
+#, c-format
+msgid "%s - Properties"
+msgstr "%s - egenskaper"
+
+#: ../src/properties.vala:69
 msgid "Login"
 msgstr "Logg inn"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:77
 msgid "Display"
 msgstr "Skjerm"
 
-#: ../src/properties.vala:74
+#: ../src/properties.vala:81
 msgid "Devices"
 msgstr "Enheter"
 
-#: ../src/properties.vala:87
+#: ../src/properties.vala:94
 msgid "Some changes may take effect only after reboot"
 msgstr "Noen endringer blir kun tatt i bruk etter omstart"
 
-#: ../src/properties.vala:265
+#: ../src/properties.vala:269
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:276
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:283
 msgid "Net:"
 msgstr "Nettverk:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:290
 msgid "Force Shutdown"
 msgstr "Tving nedstenging"
 
-#: ../src/selectionbar.vala:70
+#: ../src/selectionbar.vala:72
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Pause av «%s» feilet"
@@ -457,7 +455,7 @@ msgstr "_Legg til passord"
 msgid "Product Key"
 msgstr "Produktnøkkel"
 
-#: ../src/unattended-installer.vala:615
+#: ../src/unattended-installer.vala:607
 msgid "Downloading device drivers..."
 msgstr "Laster ned enhetsdrivere …"
 
@@ -487,27 +485,35 @@ msgstr "SELinux er ikke installert?"
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
-msgstr "Fikk ikke informasjon om lager for lagringskapasitet for «gnome-boxes» fra libvirt. Sjekk at «virsh -c qemu:///session pool-dumpxml gnome-boxes» virker."
+msgstr ""
+"Fikk ikke informasjon om lager for lagringskapasitet for «gnome-boxes» fra "
+"libvirt. Sjekk at «virsh -c qemu:///session pool-dumpxml gnome-boxes» virker."
 
 #: ../src/util-app.vala:319
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
 "not exist"
-msgstr "%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, men denne katalogen eksisterer ikke"
+msgstr ""
+"%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, "
+"men denne katalogen eksisterer ikke"
 
 #: ../src/util-app.vala:323
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
-msgstr "%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, men dette er ikke en katalog"
+msgstr ""
+"%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, "
+"men dette er ikke en katalog"
 
 #: ../src/util-app.vala:327
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
 "readable/writable"
-msgstr "%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, men det er ikke lesbart/skrivbart"
+msgstr ""
+"%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, "
+"men det er ikke lesbart/skrivbart"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
@@ -623,11 +629,11 @@ msgstr "Disk"
 msgid "%s maximum"
 msgstr "%s maksimum"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:533
 msgid "Introduction"
 msgstr "Innledning"
 
-#: ../src/wizard.vala:533
+#: ../src/wizard.vala:537
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -641,16 +647,16 @@ msgstr ""
 "Du kan koble til en eksisterende maskin <b><i>over nettverket</i></b> eller "
 "lage en <b><i>virtuell maskin</i></b> som kjører lokalt på din egen."
 
-#: ../src/wizard.vala:545
+#: ../src/wizard.vala:549
 msgid "Source Selection"
 msgstr "Valg av kilde"
 
-#: ../src/wizard.vala:546
+#: ../src/wizard.vala:550
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Sett inn installasjonsmedie for operativsystemet eller velg en kilde under"
 
-#: ../src/wizard.vala:556
+#: ../src/wizard.vala:560
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -660,23 +666,23 @@ msgstr ""
 "programvareprodukter du allerede har skaffet til veie og eies av deres "
 "respektive eiere."
 
-#: ../src/wizard.vala:569
+#: ../src/wizard.vala:573
 msgid "Preparation"
 msgstr "Forberedelse"
 
-#: ../src/wizard.vala:570
+#: ../src/wizard.vala:574
 msgid "Preparing to create new box"
 msgstr "Forbereder å lage en ny boks"
 
-#: ../src/wizard.vala:606
+#: ../src/wizard.vala:610
 msgid "Setup"
 msgstr "Oppsett"
 
-#: ../src/wizard.vala:613
+#: ../src/wizard.vala:617
 msgid "Review"
 msgstr "Gjennomgang"
 
-#: ../src/wizard.vala:624
+#: ../src/wizard.vala:628
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -688,27 +694,27 @@ msgstr ""
 "(laget i eller etter 2008) er utvidelsene sannsynligvis tilgjengelige på "
 "systemet og du må kanskje slå dem på i systemets BIOS oppsett."
 
-#: ../src/wizard.vala:633
+#: ../src/wizard.vala:643
 msgid "Create a Box"
 msgstr "Lag en boks"
 
-#: ../src/wizard.vala:645
+#: ../src/wizard.vala:646
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: ../src/wizard.vala:654
+#: ../src/wizard.vala:655
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../src/wizard.vala:661
+#: ../src/wizard.vala:662
 msgid "C_ontinue"
 msgstr "F_ortsett"
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:670
 msgid "C_reate"
 msgstr "_Lag"
 
-#: ../src/wizard.vala:753
+#: ../src/wizard.vala:754
 msgid "C_ustomize..."
 msgstr "T_ilpass …"
 
