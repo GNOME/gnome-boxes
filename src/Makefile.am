@@ -14,6 +14,7 @@ AM_CPPFLAGS =						\
 
 AM_VALAFLAGS =						\
 	--enable-experimental				\
+	--target-glib=@GLIB_MIN_VERSION@		\
 	--vapidir=$(srcdir)/				\
 	--vapidir=$(top_srcdir)/libgd                   \
 	--vapidir=$(top_srcdir)/vapi                    \
