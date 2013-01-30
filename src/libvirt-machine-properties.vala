@@ -344,7 +344,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         } catch (GLib.Error e) {}
     }
 
-    private void add_ram_property (ref List list) {
+    private void add_ram_property (ref List<Boxes.Property> list) {
         try {
             var max_ram = machine.connection.get_node_info ().memory;
 
@@ -445,7 +445,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         App.app.notificationbar.display_for_action (message, Gtk.Stock.YES, (owned) reboot);
     }
 
-    private void add_storage_property (ref List list) {
+    private void add_storage_property (ref List<Boxes.Property> list) {
         if (machine.storage_volume == null)
             return;
 
