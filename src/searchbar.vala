@@ -2,16 +2,25 @@
 
 private class Boxes.Searchbar: Boxes.UI {
     public override Clutter.Actor actor { get { return gtk_actor; } }
+    public bool enable_key_handler {
+        set {
+            if (value)
+                GLib.SignalHandler.unblock (App.app.window, key_handler_id);
+            else
+                GLib.SignalHandler.block (App.app.window, key_handler_id);
+        }
+    }
     private GtkClutter.Actor gtk_actor;
     private Gd.TaggedEntry entry;
 
     private uint refilter_delay_id;
+    private ulong key_handler_id;
     static const uint refilter_delay = 200; // in ms
 
     public Searchbar () {
         setup_searchbar ();
 
-        App.app.window.key_press_event.connect (on_app_key_pressed);
+        key_handler_id = App.app.window.key_press_event.connect (on_app_key_pressed);
         entry.notify["text"].connect ( () => {
                 if (refilter_delay_id != 0)
                     Source.remove (refilter_delay_id);
