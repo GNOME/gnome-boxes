@@ -10,7 +10,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         this.machine = machine;
     }
 
-    public void try_change_name (string name) throws Boxes.Error {
+    public bool try_change_name (string name) {
         try {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             // Te use libvirt "title" for free form user name
@@ -19,10 +19,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             machine.domain.set_config (config);
 
             machine.name = name;
+            return true;
         } catch (GLib.Error error) {
             warning ("Failed to change title of box '%s' to '%s': %s",
                      machine.domain.get_name (), name, error.message);
-            throw new Boxes.Error.INVALID ("Invalid libvirt title");
+            return false;
         }
     }
 
@@ -112,12 +113,14 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         switch (page) {
         case PropertiesPage.LOGIN:
-            add_string_property (ref list, _("Name"), machine.name, (property, name) => {
-                try_change_name (name);
+            var property = add_string_property (ref list, _("Name"), machine.name);
+            property.editable = true;
+            property.changed.connect ((property, name) => {
+                return try_change_name (name);
             });
             add_string_property (ref list, _("Virtualizer"), machine.source.uri);
             if (machine.display != null)
-                add_string_property (ref list, _("URI"), machine.display.uri);
+                property = add_string_property (ref list, _("URI"), machine.display.uri);
             break;
 
         case PropertiesPage.SYSTEM:
@@ -353,8 +356,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               machine.domain_config.memory,
                                               Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
                                               max_ram,
-                                              Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
-                                              on_ram_changed);
+                                              Osinfo.MEBIBYTES / Osinfo.KIBIBYTES);
+            property.changed.connect (on_ram_changed);
 
             this.notify["state"].connect (() => {
                 if (!machine.is_on ())
@@ -455,13 +458,13 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var pool_info = pool.get_info ();
             var max_storage = (volume_info.capacity + pool_info.available)  / Osinfo.KIBIBYTES;
 
-            add_size_property (ref list,
-                               _("Maximum Disk Size"),
-                               volume_info.capacity / Osinfo.KIBIBYTES,
-                               volume_info.capacity / Osinfo.KIBIBYTES,
-                               max_storage,
-                               Osinfo.GIBIBYTES / Osinfo.KIBIBYTES,
-                               on_storage_changed);
+            var property = add_size_property (ref list,
+                                              _("Maximum Disk Size"),
+                                              volume_info.capacity / Osinfo.KIBIBYTES,
+                                              volume_info.capacity / Osinfo.KIBIBYTES,
+                                              max_storage,
+                                              Osinfo.GIBIBYTES / Osinfo.KIBIBYTES);
+            property.changed.connect (on_storage_changed);
         } catch (GLib.Error error) {
             warning ("Failed to get information on volume '%s' or it's parent pool: %s",
                      machine.storage_volume.get_name (),

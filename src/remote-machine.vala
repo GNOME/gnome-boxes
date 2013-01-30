@@ -49,8 +49,11 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         switch (page) {
         case PropertiesPage.LOGIN:
-            add_string_property (ref list, _("Name"), source.name, (property, name) => {
+            var property = add_string_property (ref list, _("Name"), source.name);
+            property.editable = true;
+            property.changed.connect ((property, name) => {
                 source.name = name;
+                return true;
             });
             add_string_property (ref list, _("URI"), source.uri);
             break;

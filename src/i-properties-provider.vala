@@ -50,8 +50,64 @@ private class Boxes.Property: GLib.Object {
     }
 }
 
-private delegate void PropertyStringChanged (Boxes.Property property, string value) throws Boxes.Error;
-private delegate void PropertySizeChanged (Boxes.Property property, uint64 value) throws Boxes.Error;
+private class Boxes.SizeProperty : Boxes.Property {
+    public signal void changed (uint64 value);
+
+    public SizeProperty (string name, uint64 size, uint64 min, uint64 max, uint64 step) {
+        var label = new Gtk.Label (format_size (((uint64) size) * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
+        label.halign = Gtk.Align.CENTER;
+
+        var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
+
+        scale.add_mark (min, Gtk.PositionType.BOTTOM, format_size (min * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
+        scale.add_mark (max, Gtk.PositionType.BOTTOM,
+                        "%s (maximum)".printf (format_size (max * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS)));
+
+        scale.set_show_fill_level (true);
+        scale.set_restrict_to_fill_level (false);
+        scale.set_value (size);
+        scale.set_fill_level (size);
+        scale.set_draw_value (false);
+        scale.hexpand = true;
+        scale.margin_bottom = 20;
+
+        base (name, label, scale);
+
+        scale.value_changed.connect (() => {
+            uint64 v = (uint64) scale.get_value ();
+            label.set_text (format_size (v * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
+            scale.set_fill_level (v);
+
+            changed ((uint64) scale.get_value ());
+        });
+    }
+}
+
+private class Boxes.StringProperty : Boxes.Property {
+    public signal bool changed (string value);
+
+    public bool editable {
+        get { return entry.editable; }
+        set { entry.editable = value; }
+    }
+
+    private Boxes.EditableEntry entry;
+
+    public StringProperty (string name, string value) {
+        var entry = new Boxes.EditableEntry ();
+
+        base (name, entry, null);
+        this.entry = entry;
+
+        entry.text = value;
+        entry.selectable = true;
+
+        entry.editing_done.connect (() => {
+            if (!changed (entry.text))
+                entry.start_editing ();
+        });
+    }
+}
 
 [Flags]
 public enum PropertyCreationFlag {
@@ -68,70 +124,23 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
         return property;
     }
 
-    protected Boxes.Property add_string_property (ref List<Boxes.Property>       list,
-                                                  string                         name,
-                                                  string                         value,
-                                                  PropertyStringChanged?         changed = null) {
-        var entry = new Boxes.EditableEntry ();
-
-        entry.text = value;
-        entry.selectable = true;
-        entry.editable = changed != null;
-
-        var property = add_property (ref list, name, entry);
-        entry.editing_done.connect (() => {
-            try {
-                changed (property, entry.text);
-            } catch (Boxes.Error.INVALID error) {
-                entry.start_editing ();
-            } catch (Boxes.Error error) {
-                warning (error.message);
-            }
-        });
+    protected Boxes.StringProperty add_string_property (ref List<Boxes.Property> list,
+                                                        string                   name,
+                                                        string                   value) {
+        var property = new StringProperty (name, value);
+        list.append (property);
 
         return property;
     }
 
-    protected Boxes.Property add_size_property (ref List<Boxes.Property>       list,
-                                                string                         name,
-                                                uint64                         size,
-                                                uint64                         min,
-                                                uint64                         max,
-                                                uint64                         step,
-                                                PropertySizeChanged?           changed = null) {
-        var label = new Gtk.Label (format_size (((uint64) size) * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
-        label.halign = Gtk.Align.CENTER;
-
-        var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
-
-        scale.add_mark (min, Gtk.PositionType.BOTTOM,
-                        format_size (min * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
-        scale.add_mark (max, Gtk.PositionType.BOTTOM,
-                        "%s (maximum)".printf (format_size (max * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS)));
-
-        scale.value_changed.connect (() => {
-                uint64 v = (uint64)scale.get_value ();
-                label.set_text (format_size (v * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS));
-                scale.set_fill_level (v);
-        });
-
-        scale.set_show_fill_level (true);
-        scale.set_restrict_to_fill_level (false);
-        scale.set_value (size);
-        scale.set_fill_level (size);
-        scale.set_draw_value (false);
-        scale.hexpand = true;
-        scale.margin_bottom = 20;
-
-        var property = add_property (ref list, name, label, scale);
-        if (changed != null)
-            scale.value_changed.connect (() => {
-                try {
-                    changed (property, (uint64) scale.get_value ());
-                } catch (Boxes.Error error) {
-                    warning (error.message);
-                }
-            });
+    protected Boxes.SizeProperty add_size_property (ref List<Boxes.Property> list,
+                                                    string                   name,
+                                                    uint64                   size,
+                                                    uint64                   min,
+                                                    uint64                   max,
+                                                    uint64                   step) {
+        var property = new SizeProperty (name, size, min, max, step);
+        list.append (property);
 
         return property;
     }
