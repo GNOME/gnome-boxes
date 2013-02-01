@@ -673,7 +673,7 @@ private class Boxes.App: Boxes.UI {
 
         content_bin_actor.add (wizard.actor);
         content_bin_actor.add (properties.actor);
-        below_bin_actor.add_child (empty_boxes.actor);
+        below_bin_actor.insert_child_below (empty_boxes.actor, null);
 
         properties.actor.hide ();
         selectionbar.actor.hide ();
