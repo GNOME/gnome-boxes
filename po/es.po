@@ -4,13 +4,14 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013.
 #
+#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-01-23 13:32+0000\n"
-"PO-Revision-Date: 2013-01-24 16:33+0100\n"
+"POT-Creation-Date: 2013-01-31 20:33+0000\n"
+"PO-Revision-Date: 2013-02-01 10:06+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -21,7 +22,7 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.5\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:95
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
 msgstr "Cajas"
 
@@ -86,41 +87,70 @@ msgstr "Ventana maximizada"
 msgid "Window maximized state"
 msgstr "Estado maximizado de la ventana"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:133
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012"
 
-#: ../src/app.vala:109
+#: ../src/app.vala:134
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: ../src/app.vala:121 ../src/topbar.vala:56
+#: ../src/app.vala:151 ../src/topbar.vala:56
 msgid "New"
 msgstr "Nueva"
 
-#: ../src/app.vala:126
+#: ../src/app.vala:156
 msgid "About Boxes"
 msgstr "Acerca de Cajas"
 
-#: ../src/app.vala:127
+#: ../src/app.vala:157
 msgid "Quit"
 msgstr "Salir"
 
-#: ../src/app.vala:726
+#: ../src/app.vala:199 ../src/main.vala:9
+msgid "Display version number"
+msgstr "Mostrar el número de versión"
+
+#: ../src/app.vala:201
+msgid "Open in full screen"
+msgstr "Abrir en pantalla completa"
+
+#: ../src/app.vala:202 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "Comprobar la capacidad de virtualización"
+
+#: ../src/app.vala:203
+msgid "Open box with UUID"
+msgstr "Abrir caja con UUID"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:205
+msgid "URI to display, broker or installer media"
+msgstr "URI que mostrar, agente o medio de instalación"
+
+#: ../src/app.vala:215
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
+
+#: ../src/app.vala:237
+msgid "Too many command line arguments specified.\n"
+msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
+
+#: ../src/app.vala:863
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: ../src/app.vala:727
+#: ../src/app.vala:864
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: ../src/app.vala:811
+#: ../src/app.vala:948
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
@@ -129,9 +159,17 @@ msgstr "Falló la conexión a «%s»"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/display-page.vala:188
+#: ../src/display-page.vala:220
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pulse Ctrl+Alt para deseleccionar)"
+
+#: ../src/empty-boxes.vala:30
+msgid "No boxes found"
+msgstr "No se han encontrado cajas"
+
+#: ../src/empty-boxes.vala:37
+msgid "Create one using the button on the top left."
+msgstr "Cree una usando en botón de la parte superior izquierda."
 
 #: ../src/installer-media.vala:91 ../src/properties.vala:73
 msgid "System"
@@ -262,68 +300,38 @@ msgstr "Guardando…"
 msgid "Password"
 msgstr "Contraseña"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "Mostrar el número de versión"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "Abrir en pantalla completa"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "Comprobar la capacidad de virtualización"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "Abrir caja con UUID"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "URI que mostrar, agente o medio de instalación"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:76
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• La CPU puede virtualizar: %s\n"
 
-#: ../src/main.vala:77
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• El módulo KVM está cargado: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Invitado Libvirt KVM disponible: %s\n"
 
-#: ../src/main.vala:79
+#: ../src/main.vala:57
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Almacenamiento de cajas disponible: %s\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• El contexto SELinux es el predeterminado: %s\n"
 
-#: ../src/main.vala:87
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Informar de errores a <%s>.\n"
 
-#: ../src/main.vala:88
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s página de inicio: <%s>.\n"
@@ -331,7 +339,6 @@ msgstr "%s página de inicio: <%s>.\n"
 #. Translators: The %s will be replaced with the name of the VM
 #: ../src/properties.vala:19
 #, c-format
-#| msgid "Properties"
 msgid "%s - Properties"
 msgstr "%s: propiedades"
 
@@ -461,17 +468,9 @@ msgstr "_Añadir contraseña"
 msgid "Product Key"
 msgstr "Clave del producto"
 
-#: ../src/unattended-installer.vala:615
+#: ../src/unattended-installer.vala:607
 msgid "Downloading device drivers..."
 msgstr "Descargando controladores de dispositivos…"
-
-#: ../src/util.vala:321
-msgid "yes"
-msgstr "sí"
-
-#: ../src/util.vala:321
-msgid "no"
-msgstr "no"
 
 #: ../src/util-app.vala:229
 #, c-format
@@ -521,6 +520,14 @@ msgstr ""
 "libvirt conoce %s como el almacenamiento de Cajas de GNOME pero el usuario "
 "no puede leer ni escribir"
 
+#: ../src/util.vala:321
+msgid "yes"
+msgstr "sí"
+
+#: ../src/util.vala:321
+msgid "no"
+msgstr "no"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
 #: ../src/vm-configurator.vala:440
@@ -555,6 +562,38 @@ msgstr[1] "%d%% Instalados"
 #: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "Sólo lectura"
+
+#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
+msgid "Enter URL"
+msgstr "Introducir el URL"
+
+#: ../src/wizard-source.vala:126
+msgid "Select a file"
+msgstr "Seleccionar un archivo"
+
+#: ../src/wizard-source.vala:163
+msgid ""
+"<b>Desktop Access</b>\n"
+"\n"
+"Will add boxes for all systems available from this account."
+msgstr ""
+"<b>Acceso desde el escritorio</b>\n"
+"\n"
+"Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
+
+#: ../src/wizard-source.vala:255
+msgid "32-bit x86 system"
+msgstr "sistema x86 de 32 bits"
+
+#: ../src/wizard-source.vala:256
+msgid "64-bit x86 system"
+msgstr "sistema x86 de 64 bits"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: ../src/wizard-source.vala:265
+#, c-format
+msgid " from %s"
+msgstr " de %s"
 
 #: ../src/wizard.vala:100
 msgid "Box creation failed"
@@ -698,61 +737,29 @@ msgstr ""
 "estén probablemente disponibles en su sistema, y deba activarlas en la "
 "configuración de su BIOS."
 
-#: ../src/wizard.vala:637
+#: ../src/wizard.vala:643
 msgid "Create a Box"
 msgstr "Crear una caja"
 
-#: ../src/wizard.vala:649
+#: ../src/wizard.vala:646
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/wizard.vala:658
+#: ../src/wizard.vala:655
 msgid "_Back"
 msgstr "A_trás"
 
-#: ../src/wizard.vala:665
+#: ../src/wizard.vala:662
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
-#: ../src/wizard.vala:673
+#: ../src/wizard.vala:670
 msgid "C_reate"
 msgstr "C_rear"
 
-#: ../src/wizard.vala:757
+#: ../src/wizard.vala:754
 msgid "C_ustomize..."
 msgstr "_Personalizar…"
-
-#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
-msgid "Enter URL"
-msgstr "Introducir el URL"
-
-#: ../src/wizard-source.vala:126
-msgid "Select a file"
-msgstr "Seleccionar un archivo"
-
-#: ../src/wizard-source.vala:163
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-"<b>Acceso desde el escritorio</b>\n"
-"\n"
-"Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
-
-#: ../src/wizard-source.vala:255
-msgid "32-bit x86 system"
-msgstr "sistema x86 de 32 bits"
-
-#: ../src/wizard-source.vala:256
-msgid "64-bit x86 system"
-msgstr "sistema x86 de 64 bits"
-
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:265
-#, c-format
-msgid " from %s"
-msgstr " de %s"
 
 #~ msgid "Fullscreen"
 #~ msgstr "Pantalla completa"
