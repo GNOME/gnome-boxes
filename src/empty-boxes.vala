@@ -53,7 +53,6 @@ private class Boxes.EmptyBoxes : Boxes.UI {
 
         grid.show_all ();
 
-        App.app.ready.connect (update_visibility);
         App.app.collection.item_added.connect (update_visibility);
         App.app.collection.item_removed.connect (update_visibility);
     }
@@ -63,9 +62,10 @@ private class Boxes.EmptyBoxes : Boxes.UI {
     }
 
     private void update_visibility () {
-        var visible = (ui_state == UIState.COLLECTION || ui_state == UIState.NONE) &&
-                      App.app.collection.items.length == 0;
-        if (visible != gtk_actor.visible)
-            fade_actor (gtk_actor, visible? 255 : 0);
+        App.app.call_when_ready (() => {
+            var visible = ui_state == UIState.COLLECTION && App.app.collection.items.length == 0;
+            if (visible != gtk_actor.visible)
+                fade_actor (gtk_actor, visible? 255 : 0);
+        });
     }
 }
