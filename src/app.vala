@@ -963,6 +963,9 @@ private class Boxes.App: Boxes.UI {
                 view.get_item_pos (item, out item_x, out item_y);
 
                 connect_to (machine, item_x, item_y);
+
+                if (maximized)
+                    fullscreen = true;
             } else
                 warning ("unknown item, fix your code");
 
