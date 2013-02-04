@@ -105,11 +105,12 @@ private class Boxes.VMConfigurator {
         return domain;
     }
 
-    public static void post_install_setup (Domain domain, InstallerMedia install_media) {
+    public static void post_install_setup (Domain domain, InstallerMedia? install_media) {
         set_post_install_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
 
-        install_media.setup_post_install_domain_config (domain);
+        if (install_media != null)
+            install_media.setup_post_install_domain_config (domain);
 
         mark_as_installed (domain, install_media);
     }
@@ -173,7 +174,7 @@ private class Boxes.VMConfigurator {
         update_custom_xml (domain, install_media, num_reboots);
     }
 
-    private static void mark_as_installed (Domain domain, InstallerMedia install_media) {
+    private static void mark_as_installed (Domain domain, InstallerMedia? install_media) {
         update_custom_xml (domain, install_media, 0, true);
     }
 
@@ -335,7 +336,7 @@ private class Boxes.VMConfigurator {
     }
 
     private static void update_custom_xml (Domain domain,
-                                           InstallerMedia install_media,
+                                           InstallerMedia? install_media,
                                            uint num_reboots = 0,
                                            bool installed = false) {
         string custom_xml;
@@ -345,10 +346,12 @@ private class Boxes.VMConfigurator {
         else
             custom_xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
 
-        if (install_media.os != null)
-            custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
-        if (install_media.os_media != null)
-            custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
+        if (install_media != null) {
+            if (install_media.os != null)
+                custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
+            if (install_media.os_media != null)
+                custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
+        }
 
         if (num_reboots != 0)
             custom_xml += NUM_REBOOTS_XML.printf (num_reboots);

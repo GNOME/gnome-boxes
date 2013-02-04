@@ -80,6 +80,13 @@ private class Boxes.VMCreator {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
         num_reboots = VMConfigurator.get_num_reboots (machine.domain_config);
         var name = machine.domain.get_name ();
+
+        if (install_media == null) {
+            debug ("Could not find needed install media to continue installation, give up on automatic installation");
+            set_post_install_config (machine);
+            return;
+        }
+
         install_media.prepare_to_continue_installation (name);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);

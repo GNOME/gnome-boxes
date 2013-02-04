@@ -33,12 +33,15 @@ private class Boxes.MediaManager : Object {
         return yield create_installer_media_from_media (media, on_installer_recognized);
     }
 
-    public async InstallerMedia create_installer_media_from_config (GVirConfig.Domain config) {
+    public async InstallerMedia? create_installer_media_from_config (GVirConfig.Domain config) {
         var path = VMConfigurator.get_source_media_path (config);
         var label = config.title;
 
         Os? os = null;
         Media? os_media = null;
+
+        if (path == null)
+            return null;
 
         try {
             var os_id = VMConfigurator.get_os_id (config);
@@ -57,6 +60,7 @@ private class Boxes.MediaManager : Object {
         var resources = os_db.get_resources_for_os (os, architecture);
 
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
+        return_val_if_fail (media != null, null);
 
         try {
             media = yield create_installer_media_from_media (media);
