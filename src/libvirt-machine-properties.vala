@@ -347,7 +347,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         } catch (GLib.Error e) {}
     }
 
-    private void add_ram_property (ref List<Boxes.Property> list) {
+    private SizeProperty? add_ram_property (ref List<Boxes.Property> list) {
         try {
             var max_ram = machine.connection.get_node_info ().memory;
 
@@ -365,7 +365,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             });
 
             update_ram_property (property);
-        } catch (GLib.Error error) {}
+
+            return property;
+        } catch (GLib.Error error) {
+            return null;
+        }
     }
 
     private void on_ram_changed (Boxes.Property property, uint64 value) {
@@ -448,9 +452,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         App.app.notificationbar.display_for_action (message, Gtk.Stock.YES, (owned) reboot);
     }
 
-    private void add_storage_property (ref List<Boxes.Property> list) {
+    private SizeProperty? add_storage_property (ref List<Boxes.Property> list) {
         if (machine.storage_volume == null)
-            return;
+            return null;
 
         try {
             var volume_info = machine.storage_volume.get_info ();
@@ -465,10 +469,13 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               max_storage,
                                               256 * Osinfo.MEBIBYTES);
             property.changed.connect (on_storage_changed);
+
+            return property;
         } catch (GLib.Error error) {
             warning ("Failed to get information on volume '%s' or it's parent pool: %s",
                      machine.storage_volume.get_name (),
                      error.message);
+            return null;
         }
     }
 
