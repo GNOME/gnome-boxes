@@ -139,15 +139,25 @@ private class Boxes.OSDatabase : GLib.Object {
         if (prefs.length <= 0)
             return null;
 
-        var filter = new Filter ();
-        filter.add_constraint (RESOURCES_PROP_ARCHITECTURE, prefs[0]);
-        var filtered = (list as Osinfo.List).new_filtered (filter) as ResourcesList;
+        var filtered = filter_resources_list_by_arch (list, prefs[0]);
         if (filtered.get_length () <= 0)
             return get_prefered_resources (list, prefs[1:prefs.length]);
         else
             // Assumption: There is only one resources instance of each type
             // (minimum/recommended) of each architecture for each OS.
             return filtered.get_nth (0) as Resources;
+    }
+
+    private ResourcesList filter_resources_list_by_arch (ResourcesList list, string arch) {
+        var new_list = new ResourcesList ();
+        foreach (var entity in list.get_elements ()) {
+            var resources = entity as Resources;
+            var compatibility = compare_cpu_architectures (arch, resources.architecture);
+            if (compatibility == CPUArchCompatibity.IDENTICAL || compatibility == CPUArchCompatibity.COMPATIBLE)
+                new_list.add (resources);
+        }
+
+        return new_list;
     }
 
     private async bool ensure_db_loaded () {
