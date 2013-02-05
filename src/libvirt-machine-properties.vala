@@ -463,7 +463,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               volume_info.capacity,
                                               volume_info.capacity,
                                               max_storage,
-                                              Osinfo.GIBIBYTES);
+                                              256 * Osinfo.MEBIBYTES);
             property.changed.connect (on_storage_changed);
         } catch (GLib.Error error) {
             warning ("Failed to get information on volume '%s' or it's parent pool: %s",
