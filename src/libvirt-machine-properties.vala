@@ -354,9 +354,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var property = add_size_property (ref list,
                                               _("Memory"),
                                               machine.domain_config.memory,
-                                              Osinfo.MEBIBYTES / Osinfo.KIBIBYTES,
-                                              max_ram,
-                                              Osinfo.MEBIBYTES / Osinfo.KIBIBYTES);
+                                              Osinfo.MEBIBYTES,
+                                              max_ram * Osinfo.KIBIBYTES,
+                                              Osinfo.MEBIBYTES);
             property.changed.connect (on_ram_changed);
 
             this.notify["state"].connect (() => {
@@ -456,14 +456,14 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var volume_info = machine.storage_volume.get_info ();
             var pool = get_storage_pool (machine.connection);
             var pool_info = pool.get_info ();
-            var max_storage = (volume_info.capacity + pool_info.available)  / Osinfo.KIBIBYTES;
+            var max_storage = volume_info.capacity + pool_info.available;
 
             var property = add_size_property (ref list,
                                               _("Maximum Disk Size"),
-                                              volume_info.capacity / Osinfo.KIBIBYTES,
-                                              volume_info.capacity / Osinfo.KIBIBYTES,
+                                              volume_info.capacity,
+                                              volume_info.capacity,
                                               max_storage,
-                                              Osinfo.GIBIBYTES / Osinfo.KIBIBYTES);
+                                              Osinfo.GIBIBYTES);
             property.changed.connect (on_storage_changed);
         } catch (GLib.Error error) {
             warning ("Failed to get information on volume '%s' or it's parent pool: %s",
@@ -485,7 +485,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         disk.resize (value, 0);
                 } else
                     // Currently this never happens as properties page cant be reached without starting the machine
-                    machine.storage_volume.resize (value * Osinfo.KIBIBYTES, StorageVolResizeFlags.NONE);
+                    machine.storage_volume.resize (value, StorageVolResizeFlags.NONE);
                 debug ("Storage changed to %llu", value);
             } catch (GLib.Error error) {
                 warning ("Failed to change storage capacity of volume '%s' to %llu: %s",
