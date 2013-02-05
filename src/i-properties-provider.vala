@@ -53,6 +53,20 @@ private class Boxes.Property: GLib.Object {
 private class Boxes.SizeProperty : Boxes.Property {
     public signal void changed (uint64 value);
 
+    private Gtk.Scale scale;
+
+    public uint64 recommended  {
+        set {
+            // FIXME: Better way to ensure recommended mark is not too close to min and max marks?
+            if (value < (scale.adjustment.lower + Osinfo.GIBIBYTES) ||
+                value > (scale.adjustment.upper - Osinfo.GIBIBYTES))
+                return;
+
+            var size = "%s (recommended)".printf (format_size (value, FormatSizeFlags.IEC_UNITS));
+            scale.add_mark (value, Gtk.PositionType.BOTTOM, size);
+        }
+    }
+
     public SizeProperty (string name, uint64 size, uint64 min, uint64 max, uint64 step) {
         var label = new Gtk.Label (format_size ((uint64) size, FormatSizeFlags.IEC_UNITS));
         label.halign = Gtk.Align.CENTER;
@@ -72,6 +86,8 @@ private class Boxes.SizeProperty : Boxes.Property {
         scale.margin_bottom = 20;
 
         base (name, label, scale);
+
+        this.scale = scale;
 
         scale.value_changed.connect (() => {
             uint64 v = (uint64) scale.get_value ();
