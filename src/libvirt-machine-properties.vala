@@ -124,8 +124,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             break;
 
         case PropertiesPage.SYSTEM:
-            add_ram_property (ref list);
-            add_storage_property (ref list);
+            var ram_property = add_ram_property (ref list);
+            var storage_property = add_storage_property (ref list);
+            mark_recommended_resources.begin (ram_property, storage_property);
 
             var button = new Gtk.Button.with_label (_("Troubleshooting log"));
             button.halign = Gtk.Align.START;
@@ -345,6 +346,33 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             property.reboot_required = (actual - pending) > 1; // no need for abs()
 
         } catch (GLib.Error e) {}
+    }
+
+    private async void mark_recommended_resources (SizeProperty? ram_property, SizeProperty? storage_property) {
+        if (ram_property == null && storage_property == null)
+            return;
+
+        var os_id = VMConfigurator.get_os_id (machine.domain_config);
+        if (os_id == null)
+            return;
+
+        var os_db = MediaManager.get_instance ().os_db;
+        Osinfo.Os os;
+        try {
+            os = yield os_db.get_os_by_id (os_id);
+        } catch (OSDatabaseError error) {
+            warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
+            return;
+        }
+
+        var architecture = machine.domain_config.get_os ().get_arch ();
+        var resources = os_db.get_recommended_resources_for_os (os, architecture);
+        if (resources != null) {
+            if (ram_property != null)
+                ram_property.recommended = resources.ram;
+            if (storage_property != null)
+                storage_property.recommended = resources.storage;
+        }
     }
 
     private SizeProperty? add_ram_property (ref List<Boxes.Property> list) {
