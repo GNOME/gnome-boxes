@@ -354,9 +354,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var property = add_size_property (ref list,
                                               _("Memory"),
                                               machine.domain_config.memory,
-                                              Osinfo.MEBIBYTES,
+                                              64 * Osinfo.MEBIBYTES,
                                               max_ram * Osinfo.KIBIBYTES,
-                                              Osinfo.MEBIBYTES);
+                                              64 * Osinfo.MEBIBYTES);
             property.changed.connect (on_ram_changed);
 
             this.notify["state"].connect (() => {
