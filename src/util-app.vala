@@ -458,8 +458,15 @@ namespace Boxes {
             default:
                 return CPUArchCompatibity.INCOMPATIBLE;
             }
+        case Osinfo.ARCHITECTURE_ALL:
+            return CPUArchCompatibity.COMPATIBLE;
         default:
-            return CPUArchCompatibity.INCOMPATIBLE;
+            switch (arch1) {
+            case Osinfo.ARCHITECTURE_ALL:
+                return CPUArchCompatibity.IDENTICAL;
+            default:
+                return CPUArchCompatibity.INCOMPATIBLE;
+            }
         }
     }
 
