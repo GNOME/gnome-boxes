@@ -787,11 +787,6 @@ private class Boxes.MachineActor: Boxes.UI {
             if (zoom) {
                 allocate_actor_no_animation (thumbnail, 0, 0, width, height);
 
-                // Temporarily hide toolbar in fullscreen so that the the animation
-                // actor doesn't get pushed down before zooming to the sidebar
-                if (App.app.fullscreen)
-                    App.app.topbar.actor.hide ();
-
                 thumbnail.set_easing_mode (Clutter.AnimationMode.LINEAR);
                 thumbnail.set_easing_duration (App.app.duration);
                 ulong completed_id = 0;
