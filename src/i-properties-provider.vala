@@ -54,6 +54,7 @@ private class Boxes.SizeProperty : Boxes.Property {
     public signal void changed (uint64 value);
 
     private Gtk.Scale scale;
+    private FormatSizeFlags format_flags;
 
     public uint64 recommended  {
         set {
@@ -62,20 +63,25 @@ private class Boxes.SizeProperty : Boxes.Property {
                 value > (scale.adjustment.upper - Osinfo.GIBIBYTES))
                 return;
 
-            var size = "%s (recommended)".printf (format_size (value, FormatSizeFlags.IEC_UNITS));
+            var size = "%s (recommended)".printf (format_size (value, format_flags));
             scale.add_mark (value, Gtk.PositionType.BOTTOM, size);
         }
     }
 
-    public SizeProperty (string name, uint64 size, uint64 min, uint64 max, uint64 step) {
-        var label = new Gtk.Label (format_size ((uint64) size, FormatSizeFlags.IEC_UNITS));
+    public SizeProperty (string          name,
+                         uint64          size,
+                         uint64          min,
+                         uint64          max,
+                         uint64          step,
+                         FormatSizeFlags format_flags) {
+        var label = new Gtk.Label (format_size ((uint64) size, format_flags));
         label.halign = Gtk.Align.CENTER;
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
 
-        scale.add_mark (min, Gtk.PositionType.BOTTOM, format_size (min, FormatSizeFlags.IEC_UNITS));
+        scale.add_mark (min, Gtk.PositionType.BOTTOM, format_size (min, format_flags));
         scale.add_mark (max, Gtk.PositionType.BOTTOM,
-                        "%s (maximum)".printf (format_size (max, FormatSizeFlags.IEC_UNITS)));
+                        "%s (maximum)".printf (format_size (max, format_flags)));
 
         scale.set_show_fill_level (true);
         scale.set_restrict_to_fill_level (false);
@@ -88,10 +94,11 @@ private class Boxes.SizeProperty : Boxes.Property {
         base (name, label, scale);
 
         this.scale = scale;
+        this.format_flags = format_flags;
 
         scale.value_changed.connect (() => {
             uint64 v = (uint64) scale.get_value ();
-            label.set_text (format_size (v, FormatSizeFlags.IEC_UNITS));
+            label.set_text (format_size (v, format_flags));
             scale.set_fill_level (v);
 
             changed ((uint64) scale.get_value ());
@@ -154,8 +161,9 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
                                                     uint64                   size,
                                                     uint64                   min,
                                                     uint64                   max,
-                                                    uint64                   step) {
-        var property = new SizeProperty (name, size, min, max, step);
+                                                    uint64                   step,
+                                                    FormatSizeFlags          format_flags = FormatSizeFlags.DEFAULT) {
+        var property = new SizeProperty (name, size, min, max, step, format_flags);
         list.append (property);
 
         return property;
