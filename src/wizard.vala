@@ -441,7 +441,7 @@ private class Boxes.Wizard: Boxes.UI {
             if (libvirt_machine.storage_volume != null) {
                 try {
                     var volume_info = libvirt_machine.storage_volume.get_info ();
-                    var capacity = format_size (volume_info.capacity, FormatSizeFlags.IEC_UNITS);
+                    var capacity = format_size (volume_info.capacity);
                     summary.add_property (_("Disk"),  _("%s maximum".printf (capacity)));
                 } catch (GLib.Error error) {
                     warning ("Failed to get information on volume '%s': %s",

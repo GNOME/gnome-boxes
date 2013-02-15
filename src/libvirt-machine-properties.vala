@@ -3,6 +3,8 @@ using GVir;
 using Gtk;
 
 private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProvider {
+    private const uint64 MEGABYTES = 1000 * 1000;
+
     private weak LibvirtMachine machine; // Weak ref for avoiding cyclic ref */
     private uint shutdown_timeout;
 
@@ -384,7 +386,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               machine.domain_config.memory,
                                               64 * Osinfo.MEBIBYTES,
                                               max_ram * Osinfo.KIBIBYTES,
-                                              64 * Osinfo.MEBIBYTES);
+                                              64 * Osinfo.MEBIBYTES,
+                                              FormatSizeFlags.IEC_UNITS);
             property.changed.connect (on_ram_changed);
 
             this.notify["state"].connect (() => {
@@ -495,7 +498,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               volume_info.capacity,
                                               volume_info.capacity,
                                               max_storage,
-                                              256 * Osinfo.MEBIBYTES);
+                                              256 * MEGABYTES);
             property.changed.connect (on_storage_changed);
 
             return property;
