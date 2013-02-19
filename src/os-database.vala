@@ -50,8 +50,8 @@ private class Boxes.OSDatabase : GLib.Object {
         db_loaded ();
     }
 
-    public async Media? guess_os_from_install_media (string media_path,
-                                                     Cancellable? cancellable) throws GLib.Error {
+    public async Media? guess_os_from_install_media_path (string       media_path,
+                                                          Cancellable? cancellable) throws GLib.Error {
         if (!yield ensure_db_loaded ())
             return null;
 

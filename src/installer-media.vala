@@ -58,7 +58,7 @@ private class Boxes.InstallerMedia : GLib.Object {
             yield get_media_info_from_device (device, media_manager.os_db);
         else {
             from_image = true;
-            os_media = yield media_manager.os_db.guess_os_from_install_media (device_file, cancellable);
+            os_media = yield media_manager.os_db.guess_os_from_install_media_path (device_file, cancellable);
             if (os_media != null)
                 os = os_media.os;
         }
