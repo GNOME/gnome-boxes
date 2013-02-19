@@ -57,6 +57,13 @@ private class Boxes.OSDatabase : GLib.Object {
 
         var media = yield Media.create_from_location_async (media_path, Priority.DEFAULT, cancellable);
 
+        return yield guess_os_from_install_media (media);
+    }
+
+    public async Media? guess_os_from_install_media (Media media) throws GLib.Error {
+        if (!yield ensure_db_loaded ())
+            return null;
+
         if (db.identify_media (media))
             return media;
 
