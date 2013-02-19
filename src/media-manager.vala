@@ -76,11 +76,12 @@ private class Boxes.MediaManager : Object {
 
         // First HW media
         var enumerator = new GUdev.Enumerator (client);
-        enumerator.add_match_property ("OSINFO_BOOTABLE", "1");
+        // We don't want to deal with partitions to avoid duplicate medias
+        enumerator.add_match_property ("DEVTYPE", "disk");
 
         foreach (var device in enumerator.execute ()) {
-            if (device.get_property ("DEVTYPE") != "disk")
-                // We don't want to deal with partitions to avoid duplicate medias
+            if (device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
+                !device.get_property_as_boolean ("OSINFO_BOOTABLE"))
                 continue;
 
             var path = device.get_device_file ();
