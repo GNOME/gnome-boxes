@@ -1,3 +1,63 @@
+3.7.90 - Feb 19, 2013
+=====================
+
+Changes since 3.7.5:
+
+- Add oVirt support.
+- Add support for post-installation drivers. This combined with libosinfo 0.2.4
+  means automatic installation of QXL and all virio drivers, and spice-vdagent
+  as part of Windows XP express installation.
+- VM properties:
+  - Mark recommended RAM and storage when known.
+  - The 1M step and minimum we use for RAM is too small. Bump it to 64M.
+  - The 1G step value we use for storage is too big. Decrease it to 256M.
+- Don't use IEC units for storage in wizard and properties.
+- Fix crash when passing media on command line.
+- Fix an infinite loop.
+- Fix positioning of thumbnail in properties view.
+- Adapt media detection code against latest udev and libosinfo.
+- More rebust media detection.
+- More robust restart of installations.
+- Ensure driver installation progress always reaches 100% even if an error
+  occurs during the installation.
+- Allow search with multiple terms. A search like "foo bar" now means name
+  containing "foo" and "bar". This is nicer, and what you expect from e.g.
+  gnome-shell search.
+- Update to the new gnome-shell search interface.
+- Added/updated/fixed translations:
+  - Galician
+  - Greek
+  - Malayalam
+  - Polish
+  - Serbian
+  - Slovenian
+  - Spanish
+  - Traditional Chinese
+  - Turkish
+  - Uyghur
+- Some other functional and non-functional improvements and fixes.
+
+Dependencies changed:
+
+- spice-client-gtk-3.0 >= 0.15
+- govirt-1.0 >= 0.0.3 (Conditional: Without it, oVirt support is disabled).
+
+All contributors to this release:
+
+Alexander Larsson <alexl@redhat.com>
+Anish A <aneesh.nl@gmail.com>
+Cheng-Chia Tseng <pswo10680@gmail.com>
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Dimitris Spingos <dmtrs32@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Gheyret Kenji <gheyret@gmail.com>
+Matej Urbančič <mateju@svn.gnome.org>
+Muhammet Kara <muhammetk@acikkaynak.name.tr>
+Piotr Drąg <piotrdrag@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+Мирослав Николић <miroslavnikolic@rocketmail.com>
+
 3.7.5 - Feb 04, 2013
 ====================
 
