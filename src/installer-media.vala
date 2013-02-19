@@ -142,8 +142,9 @@ private class Boxes.InstallerMedia : GLib.Object {
         return client.query_by_device_file (device_file);
     }
 
-    private async void get_media_info_from_device (GUdev.Device device, OSDatabase os_db) throws OSDatabaseError {
-        if (!device.get_property_as_boolean ("OSINFO_BOOTABLE"))
+    private async void get_media_info_from_device (GUdev.Device device, OSDatabase os_db) throws GLib.Error {
+        if (device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
+            !device.get_property_as_boolean ("OSINFO_BOOTABLE"))
             throw new OSDatabaseError.NON_BOOTABLE ("Media %s is not bootable.", device_file);
 
         label = get_decoded_udev_property (device, "ID_FS_LABEL_ENC");
@@ -151,11 +152,35 @@ private class Boxes.InstallerMedia : GLib.Object {
         var os_id = device.get_property ("OSINFO_INSTALLER") ?? device.get_property ("OSINFO_LIVE");
 
         if (os_id != null) {
+            // Old udev and libosinfo
             os = yield os_db.get_os_by_id (os_id);
 
             var media_id = device.get_property ("OSINFO_MEDIA");
             if (media_id != null)
                 os_media = os_db.get_media_by_id (os, media_id);
+        } else {
+            var media = new Osinfo.Media (device_file, ARCHITECTURE_ALL);
+            media.volume_id = label;
+            get_decoded_udev_properties_for_media
+                                (device,
+                                 { "ID_FS_SYSTEM_ID", "ID_FS_PUBLISHER_ID", "ID_FS_APPLICATION_ID", },
+                                 { MEDIA_PROP_SYSTEM_ID, MEDIA_PROP_PUBLISHER_ID, MEDIA_PROP_APPLICATION_ID },
+                                 media);
+
+            os_media = yield os_db.guess_os_from_install_media (media);
+            if (os_media != null)
+                os = os_media.os;
+        }
+    }
+
+    private void get_decoded_udev_properties_for_media (GUdev.Device device,
+                                                        string[]     udev_props,
+                                                        string[]     media_props,
+                                                        Osinfo.Media media) {
+        for (var i = 0; i < udev_props.length; i++) {
+            var val = get_decoded_udev_property (device, udev_props[i]);
+            if (val != null)
+                media.set (media_props[i], val);
         }
     }
 
