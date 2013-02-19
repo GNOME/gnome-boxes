@@ -146,7 +146,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         if (!device.get_property_as_boolean ("OSINFO_BOOTABLE"))
             throw new OSDatabaseError.NON_BOOTABLE ("Media %s is not bootable.", device_file);
 
-        label = device.get_property ("ID_FS_LABEL");
+        label = get_decoded_udev_property (device, "ID_FS_LABEL_ENC");
 
         var os_id = device.get_property ("OSINFO_INSTALLER") ?? device.get_property ("OSINFO_LIVE");
 
@@ -157,6 +157,25 @@ private class Boxes.InstallerMedia : GLib.Object {
             if (media_id != null)
                 os_media = os_db.get_media_by_id (os, media_id);
         }
+    }
+
+    private string? get_decoded_udev_property (GUdev.Device device, string property_name) {
+        var encoded = device.get_property (property_name);
+
+        var decoded = "";
+        for (var i = 0; i < encoded.length; ) {
+           uint8 x;
+
+           if (encoded[i:encoded.length].scanf ("\\x%02x", out x) > 0) {
+               decoded += ((char) x).to_string ();
+               i += 4;
+           } else {
+               decoded += encoded[i].to_string ();
+               i++;
+           }
+        }
+
+        return decoded;
     }
 
     private void setup_label (string? label = null) {
