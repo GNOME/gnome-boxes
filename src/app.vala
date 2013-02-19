@@ -191,7 +191,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     public delegate void CallReadyFunc ();
-    public void call_when_ready (CallReadyFunc func) {
+    public void call_when_ready (owned CallReadyFunc func) {
         if (is_ready)
             func ();
         ready.connect (() => {
