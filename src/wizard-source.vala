@@ -221,9 +221,7 @@ private class Boxes.WizardSource: GLib.Object {
 
     private void add_media_entry (InstallerMedia media) {
         var hbox = add_entry (media_vbox, () => {
-            install_media = media;
-            uri = media.device_file;
-            url_entry.activate ();
+            on_media_selected.begin (media);
 
             return true;
         }, 15, 5, media.device_file);
@@ -324,5 +322,16 @@ private class Boxes.WizardSource: GLib.Object {
         dialog.hide ();
 
         return ret;
+    }
+
+    private async void on_media_selected (InstallerMedia media) {
+        try {
+            install_media = yield media_manager.create_installer_media_from_media (media);
+            uri = media.device_file;
+            url_entry.activate ();
+        } catch (GLib.Error error) {
+            // This is unlikely to happen since media we use as template should have already done most async work
+            warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);
+        }
     }
 }

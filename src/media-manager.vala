@@ -124,6 +124,38 @@ private class Boxes.MediaManager : Object {
         return list;
     }
 
+    public async InstallerMedia create_installer_media_from_media
+                                (InstallerMedia       media,
+                                 InstallerRecognized? on_installer_recognized = null,
+                                 ActivityProgress     progress = new ActivityProgress (),
+                                 Cancellable?         cancellable = null) throws GLib.Error {
+        if (media.os == null)
+            return media;
+
+        if (on_installer_recognized != null)
+            on_installer_recognized (media.os_media, media.os);
+
+        progress.progress = 0.5;
+
+        var install_scripts = media.os.get_install_script_list ();
+        var filter = new Filter ();
+        filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
+        install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+
+        InstallerMedia install_media;
+        if (install_scripts.get_length () > 0) {
+            var unattended_progress = progress.add_child_activity (0.5);
+            unattended_progress.bind_property ("info", progress, "info");
+
+            install_media = yield new UnattendedInstaller.from_media (media, install_scripts, unattended_progress);
+        } else
+            install_media = media;
+
+        progress.progress = 1.0;
+
+        return install_media;
+    }
+
     private MediaManager () {
         client = new GUdev.Client ({"block"});
         os_db = new OSDatabase ();
@@ -155,37 +187,5 @@ private class Boxes.MediaManager : Object {
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
 
         return yield create_installer_media_from_media (media);
-    }
-
-    private async InstallerMedia create_installer_media_from_media
-                                (InstallerMedia       media,
-                                 InstallerRecognized? on_installer_recognized = null,
-                                 ActivityProgress     progress = new ActivityProgress (),
-                                 Cancellable?         cancellable = null) throws GLib.Error {
-        if (media.os == null)
-            return media;
-
-        if (on_installer_recognized != null)
-            on_installer_recognized (media.os_media, media.os);
-
-        progress.progress = 0.5;
-
-        var install_scripts = media.os.get_install_script_list ();
-        var filter = new Filter ();
-        filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
-        install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
-
-        InstallerMedia install_media;
-        if (install_scripts.get_length () > 0) {
-            var unattended_progress = progress.add_child_activity (0.5);
-            unattended_progress.bind_property ("info", progress, "info");
-
-            install_media = yield new UnattendedInstaller.from_media (media, install_scripts, unattended_progress);
-        } else
-            install_media = media;
-
-        progress.progress = 1.0;
-
-        return install_media;
     }
 }
