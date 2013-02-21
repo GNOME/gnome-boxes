@@ -28,7 +28,7 @@ private class Boxes.MediaManager : Object {
                                  InstallerRecognized? on_installer_recognized = null,
                                  ActivityProgress     progress = new ActivityProgress (),
                                  Cancellable?         cancellable = null) throws GLib.Error {
-        var media = yield InstallerMedia.create_for_path (path, this, cancellable);
+        var media = yield new InstallerMedia.for_path (path, this, cancellable);
 
         return yield create_installer_media_from_media (media, on_installer_recognized);
     }

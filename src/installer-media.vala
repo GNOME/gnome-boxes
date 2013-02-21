@@ -39,19 +39,9 @@ private class Boxes.InstallerMedia : GLib.Object {
         setup_label (label);
     }
 
-    public static async InstallerMedia create_for_path (string       path,
-                                                        MediaManager media_manager,
-                                                        Cancellable? cancellable) throws GLib.Error {
-        var media = new InstallerMedia ();
-
-        yield media.setup_for_path (path, media_manager, cancellable);
-
-        return media;
-    }
-
-    private async void setup_for_path (string       path,
-                                       MediaManager media_manager,
-                                       Cancellable? cancellable) throws GLib.Error {
+    public async InstallerMedia.for_path (string       path,
+                                          MediaManager media_manager,
+                                          Cancellable? cancellable) throws GLib.Error {
         var device = yield get_device_from_path (path, media_manager.client, cancellable);
 
         if (device != null)
