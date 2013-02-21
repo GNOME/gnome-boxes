@@ -292,7 +292,13 @@ private class Boxes.DisplayPage: GLib.Object {
 
         this.display = display;
         display_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
-            update_title ();
+            // In some cases this is sent inside size_allocate (see bug #692465)
+            // which causes the label change queue_resize to be ignored
+            // So we delay the update_title call to an idle to work around this.
+            Idle.add_full (Priority.HIGH, () => {
+                update_title ();
+                return false;
+            });
         });
         display_can_grab_id = display.notify["can-grab-mouse"].connect(() => {
             update_toolbar_visible ();
