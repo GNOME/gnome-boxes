@@ -150,10 +150,12 @@ private class Boxes.EditableEntry: Alignment {
         notebook.show_border = false;
 
         label = new Gtk.Label (EMPTY_TEXT);
+        label.set_ellipsize (Pango.EllipsizeMode.END);
         label.set_alignment (0.0f, 0.5f);
         notebook.append_page (label, null);
 
         button = new Gtk.Button.with_label (EMPTY_TEXT);
+        (button.get_child () as Label).set_ellipsize (Pango.EllipsizeMode.END);
         button.receives_default = true;
         button.relief = Gtk.ReliefStyle.NONE;
         button.set_alignment (0.0f, 0.5f);

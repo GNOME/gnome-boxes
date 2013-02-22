@@ -595,6 +595,7 @@ private class Boxes.Wizard: Boxes.UI {
         hbox.pack_start (prep_vbox, true, true);
         prep_media_label = new Gtk.Label (null);
         prep_media_label.get_style_context ().add_class ("boxes-wizard-media-os-label");
+        prep_media_label.set_ellipsize (Pango.EllipsizeMode.END);
         prep_media_label.halign = Gtk.Align.START;
         prep_vbox.pack_start (prep_media_label, false, false);
         prep_status_label = new Gtk.Label (null);
@@ -741,6 +742,7 @@ private class Boxes.Wizard: Boxes.UI {
 
             var label_value = new Gtk.Label (value);
             label_value.get_style_context ().add_class ("boxes-wizard-summary-prop-value-label");
+            label_value.set_ellipsize (Pango.EllipsizeMode.END);
             label_value.xalign = 0.0f;
             grid.attach (label_value, 1, current_row, 1, 1);
 

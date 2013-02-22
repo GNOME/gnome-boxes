@@ -207,6 +207,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     grid.set_column_spacing (12);
 
                     var label = new Gtk.Label ("");
+                    label.set_ellipsize (Pango.EllipsizeMode.END);
+
                     grid.add (label);
 
                     var source = disk_config.get_source ();
