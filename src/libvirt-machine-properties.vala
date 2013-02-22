@@ -385,7 +385,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             var property = add_size_property (ref list,
                                               _("Memory"),
-                                              machine.domain_config.memory,
+                                              machine.domain_config.memory * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               max_ram * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
