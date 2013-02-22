@@ -64,8 +64,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         try {
             var info = machine.domain.get_info ();
             builder.append_printf ("Cpu time: %"+uint64.FORMAT_MODIFIER+"d\n", info.cpuTime);
-            builder.append_printf ("Memory: %"+uint64.FORMAT_MODIFIER+"d\n", info.memory);
-            builder.append_printf ("Max memory: %"+uint64.FORMAT_MODIFIER+"d\n", info.maxMem);
+            builder.append_printf ("Memory: %"+uint64.FORMAT_MODIFIER+"d KiB\n", info.memory);
+            builder.append_printf ("Max memory: %"+uint64.FORMAT_MODIFIER+"d KiB\n", info.maxMem);
             builder.append_printf ("CPUs: %d\n", info.nrVirtCpu);
             builder.append_printf ("State: %s\n", info.state.to_string ());
         } catch (GLib.Error e) {
