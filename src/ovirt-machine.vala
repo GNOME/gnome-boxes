@@ -22,7 +22,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         set_screenshot_enable (true);
     }
 
-    public override async void connect_display () throws GLib.Error {
+    public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
         if (display != null)
             return;
 

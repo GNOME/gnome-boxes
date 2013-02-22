@@ -34,7 +34,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         }
     }
 
-    public override async void connect_display () throws GLib.Error {
+    public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
         if (display == null) {
             display = create_display ();
             display.connect_it ();

@@ -860,7 +860,7 @@ private class Boxes.App: Boxes.UI {
         return false;
     }
 
-    public void connect_to (Machine machine, float x, float y) {
+    public void connect_to (Machine machine, float x, float y, Machine.ConnectFlags flags = Machine.ConnectFlags.NONE) {
         current_item = machine;
 
         // Set up actor for CREDS animation
@@ -888,13 +888,24 @@ private class Boxes.App: Boxes.UI {
         ui_state = UIState.CREDS;
 
         // Connect to the display
-        machine.connect_display.begin ( (obj, res) => {
+        machine.connect_display.begin (flags, (obj, res) => {
             try {
                 machine.connect_display.end (res);
             } catch (GLib.Error e) {
                 ui_state = UIState.COLLECTION;
-                App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (machine.name));
                 debug ("connect display failed: %s", e.message);
+                var bar = App.app.notificationbar;
+
+                if (e is Boxes.Error.RESTORE_FAILED &&
+                    !(Machine.ConnectFlags.IGNORE_SAVED_STATE in flags)) {
+                    var message =
+                        _("'%s' could not be restored from disk\nTry without saved state?").printf (machine.name);
+                    bar.display_for_action (message, _("Restart"), () => {
+                        connect_to (machine, x, y,
+                                    flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
+                    });
+                } else
+                    bar.display_error (_("Connection to '%s' failed").printf (machine.name));
             }
             });
 

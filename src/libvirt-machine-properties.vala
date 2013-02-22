@@ -442,7 +442,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 if (machine.state == Machine.MachineState.STOPPED ||
                     machine.state == Machine.MachineState.FORCE_STOPPED) {
                     debug ("'%s' stopped.", machine.name);
-                    machine.start.begin ((obj, res) => {
+                    machine.start.begin (Machine.ConnectFlags.NONE, (obj, res) => {
                         try {
                             machine.start.end (res);
                         } catch (GLib.Error error) {

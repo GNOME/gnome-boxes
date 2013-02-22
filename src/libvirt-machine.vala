@@ -22,8 +22,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         base.disconnect_display ();
     }
 
-    public override async void connect_display () throws GLib.Error {
-        yield start ();
+    public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
+        yield start (flags);
 
         if (update_display ()) {
             display.connect_it ();
@@ -78,7 +78,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return;
 
         disconnect_display ();
-        connect_display.begin ();
+        connect_display.begin (Machine.ConnectFlags.NONE);
     }
 
     public LibvirtMachine (CollectionSource source,
@@ -488,7 +488,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return net;
     }
 
-    public async void start () throws GLib.Error {
+    private GVir.DomainStartFlags connect_flags_to_gvir (Machine.ConnectFlags flags) {
+        GVir.DomainStartFlags gvir_flags = 0;
+        if (Machine.ConnectFlags.IGNORE_SAVED_STATE in flags)
+            gvir_flags |= GVir.DomainStartFlags.FORCE_BOOT;
+        return gvir_flags;
+    }
+
+    public async void start (Machine.ConnectFlags flags) throws GLib.Error {
         if (state == MachineState.RUNNING)
             return;
 
@@ -497,13 +504,22 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         else if (state == MachineState.SLEEPING) {
             yield domain.wakeup_async (0, null);
         } else {
-            if (domain.get_saved ())
+            var restore = domain.get_saved () &&
+                !(Machine.ConnectFlags.IGNORE_SAVED_STATE in flags);
+            if (restore)
                 // Translators: The %s will be expanded with the name of the vm
                 status = _("Restoring %s from disk").printf (name);
             else
                 // Translators: The %s will be expanded with the name of the vm
                 status = _("Starting %s").printf (name);
-            yield domain.start_async (0, null);
+            try {
+                yield domain.start_async (connect_flags_to_gvir (flags), null);
+            } catch (GLib.Error error) {
+                if (restore)
+                    throw new Boxes.Error.RESTORE_FAILED ("Restore failed");
+                else
+                    throw error;
+            }
         }
     }
 }

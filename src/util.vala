@@ -3,6 +3,7 @@ using Config;
 
 public errordomain Boxes.Error {
     INVALID,
+    RESTORE_FAILED,
     COMMAND_FAILED
 }
 

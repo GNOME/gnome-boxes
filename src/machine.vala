@@ -42,6 +42,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         SLEEPING
     }
 
+    [Flags]
+    public enum ConnectFlags {
+        NONE = 0,
+        IGNORE_SAVED_STATE
+    }
+
     // The current screenshot without running status applied
     private Gdk.Pixbuf? orig_pixbuf;
 
@@ -251,7 +257,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
 
-    public abstract async void connect_display () throws GLib.Error;
+    public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
 
     public virtual void disconnect_display () {
         if (display == null)
@@ -561,7 +567,7 @@ private class Boxes.MachineActor: Boxes.UI {
             if (event.keyval == Gdk.Key.KP_Enter ||
                 event.keyval == Gdk.Key.ISO_Enter ||
                 event.keyval == Gdk.Key.Return) {
-                machine.connect_display.begin ();
+                machine.connect_display.begin (Machine.ConnectFlags.NONE);
 
                 return true;
             }
