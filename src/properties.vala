@@ -254,7 +254,7 @@ private class Boxes.Properties: Boxes.UI {
 
         var grid = new Gtk.Grid ();
         vbox.pack_start (grid, false, false, 0);
-        grid.column_homogeneous = true;
+        grid.column_homogeneous = false;
         grid.column_spacing = 2;
         grid.row_spacing = 10;
         grid.margin_left = 10;
