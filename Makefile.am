@@ -1,7 +1,7 @@
 ACLOCAL_AMFLAGS = -I m4 -I libgd ${ACLOCAL_FLAGS}
 NULL =
 
-SUBDIRS = data libgd src po vapi
+SUBDIRS = data help src po vapi
 
 INTLTOOL_FILES =				\
 	intltool-extract.in			\
