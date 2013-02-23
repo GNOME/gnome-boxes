@@ -1,0 +1,86 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="supported-protocols">
+  <info>
+    <revision version="0.1" date="2012-04-06" status="stub"/>
+    <link type="guide" xref="index#faq"/>
+
+    <credit type="author copyright">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2012</years>
+    </credit>
+    <credit type="author copyright">
+      <name>Baptiste Mille-Mathias</name>
+      <email>baptistem@gnome.org</email>
+      <years>2012</years>
+    </credit>
+
+  </info>
+
+  <title>What protocols are supported by Boxes?</title>
+
+  <comment>
+    <cite date="2012-04-06" href="mailto:mdhillca@gmail.com">Michael Hill</cite>
+    <p>This assumes the reader knows how to launch Boxes. By the end of this page,
+    the reader will be able to recite the names of a number of virtualization
+    tools.</p>
+  </comment>
+
+
+  <p>Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and
+   <app>spice-gtk</app> to allow users to easily manage virtual machines and
+   connect to remote machines.</p>
+
+<section>
+
+<title>QEMU with KVM</title>
+
+  <p><app>QEMU</app> is a machine emulator and virtualizer. As a machine
+   emulator, it can run OSes and programs made for one machine (e.g. an ARM
+   board) on a different machine (e.g. your own PC). As a virtualizer, QEMU
+   achieves near native performance by executing the guest code directly on the
+   host CPU using KVM.</p>
+
+  <p><app>KVM</app> (Kernel-based Virtual Machine) is a Linux kernel module that
+   allows a user space program to use the hardware virtualization features of
+   various processors.</p>
+
+</section>
+<section>
+
+<title>libvirt</title>
+
+  <p><app>libvirt</app> is a toolkit for manipulating (creating, deleting and
+   modifying) and monitoring virtual machines on remote hosts, securely.</p>
+
+  <p><app>libvirt-glib</app> wraps libvirt to provide a high-level
+   object-oriented API suited for glib-based applications.</p>
+
+</section>
+<section>
+
+<title>Spice</title>
+
+  <p><app>SPICE</app>, the Simple Protocol for Independent Computing
+   Environments, is a system for accessing and controlling remote desktops
+   across a network.</p>
+
+  <p>The SPICE server is a library that runs inside the QEMU binary. It is
+   mainly responsible for authentication of client connections, relaying of
+   graphics output of the guest OS to the client and relaying of user input
+   (mouse and keyboard) from client to guest.</p>
+
+  <p><app>spice-gtk</app> is the SPICE client that provides a view into the
+   guest OS.</p>
+
+</section>
+<section>
+
+<title>VNC</title>
+
+  <p><app>VNC</app>, Virtual Network Computing, used only for remote display, is
+  a well know protocol but quite limited and slow.</p>
+
+</section>
+</page>
