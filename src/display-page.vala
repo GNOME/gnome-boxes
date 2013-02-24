@@ -37,7 +37,7 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
         });
         fullscreen.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
 
-        var props = add_image_button ("utilities-system-monitor-symbolic", false);
+        var props = add_image_button ("preferences-system-symbolic", false);
         props.clicked.connect ((button) => { App.app.ui_state = UIState.PROPERTIES; });
     }
 
