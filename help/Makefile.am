@@ -11,11 +11,7 @@ HELP_FILES = index.page			\
 	connect.page			\
 	create.page			\
 	delete.page			\
-	disk-images.page		\
 	favorites.page			\
-	hardware-virtualization.page	\
-	how-many-machines.page		\
-	import-images.page		\
 	interface.page			\
 	keyboard-shortcuts.page		\
 	networking.page			\
@@ -26,6 +22,7 @@ HELP_FILES = index.page			\
 	system-requirements.page	\
 	unattended.page			\
 	usb-redirection.page		\
+	virtual.page			\
 	what-is-a-virtual-machine.page	\
 	why-do-I-need-virtual-machine.page
 
