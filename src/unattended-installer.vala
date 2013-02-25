@@ -770,7 +770,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private GLib.List<DeviceDriver> get_drivers (DriverTestFunction test_func) {
-        var drivers = new GLib.List<DeviceDriver> ();
+        var drivers = new GLib.HashTable<string,DeviceDriver> (str_hash, str_equal);
 
         foreach (var d in os.get_device_drivers ().get_elements ()) {
             var driver = d as DeviceDriver;
@@ -779,13 +779,24 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 continue;
 
             var compatibility = compare_cpu_architectures (os_media.architecture, driver.get_architecture ());
-            if (compatibility == CPUArchCompatibity.IDENTICAL || compatibility == CPUArchCompatibity.COMPATIBLE)
-                // We don't entertain compatiblity when word-size is different because 32-bit drivers
-                // are not guaranteed to work on 64-bit architectures in all OSs.
-                drivers.append (driver);
+            var location = driver.get_location ();
+            if (compatibility == CPUArchCompatibity.IDENTICAL)
+                drivers.replace (location, driver);
+            else if (compatibility == CPUArchCompatibity.COMPATIBLE && drivers.lookup (location) == null)
+                drivers.insert (location, driver);
+            // We don't entertain compatibility when word-size is different because 32-bit drivers
+            // are not guaranteed to work on 64-bit architectures in all OSs.
         }
 
-        return drivers;
+        // We can't just return drivers.get_values () as we don't own the list returned by this call and drivers
+        // hashtable is destroyed at the end of this function. Also we can't just use drivers.get_values ().copy ()
+        // as we need a deep copy of drivers.
+        var ret = new GLib.List<DeviceDriver> ();
+        foreach (var driver in drivers.get_values ())
+            ret.prepend (driver);
+        ret.reverse ();
+
+        return ret;
     }
 
     private delegate bool ScriptTestFunction (InstallScript script);
