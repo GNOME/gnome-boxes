@@ -244,7 +244,7 @@ private class Boxes.VMConfigurator {
 
     private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
-        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_CLASS, "video");
+        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_CLASS, "video");
         var model = (device != null)? get_enum_value (device.get_name (), typeof (DomainVideoModel)) :
                                       DomainVideoModel.QXL;
         return_if_fail (model != -1);
@@ -255,7 +255,7 @@ private class Boxes.VMConfigurator {
 
     private static void set_sound_config (Domain domain, InstallerMedia install_media) {
         var sound = new DomainSound ();
-        var device = get_os_device_by_prop (install_media.os, DEVICE_PROP_CLASS, "audio");
+        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_CLASS, "audio");
         var model = (device != null)? get_enum_value (device.get_name (), typeof (DomainSoundModel)) :
                                       DomainSoundModel.AC97;
         return_if_fail (model != -1);

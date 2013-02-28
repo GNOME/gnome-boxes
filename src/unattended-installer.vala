@@ -24,12 +24,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public override bool supports_virtio_disk {
-        get {
-            return base.supports_virtio_disk || has_viostor_drivers;
-        }
-    }
-
     public bool express_install {
         get { return express_toggle.active; }
     }
@@ -62,7 +56,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public InstallConfig config;
     public InstallScriptList scripts;
 
-    private bool has_viostor_drivers;
     private string? product_key_format;
 
     private GLib.List<UnattendedFile> unattended_files;
@@ -116,6 +109,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         from_image = media.from_image;
         mount_point = media.mount_point;
         resources = media.resources;
+        supported_devices = media.supported_devices;
 
         this.scripts = scripts;
         config = new InstallConfig ("http://live.gnome.org/Boxes/unattended");
@@ -663,22 +657,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
-            var setup_drivers = yield setup_drivers_from_list (drivers,
-                                                               drivers_progress,
-                                                               add_unattended_file,
-                                                               cancellable);
-
-            foreach (var driver in setup_drivers) {
-                foreach (var d in driver.get_devices ().get_elements ()) {
-                    var device = d as Device;
-
-                    if (device.get_name () == "virtio-block") {
-                        has_viostor_drivers = true;
-
-                        break;
-                    }
-                }
-            }
+            yield setup_drivers_from_list (drivers, drivers_progress, add_unattended_file, cancellable);
         } else
             progress.progress = 0.5;
 
@@ -692,27 +671,23 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             progress.progress = 1.0;
     }
 
-    private async GLib.List<DeviceDriver> setup_drivers_from_list
-                                (GLib.List<DeviceDriver>  drivers,
-                                 ActivityProgress         progress,
-                                 AddUnattendedFileFunc    add_func,
-                                 Cancellable?             cancellable = null) {
-        var setup_drivers = new GLib.List<DeviceDriver> ();
+    private async void setup_drivers_from_list (GLib.List<DeviceDriver> drivers,
+                                                ActivityProgress        progress,
+                                                AddUnattendedFileFunc   add_func,
+                                                Cancellable?            cancellable = null) {
         var driver_progress_scale = 1d / drivers.length ();
 
         foreach (var driver in drivers) {
             var driver_progress = progress.add_child_activity (driver_progress_scale);
             try {
                 yield setup_driver (driver, driver_progress, add_func, cancellable);
-                setup_drivers.append (driver);
+                supported_devices.add_all (driver.get_devices ());
             } catch (GLib.Error e) {
                 debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
             } finally {
                 driver_progress.progress = 1.0; // Ensure progress reaches 100%
             }
         }
-
-        return setup_drivers;
     }
 
     private async void setup_driver (DeviceDriver          driver,

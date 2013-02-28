@@ -144,13 +144,15 @@ namespace Boxes {
         container.remove_child (actor);
     }
 
-    public Osinfo.Device? get_os_device_by_prop (Osinfo.Os? os, string prop_name, string prop_value) {
-        if (os == null)
+    public Osinfo.Device? find_device_by_prop (Osinfo.DeviceList devices, string prop_name, string prop_value) {
+        var filter = new Osinfo.Filter ();
+        filter.add_constraint (prop_name, prop_value);
+
+        var filtered = (devices as Osinfo.List).new_filtered (filter);
+        if (filtered.get_length () > 0)
+            return filtered.get_nth (0) as Osinfo.Device;
+        else
             return null;
-
-        var devices = os.get_devices_by_property (prop_name, prop_value, true);
-
-        return (devices.get_length () > 0) ? devices.get_nth (0) as Osinfo.Device : null;
     }
 
     public Gtk.Image get_os_logo (Osinfo.Os? os, int size) {
