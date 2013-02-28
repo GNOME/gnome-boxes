@@ -663,11 +663,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
-            var setup_drivers = yield setup_drivers_for_scripts (drivers,
-                                                                 scripts,
-                                                                 drivers_progress,
-                                                                 add_unattended_file,
-                                                                 cancellable);
+            var setup_drivers = yield setup_drivers_from_list (drivers,
+                                                               drivers_progress,
+                                                               add_unattended_file,
+                                                               cancellable);
 
             foreach (var driver in setup_drivers) {
                 foreach (var d in driver.get_devices ().get_elements ()) {
@@ -688,50 +687,38 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
-            yield setup_drivers_for_scripts (drivers,
-                                             scripts,
-                                             drivers_progress,
-                                             add_secondary_unattended_file,
-                                             cancellable);
+            yield setup_drivers_from_list (drivers, drivers_progress, add_secondary_unattended_file, cancellable);
         } else
             progress.progress = 1.0;
     }
 
-    private async GLib.List<DeviceDriver> setup_drivers_for_scripts
+    private async GLib.List<DeviceDriver> setup_drivers_from_list
                                 (GLib.List<DeviceDriver>  drivers,
-                                 GLib.List<InstallScript> scripts,
                                  ActivityProgress         progress,
                                  AddUnattendedFileFunc    add_func,
                                  Cancellable?             cancellable = null) {
         var setup_drivers = new GLib.List<DeviceDriver> ();
-        var driver_progress_scale = 1d / drivers.length () / scripts.length ();
+        var driver_progress_scale = 1d / drivers.length ();
 
         foreach (var driver in drivers) {
-            foreach (var script in scripts) {
-                var driver_progress = progress.add_child_activity (driver_progress_scale);
-                try {
-                    yield setup_driver_for_script (driver,
-                                                   script,
-                                                   driver_progress,
-                                                   add_func,
-                                                   cancellable);
-                    setup_drivers.append (driver);
-                } catch (GLib.Error e) {
-                    debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
-                } finally {
-                    driver_progress.progress = 1.0; // Ensure progress reaches 100%
-                }
+            var driver_progress = progress.add_child_activity (driver_progress_scale);
+            try {
+                yield setup_driver (driver, driver_progress, add_func, cancellable);
+                setup_drivers.append (driver);
+            } catch (GLib.Error e) {
+                debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
+            } finally {
+                driver_progress.progress = 1.0; // Ensure progress reaches 100%
             }
         }
 
         return setup_drivers;
     }
 
-    private async void setup_driver_for_script (DeviceDriver          driver,
-                                                InstallScript         script,
-                                                ActivityProgress      progress,
-                                                AddUnattendedFileFunc add_func,
-                                                Cancellable?          cancellable) throws GLib.Error {
+    private async void setup_driver (DeviceDriver          driver,
+                                     ActivityProgress      progress,
+                                     AddUnattendedFileFunc add_func,
+                                     Cancellable?          cancellable) throws GLib.Error {
 
         var downloader = Downloader.get_instance ();
 
