@@ -387,7 +387,7 @@ private class Boxes.Wizard: Boxes.UI {
         if (review_cancellable.is_cancelled ())
             return false;
 
-        review_label.set_text (_("Will create a new box with the following properties:"));
+        review_label.set_text (_("Boxes will create a new box with the following properties:"));
 
         if (source != null) {
             var uri = Xml.URI.parse (source.uri);
