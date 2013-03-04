@@ -149,7 +149,6 @@ private class Boxes.Notificationbar: GLib.Object {
         // We destroy all active notifications, which will cause them to be dismissed
         while (active_notifications != null) {
             active_notifications.data.destroy ();
-            active_notifications.remove (active_notifications.data);
         }
     }
 
