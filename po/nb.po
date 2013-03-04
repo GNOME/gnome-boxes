@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.7.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-25 18:07+0100\n"
-"PO-Revision-Date: 2013-02-25 18:08+0100\n"
+"POT-Creation-Date: 2013-03-04 14:40+0100\n"
+"PO-Revision-Date: 2013-03-04 14:41+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -183,7 +183,7 @@ msgstr "Ingen bokser funnet"
 msgid "Create one using the button on the top left."
 msgstr "Lag en med knappen øverst til venstre."
 
-#: ../src/installer-media.vala:81 ../src/properties.vala:73
+#: ../src/installer-media.vala:86 ../src/properties.vala:73
 msgid "System"
 msgstr "System"
 
@@ -241,7 +241,7 @@ msgstr "tom"
 msgid "Remove"
 msgstr "Fjern"
 
-#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:305
+#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:303
 msgid "Select a device or ISO file"
 msgstr "Velg en enhet eller ISO-fil"
 
@@ -313,8 +313,8 @@ msgid "Saving..."
 msgstr "Lagrer …"
 
 #. 3rd row
-#: ../src/machine.vala:564 ../src/unattended-installer.vala:296
-#: ../src/unattended-installer.vala:410
+#: ../src/machine.vala:564 ../src/unattended-installer.vala:290
+#: ../src/unattended-installer.vala:404
 msgid "Password"
 msgstr "Passord"
 
@@ -465,8 +465,8 @@ msgid "Select None"
 msgstr "Velg ingen"
 
 #: ../src/topbar.vala:111
-msgid "_Done"
-msgstr "Fer_dig"
+msgid "D_one"
+msgstr "F_erdig"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
@@ -481,15 +481,15 @@ msgstr[1] "%d valgt"
 msgid "(Click on items to select them)"
 msgstr "(Klikk på oppføringer for å velge dem)"
 
-#: ../src/unattended-installer.vala:54
+#: ../src/unattended-installer.vala:48
 msgid "no password"
 msgstr "ingen passord"
 
-#: ../src/unattended-installer.vala:295 ../src/unattended-installer.vala:396
+#: ../src/unattended-installer.vala:289 ../src/unattended-installer.vala:390
 msgid "Username"
 msgstr "Brukernavn"
 
-#: ../src/unattended-installer.vala:352
+#: ../src/unattended-installer.vala:346
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -500,23 +500,23 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:370
+#: ../src/unattended-installer.vala:364
 msgid "Express Install"
 msgstr "Hurtig installering"
 
-#: ../src/unattended-installer.vala:421
+#: ../src/unattended-installer.vala:415
 msgid "_Add Password"
 msgstr "_Legg til passord"
 
-#: ../src/unattended-installer.vala:445
+#: ../src/unattended-installer.vala:439
 msgid "Product Key"
 msgstr "Produktnøkkel"
 
-#: ../src/unattended-installer.vala:659
+#: ../src/unattended-installer.vala:653
 msgid "Downloading device drivers..."
 msgstr "Laster ned enhetsdrivere …"
 
-#: ../src/util-app.vala:229
+#: ../src/util-app.vala:231
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -526,11 +526,11 @@ msgstr ""
 "kjøre:\n"
 "%s"
 
-#: ../src/util-app.vala:233
+#: ../src/util-app.vala:235
 msgid "SELinux not installed?"
 msgstr "SELinux er ikke installert?"
 
-#: ../src/util-app.vala:314
+#: ../src/util-app.vala:316
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -538,7 +538,7 @@ msgstr ""
 "Fikk ikke informasjon om lager for lagringskapasitet for «gnome-boxes» fra "
 "libvirt. Sjekk at «virsh -c qemu:///session pool-dumpxml gnome-boxes» virker."
 
-#: ../src/util-app.vala:319
+#: ../src/util-app.vala:321
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -547,7 +547,7 @@ msgstr ""
 "%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, "
 "men denne katalogen eksisterer ikke"
 
-#: ../src/util-app.vala:323
+#: ../src/util-app.vala:325
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -555,7 +555,7 @@ msgstr ""
 "%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, "
 "men dette er ikke en katalog"
 
-#: ../src/util-app.vala:327
+#: ../src/util-app.vala:329
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -591,7 +591,7 @@ msgstr "Installerer …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:246
+#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "Live"
 
@@ -626,16 +626,16 @@ msgstr ""
 "Vil legge til bokser for alle systemer som er tilgjengelige fra denne "
 "kontoen."
 
-#: ../src/wizard-source.vala:255
+#: ../src/wizard-source.vala:253
 msgid "32-bit x86 system"
 msgstr "32-bit x86-system"
 
-#: ../src/wizard-source.vala:256
+#: ../src/wizard-source.vala:254
 msgid "64-bit x86 system"
 msgstr "64-bit x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:265
+#: ../src/wizard-source.vala:263
 #, c-format
 msgid " from %s"
 msgstr " fra %s"
@@ -685,8 +685,8 @@ msgid "Box setup failed"
 msgstr "Oppsett av boks feilet"
 
 #: ../src/wizard.vala:390
-msgid "Will create a new box with the following properties:"
-msgstr "Vil lage en ny boks med følgende egenskaper:"
+msgid "Boxes will create a new box with the following properties:"
+msgstr "Bokser vil lage en ny boks med følgende egenskaper:"
 
 #: ../src/wizard.vala:395
 msgid "Type"
