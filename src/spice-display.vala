@@ -45,13 +45,14 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         try {
             var manager = UsbDeviceManager.get (session);
             manager.auto_connect_failed.connect ( (dev, err) => {
-                    got_error (_("Automatic redirection of USB device '%s' failed").printf (dev.get_description ("%1$s %2$s")));
-                    debug ("Error auto-connecting %s: %s", dev.get_description ("%1$s %2$s"), err.message);
+                var device_description = dev.get_description ("%1$s %2$s");
+                got_error (_("Automatic redirection of USB device '%s' failed").printf (device_description));
+                debug ("Error auto-connecting %s: %s", device_description, err.message);
             });
 
             manager.device_error.connect ( (dev, err) => {
-                    got_error (_("Redirection of USB device '%s' failed").printf (dev.get_description ("%1$s %2$s")));
-                    debug ("Error connecting %s: %s", dev.get_description ("%1$s %2$s"), err.message);
+                got_error (_("Redirection of USB device '%s' failed").printf (dev.get_description ("%1$s %2$s")));
+                debug ("Error connecting %s: %s", dev.get_description ("%1$s %2$s"), err.message);
             });
         } catch (GLib.Error error) {
         }
@@ -306,8 +307,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                             manager.connect_device_async.end (res);
                                         } catch (GLib.Error err) {
                                             dev_toggle.active = false;
-                                            got_error (_("Redirection of USB device '%s' failed").printf (dev.get_description ("%1$s %2$s")));
-                                            debug ("Error connecting %s: %s", dev.get_description ("%1$s %2$s"), err.message);
+                                            var device_desc = dev.get_description ("%1$s %2$s");
+                                            got_error (_("Redirection of USB device '%s' failed").printf (device_desc));
+                                            debug ("Error connecting %s: %s", device_desc, err.message);
                                         }
                                     });
                                 } else {

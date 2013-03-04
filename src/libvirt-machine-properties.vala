@@ -253,11 +253,13 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                         label.set_text (get_utf8_basename (path));
                                         empty = false;
                                     } catch (GLib.Error e) {
-                                        machine.got_error (_("Insertion of '%s' as a CD/DVD into '%s' failed").printf (get_utf8_basename (path),
-                                                                                                                       machine.domain.get_name ()));
+                                        var path_basename = get_utf8_basename (path);
+                                        machine.got_error (_("Insertion of '%s' as a CD/DVD " +
+                                                             "into '%s' failed").printf (path_basename,
+                                                                                         machine.name));
                                         debug ("Error inserting '%s' as CD into '%s': %s",
-                                               get_utf8_basename (path),
-                                               machine.domain.get_name (),
+                                               path_basename,
+                                               machine.name,
                                                e.message);
                                     }
                                 }
@@ -272,8 +274,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                 button_label.set_text (_("Select"));
                                 label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
                             } catch (GLib.Error e) {
-                                machine.got_error (_("Removal of CD/DVD from '%s' failed").printf (machine.domain.get_name ()));
-                                debug ("Error ejecting CD from '%s': %s", machine.domain.get_name (), e.message);
+                                machine.got_error (_("Removal of CD/DVD from '%s' failed").printf (machine.name));
+                                debug ("Error ejecting CD from '%s': %s", machine.name, e.message);
                             }
                         }
                     });
