@@ -2,7 +2,7 @@
 
 HELP_ID = gnome-boxes
 
-HELP_MEDIA = figures\boxes_icon.png
+HELP_MEDIA = figures/boxes_icon.png
 
 HELP_FILES = index.page			\
 	connect.page			\
@@ -12,6 +12,6 @@ HELP_FILES = index.page			\
 	usb-redirection.page		\
 	virtual.page			\
 	what-is-a-virtual-machine.page	\
-	why-do-I-need-virtual-machine.page
+	why-do-i-need-virtual-machine.page
 
 HELP_LINGUAS =
