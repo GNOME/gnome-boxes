@@ -39,6 +39,9 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",[The name of the gettext d
 # GObject-introspection support
 GOBJECT_INTROSPECTION_REQUIRE([0.9.6])
 
+# Mallard help
+YELP_HELP_INIT
+
 # GSettings support
 GLIB_GSETTINGS
 
