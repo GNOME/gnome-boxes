@@ -46,13 +46,17 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             var manager = UsbDeviceManager.get (session);
             manager.auto_connect_failed.connect ( (dev, err) => {
                 var device_description = dev.get_description ("%1$s %2$s");
-                got_error (_("Automatic redirection of USB device '%s' failed").printf (device_description));
-                debug ("Error auto-connecting %s: %s", device_description, err.message);
+                var box_name = config.last_seen_name?? "Unknown";
+                got_error (_("Automatic redirection of USB device '%s' for '%s' failed").printf (device_description,
+                                                                                                 box_name));
+                debug ("Error auto-connecting %s for %s: %s", device_description, box_name, err.message);
             });
 
             manager.device_error.connect ( (dev, err) => {
-                got_error (_("Redirection of USB device '%s' failed").printf (dev.get_description ("%1$s %2$s")));
-                debug ("Error connecting %s: %s", dev.get_description ("%1$s %2$s"), err.message);
+                var device_description = dev.get_description ("%1$s %2$s");
+                var box_name = config.last_seen_name?? "Unknown";
+                got_error (_("Redirection of USB device '%s' for '%s' failed").printf (device_description, box_name));
+                debug ("Error connecting %s to %s: %s", device_description, box_name, err.message);
             });
         } catch (GLib.Error error) {
         }
@@ -308,8 +312,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                         } catch (GLib.Error err) {
                                             dev_toggle.active = false;
                                             var device_desc = dev.get_description ("%1$s %2$s");
-                                            got_error (_("Redirection of USB device '%s' failed").printf (device_desc));
-                                            debug ("Error connecting %s: %s", device_desc, err.message);
+                                            var box_name = config.last_seen_name?? "Unknown";
+                                            got_error (_("Redirection of USB device '%s' " +
+                                                         "for '%s' failed").printf (device_desc, box_name));
+                                            debug ("Error connecting %s to %s: %s", device_desc, box_name, err.message);
                                         }
                                     });
                                 } else {
