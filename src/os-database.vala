@@ -168,7 +168,7 @@ private class Boxes.OSDatabase : GLib.Object {
         foreach (var entity in list.get_elements ()) {
             var resources = entity as Resources;
             var compatibility = compare_cpu_architectures (arch, resources.architecture);
-            if (compatibility == CPUArchCompatibity.IDENTICAL || compatibility == CPUArchCompatibity.COMPATIBLE)
+            if (compatibility == CPUArchCompatibility.IDENTICAL || compatibility == CPUArchCompatibility.COMPATIBLE)
                 new_list.add (resources);
         }
 

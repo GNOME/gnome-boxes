@@ -94,7 +94,7 @@ private class Boxes.InstallerMedia : GLib.Object {
 
         var compatibility = compare_cpu_architectures (architecture, os_media.architecture);
 
-        return compatibility != CPUArchCompatibity.INCOMPATIBLE;
+        return compatibility != CPUArchCompatibility.INCOMPATIBLE;
     }
 
     protected void add_cd_config (Domain         domain,

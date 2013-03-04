@@ -742,9 +742,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
             var compatibility = compare_cpu_architectures (os_media.architecture, driver.get_architecture ());
             var location = driver.get_location ();
-            if (compatibility == CPUArchCompatibity.IDENTICAL)
+            if (compatibility == CPUArchCompatibility.IDENTICAL)
                 drivers.replace (location, driver);
-            else if (compatibility == CPUArchCompatibity.COMPATIBLE && drivers.lookup (location) == null)
+            else if (compatibility == CPUArchCompatibility.COMPATIBLE && drivers.lookup (location) == null)
                 drivers.insert (location, driver);
             // We don't entertain compatibility when word-size is different because 32-bit drivers
             // are not guaranteed to work on 64-bit architectures in all OSs.

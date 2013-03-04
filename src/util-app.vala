@@ -398,7 +398,7 @@ namespace Boxes {
 
     // Warning: architecture compability is not computative. e.g "i386" is compatible with "i686" but "i686" is
     // incompatible with "i386".
-    public enum CPUArchCompatibity {
+    public enum CPUArchCompatibility {
         INCOMPATIBLE             = -1, // First architecture is incompatible to second one
         IDENTICAL                = 0,  // First architecture is identical to second one
         COMPATIBLE               = 1,  // First architecture is compatible with second one
@@ -406,68 +406,68 @@ namespace Boxes {
                                       // with second one but has different word-size
     }
 
-    public CPUArchCompatibity compare_cpu_architectures (string arch1, string arch2) {
+    public CPUArchCompatibility compare_cpu_architectures (string arch1, string arch2) {
         switch (arch2) {
         case "i386":
             switch (arch1) {
             case "i386":
-                return CPUArchCompatibity.IDENTICAL;
+                return CPUArchCompatibility.IDENTICAL;
             case "i486":
             case "i586":
             case "i686":
-                return CPUArchCompatibity.COMPATIBLE;
+                return CPUArchCompatibility.COMPATIBLE;
             case "x86_64":
-                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+                return CPUArchCompatibility.COMPATIBLE_DIFF_WORDSIZE;
             default:
-                return CPUArchCompatibity.INCOMPATIBLE;
+                return CPUArchCompatibility.INCOMPATIBLE;
             }
         case "i486":
             switch (arch1) {
             case "i486":
-                return CPUArchCompatibity.IDENTICAL;
+                return CPUArchCompatibility.IDENTICAL;
             case "i586":
             case "i686":
-                return CPUArchCompatibity.COMPATIBLE;
+                return CPUArchCompatibility.COMPATIBLE;
             case "x86_64":
-                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+                return CPUArchCompatibility.COMPATIBLE_DIFF_WORDSIZE;
             default:
-                return CPUArchCompatibity.INCOMPATIBLE;
+                return CPUArchCompatibility.INCOMPATIBLE;
             }
         case "i586":
             switch (arch1) {
             case "i586":
-                return CPUArchCompatibity.IDENTICAL;
+                return CPUArchCompatibility.IDENTICAL;
             case "i686":
-                return CPUArchCompatibity.COMPATIBLE;
+                return CPUArchCompatibility.COMPATIBLE;
             case "x86_64":
-                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+                return CPUArchCompatibility.COMPATIBLE_DIFF_WORDSIZE;
             default:
-                return CPUArchCompatibity.INCOMPATIBLE;
+                return CPUArchCompatibility.INCOMPATIBLE;
             }
         case "i686":
             switch (arch1) {
             case "i686":
-                return CPUArchCompatibity.IDENTICAL;
+                return CPUArchCompatibility.IDENTICAL;
             case "x86_64":
-                return CPUArchCompatibity.COMPATIBLE_DIFF_WORDSIZE;
+                return CPUArchCompatibility.COMPATIBLE_DIFF_WORDSIZE;
             default:
-                return CPUArchCompatibity.INCOMPATIBLE;
+                return CPUArchCompatibility.INCOMPATIBLE;
             }
         case "x86_64":
             switch (arch1) {
             case "x86_64":
-                return CPUArchCompatibity.IDENTICAL;
+                return CPUArchCompatibility.IDENTICAL;
             default:
-                return CPUArchCompatibity.INCOMPATIBLE;
+                return CPUArchCompatibility.INCOMPATIBLE;
             }
         case Osinfo.ARCHITECTURE_ALL:
-            return CPUArchCompatibity.COMPATIBLE;
+            return CPUArchCompatibility.COMPATIBLE;
         default:
             switch (arch1) {
             case Osinfo.ARCHITECTURE_ALL:
-                return CPUArchCompatibity.IDENTICAL;
+                return CPUArchCompatibility.IDENTICAL;
             default:
-                return CPUArchCompatibity.INCOMPATIBLE;
+                return CPUArchCompatibility.INCOMPATIBLE;
             }
         }
     }
