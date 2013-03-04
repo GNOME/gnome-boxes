@@ -273,7 +273,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case PropertiesPage.DEVICES:
-            if (!(PropertyCreationFlag.NO_USB in flags)) {
+            if (!(PropertyCreationFlag.NO_USB in flags) && Config.HAVE_USBREDIR) {
                 var toggle = new Gtk.Switch ();
                 gtk_session.bind_property ("auto-usbredir", toggle, "active",
                                            BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
