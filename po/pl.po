@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-02 01:48+0100\n"
-"PO-Revision-Date: 2013-03-02 01:49+0100\n"
+"POT-Creation-Date: 2013-03-04 21:48+0100\n"
+"PO-Revision-Date: 2013-03-04 21:49+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -235,13 +235,13 @@ msgstr "Protokół"
 
 #. Translators: This is the text on the button to select an iso for the cd
 #: ../src/libvirt-machine-properties.vala:225
-#: ../src/libvirt-machine-properties.vala:267
+#: ../src/libvirt-machine-properties.vala:272
 msgid "Select"
 msgstr "Wybierz"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: ../src/libvirt-machine-properties.vala:227
-#: ../src/libvirt-machine-properties.vala:268
+#: ../src/libvirt-machine-properties.vala:273
 msgid "empty"
 msgstr "puste"
 
@@ -255,42 +255,52 @@ msgstr "Usuń"
 msgid "Select a device or ISO file"
 msgstr "Wybór urządzenia lub pliku ISO"
 
+#: ../src/libvirt-machine-properties.vala:256
+#, c-format
+msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+msgstr "Włożenie \"%s\" jako płyty CD/DVD do \"%s\" się nie powiodło"
+
 #: ../src/libvirt-machine-properties.vala:275
+#, c-format
+msgid "Removal of CD/DVD from '%s' failed"
+msgstr "Usunięcie płyty CD/DVD z \"%s\" się nie powiodło"
+
+#: ../src/libvirt-machine-properties.vala:281
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
-#: ../src/libvirt-machine-properties.vala:303
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:309
+#: ../src/libvirt-machine-properties.vala:326
 msgid "Add support to guest"
 msgstr "Dodaj obsługę do gościa"
 
-#: ../src/libvirt-machine-properties.vala:305
+#: ../src/libvirt-machine-properties.vala:311
 msgid "USB device support"
 msgstr "Obsługa urządzeń USB"
 
-#: ../src/libvirt-machine-properties.vala:322
+#: ../src/libvirt-machine-properties.vala:328
 msgid "Smartcard support"
 msgstr "Obsługa smartcard"
 
-#: ../src/libvirt-machine-properties.vala:387 ../src/wizard.vala:436
+#: ../src/libvirt-machine-properties.vala:393 ../src/wizard.vala:436
 msgid "Memory"
 msgstr "Pamięć"
 
-#: ../src/libvirt-machine-properties.vala:471
+#: ../src/libvirt-machine-properties.vala:477
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Ponowne uruchomienie maszyny \"%s\" zajmuje za dużo czasu. Wymusić jej "
 "wyłączenie?"
 
-#: ../src/libvirt-machine-properties.vala:484
+#: ../src/libvirt-machine-properties.vala:490
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr ""
 "Zmiany wymagają ponownego uruchomienia maszyny \"%s\". Spróbować ponownie "
 "uruchomić?"
 
-#: ../src/libvirt-machine-properties.vala:499
+#: ../src/libvirt-machine-properties.vala:505
 msgid "Maximum Disk Size"
 msgstr "Maksymalny rozmiar dysku"
 
@@ -327,7 +337,7 @@ msgid "Saving..."
 msgstr "Zapisywanie..."
 
 #. 3rd row
-#: ../src/machine.vala:564 ../src/unattended-installer.vala:290
+#: ../src/machine.vala:570 ../src/unattended-installer.vala:290
 #: ../src/unattended-installer.vala:404
 msgid "Password"
 msgstr "Hasło"
@@ -437,32 +447,37 @@ msgstr "Wymuś wyłączenie"
 msgid "Pausing '%s' failed"
 msgstr "Wstrzymanie maszyny \"%s\" się nie powiodło"
 
-#: ../src/spice-display.vala:266
+#: ../src/spice-display.vala:48
+#, c-format
+msgid "Automatic redirection of USB device '%s' failed"
+msgstr "Automatyczne przekierowanie urządzenia USB \"%s\" się nie powiodło"
+
+#: ../src/spice-display.vala:53 ../src/spice-display.vala:309
+#, c-format
+msgid "Redirection of USB device '%s' failed"
+msgstr "Przekierowanie urządzenia USB \"%s\" się nie powiodło"
+
+#: ../src/spice-display.vala:268
 msgid "Share clipboard"
 msgstr "Współdziel schowek"
 
-#: ../src/spice-display.vala:272
+#: ../src/spice-display.vala:274
 msgid "Resize guest"
 msgstr "Zmień rozmiar gościa"
 
-#: ../src/spice-display.vala:281
+#: ../src/spice-display.vala:283
 msgid "Redirect new USB devices"
 msgstr "Przekierowywanie nowych urządzeń USB"
 
-#: ../src/spice-display.vala:307
-#, c-format
-msgid "Error connecting %s: %s"
-msgstr "Błąd podczas łączenia %s: %s"
-
-#: ../src/spice-display.vala:334 ../src/wizard.vala:251
+#: ../src/spice-display.vala:336 ../src/wizard.vala:251
 msgid "Invalid URI"
 msgstr "Nieprawidłowy adres URI"
 
-#: ../src/spice-display.vala:344
+#: ../src/spice-display.vala:346
 msgid "The port must be specified once"
 msgstr "Port musi być podanym"
 
-#: ../src/spice-display.vala:353
+#: ../src/spice-display.vala:355
 msgid "Missing port in Spice URI"
 msgstr "Brak portu w adresie URI protokołu Spice"
 
