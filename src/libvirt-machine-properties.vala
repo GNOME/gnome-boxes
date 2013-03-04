@@ -254,9 +254,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                         empty = false;
                                     } catch (GLib.Error e) {
                                         var path_basename = get_utf8_basename (path);
-                                        machine.got_error (_("Insertion of '%s' as a CD/DVD " +
-                                                             "into '%s' failed").printf (path_basename,
-                                                                                         machine.name));
+                                        var msg = _("Insertion of '%s' as a CD/DVD into '%s' failed");
+                                        machine.got_error (msg.printf (path_basename, machine.name));
                                         debug ("Error inserting '%s' as CD into '%s': %s",
                                                path_basename,
                                                machine.name,

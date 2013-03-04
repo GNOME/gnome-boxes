@@ -313,8 +313,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                             dev_toggle.active = false;
                                             var device_desc = dev.get_description ("%1$s %2$s");
                                             var box_name = config.last_seen_name?? "Unknown";
-                                            got_error (_("Redirection of USB device '%s' " +
-                                                         "for '%s' failed").printf (device_desc, box_name));
+                                            var msg = _("Redirection of USB device '%s' for '%s' failed");
+                                            got_error (msg.printf (device_desc, box_name));
                                             debug ("Error connecting %s to %s: %s", device_desc, box_name, err.message);
                                         }
                                     });
