@@ -5,22 +5,10 @@ HELP_ID = gnome-boxes
 HELP_MEDIA = figures\boxes_icon.png
 
 HELP_FILES = index.page			\
-	clipboard.page			\
-	collection.page			\
-	command-line.page		\
 	connect.page			\
-	create.page			\
-	delete.page			\
-	favorites.page			\
-	interface.page			\
-	keyboard-shortcuts.page		\
-	networking.page			\
-	properties.page			\
 	search.page			\
-	selection.page			\
 	supported-protocols.page	\
 	system-requirements.page	\
-	unattended.page			\
 	usb-redirection.page		\
 	virtual.page			\
 	what-is-a-virtual-machine.page	\
