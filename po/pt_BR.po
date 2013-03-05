@@ -4,35 +4,42 @@
 # Djavan Fagundes <djavan@comum.org>, 2012.
 # Jonh Wendell <jwendell@gnome.org>, 2012.
 # Antonio Fernandes C. Neto <fernandesn@gnome.org>, 2012.
+# Enrico Nicoletto <liverig@gmail.com>, 2013.
 #
+#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-24 15:26+0000\n"
-"PO-Revision-Date: 2012-09-24 14:58-0300\n"
-"Last-Translator: Antonio Fernandes C. Neto <fernandesn@gnome.org>\n"
+"POT-Creation-Date: 2013-03-04 22:23+0000\n"
+"PO-Revision-Date: 2013-03-04 22:06-0300\n"
+"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
+#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
 msgstr "Boxes"
 
 #: ../data/gnome-boxes.desktop.in.in.h:2
-msgid "Simple virtual machine viewer/manager"
-msgstr "Um visualizador/gerenciador de máquinas virtuais"
+msgid "Virtual machine viewer/manager"
+msgstr "Visualizador/gerenciador de máquinas virtuais"
 
 #: ../data/gnome-boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "Veja e use máquinas virtuais"
+
+#: ../data/gnome-boxes.desktop.in.in.h:4
+msgid "virtual machine;vm;"
+msgstr "máquinas virtuais;máquina virtual;vm;"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
@@ -40,7 +47,7 @@ msgstr "Coleções"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:2
 msgid "The list of boxes collections"
-msgstr "A lista do conjuntos de caixas"
+msgstr "A lista de coleções de caixas"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -82,260 +89,432 @@ msgstr "Janela maximizada"
 msgid "Window maximized state"
 msgstr "Estado de janela maximizada"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:137
 msgid "translator-credits"
 msgstr ""
 "Djavan Fagundes <djavanf@gnome.org>\n"
-"Antonio Fernandes C. Neto <fernandesn@gnome.org>"
+"Antonio Fernandes C. Neto <fernandesn@gnome.org>\n"
+"Enrico Nicoletto <liverig@gmail.com>"
 
-#: ../src/app.vala:109
+#: ../src/app.vala:138
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Um aplicativo do GNOME 3 para acessar sistemas remotos ou virtuais"
 
-#: ../src/app.vala:121 ../src/topbar.vala:50
+#: ../src/app.vala:155 ../src/topbar.vala:56
 msgid "New"
 msgstr "Nova"
 
-#: ../src/app.vala:124
-msgid "Properties"
-msgstr "Propriedades"
-
-#: ../src/app.vala:125
-msgid "Fullscreen"
-msgstr "Tela cheia"
-
-#: ../src/app.vala:126
-msgid "Force shutdown"
-msgstr "Forçar desligamento"
-
-#: ../src/app.vala:129
+#: ../src/app.vala:160
 msgid "About Boxes"
 msgstr "Sobre o Boxes"
 
-#: ../src/app.vala:130
+#: ../src/app.vala:161
 msgid "Quit"
 msgstr "Sair"
 
-#: ../src/app.vala:635
+#: ../src/app.vala:213 ../src/main.vala:9
+msgid "Display version number"
+msgstr "Mostrar o número da versão"
+
+#: ../src/app.vala:215
+msgid "Open in full screen"
+msgstr "Abrir em tela cheia"
+
+#: ../src/app.vala:216 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "Verificar recursos de virtualização"
+
+#: ../src/app.vala:217
+msgid "Open box with UUID"
+msgstr "Abrir caixa com UUID"
+
+#: ../src/app.vala:218
+msgid "Search term"
+msgstr "Termo de pesquisa"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:220
+msgid "URI to display, broker or installer media"
+msgstr "URI para exibir, gerenciar ou instalar mídia"
+
+#: ../src/app.vala:231
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- Um aplicativo para acessar sistemas remotos ou máquinas virtuais"
+
+#: ../src/app.vala:253
+msgid "Too many command line arguments specified.\n"
+msgstr "Especificado muitos argumentos de linha de comando.\n"
+
+#: ../src/app.vala:811
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A caixa \"%s\" foi excluída"
 
-#: ../src/app.vala:636
+#: ../src/app.vala:812
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u caixa foi excluída"
 msgstr[1] "%u caixas foram excluídas"
 
-#: ../src/app.vala:694
+#: ../src/app.vala:902
+#, c-format
+msgid ""
+"'%s' could not be restored from disk\n"
+"Try without saved state?"
+msgstr ""
+"\"%s\" não pode ser restaurado a partir do disco\n"
+"Tentar sem usar estado salvo?"
+
+#: ../src/app.vala:903
+msgid "Restart"
+msgstr "Reiniciar"
+
+#: ../src/app.vala:908
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Conexão ao \"%s\" falhou"
 
-#: ../src/collection-view.vala:39
+#: ../src/collection-view.vala:45
 msgid "New and Recent"
 msgstr "Novos e recentes"
 
-#: ../src/display-page.vala:164
+#: ../src/display-page.vala:281
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pressione as teclas Ctrl+Alt para desmarcar)"
 
-#: ../src/installer-media.vala:83 ../src/properties.vala:62
+#: ../src/empty-boxes.vala:30
+msgid "No boxes found"
+msgstr "Nenhuma caixa encontrada"
+
+#: ../src/empty-boxes.vala:37
+msgid "Create one using the button on the top left."
+msgstr "Crie uma caixa usando o botão na porção superior esquerda."
+
+#: ../src/installer-media.vala:86 ../src/properties.vala:73
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:52
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/libvirt-machine.vala:312
+#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:58
 msgid "Virtualizer"
 msgstr "Virtualizador"
 
-#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
-#: ../src/wizard.vala:371
+#: ../src/libvirt-machine-properties.vala:125 ../src/ovirt-machine.vala:59
+#: ../src/remote-machine.vala:58 ../src/wizard.vala:400
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine-properties.vala:133
+#: ../src/libvirt-machine-properties.vala:138
+msgid "Troubleshooting log"
+msgstr "Registro de resolução de problemas"
+
+#: ../src/libvirt-machine-properties.vala:142
+msgid "Copy to clipboard"
+msgstr "Copiar para a área de transferência"
+
+#: ../src/libvirt-machine-properties.vala:157
+msgid "Save log"
+msgstr "Salvar registro"
+
+#: ../src/libvirt-machine-properties.vala:173
+#, c-format
+msgid "Error saving: %s"
+msgstr "Ocorreu erro ao salvar: %s"
+
+#: ../src/libvirt-machine-properties.vala:195 ../src/ovirt-machine.vala:63
+#: ../src/remote-machine.vala:62
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/libvirt-machine.vala:440
-msgid "When you force shutdown, the box may lose data."
-msgstr "Quando você força desligamento, a caixa pode perder dados."
+#. Translators: This is the text on the button to select an iso for the cd
+#: ../src/libvirt-machine-properties.vala:225
+#: ../src/libvirt-machine-properties.vala:273
+msgid "Select"
+msgstr "Selecionar"
 
-#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
+#. Translators: empty is listed as the filename for a non-mounted CD
+#: ../src/libvirt-machine-properties.vala:227
+#: ../src/libvirt-machine-properties.vala:274
+msgid "empty"
+msgstr "vazio"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+#: ../src/libvirt-machine-properties.vala:230
+#: ../src/libvirt-machine-properties.vala:252
+msgid "Remove"
+msgstr "Remover"
+
+#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:303
+msgid "Select a device or ISO file"
+msgstr "Selecione um dispositivo ou arquivo ISO"
+
+#: ../src/libvirt-machine-properties.vala:257
+#, c-format
+msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+msgstr "A inserção de \"%s\" como um CD/DVD dentro de '%s' falhou"
+
+#: ../src/libvirt-machine-properties.vala:276
+#, c-format
+msgid "Removal of CD/DVD from '%s' failed"
+msgstr "A remoção de CD/DVD de \"%s\" falhou"
+
+#: ../src/libvirt-machine-properties.vala:282
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:327
+msgid "Add support to guest"
+msgstr "Adicionar suporte a convidado"
+
+#: ../src/libvirt-machine-properties.vala:312
+msgid "USB device support"
+msgstr "Suporte a dispositivos USB"
+
+#: ../src/libvirt-machine-properties.vala:329
+msgid "Smartcard support"
+msgstr "Suporte a cartão inteligente (Smartcard)"
+
+#: ../src/libvirt-machine-properties.vala:394 ../src/wizard.vala:436
 msgid "Memory"
 msgstr "Memória"
 
+#: ../src/libvirt-machine-properties.vala:478
+#, c-format
+msgid "Restart of '%s' is taking too long. Force it to shutdown?"
+msgstr ""
+"A reinicialização de \"%s\" está demorando muito. Deseja forçá-la a desligar?"
+
+#: ../src/libvirt-machine-properties.vala:491
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "As alterações requerem reinicialização de \"%s\". Tentar reiniciar?"
+
+#: ../src/libvirt-machine-properties.vala:506
+msgid "Maximum Disk Size"
+msgstr "Tamanho máximo do disco"
+
+#: ../src/libvirt-machine.vala:426
+msgid "When you force shutdown, the box may lose data."
+msgstr "Quando você força desligamento, a caixa pode perder dados."
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:567
+#: ../src/libvirt-machine.vala:511
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s a partir do disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:570
+#: ../src/libvirt-machine.vala:514
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: ../src/libvirt-machine.vala:600
-#, c-format
-msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr "As alterações requerem reinicialização de \"%s\". Tentar reiniciar?"
-
-#: ../src/libvirt-machine.vala:615
-msgid "Maximum Disk Size"
-msgstr "Tamanho máximo do disco"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:98
+#: ../src/machine.vala:132
 #, c-format
 msgid "Connecting to %s"
-msgstr "Conectando ao %s"
+msgstr "Conectando-se a %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:152
 #, c-format
 msgid "Enter password for %s"
 msgstr "Digite a senha para %s"
 
+#: ../src/machine.vala:235
+msgid "Saving..."
+msgstr "Salvando..."
+
 #. 3rd row
-#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
-#: ../src/unattended-installer.vala:262
+#: ../src/machine.vala:570 ../src/unattended-installer.vala:290
+#: ../src/unattended-installer.vala:404
 msgid "Password"
 msgstr "Senha"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "Mostrar o número da versão"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "Abrir em tela cheia"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "Verificar compatibilidades de virtualização"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "Abrir caixa com UUID"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "URI para exibir, gerenciar ou instalar mídia"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- Um aplicativo para acessar sistemas remotos ou máquinas virtuais"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "Especificado muitos argumentos de linha de comando.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:74
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• A CPU é compativel com virtualização: %s\n"
 
-#: ../src/main.vala:75
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• O módulo do KVM está carregado: %s\n"
 
-#: ../src/main.vala:76
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Convidado Libvirt KVM disponível: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:57
+#, c-format
+msgid "• Boxes storage pool available: %s\n"
+msgstr "• Fila de armazenamento do Boxes disponível: %s\n"
+
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• O contexto SELinux é padrão: %s\n"
 
-#: ../src/main.vala:82
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
-msgstr "Reportar bugs para <%s>.\n"
+msgstr "Relatar erros para <%s>.\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
-msgstr "%s página inicial: <%s>.\n"
+msgstr "Página inicial do %s: <%s>.\n"
 
-#: ../src/properties.vala:58
+#: ../src/notificationbar.vala:57
+#, c-format
+msgid "Not connected to %s"
+msgstr "Não conectado a %s"
+
+#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+msgid "Sign In"
+msgstr "Autenticar-se"
+
+#: ../src/notificationbar.vala:75
+#, c-format
+msgid "Sign In to %s"
+msgstr "Autenticar-se a %s"
+
+#: ../src/notificationbar.vala:81
+msgid "_Username"
+msgstr "_Nome de usuário"
+
+#: ../src/notificationbar.vala:96
+msgid "_Password"
+msgstr "_Senha"
+
+#: ../src/ovirt-broker.vala:64
+msgid "Connection to oVirt broker failed"
+msgstr "Conexão ao broker oVirt falhou"
+
+#. Translators: The %s will be replaced with the name of the VM
+#: ../src/properties.vala:19
+#, c-format
+msgid "%s - Properties"
+msgstr "Propriedades de %s"
+
+#: ../src/properties.vala:69
 msgid "Login"
-msgstr "Login"
+msgstr "Início de sessão"
 
-#: ../src/properties.vala:66
+#: ../src/properties.vala:77
 msgid "Display"
 msgstr "Monitor"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:81
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../src/properties.vala:90
+#: ../src/properties.vala:94
 msgid "Some changes may take effect only after reboot"
-msgstr "Algumas mudanças só terão efeito depois de reiniciar"
+msgstr "Algumas mudanças só terão efeito após reinicializar"
 
-#: ../src/properties.vala:231
+#: ../src/properties.vala:269
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:238
+#: ../src/properties.vala:276
 msgid "I/O:"
 msgstr "E/S:"
 
-#: ../src/properties.vala:245
+#: ../src/properties.vala:283
 msgid "Net:"
 msgstr "Rede:"
 
-#: ../src/spice-display.vala:189
+#: ../src/properties.vala:290
+msgid "Force Shutdown"
+msgstr "Forçar desligamento"
+
+#: ../src/selectionbar.vala:72
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "Pausa em \"%s\" falhou"
+
+#: ../src/spice-display.vala:50
+#, c-format
+msgid "Automatic redirection of USB device '%s' for '%s' failed"
+msgstr ""
+"O redirecionamento automático de dispositivo USB \"%s\" para \"%s\" falhou"
+
+#: ../src/spice-display.vala:58 ../src/spice-display.vala:316
+#, c-format
+msgid "Redirection of USB device '%s' for '%s' failed"
+msgstr "O redirecionamento de dispositivos USB \"%s\" para \"%s\" falhou"
+
+#: ../src/spice-display.vala:273
 msgid "Share clipboard"
 msgstr "Compartilhar área de transferência"
 
-#: ../src/spice-display.vala:195
+#: ../src/spice-display.vala:279
 msgid "Resize guest"
 msgstr "Redimensionar convidado"
 
-#: ../src/spice-display.vala:203
-msgid "USB redirection"
-msgstr "Redirecionamento de USB"
+#: ../src/spice-display.vala:288
+msgid "Redirect new USB devices"
+msgstr "Redirecionar novos dispositivos USB"
 
-#: ../src/topbar.vala:88 ../src/wizard.vala:603
-msgid "_Cancel"
-msgstr "_Cancelar"
+#: ../src/spice-display.vala:344 ../src/wizard.vala:251
+msgid "Invalid URI"
+msgstr "URI inválido"
+
+#: ../src/spice-display.vala:354
+msgid "The port must be specified once"
+msgstr "A porta deve ser especificada uma vez"
+
+#: ../src/spice-display.vala:363
+msgid "Missing port in Spice URI"
+msgstr "Falta porta em Spice URI"
+
+#: ../src/topbar.vala:99
+msgid "Select All"
+msgstr "Selecionar todas"
+
+#: ../src/topbar.vala:100
+msgid "Select Running"
+msgstr "Selecionar em execução"
+
+#: ../src/topbar.vala:101
+msgid "Select None"
+msgstr "Selecionar nenhuma"
+
+#: ../src/topbar.vala:111
+msgid "D_one"
+msgstr "C_oncluído"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:123
+#: ../src/topbar.vala:149
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
-msgstr[0] "%d selecionado"
-msgstr[1] "%d selecionados"
+msgstr[0] "%d selecionada"
+msgstr[1] "%d selecionadas"
 
-#: ../src/topbar.vala:125
-msgid "Click on items to select them"
-msgstr "Clique nos itens para selecioná-los"
+#: ../src/topbar.vala:151
+msgid "(Click on items to select them)"
+msgstr "(Clique nos itens para selecioná-los)"
 
-#: ../src/unattended-installer.vala:43
+#: ../src/unattended-installer.vala:48
 msgid "no password"
 msgstr "sem senha"
 
-#: ../src/unattended-installer.vala:191 ../src/unattended-installer.vala:252
+#: ../src/unattended-installer.vala:289 ../src/unattended-installer.vala:390
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: ../src/unattended-installer.vala:217
+#: ../src/unattended-installer.vala:346
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -346,85 +525,123 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:233
+#: ../src/unattended-installer.vala:364
 msgid "Express Install"
 msgstr "Instalação expressa"
 
-#: ../src/unattended-installer.vala:272
+#: ../src/unattended-installer.vala:415
 msgid "_Add Password"
 msgstr "_Adicionar senha"
 
-#: ../src/util.vala:285
-msgid "yes"
-msgstr "sim"
+#: ../src/unattended-installer.vala:439
+msgid "Product Key"
+msgstr "Chave do produto"
 
-#: ../src/util.vala:285
-msgid "no"
-msgstr "não"
+#: ../src/unattended-installer.vala:653
+msgid "Downloading device drivers..."
+msgstr "Baixando drivers de dispositivos..."
 
-#: ../src/util-app.vala:218
+#: ../src/util-app.vala:231
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
 msgstr ""
-"Seu contexto SELinux é incorreto, você pode tentar corrigir o problema "
+"Seu contexto SELinux parece incorreto, você pode tentar corrigir o problema "
 "executando:\n"
 "%s"
 
-#: ../src/util-app.vala:222
+#: ../src/util-app.vala:235
 msgid "SELinux not installed?"
 msgstr "SELinux não está instalado?"
 
+#: ../src/util-app.vala:316
+msgid ""
+"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
+"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
+msgstr ""
+"Não foi possível obter informações da fila de armazenamento \"gnome-boxes\" "
+"a partir de libvirt. Certifique-se de que \"virsh -c qemu:///session pool-"
+"dumpxml gnome-boxes\" esteja funcionando."
+
+#: ../src/util-app.vala:321
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
+"not exist"
+msgstr ""
+"%s é conhecido pelo libvirt como fila de armazenamento do GNOME Boxes porém "
+"este diretório não existe"
+
+#: ../src/util-app.vala:325
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
+msgstr ""
+"%s é conhecido pelo libvirt como fila de armazenamento do GNOME Boxes porém "
+"não é um diretório"
+
+#: ../src/util-app.vala:329
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
+"readable/writable"
+msgstr ""
+"%s é conhecido pelo libvirt como fila de armazenamento do GNOME Boxes porém "
+"isto não é legível/gravável"
+
+#: ../src/util.vala:322
+msgid "yes"
+msgstr "sim"
+
+#: ../src/util.vala:322
+msgid "no"
+msgstr "não"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:308
+#: ../src/vm-configurator.vala:443
 msgid "Incapable host system"
-msgstr "Sistema incompatível"
+msgstr "Sistema de máquina incompatível"
 
-#: ../src/vm-creator.vala:45
+#: ../src/vm-creator.vala:43
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Ocorreu um erro durante a preparação da instalação. Instalação expressa "
 "desabilitada."
 
-#: ../src/vm-creator.vala:136
+#: ../src/vm-creator.vala:162
 msgid "Installing..."
 msgstr "Instalando..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:140 ../src/wizard-source.vala:234
+#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "Live"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:222
+#: ../src/vm-creator.vala:251
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% instalado"
 msgstr[1] "%d%% instalados"
 
-#: ../src/vnc-display.vala:136
+#: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "Somente-leitura"
 
-#. Microsoft Windows product key
-#: ../src/winxp-installer.vala:104
-msgid "Product Key"
-msgstr "Chave do produto"
-
-#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
+#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
 msgid "Enter URL"
 msgstr "Inserir URL"
 
-#: ../src/wizard-source.vala:122
+#: ../src/wizard-source.vala:126
 msgid "Select a file"
 msgstr "Selecione um arquivo"
 
-#: ../src/wizard-source.vala:154
+#: ../src/wizard-source.vala:163
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -434,103 +651,102 @@ msgstr ""
 "\n"
 "Irá adicionar caixas para todos os sistemas disponíveis desta conta."
 
-#: ../src/wizard-source.vala:243
+#: ../src/wizard-source.vala:253
 msgid "32-bit x86 system"
 msgstr "Sistema 32-bit x86"
 
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:254
 msgid "64-bit x86 system"
 msgstr "Sistema 64-bit x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:253
+#: ../src/wizard-source.vala:263
 #, c-format
 msgid " from %s"
-msgstr " de %s"
+msgstr " da %s"
 
-#: ../src/wizard-source.vala:293
-msgid "Select a device or ISO file"
-msgstr "Selecione um dispositivo ou arquivo ISO"
-
-#: ../src/wizard.vala:88
+#: ../src/wizard.vala:100
 msgid "Box creation failed"
-msgstr "Criação da caixa falhou"
+msgstr "A criação da caixa falhou"
 
-#: ../src/wizard.vala:114 ../src/wizard.vala:617
-msgid "C_ontinue"
-msgstr "C_ontinuar"
-
-#: ../src/wizard.vala:114
-msgid "C_reate"
-msgstr "C_riar"
-
-#: ../src/wizard.vala:135
+#: ../src/wizard.vala:148
 msgid "Please enter desktop or collection URI"
-msgstr "Por favor, digite a área de trabalho ou coleção de URI"
+msgstr "Por favor, digite o URI da área de trabalho ou coleção"
 
-#: ../src/wizard.vala:141
+#: ../src/wizard.vala:154
 msgid "Will add boxes for all systems available from this account."
-msgstr "Irá adicionar caixas para todos os sistemas disponíveis desta conta."
+msgstr ""
+"Irá adicionar caixas para todos os sistemas disponíveis para esta conta."
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:157
 msgid "Will add a single box."
 msgstr "Irá adicionar uma única caixa."
 
-#: ../src/wizard.vala:150
+#: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Acessar área de trabalho"
 
-#: ../src/wizard.vala:241
-msgid "Invalid URI"
-msgstr "URI inválido"
-
-#: ../src/wizard.vala:252
+#: ../src/wizard.vala:265
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo sem suporte \"%s\""
 
-#: ../src/wizard.vala:347
+#: ../src/wizard.vala:271
+msgid "Unknown installer media"
+msgstr "Mídia de instalação desconhecida"
+
+#: ../src/wizard.vala:272
+msgid "Analyzing..."
+msgstr "Analisando..."
+
+#: ../src/wizard.vala:304
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"Ocorreu falha ao analisar mídia de instalação. Mídia incompleta ou "
+"corrompida?"
+
+#: ../src/wizard.vala:376
 msgid "Box setup failed"
 msgstr "Instalação da caixa falhou"
 
-#: ../src/wizard.vala:361
-msgid "Will create a new box with the following properties:"
-msgstr "Irá criar uma nova caixa com as seguintes propriedades:"
+#: ../src/wizard.vala:390
+msgid "Boxes will create a new box with the following properties:"
+msgstr "Boxes criará uma nova caixa com as seguintes propriedades:"
 
-#: ../src/wizard.vala:366
+#: ../src/wizard.vala:395
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:369
+#: ../src/wizard.vala:398
 msgid "Host"
 msgstr "Máquina"
 
-#: ../src/wizard.vala:377 ../src/wizard.vala:383
+#: ../src/wizard.vala:409 ../src/wizard.vala:420
 msgid "Port"
 msgstr "Porta"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:411
 msgid "TLS Port"
 msgstr "Porta TLS"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:425
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Irá adicionar caixas para todos os sistemas disponíveis desta conta:"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:445
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:445
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:494
+#: ../src/wizard.vala:535
 msgid "Introduction"
 msgstr "Introdução"
 
-#: ../src/wizard.vala:498
+#: ../src/wizard.vala:539
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -544,17 +760,17 @@ msgstr ""
 "Você pode se conectar a um máquina existente <b><i>através da rede</i></b> "
 "ou criar uma <b><i>máquina virtual</i></b> que executa localmente."
 
-#: ../src/wizard.vala:510
+#: ../src/wizard.vala:551
 msgid "Source Selection"
 msgstr "Seleção de fonte"
 
-#: ../src/wizard.vala:511
+#: ../src/wizard.vala:552
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Insira a mídia de instalação do sistema operacional ou selecione uma fonte "
 "abaixo"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:562
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -564,27 +780,23 @@ msgstr ""
 "produtos de software que você já obteve e é propriedade de seus respectivos "
 "proprietários."
 
-#: ../src/wizard.vala:534
+#: ../src/wizard.vala:575
 msgid "Preparation"
 msgstr "Preparação"
 
-#: ../src/wizard.vala:535
+#: ../src/wizard.vala:576
 msgid "Preparing to create new box"
 msgstr "Preparando para criar uma nova caixa"
 
-#: ../src/wizard.vala:554
-msgid "Analyzing installer media."
-msgstr "Analisando mídia de instalação."
-
-#: ../src/wizard.vala:565
+#: ../src/wizard.vala:613
 msgid "Setup"
 msgstr "Configuração"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:620
 msgid "Review"
 msgstr "Revisão"
 
-#: ../src/wizard.vala:583
+#: ../src/wizard.vala:631
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -593,21 +805,42 @@ msgid ""
 msgstr ""
 "As extensões de virtualização não estão disponíveis no seu sistema. Esta "
 "caixa deve estar extremamente lenta. Se seu sistema é suficientemente "
-"recente (feito depois de 2008), estas extensões estão provavelmente "
+"recente (feito em ou após 2008), estas extensões estão provavelmente "
 "disponíveis em seu sistema e você pode precisar habilitá-las nas "
 "configurações de sua BIOS."
 
-#: ../src/wizard.vala:592
+#: ../src/wizard.vala:646
 msgid "Create a Box"
 msgstr "Criar uma caixa"
 
-#: ../src/wizard.vala:611
+#: ../src/wizard.vala:649
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../src/wizard.vala:658
 msgid "_Back"
 msgstr "_Voltar"
 
-#: ../src/wizard.vala:703
+#: ../src/wizard.vala:665
+msgid "C_ontinue"
+msgstr "C_ontinuar"
+
+#: ../src/wizard.vala:673
+msgid "C_reate"
+msgstr "C_riar"
+
+#: ../src/wizard.vala:758
 msgid "C_ustomize..."
 msgstr "P_ersonalizar..."
+
+#~ msgid "Error connecting %s: %s"
+#~ msgstr "Ocorreu erro ao conectar %s: %s"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Tela cheia"
+
+#~ msgid "USB redirection"
+#~ msgstr "Redirecionamento de USB"
 
 #~ msgid ""
 #~ "Internet access required for express installation of Fedora 16 and older"
