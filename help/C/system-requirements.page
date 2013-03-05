@@ -1,6 +1,7 @@
 <page xmlns="http://projectmallard.org/1.0/"
       type="topic" style="task"
       id="system-requirements">
+
   <info>
     <revision pkgversion="3.8.0" version="0.1" date="2013-03-25" status="candidate"/>
     <link type="guide" xref="index#start" group="#first" />
@@ -15,23 +16,47 @@
       <email>mdhillca@gmail.com</email>
       <years>2013</years>
     </credit>
-    <desc>What you need to run Boxes.</desc>
+    <credit type="author copyright editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+      <years>2013</years>
+    </credit>
+    <credit type="author copyright editor">
+      <name>Zeeshan Ali (Khattak)</name>
+      <email>zeeshanak@gnome.org</email>
+      <years>2013</years>
+    </credit>
+
+    <desc>Hardware requirements for running a virtual machine using <app>Boxes</app>.</desc>
   </info>
 
-  <title>Set up your system</title>
+  <title>Get started with virtual machines</title>
 
-  <p>To create and run virtual machines in <app>Boxes</app>, your computer
-   must meet certain requirements:</p>
+  <p>Your computer should meet certain criteria for best performance when
+     creating and running virtual machines in <app>Boxes</app>. These
+     requirements are specified by the vendors of the operating systems.
+     <app>Boxes</app> automatically allocates resources to virtual machines
+     based on vendor recommendations. When such information is unavailable to
+     <app>Boxes</app>, it allocates the following:</p>
+
   <list>
-    <comment><p>have a page to check cpu extensions</p></comment>
-    <item><p>Have virtualization extensions available in the <sys>CPU</sys> and
-     active in the <sys>BIOS</sys>.</p></item>
-    <item><p>Have the <sys>kvm</sys> linux module loaded. This should be done
-     automatically.</p></item>
-    <item><p>Have disk space. You'll need at least 8 GB of disk per virtual
-     machine.</p></item>
-    <item><p>Have enought memory. You'll need around 1 GB of RAM per virtual
-     machine active.</p></item>
+    <item>
+      <p>20 GB of maximum storage space .</p>
+      <note style="advanced">
+      <p>This does not mean that <app>Boxes</app> will allocate 20 GB of space
+         when creating the virtual machine. The actual disk space used by
+         <app>Boxes</app> will be less than (or in worst case, equal to) disk
+         space used by virtual machine itself.</p>
+      </note>
+    </item>
+    <item>
+      <p>500 MB of RAM.</p>
+    </item>
   </list>
+
+  <note style="advanced">
+    <p><app>Boxes</app> performs best if your computer processor supports
+    <em>hardware virtualisation extensions</em> and if these are <link href="http://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Troubleshooting-Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html">enabled in the system BIOS</link>.</p>
+  </note>
 
 </page>
