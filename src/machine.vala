@@ -255,7 +255,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return display.get_pixbuf (0);
     }
 
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
 
     public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
 

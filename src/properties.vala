@@ -98,7 +98,8 @@ private class Boxes.Properties: Boxes.UI {
             infobar.hexpand = true;
             grid.attach (infobar, 0, 0, 2, 1);
 
-            properties = machine.get_properties (page, PropertyCreationFlag.NONE);
+            PropertyCreationFlag flags = PropertyCreationFlag.NONE;
+            properties = machine.get_properties (page, ref flags);
             empty = properties.length () == 0;
             if (!empty) {
                 int current_row = 1;

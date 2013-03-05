@@ -33,7 +33,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public virtual void collect_logs (StringBuilder builder) {
     }
 
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
 
     protected HashTable<int, Gtk.Widget?> displays;
 

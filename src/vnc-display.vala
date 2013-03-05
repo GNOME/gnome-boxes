@@ -134,7 +134,7 @@ private class Boxes.VncDisplay: Boxes.Display {
             display.close ();
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, PropertyCreationFlag flags) {
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
