@@ -285,7 +285,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                 gtk_session.bind_property ("auto-usbredir", toggle, "active",
                                            BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
                 toggle.halign =  Gtk.Align.START;
-                add_property (ref list, _("Redirect new USB devices"), toggle);
+                Boxes.Property usb_property = add_property (ref list, _("Redirect new USB devices"), toggle);
 
                 if (connected) {
                     bool found_dev = false;
@@ -323,6 +323,19 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                 }
                             });
                         }
+                        manager.device_added.connect ((manager, dev) => {
+                            usb_property.refresh_properties ();
+                        });
+                        manager.device_removed.connect ((manager, dev) => {
+                            Idle.add (() => {
+                                // FIXME: This is done in an idle to workaround a bug in spice-gtk 0.18 where calling
+                                // UsbDeviceManager.get_devices() from the "device-removed" signal callback will
+                                // return a list of devices which still contains the removed device.
+                                // This is fixed in spice-gtk by 09124ecc50.
+                                usb_property.refresh_properties ();
+                                return false;
+                            });
+                        });
                     } catch (GLib.Error error) {
                     }
                 }
