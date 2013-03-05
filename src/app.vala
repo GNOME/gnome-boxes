@@ -118,6 +118,18 @@ private class Boxes.App: Boxes.UI {
         action.activate.connect (() => { view.select (SelectionCriteria.NONE); });
         application.add_action (action);
 
+        action = new GLib.SimpleAction ("help", null);
+        action.activate.connect (() => {
+            try {
+                Gtk.show_uri (window.get_screen (),
+                              "help:gnome-boxes",
+                              Gtk.get_current_event_time ());
+            } catch (GLib.Error e) {
+                warning ("Failed to display help: %s", e.message);
+            }
+        });
+        application.add_action (action);
+
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
@@ -157,6 +169,7 @@ private class Boxes.App: Boxes.UI {
         var display_section = new GLib.Menu ();
         menu.append_section (null, display_section);
 
+        menu.append (_("Help"), "app.help");
         menu.append (_("About Boxes"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
