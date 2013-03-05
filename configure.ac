@@ -175,6 +175,7 @@ AC_CONFIG_FILES([
   data/Makefile
   data/gnome-boxes.desktop.in
   data/icons/Makefile
+  help/Makefile
   libgd/Makefile
   po/Makefile.in
   src/Makefile
