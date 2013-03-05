@@ -292,6 +292,12 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                     try {
                         var manager = UsbDeviceManager.get (session);
                         var devs = manager.get_devices ();
+                        devs.sort ( (a, b) => {
+                            string str_a = a.get_description ("    %1$s %2$s");
+                            string str_b = b.get_description ("    %1$s %2$s");
+
+                            return strcmp (str_a, str_b);
+                        });
                         for (int i = 0; i < devs.length; i++) {
                             var dev = devs[i];
 
