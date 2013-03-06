@@ -36,7 +36,7 @@ AM_VALAFLAGS =						\
 	--pkg libxml-2.0				\
 	--pkg posix					\
 	--pkg spice-client-gtk-3.0			\
-	--pkg tracker-sparql-0.14			\
+	--pkg tracker-sparql-$(TRACKER_VERSION)		\
 	$(VALA_DEBUG_FLAGS)			        \
 	$(NULL)
 
