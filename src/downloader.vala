@@ -1,13 +1,25 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+private class Boxes.Download {
+    public string uri;
+    public File cached_file;
+    public ActivityProgress progress;
+
+    public Download (string uri, File cached_file, ActivityProgress progress) {
+        this.uri = uri;
+        this.cached_file = cached_file;
+        this.progress = progress;
+    }
+}
+
 private class Boxes.Downloader : GLib.Object {
     private static Downloader downloader;
     private Soup.SessionAsync session;
 
-    private GLib.HashTable<string,File> downloads;
+    private GLib.HashTable<string,Download> downloads;
 
-    public signal void downloaded (string uri, File cached_file);
-    public signal void download_failed (string uri, File cached_file, GLib.Error error);
+    public signal void downloaded (Download download);
+    public signal void download_failed (Download download, GLib.Error error);
 
     public static Downloader get_instance () {
         if (downloader == null)
@@ -36,7 +48,7 @@ private class Boxes.Downloader : GLib.Object {
     }
 
     private Downloader () {
-        downloads = new GLib.HashTable <string,File> (str_hash, str_equal);
+        downloads = new GLib.HashTable <string,Download> (str_hash, str_equal);
 
         session = new Soup.SessionAsync ();
         session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
@@ -46,9 +58,10 @@ private class Boxes.Downloader : GLib.Object {
                                 string           cached_path,
                                 ActivityProgress progress = new ActivityProgress ()) throws GLib.Error {
         var uri = remote_file.get_uri ();
-        if (downloads.contains (uri))
+        var download = downloads.get (uri);
+        if (download != null)
             // Already being downloaded
-            return yield await_download (uri, cached_path); // FIXME: No progress report in this case.
+            return yield await_download (download, cached_path); // FIXME: No progress report in this case.
 
         var cached_file = File.new_for_path (cached_path);
         if (cached_file.query_exists ()) {
@@ -57,15 +70,16 @@ private class Boxes.Downloader : GLib.Object {
         }
 
         debug ("Downloading '%s'...", uri);
-        downloads.set (uri, cached_file);
+        download = new Download (uri, cached_file, progress);
+        downloads.set (uri, download);
 
         try {
             if (remote_file.has_uri_scheme ("http") || remote_file.has_uri_scheme ("https"))
-                yield download_from_http (uri, cached_file, progress);
+                yield download_from_http (download);
             else
                 yield copy_file (remote_file, cached_file); // FIXME: No progress report in this case.
         } catch (GLib.Error error) {
-            download_failed (uri, cached_file, error);
+            download_failed (download, error);
 
             throw error;
         } finally {
@@ -73,15 +87,13 @@ private class Boxes.Downloader : GLib.Object {
         }
 
         debug ("Downloaded '%s' and its now locally available at '%s'.", uri, cached_path);
-        downloaded (uri, cached_file);
+        downloaded (download);
 
         return cached_file;
     }
 
-    private async void download_from_http (string           uri,
-                                           File             cached_file,
-                                           ActivityProgress progress) throws GLib.Error {
-        var msg = new Soup.Message ("GET", uri);
+    private async void download_from_http (Download download) throws GLib.Error {
+        var msg = new Soup.Message ("GET", download.uri);
         var address = msg.get_address ();
         var connectable = new NetworkAddress (address.name, (uint16) address.port);
         var network_monitor = NetworkMonitor.get_default ();
@@ -99,7 +111,7 @@ private class Boxes.Downloader : GLib.Object {
                 return;
 
             current_num_bytes += chunk.length;
-            progress.progress = (double) current_num_bytes / total_num_bytes;
+            download.progress.progress = (double) current_num_bytes / total_num_bytes;
         });
 
         session.queue_message (msg, (session, msg) => {
@@ -108,7 +120,7 @@ private class Boxes.Downloader : GLib.Object {
         yield;
         if (msg.status_code != Soup.KnownStatusCode.OK)
             throw new Boxes.Error.INVALID (msg.reason_phrase);
-        yield cached_file.replace_contents_async (msg.response_body.data, null, false, 0, null, null);
+        yield download.cached_file.replace_contents_async (msg.response_body.data, null, false, 0, null, null);
     }
 
     public static async void fetch_os_logo (Gtk.Image image, Osinfo.Os os, int size) {
@@ -129,29 +141,29 @@ private class Boxes.Downloader : GLib.Object {
         }
     }
 
-    private async File? await_download (string uri, string cached_path) throws GLib.Error {
+    private async File? await_download (Download download, string cached_path) throws GLib.Error {
         File downloaded_file = null;
         GLib.Error download_error = null;
 
         SourceFunc callback = await_download.callback;
-        var downloaded_id = downloaded.connect ((downloader, downloaded_uri, file) => {
-            if (downloaded_uri != uri)
+        var downloaded_id = downloaded.connect ((downloader, downloaded) => {
+            if (downloaded.uri != download.uri)
                 return;
 
-            downloaded_file = file;
+            downloaded_file = downloaded.cached_file;
             callback ();
         });
-        var downloaded_failed_id = download_failed.connect ((downloader, downloaded_uri, file, error) => {
-            if (downloaded_uri != uri)
+        var downloaded_failed_id = download_failed.connect ((downloader, failed_download, error) => {
+            if (failed_download.uri != download.uri)
                 return;
 
             download_error = error;
             callback ();
         });
 
-        debug ("'%s' already being downloaded. Waiting for download to complete..", uri);
+        debug ("'%s' already being downloaded. Waiting for download to complete..", download.uri);
         yield; // Wait for it
-        debug ("Finished waiting for '%s' to download.", uri);
+        debug ("Finished waiting for '%s' to download.", download.uri);
         disconnect (downloaded_id);
         disconnect (downloaded_failed_id);
 
