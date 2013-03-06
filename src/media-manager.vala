@@ -30,7 +30,7 @@ private class Boxes.MediaManager : Object {
                                  Cancellable?         cancellable = null) throws GLib.Error {
         var media = yield new InstallerMedia.for_path (path, this, cancellable);
 
-        return yield create_installer_media_from_media (media, on_installer_recognized);
+        return yield create_installer_media_from_media (media, on_installer_recognized, progress);
     }
 
     public async InstallerMedia? create_installer_media_from_config (GVirConfig.Domain config) {
