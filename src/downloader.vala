@@ -61,7 +61,7 @@ private class Boxes.Downloader : GLib.Object {
         var download = downloads.get (uri);
         if (download != null)
             // Already being downloaded
-            return yield await_download (download, cached_path); // FIXME: No progress report in this case.
+            return yield await_download (download, cached_path, progress);
 
         var cached_file = File.new_for_path (cached_path);
         if (cached_file.query_exists ()) {
@@ -141,10 +141,13 @@ private class Boxes.Downloader : GLib.Object {
         }
     }
 
-    private async File? await_download (Download download, string cached_path) throws GLib.Error {
+    private async File? await_download (Download         download,
+                                        string           cached_path,
+                                        ActivityProgress progress) throws GLib.Error {
         File downloaded_file = null;
         GLib.Error download_error = null;
 
+        download.progress.bind_property ("progress", progress, "progress", BindingFlags.SYNC_CREATE);
         SourceFunc callback = await_download.callback;
         var downloaded_id = downloaded.connect ((downloader, downloaded) => {
             if (downloaded.uri != download.uri)
