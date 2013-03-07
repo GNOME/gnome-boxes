@@ -221,7 +221,7 @@ private class Boxes.WizardSource: GLib.Object {
 
     private void add_media_entry (InstallerMedia media) {
         var hbox = add_entry (media_vbox, () => {
-            on_media_selected.begin (media);
+            on_media_selected (media);
 
             return true;
         }, 15, 5, media.device_file);
@@ -324,9 +324,9 @@ private class Boxes.WizardSource: GLib.Object {
         return ret;
     }
 
-    private async void on_media_selected (InstallerMedia media) {
+    private void on_media_selected (InstallerMedia media) {
         try {
-            install_media = yield media_manager.create_installer_media_from_media (media);
+            install_media = media_manager.create_installer_media_from_media (media);
             uri = media.device_file;
             url_entry.activate ();
         } catch (GLib.Error error) {

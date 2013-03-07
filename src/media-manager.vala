@@ -27,7 +27,7 @@ private class Boxes.MediaManager : Object {
                                                                  Cancellable? cancellable = null) throws GLib.Error {
         var media = yield new InstallerMedia.for_path (path, this, cancellable);
 
-        return yield create_installer_media_from_media (media);
+        return create_installer_media_from_media (media);
     }
 
     public async InstallerMedia? create_installer_media_from_config (GVirConfig.Domain config) {
@@ -60,7 +60,7 @@ private class Boxes.MediaManager : Object {
         return_val_if_fail (media != null, null);
 
         try {
-            media = yield create_installer_media_from_media (media);
+            media = create_installer_media_from_media (media);
         } catch (GLib.Error error) {
             debug ("%s", error.message); // We just failed to create more specific media instance, no biggie!
         }
@@ -121,7 +121,7 @@ private class Boxes.MediaManager : Object {
         return list;
     }
 
-    public async InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
+    public InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
         if (media.os == null)
             return media;
 
@@ -132,7 +132,7 @@ private class Boxes.MediaManager : Object {
 
         InstallerMedia install_media;
         if (install_scripts.get_length () > 0) {
-            install_media = yield new UnattendedInstaller.from_media (media, install_scripts);
+            install_media = new UnattendedInstaller.from_media (media, install_scripts);
         } else
             install_media = media;
 
@@ -169,6 +169,6 @@ private class Boxes.MediaManager : Object {
         var resources = os_db.get_resources_for_os (os, os_media.architecture);
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
 
-        return yield create_installer_media_from_media (media);
+        return create_installer_media_from_media (media);
     }
 }

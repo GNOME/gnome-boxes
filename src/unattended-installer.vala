@@ -99,7 +99,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public async UnattendedInstaller.from_media (InstallerMedia media, InstallScriptList scripts) throws GLib.Error {
+    public UnattendedInstaller.from_media (InstallerMedia media, InstallScriptList scripts) throws GLib.Error {
         os = media.os;
         os_media = media.os_media;
         label = media.label;
