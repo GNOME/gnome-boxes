@@ -66,6 +66,8 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual void set_direct_boot_params (DomainOs os) {}
+    public virtual async void prepare (ActivityProgress progress = new ActivityProgress (),
+                                       Cancellable? cancellable = null) {}
     public virtual async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {}
     public virtual void prepare_to_continue_installation (string vm_name) {}
     public virtual void clean_up () {}

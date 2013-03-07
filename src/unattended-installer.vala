@@ -99,9 +99,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public async UnattendedInstaller.from_media (InstallerMedia    media,
-                                                 InstallScriptList scripts,
-                                                 ActivityProgress  progress) throws GLib.Error {
+    public async UnattendedInstaller.from_media (InstallerMedia media, InstallScriptList scripts) throws GLib.Error {
         os = media.os;
         os_media = media.os_media;
         label = media.label;
@@ -131,8 +129,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         product_key_format = get_product_key_format ();
 
         setup_ui ();
-
-        yield setup_drivers (progress);
     }
 
     public override void prepare_to_continue_installation (string vm_name) {
@@ -340,6 +336,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             filename += "-" + suffix;
 
         return get_user_pkgcache (filename);
+    }
+
+    public override async void prepare (ActivityProgress progress = new ActivityProgress (),
+                                        Cancellable? cancellable = null) {
+        yield setup_drivers (progress, cancellable);
     }
 
     private void setup_ui () {

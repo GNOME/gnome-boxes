@@ -23,14 +23,11 @@ private class Boxes.MediaManager : Object {
         return media_manager;
     }
 
-    public async InstallerMedia create_installer_media_for_path
-                                (string               path,
-                                 InstallerRecognized? on_installer_recognized = null,
-                                 ActivityProgress     progress = new ActivityProgress (),
-                                 Cancellable?         cancellable = null) throws GLib.Error {
+    public async InstallerMedia create_installer_media_for_path (string       path,
+                                                                 Cancellable? cancellable = null) throws GLib.Error {
         var media = yield new InstallerMedia.for_path (path, this, cancellable);
 
-        return yield create_installer_media_from_media (media, on_installer_recognized, progress);
+        return yield create_installer_media_from_media (media);
     }
 
     public async InstallerMedia? create_installer_media_from_config (GVirConfig.Domain config) {
@@ -124,18 +121,9 @@ private class Boxes.MediaManager : Object {
         return list;
     }
 
-    public async InstallerMedia create_installer_media_from_media
-                                (InstallerMedia       media,
-                                 InstallerRecognized? on_installer_recognized = null,
-                                 ActivityProgress     progress = new ActivityProgress (),
-                                 Cancellable?         cancellable = null) throws GLib.Error {
+    public async InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
         if (media.os == null)
             return media;
-
-        if (on_installer_recognized != null)
-            on_installer_recognized (media.os_media, media.os);
-
-        progress.progress = 0.5;
 
         var install_scripts = media.os.get_install_script_list ();
         var filter = new Filter ();
@@ -144,14 +132,9 @@ private class Boxes.MediaManager : Object {
 
         InstallerMedia install_media;
         if (install_scripts.get_length () > 0) {
-            var unattended_progress = progress.add_child_activity (0.5);
-            unattended_progress.bind_property ("info", progress, "info");
-
-            install_media = yield new UnattendedInstaller.from_media (media, install_scripts, unattended_progress);
+            install_media = yield new UnattendedInstaller.from_media (media, install_scripts);
         } else
             install_media = media;
-
-        progress.progress = 1.0;
 
         return install_media;
     }

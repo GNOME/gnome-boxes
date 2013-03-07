@@ -271,33 +271,13 @@ private class Boxes.Wizard: Boxes.UI {
         prep_media_label.label = _("Unknown installer media");
         prep_status_label.label = _("Analyzing..."); // Translators: Analyzing installer media
 
-        var progress = new ActivityProgress ();
-        progress.notify["progress"].connect (() => {
-            if (progress.progress - prep_progress.fraction >= 0.01) // Only entertain >= 1% change
-                prep_progress.fraction = progress.progress;
-        });
-        progress.bind_property ("info", prep_status_label, "label");
-
-        media_manager.create_installer_media_for_path.begin (path,
-                                                             on_installer_recognized,
-                                                             progress,
-                                                             null,
-                                                             on_installer_media_instantiated);
-    }
-
-    private void on_installer_recognized (Osinfo.Media os_media, Osinfo.Os os) {
-        prep_media_label.label = os.name;
-        Downloader.fetch_os_logo.begin (installer_image, os, 128);
+        media_manager.create_installer_media_for_path.begin (path, null, on_installer_media_instantiated);
     }
 
     private void on_installer_media_instantiated (Object? source_object, AsyncResult result) {
-        next_button.sensitive = true;
-
         try {
             var install_media = media_manager.create_installer_media_for_path.end (result);
-            vm_creator = new VMCreator (install_media);
-            prep_progress.fraction = 1.0;
-            page = WizardPage.SETUP;
+            prepare_media.begin (install_media);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             debug("Failed to analyze installer image: %s", error.message);
@@ -306,14 +286,35 @@ private class Boxes.Wizard: Boxes.UI {
         }
     }
 
+    private async void prepare_media (InstallerMedia install_media) {
+        if (install_media.os != null) {
+            prep_media_label.label = install_media.os.name;
+            Downloader.fetch_os_logo.begin (installer_image, install_media.os, 128);
+        }
+
+        var progress = new ActivityProgress ();
+        progress.notify["progress"].connect (() => {
+            if (progress.progress - prep_progress.fraction >= 0.01) // Only entertain >= 1% change
+                prep_progress.fraction = progress.progress;
+        });
+        progress.bind_property ("info", prep_status_label, "label");
+
+        yield install_media.prepare (progress, null);
+
+        vm_creator = new VMCreator (install_media);
+        prep_progress.fraction = 1.0;
+        page = WizardPage.SETUP;
+        next_button.sensitive = true;
+    }
+
     private bool prepare () {
         installer_image.set_from_icon_name ("media-optical", 0); // Reset
 
         if (this.wizard_source.install_media != null) {
-            vm_creator = new VMCreator (this.wizard_source.install_media);
-            prep_progress.fraction = 1.0;
-            page = WizardPage.SETUP;
-            return false;
+            prep_media_label.label = _("Unknown installer media");
+            prep_status_label.label = _("Analyzing...");
+            prepare_media.begin (wizard_source.install_media);
+            return true;
         } else {
             try {
                 prepare_for_location (this.wizard_source.uri);
