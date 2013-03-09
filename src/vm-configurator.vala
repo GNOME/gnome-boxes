@@ -65,6 +65,7 @@ private class Boxes.VMConfigurator {
 
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (true);
+        graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
         domain.add_device (graphics);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
