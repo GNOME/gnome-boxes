@@ -201,86 +201,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     continue;
                 var disk_config = device_config as GVirConfig.DomainDisk;
                 var disk_type = disk_config.get_guest_device_type ();
-                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.CDROM) {
-                    var grid = new Gtk.Grid ();
-                    grid.set_orientation (Gtk.Orientation.HORIZONTAL);
-                    grid.set_column_spacing (12);
-
-                    var label = new Gtk.Label ("");
-                    label.set_ellipsize (Pango.EllipsizeMode.END);
-
-                    grid.add (label);
-
-                    var source = disk_config.get_source ();
-                    bool empty = (source == null || source == "");
-
-                    var button_label = new Gtk.Label ("");
-                    var button = new Gtk.Button ();
-                    button.add (button_label);
-
-                    grid.add (button);
-
-                    if (empty) {
-                        // Translators: This is the text on the button to select an iso for the cd
-                        button_label.set_text (_("Select"));
-                        // Translators: empty is listed as the filename for a non-mounted CD
-                        label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
-                    } else {
-                        // Translators: Remove is the label on the button to remove an iso from a cdrom drive
-                        button_label.set_text (_("Remove"));
-                        label.set_text (get_utf8_basename (source));
-                    }
-
-                    button.clicked.connect ( () => {
-                        if (empty) {
-                            var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                                    App.app.window,
-                                                                    Gtk.FileChooserAction.OPEN,
-                                                                    Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                                                    Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
-                            dialog.modal = true;
-                            dialog.show_hidden = false;
-                            dialog.local_only = true;
-                            dialog.filter = new Gtk.FileFilter ();
-                            dialog.filter.add_mime_type ("application/x-cd-image");
-                            dialog.response.connect ( (response) => {
-                                if (response == Gtk.ResponseType.ACCEPT) {
-                                    var path = dialog.get_filename ();
-                                    disk_config.set_source (path);
-                                    try {
-                                        machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
-                                        button_label.set_text (_("Remove"));
-                                        label.set_text (get_utf8_basename (path));
-                                        empty = false;
-                                    } catch (GLib.Error e) {
-                                        var path_basename = get_utf8_basename (path);
-                                        var msg = _("Insertion of '%s' as a CD/DVD into '%s' failed");
-                                        machine.got_error (msg.printf (path_basename, machine.name));
-                                        debug ("Error inserting '%s' as CD into '%s': %s",
-                                               path_basename,
-                                               machine.name,
-                                               e.message);
-                                    }
-                                }
-                                dialog.destroy ();
-                            });
-                            dialog.show_all ();
-                        } else {
-                            disk_config.set_source ("");
-                            try {
-                                machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
-                                empty = true;
-                                button_label.set_text (_("Select"));
-                                label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
-                            } catch (GLib.Error e) {
-                                machine.got_error (_("Removal of CD/DVD from '%s' failed").printf (machine.name));
-                                debug ("Error ejecting CD from '%s': %s", machine.name, e.message);
-                            }
-                        }
-                    });
-
-                    add_property (ref list, _("CD/DVD"), grid);
-                }
+                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.CDROM)
+                    add_cdrom_property (disk_config, ref list);
             }
 
             bool has_usb_redir = false;
@@ -342,6 +264,84 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
 
         return list;
+    }
+
+    private void add_cdrom_property (GVirConfig.DomainDisk disk_config, ref List<Boxes.Property> list) {
+        var grid = new Gtk.Grid ();
+        grid.set_orientation (Gtk.Orientation.HORIZONTAL);
+        grid.set_column_spacing (12);
+
+        var label = new Gtk.Label ("");
+        label.set_ellipsize (Pango.EllipsizeMode.END);
+
+        grid.add (label);
+
+        var source = disk_config.get_source ();
+        bool empty = (source == null || source == "");
+
+        var button_label = new Gtk.Label ("");
+        var button = new Gtk.Button ();
+        button.add (button_label);
+
+        grid.add (button);
+
+        if (empty) {
+            // Translators: This is the text on the button to select an iso for the cd
+            button_label.set_text (_("Select"));
+            // Translators: empty is listed as the filename for a non-mounted CD
+            label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
+        } else {
+            // Translators: Remove is the label on the button to remove an iso from a cdrom drive
+            button_label.set_text (_("Remove"));
+            label.set_text (get_utf8_basename (source));
+        }
+
+        button.clicked.connect ( () => {
+            if (empty) {
+                var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
+                                                        App.app.window,
+                                                        Gtk.FileChooserAction.OPEN,
+                                                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                                                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                dialog.modal = true;
+                dialog.show_hidden = false;
+                dialog.local_only = true;
+                dialog.filter = new Gtk.FileFilter ();
+                dialog.filter.add_mime_type ("application/x-cd-image");
+                dialog.response.connect ( (response) => {
+                    if (response == Gtk.ResponseType.ACCEPT) {
+                        var path = dialog.get_filename ();
+                        disk_config.set_source (path);
+                        try {
+                            machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
+                            button_label.set_text (_("Remove"));
+                            label.set_text (get_utf8_basename (path));
+                            empty = false;
+                        } catch (GLib.Error e) {
+                            var path_basename = get_utf8_basename (path);
+                            var msg = _("Insertion of '%s' as a CD/DVD into '%s' failed");
+                            machine.got_error (msg.printf (path_basename, machine.name));
+                            debug ("Error inserting '%s' as CD into '%s': %s", path_basename, machine.name, e.message);
+                        }
+                    }
+                    dialog.destroy ();
+                });
+                dialog.show_all ();
+            } else {
+                disk_config.set_source ("");
+                try {
+                    machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
+                    empty = true;
+                    button_label.set_text (_("Select"));
+                    label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
+                } catch (GLib.Error e) {
+                    machine.got_error (_("Removal of CD/DVD from '%s' failed").printf (machine.name));
+                    debug ("Error ejecting CD from '%s': %s", machine.name, e.message);
+                }
+            }
+        });
+
+        add_property (ref list, _("CD/DVD"), grid);
     }
 
     private void update_ram_property (Boxes.Property property) {
