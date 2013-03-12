@@ -405,7 +405,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               max_ram * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               FormatSizeFlags.IEC_UNITS);
-            property.changed.connect (on_ram_changed);
+            if (VMConfigurator.is_install_config (machine.domain_config) ||
+                VMConfigurator.is_live_config (machine.domain_config))
+                property.sensitive = false;
+            else
+                property.changed.connect (on_ram_changed);
 
             this.notify["state"].connect (() => {
                 if (!machine.is_on ())
@@ -516,7 +520,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               volume_info.capacity,
                                               max_storage,
                                               256 * MEGABYTES);
-            property.changed.connect (on_storage_changed);
+            if (VMConfigurator.is_install_config (machine.domain_config) ||
+                VMConfigurator.is_live_config (machine.domain_config))
+                property.sensitive = false;
+            else
+                property.changed.connect (on_storage_changed);
 
             return property;
         } catch (GLib.Error error) {
