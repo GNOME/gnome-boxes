@@ -11,6 +11,13 @@ private class Boxes.Property: GLib.Object {
 
     public uint defer_interval { get; set; default = 1; } // In seconds
 
+    public bool sensitive {
+        set {
+            widget.sensitive = value;
+            extra_widget.sensitive = value;
+        }
+    }
+
     private uint deferred_change_id;
     private SourceFunc? _deferred_change;
     public SourceFunc? deferred_change {
