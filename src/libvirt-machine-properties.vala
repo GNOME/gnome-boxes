@@ -273,11 +273,23 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         var label = new Gtk.Label ("");
         label.set_ellipsize (Pango.EllipsizeMode.END);
-
         grid.add (label);
 
         var source = disk_config.get_source ();
         bool empty = (source == null || source == "");
+
+        if (empty)
+            // Translators: empty is listed as the filename for a non-mounted CD
+            label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
+        else
+            label.set_text (get_utf8_basename (source));
+
+        if (VMConfigurator.is_install_config (machine.domain_config) ||
+            VMConfigurator.is_live_config (machine.domain_config)) {
+            add_property (ref list, _("CD/DVD"), grid);
+
+            return;
+        }
 
         var button_label = new Gtk.Label ("");
         var button = new Gtk.Button ();
@@ -285,16 +297,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         grid.add (button);
 
-        if (empty) {
+        if (empty)
             // Translators: This is the text on the button to select an iso for the cd
             button_label.set_text (_("Select"));
-            // Translators: empty is listed as the filename for a non-mounted CD
-            label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
-        } else {
+        else
             // Translators: Remove is the label on the button to remove an iso from a cdrom drive
             button_label.set_text (_("Remove"));
-            label.set_text (get_utf8_basename (source));
-        }
 
         button.clicked.connect ( () => {
             if (empty) {
