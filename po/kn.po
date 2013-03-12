@@ -2,15 +2,16 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 #
+#: ../src/main.vala:15
 # Shankar Prasad <prasad.mvs@gmail.com>, 2012.
-# Shankar Prasad <svenkate@redhat.com>, 2012.
+# Shankar Prasad <svenkate@redhat.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-21 17:47+0000\n"
-"PO-Revision-Date: 2012-11-20 11:07+0530\n"
+"POT-Creation-Date: 2013-03-05 17:06+0000\n"
+"PO-Revision-Date: 2013-03-12 15:52+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: Kannada <kn@li.org>\n"
 "Language: kn\n"
@@ -20,17 +21,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
+#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
-msgstr "ಚೌಕಗಳು"
+msgstr "ಬಾಕ್ಸುಗಳು"
 
 #: ../data/gnome-boxes.desktop.in.in.h:2
-msgid "Simple virtual machine viewer/manager"
-msgstr "ಸರಳವಾದ ವರ್ಚುವ ಗಣಕ ವೀಕ್ಷಕ/ವ್ಯವಸ್ಥಾಪಕ"
+#| msgid "Simple virtual machine viewer/manager"
+msgid "Virtual machine viewer/manager"
+msgstr "ವರ್ಚುವಲ್ ಗಣಕ ವೀಕ್ಷಕ/ವ್ಯವಸ್ಥಾಪಕ"
 
 #: ../data/gnome-boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "ವರ್ಚುವಲ್‌ ಗಣಕಗಳನ್ನು ನೋಡು ಮತ್ತು ಬಳಸು"
+
+#: ../data/gnome-boxes.desktop.in.in.h:4
+msgid "virtual machine;vm;"
+msgstr "ವರ್ಚುವಲ್‌ ಗಣಕ;vm;"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
@@ -38,7 +45,7 @@ msgstr "ಸಂಗ್ರಹಗಳು"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:2
 msgid "The list of boxes collections"
-msgstr "ಚೌಕಗಳ ಸಂಗ್ರಹಗಳ ಪಟ್ಟಿ"
+msgstr "ಬಾಕ್ಸುಗಳ ಸಂಗ್ರಹಗಳ ಪಟ್ಟಿ"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -80,261 +87,446 @@ msgstr "ಕಿಟಕಿಯನ್ನು ಗರಿಷ್ಟಗೊಳಿಸಲಾ�
 msgid "Window maximized state"
 msgstr "ಕಿಟಕಿಯನ್ನು ಗರಿಷ್ಟಗೊಳಿಸಿದ ಸ್ಥಿತಿ"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:149
 msgid "translator-credits"
 msgstr "ಶಂಕರ್ ಪ್ರಸಾದ್ <svenkate@redhat.com>"
 
-#: ../src/app.vala:109
+#: ../src/app.vala:150
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "ದೂರದ ಅಥವ ವರ್ಚುವಲ್ ವ್ಯವಸ್ಥೆಗಳನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಒಂದು ಸರಳವಾದ GNOME 3 ಅನ್ವಯ"
 
-#: ../src/app.vala:121 ../src/topbar.vala:50
+#: ../src/app.vala:167 ../src/topbar.vala:56
 msgid "New"
 msgstr "ಹೊಸ"
 
-#: ../src/app.vala:124
-msgid "Properties"
-msgstr "ಗುಣಗಳು"
+#: ../src/app.vala:172
+msgid "Help"
+msgstr "ನೆರವು"
 
-#: ../src/app.vala:125
-msgid "Fullscreen"
-msgstr "ಪೂರ್ಣತೆರೆ"
-
-#: ../src/app.vala:126
-msgid "Force shutdown"
-msgstr "ಬಲವಂತವಾಗಿ ಮುಚ್ಚು"
-
-#: ../src/app.vala:129
+#: ../src/app.vala:173
 msgid "About Boxes"
-msgstr "ಚೌಕಗಳ ಕುರಿತು"
+msgstr "ಬಾಕ್ಸುಗಳ ಕುರಿತು"
 
-#: ../src/app.vala:130
+#: ../src/app.vala:174
 msgid "Quit"
 msgstr "ತ್ಯಜಿಸು"
 
-#: ../src/app.vala:635
+#: ../src/app.vala:226 ../src/main.vala:9
+msgid "Display version number"
+msgstr "ಆವೃತ್ತಿಯ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು"
+
+#: ../src/app.vala:228
+msgid "Open in full screen"
+msgstr "ಪೂರ್ಣ ತೆರೆಯಲ್ಲಿ ತೆರೆ"
+
+#: ../src/app.vala:229 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "ವರ್ಚುವಲೈಸೇಶನ್ ಸಾಮರ್ಥ್ಯಗಳನ್ನು ಪರಿಶೀಲಿಸು"
+
+#: ../src/app.vala:230
+msgid "Open box with UUID"
+msgstr "ಬಾಕ್ಸನ್ನು UUID ಯೊಂದಿಗೆ ತೆರೆ"
+
+#: ../src/app.vala:231
+msgid "Search term"
+msgstr "ಹುಡುಕು ಪದ"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:233
+msgid "URI to display, broker or installer media"
+msgstr "ಮಧ್ಯವರ್ತಿ ಅಥವ ಅನುಸ್ಥಾಪನಾ ಮಾಧ್ಯಮವನ್ನು ತೋರಿಸಲು URI"
+
+#: ../src/app.vala:244
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- ದೂರದ ಅಥವ ವರ್ಚುವಲ್ ಗಣಕಗಳನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಒಂದು ಸರಳವಾದ ಅನ್ವಯ"
+
+#: ../src/app.vala:266
+msgid "Too many command line arguments specified.\n"
+msgstr "ಅಗತ್ಯಕ್ಕಿಂತಲೂ ಹೆಚ್ಚು ಆಜ್ಞಾಸಾಲಿನ ಆರ್ಗ್ಯೂಮೆಂಟ್‌ಗಳನ್ನು ಸೂಚಿಸಲಾಗಿದೆ.\n"
+
+#: ../src/app.vala:824
 #, c-format
 msgid "Box '%s' has been deleted"
-msgstr "'%s' ಚೌಕವನ್ನು ಅಳಿಸಲಾಗಿದೆ"
+msgstr "'%s' ಬಾಕ್ಸನ್ನು ಅಳಿಸಲಾಗಿದೆ"
 
-#: ../src/app.vala:636
+#: ../src/app.vala:825
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
-msgstr[0] "%u ಚೌಕವನ್ನು ಅಳಿಸಲಾಗಿದೆ"
-msgstr[1] "%u ಚೌಕಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ"
+msgstr[0] "%u ಬಾಕ್ಸನ್ನು ಅಳಿಸಲಾಗಿದೆ"
+msgstr[1] "%u ಬಾಕ್ಸುಗಳನ್ನು ಅಳಿಸಲಾಗಿದೆ"
 
-#: ../src/app.vala:694
+#: ../src/app.vala:915
+#, c-format
+msgid ""
+"'%s' could not be restored from disk\n"
+"Try without saved state?"
+msgstr ""
+"'%s' ಅನ್ನು ಡಿಸ್ಕಿನಿಂದ ಮರಳಿ ಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ\n"
+"ಉಳಿಸಲಾದ ಸ್ಥಿತಿಯನ್ನು ಹೊರತುಪಡಿಸಿ ಪ್ರಯತ್ನಿಸಿ?"
+
+#: ../src/app.vala:916
+msgid "Restart"
+msgstr "ಮರಳಿ ಆರಂಭಿಸು"
+
+#: ../src/app.vala:921
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s' ನ ಸಂಪರ್ಕವು ವಿಫಲಗೊಂಡಿದೆ"
 
-#: ../src/collection-view.vala:39
+#: ../src/collection-view.vala:45
 msgid "New and Recent"
 msgstr "ಹೊಸತು ಮತ್ತು ಇತ್ತೀಚಿನದು"
 
-#: ../src/display-page.vala:164
+#: ../src/display-page.vala:281
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(ಮುಕ್ತಗೊಳಿಸಲು Ctrl+Alt ಕೀಲಿಗಳನ್ನು ಒತ್ತಿ)"
 
-#: ../src/installer-media.vala:83 ../src/properties.vala:62
+#: ../src/empty-boxes.vala:30
+msgid "No boxes found"
+msgstr "ಯಾವುದೆ ಬಾಕ್ಸುಗಳು ಕಂಡುಬಂದಿಲ್ಲ"
+
+#: ../src/empty-boxes.vala:37
+msgid "Create one using the button on the top left."
+msgstr "ಮೇಲಿನ ಎಡಭಾಗದಲ್ಲಿರುವ ಗುಂಡಿಯನ್ನು ಬಳಸಿಕೊಂಡು ಒಂದನ್ನು ರಚಿಸಿ."
+
+#: ../src/installer-media.vala:86 ../src/properties.vala:73
 msgid "System"
 msgstr "ವ್ಯವಸ್ಥೆ"
 
-#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:52
 msgid "Name"
 msgstr "ಹೆಸರು"
 
-#: ../src/libvirt-machine.vala:312
+#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:58
 msgid "Virtualizer"
 msgstr "ವರ್ಚುವಲೈಸರ್"
 
-#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
-#: ../src/wizard.vala:371
+#: ../src/libvirt-machine-properties.vala:125 ../src/ovirt-machine.vala:59
+#: ../src/remote-machine.vala:58 ../src/wizard.vala:400
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine-properties.vala:133
+#: ../src/libvirt-machine-properties.vala:138
+msgid "Troubleshooting log"
+msgstr "ದೋಷನಿದಾನ ದಿನಚರಿ"
+
+#: ../src/libvirt-machine-properties.vala:142
+#| msgid "Share clipboard"
+msgid "Copy to clipboard"
+msgstr "ಕ್ಲಿಪ್‌ಬೋರ್ಡಿಗೆ ಪ್ರತಿ ಮಾಡು"
+
+#: ../src/libvirt-machine-properties.vala:157
+msgid "Save log"
+msgstr "ದಿನಚರಿಯನ್ನು ಉಳಿಸು"
+
+#: ../src/libvirt-machine-properties.vala:173
+#, c-format
+#| msgid "Error connecting %s: %s"
+msgid "Error saving: %s"
+msgstr "ಉಳಿಸುವಲ್ಲಿ ದೋಷ: %s"
+
+#: ../src/libvirt-machine-properties.vala:195 ../src/ovirt-machine.vala:63
+#: ../src/remote-machine.vala:62
 msgid "Protocol"
 msgstr "ಪ್ರೊಟೋಕಾಲ್"
 
-#: ../src/libvirt-machine.vala:440
-msgid "When you force shutdown, the box may lose data."
-msgstr "ಒತ್ತಾಯಪೂರ್ವಕವಾಗಿ ಮುಚ್ಚಿದಲ್ಲಿ, ಬಾಕ್ಸ್ ದತ್ತಾಂಶವನ್ನು ಕಳೆದುಕೊಳ್ಳಬಹುದು."
+#. Translators: This is the text on the button to select an iso for the cd
+#: ../src/libvirt-machine-properties.vala:225
+#: ../src/libvirt-machine-properties.vala:273
+#| msgid "Select All"
+msgid "Select"
+msgstr "ಆರಿಸು"
 
-#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
+#. Translators: empty is listed as the filename for a non-mounted CD
+#: ../src/libvirt-machine-properties.vala:227
+#: ../src/libvirt-machine-properties.vala:274
+msgid "empty"
+msgstr "ಖಾಲಿ"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+#: ../src/libvirt-machine-properties.vala:230
+#: ../src/libvirt-machine-properties.vala:252
+msgid "Remove"
+msgstr "ತೆಗೆದುಹಾಕು"
+
+#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:303
+msgid "Select a device or ISO file"
+msgstr "ಒಂದು ಸಾಧನ ಅಥವ ISO aನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
+
+#: ../src/libvirt-machine-properties.vala:257
+#, c-format
+msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+msgstr "'%s' ಅನ್ನು CD/DVD ಯಾಗಿ '%s' ಅನ್ನು ಸೇರಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ"
+
+#: ../src/libvirt-machine-properties.vala:276
+#, c-format
+msgid "Removal of CD/DVD from '%s' failed"
+msgstr "CD/DVD ಅನ್ನು '%s' ಇಂದ ತೆಗೆದುಹಾಕುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ"
+
+#: ../src/libvirt-machine-properties.vala:282
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:327
+msgid "Add support to guest"
+msgstr "ಅತಿಥಿಗೆ ಬೆಂಬಲವನ್ನು ಸೇರಿಸು"
+
+#: ../src/libvirt-machine-properties.vala:312
+msgid "USB device support"
+msgstr "USB ಸಾಧನದ ಬೆಂಬಲ"
+
+#: ../src/libvirt-machine-properties.vala:329
+msgid "Smartcard support"
+msgstr "ಸ್ಮಾರ್ಟ್ ಕಾರ್ಡ್ ಬೆಂಬಲ"
+
+#: ../src/libvirt-machine-properties.vala:394 ../src/wizard.vala:436
 msgid "Memory"
 msgstr "ಮೆಮೊರಿ"
 
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:567
+#: ../src/libvirt-machine-properties.vala:478
 #, c-format
-msgid "Restoring %s from disk"
-msgstr "ಡಿಸ್ಕಿನಿಂದ %s ಅನ್ನು ಮರಳಿಸ್ಥಾಪಿಸಲಾಗುತ್ತದೆ"
+msgid "Restart of '%s' is taking too long. Force it to shutdown?"
+msgstr "'%s' ಅನ್ನು ಮರಳಿ ಆರಂಭಿಸುದಕ್ಕೆ ಬಹಳ ಸಮಯ ತೆಗೆದುಕೊಳ್ಳುತ್ತಿದೆ?"
 
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:570
-#, c-format
-msgid "Starting %s"
-msgstr "%s ಅನ್ನು ಆರಂಭಿಸಲಾಗುತ್ತಿದೆ"
-
-#: ../src/libvirt-machine.vala:600
+#: ../src/libvirt-machine-properties.vala:491
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr ""
 "ಬದಲಾವಣೆಗಳು ಕಾರ್ಯರೂಪಕ್ಕೆ ಬರಲು '%s' ಅನ್ನು ಮರಳಿ ಆರಂಭಿಸಬೇಕಾಗುತ್ತದೆ. ಮರಳಿ ಆರಂಭಿಸಲು "
 "ಪ್ರಯತ್ನಿಸಬೇಕೆ?"
 
-#: ../src/libvirt-machine.vala:615
+#: ../src/libvirt-machine-properties.vala:506
 msgid "Maximum Disk Size"
 msgstr "ಗರಿಷ್ಟ ಡಿಸ್ಕಿನ ಗಾತ್ರ"
 
+#: ../src/libvirt-machine.vala:426
+msgid "When you force shutdown, the box may lose data."
+msgstr "ಒತ್ತಾಯಪೂರ್ವಕವಾಗಿ ಮುಚ್ಚಿದಲ್ಲಿ, ಬಾಕ್ಸಿನ ದತ್ತಾಂಶವನ್ನು ಕಳೆದುಕೊಳ್ಳಬಹುದು."
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:98
+#: ../src/libvirt-machine.vala:511
+#, c-format
+msgid "Restoring %s from disk"
+msgstr "ಡಿಸ್ಕಿನಿಂದ %s ಅನ್ನು ಮರಳಿಸ್ಥಾಪಿಸಲಾಗುತ್ತದೆ"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: ../src/libvirt-machine.vala:514
+#, c-format
+msgid "Starting %s"
+msgstr "%s ಅನ್ನು ಆರಂಭಿಸಲಾಗುತ್ತಿದೆ"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: ../src/machine.vala:132
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s ನೊಂದಿಗೆ ಸಂಪರ್ಕಸಾಧಿಸಲಾಗುತ್ತಿದೆ"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:152
 #, c-format
 msgid "Enter password for %s"
 msgstr "%s ಗಾಗಿ ಗುಪ್ತಪದವನ್ನು ನಮೂದಿಸಿ"
 
+#: ../src/machine.vala:235
+#| msgid "Installing..."
+msgid "Saving..."
+msgstr "ಉಳಿಸಲಾಗುತ್ತಿದೆ..."
+
 #. 3rd row
-#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
-#: ../src/unattended-installer.vala:262
+#: ../src/machine.vala:570 ../src/unattended-installer.vala:290
+#: ../src/unattended-installer.vala:404
 msgid "Password"
 msgstr "ಗುಪ್ತಪದ"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "ಆವೃತ್ತಿಯ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "ಪೂರ್ಣ ತೆರೆಯಲ್ಲಿ ತೆರೆ"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "ವರ್ಚುವಲೈಸೇಶನ್ ಸಾಮರ್ಥ್ಯಗಳನ್ನು ಪರಿಶೀಲಿಸು"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "ಚೌಕವನ್ನು UUID ಯೊಂದಿಗೆ ತೆರೆ"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "ಮಧ್ಯವರ್ತಿ ಅಥವ ಅನುಸ್ಥಾಪನಾ ಮಾಧ್ಯಮವನ್ನು ತೋರಿಸಲು URI"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- ದೂರದ ಅಥವ ವರ್ಚುವಲ್ ಗಣಕಗಳನ್ನು ನಿಲುಕಿಸಿಕೊಳ್ಳಲು ಒಂದು ಸರಳವಾದ ಅನ್ವಯ"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "ಅಗತ್ಯಕ್ಕಿಂತಲೂ ಹೆಚ್ಚು ಆಜ್ಞಾಸಾಲಿನ ಆರ್ಗ್ಯೂಮೆಂಟ್‌ಗಳನ್ನು ಸೂಚಿಸಲಾಗಿದೆ.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:74
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• CPU ವು ವರ್ಚುವಲೈಸೇಶನ್‌ಗೆ ಸಮರ್ಥವಾಗಿದೆ: %s\n"
 
-#: ../src/main.vala:75
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM ಮಾಡ್ಯೂಲ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಿದೆ: %s\n"
 
-#: ../src/main.vala:76
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM ಅತಿಥಿಯು ಲಭ್ಯವಿದೆ: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:57
+#, c-format
+msgid "• Boxes storage pool available: %s\n"
+msgstr "• ಬಾಕ್ಸುಗಳ ಶೇಖರಣಾ ಪೂಲ್ ಲಭ್ಯವಿದೆ: %s\n"
+
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux ಸನ್ನಿವೇಶವು ಪೂರ್ವನಿಯೋಜಿತವಾಗಿದೆ: %s\n"
 
-#: ../src/main.vala:82
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "ದೋಷಗಳನ್ನು <%s> ಗೆ ವರದಿ ಮಾಡಿ.\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s ನೆಲೆ ಪುಟ: <%s>.\n"
 
-#: ../src/properties.vala:58
+#: ../src/notificationbar.vala:57
+#, c-format
+#| msgid "Connecting to %s"
+msgid "Not connected to %s"
+msgstr "%s ನೊಂದಿಗೆ ಸಂಪರ್ಕಸಾಧಿಸಲಾಗಿಲ್ಲ"
+
+#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+msgid "Sign In"
+msgstr "ಒಳಗೆ ಪ್ರವೇಶಿಸು"
+
+#: ../src/notificationbar.vala:75
+#, c-format
+msgid "Sign In to %s"
+msgstr "%s ಒಳಗೆ ಪ್ರವೇಶಿಸಿ"
+
+#: ../src/notificationbar.vala:81
+#| msgid "Username"
+msgid "_Username"
+msgstr "ಬಳಕೆದಾರ ಹೆಸರು (_U)"
+
+#: ../src/notificationbar.vala:96
+#| msgid "Password"
+msgid "_Password"
+msgstr "ಗುಪ್ತಪದ (_P)"
+
+#: ../src/ovirt-broker.vala:64
+#| msgid "Connection to '%s' failed"
+msgid "Connection to oVirt broker failed"
+msgstr "oVirt ಯೊಂದಿಗಿನ ಸಂಪರ್ಕವು ವಿಫಲಗೊಂಡಿದೆ"
+
+#. Translators: The %s will be replaced with the name of the VM
+#: ../src/properties.vala:19
+#, c-format
+#| msgid "Properties"
+msgid "%s - Properties"
+msgstr "%s - ಗುಣಗಳು"
+
+#: ../src/properties.vala:69
 msgid "Login"
 msgstr "ಪ್ರವೇಶ"
 
-#: ../src/properties.vala:66
+#: ../src/properties.vala:77
 msgid "Display"
 msgstr "ಪ್ರದರ್ಶಕ"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:81
 msgid "Devices"
 msgstr "ಸಾಧನಗಳು"
 
-#: ../src/properties.vala:90
+#: ../src/properties.vala:94
 msgid "Some changes may take effect only after reboot"
 msgstr "ಕೆಲವು ಬದಲಾವಣೆಗಳು ಮರಳಿ ಬೂಟ್ ಮಾಡಿದ ನಂತರ ಕಾರ್ಯ ರೂಪಕ್ಕೆ ಬರುತ್ತವೆ"
 
-#: ../src/properties.vala:231
+#: ../src/properties.vala:270
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:238
+#: ../src/properties.vala:277
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:245
+#: ../src/properties.vala:284
 msgid "Net:"
 msgstr "ನೆಟ್:"
 
-#: ../src/spice-display.vala:189
+#: ../src/properties.vala:291
+msgid "Force Shutdown"
+msgstr "ಬಲವಂತವಾಗಿ ಮುಚ್ಚು"
+
+#: ../src/selectionbar.vala:72
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "'%s' ಅನ್ನು ವಿರಮಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ"
+
+#: ../src/spice-display.vala:50
+#, c-format
+msgid "Automatic redirection of USB device '%s' for '%s' failed"
+msgstr ""
+"USB ಸಾಧನ '%s' ಅನ್ನು '%s' ಗಾಗಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುನಿರ್ದೇಶನಗೊಳಿಸುವಲ್ಲಿ "
+"ವಿಫಲಗೊಂಡಿದೆ"
+
+#: ../src/spice-display.vala:58 ../src/spice-display.vala:322
+#, c-format
+#| msgid "Redirect new USB devices"
+msgid "Redirection of USB device '%s' for '%s' failed"
+msgstr "USB ಸಾಧನ '%s' ಅನ್ನು '%s' ಗಾಗಿ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಮರುನಿರ್ದೇಶನಗೊಳಿಸುವಿಕೆ"
+
+#: ../src/spice-display.vala:273
 msgid "Share clipboard"
 msgstr "ಕ್ಲಿಪ್‌ಬೋರ್ಡನ್ನು ಹಂಚಿಕೊ"
 
-#: ../src/spice-display.vala:195
+#: ../src/spice-display.vala:279
 msgid "Resize guest"
 msgstr "ಅತಿಥಿಯ ಗಾತ್ರವನ್ನು ಬದಲಾಯಿಸು"
 
-#: ../src/spice-display.vala:203
-msgid "USB redirection"
-msgstr "USB ಮರುನಿರ್ದೇಶನ"
+#: ../src/spice-display.vala:288
+msgid "Redirect new USB devices"
+msgstr "ಹೊಸ USB ಸಾಧನಗಳನ್ನು ಮರುನಿರ್ದೇಶನಗೊಳಿಸು"
 
-#: ../src/topbar.vala:88 ../src/wizard.vala:603
-msgid "_Cancel"
-msgstr "ರದ್ದುಮಾಡು (_C)"
+#: ../src/spice-display.vala:363 ../src/wizard.vala:251
+msgid "Invalid URI"
+msgstr "ಅಮಾನ್ಯವಾದ URI"
+
+#: ../src/spice-display.vala:373
+msgid "The port must be specified once"
+msgstr "ಸಂಪರ್ಕಸ್ಥಾನವನ್ನು ಒಮ್ಮೆ ಸೂಚಿಸಬೇಕಾಗುತ್ತದೆ"
+
+#: ../src/spice-display.vala:382
+msgid "Missing port in Spice URI"
+msgstr "Spice URI ನಲ್ಲಿ ಸಂಪರ್ಕಸ್ಥಾನವು ಕಾಣಿಸುತ್ತಿಲ್ಲ"
+
+#: ../src/topbar.vala:99
+msgid "Select All"
+msgstr "ಎಲ್ಲವನ್ನೂ ಆರಿಸು"
+
+#: ../src/topbar.vala:100
+msgid "Select Running"
+msgstr "ಚಾಲನೆಯಲ್ಲಿರುವುದನ್ನು ಆರಿಸು"
+
+#: ../src/topbar.vala:101
+msgid "Select None"
+msgstr "ಯಾವುದನ್ನೂ ಆರಿಸಬೇಡ"
+
+#: ../src/topbar.vala:111
+msgid "D_one"
+msgstr "ಆಯಿತು (_o)"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:123
+#: ../src/topbar.vala:149
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "ಆರಿಸಲಾದ %d"
 msgstr[1] "ಆರಿಸಲಾದ %d"
 
-#: ../src/topbar.vala:125
-msgid "Click on items to select them"
-msgstr "ಅಂಶಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಅವುಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ"
+#: ../src/topbar.vala:151
+msgid "(Click on items to select them)"
+msgstr "(ಅಂಶಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಲು ಅವುಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ)"
 
-#: ../src/unattended-installer.vala:43
+#: ../src/unattended-installer.vala:48
 msgid "no password"
 msgstr "ಯಾವುದೆ ಗುಪ್ತಪದ"
 
-#: ../src/unattended-installer.vala:191 ../src/unattended-installer.vala:252
+#: ../src/unattended-installer.vala:289 ../src/unattended-installer.vala:390
 msgid "Username"
 msgstr "ಬಳಕೆದಾರಹೆಸರು"
 
-#: ../src/unattended-installer.vala:217
+#: ../src/unattended-installer.vala:346
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -345,23 +537,23 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:233
+#: ../src/unattended-installer.vala:364
 msgid "Express Install"
 msgstr "ಕ್ಷಿಪ್ರ ಅನುಸ್ಥಾಪನೆ"
 
-#: ../src/unattended-installer.vala:272
+#: ../src/unattended-installer.vala:415
 msgid "_Add Password"
 msgstr "ಗುಪ್ತಪದವನ್ನು ಸೇರಿಸು (_A)"
 
-#: ../src/util.vala:285
-msgid "yes"
-msgstr "ಹೌದು"
+#: ../src/unattended-installer.vala:439
+msgid "Product Key"
+msgstr "ಉತ್ಪನ್ನ ಕೀಲಿ"
 
-#: ../src/util.vala:285
-msgid "no"
-msgstr "ಇಲ್ಲ"
+#: ../src/unattended-installer.vala:653
+msgid "Downloading device drivers..."
+msgstr "ಸಾಧನದ ಚಾಲಕಗಳನ್ನು ಇಳಿಸಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ..."
 
-#: ../src/util-app.vala:218
+#: ../src/util-app.vala:231
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -371,59 +563,98 @@ msgstr ""
 "ಪ್ರಯತ್ನಿಸಿ:\n"
 "%s"
 
-#: ../src/util-app.vala:222
+#: ../src/util-app.vala:235
 msgid "SELinux not installed?"
 msgstr "SELinux ಅನ್ನು ಅನುಸ್ಥಾಪಿಸಲಾಗಿದೆಯೆ?"
 
+#: ../src/util-app.vala:316
+msgid ""
+"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
+"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
+msgstr ""
+"libvirt ನಿಂದ 'gnome-boxes' ಶೇಖರಣಾ ಪೂಲ್ ಮಾಹಿತಿಯನ್ನು ಪಡೆಯಲಾಗಿಲ್ಲ. 'virsh -c "
+"qemu:///session pool-dumpxml gnome-boxes' ಎನ್ನುವುದು ಕೆಲಸ ಮಾಡುತ್ತಿದೆ ಎಂದು "
+"ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
+
+#: ../src/util-app.vala:321
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
+"not exist"
+msgstr ""
+"libvirt, %s ಅನ್ನು GNOME Boxes ನಲ್ಲಿನ ಶೇಖರಣಾ  ಪೂಲ್ ಎಂದು ಗುರುತಿಸುತ್ತದೆ ಆದರೆ ಈ "
+"ಕೋಶವು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ"
+
+#: ../src/util-app.vala:325
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
+msgstr ""
+"libvirt, %s ಅನ್ನು GNOME Boxes ನಲ್ಲಿನ ಶೇಖರಣಾ  ಪೂಲ್ ಎಂದು ಗುರುತಿಸುತ್ತದೆ ಆದರೆ ಇದು "
+"ಒಂದು ಕೋಶವಾಗಿಲ್ಲ"
+
+#: ../src/util-app.vala:329
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
+"readable/writable"
+msgstr ""
+"libvirt, %s ಅನ್ನು GNOME Boxes ನಲ್ಲಿನ ಶೇಖರಣಾ  ಪೂಲ್ ಎಂದು ಗುರುತಿಸುತ್ತದೆ ಆದರೆ "
+"ಅದನ್ನು "
+"ಬಳಕೆದಾರರು ಓದಲು/ಬರೆಯಲು ಸಾಧ್ಯವಿರುವುದಿಲ್ಲ"
+
+#: ../src/util.vala:322
+msgid "yes"
+msgstr "ಹೌದು"
+
+#: ../src/util.vala:322
+msgid "no"
+msgstr "ಇಲ್ಲ"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:308
+#: ../src/vm-configurator.vala:443
 msgid "Incapable host system"
 msgstr "ಅಸಮರ್ಥವಾದ ಆತಿಥೇಯ ವ್ಯವಸ್ಥೆ"
 
-#: ../src/vm-creator.vala:45
+#: ../src/vm-creator.vala:43
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "ಅನುಸ್ಥಾಪನೆಯನ್ನು ಸಿದ್ಧಗೊಳಿಸುವಾಗ ಒಂದು ದೋಷವು ಸಂಭವಿಸಿದೆ. ಕ್ಷಿಪ್ರ ಅನುಸ್ಥಾಪನೆಯನ್ನು "
 "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ."
 
-#: ../src/vm-creator.vala:136
+#: ../src/vm-creator.vala:162
 msgid "Installing..."
 msgstr "ಅನುಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:140 ../src/wizard-source.vala:234
+#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "ಲೈವ್"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:222
+#: ../src/vm-creator.vala:251
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% ಅನುಸ್ಥಾಪಿಸಲಾಗಿದೆ"
 msgstr[1] "%d%% ಅನುಸ್ಥಾಪಿಸಲಾಗಿದೆ"
 
-#: ../src/vnc-display.vala:136
+#: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "ಓದಲು-ಮಾತ್ರ"
 
-#. Microsoft Windows product key
-#: ../src/winxp-installer.vala:104
-msgid "Product Key"
-msgstr "ಉತ್ಪನ್ನ ಕೀಲಿ"
-
-#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
+#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
 msgid "Enter URL"
 msgstr "URL ಅನ್ನು ನಮೂದಿಸಿ"
 
-#: ../src/wizard-source.vala:122
+#: ../src/wizard-source.vala:126
 msgid "Select a file"
 msgstr "ಒಂದು ಕಡತವನ್ನು ಆರಿಸಿ"
 
-#: ../src/wizard-source.vala:154
+#: ../src/wizard-source.vala:163
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -433,103 +664,104 @@ msgstr ""
 "\n"
 "ಈ ಖಾತೆಗಾಗಿ ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಬಾಕ್ಸುಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ."
 
-#: ../src/wizard-source.vala:243
+#: ../src/wizard-source.vala:253
 msgid "32-bit x86 system"
 msgstr "32-bit x86 ವ್ಯವಸ್ಥೆ"
 
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:254
 msgid "64-bit x86 system"
 msgstr "64-bit x86 ವ್ಯವಸ್ಥೆ"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:253
+#: ../src/wizard-source.vala:263
 #, c-format
 msgid " from %s"
 msgstr " ಇಂದ: %s"
 
-#: ../src/wizard-source.vala:293
-msgid "Select a device or ISO file"
-msgstr "ಒಂದು ಸಾಧನ ಅಥವ ISO aನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
-
-#: ../src/wizard.vala:88
+#: ../src/wizard.vala:100
 msgid "Box creation failed"
-msgstr "ಚೌಕದ ರಚನೆಯು ವಿಫಲಗೊಂಡಿದೆ"
+msgstr "ಬಾಕ್ಸ ರಚಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ"
 
-#: ../src/wizard.vala:114 ../src/wizard.vala:617
-msgid "C_ontinue"
-msgstr "ಮುಂದುವರೆ (_o)"
-
-#: ../src/wizard.vala:114
-msgid "C_reate"
-msgstr "ರಚಿಸು (_r)"
-
-#: ../src/wizard.vala:135
+#: ../src/wizard.vala:148
 msgid "Please enter desktop or collection URI"
 msgstr "ಗಣಕತೆರೆ ಅಥವ ಸಂಗ್ರಹ URI ಅನ್ನು ನಮೂದಿಸಿ"
 
-#: ../src/wizard.vala:141
+#: ../src/wizard.vala:154
 msgid "Will add boxes for all systems available from this account."
 msgstr "ಈ ಖಾತೆಗಾಗಿ ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಬಾಕ್ಸುಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ."
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:157
 msgid "Will add a single box."
-msgstr "ಒಂದು ಚೌಕವನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ."
+msgstr "ಒಂದು ಬಾಕ್ಸನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ."
 
-#: ../src/wizard.vala:150
+#: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "ಗಣಕತೆರೆ ನಿಲುಕಣೆ"
 
-#: ../src/wizard.vala:241
-msgid "Invalid URI"
-msgstr "ಅಮಾನ್ಯವಾದ URI"
-
-#: ../src/wizard.vala:252
+#: ../src/wizard.vala:265
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "ಬೆಂಬಲವಿಲ್ಲದ ಪ್ರೊಟೊಕಾಲ್ '%s'"
 
-#: ../src/wizard.vala:347
+#: ../src/wizard.vala:271
+#| msgid "Analyzing installer media."
+msgid "Unknown installer media"
+msgstr "ಅಜ್ಞಾತ ಅನುಸ್ಥಾಪನಾ ಮಾಧ್ಯಮ"
+
+#: ../src/wizard.vala:272
+#| msgid "Installing..."
+msgid "Analyzing..."
+msgstr "ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ..."
+
+#: ../src/wizard.vala:304
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"ಅನುಸ್ಥಾಪನಾ ಮಾಧ್ಯಮವನ್ನು ವಿಶ್ಲೇಷಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ. ಮಾಧ್ಯಮವು ಹಾಳಾಗಿದೆಯೆ ಅಥವ "
+"ಅಪೂರ್ಣಗೊಂಡಿದೆಯೆ?"
+
+#: ../src/wizard.vala:376
 msgid "Box setup failed"
 msgstr "ಬಾಕ್ಸಿನ ಸಿದ್ಧತೆಯು ವಿಫಲವಾಗಿದೆ"
 
-#: ../src/wizard.vala:361
-msgid "Will create a new box with the following properties:"
-msgstr "ಈ ಕೆಳಗಿನ ಗುಣಗಳನ್ನು ಹೊಂದಿದ ಹೊಸ ಬಾಕ್ಸನ್ನು ರಚಿಸಲಾಗುತ್ತದೆ:"
+#: ../src/wizard.vala:390
+#| msgid "Will create a new box with the following properties:"
+msgid "Boxes will create a new box with the following properties:"
+msgstr "ಈ ಕೆಳಗಿನ ಗುಣಗಳನ್ನು ಹೊಂದಿದ ಹೊಸ ಬಾಕ್ಸನ್ನು Boxes ರಚಿಸುತ್ತದೆ:"
 
-#: ../src/wizard.vala:366
+#: ../src/wizard.vala:395
 msgid "Type"
 msgstr "ಬಗೆ"
 
-#: ../src/wizard.vala:369
+#: ../src/wizard.vala:398
 msgid "Host"
 msgstr "ಆತಿಥೇಯ"
 
-#: ../src/wizard.vala:377 ../src/wizard.vala:383
+#: ../src/wizard.vala:409 ../src/wizard.vala:420
 msgid "Port"
 msgstr "ಸಂಪರ್ಕಸ್ಥಾನ"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:411
 msgid "TLS Port"
 msgstr "TLS ಸಂಪರ್ಕ ಸ್ಥಾನ"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:425
 msgid "Will add boxes for all systems available from this account:"
 msgstr "ಈ ಖಾತೆಗಾಗಿ ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ವ್ಯವಸ್ಥೆಗಳಿಗೆ ಬಾಕ್ಸುಗಳನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ:"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:445
 msgid "Disk"
 msgstr "ಡಿಸ್ಕ್‍"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:445
 #, c-format
 msgid "%s maximum"
 msgstr "%s ಗರಿಷ್ಟ"
 
-#: ../src/wizard.vala:494
+#: ../src/wizard.vala:535
 msgid "Introduction"
 msgstr "ಪರಿಚಯ"
 
-#: ../src/wizard.vala:498
+#: ../src/wizard.vala:539
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -543,16 +775,16 @@ msgstr ""
 "ನೀವು ಈಗಿರುವ ಗಣಕವನ್ನು <b><i>ಜಾಲಬಂಧದ ಮುಖಾಂತರ</i></b> ಅಥವ ನಿಮ್ಮಿಂದಲೇ ಸ್ಥಳೀಯವಾಗಿ "
 "ಚಲಾಯಿತಗೊಳ್ಳುವ ಒಂದು <b><i>ವರ್ಚುವಲ್ ಗಣಕ</i></b>ದೊಂದಿಗೆ  ಸಂಪರ್ಕ ಜೋಡಿಸಬಹುದು."
 
-#: ../src/wizard.vala:510
+#: ../src/wizard.vala:551
 msgid "Source Selection"
 msgstr "ಆಕರದ ಆಯ್ಕೆ"
 
-#: ../src/wizard.vala:511
+#: ../src/wizard.vala:552
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "ಅನುಸ್ಥಾಪನಾದ ವ್ಯವಸ್ಥೆಯ ಮಾಧ್ಯಮವನ್ನು ಸೇರಿಸಿ ಅಥವ ಈ ಕೆಳಗೆ ಒಂದು ಆಕರವನ್ನು ಆಯ್ಕೆ ಮಾಡಿ"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:562
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -562,49 +794,66 @@ msgstr ""
 "ಉತ್ಪನ್ನಗಳನ್ನು ಕೇವಲ ಗುರುತಿಸಲಷ್ಟೇ ಬಳಸಲಾಗುತ್ತದೆ ಮತ್ತು ಅವುಗಳು ಆಯಾಯ ಮಾಲಿಕರ "
 "ಸ್ವತ್ತಾಗಿರುತ್ತದೆ."
 
-#: ../src/wizard.vala:534
+#: ../src/wizard.vala:575
 msgid "Preparation"
 msgstr "ತಯಾರಿ"
 
-#: ../src/wizard.vala:535
+#: ../src/wizard.vala:576
 msgid "Preparing to create new box"
 msgstr "ಒಂದು ಹೊಸ ಬಾಕ್ಸನ್ನು ರಚಿಸಲು ಸಿದ್ಧಗೊಳಿಸಲಾಗುತ್ತಿದೆ"
 
-#: ../src/wizard.vala:554
-msgid "Analyzing installer media."
-msgstr "ಅನುಸ್ಥಾಪನಾ ಮಾಧ್ಯಮವನ್ನು ವಿಶ್ಲೇಷಿಸಲಾಗುತ್ತಿದೆ."
-
-#: ../src/wizard.vala:565
+#: ../src/wizard.vala:613
 msgid "Setup"
 msgstr "ಸಿದ್ಧತೆ"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:620
 msgid "Review"
 msgstr "ಅವಲೋಕನ"
 
-#: ../src/wizard.vala:583
+#: ../src/wizard.vala:631
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
 "these extensions are probably available on your system and you may need to "
 "enable them in your system's BIOS setup."
 msgstr ""
-"ವರ್ಚುವಲೈಸೇಶನ್ ವಿಸ್ತರಣೆಗಳು ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ ಪ್ರಸಕ್ತ ಲಭ್ಯವಿಲ್ಲ. ಈ ಬಾಕ್ಸ್ "
-"ಅತ್ಯಂತ ನಿಧಾನಗತಿಯಲ್ಲಿ ನಡೆಯುವ ಸಾಧ್ಯತೆ ಇದೆ. ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯು ಇತ್ತೀಚಿನದ್ದಾಗಿದ್ದರೆ "
-"(2008 ರ ನಂತರ ತಯಾರಿಸಲ್ಪಟ್ಟಿದ್ದರೆ), ಈ ವಿಸ್ತರಣೆಗಳನ್ನು ಬಹುಷಃ ನಿಮ್ಮ "
-"ವ್ಯವಸ್ಥೆಯಲ್ಲಿಯೆ ಲಭ್ಯವಿರಬಹುದು ಮತ್ತು ಅವುಗಳನ್ನು ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯ BIOS "
-"ಸಿದ್ಧತೆಯಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದಾಗಿರುತ್ತದೆ."
+"ವರ್ಚುವಲೈಸೇಶನ್ ವಿಸ್ತರಣೆಗಳು ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯಲ್ಲಿ ಪ್ರಸಕ್ತ ಲಭ್ಯವಿಲ್ಲ. ಈ ಬಾಕ್ಸು "
+"ಅತ್ಯಂತ "
+"ನಿಧಾನಗತಿಯಲ್ಲಿ ನಡೆಯುವ ಸಾಧ್ಯತೆ ಇದೆ. ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯು ಇತ್ತೀಚಿನದ್ದಾಗಿದ್ದರೆ (2008 "
+"ರ ನಂತರ "
+"ತಯಾರಿಸಲ್ಪಟ್ಟಿದ್ದರೆ), ಈ ವಿಸ್ತರಣೆಗಳನ್ನು ಬಹುಷಃ ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯಲ್ಲಿಯೆ "
+"ಲಭ್ಯವಿರಬಹುದು ಮತ್ತು "
+"ಅವುಗಳನ್ನು ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಯ BIOS ಸಿದ್ಧತೆಯಲ್ಲಿ ಸಕ್ರಿಯಗೊಳಿಸಬಹುದಾಗಿರುತ್ತದೆ."
 
-#: ../src/wizard.vala:592
+#: ../src/wizard.vala:646
 msgid "Create a Box"
-msgstr "ಒಂದು ಚೌಕವನ್ನು ರಚಿಸು"
+msgstr "ಒಂದು ಬಾಕ್ಸನ್ನು ರಚಿಸು"
 
-#: ../src/wizard.vala:611
+#: ../src/wizard.vala:649
+msgid "_Cancel"
+msgstr "ರದ್ದುಮಾಡು (_C)"
+
+#: ../src/wizard.vala:658
 msgid "_Back"
 msgstr "ಹಿಂದಕ್ಕೆ (_B)"
 
-#: ../src/wizard.vala:703
+#: ../src/wizard.vala:665
+msgid "C_ontinue"
+msgstr "ಮುಂದುವರೆ (_o)"
+
+#: ../src/wizard.vala:673
+msgid "C_reate"
+msgstr "ರಚಿಸು (_r)"
+
+#: ../src/wizard.vala:758
 msgid "C_ustomize..."
 msgstr "ಅಗತ್ಯಾನುಗುಣಗೊಳಿಸು (_u)..."
 
+#~ msgid "Fullscreen"
+#~ msgstr "ಪೂರ್ಣತೆರೆ"
 
+#~ msgid "_Done"
+#~ msgstr "ಆಯಿತು (_D)"
+
+#~ msgid "USB redirection"
+#~ msgstr "USB ಮರುನಿರ್ದೇಶನ"
