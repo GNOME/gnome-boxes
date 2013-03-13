@@ -1,15 +1,15 @@
 # Estonian translation for gnome-boxes.
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Mattias Põldaru <mahfiaz@gmail.com>, 2012.
+# Mattias Põldaru <mahfiaz@gmail.com>, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-19 13:43+0000\n"
-"PO-Revision-Date: 2012-12-19 15:48+0300\n"
+"POT-Creation-Date: 2013-03-12 09:53+0000\n"
+"PO-Revision-Date: 2013-03-12 22:14+0300\n"
 "Last-Translator: Mattias Põldaru <mahfiaz@gmail.com>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -76,17 +76,39 @@ msgstr "Lihtne GNOME 3 rakendus kaug- või virtuaalsüsteemidele ligipääsuks"
 msgid "New"
 msgstr "Uus"
 
-msgid "Properties"
-msgstr "Omadused"
-
-msgid "Fullscreen"
-msgstr "Täisekraan"
+msgid "Help"
+msgstr "Abi"
 
 msgid "About Boxes"
 msgstr "Boxes'ist lähemalt"
 
 msgid "Quit"
 msgstr "Lõpeta"
+
+msgid "Display version number"
+msgstr "Versiooninumbri kuvamine"
+
+msgid "Open in full screen"
+msgstr "Avatakse täisekraanil"
+
+msgid "Check virtualization capabilities"
+msgstr "Virtualiseerimise võimekuse kontrollimine"
+
+msgid "Open box with UUID"
+msgstr "Ava masin UUID-ga"
+
+msgid "Search term"
+msgstr "Otsingutermin"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+msgid "URI to display, broker or installer media"
+msgstr "Kuvamise URI, vahendaja või paigaldusmeedia"
+
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- Lihtne rakendus ligipääsuks kaug- või virtuaalmasinatele"
+
+msgid "Too many command line arguments specified.\n"
+msgstr "Määratud on liiga palju käsurea argumente.\n"
 
 #, c-format
 msgid "Box '%s' has been deleted"
@@ -99,6 +121,17 @@ msgstr[0] "%u masin kustutati"
 msgstr[1] "%u masinat kustutati"
 
 #, c-format
+msgid ""
+"'%s' could not be restored from disk\n"
+"Try without saved state?"
+msgstr ""
+"Masinat '%s' pole võimalik kettalt taastada\n"
+"Kas proovida ilma salvestatud olekuta?"
+
+msgid "Restart"
+msgstr "Taaskäivita"
+
+#, c-format
 msgid "Connection to '%s' failed"
 msgstr "Ühendus '%s'-ga nurjus"
 
@@ -107,6 +140,12 @@ msgstr "Uued ja hiljutised"
 
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(vabastamiseks vajuta Ctrl+Alt)"
+
+msgid "No boxes found"
+msgstr "Ühtegi masinat ei leitud"
+
+msgid "Create one using the button on the top left."
+msgstr "Loo uus masin kasutades nuppu üleval vasakul."
 
 msgid "System"
 msgstr "Süsteem"
@@ -151,6 +190,14 @@ msgstr "Eemalda"
 msgid "Select a device or ISO file"
 msgstr "Seadme või ISO faili valimine"
 
+#, c-format
+msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+msgstr "CD/DVD '%s' sisestamine masinasse '%s' nurjus"
+
+#, c-format
+msgid "Removal of CD/DVD from '%s' failed"
+msgstr "CD/DVD eemaldamine masinast '%s' nurjus"
+
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
@@ -163,21 +210,8 @@ msgstr "USB-seadmete tugi"
 msgid "Smartcard support"
 msgstr "Smartcardi tugi (ID-kaart)"
 
-msgid "When you force shutdown, the box may lose data."
-msgstr "Kui sa sunnid jõuga väljalülitamise, võib masin kaotada andmeid."
-
 msgid "Memory"
 msgstr "Mälu"
-
-#. Translators: The %s will be expanded with the name of the vm
-#, c-format
-msgid "Restoring %s from disk"
-msgstr "%s taastamine kettalt"
-
-#. Translators: The %s will be expanded with the name of the vm
-#, c-format
-msgid "Starting %s"
-msgstr "%s käivitamine"
 
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
@@ -189,6 +223,19 @@ msgstr "Muudatused nõuavad '%s' taaskäivitust. Kas taaskäivitada?"
 
 msgid "Maximum Disk Size"
 msgstr "Maksimaalne ketta suurus"
+
+msgid "When you force shutdown, the box may lose data."
+msgstr "Kui sa sunnid jõuga väljalülitamise, võib masin kaotada andmeid."
+
+#. Translators: The %s will be expanded with the name of the vm
+#, c-format
+msgid "Restoring %s from disk"
+msgstr "%s taastamine kettalt"
+
+#. Translators: The %s will be expanded with the name of the vm
+#, c-format
+msgid "Starting %s"
+msgstr "%s käivitamine"
 
 #. Translators: The %s will be expanded with the name of the vm
 #, c-format
@@ -206,29 +253,6 @@ msgstr "Salvestamine..."
 #. 3rd row
 msgid "Password"
 msgstr "Parool"
-
-msgid "Display version number"
-msgstr "Versiooninumbri kuvamine"
-
-msgid "Open in full screen"
-msgstr "Avatakse täisekraanil"
-
-msgid "Check virtualization capabilities"
-msgstr "Virtualiseerimise võimekuse kontrollimine"
-
-msgid "Open box with UUID"
-msgstr "Ava masin UUID-ga"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-msgid "URI to display, broker or installer media"
-msgstr "Kuvamise URI, vahendaja või paigaldusmeedia"
-
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- Lihtne rakendus ligipääsuks kaug- või virtuaalmasinatele"
-
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "Määratud on liiga palju käsurea argumente.\n"
 
 #. FIXME: add proper UI & docs
 #, c-format
@@ -259,6 +283,31 @@ msgstr "Vigadest raporteeri aadressil <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s koduleht: <%s>.\n"
 
+#, c-format
+msgid "Not connected to %s"
+msgstr "Pole ühendatud masinaga %s"
+
+msgid "Sign In"
+msgstr "Logi sisse"
+
+#, c-format
+msgid "Sign In to %s"
+msgstr "Logi sisse masinasse %s"
+
+msgid "_Username"
+msgstr "_Kasutajanimi"
+
+msgid "_Password"
+msgstr "_Parool"
+
+msgid "Connection to oVirt broker failed"
+msgstr "Ühendus oVirt broker'iga nurjus"
+
+#. Translators: The %s will be replaced with the name of the VM
+#, c-format
+msgid "%s - Properties"
+msgstr "%s - omadused"
+
 msgid "Login"
 msgstr "Sisselogimine"
 
@@ -287,6 +336,14 @@ msgstr "Jõuga sulgemine"
 msgid "Pausing '%s' failed"
 msgstr "'%s' pausimine nurjus"
 
+#, c-format
+msgid "Automatic redirection of USB device '%s' for '%s' failed"
+msgstr "USB seadme '%s' automaatne edasisuunamine '%s' jaoks nurjus"
+
+#, c-format
+msgid "Redirection of USB device '%s' for '%s' failed"
+msgstr "USB seadme '%s' edasisuunamine '%s' jaoks nurjus"
+
 msgid "Share clipboard"
 msgstr "Lõikepuhvri jagamine"
 
@@ -295,10 +352,6 @@ msgstr "Akna suuruse muutmine"
 
 msgid "Redirect new USB devices"
 msgstr "Uute USB seadmete edasisuunamine"
-
-#, c-format
-msgid "Error connecting %s: %s"
-msgstr "Viga ühendumisel masinaga %s: %s"
 
 msgid "Invalid URI"
 msgstr "Vigane URI"
@@ -318,7 +371,7 @@ msgstr "Käimasoleva valimine"
 msgid "Select None"
 msgstr "Tühista valik"
 
-msgid "_Done"
+msgid "D_one"
 msgstr "_Valmis"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
@@ -356,11 +409,8 @@ msgstr "_Lisa parool"
 msgid "Product Key"
 msgstr "Toote võti"
 
-msgid "yes"
-msgstr "jah"
-
-msgid "no"
-msgstr "ei"
+msgid "Downloading device drivers..."
+msgstr "Seadmete draiverite allalaadimine..."
 
 #, c-format
 msgid ""
@@ -402,6 +452,12 @@ msgstr ""
 "%s on GNOME Boxes'i jaoks tuntud andmetsoonina, kuid see pole kasutajale "
 "loetav või kirjutatav"
 
+msgid "yes"
+msgstr "jah"
+
+msgid "no"
+msgstr "ei"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
 msgid "Incapable host system"
@@ -429,6 +485,32 @@ msgstr[1] "%d%% paigaldatud"
 msgid "Read-only"
 msgstr "Kirjutuskaitsega"
 
+msgid "Enter URL"
+msgstr "Sisesta URL"
+
+msgid "Select a file"
+msgstr "Faili valimine"
+
+msgid ""
+"<b>Desktop Access</b>\n"
+"\n"
+"Will add boxes for all systems available from this account."
+msgstr ""
+"<b>Töölaualigipääs</b>\n"
+"\n"
+"Lisab masinad kõigile selle konto alt ligipääsetavatele süsteemidele."
+
+msgid "32-bit x86 system"
+msgstr "32-biti x86 süsteem"
+
+msgid "64-bit x86 system"
+msgstr "64-biti x86 süsteem"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#, c-format
+msgid " from %s"
+msgstr " - %s"
+
 msgid "Box creation failed"
 msgstr "Masina loomine nurjus"
 
@@ -448,6 +530,12 @@ msgstr "Töölaualigipääs"
 msgid "Unsupported protocol '%s'"
 msgstr "Protokoll '%s' pole toetatud"
 
+msgid "Unknown installer media"
+msgstr "Tundmatu paigaldusmeedium"
+
+msgid "Analyzing..."
+msgstr "Analüüs..."
+
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Paigaldusmeediumi analüüs nurjus. Kas meedium on rikutud või pole täielik?"
@@ -455,8 +543,8 @@ msgstr ""
 msgid "Box setup failed"
 msgstr "Masina häälestamine nurjus"
 
-msgid "Will create a new box with the following properties:"
-msgstr "Luuakse uus masin järgnevate omadustega:"
+msgid "Boxes will create a new box with the following properties:"
+msgstr "Boxes loob uue masina järgnevate omadustega:"
 
 msgid "Type"
 msgstr "Liik"
@@ -517,9 +605,6 @@ msgstr "Ettevalmistus"
 msgid "Preparing to create new box"
 msgstr "Ettevalmistus uue masina loomiseks"
 
-msgid "Analyzing installer media."
-msgstr "Paigaldusmeedia analüüsimine."
-
 msgid "Setup"
 msgstr "Seadistus"
 
@@ -555,28 +640,11 @@ msgstr "_Loo"
 msgid "C_ustomize..."
 msgstr "_Kohanda..."
 
-msgid "Enter URL"
-msgstr "Sisesta URL"
+#~ msgid "Fullscreen"
+#~ msgstr "Täisekraan"
 
-msgid "Select a file"
-msgstr "Faili valimine"
+#~ msgid "Error connecting %s: %s"
+#~ msgstr "Viga ühendumisel masinaga %s: %s"
 
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-"<b>Töölaualigipääs</b>\n"
-"\n"
-"Lisab masinad kõigile selle konto alt ligipääsetavatele süsteemidele."
-
-msgid "32-bit x86 system"
-msgstr "32-biti x86 süsteem"
-
-msgid "64-bit x86 system"
-msgstr "64-biti x86 süsteem"
-
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#, c-format
-msgid " from %s"
-msgstr " - %s"
+#~ msgid "_Done"
+#~ msgstr "_Valmis"
