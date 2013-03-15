@@ -453,7 +453,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     }
 
     private void notify_reboot_required () {
-        if (!machine.is_on ())
+        if (!machine.is_on () && machine.state != Machine.MachineState.SAVED)
             return;
 
         var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
@@ -461,10 +461,24 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     }
 
     private void reboot () {
-        debug ("Rebooting '%s'..", machine.name);
+        if (machine.state == Machine.MachineState.SAVED) {
+            debug ("'%s' is in saved state. Resuming it..", machine.name);
+            machine.start.begin (Machine.ConnectFlags.NONE, (obj, res) => {
+                try {
+                    machine.start.end (res);
+                    reboot ();
+                } catch (GLib.Error error) {
+                    warning ("Failed to start '%s': %s", machine.domain.get_name (), error.message);
+                }
+            });
+
+            return;
+        }
+
         machine.stay_on_display = true;
         ulong state_id = 0;
         Gd.Notification notification = null;
+        debug ("Rebooting '%s'..", machine.name);
 
         state_id = machine.notify["state"].connect (() => {
             if (machine.state == Machine.MachineState.STOPPED ||
