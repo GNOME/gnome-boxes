@@ -430,19 +430,20 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     private void on_ram_changed (Boxes.Property property, uint64 value) {
         // Ensure that we don't end-up changing RAM like a 1000 times a second while user moves the slider..
         property.deferred_change = () => {
+            var ram = (value + Osinfo.KIBIBYTES - 1) / Osinfo.KIBIBYTES;
             try {
                 var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-                config.memory = value;
+                config.memory = ram;
                 if (config.get_class ().find_property ("current-memory") != null)
-                    config.set ("current-memory", value);
+                    config.set ("current-memory", ram);
                 machine.domain.set_config (config);
-                debug ("RAM changed to %llu", value);
+                debug ("RAM changed to %llu KiB", ram);
                 if (machine.is_on ())
                     notify_reboot_required ();
             } catch (GLib.Error error) {
-                warning ("Failed to change RAM of box '%s' to %llu: %s",
+                warning ("Failed to change RAM of box '%s' to %llu KiB: %s",
                          machine.domain.get_name (),
-                         value,
+                         ram,
                          error.message);
             }
 
