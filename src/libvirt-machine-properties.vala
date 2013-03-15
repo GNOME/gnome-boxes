@@ -456,57 +456,59 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         if (!machine.is_on ())
             return;
 
-        Notificationbar.OKFunc reboot = () => {
-            debug ("Rebooting '%s'..", machine.name);
-            machine.stay_on_display = true;
-            ulong state_id = 0;
-            Gd.Notification notification = null;
-
-            state_id = machine.notify["state"].connect (() => {
-                if (machine.state == Machine.MachineState.STOPPED ||
-                    machine.state == Machine.MachineState.FORCE_STOPPED) {
-                    debug ("'%s' stopped.", machine.name);
-                    machine.start.begin (Machine.ConnectFlags.NONE, (obj, res) => {
-                        try {
-                            machine.start.end (res);
-                        } catch (GLib.Error error) {
-                            warning ("Failed to start '%s': %s", machine.domain.get_name (), error.message);
-                        }
-                    });
-                    machine.disconnect (state_id);
-                    if (shutdown_timeout != 0) {
-                        Source.remove (shutdown_timeout);
-                        shutdown_timeout = 0;
-                    }
-                    if (notification != null) {
-                        notification.dismiss ();
-                        notification = null;
-                    }
-                }
-            });
-
-            shutdown_timeout = Timeout.add_seconds (5, () => {
-                // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
-                Notificationbar.OKFunc really_force_shutdown = () => {
-                    notification = null;
-                    machine.force_shutdown (false);
-                };
-
-                var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (machine.name);
-                notification = App.app.notificationbar.display_for_action (message,
-                                                                           Gtk.Stock.YES,
-                                                                           (owned) really_force_shutdown,
-                                                                           null,
-                                                                           -1);
-                shutdown_timeout = 0;
-
-                return false;
-            });
-
-            machine.try_shutdown ();
-        };
         var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
-        App.app.notificationbar.display_for_action (message, Gtk.Stock.YES, (owned) reboot);
+        App.app.notificationbar.display_for_action (message, Gtk.Stock.YES, reboot);
+    }
+
+    private void reboot () {
+        debug ("Rebooting '%s'..", machine.name);
+        machine.stay_on_display = true;
+        ulong state_id = 0;
+        Gd.Notification notification = null;
+
+        state_id = machine.notify["state"].connect (() => {
+            if (machine.state == Machine.MachineState.STOPPED ||
+                machine.state == Machine.MachineState.FORCE_STOPPED) {
+                debug ("'%s' stopped.", machine.name);
+                machine.start.begin (Machine.ConnectFlags.NONE, (obj, res) => {
+                    try {
+                        machine.start.end (res);
+                    } catch (GLib.Error error) {
+                        warning ("Failed to start '%s': %s", machine.domain.get_name (), error.message);
+                    }
+                });
+
+                machine.disconnect (state_id);
+                if (shutdown_timeout != 0) {
+                    Source.remove (shutdown_timeout);
+                    shutdown_timeout = 0;
+                }
+                if (notification != null) {
+                    notification.dismiss ();
+                    notification = null;
+                }
+            }
+        });
+
+        shutdown_timeout = Timeout.add_seconds (5, () => {
+            // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
+            Notificationbar.OKFunc really_force_shutdown = () => {
+                notification = null;
+                machine.force_shutdown (false);
+            };
+
+            var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (machine.name);
+            notification = App.app.notificationbar.display_for_action (message,
+                                                                       Gtk.Stock.YES,
+                                                                       (owned) really_force_shutdown,
+                                                                       null,
+                                                                       -1);
+            shutdown_timeout = 0;
+
+            return false;
+        });
+
+        machine.try_shutdown ();
     }
 
     private SizeProperty? add_storage_property (ref List<Boxes.Property> list) {
