@@ -792,9 +792,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         foreach (var d in os.get_device_drivers ().get_elements ()) {
             var driver = d as DeviceDriver;
 
-            if (!test_func (driver))
-                continue;
-
             var compatibility = compare_cpu_architectures (os_media.architecture, driver.get_architecture ());
             var location = driver.get_location ();
             if (compatibility == CPUArchCompatibility.IDENTICAL)
@@ -809,8 +806,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         // hashtable is destroyed at the end of this function. Also we can't just use drivers.get_values ().copy ()
         // as we need a deep copy of drivers.
         var ret = new GLib.List<DeviceDriver> ();
-        foreach (var driver in drivers.get_values ())
-            ret.prepend (driver);
+        foreach (var driver in drivers.get_values ()) {
+            if (test_func (driver))
+                ret.prepend (driver);
+        }
         ret.reverse ();
 
         return ret;
