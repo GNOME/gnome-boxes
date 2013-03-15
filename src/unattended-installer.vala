@@ -76,6 +76,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private string lang;
     private string hostname;
     private string kbd;
+    private bool driver_signing = true;
 
     ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
@@ -256,6 +257,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             device_path = device_name_to_path (script.path_format, disk_config.get_target_dev ());
             config.set_post_install_drivers_disk (device_path);
         }
+
+        config.set_driver_signing (driver_signing);
     }
 
     public override void setup_post_install_domain_config (Domain domain) {
@@ -751,14 +754,32 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 break;
             }
 
+        var driver_signing_mutable = false;
+        if (signing_required)
+            // See if there is any script that will allow us to disable driver signing checks
+            foreach (var s in this.scripts.get_elements ()) {
+                var script = s as InstallScript;
+
+                if (script.has_config_param_name (INSTALL_CONFIG_PROP_DRIVER_SIGNING)) {
+                    debug ("Script '%s' allows disabling of driver signature checks.", script.id);
+                    driver_signing_mutable = true;
+
+                    break;
+                }
+            }
+
         return get_drivers ((driver) => {
             if (!installable_func (driver))
                 return false;
 
             if (!driver.get_signed () && signing_required) {
-                debug ("Driver from location '%s' is not signed. Ignoring..", driver.get_location ());
+                if (driver_signing_mutable)
+                    driver_signing = false;
+                else {
+                    debug ("Driver from location '%s' is not signed. Ignoring..", driver.get_location ());
 
-                return false;
+                    return false;
+                }
             }
 
             return true;
