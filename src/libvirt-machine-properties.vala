@@ -40,8 +40,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         // This will take effect only after next reboot
         machine.domain.set_config (config);
-        if (machine.is_on ())
-            notify_reboot_required ();
+        notify_reboot_required ();
     }
 
     public void try_enable_smartcard () throws GLib.Error {
@@ -51,8 +50,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         // This will take effect only after next reboot
         machine.domain.set_config (config);
-        if (machine.is_on ())
-            notify_reboot_required ();
+        notify_reboot_required ();
     }
 
     private string collect_logs () {
@@ -439,8 +437,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     config.set ("current-memory", ram);
                 machine.domain.set_config (config);
                 debug ("RAM changed to %llu KiB", ram);
-                if (machine.is_on ())
-                    notify_reboot_required ();
+                notify_reboot_required ();
             } catch (GLib.Error error) {
                 warning ("Failed to change RAM of box '%s' to %llu KiB: %s",
                          machine.domain.get_name (),
@@ -456,6 +453,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     }
 
     private void notify_reboot_required () {
+        if (!machine.is_on ())
+            return;
+
         Notificationbar.OKFunc reboot = () => {
             debug ("Rebooting '%s'..", machine.name);
             machine.stay_on_display = true;
