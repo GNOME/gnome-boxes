@@ -1,0 +1,84 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="create">
+  <info>
+    <revision pkgversion="3.8.0" version="0.1" date="2013-03-17" status="review"/>
+    <link type="guide" xref="index#start"/>
+
+    <credit type="author copyright">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2013</years>
+    </credit>
+
+    <desc>Click <gui style="button">New</gui> to begin creating a box.</desc>
+  </info>
+
+  <title>Create a box</title>
+
+  <p>When <app>Boxes</app> is launched, the collection view opens, displaying
+  your existing boxes. If you haven't yet created a box, the greeting reads
+  <gui>No boxes found.</gui></p>
+
+  <steps>
+    <item><p>Click <gui style="button">New</gui> in the top left corner to launch
+    the box creation wizard.</p></item>
+    <item><p>An introductory message is displayed. Click
+    <gui style="button">Continue</gui>.</p></item>
+  </steps>
+  
+  <p>At the wizard's <gui>Source Selection</gui> screen, choose a source to
+  determine the type of box you want to create.</p>
+
+  <section id="remote">
+
+  <title>Remote boxes</title>
+
+  <p>All remote boxes are accessed using a URL. If the remote machine has
+  already been configured, click <gui style="button">Enter URL</gui> and provide
+  an address using one of the following protocols:</p>
+
+  <list>
+    <item><p>spice://</p></item>
+    <item><p>qemu://</p></item>
+    <item><p>vnc://</p></item>
+  </list>
+
+  <p>The remote box will open in the collection view.</p>
+    
+  </section>
+
+  <section id="virtual">
+
+  <title>Virtual boxes</title>
+    
+  <p>Create a local virtual machine using one of the following:</p>
+  
+  <list>
+    <item><p>select an iso from the list gathered by Tracker.</p></item>
+    <item><p>insert installation media in your CD/DVD drive or USB port.</p></item>
+    <item><p>provide a filename or location for an iso file.</p></item>
+    <item><p>provide a URL to connect locally as you would for a remote
+    connection.</p></item>
+  </list>
+
+  <note style="important">
+    <p>If your iso or installation media supports <gui>Express Installation</gui>,
+    the installation will proceed without further input.</p>
+  </note>
+
+  <p>After making your selection, or providing the necessary information:</p>
+
+  <steps>
+    <item><p>Click <gui style="button">Continue</gui>. The <gui>Review</gui>
+    page opens.</p></item>
+    <item><p>Click <gui style="button">Customize</gui> to adjust memory or
+    disk size.</p></item>
+    <item><p>Click <gui style="button">Create</gui>.</p></item>
+  </steps>
+
+  <p>The collection view returns, and the installation of the box begins.</p>
+
+  </section>
+
+</page>

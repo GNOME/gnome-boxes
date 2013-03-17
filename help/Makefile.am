@@ -6,6 +6,7 @@ HELP_MEDIA = figures/boxes_icon.png
 
 HELP_FILES = index.page			\
 	connect.page			\
+	create.page			\
 	search.page			\
 	supported-protocols.page	\
 	system-requirements.page	\
