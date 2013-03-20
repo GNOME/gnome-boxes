@@ -414,7 +414,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             else
                 property.changed.connect (on_ram_changed);
 
-            this.notify["state"].connect (() => {
+            machine.notify["state"].connect (() => {
                 if (!machine.is_on ())
                     property.reboot_required = false;
             });
@@ -461,7 +461,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             ulong state_id = 0;
             Gd.Notification notification = null;
 
-            state_id = this.notify["state"].connect (() => {
+            state_id = machine.notify["state"].connect (() => {
                 if (machine.state == Machine.MachineState.STOPPED ||
                     machine.state == Machine.MachineState.FORCE_STOPPED) {
                     debug ("'%s' stopped.", machine.name);
@@ -472,7 +472,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                             warning ("Failed to start '%s': %s", machine.domain.get_name (), error.message);
                         }
                     });
-                    this.disconnect (state_id);
+                    machine.disconnect (state_id);
                     if (shutdown_timeout != 0) {
                         Source.remove (shutdown_timeout);
                         shutdown_timeout = 0;
