@@ -1,7 +1,7 @@
 # Korean translation for gnome-boxes.
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012, 2013
 #
 # 번역에 참여하신 분께서는
 # 상단 주석에 다음과 같은 형식으로
@@ -16,13 +16,14 @@
 # "(your given name) (your surname) <e-mail>"
 #
 # NOTE: 가상 머신을 지칭하는 box와 프로그램 명칭인 boxes를 "박스"로 통일합니다.
+#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-21 02:39+0000\n"
-"PO-Revision-Date: 2012-09-21 13:40+0900\n"
+"POT-Creation-Date: 2013-03-19 22:13+0000\n"
+"PO-Revision-Date: 2013-03-19 02:39+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -30,19 +31,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.5\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
+#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
 msgstr "박스"
 
 #: ../data/gnome-boxes.desktop.in.in.h:2
-msgid "Simple virtual machine viewer/manager"
-msgstr "간단한 가상 머신 보기/관리자"
+msgid "Virtual machine viewer/manager"
+msgstr "가상 머신 보기/관리자"
 
 #: ../data/gnome-boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "가상 머신 보고 사용하기"
+
+#: ../data/gnome-boxes.desktop.in.in.h:4
+msgid "virtual machine;vm;"
+msgstr "virtual machine;vm;가상 머신;"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
@@ -58,7 +64,7 @@ msgstr "스크린샷 시간차"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "The interval in seconds between screenshot updates"
-msgstr "스크린샷 업데이트간 초 단위 시간차"
+msgstr "스크린샷 업데이트간 초 단위 시간차입니다"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "Animation duration"
@@ -92,256 +98,433 @@ msgstr "창 최대화"
 msgid "Window maximized state"
 msgstr "창 최대화 상태"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:149
 msgid "translator-credits"
 msgstr "조성호 <darkcircle.0426@gmail.com>"
 
-#: ../src/app.vala:109
+#: ../src/app.vala:150
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "원격 또는 가상 시스템에 접근하기 위한 간단한 GNOME 3 프로그램입니다"
 
-#: ../src/app.vala:121 ../src/topbar.vala:50
+#: ../src/app.vala:167 ../src/topbar.vala:56
 msgid "New"
 msgstr "새로 만들기"
 
-#: ../src/app.vala:124
-msgid "Properties"
-msgstr "속성"
+#: ../src/app.vala:172
+msgid "Help"
+msgstr "도움말"
 
-#: ../src/app.vala:125
-msgid "Fullscreen"
-msgstr "최대 화면"
-
-#: ../src/app.vala:126
-msgid "Force shutdown"
-msgstr "강제로 끄기"
-
-#: ../src/app.vala:129
+#: ../src/app.vala:173
 msgid "About Boxes"
 msgstr "박스 정보"
 
-#: ../src/app.vala:130
+#: ../src/app.vala:174
 msgid "Quit"
-msgstr "나가기"
+msgstr "끝내기"
 
-#: ../src/app.vala:635
+#: ../src/app.vala:226 ../src/main.vala:9
+msgid "Display version number"
+msgstr "버전 번호 표시"
+
+#: ../src/app.vala:228
+msgid "Open in full screen"
+msgstr "최대 화면으로 열기"
+
+#: ../src/app.vala:229 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "가상화 사용 가능여부 확인"
+
+#: ../src/app.vala:230
+msgid "Open box with UUID"
+msgstr "UUID가 부여된 박스 열기"
+
+#: ../src/app.vala:231
+msgid "Search term"
+msgstr "단어 검색"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:233
+msgid "URI to display, broker or installer media"
+msgstr "표시, 중개, 설치할 매체의 URI"
+
+#: ../src/app.vala:244
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- 원격 또는 가상 머신에 접근하기 위한 간단한 프로그램입니다"
+
+#: ../src/app.vala:266
+msgid "Too many command line arguments specified.\n"
+msgstr "너무 많은 명령줄 인자를 지정했습니다.\n"
+
+#: ../src/app.vala:824
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' 박스를 삭제했습니다"
 
-#: ../src/app.vala:636
+#: ../src/app.vala:825
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
-msgstr[0] "%u개의 박스를 삭제했습니다"
+msgstr[0] "박스 %u개를 삭제했습니다"
 
-#: ../src/app.vala:694
+#: ../src/app.vala:915
+#, c-format
+msgid ""
+"'%s' could not be restored from disk\n"
+"Try without saved state?"
+msgstr ""
+"'%s'을(를) 디스크에서 복원할 수 없습니다\n"
+"상태를 저장하지 않고 시도했습니까?"
+
+#: ../src/app.vala:916
+msgid "Restart"
+msgstr "다시 시작"
+
+#: ../src/app.vala:921
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s' 연결에 실패했습니다"
 
-#: ../src/collection-view.vala:39
+#: ../src/collection-view.vala:45
 msgid "New and Recent"
 msgstr "최신"
 
-#: ../src/display-page.vala:164
+#: ../src/display-page.vala:281
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(제어권을 놓으려면 Ctrl+Alt키를 누르십시오)"
 
-#: ../src/installer-media.vala:83 ../src/properties.vala:62
+#: ../src/empty-boxes.vala:30
+msgid "No boxes found"
+msgstr "박스가 없습니다"
+
+#: ../src/empty-boxes.vala:37
+msgid "Create one using the button on the top left."
+msgstr "상단 왼쪽의 단추를 눌러서 만듭니다."
+
+#: ../src/installer-media.vala:88 ../src/properties.vala:73
 msgid "System"
 msgstr "시스템"
 
-#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:52
 msgid "Name"
 msgstr "이름"
 
-#: ../src/libvirt-machine.vala:312
+#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:58
 msgid "Virtualizer"
 msgstr "버추얼라이저"
 
-#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
-#: ../src/wizard.vala:371
+#: ../src/libvirt-machine-properties.vala:125 ../src/ovirt-machine.vala:59
+#: ../src/remote-machine.vala:58 ../src/wizard.vala:401
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine-properties.vala:133
+#: ../src/libvirt-machine-properties.vala:138
+msgid "Troubleshooting log"
+msgstr "문제 해결 로그"
+
+#: ../src/libvirt-machine-properties.vala:142
+msgid "Copy to clipboard"
+msgstr "클립보드에 복사"
+
+#: ../src/libvirt-machine-properties.vala:157
+msgid "Save log"
+msgstr "로그 저장"
+
+#: ../src/libvirt-machine-properties.vala:173
+#, c-format
+msgid "Error saving: %s"
+msgstr "저장 오류: %s"
+
+#: ../src/libvirt-machine-properties.vala:195 ../src/ovirt-machine.vala:63
+#: ../src/remote-machine.vala:62
 msgid "Protocol"
 msgstr "프로토콜"
 
-#: ../src/libvirt-machine.vala:440
-msgid "When you force shutdown, the box may lose data."
-msgstr "강제로 끄면 박스의 데이터를 잃을 것입니다."
+#: ../src/libvirt-machine-properties.vala:232
+#: ../src/libvirt-machine-properties.vala:249
+msgid "Add support to guest"
+msgstr "게스트 지원 추가"
 
-#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
+#: ../src/libvirt-machine-properties.vala:234
+msgid "USB device support"
+msgstr "USB 장치 지원"
+
+#: ../src/libvirt-machine-properties.vala:251
+msgid "Smartcard support"
+msgstr "스마트 카드 지원"
+
+#. Translators: empty is listed as the filename for a non-mounted CD
+#: ../src/libvirt-machine-properties.vala:283
+#: ../src/libvirt-machine-properties.vala:346
+msgid "empty"
+msgstr "비어 있음"
+
+#: ../src/libvirt-machine-properties.vala:289
+#: ../src/libvirt-machine-properties.vala:355
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#. Translators: This is the text on the button to select an iso for the cd
+#: ../src/libvirt-machine-properties.vala:302
+#: ../src/libvirt-machine-properties.vala:345
+msgid "Select"
+msgstr "선택하기"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+#: ../src/libvirt-machine-properties.vala:305
+#: ../src/libvirt-machine-properties.vala:325
+msgid "Remove"
+msgstr "제거"
+
+#: ../src/libvirt-machine-properties.vala:309 ../src/wizard-source.vala:303
+msgid "Select a device or ISO file"
+msgstr "장치 또는 ISO 파일을 선택하십시오"
+
+#. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
+#. Second '%s' is name of the box.
+#: ../src/libvirt-machine-properties.vala:332
+#, c-format
+msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+msgstr "CD/DVD로서 '%s'을(를) '%s'에 넣는데 실패했습니다"
+
+#. Translators: '%s' here is name of the box.
+#: ../src/libvirt-machine-properties.vala:349
+#, c-format
+msgid "Removal of CD/DVD from '%s' failed"
+msgstr "'%s'에서 CD/DVD를 제거하는데 실패했습니다"
+
+#: ../src/libvirt-machine-properties.vala:405 ../src/wizard.vala:437
 msgid "Memory"
 msgstr "메모리"
 
+#: ../src/libvirt-machine-properties.vala:494
+#, c-format
+msgid "Restart of '%s' is taking too long. Force it to shutdown?"
+msgstr "'%s' 다시 시작이 너무 오래걸립니다. 강제로 끄시겠습니까?"
+
+#: ../src/libvirt-machine-properties.vala:507
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "바뀐 내용은 '%s'의 다시 시작을 필요로 합니다. 다시 시작해보시겠습니까?"
+
+#: ../src/libvirt-machine-properties.vala:522
+msgid "Maximum Disk Size"
+msgstr "최대 디스크 크기"
+
+#: ../src/libvirt-machine.vala:426
+msgid "When you force shutdown, the box may lose data."
+msgstr "강제로 끄면 박스의 데이터를 잃게됩니다."
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:567
+#: ../src/libvirt-machine.vala:511
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "디스크에서 %s 복원중"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:570
+#: ../src/libvirt-machine.vala:514
 #, c-format
 msgid "Starting %s"
 msgstr "%s 시작중"
 
-#: ../src/libvirt-machine.vala:600
-#, c-format
-msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr "바뀐 내용은 '%s'의 다시 시작을 필요로 합니다. 다시 시작해보시겠습니까?"
-
-#: ../src/libvirt-machine.vala:615
-msgid "Maximum Disk Size"
-msgstr "최대 디스크 크기"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:98
+#: ../src/machine.vala:132
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s(으)로 연결중"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:152
 #, c-format
 msgid "Enter password for %s"
 msgstr "%s의 암호를 입력하십시오"
 
+#: ../src/machine.vala:235
+msgid "Saving..."
+msgstr "저장중..."
+
 #. 3rd row
-#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
-#: ../src/unattended-installer.vala:262
+#: ../src/machine.vala:570 ../src/unattended-installer.vala:289
+#: ../src/unattended-installer.vala:408
 msgid "Password"
 msgstr "암호"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "버전 번호 표시"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "최대 화면으로 열기"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "가상화 사용 가능여부 확인"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "UUID가 부여된 박스 열기"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "표시, 중개, 설치할 매체의 URI"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- 원격 또는 가상 머신에 접근하기 위한 간단한 프로그램입니다"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "너무 많은 명령줄 인자를 지정했습니다.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:74
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• CPU 가상화 사용 가능: %s\n"
 
-#: ../src/main.vala:75
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM 모듈 불러오기: %s\n"
 
-#: ../src/main.vala:76
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM 게스트 사용 가능: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:57
+#, c-format
+msgid "• Boxes storage pool available: %s\n"
+msgstr "• 저장소 풀이 존재하는 박스: %s\n"
+
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux 컨텍스트 기본으로 설정: %s\n"
 
-#: ../src/main.vala:82
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "<%s>에게 버그를 알려주십시오.\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s의 홈페이지: <%s>.\n"
 
-#: ../src/properties.vala:58
+#: ../src/notificationbar.vala:57
+#, c-format
+msgid "Not connected to %s"
+msgstr "%s(으)로 연결하지 않았습니다"
+
+#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+msgid "Sign In"
+msgstr "접속하기"
+
+#: ../src/notificationbar.vala:75
+#, c-format
+msgid "Sign In to %s"
+msgstr "%s에 접속하기"
+
+#: ../src/notificationbar.vala:81
+msgid "_Username"
+msgstr "사용자 이름(_U)"
+
+#: ../src/notificationbar.vala:96
+msgid "_Password"
+msgstr "암호(_P)"
+
+#: ../src/ovirt-broker.vala:64
+msgid "Connection to oVirt broker failed"
+msgstr "oVirt의 연결이 끊어져 실패했습니다"
+
+#. Translators: The %s will be replaced with the name of the VM
+#: ../src/properties.vala:19
+#, c-format
+msgid "%s - Properties"
+msgstr "%s- 속성"
+
+#: ../src/properties.vala:69
 msgid "Login"
 msgstr "로그인"
 
-#: ../src/properties.vala:66
+#: ../src/properties.vala:77
 msgid "Display"
 msgstr "표시"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:81
 msgid "Devices"
 msgstr "장치"
 
-#: ../src/properties.vala:90
+#: ../src/properties.vala:94
 msgid "Some changes may take effect only after reboot"
 msgstr "일부 바뀐 내용은 다시 시작한 다음에 적용됩니다"
 
-#: ../src/properties.vala:231
+#: ../src/properties.vala:270
 msgid "CPU:"
 msgstr "프로세서:"
 
-#: ../src/properties.vala:238
+#: ../src/properties.vala:277
 msgid "I/O:"
 msgstr "입출력:"
 
-#: ../src/properties.vala:245
+#: ../src/properties.vala:284
 msgid "Net:"
 msgstr "네트워크:"
 
-#: ../src/spice-display.vala:189
+#: ../src/properties.vala:291
+msgid "Force Shutdown"
+msgstr "강제로 끄기"
+
+#: ../src/selectionbar.vala:72
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "'%s'을(를) 일시정지하는데 실패했습니다"
+
+#: ../src/spice-display.vala:50
+#, c-format
+msgid "Automatic redirection of USB device '%s' for '%s' failed"
+msgstr "'%2$s'에 대한 USB 장치 '%1$s'의 자동 위치 재지정에 실패했습니다"
+
+#: ../src/spice-display.vala:58 ../src/spice-display.vala:322
+#, c-format
+msgid "Redirection of USB device '%s' for '%s' failed"
+msgstr "'%2$s'에 대한 USB 장치 '%1$s'의 위치 재지정에 실패했습니다"
+
+#: ../src/spice-display.vala:273
 msgid "Share clipboard"
 msgstr "클립보드 공유"
 
-#: ../src/spice-display.vala:195
+#: ../src/spice-display.vala:279
 msgid "Resize guest"
 msgstr "게스트 크기조절"
 
-#: ../src/spice-display.vala:203
-msgid "USB redirection"
-msgstr "USB 재지정"
+#: ../src/spice-display.vala:288
+msgid "Redirect new USB devices"
+msgstr "새 USB 장치 위치 재지정"
 
-#: ../src/topbar.vala:88 ../src/wizard.vala:603
-msgid "_Cancel"
-msgstr "취소(_C)"
+#: ../src/spice-display.vala:363 ../src/wizard.vala:251
+msgid "Invalid URI"
+msgstr "잘못된 URI"
+
+#: ../src/spice-display.vala:373
+msgid "The port must be specified once"
+msgstr "하나의 포트를 지정해야 합니다"
+
+#: ../src/spice-display.vala:382
+msgid "Missing port in Spice URI"
+msgstr "Spice URI에 포트가 빠졌습니다"
+
+#: ../src/topbar.vala:99
+msgid "Select All"
+msgstr "모두 선택"
+
+#: ../src/topbar.vala:100
+msgid "Select Running"
+msgstr "실행 중인 요소 선택"
+
+#: ../src/topbar.vala:101
+msgid "Select None"
+msgstr "선택하지 않음"
+
+#: ../src/topbar.vala:111
+msgid "D_one"
+msgstr "완료(_O)"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:123
+#: ../src/topbar.vala:149
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d개 선택함"
 
-#: ../src/topbar.vala:125
-msgid "Click on items to select them"
-msgstr "선택하려면 항목을 마우스로 누릅니다"
+#: ../src/topbar.vala:151
+msgid "(Click on items to select them)"
+msgstr "(항목을 선택하려면 누르십시오)"
 
-#: ../src/unattended-installer.vala:43
+#: ../src/unattended-installer.vala:48
 msgid "no password"
 msgstr "암호 없음"
 
-#: ../src/unattended-installer.vala:191 ../src/unattended-installer.vala:252
+#: ../src/unattended-installer.vala:288 ../src/unattended-installer.vala:394
 msgid "Username"
 msgstr "사용자 이름"
 
-#: ../src/unattended-installer.vala:217
+#: ../src/unattended-installer.vala:350
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -351,23 +534,23 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:233
+#: ../src/unattended-installer.vala:368
 msgid "Express Install"
 msgstr "빠른 설치"
 
-#: ../src/unattended-installer.vala:272
+#: ../src/unattended-installer.vala:419
 msgid "_Add Password"
 msgstr "암호 추가(_A)"
 
-#: ../src/util.vala:285
-msgid "yes"
-msgstr "예"
+#: ../src/unattended-installer.vala:443
+msgid "Product Key"
+msgstr "제품 키"
 
-#: ../src/util.vala:285
-msgid "no"
-msgstr "아니요"
+#: ../src/unattended-installer.vala:657
+msgid "Downloading device drivers..."
+msgstr "장치 드라이버 다운로드중..."
 
-#: ../src/util-app.vala:218
+#: ../src/util-app.vala:231
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -376,56 +559,92 @@ msgstr ""
 "SELinux 컨텍스트가 잘못된 것 같습니다. 다음을 실행햐여 복구할 수 있습니다:\n"
 "%s"
 
-#: ../src/util-app.vala:222
+#: ../src/util-app.vala:235
 msgid "SELinux not installed?"
 msgstr "SELinux를 설치하지 않았습니까?"
 
+#: ../src/util-app.vala:316
+msgid ""
+"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
+"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
+msgstr ""
+"libvirt에서 'gnome-boxes' 저장소 풀 정보를 가져올 수 없습니다. 'virsh -c "
+"qemu:///session pool-dumpxml gnome-boxes'가 동작하는지 확인하십시오."
+
+#: ../src/util-app.vala:321
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
+"not exist"
+msgstr ""
+"%s은(는) libvirt에서 그놈 박스 저장소 풀로 알아냈지만 이 디렉터리가 존재하지 "
+"않습니다"
+
+#: ../src/util-app.vala:325
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
+msgstr ""
+"%s은(는) libvirt에서 그놈 박스 저장소 풀로 알아냈지만 디렉터리가 아닙니다"
+
+#: ../src/util-app.vala:329
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
+"readable/writable"
+msgstr ""
+"%s은(는) libvirt에서 그놈 박스 저장소 풀로 알아냈지만 사용자가 읽거나 쓸 수"
+"는 없습니다."
+
+#: ../src/util.vala:322
+msgid "yes"
+msgstr "예"
+
+#: ../src/util.vala:322
+msgid "no"
+msgstr "아니요"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:308
+#: ../src/vm-configurator.vala:444
 msgid "Incapable host system"
 msgstr "사용할 수 없는 호스트 시스템"
 
-#: ../src/vm-creator.vala:45
+#: ../src/vm-creator.vala:43
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "설치 준비중 오류가 발생했습니다. 빠른 설치를 비활성화했습니다."
 
-#: ../src/vm-creator.vala:136
+#: ../src/vm-creator.vala:162
 msgid "Installing..."
 msgstr "설치중..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:140 ../src/wizard-source.vala:234
+#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "라이브"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:222
+#: ../src/vm-creator.vala:251
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% 설치함"
 
-#: ../src/vnc-display.vala:136
+#: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "읽기 전용"
 
-#. Microsoft Windows product key
-#: ../src/winxp-installer.vala:104
-msgid "Product Key"
-msgstr "제품 키"
-
-#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
+#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
 msgid "Enter URL"
 msgstr "URL을 입력하십시오"
 
-#: ../src/wizard-source.vala:122
+#: ../src/wizard-source.vala:126
 msgid "Select a file"
 msgstr "파일 선택하기"
 
-#: ../src/wizard-source.vala:154
+#: ../src/wizard-source.vala:163
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -433,105 +652,102 @@ msgid ""
 msgstr ""
 "<b>데스크톱 접근</b>\n"
 "\n"
-"이 계정에서 사용가능한 모든 시스템에 대해 박스를 추가할 것입니다."
+"이 계정에 존재하는 모든 시스템에 대해 박스를 추가합니다."
 
-#: ../src/wizard-source.vala:243
+#: ../src/wizard-source.vala:253
 msgid "32-bit x86 system"
 msgstr "32비트 x86 시스템"
 
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:254
 msgid "64-bit x86 system"
 msgstr "64비트 x86 시스템"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:253
+#: ../src/wizard-source.vala:263
 #, c-format
 msgid " from %s"
 msgstr "%s(으)로부터 "
 
-#: ../src/wizard-source.vala:293
-msgid "Select a device or ISO file"
-msgstr "장치 또는 ISO 파일을 선택하십시오"
-
-#: ../src/wizard.vala:88
+#: ../src/wizard.vala:100
 msgid "Box creation failed"
 msgstr "박스 만들기에 실패했습니다"
 
-#: ../src/wizard.vala:114 ../src/wizard.vala:617
-msgid "C_ontinue"
-msgstr "계속(_O)"
-
-#: ../src/wizard.vala:114
-msgid "C_reate"
-msgstr "만들기(_R)"
-
-#: ../src/wizard.vala:135
+#: ../src/wizard.vala:148
 msgid "Please enter desktop or collection URI"
 msgstr "데스크톱이나 모음 URI를 입력해주십시오"
 
-#: ../src/wizard.vala:141
+#: ../src/wizard.vala:154
 msgid "Will add boxes for all systems available from this account."
-msgstr "이 계정에서 사용가능한 모든 시스템에 대해 박스를 추가할 것입니다."
+msgstr "이 계정에 존재하는 모든 시스템에 대해 박스를 추가합니다."
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:157
 msgid "Will add a single box."
-msgstr "단일 박스를 추가할 것입니다."
+msgstr "단일 박스를 추가합니다."
 
-#: ../src/wizard.vala:150
+#: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "데스크톱 접근"
 
-#: ../src/wizard.vala:241
-msgid "Invalid URI"
-msgstr "잘못된 URI"
-
-#: ../src/wizard.vala:252
+#: ../src/wizard.vala:265
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "지원하지 않는 프로토콜 '%s'"
 
-#: ../src/wizard.vala:347
+#: ../src/wizard.vala:271 ../src/wizard.vala:314
+msgid "Unknown installer media"
+msgstr "알 수 없는 설치 미디어 입니다"
+
+#: ../src/wizard.vala:272 ../src/wizard.vala:315
+msgid "Analyzing..."
+msgstr "분석중..."
+
+#: ../src/wizard.vala:284
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"설치 미디어 분석에 실패했습니다. 깨졌거나 미디어가 비호환이지 않습니까?"
+
+#: ../src/wizard.vala:377
 msgid "Box setup failed"
 msgstr "박스 설치에 실패했습니다"
 
-#: ../src/wizard.vala:361
-msgid "Will create a new box with the following properties:"
-msgstr "다음 속성에 따라 새 박스를 만들 것입니다:"
+#: ../src/wizard.vala:391
+msgid "Boxes will create a new box with the following properties:"
+msgstr "다음 속성에 따라 새 박스를 만듭니다:"
 
-#: ../src/wizard.vala:366
+#: ../src/wizard.vala:396
 msgid "Type"
 msgstr "유형"
 
-#: ../src/wizard.vala:369
+#: ../src/wizard.vala:399
 msgid "Host"
 msgstr "호스트"
 
-#: ../src/wizard.vala:377 ../src/wizard.vala:383
+#: ../src/wizard.vala:410 ../src/wizard.vala:421
 msgid "Port"
 msgstr "포트"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:412
 msgid "TLS Port"
 msgstr "TLS 포트"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:426
 msgid "Will add boxes for all systems available from this account:"
-msgstr "이 계정에서 사용가능한 모든 시스템에 대해 박스를 추가할 것입니다:"
+msgstr "이 계정에 존재하는 모든 시스템에 대해 박스를 추가합니다:"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:446
 msgid "Disk"
 msgstr "디스크"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:446
 #, c-format
 msgid "%s maximum"
 msgstr "최대 %s"
 
-#: ../src/wizard.vala:494
+#: ../src/wizard.vala:536
 msgid "Introduction"
 msgstr "개요"
 
-#: ../src/wizard.vala:498
+#: ../src/wizard.vala:540
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -540,49 +756,45 @@ msgid ""
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
 "박스를 만들면 여러분의 로그인 상태로부터 다른 운영체제를 바로 사용할 수 있도"
-"록 할 것입니다.\n"
+"록 해줍니다.\n"
 "\n"
 "<b><i>네트워크를 통해</i></b> 기존의 머신에 연결하거나, 여러분이 소유한 머신"
 "에서 실행하는 <b><i>가상머신</i></b>을 만듭니다."
 
-#: ../src/wizard.vala:510
+#: ../src/wizard.vala:552
 msgid "Source Selection"
 msgstr "소스 선택"
 
-#: ../src/wizard.vala:511
+#: ../src/wizard.vala:553
 msgid "Insert operating system installation media or select a source below"
 msgstr "운영체제 설치 미디어를 넣거나 아래의 소스를 선택합니다"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:563
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr ""
 "위에 보이는 어떤 등록상표는 여러분이 이미 가진 소프트웨어 제품의 식별을 위해 "
-"드물게 사용되며, 제각각 소유자들의 소유물입니다."
+"드물게 사용되며, 각각의 소유자의 소유물입니다."
 
-#: ../src/wizard.vala:534
+#: ../src/wizard.vala:576
 msgid "Preparation"
 msgstr "준비"
 
-#: ../src/wizard.vala:535
+#: ../src/wizard.vala:577
 msgid "Preparing to create new box"
-msgstr "새 박스를 만들기 위해 준비중"
+msgstr "새 박스 만들기 준비중"
 
-#: ../src/wizard.vala:554
-msgid "Analyzing installer media."
-msgstr "설치 미디어를 분석중입니다."
-
-#: ../src/wizard.vala:565
+#: ../src/wizard.vala:614
 msgid "Setup"
 msgstr "설정"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:621
 msgid "Review"
 msgstr "검토"
 
-#: ../src/wizard.vala:583
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
@@ -592,19 +804,37 @@ msgstr ""
 "여러분의 시스템에서 가상화 확장을 사용할 수 없습니다. 이 박스는 상당히 느릴 "
 "것으로 예상됩니다. 최근 여러분의 시스템이 충분히 동작했다면(2008년도 이후 제"
 "조), 아마도 이 확장을 사용할 수 있을 것이며 시스템 BIOS 설정에서 활성화 해야 "
-"할 것입니다."
+"합니다."
 
-#: ../src/wizard.vala:592
+#: ../src/wizard.vala:647
 msgid "Create a Box"
 msgstr "박스 만들기"
 
-#: ../src/wizard.vala:611
+#: ../src/wizard.vala:650
+msgid "_Cancel"
+msgstr "취소(_C)"
+
+#: ../src/wizard.vala:659
 msgid "_Back"
 msgstr "뒤로(_B)"
 
-#: ../src/wizard.vala:703
+#: ../src/wizard.vala:666
+msgid "C_ontinue"
+msgstr "계속(_O)"
+
+#: ../src/wizard.vala:674
+msgid "C_reate"
+msgstr "만들기(_R)"
+
+#: ../src/wizard.vala:759
 msgid "C_ustomize..."
 msgstr "사용자 정의(_U)..."
+
+#~ msgid "Fullscreen"
+#~ msgstr "최대 화면"
+
+#~ msgid "USB redirection"
+#~ msgstr "USB 재지정"
 
 #~ msgid "RAM"
 #~ msgstr "RAM"
