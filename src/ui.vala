@@ -13,7 +13,7 @@ private enum Boxes.UIState {
 private abstract class Boxes.UI: GLib.Object {
     public abstract Clutter.Actor actor { get; }
 
-    protected UIState previous_ui_state;
+    public UIState previous_ui_state { get; protected set; }
     private UIState _ui_state;
     [CCode (notify = false)]
     public UIState ui_state {
