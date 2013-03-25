@@ -408,8 +408,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               max_ram * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               FormatSizeFlags.IEC_UNITS);
-            if (VMConfigurator.is_install_config (machine.domain_config) ||
-                VMConfigurator.is_live_config (machine.domain_config))
+            if ((VMConfigurator.is_install_config (machine.domain_config) ||
+                 VMConfigurator.is_live_config (machine.domain_config)) &&
+                App.app.previous_ui_state != Boxes.UIState.WIZARD)
                 property.sensitive = false;
             else
                 property.changed.connect (on_ram_changed);
@@ -524,8 +525,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               volume_info.capacity,
                                               max_storage,
                                               256 * MEGABYTES);
-            if (VMConfigurator.is_install_config (machine.domain_config) ||
-                VMConfigurator.is_live_config (machine.domain_config))
+            if ((VMConfigurator.is_install_config (machine.domain_config) ||
+                 VMConfigurator.is_live_config (machine.domain_config)) &&
+                App.app.previous_ui_state != Boxes.UIState.WIZARD)
                 property.sensitive = false;
             else
                 property.changed.connect (on_storage_changed);
