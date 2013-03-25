@@ -13,6 +13,7 @@ HELP_FILES = index.page			\
 	connect.page			\
 	create.page			\
 	interface.page			\
+	legal.xml			\
 	search.page			\
 	supported-protocols.page	\
 	system-requirements.page	\
