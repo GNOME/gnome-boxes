@@ -2,36 +2,45 @@
 # Copyright (C) 2012 Swecha Telugu Localisation Team <localization@swecha.net>
 # Copyright (C) 2012 e-telugu Localization Team
 # This file is distributed under the same license as the gnome-boxes package.
+#
+#: ../src/main.vala:15
 # Sasi Bhushan <sasi@swecha.net>, 2012.
 # Praveen Illa <mail2ipn@gmail.com>, 2012.
-#
+# Krishnababu Krothapalli <kkrothap@redhat.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-19 08:26+0000\n"
-"PO-Revision-Date: 2012-09-19 14:48+0530\n"
-"Last-Translator: Praveen Illa <mail2ipn@gmail.com>\n"
-"Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2013-03-05 17:06+0000\n"
+"PO-Revision-Date: 2013-03-25 22:46+0530\n"
+"Last-Translator: Krishnababu Krothapalli <kkrothap@redhat.com>\n"
+"Language-Team: Telugu <Fedora-trans-te@redhat.com>\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"X-Generator: Lokalize 1.5\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1 ../src/main.vala:90
+#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
 msgid "Boxes"
 msgstr "పెట్టెలు"
 
 #: ../data/gnome-boxes.desktop.in.in.h:2
-msgid "Simple virtual machine viewer/manager"
-msgstr "సరళ వాస్తవ యంత్ర వీక్షకము/నిర్వాహకము"
+#| msgid "Simple virtual machine viewer/manager"
+msgid "Virtual machine viewer/manager"
+msgstr "వర్చ్యువల్ మిషన్ వీక్షకము/నిర్వాహకము"
 
 #: ../data/gnome-boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "వాస్తవ యంత్రాలను వీక్షించండి మరియు ఉపయోగించండి"
+
+#: ../data/gnome-boxes.desktop.in.in.h:4
+#| msgid "View and use virtual machines"
+msgid "virtual machine;vm;"
+msgstr "వర్చ్యువల్ మిషన్;vm;"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
@@ -81,343 +90,572 @@ msgstr "గరిష్టీకరించబడిన కిటికీ"
 msgid "Window maximized state"
 msgstr "కిటికీ గరిష్టీకరణ స్థితి"
 
-#: ../src/app.vala:108
+#: ../src/app.vala:149
 msgid "translator-credits"
 msgstr "Praveen Illa <mail2ipn@gmail.com>, 2012."
 
-#: ../src/app.vala:109
+#: ../src/app.vala:150
 msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "సుదూర లేదా వాస్తవ వ్యవస్థల ప్రాప్తికై రూపొందించిన ఒక సరళమైన గ్నోమ్ 3 అనువర్తనం"
+msgstr ""
+"సుదూర లేదా వాస్తవ వ్యవస్థల ప్రాప్తికై రూపొందించిన ఒక సరళమైన గ్నోమ్ 3 అనువర్తనం"
 
-#: ../src/app.vala:121 ../src/topbar.vala:50
+#: ../src/app.vala:167 ../src/topbar.vala:56
 msgid "New"
 msgstr "కొత్తది"
 
-#: ../src/app.vala:124
-msgid "Properties"
-msgstr "లక్షణాలు"
+#: ../src/app.vala:172
+msgid "Help"
+msgstr "సహాయం"
 
-#: ../src/app.vala:125
-msgid "Fullscreen"
-msgstr "పూర్తితెర"
-
-#: ../src/app.vala:126
-msgid "Force shutdown"
-msgstr "బలవంతపు మూసివేత"
-
-#: ../src/app.vala:129
+#: ../src/app.vala:173
 msgid "About Boxes"
 msgstr "పెట్టెల గురించి"
 
-#: ../src/app.vala:130
+#: ../src/app.vala:174
 msgid "Quit"
 msgstr "నిష్క్రమించు"
 
-#: ../src/app.vala:635
+#: ../src/app.vala:226 ../src/main.vala:9
+msgid "Display version number"
+msgstr "రూపాంతర సంఖ్యను చూపించు"
+
+#: ../src/app.vala:228
+msgid "Open in full screen"
+msgstr "పూర్తితెరలో తెరువు"
+
+#: ../src/app.vala:229 ../src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "వర్ట్యువలైజేషన్ సామర్థ్యాలను పరిశీలించండి"
+
+#: ../src/app.vala:230
+msgid "Open box with UUID"
+msgstr "పెట్టెను UUIDతో తెరువు"
+
+#: ../src/app.vala:231
+msgid "Search term"
+msgstr "శోధన పదం"
+
+#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
+#: ../src/app.vala:233
+msgid "URI to display, broker or installer media"
+msgstr "ప్రదర్శించాల్సిన URI, మధ్యవర్తి లేదా స్థాపక మాధ్యమం"
+
+#: ../src/app.vala:244
+msgid "- A simple application to access remote or virtual machines"
+msgstr "- సుదూర లేదా వాస్తవ యంత్రాల ప్రాప్తికై రూపొందించిన ఒక సరళమైన అనువర్తనం"
+
+#: ../src/app.vala:266
+msgid "Too many command line arguments specified.\n"
+msgstr "చాలా ఆదేశ పరామితులు పేర్కొనబడినవి.\n"
+
+#: ../src/app.vala:824
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' పెట్టె తొలగించబడింది"
 
-#: ../src/app.vala:636
+#: ../src/app.vala:825
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u పెట్టె తొలగించబడింది"
 msgstr[1] "%u పెట్టెలు తొలగించబడ్డాయి"
 
-#: ../src/app.vala:694
+#: ../src/app.vala:915
+#, c-format
+msgid ""
+"'%s' could not be restored from disk\n"
+"Try without saved state?"
+msgstr ""
+"'%s' డిస్కువుండి తిరిగివుంచబడలేదు\n"
+"దాచిన స్థితి లేకుండా ప్రయత్నించు?"
+
+#: ../src/app.vala:916
+msgid "Restart"
+msgstr "పునఃప్రారంభించు"
+
+#: ../src/app.vala:921
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s'కి అనుసంధానం విఫలమైంది"
 
-#: ../src/collection-view.vala:39
+#: ../src/collection-view.vala:45
 msgid "New and Recent"
 msgstr "కొత్తది మరియు ఇటీవలి"
 
-#: ../src/display-page.vala:164
+#: ../src/display-page.vala:281
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(అన్‌గ్రాబ్ చేయుటకు Ctrl+Alt మీటలను నొక్కండి)"
 
-#: ../src/installer-media.vala:83 ../src/properties.vala:62
+#: ../src/empty-boxes.vala:30
+msgid "No boxes found"
+msgstr "ఏ పెట్టెలు కనబడలేదు"
+
+#: ../src/empty-boxes.vala:37
+msgid "Create one using the button on the top left."
+msgstr "పై ఎడమన వున్న బటన్ వుపయోగించి వొకటి సృష్టించు"
+
+#: ../src/installer-media.vala:86 ../src/properties.vala:73
 msgid "System"
 msgstr "వ్యవస్థ"
 
-#: ../src/libvirt-machine.vala:309 ../src/remote-machine.vala:35
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:52
 msgid "Name"
 msgstr "పేరు"
 
-#: ../src/libvirt-machine.vala:312
+#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:58
 msgid "Virtualizer"
 msgstr "వర్ట్యులైజర్"
 
-#: ../src/libvirt-machine.vala:314 ../src/remote-machine.vala:38
-#: ../src/wizard.vala:371
+#: ../src/libvirt-machine-properties.vala:125 ../src/ovirt-machine.vala:59
+#: ../src/remote-machine.vala:58 ../src/wizard.vala:400
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine.vala:324 ../src/remote-machine.vala:42
+#: ../src/libvirt-machine-properties.vala:133
+#: ../src/libvirt-machine-properties.vala:138
+msgid "Troubleshooting log"
+msgstr "ట్రబుల్‌షూటింగ్ లాగ్"
+
+#: ../src/libvirt-machine-properties.vala:142
+#| msgid "Share clipboard"
+msgid "Copy to clipboard"
+msgstr "క్లిప్‌బోర్డునకు నకలుతీయి"
+
+#: ../src/libvirt-machine-properties.vala:157
+msgid "Save log"
+msgstr "లాగ్ దాయి"
+
+#: ../src/libvirt-machine-properties.vala:173
+#, c-format
+msgid "Error saving: %s"
+msgstr "దాయుటలో దోషం: %s"
+
+#: ../src/libvirt-machine-properties.vala:195 ../src/ovirt-machine.vala:63
+#: ../src/remote-machine.vala:62
 msgid "Protocol"
 msgstr "ప్రోటోకాల్"
 
-#: ../src/libvirt-machine.vala:440
-msgid "When you force shutdown, the box may lose data."
-msgstr "బలవంతంగా మూసివేసినపుడు, పెట్టె డేటాను కోల్పోయే అవకాశం ఉన్నది."
+#. Translators: This is the text on the button to select an iso for the cd
+#: ../src/libvirt-machine-properties.vala:225
+#: ../src/libvirt-machine-properties.vala:273
+#| msgid "Select a file"
+msgid "Select"
+msgstr "ఎంపికచేయి"
 
-#: ../src/libvirt-machine.vala:516 ../src/wizard.vala:399
+#. Translators: empty is listed as the filename for a non-mounted CD
+#: ../src/libvirt-machine-properties.vala:227
+#: ../src/libvirt-machine-properties.vala:274
+msgid "empty"
+msgstr "ఖాళీ"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+#: ../src/libvirt-machine-properties.vala:230
+#: ../src/libvirt-machine-properties.vala:252
+msgid "Remove"
+msgstr "తీసివేయి"
+
+#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:303
+msgid "Select a device or ISO file"
+msgstr "ఒక పరికరాన్ని లేదా ISO ఫైలును ఎంచుకోండి"
+
+#: ../src/libvirt-machine-properties.vala:257
+#, c-format
+msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
+msgstr "CD/DVD వలె '%s' ను '%s' లోనికి చొప్పించుట విఫలమైంది"
+
+#: ../src/libvirt-machine-properties.vala:276
+#, c-format
+msgid "Removal of CD/DVD from '%s' failed"
+msgstr "'%s' నుండి CD/DVDను తీసివేయుట విఫలమైంది"
+
+#: ../src/libvirt-machine-properties.vala:282
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:327
+msgid "Add support to guest"
+msgstr "అతిథికి తోడ్పాటు జతచేయి"
+
+#: ../src/libvirt-machine-properties.vala:312
+msgid "USB device support"
+msgstr "USB పరికరం తోడ్పాటు"
+
+#: ../src/libvirt-machine-properties.vala:329
+msgid "Smartcard support"
+msgstr "స్మార్టుకార్డ్ తోడ్పాటు"
+
+#: ../src/libvirt-machine-properties.vala:394 ../src/wizard.vala:436
 msgid "Memory"
 msgstr "జ్ఞాపకశక్తి"
 
+#: ../src/libvirt-machine-properties.vala:478
+#, c-format
+msgid "Restart of '%s' is taking too long. Force it to shutdown?"
+msgstr "'%s' యొక్క పునఃప్రారంభం చాలాసేపు పడుతోంది. బలవంతంగా మూసివేయాలా?"
+
+#: ../src/libvirt-machine-properties.vala:491
+#, c-format
+msgid "Changes require restart of '%s'. Attempt restart?"
+msgstr "మార్పుల వలన '%s' పునఃప్రారంభించాలి. పునఃప్రారంభించుటకు యత్నించాలా?"
+
+#: ../src/libvirt-machine-properties.vala:506
+msgid "Maximum Disk Size"
+msgstr "గరిష్ఠ డిస్కు పరిమాణం"
+
+#: ../src/libvirt-machine.vala:426
+msgid "When you force shutdown, the box may lose data."
+msgstr "బలవంతంగా మూసివేసినపుడు, పెట్టె డేటాను కోల్పోయే అవకాశం ఉన్నది."
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:567
+#: ../src/libvirt-machine.vala:511
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "డిస్కు నుండి %s పునరుద్ధరిస్తోంది"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:570
+#: ../src/libvirt-machine.vala:514
 #, c-format
 msgid "Starting %s"
 msgstr "%s ప్రారంభించబడుతోంది"
 
-#: ../src/libvirt-machine.vala:600
-#, c-format
-msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr "మార్పుల వలన '%s' పునఃప్రారంభించాలి. పునఃప్రారంభించుటకు యత్నించాలా?"
-
-#: ../src/libvirt-machine.vala:615
-msgid "Maximum Disk Size"
-msgstr "గరిష్ఠ డిస్కు పరిమాణం"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:98
+#: ../src/machine.vala:132
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s కు అనుసంధానిస్తోంది"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:152
 #, c-format
 msgid "Enter password for %s"
 msgstr "%s కోసం సంకేతపదం ఇవ్వండి"
 
+#: ../src/machine.vala:235
+#| msgid "Installing..."
+msgid "Saving..."
+msgstr "దాయుచున్నది..."
+
 #. 3rd row
-#: ../src/machine.vala:495 ../src/unattended-installer.vala:192
-#: ../src/unattended-installer.vala:262
+#: ../src/machine.vala:570 ../src/unattended-installer.vala:290
+#: ../src/unattended-installer.vala:404
 msgid "Password"
 msgstr "సంకేతపదం"
 
-#: ../src/main.vala:12
-msgid "Display version number"
-msgstr "రూపాంతర సంఖ్యను చూపించు"
-
-#: ../src/main.vala:13
-msgid "Open in full screen"
-msgstr "పూర్తితెరలో తెరువు"
-
-#: ../src/main.vala:14
-msgid "Check virtualization capabilities"
-msgstr "వర్ట్యువలైజేషన్ సామర్థ్యాలను పరిశీలించండి"
-
-#: ../src/main.vala:15
-msgid "Open box with UUID"
-msgstr "పెట్టెను UUIDతో తెరువు"
-
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/main.vala:17
-msgid "URI to display, broker or installer media"
-msgstr "ప్రదర్శించాల్సిన URI, మధ్యవర్తి లేదా స్థాపక మాధ్యమం"
-
-#: ../src/main.vala:22
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- సుదూర లేదా వాస్తవ యంత్రాల ప్రాప్తికై రూపొందించిన ఒక సరళమైన అనువర్తనం"
-
-#: ../src/main.vala:44
-#, c-format
-msgid "Too many command line arguments specified.\n"
-msgstr "చాలా ఆదేశ పరామితులు పేర్కొనబడినవి.\n"
-
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:74
+#: ../src/main.vala:54
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• సిపియు వర్ట్యువలైజేషన్ సామర్థ్యం కలదు: %s\n"
 
-#: ../src/main.vala:75
+#: ../src/main.vala:55
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM పర్వికము లోడయింది: %s\n"
 
-#: ../src/main.vala:76
+#: ../src/main.vala:56
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• లిబ్‌వర్ట్ KVM అతిథి లభ్యం: %s\n"
 
-#: ../src/main.vala:78
+#: ../src/main.vala:57
+#, c-format
+#| msgid "• Libvirt KVM guest available: %s\n"
+msgid "• Boxes storage pool available: %s\n"
+msgstr "• బాక్సెస్ నిల్వ పూల్ అందుబాటులో వుంది: %s\n"
+
+#: ../src/main.vala:61
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux సందర్భం అప్రమేయం: %s\n"
 
-#: ../src/main.vala:82
+#: ../src/main.vala:65
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "లోపాలను <%s>కు నివేదించండి.\n"
 
-#: ../src/main.vala:83
+#: ../src/main.vala:66
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s నివాస పుట: <%s>.\n"
 
-#: ../src/properties.vala:58
+#: ../src/notificationbar.vala:57
+#, c-format
+#| msgid "Connecting to %s"
+msgid "Not connected to %s"
+msgstr "%s కు అనుసంధానం కాలేదు"
+
+#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+msgid "Sign In"
+msgstr "ప్రవేశించు"
+
+#: ../src/notificationbar.vala:75
+#, c-format
+msgid "Sign In to %s"
+msgstr "%s కు ప్రవేశించు"
+
+#: ../src/notificationbar.vala:81
+#| msgid "Username"
+msgid "_Username"
+msgstr "వాడుకరిపేరు (_U)"
+
+#: ../src/notificationbar.vala:96
+#| msgid "Password"
+msgid "_Password"
+msgstr "సంకేతపదము (_P)"
+
+#: ../src/ovirt-broker.vala:64
+#| msgid "Connection to '%s' failed"
+msgid "Connection to oVirt broker failed"
+msgstr "oVirt బ్రోకర్‌కు అనుసంధానం విఫలమైంది"
+
+#. Translators: The %s will be replaced with the name of the VM
+#: ../src/properties.vala:19
+#, c-format
+#| msgid "Properties"
+msgid "%s - Properties"
+msgstr "%s - లక్షణాలు"
+
+#: ../src/properties.vala:69
 msgid "Login"
 msgstr "ప్రవేశించండి"
 
-#: ../src/properties.vala:66
+#: ../src/properties.vala:77
 msgid "Display"
 msgstr "తెర"
 
-#: ../src/properties.vala:70
+#: ../src/properties.vala:81
 msgid "Devices"
 msgstr "పరికరాలు"
 
-#: ../src/properties.vala:90
+#: ../src/properties.vala:94
 msgid "Some changes may take effect only after reboot"
 msgstr "కొన్ని మార్పులు పునఃప్రారంభించిన తరువాత మాత్రమే పని చేస్తాయి"
 
-#: ../src/properties.vala:231
+#: ../src/properties.vala:270
 msgid "CPU:"
 msgstr "సిపియు:"
 
-#: ../src/properties.vala:238
+#: ../src/properties.vala:277
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:245
+#: ../src/properties.vala:284
 msgid "Net:"
 msgstr "నెట్:"
 
-#: ../src/spice-display.vala:189
+#: ../src/properties.vala:291
+#| msgid "Force shutdown"
+msgid "Force Shutdown"
+msgstr "బలవంతపు మూసివేత"
+
+#: ../src/selectionbar.vala:72
+#, c-format
+#| msgid "Connection to '%s' failed"
+msgid "Pausing '%s' failed"
+msgstr "'%s' నిలిపివుంచుట విఫలమైంది"
+
+#: ../src/spice-display.vala:50
+#, c-format
+msgid "Automatic redirection of USB device '%s' for '%s' failed"
+msgstr "USB పరికరం '%s' స్వయంచాలకంగా '%s' కు రీడైరక్ట్ అవ్వుట విఫలమైంది"
+
+#: ../src/spice-display.vala:58 ../src/spice-display.vala:322
+#, c-format
+msgid "Redirection of USB device '%s' for '%s' failed"
+msgstr "USB పరికరం '%s' అనునది '%s' కు రీడైరక్ట్ అవ్వుట విఫలమైంది"
+
+#: ../src/spice-display.vala:273
 msgid "Share clipboard"
 msgstr "కీబోర్డును పంచుకొను"
 
-#: ../src/spice-display.vala:195
+#: ../src/spice-display.vala:279
 msgid "Resize guest"
 msgstr "అథితి పరిమాణంమార్చు"
 
-#: ../src/spice-display.vala:203
-msgid "USB redirection"
-msgstr "USB రీడైరెక్షన్"
+#: ../src/spice-display.vala:288
+msgid "Redirect new USB devices"
+msgstr "కొత్త USB పరికరాలు రీడైరెక్ట్ చేయి"
 
-#: ../src/topbar.vala:88 ../src/wizard.vala:603
-msgid "_Cancel"
-msgstr "రద్దుచేయి (_C)"
+#: ../src/spice-display.vala:363 ../src/wizard.vala:251
+msgid "Invalid URI"
+msgstr "చెల్లని URI"
+
+#: ../src/spice-display.vala:373
+msgid "The port must be specified once"
+msgstr "పోర్టు తప్పక వొకసారి తెలుపాలి"
+
+#: ../src/spice-display.vala:382
+msgid "Missing port in Spice URI"
+msgstr "స్పైస్ URI నందు పోర్టు దోరకలేదు"
+
+#: ../src/topbar.vala:99
+#| msgid "Select a file"
+msgid "Select All"
+msgstr "అన్నింటిని ఎంచుకొను"
+
+#: ../src/topbar.vala:100
+msgid "Select Running"
+msgstr "నడుచుచున్నది యెంపికచేయి"
+
+#: ../src/topbar.vala:101
+#| msgid "Select a file"
+msgid "Select None"
+msgstr "ఏది యెంచవద్దు"
+
+#: ../src/topbar.vala:111
+msgid "D_one"
+msgstr "అయినది (_o)"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:123
+#: ../src/topbar.vala:149
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d ఎంపికచేయబడింది"
 msgstr[1] "%d ఎంపికచేయబడినవి"
 
-#: ../src/topbar.vala:125
-msgid "Click on items to select them"
-msgstr "అంశములను ఎంపికచేయుటకు వాటిపై నొక్కండి"
+#: ../src/topbar.vala:151
+#| msgid "Click on items to select them"
+msgid "(Click on items to select them)"
+msgstr "(అంశములను ఎంపికచేయుటకు వాటిపై నొక్కండి)"
 
-#: ../src/unattended-installer.vala:43
+#: ../src/unattended-installer.vala:48
 msgid "no password"
 msgstr "సంకేతపదం లేదు"
 
-#: ../src/unattended-installer.vala:191 ../src/unattended-installer.vala:252
+#: ../src/unattended-installer.vala:289 ../src/unattended-installer.vala:390
 msgid "Username"
 msgstr "వాడుకరిపేరు"
 
-#: ../src/unattended-installer.vala:217
+#: ../src/unattended-installer.vala:346
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
-msgstr "అనుకూల అమరికలతో స్వరూపణాన్ని స్వయంచలకంగా స్వరూపించుటకు ఎక్స్‍ప్రెస్ స్థాపనను ఎంచుకోండి."
+msgstr ""
+"అనుకూల అమరికలతో స్వరూపణాన్ని స్వయంచలకంగా స్వరూపించుటకు ఎక్స్‍ప్రెస్ స్థాపనను "
+"ఎంచుకోండి."
 
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:233
+#: ../src/unattended-installer.vala:364
 msgid "Express Install"
 msgstr "ఎక్స్‍ప్రెస్ స్థాపన"
 
-#: ../src/unattended-installer.vala:272
+#: ../src/unattended-installer.vala:415
 msgid "_Add Password"
 msgstr "సంకేతపదాన్ని జతచేయి (_A)"
 
-#: ../src/util.vala:285
-msgid "yes"
-msgstr "అవును"
+#: ../src/unattended-installer.vala:439
+msgid "Product Key"
+msgstr "ప్రొడక్ట్ కీ"
 
-#: ../src/util.vala:285
-msgid "no"
-msgstr "వద్దు"
+#: ../src/unattended-installer.vala:653
+msgid "Downloading device drivers..."
+msgstr "పరికర డ్రైవర్లను డౌనులోడుచేస్తోంది..."
 
-#: ../src/util-app.vala:218
+#: ../src/util-app.vala:231
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
 msgstr ""
-"మీ SELinux సందర్భం తప్పుగా అనిపిస్తుంది, మీరు దానిని క్రింద పేర్కొన్న ఆదేశాన్ని నడుపుట ద్వారా సరిచేయటకు "
+"మీ SELinux సందర్భం తప్పుగా అనిపిస్తుంది, మీరు దానిని క్రింద పేర్కొన్న "
+"ఆదేశాన్ని నడుపుట ద్వారా సరిచేయటకు "
 "ప్రయత్నించవచ్చు:\n"
 "%s"
 
-#: ../src/util-app.vala:222
+#: ../src/util-app.vala:235
 msgid "SELinux not installed?"
 msgstr "SELinux స్థాపించలేదా?"
 
+#: ../src/util-app.vala:316
+msgid ""
+"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
+"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
+msgstr ""
+"libvirt నుండి 'గ్నోమ్-బాక్సెస్' నిల్వ పూల్ సమాచారం పొందలేక పోయింది. 'virsh -c "
+"qemu:///session pool-dumpxml gnome-boxes' పనిచేయునట్లు చూసుకోండి."
+
+#: ../src/util-app.vala:321
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
+"not exist"
+msgstr ""
+"%s అనునది libvirt కు గ్నోమ్ బాక్సెస్ యొక్క నిల్వ పూల్‌గా తెలియును అయితే యీ "
+"డైరెక్టరీ లేదు"
+
+#: ../src/util-app.vala:325
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
+msgstr ""
+"%s అనునది libvirt నకు గ్నోమ్ బాక్సెస్ నిల్వ పూల్‌గా తెలియును అయితే డైరెక్టరీ "
+"కాదు"
+
+#: ../src/util-app.vala:329
+#, c-format
+msgid ""
+"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
+"readable/writable"
+msgstr ""
+"%s అనునది libvirt కు గ్నోమ్ బాక్సెస్ నిల్వ పూల్‌గా తెలియును అయితే వాడుకరి "
+"వ్రాయదగు/చదువదగునది కాదు"
+
+#: ../src/util.vala:322
+msgid "yes"
+msgstr "అవును"
+
+#: ../src/util.vala:322
+msgid "no"
+msgstr "వద్దు"
+
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:308
+#: ../src/vm-configurator.vala:443
 msgid "Incapable host system"
 msgstr "అసమర్థ అతిథ్య వ్యవస్థ"
 
-#: ../src/vm-creator.vala:45
+#: ../src/vm-creator.vala:43
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
-msgstr "స్థాపనకు సిద్ధం చేయుటలో ఒక దోషం సంభవించినది. ఎక్స్‍ప్రెస్ స్థాపన అచేతనమైవుంది."
+msgstr ""
+"స్థాపనకు సిద్ధం చేయుటలో ఒక దోషం సంభవించినది. ఎక్స్‍ప్రెస్ స్థాపన అచేతనమైవుంది."
 
-#: ../src/vm-creator.vala:136
+#: ../src/vm-creator.vala:162
 msgid "Installing..."
 msgstr "స్థాపించబడుతోంది..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:140 ../src/wizard-source.vala:234
+#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "ప్రత్యక్షం"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:222
+#: ../src/vm-creator.vala:251
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% స్థాపించబడింది"
 msgstr[1] "%d%% స్థాపించబడ్డాయి"
 
-#: ../src/vnc-display.vala:136
+#: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "చదువుటకు-మాత్రమే"
 
-#. Microsoft Windows product key
-#: ../src/winxp-installer.vala:104
-msgid "Product Key"
-msgstr "ప్రొడక్ట్ కీ"
-
-#: ../src/wizard-source.vala:115 ../src/wizard-source.vala:137
+#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
 msgid "Enter URL"
 msgstr "URL ప్రవేశపెట్టండి"
 
-#: ../src/wizard-source.vala:122
+#: ../src/wizard-source.vala:126
 msgid "Select a file"
 msgstr "ఒక ఫైలును ఎంచుకోండి"
 
-#: ../src/wizard-source.vala:154
+#: ../src/wizard-source.vala:163
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -427,103 +665,102 @@ msgstr ""
 "\n"
 "ఈ ఖాతా నుండి అందుబాటులో ఉన్న వ్యవస్థలన్నిటికీ పెట్టెలను జతచేస్తుంది."
 
-#: ../src/wizard-source.vala:243
+#: ../src/wizard-source.vala:253
 msgid "32-bit x86 system"
 msgstr "32-బిట్ x86 వ్యవస్థ"
 
-#: ../src/wizard-source.vala:244
+#: ../src/wizard-source.vala:254
 msgid "64-bit x86 system"
 msgstr "64-బిట్ x86 వ్యవస్థ"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:253
+#: ../src/wizard-source.vala:263
 #, c-format
 msgid " from %s"
 msgstr " %s నుండి"
 
-#: ../src/wizard-source.vala:293
-msgid "Select a device or ISO file"
-msgstr "ఒక పరికరాన్ని లేదా ISO ఫైలును ఎంచుకోండి"
-
-#: ../src/wizard.vala:88
+#: ../src/wizard.vala:100
 msgid "Box creation failed"
 msgstr "పెట్టె సృష్టించుటలో విఫలమైంది"
 
-#: ../src/wizard.vala:114 ../src/wizard.vala:617
-msgid "C_ontinue"
-msgstr "కొనసాగు (_o)"
-
-#: ../src/wizard.vala:114
-msgid "C_reate"
-msgstr "సృష్టించు (_r)"
-
-#: ../src/wizard.vala:135
+#: ../src/wizard.vala:148
 msgid "Please enter desktop or collection URI"
 msgstr "దయచేసి డెస్క్‍టాప్ లేదా URI సేకరణను ప్రవేశపెట్టండి"
 
-#: ../src/wizard.vala:141
+#: ../src/wizard.vala:154
 msgid "Will add boxes for all systems available from this account."
 msgstr "ఈ ఖాతా నుండి అందుబాటులో ఉన్న వ్యవస్థలన్నిటికీ పెట్టెలను జతచేస్తుంది."
 
-#: ../src/wizard.vala:144
+#: ../src/wizard.vala:157
 msgid "Will add a single box."
 msgstr "ఒకే పెట్టెను జతచేస్తుంది."
 
-#: ../src/wizard.vala:150
+#: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "డెస్క్‍టాప్ ప్రాప్తి"
 
-#: ../src/wizard.vala:241
-msgid "Invalid URI"
-msgstr "చెల్లని URI"
-
-#: ../src/wizard.vala:252
+#: ../src/wizard.vala:265
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "మద్ధతులేని ప్రోటోకాల్ '%s'"
 
-#: ../src/wizard.vala:347
+#: ../src/wizard.vala:271
+#| msgid "Analyzing installer media."
+msgid "Unknown installer media"
+msgstr "తెలియని స్థాపక మాధ్యమం"
+
+#: ../src/wizard.vala:272
+#| msgid "Installing..."
+msgid "Analyzing..."
+msgstr "విశ్లేషించుచున్నది..."
+
+#: ../src/wizard.vala:304
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr "సంస్థాపక మాధ్యమం విశ్లేషణ విఫలమైంది. పాడైన లేదా అసంపూర్ణ మాధ్యమం?"
+
+#: ../src/wizard.vala:376
 msgid "Box setup failed"
 msgstr "పెట్టె అమరిక విఫలమైంది"
 
-#: ../src/wizard.vala:361
-msgid "Will create a new box with the following properties:"
-msgstr "క్రింద పేర్కొన్న లక్షణాలతో ఒక కొత్త పెట్టెను సృష్టిస్తుంది:"
+#: ../src/wizard.vala:390
+#| msgid "Will create a new box with the following properties:"
+msgid "Boxes will create a new box with the following properties:"
+msgstr "క్రింద పేర్కొన్న లక్షణాలతో బాక్సెస్ ఒక కొత్త పెట్టెను సృష్టిస్తుంది:"
 
-#: ../src/wizard.vala:366
+#: ../src/wizard.vala:395
 msgid "Type"
 msgstr "రకం"
 
-#: ../src/wizard.vala:369
+#: ../src/wizard.vala:398
 msgid "Host"
 msgstr "హోస్టు"
 
-#: ../src/wizard.vala:377 ../src/wizard.vala:383
+#: ../src/wizard.vala:409 ../src/wizard.vala:420
 msgid "Port"
 msgstr "పోర్టు"
 
-#: ../src/wizard.vala:378
+#: ../src/wizard.vala:411
 msgid "TLS Port"
 msgstr "TLS పోర్టు"
 
-#: ../src/wizard.vala:388
+#: ../src/wizard.vala:425
 msgid "Will add boxes for all systems available from this account:"
 msgstr "ఈ ఖాతా నుండి అందుబాటులో ఉన్న వ్యవస్థలన్నిటికీ పెట్టెలను జతచేస్తుంది."
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:445
 msgid "Disk"
 msgstr "డిస్క్"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:445
 #, c-format
 msgid "%s maximum"
 msgstr "%s గరిష్టం"
 
-#: ../src/wizard.vala:494
+#: ../src/wizard.vala:535
 msgid "Introduction"
 msgstr "పరిచయం"
 
-#: ../src/wizard.vala:498
+#: ../src/wizard.vala:539
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -531,71 +768,93 @@ msgid ""
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
-"మీరు ఒక పెట్టెను సృష్టించుట ద్వారా మీరు ప్రవేశించివున్న వ్యవస్థ నుండి వేరొక నిర్వహణ వ్యవస్థను "
+"మీరు ఒక పెట్టెను సృష్టించుట ద్వారా మీరు ప్రవేశించివున్న వ్యవస్థ నుండి వేరొక "
+"నిర్వహణ వ్యవస్థను "
 "ఉపయోగించవచ్చును.\n"
 "\n"
-"మీరు <b><i>నెట్‌వర్క్ ద్వారా</i></b> అనుసంధానమవ్వవచ్చు లేక ఒక కొత్త <b><i>వాస్తవ యంత్రాన్ని</i></"
+"మీరు <b><i>నెట్‌వర్క్ ద్వారా</i></b> అనుసంధానమవ్వవచ్చు లేక ఒక కొత్త <b><i>"
+"వాస్తవ యంత్రాన్ని</i></"
 "b> సృష్టించినట్టయితే, దానిని స్థానికంగా వాడుకోవచ్చును."
 
-#: ../src/wizard.vala:510
+#: ../src/wizard.vala:551
 msgid "Source Selection"
 msgstr "మూలం ఎంపిక"
 
-#: ../src/wizard.vala:511
+#: ../src/wizard.vala:552
 msgid "Insert operating system installation media or select a source below"
-msgstr "నిర్వహణ వ్యవస్థ స్థాపక మాధ్యమాన్ని చొప్పించండి లేదా క్రింద ఉన్న మూలాన్ని ఎంచుకోండి"
+msgstr ""
+"నిర్వహణ వ్యవస్థ స్థాపక మాధ్యమాన్ని చొప్పించండి లేదా క్రింద ఉన్న మూలాన్ని "
+"ఎంచుకోండి"
 
-#: ../src/wizard.vala:521
+#: ../src/wizard.vala:562
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr ""
-"ఇక్కడ చూపించిన వాణిజ్యగుర్తులు కేవలం సాఫ్ట్‍వేర్ ఉత్పత్తులను గుర్తుంచుటకు మాత్రమే, వాటిపై సర్వహక్కులు "
+"ఇక్కడ చూపించిన వాణిజ్యగుర్తులు కేవలం సాఫ్ట్‍వేర్ ఉత్పత్తులను గుర్తుంచుటకు "
+"మాత్రమే, వాటిపై సర్వహక్కులు "
 "సంబంధిత యజమానులు కలిగివున్నారు."
 
-#: ../src/wizard.vala:534
+#: ../src/wizard.vala:575
 msgid "Preparation"
 msgstr "తయారుచేస్తుంది"
 
-#: ../src/wizard.vala:535
+#: ../src/wizard.vala:576
 msgid "Preparing to create new box"
 msgstr "కొత్త పెట్టెను సృష్టించుటకు సిద్ధంచేస్తున్నది"
 
-#: ../src/wizard.vala:554
-msgid "Analyzing installer media."
-msgstr "స్థాపక మాధ్యమాన్ని విశ్లేషిస్తున్నది."
-
-#: ../src/wizard.vala:565
+#: ../src/wizard.vala:613
 msgid "Setup"
 msgstr "అమరిక"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:620
 msgid "Review"
 msgstr "సమీక్ష"
 
-#: ../src/wizard.vala:583
+#: ../src/wizard.vala:631
 msgid ""
 "Virtualization extensions are unavailable on your system. Expect this box to "
 "be extremely slow. If your system is recent enough (made in or after 2008), "
 "these extensions are probably available on your system and you may need to "
 "enable them in your system's BIOS setup."
 msgstr ""
-"వర్చ్యులైజేషన్ పొడిగింపులు మీ కంప్యూటరులో అందుబాటులో లేవు. ఈ పెట్టె చాలా నెమ్మదిగా ఉంటుందని భావించాలి. మీ "
-"వ్యవస్థ (2008 లో లేదా తర్వాత చేసిన) తగినంత ఇటీవలి ఉంటే, ఈ పొడిగింతలను మీ కంప్యూటరులో బహుశా "
-"అందుబాటులో ఉన్నాయి మరియు మీరు మీ కంప్యూటరు యొక్క BIOS అమరికలో వాటిని చేతనపరచాలి."
+"వర్చ్యులైజేషన్ పొడిగింపులు మీ కంప్యూటరులో అందుబాటులో లేవు. ఈ పెట్టె చాలా "
+"నెమ్మదిగా ఉంటుందని భావించాలి. మీ "
+"వ్యవస్థ (2008 లో లేదా తర్వాత చేసిన) తగినంత ఇటీవలి ఉంటే, ఈ పొడిగింతలను మీ "
+"కంప్యూటరులో బహుశా "
+"అందుబాటులో ఉన్నాయి మరియు మీరు మీ కంప్యూటరు యొక్క BIOS అమరికలో వాటిని "
+"చేతనపరచాలి."
 
-#: ../src/wizard.vala:592
+#: ../src/wizard.vala:646
 msgid "Create a Box"
 msgstr "ఒక పెట్టెను సృష్టించండి"
 
-#: ../src/wizard.vala:611
+#: ../src/wizard.vala:649
+msgid "_Cancel"
+msgstr "రద్దుచేయి (_C)"
+
+#: ../src/wizard.vala:658
 msgid "_Back"
 msgstr "వెనక్కి (_B)"
 
-#: ../src/wizard.vala:703
+#: ../src/wizard.vala:665
+msgid "C_ontinue"
+msgstr "కొనసాగు (_o)"
+
+#: ../src/wizard.vala:673
+msgid "C_reate"
+msgstr "సృష్టించు (_r)"
+
+#: ../src/wizard.vala:758
 msgid "C_ustomize..."
 msgstr "అనురూపించు...(_u)"
+
+#~ msgid "Fullscreen"
+#~ msgstr "పూర్తితెర"
+
+#~ msgid "USB redirection"
+#~ msgstr "USB రీడైరెక్షన్"
 
 #~ msgid ""
 #~ "Internet access required for express installation of Fedora 16 and older"
