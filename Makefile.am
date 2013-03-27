@@ -14,7 +14,6 @@ DISTCLEANFILES =				\
 	intltool-merge				\
 	intltool-update				\
 	po/.intltool-merge-cache		\
-	version.h				\
 	$(NULL)
 
 EXTRA_DIST =					\
@@ -65,10 +64,7 @@ BUILT_SOURCES = $(top_srcdir)/.version
 $(top_srcdir)/.version:
 	echo $(VERSION) > $@-t && mv $@-t $@
 
-all: version.h
-
-version.h: $(top_srcdir)/.version
-	echo '#define BUILD_VERSION "'`cat $(top_srcdir)/.version`'"' > $@-t && mv $@-t $@
+all:
 
 vala-clean:
 	rm -f `find . -name "*.stamp"`

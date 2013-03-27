@@ -24,7 +24,7 @@ private static void parse_local_args (ref unowned string[] args) {
     }
 
     if (version) {
-        GLib.stdout.printf ("%s\n", Config.BUILD_VERSION);
+        GLib.stdout.printf ("%s\n", Config.VERSION);
         exit (0);
     }
 

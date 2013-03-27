@@ -151,7 +151,7 @@ private class Boxes.App: Boxes.UI {
                                    "copyright", "Copyright 2011 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "logo-icon-name", "gnome-boxes",
-                                   "version", Config.BUILD_VERSION,
+                                   "version", Config.VERSION,
                                    "website", "http://live.gnome.org/Boxes",
                                    "wrap-license", true);
         });
