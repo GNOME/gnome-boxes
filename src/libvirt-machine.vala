@@ -495,14 +495,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return gvir_flags;
     }
 
-    public async void start (Machine.ConnectFlags flags) throws GLib.Error {
+    public async void start (Machine.ConnectFlags flags, Cancellable? cancellable = null) throws GLib.Error {
         if (state == MachineState.RUNNING)
             return;
 
         if (state == MachineState.PAUSED)
-            yield domain.resume_async (null);
+            yield domain.resume_async (cancellable);
         else if (state == MachineState.SLEEPING) {
-            yield domain.wakeup_async (0, null);
+            yield domain.wakeup_async (0, cancellable);
         } else {
             var restore = domain.get_saved () &&
                 !(Machine.ConnectFlags.IGNORE_SAVED_STATE in flags);
@@ -513,7 +513,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 // Translators: The %s will be expanded with the name of the vm
                 status = _("Starting %s").printf (name);
             try {
-                yield domain.start_async (connect_flags_to_gvir (flags), null);
+                yield domain.start_async (connect_flags_to_gvir (flags), cancellable);
             } catch (GLib.Error error) {
                 if (restore)
                     throw new Boxes.Error.RESTORE_FAILED ("Restore failed");

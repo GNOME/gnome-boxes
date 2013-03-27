@@ -463,7 +463,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     private void reboot () {
         if (machine.state == Machine.MachineState.SAVED) {
             debug ("'%s' is in saved state. Resuming it..", machine.name);
-            machine.start.begin (Machine.ConnectFlags.NONE, (obj, res) => {
+            machine.start.begin (Machine.ConnectFlags.NONE, null, (obj, res) => {
                 try {
                     machine.start.end (res);
                     reboot ();
@@ -484,7 +484,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             if (machine.state == Machine.MachineState.STOPPED ||
                 machine.state == Machine.MachineState.FORCE_STOPPED) {
                 debug ("'%s' stopped.", machine.name);
-                machine.start.begin (Machine.ConnectFlags.NONE, (obj, res) => {
+                machine.start.begin (Machine.ConnectFlags.NONE, null, (obj, res) => {
                     try {
                         machine.start.end (res);
                     } catch (GLib.Error error) {
