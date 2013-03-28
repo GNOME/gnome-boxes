@@ -687,6 +687,8 @@ private class Boxes.App: Boxes.UI {
                     machine.disconnect (got_error_id);
                     got_error_id = 0;
                 }
+
+                machine.connecting_cancellable.cancel (); // Cancel any in-progress connections
             }
             fullscreen = false;
             view.visible = true;
