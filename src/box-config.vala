@@ -20,7 +20,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         get { return source.keyfile; }
     }
 
-    private string group;
+    public string group { get; private set; }
 
     public string? last_seen_name {
         owned get { return get_string (group, "last-seen-name"); }
