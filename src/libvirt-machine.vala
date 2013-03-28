@@ -23,7 +23,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
-        yield start (flags);
+        yield start (flags, connecting_cancellable);
+        if (connecting_cancellable.is_cancelled ()) {
+            connecting_cancellable.reset ();
+
+            return;
+        }
 
         if (update_display ()) {
             display.connect_it ();
@@ -514,6 +519,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 status = _("Starting %s").printf (name);
             try {
                 yield domain.start_async (connect_flags_to_gvir (flags), cancellable);
+            } catch (IOError.CANCELLED error) {
+                debug ("starting of %s was cancelled", name);
             } catch (GLib.Error error) {
                 if (restore)
                     throw new Boxes.Error.RESTORE_FAILED ("Restore failed");

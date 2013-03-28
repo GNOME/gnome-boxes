@@ -28,8 +28,10 @@ private class Boxes.OvirtMachine: Boxes.Machine {
 
         if (state == MachineState.STOPPED)
             try {
-                yield vm.start_async (proxy, null);
+                yield vm.start_async (proxy, connecting_cancellable);
                 this.update_state ();
+            } catch (IOError.CANCELLED error) {
+                debug ("connection to %s was cancelled", name);
             } catch (GLib.Error error) {
                 throw new Boxes.Error.INVALID ("Couldn't start oVirt VM '%s': %s", vm.name, error.message);
             }
@@ -40,11 +42,13 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         try {
             display = create_display_connection ();
             if (vm.display.type == Ovirt.VmDisplayType.SPICE) {
-                yield vm.get_ticket_async (proxy, null);
+                yield vm.get_ticket_async (proxy, connecting_cancellable);
                 display.password = vm.display.ticket;
             }
 
             display.connect_it ();
+        } catch (IOError.CANCELLED error) {
+            debug ("connection to %s was cancelled", name);
         } catch (GLib.Error e) {
             throw new Boxes.Error.INVALID ("Error opening display: %s", e.message);
         }

@@ -32,6 +32,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private static Cairo.Surface grid_surface;
     private bool updating_screenshot;
 
+    public Cancellable connecting_cancellable { get; protected set; }
+
     public enum MachineState {
         UNKNOWN,
         STOPPED,
@@ -178,6 +180,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Machine (Boxes.CollectionSource source, string name) {
         this.name = name;
         this.source = source;
+        this.connecting_cancellable = new Cancellable ();
 
         pixbuf = draw_fallback_vm ();
         machine_actor = new MachineActor (this);
