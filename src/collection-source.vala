@@ -126,4 +126,31 @@ public class Boxes.CollectionSource: GLib.Object, Boxes.IConfig {
         FileUtils.unlink (get_user_pkgconfig_source (filename));
         has_file = false;
     }
+
+    public void purge_stale_box_configs (GLib.List<BoxConfig> used_configs) {
+        foreach (var group in keyfile.get_groups ()) {
+            if (group == "source")
+                continue;
+
+            var stale = true;
+            foreach (var config in used_configs) {
+                if (config.group == group) {
+                    stale = false;
+
+                    break;
+                }
+            }
+
+            if (stale) {
+                try {
+                    keyfile.remove_group (group);
+                    debug ("Removed stale box config '%s'", group);
+                } catch (GLib.Error e) {
+                    debug ("Error removing stale stale box config '%s': %s", group, e.message);
+                }
+            }
+        }
+
+        save ();
+    }
 }
