@@ -191,6 +191,8 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     private string? get_decoded_udev_property (GUdev.Device device, string property_name) {
         var encoded = device.get_property (property_name);
+        if (!encoded)
+            return null;
 
         var decoded = "";
         for (var i = 0; i < encoded.length; ) {
