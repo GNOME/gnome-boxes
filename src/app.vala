@@ -920,8 +920,7 @@ private class Boxes.App: Boxes.UI {
                 } else
                     bar.display_error (_("Connection to '%s' failed").printf (machine.name));
             }
-            });
-
+        });
     }
 
     public void select_item (CollectionItem item) {
