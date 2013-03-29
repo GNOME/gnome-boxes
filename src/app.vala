@@ -365,6 +365,11 @@ private class Boxes.App: Boxes.UI {
         if (!source.enabled)
             return;
 
+        if (sources.get (source.name) != null) {
+            warning ("Attempt to add duplicate collection source '%s', ignoring..", source.name);
+            return; // Already added
+        }
+
         switch (source.source_type) {
         case "vnc":
         case "spice":
@@ -404,23 +409,21 @@ private class Boxes.App: Boxes.UI {
             }
         }
 
-        try {
-            var source = new CollectionSource.with_file ("QEMU Session");
+        var dir = File.new_for_path (get_user_pkgconfig_source ());
+        var new_sources = new GLib.List<CollectionSource> ();
+        yield foreach_filename_from_dir (dir, (filename) => {
+            var source = new CollectionSource.with_file (filename);
+            new_sources.append (source);
+            return false;
+        });
+
+        foreach (var source in new_sources)
             yield add_collection_source (source);
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+
         if (default_connection == null) {
             printerr ("Missing or failing default libvirt connection\n");
             application.release (); // will end application
         }
-
-        var dir = File.new_for_path (get_user_pkgconfig_source ());
-        yield foreach_filename_from_dir (dir, (filename) => {
-            var source = new CollectionSource.with_file (filename);
-            add_collection_source.begin (source);
-            return false;
-        });
     }
 
     private void save_window_geometry () {
