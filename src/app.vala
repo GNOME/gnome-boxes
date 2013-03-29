@@ -4,7 +4,18 @@ using Gdk;
 using Clutter;
 
 private abstract class Boxes.Broker : GLib.Object {
-    public abstract async void add_source (CollectionSource source);
+    // Overriding subclass should chain-up at the end of its implementation
+    public virtual async void add_source (CollectionSource source) {
+        var used_configs = new GLib.List<BoxConfig> ();
+        foreach (var item in App.app.collection.items.data) {
+            if (!(item is Machine))
+                continue;
+
+            used_configs.append ((item as Machine).config);
+        }
+
+        source.purge_stale_box_configs (used_configs);
+    }
 }
 
 private enum Boxes.AppPage {

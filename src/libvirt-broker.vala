@@ -100,6 +100,8 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             debug ("New domain '%s'", domain.get_name ());
             try_add_new_domain (source, connection, domain);
         });
+
+        yield base.add_source (source);
     }
 }
 

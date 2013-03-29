@@ -68,5 +68,7 @@ private class Boxes.OvirtBroker : Boxes.Broker {
         foreach (var vm in proxy.get_vms ()) {
             add_vm (source, proxy, vm);
         }
+
+        yield base.add_source (source);
     }
 }
