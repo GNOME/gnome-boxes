@@ -98,8 +98,26 @@ VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
 VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
 
-PKG_CHECK_MODULES(OVIRT, [govirt-1.0 >= $GOVIRT_MIN_VERSION],
-                  [have_govirt=yes], [have_govirt=no])
+AC_ARG_ENABLE(ovirt,
+              AS_HELP_STRING([--enable-ovirt=yes|no|auto], [Enable support for OVirt]),
+              [enable_ovirt=$enableval],
+              [enable_ovirt=auto])
+case "x$enable_ovirt" in
+  xyes)
+    PKG_CHECK_MODULES(OVIRT, [govirt-1.0 >= $GOVIRT_MIN_VERSION])
+    have_govirt="yes"
+    ;;
+  xauto)
+    PKG_CHECK_MODULES(OVIRT, [govirt-1.0 >= $GOVIRT_MIN_VERSION],
+                      [have_govirt=yes], [have_govirt=no])
+    ;;
+  xno)
+    have_govirt="xno"
+    ;;
+  x*)
+    AC_MSG_ERROR([Unknown --enable-ovirt argument: $enable_ovirt])
+    ;;
+esac
 if test "x$have_govirt" = "xyes"; then
   AC_DEFINE([HAVE_OVIRT], [1], [Build with oVirt support?])
 else
