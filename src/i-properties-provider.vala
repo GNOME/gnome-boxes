@@ -141,8 +141,8 @@ private class Boxes.StringProperty : Boxes.Property {
 
 [Flags]
 public enum PropertyCreationFlag {
-    NONE = 0,
-    NO_USB = 1<<0
+    NONE,
+    NO_USB,
 }
 
 private interface Boxes.IPropertiesProvider: GLib.Object {
