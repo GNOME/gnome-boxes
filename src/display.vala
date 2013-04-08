@@ -12,6 +12,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public bool need_username { get; protected set; }
     public string? password { get; set; }
     public string? username { get; set; }
+    public bool connected;
 
     public signal void show (int display_id);
     public signal void hide (int display_id);

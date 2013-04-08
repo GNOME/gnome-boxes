@@ -260,6 +260,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
 
+    public bool is_connected () {
+        if (display == null)
+            return false;
+
+        return display.connected;
+    }
+
     public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
 
     public virtual void disconnect_display () {
