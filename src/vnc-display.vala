@@ -10,7 +10,6 @@ private class Boxes.VncDisplay: Boxes.Display {
     private int port;
     private Gtk.Window window;
     private BoxConfig.SyncProperty[] sync_properties;
-    private bool connected;
 
     construct {
         sync_properties = {

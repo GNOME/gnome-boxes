@@ -14,7 +14,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private ulong channel_destroy_id;
     private BoxConfig.SyncProperty[] display_sync_properties;
     private BoxConfig.SyncProperty[] gtk_session_sync_properties;
-    private bool connected;
     private bool closed;
 
     public bool resize_guest { get; set; }
