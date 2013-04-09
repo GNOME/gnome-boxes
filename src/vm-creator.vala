@@ -87,6 +87,14 @@ private class Boxes.VMCreator {
             return;
         }
 
+        if (!FileUtils.test (install_media.device_file, FileTest.EXISTS)) {
+            warning ("Source installer media '%s' no longer exists. Deleting machine '%s'..",
+                     install_media.device_file,
+                     machine.name);
+            App.app.delete_machine (machine);
+            return;
+        }
+
         install_media.prepare_to_continue_installation (name);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
