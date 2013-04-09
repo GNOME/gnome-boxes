@@ -129,7 +129,7 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
         try {
-            var mount_dir = File.new_for_commandline_arg (path);
+            var mount_dir = File.new_for_path (path);
             var mount = yield mount_dir.find_enclosing_mount_async (Priority.DEFAULT, cancellable);
             var root_dir = mount.get_root ();
             if (root_dir.get_path () == mount_dir.get_path ()) {

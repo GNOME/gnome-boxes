@@ -225,7 +225,7 @@ private class Boxes.Wizard: Boxes.UI {
         if (location == "")
             throw new Boxes.Error.INVALID ("empty location");
 
-        var file = File.new_for_commandline_arg (location);
+        var file = File.new_for_uri (location);
 
         if (file.is_native ()) {
             // FIXME: We should able to handle non-local URIs here too
