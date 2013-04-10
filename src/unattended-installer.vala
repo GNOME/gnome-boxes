@@ -373,7 +373,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         express_toggle.margin_bottom = 15;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
-        express_toggle.notify["active"].connect (() => { notify_property ("ready-to-create"); });
+        express_toggle.notify["active"].connect (() => { user_wants_to_create (); });
         setup_grid.attach (express_toggle, 2, 0, 1, 1);
         setup_grid_n_rows++;
 
@@ -397,6 +397,13 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         username_entry.margin_bottom  = 10;
         username_entry.halign = Gtk.Align.FILL;
         username_entry.valign = Gtk.Align.END;
+        username_entry.activate.connect (() => {
+            if (ready_for_express)
+                user_wants_to_create ();
+            else if (username != "" && product_key_format != null)
+                key_entry.grab_focus (); // If username is provided, must be product key thats still not provided
+        });
+
         setup_grid.attach (username_entry, 2, 1, 1, 1);
         setup_grid_n_rows++;
 
@@ -426,6 +433,14 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 notebook.prev_page ();
             return false;
         });
+        password_entry.activate.connect (() => {
+            if (ready_for_express)
+                user_wants_to_create ();
+            else if (username == "")
+                username_entry.grab_focus ();
+            else if (product_key_format != null)
+                key_entry.grab_focus ();
+        });
         setup_grid.attach (notebook, 2, 2, 1, 1);
         setup_grid_n_rows++;
 
@@ -453,6 +468,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         key_entry.get_style_context ().add_class ("boxes-product-key-entry");
         setup_grid.attach (key_entry, 2, setup_grid_n_rows, 1, 1);
         express_toggle.bind_property ("active", key_entry, "sensitive", 0);
+        key_entry.activate.connect (() => {
+            if (ready_for_express)
+                user_wants_to_create ();
+            else if (key_entry.text_length == product_key_format.length)
+                username_entry.grab_focus (); // If product key is provided, must be username thats still not provided.
+        });
         setup_grid_n_rows++;
 
         key_inserted_id = key_entry.insert_text.connect (on_key_text_inserted);

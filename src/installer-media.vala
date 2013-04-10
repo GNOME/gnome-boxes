@@ -15,6 +15,8 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public Osinfo.DeviceList supported_devices;
 
+    public signal void user_wants_to_create (); // User wants to already create the VM
+
     // FIXME: Currently this information is always unknown so practically we never show any progress for installations.
     public virtual uint64 installed_size { get { return 0; } }
     public virtual bool need_user_input_for_vm_creation { get { return false; } }
