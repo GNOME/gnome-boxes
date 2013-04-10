@@ -423,7 +423,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         notebook.append_page (password_entry);
         button.clicked.connect (() => {
             notebook.next_page ();
-            password_entry.is_focus = true;
+            password_entry.grab_focus ();
         });
         password_entry.focus_out_event.connect (() => {
             if (password_entry.text_length == 0)
