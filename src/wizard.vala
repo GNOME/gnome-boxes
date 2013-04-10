@@ -665,6 +665,9 @@ private class Boxes.Wizard: Boxes.UI {
         continue_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
         continue_button.use_underline = true;
         continue_button.get_style_context ().add_class ("boxes-continue");
+        continue_button.bind_property ("sensitive",
+                                       continue_button, "has-focus",
+                                       BindingFlags.SYNC_CREATE);
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
@@ -673,6 +676,9 @@ private class Boxes.Wizard: Boxes.UI {
         create_button = toolbar.add_button (null, _("C_reate"), false) as Gtk.Button;
         create_button.use_underline = true;
         create_button.get_style_context ().add_class ("boxes-continue");
+        create_button.bind_property ("sensitive",
+                                     create_button, "has-focus",
+                                     BindingFlags.SYNC_CREATE);
         create_button.clicked.connect (() => {
             page = page + 1;
         });
