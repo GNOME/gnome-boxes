@@ -292,17 +292,15 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return properties;
     }
 
-    public override void set_direct_boot_params (GVirConfig.DomainOs os) {
+    public override void set_direct_boot_params (GVirConfig.DomainOs domain_os) {
         if (kernel_file == null || initrd_file == null)
             return;
 
-        // FIXME: This commandline should come from libosinfo somehow
         var script = scripts.get_nth (0) as InstallScript;
-        var cmdline = "ks=hd:sda:/" + script.get_expected_filename ();
 
-        os.set_kernel (kernel_file.get_path ());
-        os.set_ramdisk (initrd_file.get_path ());
-        os.set_cmdline (cmdline);
+        domain_os.set_kernel (kernel_file.get_path ());
+        domain_os.set_ramdisk (initrd_file.get_path ());
+        domain_os.set_cmdline (script.generate_command_line (os, config));
     }
 
     public override void clean_up () {
