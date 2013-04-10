@@ -338,6 +338,10 @@ private class Boxes.Wizard: Boxes.UI {
                                                 continue_button, "sensitive",
                                                 BindingFlags.SYNC_CREATE);
         vm_creator.install_media.populate_setup_vbox (setup_vbox);
+        vm_creator.install_media.user_wants_to_create.connect (() => {
+            if (vm_creator.install_media.ready_to_create)
+                page = page + 1;
+        });
 
         return true;
     }
