@@ -304,7 +304,6 @@ private class Boxes.Wizard: Boxes.UI {
         vm_creator = new VMCreator (install_media);
         prep_progress.fraction = 1.0;
         page = WizardPage.SETUP;
-        next_button.sensitive = true;
     }
 
     private bool prepare () {
