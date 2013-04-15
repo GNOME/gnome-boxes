@@ -147,6 +147,7 @@ dnl libgd
 LIBGD_INIT([
   gtk-hacks
   main-toolbar
+  main-view
   main-icon-view
   margin-container
   notification

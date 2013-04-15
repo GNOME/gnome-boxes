@@ -31,23 +31,21 @@ private class Boxes.CollectionView: Boxes.UI {
         LAST
     }
 
-    public Gd.MainIconView icon_view;
+    public Gd.MainView main_view;
     private Gtk.ListStore model;
     private Gtk.TreeModelFilter model_filter;
 
-    private string button_press_item_path;
-
     public bool visible {
-        set { icon_view.visible = value; }
+        set { main_view.visible = value; }
     }
 
     public CollectionView () {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         setup_view ();
         App.app.notify["selection-mode"].connect (() => {
-            icon_view.set_selection_mode (App.app.selection_mode);
+            main_view.set_selection_mode (App.app.selection_mode);
             if (!App.app.selection_mode)
-                icon_view.unselect_all (); // Reset selection on exiting selection mode
+                main_view.unselect_all (); // Reset selection on exiting selection mode
         });
     }
 
@@ -55,7 +53,7 @@ private class Boxes.CollectionView: Boxes.UI {
         Gdk.Rectangle rect;
         var path = get_path_for_item (item);
         if (path != null) {
-            icon_view.get_cell_rect (path, null, out rect);
+            (main_view.get_generic_view () as Gtk.IconView).get_cell_rect (path, null, out rect);
             x = rect.x;
             y = rect.y;
         } else {
@@ -66,7 +64,7 @@ private class Boxes.CollectionView: Boxes.UI {
 
     public override void ui_state_changed () {
         if (ui_state == UIState.COLLECTION)
-            icon_view.unselect_all ();
+            main_view.unselect_all ();
         fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
@@ -120,7 +118,7 @@ private class Boxes.CollectionView: Boxes.UI {
         }
 
         model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
-        icon_view.queue_draw ();
+        main_view.queue_draw ();
     }
 
     private Gtk.TreeIter append (string title,
@@ -129,6 +127,7 @@ private class Boxes.CollectionView: Boxes.UI {
         Gtk.TreeIter iter;
 
         model.append (out iter);
+        model.set (iter, Gd.MainColumns.ID, "%p".printf (item));
         model.set (iter, ModelColumns.TITLE, title);
         if (info != null)
             model.set (iter, ModelColumns.INFO, info);
@@ -165,14 +164,14 @@ private class Boxes.CollectionView: Boxes.UI {
         var name_id = item.notify["name"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.TITLE, item.name);
-            icon_view.queue_draw ();
+            main_view.queue_draw ();
         });
         item.set_data<ulong> ("name_id", name_id);
 
         var info_id = machine.notify["info"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             model.set (iter, ModelColumns.INFO, machine.info);
-            icon_view.queue_draw ();
+            main_view.queue_draw ();
         });
         item.set_data<ulong> ("info_id", info_id);
 
@@ -270,7 +269,7 @@ private class Boxes.CollectionView: Boxes.UI {
     public void activate () {
         if (model_filter.iter_n_children (null) == 1) {
             Gtk.TreePath path = new Gtk.TreePath.from_string ("0");
-            icon_view.item_activated (path);
+            (main_view.get_generic_view () as Gtk.IconView).item_activated (path);
         }
     }
 
@@ -306,26 +305,25 @@ private class Boxes.CollectionView: Boxes.UI {
         model_filter = new Gtk.TreeModelFilter (model, null);
         model_filter.set_visible_func (model_visible);
 
-        icon_view = new Gd.MainIconView ();
-        icon_view.set_model (model_filter);
-        icon_view.get_style_context ().add_class ("boxes-icon-view");
-        icon_view.button_press_event.connect (on_button_press_event);
-        icon_view.button_release_event.connect (on_button_release_event);
-        icon_view_activate_on_single_click (icon_view, true);
-        icon_view.item_activated.connect ((view, path) => {
+        // The normal construction has some issues
+        main_view = Object.new (typeof (Gd.MainView)) as Gd.MainView;
+        main_view.set_view_type (Gd.MainViewType.ICON);
+        main_view.set_model (model_filter);
+        main_view.get_style_context ().add_class ("boxes-icon-view");
+        main_view.item_activated.connect ((view, id, path) => {
             var item = get_item_for_path (path);
             App.app.select_item (item);
         });
+        main_view.view_selection_changed.connect (() => {
+            main_view.queue_draw ();
+            App.app.notify_property ("selected-items");
+        });
+        main_view.selection_mode_request.connect (() => {
+            App.app.selection_mode = true;
+        });
+        main_view.show_all ();
 
-        var scrolled_window = new Gtk.ScrolledWindow (null, null);
-        // TODO: this should be set, but doesn't resize correctly the gtkactor..
-        //        scrolled_window.hscrollbar_policy = Gtk.PolicyType.NEVER;
-        scrolled_window.add (icon_view);
-        scrolled_window.show_all ();
-        scrolled_window.set_shadow_type (Gtk.ShadowType.IN);
-        scrolled_window.get_style_context ().add_class ("documents-scrolledwin");
-
-        gtkactor = new GtkClutter.Actor.with_contents (scrolled_window);
+        gtkactor = new GtkClutter.Actor.with_contents (main_view);
         gtkactor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtkactor.name = "collection-view";
         gtkactor.x_align = Clutter.ActorAlign.FILL;
@@ -334,71 +332,6 @@ private class Boxes.CollectionView: Boxes.UI {
         gtkactor.y_expand = true;
     }
 
-    private bool on_button_press_event (Gtk.Widget view, Gdk.EventButton event) {
-        Gtk.TreePath path = icon_view.get_path_at_pos ((int) event.x, (int) event.y);
-        if (path == null)
-            return false;
-
-        button_press_item_path = path.to_string ();
-        CollectionItem item = get_item_for_path (path);
-        bool found = item != null;
-
-        return !found; // if we did not find the item, block drag and drop
-    }
-
-    private bool on_button_release_event (Gtk.Widget view, Gdk.EventButton event) {
-        /* eat double/triple click events */
-        if (event.type != Gdk.EventType.BUTTON_RELEASE)
-            return true;
-
-        Gtk.TreePath path = icon_view.get_path_at_pos ((int) event.x, (int) event.y);
-
-        var same_item = false;
-        if (path != null) {
-            string button_release_item_path = path.to_string ();
-
-            same_item = button_press_item_path == button_release_item_path;
-        }
-
-        button_press_item_path = null;
-
-        if (!same_item)
-            return false;
-
-        var entered_mode = false;
-        if (!App.app.selection_mode)
-            if (event.button == 3 || (event.button == 1 &&  Gdk.ModifierType.CONTROL_MASK in event.state)) {
-                App.app.selection_mode = true;
-                entered_mode = true;
-            }
-
-        if (App.app.selection_mode)
-            return on_button_release_selection_mode (event, entered_mode, path);
-
-        return false;
-    }
-
-    private bool on_button_release_selection_mode (Gdk.EventButton event, bool entered_mode, Gtk.TreePath path) {
-        Gtk.TreeIter filter_iter, iter;
-
-        if (!model_filter.get_iter (out filter_iter, path))
-            return false;
-
-        model_filter.convert_iter_to_child_iter (out iter, filter_iter);
-
-        bool selected;
-        model.get (iter, ModelColumns.SELECTED, out selected);
-
-        if (selected && !entered_mode)
-            model.set (iter, ModelColumns.SELECTED, false);
-        else if (!selected)
-            model.set (iter, ModelColumns.SELECTED, true);
-        icon_view.queue_draw ();
-
-        App.app.notify_property ("selected-items");
-
-        return false;
-    }
 
     public void select (SelectionCriteria selection) {
         App.app.selection_mode = true;
@@ -425,7 +358,7 @@ private class Boxes.CollectionView: Boxes.UI {
             model.set (iter, ModelColumns.SELECTED, selected);
             return false;
         });
-        icon_view.queue_draw ();
+        main_view.queue_draw ();
         App.app.notify_property ("selected-items");
     }
 

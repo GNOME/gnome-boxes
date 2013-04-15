@@ -716,7 +716,7 @@ private class Boxes.App: Boxes.UI {
                 position_item_actor_at_icon (current_item);
 
                 // Also track size changes in the icon_view during the animation
-                var id = view.icon_view.size_allocate.connect ((allocation) => {
+                var id = view.main_view.size_allocate.connect ((allocation) => {
                     // We do this in an idle to avoid causing a layout inside a size_allocate cycle
                     Idle.add_full (Priority.HIGH, () => {
                         position_item_actor_at_icon (current_item);
@@ -726,7 +726,7 @@ private class Boxes.App: Boxes.UI {
                 ulong completed_id = 0;
                 completed_id = actor.transitions_completed.connect (() => {
                     actor.disconnect (completed_id);
-                    view.icon_view.disconnect (id);
+                    view.main_view.disconnect (id);
                     if (App.app.ui_state == UIState.COLLECTION ||
                         App.app.current_item.actor != actor)
                         actor_remove (actor);
