@@ -648,6 +648,7 @@ private class Boxes.Wizard: Boxes.UI {
         toolbar_sizegroup = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
         cancel_button = toolbar.add_button (null, _("_Cancel"), true) as Gtk.Button;
         cancel_button.use_underline = true;
+        cancel_button.label = _("_Cancel");
         cancel_button.clicked.connect (() => {
             destroy_machine ();
             wizard_source.page = SourcePage.MAIN;
@@ -657,6 +658,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         back_button = toolbar.add_button (null, _("_Back"), false) as Gtk.Button;
         back_button.use_underline = true;
+        back_button.label = _("_Back");
         back_button.clicked.connect (() => {
             page = page - 1;
         });
@@ -664,6 +666,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         continue_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
         continue_button.use_underline = true;
+        continue_button.label = _("C_ontinue");
         continue_button.get_style_context ().add_class ("boxes-continue");
         continue_button.bind_property ("sensitive",
                                        continue_button, "has-focus",
@@ -675,6 +678,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         create_button = toolbar.add_button (null, _("C_reate"), false) as Gtk.Button;
         create_button.use_underline = true;
+        create_button.label = _("C_reate");
         create_button.get_style_context ().add_class ("boxes-continue");
         create_button.bind_property ("sensitive",
                                      create_button, "has-focus",
