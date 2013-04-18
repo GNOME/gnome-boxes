@@ -671,9 +671,6 @@ private class Boxes.Wizard: Boxes.UI {
         // workaround for libgd bug #698289
         continue_button.label = _("C_ontinue");
         continue_button.get_style_context ().add_class ("boxes-continue");
-        continue_button.bind_property ("sensitive",
-                                       continue_button, "has-focus",
-                                       BindingFlags.SYNC_CREATE);
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
@@ -684,9 +681,6 @@ private class Boxes.Wizard: Boxes.UI {
         // workaround for libgd bug #698289
         create_button.label = _("C_reate");
         create_button.get_style_context ().add_class ("boxes-continue");
-        create_button.bind_property ("sensitive",
-                                     create_button, "has-focus",
-                                     BindingFlags.SYNC_CREATE);
         create_button.clicked.connect (() => {
             page = page + 1;
         });
