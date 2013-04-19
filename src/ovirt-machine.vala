@@ -26,6 +26,8 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         if (display != null)
             return;
 
+        connecting_cancellable.reset ();
+
         if (state == MachineState.STOPPED)
             try {
                 yield vm.start_async (proxy, connecting_cancellable);
