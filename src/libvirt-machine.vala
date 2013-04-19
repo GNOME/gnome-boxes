@@ -23,6 +23,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
+        connecting_cancellable.reset ();
+
         yield start (flags, connecting_cancellable);
         if (connecting_cancellable.is_cancelled ()) {
             connecting_cancellable.reset ();
