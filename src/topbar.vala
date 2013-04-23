@@ -109,6 +109,9 @@ private class Boxes.Topbar: Boxes.UI {
         search2_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
         done_btn = selection_toolbar.add_button (null, _("D_one"), false) as Gtk.Button;
+        done_btn.use_underline = true;
+        // workaround for libgd bug #698289
+        done_btn.label = _("D_one");
         done_btn.get_style_context().add_class("suggested-action");
         done_btn.use_stock = true;
         done_btn.clicked.connect (() => {
