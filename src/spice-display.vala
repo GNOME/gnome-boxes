@@ -27,6 +27,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
     }
 
+    private string get_box_name () {
+        //Translators: "Unknown" is a placeholder for a box name when it could not be determined
+        return config.last_seen_name?? _("Unknown");
+    }
+
     construct {
         display_sync_properties = {
             BoxConfig.SyncProperty () { name = "resize-guest", default_value = true }
@@ -45,7 +50,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             var manager = UsbDeviceManager.get (session);
             manager.auto_connect_failed.connect ( (dev, err) => {
                 var device_description = dev.get_description ("%1$s %2$s");
-                var box_name = config.last_seen_name?? "Unknown";
+                var box_name = get_box_name ();
                 got_error (_("Automatic redirection of USB device '%s' for '%s' failed").printf (device_description,
                                                                                                  box_name));
                 debug ("Error auto-connecting %s for %s: %s", device_description, box_name, err.message);
@@ -53,7 +58,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
             manager.device_error.connect ( (dev, err) => {
                 var device_description = dev.get_description ("%1$s %2$s");
-                var box_name = config.last_seen_name?? "Unknown";
+                var box_name = get_box_name ();
                 got_error (_("Redirection of USB device '%s' for '%s' failed").printf (device_description, box_name));
                 debug ("Error connecting %s to %s: %s", device_description, box_name, err.message);
             });
@@ -304,7 +309,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                             dev_toggle.halign =  Gtk.Align.START;
 
                             if (!found_dev)
-                                add_property (ref list, "USB devices", new Gtk.Label (""));
+                                add_property (ref list, _("USB devices"), new Gtk.Label (""));
                             found_dev = true;
                             add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
                             dev_toggle.active = manager.is_device_connected (dev);
@@ -317,7 +322,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                         } catch (GLib.Error err) {
                                             dev_toggle.active = false;
                                             var device_desc = dev.get_description ("%1$s %2$s");
-                                            var box_name = config.last_seen_name?? "Unknown";
+                                            var box_name = get_box_name ();
                                             var msg = _("Redirection of USB device '%s' for '%s' failed");
                                             got_error (msg.printf (device_desc, box_name));
                                             debug ("Error connecting %s to %s: %s", device_desc, box_name, err.message);
