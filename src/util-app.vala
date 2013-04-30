@@ -472,6 +472,49 @@ namespace Boxes {
         }
     }
 
+    [DBus (name = "org.freedesktop.timedate1")]
+    public interface Fdo.timedate1 : Object {
+        public abstract string timezone { owned get; set; }
+    }
+
+    public string? get_timezone () {
+        try {
+            return get_timezone_from_systemd ();
+        } catch (GLib.Error e) {
+            // A system without systemd. :( Lets try the hack'ish way.
+            debug ("Failed to get timezone from systemd: %s", e.message);
+            try {
+                return get_timezone_from_linux ();
+            } catch (GLib.Error e) {
+                warning ("Failed to find system timezone: %s", e.message);
+
+                return null;
+            }
+        }
+    }
+
+    public string get_timezone_from_systemd () throws GLib.Error {
+        Fdo.timedate1 timedate = Bus.get_proxy_sync (BusType.SYSTEM,
+                                                     "org.freedesktop.timedate1",
+                                                     "/org/freedesktop/timedate1");
+        if (timedate.timezone == null)
+            throw new Boxes.Error.INVALID ("Failed to get timezone from systemd");
+
+        return timedate.timezone;
+    }
+
+    public string get_timezone_from_linux () throws GLib.Error {
+        var file = File.new_for_path ("/etc/localtime");
+
+        var info = file.query_info (FileAttribute.STANDARD_SYMLINK_TARGET, FileQueryInfoFlags.NOFOLLOW_SYMLINKS);
+        var target = info.get_symlink_target ();
+        var tokens = target.split ("zoneinfo/");
+        if (tokens == null || tokens.length < 2)
+            throw new Boxes.Error.INVALID ("Timezone file in unexpected location '%s'", target);
+
+        return tokens[1];
+    }
+
     namespace UUID {
         [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
         internal extern static void generate ([CCode (array_length = false)] uchar[] uuid);

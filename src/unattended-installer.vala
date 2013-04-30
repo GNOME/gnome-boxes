@@ -72,7 +72,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private Gtk.Entry password_entry;
     private Gtk.Entry key_entry;
 
-    private string timezone;
+    private string? timezone;
     private string lang;
     private string hostname;
     private string kbd;
@@ -121,10 +121,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             add_unattended_file (new UnattendedScriptFile (this, script, filename));
         }
 
-        var time = TimeVal ();
-        var date = new DateTime.from_timeval_local (time);
-        timezone = date.get_timezone_abbreviation ();
-
+        timezone = get_timezone ();
         lang = get_preferred_language ();
         kbd = lang;
         product_key_format = get_product_key_format ();
@@ -229,7 +226,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
         if (key_entry != null && key_entry.text != null)
             config.set_reg_product_key (key_entry.text);
-        config.set_l10n_timezone (timezone);
+        if (timezone != null)
+            config.set_l10n_timezone (timezone);
         config.set_l10n_language (lang);
         config.set_l10n_keyboard (kbd);
         config.set_hostname (hostname);
