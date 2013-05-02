@@ -319,7 +319,7 @@ private class Boxes.WizardSource: GLib.Object {
             ret = true;
         }
 
-        dialog.hide ();
+        dialog.destroy ();
 
         return ret;
     }
