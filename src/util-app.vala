@@ -503,11 +503,18 @@ namespace Boxes {
         return timedate.timezone;
     }
 
+    private const string TZ_FILE = "/etc/localtime";
+
     public string get_timezone_from_linux () throws GLib.Error {
-        var file = File.new_for_path ("/etc/localtime");
+        var file = File.new_for_path (TZ_FILE);
+        if (!file.query_exists ())
+            throw new Boxes.Error.INVALID ("Timezone file not found in expected location '%s'", TZ_FILE);
 
         var info = file.query_info (FileAttribute.STANDARD_SYMLINK_TARGET, FileQueryInfoFlags.NOFOLLOW_SYMLINKS);
         var target = info.get_symlink_target ();
+        if (target == null)
+            throw new Boxes.Error.INVALID ("Timezone file '%s' is expected to be a symlink", TZ_FILE);
+
         var tokens = target.split ("zoneinfo/");
         if (tokens == null || tokens.length < 2)
             throw new Boxes.Error.INVALID ("Timezone file in unexpected location '%s'", target);
