@@ -412,12 +412,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         label.margin_right = 10;
         label.margin_bottom  = 10;
         label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.END;
+        label.valign = Gtk.Align.BASELINE;
         setup_grid.attach (label, 1, 1, 1, 1);
         username_entry = create_input_entry (Environment.get_user_name ());
         username_entry.margin_bottom  = 10;
         username_entry.halign = Gtk.Align.FILL;
-        username_entry.valign = Gtk.Align.END;
+        username_entry.valign = Gtk.Align.BASELINE;
         username_entry.activate.connect (() => {
             if (ready_for_express)
                 user_wants_to_create ();
@@ -432,16 +432,17 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         label = new Gtk.Label (_("Password"));
         label.margin_right = 10;
         label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.START;
+        label.valign = Gtk.Align.BASELINE;
         setup_grid.attach (label, 1, 2, 1, 1);
 
         var notebook = new Gtk.Notebook ();
         notebook.show_tabs = false;
         notebook.show_border = false;
         notebook.halign = Gtk.Align.FILL;
-        notebook.valign = Gtk.Align.START;
+        notebook.valign = Gtk.Align.CENTER;
         var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
         button.visible = true;
+        button.valign = Gtk.Align.BASELINE;
         notebook.append_page (button);
         password_entry = create_input_entry ("", false, false);
         notebook.append_page (password_entry);
