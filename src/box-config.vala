@@ -192,7 +192,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
             return 1;
 
         // then by last time used
-        if (access_last_time > 0 && other.access_last_time > 0) {
+        if (access_last_time > 0 || other.access_last_time > 0) {
             if (access_last_time > other.access_last_time)
                 return -1;
             else if (access_last_time < other.access_last_time)
