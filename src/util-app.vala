@@ -109,6 +109,8 @@ namespace Boxes {
         actor.set_easing_duration (old_duration);
     }
 
+    private uint transition_index = 0;
+
     public void fade_actor (Clutter.Actor actor, uint opacity) {
         if (opacity != 0)
             actor.show ();
@@ -116,21 +118,18 @@ namespace Boxes {
         // Don't react to use input while fading out
         actor.set_reactive (opacity == 255);
 
-        var transition = actor.get_transition ("animate-opacity");
-        if (transition != null)
-            actor.remove_transition ("animate-opacity");
-
-        transition = new Clutter.PropertyTransition ("opacity");
+        var transition = new Clutter.PropertyTransition ("opacity");
         var value = GLib.Value (typeof (uint));
         value.set_uint (opacity);
         transition.set_to_value (value);
         transition.set_duration (App.app.duration);
         transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
+        var name = "opacity%u".printf (transition_index++);
         transition.completed.connect (() => {
-            actor.remove_transition ("animate-opacity");
+            actor.remove_transition (name);
             actor.visible = actor.opacity != 0;
         });
-        actor.add_transition ("animate-opacity", transition);
+        actor.add_transition (name, transition);
     }
 
     public delegate void ActorFunc (Clutter.Actor actor);
