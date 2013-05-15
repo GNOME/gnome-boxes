@@ -878,6 +878,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         var lang = system_langs[0].replace (".utf8", "");
+        lang = lang.replace (".UTF-8", "");
         debug ("No media language, using %s locale", lang);
 
         return lang;
