@@ -361,12 +361,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         // First row
         // Translators: 'Express Install' means that the new box installation will be fully automated, the user
         // won't be asked anything while it's performed.
-        var label = new Gtk.Label (_("Express Install"));
-        label.margin_right = 10;
-        label.margin_bottom = 15;
-        label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.CENTER;
-        setup_grid.attach (label, 0, 0, 2, 1);
+        var express_label = new Gtk.Label (_("Express Install"));
+        express_label.margin_right = 10;
+        express_label.margin_bottom = 15;
+        express_label.halign = Gtk.Align.END;
+        express_label.valign = Gtk.Align.CENTER;
+        setup_grid.attach (express_label, 0, 0, 2, 1);
 
         express_toggle = new Gtk.Switch ();
         express_toggle.active = !os_media.live;
@@ -387,7 +387,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         avatar.show_all ();
         fetch_user_avatar.begin (avatar);
 
-        label = new Gtk.Label (_("Username"));
+        var label = new Gtk.Label (_("Username"));
         label.margin_right = 10;
         label.margin_bottom  = 10;
         label.halign = Gtk.Align.END;
@@ -445,7 +445,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         setup_grid_n_rows++;
 
         foreach (var child in setup_grid.get_children ())
-            if (child != express_toggle)
+            if ((child != express_label) && (child != express_toggle))
                 express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
 
         if (product_key_format == null)
