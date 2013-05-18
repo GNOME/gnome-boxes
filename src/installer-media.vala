@@ -13,7 +13,11 @@ private class Boxes.InstallerMedia : GLib.Object {
     public string mount_point;
     public bool from_image;
 
-    public Osinfo.DeviceList supported_devices;
+    public virtual Osinfo.DeviceList supported_devices {
+        owned get {
+            return os.get_all_devices (null);
+        }
+    }
 
     public signal void user_wants_to_create (); // User wants to already create the VM
 
@@ -42,7 +46,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         from_image = true;
 
         setup_label (label);
-        init_supported_devices ();
     }
 
     public async InstallerMedia.for_path (string       path,
@@ -60,7 +63,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
 
         setup_label ();
-        init_supported_devices ();
 
         // FIXME: these values could be made editable somehow
         var architecture = (os_media != null) ? os_media.architecture : "i686";
@@ -119,14 +121,6 @@ private class Boxes.InstallerMedia : GLib.Object {
             disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
 
         domain.add_device (disk);
-    }
-
-    private void init_supported_devices () {
-        if (os != null) {
-            var os_devices = os.get_all_devices (null) as Osinfo.List;
-            supported_devices = os_devices.new_copy () as Osinfo.DeviceList;
-        } else
-            supported_devices = new Osinfo.DeviceList ();
     }
 
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
