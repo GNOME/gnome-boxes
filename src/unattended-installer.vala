@@ -24,6 +24,17 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
+    public override Osinfo.DeviceList supported_devices {
+        owned get {
+            var devices = base.supported_devices;
+
+            if (express_install)
+                return (devices as Osinfo.List).new_union (additional_devices) as Osinfo.DeviceList;
+            else
+                return devices;
+        }
+    }
+
     public bool express_install {
         get { return express_toggle.active; }
     }
@@ -78,6 +89,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private string kbd;
     private bool driver_signing = true;
 
+    // Devices made available by device drivers added through express installation (only).
+    private Osinfo.DeviceList additional_devices;
+
     private ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
     private static Fdo.Accounts? accounts;
@@ -108,7 +122,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         from_image = media.from_image;
         mount_point = media.mount_point;
         resources = media.resources;
-        supported_devices = media.supported_devices;
 
         this.scripts = scripts;
         config = new InstallConfig ("http://live.gnome.org/Boxes/unattended");
@@ -120,6 +133,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var filename = script.get_expected_filename ();
             add_unattended_file (new UnattendedScriptFile (this, script, filename));
         }
+
+        additional_devices = new Osinfo.DeviceList ();
 
         timezone = get_timezone ();
         lang = get_preferred_language ();
@@ -704,7 +719,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var driver_progress = progress.add_child_activity (driver_progress_scale);
             try {
                 yield setup_driver (driver, driver_progress, add_func, cancellable);
-                supported_devices.add_all (driver.get_devices ());
+                additional_devices.add_all (driver.get_devices ());
             } catch (GLib.Error e) {
                 debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
             } finally {
