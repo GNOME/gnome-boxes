@@ -131,6 +131,8 @@ private class Boxes.DisplayPage: GLib.Object {
     private uint toolbar_show_id;
     private ulong cursor_id;
 
+    private uint overlay_toolbar_invisible_timeout;
+
     private Boxes.Display? display;
     private bool can_grab_mouse {
         get {
@@ -146,6 +148,7 @@ private class Boxes.DisplayPage: GLib.Object {
     private ulong display_grabbed_id;
 
     public DisplayPage () {
+        overlay_toolbar_invisible_timeout = App.app.duration;
         event_box = new EventBox ();
         event_box.get_style_context ().add_class ("boxes-toplevel");
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
@@ -170,9 +173,10 @@ private class Boxes.DisplayPage: GLib.Object {
                     }
                 } else if (y > 5 && toolbar_hide_id == 0) {
                     toolbar_event_stop ();
-                    toolbar_hide_id = Timeout.add (App.app.duration, () => {
+                    toolbar_hide_id = Timeout.add (overlay_toolbar_invisible_timeout, () => {
                         set_overlay_toolbar_visible (false);
                         toolbar_hide_id = 0;
+                        overlay_toolbar_invisible_timeout = App.app.duration;
                         return false;
                     });
                 }
@@ -304,7 +308,14 @@ private class Boxes.DisplayPage: GLib.Object {
             update_toolbar_visible ();
         });
 
-        set_overlay_toolbar_visible (false);
+        // FIXME: I got no clue why overlay toolbar won't become visible if we do this right away
+        Idle.add (() => {
+            update_toolbar_visible ();
+            overlay_toolbar_invisible_timeout = 1000; // 1 seconds
+            set_overlay_toolbar_visible (App.app.fullscreen);
+
+            return false;
+        });
         update_title ();
         widget.set_events (widget.get_events () & ~Gdk.EventMask.POINTER_MOTION_MASK);
         event_box.add (widget);
