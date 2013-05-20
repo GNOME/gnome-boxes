@@ -78,7 +78,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private string kbd;
     private bool driver_signing = true;
 
-    ulong key_inserted_id; // ID of key_entry.insert_text signal handler
+    private ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
     private static Fdo.Accounts? accounts;
 
