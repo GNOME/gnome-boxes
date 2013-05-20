@@ -15,6 +15,11 @@ private class Boxes.VMCreator {
 
     private uint num_reboots { get; private set; }
 
+    ~VMCreator () {
+        if (install_media != null)
+            install_media.clean_up ();
+    }
+
     public VMCreator (InstallerMedia install_media) {
         this.install_media = install_media;
     }
