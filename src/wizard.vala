@@ -656,6 +656,7 @@ private class Boxes.Wizard: Boxes.UI {
         cancel_button.label = _("_Cancel");
         cancel_button.clicked.connect (() => {
             destroy_machine ();
+            vm_creator = null;
             wizard_source.page = SourcePage.MAIN;
             App.app.ui_state = UIState.COLLECTION;
         });
