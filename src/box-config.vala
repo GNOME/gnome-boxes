@@ -184,7 +184,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
 
     public int compare (BoxConfig other) {
         // sort favorites first
-        // FIXME: We should probably have some fixed catagories rather than hard-coded strings
+        // FIXME: We should probably have some fixed categories rather than hard-coded strings
         if ("favorite" in categories) {
             if (!("favorite" in other.categories))
                 return -1;
