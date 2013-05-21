@@ -209,9 +209,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             express_toggle.active = false;
 
             throw error;
-        } finally {
-            unattended_files = null;
-            secondary_unattended_files = null;
         }
     }
 
@@ -344,6 +341,13 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         } catch (GLib.Error error) {
             debug ("Failed to clean-up: %s", error.message);
         }
+    }
+
+    public override void clean_up_preparation_cache () {
+        base.clean_up_preparation_cache ();
+
+        unattended_files = null;
+        secondary_unattended_files = null;
     }
 
     public string get_user_unattended (string? suffix = null) {
