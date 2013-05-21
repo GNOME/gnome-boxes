@@ -73,6 +73,7 @@ private class Boxes.VMCreator {
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
+        machine.config.access_last_time = get_real_time ();
         update_machine_info (machine);
     }
 
