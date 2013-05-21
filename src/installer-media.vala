@@ -74,7 +74,10 @@ private class Boxes.InstallerMedia : GLib.Object {
                                        Cancellable? cancellable = null) {}
     public virtual async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {}
     public virtual void prepare_to_continue_installation (string vm_name) {}
-    public virtual void clean_up () {}
+    public virtual void clean_up () {
+        clean_up_preparation_cache ();
+    }
+    public virtual void clean_up_preparation_cache () {} // Clean-up any cache needed for preparing the new VM.
 
     public virtual void setup_domain_config (Domain domain) {
         add_cd_config (domain, from_image? DomainDiskType.FILE : DomainDiskType.BLOCK, device_file, "hdc", true);

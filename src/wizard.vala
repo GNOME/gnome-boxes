@@ -210,6 +210,7 @@ private class Boxes.Wizard: Boxes.UI {
                 return false;
             }
 
+            vm_creator.install_media.clean_up_preparation_cache ();
             vm_creator = null;
             wizard_source.uri = "";
         } else {
