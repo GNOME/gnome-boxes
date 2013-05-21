@@ -390,7 +390,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         express_toggle.margin_bottom = 15;
         express_toggle.halign = Gtk.Align.START;
         express_toggle.valign = Gtk.Align.CENTER;
-        express_toggle.notify["active"].connect (() => { user_wants_to_create (); });
+        express_toggle.notify["active"].connect (() => { notify_property ("ready-to-create"); });
         setup_grid.attach (express_toggle, 2, 0, 1, 1);
         setup_grid_n_rows++;
 
