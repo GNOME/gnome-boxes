@@ -304,6 +304,7 @@ private class Boxes.DisplayPage: GLib.Object {
                 return false;
             });
         });
+        update_toolbar_visible ();
         display_can_grab_id = display.notify["can-grab-mouse"].connect(() => {
             update_toolbar_visible ();
         });
