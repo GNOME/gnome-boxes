@@ -15,6 +15,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         create_display_config ();
         source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
+        config.access_last_time = get_real_time ();
 
         load_screenshot ();
     }
