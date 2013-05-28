@@ -1,3 +1,56 @@
+3.9.2 - May 28, 2013
+====================
+
+Changes since 3.8.1:
+
+- Fix focus going out of password/username entries on each key press.
+- Fix unwanted '_' in wizard toolbar button labels.
+- Avoid showing weird errors when user is entering URI in wizard.
+- Correct size of 'read-only' toggle in VNC box properties.
+- Fix a regression that disables Boxes from connecting to the same box more
+  than once.
+- Tone down hologram effect in Boxes icon not to appear broken.
+- Correctly set timezone configuration on new VMs. This combined with libosinfo
+  release (0.2.7), fixes Fedora 19 express installation.
+- Work around the issue of dialog being blank after first usage (bug#699376).
+- Activation of text entries in wizard's setup page now behave as expected.
+- Make use of new libosinfo API to set direct boot commandline for Fedora
+  express installation instead of hardcoding it.
+- Allow changing URI of non-connected remote displays.
+- Fix sorting of boxes that were never accessed.
+- Handle locales with '.UTF-8' suffix and hence fix Fedora 19 express
+  installation against such locales.
+- Fix non-express installation of Windows XP and 7.
+- Fix regression in setup->review->setup->review wizard transition.
+- Don't automatically jump to next page in wizard on express install untoggled
+- Show display overlay toolbar until mouse moves so that user doesn't miss it.
+- Ensure display toolbar is visible when mouse can be grabbed.
+- Mark two user visible strings for translation.
+- Never make the 'Express Install' label in wizard, insensitive.
+- Added/updated/fixed translations:
+  - Hebrew
+  - Japanese
+  - Norwegian bokmål
+  - Spanish
+
+Dependencies changed:
+
+libosinfo >= 0.2.7
+
+All contributors to this release:
+
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Fabiano Fidêncio <fidencio@redhat.com>
+Gursimran singh <simar.i3r@gmail.com>
+Jakub Steiner <jimmac@gmail.com>
+Kjartan Maraas <kmaraas@gnome.org>
+Marc-André Lureau <marcandre.lureau@gmail.com>
+Matej Urbančič <mateju@svn.gnome.org>
+OKANO Takayoshi <kano@na.rim.or.jp>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.8.1 - Apr 15, 2013
 ====================
 
