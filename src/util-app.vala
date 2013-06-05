@@ -530,6 +530,13 @@ namespace Boxes {
         return tokens[1];
     }
 
+    public bool is_mime_type (string filename, string mime_type) {
+        var file_type = ContentType.guess (filename, null, null);
+        var supertype = ContentType.from_mime_type (mime_type);
+
+        return ContentType.is_a (file_type, supertype);
+    }
+
     namespace UUID {
         [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
         internal extern static void generate ([CCode (array_length = false)] uchar[] uuid);
