@@ -302,7 +302,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         yield install_media.prepare (progress, null);
 
-        vm_creator = new VMCreator (install_media);
+        vm_creator = install_media.get_vm_creator ();
         prep_progress.fraction = 1.0;
         page = WizardPage.SETUP;
     }

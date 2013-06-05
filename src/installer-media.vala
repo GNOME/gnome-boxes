@@ -106,6 +106,10 @@ private class Boxes.InstallerMedia : GLib.Object {
         return compatibility != CPUArchCompatibility.INCOMPATIBLE;
     }
 
+    public virtual VMCreator get_vm_creator () {
+        return new VMCreator (this);
+    }
+
     protected void add_cd_config (Domain         domain,
                                   DomainDiskType type,
                                   string         iso_path,
