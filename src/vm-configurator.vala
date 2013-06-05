@@ -340,6 +340,7 @@ private class Boxes.VMConfigurator {
                                            InstallerMedia? install_media,
                                            uint num_reboots = 0,
                                            bool installed = false) {
+        return_if_fail (install_media != null || installed);
         string custom_xml;
 
         if (installed)
