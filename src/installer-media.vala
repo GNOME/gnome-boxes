@@ -32,7 +32,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
-    public bool live { get { return os_media == null || os_media.live; } }
+    public virtual bool live { get { return os_media == null || os_media.live; } }
 
     protected virtual string? architecture {
         owned get {

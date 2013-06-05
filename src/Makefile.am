@@ -87,6 +87,7 @@ gnome_boxes_SOURCES =				\
 	editable-entry.vala			\
 	i-properties-provider.vala		\
 	installer-media.vala 			\
+	installed-media.vala 			\
 	iso-extractor.vala			\
 	libvirt-broker.vala			\
 	libvirt-machine.vala			\
