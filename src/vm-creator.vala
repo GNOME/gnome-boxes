@@ -57,7 +57,12 @@ private class Boxes.VMCreator {
 
         var domain = connection.create_domain (config);
 
-        return LibvirtBroker.get_default ().add_domain (App.app.default_source, App.app.default_connection, domain);
+        var machine = LibvirtBroker.get_default ().add_domain (App.app.default_source,
+                                                               App.app.default_connection,
+                                                               domain);
+        machine.vm_creator = this;
+
+        return machine;
     }
 
     public virtual void launch_vm (LibvirtMachine machine) throws GLib.Error {
@@ -77,7 +82,6 @@ private class Boxes.VMCreator {
             machine.domain.start (0);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
-        machine.vm_creator = this;
         machine.config.access_last_time = get_real_time ();
         update_machine_info (machine);
     }
