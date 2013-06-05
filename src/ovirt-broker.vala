@@ -50,7 +50,12 @@ private class Boxes.OvirtBroker : Boxes.Broker {
                 proxy.password = password;
                 auth.unpause ();
             };
-            App.app.notificationbar.display_for_authentication ("oVirt broker", (owned) auth_cb, null);
+            Notificationbar.CancelFunc cancel_cb = () => {
+                // Make sure we are not stuck waiting for authentication to
+                // finish, otherwise yield add_source() will never return
+                auth.unpause ();
+            };
+            App.app.notificationbar.display_for_authentication ("oVirt broker", (owned) auth_cb, (owned) cancel_cb);
             auth.pause ();
 
             return false;
