@@ -13,9 +13,11 @@ private class Boxes.VMConfigurator {
     private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
     private const string LIVE_STATE = "live";
     private const string INSTALLATION_STATE = "installation";
+    private const string IMPORT_STATE = "importing";
     private const string INSTALLED_STATE = "installed";
     private const string LIVE_XML = "<os-state>" + LIVE_STATE + "</os-state>";
     private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
+    private const string IMPORT_XML = "<os-state>" + IMPORT_STATE + "</os-state>";
     private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
 
     private const string OS_ID_XML = "<os-id>%s</os-id>";
@@ -123,6 +125,10 @@ private class Boxes.VMConfigurator {
 
     public static bool is_live_config (Domain domain) {
         return get_os_state (domain) == LIVE_STATE;
+    }
+
+    public static bool is_import_config (Domain domain) {
+        return get_os_state (domain) == IMPORT_STATE;
     }
 
     public static StorageVol create_volume_config (string name, int64 storage) throws GLib.Error {
@@ -330,6 +336,8 @@ private class Boxes.VMConfigurator {
 
         if (installed)
             custom_xml = INSTALLED_XML;
+        else if (install_media is InstalledMedia)
+            custom_xml = IMPORT_XML;
         else
             custom_xml = (install_media.live) ? LIVE_XML : INSTALLATION_XML;
 

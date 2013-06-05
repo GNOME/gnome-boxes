@@ -25,20 +25,31 @@ private class Boxes.MediaManager : Object {
 
     public async InstallerMedia create_installer_media_for_path (string       path,
                                                                  Cancellable? cancellable = null) throws GLib.Error {
-        var media = yield new InstallerMedia.for_path (path, this, cancellable);
+        var media = is_mime_type (path, "application/x-cd-image") ?
+                    yield new InstallerMedia.for_path (path, this, cancellable) :
+                    new InstalledMedia (path);
 
         return create_installer_media_from_media (media);
     }
 
     public async InstallerMedia? create_installer_media_from_config (GVirConfig.Domain config) {
         var path = VMConfigurator.get_source_media_path (config);
+        if (path == null)
+            return null;
+
+        if (VMConfigurator.is_import_config (config))
+            try {
+                return new InstalledMedia (path);
+            } catch (GLib.Error error) {
+                debug ("%s", error.message);
+
+                return null;
+            }
+
         var label = config.title;
 
         Os? os = null;
         Media? os_media = null;
-
-        if (path == null)
-            return null;
 
         try {
             var os_id = VMConfigurator.get_os_id (config);

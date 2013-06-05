@@ -56,6 +56,9 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             if (VMConfigurator.is_install_config (config) || VMConfigurator.is_live_config (config)) {
                 debug ("Continuing installation/live session for '%s', ..", machine.name);
                 new VMCreator.for_install_completion (machine); // This instance will take care of its own lifecycle
+            } else if (VMConfigurator.is_import_config (config)) {
+                debug ("Continuing import of '%s', ..", machine.name);
+                new VMImporter.for_import_completion (machine); // This instance will take care of its own lifecycle
             }
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
