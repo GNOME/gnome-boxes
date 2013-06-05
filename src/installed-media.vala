@@ -61,4 +61,8 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         return properties;
     }
 
+
+    public override VMCreator get_vm_creator () {
+        return new VMImporter (this);
+    }
 }

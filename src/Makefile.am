@@ -112,6 +112,7 @@ gnome_boxes_SOURCES =				\
 	util-app.vala				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\
+	vm-importer.vala 			\
 	vnc-display.vala			\
 	wizard-source.vala			\
 	wizard.vala				\

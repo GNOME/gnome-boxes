@@ -8,7 +8,7 @@ private class Boxes.VMCreator {
     // of error. Its better to report '100%' done while its not exactly 100% than reporting '99%' done forever..
     private const int INSTALL_COMPLETE_PERCENT = 99;
 
-    public InstallerMedia? install_media { get; private set; }
+    public InstallerMedia? install_media { get; protected set; }
 
     private Connection? connection { owned get { return App.app.default_connection; } }
     private ulong state_changed_id;
@@ -60,7 +60,7 @@ private class Boxes.VMCreator {
         return LibvirtBroker.get_default ().add_domain (App.app.default_source, App.app.default_connection, domain);
     }
 
-    public void launch_vm (LibvirtMachine machine) throws GLib.Error {
+    public virtual void launch_vm (LibvirtMachine machine) throws GLib.Error {
         if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
             ulong signal_id = 0;
 
@@ -82,7 +82,7 @@ private class Boxes.VMCreator {
         update_machine_info (machine);
     }
 
-    private async void continue_installation (LibvirtMachine machine) {
+    protected virtual async void continue_installation (LibvirtMachine machine) {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
         num_reboots = VMConfigurator.get_num_reboots (machine.domain_config);
         var name = machine.domain.get_name ();
@@ -171,7 +171,7 @@ private class Boxes.VMCreator {
         }
     }
 
-    private void update_machine_info (LibvirtMachine machine) {
+    protected virtual void update_machine_info (LibvirtMachine machine) {
         if (VMConfigurator.is_install_config (machine.domain_config)) {
             machine.info = _("Installing...");
 
@@ -180,7 +180,7 @@ private class Boxes.VMCreator {
             machine.info = _("Live");
     }
 
-    private void set_post_install_config (LibvirtMachine machine) {
+    protected void set_post_install_config (LibvirtMachine machine) {
         debug ("Setting post-installation configuration on '%s'", machine.name);
         try {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
@@ -189,6 +189,19 @@ private class Boxes.VMCreator {
         } catch (GLib.Error error) {
             warning ("Failed to set post-install configuration on '%s': %s", machine.name, error.message);
         }
+    }
+
+    protected async StoragePool get_storage_pool () throws GLib.Error {
+        var pool = Boxes.get_storage_pool (connection);
+        if (pool == null) {
+            var config = VMConfigurator.get_pool_config ();
+            pool = connection.create_storage_pool (config, 0);
+            yield pool.build_async (0, null);
+            yield pool.start_async (0, null);
+            yield pool.refresh_async (null);
+        }
+
+        return pool;
     }
 
     private void increment_num_reboots (LibvirtMachine machine) {
@@ -310,18 +323,5 @@ private class Boxes.VMCreator {
         var volume = pool.create_volume (config);
 
         return volume;
-    }
-
-    private async StoragePool get_storage_pool () throws GLib.Error {
-        var pool = Boxes.get_storage_pool (connection);
-        if (pool == null) {
-            var config = VMConfigurator.get_pool_config ();
-            pool = connection.create_storage_pool (config, 0);
-            yield pool.build_async (0, null);
-            yield pool.start_async (0, null);
-            yield pool.refresh_async (null);
-        }
-
-        return pool;
     }
 }
