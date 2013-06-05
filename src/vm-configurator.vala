@@ -20,6 +20,7 @@ private class Boxes.VMConfigurator {
 
     private const string OS_ID_XML = "<os-id>%s</os-id>";
     private const string MEDIA_ID_XML = "<media-id>%s</media-id>";
+    private const string MEDIA_XML = "<media>%s</media>";
     private const string NUM_REBOOTS_XML = "<num-reboots>%u</num-reboots>";
 
     public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
@@ -166,6 +167,10 @@ private class Boxes.VMConfigurator {
         return get_custom_xml_node (domain, "media-id");
     }
 
+    public static string? get_source_media_path (Domain domain) {
+        return get_custom_xml_node (domain, "media");
+    }
+
     public static uint get_num_reboots (Domain domain) {
         var str = get_custom_xml_node (domain, "num-reboots");
         return (str != null)? int.parse (str) : 0;
@@ -286,26 +291,6 @@ private class Boxes.VMConfigurator {
         return get_custom_xml_node (domain, "os-state");
     }
 
-    public static string? get_source_media_path (Domain domain) {
-        string path = null;
-
-        var devices = domain.get_devices ();
-        foreach (var device in devices) {
-            if (!(device is DomainDisk))
-                continue;
-
-            var disk = device as DomainDisk;
-            var disk_type = disk.get_guest_device_type ();
-            if (disk_type == DomainDiskGuestDeviceType.CDROM) {
-                path = disk.get_source ().dup ();
-
-                break;
-            }
-        }
-
-        return path;
-    }
-
     private static string? get_custom_xml_node (Domain domain, string node_name) {
         var xml = domain.get_custom_xml (BOXES_NS_URI);
         if (xml != null) {
@@ -353,6 +338,7 @@ private class Boxes.VMConfigurator {
                 custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
             if (install_media.os_media != null)
                 custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
+            custom_xml += Markup.printf_escaped (MEDIA_XML, install_media.device_file);
         }
 
         if (num_reboots != 0)
