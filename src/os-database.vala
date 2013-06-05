@@ -22,7 +22,7 @@ private class Boxes.OSDatabase : GLib.Object {
 
     private signal void db_loaded ();
 
-    private static Resources get_default_resources () {
+    public static Resources get_default_resources () {
         var resources = new Resources ("whatever", "x86_64");
 
         resources.n_cpus = DEFAULT_VCPUS;
