@@ -312,6 +312,8 @@ private class Boxes.CollectionView: Boxes.UI {
         main_view.get_style_context ().add_class ("boxes-icon-view");
         main_view.item_activated.connect ((view, id, path) => {
             var item = get_item_for_path (path);
+            if (item is LibvirtMachine && (item as LibvirtMachine).importing)
+                return;
             App.app.select_item (item);
         });
         main_view.view_selection_changed.connect (() => {
