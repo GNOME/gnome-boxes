@@ -443,7 +443,7 @@ private class Boxes.Wizard: Boxes.UI {
                 warning ("Failed to get configuration for machine '%s': %s", libvirt_machine.name, error.message);
             }
 
-            if (libvirt_machine.storage_volume != null) {
+            if (!libvirt_machine.importing && libvirt_machine.storage_volume != null) {
                 try {
                     var volume_info = libvirt_machine.storage_volume.get_info ();
                     var capacity = format_size (volume_info.capacity);

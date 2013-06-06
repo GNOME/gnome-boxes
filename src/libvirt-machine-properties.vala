@@ -526,7 +526,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     }
 
     private SizeProperty? add_storage_property (ref List<Boxes.Property> list) {
-        if (machine.storage_volume == null)
+        if (machine.importing || machine.storage_volume == null)
             return null;
 
         try {
