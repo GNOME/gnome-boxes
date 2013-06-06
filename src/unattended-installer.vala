@@ -272,10 +272,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public override void setup_post_install_domain_config (Domain domain) {
-        var path = disk_file.get_path ();
-        remove_disk_from_domain_config (domain, path);
+        if (disk_file != null) {
+            var path = disk_file.get_path ();
+            remove_disk_from_domain_config (domain, path);
+        }
         if (secondary_disk_file != null) {
-            path = secondary_disk_file.get_path ();
+            var path = secondary_disk_file.get_path ();
             remove_disk_from_domain_config (domain, path);
         }
 
