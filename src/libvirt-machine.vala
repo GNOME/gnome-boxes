@@ -7,7 +7,17 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVirConfig.Domain domain_config { get; set; }
     public GVir.Connection connection { get; set; }
     public GVir.StorageVol? storage_volume { get; set; }
-    public VMCreator? vm_creator { get; set; } // Under installation if this is set to non-null
+    private VMCreator? _vm_creator;
+    public VMCreator? vm_creator { // Under installation if this is set to non-null
+        get {
+            return _vm_creator;
+        }
+
+        set {
+            _vm_creator = value;
+            can_delete = !importing;
+        }
+    }
     // If this machine is currently being imported
     public bool importing { get { return vm_creator != null && vm_creator is VMImporter; } }
 

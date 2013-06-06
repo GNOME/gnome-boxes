@@ -15,6 +15,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public bool suspend_at_exit;
 
     public bool can_save { get; protected set; default = false; }
+    public bool can_delete { get; protected set; default = true; }
 
     public signal void got_error (string message);
 

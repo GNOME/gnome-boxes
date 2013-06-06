@@ -102,6 +102,7 @@ private class Boxes.Selectionbar: GLib.Object {
             update_favorite_btn ();
             update_properties_btn ();
             update_pause_btn ();
+            update_delete_btn ();
         });
     }
 
@@ -155,6 +156,30 @@ private class Boxes.Selectionbar: GLib.Object {
         }
 
         pause_btn.sensitive = sensitive;
+    }
+
+    private void update_delete_btn () {
+        foreach (var item in App.app.collection.items.data) {
+            var can_delete_id = item.get_data<ulong> ("can_delete_id");
+            if (can_delete_id > 0) {
+                    item.disconnect (can_delete_id);
+                    item.set_data<ulong> ("can_delete_id", 0);
+            }
+        }
+
+        var sensitive = true;
+        foreach (var item in App.app.selected_items) {
+            ulong can_delete_id = 0;
+            can_delete_id = item.notify["can-delete"].connect (() => {
+                update_delete_btn ();
+            });
+            item.set_data<ulong> ("can_delete_id", can_delete_id);
+
+            if (item is Machine && !(item as Machine).can_delete)
+                sensitive = false;
+        }
+
+        remove_btn.sensitive = sensitive;
     }
 
     private bool visible {
