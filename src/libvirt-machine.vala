@@ -8,6 +8,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public GVir.Connection connection { get; set; }
     public GVir.StorageVol? storage_volume { get; set; }
     public VMCreator? vm_creator { get; set; } // Under installation if this is set to non-null
+    // If this machine is currently being imported
+    public bool importing { get { return vm_creator != null && vm_creator is VMImporter; } }
 
     private LibvirtMachineProperties properties;
 
