@@ -45,7 +45,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         this.resources = resources;
         from_image = true;
 
-        setup_label (label);
+        label_setup (label);
     }
 
     public async InstallerMedia.for_path (string       path,
@@ -62,7 +62,7 @@ private class Boxes.InstallerMedia : GLib.Object {
                 os = os_media.os;
         }
 
-        setup_label ();
+        label_setup ();
 
         // FIXME: these values could be made editable somehow
         var architecture = (os_media != null) ? os_media.architecture : "i686";
@@ -128,6 +128,21 @@ private class Boxes.InstallerMedia : GLib.Object {
             disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
 
         domain.add_device (disk);
+    }
+
+    protected void label_setup (string? label = null) {
+        if (label != null)
+            this.label = label;
+        else if (os != null)
+            this.label = os.get_name ();
+        else {
+            // No appropriate label? :( Lets just use filename w/o extensions (if any) then
+            var basename = get_utf8_basename (device_file);
+            var ext_index = basename.index_of (".");
+            this.label = (ext_index > 0)? basename[0:ext_index] : basename;
+
+            return;
+        }
     }
 
     private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
@@ -211,21 +226,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
 
         return decoded;
-    }
-
-    private void setup_label (string? label = null) {
-        if (label != null)
-            this.label = label;
-        else if (os != null)
-            this.label = os.get_name ();
-        else {
-            // No appropriate label? :( Lets just use filename w/o extensions (if any) then
-            var basename = get_utf8_basename (device_file);
-            var ext_index = basename.index_of (".");
-            this.label = (ext_index > 0)? basename[0:ext_index] : basename;
-
-            return;
-        }
     }
 
     private void eject_cdrom_media (Domain domain) {
