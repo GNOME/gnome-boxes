@@ -253,14 +253,24 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         switch (event) {
         case ChannelEvent.CLOSED:
             closed = true;
-            disconnected ();
+            disconnected (false);
             break;
 
         case ChannelEvent.ERROR_AUTH:
             need_password = true;
             break;
 
+        case ChannelEvent.ERROR_CONNECT:
+        case ChannelEvent.ERROR_TLS:
+        case ChannelEvent.ERROR_LINK:
+        case ChannelEvent.ERROR_IO:
+            debug ("main SPICE channel error: %d", event);
+            closed = true;
+            disconnected (true);
+            break;
+
         default:
+            debug ("unhandled main SPICE channel event: %d", event);
             break;
         }
     }

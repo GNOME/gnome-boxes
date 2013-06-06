@@ -16,7 +16,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
 
     public signal void show (int display_id);
     public signal void hide (int display_id);
-    public signal void disconnected ();
+    public signal void disconnected (bool connection_failed);
     public signal void got_error (string message);
 
     public abstract Gtk.Widget get_display (int n);
