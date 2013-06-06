@@ -215,8 +215,10 @@ private class Boxes.InstallerMedia : GLib.Object {
         else if (os != null)
             this.label = os.get_name ();
         else {
-            // No appropriate label? :( Lets just use filename then
-            this.label = get_utf8_basename (device_file);
+            // No appropriate label? :( Lets just use filename w/o extensions (if any) then
+            var basename = get_utf8_basename (device_file);
+            var ext_index = basename.index_of (".");
+            this.label = (ext_index > 0)? basename[0:ext_index] : basename;
 
             return;
         }
