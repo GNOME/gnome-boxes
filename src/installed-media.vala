@@ -28,7 +28,8 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     }
 
     public InstalledMedia (string path) throws GLib.Error {
-        if (!path.has_suffix (".qcow2") && !path.has_suffix (".img"))
+        if (!path.has_suffix (".qcow2") && !path.has_suffix (".qcow2.gz") &&
+            !path.has_suffix (".img") && !path.has_suffix (".img.gz"))
             throw new Boxes.Error.INVALID (_("Only QEMU QCOW Image (v2) and raw formats supported."));
 
         device_file = path;
@@ -39,6 +40,8 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     }
 
     public async void convert_to_native_format (string destination_path) throws GLib.Error {
+        var decompressed = yield decompress ();
+
         string[] argv = { "qemu-img", "convert", "-O", "qcow2", device_file, destination_path };
 
         var converting = !device_file.has_suffix (".qcow2");
@@ -49,6 +52,12 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
                converting? " while converting it to 'qcow2' format" : "");
         yield exec (argv, null);
         debug ("Finished copying '%s' to '%s'", device_file, destination_path);
+
+        if (decompressed) {
+            // We decompressed into a temporary location
+            var file = File.new_for_path (device_file);
+            delete_file (file);
+        }
     }
 
     public override void setup_domain_config (Domain domain) {}
@@ -64,5 +73,41 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
     public override VMCreator get_vm_creator () {
         return new VMImporter (this);
+    }
+
+    private async bool decompress () throws GLib.Error {
+        if (!device_file.has_suffix (".gz"))
+            return false;
+
+        var compressed = File.new_for_path (device_file);
+        var input_stream = yield compressed.read_async ();
+
+        var decompressed_path = Path.get_basename (device_file).replace (".gz", "");
+        decompressed_path = get_user_pkgcache (decompressed_path);
+        var decompressed = File.new_for_path (decompressed_path);
+        GLib.OutputStream output_stream = yield decompressed.replace_async (null,
+                                                                            false,
+                                                                            FileCreateFlags.REPLACE_DESTINATION);
+        var decompressor = new ZlibDecompressor (ZlibCompressorFormat.GZIP);
+        output_stream = new ConverterOutputStream (output_stream, decompressor);
+
+        debug ("Decompressing '%s'..", device_file);
+        var buffer = new uint8[1048576];
+        while (true) {
+            var length = yield input_stream.read_async (buffer);
+            if (length <= 0)
+                break;
+
+            ssize_t written = 0, i = 0;
+            do {
+                written = output_stream.write (buffer[i:length]);
+                i += written;
+            } while (i < length);
+        }
+        debug ("Decompressed '%s'.", device_file);
+
+        device_file = decompressed_path;
+
+        return true;
     }
 }
