@@ -92,7 +92,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         main_cleanup ();
     }
 
-    public SpiceDisplay (BoxConfig config, string host, int port, int tls_port = 0)
+    public SpiceDisplay (BoxConfig config, string host, int port, int tls_port = 0, string? host_subject = null)
         requires (port != 0 || tls_port != 0) {
         this.config = config;
 
@@ -103,10 +103,14 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         if (tls_port != 0)
             session.tls_port = tls_port.to_string ();
 
-        // FIXME: remove this once libgovirt has proper support for
-        // getting the SPICE host subject, it's useful for testing purpose
-        // in the mean time
-        session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
+        // FIXME: together with newer oVirt, libgovirt should be able
+        // to automatically provide the host subject when needed. Keep
+        // this environment variable a while longer to be able to cope
+        // with older oVirt versions.
+        if (host_subject != null)
+            session.cert_subject = host_subject;
+        else
+            session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
     }
 
     public SpiceDisplay.with_uri (BoxConfig config, string uri) {
