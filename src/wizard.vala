@@ -753,6 +753,7 @@ private class Boxes.Wizard: Boxes.UI {
             var label_value = new Gtk.Label (value);
             label_value.get_style_context ().add_class ("boxes-wizard-summary-prop-value-label");
             label_value.set_ellipsize (Pango.EllipsizeMode.END);
+            label_value.set_max_width_chars (32);
             label_value.xalign = 0.0f;
             grid.attach (label_value, 1, current_row, 1, 1);
 
