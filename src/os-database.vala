@@ -10,7 +10,7 @@ public errordomain Boxes.OSDatabaseError {
 
 private class Boxes.OSDatabase : GLib.Object {
     private const int DEFAULT_VCPUS = 1;
-    private const int64 DEFAULT_RAM = 500 * (int64) MEBIBYTES;
+    private const int64 DEFAULT_RAM = 1 * (int64) GIBIBYTES;
 
     // We use the dynamically growing storage format (qcow2) so actual amount of disk space used is completely
     // dependent on the OS/guest.
