@@ -670,15 +670,52 @@ private class Boxes.App: Boxes.UI {
         float item_x, item_y;
         view.get_item_pos (item, out item_x, out item_y);
         var actor = item.actor;
-        var old_duration = actor.get_easing_duration ();
-        // We temporarily set the duration to 0 because we don't want to animate
-        // fixed_x/y, but rather immidiately set it to the target value and then
-        // animate actor.allocation which is set based on these.
-        actor.set_easing_duration (0);
-        actor.fixed_x = item_x;
-        actor.fixed_y = item_y;
-        actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH;
-        actor.set_easing_duration (old_duration);
+
+        var transition = actor.get_transition ("animate-position") as Clutter.TransitionGroup;
+        if (transition != null)
+            actor.remove_transition ("animate-position");
+        transition = new Clutter.TransitionGroup ();
+        transition.set_duration (duration);
+        transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
+
+        var x_transition = new Clutter.PropertyTransition ("x");
+        var value = GLib.Value (typeof (float));
+        value.set_float (item_x);
+        x_transition.set_to_value (value);
+        transition.add_transition (x_transition);
+
+        var y_transition = new Clutter.PropertyTransition ("y");
+        value.set_float (item_y);
+        transition.set_to_value (value);
+        transition.add_transition (y_transition);
+
+        var width_transition = new Clutter.PropertyTransition ("width");
+        value.set_float (Machine.SCREENSHOT_WIDTH);
+        transition.set_to_value (value);
+        transition.add_transition (width_transition);
+
+        var height_transition = new Clutter.PropertyTransition ("height");
+        value.set_float (Machine.SCREENSHOT_HEIGHT);
+        transition.set_to_value (value);
+        transition.add_transition (height_transition);
+
+        // Also track size changes in the icon_view during the animation
+        var id = view.main_view.size_allocate.connect ((allocation) => {
+            // We do this in an idle to avoid causing a layout inside a size_allocate cycle
+            Idle.add_full (Priority.HIGH, () => {
+                position_item_actor_at_icon (current_item);
+                return false;
+            });
+        });
+
+        transition.completed.connect (() => {
+            actor.remove_transition ("animate-position");
+            view.main_view.disconnect (id);
+            if (App.app.ui_state == UIState.COLLECTION ||
+                App.app.current_item.actor != actor)
+            actor_remove (actor);
+        });
+        actor.add_transition ("animate-position", transition);
     }
 
     public override void ui_state_changed () {
@@ -717,23 +754,6 @@ private class Boxes.App: Boxes.UI {
 
                 actor.show ();
                 position_item_actor_at_icon (current_item);
-
-                // Also track size changes in the icon_view during the animation
-                var id = view.main_view.size_allocate.connect ((allocation) => {
-                    // We do this in an idle to avoid causing a layout inside a size_allocate cycle
-                    Idle.add_full (Priority.HIGH, () => {
-                        position_item_actor_at_icon (current_item);
-                        return false;
-                    });
-                });
-                ulong completed_id = 0;
-                completed_id = actor.transitions_completed.connect (() => {
-                    actor.disconnect (completed_id);
-                    view.main_view.disconnect (id);
-                    if (App.app.ui_state == UIState.COLLECTION ||
-                        App.app.current_item.actor != actor)
-                        actor_remove (actor);
-                });
             }
 
             break;
