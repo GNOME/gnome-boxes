@@ -34,6 +34,12 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public bool live { get { return os_media == null || os_media.live; } }
 
+    protected virtual string? architecture {
+        owned get {
+            return (os_media != null)? os_media.architecture : null;
+        }
+    }
+
     public InstallerMedia.from_iso_info (string           path,
                                          string           label,
                                          Os?              os,
@@ -65,7 +71,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         label_setup ();
 
         // FIXME: these values could be made editable somehow
-        var architecture = (os_media != null) ? os_media.architecture : "i686";
+        var architecture = this.architecture ?? "i686";
         resources = media_manager.os_db.get_resources_for_os (os, architecture);
     }
 
@@ -98,10 +104,13 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public bool is_architecture_compatible (string architecture) {
-        if (os_media == null) // Unknown media
+        if (this.architecture == null)
+            // Architecture unknown, Lets say all architectures are compatible so caller can choose the best available
+            // architecture instead. Although this is bound to fail but its still much better than us hard coding an
+            // architecture.
             return true;
 
-        var compatibility = compare_cpu_architectures (architecture, os_media.architecture);
+        var compatibility = compare_cpu_architectures (architecture, this.architecture);
 
         return compatibility != CPUArchCompatibility.INCOMPATIBLE;
     }
