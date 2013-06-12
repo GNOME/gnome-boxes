@@ -363,7 +363,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         if (large_screenshot != null) {
             var pw = large_screenshot.get_width ();
             var ph = large_screenshot.get_height ();
-            var s = double.min ((double)SCREENSHOT_WIDTH / pw, (double)SCREENSHOT_HEIGHT / ph);
+            var s = double.min ((double) SCREENSHOT_WIDTH / pw, (double) SCREENSHOT_HEIGHT / ph);
             int w = (int) (pw * s);
             int h = (int) (ph * s);
 

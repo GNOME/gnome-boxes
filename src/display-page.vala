@@ -74,8 +74,8 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
         if (!res && !base_event->triggers_context_menu ()) {
             button_down = true;
             button_down_button = event.button;
-            button_down_x = (int)event.x;
-            button_down_y = (int)event.y;
+            button_down_x = (int) event.x;
+            button_down_y = (int) event.y;
         }
         return res;
     }
@@ -104,8 +104,8 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
                     int root_x, root_y, width;
                     window.get_position (out root_x, out root_y);
                     window.get_window ().get_geometry (null, null, out width, null);
-                    window.begin_move_drag ((int)button_down_button,
-                                            root_x + (int)((button_down_x / (double)old_width) * width),
+                    window.begin_move_drag ((int) button_down_button,
+                                            root_x + (int) ((button_down_x / (double) old_width) * width),
                                             root_y + button_down_y,
                                             event.time);
                     App.app.disconnect (id);

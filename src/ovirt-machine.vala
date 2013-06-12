@@ -81,12 +81,12 @@ private class Boxes.OvirtMachine: Boxes.Machine {
 
         switch (vm.display.type) {
         case Ovirt.VmDisplayType.SPICE:
-            var display = new SpiceDisplay (config, vm.display.address, (int)vm.display.port, (int)vm.display.secure_port);
+            var display = new SpiceDisplay (config, vm.display.address, (int) vm.display.port, (int) vm.display.secure_port);
             display.ca_cert = proxy.ca_cert;
             return display;
 
         case Ovirt.VmDisplayType.VNC:
-            return new VncDisplay (config, vm.display.address, (int)vm.display.port);
+            return new VncDisplay (config, vm.display.address, (int) vm.display.port);
 
         default:
             warning ("unsupported display of type %d", vm.display.type);

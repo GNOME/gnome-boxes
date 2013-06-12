@@ -102,7 +102,7 @@ private class Boxes.EditableEntry: Alignment {
         if (weight_set)
             desc.set_weight (_weight);
         if (scale_set)
-            desc.set_size ((int)(scale * desc.get_size ()));
+            desc.set_size ((int) (scale * desc.get_size ()));
         entry.override_font (desc);
 
         SignalHandler.unblock_by_func (entry, (void*)update_entry_font, this);

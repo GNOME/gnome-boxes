@@ -59,9 +59,9 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         var dy = 0.0;
         var dx = 0.0;
         if (nstep != 0)
-            dx = (double)width / nstep;
+            dx = (double) width / nstep;
         if (ymax != 0)
-            dy = (double)height / ymax;
+            dy = (double) height / ymax;
 
         Gdk.cairo_set_source_rgba (cr, style.get_color (Gtk.StateFlags.NORMAL));
         var x = 0.0;

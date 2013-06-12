@@ -45,10 +45,10 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
 
     construct {
         access_properties = {
-            SyncProperty () { name = "access-last-time", default_value = (int64)(-1) },
-            SyncProperty () { name = "access-first-time", default_value = (int64)(-1) },
-            SyncProperty () { name = "access-total-time", default_value = (int64)(-1) },
-            SyncProperty () { name = "access-ntimes", default_value = (uint64)0 }
+            SyncProperty () { name = "access-last-time", default_value = (int64) (-1) },
+            SyncProperty () { name = "access-first-time", default_value = (int64) (-1) },
+            SyncProperty () { name = "access-total-time", default_value = (int64) (-1) },
+            SyncProperty () { name = "access-ntimes", default_value = (uint64) 0 }
         };
     }
 
