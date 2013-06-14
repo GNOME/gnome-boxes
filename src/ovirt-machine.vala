@@ -84,7 +84,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
             var display = new SpiceDisplay (config,
                                             vm.display.address,
                                             (int) vm.display.port,
-                                            (int) vm.display.secure_port);
+                                            (int) vm.display.secure_port,
                                             vm.display.host_subject);
             display.ca_cert = proxy.ca_cert;
             return display;
