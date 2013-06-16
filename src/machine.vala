@@ -16,6 +16,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public bool can_save { get; protected set; default = false; }
     public bool can_delete { get; protected set; default = true; }
+    public bool under_construction { get; protected set; default = false; }
 
     public signal void got_error (string message);
 
