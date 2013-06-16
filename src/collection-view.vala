@@ -26,6 +26,7 @@ private class Boxes.CollectionView: Boxes.UI {
         TITLE = Gd.MainColumns.PRIMARY_TEXT,
         INFO = Gd.MainColumns.SECONDARY_TEXT,
         SELECTED = Gd.MainColumns.SELECTED,
+        PULSE = Gd.MainColumns.PULSE,
         ITEM = Gd.MainColumns.LAST,
 
         LAST
@@ -282,6 +283,7 @@ private class Boxes.CollectionView: Boxes.UI {
                                    typeof (Gdk.Pixbuf),
                                    typeof (long),
                                    typeof (bool),
+                                   typeof (int),
                                    typeof (CollectionItem));
         model.set_default_sort_func ((model, a, b) => {
             CollectionItem item_a, item_b;
