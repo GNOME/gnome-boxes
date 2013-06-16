@@ -149,7 +149,7 @@ private class Boxes.CollectionView: Boxes.UI {
             return;
         }
 
-        var iter = append (machine.name, machine.info, item);
+        var iter = append (machine.name, machine.info,  item);
         var pixbuf_id = machine.notify["pixbuf"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             update_screenshot (iter);
@@ -175,6 +175,14 @@ private class Boxes.CollectionView: Boxes.UI {
             main_view.queue_draw ();
         });
         item.set_data<ulong> ("info_id", info_id);
+
+        setup_activity (iter, machine);
+        var under_construct_id = machine.notify["under-construction"].connect (() => {
+            // apparently iter is stable after insertion/removal/sort
+            setup_activity (iter, machine);
+            main_view.queue_draw ();
+        });
+        item.set_data<ulong> ("under_construct_id", under_construct_id);
 
         item.ui_state = App.app.ui_state;
         actor_remove (item.actor);
@@ -217,6 +225,8 @@ private class Boxes.CollectionView: Boxes.UI {
         item.disconnect (name_id);
         var info_id = item.get_data<ulong> ("info_id");
         item.disconnect (info_id);
+        var under_construct_id = item.get_data<ulong> ("under_construct_id");
+        item.disconnect (under_construct_id);
 
         if (item as Machine != null) {
             var machine = item as Machine;
@@ -366,4 +376,31 @@ private class Boxes.CollectionView: Boxes.UI {
         App.app.notify_property ("selected-items");
     }
 
+    private void setup_activity (Gtk.TreeIter iter, Machine machine) {
+        var activity_timeout = machine.get_data<uint> ("activity_timeout");
+        if (activity_timeout > 0) {
+            Source.remove (activity_timeout);
+            machine.set_data<uint> ("activity_timeout", 0);
+        }
+
+        if (!machine.under_construction) {
+            model.set (iter, ModelColumns.PULSE, int.MAX);
+
+            return;
+        }
+
+        var pulse = int.MIN;
+        model.set (iter, ModelColumns.PULSE, pulse++);
+        activity_timeout = Timeout.add (150, () => {
+            var machine_iter = machine.get_data<Gtk.TreeIter?> ("iter");
+            if (machine_iter == null)
+                return false; // Item removed
+
+            model.set (machine_iter, ModelColumns.PULSE, pulse++);
+            main_view.queue_draw ();
+
+            return true;
+        });
+        machine.set_data<uint> ("activity_timeout", activity_timeout);
+    }
 }
