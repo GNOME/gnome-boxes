@@ -1,3 +1,73 @@
+3.9.3 - Jun 17, 2013
+===================
+
+Changes since 3.9.2:
+
+- Add support for import of ready-made disk images. Supported formats are:
+  - qcow2
+  - qcow
+  - cow
+  - raw (.img extension)
+  - vdi
+  - vmdk
+  - vpc
+  - cloop
+  Also gzip compressed images are supported.
+- Show a spinner on top of under-construction boxes in collection view.
+- Fix cancellation of ovirt authentication.
+- Asynchronously initialize brokers so UI doesn't remain empty for slow
+  brokers.
+- Handle SPICE connection errors and avoid user seeing a stuck UI
+  indefinitely in case of such errors.
+- Fix selectionbar overlay not becoming visible on right-click.
+- Fix Boxes showing mostly invisible wizard when launched with a media argument.
+- Fix display ending-up at the top of item in collection view at the end of
+  display->collection animation when linked against clutter 1.16.
+- Fix ellipsizing of wizard summary labels.
+- Use new libgovirt API to know the host subject to use to validate the SSL
+  certificate of a given VM without user having to set environment variable.
+- If recommended/min memory for an OS or OS itself is unknown, we now allocate
+  1G rather than 500M. 500M is too little for most modern OSs.
+- Drop file extension when naming a VM by its source media filename.
+- Ensure that newly created boxes appear first in the collection view.
+- Remove now redundant style & associated data.
+- Added/updated/fixed translations:
+  - Assamese
+  - Brazilian Portuguese
+  - Catalan
+  - Czech
+  - Galician
+  - German
+  - Kannada
+  - Odia
+  - Polish
+  - Simplified Chinese
+  - Slovak
+  - Spanish
+  - Telugu
+
+Dependencies changed:
+
+govirt >= 0.1.0 (optional)
+
+All contributors to this release:
+
+Christian Kirbach <Christian.Kirbach@googlemail.com>
+Christophe Fergeau <cfergeau@redhat.com>
+Dušan Kazik <prescott66@gmail.com>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Gil Forcada <gforcada@gnome.org>
+Krishnababu Krothapalli <kkrothap@redhat.com>
+Luc Pionchon <pionchon.luc@gmail.com>
+ManojKumar Giri <mgiri@redhat.com>
+Marek Černocký <marek@manet.cz>
+Nilamdyuti Goswami <ngoswami@redhat.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Rafael Ferreira <rafael.f.f1@gmail.com>
+Shankar Prasad <svenkate@redhat.com>
+YunQiang Su <yqsu@src.gnome.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.9.2 - May 28, 2013
 ====================
 
