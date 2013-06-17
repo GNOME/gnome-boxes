@@ -3,6 +3,15 @@
 using GVirConfig;
 
 private class Boxes.InstalledMedia : Boxes.InstallerMedia {
+    public const string[] supported_extensions = { ".qcow2", ".qcow2.gz",
+                                                   ".qcow", ".qcow.gz",
+                                                   ".img", ".img.gz",
+                                                   ".cow", ".cow.gz",
+                                                   ".vdi", ".vdi.gz",
+                                                   ".vmdk", ".vmdk.gz",
+                                                   ".vpc", ".vpc.gz",
+                                                   ".cloop", ".cloop.gz" };
+
     public override bool need_user_input_for_vm_creation { get { return false; } }
     public override bool ready_to_create { get { return true; } }
     public override bool live { get { return false; } }
@@ -28,9 +37,15 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     }
 
     public InstalledMedia (string path) throws GLib.Error {
-        if (!path.has_suffix (".qcow2") && !path.has_suffix (".qcow2.gz") &&
-            !path.has_suffix (".img") && !path.has_suffix (".img.gz"))
-            throw new Boxes.Error.INVALID (_("Only QEMU QCOW Image (v2) and raw formats supported."));
+        var supported = false;
+        foreach (var extension in supported_extensions) {
+            supported = path.has_suffix (extension);
+            if (supported)
+                break;
+        }
+
+        if (!supported)
+            throw new Boxes.Error.INVALID (_("Unsupoorted disk image format."));
 
         device_file = path;
         from_image = true;

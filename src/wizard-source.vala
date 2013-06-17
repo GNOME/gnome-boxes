@@ -309,10 +309,8 @@ private class Boxes.WizardSource: GLib.Object {
         dialog.local_only = true;
         dialog.filter = new Gtk.FileFilter ();
         dialog.filter.add_mime_type ("application/x-cd-image");
-        dialog.filter.add_pattern ("*.img");
-        dialog.filter.add_pattern ("*.img.gz");
-        dialog.filter.add_pattern ("*.qcow2");
-        dialog.filter.add_pattern ("*.qcow2.gz");
+        foreach (var extension in InstalledMedia.supported_extensions)
+            dialog.filter.add_pattern ("*" + extension);
         var ret = false;
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
