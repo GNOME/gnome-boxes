@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-06-15 16:32+0000\n"
-"PO-Revision-Date: 2013-06-17 17:25+0200\n"
+"POT-Creation-Date: 2013-06-17 19:46+0000\n"
+"PO-Revision-Date: 2013-06-18 11:03+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -171,12 +171,12 @@ msgstr ""
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/app.vala:960 ../src/machine.vala:151
+#: ../src/app.vala:960 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
 
-#: ../src/collection-view.vala:43
+#: ../src/collection-view.vala:44
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
@@ -192,7 +192,12 @@ msgstr "No se han encontrado cajas"
 msgid "Create one using the button on the top left."
 msgstr "Cree una usando en botón de la parte superior izquierda."
 
-#: ../src/installer-media.vala:95 ../src/properties.vala:73
+#: ../src/installed-media.vala:48
+msgid "Unsupoorted disk image format."
+msgstr "Formato de archivo de disco no soportado."
+
+#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/properties.vala:73
 msgid "System"
 msgstr "Sistema"
 
@@ -303,40 +308,40 @@ msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 msgid "Maximum Disk Size"
 msgstr "Tamaño máximo del disco"
 
-#: ../src/libvirt-machine.vala:433
+#: ../src/libvirt-machine.vala:446
 msgid "When you force shutdown, the box may lose data."
 msgstr "Cuando fuerza el apagado, la caja puede perder datos."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:518
+#: ../src/libvirt-machine.vala:531
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde el disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:521
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:134
+#: ../src/machine.vala:136
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conectando a %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:156
+#: ../src/machine.vala:158
 #, c-format
 msgid "Enter password for %s"
 msgstr "Introducir la contraseña para %s"
 
-#: ../src/machine.vala:240
+#: ../src/machine.vala:242
 msgid "Saving..."
 msgstr "Guardando…"
 
 #. 3rd row
-#: ../src/machine.vala:582 ../src/unattended-installer.vala:301
+#: ../src/machine.vala:584 ../src/unattended-installer.vala:301
 #: ../src/unattended-installer.vala:432
 msgid "Password"
 msgstr "Contraseña"
@@ -377,7 +382,7 @@ msgstr "Informar de errores a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s página de inicio: <%s>.\n"
 
-#: ../src/media-manager.vala:162
+#: ../src/media-manager.vala:173
 #, c-format
 msgid "No such file %s"
 msgstr "No existe el archivo %s"
@@ -617,7 +622,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:444
+#: ../src/vm-configurator.vala:439
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
@@ -628,23 +633,33 @@ msgstr ""
 "Ocurrió un error durante la preparación de la instalación. Se ha desactivado "
 "la instalación rápida."
 
-#: ../src/vm-creator.vala:176
+#: ../src/vm-creator.vala:180
 msgid "Installing..."
 msgstr "Instalando…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:244
+#: ../src/vm-creator.vala:184 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "«Live»"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:265
+#: ../src/vm-creator.vala:282
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% Instalado"
 msgstr[1] "%d%% Instalados"
+
+#: ../src/vm-importer.vala:34
+#| msgid "Installing..."
+msgid "Importing..."
+msgstr "Importando…"
+
+#: ../src/vm-importer.vala:51
+#, c-format
+msgid "Box import from file '%s' failed."
+msgstr "Falló al importar la caja del archivo «%s»"
 
 #: ../src/vnc-display.vala:145
 msgid "Read-only"
@@ -844,7 +859,7 @@ msgstr "C_ontinuar"
 msgid "C_reate"
 msgstr "C_rear"
 
-#: ../src/wizard.vala:768
+#: ../src/wizard.vala:769
 msgid "C_ustomize..."
 msgstr "_Personalizar…"
 
