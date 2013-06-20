@@ -57,7 +57,9 @@ private class Boxes.Topbar: Boxes.UI {
         new_btn.set_size_request (70, -1);
         new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
 
-        back_btn = toolbar.add_button ("go-previous-symbolic", null, true) as Gtk.Button;
+        var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
+                                                                             "go-previous-symbolic";
+        back_btn = toolbar.add_button (back_icon, null, true) as Gtk.Button;
         back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
         // We need a sizegroup to ensure the spinner is the same size
