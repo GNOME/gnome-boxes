@@ -24,7 +24,9 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
         rightbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, spacing);
         add_widget (rightbox, false);
 
-        var back = add_image_button ("go-previous-symbolic", true);
+        var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
+                                                                     "go-previous-symbolic";
+        var back = add_image_button (back_icon, true);
         back.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
         var fullscreen = add_image_button ("view-fullscreen-symbolic", false);

@@ -221,7 +221,9 @@ private class Boxes.Properties: Boxes.UI {
         toolbar = new Gd.MainToolbar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (toolbar, true, true, 0);
-        back = toolbar.add_button ("go-previous-symbolic", null, true) as Gtk.Button;
+        var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
+                                                                             "go-previous-symbolic";
+        back = toolbar.add_button (back_icon, null, true) as Gtk.Button;
         back.clicked.connect ((button) => { App.app.ui_state = App.app.previous_ui_state; });
 
         hbox.show_all ();
