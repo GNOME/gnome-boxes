@@ -785,20 +785,15 @@ private class Boxes.MachineActor: Boxes.UI {
                     App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
                     track_screenshot_id = 0;
 
-                    thumbnail.set_easing_duration (App.app.duration);
-                    thumbnail.x_align = Clutter.ActorAlign.FILL;
-                    thumbnail.y_align = Clutter.ActorAlign.FILL;
-                    thumbnail.x_expand = true;
-                    thumbnail.y_expand = true;
-                    thumbnail.fixed_position_set = false;
-                    thumbnail.min_width_set = thumbnail.natural_width_set = false;
-                    thumbnail.min_height_set = thumbnail.natural_height_set = false;
-
-                    thumbnail.transitions_completed.connect (() => {
+                    var transition = animate_actor_geometry (x, y, width, height);
+                    transition.completed.connect (() => {
+                        thumbnail.remove_transition ("back-from-properties");
                         var widget = steal_display_widget_from_thumbnail ();
                         if (widget != null)
                             App.app.display_page.show_display (machine.display, widget);
                     });
+
+                    thumbnail.add_transition ("back-from-properties", transition);
                 } else
                     App.app.display_page.show ();
             }
