@@ -133,6 +133,43 @@ namespace Boxes {
         actor.add_transition ("animate-opacity", transition);
     }
 
+    public Clutter.Transition animate_actor_geometry (float x, float y, float width, float height) {
+        var transition = new Clutter.TransitionGroup ();
+        transition.set_duration (App.app.duration);
+        transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
+
+        var value = GLib.Value (typeof (float));
+        if (x > 0) {
+            var x_transition = new Clutter.PropertyTransition ("x");
+            value.set_float (x);
+            x_transition.set_to_value (value);
+            transition.add_transition (x_transition);
+        }
+
+        if (y > 0) {
+            var y_transition = new Clutter.PropertyTransition ("y");
+            value.set_float (y);
+            transition.set_to_value (value);
+            transition.add_transition (y_transition);
+        }
+
+        if (width > 0) {
+            var width_transition = new Clutter.PropertyTransition ("width");
+            value.set_float (width);
+            transition.set_to_value (value);
+            transition.add_transition (width_transition);
+        }
+
+        if (height > 0) {
+            var height_transition = new Clutter.PropertyTransition ("height");
+            value.set_float (height);
+            transition.set_to_value (value);
+            transition.add_transition (height_transition);
+        }
+
+        return transition as Clutter.Transition;
+    }
+
     public delegate void ActorFunc (Clutter.Actor actor);
 
     public void actor_add (Clutter.Actor actor, Clutter.Actor container) {

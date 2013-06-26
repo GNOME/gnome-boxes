@@ -671,33 +671,11 @@ private class Boxes.App: Boxes.UI {
         view.get_item_pos (item, out item_x, out item_y);
         var actor = item.actor;
 
-        var transition = actor.get_transition ("animate-position") as Clutter.TransitionGroup;
+        var transition = actor.get_transition ("animate-position");
         if (transition != null)
             actor.remove_transition ("animate-position");
-        transition = new Clutter.TransitionGroup ();
-        transition.set_duration (duration);
-        transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
 
-        var x_transition = new Clutter.PropertyTransition ("x");
-        var value = GLib.Value (typeof (float));
-        value.set_float (item_x);
-        x_transition.set_to_value (value);
-        transition.add_transition (x_transition);
-
-        var y_transition = new Clutter.PropertyTransition ("y");
-        value.set_float (item_y);
-        transition.set_to_value (value);
-        transition.add_transition (y_transition);
-
-        var width_transition = new Clutter.PropertyTransition ("width");
-        value.set_float (Machine.SCREENSHOT_WIDTH);
-        transition.set_to_value (value);
-        transition.add_transition (width_transition);
-
-        var height_transition = new Clutter.PropertyTransition ("height");
-        value.set_float (Machine.SCREENSHOT_HEIGHT);
-        transition.set_to_value (value);
-        transition.add_transition (height_transition);
+        transition = animate_actor_geometry (item_x, item_y, Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT);
 
         // Also track size changes in the icon_view during the animation
         var id = view.main_view.size_allocate.connect ((allocation) => {
