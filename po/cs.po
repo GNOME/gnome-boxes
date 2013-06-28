@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-28 12:46+0000\n"
-"PO-Revision-Date: 2013-05-29 01:27+0200\n"
+"POT-Creation-Date: 2013-06-26 15:18+0000\n"
+"PO-Revision-Date: 2013-06-28 18:57+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -147,12 +147,12 @@ msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným či virtuálním s
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: ../src/app.vala:840
+#: ../src/app.vala:841
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ byl smazán"
 
-#: ../src/app.vala:841
+#: ../src/app.vala:842
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -160,7 +160,7 @@ msgstr[0] "%u box byl smazán"
 msgstr[1] "%u boxy byly smazány"
 msgstr[2] "%u boxů bylo smazáno"
 
-#: ../src/app.vala:931
+#: ../src/app.vala:932
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -169,20 +169,20 @@ msgstr ""
 "Stroj „%s“ nelze z disku obnovit\n"
 "Zkusit to bez uloženého stavu?"
 
-#: ../src/app.vala:932
+#: ../src/app.vala:933
 msgid "Restart"
 msgstr "Restartovat"
 
-#: ../src/app.vala:937
+#: ../src/app.vala:938 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Připojení k „%s“ selhalo"
 
-#: ../src/collection-view.vala:43
+#: ../src/collection-view.vala:44
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: ../src/display-page.vala:285
+#: ../src/display-page.vala:287
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pro ukončení zachytávání zmáčkněte klávesy Ctrl+Alt)"
 
@@ -194,11 +194,16 @@ msgstr "Nenalezen žádný box"
 msgid "Create one using the button on the top left."
 msgstr "Můžete jej vytvořit pomocí tlačítka vlevo nahoře."
 
-#: ../src/installer-media.vala:95 ../src/properties.vala:73
+#: ../src/installed-media.vala:48
+msgid "Unsupoorted disk image format."
+msgstr "Nepodporovaný formát obrazu disku."
+
+#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/properties.vala:73
 msgid "System"
 msgstr "Systém"
 
-#: ../src/libvirt-machine-properties.vala:116 ../src/remote-machine.vala:52
+#: ../src/libvirt-machine-properties.vala:116 ../src/remote-machine.vala:53
 msgid "Name"
 msgstr "Název"
 
@@ -207,7 +212,7 @@ msgid "Virtualizer"
 msgstr "Virtualizér"
 
 #: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:59 ../src/wizard.vala:405
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:405
 msgid "URI"
 msgstr "Adresa URI"
 
@@ -230,7 +235,7 @@ msgid "Error saving: %s"
 msgstr "Chyba ukládání: %s"
 
 #: ../src/libvirt-machine-properties.vala:193 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:70
+#: ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protokol"
 
@@ -306,41 +311,41 @@ msgstr ""
 msgid "Maximum Disk Size"
 msgstr "Maximální velikost disku"
 
-#: ../src/libvirt-machine.vala:433
+#: ../src/libvirt-machine.vala:446
 msgid "When you force shutdown, the box may lose data."
 msgstr "Pokud si vynutíte vypnutí, může v boxu dojít ke ztrátě dat."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:518
+#: ../src/libvirt-machine.vala:531
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:521
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:134
+#: ../src/machine.vala:136
 #, c-format
 msgid "Connecting to %s"
 msgstr "Připojuje se k %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:154
+#: ../src/machine.vala:158
 #, c-format
 msgid "Enter password for %s"
 msgstr "Zadejte heslo pro %s"
 
-#: ../src/machine.vala:238
+#: ../src/machine.vala:242
 msgid "Saving..."
 msgstr "Ukládá se…"
 
 #. 3rd row
-#: ../src/machine.vala:580 ../src/unattended-installer.vala:299
-#: ../src/unattended-installer.vala:430
+#: ../src/machine.vala:584 ../src/unattended-installer.vala:301
+#: ../src/unattended-installer.vala:432
 msgid "Password"
 msgstr "Heslo"
 
@@ -380,6 +385,11 @@ msgstr "Chyby hlaste na <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka %s: <%s>.\n"
 
+#: ../src/media-manager.vala:173
+#, c-format
+msgid "No such file %s"
+msgstr "Soubor „%s“ neexistuje"
+
 #: ../src/notificationbar.vala:57
 #, c-format
 msgid "Not connected to %s"
@@ -402,7 +412,7 @@ msgstr "Jméno _uživatele"
 msgid "_Password"
 msgstr "_Heslo"
 
-#: ../src/ovirt-broker.vala:64
+#: ../src/ovirt-broker.vala:69
 msgid "Connection to oVirt broker failed"
 msgstr "Připojení ke zprostředkovateli oVirt selhalo"
 
@@ -428,19 +438,19 @@ msgstr "Zařízení"
 msgid "Some changes may take effect only after reboot"
 msgstr "Některé změny se mohou projevit pouze až po restartu"
 
-#: ../src/properties.vala:270
+#: ../src/properties.vala:272
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:277
+#: ../src/properties.vala:279
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:284
+#: ../src/properties.vala:286
 msgid "Net:"
 msgstr "Síť:"
 
-#: ../src/properties.vala:291
+#: ../src/properties.vala:293
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
@@ -459,59 +469,59 @@ msgstr "Neznámý"
 msgid "Automatic redirection of USB device '%s' for '%s' failed"
 msgstr "Automatické přesměrování zařízení USB „%s“ pro „%s“ selhalo"
 
-#: ../src/spice-display.vala:62 ../src/spice-display.vala:326
+#: ../src/spice-display.vala:62 ../src/spice-display.vala:340
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Přesměrování zařízení USB „%s“ pro „%s“ selhalo"
 
-#: ../src/spice-display.vala:277
+#: ../src/spice-display.vala:291
 msgid "Share clipboard"
 msgstr "Sdílet obsah schránky"
 
-#: ../src/spice-display.vala:283
+#: ../src/spice-display.vala:297
 msgid "Resize guest"
 msgstr "Změnit velikost hosta"
 
-#: ../src/spice-display.vala:292
+#: ../src/spice-display.vala:306
 msgid "Redirect new USB devices"
 msgstr "Přesměrovat nová zařízení USB"
 
-#: ../src/spice-display.vala:312
+#: ../src/spice-display.vala:326
 msgid "USB devices"
 msgstr "Zařízení USB"
 
-#: ../src/spice-display.vala:367 ../src/wizard.vala:252
+#: ../src/spice-display.vala:381 ../src/wizard.vala:252
 msgid "Invalid URI"
 msgstr "Neplatná adresa URI"
 
-#: ../src/spice-display.vala:377
+#: ../src/spice-display.vala:391
 msgid "The port must be specified once"
 msgstr "Port musí být zadán jednou"
 
-#: ../src/spice-display.vala:386
+#: ../src/spice-display.vala:400
 msgid "Missing port in Spice URI"
 msgstr "Schází port v adrese Spice URI"
 
-#: ../src/topbar.vala:99
+#: ../src/topbar.vala:101
 msgid "Select All"
 msgstr "Vybrat vše"
 
-#: ../src/topbar.vala:100
+#: ../src/topbar.vala:102
 msgid "Select Running"
 msgstr "Vybrat běžící"
 
-#: ../src/topbar.vala:101
+#: ../src/topbar.vala:103
 msgid "Select None"
 msgstr "Zrušit výběr"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:111 ../src/topbar.vala:114
+#: ../src/topbar.vala:113 ../src/topbar.vala:116
 msgid "D_one"
 msgstr "H_otovo"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:152
+#: ../src/topbar.vala:154
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -519,7 +529,7 @@ msgstr[0] "%d vybrán"
 msgstr[1] "%d vybrány"
 msgstr[2] "%d vybráno"
 
-#: ../src/topbar.vala:154
+#: ../src/topbar.vala:156
 msgid "(Click on items to select them)"
 msgstr "(položky vyberete klikáním na ně)"
 
@@ -527,11 +537,11 @@ msgstr "(položky vyberete klikáním na ně)"
 msgid "no password"
 msgstr "žádné heslo"
 
-#: ../src/unattended-installer.vala:298 ../src/unattended-installer.vala:409
+#: ../src/unattended-installer.vala:300 ../src/unattended-installer.vala:411
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: ../src/unattended-installer.vala:365
+#: ../src/unattended-installer.vala:367
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -542,23 +552,23 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:383
+#: ../src/unattended-installer.vala:385
 msgid "Express Install"
 msgstr "Rychlá instalace"
 
-#: ../src/unattended-installer.vala:441
+#: ../src/unattended-installer.vala:443
 msgid "_Add Password"
 msgstr "Přidat _heslo"
 
-#: ../src/unattended-installer.vala:473
+#: ../src/unattended-installer.vala:475
 msgid "Product Key"
 msgstr "Produktový klíč"
 
-#: ../src/unattended-installer.vala:693
+#: ../src/unattended-installer.vala:695
 msgid "Downloading device drivers..."
 msgstr "Stahují se ovladače zařízení…"
 
-#: ../src/util-app.vala:238
+#: ../src/util-app.vala:276
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -568,11 +578,11 @@ msgstr ""
 "pomocí:\n"
 "%s"
 
-#: ../src/util-app.vala:242
+#: ../src/util-app.vala:280
 msgid "SELinux not installed?"
 msgstr "SELinux není nainstalován?"
 
-#: ../src/util-app.vala:323
+#: ../src/util-app.vala:361
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -581,7 +591,7 @@ msgstr ""
 "boxes“. Ujistěte se, že funguje „virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes“"
 
-#: ../src/util-app.vala:328
+#: ../src/util-app.vala:366
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -590,7 +600,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale tato "
 "složka neexistuje"
 
-#: ../src/util-app.vala:332
+#: ../src/util-app.vala:370
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -598,7 +608,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale "
 "nejedná se o složku"
 
-#: ../src/util-app.vala:336
+#: ../src/util-app.vala:374
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -617,7 +627,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:444
+#: ../src/vm-configurator.vala:439
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
@@ -627,24 +637,33 @@ msgid ""
 msgstr ""
 "Během přípravy instalace se vyskytla chyba. Expresní instalace byla zakázána."
 
-#: ../src/vm-creator.vala:176
+#: ../src/vm-creator.vala:180
 msgid "Installing..."
 msgstr "Instaluje se…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:244
+#: ../src/vm-creator.vala:184 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "Živé médium"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:265
+#: ../src/vm-creator.vala:282
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "Nainstalováno %d %%"
 msgstr[1] "Nainstalována %d %%"
 msgstr[2] "Nainstalováno %d %%"
+
+#: ../src/vm-importer.vala:34
+msgid "Importing..."
+msgstr "Importuje se…"
+
+#: ../src/vm-importer.vala:51
+#, c-format
+msgid "Box import from file '%s' failed."
+msgstr "Import boxu ze souboru „%s“ selhal."
 
 #: ../src/vnc-display.vala:145
 msgid "Read-only"
@@ -839,6 +858,6 @@ msgstr "_Pokračovat"
 msgid "C_reate"
 msgstr "_Vytvořit"
 
-#: ../src/wizard.vala:768
+#: ../src/wizard.vala:769
 msgid "C_ustomize..."
 msgstr "Přizpůso_bit…"
