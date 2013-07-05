@@ -559,7 +559,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
+        disk.set_driver_format (DomainDiskFormat.RAW);
         disk.set_source (disk_file.get_path ());
 
         // FIXME: Ideally, we shouldn't need to check for distro
@@ -584,7 +584,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
+        disk.set_driver_format (DomainDiskFormat.RAW);
         disk.set_source (secondary_disk_file.get_path ());
         disk.set_target_dev ((path_format == PathFormat.DOS)? "E" : "hdd");
         disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);

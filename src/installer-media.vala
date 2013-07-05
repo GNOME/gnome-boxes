@@ -129,7 +129,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         disk.set_type (type);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
         disk.set_driver_name ("qemu");
-        disk.set_driver_type ("raw");
+        disk.set_driver_format (DomainDiskFormat.RAW);
         disk.set_target_dev (device_name);
         disk.set_source (iso_path);
         disk.set_target_bus (DomainDiskBus.IDE);

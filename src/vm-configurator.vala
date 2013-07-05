@@ -209,7 +209,7 @@ private class Boxes.VMConfigurator {
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
         disk.set_driver_name ("qemu");
-        disk.set_driver_type ("qcow2");
+        disk.set_driver_format (DomainDiskFormat.QCOW2);
         disk.set_source (target_path);
         disk.set_driver_cache (DomainDiskCacheType.NONE);
 
