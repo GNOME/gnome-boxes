@@ -12,7 +12,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         base (source, vm.name);
 
         debug ("new ovirt machine: " + name);
-        create_display_config (vm.uuid);
+        create_display_config (vm.guid);
         this.proxy = proxy;
         this.vm = vm;
 

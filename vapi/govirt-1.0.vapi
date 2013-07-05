@@ -2,6 +2,12 @@
 
 [CCode (cprefix = "Ovirt", gir_namespace = "GoVirt", gir_version = "1.0", lower_case_cprefix = "ovirt_")]
 namespace Ovirt {
+	[CCode (cheader_filename = "govirt/govirt.h", type_id = "ovirt_collection_get_type ()")]
+	public class Collection : GLib.Object {
+		[CCode (has_construct_function = false)]
+		protected Collection ();
+		public unowned GLib.HashTable<string,Ovirt.Resource> get_resources ();
+	}
 	[CCode (cheader_filename = "govirt/govirt.h", type_id = "ovirt_proxy_get_type ()")]
 	public class Proxy : Rest.Proxy {
 		[CCode (has_construct_function = false)]
@@ -17,8 +23,25 @@ namespace Ovirt {
 		[NoAccessorMethod]
 		public GLib.ByteArray ca_cert { owned get; set; }
 	}
+	[CCode (cheader_filename = "govirt/govirt.h", type_id = "ovirt_resource_get_type ()")]
+	public class Resource : GLib.Object, GLib.Initable {
+		[CCode (has_construct_function = false)]
+		protected Resource ();
+		public unowned string get_sub_collection (string sub_collection);
+		[NoWrapper]
+		public virtual bool init_from_xml (Rest.XmlNode node) throws GLib.Error;
+		[NoAccessorMethod]
+		public string description { owned get; set; }
+		[NoAccessorMethod]
+		public string guid { owned get; set; }
+		[NoAccessorMethod]
+		public string href { owned get; set; }
+		[NoAccessorMethod]
+		public string name { owned get; set; }
+		public Rest.XmlNode xml_node { construct; }
+	}
 	[CCode (cheader_filename = "govirt/govirt.h", type_id = "ovirt_vm_get_type ()")]
-	public class Vm : GLib.Object {
+	public class Vm : Ovirt.Resource, GLib.Initable {
 		[CCode (has_construct_function = false)]
 		public Vm ();
 		public bool get_ticket (Ovirt.Proxy proxy) throws GLib.Error;
@@ -31,13 +54,7 @@ namespace Ovirt {
 		[NoAccessorMethod]
 		public Ovirt.VmDisplay display { owned get; set; }
 		[NoAccessorMethod]
-		public string href { owned get; set; }
-		[NoAccessorMethod]
-		public string name { owned get; set; }
-		[NoAccessorMethod]
 		public Ovirt.VmState state { get; set; }
-		[NoAccessorMethod]
-		public string uuid { owned get; set; }
 	}
 	[CCode (cheader_filename = "govirt/govirt.h", type_id = "ovirt_vm_display_get_type ()")]
 	public class VmDisplay : GLib.Object {
@@ -73,13 +90,28 @@ namespace Ovirt {
 	public enum VmState {
 		DOWN,
 		UP,
-		REBOOTING
+		REBOOTING,
+		POWERING_UP,
+		POWERED_DOWN,
+		PAUSED,
+		MIGRATING,
+		UNKNOWN,
+		NOT_RESPONDING,
+		WAIT_FOR_LAUNCH,
+		REBOOT_IN_PROGRESS,
+		SAVING_STATE,
+		RESTORING_STATE,
+		SUSPENDED,
+		IMAGE_LOCKED,
+		POWERING_DOWN
 	}
-	[CCode (cheader_filename = "govirt/govirt.h", cprefix = "OVIRT_PROXY_")]
-	public errordomain ProxyError {
+	[CCode (cheader_filename = "govirt/govirt.h", cprefix = "OVIRT_ERROR_")]
+	public errordomain Error {
+		FAILED,
 		PARSING_FAILED,
+		NOT_SUPPORTED,
 		ACTION_FAILED,
-		FAULT;
+		BAD_URI;
 		public static GLib.Quark quark ();
 	}
 	[CCode (cheader_filename = "govirt/govirt.h", cprefix = "OVIRT_REST_CALL_ERROR_")]
