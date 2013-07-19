@@ -30,7 +30,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.Label prep_status_label;
     private Gtk.Box setup_vbox;
     private Gtk.Label review_label;
-    private Gtk.Label nokvm_label;
+    private Gtk.InfoBar nokvm_infobar;
     private Gtk.Image installer_image;
 
     private MediaManager media_manager;
@@ -364,7 +364,7 @@ private class Boxes.Wizard: Boxes.UI {
     private async bool do_review_cancellable () {
         return_if_fail (review_cancellable != null);
 
-        nokvm_label.hide ();
+        nokvm_infobar.hide ();
         summary.clear ();
 
         if (source != null) {
@@ -455,7 +455,7 @@ private class Boxes.Wizard: Boxes.UI {
                 }
             }
 
-            nokvm_label.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
+            nokvm_infobar.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
         summary.append_customize_button (() => {
@@ -619,25 +619,40 @@ private class Boxes.Wizard: Boxes.UI {
         setup_vbox.show_all ();
 
         /* Review */
-        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
-        vbox.valign = Gtk.Align.CENTER;
-        vbox.halign = Gtk.Align.CENTER;
+        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        vbox.valign = Gtk.Align.FILL;
+        vbox.halign = Gtk.Align.FILL;
         add_step (vbox, _("Review"), WizardPage.REVIEW);
+
+        nokvm_infobar = new Gtk.InfoBar ();
+        nokvm_infobar.halign = Gtk.Align.FILL;
+        nokvm_infobar.spacing = 10;
+        var container = nokvm_infobar.get_content_area () as Gtk.Container;
+        container.add (hbox);
+        var image = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.LARGE_TOOLBAR);
+        container.add (image);
+        label = new Gtk.Label (_("Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them."));
+        label.wrap = true;
+        label.halign = Gtk.Align.START;
+        label.hexpand = true;
+        container.add (label);
+        nokvm_infobar.message_type = Gtk.MessageType.WARNING;
+        vbox.pack_start (nokvm_infobar, false, false);
+
+        var review_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
+        review_vbox.valign = Gtk.Align.CENTER;
+        review_vbox.halign = Gtk.Align.CENTER;
+        vbox.pack_start (review_vbox , true, true);
 
         review_label = new Gtk.Label (null);
         review_label.get_style_context ().add_class ("boxes-wizard-label");
         review_label.xalign = 0.0f;
         review_label.wrap = true;
         review_label.width_chars = 30;
-        vbox.pack_start (review_label, false, false);
+        review_vbox.pack_start (review_label, false, false);
 
         summary = new WizardSummary ();
-        vbox.pack_start (summary.widget, true, true);
-        nokvm_label = new Gtk.Label (_("Virtualization extensions are unavailable on your system. Expect this box to be extremely slow. If your system is recent enough (made in or after 2008), these extensions are probably available on your system and you may need to enable them in your system's BIOS setup."));
-        nokvm_label.get_style_context ().add_class ("boxes-logo-notice-label");
-        nokvm_label.wrap = true;
-        nokvm_label.max_width_chars = 50;
-        vbox.pack_start (nokvm_label, false, false);
+        review_vbox.pack_start (summary.widget, true, true);
         vbox.show_all ();
 
         /* topbar */
