@@ -628,7 +628,6 @@ private class Boxes.Wizard: Boxes.UI {
         nokvm_infobar.halign = Gtk.Align.FILL;
         nokvm_infobar.spacing = 10;
         var container = nokvm_infobar.get_content_area () as Gtk.Container;
-        container.add (hbox);
         var image = new Gtk.Image.from_stock (Gtk.Stock.DIALOG_WARNING, Gtk.IconSize.LARGE_TOOLBAR);
         container.add (image);
         label = new Gtk.Label (_("Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them."));
