@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-24 14:07+0000\n"
-"PO-Revision-Date: 2013-05-25 21:37+0100\n"
+"POT-Creation-Date: 2013-08-12 13:45+0000\n"
+"PO-Revision-Date: 2013-08-18 01:31+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -145,12 +145,12 @@ msgstr "- Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: ../src/app.vala:840
+#: ../src/app.vala:841
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Škatla '%s' je bila izbrisana"
 
-#: ../src/app.vala:841
+#: ../src/app.vala:842
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -159,7 +159,7 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: ../src/app.vala:931
+#: ../src/app.vala:932
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -168,20 +168,20 @@ msgstr ""
 "'%s' ni mogoče obnoviti iz datoteke.\n"
 "Ali naj se izvede brez shranjenega stanja?"
 
-#: ../src/app.vala:932
+#: ../src/app.vala:933
 msgid "Restart"
 msgstr "Ponovno zaženi"
 
-#: ../src/app.vala:937
+#: ../src/app.vala:938 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Povezava z '%s' je spodletela"
 
-#: ../src/collection-view.vala:43
+#: ../src/collection-view.vala:44
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#: ../src/display-page.vala:285
+#: ../src/display-page.vala:287
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pritisk krmilke+izmenjalke sprosti predmet)"
 
@@ -193,11 +193,16 @@ msgstr "Ni najdenih škatel"
 msgid "Create one using the button on the top left."
 msgstr "Ustvarite eno z gumbom levo zgoraj."
 
-#: ../src/installer-media.vala:95 ../src/properties.vala:73
+#: ../src/installed-media.vala:48
+msgid "Unsupoorted disk image format."
+msgstr "Nepodprt zapis odtisa diska."
+
+#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/properties.vala:73
 msgid "System"
 msgstr "Sistem"
 
-#: ../src/libvirt-machine-properties.vala:116 ../src/remote-machine.vala:52
+#: ../src/libvirt-machine-properties.vala:116 ../src/remote-machine.vala:53
 msgid "Name"
 msgstr "Ime"
 
@@ -206,7 +211,7 @@ msgid "Virtualizer"
 msgstr "Navidezovalnik"
 
 #: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:59 ../src/wizard.vala:405
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:405
 msgid "URI"
 msgstr "Naslov URI"
 
@@ -229,7 +234,7 @@ msgid "Error saving: %s"
 msgstr "Napaka med shranjevanjem: %s"
 
 #: ../src/libvirt-machine-properties.vala:193 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:70
+#: ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protokol"
 
@@ -305,42 +310,42 @@ msgstr "Ponovni zagon '%s' traja predolgo. Ali naj se izklop vsili?"
 msgid "Maximum Disk Size"
 msgstr "Največja velikost diska"
 
-#: ../src/libvirt-machine.vala:433
+#: ../src/libvirt-machine.vala:446
 msgid "When you force shutdown, the box may lose data."
 msgstr ""
 "Med vsiljenim izklopom računalnika se neshranjeni podatki lahko izgubijo."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:518
+#: ../src/libvirt-machine.vala:531
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnavljanje %s z diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:521
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Starting %s"
 msgstr "Zaganjanje %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:134
+#: ../src/machine.vala:136
 #, c-format
 msgid "Connecting to %s"
 msgstr "Povezovanje s/z %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:154
+#: ../src/machine.vala:158
 #, c-format
 msgid "Enter password for %s"
 msgstr "Vnesite geslo za %s"
 
-#: ../src/machine.vala:238
+#: ../src/machine.vala:242
 msgid "Saving..."
 msgstr "Shranjevanje ..."
 
 #. 3rd row
-#: ../src/machine.vala:580 ../src/unattended-installer.vala:299
-#: ../src/unattended-installer.vala:430
+#: ../src/machine.vala:584 ../src/unattended-installer.vala:301
+#: ../src/unattended-installer.vala:432
 msgid "Password"
 msgstr "Geslo"
 
@@ -380,6 +385,11 @@ msgstr "O hroščih poročajte <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domača stran %s: <%s>.\n"
 
+#: ../src/media-manager.vala:173
+#, c-format
+msgid "No such file %s"
+msgstr "Datoteka %s ne obstaja"
+
 #: ../src/notificationbar.vala:57
 #, c-format
 msgid "Not connected to %s"
@@ -402,7 +412,7 @@ msgstr "_Uporabniško ime"
 msgid "_Password"
 msgstr "_Geslo"
 
-#: ../src/ovirt-broker.vala:64
+#: ../src/ovirt-broker.vala:69
 msgid "Connection to oVirt broker failed"
 msgstr "Povezava z oVirt je spodletela"
 
@@ -428,19 +438,19 @@ msgstr "Naprave"
 msgid "Some changes may take effect only after reboot"
 msgstr "Nekatere spremembe bodo uveljavljene šele po ponovnem zagonu sistema"
 
-#: ../src/properties.vala:270
+#: ../src/properties.vala:272
 msgid "CPU:"
 msgstr "CPE:"
 
-#: ../src/properties.vala:277
+#: ../src/properties.vala:279
 msgid "I/O:"
 msgstr "V/I:"
 
-#: ../src/properties.vala:284
+#: ../src/properties.vala:286
 msgid "Net:"
 msgstr "Omrežje:"
 
-#: ../src/properties.vala:291
+#: ../src/properties.vala:293
 msgid "Force Shutdown"
 msgstr "Vsili izklop"
 
@@ -459,59 +469,59 @@ msgstr "Neznano"
 msgid "Automatic redirection of USB device '%s' for '%s' failed"
 msgstr "Samodejno preusmerjanje naprave USB '%s' za '%s' je spodletelo."
 
-#: ../src/spice-display.vala:62 ../src/spice-display.vala:326
+#: ../src/spice-display.vala:62 ../src/spice-display.vala:340
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Preusmeritev naprave USB '%s' za '%s' je spodletela."
 
-#: ../src/spice-display.vala:277
+#: ../src/spice-display.vala:291
 msgid "Share clipboard"
 msgstr "Souporaba odložišča"
 
-#: ../src/spice-display.vala:283
+#: ../src/spice-display.vala:297
 msgid "Resize guest"
 msgstr "Spremeni velikost okna gosta"
 
-#: ../src/spice-display.vala:292
+#: ../src/spice-display.vala:306
 msgid "Redirect new USB devices"
 msgstr "Preusmeri novo napravo USB"
 
-#: ../src/spice-display.vala:312
+#: ../src/spice-display.vala:326
 msgid "USB devices"
 msgstr "Naprave USB"
 
-#: ../src/spice-display.vala:367 ../src/wizard.vala:252
+#: ../src/spice-display.vala:381 ../src/wizard.vala:252
 msgid "Invalid URI"
 msgstr "Neveljaven naslov URI"
 
-#: ../src/spice-display.vala:377
+#: ../src/spice-display.vala:391
 msgid "The port must be specified once"
 msgstr "Vrata morajo biti določena"
 
-#: ../src/spice-display.vala:386
+#: ../src/spice-display.vala:400
 msgid "Missing port in Spice URI"
 msgstr "V naslovu Spice manjka določilo vrat"
 
-#: ../src/topbar.vala:99
+#: ../src/topbar.vala:101
 msgid "Select All"
 msgstr "Izberi vse"
 
-#: ../src/topbar.vala:100
+#: ../src/topbar.vala:102
 msgid "Select Running"
 msgstr "Izberi zagnano%s"
 
-#: ../src/topbar.vala:101
+#: ../src/topbar.vala:103
 msgid "Select None"
 msgstr "Odstrani izbor"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:111 ../src/topbar.vala:114
+#: ../src/topbar.vala:113 ../src/topbar.vala:116
 msgid "D_one"
 msgstr "_Končano"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:152
+#: ../src/topbar.vala:154
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -520,7 +530,7 @@ msgstr[1] "%d izbrana"
 msgstr[2] "%d izbrani"
 msgstr[3] "%d izbrane"
 
-#: ../src/topbar.vala:154
+#: ../src/topbar.vala:156
 msgid "(Click on items to select them)"
 msgstr "(S klikom se predmeti izberejo.)"
 
@@ -528,11 +538,11 @@ msgstr "(S klikom se predmeti izberejo.)"
 msgid "no password"
 msgstr "ni podanega gesla"
 
-#: ../src/unattended-installer.vala:298 ../src/unattended-installer.vala:409
+#: ../src/unattended-installer.vala:300 ../src/unattended-installer.vala:411
 msgid "Username"
 msgstr "Uporabniško ime"
 
-#: ../src/unattended-installer.vala:365
+#: ../src/unattended-installer.vala:367
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -543,23 +553,23 @@ msgstr ""
 #. First row
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user
 #. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:383
+#: ../src/unattended-installer.vala:385
 msgid "Express Install"
 msgstr "Hitra namestitev"
 
-#: ../src/unattended-installer.vala:441
+#: ../src/unattended-installer.vala:443
 msgid "_Add Password"
 msgstr "_Dodaj geslo"
 
-#: ../src/unattended-installer.vala:473
+#: ../src/unattended-installer.vala:475
 msgid "Product Key"
 msgstr "Ključ izdelka"
 
-#: ../src/unattended-installer.vala:693
+#: ../src/unattended-installer.vala:695
 msgid "Downloading device drivers..."
 msgstr "Prejemanje gonilnikov naprave ..."
 
-#: ../src/util-app.vala:238
+#: ../src/util-app.vala:276
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -568,11 +578,11 @@ msgstr ""
 "Vaš kontekst SELinux je videti nepravilen, popraviti ga lahko poskusite z:\n"
 "%s"
 
-#: ../src/util-app.vala:242
+#: ../src/util-app.vala:280
 msgid "SELinux not installed?"
 msgstr "SELinux ni nameščen?"
 
-#: ../src/util-app.vala:323
+#: ../src/util-app.vala:361
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -581,7 +591,7 @@ msgstr ""
 "libvirt. Zagnan mora biti ukaz 'virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes'."
 
-#: ../src/util-app.vala:328
+#: ../src/util-app.vala:366
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -590,7 +600,7 @@ msgstr ""
 "%s je opredeljeno pri libvirt kot hranilnik podatkov škatel, vendar mapa ne "
 "obstaja"
 
-#: ../src/util-app.vala:332
+#: ../src/util-app.vala:370
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -598,7 +608,7 @@ msgstr ""
 "%s je opredeljeno pri libvirt kot hranilnik podatkov škatel, vendar to ni "
 "mapa"
 
-#: ../src/util-app.vala:336
+#: ../src/util-app.vala:374
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -617,7 +627,7 @@ msgstr "Ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:444
+#: ../src/vm-configurator.vala:439
 msgid "Incapable host system"
 msgstr "Gostiteljski sistem brez podpore"
 
@@ -628,18 +638,18 @@ msgstr ""
 "Pri pripravi na namestitev je prišlo do napake. Hitra namestitev je "
 "onemogočena."
 
-#: ../src/vm-creator.vala:176
+#: ../src/vm-creator.vala:180
 msgid "Installing..."
 msgstr "Nameščanje ..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:244
+#: ../src/vm-creator.vala:184 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "Živi sistem"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:265
+#: ../src/vm-creator.vala:282
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -647,6 +657,15 @@ msgstr[0] "%d%% nameščenih"
 msgstr[1] "%d%% nameščen"
 msgstr[2] "%d%% nameščena"
 msgstr[3] "%d%% nameščeni"
+
+#: ../src/vm-importer.vala:34
+msgid "Importing..."
+msgstr "Uvažanje ..."
+
+#: ../src/vm-importer.vala:51
+#, c-format
+msgid "Box import from file '%s' failed."
+msgstr "Uvoz škatle iz datoteke '%s' je spodletel."
 
 #: ../src/vnc-display.vala:145
 msgid "Read-only"
@@ -813,41 +832,48 @@ msgstr "Nastavitve"
 msgid "Review"
 msgstr "Pregled"
 
-#: ../src/wizard.vala:636
+#: ../src/wizard.vala:633
 msgid ""
-"Virtualization extensions are unavailable on your system. Expect this box to "
-"be extremely slow. If your system is recent enough (made in or after 2008), "
-"these extensions are probably available on your system and you may need to "
-"enable them in your system's BIOS setup."
+"Virtualization extensions are unavailable on your system. If your system is "
+"recent (post 2008), check your BIOS settings to enable them."
 msgstr ""
-"Razširitve za ustvarjanje navideznih sistemov niso na voljo na sistemu. Ta "
-"škatla bo zelo neodzivna. V kolikor je trenutni sistem novejše izdelave, so "
-"razširitve najverjetneje na voljo, vendar jih je treba omogočiti v "
-"nastavitvah zagonskega sistema BIOS."
+"Razširitve predočenja na sistemu niso na voljo. Če je sistem mlajši od 2008, "
+"preverite nastavitve BIOS."
 
-#: ../src/wizard.vala:651
+#: ../src/wizard.vala:665
 msgid "Create a Box"
 msgstr "Ustvari škatlo"
 
-#: ../src/wizard.vala:654 ../src/wizard.vala:656
+#: ../src/wizard.vala:668 ../src/wizard.vala:670
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
-#: ../src/wizard.vala:665 ../src/wizard.vala:667
+#: ../src/wizard.vala:679 ../src/wizard.vala:681
 msgid "_Back"
 msgstr "_Nazaj"
 
-#: ../src/wizard.vala:673 ../src/wizard.vala:675
+#: ../src/wizard.vala:687 ../src/wizard.vala:689
 msgid "C_ontinue"
 msgstr "N_adaljuj"
 
-#: ../src/wizard.vala:682 ../src/wizard.vala:684
+#: ../src/wizard.vala:696 ../src/wizard.vala:698
 msgid "C_reate"
 msgstr "_Ustvari"
 
-#: ../src/wizard.vala:768
+#: ../src/wizard.vala:783
 msgid "C_ustomize..."
 msgstr "Prila_godi ..."
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system. Expect this box "
+#~ "to be extremely slow. If your system is recent enough (made in or after "
+#~ "2008), these extensions are probably available on your system and you may "
+#~ "need to enable them in your system's BIOS setup."
+#~ msgstr ""
+#~ "Razširitve za ustvarjanje navideznih sistemov niso na voljo na sistemu. "
+#~ "Ta škatla bo zelo neodzivna. V kolikor je trenutni sistem novejše "
+#~ "izdelave, so razširitve najverjetneje na voljo, vendar jih je treba "
+#~ "omogočiti v nastavitvah zagonskega sistema BIOS."
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "Napaka med povezovanjem %s: %s"
