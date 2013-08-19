@@ -45,7 +45,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         }
 
         if (!supported)
-            throw new Boxes.Error.INVALID (_("Unsupoorted disk image format."));
+            throw new Boxes.Error.INVALID (_("Unsupported disk image format."));
 
         device_file = path;
         from_image = true;
