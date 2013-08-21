@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-06-07 15:41+0000\n"
-"PO-Revision-Date: 2013-06-03 22:16+0100\n"
+"POT-Creation-Date: 2013-08-21 13:23+0000\n"
+"PO-Revision-Date: 2013-08-19 15:24+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -154,12 +154,12 @@ msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: ../src/app.vala:843
+#: ../src/app.vala:841
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: ../src/app.vala:844
+#: ../src/app.vala:842
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -167,7 +167,7 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: ../src/app.vala:934
+#: ../src/app.vala:932
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -176,21 +176,21 @@ msgstr ""
 "Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
-#: ../src/app.vala:935
+#: ../src/app.vala:933
 msgid "Restart"
 msgstr "Reštartovať"
 
-#: ../src/app.vala:940 ../src/machine.vala:151
+#: ../src/app.vala:938 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
 
 # PK: Nemysli sa tu mnozne cislo? akoze Nove a nedavne?
-#: ../src/collection-view.vala:43
+#: ../src/collection-view.vala:44
 msgid "New and Recent"
 msgstr "Nové a nedávne"
 
-#: ../src/display-page.vala:285
+#: ../src/display-page.vala:287
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(stlačte klávesy Ctrl+Alt na uvoľnenie)"
 
@@ -202,7 +202,12 @@ msgstr "Nenašli sa žiadne boxy"
 msgid "Create one using the button on the top left."
 msgstr "Môžete ho vytvoriť použitím tlačidla vľavo hore."
 
-#: ../src/installer-media.vala:95 ../src/properties.vala:73
+#: ../src/installed-media.vala:48
+msgid "Unsupported disk image format."
+msgstr "Nepodporovaný formát obrazu disku."
+
+#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/properties.vala:73
 msgid "System"
 msgstr "Systém"
 
@@ -322,40 +327,40 @@ msgstr ""
 msgid "Maximum Disk Size"
 msgstr "Maximálna veľkosť disku"
 
-#: ../src/libvirt-machine.vala:433
+#: ../src/libvirt-machine.vala:446
 msgid "When you force shutdown, the box may lose data."
 msgstr "Ak vynútite vypnutie, box môže stratiť údaje."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:518
+#: ../src/libvirt-machine.vala:531
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje sa %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:521
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Starting %s"
 msgstr "Spúšťa sa %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:134
+#: ../src/machine.vala:136
 #, c-format
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:156
+#: ../src/machine.vala:158
 #, c-format
 msgid "Enter password for %s"
 msgstr "Zadajte heslo pre %s"
 
-#: ../src/machine.vala:240
+#: ../src/machine.vala:242
 msgid "Saving..."
 msgstr "Ukladá sa…"
 
 #. 3rd row
-#: ../src/machine.vala:582 ../src/unattended-installer.vala:301
+#: ../src/machine.vala:584 ../src/unattended-installer.vala:301
 #: ../src/unattended-installer.vala:432
 msgid "Password"
 msgstr "Heslo"
@@ -397,6 +402,11 @@ msgstr "Chyby nahláste na <%s>.\n"
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka programu %s: <%s>.\n"
+
+#: ../src/media-manager.vala:173
+#, c-format
+msgid "No such file %s"
+msgstr "%s nie je súborom"
 
 #: ../src/notificationbar.vala:57
 #, c-format
@@ -446,21 +456,21 @@ msgstr "Zariadenia"
 msgid "Some changes may take effect only after reboot"
 msgstr "Niektoré zmeny sa uskutočnia iba po reštarte"
 
-#: ../src/properties.vala:270
+#: ../src/properties.vala:272
 msgid "CPU:"
 msgstr "Procesor:"
 
 # DK: prekladame ako Vstupno/Vystupne alebo ostava I/O ?
 # PK: V/V
-#: ../src/properties.vala:277
+#: ../src/properties.vala:279
 msgid "I/O:"
 msgstr "V/V:"
 
-#: ../src/properties.vala:284
+#: ../src/properties.vala:286
 msgid "Net:"
 msgstr "Sieť:"
 
-#: ../src/properties.vala:291
+#: ../src/properties.vala:293
 msgid "Force Shutdown"
 msgstr "Vynútiť vypnutie"
 
@@ -479,59 +489,59 @@ msgstr "Neznámy"
 msgid "Automatic redirection of USB device '%s' for '%s' failed"
 msgstr "Automatické presmerovanie zariadenia „%s“ typu USB pre „%s“ zlyhalo"
 
-#: ../src/spice-display.vala:62 ../src/spice-display.vala:336
+#: ../src/spice-display.vala:62 ../src/spice-display.vala:340
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Presmerovanie zariadenia „%s“ typu USB pre „%s“ zlyhalo"
 
-#: ../src/spice-display.vala:287
+#: ../src/spice-display.vala:291
 msgid "Share clipboard"
 msgstr "Zdieľať schránku"
 
-#: ../src/spice-display.vala:293
+#: ../src/spice-display.vala:297
 msgid "Resize guest"
 msgstr "Zmeniť veľkosť hosťa"
 
-#: ../src/spice-display.vala:302
+#: ../src/spice-display.vala:306
 msgid "Redirect new USB devices"
 msgstr "Presmerovať nové zariadenia USB"
 
-#: ../src/spice-display.vala:322
+#: ../src/spice-display.vala:326
 msgid "USB devices"
 msgstr "Zariadenia USB"
 
-#: ../src/spice-display.vala:377 ../src/wizard.vala:252
+#: ../src/spice-display.vala:381 ../src/wizard.vala:252
 msgid "Invalid URI"
 msgstr "Neplatný URI"
 
-#: ../src/spice-display.vala:387
+#: ../src/spice-display.vala:391
 msgid "The port must be specified once"
 msgstr "Port musí byť zadaný raz"
 
-#: ../src/spice-display.vala:396
+#: ../src/spice-display.vala:400
 msgid "Missing port in Spice URI"
 msgstr "V URI systému Spice chýba port"
 
-#: ../src/topbar.vala:99
+#: ../src/topbar.vala:101
 msgid "Select All"
 msgstr "Vybrať všetky"
 
-#: ../src/topbar.vala:100
+#: ../src/topbar.vala:102
 msgid "Select Running"
 msgstr "Vybrať spustené"
 
-#: ../src/topbar.vala:101
+#: ../src/topbar.vala:103
 msgid "Select None"
 msgstr "Nevybrať nič"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:111 ../src/topbar.vala:114
+#: ../src/topbar.vala:113 ../src/topbar.vala:116
 msgid "D_one"
 msgstr "_Hotovo"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:152
+#: ../src/topbar.vala:154
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -539,7 +549,7 @@ msgstr[0] "%d vybraných"
 msgstr[1] "%d vybraný"
 msgstr[2] "%d vybrané"
 
-#: ../src/topbar.vala:154
+#: ../src/topbar.vala:156
 msgid "(Click on items to select them)"
 msgstr "(Kliknutím na položky ich vyberiete)"
 
@@ -571,15 +581,15 @@ msgid "_Add Password"
 msgstr "Prid_ať heslo"
 
 # PM: viď: http://www.microsoft.com/Language/en-US/Search.aspx
-#: ../src/unattended-installer.vala:475
+#: ../src/unattended-installer.vala:476
 msgid "Product Key"
 msgstr "Kód Product Key"
 
-#: ../src/unattended-installer.vala:695
+#: ../src/unattended-installer.vala:696
 msgid "Downloading device drivers..."
 msgstr "Preberajú sa ovládače zariadenia…"
 
-#: ../src/util-app.vala:238
+#: ../src/util-app.vala:276
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -589,12 +599,12 @@ msgstr ""
 "spustením príkazu:\n"
 "%s"
 
-#: ../src/util-app.vala:242
+#: ../src/util-app.vala:280
 msgid "SELinux not installed?"
 msgstr "SELinux nie je nainštalovaný?"
 
 # * http://technet.microsoft.com/en-us/library/cc161247.aspx
-#: ../src/util-app.vala:323
+#: ../src/util-app.vala:361
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -603,7 +613,7 @@ msgstr ""
 "Uistite sa, že príkaz „virsh -c qemu:///session pool-dumpxml gnome-boxes“ "
 "funguje."
 
-#: ../src/util-app.vala:328
+#: ../src/util-app.vala:366
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -612,7 +622,7 @@ msgstr ""
 "%s je známy pre libvirt ako fond úložísk programu Boxy prostredia GNOME, ale "
 "tento adresár nie je vytvorený"
 
-#: ../src/util-app.vala:332
+#: ../src/util-app.vala:370
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -620,7 +630,7 @@ msgstr ""
 "%s je známy pre libvirt ako fond úložísk programu Boxy prostredia GNOME, ale "
 "nie je adresárom"
 
-#: ../src/util-app.vala:336
+#: ../src/util-app.vala:374
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -639,7 +649,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:444
+#: ../src/vm-configurator.vala:439
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
@@ -649,25 +659,34 @@ msgid ""
 msgstr ""
 "Počas prípravy inštalácie sa vyskytla chyba. Rýchla inštalácia bude zakázaná."
 
-#: ../src/vm-creator.vala:176
+#: ../src/vm-creator.vala:180
 msgid "Installing..."
 msgstr "Inštaluje sa…"
 
 # DK: ide o Live distribuciu. pravdepodobne neprekladame
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:244
+#: ../src/vm-creator.vala:184 ../src/wizard-source.vala:244
 msgid "Live"
 msgstr "Live"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:265
+#: ../src/vm-creator.vala:282
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% nainštalovaných"
 msgstr[1] "%d%% nainštalovaný"
 msgstr[2] "%d%% nainštalované"
+
+#: ../src/vm-importer.vala:34
+msgid "Importing..."
+msgstr "Importuje sa…"
+
+#: ../src/vm-importer.vala:51
+#, c-format
+msgid "Box import from file '%s' failed."
+msgstr "Import boxu zo súboru „%s“ zlyhal."
 
 #: ../src/vnc-display.vala:145
 msgid "Read-only"
@@ -834,38 +853,46 @@ msgstr "Inštalácia"
 msgid "Review"
 msgstr "Prehľad"
 
-#: ../src/wizard.vala:636
+#: ../src/wizard.vala:633
 msgid ""
-"Virtualization extensions are unavailable on your system. Expect this box to "
-"be extremely slow. If your system is recent enough (made in or after 2008), "
-"these extensions are probably available on your system and you may need to "
-"enable them in your system's BIOS setup."
+"Virtualization extensions are unavailable on your system. If your system is "
+"recent (post 2008), check your BIOS settings to enable them."
 msgstr ""
-"Virtualizačné rozšírenia nie sú dostupné vo vašom systéme. Očakávajte, že "
-"tento box bude veľmi pomalý. Ak je váš systém dostatočne moderný (vyrobený v "
-"roku 2008 alebo neskôr), sú tieto rozšírenia pravdepodobne dostupné a musíte "
-"ich len povoliť v nastaveniach systému BIOS."
+"Vo vašom systéme nie sú dostupné virtualizačné rozšírenia. Ak je váš systém "
+"aktuálny (vydaný po roku 2008), skontrolujte nastavenia vášho systému BIOS a "
+"povoľte ich."
 
-#: ../src/wizard.vala:651
+#: ../src/wizard.vala:665
 msgid "Create a Box"
 msgstr "Vytvoriť box"
 
-#: ../src/wizard.vala:654 ../src/wizard.vala:656
+#: ../src/wizard.vala:668 ../src/wizard.vala:670
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
-#: ../src/wizard.vala:665 ../src/wizard.vala:667
+#: ../src/wizard.vala:679 ../src/wizard.vala:681
 msgid "_Back"
 msgstr "_Späť"
 
-#: ../src/wizard.vala:673 ../src/wizard.vala:675
+#: ../src/wizard.vala:687 ../src/wizard.vala:689
 msgid "C_ontinue"
 msgstr "P_okračovať"
 
-#: ../src/wizard.vala:682 ../src/wizard.vala:684
+#: ../src/wizard.vala:696 ../src/wizard.vala:698
 msgid "C_reate"
 msgstr "Vytvo_riť"
 
-#: ../src/wizard.vala:768
+#: ../src/wizard.vala:783
 msgid "C_ustomize..."
 msgstr "_Prispôsobiť…"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system. Expect this box "
+#~ "to be extremely slow. If your system is recent enough (made in or after "
+#~ "2008), these extensions are probably available on your system and you may "
+#~ "need to enable them in your system's BIOS setup."
+#~ msgstr ""
+#~ "Virtualizačné rozšírenia nie sú dostupné vo vašom systéme. Očakávajte, že "
+#~ "tento box bude veľmi pomalý. Ak je váš systém dostatočne moderný "
+#~ "(vyrobený v roku 2008 alebo neskôr), sú tieto rozšírenia pravdepodobne "
+#~ "dostupné a musíte ich len povoliť v nastaveniach systému BIOS."
