@@ -240,8 +240,12 @@ private class Boxes.Wizard: Boxes.UI {
 
             if (uncertain)
                 prepare_for_uri (uri);
-            else
-                debug ("FIXME: %s".printf (mimetype));
+            else {
+                debug ("Can't handle remote location '%s' (mime type: '%s')",
+                        uri,
+                        ContentType.get_mime_type (mimetype));
+                throw new Boxes.Error.INVALID (_("Invalid URI"));
+            }
         }
     }
 
