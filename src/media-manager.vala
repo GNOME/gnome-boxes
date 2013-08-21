@@ -25,9 +25,12 @@ private class Boxes.MediaManager : Object {
 
     public async InstallerMedia create_installer_media_for_path (string       path,
                                                                  Cancellable? cancellable = null) throws GLib.Error {
-        var media = is_mime_type (path, "application/x-cd-image") ?
-                    yield new InstallerMedia.for_path (path, this, cancellable) :
-                    new InstalledMedia (path);
+        InstallerMedia media;
+
+        if (is_mime_type (path, "application/x-cd-image"))
+            media = yield new InstallerMedia.for_path (path, this, cancellable);
+        else
+            media = new InstalledMedia (path);
 
         return create_installer_media_from_media (media);
     }
