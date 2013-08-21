@@ -227,11 +227,12 @@ private class Boxes.Wizard: Boxes.UI {
             throw new Boxes.Error.INVALID ("empty location");
 
         var file = location.contains ("://")? File.new_for_uri (location) : File.new_for_path (location);
+        var path = file.get_path ();
 
-        if (file.is_native ()) {
+        if (path != null && (file.has_uri_scheme ("file") || file.has_uri_scheme ("smb"))) {
             // FIXME: We should able to handle non-local URIs here too
             if (!probing)
-                prepare_for_installer (file.get_path ());
+                prepare_for_installer (path);
         } else {
             bool uncertain;
             var uri = file.get_uri ();
