@@ -292,8 +292,14 @@ private class Boxes.App: Boxes.UI {
 
             call_when_ready (() => {
                 var file = File.new_for_commandline_arg (arg);
+                var is_uri = (Uri.parse_scheme (arg) != null);
 
-                if (file.query_exists () || Uri.parse_scheme (arg) != null)
+                if (file.query_exists ()) {
+                    if (is_uri)
+                        wizard.open_with_uri (file.get_uri ());
+                    else
+                        wizard.open_with_uri (arg);
+                } else if (is_uri)
                     wizard.open_with_uri (file.get_uri ());
                 else
                     open (arg);
