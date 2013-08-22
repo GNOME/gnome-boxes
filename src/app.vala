@@ -289,17 +289,15 @@ private class Boxes.App: Boxes.UI {
             });
         } else if (opt_uris != null) {
             var arg = opt_uris[0];
-            var file = File.new_for_commandline_arg (arg);
 
-            if (file.query_exists () || Uri.parse_scheme (arg) != null) {
-                call_when_ready (() => {
+            call_when_ready (() => {
+                var file = File.new_for_commandline_arg (arg);
+
+                if (file.query_exists () || Uri.parse_scheme (arg) != null)
                     wizard.open_with_uri (file.get_uri ());
-                });
-            } else {
-                call_when_ready (() => {
+                else
                     open (arg);
-                });
-            }
+            });
         }
 
         if (opt_search != null) {
