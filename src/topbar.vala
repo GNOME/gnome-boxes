@@ -60,6 +60,7 @@ private class Boxes.Topbar: Boxes.UI {
         var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                              "go-previous-symbolic";
         back_btn = toolbar.add_button (back_icon, null, true) as Gtk.Button;
+        back_btn.get_accessible ().set_name (_("Back"));
         back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
         // We need a sizegroup to ensure the spinner is the same size
@@ -75,9 +76,11 @@ private class Boxes.Topbar: Boxes.UI {
         spinner_sizegroup.add_widget (spinner);
 
         search_btn = toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
+        search_btn.get_accessible ().set_name (_("Search"));
         search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
         select_btn = toolbar.add_button ("object-select-symbolic", null, false) as Gtk.Button;
+        select_btn.get_accessible ().set_name (_("Select Items"));
         spinner_sizegroup.add_widget (select_btn);
         select_btn.clicked.connect (() => {
             App.app.selection_mode = true;
