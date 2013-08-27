@@ -882,11 +882,11 @@ private class Boxes.App: Boxes.UI {
             if (selection_mode && ui_state == UIState.COLLECTION)
                selection_mode = false;
         } else if (event.keyval == Gdk.Key.q &&
-                   (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.CONTROL_MASK) {
+                   (event.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
             quit ();
             return true;
         } else if (event.keyval == Gdk.Key.a &&
-                   (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.MOD1_MASK) {
+                   (event.state & Gdk.ModifierType.MOD1_MASK) != 0) {
             quit ();
             return true;
         }
