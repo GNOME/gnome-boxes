@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-02 12:06+0200\n"
-"PO-Revision-Date: 2013-08-02 12:06+0200\n"
+"POT-Creation-Date: 2013-08-27 03:25+0200\n"
+"PO-Revision-Date: 2013-08-27 03:25+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -145,19 +145,19 @@ msgstr "- Un aplicativo sinxelo para acceder a máquinas remotas ou virtuais"
 msgid "Too many command line arguments specified.\n"
 msgstr "Especifiou demasiados argumentos na liña de ordes\n"
 
-#: ../src/app.vala:841
+#: ../src/app.vala:845
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A caixa «%s» foi eliminada"
 
-#: ../src/app.vala:842
+#: ../src/app.vala:846
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Eliminouse %u caixa"
 msgstr[1] "Elimináronse %u caixas"
 
-#: ../src/app.vala:932
+#: ../src/app.vala:936
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -166,11 +166,11 @@ msgstr ""
 "«%s» non pode restaurarse desde o disco\n"
 "Desexa tentalo sen o estado gardado?"
 
-#: ../src/app.vala:933
+#: ../src/app.vala:937
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/app.vala:938 ../src/machine.vala:153
+#: ../src/app.vala:942 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Conexión «%s» fallada"
@@ -209,7 +209,7 @@ msgid "Virtualizer"
 msgstr "Virtualizador"
 
 #: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:405
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:410
 msgid "URI"
 msgstr "URI"
 
@@ -289,7 +289,7 @@ msgstr "A inserción de «%s» como un CD/DVD en «%s»"
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "A extracción do CD/DVD desde «%s» fallou"
 
-#: ../src/libvirt-machine-properties.vala:403 ../src/wizard.vala:441
+#: ../src/libvirt-machine-properties.vala:403 ../src/wizard.vala:446
 msgid "Memory"
 msgstr "Memoria"
 
@@ -383,7 +383,7 @@ msgstr "Informe de fallos a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Páxina web de %s: <%s>\n"
 
-#: ../src/media-manager.vala:173
+#: ../src/media-manager.vala:176
 #, c-format
 msgid "No such file %s"
 msgstr "Non existe o ficheiro «%s»"
@@ -488,7 +488,7 @@ msgstr "Redireccionar novos dispositivos USB"
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: ../src/spice-display.vala:381 ../src/wizard.vala:252
+#: ../src/spice-display.vala:381 ../src/wizard.vala:248 ../src/wizard.vala:257
 msgid "Invalid URI"
 msgstr "URI non válida"
 
@@ -500,33 +500,46 @@ msgstr "O porto debe especificarse unha vez"
 msgid "Missing port in Spice URI"
 msgstr "Falta o porto no URI Spice"
 
-#: ../src/topbar.vala:101
+#: ../src/topbar.vala:63
+msgid "Back"
+msgstr "Atrás"
+
+#: ../src/topbar.vala:79
+msgid "Search"
+msgstr "Buscar"
+
+#: ../src/topbar.vala:83
+#, fuzzy
+msgid "Select Items"
+msgstr "Deseleccionar todas"
+
+#: ../src/topbar.vala:104
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: ../src/topbar.vala:102
+#: ../src/topbar.vala:105
 msgid "Select Running"
 msgstr "Seleccionar en execución"
 
-#: ../src/topbar.vala:103
+#: ../src/topbar.vala:106
 msgid "Select None"
 msgstr "Deseleccionar todas"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:113 ../src/topbar.vala:116
+#: ../src/topbar.vala:116 ../src/topbar.vala:119
 msgid "D_one"
 msgstr "Feit_o"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:154
+#: ../src/topbar.vala:157
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/topbar.vala:156
+#: ../src/topbar.vala:159
 msgid "(Click on items to select them)"
 msgstr "(Prema nos elementos para seleccionalos)"
 
@@ -557,11 +570,11 @@ msgstr "Instalación rápida"
 msgid "_Add Password"
 msgstr "_Engadir contrasinal"
 
-#: ../src/unattended-installer.vala:475
+#: ../src/unattended-installer.vala:476
 msgid "Product Key"
 msgstr "Chave de produto"
 
-#: ../src/unattended-installer.vala:695
+#: ../src/unattended-installer.vala:696
 msgid "Downloading device drivers..."
 msgstr "Descargando controladores de dispositivo…"
 
@@ -718,67 +731,67 @@ msgstr "Engadirá unha única caixa."
 msgid "Desktop Access"
 msgstr "Acceso a escritorio"
 
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:271
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo «%s» non admitido"
 
-#: ../src/wizard.vala:272 ../src/wizard.vala:314
+#: ../src/wizard.vala:277 ../src/wizard.vala:319
 msgid "Unknown installer media"
 msgstr "Soporte de instalación descoñecido"
 
-#: ../src/wizard.vala:273 ../src/wizard.vala:315
+#: ../src/wizard.vala:278 ../src/wizard.vala:320
 msgid "Analyzing..."
 msgstr "Instalando…"
 
-#: ../src/wizard.vala:285
+#: ../src/wizard.vala:290
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Produciuse un fallo ao analizar o medio de instalación. Pode ser que sexa un "
 "medio corrompido ou incompleto?"
 
-#: ../src/wizard.vala:381
+#: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Produciuse un erro ao configurar a caixa"
 
-#: ../src/wizard.vala:395
+#: ../src/wizard.vala:400
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Creará unha nova caixa coas seguintes propiedades:"
 
-#: ../src/wizard.vala:400
+#: ../src/wizard.vala:405
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:403
+#: ../src/wizard.vala:408
 msgid "Host"
 msgstr "Equipo"
 
-#: ../src/wizard.vala:414 ../src/wizard.vala:425
+#: ../src/wizard.vala:419 ../src/wizard.vala:430
 msgid "Port"
 msgstr "Porto"
 
-#: ../src/wizard.vala:416
+#: ../src/wizard.vala:421
 msgid "TLS Port"
 msgstr "Porto TLS"
 
-#: ../src/wizard.vala:430
+#: ../src/wizard.vala:435
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Engadirá caixas para todos os sistemas dispoñíbeis para esta conta:"
 
-#: ../src/wizard.vala:450
+#: ../src/wizard.vala:455
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:450
+#: ../src/wizard.vala:455
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:540
+#: ../src/wizard.vala:545
 msgid "Introduction"
 msgstr "Introdución"
 
-#: ../src/wizard.vala:544
+#: ../src/wizard.vala:549
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -792,17 +805,17 @@ msgstr ""
 "Pode conectarse a unha máquina existente <b><i>na rede</i></b> ou crear unha "
 "<b><i>máquina virtual</i></b> que se execute localmente por si mesmo."
 
-#: ../src/wizard.vala:556
+#: ../src/wizard.vala:561
 msgid "Source Selection"
 msgstr "Selección de orixe"
 
-#: ../src/wizard.vala:557
+#: ../src/wizard.vala:562
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Inserte o soporte de instalación do sistema operativo ou seleccione unha "
 "orixe desde abaixo"
 
-#: ../src/wizard.vala:567
+#: ../src/wizard.vala:572
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -812,23 +825,23 @@ msgstr ""
 "de software que xa foron obtidos e son propiedades dos seus respectivos "
 "propietarios."
 
-#: ../src/wizard.vala:580
+#: ../src/wizard.vala:585
 msgid "Preparation"
 msgstr "Preparación"
 
-#: ../src/wizard.vala:581
+#: ../src/wizard.vala:586
 msgid "Preparing to create new box"
 msgstr "Preparando a creación dunha nova caixa"
 
-#: ../src/wizard.vala:618
+#: ../src/wizard.vala:623
 msgid "Setup"
 msgstr "Configuración"
 
-#: ../src/wizard.vala:625
+#: ../src/wizard.vala:630
 msgid "Review"
 msgstr "Opinión"
 
-#: ../src/wizard.vala:633
+#: ../src/wizard.vala:638
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -837,27 +850,27 @@ msgstr ""
 "seu sistema é recente (despois do 2008), comprobe as configuracións da súa "
 "BIOS para activalas."
 
-#: ../src/wizard.vala:665
+#: ../src/wizard.vala:670
 msgid "Create a Box"
 msgstr "Crear unha caixa"
 
-#: ../src/wizard.vala:668 ../src/wizard.vala:670
+#: ../src/wizard.vala:673 ../src/wizard.vala:675
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/wizard.vala:679 ../src/wizard.vala:681
+#: ../src/wizard.vala:684 ../src/wizard.vala:686
 msgid "_Back"
 msgstr "_Atrás"
 
-#: ../src/wizard.vala:687 ../src/wizard.vala:689
+#: ../src/wizard.vala:692 ../src/wizard.vala:694
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
-#: ../src/wizard.vala:696 ../src/wizard.vala:698
+#: ../src/wizard.vala:701 ../src/wizard.vala:703
 msgid "C_reate"
 msgstr "C_rear"
 
-#: ../src/wizard.vala:783
+#: ../src/wizard.vala:788
 msgid "C_ustomize..."
 msgstr "P_ersonalizar…"
 
