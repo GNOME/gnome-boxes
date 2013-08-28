@@ -16,19 +16,20 @@ private class Boxes.Topbar: Boxes.UI {
     public Notebook notebook;
 
     private Gtk.Spinner spinner;
-    private Gtk.ToggleButton search_btn;
-    private Gtk.ToggleButton search2_btn;
+    private Gtk.Button search_btn;
+    private Gtk.Button search2_btn;
     private Gtk.Button select_btn;
     private Gtk.Button cancel_btn;
     private Gtk.Button back_btn;
     private Gtk.Button new_btn;
-    private Gd.MainToolbar selection_toolbar;
-    private Gd.MainToolbar collection_toolbar;
+    private Gtk.MenuButton selection_menu_button;
+    private Gtk.HeaderBar selection_toolbar;
+    private Gtk.HeaderBar collection_toolbar;
 
     public string? _status;
     public string? status {
         get { return _status; }
-        set { _status = value; collection_toolbar.set_labels (_status, null); }
+        set { _status = value; collection_toolbar.set_title (_status); }
     }
 
     public Topbar () {
@@ -48,21 +49,24 @@ private class Boxes.Topbar: Boxes.UI {
         var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
 
-        var toolbar = new Gd.MainToolbar ();
+        var toolbar = new Gtk.HeaderBar ();
         collection_toolbar = toolbar;
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar.show_close_button = true;
         hbox.pack_start (toolbar, true, true, 0);
 
-        new_btn = toolbar.add_button (null, _("_New"), true) as Gtk.Button;
-        new_btn.use_underline = true;
-        // workaround for libgd bug #698289
-        new_btn.label = _("_New");
+        new_btn = new Gtk.Button.with_mnemonic (_("_New"));
         new_btn.get_style_context ().add_class ("text-button");
+        toolbar.pack_start (new_btn);
         new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
 
         var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                              "go-previous-symbolic";
-        back_btn = toolbar.add_button (back_icon, null, true) as Gtk.Button;
+        var back_image = new Gtk.Image.from_icon_name (back_icon, Gtk.IconSize.MENU);
+        back_btn = new Gtk.Button ();
+        back_btn.set_image (back_image);
+        back_btn.get_style_context ().add_class ("image-button");
+        toolbar.pack_start (back_btn);
         back_btn.get_accessible ().set_name (_("Back"));
         back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
 
@@ -75,14 +79,22 @@ private class Boxes.Topbar: Boxes.UI {
         spinner.hexpand = true;
         spinner.vexpand = true;
         spinner.margin = 6;
-        toolbar.add_widget (spinner, false);
+        toolbar.pack_end (spinner);
         spinner_sizegroup.add_widget (spinner);
 
-        search_btn = toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
+        var search_image = new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.MENU);
+        search_btn = new Gtk.ToggleButton ();
+        search_btn.set_image (search_image);
+        search_btn.get_style_context ().add_class ("image-button");
+        toolbar.pack_end (search_btn);
         search_btn.get_accessible ().set_name (_("Search"));
         search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
-        select_btn = toolbar.add_button ("object-select-symbolic", null, false) as Gtk.Button;
+        var select_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
+        select_btn = new Gtk.Button ();
+        select_btn.set_image (select_image);
+        select_btn.get_style_context ().add_class ("image-button");
+        toolbar.pack_end (select_btn);
         select_btn.get_accessible ().set_name (_("Select Items"));
         spinner_sizegroup.add_widget (select_btn);
         select_btn.clicked.connect (() => {
@@ -99,7 +111,7 @@ private class Boxes.Topbar: Boxes.UI {
         /* TopbarPage.SELECTION */
         hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
-        selection_toolbar = new Gd.MainToolbar ();
+        selection_toolbar = new Gtk.HeaderBar ();
         selection_toolbar.get_style_context ().add_class ("selection-mode");
         selection_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
 
@@ -108,19 +120,23 @@ private class Boxes.Topbar: Boxes.UI {
         menu.append (_("Select Running"), "app.select-running");
         menu.append (_("Select None"), "app.select-none");
 
-        selection_toolbar.set_labels_menu (menu);
+        selection_menu_button = new Gtk.MenuButton ();
+        selection_menu_button.set_menu_model (menu);
+        selection_toolbar.set_custom_title (selection_menu_button);
         hbox.pack_start (selection_toolbar, true, true, 0);
 
         update_selection_label ();
 
-        search2_btn = selection_toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
+        search_image = new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.MENU);
+        search2_btn = new Gtk.ToggleButton ();
+        search2_btn.set_image (search_image);
+        search2_btn.get_style_context ().add_class ("image-button");
+        selection_toolbar.pack_end (search2_btn);
         search2_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
-        cancel_btn = selection_toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
-        cancel_btn.use_underline = true;
-        // workaround for libgd bug #698289
-        cancel_btn.label = _("_Cancel");
+        cancel_btn = new Gtk.Button.with_mnemonic (_("_Cancel"));
         cancel_btn.get_style_context ().add_class ("text-button");
+        selection_toolbar.pack_end (cancel_btn);
         cancel_btn.clicked.connect (() => {
             App.app.selection_mode = false;
         });
@@ -153,12 +169,13 @@ private class Boxes.Topbar: Boxes.UI {
 
     private void update_selection_label () {
         var items = App.app.selected_items.length ();
-        if (items > 0)
+        if (items > 0) {
             // This goes with the "Click on items to select them" string and is about selection of items (boxes)
             // when the main collection view is in selection mode.
-            selection_toolbar.set_labels (ngettext ("%d selected", "%d selected", items).printf (items), null);
-        else
-            selection_toolbar.set_labels (null, _("(Click on items to select them)"));
+            selection_menu_button.label = ngettext ("%d selected", "%d selected", items).printf (items);
+        } else {
+            selection_menu_button.label = _("(Click on items to select them)");
+        }
     }
 
     public override void ui_state_changed () {
