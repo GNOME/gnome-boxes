@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-26 22:52+0000\n"
-"PO-Revision-Date: 2013-08-27 23:07+0300\n"
+"POT-Creation-Date: 2013-08-28 16:10+0000\n"
+"PO-Revision-Date: 2013-08-28 23:27+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -97,7 +97,7 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti"
 
-#: ../src/app.vala:178 ../src/topbar.vala:56
+#: ../src/app.vala:178
 msgid "New"
 msgstr "Nauja"
 
@@ -159,7 +159,7 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: ../src/app.vala:936
+#: ../src/app.vala:938
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -168,11 +168,11 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: ../src/app.vala:937
+#: ../src/app.vala:939
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
-#: ../src/app.vala:942 ../src/machine.vala:153
+#: ../src/app.vala:944 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Nepavyko prisijungti prie „%s“"
@@ -500,41 +500,43 @@ msgstr "Prievadas turi būti nurodytas vieną kartą"
 msgid "Missing port in Spice URI"
 msgstr "Trūksta Spice URI prievado"
 
-#: ../src/topbar.vala:63
-#| msgid "_Back"
+#. workaround for libgd bug #698289
+#: ../src/topbar.vala:56 ../src/topbar.vala:59
+msgid "_New"
+msgstr "_Nauja"
+
+#: ../src/topbar.vala:66
 msgid "Back"
 msgstr "Atgal"
 
-#: ../src/topbar.vala:79
-#| msgid "Search term"
+#: ../src/topbar.vala:82
 msgid "Search"
 msgstr "Ieškoti"
 
-#: ../src/topbar.vala:83
-#| msgid "Select None"
+#: ../src/topbar.vala:86
 msgid "Select Items"
 msgstr "Pasirinkite elementus"
 
-#: ../src/topbar.vala:104
+#: ../src/topbar.vala:107
 msgid "Select All"
 msgstr "Žymėti visus"
 
-#: ../src/topbar.vala:105
+#: ../src/topbar.vala:108
 msgid "Select Running"
 msgstr "Pasirinkite veikiančią"
 
-#: ../src/topbar.vala:106
+#: ../src/topbar.vala:109
 msgid "Select None"
 msgstr "Nežymėti nieko"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:116 ../src/topbar.vala:119
+#: ../src/topbar.vala:119 ../src/topbar.vala:122
 msgid "D_one"
 msgstr "_Atlikta"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:160
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -542,7 +544,7 @@ msgstr[0] "%d pasirinkimas"
 msgstr[1] "%d pasirinkimai"
 msgstr[2] "%d pasirinkimų"
 
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:162
 msgid "(Click on items to select them)"
 msgstr "(Spauskite ant elementų jų pasirinkimui)"
 
