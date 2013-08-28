@@ -8,6 +8,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     private Gtk.Button pause_btn;
     private Gtk.Button remove_btn;
     private Gtk.Button properties_btn;
+    private ulong favorite_btn_clicked_handler;
 
     public Selectionbar () {
         transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
@@ -19,7 +20,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         headerbar.pack_start (favorite_btn);
         favorite_btn.image = new Gtk.Image.from_icon_name ("emblem-favorite-symbolic", Gtk.IconSize.MENU);
         favorite_btn.get_style_context ().add_class ("image-button");
-        favorite_btn.clicked.connect (() => {
+        favorite_btn_clicked_handler = favorite_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
                var machine = item as Machine;
                if (machine == null)
@@ -97,8 +98,12 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             }
         }
 
+        // Block the handler so that the selected items won't get added to the
+        // "favorite" category while changing the status of the button.
+        SignalHandler.block (favorite_btn, favorite_btn_clicked_handler);
         favorite_btn.active = active;
         favorite_btn.sensitive = sensitive;
+        SignalHandler.unblock (favorite_btn, favorite_btn_clicked_handler);
     }
 
     private void update_properties_btn () {
