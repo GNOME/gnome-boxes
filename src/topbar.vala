@@ -53,7 +53,10 @@ private class Boxes.Topbar: Boxes.UI {
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         hbox.pack_start (toolbar, true, true, 0);
 
-        new_btn = toolbar.add_button (null, _("New"), true) as Gtk.Button;
+        new_btn = toolbar.add_button (null, _("_New"), true) as Gtk.Button;
+        new_btn.use_underline = true;
+        // workaround for libgd bug #698289
+        new_btn.label = _("_New");
         new_btn.set_size_request (70, -1);
         new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
 
