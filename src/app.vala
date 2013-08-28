@@ -875,6 +875,8 @@ private class Boxes.App: Boxes.UI {
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
+        var default_modifiers = Gtk.accelerator_get_default_mod_mask ();
+
         if (event.keyval == Gdk.Key.F11) {
             fullscreen = !fullscreen;
             return true;
@@ -882,11 +884,11 @@ private class Boxes.App: Boxes.UI {
             if (selection_mode && ui_state == UIState.COLLECTION)
                selection_mode = false;
         } else if (event.keyval == Gdk.Key.q &&
-                   (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.CONTROL_MASK) {
+                   (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             quit ();
             return true;
         } else if (event.keyval == Gdk.Key.a &&
-                   (event.state & Gdk.ModifierType.MODIFIER_MASK) == Gdk.ModifierType.MOD1_MASK) {
+                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             quit ();
             return true;
         }
