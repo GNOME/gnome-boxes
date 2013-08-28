@@ -99,6 +99,9 @@ private class Boxes.Searchbar: Boxes.UI {
             return true;
         }
 
+        if (!entry.has_focus && (event.keyval == Gdk.Key.space || event.keyval == Gdk.Key.Return))
+            return false;
+
         var res = false;
 
         // Don't pass on keynav keys, or CTRL/ALT using keys to search
