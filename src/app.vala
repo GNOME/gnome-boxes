@@ -526,15 +526,21 @@ private class Boxes.App: Boxes.UI {
             return false;
         });
 
+        var main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        window.add (main_vbox);
+
         notebook = new Gtk.Notebook ();
         notebook.show_border = false;
         notebook.show_tabs = false;
-        window.add (notebook);
+        main_vbox.add (notebook);
         embed = new ClutterWidget ();
         notebook.append_page (embed, null);
 
         display_page = new DisplayPage ();
         notebook.append_page (display_page.widget, null);
+
+        selectionbar = new Selectionbar ();
+        main_vbox.add (selectionbar);
 
         stage = embed.get_stage () as Clutter.Stage;
         stage.set_background_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
@@ -567,7 +573,6 @@ private class Boxes.App: Boxes.UI {
         searchbar = new Searchbar ();
         topbar = new Topbar ();
         notificationbar = new Notificationbar ();
-        selectionbar = new Selectionbar ();
         wizard = new Wizard ();
         properties = new Properties ();
         empty_boxes = new EmptyBoxes ();
@@ -651,17 +656,15 @@ private class Boxes.App: Boxes.UI {
         hbox_actor.add_child (content_bin_actor);
 
         below_bin_actor.add_child (notificationbar.actor);
-        below_bin_actor.add_child (selectionbar.actor);
 
         content_bin_actor.add (wizard.actor);
         content_bin_actor.add (properties.actor);
         below_bin_actor.insert_child_below (empty_boxes.actor, null);
 
         properties.actor.hide ();
-        selectionbar.actor.hide ();
         empty_boxes.actor.hide ();
 
-        notebook.show_all ();
+        main_vbox.show_all ();
 
         ui_state = UIState.COLLECTION;
     }

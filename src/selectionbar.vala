@@ -2,51 +2,21 @@
 using Clutter;
 using Gtk;
 
-private class Boxes.Selectionbar: GLib.Object {
-    public Clutter.Actor actor { get { return gtk_actor; } }
-    public static const int default_toolbar_width = 500;
-
-    private GtkClutter.Actor gtk_actor;
-    private Gtk.Toolbar toolbar;
+private class Boxes.Selectionbar: Gtk.Revealer {
+    private Gtk.HeaderBar headerbar;
     private Gtk.ToggleButton favorite_btn;
     private Gtk.Button pause_btn;
     private Gtk.Button remove_btn;
     private Gtk.Button properties_btn;
 
     public Selectionbar () {
-        toolbar = new Gtk.Toolbar ();
-        toolbar.show_arrow = false;
-        toolbar.icon_size = Gtk.IconSize.LARGE_TOOLBAR;
-        toolbar.set_size_request (default_toolbar_width, -1);
+        transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
 
-        toolbar.get_style_context ().add_class ("osd");
-
-        var leftbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var leftgroup = new Gtk.ToolItem ();
-        leftgroup.add (leftbox);
-        toolbar.insert(leftgroup, -1);
-
-        var separator = new Gtk.SeparatorToolItem();
-        separator.set_expand (true);
-        separator.draw = false;
-        toolbar.insert(separator, -1);
-
-        var rightbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var rightgroup = new Gtk.ToolItem ();
-        rightgroup.add (rightbox);
-        toolbar.insert(rightgroup, -1);
-
-        gtk_actor = new GtkClutter.Actor.with_contents (toolbar);
-        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
-        gtk_actor.opacity = 0;
-        gtk_actor.set_margin_bottom (32);
-        gtk_actor.x_align = Clutter.ActorAlign.CENTER;
-        gtk_actor.y_align = Clutter.ActorAlign.END;
-        gtk_actor.x_expand = true;
-        gtk_actor.y_expand = true;
+        headerbar = new Gtk.HeaderBar ();
+        add (headerbar);
 
         favorite_btn = new Gtk.ToggleButton ();
-        leftbox.add (favorite_btn);
+        headerbar.pack_start (favorite_btn);
         favorite_btn.image = new Gtk.Image.from_icon_name ("emblem-favorite-symbolic", Gtk.IconSize.MENU);
         favorite_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
@@ -58,7 +28,7 @@ private class Boxes.Selectionbar: GLib.Object {
         });
 
         pause_btn = new Gtk.Button ();
-        leftbox.add (pause_btn);
+        headerbar.pack_start (pause_btn);
         pause_btn.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.MENU);
         pause_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
@@ -78,20 +48,18 @@ private class Boxes.Selectionbar: GLib.Object {
         });
 
         remove_btn = new Gtk.Button.from_stock (Gtk.Stock.DELETE);
-        rightbox.add (remove_btn);
+        headerbar.pack_start (remove_btn);
         remove_btn.clicked.connect (() => {
             App.app.remove_selected_items ();
         });
 
         properties_btn = new Gtk.Button.from_stock (Gtk.Stock.PROPERTIES);
-        rightbox.add (properties_btn);
+        headerbar.pack_end (properties_btn);
         properties_btn.clicked.connect (() => {
             App.app.show_properties ();
         });
 
-        toolbar.show_all ();
-
-        actor.reactive = true;
+        show_all ();
 
         App.app.notify["selection-mode"].connect (() => {
             update_visible ();
@@ -108,9 +76,9 @@ private class Boxes.Selectionbar: GLib.Object {
 
     private void update_visible () {
         if (!App.app.selection_mode)
-            visible = false;
+            reveal_child = false;
         else
-            visible = App.app.selected_items.length () > 0;
+            reveal_child = App.app.selected_items.length () > 0;
     }
 
     private void update_favorite_btn () {
@@ -180,11 +148,5 @@ private class Boxes.Selectionbar: GLib.Object {
         }
 
         remove_btn.sensitive = sensitive;
-    }
-
-    private bool visible {
-        set {
-            fade_actor (actor, value ? 255 : 0);
-        }
     }
 }
