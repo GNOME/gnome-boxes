@@ -19,7 +19,7 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.ToggleButton search_btn;
     private Gtk.ToggleButton search2_btn;
     private Gtk.Button select_btn;
-    private Gtk.Button done_btn;
+    private Gtk.Button cancel_btn;
     private Gtk.Button back_btn;
     private Gtk.Button new_btn;
     private Gd.MainToolbar selection_toolbar;
@@ -116,13 +116,12 @@ private class Boxes.Topbar: Boxes.UI {
         search2_btn = selection_toolbar.add_toggle ("edit-find-symbolic", null, false) as Gtk.ToggleButton;
         search2_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
-        done_btn = selection_toolbar.add_button (null, _("D_one"), false) as Gtk.Button;
-        done_btn.use_underline = true;
+        cancel_btn = selection_toolbar.add_button (null, _("_Cancel"), false) as Gtk.Button;
+        cancel_btn.use_underline = true;
         // workaround for libgd bug #698289
-        done_btn.label = _("D_one");
-        done_btn.get_style_context().add_class("suggested-action");
-        done_btn.use_stock = true;
-        done_btn.clicked.connect (() => {
+        cancel_btn.label = _("_Cancel");
+        cancel_btn.get_style_context ().add_class ("text-button");
+        cancel_btn.clicked.connect (() => {
             App.app.selection_mode = false;
         });
 
