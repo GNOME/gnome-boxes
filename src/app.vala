@@ -845,6 +845,8 @@ private class Boxes.App: Boxes.UI {
         if (num_selected == 0)
             return;
 
+        selection_mode = false;
+
         var message = (num_selected == 1) ? _("Box '%s' has been deleted").printf (selected_items.data.name) :
                                             ngettext ("%u box has been deleted",
                                                       "%u boxes have been deleted",
@@ -870,11 +872,6 @@ private class Boxes.App: Boxes.UI {
         };
 
         notificationbar.display_for_action (message, Gtk.Stock.UNDO, (owned) undo, (owned) really_remove);
-
-        // go out of selection mode if there are no more boxes
-        if (App.app.collection.items.length == 0) {
-            App.app.selection_mode = false;
-        }
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {

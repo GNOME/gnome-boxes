@@ -25,6 +25,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
                    continue;
                machine.config.set_category ("favorite", favorite_btn.active);
            }
+
+           App.app.selection_mode = false;
         });
 
         pause_btn = new Gtk.Button ();
@@ -45,6 +47,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
            }
 
            pause_btn.sensitive = false;
+           App.app.selection_mode = false;
         });
 
         remove_btn = new Gtk.Button.from_stock (Gtk.Stock.DELETE);
@@ -62,23 +65,15 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         show_all ();
 
         App.app.notify["selection-mode"].connect (() => {
-            update_visible ();
+            reveal_child = App.app.selection_mode;
         });
 
         App.app.notify["selected-items"].connect (() => {
-            update_visible ();
             update_favorite_btn ();
             update_properties_btn ();
             update_pause_btn ();
             update_delete_btn ();
         });
-    }
-
-    private void update_visible () {
-        if (!App.app.selection_mode)
-            reveal_child = false;
-        else
-            reveal_child = App.app.selected_items.length () > 0;
     }
 
     private void update_favorite_btn () {
@@ -135,7 +130,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             }
         }
 
-        var sensitive = true;
+        var sensitive = App.app.selected_items.length () > 0;
         foreach (var item in App.app.selected_items) {
             ulong can_delete_id = 0;
             can_delete_id = item.notify["can-delete"].connect (() => {
