@@ -50,13 +50,13 @@ private class Boxes.Selectionbar: Gtk.Revealer {
            App.app.selection_mode = false;
         });
 
-        remove_btn = new Gtk.Button.from_stock (Gtk.Stock.DELETE);
+        remove_btn = new Gtk.Button.with_mnemonic (_("_Delete"));
         headerbar.pack_start (remove_btn);
         remove_btn.clicked.connect (() => {
             App.app.remove_selected_items ();
         });
 
-        properties_btn = new Gtk.Button.from_stock (Gtk.Stock.PROPERTIES);
+        properties_btn = new Gtk.Button.with_mnemonic (_("_Properties"));
         headerbar.pack_end (properties_btn);
         properties_btn.clicked.connect (() => {
             App.app.show_properties ();
