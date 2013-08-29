@@ -29,9 +29,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
            App.app.selection_mode = false;
         });
 
-        pause_btn = new Gtk.Button ();
+        pause_btn = new Gtk.Button.with_mnemonic (_("P_ause"));
         headerbar.pack_start (pause_btn);
-        pause_btn.image = new Gtk.Image.from_icon_name ("media-playback-pause-symbolic", Gtk.IconSize.MENU);
         pause_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
                var machine = item as Machine;
