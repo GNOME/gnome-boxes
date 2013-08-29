@@ -475,7 +475,6 @@ private class Boxes.App: Boxes.UI {
 
         window = new Gtk.ApplicationWindow (application);
         window.show_menubar = false;
-        window.hide_titlebar_when_maximized = true;
 
         // restore window geometry/position
         var size = settings.get_value ("window-size");
@@ -586,11 +585,7 @@ private class Boxes.App: Boxes.UI {
 
         stage.add_child (vbox_actor);
 
-        var topbar_revealer = new Boxes.Revealer (true);
-        topbar_revealer.name = "topbar-revealer";
-        topbar_revealer.x_expand = true;
-        vbox_actor.add_child (topbar_revealer);
-        topbar_revealer.add (topbar.actor);
+        window.set_titlebar (topbar.widget);
 
         searchbar_revealer = new Boxes.Revealer (true);
         searchbar_revealer.resize = true;

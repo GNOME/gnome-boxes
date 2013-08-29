@@ -6,13 +6,25 @@ public enum Boxes.TopbarPage {
     COLLECTION,
     SELECTION,
     WIZARD,
-    PROPERTIES
+    PROPERTIES,
+    DISPLAY
 }
 
 private class Boxes.Topbar: Boxes.UI {
-    public override Clutter.Actor actor { get { return gtk_actor; } }
+    // FIXME: This is really redundant now that App is using widget property
+    // instead but parent Boxes.UI currently requires an actor. Hopefully
+    // soon we can move more towards new Gtk classes and Boxes.UI requires
+    // a widget property instead.
+    public override Clutter.Actor actor {
+        get {
+            if (gtk_actor == null)
+                gtk_actor = new Clutter.Actor ();
+            return gtk_actor;
+        }
+    }
+    private Clutter.Actor gtk_actor;
 
-    private GtkClutter.Actor gtk_actor; // the topbar box
+    public Gtk.Widget widget { get { return notebook; } }
     public Notebook notebook;
 
     private Gtk.Spinner spinner;
@@ -25,11 +37,16 @@ private class Boxes.Topbar: Boxes.UI {
     private Gtk.MenuButton selection_menu_button;
     private Gtk.HeaderBar selection_toolbar;
     private Gtk.HeaderBar collection_toolbar;
+    private Gtk.HeaderBar display_toolbar;
 
     public string? _status;
     public string? status {
         get { return _status; }
-        set { _status = value; collection_toolbar.set_title (_status); }
+        set {
+            _status = value;
+            collection_toolbar.set_title (_status);
+            display_toolbar.set_title (_status);
+        }
     }
 
     public Topbar () {
@@ -42,8 +59,6 @@ private class Boxes.Topbar: Boxes.UI {
 
     private void setup_topbar () {
         notebook = new Gtk.Notebook ();
-        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
-        gtk_actor.name = "topbar";
 
         /* TopbarPage.COLLECTION */
         var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -149,6 +164,11 @@ private class Boxes.Topbar: Boxes.UI {
         hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         notebook.append_page (hbox, null);
 
+        /* TopbarPage.DISPLAY */
+        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        display_toolbar = App.app.display_page.title_toolbar;
+        hbox.pack_start (display_toolbar, true, true, 0);
+        notebook.append_page (hbox, null);
 
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
@@ -199,6 +219,8 @@ private class Boxes.Topbar: Boxes.UI {
             break;
 
         case UIState.DISPLAY:
+            notebook.page = TopbarPage.DISPLAY;
+            spinner.hide ();
             break;
 
         case UIState.PROPERTIES:

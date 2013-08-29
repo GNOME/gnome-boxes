@@ -34,6 +34,7 @@ private class Boxes.Properties: Boxes.UI {
     private MiniGraph io;
     private MiniGraph net;
     private ulong stats_id;
+    private bool restore_fullscreen;
 
     private class PageWidget: Object {
         public Gtk.Widget widget;
@@ -314,6 +315,9 @@ private class Boxes.Properties: Boxes.UI {
         }
 
         if (ui_state == UIState.PROPERTIES) {
+            restore_fullscreen = (previous_ui_state == UIState.DISPLAY && App.app.fullscreen);
+            App.app.fullscreen = false;
+
             if (App.app.current_item is LibvirtMachine) {
                 var libvirt_machine = App.app.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
@@ -329,6 +333,11 @@ private class Boxes.Properties: Boxes.UI {
             for (var i = 0; i < PropertiesPage.LAST; i++) {
                 var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
                 page.flush_changes ();
+            }
+
+            if (restore_fullscreen) {
+                App.app.fullscreen = true;
+                restore_fullscreen = false;
             }
         }
 

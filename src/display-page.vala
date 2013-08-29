@@ -4,19 +4,23 @@ using Gdk;
 
 private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     private bool overlay;
+    private bool handle_drag; // Handle drag events to (un)fulscreen the main window
 
-    public DisplayToolbar (bool overlay) {
+    public DisplayToolbar (bool overlay, bool handle_drag) {
         add_events (Gdk.EventMask.POINTER_MOTION_MASK |
                     Gdk.EventMask.BUTTON_PRESS_MASK |
                     Gdk.EventMask.BUTTON_RELEASE_MASK);
 
         this.overlay = overlay;
+        this.handle_drag = handle_drag;
         if (overlay) {
             get_style_context ().add_class ("toolbar");
             get_style_context ().add_class ("osd");
             spacing = 0;
-        } else
+        } else {
             get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+            show_close_button = true;
+        }
 
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
@@ -61,6 +65,8 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
     public override bool button_press_event (Gdk.EventButton event) {
         var res = base.button_press_event (event);
+        if (!handle_drag)
+            return res;
 
         // With the current GdkEvent bindings this is the only way to
         // upcast a GdkEventButton to a GdkEvent (which we need for
@@ -83,6 +89,9 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     }
 
     public override bool motion_notify_event (Gdk.EventMotion event) {
+        if (!handle_drag)
+            return base.motion_notify_event (event);
+
         if (button_down) {
             double dx = event.x - button_down_x;
             double dy = event.y - button_down_y;
@@ -117,6 +126,8 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
 private class Boxes.DisplayPage: GLib.Object {
     public Widget widget { get { return box; } }
+
+    public DisplayToolbar title_toolbar; // Toolbar used when window is not maximized
 
     private EventBox event_box;
     private Box box;
@@ -188,7 +199,7 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
 
-        toolbar = new DisplayToolbar (false);
+        toolbar = new DisplayToolbar (false, true);
 
         box = new Box (Orientation.VERTICAL, 0);
         box.pack_start (toolbar, false, false, 0);
@@ -204,7 +215,7 @@ private class Boxes.DisplayPage: GLib.Object {
 
         box.pack_start (grid, true, true, 0);
 
-        overlay_toolbar = new DisplayToolbar (true);
+        overlay_toolbar = new DisplayToolbar (true, true);
         overlay_toolbar_box = new EventBox ();
         overlay_toolbar_box.add (overlay_toolbar);
         overlay_toolbar_box.valign = Gtk.Align.START;
@@ -221,8 +232,12 @@ private class Boxes.DisplayPage: GLib.Object {
 
         box.show_all ();
 
+        title_toolbar = new DisplayToolbar (false, false);
+
         toolbar.bind_property ("title", overlay_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", overlay_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
+        toolbar.bind_property ("title", title_toolbar, "title", BindingFlags.SYNC_CREATE);
+        toolbar.bind_property ("subtitle", title_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
     }
 
     public void add_notification (Widget w) {
@@ -241,10 +256,10 @@ private class Boxes.DisplayPage: GLib.Object {
     }
 
      private void update_toolbar_visible() {
-         if (App.app.fullscreen && !can_grab_mouse)
-             toolbar.visible = false;
-         else
+         if (App.app.fullscreen && can_grab_mouse)
              toolbar.visible = true;
+         else
+             toolbar.visible = false;
 
          set_overlay_toolbar_visible (false);
      }
