@@ -717,7 +717,6 @@ private class Boxes.MachineActor: Boxes.UI {
                 Gtk.Allocation alloc;
 
                 App.app.properties.screenshot_placeholder.get_allocation (out alloc);
-                App.app.topbar.actor.show ();
 
                 // We disable implicit animations while setting the
                 // properties because we don't want to animate these individually
