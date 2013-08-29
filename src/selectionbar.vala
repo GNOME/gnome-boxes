@@ -18,6 +18,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         favorite_btn = new Gtk.ToggleButton ();
         headerbar.pack_start (favorite_btn);
         favorite_btn.image = new Gtk.Image.from_icon_name ("emblem-favorite-symbolic", Gtk.IconSize.MENU);
+        favorite_btn.get_style_context ().add_class ("image-button");
         favorite_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
                var machine = item as Machine;
@@ -31,6 +32,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
 
         pause_btn = new Gtk.Button.with_mnemonic (_("P_ause"));
         headerbar.pack_start (pause_btn);
+        pause_btn.get_style_context ().add_class ("text-button");
         pause_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
                var machine = item as Machine;
@@ -51,12 +53,14 @@ private class Boxes.Selectionbar: Gtk.Revealer {
 
         remove_btn = new Gtk.Button.with_mnemonic (_("_Delete"));
         headerbar.pack_start (remove_btn);
+        remove_btn.get_style_context ().add_class ("text-button");
         remove_btn.clicked.connect (() => {
             App.app.remove_selected_items ();
         });
 
         properties_btn = new Gtk.Button.with_mnemonic (_("_Properties"));
         headerbar.pack_end (properties_btn);
+        properties_btn.get_style_context ().add_class ("text-button");
         properties_btn.clicked.connect (() => {
             App.app.show_properties ();
         });
