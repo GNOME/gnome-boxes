@@ -57,7 +57,7 @@ private class Boxes.Topbar: Boxes.UI {
         new_btn.use_underline = true;
         // workaround for libgd bug #698289
         new_btn.label = _("_New");
-        new_btn.set_size_request (70, -1);
+        new_btn.get_style_context ().add_class ("text-button");
         new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
 
         var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
