@@ -2,27 +2,21 @@
 using Gtk;
 using Gdk;
 
-private class Boxes.DisplayToolbar: Gd.MainToolbar {
+private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     private bool overlay;
-    /* The left/right containers of Gd.MainToolbar are GtkGrids, which don't support first/last theming,
-       which the osd css uses, so we need to add our own GtkBoxes instead. */
-    private Gtk.Box leftbox;
-    private Gtk.Box rightbox;
 
     public DisplayToolbar (bool overlay) {
-        add_events (Gdk.EventMask.POINTER_MOTION_MASK);
+        add_events (Gdk.EventMask.POINTER_MOTION_MASK |
+                    Gdk.EventMask.BUTTON_PRESS_MASK |
+                    Gdk.EventMask.BUTTON_RELEASE_MASK);
+
         this.overlay = overlay;
-        if (overlay)
+        if (overlay) {
+            get_style_context ().add_class ("toolbar");
             get_style_context ().add_class ("osd");
-        else
+            spacing = 0;
+        } else
             get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
-
-        int spacing = overlay ? 0 : 12;
-        leftbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, spacing);
-        add_widget (leftbox, true);
-
-        rightbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, spacing);
-        add_widget (rightbox, false);
 
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
@@ -48,10 +42,11 @@ private class Boxes.DisplayToolbar: Gd.MainToolbar {
         var img = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.MENU);
         img.show ();
         button.image = img;
+        button.valign = Gtk.Align.CENTER;
         if (pack_start)
-            leftbox.add (button);
+            this.pack_start (button);
         else
-            rightbox.add (button);
+            this.pack_end (button);
 
         if (!overlay)
             button.get_style_context ().add_class ("raised");
@@ -225,6 +220,9 @@ private class Boxes.DisplayPage: GLib.Object {
         grid.attach (notification_grid, 0, 1, 1, 1);
 
         box.show_all ();
+
+        toolbar.bind_property ("title", overlay_toolbar, "title", BindingFlags.SYNC_CREATE);
+        toolbar.bind_property ("subtitle", overlay_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
     }
 
     public void add_notification (Widget w) {
@@ -286,8 +284,8 @@ private class Boxes.DisplayPage: GLib.Object {
         if (grabbed)
             hint = _("(press Ctrl+Alt keys to ungrab)");
 
-        overlay_toolbar.set_labels (title, hint);
-        toolbar.set_labels (title, hint);
+        toolbar.set_title (title);
+        toolbar.set_subtitle (hint);
     }
 
     public void show_display (Boxes.Display display, Widget widget) {
