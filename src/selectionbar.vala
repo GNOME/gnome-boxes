@@ -138,8 +138,10 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             });
             item.set_data<ulong> ("can_delete_id", can_delete_id);
 
-            if (item is Machine && !(item as Machine).can_delete)
+            if (item is Machine && !(item as Machine).can_delete) {
                 sensitive = false;
+                break;
+            }
         }
 
         remove_btn.sensitive = sensitive;
