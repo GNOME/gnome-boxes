@@ -13,6 +13,10 @@ gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
 @INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
+appdatadir = $(datadir)/appdata
+appdata_DATA = org.gnome.Boxes.Application.appdata.xml
+@INTLTOOL_XML_RULE@
+
 styledir         = $(datadir)/gnome-boxes/style
 style_DATA       = gtk-style.css
 
