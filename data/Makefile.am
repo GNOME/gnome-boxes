@@ -14,7 +14,7 @@ gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
 @GSETTINGS_RULES@
 
 appdatadir = $(datadir)/appdata
-appdata_DATA = org.gnome.Boxes.Application.appdata.xml
+appdata_DATA = gnome-boxes.appdata.xml
 @INTLTOOL_XML_RULE@
 
 styledir         = $(datadir)/gnome-boxes/style
