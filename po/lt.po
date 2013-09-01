@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-28 16:10+0000\n"
-"PO-Revision-Date: 2013-08-28 23:27+0300\n"
+"POT-Creation-Date: 2013-08-31 16:13+0000\n"
+"PO-Revision-Date: 2013-09-01 23:02+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -86,6 +86,32 @@ msgstr "Langas išdidintas"
 msgid "Window maximized state"
 msgstr "Lango išdidinimo būsena"
 
+#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:1
+msgid ""
+"A simple GNOME 3 application to access remote or virtual systems. Unlike "
+"some other virtual machine management software, Boxes is targeted towards "
+"typical desktop end-users. For this reason, Boxes will not provide many "
+"advanced options to tweak virtual machines. Instead Boxes will focus on "
+"getting things working out of the box with very little input from user."
+msgstr ""
+"Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti. "
+"Skirtingai nuo kito virtualių mašinų valdymo programinės įrangos, Boxes "
+"taikosi į paprastus darbastalio naudotojus. Todėl Boxes neturi daug "
+"sudėtingų parametrų virtualioms mašinoms tvarkyti. Vietoje to Boxes siekia, "
+"kad viskas veiktų iš karto su labai mažai naudotojo įvesties."
+
+#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:2
+msgid ""
+"You want to install Boxes if you just want a very safe and easy way to try "
+"out new operating systems or new (potentially unstable) versions of your "
+"favorite operating system(s), or need to connect to a remote machine (for "
+"example, in your office)."
+msgstr ""
+"Galite įdiegti Boxes, jei norite tik labai saugaus ir paprasto būdo "
+"išbandyti naujas operacines sistemas ar naujas (galimai nestabilias) jūsų "
+"mėgiamų operacinių sistemų versijas arba norite prisijungti prie nutolusio "
+"kompiuterio (pvz. darbo)."
+
 #: ../src/app.vala:160
 msgid "translator-credits"
 msgstr ""
@@ -146,12 +172,12 @@ msgstr "- paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
-#: ../src/app.vala:845
+#: ../src/app.vala:850
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: ../src/app.vala:846
+#: ../src/app.vala:851
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -452,10 +478,23 @@ msgstr "Tinklas:"
 msgid "Force Shutdown"
 msgstr "Priverstinai išjungti"
 
-#: ../src/selectionbar.vala:72
+#: ../src/selectionbar.vala:34
+msgid "P_ause"
+msgstr "Prist_abdyti"
+
+#: ../src/selectionbar.vala:46
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Nepavyko sustabdyti „%s“"
+
+#: ../src/selectionbar.vala:55
+msgid "_Delete"
+msgstr "Iš_trinti"
+
+#: ../src/selectionbar.vala:62
+#| msgid "%s - Properties"
+msgid "_Properties"
+msgstr "_Savybės"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:32
@@ -530,13 +569,14 @@ msgid "Select None"
 msgstr "Nežymėti nieko"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:119 ../src/topbar.vala:122
-msgid "D_one"
-msgstr "_Atlikta"
+#: ../src/topbar.vala:119 ../src/topbar.vala:122 ../src/wizard.vala:673
+#: ../src/wizard.vala:675
+msgid "_Cancel"
+msgstr "_Atsisakyti"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:160
+#: ../src/topbar.vala:159
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -544,7 +584,7 @@ msgstr[0] "%d pasirinkimas"
 msgstr[1] "%d pasirinkimai"
 msgstr[2] "%d pasirinkimų"
 
-#: ../src/topbar.vala:162
+#: ../src/topbar.vala:161
 msgid "(Click on items to select them)"
 msgstr "(Spauskite ant elementų jų pasirinkimui)"
 
@@ -853,10 +893,6 @@ msgstr ""
 msgid "Create a Box"
 msgstr "Sukurti dėžę"
 
-#: ../src/wizard.vala:673 ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "_Atsisakyti"
-
 #: ../src/wizard.vala:684 ../src/wizard.vala:686
 msgid "_Back"
 msgstr "_Atgal"
@@ -872,3 +908,4 @@ msgstr "Suku_rti"
 #: ../src/wizard.vala:788
 msgid "C_ustomize..."
 msgstr "_Tinkinti..."
+
