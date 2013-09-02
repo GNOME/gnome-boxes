@@ -71,6 +71,7 @@ private class Boxes.Topbar: Boxes.UI {
         hbox.pack_start (toolbar, true, true, 0);
 
         new_btn = new Gtk.Button.with_mnemonic (_("_New"));
+        new_btn.valign = Gtk.Align.CENTER;
         new_btn.get_style_context ().add_class ("text-button");
         toolbar.pack_start (new_btn);
         new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
@@ -80,6 +81,7 @@ private class Boxes.Topbar: Boxes.UI {
         var back_image = new Gtk.Image.from_icon_name (back_icon, Gtk.IconSize.MENU);
         back_btn = new Gtk.Button ();
         back_btn.set_image (back_image);
+        back_btn.valign = Gtk.Align.CENTER;
         back_btn.get_style_context ().add_class ("image-button");
         toolbar.pack_start (back_btn);
         back_btn.get_accessible ().set_name (_("Back"));
@@ -100,6 +102,7 @@ private class Boxes.Topbar: Boxes.UI {
         var search_image = new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.MENU);
         search_btn = new Gtk.ToggleButton ();
         search_btn.set_image (search_image);
+        search_btn.valign = Gtk.Align.CENTER;
         search_btn.get_style_context ().add_class ("image-button");
         toolbar.pack_end (search_btn);
         search_btn.get_accessible ().set_name (_("Search"));
@@ -108,6 +111,7 @@ private class Boxes.Topbar: Boxes.UI {
         var select_image = new Gtk.Image.from_icon_name ("object-select-symbolic", Gtk.IconSize.MENU);
         select_btn = new Gtk.Button ();
         select_btn.set_image (select_image);
+        select_btn.valign = Gtk.Align.CENTER;
         select_btn.get_style_context ().add_class ("image-button");
         toolbar.pack_end (select_btn);
         select_btn.get_accessible ().set_name (_("Select Items"));
@@ -136,6 +140,7 @@ private class Boxes.Topbar: Boxes.UI {
         menu.append (_("Select None"), "app.select-none");
 
         selection_menu_button = new Gtk.MenuButton ();
+        selection_menu_button.valign = Gtk.Align.CENTER;
         selection_menu_button.set_menu_model (menu);
         selection_toolbar.set_custom_title (selection_menu_button);
         hbox.pack_start (selection_toolbar, true, true, 0);
@@ -145,11 +150,13 @@ private class Boxes.Topbar: Boxes.UI {
         search_image = new Gtk.Image.from_icon_name ("edit-find-symbolic", Gtk.IconSize.MENU);
         search2_btn = new Gtk.ToggleButton ();
         search2_btn.set_image (search_image);
+        search2_btn.valign = Gtk.Align.CENTER;
         search2_btn.get_style_context ().add_class ("image-button");
         selection_toolbar.pack_end (search2_btn);
         search2_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
 
         cancel_btn = new Gtk.Button.with_mnemonic (_("_Cancel"));
+        cancel_btn.valign = Gtk.Align.CENTER;
         cancel_btn.get_style_context ().add_class ("text-button");
         selection_toolbar.pack_end (cancel_btn);
         cancel_btn.clicked.connect (() => {
