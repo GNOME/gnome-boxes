@@ -228,6 +228,7 @@ private class Boxes.Properties: Boxes.UI {
         var back_image = new Gtk.Image.from_icon_name (back_icon, Gtk.IconSize.MENU);
         back = new Gtk.Button ();
         back.set_image (back_image);
+        back.valign = Gtk.Align.CENTER;
         back.get_style_context ().add_class ("image-button");
         toolbar.pack_start (back);
         back.clicked.connect ((button) => { App.app.ui_state = App.app.previous_ui_state; });
