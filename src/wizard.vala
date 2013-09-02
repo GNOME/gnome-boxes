@@ -670,6 +670,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         toolbar_sizegroup = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
         cancel_button = new Gtk.Button.with_mnemonic (_("_Cancel"));
+        cancel_button.valign = Gtk.Align.CENTER;
         cancel_button.get_style_context ().add_class ("text-button");
         toolbar.pack_start (cancel_button);
         cancel_button.clicked.connect (() => {
@@ -681,6 +682,7 @@ private class Boxes.Wizard: Boxes.UI {
         toolbar_sizegroup.add_widget (cancel_button);
 
         back_button = new Gtk.Button.with_mnemonic (_("_Back"));
+        back_button.valign = Gtk.Align.CENTER;
         back_button.get_style_context ().add_class ("text-button");
         toolbar.pack_end (back_button);
         back_button.clicked.connect (() => {
@@ -689,6 +691,7 @@ private class Boxes.Wizard: Boxes.UI {
         toolbar_sizegroup.add_widget (back_button);
 
         continue_button = new Gtk.Button.with_mnemonic (_("C_ontinue"));
+        continue_button.valign = Gtk.Align.CENTER;
         continue_button.get_style_context ().add_class ("text-button");
         continue_button.get_style_context ().add_class ("boxes-continue");
         toolbar.pack_end (continue_button);
@@ -698,6 +701,7 @@ private class Boxes.Wizard: Boxes.UI {
         toolbar_sizegroup.add_widget (continue_button);
 
         create_button = new Gtk.Button.with_mnemonic (_("C_reate"));
+        create_button.valign = Gtk.Align.CENTER;
         create_button.get_style_context ().add_class ("text-button");
         create_button.get_style_context ().add_class ("boxes-continue");
         toolbar.pack_end (create_button);
