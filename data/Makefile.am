@@ -14,7 +14,8 @@ gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
 @GSETTINGS_RULES@
 
 appdatadir = $(datadir)/appdata
-appdata_DATA = gnome-boxes.appdata.xml
+appdata_in_file = gnome-boxes.appdata.xml.in
+appdata_DATA = $(appdata_in_file:.xml.in=.xml)
 @INTLTOOL_XML_RULE@
 
 styledir         = $(datadir)/gnome-boxes/style
@@ -54,12 +55,14 @@ EXTRA_DIST =					\
 	$(searchprovider_DATA)			\
 	$(logosdb_DATA)				\
 	$(service_in_files)			\
+	$(appdata_in_file)			\
 	$(NULL)
 
 DISTCLEANFILES =				\
 	$(gsettings_SCHEMAS)			\
 	$(service_DATA)				\
 	$(desktop_DATA)				\
+	$(appdata_DATA)				\
 	$(NULL)
 
 MAINTAINERCLEANFILES =				\
