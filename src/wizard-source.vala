@@ -303,8 +303,8 @@ private class Boxes.WizardSource: GLib.Object {
         var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
                                                 App.app.window,
                                                 Gtk.FileChooserAction.OPEN,
-                                                Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                                Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                                                _("_Cancel"), Gtk.ResponseType.CANCEL,
+                                                _("_Open"), Gtk.ResponseType.ACCEPT);
         dialog.show_hidden = false;
         dialog.filter = new Gtk.FileFilter ();
         dialog.filter.add_mime_type ("application/x-cd-image");

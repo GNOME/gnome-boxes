@@ -136,9 +136,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 var dialog = new Gtk.Dialog.with_buttons (_("Troubleshooting log"),
                                                           App.app.window,
                                                           DialogFlags.DESTROY_WITH_PARENT,
-                                                          Stock.SAVE, 100,
+                                                          _("_Save"), 100,
                                                           _("Copy to clipboard"), 101,
-                                                          Stock.CLOSE, ResponseType.OK);
+                                                          _("_Close"), ResponseType.OK);
                 dialog.set_default_size (640, 480);
                 var text = new Gtk.TextView ();
                 text.editable = false;
@@ -154,7 +154,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     if (response_id == 100) {
                         var chooser = new Gtk.FileChooserDialog (_("Save log"), App.app.window,
                                                                  Gtk.FileChooserAction.SAVE,
-                                                                 Stock.SAVE, ResponseType.OK);
+                                                                 _("_Save"), ResponseType.OK);
                         chooser.local_only = false;
                         chooser.do_overwrite_confirmation = true;
                         chooser.response.connect ((response_id) => {
@@ -307,8 +307,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
                                                         App.app.window,
                                                         Gtk.FileChooserAction.OPEN,
-                                                        Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                                        Gtk.Stock.OPEN, Gtk.ResponseType.ACCEPT);
+                                                        _("_Cancel"), Gtk.ResponseType.CANCEL,
+                                                        _("_Open"), Gtk.ResponseType.ACCEPT);
                 dialog.modal = true;
                 dialog.show_hidden = false;
                 dialog.local_only = true;
@@ -457,7 +457,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             return;
 
         var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
-        App.app.notificationbar.display_for_action (message, Gtk.Stock.YES, reboot);
+        App.app.notificationbar.display_for_action (message, _("_Yes"), reboot);
     }
 
     private void reboot () {
@@ -513,7 +513,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (machine.name);
             notification = App.app.notificationbar.display_for_action (message,
-                                                                       Gtk.Stock.YES,
+                                                                       _("_Yes"),
                                                                        (owned) really_force_shutdown,
                                                                        null,
                                                                        -1);

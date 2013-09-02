@@ -193,7 +193,7 @@ private class Boxes.Notificationbar: GLib.Object {
         grid.add (message_label);
 
         if (ok_label != null) {
-            var ok_button = new Button.from_stock (ok_label);
+            var ok_button = new Button.with_mnemonic (ok_label);
             ok_button.halign = Gtk.Align.END;
             grid.add (ok_button);
 
