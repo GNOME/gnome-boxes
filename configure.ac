@@ -146,7 +146,6 @@ VALA_CHECK([0.21.1], [
 dnl libgd
 LIBGD_INIT([
   gtk-hacks
-  main-toolbar
   main-view
   main-icon-view
   margin-container
