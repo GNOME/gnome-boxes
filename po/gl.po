@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-31 21:05+0200\n"
-"PO-Revision-Date: 2013-08-31 21:09+0200\n"
+"POT-Creation-Date: 2013-09-02 20:12+0200\n"
+"PO-Revision-Date: 2013-09-02 20:12+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -87,7 +87,7 @@ msgstr "Xanela maximizada"
 msgid "Window maximized state"
 msgstr "Estado da xanela maximizada"
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:1
+#: ../data/gnome-boxes.appdata.xml.in.h:1
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -102,7 +102,7 @@ msgstr ""
 "virtuais. No lugar, Caixas enfócase en obter as mellores cousas da máquina "
 "virtual con moi pouca información requirida do usuario."
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:2
+#: ../data/gnome-boxes.appdata.xml.in.h:2
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -172,19 +172,19 @@ msgstr "- Un aplicativo sinxelo para acceder a máquinas remotas ou virtuais"
 msgid "Too many command line arguments specified.\n"
 msgstr "Especifiou demasiados argumentos na liña de ordes\n"
 
-#: ../src/app.vala:850
+#: ../src/app.vala:842
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A caixa «%s» foi eliminada"
 
-#: ../src/app.vala:851
+#: ../src/app.vala:843
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Eliminouse %u caixa"
 msgstr[1] "Elimináronse %u caixas"
 
-#: ../src/app.vala:938
+#: ../src/app.vala:933
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -193,11 +193,11 @@ msgstr ""
 "«%s» non pode restaurarse desde o disco\n"
 "Desexa tentalo sen o estado gardado?"
 
-#: ../src/app.vala:939
+#: ../src/app.vala:934
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/app.vala:944 ../src/machine.vala:153
+#: ../src/app.vala:939 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Conexión «%s» fallada"
@@ -206,7 +206,7 @@ msgstr "Conexión «%s» fallada"
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: ../src/display-page.vala:287
+#: ../src/display-page.vala:300
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(prema as teclas Ctrl+Alt para descapturar)"
 
@@ -223,7 +223,7 @@ msgid "Unsupported disk image format."
 msgstr "Formato de imaxe de disco non compatíbel."
 
 #: ../src/installed-media.vala:83 ../src/installer-media.vala:101
-#: ../src/properties.vala:73
+#: ../src/properties.vala:74
 msgid "System"
 msgstr "Sistema"
 
@@ -245,9 +245,18 @@ msgstr "URI"
 msgid "Troubleshooting log"
 msgstr "Rexistro de resolución de problemas"
 
+#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:157
+msgid "_Save"
+msgstr "_Gardar"
+
 #: ../src/libvirt-machine-properties.vala:140
 msgid "Copy to clipboard"
 msgstr "Copiar ao portapapeis"
+
+#: ../src/libvirt-machine-properties.vala:141
+msgid "_Close"
+msgstr "_Pechar"
 
 #: ../src/libvirt-machine-properties.vala:155
 msgid "Save log"
@@ -303,6 +312,15 @@ msgstr "Extraer"
 msgid "Select a device or ISO file"
 msgstr "Seleccione un dispositivo ou ficheiro ISO"
 
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:152
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+msgid "_Open"
+msgstr "_Abrir"
+
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
 #: ../src/libvirt-machine-properties.vala:330
@@ -324,6 +342,11 @@ msgstr "Memoria"
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Os cambios requiren que se reinicie «%s». Desexa tentar reiniciar?"
+
+#: ../src/libvirt-machine-properties.vala:460
+#: ../src/libvirt-machine-properties.vala:516
+msgid "_Yes"
+msgstr "_Si"
 
 #: ../src/libvirt-machine-properties.vala:514
 #, c-format
@@ -420,20 +443,20 @@ msgstr "Non existe o ficheiro «%s»"
 msgid "Not connected to %s"
 msgstr "Non conectado a %s"
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+#: ../src/notificationbar.vala:58 ../src/notificationbar.vala:113
 msgid "Sign In"
 msgstr "Iniciar sesión"
 
-#: ../src/notificationbar.vala:75
+#: ../src/notificationbar.vala:78
 #, c-format
 msgid "Sign In to %s"
 msgstr "Iniciar sesión en %s"
 
-#: ../src/notificationbar.vala:81
+#: ../src/notificationbar.vala:84
 msgid "_Username"
 msgstr "Nome de _usuario"
 
-#: ../src/notificationbar.vala:96
+#: ../src/notificationbar.vala:99
 msgid "_Password"
 msgstr "_Contrasinal"
 
@@ -447,35 +470,35 @@ msgstr "Conexión fallada ao broker oVirt"
 msgid "%s - Properties"
 msgstr "%s - Propiedades"
 
-#: ../src/properties.vala:69
+#: ../src/properties.vala:70
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: ../src/properties.vala:77
+#: ../src/properties.vala:78
 msgid "Display"
 msgstr "Pantalla"
 
-#: ../src/properties.vala:81
+#: ../src/properties.vala:82
 msgid "Devices"
 msgstr "Dispositivos"
 
-#: ../src/properties.vala:94
+#: ../src/properties.vala:95
 msgid "Some changes may take effect only after reboot"
 msgstr "Algúns dos cambios serán efectivos só despois de reiniciar"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:278
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:285
 msgid "I/O:"
 msgstr "E/S:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:292
 msgid "Net:"
 msgstr "Rede:"
 
-#: ../src/properties.vala:293
+#: ../src/properties.vala:299
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
@@ -539,51 +562,44 @@ msgstr "O porto debe especificarse unha vez"
 msgid "Missing port in Spice URI"
 msgstr "Falta o porto no URI Spice"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:56 ../src/topbar.vala:59
+#: ../src/topbar.vala:73
 msgid "_New"
 msgstr "_Novo"
 
-#: ../src/topbar.vala:66
+#: ../src/topbar.vala:85
 msgid "Back"
 msgstr "Atrás"
 
-#: ../src/topbar.vala:82
+#: ../src/topbar.vala:105
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/topbar.vala:86
+#: ../src/topbar.vala:113
 msgid "Select Items"
 msgstr "Seleccionar elementos"
 
-#: ../src/topbar.vala:107
+#: ../src/topbar.vala:134
 msgid "Select All"
 msgstr "Seleccionar todo"
 
-#: ../src/topbar.vala:108
+#: ../src/topbar.vala:135
 msgid "Select Running"
 msgstr "Seleccionar en execución"
 
-#: ../src/topbar.vala:109
+#: ../src/topbar.vala:136
 msgid "Select None"
 msgstr "Deseleccionar todas"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:119 ../src/topbar.vala:122 ../src/wizard.vala:673
-#: ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "_Cancelar"
-
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:195
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/topbar.vala:161
+#: ../src/topbar.vala:197
 msgid "(Click on items to select them)"
 msgstr "(Prema nos elementos para seleccionalos)"
 
@@ -894,23 +910,23 @@ msgstr ""
 "seu sistema é recente (despois do 2008), comprobe as configuracións da súa "
 "BIOS para activalas."
 
-#: ../src/wizard.vala:670
+#: ../src/wizard.vala:669
 msgid "Create a Box"
 msgstr "Crear unha caixa"
 
-#: ../src/wizard.vala:684 ../src/wizard.vala:686
+#: ../src/wizard.vala:683
 msgid "_Back"
 msgstr "_Atrás"
 
-#: ../src/wizard.vala:692 ../src/wizard.vala:694
+#: ../src/wizard.vala:691
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
-#: ../src/wizard.vala:701 ../src/wizard.vala:703
+#: ../src/wizard.vala:700
 msgid "C_reate"
 msgstr "C_rear"
 
-#: ../src/wizard.vala:788
+#: ../src/wizard.vala:787
 msgid "C_ustomize..."
 msgstr "P_ersonalizar…"
 
