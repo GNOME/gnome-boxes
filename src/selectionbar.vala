@@ -19,6 +19,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         favorite_btn = new Gtk.ToggleButton ();
         headerbar.pack_start (favorite_btn);
         favorite_btn.image = new Gtk.Image.from_icon_name ("emblem-favorite-symbolic", Gtk.IconSize.MENU);
+        favorite_btn.valign = Gtk.Align.CENTER;
         favorite_btn.get_style_context ().add_class ("image-button");
         favorite_btn_clicked_handler = favorite_btn.clicked.connect (() => {
            foreach (var item in App.app.selected_items) {
@@ -32,6 +33,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         });
 
         pause_btn = new Gtk.Button.with_mnemonic (_("P_ause"));
+        pause_btn.valign = Gtk.Align.CENTER;
         headerbar.pack_start (pause_btn);
         pause_btn.get_style_context ().add_class ("text-button");
         pause_btn.clicked.connect (() => {
@@ -53,6 +55,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         });
 
         remove_btn = new Gtk.Button.with_mnemonic (_("_Delete"));
+        remove_btn.valign = Gtk.Align.CENTER;
         headerbar.pack_start (remove_btn);
         remove_btn.get_style_context ().add_class ("text-button");
         remove_btn.clicked.connect (() => {
@@ -60,6 +63,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         });
 
         properties_btn = new Gtk.Button.with_mnemonic (_("_Properties"));
+        properties_btn.valign = Gtk.Align.CENTER;
         headerbar.pack_end (properties_btn);
         properties_btn.get_style_context ().add_class ("text-button");
         properties_btn.clicked.connect (() => {
