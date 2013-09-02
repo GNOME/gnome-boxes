@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-31 21:28+0000\n"
-"PO-Revision-Date: 2013-09-01 20:23+0100\n"
+"POT-Creation-Date: 2013-09-02 20:34+0000\n"
+"PO-Revision-Date: 2013-09-02 22:45+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -87,7 +87,7 @@ msgstr "Razpeto okno"
 msgid "Window maximized state"
 msgstr "Stanje razpetega glavnega okna"
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:1
+#: ../data/gnome-boxes.appdata.xml.in.h:1
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -101,7 +101,7 @@ msgstr ""
 "nabor nabor možnosti, ki so na voljo. Program je zasnovan tako, da zahteva "
 "zelo malo uporabniškega odziva."
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:2
+#: ../data/gnome-boxes.appdata.xml.in.h:2
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -170,12 +170,12 @@ msgstr "- Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: ../src/app.vala:850
+#: ../src/app.vala:842
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Škatla '%s' je bila izbrisana"
 
-#: ../src/app.vala:851
+#: ../src/app.vala:843
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -184,7 +184,7 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: ../src/app.vala:938
+#: ../src/app.vala:933
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -193,11 +193,11 @@ msgstr ""
 "'%s' ni mogoče obnoviti iz datoteke.\n"
 "Ali naj se izvede brez shranjenega stanja?"
 
-#: ../src/app.vala:939
+#: ../src/app.vala:934
 msgid "Restart"
 msgstr "Ponovno zaženi"
 
-#: ../src/app.vala:944 ../src/machine.vala:153
+#: ../src/app.vala:939 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Povezava z '%s' je spodletela"
@@ -206,7 +206,7 @@ msgstr "Povezava z '%s' je spodletela"
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
-#: ../src/display-page.vala:287
+#: ../src/display-page.vala:300
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pritisk krmilke+izmenjalke sprosti predmet)"
 
@@ -223,7 +223,7 @@ msgid "Unsupported disk image format."
 msgstr "Napodprt zapis odtisa diska."
 
 #: ../src/installed-media.vala:83 ../src/installer-media.vala:101
-#: ../src/properties.vala:73
+#: ../src/properties.vala:74
 msgid "System"
 msgstr "Sistem"
 
@@ -245,9 +245,18 @@ msgstr "Naslov URI"
 msgid "Troubleshooting log"
 msgstr "Dnevnik razreševanja težav"
 
+#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:157
+msgid "_Save"
+msgstr "_Shrani"
+
 #: ../src/libvirt-machine-properties.vala:140
 msgid "Copy to clipboard"
 msgstr "Kopiraj v odložišče"
+
+#: ../src/libvirt-machine-properties.vala:141
+msgid "_Close"
+msgstr "_Zapri"
 
 #: ../src/libvirt-machine-properties.vala:155
 msgid "Save log"
@@ -303,6 +312,15 @@ msgstr "Odstrani"
 msgid "Select a device or ISO file"
 msgstr "Izberite napravo ali datoteko ISO"
 
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:158
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+msgid "_Cancel"
+msgstr "Pre_kliči"
+
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+msgid "_Open"
+msgstr "_Odpri"
+
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
 #: ../src/libvirt-machine-properties.vala:330
@@ -325,6 +343,11 @@ msgstr "Pomnilnik"
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr ""
 "Spremembe zahtevajo ponovni zagon '%s'. Ali naj se program ponovno zažene?"
+
+#: ../src/libvirt-machine-properties.vala:460
+#: ../src/libvirt-machine-properties.vala:516
+msgid "_Yes"
+msgstr "_Da"
 
 #: ../src/libvirt-machine-properties.vala:514
 #, c-format
@@ -420,20 +443,20 @@ msgstr "Datoteka %s ne obstaja"
 msgid "Not connected to %s"
 msgstr "Ni povezave s %s"
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+#: ../src/notificationbar.vala:58 ../src/notificationbar.vala:113
 msgid "Sign In"
 msgstr "Prijava"
 
-#: ../src/notificationbar.vala:75
+#: ../src/notificationbar.vala:78
 #, c-format
 msgid "Sign In to %s"
 msgstr "Prijava v %s"
 
-#: ../src/notificationbar.vala:81
+#: ../src/notificationbar.vala:84
 msgid "_Username"
 msgstr "_Uporabniško ime"
 
-#: ../src/notificationbar.vala:96
+#: ../src/notificationbar.vala:99
 msgid "_Password"
 msgstr "_Geslo"
 
@@ -447,52 +470,52 @@ msgstr "Povezava z oVirt je spodletela"
 msgid "%s - Properties"
 msgstr "%s - lastnosti"
 
-#: ../src/properties.vala:69
+#: ../src/properties.vala:70
 msgid "Login"
 msgstr "Prijava"
 
-#: ../src/properties.vala:77
+#: ../src/properties.vala:78
 msgid "Display"
 msgstr "Zaslon"
 
-#: ../src/properties.vala:81
+#: ../src/properties.vala:82
 msgid "Devices"
 msgstr "Naprave"
 
-#: ../src/properties.vala:94
+#: ../src/properties.vala:95
 msgid "Some changes may take effect only after reboot"
 msgstr "Nekatere spremembe bodo uveljavljene šele po ponovnem zagonu sistema"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:279
 msgid "CPU:"
 msgstr "CPE:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:286
 msgid "I/O:"
 msgstr "V/I:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:293
 msgid "Net:"
 msgstr "Omrežje:"
 
-#: ../src/properties.vala:293
+#: ../src/properties.vala:300
 msgid "Force Shutdown"
 msgstr "Vsili izklop"
 
-#: ../src/selectionbar.vala:34
+#: ../src/selectionbar.vala:35
 msgid "P_ause"
 msgstr "P_remor"
 
-#: ../src/selectionbar.vala:46
+#: ../src/selectionbar.vala:48
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Premor '%s' je spodletel"
 
-#: ../src/selectionbar.vala:55
+#: ../src/selectionbar.vala:57
 msgid "_Delete"
 msgstr "_Izbriši"
 
-#: ../src/selectionbar.vala:62
+#: ../src/selectionbar.vala:65
 msgid "_Properties"
 msgstr "_Lastnosti"
 
@@ -539,44 +562,37 @@ msgstr "Vrata morajo biti določena"
 msgid "Missing port in Spice URI"
 msgstr "V naslovu Spice manjka določilo vrat"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:56 ../src/topbar.vala:59
+#: ../src/topbar.vala:73
 msgid "_New"
 msgstr "_Nova"
 
-#: ../src/topbar.vala:66
+#: ../src/topbar.vala:87
 msgid "Back"
 msgstr "Nazaj"
 
-#: ../src/topbar.vala:82
+#: ../src/topbar.vala:108
 msgid "Search"
 msgstr "Iskanje"
 
-#: ../src/topbar.vala:86
+#: ../src/topbar.vala:117
 msgid "Select Items"
 msgstr "Izbor predmetov"
 
-#: ../src/topbar.vala:107
+#: ../src/topbar.vala:138
 msgid "Select All"
 msgstr "Izberi vse"
 
-#: ../src/topbar.vala:108
+#: ../src/topbar.vala:139
 msgid "Select Running"
 msgstr "Izberi zagnano%s"
 
-#: ../src/topbar.vala:109
+#: ../src/topbar.vala:140
 msgid "Select None"
 msgstr "Odstrani izbor"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:119 ../src/topbar.vala:122 ../src/wizard.vala:673
-#: ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "Pre_kliči"
-
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:202
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -585,7 +601,7 @@ msgstr[1] "%d izbrana"
 msgstr[2] "%d izbrani"
 msgstr[3] "%d izbrane"
 
-#: ../src/topbar.vala:161
+#: ../src/topbar.vala:204
 msgid "(Click on items to select them)"
 msgstr "(S klikom se predmeti izberejo.)"
 
@@ -895,23 +911,23 @@ msgstr ""
 "Razširitve predočenja na sistemu niso na voljo. Če je sistem mlajši od 2008, "
 "preverite nastavitve BIOS."
 
-#: ../src/wizard.vala:670
+#: ../src/wizard.vala:669
 msgid "Create a Box"
 msgstr "Ustvari škatlo"
 
-#: ../src/wizard.vala:684 ../src/wizard.vala:686
+#: ../src/wizard.vala:684
 msgid "_Back"
 msgstr "_Nazaj"
 
-#: ../src/wizard.vala:692 ../src/wizard.vala:694
+#: ../src/wizard.vala:693
 msgid "C_ontinue"
 msgstr "N_adaljuj"
 
-#: ../src/wizard.vala:701 ../src/wizard.vala:703
+#: ../src/wizard.vala:703
 msgid "C_reate"
 msgstr "_Ustvari"
 
-#: ../src/wizard.vala:788
+#: ../src/wizard.vala:791
 msgid "C_ustomize..."
 msgstr "Prila_godi ..."
 
