@@ -662,17 +662,16 @@ private class Boxes.Wizard: Boxes.UI {
         /* topbar */
         hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.Box;
 
-        var toolbar = new Gd.MainToolbar ();
+        var toolbar = new Gtk.HeaderBar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
-        toolbar.toolbar_style = Gtk.ToolbarStyle.TEXT;
         hbox.pack_start (toolbar, true, true, 0);
 
-        toolbar.set_labels (_("Create a Box"), null);
+        toolbar.title = _("Create a Box");
 
         toolbar_sizegroup = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
-        cancel_button = toolbar.add_button (null, _("_Cancel"), true) as Gtk.Button;
-        cancel_button.use_underline = true;
-        cancel_button.label = _("_Cancel");
+        cancel_button = new Gtk.Button.with_mnemonic (_("_Cancel"));
+        cancel_button.get_style_context ().add_class ("text-button");
+        toolbar.pack_start (cancel_button);
         cancel_button.clicked.connect (() => {
             destroy_machine ();
             vm_creator = null;
@@ -681,27 +680,27 @@ private class Boxes.Wizard: Boxes.UI {
         });
         toolbar_sizegroup.add_widget (cancel_button);
 
-        back_button = toolbar.add_button (null, _("_Back"), false) as Gtk.Button;
-        back_button.use_underline = true;
-        back_button.label = _("_Back");
+        back_button = new Gtk.Button.with_mnemonic (_("_Back"));
+        back_button.get_style_context ().add_class ("text-button");
+        toolbar.pack_end (back_button);
         back_button.clicked.connect (() => {
             page = page - 1;
         });
         toolbar_sizegroup.add_widget (back_button);
 
-        continue_button = toolbar.add_button (null, _("C_ontinue"), false) as Gtk.Button;
-        continue_button.use_underline = true;
-        continue_button.label = _("C_ontinue");
+        continue_button = new Gtk.Button.with_mnemonic (_("C_ontinue"));
+        continue_button.get_style_context ().add_class ("text-button");
         continue_button.get_style_context ().add_class ("boxes-continue");
+        toolbar.pack_end (continue_button);
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
         toolbar_sizegroup.add_widget (continue_button);
 
-        create_button = toolbar.add_button (null, _("C_reate"), false) as Gtk.Button;
-        create_button.use_underline = true;
-        create_button.label = _("C_reate");
+        create_button = new Gtk.Button.with_mnemonic (_("C_reate"));
+        create_button.get_style_context ().add_class ("text-button");
         create_button.get_style_context ().add_class ("boxes-continue");
+        toolbar.pack_end (create_button);
         create_button.clicked.connect (() => {
             page = page + 1;
         });
