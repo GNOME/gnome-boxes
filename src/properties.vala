@@ -16,7 +16,7 @@ private class Boxes.Properties: Boxes.UI {
     public string title {
         set {
             // Translators: The %s will be replaced with the name of the VM
-            toolbar.set_labels (_("%s - Properties").printf (App.app.current_item.name), null);
+            toolbar.title = _("%s - Properties").printf (App.app.current_item.name);
         }
     }
 
@@ -24,7 +24,7 @@ private class Boxes.Properties: Boxes.UI {
     private GtkClutter.Actor gtk_actor;
     private Gtk.Notebook notebook;
     private Gtk.Button back;
-    private Gd.MainToolbar toolbar;
+    private Gtk.HeaderBar toolbar;
     private Gtk.ListStore listmodel;
     private Gtk.TreeModelFilter model_filter;
     private Gtk.TreeView tree_view;
@@ -218,12 +218,17 @@ private class Boxes.Properties: Boxes.UI {
         /* topbar */
         var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;
 
-        toolbar = new Gd.MainToolbar ();
+        toolbar = new Gtk.HeaderBar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar.show_close_button = true;
         hbox.pack_start (toolbar, true, true, 0);
         var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                              "go-previous-symbolic";
-        back = toolbar.add_button (back_icon, null, true) as Gtk.Button;
+        var back_image = new Gtk.Image.from_icon_name (back_icon, Gtk.IconSize.MENU);
+        back = new Gtk.Button ();
+        back.set_image (back_image);
+        back.get_style_context ().add_class ("image-button");
+        toolbar.pack_start (back);
         back.clicked.connect ((button) => { App.app.ui_state = App.app.previous_ui_state; });
 
         hbox.show_all ();
