@@ -432,16 +432,13 @@ private class Boxes.App: Boxes.UI {
             return false;
         });
 
-        var i = 0;
         foreach (var source in new_sources)
-            add_collection_source.begin (source, (obj, res) => {
-                    add_collection_source.end (res);
-                    i++;
-                    if ((i == new_sources.length ()) && (default_connection == null)) {
-                        printerr ("Missing or failing default libvirt connection\n");
-                        application.release (); // will end application
-                    }
-            });
+            yield add_collection_source (source);
+
+        if (default_connection == null) {
+            printerr ("Missing or failing default libvirt connection\n");
+            application.release (); // will end application
+        }
     }
 
     private void save_window_geometry () {
