@@ -10,15 +10,15 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-26 22:52+0000\n"
-"PO-Revision-Date: 2013-08-27 19:32+0200\n"
+"POT-Creation-Date: 2013-08-31 16:13+0000\n"
+"PO-Revision-Date: 2013-09-02 14:46+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
@@ -87,6 +87,33 @@ msgstr "Ventana maximizada"
 msgid "Window maximized state"
 msgstr "Estado maximizado de la ventana"
 
+#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:1
+msgid ""
+"A simple GNOME 3 application to access remote or virtual systems. Unlike "
+"some other virtual machine management software, Boxes is targeted towards "
+"typical desktop end-users. For this reason, Boxes will not provide many "
+"advanced options to tweak virtual machines. Instead Boxes will focus on "
+"getting things working out of the box with very little input from user."
+msgstr ""
+"Una sencilla aplicación de GNOME 3 para acceder a sistemas remotos o "
+"virtuales. A diferencia de otros programas de gestión de máquinas remotas, "
+"Cajas está orientado a usuarios finales del escritorio. Por esta razón, "
+"Cajas no proporcionará muchas opciones avanzadas para configurar las "
+"máquinas virtuales. En su lugar, Cajas se centrará en que las cosas "
+"funcionen con una implicación del usuario mínima."
+
+#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:2
+msgid ""
+"You want to install Boxes if you just want a very safe and easy way to try "
+"out new operating systems or new (potentially unstable) versions of your "
+"favorite operating system(s), or need to connect to a remote machine (for "
+"example, in your office)."
+msgstr ""
+"Querrá instalar Cajas si quiere una manera segura y sencilla de probar "
+"nuevos sistemas operativos o nuevas versiones (potencialmente inestables) de "
+"sus sistemas operativos favoritos, o necesita conectarse a una máquina "
+"remota (por ejemplo, en su oficina)."
+
 #: ../src/app.vala:160
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012"
@@ -97,7 +124,7 @@ msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: ../src/app.vala:178 ../src/topbar.vala:56
+#: ../src/app.vala:178
 msgid "New"
 msgstr "Nueva"
 
@@ -146,19 +173,19 @@ msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: ../src/app.vala:845
+#: ../src/app.vala:850
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: ../src/app.vala:846
+#: ../src/app.vala:851
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: ../src/app.vala:936
+#: ../src/app.vala:938
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -167,11 +194,11 @@ msgstr ""
 "no se pudo restaurar «%s» desde el disco\n"
 "¿Intentarlo sin el estado guardado?"
 
-#: ../src/app.vala:937
+#: ../src/app.vala:939
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/app.vala:942 ../src/machine.vala:153
+#: ../src/app.vala:944 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
@@ -451,10 +478,23 @@ msgstr "Red:"
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
-#: ../src/selectionbar.vala:72
+#: ../src/selectionbar.vala:34
+msgid "P_ause"
+msgstr "P_ausar"
+
+#: ../src/selectionbar.vala:46
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Falló al pausar «%s»"
+
+#: ../src/selectionbar.vala:55
+msgid "_Delete"
+msgstr "_Eliminar"
+
+#: ../src/selectionbar.vala:62
+#| msgid "%s - Properties"
+msgid "_Properties"
+msgstr "_Propiedades"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:32
@@ -499,48 +539,51 @@ msgstr "El puedo se debe especificar una vez"
 msgid "Missing port in Spice URI"
 msgstr "Falta el puerto en el URI de Spice"
 
-#: ../src/topbar.vala:63
-#| msgid "_Back"
+#. workaround for libgd bug #698289
+#: ../src/topbar.vala:56 ../src/topbar.vala:59
+msgid "_New"
+msgstr "_Nueva"
+
+#: ../src/topbar.vala:66
 msgid "Back"
 msgstr "Atrás"
 
-#: ../src/topbar.vala:79
-#| msgid "Search term"
+#: ../src/topbar.vala:82
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/topbar.vala:83
-#| msgid "Select None"
+#: ../src/topbar.vala:86
 msgid "Select Items"
 msgstr "Seleccionar elementos"
 
-#: ../src/topbar.vala:104
+#: ../src/topbar.vala:107
 msgid "Select All"
 msgstr "Seleccionar todas"
 
-#: ../src/topbar.vala:105
+#: ../src/topbar.vala:108
 msgid "Select Running"
 msgstr "Seleccionar las que están en ejecución"
 
-#: ../src/topbar.vala:106
+#: ../src/topbar.vala:109
 msgid "Select None"
 msgstr "No seleccionar ninguna"
 
 #. workaround for libgd bug #698289
-#: ../src/topbar.vala:116 ../src/topbar.vala:119
-msgid "D_one"
-msgstr "Hech_o"
+#: ../src/topbar.vala:119 ../src/topbar.vala:122 ../src/wizard.vala:673
+#: ../src/wizard.vala:675
+msgid "_Cancel"
+msgstr "_Cancelar"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:159
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:161
 msgid "(Click on items to select them)"
 msgstr "(Pulse sobre los elementos para seleccionarlos)"
 
@@ -598,8 +641,8 @@ msgid ""
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
 msgstr ""
 "No se pudo obtener la información de almacenamiento de «gnome-boxes» desde "
-"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-"
-"boxes» está funcionando."
+"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-boxes» "
+"está funcionando."
 
 #: ../src/util-app.vala:366
 #, c-format
@@ -853,10 +896,6 @@ msgstr ""
 msgid "Create a Box"
 msgstr "Crear una caja"
 
-#: ../src/wizard.vala:673 ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "_Cancelar"
-
 #: ../src/wizard.vala:684 ../src/wizard.vala:686
 msgid "_Back"
 msgstr "A_trás"
@@ -872,6 +911,9 @@ msgstr "C_rear"
 #: ../src/wizard.vala:788
 msgid "C_ustomize..."
 msgstr "_Personalizar…"
+
+#~ msgid "D_one"
+#~ msgstr "Hech_o"
 
 #~ msgid ""
 #~ "Virtualization extensions are unavailable on your system. Expect this box "
