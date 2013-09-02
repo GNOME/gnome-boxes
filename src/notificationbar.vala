@@ -54,7 +54,10 @@ private class Boxes.Notificationbar: GLib.Object {
         Notificationbar.OKFunc next_auth_step = () => {
             display_for_auth_next (broker_name, (owned) auth_func, (owned) cancel_func);
         };
-        return display_for_action (_("Not connected to %s").printf (broker_name), _("Sign In"), (owned) next_auth_step, (owned) cancel_func, -1);
+        return display_for_action (_("Not connected to %s").printf (broker_name),
+                                   _("Sign In"),
+                                   (owned) next_auth_step,
+                                   (owned) cancel_func, -1);
     }
 
     private Gd.Notification display_for_auth_next (string auth_string,
