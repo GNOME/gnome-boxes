@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-31 16:13+0000\n"
-"PO-Revision-Date: 2013-09-01 23:02+0300\n"
+"POT-Creation-Date: 2013-09-02 17:10+0000\n"
+"PO-Revision-Date: 2013-09-04 00:19+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -86,7 +86,7 @@ msgstr "Langas išdidintas"
 msgid "Window maximized state"
 msgstr "Lango išdidinimo būsena"
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:1
+#: ../data/gnome-boxes.appdata.xml.in.h:1
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -100,7 +100,7 @@ msgstr ""
 "sudėtingų parametrų virtualioms mašinoms tvarkyti. Vietoje to Boxes siekia, "
 "kad viskas veiktų iš karto su labai mažai naudotojo įvesties."
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:2
+#: ../data/gnome-boxes.appdata.xml.in.h:2
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -172,12 +172,12 @@ msgstr "- paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
-#: ../src/app.vala:850
+#: ../src/app.vala:842
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: ../src/app.vala:851
+#: ../src/app.vala:843
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -185,7 +185,7 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: ../src/app.vala:938
+#: ../src/app.vala:933
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -194,11 +194,11 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: ../src/app.vala:939
+#: ../src/app.vala:934
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
-#: ../src/app.vala:944 ../src/machine.vala:153
+#: ../src/app.vala:939 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Nepavyko prisijungti prie „%s“"
@@ -207,7 +207,7 @@ msgstr "Nepavyko prisijungti prie „%s“"
 msgid "New and Recent"
 msgstr "Naujos ir neseniai naudotos"
 
-#: ../src/display-page.vala:287
+#: ../src/display-page.vala:300
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(spauskite Vald+Alt klavišus paleidimui)"
 
@@ -224,7 +224,7 @@ msgid "Unsupported disk image format."
 msgstr "Nepalaikomas disko atvaizdžio formatas."
 
 #: ../src/installed-media.vala:83 ../src/installer-media.vala:101
-#: ../src/properties.vala:73
+#: ../src/properties.vala:74
 msgid "System"
 msgstr "Sistema"
 
@@ -246,9 +246,19 @@ msgstr "URI"
 msgid "Troubleshooting log"
 msgstr "Problemų žurnalas"
 
+#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:157
+#| msgid "Save log"
+msgid "_Save"
+msgstr "Į_rašyti"
+
 #: ../src/libvirt-machine-properties.vala:140
 msgid "Copy to clipboard"
 msgstr "Kopijuoti į iškarpinę"
+
+#: ../src/libvirt-machine-properties.vala:141
+msgid "_Close"
+msgstr "_Užverti"
 
 #: ../src/libvirt-machine-properties.vala:155
 msgid "Save log"
@@ -304,6 +314,15 @@ msgstr "Pašalinti"
 msgid "Select a device or ISO file"
 msgstr "Pasirinkite įrenginį arba ISO failą"
 
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:152
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+msgid "_Cancel"
+msgstr "_Atsisakyti"
+
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+msgid "_Open"
+msgstr "_Atverti"
+
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
 #: ../src/libvirt-machine-properties.vala:330
@@ -325,6 +344,11 @@ msgstr "Atmintis"
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Pakeitimai reikalauja „%s“ įkėlimo iš naujo. Mėginti įkelti iš naujo?"
+
+#: ../src/libvirt-machine-properties.vala:460
+#: ../src/libvirt-machine-properties.vala:516
+msgid "_Yes"
+msgstr "_Taip"
 
 #: ../src/libvirt-machine-properties.vala:514
 #, c-format
@@ -419,20 +443,20 @@ msgstr "Nėra failo %s"
 msgid "Not connected to %s"
 msgstr "Neprisijungta prie %s"
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+#: ../src/notificationbar.vala:58 ../src/notificationbar.vala:113
 msgid "Sign In"
 msgstr "Prisijungti"
 
-#: ../src/notificationbar.vala:75
+#: ../src/notificationbar.vala:78
 #, c-format
 msgid "Sign In to %s"
 msgstr "Prisijungti prie %s"
 
-#: ../src/notificationbar.vala:81
+#: ../src/notificationbar.vala:84
 msgid "_Username"
 msgstr "Na_udotojo vardas"
 
-#: ../src/notificationbar.vala:96
+#: ../src/notificationbar.vala:99
 msgid "_Password"
 msgstr "Sla_ptažodis"
 
@@ -446,35 +470,35 @@ msgstr "Nepavyko prisijungti prie oVirt brokerio"
 msgid "%s - Properties"
 msgstr "%s - Savybės"
 
-#: ../src/properties.vala:69
+#: ../src/properties.vala:70
 msgid "Login"
 msgstr "Prisijungti"
 
-#: ../src/properties.vala:77
+#: ../src/properties.vala:78
 msgid "Display"
 msgstr "Vaizduoklis"
 
-#: ../src/properties.vala:81
+#: ../src/properties.vala:82
 msgid "Devices"
 msgstr "Įrenginiai"
 
-#: ../src/properties.vala:94
+#: ../src/properties.vala:95
 msgid "Some changes may take effect only after reboot"
 msgstr "Kai kurie pakeitimai gali įsigalioti tik po sistemos įkėlimo iš naujo"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:278
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:285
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:292
 msgid "Net:"
 msgstr "Tinklas:"
 
-#: ../src/properties.vala:293
+#: ../src/properties.vala:299
 msgid "Force Shutdown"
 msgstr "Priverstinai išjungti"
 
@@ -492,7 +516,6 @@ msgid "_Delete"
 msgstr "Iš_trinti"
 
 #: ../src/selectionbar.vala:62
-#| msgid "%s - Properties"
 msgid "_Properties"
 msgstr "_Savybės"
 
@@ -539,44 +562,37 @@ msgstr "Prievadas turi būti nurodytas vieną kartą"
 msgid "Missing port in Spice URI"
 msgstr "Trūksta Spice URI prievado"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:56 ../src/topbar.vala:59
+#: ../src/topbar.vala:73
 msgid "_New"
 msgstr "_Nauja"
 
-#: ../src/topbar.vala:66
+#: ../src/topbar.vala:85
 msgid "Back"
 msgstr "Atgal"
 
-#: ../src/topbar.vala:82
+#: ../src/topbar.vala:105
 msgid "Search"
 msgstr "Ieškoti"
 
-#: ../src/topbar.vala:86
+#: ../src/topbar.vala:113
 msgid "Select Items"
 msgstr "Pasirinkite elementus"
 
-#: ../src/topbar.vala:107
+#: ../src/topbar.vala:134
 msgid "Select All"
 msgstr "Žymėti visus"
 
-#: ../src/topbar.vala:108
+#: ../src/topbar.vala:135
 msgid "Select Running"
 msgstr "Pasirinkite veikiančią"
 
-#: ../src/topbar.vala:109
+#: ../src/topbar.vala:136
 msgid "Select None"
 msgstr "Nežymėti nieko"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:119 ../src/topbar.vala:122 ../src/wizard.vala:673
-#: ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "_Atsisakyti"
-
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:195
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -584,7 +600,7 @@ msgstr[0] "%d pasirinkimas"
 msgstr[1] "%d pasirinkimai"
 msgstr[2] "%d pasirinkimų"
 
-#: ../src/topbar.vala:161
+#: ../src/topbar.vala:197
 msgid "(Click on items to select them)"
 msgstr "(Spauskite ant elementų jų pasirinkimui)"
 
@@ -889,23 +905,22 @@ msgstr ""
 "Virtualizacijos plėtiniai neprieinami jūsų sistemoje. Jei jūsų sistema yra "
 "nesena (po 2008), patikrinkite BIOS nustatymus jiems įjungti."
 
-#: ../src/wizard.vala:670
+#: ../src/wizard.vala:669
 msgid "Create a Box"
 msgstr "Sukurti dėžę"
 
-#: ../src/wizard.vala:684 ../src/wizard.vala:686
+#: ../src/wizard.vala:683
 msgid "_Back"
 msgstr "_Atgal"
 
-#: ../src/wizard.vala:692 ../src/wizard.vala:694
+#: ../src/wizard.vala:691
 msgid "C_ontinue"
 msgstr "_Tęsti"
 
-#: ../src/wizard.vala:701 ../src/wizard.vala:703
+#: ../src/wizard.vala:700
 msgid "C_reate"
 msgstr "Suku_rti"
 
-#: ../src/wizard.vala:788
+#: ../src/wizard.vala:787
 msgid "C_ustomize..."
 msgstr "_Tinkinti..."
-
