@@ -30,7 +30,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.Label prep_status_label;
     private Gtk.Box setup_vbox;
     private Gtk.Label review_label;
-    private Gtk.InfoBar nokvm_infobar;
+    private Gtk.Box nokvm_box;
     private Gtk.Image installer_image;
 
     private MediaManager media_manager;
@@ -369,7 +369,7 @@ private class Boxes.Wizard: Boxes.UI {
     private async bool do_review_cancellable () {
         return_if_fail (review_cancellable != null);
 
-        nokvm_infobar.hide ();
+        nokvm_box.hide ();
         summary.clear ();
 
         if (source != null) {
@@ -460,7 +460,7 @@ private class Boxes.Wizard: Boxes.UI {
                 }
             }
 
-            nokvm_infobar.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
+            nokvm_box.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
         summary.append_customize_button (() => {
@@ -623,7 +623,7 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.halign = Gtk.Align.FILL;
         add_step (vbox, _("Review"), WizardPage.REVIEW);
 
-        nokvm_infobar = new Gtk.InfoBar ();
+        var nokvm_infobar = new Gtk.InfoBar ();
         nokvm_infobar.halign = Gtk.Align.FILL;
         nokvm_infobar.spacing = 10;
         var container = nokvm_infobar.get_content_area () as Gtk.Container;
@@ -635,7 +635,14 @@ private class Boxes.Wizard: Boxes.UI {
         label.hexpand = true;
         container.add (label);
         nokvm_infobar.message_type = Gtk.MessageType.WARNING;
-        vbox.pack_start (nokvm_infobar, false, false);
+        // FIXME: We shouldn't need this box but for some weird unknown reason,
+        // toggling the visibility of the infobar itself doesn't exactly work.
+        // The bar remains visible even after setting visibility to 'false' but
+        // its only visible as a line. Likely some bug in clutter-gtk but I
+        // failed to reproduce it outside Boxes. :(
+        nokvm_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        nokvm_box.pack_start (nokvm_infobar, false, false);
+        vbox.pack_start (nokvm_box, false, false);
 
         var review_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
         review_vbox.valign = Gtk.Align.CENTER;
