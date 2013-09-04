@@ -293,7 +293,7 @@ private class Boxes.CollectionView: Boxes.UI {
                                    typeof (Gdk.Pixbuf),
                                    typeof (long),
                                    typeof (bool),
-                                   typeof (int),
+                                   typeof (uint),
                                    typeof (CollectionItem));
         model.set_default_sort_func ((model, a, b) => {
             CollectionItem item_a, item_b;
@@ -383,13 +383,10 @@ private class Boxes.CollectionView: Boxes.UI {
             machine.set_data<uint> ("activity_timeout", 0);
         }
 
-        if (!machine.under_construction) {
-            model.set (iter, ModelColumns.PULSE, int.MAX);
-
+        if (!machine.under_construction)
             return;
-        }
 
-        var pulse = int.MIN;
+        var pulse = 1;
         model.set (iter, ModelColumns.PULSE, pulse++);
         activity_timeout = Timeout.add (150, () => {
             var machine_iter = machine.get_data<Gtk.TreeIter?> ("iter");
