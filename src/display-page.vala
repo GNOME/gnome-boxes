@@ -21,6 +21,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
             show_close_button = true;
         }
+        get_style_context ().add_class ("titlebar");
 
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";

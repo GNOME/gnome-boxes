@@ -65,6 +65,7 @@ private class Boxes.Topbar: Boxes.UI {
         notebook.append_page (hbox, null);
 
         var toolbar = new Gtk.HeaderBar ();
+        toolbar.get_style_context ().add_class ("titlebar");
         collection_toolbar = toolbar;
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
         toolbar.show_close_button = true;
@@ -133,6 +134,7 @@ private class Boxes.Topbar: Boxes.UI {
         selection_toolbar = new Gtk.HeaderBar ();
         selection_toolbar.get_style_context ().add_class ("selection-mode");
         selection_toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        selection_toolbar.get_style_context ().add_class ("titlebar");
 
         var menu = new GLib.Menu ();
         menu.append (_("Select All"), "app.select-all");

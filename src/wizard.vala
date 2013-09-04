@@ -665,6 +665,7 @@ private class Boxes.Wizard: Boxes.UI {
 
         var toolbar = new Gtk.HeaderBar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar.get_style_context ().add_class ("titlebar");
         hbox.pack_start (toolbar, true, true, 0);
 
         toolbar.title = _("Create a Box");

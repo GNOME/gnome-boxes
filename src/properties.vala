@@ -221,6 +221,7 @@ private class Boxes.Properties: Boxes.UI {
 
         toolbar = new Gtk.HeaderBar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
+        toolbar.get_style_context ().add_class ("titlebar");
         toolbar.show_close_button = true;
         hbox.pack_start (toolbar, true, true, 0);
         var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :

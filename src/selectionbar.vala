@@ -14,6 +14,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
 
         headerbar = new Gtk.HeaderBar ();
+        headerbar.get_style_context ().add_class ("titlebar");
         add (headerbar);
 
         favorite_btn = new Gtk.ToggleButton ();
