@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-31 23:10+0200\n"
-"PO-Revision-Date: 2013-08-31 23:12+0200\n"
+"POT-Creation-Date: 2013-09-04 02:24+0200\n"
+"PO-Revision-Date: 2013-09-04 02:25+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -89,7 +89,7 @@ msgstr "Maksymalizacja okna"
 msgid "Window maximized state"
 msgstr "Stan maksymalizacji okna"
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:1
+#: ../data/gnome-boxes.appdata.xml.in.h:1
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -104,7 +104,7 @@ msgstr ""
 "wirtualnych. Zamiast tego skupia się na działaniu bez konfiguracji, jak "
 "najmniej pytając użytkownika."
 
-#: ../data/org.gnome.Boxes.Application.appdata.xml.in.h:2
+#: ../data/gnome-boxes.appdata.xml.in.h:2
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -177,12 +177,12 @@ msgstr "- prosty program do dostępu do maszyn zdalnych lub wirtualnych"
 msgid "Too many command line arguments specified.\n"
 msgstr "Podano za dużo parametrów wiersza poleceń.\n"
 
-#: ../src/app.vala:850
+#: ../src/app.vala:842
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Maszyna \"%s\" została usunięta"
 
-#: ../src/app.vala:851
+#: ../src/app.vala:843
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -190,7 +190,7 @@ msgstr[0] "%u maszyna została usunięta"
 msgstr[1] "%u maszyny zostały usunięte"
 msgstr[2] "%u maszyn zostało usuniętych"
 
-#: ../src/app.vala:938
+#: ../src/app.vala:933
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -199,11 +199,11 @@ msgstr ""
 "Nie można przywrócić \"%s\" z dysku\n"
 "Proszę spróbować bez zapisanego stanu."
 
-#: ../src/app.vala:939
+#: ../src/app.vala:934
 msgid "Restart"
 msgstr "Uruchom ponownie"
 
-#: ../src/app.vala:944 ../src/machine.vala:153
+#: ../src/app.vala:939 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Połączenie z maszyną \"%s\" się nie powiodło"
@@ -212,7 +212,7 @@ msgstr "Połączenie z maszyną \"%s\" się nie powiodło"
 msgid "New and Recent"
 msgstr "Nowe i ostatnie"
 
-#: ../src/display-page.vala:287
+#: ../src/display-page.vala:300
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(naciśnięcie klawiszy Ctrl+Alt zwolni przechwycenie)"
 
@@ -229,7 +229,7 @@ msgid "Unsupported disk image format."
 msgstr "Nieobsługiwany format obrazu dysku."
 
 #: ../src/installed-media.vala:83 ../src/installer-media.vala:101
-#: ../src/properties.vala:73
+#: ../src/properties.vala:74
 msgid "System"
 msgstr "System"
 
@@ -251,9 +251,18 @@ msgstr "Adres URI"
 msgid "Troubleshooting log"
 msgstr "Dziennik rozwiązywania problemów"
 
+#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:157
+msgid "_Save"
+msgstr "_Zapisz"
+
 #: ../src/libvirt-machine-properties.vala:140
 msgid "Copy to clipboard"
 msgstr "Skopiuj do schowka"
+
+#: ../src/libvirt-machine-properties.vala:141
+msgid "_Close"
+msgstr "Za_mknij"
 
 #: ../src/libvirt-machine-properties.vala:155
 msgid "Save log"
@@ -309,6 +318,15 @@ msgstr "Usuń"
 msgid "Select a device or ISO file"
 msgstr "Wybór urządzenia lub pliku ISO"
 
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:158
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+msgid "_Cancel"
+msgstr "_Anuluj"
+
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+msgid "_Open"
+msgstr "_Otwórz"
+
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
 #: ../src/libvirt-machine-properties.vala:330
@@ -332,6 +350,11 @@ msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr ""
 "Zmiany wymagają ponownego uruchomienia maszyny \"%s\". Spróbować ponownie "
 "uruchomić?"
+
+#: ../src/libvirt-machine-properties.vala:460
+#: ../src/libvirt-machine-properties.vala:516
+msgid "_Yes"
+msgstr "_Tak"
 
 #: ../src/libvirt-machine-properties.vala:514
 #, c-format
@@ -428,20 +451,20 @@ msgstr "Brak pliku %s"
 msgid "Not connected to %s"
 msgstr "Nie połączono z maszyną %s"
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+#: ../src/notificationbar.vala:58 ../src/notificationbar.vala:113
 msgid "Sign In"
 msgstr "Zaloguj"
 
-#: ../src/notificationbar.vala:75
+#: ../src/notificationbar.vala:78
 #, c-format
 msgid "Sign In to %s"
 msgstr "Zaloguj w %s"
 
-#: ../src/notificationbar.vala:81
+#: ../src/notificationbar.vala:84
 msgid "_Username"
 msgstr "Nazwa _użytkownika"
 
-#: ../src/notificationbar.vala:96
+#: ../src/notificationbar.vala:99
 msgid "_Password"
 msgstr "_Hasło"
 
@@ -455,52 +478,52 @@ msgstr "Połączenie z brokerem oVirt się nie powiodło"
 msgid "%s - Properties"
 msgstr "%s - właściwości"
 
-#: ../src/properties.vala:69
+#: ../src/properties.vala:70
 msgid "Login"
 msgstr "Login"
 
-#: ../src/properties.vala:77
+#: ../src/properties.vala:78
 msgid "Display"
 msgstr "Ekran"
 
-#: ../src/properties.vala:81
+#: ../src/properties.vala:82
 msgid "Devices"
 msgstr "Urządzenia"
 
-#: ../src/properties.vala:94
+#: ../src/properties.vala:95
 msgid "Some changes may take effect only after reboot"
 msgstr "Niektóre zmiany zostaną uwzględnione dopiero po ponownym uruchomieniu"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:279
 msgid "CPU:"
 msgstr "Procesor:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:286
 msgid "I/O:"
 msgstr "Wejście/wyjście:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:293
 msgid "Net:"
 msgstr "Sieć:"
 
-#: ../src/properties.vala:293
+#: ../src/properties.vala:300
 msgid "Force Shutdown"
 msgstr "Wymuś wyłączenie"
 
-#: ../src/selectionbar.vala:34
+#: ../src/selectionbar.vala:35
 msgid "P_ause"
 msgstr "W_strzymaj"
 
-#: ../src/selectionbar.vala:46
+#: ../src/selectionbar.vala:48
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Wstrzymanie maszyny \"%s\" się nie powiodło"
 
-#: ../src/selectionbar.vala:55
+#: ../src/selectionbar.vala:57
 msgid "_Delete"
 msgstr "_Usuń"
 
-#: ../src/selectionbar.vala:62
+#: ../src/selectionbar.vala:65
 msgid "_Properties"
 msgstr "_Właściwości"
 
@@ -548,44 +571,37 @@ msgstr "Port musi zostać podany"
 msgid "Missing port in Spice URI"
 msgstr "Brak portu w adresie URI protokołu Spice"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:56 ../src/topbar.vala:59
+#: ../src/topbar.vala:73
 msgid "_New"
 msgstr "_Nowa"
 
-#: ../src/topbar.vala:66
+#: ../src/topbar.vala:87
 msgid "Back"
 msgstr "Wstecz"
 
-#: ../src/topbar.vala:82
+#: ../src/topbar.vala:108
 msgid "Search"
 msgstr "Wyszukaj"
 
-#: ../src/topbar.vala:86
+#: ../src/topbar.vala:117
 msgid "Select Items"
 msgstr "Zaznacz elementy"
 
-#: ../src/topbar.vala:107
+#: ../src/topbar.vala:138
 msgid "Select All"
 msgstr "Zaznacz wszystkie"
 
-#: ../src/topbar.vala:108
+#: ../src/topbar.vala:139
 msgid "Select Running"
 msgstr "Zaznacz uruchomione"
 
-#: ../src/topbar.vala:109
+#: ../src/topbar.vala:140
 msgid "Select None"
 msgstr "Odznacz wszystkie"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:119 ../src/topbar.vala:122 ../src/wizard.vala:673
-#: ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "_Anuluj"
-
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:202
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -593,7 +609,7 @@ msgstr[0] "Zaznaczono: %d"
 msgstr[1] "Zaznaczono: %d"
 msgstr[2] "Zaznaczono: %d"
 
-#: ../src/topbar.vala:161
+#: ../src/topbar.vala:204
 msgid "(Click on items to select them)"
 msgstr "(Kliknięcie elementu zaznacza go)"
 
@@ -905,22 +921,22 @@ msgstr ""
 "jest dostatecznie nowy (kupiony nie dawniej niż w 2008 roku), to proszę "
 "sprawdzić ustawienia BIOS komputera, aby je włączyć."
 
-#: ../src/wizard.vala:670
+#: ../src/wizard.vala:669
 msgid "Create a Box"
 msgstr "Tworzenie maszyny"
 
-#: ../src/wizard.vala:684 ../src/wizard.vala:686
+#: ../src/wizard.vala:684
 msgid "_Back"
 msgstr "_Wstecz"
 
-#: ../src/wizard.vala:692 ../src/wizard.vala:694
+#: ../src/wizard.vala:693
 msgid "C_ontinue"
 msgstr "K_ontynuuj"
 
-#: ../src/wizard.vala:701 ../src/wizard.vala:703
+#: ../src/wizard.vala:703
 msgid "C_reate"
 msgstr "_Utwórz"
 
-#: ../src/wizard.vala:788
+#: ../src/wizard.vala:791
 msgid "C_ustomize..."
 msgstr "_Dostosuj..."
