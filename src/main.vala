@@ -12,8 +12,7 @@ private const OptionEntry[] local_options = {
 };
 
 private static void parse_local_args (ref unowned string[] args) {
-    var parameter_string = _("");
-    var opt_context = new OptionContext (parameter_string);
+    var opt_context = new OptionContext (null);
     opt_context.set_ignore_unknown_options (true);
     opt_context.add_main_entries (local_options, null);
     opt_context.set_help_enabled (false);
