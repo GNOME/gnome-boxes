@@ -562,8 +562,6 @@ private class Boxes.Wizard: Boxes.UI {
         label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
         label.get_style_context ().add_class ("boxes-wizard-label");
         label.wrap = true;
-        // Work around clutter size allocation issue (bz#677260)
-        label.width_chars = 30;
         label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
         vbox.pack_start (wizard_source.widget, false, false);
@@ -572,8 +570,6 @@ private class Boxes.Wizard: Boxes.UI {
         label = new Gtk.Label (_("Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."));
         label.get_style_context ().add_class ("boxes-logo-notice-label");
         label.wrap = true;
-        // Work around clutter size allocation issue (bz#677260)
-        label.width_chars = 30;
         label.max_width_chars = 50;
         vbox.pack_start (label, false, false);
         vbox.show_all ();
@@ -586,8 +582,6 @@ private class Boxes.Wizard: Boxes.UI {
         label = new Gtk.Label (_("Preparing to create new box"));
         label.get_style_context ().add_class ("boxes-wizard-label");
         label.wrap = true;
-        // Work around clutter size allocation issue (bz#677260)
-        label.width_chars = 30;
         label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
 
