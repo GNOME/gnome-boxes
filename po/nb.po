@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Kjartan Maraas <kmaraas@gnome.org>, 2011-2013.
 #
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-27 20:21+0200\n"
-"PO-Revision-Date: 2013-08-27 20:21+0200\n"
+"POT-Creation-Date: 2013-09-08 19:32+0200\n"
+"PO-Revision-Date: 2013-09-08 19:33+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -19,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Bokser"
 
@@ -83,6 +82,23 @@ msgstr "Vindu maksimert"
 msgid "Window maximized state"
 msgstr "Maksimert tilstand for vindu"
 
+#: ../data/gnome-boxes.appdata.xml.in.h:1
+msgid ""
+"A simple GNOME 3 application to access remote or virtual systems. Unlike "
+"some other virtual machine management software, Boxes is targeted towards "
+"typical desktop end-users. For this reason, Boxes will not provide many "
+"advanced options to tweak virtual machines. Instead Boxes will focus on "
+"getting things working out of the box with very little input from user."
+msgstr ""
+
+#: ../data/gnome-boxes.appdata.xml.in.h:2
+msgid ""
+"You want to install Boxes if you just want a very safe and easy way to try "
+"out new operating systems or new (potentially unstable) versions of your "
+"favorite operating system(s), or need to connect to a remote machine (for "
+"example, in your office)."
+msgstr ""
+
 #: ../src/app.vala:160
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
@@ -92,7 +108,7 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Et enkelt GNOME 3 program for å aksessere eksterne eller virtuelle systemer"
 
-#: ../src/app.vala:178 ../src/topbar.vala:56
+#: ../src/app.vala:178
 msgid "New"
 msgstr "Ny"
 
@@ -141,19 +157,19 @@ msgstr "- Et enkelt program for å aksessere eksterne eller virtuelle maskiner"
 msgid "Too many command line arguments specified.\n"
 msgstr "For mange kommandolinjeargumenter oppgitt.\n"
 
-#: ../src/app.vala:845
+#: ../src/app.vala:842
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boks «%s» er slettet"
 
-#: ../src/app.vala:846
+#: ../src/app.vala:843
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: ../src/app.vala:936
+#: ../src/app.vala:933
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -162,11 +178,11 @@ msgstr ""
 "«%s» kunne ikke gjenopprettes fra disk\n"
 "Prøv uten lagret tilstand?"
 
-#: ../src/app.vala:937
+#: ../src/app.vala:934
 msgid "Restart"
 msgstr "Start på nytt"
 
-#: ../src/app.vala:942 ../src/machine.vala:153
+#: ../src/app.vala:939 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Tilkobling til «%s» feilet"
@@ -175,7 +191,7 @@ msgstr "Tilkobling til «%s» feilet"
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
-#: ../src/display-page.vala:287
+#: ../src/display-page.vala:301
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(trykk Ctrl+Alt-tastene for å fjerne fokus)"
 
@@ -192,7 +208,7 @@ msgid "Unsupported disk image format."
 msgstr "Ikke støttet format for diskavtrykk."
 
 #: ../src/installed-media.vala:83 ../src/installer-media.vala:101
-#: ../src/properties.vala:73
+#: ../src/properties.vala:74
 msgid "System"
 msgstr "System"
 
@@ -214,9 +230,18 @@ msgstr "URI"
 msgid "Troubleshooting log"
 msgstr "Feilsøkingslogg"
 
+#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:157
+msgid "_Save"
+msgstr "_Lagre"
+
 #: ../src/libvirt-machine-properties.vala:140
 msgid "Copy to clipboard"
 msgstr "Kopier til utklippstavle"
+
+#: ../src/libvirt-machine-properties.vala:141
+msgid "_Close"
+msgstr "L_ukk"
 
 #: ../src/libvirt-machine-properties.vala:155
 msgid "Save log"
@@ -272,6 +297,15 @@ msgstr "Fjern"
 msgid "Select a device or ISO file"
 msgstr "Velg en enhet eller ISO-fil"
 
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
+msgid "_Cancel"
+msgstr "A_vbryt"
+
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+msgid "_Open"
+msgstr "_Åpne"
+
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
 #: ../src/libvirt-machine-properties.vala:330
@@ -293,6 +327,11 @@ msgstr "Minne"
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Endringer krever omstart av «%s». Prøv omstart?"
+
+#: ../src/libvirt-machine-properties.vala:460
+#: ../src/libvirt-machine-properties.vala:516
+msgid "_Yes"
+msgstr "_Ja"
 
 #: ../src/libvirt-machine-properties.vala:514
 #, c-format
@@ -342,37 +381,37 @@ msgid "Password"
 msgstr "Passord"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: ../src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• CPUen støtter virtualisering: %s\n"
 
-#: ../src/main.vala:55
+#: ../src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM-modulen er lastet: %s\n"
 
-#: ../src/main.vala:56
+#: ../src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM gjest tilgjengelig: %s\n"
 
-#: ../src/main.vala:57
+#: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Lagringskapasitet tilgjengelig for Bokser: %s\n"
 
-#: ../src/main.vala:61
+#: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux-kontekst er forvalgt: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Rapporter feil til <%s>.\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Hjemmeside for %s: <%s>.\n"
@@ -387,20 +426,20 @@ msgstr "Fil %s finnes ikke"
 msgid "Not connected to %s"
 msgstr "Ikke koblet til %s"
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
+#: ../src/notificationbar.vala:58 ../src/notificationbar.vala:113
 msgid "Sign In"
 msgstr "Logg inn"
 
-#: ../src/notificationbar.vala:75
+#: ../src/notificationbar.vala:78
 #, c-format
 msgid "Sign In to %s"
 msgstr "Logg inn på %s"
 
-#: ../src/notificationbar.vala:81
+#: ../src/notificationbar.vala:84
 msgid "_Username"
 msgstr "Br_ukernavn"
 
-#: ../src/notificationbar.vala:96
+#: ../src/notificationbar.vala:99
 msgid "_Password"
 msgstr "_Passord"
 
@@ -414,42 +453,54 @@ msgstr "Tilkobling til oVirt-forhandler feilet"
 msgid "%s - Properties"
 msgstr "%s - egenskaper"
 
-#: ../src/properties.vala:69
+#: ../src/properties.vala:70
 msgid "Login"
 msgstr "Logg inn"
 
-#: ../src/properties.vala:77
+#: ../src/properties.vala:78
 msgid "Display"
 msgstr "Skjerm"
 
-#: ../src/properties.vala:81
+#: ../src/properties.vala:82
 msgid "Devices"
 msgstr "Enheter"
 
-#: ../src/properties.vala:94
+#: ../src/properties.vala:95
 msgid "Some changes may take effect only after reboot"
 msgstr "Noen endringer blir kun tatt i bruk etter omstart"
 
-#: ../src/properties.vala:272
+#: ../src/properties.vala:280
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:287
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:294
 msgid "Net:"
 msgstr "Nettverk:"
 
-#: ../src/properties.vala:293
+#: ../src/properties.vala:301
 msgid "Force Shutdown"
 msgstr "Tving nedstenging"
 
-#: ../src/selectionbar.vala:72
+#: ../src/selectionbar.vala:36
+msgid "P_ause"
+msgstr "P_ause"
+
+#: ../src/selectionbar.vala:49
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Pause av «%s» feilet"
+
+#: ../src/selectionbar.vala:58
+msgid "_Delete"
+msgstr "_Slett"
+
+#: ../src/selectionbar.vala:66
+msgid "_Properties"
+msgstr "Egenska_per"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:32
@@ -494,45 +545,44 @@ msgstr "Porten må oppgis en gang"
 msgid "Missing port in Spice URI"
 msgstr "Mangler port i URI for Spice"
 
-#: ../src/topbar.vala:63
+#: ../src/topbar.vala:74
+msgid "_New"
+msgstr "_Ny"
+
+#: ../src/topbar.vala:88
 msgid "Back"
 msgstr "Tilbake"
 
-#: ../src/topbar.vala:79
+#: ../src/topbar.vala:109
 msgid "Search"
 msgstr "Søk"
 
-#: ../src/topbar.vala:83
+#: ../src/topbar.vala:118
 msgid "Select Items"
 msgstr "Velg oppføringer"
 
-#: ../src/topbar.vala:104
+#: ../src/topbar.vala:140
 msgid "Select All"
 msgstr "Velg alle"
 
-#: ../src/topbar.vala:105
+#: ../src/topbar.vala:141
 msgid "Select Running"
 msgstr "Velg kjørende"
 
-#: ../src/topbar.vala:106
+#: ../src/topbar.vala:142
 msgid "Select None"
 msgstr "Velg ingen"
 
-#. workaround for libgd bug #698289
-#: ../src/topbar.vala:116 ../src/topbar.vala:119
-msgid "D_one"
-msgstr "F_erdig"
-
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:157
+#: ../src/topbar.vala:204
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valgt"
 msgstr[1] "%d valgt"
 
-#: ../src/topbar.vala:159
+#: ../src/topbar.vala:206
 msgid "(Click on items to select them)"
 msgstr "(Klikk på oppføringer for å velge dem)"
 
@@ -810,7 +860,7 @@ msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Sett inn installasjonsmedie for operativsystemet eller velg en kilde under"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:570
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -820,23 +870,23 @@ msgstr ""
 "programvareprodukter du allerede har skaffet til veie og eies av deres "
 "respektive eiere."
 
-#: ../src/wizard.vala:585
+#: ../src/wizard.vala:581
 msgid "Preparation"
 msgstr "Forberedelse"
 
-#: ../src/wizard.vala:586
+#: ../src/wizard.vala:582
 msgid "Preparing to create new box"
 msgstr "Forbereder å lage en ny boks"
 
-#: ../src/wizard.vala:623
+#: ../src/wizard.vala:617
 msgid "Setup"
 msgstr "Oppsett"
 
-#: ../src/wizard.vala:630
+#: ../src/wizard.vala:624
 msgid "Review"
 msgstr "Gjennomgang"
 
-#: ../src/wizard.vala:638
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -844,26 +894,22 @@ msgstr ""
 "Utvidelser for virtualisering er ikke tilgjengelig på ditt system. Sjekk "
 "innstillingene i BIOS hvis systemet er nytt (etter 2008) og slå dem på der."
 
-#: ../src/wizard.vala:670
+#: ../src/wizard.vala:671
 msgid "Create a Box"
 msgstr "Lag en boks"
 
-#: ../src/wizard.vala:673 ../src/wizard.vala:675
-msgid "_Cancel"
-msgstr "A_vbryt"
-
-#: ../src/wizard.vala:684 ../src/wizard.vala:686
+#: ../src/wizard.vala:686
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../src/wizard.vala:692 ../src/wizard.vala:694
+#: ../src/wizard.vala:695
 msgid "C_ontinue"
 msgstr "F_ortsett"
 
-#: ../src/wizard.vala:701 ../src/wizard.vala:703
+#: ../src/wizard.vala:705
 msgid "C_reate"
 msgstr "_Lag"
 
-#: ../src/wizard.vala:788
+#: ../src/wizard.vala:793
 msgid "C_ustomize..."
 msgstr "T_ilpass …"
