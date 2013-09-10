@@ -104,6 +104,8 @@ private class Boxes.VMConfigurator {
         domain.add_device (console);
 
         var iface = new DomainInterfaceUser ();
+        if (install_media.supports_virtio_net)
+            iface.set_model ("virtio");
         domain.add_device (iface);
 
         return domain;

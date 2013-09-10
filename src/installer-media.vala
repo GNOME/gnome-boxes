@@ -32,6 +32,12 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
+    public bool supports_virtio_net {
+        get {
+            return (find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "virtio-net") != null);
+        }
+    }
+
     public virtual bool live { get { return os_media == null || os_media.live; } }
 
     protected virtual string? architecture {
