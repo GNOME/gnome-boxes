@@ -36,7 +36,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         }
     }
 
-    public InstalledMedia (string path) throws GLib.Error {
+    public async InstalledMedia (string path, MediaManager media_manager) throws GLib.Error {
         var supported = false;
         foreach (var extension in supported_extensions) {
             supported = path.has_suffix (extension);
@@ -50,7 +50,19 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         device_file = path;
         from_image = true;
 
-        resources = OSDatabase.get_default_resources ();
+        if (path.contains ("gnome-continuous") || path.contains ("gnome-ostree")) {
+            try {
+                os = yield media_manager.os_db.get_os_by_id ("http://gnome.org/continuous/3.10");
+            } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
+                debug ("gnome-continuous definition not found in libosinfo db");
+            } catch (OSDatabaseError error) {
+                throw error;
+            }
+        }
+
+        resources = (os != null)? media_manager.os_db.get_resources_for_os (os, architecture) :
+                                  OSDatabase.get_default_resources ();
+
         label_setup ();
     }
 

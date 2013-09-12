@@ -30,7 +30,7 @@ private class Boxes.MediaManager : Object {
         if (is_mime_type (path, "application/x-cd-image"))
             media = yield new InstallerMedia.for_path (path, this, cancellable);
         else
-            media = new InstalledMedia (path);
+            media = yield new InstalledMedia (path, this);
 
         return create_installer_media_from_media (media);
     }
@@ -42,7 +42,7 @@ private class Boxes.MediaManager : Object {
 
         if (VMConfigurator.is_import_config (config))
             try {
-                return new InstalledMedia (path);
+                return yield new InstalledMedia (path, this);
             } catch (GLib.Error error) {
                 debug ("%s", error.message);
 
