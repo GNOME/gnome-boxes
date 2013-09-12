@@ -383,8 +383,11 @@ private class Boxes.CollectionView: Boxes.UI {
             machine.set_data<uint> ("activity_timeout", 0);
         }
 
-        if (!machine.under_construction)
+        if (!machine.under_construction) {
+            model.set (iter, ModelColumns.PULSE, 0);
+
             return;
+        }
 
         var pulse = 1;
         model.set (iter, ModelColumns.PULSE, pulse++);
