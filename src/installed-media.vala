@@ -66,6 +66,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
             }
         }
 
+        os = yield guess_os_from_filename (media_manager.os_db);
         resources = (os != null)? media_manager.os_db.get_resources_for_os (os, architecture) :
                                   OSDatabase.get_default_resources ();
 
@@ -107,6 +108,21 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
     public override VMCreator get_vm_creator () {
         return new VMImporter (this);
+    }
+
+    private async Osinfo.Os? guess_os_from_filename (OSDatabase os_db) throws OSDatabaseError {
+        if (!device_file.contains ("gnome-continuous") && !device_file.contains ("gnome-ostree"))
+            return null;
+
+        try {
+            return yield os_db.get_os_by_id ("http://gnome.org/continuous/3.10");
+        } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
+            debug ("gnome-continuous definition not found in libosinfo db");
+
+            return null;
+        } catch (OSDatabaseError error) {
+            throw error;
+        }
     }
 
     private async bool decompress () throws GLib.Error {
