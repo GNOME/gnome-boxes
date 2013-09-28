@@ -4,6 +4,7 @@ using Osinfo;
 
 public errordomain Boxes.OSDatabaseError {
     NON_BOOTABLE,
+    DB_LOADING_FAILED,
     UNKNOWN_OS_ID,
     UNKNOWN_MEDIA_ID
 }
@@ -72,7 +73,7 @@ private class Boxes.OSDatabase : GLib.Object {
 
     public async Os get_os_by_id (string id) throws OSDatabaseError {
         if (!yield ensure_db_loaded ())
-            throw new OSDatabaseError.UNKNOWN_OS_ID ("Unknown OS ID '%s'", id);
+            throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
 
         var os = db.get_os (id);
         if (os == null)
