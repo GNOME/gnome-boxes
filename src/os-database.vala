@@ -83,8 +83,10 @@ private class Boxes.OSDatabase : GLib.Object {
     }
 
     // Returned list is in ascending order by release dates. If release date is
-    // unavailable, we assume that OS is very old, or at least older than
-    // entries with release dates and @after.
+    // unavailable and OS is
+    // a. released, we assume that it is older than other OSes and @after.
+    // b. unreleased, we assume that it is newer than other OSes and @after.
+    //
     // If @after is non-null, only list releases after the given date.
     public async GLib.List<Os> list_os_by_distro (string distro, GLib.Date? after = null) throws OSDatabaseError {
         if (!yield ensure_db_loaded ())
@@ -97,15 +99,24 @@ private class Boxes.OSDatabase : GLib.Object {
 
         var after_list = new GLib.List<Os> ();
         foreach (var entity in os_list.get_elements ()) {
+            var os = entity as Os;
+
             if (after != null) {
-                var release_date = (entity as Os).get_release_date ();
-                if (release_date != null && release_date.compare (after) > 0)
-                    after_list.append (entity as Os);
+                var release_date = os.get_release_date ();
+                var status = os.get_release_status ();
+
+                if (status != ReleaseStatus.RELEASED || (release_date != null && release_date.compare (after) > 0))
+                    after_list.append (os);
             } else
-                after_list.append (entity as Os);
+                after_list.append (os);
         }
 
         after_list.sort ((os_a, os_b) => {
+            if (os_a.get_release_status () != ReleaseStatus.RELEASED)
+                return 1;
+            else if (os_b.get_release_status () != ReleaseStatus.RELEASED)
+                return -1;
+
             var release_a = os_a.get_release_date ();
             var release_b = os_b.get_release_date ();
 
