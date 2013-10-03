@@ -82,6 +82,44 @@ private class Boxes.OSDatabase : GLib.Object {
         return os;
     }
 
+    // Returned list is in ascending order by release dates. If release date is
+    // unavailable, we assume that OS is very old, or at least older than
+    // entries with release dates and @after.
+    // If @after is non-null, only list releases after the given date.
+    public async GLib.List<Os> list_os_by_distro (string distro, GLib.Date? after = null) throws OSDatabaseError {
+        if (!yield ensure_db_loaded ())
+            throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
+
+        var os_list = db.get_os_list ();
+        var filter = new Filter ();
+        filter.add_constraint (OS_PROP_DISTRO, distro);
+        os_list = (os_list as Osinfo.List).new_filtered (filter) as OsList;
+
+        var after_list = new GLib.List<Os> ();
+        foreach (var entity in os_list.get_elements ()) {
+            if (after != null) {
+                var release_date = (entity as Os).get_release_date ();
+                if (release_date != null && release_date.compare (after) > 0)
+                    after_list.append (entity as Os);
+            } else
+                after_list.append (entity as Os);
+        }
+
+        after_list.sort ((os_a, os_b) => {
+            var release_a = os_a.get_release_date ();
+            var release_b = os_b.get_release_date ();
+
+            if (release_a == null)
+                return 1;
+            else if (release_b == null)
+                return -1;
+            else
+                return release_a.compare (release_b);
+        });
+
+        return after_list;
+    }
+
     public Media get_media_by_id (Os os, string id) throws OSDatabaseError {
         var medias = os.get_media_list ();
 
