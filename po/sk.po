@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-05 12:08+0000\n"
-"PO-Revision-Date: 2013-09-03 20:30+0200\n"
+"POT-Creation-Date: 2013-10-04 08:35+0000\n"
+"PO-Revision-Date: 2013-10-03 20:15+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -232,7 +232,7 @@ msgstr "Môžete ho vytvoriť použitím tlačidla vľavo hore."
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Systém"
@@ -285,6 +285,8 @@ msgid "Protocol"
 msgstr "Protokol"
 
 # button label
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -723,7 +725,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:439
+#: ../src/vm-configurator.vala:441
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
@@ -816,6 +818,7 @@ msgstr "Pridá boxy pre všetky systémy dostupné z tohto účtu."
 msgid "Will add a single box."
 msgstr "Pridá jeden box."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Prístup k pracovnej ploche"
@@ -837,6 +840,7 @@ msgstr "Analyzuje sa…"
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Zlyhala analýza inštalačného média. Nosič je poškodený alebo neúplný?"
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Nastavovanie boxu zlyhalo"
@@ -936,9 +940,10 @@ msgstr ""
 "aktuálny (vydaný po roku 2008), skontrolujte nastavenia vášho systému BIOS a "
 "povoľte ich."
 
+# dialog title
 #: ../src/wizard.vala:671
 msgid "Create a Box"
-msgstr "Vytvoriť box"
+msgstr "Vytvorenie boxu"
 
 #: ../src/wizard.vala:686
 msgid "_Back"
