@@ -49,12 +49,9 @@ private class Boxes.VMCreator {
             debug("Disabling unattended installation: %s", error.message);
         }
 
-        var volume = yield create_target_volume (name, install_media.resources.storage);
-        var caps = yield connection.get_capabilities_async (cancellable);
-        var config = VMConfigurator.create_domain_config (install_media, volume.get_path (), caps);
-        config.name = name;
-        config.title = title;
 
+        var volume = yield create_target_volume (name, install_media.resources.storage);
+        var config = yield create_domain_config (name, title, volume, cancellable);
         var domain = connection.create_domain (config);
 
         var machine = LibvirtBroker.get_default ().add_domain (App.app.default_source,
@@ -211,6 +208,18 @@ private class Boxes.VMCreator {
         }
 
         return pool;
+    }
+
+    protected virtual async GVirConfig.Domain create_domain_config (string       name,
+                                                                    string       title,
+                                                                    StorageVol   volume,
+                                                                    Cancellable? cancellable) throws GLib.Error {
+        var caps = yield connection.get_capabilities_async (cancellable);
+        var config = VMConfigurator.create_domain_config (install_media, volume.get_path (), caps);
+        config.name = name;
+        config.title = title;
+
+        return config;
     }
 
     private void increment_num_reboots (LibvirtMachine machine) {
