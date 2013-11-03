@@ -135,9 +135,6 @@ private class Boxes.VMCreator {
             return;
         }
 
-        if (machine.state == Machine.MachineState.FORCE_STOPPED)
-            return;
-
         if (machine.state == Machine.MachineState.SAVED) {
             // This means the domain was just saved and thefore this is not yet the time to take any post-install
             // steps for this domain.
@@ -161,7 +158,8 @@ private class Boxes.VMCreator {
                 machine.info = null;
             machine.vm_creator = null;
         } else {
-            if (VMConfigurator.is_live_config (machine.domain_config)) {
+            if (VMConfigurator.is_live_config (machine.domain_config) &&
+                machine.state != Machine.MachineState.FORCE_STOPPED) {
                 // No installation during live session, so lets delete the VM
                 machine.disconnect (state_changed_id);
                 install_media.clean_up ();
