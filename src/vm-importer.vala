@@ -38,7 +38,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         try {
             var destination_path = machine.storage_volume.get_path ();
 
-            yield source_media.convert_to_native_format (destination_path);
+            yield source_media.copy (destination_path);
 
             // Without refreshing the pool, libvirt will not know of changes to volume we just made
             var pool = yield get_storage_pool ();

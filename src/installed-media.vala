@@ -66,7 +66,8 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         label_setup ();
     }
 
-    public async void convert_to_native_format (string destination_path) throws GLib.Error {
+    // Also converts to native format (QCOW2)
+    public async void copy (string destination_path) throws GLib.Error {
         var decompressed = yield decompress ();
 
         string[] argv = { "qemu-img", "convert", "-O", "qcow2", device_file, destination_path };
