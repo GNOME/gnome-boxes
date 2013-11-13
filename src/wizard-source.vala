@@ -268,10 +268,10 @@ private class Boxes.WizardSource: GLib.Object {
     }
 
     private Gtk.Box add_entry (Gtk.Box            box,
-                                owned ClickedFunc? clicked = null,
-                                int                h_margin = 20,
-                                int                v_margin = 10,
-                                string?            media = null) {
+                               owned ClickedFunc? clicked = null,
+                               int                h_margin = 20,
+                               int                v_margin = 10,
+                               string?            media = null) {
         Gtk.Container row;
         if (clicked != null) {
             var button = new Gtk.Button ();
@@ -282,7 +282,7 @@ private class Boxes.WizardSource: GLib.Object {
             row = button;
         } else {
             var bin = new Gtk.Alignment (0,0,1,1);
-			draw_as_css_box (bin);
+            draw_as_css_box (bin);
             row = bin;
         }
         var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);

@@ -397,7 +397,7 @@ private class Boxes.App: Boxes.UI {
             break;
 
         default:
-            Broker? broker = brokers.lookup(source.source_type);
+            Broker? broker = brokers.lookup (source.source_type);
             if (broker != null) {
                 yield broker.add_source (source);
                 sources.insert (source.name, source);
