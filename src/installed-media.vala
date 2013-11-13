@@ -36,7 +36,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         }
     }
 
-    public async InstalledMedia (string path, MediaManager media_manager) throws GLib.Error {
+    public InstalledMedia (string path) throws GLib.Error {
         var supported = false;
         foreach (var extension in supported_extensions) {
             supported = path.has_suffix (extension);
@@ -49,6 +49,12 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
         device_file = path;
         from_image = true;
+
+        label_setup ();
+    }
+
+    public async InstalledMedia.guess_os (string path, MediaManager media_manager) throws GLib.Error {
+        this (path);
 
         if (path.contains ("gnome-continuous") || path.contains ("gnome-ostree")) {
             try {
