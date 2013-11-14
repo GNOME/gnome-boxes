@@ -196,11 +196,13 @@ private class Boxes.VMCreator {
     protected async StoragePool get_storage_pool () throws GLib.Error {
         var pool = Boxes.get_storage_pool (connection);
         if (pool == null) {
+            debug ("Creating storage pool..");
             var config = VMConfigurator.get_pool_config ();
             pool = connection.create_storage_pool (config, 0);
             yield pool.build_async (0, null);
             yield pool.start_async (0, null);
             yield pool.refresh_async (null);
+            debug ("Created storage pool.");
         } else if (pool.get_info ().state == StoragePoolState.INACTIVE) {
             // Ensure pool directory exists in case user deleted it after pool creation
             DirUtils.create_with_parents (GLib.Path.build_filename (get_user_pkgdata (), "images", null), 0775);
@@ -327,7 +329,9 @@ private class Boxes.VMCreator {
         var pool = yield get_storage_pool ();
 
         var config = VMConfigurator.create_volume_config (name, storage);
+        debug ("Creating volume '%s'..", name);
         var volume = pool.create_volume (config);
+        debug ("Created volume '%s'.", name);
 
         return volume;
     }
