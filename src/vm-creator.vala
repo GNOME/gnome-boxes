@@ -222,6 +222,11 @@ private class Boxes.VMCreator {
         return config;
     }
 
+    protected virtual void create_domain_base_name_and_title (out string base_name, out string base_title) {
+        base_title = install_media.label;
+        base_name = (install_media.os != null) ? install_media.os.short_id : "boxes-unknown";
+    }
+
     private void increment_num_reboots (LibvirtMachine machine) {
         num_reboots++;
         try {
@@ -318,11 +323,12 @@ private class Boxes.VMCreator {
     }
 
     private async void create_domain_name_and_title_from_media (out string name, out string title) throws GLib.Error {
-        var base_title = install_media.label;
-        title = base_title;
-        var base_name = (install_media.os != null) ? install_media.os.short_id : "boxes-unknown";
-        name = base_name;
+        string base_name, base_title;
 
+        create_domain_base_name_and_title (out base_name, out base_title);
+
+        name = base_name;
+        title = base_title;
         var pool = yield get_storage_pool ();
         for (var i = 2;
              connection.find_domain_by_name (name) != null ||
