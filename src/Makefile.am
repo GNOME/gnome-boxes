@@ -88,6 +88,7 @@ gnome_boxes_SOURCES =				\
 	i-properties-provider.vala		\
 	installer-media.vala 			\
 	installed-media.vala 			\
+	libvirt-system-media.vala 		\
 	iso-extractor.vala			\
 	libvirt-broker.vala			\
 	libvirt-machine.vala			\
@@ -113,6 +114,7 @@ gnome_boxes_SOURCES =				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\
 	vm-importer.vala 			\
+	libvirt-system-vm-importer.vala 	\
 	vnc-display.vala			\
 	wizard-source.vala			\
 	wizard.vala				\
