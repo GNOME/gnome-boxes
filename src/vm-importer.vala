@@ -6,6 +6,8 @@ using GVir;
 private class Boxes.VMImporter : Boxes.VMCreator {
     public InstalledMedia source_media { get { return install_media as InstalledMedia; } }
 
+    protected bool start_after_import = true;
+
     public VMImporter (InstalledMedia source_media) {
         base (source_media);
     }
@@ -56,10 +58,12 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         }
 
         set_post_install_config (machine);
-        try {
-            machine.domain.start (0);
-        } catch (GLib.Error error) {
-            warning ("Failed to start domain '%s': %s", machine.domain.get_name (), error.message);
+        if (start_after_import) {
+            try {
+                machine.domain.start (0);
+            } catch (GLib.Error error) {
+                warning ("Failed to start domain '%s': %s", machine.domain.get_name (), error.message);
+            }
         }
         machine.info = null;
         machine.vm_creator = null;
