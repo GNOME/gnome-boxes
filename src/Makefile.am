@@ -114,6 +114,7 @@ gnome_boxes_SOURCES =				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\
 	vm-importer.vala 			\
+	libvirt-system-importer.vala 		\
 	libvirt-system-vm-importer.vala 	\
 	vnc-display.vala			\
 	wizard-source.vala			\

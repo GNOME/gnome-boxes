@@ -78,6 +78,7 @@ private class Boxes.WizardSource: GLib.Object {
         set { url_entry.set_text (value); }
     }
     public InstallerMedia? install_media { get; private set; }
+    public LibvirtSystemImporter libvirt_sys_importer { get; private set; }
 
     private Gtk.Box main_vbox;
     private Gtk.Box media_vbox;
@@ -173,6 +174,7 @@ private class Boxes.WizardSource: GLib.Object {
 
         notebook.show_all ();
 
+        add_libvirt_sytem_entry.begin ();
         add_media_entries.begin ();
     }
 
@@ -267,6 +269,28 @@ private class Boxes.WizardSource: GLib.Object {
 
         media_vbox.show_all ();
         media_scrolled.show ();
+    }
+
+    private async void add_libvirt_sytem_entry () {
+        try {
+            libvirt_sys_importer = yield new LibvirtSystemImporter ();
+        } catch (LibvirtSystemImporterError.NO_IMPORTS error) {
+            debug ("%s", error.message);
+
+            return;
+        }
+
+        var hbox = add_entry (main_vbox, () => {
+            activate ();
+
+            return true;
+        });
+        var label = new Gtk.Label (libvirt_sys_importer.wizard_menu_label);
+        label.xalign = 0.0f;
+        hbox.pack_start (label, true, true);
+        var next = new Gtk.Label ("▶");
+        hbox.pack_start (next, false, false);
+        main_vbox.show_all ();
     }
 
     private Gtk.Box add_entry (Gtk.Box            box,
