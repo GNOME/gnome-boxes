@@ -196,7 +196,7 @@ private class Boxes.WizardSource: GLib.Object {
                 }
 
             if (obsolete)
-                main_vbox.remove (child);
+                media_vbox.remove (child);
         }
 
         foreach (var media in medias) {
