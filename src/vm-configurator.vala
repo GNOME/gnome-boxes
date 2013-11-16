@@ -29,7 +29,7 @@ private class Boxes.VMConfigurator {
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
-        update_custom_xml (domain, install_media);
+        setup_custom_xml (domain, install_media);
 
         var best_caps = get_best_guest_caps (caps, install_media);
         domain.memory = install_media.resources.ram / KIBIBYTES;
@@ -186,6 +186,10 @@ private class Boxes.VMConfigurator {
 
     public static void set_num_reboots (Domain domain, InstallerMedia install_media, uint num_reboots) {
         update_custom_xml (domain, install_media, num_reboots);
+    }
+
+    public static void setup_custom_xml (Domain domain, InstallerMedia install_media) {
+        update_custom_xml (domain, install_media);
     }
 
     private static void mark_as_installed (Domain domain, InstallerMedia? install_media) {
