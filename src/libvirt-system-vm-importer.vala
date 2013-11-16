@@ -31,6 +31,8 @@ private class Boxes.LibvirtSystemVMImporter : Boxes.VMImporter {
         config.name = name;
         config.title = title;
 
+        VMConfigurator.setup_custom_xml (config, install_media);
+
         var devices = config.get_devices ();
         foreach (var device in devices) {
             if (!(device is DomainDisk))

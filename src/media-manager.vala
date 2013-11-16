@@ -40,14 +40,16 @@ private class Boxes.MediaManager : Object {
         if (path == null)
             return null;
 
-        if (VMConfigurator.is_import_config (config))
-            try {
+        try {
+            if (VMConfigurator.is_import_config (config))
                 return yield new InstalledMedia.guess_os (path, this);
-            } catch (GLib.Error error) {
+            else if (VMConfigurator.is_libvirt_system_import_config (config))
+                return new LibvirtSystemMedia (path, config);
+        } catch (GLib.Error error) {
                 debug ("%s", error.message);
 
                 return null;
-            }
+        }
 
         var label = config.title;
 
