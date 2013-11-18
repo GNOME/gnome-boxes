@@ -463,10 +463,11 @@ private class Boxes.Wizard: Boxes.UI {
             nokvm_box.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
 
-        summary.append_customize_button (() => {
-            // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
-            App.app.select_item (machine);
-        });
+        if (machine != null)
+            summary.append_customize_button (() => {
+                // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
+                App.app.select_item (machine);
+            });
 
         return true;
     }
