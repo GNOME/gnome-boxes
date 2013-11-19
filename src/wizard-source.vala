@@ -106,7 +106,7 @@ private class Boxes.WizardSource: GLib.Object {
         main_vbox.grab_focus ();
         notebook.append_page (main_vbox, null);
 
-        media_scrolled = new WizardScrolled (6);
+        media_scrolled = new WizardScrolled (5);
 
         media_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         media_scrolled.set_no_show_all (true);
