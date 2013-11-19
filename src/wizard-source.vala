@@ -87,6 +87,8 @@ private class Boxes.WizardSource: GLib.Object {
     private Gtk.Image url_image;
     public Gtk.Entry url_entry;
 
+    public signal void activate (); // Emitted on user activating a source
+
     private MediaManager media_manager;
 
     public WizardSource (MediaManager media_manager) {
@@ -315,7 +317,7 @@ private class Boxes.WizardSource: GLib.Object {
             uri = dialog.get_uri ();
             // clean install_media as this may be set already when going back in the wizard
             install_media = null;
-            url_entry.activate ();
+            activate ();
 
             ret = true;
         }
@@ -329,7 +331,7 @@ private class Boxes.WizardSource: GLib.Object {
         try {
             install_media = media_manager.create_installer_media_from_media (media);
             uri = media.device_file;
-            url_entry.activate ();
+            activate ();
         } catch (GLib.Error error) {
             // This is unlikely to happen since media we use as template should have already done most async work
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);

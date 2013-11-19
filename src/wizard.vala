@@ -175,7 +175,7 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.notify["selected"].connect(wizard_source_update_next);
         wizard_source.url_entry.changed.connect (wizard_source_update_next);
 
-        wizard_source.url_entry.activate.connect(() => {
+        wizard_source.activate.connect(() => {
             page = WizardPage.PREPARATION;
         });
 
