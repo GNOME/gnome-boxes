@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-04 15:30+0000\n"
-"PO-Revision-Date: 2013-11-05 10:46+0300\n"
+"POT-Creation-Date: 2013-11-19 17:04+0000\n"
+"PO-Revision-Date: 2013-11-20 10:00+0300\n"
 "Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
-"Language-Team: team@gnome.gr\n"
+"Language-Team: team@lists.gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Virtaal 0.7.0\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
@@ -230,7 +230,7 @@ msgstr "Δημιουργήστε ένα χρησιμοποιώντας το κο
 msgid "Unsupported disk image format."
 msgstr "Μη υποστηριζόμενη μορφή στιγμιοτύπου."
 
-#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
+#: ../src/installed-media.vala:102 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Σύστημα"
@@ -244,7 +244,7 @@ msgid "Virtualizer"
 msgstr "Virtualizer"
 
 #: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:410
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:414
 msgid "URI"
 msgstr "URI"
 
@@ -318,16 +318,16 @@ msgstr "Επιλογή"
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:303
+#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:329
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
 #: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
+#: ../src/wizard-source.vala:332 ../src/wizard.vala:686
 msgid "_Cancel"
 msgstr "Ακύ_ρωση"
 
-#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:333
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
@@ -344,7 +344,7 @@ msgstr "Η εισαγωγή του '%s' ως CD/DVD στο '%s' απέτυχε"
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Η αφαίρεση του CD/DVD από το '%s' απέτυχε"
 
-#: ../src/libvirt-machine-properties.vala:403 ../src/wizard.vala:446
+#: ../src/libvirt-machine-properties.vala:403 ../src/wizard.vala:450
 msgid "Memory"
 msgstr "Μνήμη"
 
@@ -386,6 +386,41 @@ msgstr "Επαναφορά %s από το δίσκο"
 #, c-format
 msgid "Starting %s"
 msgstr "Εκκίνηση του %s"
+
+#: ../src/libvirt-system-importer.vala:18
+#, c-format
+msgid "Import '%s' from system broker"
+msgstr "Εισαγωγή του '%s' από μεσολαβητή συστήματος"
+
+#. Translators: %u here is number of boxes availble for import
+#: ../src/libvirt-system-importer.vala:21
+#, c-format
+msgid "Import %u box from system broker"
+msgid_plural "Import %u boxes from system broker"
+msgstr[0] "Εισαγωγή %u πλαισίου από μεσολαβητή συστήματος"
+msgstr[1] "Εισαγωγή %u πλαισίων από μεσολαβητή συστήματος"
+
+#: ../src/libvirt-system-importer.vala:32
+#, c-format
+msgid "Will import '%s' from system broker"
+msgstr "Θα εισάγει το '%s' από μεσολαβητή συστήματος"
+
+#. Translators: %u here is number of boxes availble for import
+#: ../src/libvirt-system-importer.vala:35
+#, c-format
+msgid "Will import %u box from system broker"
+msgid_plural "Will import %u boxes from system broker"
+msgstr[0] "Θα εισάγει %u πλαίσιο από μεσολαβητή συστήματος"
+msgstr[1] "Θα εισάγει %u πλαίσια από μεσολαβητή συστήματος"
+
+#: ../src/libvirt-system-importer.vala:57
+msgid "No boxes to import"
+msgstr "Χωρίς πλαίσια για εισαγωγή"
+
+#: ../src/libvirt-system-importer.vala:131
+#, c-format
+msgid "Failed to find suitable disk to import for box '%s'"
+msgstr "Αποτυχία εύρεσης κατάλληλου δίσκου για να εισάγει το πλαίσιο '%s'"
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/machine.vala:136
@@ -445,7 +480,7 @@ msgstr "Αναφορά σφαλμάτων μηνύματος στο <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s αρχική σελίδα: <%s>.\n"
 
-#: ../src/media-manager.vala:176
+#: ../src/media-manager.vala:178
 #, c-format
 msgid "No such file %s"
 msgstr "Δεν υπάρχει αρχείο %s"
@@ -562,7 +597,7 @@ msgstr "Ανακατεύθυνση των νέων συσκευών USB"
 msgid "USB devices"
 msgstr "Συσκευές USB"
 
-#: ../src/spice-display.vala:381 ../src/wizard.vala:248 ../src/wizard.vala:257
+#: ../src/spice-display.vala:381 ../src/wizard.vala:250 ../src/wizard.vala:259
 msgid "Invalid URI"
 msgstr "Μη έγκυρο URI"
 
@@ -709,7 +744,7 @@ msgstr "όχι"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:441
+#: ../src/vm-configurator.vala:453
 msgid "Incapable host system"
 msgstr "Ανίκανο κεντρικό σύστημα"
 
@@ -720,29 +755,29 @@ msgstr ""
 "Προέκυψε ένα σφάλμα κατά τη προετοιμασία της εγκατάστασης. Απενεργοποιήθηκε "
 "η γρήγορη εγκατάσταση."
 
-#: ../src/vm-creator.vala:178
+#: ../src/vm-creator.vala:175
 msgid "Installing..."
 msgstr "Εγκατάσταση..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:182 ../src/wizard-source.vala:244
+#: ../src/vm-creator.vala:179 ../src/wizard-source.vala:248
 msgid "Live"
 msgstr "Ζωντανό"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:280
+#: ../src/vm-creator.vala:301
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% εγκαταστάθηκε"
 msgstr[1] "%d%% εγκαταστάθηκαν"
 
-#: ../src/vm-importer.vala:34
+#: ../src/vm-importer.vala:36
 msgid "Importing..."
 msgstr "Γίνεται εισαγωγή..."
 
-#: ../src/vm-importer.vala:51
+#: ../src/vm-importer.vala:53
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Αποτυχημένη η εισαγωγή Πλαισίου από το αρχείο '%s'."
@@ -751,15 +786,15 @@ msgstr "Αποτυχημένη η εισαγωγή Πλαισίου από το 
 msgid "Read-only"
 msgstr "Μόνο ανάγνωση"
 
-#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
+#: ../src/wizard-source.vala:122 ../src/wizard-source.vala:149
 msgid "Enter URL"
 msgstr "Εισάγετε URL"
 
-#: ../src/wizard-source.vala:126
+#: ../src/wizard-source.vala:129
 msgid "Select a file"
 msgstr "Επιλέξτε ένα αρχείο"
 
-#: ../src/wizard-source.vala:163
+#: ../src/wizard-source.vala:166
 msgid ""
 "<b>Desktop Access</b>\n"
 "\n"
@@ -770,16 +805,16 @@ msgstr ""
 "Θα προστεθούν πλαίσια για όλα τα συστήματα που διατίθενται από αυτόν το "
 "λογαριασμό."
 
-#: ../src/wizard-source.vala:253
+#: ../src/wizard-source.vala:257
 msgid "32-bit x86 system"
 msgstr "32-bit x86 σύστημα"
 
-#: ../src/wizard-source.vala:254
+#: ../src/wizard-source.vala:258
 msgid "64-bit x86 system"
 msgstr "64-bit x86 σύστημα"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:263
+#: ../src/wizard-source.vala:267
 #, c-format
 msgid " from %s"
 msgstr " από %s"
@@ -807,68 +842,68 @@ msgstr "Θα προστεθεί μόνο ένα πλαίσιο."
 msgid "Desktop Access"
 msgstr "Πρόσβαση στην επιφάνεια εργασίας"
 
-#: ../src/wizard.vala:271
+#: ../src/wizard.vala:273
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Μη υποστηριζόμενο πρωτόκολλο '%s'"
 
-#: ../src/wizard.vala:277 ../src/wizard.vala:319
+#: ../src/wizard.vala:279 ../src/wizard.vala:321
 msgid "Unknown installer media"
 msgstr "Άγνωστα μέσα εγκατάστασης"
 
-#: ../src/wizard.vala:278 ../src/wizard.vala:320
+#: ../src/wizard.vala:280 ../src/wizard.vala:322
 msgid "Analyzing..."
 msgstr "Ανάλυση..."
 
-#: ../src/wizard.vala:290
+#: ../src/wizard.vala:292
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Αποτυχία ανάλυσης των μέσων εγκατάστασης. Κατεστραμμένα ή ατελή μέσα;"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:386
+#: ../src/wizard.vala:390
 msgid "Box setup failed"
 msgstr "Απέτυχε η ρύθμιση του πλαισίου"
 
-#: ../src/wizard.vala:400
+#: ../src/wizard.vala:404
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Το Boxes Θα δημιουργήσει ένα νέο πλαίσιο με τις ακόλουθες ιδιότητες:"
 
-#: ../src/wizard.vala:405
+#: ../src/wizard.vala:409
 msgid "Type"
 msgstr "Τύπος"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:412
 msgid "Host"
 msgstr "Σύστημα"
 
-#: ../src/wizard.vala:419 ../src/wizard.vala:430
+#: ../src/wizard.vala:423 ../src/wizard.vala:434
 msgid "Port"
 msgstr "Πόρτα"
 
-#: ../src/wizard.vala:421
+#: ../src/wizard.vala:425
 msgid "TLS Port"
 msgstr "Πόρτα TLS"
 
-#: ../src/wizard.vala:435
+#: ../src/wizard.vala:439
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Θα προστεθούν πλαίσια για όλα τα συστήματα που διατίθενται από αυτόν το "
 "λογαριασμό:"
 
-#: ../src/wizard.vala:455
+#: ../src/wizard.vala:459
 msgid "Disk"
 msgstr "Δίσκος"
 
-#: ../src/wizard.vala:455
+#: ../src/wizard.vala:459
 #, c-format
 msgid "%s maximum"
 msgstr "%s μέγιστο"
 
-#: ../src/wizard.vala:545
+#: ../src/wizard.vala:557
 msgid "Introduction"
 msgstr "Εισαγωγή"
 
-#: ../src/wizard.vala:549
+#: ../src/wizard.vala:561
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -883,17 +918,17 @@ msgstr ""
 "b> ή να δημιουργήσετε μια <b><i>εικονική μηχανή</i></b> όπου θα τρέχει "
 "τοπικά."
 
-#: ../src/wizard.vala:561
+#: ../src/wizard.vala:573
 msgid "Source Selection"
 msgstr "Επιλογή πηγής"
 
-#: ../src/wizard.vala:562
+#: ../src/wizard.vala:574
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Τοποθετήστε το μέσο εγκατάστασης του λειτουργικού συστήματος ή επιλέξτε μια "
 "πηγή από κάτω"
 
-#: ../src/wizard.vala:570
+#: ../src/wizard.vala:582
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -903,23 +938,23 @@ msgstr ""
 "την ταυτοποίηση του λογισμικού που έχει ήδη ληφθεί και είναι ιδιοκτησία των "
 "αντίστοιχων ιδιοκτητών τους."
 
-#: ../src/wizard.vala:581
+#: ../src/wizard.vala:593
 msgid "Preparation"
 msgstr "Προετοιμασία"
 
-#: ../src/wizard.vala:582
+#: ../src/wizard.vala:594
 msgid "Preparing to create new box"
 msgstr "Προετοιμασία για τη δημιουργία νέου πλαισίου"
 
-#: ../src/wizard.vala:617
+#: ../src/wizard.vala:629
 msgid "Setup"
 msgstr "Ρύθμιση"
 
-#: ../src/wizard.vala:624
+#: ../src/wizard.vala:636
 msgid "Review"
 msgstr "Επισκόπηση"
 
-#: ../src/wizard.vala:632
+#: ../src/wizard.vala:644
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -928,23 +963,23 @@ msgstr ""
 "έχετε πρόσφατο σύστημα (μετά το 2008), ελέξτε τις ρυθμίσεις στο BIOS ώστε να "
 "τις ενεργοποιήσετε."
 
-#: ../src/wizard.vala:671
+#: ../src/wizard.vala:683
 msgid "Create a Box"
 msgstr "Δημιουργία πλαισίου"
 
-#: ../src/wizard.vala:686
+#: ../src/wizard.vala:698
 msgid "_Back"
 msgstr "Πίσ_ω"
 
-#: ../src/wizard.vala:695
+#: ../src/wizard.vala:707
 msgid "C_ontinue"
 msgstr "Σ_υνέχεια"
 
-#: ../src/wizard.vala:705
+#: ../src/wizard.vala:717
 msgid "C_reate"
 msgstr "Δ_ημιουργία"
 
-#: ../src/wizard.vala:793
+#: ../src/wizard.vala:805
 msgid "C_ustomize..."
 msgstr "Π_ροσαρμογή..."
 
