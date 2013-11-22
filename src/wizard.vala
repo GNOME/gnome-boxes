@@ -211,10 +211,11 @@ private class Boxes.Wizard: Boxes.UI {
             vm_creator.install_media.clean_up_preparation_cache ();
             vm_creator = null;
             wizard_source.uri = "";
+            wizard_source.libvirt_sys_import = false;
         } else if (source != null) {
             source.save ();
             App.app.add_collection_source.begin (source);
-        } else if (wizard_source.libvirt_sys_importer != null) {
+        } else if (wizard_source.libvirt_sys_import) {
             wizard_source.libvirt_sys_importer.import.begin ();
         } else {
             return_val_if_reached (false); // Shouldn't arrive here with no source
@@ -322,7 +323,7 @@ private class Boxes.Wizard: Boxes.UI {
             prep_status_label.label = _("Analyzing...");
             prepare_media.begin (wizard_source.install_media);
             return true;
-        } else if (this.wizard_source.libvirt_sys_importer != null) {
+        } else if (this.wizard_source.libvirt_sys_import) {
             return true;
         } else {
             try {
@@ -339,7 +340,7 @@ private class Boxes.Wizard: Boxes.UI {
 
     private bool setup () {
         // there is no setup yet for direct source nor libvirt system imports
-        if (source != null || this.wizard_source.libvirt_sys_importer != null)
+        if (source != null || this.wizard_source.libvirt_sys_import)
             return true;
 
         return_if_fail (vm_creator != null);
@@ -465,7 +466,7 @@ private class Boxes.Wizard: Boxes.UI {
             }
 
             nokvm_box.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
-        } else if (this.wizard_source.libvirt_sys_importer != null) {
+        } else if (this.wizard_source.libvirt_sys_import) {
             review_label.set_text (this.wizard_source.libvirt_sys_importer.wizard_review_label);
         }
 
@@ -521,7 +522,7 @@ private class Boxes.Wizard: Boxes.UI {
                 && vm_creator.install_media.live
                 && skip_review_for_live)
                     skip_to += 1;
-        } else if (wizard_source.libvirt_sys_importer != null) {
+        } else if (wizard_source.libvirt_sys_import) {
             if (page == Boxes.WizardPage.PREPARATION)
                 skip_to = forwards ? page + 2 : page - 1;
             else if (page == Boxes.WizardPage.SETUP)
@@ -744,6 +745,7 @@ private class Boxes.Wizard: Boxes.UI {
                 review.begin ();
             else {
                 wizard_source.uri = "";
+                wizard_source.libvirt_sys_import = false;
                 page = WizardPage.INTRODUCTION;
             }
         }

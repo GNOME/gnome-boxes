@@ -79,6 +79,7 @@ private class Boxes.WizardSource: GLib.Object {
     }
     public InstallerMedia? install_media { get; private set; }
     public LibvirtSystemImporter libvirt_sys_importer { get; private set; }
+    public bool libvirt_sys_import;
 
     private Gtk.Box main_vbox;
     private Gtk.Box media_vbox;
@@ -281,6 +282,7 @@ private class Boxes.WizardSource: GLib.Object {
         }
 
         var hbox = add_entry (main_vbox, () => {
+            libvirt_sys_import = true;
             activate ();
 
             return true;
