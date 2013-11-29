@@ -224,7 +224,15 @@ private class Boxes.VMCreator {
 
     protected virtual void create_domain_base_name_and_title (out string base_name, out string base_title) {
         base_title = install_media.label;
-        base_name = (install_media.os != null) ? install_media.os.short_id : "boxes-unknown";
+        if (install_media.os != null) {
+            base_name = install_media.os.short_id;
+
+            var variants = install_media.os_media.get_os_variants ();
+            if (variants.get_length () > 0)
+                // FIXME: Assuming first variant only from multivariant medias.
+                base_name += "-" + variants.get_nth (0).id;
+        } else
+            base_name = "boxes-unknown";
     }
 
     private void increment_num_reboots (LibvirtMachine machine) {
