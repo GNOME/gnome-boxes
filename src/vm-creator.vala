@@ -227,10 +227,12 @@ private class Boxes.VMCreator {
         if (install_media.os != null) {
             base_name = install_media.os.short_id;
 
-            var variants = install_media.os_media.get_os_variants ();
-            if (variants.get_length () > 0)
-                // FIXME: Assuming first variant only from multivariant medias.
-                base_name += "-" + variants.get_nth (0).id;
+            if (install_media.os_media != null) {
+                var variants = install_media.os_media.get_os_variants ();
+                if (variants.get_length () > 0)
+                    // FIXME: Assuming first variant only from multivariant medias.
+                    base_name += "-" + variants.get_nth (0).id;
+            }
         } else
             base_name = "boxes-unknown";
     }
