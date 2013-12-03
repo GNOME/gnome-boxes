@@ -372,18 +372,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         if (ram_property == null && storage_property == null)
             return;
 
-        var os_id = VMConfigurator.get_os_id (machine.domain_config);
-        if (os_id == null)
+        var os = yield get_os_for_machine (machine);
+        if (os == null)
             return;
-
-        var os_db = MediaManager.get_instance ().os_db;
-        Osinfo.Os os;
-        try {
-            os = yield os_db.get_os_by_id (os_id);
-        } catch (OSDatabaseError error) {
-            warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
-            return;
-        }
 
         var architecture = machine.domain_config.get_os ().get_arch ();
         var resources = OSDatabase.get_recommended_resources_for_os (os, architecture);
@@ -392,6 +383,20 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 ram_property.recommended = resources.ram;
             if (storage_property != null)
                 storage_property.recommended = resources.storage;
+        }
+    }
+
+    private async Osinfo.Os? get_os_for_machine (LibvirtMachine machine) {
+        var os_id = VMConfigurator.get_os_id (machine.domain_config);
+        if (os_id == null)
+            return null;
+
+        var os_db = MediaManager.get_instance ().os_db;
+        try {
+            return yield os_db.get_os_by_id (os_id);
+        } catch (OSDatabaseError error) {
+            warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
+            return null;
         }
     }
 
