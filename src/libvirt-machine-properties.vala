@@ -386,7 +386,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
 
         var architecture = machine.domain_config.get_os ().get_arch ();
-        var resources = os_db.get_recommended_resources_for_os (os, architecture);
+        var resources = OSDatabase.get_recommended_resources_for_os (os, architecture);
         if (resources != null) {
             if (ram_property != null)
                 ram_property.recommended = resources.ram;

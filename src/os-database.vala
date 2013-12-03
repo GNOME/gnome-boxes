@@ -168,7 +168,7 @@ private class Boxes.OSDatabase : GLib.Object {
         return get_resources_from_os_resources (minimum, recommended);
     }
 
-    public Resources? get_recommended_resources_for_os (Os os, string architecture) {
+    public static Resources? get_recommended_resources_for_os (Os os, string architecture) {
         string[] prefs = { architecture, ARCHITECTURE_ALL };
 
         var list = os.get_recommended_resources ();
@@ -200,7 +200,7 @@ private class Boxes.OSDatabase : GLib.Object {
         return resources;
     }
 
-    private Resources? get_prefered_resources (ResourcesList list, string[] prefs) {
+    private static Resources? get_prefered_resources (ResourcesList list, string[] prefs) {
         if (prefs.length <= 0)
             return null;
 
@@ -213,7 +213,7 @@ private class Boxes.OSDatabase : GLib.Object {
             return filtered.get_nth (0) as Resources;
     }
 
-    private ResourcesList filter_resources_list_by_arch (ResourcesList list, string arch) {
+    private static ResourcesList filter_resources_list_by_arch (ResourcesList list, string arch) {
         var new_list = new ResourcesList ();
         foreach (var entity in list.get_elements ()) {
             var resources = entity as Resources;
