@@ -181,7 +181,7 @@ private class Boxes.App: Boxes.UI {
         menu.append_section (null, display_section);
 
         menu.append (_("Help"), "app.help");
-        menu.append (_("About Boxes"), "app.about");
+        menu.append (_("About"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
         application.set_app_menu (menu);
