@@ -197,8 +197,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             if (os_media.kernel_path != null && os_media.initrd_path != null) {
                 var extractor = new ISOExtractor (device_file);
 
-                yield extractor.mount_media (cancellable);
-
                 yield extract_boot_files (extractor, cancellable);
             }
         } catch (GLib.Error error) {
@@ -663,14 +661,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    private async void extract_boot_files (ISOExtractor extractor, Cancellable cancellable) throws GLib.Error {
-        string src_path = extractor.get_absolute_path (os_media.kernel_path);
-        var src_file = File.new_for_path (src_path);
-        yield copy_file (src_file, kernel_file, cancellable);
-
-        src_path = extractor.get_absolute_path (os_media.initrd_path);
-        src_file = File.new_for_path (src_path);
-        yield copy_file (src_file, initrd_file, cancellable);
+    private async void extract_boot_files (ISOExtractor extractor, Cancellable? cancellable) throws GLib.Error {
+        yield extractor.extract (os_media.kernel_path, kernel_file.get_path (), cancellable);
+        yield extractor.extract (os_media.initrd_path, initrd_file.get_path (), cancellable);
     }
 
     private string? get_product_key_format () {
