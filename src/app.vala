@@ -863,7 +863,7 @@ private class Boxes.App: Boxes.UI {
             }
         };
 
-        notificationbar.display_for_action (message, "_Undo", (owned) undo, (owned) really_remove);
+        notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
     }
 
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
