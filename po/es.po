@@ -4,14 +4,13 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013.
 #
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-02 17:10+0000\n"
-"PO-Revision-Date: 2013-09-03 16:06+0200\n"
+"POT-Creation-Date: 2013-12-12 03:22+0000\n"
+"PO-Revision-Date: 2013-12-12 11:10+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -19,10 +18,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.5\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Cajas"
 
@@ -185,6 +184,10 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
+#: ../src/app.vala:866
+msgid "_Undo"
+msgstr "_Deshacer"
+
 #: ../src/app.vala:933
 #, c-format
 msgid ""
@@ -207,7 +210,7 @@ msgstr "Falló la conexión a «%s»"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/display-page.vala:300
+#: ../src/display-page.vala:301
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pulse Ctrl+Alt para deseleccionar)"
 
@@ -223,7 +226,7 @@ msgstr "Cree una usando en botón de la parte superior izquierda."
 msgid "Unsupported disk image format."
 msgstr "Formato de archivo de disco no soportado."
 
-#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Sistema"
@@ -248,7 +251,6 @@ msgstr "Registro de resolución de problemas"
 
 #: ../src/libvirt-machine-properties.vala:139
 #: ../src/libvirt-machine-properties.vala:157
-#| msgid "Save log"
 msgid "_Save"
 msgstr "_Guardar"
 
@@ -274,6 +276,8 @@ msgstr "Error al guardar: %s"
 msgid "Protocol"
 msgstr "Protocolo"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -314,8 +318,8 @@ msgstr "Quitar"
 msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
-#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:152
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -398,37 +402,37 @@ msgid "Password"
 msgstr "Contraseña"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: ../src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• La CPU puede virtualizar: %s\n"
 
-#: ../src/main.vala:55
+#: ../src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• El módulo KVM está cargado: %s\n"
 
-#: ../src/main.vala:56
+#: ../src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Invitado Libvirt KVM disponible: %s\n"
 
-#: ../src/main.vala:57
+#: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Almacenamiento de cajas disponible: %s\n"
 
-#: ../src/main.vala:61
+#: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• El contexto SELinux es el predeterminado: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Informar de errores a <%s>.\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s página de inicio: <%s>.\n"
@@ -486,36 +490,36 @@ msgstr "Dispositivos"
 msgid "Some changes may take effect only after reboot"
 msgstr "Algunos cambios sólo tendrán efecto después de reiniciar"
 
-#: ../src/properties.vala:278
+#: ../src/properties.vala:280
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:285
+#: ../src/properties.vala:287
 msgid "I/O:"
 msgstr "E/S:"
 
-#: ../src/properties.vala:292
+#: ../src/properties.vala:294
 msgid "Net:"
 msgstr "Red:"
 
-#: ../src/properties.vala:299
+#: ../src/properties.vala:301
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
-#: ../src/selectionbar.vala:34
+#: ../src/selectionbar.vala:36
 msgid "P_ause"
 msgstr "P_ausar"
 
-#: ../src/selectionbar.vala:46
+#: ../src/selectionbar.vala:49
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Falló al pausar «%s»"
 
-#: ../src/selectionbar.vala:55
+#: ../src/selectionbar.vala:58
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: ../src/selectionbar.vala:62
+#: ../src/selectionbar.vala:66
 msgid "_Properties"
 msgstr "_Propiedades"
 
@@ -562,44 +566,44 @@ msgstr "El puedo se debe especificar una vez"
 msgid "Missing port in Spice URI"
 msgstr "Falta el puerto en el URI de Spice"
 
-#: ../src/topbar.vala:73
+#: ../src/topbar.vala:74
 msgid "_New"
 msgstr "_Nueva"
 
-#: ../src/topbar.vala:85
+#: ../src/topbar.vala:88
 msgid "Back"
 msgstr "Atrás"
 
-#: ../src/topbar.vala:105
+#: ../src/topbar.vala:109
 msgid "Search"
 msgstr "Buscar"
 
-#: ../src/topbar.vala:113
+#: ../src/topbar.vala:118
 msgid "Select Items"
 msgstr "Seleccionar elementos"
 
-#: ../src/topbar.vala:134
+#: ../src/topbar.vala:140
 msgid "Select All"
 msgstr "Seleccionar todas"
 
-#: ../src/topbar.vala:135
+#: ../src/topbar.vala:141
 msgid "Select Running"
 msgstr "Seleccionar las que están en ejecución"
 
-#: ../src/topbar.vala:136
+#: ../src/topbar.vala:142
 msgid "Select None"
 msgstr "No seleccionar ninguna"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:195
+#: ../src/topbar.vala:204
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d seleccionada"
 msgstr[1] "%d seleccionadas"
 
-#: ../src/topbar.vala:197
+#: ../src/topbar.vala:206
 msgid "(Click on items to select them)"
 msgstr "(Pulse sobre los elementos para seleccionarlos)"
 
@@ -657,8 +661,8 @@ msgid ""
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
 msgstr ""
 "No se pudo obtener la información de almacenamiento de «gnome-boxes» desde "
-"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-boxes» "
-"está funcionando."
+"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-"
+"boxes» está funcionando."
 
 #: ../src/util-app.vala:366
 #, c-format
@@ -696,7 +700,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:439
+#: ../src/vm-configurator.vala:441
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
@@ -786,6 +790,7 @@ msgstr "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
 msgid "Will add a single box."
 msgstr "Se añadirá una sola caja."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Acceso desde el escritorio"
@@ -807,6 +812,7 @@ msgstr "Analizando…"
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Falló al analizar"
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Falló la configuración de la caja"
@@ -873,7 +879,7 @@ msgstr ""
 "Inserte el medio de instalación del sistema operativo o seleccione una "
 "fuente a continuación"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:570
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -883,23 +889,23 @@ msgstr ""
 "identificación de productos de software que haya obtenido y pertenecen a sus "
 "respectivos propietarios."
 
-#: ../src/wizard.vala:585
+#: ../src/wizard.vala:581
 msgid "Preparation"
 msgstr "Preparación"
 
-#: ../src/wizard.vala:586
+#: ../src/wizard.vala:582
 msgid "Preparing to create new box"
 msgstr "Preparándose para crear la caja nueva"
 
-#: ../src/wizard.vala:623
+#: ../src/wizard.vala:617
 msgid "Setup"
 msgstr "Configuración"
 
-#: ../src/wizard.vala:630
+#: ../src/wizard.vala:624
 msgid "Review"
 msgstr "Revisar"
 
-#: ../src/wizard.vala:638
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -908,23 +914,23 @@ msgstr ""
 "equipo es moderno (posterior a 2008), compruebe la configuración de su BIOS "
 "para activarlas."
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:671
 msgid "Create a Box"
 msgstr "Crear una caja"
 
-#: ../src/wizard.vala:683
+#: ../src/wizard.vala:686
 msgid "_Back"
 msgstr "A_trás"
 
-#: ../src/wizard.vala:691
+#: ../src/wizard.vala:695
 msgid "C_ontinue"
 msgstr "C_ontinuar"
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:705
 msgid "C_reate"
 msgstr "C_rear"
 
-#: ../src/wizard.vala:787
+#: ../src/wizard.vala:793
 msgid "C_ustomize..."
 msgstr "_Personalizar…"
 
