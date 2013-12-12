@@ -6,6 +6,8 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     private bool overlay;
     private bool handle_drag; // Handle drag events to (un)fulscreen the main window
 
+    Gtk.Box end_button_box;
+
     public DisplayToolbar (bool overlay, bool handle_drag) {
         add_events (Gdk.EventMask.POINTER_MOTION_MASK |
                     Gdk.EventMask.BUTTON_PRESS_MASK |
@@ -16,12 +18,15 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         if (overlay) {
             get_style_context ().add_class ("toolbar");
             get_style_context ().add_class ("osd");
-            spacing = 0;
         } else {
             get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
             show_close_button = true;
         }
         get_style_context ().add_class ("titlebar");
+
+        end_button_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        pack_end (end_button_box);
+        end_button_box.get_style_context ().add_class ("linked");
 
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
@@ -51,7 +56,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         if (pack_start)
             this.pack_start (button);
         else
-            this.pack_end (button);
+            end_button_box.pack_end (button);
 
         if (!overlay)
             button.get_style_context ().add_class ("raised");
