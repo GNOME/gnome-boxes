@@ -431,17 +431,9 @@ private class Boxes.VMConfigurator {
 
     // Remove all existing usb controllers. This is used when upgrading from the old usb1 controllers to usb2
     public static void remove_usb_controllers (Domain domain) throws Boxes.Error {
-        remove_device_by_type (domain, typeof (DomainControllerUsb));
-    }
-
-    public static void remove_network_interface (Domain domain) throws Boxes.Error {
-        remove_device_by_type (domain, typeof (DomainInterface));
-    }
-
-    public static void remove_device_by_type (Domain domain, Type type) throws Boxes.Error {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         foreach (var device in domain.get_devices ()) {
-            if (!(device.get_type ().is_a (type))) {
+            if (!(device is DomainControllerUsb)) {
                 devices.prepend (device);
             }
         }
