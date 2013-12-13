@@ -1,6 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 using Xml;
+using Linux;
 
 namespace Boxes {
 
@@ -244,11 +245,27 @@ namespace Boxes {
         if (libvirt_bridge_net_checked)
             return libvirt_bridge_net_available;
 
-        var connection = new GVir.Connection ("qemu:///system");
-
         try {
-            connection.open_read_only ();
+            // First check if bridge interface is up
+            var sock = Posix.socket (Posix.AF_INET, Posix.SOCK_STREAM, 0);
+            if (sock < 0)
+                throw (GLib.IOError) new GLib.Error (G_IO_ERROR,
+                                                     g_io_error_from_errno (Posix.errno),
+                                                     "Failed to create a socket");
 
+            var req = Network.IfReq ();
+            var if_name = "virbr0";
+            for (var i = 0; i <= if_name.length;  i++)
+                req.ifr_name[i] = (char) if_name[i];
+
+            if (Posix.ioctl (sock, Network.SIOCGIFFLAGS, ref req) < 0 ||
+                !(Network.IfFlag.UP in req.ifr_flags)) {
+                debug ("Interface '%s' is either not available or not up.", if_name);
+
+                return false;
+            }
+
+            // Now check if unprivileged qemu is allowed to access it
             var file = File.new_for_path ("/etc/qemu/bridge.conf");
             uint8[] contents;
             file.load_contents (null, out contents, null);

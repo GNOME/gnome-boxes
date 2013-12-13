@@ -35,6 +35,7 @@ AM_VALAFLAGS =						\
 	--pkg libvirt-gobject-1.0			\
 	--pkg libxml-2.0				\
 	--pkg posix					\
+	--pkg linux					\
 	--pkg spice-client-gtk-3.0			\
 	--pkg tracker-sparql-$(TRACKER_VERSION)		\
 	$(VALA_DEBUG_FLAGS)			        \
