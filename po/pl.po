@@ -6,13 +6,12 @@
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 # Piotr Drąg <piotrdrag@gmail.com>, 2011-2013.
 # Aviary.pl <gnomepl@aviary.pl>, 2011-2013.
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 02:24+0200\n"
-"PO-Revision-Date: 2013-09-04 02:25+0200\n"
+"POT-Creation-Date: 2013-12-13 15:09+0100\n"
+"PO-Revision-Date: 2013-12-13 15:10+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -25,7 +24,7 @@ msgstr ""
 "X-Poedit-Country: Poland\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -190,6 +189,10 @@ msgstr[0] "%u maszyna została usunięta"
 msgstr[1] "%u maszyny zostały usunięte"
 msgstr[2] "%u maszyn zostało usuniętych"
 
+#: ../src/app.vala:866
+msgid "_Undo"
+msgstr "_Cofnij"
+
 #: ../src/app.vala:933
 #, c-format
 msgid ""
@@ -212,7 +215,7 @@ msgstr "Połączenie z maszyną \"%s\" się nie powiodło"
 msgid "New and Recent"
 msgstr "Nowe i ostatnie"
 
-#: ../src/display-page.vala:300
+#: ../src/display-page.vala:301
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(naciśnięcie klawiszy Ctrl+Alt zwolni przechwycenie)"
 
@@ -228,7 +231,7 @@ msgstr "Można utworzyć maszynę używając przycisku w lewym górnym rogu."
 msgid "Unsupported disk image format."
 msgstr "Nieobsługiwany format obrazu dysku."
 
-#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "System"
@@ -278,6 +281,8 @@ msgstr "Błąd podczas zapisywania: %s"
 msgid "Protocol"
 msgstr "Protokół"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -318,8 +323,8 @@ msgstr "Usuń"
 msgid "Select a device or ISO file"
 msgstr "Wybór urządzenia lub pliku ISO"
 
-#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:158
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
 msgid "_Cancel"
 msgstr "_Anuluj"
 
@@ -406,37 +411,37 @@ msgid "Password"
 msgstr "Hasło"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: ../src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• Procesor ma możliwość wirtualizacji: %s\n"
 
-#: ../src/main.vala:55
+#: ../src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• Moduł KVM jest wczytany: %s\n"
 
-#: ../src/main.vala:56
+#: ../src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Gość KVM biblioteki libvirt jest dostępny: %s\n"
 
-#: ../src/main.vala:57
+#: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Pula pamięci masowych programu jest dostępna: %s\n"
 
-#: ../src/main.vala:61
+#: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• Kontekst SELinux jest domyślny: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Prosimy zgłaszać błędy do <%s> (w języku angielskim).\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Witryna domowa programu %s: <%s>.\n"
@@ -494,36 +499,36 @@ msgstr "Urządzenia"
 msgid "Some changes may take effect only after reboot"
 msgstr "Niektóre zmiany zostaną uwzględnione dopiero po ponownym uruchomieniu"
 
-#: ../src/properties.vala:279
+#: ../src/properties.vala:280
 msgid "CPU:"
 msgstr "Procesor:"
 
-#: ../src/properties.vala:286
+#: ../src/properties.vala:287
 msgid "I/O:"
 msgstr "Wejście/wyjście:"
 
-#: ../src/properties.vala:293
+#: ../src/properties.vala:294
 msgid "Net:"
 msgstr "Sieć:"
 
-#: ../src/properties.vala:300
+#: ../src/properties.vala:301
 msgid "Force Shutdown"
 msgstr "Wymuś wyłączenie"
 
-#: ../src/selectionbar.vala:35
+#: ../src/selectionbar.vala:36
 msgid "P_ause"
 msgstr "W_strzymaj"
 
-#: ../src/selectionbar.vala:48
+#: ../src/selectionbar.vala:49
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Wstrzymanie maszyny \"%s\" się nie powiodło"
 
-#: ../src/selectionbar.vala:57
+#: ../src/selectionbar.vala:58
 msgid "_Delete"
 msgstr "_Usuń"
 
-#: ../src/selectionbar.vala:65
+#: ../src/selectionbar.vala:66
 msgid "_Properties"
 msgstr "_Właściwości"
 
@@ -571,37 +576,37 @@ msgstr "Port musi zostać podany"
 msgid "Missing port in Spice URI"
 msgstr "Brak portu w adresie URI protokołu Spice"
 
-#: ../src/topbar.vala:73
+#: ../src/topbar.vala:74
 msgid "_New"
 msgstr "_Nowa"
 
-#: ../src/topbar.vala:87
+#: ../src/topbar.vala:88
 msgid "Back"
 msgstr "Wstecz"
 
-#: ../src/topbar.vala:108
+#: ../src/topbar.vala:109
 msgid "Search"
 msgstr "Wyszukaj"
 
-#: ../src/topbar.vala:117
+#: ../src/topbar.vala:118
 msgid "Select Items"
 msgstr "Zaznacz elementy"
 
-#: ../src/topbar.vala:138
+#: ../src/topbar.vala:140
 msgid "Select All"
 msgstr "Zaznacz wszystkie"
 
-#: ../src/topbar.vala:139
+#: ../src/topbar.vala:141
 msgid "Select Running"
 msgstr "Zaznacz uruchomione"
 
-#: ../src/topbar.vala:140
+#: ../src/topbar.vala:142
 msgid "Select None"
 msgstr "Odznacz wszystkie"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:202
+#: ../src/topbar.vala:204
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -609,7 +614,7 @@ msgstr[0] "Zaznaczono: %d"
 msgstr[1] "Zaznaczono: %d"
 msgstr[2] "Zaznaczono: %d"
 
-#: ../src/topbar.vala:204
+#: ../src/topbar.vala:206
 msgid "(Click on items to select them)"
 msgstr "(Kliknięcie elementu zaznacza go)"
 
@@ -706,7 +711,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:439
+#: ../src/vm-configurator.vala:441
 msgid "Incapable host system"
 msgstr "Gospodarz nie umożliwia wirtualizacji"
 
@@ -798,6 +803,7 @@ msgstr ""
 msgid "Will add a single box."
 msgstr "Zostanie dodana jedna maszyna."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Dostęp do pulpitu"
@@ -820,6 +826,7 @@ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Analiza nośnika instalatora się nie powiodła. Uszkodzony lub niepełny nośnik?"
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Utworzenie maszyny się nie powiodło"
@@ -886,7 +893,7 @@ msgstr ""
 "Proszę włożyć nośnik instalacji systemu operacyjnego lub wybrać źródło "
 "poniżej"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:570
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -896,23 +903,23 @@ msgstr ""
 "posiadanych produktów oprogramowania i są własnością ich odpowiednich "
 "właścicieli."
 
-#: ../src/wizard.vala:585
+#: ../src/wizard.vala:581
 msgid "Preparation"
 msgstr "Przygotowanie"
 
-#: ../src/wizard.vala:586
+#: ../src/wizard.vala:582
 msgid "Preparing to create new box"
 msgstr "Przygotowywanie do utworzenia nowej maszyny"
 
-#: ../src/wizard.vala:623
+#: ../src/wizard.vala:617
 msgid "Setup"
 msgstr "Ustawienia"
 
-#: ../src/wizard.vala:630
+#: ../src/wizard.vala:624
 msgid "Review"
 msgstr "Przegląd"
 
-#: ../src/wizard.vala:638
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -921,22 +928,22 @@ msgstr ""
 "jest dostatecznie nowy (kupiony nie dawniej niż w 2008 roku), to proszę "
 "sprawdzić ustawienia BIOS komputera, aby je włączyć."
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:671
 msgid "Create a Box"
 msgstr "Tworzenie maszyny"
 
-#: ../src/wizard.vala:684
+#: ../src/wizard.vala:686
 msgid "_Back"
 msgstr "_Wstecz"
 
-#: ../src/wizard.vala:693
+#: ../src/wizard.vala:695
 msgid "C_ontinue"
 msgstr "K_ontynuuj"
 
-#: ../src/wizard.vala:703
+#: ../src/wizard.vala:705
 msgid "C_reate"
 msgstr "_Utwórz"
 
-#: ../src/wizard.vala:791
+#: ../src/wizard.vala:793
 msgid "C_ustomize..."
 msgstr "_Dostosuj..."
