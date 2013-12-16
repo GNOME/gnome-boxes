@@ -1,3 +1,50 @@
+3.11.3 - Dec 16, 2013
+=====================
+
+Changes since 3.11.2:
+
+- Setup NAT networking for new VMs so that all VMs are on the same private (to
+  host) network and therefore VMs and host can directly communicate with each
+  other.
+- Fix the regression of system libvirt import getting wrongly activated.
+- Fix the issue of fullscreen/restore button being chopped on the left side.
+- Improved detection of gnome-continuous images.
+- Make use of new OS variant API of libosinfo for improved naming of VMs 
+  and presentation of OS medias.
+- Fix a potential crash.
+- Instead of using unmaintained fuseiso for extracting files from ISOs, we now
+  use iso-read command.
+- Simplify "About Boxes" to "About" in global menu.
+- Add a missing translation marker.
+- Added/updated/fixed translations:
+  - Brazilian Portuguese
+  - Galician
+  - Greek
+  - Polish
+  - Spanish
+  - Tamil
+
+Dependencies changed:
+
+- libosinfo >= 0.2.9
+- Drop fuseiso (runtime-only) dependency
+- libcdio (runtime-only)
+- Use tracker-sparql 0.18.
+
+All contributors to this release:
+
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Dimitris Spingos <dmtrs32@gmail.com>
+Dominique Leuenberger <dimstar@opensuse.org>
+Fran Diéguez <fran.dieguez@mabishu.com>
+Fábio Nogueira <deb-user-ba@ubuntu.com>
+Michael Catanzaro <mcatanzaro@gnome.org>
+Piotr Drąg <piotrdrag@gmail.com>
+Rafael Ferreira <rafael.f.f1@gmail.com>
+Shantha kumar <shkumar@redhat.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.11.2 - Nov 19, 2013
 =====================
 
