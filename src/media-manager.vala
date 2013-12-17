@@ -124,6 +124,18 @@ private class Boxes.MediaManager : Object {
 
                 try {
                     var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id);
+                    unowned GLib.List<InstallerMedia> dup_node = list.find_custom (media, compare_media_by_label);
+                    if (dup_node != null) {
+                        // In case of duplicate media, prefer:
+                        // * released OS over unreleased one
+                        // * latest release
+                        // * soft over hard media
+                        var dup_media = dup_node.data;
+                        if (compare_media_by_release_date (media, dup_media) <= 0)
+                            list.remove (dup_media);
+                        else
+                            continue;
+                    }
 
                     list.insert_sorted (media, compare_media_by_label);
                 } catch (GLib.Error error) {
@@ -168,6 +180,30 @@ private class Boxes.MediaManager : Object {
 
     private static int compare_media_by_label (InstallerMedia media_a, InstallerMedia media_b) {
         return strcmp (media_a.label, media_b.label);
+    }
+
+    private static int compare_media_by_release_date (InstallerMedia media_a, InstallerMedia media_b) {
+        if (media_a.os == null) {
+            if (media_b.os == null)
+                return 0;
+            else
+                return 1;
+        } else if (media_b.os == null)
+            return -1;
+        else {
+            var release_a = media_a.os.get_release_date ();
+            var release_b = media_b.os.get_release_date ();
+
+            if (release_a == null) {
+                if (release_b == null)
+                    return 0;
+                else
+                    return 1;
+            } else if (release_b == null)
+                return -1;
+            else
+                return release_a.compare (release_b);
+        }
     }
 
     private async InstallerMedia create_installer_media_from_iso_info (string  path,
