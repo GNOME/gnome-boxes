@@ -125,7 +125,7 @@ private class Boxes.MediaManager : Object {
                 try {
                     var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id);
 
-                    list.insert_sorted (media, compare_media);
+                    list.insert_sorted (media, compare_media_by_label);
                 } catch (GLib.Error error) {
                     warning ("Failed to use ISO '%s': %s", path, error.message);
                 }
@@ -166,7 +166,7 @@ private class Boxes.MediaManager : Object {
         }
     }
 
-    private static int compare_media (InstallerMedia media_a, InstallerMedia media_b) {
+    private static int compare_media_by_label (InstallerMedia media_a, InstallerMedia media_b) {
         return strcmp (media_a.label, media_b.label);
     }
 
