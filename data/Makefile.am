@@ -18,9 +18,6 @@ appdata_in_file = gnome-boxes.appdata.xml.in
 appdata_DATA = $(appdata_in_file:.xml.in=.xml)
 @INTLTOOL_XML_RULE@
 
-styledir         = $(datadir)/gnome-boxes/style
-style_DATA       = gtk-style.css
-
 sourcedir         = $(datadir)/gnome-boxes/sources
 source_DATA       = QEMU_Session
 
@@ -44,13 +41,17 @@ logosdb_DATA= gnome-boxes-logos-db.xml
 disk.img:
 	rm -f disk.img && qemu-img create -f raw disk.img 1440k && mkfs.msdos -s 1 disk.img
 
+gresource_file = gnome-boxes.gresource.xml
+resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(gresource_file))
+
 EXTRA_DIST =					\
 	gnome-boxes.desktop.in			\
 	gnome-boxes-search-provider.ini.in      \
 	org.gnome.boxes.gschema.xml.in		\
+	$(gresource_file)			\
+	$(resource_files)			\
 	$(desktop_in_files)			\
 	$(source_DATA)				\
-	$(style_DATA)				\
 	$(unattended_DATA)			\
 	$(searchprovider_DATA)			\
 	$(logosdb_DATA)				\

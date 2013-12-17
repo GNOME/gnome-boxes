@@ -12,6 +12,8 @@ AM_CPPFLAGS =						\
 	-I$(top_srcdir)/libgd                           \
 	$(NULL)
 
+gresource_file = $(top_srcdir)/data/gnome-boxes.gresource.xml
+
 AM_VALAFLAGS =						\
 	--enable-experimental				\
 	--target-glib=@GLIB_MIN_VERSION@		\
@@ -38,6 +40,7 @@ AM_VALAFLAGS =						\
 	--pkg linux					\
 	--pkg spice-client-gtk-3.0			\
 	--pkg tracker-sparql-$(TRACKER_VERSION)		\
+	--gresources $(gresource_file)			\
 	$(VALA_DEBUG_FLAGS)			        \
 	$(NULL)
 
@@ -73,12 +76,20 @@ libcommon_vala.stamp: $(libcommon_a_VALASOURCES)
 common.vapi libcommon.h: libcommon_vala.stamp
 $(libcommon_a_SOURCES): libcommon_vala.stamp
 
+resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies --sourcedir=$(top_srcdir)/data $(gresource_file))
+resources.c: $(gresource_file) $(resource_files)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(top_srcdir)/data --generate-source $<
+
 MAINTAINERCLEANFILES += $(libcommon_a_SOURCES) $(libcommon_a_DEPENDENCIES)
-EXTRA_DIST += $(libcommon_a_DEPENDENCIES) $(libcommon_a_VALASOURCES)
+BUILT_SOURCES += resources.c
+EXTRA_DIST += $(libcommon_a_DEPENDENCIES) \
+	      $(libcommon_a_VALASOURCES)  \
+	      $(gresource_file)
 
 bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
+	$(BUILT_SOURCES)			\
 	clutter-widget.vala			\
 	app.vala				\
 	collection-view.vala			\

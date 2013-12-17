@@ -13,10 +13,6 @@ namespace Boxes {
         return Path.build_filename (DATADIR, Config.PACKAGE_TARNAME, file_name);
     }
 
-    public string get_style (string? file_name = null) {
-        return Path.build_filename (get_pkgdata (), "style", file_name);
-    }
-
     public string get_pixmap (string? file_name = null) {
         return Path.build_filename (get_pkgdata (), "pixmaps", file_name);
     }

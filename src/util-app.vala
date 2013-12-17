@@ -5,6 +5,21 @@ using Linux;
 
 namespace Boxes {
 
+    public Gtk.CssProvider load_css (string css) {
+        var provider = new CssProvider ();
+        try {
+            var file = File.new_for_uri("resource:///org/gnome/Boxes/" + css);
+            provider.load_from_file (file);
+        } catch (GLib.Error e) {
+            warning ("loading css: %s", e.message);
+        }
+        return provider;
+    }
+
+    public Gdk.Pixbuf load_asset (string asset) throws GLib.Error {
+        return new Gdk.Pixbuf.from_resource ("/org/gnome/Boxes/icons/" + asset);
+    }
+
     public Clutter.Color gdk_rgba_to_clutter_color (Gdk.RGBA gdk_rgba) {
         Clutter.Color color = {
             (uint8) (gdk_rgba.red * 255).clamp (0, 255),

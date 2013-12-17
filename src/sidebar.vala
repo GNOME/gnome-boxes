@@ -71,9 +71,10 @@ private class Boxes.Sidebar: Boxes.UI {
         var background = new GtkClutter.Texture ();
         background.name = "sidebar-background";
         try {
-            var pixbuf = new Gdk.Pixbuf.from_file (get_style ("assets/boxes-gray.png"));
+            var pixbuf = load_asset ("boxes-gray.png");
             background.set_from_pixbuf (pixbuf);
         } catch (GLib.Error e) {
+            warning ("Failed to load asset 'boxes-gray.png': %s", e.message);
         }
         background.set_repeat (true, true);
         background.set_margin_right (shadow_width);

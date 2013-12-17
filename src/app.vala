@@ -462,16 +462,10 @@ private class Boxes.App: Boxes.UI {
         Gtk.Window.set_default_icon_name ("gnome-boxes");
         Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 
-        var provider = new Gtk.CssProvider ();
-        try {
-            var sheet = Boxes.get_style ("gtk-style.css");
-            provider.load_from_path (sheet);
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
-                                                      provider,
-                                                      600);
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        var provider = Boxes.load_css ("gtk-style.css");
+        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
+                                                  provider,
+                                                  600);
 
         window = new Gtk.ApplicationWindow (application);
         window.show_menubar = false;
@@ -553,9 +547,10 @@ private class Boxes.App: Boxes.UI {
         var background = new GtkClutter.Texture ();
         background.name = "background";
         try {
-            var pixbuf = new Gdk.Pixbuf.from_file (get_style ("assets/boxes-dark.png"));
+            var pixbuf = load_asset ("boxes-dark.png");
             background.set_from_pixbuf (pixbuf);
         } catch (GLib.Error e) {
+            warning ("Failed to load asset 'boxes-dark.png': %s", e.message);
         }
         background.set_repeat (true, true);
         background.x_align = Clutter.ActorAlign.FILL;

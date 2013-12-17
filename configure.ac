@@ -42,6 +42,9 @@ GOBJECT_INTROSPECTION_REQUIRE([0.9.6])
 # Mallard help
 YELP_HELP_INIT
 
+# GResource
+AC_PATH_PROG(GLIB_COMPILE_RESOURCES, glib-compile-resources)
+
 # GSettings support
 GLIB_GSETTINGS
 

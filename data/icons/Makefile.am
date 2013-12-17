@@ -17,20 +17,12 @@ noinst_DATA =					\
 	gnome-boxes.svg				\
 	$(NULL)
 
-assetsdir = $(datadir)/gnome-boxes/style/assets
-assets_DATA =					\
-	boxes-arrow.svg				\
-	boxes-dark.png				\
-	boxes-gray.png				\
-	$(NULL)
-
 imagesdir = $(datadir)/gnome-boxes/pixmaps
 images_DATA =					\
 	boxes-create.png			\
 	$(NULL)
 
 EXTRA_DIST =					\
-	$(assets_DATA)				\
 	$(images_DATA)				\
 	$(public_icons)				\
 	$(noinst_DATA)				\
