@@ -113,7 +113,7 @@ private class Boxes.UnattendedAvatarFile : GLib.Object, Boxes.UnattendedFile {
         if (pixbuf_format == null)
             throw new Boxes.Error.INVALID ("Failed to find suitable format to save user avatar file in.");
 
-        dest_name = installer.username + "." + pixbuf_format.get_extensions ()[0];
+        dest_name = installer.setup_box.username + "." + pixbuf_format.get_extensions ()[0];
     }
 
     ~UnattendedAvatarFile () {

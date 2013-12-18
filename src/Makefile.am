@@ -122,6 +122,7 @@ gnome_boxes_SOURCES =				\
 	ui.vala					\
 	unattended-installer.vala 		\
 	unattended-file.vala 			\
+	unattended-setup-box.vala 		\
 	util-app.vala				\
 	vm-configurator.vala 			\
 	vm-creator.vala 			\

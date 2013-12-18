@@ -28,7 +28,7 @@ private class Boxes.Wizard: Boxes.UI {
     private Gtk.ProgressBar prep_progress;
     private Gtk.Label prep_media_label;
     private Gtk.Label prep_status_label;
-    private Gtk.Box setup_vbox;
+    private Gtk.Box setup_box;
     private Gtk.Label review_label;
     private Gtk.Box nokvm_box;
     private Gtk.Image installer_image;
@@ -348,7 +348,7 @@ private class Boxes.Wizard: Boxes.UI {
         vm_creator.install_media.bind_property ("ready-to-create",
                                                 continue_button, "sensitive",
                                                 BindingFlags.SYNC_CREATE);
-        vm_creator.install_media.populate_setup_vbox (setup_vbox);
+        vm_creator.install_media.populate_setup_box (setup_box);
         vm_creator.install_media.user_wants_to_create.connect (() => {
             if (vm_creator.install_media.ready_to_create)
                 page = page + 1;
@@ -624,11 +624,11 @@ private class Boxes.Wizard: Boxes.UI {
         vbox.show_all ();
 
         /* Setup */
-        setup_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
-        setup_vbox.valign = Gtk.Align.CENTER;
-        setup_vbox.halign = Gtk.Align.CENTER;
-        add_step (setup_vbox, _("Setup"), WizardPage.SETUP);
-        setup_vbox.show_all ();
+        setup_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        setup_box.valign = Gtk.Align.CENTER;
+        setup_box.halign = Gtk.Align.CENTER;
+        add_step (setup_box, _("Setup"), WizardPage.SETUP);
+        setup_box.show_all ();
 
         /* Review */
         vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);

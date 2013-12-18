@@ -20,6 +20,16 @@ namespace Boxes {
         return new Gdk.Pixbuf.from_resource ("/org/gnome/Boxes/icons/" + asset);
     }
 
+    public Gtk.Builder load_ui (string ui) {
+        var builder = new Gtk.Builder ();
+        try {
+            builder.add_from_resource ("/org/gnome/Boxes/ui/".concat (ui, null));
+        } catch (GLib.Error e) {
+            error ("Failed to load UI file '%s': %s", ui, e.message);
+        }
+        return builder;
+    }
+
     public Clutter.Color gdk_rgba_to_clutter_color (Gdk.RGBA gdk_rgba) {
         Clutter.Color color = {
             (uint8) (gdk_rgba.red * 255).clamp (0, 255),

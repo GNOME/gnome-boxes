@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+
+  <template class="BoxesUnattendedSetupBox" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">30</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+    <child>
+      <object class="GtkLabel" id="setup_label">
+        <property name="label" translatable="yes">Choose express install to automatically preconfigure the box with optimal settings.</property>
+        <property name="visible">True</property>
+        <property name="wrap">True</property>
+        <property name="halign">start</property>
+        <property name="width-chars">30</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">False</property>
+        <property name="padding">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox" id="setup_hbox">
+        <property name="visible">True</property>
+        <property name="valign">start</property>
+        <property name="margin">24</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+        <child>
+          <object class="GtkGrid" id="setup_grid">
+            <property name="visible">True</property>
+            <property name="column-homogeneous">False</property>
+            <property name="row-homogeneous">False</property>
+            <property name="column-spacing">0</property>
+            <property name="row-spacing">0</property>
+
+            <!-- First row -->
+            <child>
+              <object class="GtkLabel" id="express_label">
+                <!-- Translators: 'Express Install' means that the new box installation will be fully automated, the 
+                     user won't be asked anything while it's performed. -->
+                <property name="label" translatable="yes">Express Install</property>
+                <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+                <property name="margin-right">10</property>
+                <property name="margin-bottom">15</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">0</property>
+                <property name="width">2</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkSwitch" id="express_toggle">
+                <property name="visible">True</property>
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="margin-bottom">15</property>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">0</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+
+            <!-- 2nd row (while user avatar spans over 2 rows) -->
+            <child>
+              <object class="GtkImage" id="user_avatar">
+                <property name="visible">True</property>
+                <property name="icon-name">avatar-default</property>
+                <property name="icon-size">0</property>
+                <property name="pixel-size">64</property>
+                <property name="margin-right">15</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">1</property>
+                <property name="width">1</property>
+                <property name="height">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="username_label">
+                <property name="label" translatable="yes">Username</property>
+                <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="valign">baseline</property>
+                <property name="margin-right">10</property>
+                <property name="margin-bottom">10</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">1</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="username_entry">
+                <property name="visible">True</property>
+                <property name="visibility">True</property>
+                <property name="halign">fill</property>
+                <property name="valign">baseline</property>
+                <property name="margin-bottom">10</property>
+                <signal name="activate" handler="on_username_entry_activated"/>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">1</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+
+            <!-- 3rd row -->
+            <child>
+              <object class="GtkLabel" id="password_label">
+                <property name="label" translatable="yes">Password</property>
+                <property name="visible">True</property>
+                <property name="halign">end</property>
+                <property name="valign">baseline</property>
+                <property name="margin-right">10</property>
+              </object>
+              <packing>
+                <property name="left-attach">1</property>
+                <property name="top-attach">2</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkNotebook" id="password_notebook">
+                <property name="visible">True</property>
+                <property name="show-tabs">False</property>
+                <property name="show-border">False</property>
+                <property name="halign">fill</property>
+                <property name="valign">center</property>
+                <child>
+                  <object class="GtkButton" id="password_button">
+                    <property name="label" translatable="yes">_Add Password</property>
+                    <property name="visible">True</property>
+                    <property name="use-underline">True</property>
+                    <property name="valign">baseline</property>
+                    <signal name="clicked" handler="on_password_button_clicked"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkEntry" id="password_entry">
+                    <property name="text"></property>
+                    <property name="visible">True</property>
+                    <property name="visibility">False</property>
+                    <signal name="focus-out-event" handler="on_password_entry_focus_out"/>
+                    <signal name="activate" handler="on_password_entry_activated"/>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">2</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+
+            <!-- 4th row -->
+            <child>
+              <object class="GtkLabel" id="product_key_label">
+                <property name="visible">False</property>
+                <property name="label" translatable="yes">Product Key</property>
+                <property name="margin-top">15</property>
+                <property name="margin-right">10</property>
+                <property name="halign">end</property>
+                <property name="valign">center</property>
+              </object>
+              <packing>
+                <property name="left-attach">0</property>
+                <property name="top-attach">3</property>
+                <property name="width">2</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="product_key_entry">
+                <property name="visible">False</property>
+                <property name="visibility">True</property>
+                <property name="halign">fill</property>
+                <property name="valign">center</property>
+                <property name="margin-top">15</property>
+                <style>
+                  <class name="boxes-product-key-entry"/>
+                </style>
+                <signal name="activate" handler="on_key_entry_activated"/>
+                <signal name="insert-text" handler="on_key_text_inserted"/>
+              </object>
+              <packing>
+                <property name="left-attach">2</property>
+                <property name="top-attach">3</property>
+                <property name="width">1</property>
+                <property name="height">1</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">False</property>
+        <property name="padding">0</property>
+      </packing>
+    </child>
+  </template>
+</interface>

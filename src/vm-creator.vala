@@ -63,7 +63,8 @@ private class Boxes.VMCreator {
     }
 
     public virtual void launch_vm (LibvirtMachine machine) throws GLib.Error {
-        if (!(install_media is UnattendedInstaller) || !(install_media as UnattendedInstaller).express_install) {
+        if (!(install_media is UnattendedInstaller) ||
+            !(install_media as UnattendedInstaller).setup_box.express_install) {
             ulong signal_id = 0;
 
             signal_id = App.app.notify["ui-state"].connect (() => {

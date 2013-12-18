@@ -10,17 +10,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public bool ready_for_express {
-        get {
-            return username != "" &&
-                   (product_key_format == null ||
-                    key_entry.text_length == product_key_format.length);
-        }
-    }
-
     public override bool ready_to_create {
         get {
-            return !express_toggle.active || ready_for_express;
+            return setup_box.ready_to_create;
         }
     }
 
@@ -28,37 +20,14 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         owned get {
             var devices = base.supported_devices;
 
-            if (express_install)
+            if (setup_box.express_install)
                 return (devices as Osinfo.List).new_union (additional_devices) as Osinfo.DeviceList;
             else
                 return devices;
         }
     }
 
-    public bool express_install {
-        get { return express_toggle.active; }
-    }
-
-    public string username {
-        get { return username_entry.text; }
-    }
-
-    public string password {
-        owned get { return password_entry.text; }
-    }
-
-    public string hidden_password {
-        owned get {
-            if (password_entry.text.length > 0) {
-                var str = "";
-                for (var i = 0; i < password_entry.text_length; i++)
-                    str += password_entry.get_invisible_char ().to_string ();
-
-                return str;
-            } else
-                return _("no password");
-        }
-    }
+    public UnattendedSetupBox setup_box;
 
     public File? disk_file;           // Used for installer scripts, user avatar and pre-installation drivers
     public File? secondary_disk_file; // Used for post-installation drivers that won't fit on 1.44M primary disk
@@ -73,16 +42,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private GLib.List<UnattendedFile> secondary_unattended_files;
     private UnattendedAvatarFile avatar_file;
 
-    private Gtk.Grid setup_grid;
-    private int setup_grid_n_rows;
-
-    private Gtk.Label setup_label;
-    private Gtk.Box setup_hbox;
-    private Gtk.Switch express_toggle;
-    private Gtk.Entry username_entry;
-    private Gtk.Entry password_entry;
-    private Gtk.Entry key_entry;
-
     private string? timezone;
     private string lang;
     private string hostname;
@@ -91,8 +50,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     // Devices made available by device drivers added through express installation (only).
     private Osinfo.DeviceList additional_devices;
-
-    private ulong key_inserted_id; // ID of key_entry.insert_text signal handler
 
     private static Fdo.Accounts? accounts;
 
@@ -141,7 +98,15 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         kbd = lang;
         product_key_format = get_product_key_format ();
 
-        setup_ui ();
+        setup_box = new UnattendedSetupBox (os_media.live, product_key_format);
+        setup_box.notify["ready-to-create"].connect (() => {
+            notify_property ("ready-to-create");
+        });
+        setup_box.user_wants_to_create.connect (() => {
+            user_wants_to_create ();
+        });
+
+        fetch_user_avatar.begin ();
     }
 
     public override void prepare_to_continue_installation (string vm_name) {
@@ -163,7 +128,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
-        if (!express_toggle.active) {
+        if (!setup_box.express_install) {
             debug ("Unattended installation disabled.");
 
             return;
@@ -204,7 +169,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             // An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
             // installation will work. When this happens, just disable unattended installs, and let the caller decide
             // if it wants to retry a non-automatic install or to just abort the box creation..
-            express_toggle.active = false;
+            setup_box.express_install = false;
 
             throw error;
         }
@@ -213,7 +178,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override void setup_domain_config (Domain domain) {
         base.setup_domain_config (domain);
 
-        if (!express_toggle.active)
+        if (!setup_box.express_install)
             return;
 
         return_if_fail (disk_file != null);
@@ -226,16 +191,16 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public void configure_install_script (InstallScript script) {
-        if (password != null) {
-            config.set_user_password (password);
-            config.set_admin_password (password);
+        if (setup_box.password != null) {
+            config.set_user_password (setup_box.password);
+            config.set_admin_password (setup_box.password);
         }
-        if (username != null) {
-            config.set_user_login (username);
-            config.set_user_realname (username);
+        if (setup_box.username != null) {
+            config.set_user_login (setup_box.username);
+            config.set_user_realname (setup_box.username);
         }
-        if (key_entry != null && key_entry.text != null)
-            config.set_reg_product_key (key_entry.text);
+        if (setup_box.product_key != null)
+            config.set_reg_product_key (setup_box.product_key);
         if (timezone != null)
             config.set_l10n_timezone (timezone);
         config.set_l10n_language (lang);
@@ -282,21 +247,20 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         base.setup_post_install_domain_config (domain);
     }
 
-    public override void populate_setup_vbox (Gtk.Box setup_vbox) {
-        foreach (var child in setup_vbox.get_children ())
-            setup_vbox.remove (child);
+    public override void populate_setup_box (Gtk.Box setup_box) {
+        foreach (var child in setup_box.get_children ())
+            setup_box.remove (child);
 
-        setup_vbox.pack_start (setup_label, false, false);
-        setup_vbox.pack_start (setup_hbox, false, false);
-        setup_vbox.show_all ();
+        setup_box.add (this.setup_box);
+        setup_box.show ();
     }
 
     public override GLib.List<Pair> get_vm_properties () {
         var properties = base.get_vm_properties ();
 
-        if (express_install) {
-            properties.append (new Pair<string,string> (_("Username"), username));
-            properties.append (new Pair<string,string> (_("Password"), hidden_password));
+        if (setup_box.express_install) {
+            properties.append (new Pair<string,string> (_("Username"), setup_box.username));
+            properties.append (new Pair<string,string> (_("Password"), setup_box.hidden_password));
         }
 
         return properties;
@@ -361,199 +325,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         yield setup_drivers (progress, cancellable);
     }
 
-    private void setup_ui () {
-        setup_label = new Gtk.Label (_("Choose express install to automatically preconfigure the box with optimal settings."));
-        setup_label.wrap = true;
-        setup_label.width_chars = 30;
-        setup_label.halign = Gtk.Align.START;
-        setup_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        setup_hbox.valign = Gtk.Align.START;
-        setup_hbox.margin = 24;
-
-        setup_grid = new Gtk.Grid ();
-        setup_hbox.pack_start (setup_grid, false, false);
-        setup_grid.column_spacing = 0;
-        setup_grid.column_homogeneous = false;
-        setup_grid.row_spacing = 0;
-        setup_grid.row_homogeneous = true;
-
-        // First row
-        // Translators: 'Express Install' means that the new box installation will be fully automated, the user
-        // won't be asked anything while it's performed.
-        var express_label = new Gtk.Label (_("Express Install"));
-        express_label.margin_right = 10;
-        express_label.margin_bottom = 15;
-        express_label.halign = Gtk.Align.END;
-        express_label.valign = Gtk.Align.CENTER;
-        setup_grid.attach (express_label, 0, 0, 2, 1);
-
-        express_toggle = new Gtk.Switch ();
-        express_toggle.active = !os_media.live;
-        express_toggle.margin_bottom = 15;
-        express_toggle.halign = Gtk.Align.START;
-        express_toggle.valign = Gtk.Align.CENTER;
-        express_toggle.notify["active"].connect (() => { notify_property ("ready-to-create"); });
-        setup_grid.attach (express_toggle, 2, 0, 1, 1);
-        setup_grid_n_rows++;
-
-        // 2nd row (while user avatar spans over 2 rows)
-        var avatar = new Gtk.Image.from_icon_name ("avatar-default", 0);
-        avatar.pixel_size = 64;
-        avatar.margin_right = 15;
-        avatar.valign = Gtk.Align.CENTER;
-        avatar.halign = Gtk.Align.CENTER;
-        setup_grid.attach (avatar, 0, 1, 1, 2);
-        avatar.show_all ();
-        fetch_user_avatar.begin (avatar);
-
-        var label = new Gtk.Label (_("Username"));
-        label.margin_right = 10;
-        label.margin_bottom  = 10;
-        label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.BASELINE;
-        setup_grid.attach (label, 1, 1, 1, 1);
-        username_entry = create_input_entry (Environment.get_user_name ());
-        username_entry.margin_bottom  = 10;
-        username_entry.halign = Gtk.Align.FILL;
-        username_entry.valign = Gtk.Align.BASELINE;
-        username_entry.activate.connect (() => {
-            if (ready_for_express)
-                user_wants_to_create ();
-            else if (username != "" && product_key_format != null)
-                key_entry.grab_focus (); // If username is provided, must be product key thats still not provided
-        });
-
-        setup_grid.attach (username_entry, 2, 1, 1, 1);
-        setup_grid_n_rows++;
-
-        // 3rd row
-        label = new Gtk.Label (_("Password"));
-        label.margin_right = 10;
-        label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.BASELINE;
-        setup_grid.attach (label, 1, 2, 1, 1);
-
-        var notebook = new Gtk.Notebook ();
-        notebook.show_tabs = false;
-        notebook.show_border = false;
-        notebook.halign = Gtk.Align.FILL;
-        notebook.valign = Gtk.Align.CENTER;
-        var button = new Gtk.Button.with_mnemonic (_("_Add Password"));
-        button.visible = true;
-        button.valign = Gtk.Align.BASELINE;
-        notebook.append_page (button);
-        password_entry = create_input_entry ("", false, false);
-        notebook.append_page (password_entry);
-        button.clicked.connect (() => {
-            notebook.next_page ();
-            password_entry.grab_focus ();
-        });
-        password_entry.focus_out_event.connect (() => {
-            if (password_entry.text_length == 0)
-                notebook.prev_page ();
-            return false;
-        });
-        password_entry.activate.connect (() => {
-            if (ready_for_express)
-                user_wants_to_create ();
-            else if (username == "")
-                username_entry.grab_focus ();
-            else if (product_key_format != null)
-                key_entry.grab_focus ();
-        });
-        setup_grid.attach (notebook, 2, 2, 1, 1);
-        setup_grid_n_rows++;
-
-        foreach (var child in setup_grid.get_children ())
-            if ((child != express_label) && (child != express_toggle))
-                express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
-
-        if (product_key_format == null)
-            return;
-
-        label = new Gtk.Label (_("Product Key"));
-        label.margin_top = 15;
-        label.margin_right = 10;
-        label.halign = Gtk.Align.END;
-        label.valign = Gtk.Align.CENTER;
-        setup_grid.attach (label, 0, setup_grid_n_rows, 2, 1);
-        express_toggle.bind_property ("active", label, "sensitive", 0);
-
-        key_entry = create_input_entry ("");
-        key_entry.width_chars = product_key_format.length;
-        key_entry.max_length =  product_key_format.length;
-        key_entry.margin_top = 15;
-        key_entry.halign = Gtk.Align.FILL;
-        key_entry.valign = Gtk.Align.CENTER;
-        key_entry.get_style_context ().add_class ("boxes-product-key-entry");
-        setup_grid.attach (key_entry, 2, setup_grid_n_rows, 1, 1);
-        express_toggle.bind_property ("active", key_entry, "sensitive", 0);
-        key_entry.activate.connect (() => {
-            if (ready_for_express)
-                user_wants_to_create ();
-            else if (key_entry.text_length == product_key_format.length)
-                username_entry.grab_focus (); // If product key is provided, must be username thats still not provided.
-        });
-        setup_grid_n_rows++;
-
-        key_inserted_id = key_entry.insert_text.connect (on_key_text_inserted);
-    }
-
-    private void on_key_text_inserted (string text, int text_length, ref int position) {
-        var result = "";
-
-        for (uint i = 0, j = position; i < text_length && j < product_key_format.length; ) {
-            var character = text.get (i);
-            var allowed_char = product_key_format.get (j);
-
-            var skip_input_char = false;
-            switch (allowed_char) {
-            case '@': // Any character
-                break;
-
-            case '%': // Alphabet
-                if (!character.isalpha ())
-                    skip_input_char = true;
-                break;
-
-            case '#': // Numeric
-                if (!character.isdigit ())
-                    skip_input_char = true;
-                break;
-
-            case '$': // Alphnumeric
-                if (!character.isalnum ())
-                    skip_input_char = true;
-                break;
-
-            default: // Hardcoded character required
-                if (character != allowed_char) {
-                    result += allowed_char.to_string ();
-                    j++;
-
-                    continue;
-                }
-
-                break;
-            }
-
-            i++;
-            if (skip_input_char)
-                continue;
-
-            result += character.to_string ();
-            j++;
-        }
-
-        if (result != "") {
-            SignalHandler.block (key_entry, key_inserted_id);
-            key_entry.insert_text (result.up (), result.length, ref position);
-            SignalHandler.unblock (key_entry, key_inserted_id);
-        }
-
-        Signal.stop_emission_by_name (key_entry, "insert-text");
-    }
-
     private DomainDisk? get_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
@@ -604,20 +375,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         secondary_unattended_files.append (file);
     }
 
-    private Gtk.Entry create_input_entry (string text, bool mandatory = true, bool visibility = true) {
-        var entry = new Gtk.Entry ();
-        entry.visibility = visibility;
-        entry.visible = true;
-        entry.text = text;
-
-        if (mandatory)
-            entry.notify["text"].connect (() => {
-                notify_property ("ready-to-create");
-            });
-
-        return entry;
-    }
-
     private async void create_disk_image (Cancellable? cancellable) throws GLib.Error {
         var template_path = get_unattended ("disk.img");
         var template_file = File.new_for_path (template_path);
@@ -627,7 +384,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         debug ("Floppy image for unattended installation created at '%s'", disk_file.get_path ());
     }
 
-    private async void fetch_user_avatar (Gtk.Image avatar) {
+    private async void fetch_user_avatar () {
         if (accounts == null)
             return;
 
@@ -642,10 +399,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 
-        try {
-            var pixbuf = new Gdk.Pixbuf.from_file_at_scale (avatar_path, 64, 64, true);
-            avatar.pixbuf = pixbuf;
+        setup_box.avatar_path = avatar_path;
 
+        try {
             AvatarFormat avatar_format = null;
             foreach (var s in scripts.get_elements ()) {
                 var script = s as InstallScript;
