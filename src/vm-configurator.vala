@@ -444,6 +444,23 @@ private class Boxes.VMConfigurator {
     private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
                                                           throws VMConfiguratorError {
         var guests_caps = caps.get_guests ();
+        // Ensure we have the best caps on the top
+        guests_caps.sort ((caps_a, caps_b) => {
+            var arch_a = caps_a.get_arch ().get_name ();
+            var arch_b = caps_b.get_arch ().get_name ();
+
+            if (arch_a == "i686") {
+                if (arch_b == "x86_64")
+                    return 1;
+                else
+                    return -1;
+            } else if (arch_a == "x86_64") {
+                return -1;
+            } else if (arch_b == "x86_64" || arch_b == "i686") {
+                return 1;
+            } else
+                return 0;
+        });
 
         // First find all compatible guest caps
         var compat_guests_caps = new GLib.List<CapabilitiesGuest> ();
