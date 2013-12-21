@@ -27,10 +27,11 @@ private class Boxes.MediaManager : Object {
                                                                  Cancellable? cancellable = null) throws GLib.Error {
         InstallerMedia media;
 
-        if (is_mime_type (path, "application/x-cd-image"))
-            media = yield new InstallerMedia.for_path (path, this, cancellable);
-        else
+        try {
             media = yield new InstalledMedia.guess_os (path, this);
+        } catch (IOError.NOT_SUPPORTED e) {
+            media = yield new InstallerMedia.for_path (path, this, cancellable);
+        }
 
         return create_installer_media_from_media (media);
     }
