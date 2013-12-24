@@ -17,7 +17,10 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
     public Gtk.Box vbox;
 
     private int num_visible;
-    public WizardScrolled (int num_visible) {
+
+    // Ideally, we shouldn't need this fuction but is there a way to connect
+    // vscrollbar signals from the UI template?
+    public void setup (int num_visible) {
         this.num_visible = num_visible;
 
         notify["num-visible"].connect (() => {
@@ -55,30 +58,46 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
     }
 }
 
-private class Boxes.WizardSource: GLib.Object {
-    public Gtk.Widget widget { get { return notebook; } }
-    public Gtk.Widget? selected { get; set; }
-    private SourcePage _page;
-    public SourcePage page {
-        get { return _page; }
-        set {
-            _page = value;
-            notebook.set_current_page (page);
-            if (selected != null)
-                selected.grab_focus ();
-            switch (page) {
-            case SourcePage.MAIN:
-                add_media_entries.begin ();
-                // FIXME: grab first element in the menu list
-                main_vbox.grab_focus ();
-                break;
-            case SourcePage.URL:
-                url_entry.changed ();
-                url_entry.grab_focus ();
-                break;
-            }
-        }
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-media-entry.ui")]
+private class Boxes.WizardMediaEntry : Gtk.Button {
+    public InstallerMedia media;
+
+    [GtkChild]
+    private Gtk.Image media_image;
+    [GtkChild]
+    private Gtk.Label title_label;
+    [GtkChild]
+    private Gtk.Label details_label;
+
+    public WizardMediaEntry (InstallerMedia media) {
+        this.media = media;
+
+        if (media.os != null)
+            Downloader.fetch_os_logo.begin (media_image, media.os, 64);
+
+        title_label.label = media.label;
+        if (media.os_media != null && media.os_media.live)
+            // Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+            //              http://en.wikipedia.org/wiki/Live_CD
+            title_label.label += " (" +  _("Live") + ")";
+
+        if (media.os_media != null) {
+            var architecture = (media.os_media.architecture == "i386" || media.os_media.architecture == "i686") ?
+                               _("32-bit x86 system") :
+                               _("64-bit x86 system");
+            details_label.label = architecture;
+
+            if (media.os.vendor != null)
+                // Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+                details_label.label += _(" from %s").printf (media.os.vendor);
+        } else
+            details_label.label += _("Unknown media");
     }
+}
+
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-source.ui")]
+private class Boxes.WizardSource: Gtk.Notebook {
+    public Gtk.Widget? selected { get; set; }
     public string uri {
         get { return url_entry.get_text (); }
         set { url_entry.set_text (value); }
@@ -87,101 +106,74 @@ private class Boxes.WizardSource: GLib.Object {
     public LibvirtSystemImporter libvirt_sys_importer { get; private set; }
     public bool libvirt_sys_import;
 
-    private Gtk.Box main_vbox;
-    private Gtk.Box media_vbox;
-    private Boxes.WizardScrolled media_scrolled;
-    private Gtk.Notebook notebook;
-    private Gtk.Label url_label;
-    private Gtk.Image url_image;
-    public Gtk.Entry url_entry;
+    public signal void activated (); // Emitted on user activating a source
 
-    public signal void activate (); // Emitted on user activating a source
+    [GtkChild]
+    private Gtk.Box main_vbox;
+    [GtkChild]
+    private Boxes.WizardScrolled media_scrolled;
+    [GtkChild]
+    private Gtk.Label url_description_label;
+    [GtkChild]
+    private Gtk.Image url_image;
+    [GtkChild]
+    private Gtk.Alignment url_entry_bin;
+    [GtkChild]
+    public Gtk.Entry url_entry;
+    [GtkChild]
+    private Gtk.Button select_file_button;
+    [GtkChild]
+    private Gtk.Button libvirt_sys_import_button;
+    [GtkChild]
+    private Gtk.Label libvirt_sys_import_label;
+
+    private Gtk.Box media_vbox;
 
     private MediaManager media_manager;
 
     public WizardSource (MediaManager media_manager) {
         this.media_manager = media_manager;
 
-        notebook = new Gtk.Notebook ();
-        notebook.width_request = 500;
-        notebook.get_style_context ().add_class ("boxes-source-nb");
-        notebook.show_tabs = false;
-
-        /* main page */
-        main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        main_vbox.get_style_context ().add_class ("boxes-menu");
-        main_vbox.margin_top = main_vbox.margin_bottom = 15;
         main_vbox.grab_focus ();
-        notebook.append_page (main_vbox, null);
 
-        media_scrolled = new WizardScrolled (5);
+        media_scrolled.setup (5);
         media_vbox = media_scrolled.vbox;
-        main_vbox.add (media_scrolled);
+        draw_as_css_box (url_entry_bin);
 
-        var hbox = add_entry (main_vbox, () => {
-            page = SourcePage.URL;
-
-            return false;
-        });
-        var label = new Gtk.Label (_("Enter URL"));
-        label.xalign = 0.0f;
-        hbox.pack_start (label, true, true);
-        var next = new Gtk.Label ("▶");
-        hbox.pack_start (next, false, false);
-
-        hbox = add_entry (main_vbox, launch_file_selection_dialog);
-        label = new Gtk.Label (_("Select a file"));
-        label.xalign = 0.0f;
-        hbox.pack_start (label, true, true);
-        next = new Gtk.Label ("▶");
-        hbox.pack_start (next, false, false);
-
-        /* URL page */
-        var url_menubox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        url_menubox.get_style_context ().add_class ("boxes-menu");
-        url_menubox.margin_top = url_menubox.margin_bottom = 15;
-        notebook.append_page (url_menubox, null);
-
-        hbox = add_entry (url_menubox, () => {
-            selected = null;
-            page = SourcePage.MAIN;
-
-            return false;
-        });
-        var prev = new Gtk.Label ("◀");
-        hbox.pack_start (prev, false, false);
-        label = new Gtk.Label (_("Enter URL"));
-        label.get_style_context ().add_class ("boxes-source-label");
-        hbox.pack_start (label, true, true);
-
-        var vbox = add_entry (url_menubox);
-        vbox.set_orientation (Gtk.Orientation.VERTICAL);
-        url_entry = new Gtk.Entry ();
-        vbox.add (url_entry);
-
-        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        url_image = new Gtk.Image.from_icon_name ("network-workgroup", 0);
-        // var image = new Gtk.Image.from_icon_name ("krfb", 0);
-        url_image.pixel_size = 96;
-        hbox.pack_start (url_image, false, false);
-
-        url_label = new Gtk.Label (null);
-        url_label.xalign = 0.0f;
-        url_label.set_markup (_("<b>Desktop Access</b>\n\nWill add boxes for all systems available from this account."));
-        url_label.set_use_markup (true);
-        url_label.wrap = true;
-
-        hbox.pack_start (url_label, true, true);
-        vbox.add (hbox);
-
-        notebook.show_all ();
-
-        add_libvirt_sytem_entry.begin ();
+        update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
     }
 
+    [GtkCallback]
+    private void on_enter_url_button_clicked () {
+        page = SourcePage.URL;
+    }
+
+    [GtkCallback]
+    private void on_url_back_button_clicked () {
+        selected = null;
+        page = SourcePage.MAIN;
+    }
+
+    [GtkCallback]
+    private void on_switch_page (Gtk.Notebook self, Gtk.Widget page, uint page_num) {
+        if (selected != null)
+            selected.grab_focus ();
+        switch (page_num) {
+        case SourcePage.MAIN:
+            add_media_entries.begin ();
+            // FIXME: grab first element in the menu list
+            main_vbox.grab_focus ();
+            break;
+        case SourcePage.URL:
+            url_entry.changed ();
+            url_entry.grab_focus ();
+            break;
+        }
+    }
+
     public void update_url_page(string title, string text, string icon_name) {
-        url_label.set_markup ("<b>"  + title + "</b>\n\n" + text);
+        url_description_label.set_markup ("<b>"  + title + "</b>\n\n" + text);
         url_image.icon_name = icon_name;
     }
 
@@ -189,13 +181,11 @@ private class Boxes.WizardSource: GLib.Object {
         var medias = yield media_manager.list_installer_medias ();
 
         foreach (var child in media_vbox.get_children ()) {
-            var child_media = child.get_data<string> ("boxes-media");
-            if (child_media == null)
-                continue;
+            var child_media = (child as WizardMediaEntry).media;
 
             var obsolete = true;
             foreach (var media in medias)
-                if (child_media == media.device_file) {
+                if (child_media.device_file == media.device_file) {
                     obsolete = false;
 
                     break;
@@ -208,8 +198,8 @@ private class Boxes.WizardSource: GLib.Object {
         foreach (var media in medias) {
             var nouveau = true; // Everyone speaks some French, right? :)
             foreach (var child in media_vbox.get_children ()) {
-                var child_media = child.get_data<string> ("boxes-media");
-                if (child_media  != null && child_media == media.device_file) {
+                var child_media = (child as WizardMediaEntry).media;
+                if (child_media.device_file == media.device_file) {
                     nouveau = false;
 
                     break;
@@ -226,54 +216,19 @@ private class Boxes.WizardSource: GLib.Object {
     }
 
     private void add_media_entry (InstallerMedia media) {
-        var hbox = add_entry (media_vbox, () => {
+        var entry = new WizardMediaEntry (media);
+        media_vbox.add (entry);
+        entry.clicked.connect (() => {
             on_media_selected (media);
 
-            return true;
-        }, 15, 5, media.device_file);
-
-        var image = new Gtk.Image.from_icon_name ("media-optical", 0);
-        image.pixel_size = 64;
-        hbox.pack_start (image, false, false);
-
-        if (media.os != null)
-            Downloader.fetch_os_logo.begin (image, media.os, 64);
-
-        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 5);
-        vbox.homogeneous = true;
-        hbox.pack_start (vbox, true, true);
-
-        var media_label = media.label;
-        if (media.os_media != null && media.os_media.live)
-            // Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-            //              http://en.wikipedia.org/wiki/Live_CD
-            media_label += " (" +  _("Live") + ")";
-        var label = new Gtk.Label (media_label);
-        label.set_ellipsize (Pango.EllipsizeMode.END);
-        label.get_style_context ().add_class ("boxes-source-label");
-        label.xalign = 0.0f;
-        vbox.pack_start (label, true, true);
-
-        if (media.os_media != null) {
-            var architecture = (media.os_media.architecture == "i386" || media.os_media.architecture == "i686") ?
-                               _("32-bit x86 system") :
-                               _("64-bit x86 system");
-            label = new Gtk.Label (architecture);
-            label.set_ellipsize (Pango.EllipsizeMode.END);
-            label.get_style_context ().add_class ("boxes-step-label");
-            label.xalign = 0.0f;
-            vbox.pack_start (label, true, true);
-
-            if (media.os.vendor != null)
-                // Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-                label.label += _(" from %s").printf (media.os.vendor);
-        }
+            selected = entry;
+        });
 
         media_vbox.show_all ();
         media_scrolled.show ();
     }
 
-    private async void add_libvirt_sytem_entry () {
+    private async void update_libvirt_sytem_entry_visibility () {
         try {
             libvirt_sys_importer = yield new LibvirtSystemImporter ();
         } catch (LibvirtSystemImporterError.NO_IMPORTS error) {
@@ -281,54 +236,12 @@ private class Boxes.WizardSource: GLib.Object {
 
             return;
         }
-
-        var hbox = add_entry (main_vbox, () => {
-            libvirt_sys_import = true;
-            activate ();
-
-            return true;
-        });
-        var label = new Gtk.Label (libvirt_sys_importer.wizard_menu_label);
-        label.xalign = 0.0f;
-        hbox.pack_start (label, true, true);
-        var next = new Gtk.Label ("▶");
-        hbox.pack_start (next, false, false);
+        libvirt_sys_import_label.label = libvirt_sys_importer.wizard_menu_label;
         main_vbox.show_all ();
     }
 
-    private Gtk.Box add_entry (Gtk.Box            box,
-                               owned ClickedFunc? clicked = null,
-                               int                h_margin = 20,
-                               int                v_margin = 10,
-                               string?            media = null) {
-        Gtk.Container row;
-        if (clicked != null) {
-            var button = new Gtk.Button ();
-            button.clicked.connect (() => {
-                if (clicked ())
-                    selected = button;
-            });
-            row = button;
-        } else {
-            var bin = new Gtk.Alignment (0,0,1,1);
-            draw_as_css_box (bin);
-            row = bin;
-        }
-        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
-        row.add (hbox);
-        row.get_style_context ().add_class ("boxes-menu-row");
-
-        box.add (row);
-        if (media != null)
-            row.set_data ("boxes-media", media);
-
-        hbox.margin_left = hbox.margin_right = h_margin;
-        hbox.margin_top = hbox.margin_bottom = v_margin;
-
-        return hbox;
-    }
-
-    private bool launch_file_selection_dialog () {
+    [GtkCallback]
+    private void on_select_file_button_clicked () {
         var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
                                                 App.app.window,
                                                 Gtk.FileChooserAction.OPEN,
@@ -339,26 +252,31 @@ private class Boxes.WizardSource: GLib.Object {
         dialog.filter.add_mime_type ("application/x-cd-image");
         foreach (var extension in InstalledMedia.supported_extensions)
             dialog.filter.add_pattern ("*" + extension);
-        var ret = false;
         if (dialog.run () == Gtk.ResponseType.ACCEPT) {
             uri = dialog.get_uri ();
             // clean install_media as this may be set already when going back in the wizard
             install_media = null;
-            activate ();
+            activated ();
 
-            ret = true;
+            selected = select_file_button;
         }
 
         dialog.destroy ();
+    }
 
-        return ret;
+    [GtkCallback]
+    private void on_libvirt_sys_import_button_clicked () {
+        libvirt_sys_import = true;
+        activated ();
+
+        selected = libvirt_sys_import_button;
     }
 
     private void on_media_selected (InstallerMedia media) {
         try {
             install_media = media_manager.create_installer_media_from_media (media);
             uri = media.device_file;
-            activate ();
+            activated ();
         } catch (GLib.Error error) {
             // This is unlikely to happen since media we use as template should have already done most async work
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);

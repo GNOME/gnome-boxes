@@ -175,7 +175,7 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.notify["selected"].connect(wizard_source_update_next);
         wizard_source.url_entry.changed.connect (wizard_source_update_next);
 
-        wizard_source.activate.connect(() => {
+        wizard_source.activated.connect(() => {
             page = WizardPage.PREPARATION;
         });
 
@@ -577,9 +577,9 @@ private class Boxes.Wizard: Boxes.UI {
         label.wrap = true;
         label.xalign = 0.0f;
         vbox.pack_start (label, false, false);
-        vbox.pack_start (wizard_source.widget, false, false);
-        wizard_source.widget.hexpand = true;
-        wizard_source.widget.halign = Gtk.Align.CENTER;
+        vbox.pack_start (wizard_source, false, false);
+        wizard_source.hexpand = true;
+        wizard_source.halign = Gtk.Align.CENTER;
         label = new Gtk.Label (_("Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."));
         label.get_style_context ().add_class ("boxes-logo-notice-label");
         label.wrap = true;

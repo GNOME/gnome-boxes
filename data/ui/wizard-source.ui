@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesWizardSource" parent="GtkNotebook">
+    <property name="visible">True</property>
+    <property name="show-tabs">False</property>
+    <signal name="switch-page" handler="on_switch_page"/>
+    <style>
+      <class name="boxes-source-nb"/>
+    </style>
+
+    <!-- main page -->
+    <child>
+      <object class="GtkBox" id="main_vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">0</property>
+        <property name="margin-top">15</property>
+        <property name="margin-bottom">15</property>
+        <style>
+          <class name="boxes-menu"/>
+        </style>
+        <child>
+          <object class="BoxesWizardScrolled" id="media_scrolled"/>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="enter_url_button">
+            <signal name="clicked" handler="on_enter_url_button_clicked"/>
+            <style>
+              <class name="boxes-menu-row"/>
+            </style>
+            <child>
+              <object class="GtkBox" id="enter_url_box">
+                <property name="visible">True</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <property name="margin-left">20</property>
+                <property name="margin-right">20</property>
+                <property name="spacing">20</property>
+                <property name="orientation">horizontal</property>
+                <child>
+                  <object class="GtkLabel" id="enter_url_label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0.0</property>
+                    <property name="label" translatable="yes">Enter URL</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="enter_url_next_label">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">▶</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="select_file_button">
+            <signal name="clicked" handler="on_select_file_button_clicked"/>
+            <style>
+              <class name="boxes-menu-row"/>
+            </style>
+            <child>
+              <object class="GtkBox" id="select_file_box">
+                <property name="visible">True</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <property name="margin-left">20</property>
+                <property name="margin-right">20</property>
+                <property name="spacing">20</property>
+                <property name="orientation">horizontal</property>
+                <child>
+                  <object class="GtkLabel" id="select_file_label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0.0</property>
+                    <property name="label" translatable="yes">Select a file</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="select_file_next_label">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">▶</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="libvirt_sys_import_button">
+            <property name="visible">False</property>
+            <signal name="clicked" handler="on_libvirt_sys_import_button_clicked"/>
+            <style>
+              <class name="boxes-menu-row"/>
+            </style>
+            <child>
+              <object class="GtkBox" id="libvirt_sys_import_box">
+                <property name="visible">True</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <property name="margin-left">20</property>
+                <property name="margin-right">20</property>
+                <property name="spacing">20</property>
+                <property name="orientation">horizontal</property>
+                <child>
+                  <object class="GtkLabel" id="libvirt_sys_import_label">
+                    <property name="visible">True</property>
+                    <property name="xalign">0.0</property>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="libvirt_sys_import_next_label">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">▶</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <!-- URL page -->
+    <child>
+      <object class="GtkBox" id="url_menubox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">0</property>
+        <property name="margin-top">15</property>
+        <property name="margin-bottom">15</property>
+        <style>
+          <class name="boxes-menu"/>
+        </style>
+        <child>
+          <object class="GtkButton" id="url_back_button">
+            <signal name="clicked" handler="on_url_back_button_clicked"/>
+            <style>
+              <class name="boxes-menu-row"/>
+            </style>
+            <child>
+              <object class="GtkBox" id="url_back_box">
+                <property name="visible">True</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <property name="margin-left">20</property>
+                <property name="margin-right">20</property>
+                <property name="spacing">20</property>
+                <property name="orientation">horizontal</property>
+                <child>
+                  <object class="GtkLabel" id="enter_url_back_label">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">◀</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="enter_url_label2">
+                    <property name="visible">True</property>
+                    <property name="xalign">0.0</property>
+                    <property name="label" translatable="yes">Enter URL</property>
+                    <style>
+                      <class name="boxes-source-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkAlignment" id="url_entry_bin">
+            <property name="visible">True</property>
+            <property name="xalign">0</property>
+            <property name="yalign">0</property>
+            <property name="xscale">1</property>
+            <property name="yscale">1</property>
+            <style>
+              <class name="boxes-menu-row"/>
+            </style>
+            <child>
+              <object class="GtkBox" id="url_entry_vbox">
+                <property name="visible">True</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
+                <property name="margin-left">20</property>
+                <property name="margin-right">20</property>
+                <property name="spacing">20</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkEntry" id="url_entry"/>
+                </child>
+
+                <child>
+                  <object class="GtkBox" id="url_entry_hbox">
+                    <property name="visible">True</property>
+                    <property name="spacing">0</property>
+                    <property name="orientation">horizontal</property>
+                    <child>
+                      <object class="GtkImage" id="url_image">
+                        <property name="visible">True</property>
+                        <property name="icon-name">network-workgroup</property>
+                        <property name="icon-size">0</property>
+                        <property name="pixel-size">96</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
+
+                    <child>
+                      <object class="GtkLabel" id="url_description_label">
+                        <property name="visible">True</property>
+                        <property name="use-markup">True</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
