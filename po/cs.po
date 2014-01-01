@@ -5,14 +5,13 @@
 # Adam Matoušek <adydas95@gmail.com>, 2012.
 # Marek Černocký <marek@manet.cz>, 2013.
 #
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-02 17:10+0000\n"
-"PO-Revision-Date: 2013-09-05 12:58+0200\n"
+"POT-Creation-Date: 2013-12-29 19:22+0000\n"
+"PO-Revision-Date: 2013-12-31 17:54+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -23,7 +22,7 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Boxy"
 
@@ -187,6 +186,10 @@ msgstr[0] "%u box byl smazán"
 msgstr[1] "%u boxy byly smazány"
 msgstr[2] "%u boxů bylo smazáno"
 
+#: ../src/app.vala:866
+msgid "_Undo"
+msgstr "_Zpět"
+
 #: ../src/app.vala:933
 #, c-format
 msgid ""
@@ -209,7 +212,7 @@ msgstr "Připojení k „%s“ selhalo"
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: ../src/display-page.vala:300
+#: ../src/display-page.vala:301
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pro ukončení zachytávání zmáčkněte klávesy Ctrl+Alt)"
 
@@ -225,7 +228,7 @@ msgstr "Můžete jej vytvořit pomocí tlačítka vlevo nahoře."
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Systém"
@@ -275,6 +278,8 @@ msgstr "Chyba ukládání: %s"
 msgid "Protocol"
 msgstr "Protokol"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -315,8 +320,8 @@ msgstr "Odstranit"
 msgid "Select a device or ISO file"
 msgstr "Vyberte zařízení nebo soubor ISO"
 
-#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:152
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -400,37 +405,37 @@ msgid "Password"
 msgstr "Heslo"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: ../src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• Vybavenost procesoru pro virtualizaci: %s\n"
 
-#: ../src/main.vala:55
+#: ../src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• Modul KVM je načten: %s\n"
 
-#: ../src/main.vala:56
+#: ../src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Dostupnost knihovny libvirt hosta KVM: %s\n"
 
-#: ../src/main.vala:57
+#: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Dostupnost sdruženého úložiště Boxes: %s\n"
 
-#: ../src/main.vala:61
+#: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• Kontext SELinux je výchozí: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Chyby hlaste na <%s>.\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka %s: <%s>.\n"
@@ -488,36 +493,36 @@ msgstr "Zařízení"
 msgid "Some changes may take effect only after reboot"
 msgstr "Některé změny se mohou projevit pouze až po restartu"
 
-#: ../src/properties.vala:278
+#: ../src/properties.vala:280
 msgid "CPU:"
 msgstr "CPU:"
 
-#: ../src/properties.vala:285
+#: ../src/properties.vala:287
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:292
+#: ../src/properties.vala:294
 msgid "Net:"
 msgstr "Síť:"
 
-#: ../src/properties.vala:299
+#: ../src/properties.vala:301
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
-#: ../src/selectionbar.vala:34
+#: ../src/selectionbar.vala:36
 msgid "P_ause"
 msgstr "Poz_astavit"
 
-#: ../src/selectionbar.vala:46
+#: ../src/selectionbar.vala:49
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Pozastavení „%s“ selhalo"
 
-#: ../src/selectionbar.vala:55
+#: ../src/selectionbar.vala:58
 msgid "_Delete"
 msgstr "O_dstranit"
 
-#: ../src/selectionbar.vala:62
+#: ../src/selectionbar.vala:66
 msgid "_Properties"
 msgstr "_Vlastnosti"
 
@@ -564,37 +569,37 @@ msgstr "Port musí být zadán jednou"
 msgid "Missing port in Spice URI"
 msgstr "Schází port v adrese Spice URI"
 
-#: ../src/topbar.vala:73
+#: ../src/topbar.vala:74
 msgid "_New"
 msgstr "_Nový"
 
-#: ../src/topbar.vala:85
+#: ../src/topbar.vala:88
 msgid "Back"
 msgstr "Zpět"
 
-#: ../src/topbar.vala:105
+#: ../src/topbar.vala:109
 msgid "Search"
 msgstr "Hledat"
 
-#: ../src/topbar.vala:113
+#: ../src/topbar.vala:118
 msgid "Select Items"
 msgstr "Vybrat položky"
 
-#: ../src/topbar.vala:134
+#: ../src/topbar.vala:140
 msgid "Select All"
 msgstr "Vybrat vše"
 
-#: ../src/topbar.vala:135
+#: ../src/topbar.vala:141
 msgid "Select Running"
 msgstr "Vybrat běžící"
 
-#: ../src/topbar.vala:136
+#: ../src/topbar.vala:142
 msgid "Select None"
 msgstr "Zrušit výběr"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:195
+#: ../src/topbar.vala:204
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -602,7 +607,7 @@ msgstr[0] "%d vybrán"
 msgstr[1] "%d vybrány"
 msgstr[2] "%d vybráno"
 
-#: ../src/topbar.vala:197
+#: ../src/topbar.vala:206
 msgid "(Click on items to select them)"
 msgstr "(položky vyberete klikáním na ně)"
 
@@ -700,7 +705,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:439
+#: ../src/vm-configurator.vala:441
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
@@ -790,6 +795,7 @@ msgstr "Přidají se boxy pro všechny systémy dostupné z tohoto účtu."
 msgid "Will add a single box."
 msgstr "Přidá se jeden box."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Přístup k pracovní ploše"
@@ -811,6 +817,7 @@ msgstr "Analyzuje se…"
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Nastavení boxu selhalo"
@@ -874,7 +881,7 @@ msgstr "Volba zdroje"
 msgid "Insert operating system installation media or select a source below"
 msgstr "Vložte instalační médium operačního systému nebo zvolte níže zdroj"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:570
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -883,23 +890,23 @@ msgstr ""
 "Jakékoli obchodní známky uvedené výše jsou použity toliko k označení "
 "softwaru, který jste získali, a jsou majetkem jeho vlastníků."
 
-#: ../src/wizard.vala:585
+#: ../src/wizard.vala:581
 msgid "Preparation"
 msgstr "Příprava"
 
-#: ../src/wizard.vala:586
+#: ../src/wizard.vala:582
 msgid "Preparing to create new box"
 msgstr "Připravuje se vytvoření boxu"
 
-#: ../src/wizard.vala:623
+#: ../src/wizard.vala:617
 msgid "Setup"
 msgstr "Nastavení"
 
-#: ../src/wizard.vala:630
+#: ../src/wizard.vala:624
 msgid "Review"
 msgstr "Shrnutí"
 
-#: ../src/wizard.vala:638
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -908,22 +915,22 @@ msgstr ""
 "systém dostatečně nový (z roku 2008 nebo později), možná je musíte jen "
 "povolit v nastavení BIOS."
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:671
 msgid "Create a Box"
 msgstr "Vytvořit box"
 
-#: ../src/wizard.vala:683
+#: ../src/wizard.vala:686
 msgid "_Back"
 msgstr "Z_pět"
 
-#: ../src/wizard.vala:691
+#: ../src/wizard.vala:695
 msgid "C_ontinue"
 msgstr "_Pokračovat"
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:705
 msgid "C_reate"
 msgstr "_Vytvořit"
 
-#: ../src/wizard.vala:787
+#: ../src/wizard.vala:793
 msgid "C_ustomize..."
 msgstr "Přizpůso_bit…"
