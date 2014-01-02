@@ -11,12 +11,18 @@ public delegate bool ClickedFunc ();
 
 /* Subclass of ScrolledWindow that shows at allocates enough
    space to not scroll for at most N children. */
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-scrolled.ui")]
 private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
+    [GtkChild]
+    public Gtk.Box vbox;
+
     private int num_visible;
     public WizardScrolled (int num_visible) {
         this.num_visible = num_visible;
-        this.get_style_context ().add_class ("boxes-menu-scrolled");
-        this.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
+
+        notify["num-visible"].connect (() => {
+            queue_resize ();
+        });
         get_vscrollbar ().show.connect (() => {
             this.get_style_context ().add_class ("boxes-menu-scrolled");
             this.reset_style ();
@@ -83,7 +89,7 @@ private class Boxes.WizardSource: GLib.Object {
 
     private Gtk.Box main_vbox;
     private Gtk.Box media_vbox;
-    private Gtk.ScrolledWindow media_scrolled;
+    private Boxes.WizardScrolled media_scrolled;
     private Gtk.Notebook notebook;
     private Gtk.Label url_label;
     private Gtk.Image url_image;
@@ -109,10 +115,7 @@ private class Boxes.WizardSource: GLib.Object {
         notebook.append_page (main_vbox, null);
 
         media_scrolled = new WizardScrolled (5);
-
-        media_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        media_scrolled.set_no_show_all (true);
-        media_scrolled.add_with_viewport (media_vbox);
+        media_vbox = media_scrolled.vbox;
         main_vbox.add (media_scrolled);
 
         var hbox = add_entry (main_vbox, () => {
