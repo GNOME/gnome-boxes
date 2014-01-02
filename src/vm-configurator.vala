@@ -208,7 +208,9 @@ private class Boxes.VMConfigurator {
         domain.vcpu = topology.get_sockets () * topology.get_cores () * topology.get_threads ();
 
         var cpu = new DomainCpu ();
-        cpu.set_mode (DomainCpuMode.HOST_MODEL);
+        // Ideally we should be using 'host-model' but there is currently issues with that:
+        // https://bugzilla.redhat.com/show_bug.cgi?id=870071
+        cpu.set_mode (DomainCpuMode.HOST_PASSTHROUGH);
         cpu.set_topology (topology);
         domain.set_cpu (cpu);
     }
