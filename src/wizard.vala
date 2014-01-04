@@ -10,8 +10,10 @@ private enum Boxes.WizardPage {
     LAST,
 }
 
-private class Boxes.Wizard: Boxes.UI {
-    public override Clutter.Actor actor { get { return gtk_actor; } }
+private class Boxes.Wizard: GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return gtk_actor; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
 
     private GtkClutter.Actor gtk_actor;
     private GenericArray<Gtk.Label> steps;
@@ -95,7 +97,7 @@ private class Boxes.Wizard: Boxes.UI {
                 case WizardPage.LAST:
                     create.begin ((obj, result) => {
                        if (create.end (result))
-                          App.app.ui_state = UIState.COLLECTION;
+                          App.app.set_state (UIState.COLLECTION);
                        else
                           App.app.notificationbar.display_error (_("Box creation failed"));
                     });
@@ -174,6 +176,7 @@ private class Boxes.Wizard: Boxes.UI {
         wizard_source.notify["page"].connect(wizard_source_update_next);
         wizard_source.notify["selected"].connect(wizard_source_update_next);
         wizard_source.url_entry.changed.connect (wizard_source_update_next);
+        notify["ui-state"].connect (ui_state_changed);
 
         wizard_source.activated.connect(() => {
             page = WizardPage.PREPARATION;
@@ -692,7 +695,7 @@ private class Boxes.Wizard: Boxes.UI {
             destroy_machine ();
             vm_creator = null;
             wizard_source.page = SourcePage.MAIN;
-            App.app.ui_state = UIState.COLLECTION;
+            App.app.set_state (UIState.COLLECTION);
         });
         toolbar_sizegroup.add_widget (cancel_button);
 
@@ -730,7 +733,7 @@ private class Boxes.Wizard: Boxes.UI {
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
-        App.app.ui_state = UIState.WIZARD;
+        App.app.set_state (UIState.WIZARD);
         this.skip_review_for_live = skip_review_for_live;
 
         page = WizardPage.SOURCE;
@@ -739,7 +742,7 @@ private class Boxes.Wizard: Boxes.UI {
         page = WizardPage.PREPARATION;
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         if (ui_state == UIState.WIZARD) {
             if (previous_ui_state == UIState.PROPERTIES)
                 review.begin ();

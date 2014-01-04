@@ -9,8 +9,10 @@ private enum Boxes.SidebarPage {
     PROPERTIES,
 }
 
-private class Boxes.Sidebar: Boxes.UI {
-    public override Clutter.Actor actor { get { return bin_actor; } }
+private class Boxes.Sidebar: GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return bin_actor; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
     public Notebook notebook;
     private uint width;
 
@@ -21,10 +23,11 @@ private class Boxes.Sidebar: Boxes.UI {
     public Sidebar () {
         width = 200;
 
+        notify["ui-state"].connect (ui_state_changed);
         setup_sidebar ();
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         switch (ui_state) {
         case UIState.WIZARD:
         case UIState.PROPERTIES:

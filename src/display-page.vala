@@ -31,7 +31,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
         var back = add_image_button (back_icon, true);
-        back.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
+        back.clicked.connect ((button) => { App.app.set_state (UIState.COLLECTION); });
 
         var fullscreen = add_image_button ("view-fullscreen-symbolic", false);
         App.app.notify["fullscreen"].connect_after ( () => {
@@ -44,7 +44,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         fullscreen.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
 
         var props = add_image_button ("preferences-system-symbolic", false);
-        props.clicked.connect ((button) => { App.app.ui_state = UIState.PROPERTIES; });
+        props.clicked.connect ((button) => { App.app.set_state (UIState.PROPERTIES); });
     }
 
     private Gtk.Button add_image_button (string icon_name, bool pack_start) {

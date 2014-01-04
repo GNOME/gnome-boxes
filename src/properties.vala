@@ -10,8 +10,10 @@ private enum Boxes.PropertiesPage {
     LAST,
 }
 
-private class Boxes.Properties: Boxes.UI {
-    public override Clutter.Actor actor { get { return gtk_actor; } }
+private class Boxes.Properties: GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return gtk_actor; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
 
     public string title {
         set {
@@ -151,6 +153,7 @@ private class Boxes.Properties: Boxes.UI {
     }
 
     public Properties () {
+        notify["ui-state"].connect (ui_state_changed);
         setup_ui ();
     }
 
@@ -232,7 +235,7 @@ private class Boxes.Properties: Boxes.UI {
         back.valign = Gtk.Align.CENTER;
         back.get_style_context ().add_class ("image-button");
         toolbar.pack_start (back);
-        back.clicked.connect ((button) => { App.app.ui_state = App.app.previous_ui_state; });
+        back.clicked.connect ((button) => { App.app.set_state (App.app.previous_ui_state); });
 
         hbox.show_all ();
 
@@ -310,7 +313,7 @@ private class Boxes.Properties: Boxes.UI {
         notebook.show_all ();
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         if (stats_id != 0) {
             App.app.current_item.disconnect (stats_id);
             stats_id = 0;

@@ -46,9 +46,11 @@ private class Boxes.Application: Gtk.Application {
     }
 }
 
-private class Boxes.App: Boxes.UI {
+private class Boxes.App: GLib.Object, Boxes.UI {
     public static App app;
-    public override Clutter.Actor actor { get { return stage; } }
+    public Clutter.Actor actor { get { return stage; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
     public Gtk.ApplicationWindow window;
     [CCode (notify = false)]
     public bool fullscreen {
@@ -114,7 +116,7 @@ private class Boxes.App: Boxes.UI {
         application.add_action (action);
 
         action = new GLib.SimpleAction ("new", null);
-        action.activate.connect (() => { ui_state = UIState.WIZARD; });
+        action.activate.connect (() => { set_state (UIState.WIZARD); });
         application.add_action (action);
 
         action = new GLib.SimpleAction ("select-all", null);
@@ -167,6 +169,8 @@ private class Boxes.App: Boxes.UI {
                                    "wrap-license", true);
         });
         application.add_action (action);
+
+        notify["ui-state"].connect (ui_state_changed);
     }
 
     public void startup () {
@@ -334,7 +338,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     public void open (string name) {
-        ui_state = UIState.COLLECTION;
+        set_state (UIState.COLLECTION);
         // we don't want to show the collection items as it will
         // appear as a glitch when opening a box immediately
         view.visible = false;
@@ -350,7 +354,7 @@ private class Boxes.App: Boxes.UI {
     }
 
     public bool open_uuid (string uuid) {
-        ui_state = UIState.COLLECTION;
+        set_state (UIState.COLLECTION);
         // we don't want to show the collection items as it will
         // appear as a glitch when opening a box immediately
         view.visible = false;
@@ -653,7 +657,7 @@ private class Boxes.App: Boxes.UI {
 
         main_vbox.show_all ();
 
-        ui_state = UIState.COLLECTION;
+        set_state (UIState.COLLECTION);
     }
 
     private void set_main_ui_state () {
@@ -690,11 +694,11 @@ private class Boxes.App: Boxes.UI {
         actor.add_transition ("animate-position", transition);
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, properties, wizard, empty_boxes }) {
-            ui.ui_state = ui_state;
+            ui.set_state (ui_state);
         }
 
         if (ui_state != UIState.DISPLAY)
@@ -751,7 +755,7 @@ private class Boxes.App: Boxes.UI {
         }
 
         if (current_item != null)
-            current_item.ui_state = ui_state;
+            current_item.set_state (ui_state);
     }
 
     public void suspend_machines () {
@@ -821,7 +825,7 @@ private class Boxes.App: Boxes.UI {
         // Show for the first selected item
         foreach (var item in selected_items) {
             current_item = item;
-            ui_state = UIState.PROPERTIES;
+            set_state (UIState.PROPERTIES);
             break;
         }
     }
@@ -908,7 +912,7 @@ private class Boxes.App: Boxes.UI {
         });
 
         // Start the CREDS state
-        ui_state = UIState.CREDS;
+        set_state (UIState.CREDS);
 
         // Connect to the display
         machine.connect_display.begin (flags, (obj, res) => {
@@ -918,7 +922,7 @@ private class Boxes.App: Boxes.UI {
                 if (maximized)
                     fullscreen = true;
             } catch (GLib.Error e) {
-                ui_state = UIState.COLLECTION;
+                set_state (UIState.COLLECTION);
                 debug ("connect display failed: %s", e.message);
                 var bar = App.app.notificationbar;
 
@@ -954,7 +958,7 @@ private class Boxes.App: Boxes.UI {
         } else if (ui_state == UIState.WIZARD) {
             current_item = item;
 
-            ui_state = UIState.PROPERTIES;
+            set_state (UIState.PROPERTIES);
         }
     }
 }

@@ -10,12 +10,12 @@ public enum Boxes.TopbarPage {
     DISPLAY
 }
 
-private class Boxes.Topbar: Boxes.UI {
+private class Boxes.Topbar: GLib.Object, Boxes.UI {
     // FIXME: This is really redundant now that App is using widget property
     // instead but parent Boxes.UI currently requires an actor. Hopefully
     // soon we can move more towards new Gtk classes and Boxes.UI requires
     // a widget property instead.
-    public override Clutter.Actor actor {
+    public Clutter.Actor actor {
         get {
             if (gtk_actor == null)
                 gtk_actor = new Clutter.Actor ();
@@ -23,6 +23,8 @@ private class Boxes.Topbar: Boxes.UI {
         }
     }
     private Clutter.Actor gtk_actor;
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
 
     public Gtk.Widget widget { get { return notebook; } }
     public Notebook notebook;
@@ -50,6 +52,8 @@ private class Boxes.Topbar: Boxes.UI {
     }
 
     public Topbar () {
+        notify["ui-state"].connect (ui_state_changed);
+
         setup_topbar ();
 
         App.app.notify["selected-items"].connect (() => {
@@ -75,7 +79,7 @@ private class Boxes.Topbar: Boxes.UI {
         new_btn.valign = Gtk.Align.CENTER;
         new_btn.get_style_context ().add_class ("text-button");
         toolbar.pack_start (new_btn);
-        new_btn.clicked.connect ((button) => { App.app.ui_state = UIState.WIZARD; });
+        new_btn.clicked.connect ((button) => { App.app.set_state (UIState.WIZARD); });
 
         var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                              "go-previous-symbolic";
@@ -86,7 +90,7 @@ private class Boxes.Topbar: Boxes.UI {
         back_btn.get_style_context ().add_class ("image-button");
         toolbar.pack_start (back_btn);
         back_btn.get_accessible ().set_name (_("Back"));
-        back_btn.clicked.connect ((button) => { App.app.ui_state = UIState.COLLECTION; });
+        back_btn.clicked.connect ((button) => { App.app.set_state (UIState.COLLECTION); });
 
         // We need a sizegroup to ensure the spinner is the same size
         // as the buttons so it centers correctly
@@ -207,7 +211,7 @@ private class Boxes.Topbar: Boxes.UI {
         }
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         switch (ui_state) {
         case UIState.COLLECTION:
             notebook.page = TopbarPage.COLLECTION;

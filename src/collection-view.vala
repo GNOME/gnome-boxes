@@ -7,8 +7,10 @@ public enum Boxes.SelectionCriteria {
     RUNNING
 }
 
-private class Boxes.CollectionView: Boxes.UI {
-    public override Clutter.Actor actor { get { return gtkactor; } }
+private class Boxes.CollectionView: GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return gtkactor; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
 
     private GtkClutter.Actor gtkactor;
 
@@ -43,6 +45,7 @@ private class Boxes.CollectionView: Boxes.UI {
     public CollectionView () {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         setup_view ();
+        notify["ui-state"].connect (ui_state_changed);
         App.app.notify["selection-mode"].connect (() => {
             main_view.set_selection_mode (App.app.selection_mode);
             if (!App.app.selection_mode)
@@ -63,7 +66,7 @@ private class Boxes.CollectionView: Boxes.UI {
         }
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         if (ui_state == UIState.COLLECTION)
             main_view.unselect_all ();
         fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
@@ -184,7 +187,7 @@ private class Boxes.CollectionView: Boxes.UI {
         });
         item.set_data<ulong> ("under_construct_id", under_construct_id);
 
-        item.ui_state = App.app.ui_state;
+        item.set_state (App.app.ui_state);
         actor_remove (item.actor);
 
         update_item_visible (item);

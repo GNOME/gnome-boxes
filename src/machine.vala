@@ -4,7 +4,7 @@ using Gdk;
 using Gtk;
 
 private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
-    public override Clutter.Actor actor { get { return machine_actor.actor; } }
+    public override Clutter.Actor item_actor { get { return machine_actor.actor; } }
     private MachineActor machine_actor;
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
@@ -75,7 +75,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 App.app.current_item == this &&
                 value != MachineState.RUNNING &&
                 value != MachineState.UNKNOWN) {
-                App.app.ui_state = Boxes.UIState.COLLECTION;
+                App.app.set_state (Boxes.UIState.COLLECTION);
             }
         }
     }
@@ -87,7 +87,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
         switch (App.app.ui_state) {
         case Boxes.UIState.CREDS:
-            App.app.ui_state = Boxes.UIState.DISPLAY;
+            App.app.set_state (Boxes.UIState.DISPLAY);
             show_timeout_id = Timeout.add (App.app.duration, () => {
                 show_timeout_id = 0;
                 show_display ();
@@ -148,7 +148,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
                 if (!stay_on_display && App.app.current_item == this)
-                    App.app.ui_state = Boxes.UIState.COLLECTION;
+                    App.app.set_state (Boxes.UIState.COLLECTION);
                 if (failed)
                     App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
             });
@@ -189,6 +189,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         pixbuf = draw_fallback_vm ();
         machine_actor = new MachineActor (this);
 
+        notify["ui-state"].connect (ui_state_changed);
         ui_state_id = App.app.notify["ui-state"].connect (() => {
             if (App.app.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
@@ -510,8 +511,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    public override void ui_state_changed () {
-        machine_actor.ui_state = ui_state;
+    private void ui_state_changed () {
+        machine_actor.set_state (ui_state);
 
         if (ui_state != Boxes.UIState.DISPLAY &&
             ui_state != Boxes.UIState.PROPERTIES &&
@@ -530,9 +531,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 }
 
-private class Boxes.MachineActor: Boxes.UI {
-    public override Clutter.Actor actor { get { return _actor; } }
+private class Boxes.MachineActor: GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return _actor; } }
     public Clutter.Actor _actor;
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
 
     private GtkClutter.Texture screenshot;
     private GtkClutter.Actor gtk_vbox;
@@ -601,6 +604,8 @@ private class Boxes.MachineActor: Boxes.UI {
 
         _actor.add (gtk_vbox);
         _actor.set_reactive (true);
+
+        notify["ui-state"].connect (ui_state_changed);
     }
 
     public void set_screenshot (Gdk.Pixbuf pixbuf) {
@@ -702,7 +707,7 @@ private class Boxes.MachineActor: Boxes.UI {
 
             if (display_widget != null) {
                 click.clicked.connect (() => {
-                    App.app.ui_state = Boxes.UIState.DISPLAY;
+                    App.app.set_state (Boxes.UIState.DISPLAY);
                 });
 
                 machine.display.set_enable_inputs (display_widget, false);
@@ -749,7 +754,7 @@ private class Boxes.MachineActor: Boxes.UI {
         }
     }
 
-    public override void ui_state_changed () {
+    private void ui_state_changed () {
         int window_width, window_height;
         int width, height;
         int x, y;

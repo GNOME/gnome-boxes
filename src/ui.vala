@@ -10,24 +10,18 @@ private enum Boxes.UIState {
     PROPERTIES
 }
 
-private abstract class Boxes.UI: GLib.Object {
+private interface Boxes.UI: GLib.Object {
     public abstract Clutter.Actor actor { get; }
 
-    public UIState previous_ui_state { get; protected set; }
-    private UIState _ui_state;
-    [CCode (notify = false)]
-    public UIState ui_state {
-        get { return _ui_state; }
-        set {
-            if (_ui_state != value) {
-                previous_ui_state = _ui_state;
-                _ui_state = value;
-                ui_state_changed ();
-                notify_property ("ui-state");
-            }
-        }
-    }
+    public abstract UIState previous_ui_state { get; protected set; }
+    public abstract UIState ui_state { get; protected set; }
 
-    public abstract void ui_state_changed ();
+    public void set_state (UIState new_state) {
+        if (ui_state == new_state)
+            return;
+
+        previous_ui_state = ui_state;
+        ui_state = new_state;
+    }
 }
 

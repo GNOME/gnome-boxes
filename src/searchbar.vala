@@ -1,7 +1,9 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-private class Boxes.Searchbar: Boxes.UI {
-    public override Clutter.Actor actor { get { return gtk_actor; } }
+private class Boxes.Searchbar: GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return gtk_actor; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
     public bool enable_key_handler {
         set {
             if (value)
@@ -166,8 +168,5 @@ private class Boxes.Searchbar: Boxes.UI {
         widget.show_all ();
         gtk_actor = new GtkClutter.Actor.with_contents (widget);
         gtk_actor.name = "searchbar";
-    }
-
-    public override void ui_state_changed () {
     }
 }

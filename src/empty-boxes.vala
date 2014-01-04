@@ -1,7 +1,9 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-private class Boxes.EmptyBoxes : Boxes.UI {
-    public override Clutter.Actor actor { get { return gtk_actor; } }
+private class Boxes.EmptyBoxes : GLib.Object, Boxes.UI {
+    public Clutter.Actor actor { get { return gtk_actor; } }
+    public UIState previous_ui_state { get; protected set; }
+    public UIState ui_state { get; protected set; }
 
     private GtkClutter.Actor gtk_actor;
     private Gtk.Grid grid;
@@ -55,10 +57,8 @@ private class Boxes.EmptyBoxes : Boxes.UI {
 
         App.app.collection.item_added.connect (update_visibility);
         App.app.collection.item_removed.connect (update_visibility);
-    }
 
-    public override void ui_state_changed () {
-        update_visibility ();
+        notify["ui-state"].connect (update_visibility);
     }
 
     private void update_visibility () {
