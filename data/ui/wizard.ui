@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesWizard" parent="GtkNotebook">
+    <property name="visible">True</property>
+    <property name="show-tabs">False</property>
+    <property name="margin">15</property>
+    <property name="width-request">500</property>
+    <style>
+      <class name="boxes-bg"/>
+    </style>
+
+    <!-- Introduction -->
+    <child>
+      <object class="GtkBox" id="intro_hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">10</property>
+        <property name="halign">center</property>
+
+        <child>
+          <object class="GtkImage" id="intro_image">
+            <property name="visible">True</property>
+            <property name="resource">/org/gnome/Boxes/icons/boxes-create.png</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="intro_label">
+            <property name="visible">True</property>
+            <property name="wrap">True</property>
+            <!-- Work around clutter size allocation issue (bz#677260) -->
+            <property name="max-width-chars">40</property>
+            <property name="use-markup">True</property>
+            <property name="label" translatable="yes">Creating a Box will allow you to use another operating system directly from your existing login.
+
+You may connect to an existing machine &lt;b&gt;&lt;i&gt;over the network&lt;/i&gt;&lt;/b&gt; or create a &lt;b&gt;&lt;i&gt;virtual machine&lt;/i&gt;&lt;/b&gt; that runs locally on your own.</property>
+            <property name="use-markup">True</property>
+            <style>
+              <class name="boxes-wizard-label"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <!-- Source -->
+    <child>
+      <object class="GtkBox" id="source_vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">30</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <child>
+          <object class="GtkLabel" id="instruction_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Insert operating system installation media or select a source below</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0.0</property>
+            <style>
+              <class name="boxes-wizard-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="BoxesWizardSource" id="wizard_source">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="trademark_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners.</property>
+            <property name="wrap">True</property>
+            <property name="max-width-chars">50</property>
+            <style>
+              <class name="boxes-logo-notice-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+
+    <!-- Preparation -->
+    <child>
+      <object class="GtkBox" id="prep_vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">30</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+
+        <child>
+          <object class="GtkLabel" id="preparing_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Preparing to create new box</property>
+            <property name="wrap">True</property>
+            <property name="xalign">0.0</property>
+            <style>
+              <class name="boxes-wizard-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="prep_hbox">
+            <property name="visible">True</property>
+            <property name="orientation">horizontal</property>
+            <property name="spacing">10</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+
+            <child>
+              <object class="GtkImage" id="installer_image">
+                <property name="visible">True</property>
+                <property name="icon-name">media-optical</property>
+                <property name="icon-size">0</property>
+                <property name="pixel-size">128</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkBox" id="prep_inner_vbox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">10</property>
+                <property name="valign">center</property>
+                <property name="homogeneous">True</property>
+                <child>
+                  <object class="GtkLabel" id="prep_media_label">
+                    <property name="ellipsize">end</property>
+                    <property name="halign">start</property>
+                    <style>
+                      <class name="boxes-wizard-media-os-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+
+                <child>
+                  <object class="GtkLabel" id="prep_status_label">
+                    <property name="visible">True</property>
+                    <property name="halign">start</property>
+                    <style>
+                      <class name="boxes-wizard-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+
+                <child>
+                  <object class="GtkProgressBar" id="prep_progress">
+                    <property name="visible">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+
+    <!-- Setup -->
+    <child>
+      <object class="GtkBox" id="setup_box">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">0</property>
+        <property name="valign">center</property>
+        <property name="halign">center</property>
+      </object>
+    </child>
+
+    <!-- Review -->
+    <child>
+      <object class="GtkBox" id="review_box">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">0</property>
+        <property name="valign">fill</property>
+        <property name="halign">fill</property>
+
+        <child>
+          <!-- FIXME: We shouldn't need this box but for some weird unknown
+               reason, toggling the visibility of the infobar itself doesn't
+               exactly work. The bar remains visible even after setting
+               visibility to 'false' but its only visible as a line. Likely
+               some bug in clutter-gtk but I failed to reproduce it outside
+               Boxes. :( -->
+          <object class="GtkBox" id="nokvm_box">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">0</property>
+
+            <child>
+              <object class="GtkInfoBar" id="nokvm_infobar">
+                <property name="halign">fill</property>
+                <property name="spacing">0</property>
+                <property name="message-type">warning</property>
+
+                <child internal-child="content_area">
+                  <object class="GtkContainer" id="nokvm_container">
+                    <child>
+                      <object class="GtkImage" id="nokvm_image">
+                        <property name="visible">True</property>
+                        <property name="icon-name">dialog-warning</property>
+                        <property name="icon-size">3</property>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkLabel" id="nokvm_label">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them.</property>
+                        <property name="wrap">True</property>
+                        <property name="halign">start</property>
+                        <property name="hexpand">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="review_vbox">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">30</property>
+            <property name="valign">center</property>
+            <property name="halign">center</property>
+
+            <child>
+              <object class="GtkLabel" id="review_label">
+                <property name="visible">True</property>
+                <property name="xalign">0.0</property>
+                <property name="wrap">True</property>
+                <property name="width-chars">30</property>
+                <style>
+                  <class name="boxes-wizard-label"/>
+                </style>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="BoxesWizardSummary" id="summary"/>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+              </packing>
+            </child>
+
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
+
+      </object>
+    </child>
+
+  </template>
+</interface>

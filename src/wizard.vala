@@ -10,29 +10,43 @@ private enum Boxes.WizardPage {
     LAST,
 }
 
-private class Boxes.Wizard: GLib.Object, Boxes.UI {
-    public Clutter.Actor actor { get { return gtk_actor; } }
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard.ui")]
+private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
+    public Clutter.Actor actor {
+        get {
+            return gtk_actor;
+        }
+    }
+    private GtkClutter.Actor gtk_actor;
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    private GtkClutter.Actor gtk_actor;
     private GenericArray<Gtk.Label> steps;
-    private Gtk.Notebook notebook;
     private Gtk.Button cancel_button;
     private Gtk.Button back_button;
     private Gtk.Button next_button;
     private Gtk.Button continue_button;
     private Gtk.Button create_button;
     private Gtk.SizeGroup toolbar_sizegroup;
-    private Boxes.WizardSource wizard_source;
-    private WizardSummary summary;
     private CollectionSource? source;
+
+    [GtkChild]
+    private Boxes.WizardSource wizard_source;
+    [GtkChild]
+    private WizardSummary summary;
+    [GtkChild]
     private Gtk.ProgressBar prep_progress;
+    [GtkChild]
     private Gtk.Label prep_media_label;
+    [GtkChild]
     private Gtk.Label prep_status_label;
+    [GtkChild]
     private Gtk.Box setup_box;
+    [GtkChild]
     private Gtk.Label review_label;
+    [GtkChild]
     private Gtk.Box nokvm_box;
+    [GtkChild]
     private Gtk.Image installer_image;
 
     private MediaManager media_manager;
@@ -41,92 +55,87 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
     protected Machine? machine { get; set; }
     private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
-    private WizardPage _page;
-    private WizardPage page {
-        get { return _page; }
-        set {
-            back_button.sensitive = value != WizardPage.INTRODUCTION;
+    public override void switch_page (Gtk.Widget page_widget, uint page_num) {
+        if (cancel_button == null) {
+            // page is set to INTRODUCTION by GtkBuilder during construction (before even construct is called) and
+            // therefore none of the state we access below is available to us (nor it could be before this object
+            // exists).
+            base.switch_page (page_widget, page_num);
 
-            var forwards = value > page;
+            return;
+        }
 
-            switch (value) {
-            case WizardPage.INTRODUCTION:
-                create_button.visible = false;
-                continue_button.visible = true;
-                next_button = continue_button;
-                next_button.sensitive = true;
-                next_button.grab_focus (); // FIXME: doesn't work?!
+        back_button.sensitive = page_num != WizardPage.INTRODUCTION;
+
+        var forwards = page_num > page;
+
+        switch (page_num) {
+        case WizardPage.INTRODUCTION:
+            create_button.visible = false;
+            continue_button.visible = true;
+            next_button = continue_button;
+            next_button.sensitive = true;
+            next_button.grab_focus (); // FIXME: doesn't work?!
+            break;
+
+        case WizardPage.SOURCE:
+            // reset page to notify deeply widgets states
+            wizard_source.page = wizard_source.page;
+            break;
+        }
+
+        if (forwards) {
+            switch (page_num) {
+            case WizardPage.SOURCE:
+                wizard_source.selected = null;
+                wizard_source.page = SourcePage.MAIN;
                 break;
 
-            case WizardPage.SOURCE:
-                // reset page to notify deeply widgets states
-                wizard_source.page = wizard_source.page;
+            case WizardPage.PREPARATION:
+                if (!prepare ())
+                    return;
+                break;
+
+            case WizardPage.SETUP:
+                if (!setup ())
+                    return;
+                break;
+
+            case WizardPage.REVIEW:
+                continue_button.visible = false;
+                create_button.visible = true;
+                next_button = create_button;
+                next_button.sensitive = false;
+
+                review.begin ((obj, result) => {
+                    next_button.sensitive = true;
+                    if (!review.end (result))
+                        page = page - 1;
+                });
                 break;
             }
-
-            if (forwards) {
-                switch (value) {
-                case WizardPage.SOURCE:
-                    wizard_source.selected = null;
-                    wizard_source.page = SourcePage.MAIN;
-                    break;
-
-                case WizardPage.PREPARATION:
-                    if (!prepare ())
-                        return;
-                    break;
-
-                case WizardPage.SETUP:
-                    if (!setup ())
-                        return;
-                    break;
-
-                case WizardPage.REVIEW:
-                    continue_button.visible = false;
-                    create_button.visible = true;
-                    next_button = create_button;
-                    next_button.sensitive = false;
-
-                    review.begin ((obj, result) => {
-                        next_button.sensitive = true;
-                        if (!review.end (result))
-                            page = page - 1;
-                    });
-                    break;
-
-                case WizardPage.LAST:
-                    create.begin ((obj, result) => {
-                       if (create.end (result))
-                          App.app.set_state (UIState.COLLECTION);
-                       else
-                          App.app.notificationbar.display_error (_("Box creation failed"));
-                    });
-                    return;
-                }
-            } else {
-                switch (page) {
+        } else {
+            switch (page) {
                 case WizardPage.REVIEW:
                     create_button.visible = false;
                     continue_button.visible = true;
                     next_button = continue_button;
                     destroy_machine ();
                     break;
-                }
             }
-
-            if (skip_page (value))
-                return;
-
-            _page = value;
-            notebook.set_current_page (value);
-
-            for (var i = 0; i < steps.length; i++) {
-                var label = steps.get (i);
-                label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
-            }
-
-            steps.get (page).get_style_context ().add_class ("boxes-wizard-current-page-label");
         }
+
+        if (skip_page ((WizardPage) page_num))
+            return;
+
+        base.switch_page (page_widget, page_num);
+
+        for (var i = 0; i < steps.length; i++) {
+            var label = steps.get (i);
+            label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
+        }
+
+        steps.get (page).get_style_context ().add_class ("boxes-wizard-current-page-label");
     }
 
     construct {
@@ -172,7 +181,6 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
     }
 
     public Wizard () {
-        wizard_source = new Boxes.WizardSource (media_manager);
         wizard_source.notify["page"].connect(wizard_source_update_next);
         wizard_source.notify["selected"].connect(wizard_source_update_next);
         wizard_source.url_entry.changed.connect (wizard_source_update_next);
@@ -182,6 +190,9 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
             page = WizardPage.PREPARATION;
         });
 
+        // Changing page to something other than INTRODUCTION here so that Gtk.Notebook doesn't ignore us setting
+        // it to INTRODUCTION later (also read the comment in switch_page method above).
+        page = WizardPage.PREPARATION;
         setup_ui ();
     }
 
@@ -482,9 +493,7 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
         return true;
     }
 
-    private void add_step (Gtk.Widget widget, string title, WizardPage page) {
-        notebook.append_page (widget, null);
-
+    private void add_step (string title, WizardPage page) {
         /* sidebar */
         var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.Box;
 
@@ -541,12 +550,13 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
     }
 
     private void setup_ui () {
-        notebook = new Gtk.Notebook ();
-        notebook.margin = 15;
-        notebook.width_request = 500;
-        notebook.show_tabs = false;
-        notebook.get_style_context ().add_class ("boxes-bg");
-        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        add_step (_("Introduction"), WizardPage.INTRODUCTION);
+        add_step (_("Source Selection"), WizardPage.SOURCE);
+        add_step (_("Preparation"), WizardPage.PREPARATION);
+        add_step (_("Setup"), WizardPage.SETUP);
+        add_step (_("Review"), WizardPage.REVIEW);
+
+        gtk_actor = new GtkClutter.Actor.with_contents (this);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "wizard";
         gtk_actor.opacity = 0;
@@ -555,129 +565,8 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
 
-        /* Introduction */
-        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
-        hbox.halign = Gtk.Align.CENTER;
-        add_step (hbox, _("Introduction"), WizardPage.INTRODUCTION);
-        hbox.add (new Gtk.Image.from_file (get_pixmap ("boxes-create.png")));
-        var label = new Gtk.Label (null);
-        label.get_style_context ().add_class ("boxes-wizard-label");
-        label.set_markup (_("Creating a Box will allow you to use another operating system directly from your existing login.\n\nYou may connect to an existing machine <b><i>over the network</i></b> or create a <b><i>virtual machine</i></b> that runs locally on your own."));
-        label.wrap = true;
-        // Work around clutter size allocation issue (bz#677260)
-        label.width_chars = 30;
-        label.max_width_chars = 40;
-        hbox.add (label);
-        hbox.show_all ();
-
-        /* Source */
-        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
-        vbox.valign = Gtk.Align.CENTER;
-        vbox.halign = Gtk.Align.CENTER;
-        add_step (vbox, _("Source Selection"), WizardPage.SOURCE);
-        label = new Gtk.Label (_("Insert operating system installation media or select a source below"));
-        label.get_style_context ().add_class ("boxes-wizard-label");
-        label.wrap = true;
-        label.xalign = 0.0f;
-        vbox.pack_start (label, false, false);
-        vbox.pack_start (wizard_source, false, false);
-        wizard_source.hexpand = true;
-        wizard_source.halign = Gtk.Align.CENTER;
-        label = new Gtk.Label (_("Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners."));
-        label.get_style_context ().add_class ("boxes-logo-notice-label");
-        label.wrap = true;
-        label.max_width_chars = 50;
-        vbox.pack_start (label, false, false);
-        vbox.show_all ();
-
-        /* Preparation */
-        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
-        vbox.valign = Gtk.Align.CENTER;
-        vbox.halign = Gtk.Align.CENTER;
-        add_step (vbox, _("Preparation"), WizardPage.PREPARATION);
-        label = new Gtk.Label (_("Preparing to create new box"));
-        label.get_style_context ().add_class ("boxes-wizard-label");
-        label.wrap = true;
-        label.xalign = 0.0f;
-        vbox.pack_start (label, false, false);
-
-        hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
-        hbox.valign = Gtk.Align.CENTER;
-        hbox.halign = Gtk.Align.CENTER;
-        vbox.pack_start (hbox, true, true);
-
-        installer_image = new Gtk.Image.from_icon_name ("media-optical", 0);
-        installer_image.pixel_size = 128;
-        hbox.pack_start (installer_image, false, false);
-        var prep_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-        prep_vbox.homogeneous = true;
-        prep_vbox.valign = Gtk.Align.CENTER;
-        hbox.pack_start (prep_vbox, true, true);
-        prep_media_label = new Gtk.Label (null);
-        prep_media_label.get_style_context ().add_class ("boxes-wizard-media-os-label");
-        prep_media_label.set_ellipsize (Pango.EllipsizeMode.END);
-        prep_media_label.halign = Gtk.Align.START;
-        prep_vbox.pack_start (prep_media_label, false, false);
-        prep_status_label = new Gtk.Label (null);
-        prep_status_label.get_style_context ().add_class ("boxes-wizard-label");
-        prep_status_label.halign = Gtk.Align.START;
-        prep_vbox.pack_start (prep_status_label, false, false);
-        prep_progress = new Gtk.ProgressBar ();
-        prep_vbox.pack_start (prep_progress, false, false);
-        vbox.show_all ();
-
-        /* Setup */
-        setup_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        setup_box.valign = Gtk.Align.CENTER;
-        setup_box.halign = Gtk.Align.CENTER;
-        add_step (setup_box, _("Setup"), WizardPage.SETUP);
-        setup_box.show_all ();
-
-        /* Review */
-        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        vbox.valign = Gtk.Align.FILL;
-        vbox.halign = Gtk.Align.FILL;
-        add_step (vbox, _("Review"), WizardPage.REVIEW);
-
-        var nokvm_infobar = new Gtk.InfoBar ();
-        nokvm_infobar.halign = Gtk.Align.FILL;
-        nokvm_infobar.spacing = 10;
-        var container = nokvm_infobar.get_content_area () as Gtk.Container;
-        var image = new Gtk.Image.from_icon_name ("dialog-warning", Gtk.IconSize.LARGE_TOOLBAR);
-        container.add (image);
-        label = new Gtk.Label (_("Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them."));
-        label.wrap = true;
-        label.halign = Gtk.Align.START;
-        label.hexpand = true;
-        container.add (label);
-        nokvm_infobar.message_type = Gtk.MessageType.WARNING;
-        // FIXME: We shouldn't need this box but for some weird unknown reason,
-        // toggling the visibility of the infobar itself doesn't exactly work.
-        // The bar remains visible even after setting visibility to 'false' but
-        // its only visible as a line. Likely some bug in clutter-gtk but I
-        // failed to reproduce it outside Boxes. :(
-        nokvm_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        nokvm_box.pack_start (nokvm_infobar, false, false);
-        vbox.pack_start (nokvm_box, false, false);
-
-        var review_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 30);
-        review_vbox.valign = Gtk.Align.CENTER;
-        review_vbox.halign = Gtk.Align.CENTER;
-        vbox.pack_start (review_vbox , true, true);
-
-        review_label = new Gtk.Label (null);
-        review_label.get_style_context ().add_class ("boxes-wizard-label");
-        review_label.xalign = 0.0f;
-        review_label.wrap = true;
-        review_label.width_chars = 30;
-        review_vbox.pack_start (review_label, false, false);
-
-        summary = new WizardSummary ();
-        review_vbox.pack_start (summary.widget, true, true);
-        vbox.show_all ();
-
         /* topbar */
-        hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.Box;
+        var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.Box;
 
         var toolbar = new Gtk.HeaderBar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
@@ -724,12 +613,16 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
         create_button.get_style_context ().add_class ("boxes-continue");
         toolbar.pack_end (create_button);
         create_button.clicked.connect (() => {
-            page = page + 1;
+            create.begin ((obj, result) => {
+            if (create.end (result))
+                App.app.set_state (UIState.COLLECTION);
+            else
+                App.app.notificationbar.display_error (_("Box creation failed"));
+            });
         });
         toolbar_sizegroup.add_widget (create_button);
 
         hbox.show_all ();
-        notebook.show_all ();
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
@@ -765,62 +658,56 @@ private class Boxes.Wizard: GLib.Object, Boxes.UI {
             machine = null;
         }
     }
+}
 
-    private class WizardSummary: GLib.Object {
-        public delegate void CustomizeFunc ();
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-summary.ui")]
+private class Boxes.WizardSummary: Gtk.Grid {
+    public delegate void CustomizeFunc ();
 
-        public Gtk.Widget widget { get { return grid; } }
-        private Gtk.Grid grid;
-        private int current_row;
+    private int current_row;
 
-        public WizardSummary () {
-            grid = new Gtk.Grid ();
-            grid.row_spacing = 10;
-            grid.column_spacing = 20;
-            current_row = 0;
+    construct {
+        current_row = 0;
+    }
 
-            clear ();
+    public void add_property (string name, string? value) {
+        if (value == null)
+            return;
+
+        var label_name = new Gtk.Label (name);
+        label_name.get_style_context ().add_class ("boxes-wizard-summary-prop-name-label");
+        label_name.xalign = 1.0f;
+        attach (label_name, 0, current_row, 1, 1);
+
+        var label_value = new Gtk.Label (value);
+        label_value.get_style_context ().add_class ("boxes-wizard-summary-prop-value-label");
+        label_value.set_ellipsize (Pango.EllipsizeMode.END);
+        label_value.set_max_width_chars (32);
+        label_value.xalign = 0.0f;
+        attach (label_value, 1, current_row, 1, 1);
+
+        current_row += 1;
+        show_all ();
+    }
+
+    public void append_customize_button (CustomizeFunc customize_func) {
+        // there is nothing to customize if review page is empty
+        if (current_row == 0)
+            return;
+
+        var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
+        button.get_style_context ().add_class ("boxes-wizard-summary-customize-button");
+        attach (button, 2, current_row - 1, 1, 1);
+        button.show ();
+
+        button.clicked.connect (() => { customize_func (); });
+    }
+
+    public void clear () {
+        foreach (var child in get_children ()) {
+            remove (child);
         }
 
-        public void add_property (string name, string? value) {
-            if (value == null)
-                return;
-
-            var label_name = new Gtk.Label (name);
-            label_name.get_style_context ().add_class ("boxes-wizard-summary-prop-name-label");
-            label_name.xalign = 1.0f;
-            grid.attach (label_name, 0, current_row, 1, 1);
-
-            var label_value = new Gtk.Label (value);
-            label_value.get_style_context ().add_class ("boxes-wizard-summary-prop-value-label");
-            label_value.set_ellipsize (Pango.EllipsizeMode.END);
-            label_value.set_max_width_chars (32);
-            label_value.xalign = 0.0f;
-            grid.attach (label_value, 1, current_row, 1, 1);
-
-            current_row += 1;
-            grid.show_all ();
-        }
-
-        public void append_customize_button (CustomizeFunc customize_func) {
-            // there is nothing to customize if review page is empty
-            if (current_row == 0)
-                return;
-
-            var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
-            button.get_style_context ().add_class ("boxes-wizard-summary-customize-button");
-            grid.attach (button, 2, current_row - 1, 1, 1);
-            button.show ();
-
-            button.clicked.connect (() => { customize_func (); });
-        }
-
-        public void clear () {
-            foreach (var child in grid.get_children ()) {
-                grid.remove (child);
-            }
-
-            current_row = 0;
-        }
+        current_row = 0;
     }
 }

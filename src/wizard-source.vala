@@ -128,11 +128,10 @@ private class Boxes.WizardSource: Gtk.Notebook {
 
     private Gtk.Box media_vbox;
 
-    private MediaManager media_manager;
+    public MediaManager media_manager;
 
-    public WizardSource (MediaManager media_manager) {
-        this.media_manager = media_manager;
-
+    construct {
+        media_manager = MediaManager.get_instance ();
         main_vbox.grab_focus ();
 
         media_scrolled.setup (5);

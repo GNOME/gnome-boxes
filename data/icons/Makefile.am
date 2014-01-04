@@ -17,13 +17,7 @@ noinst_DATA =					\
 	gnome-boxes.svg				\
 	$(NULL)
 
-imagesdir = $(datadir)/gnome-boxes/pixmaps
-images_DATA =					\
-	boxes-create.png			\
-	$(NULL)
-
 EXTRA_DIST =					\
-	$(images_DATA)				\
 	$(public_icons)				\
 	$(noinst_DATA)				\
 	$(NULL)
