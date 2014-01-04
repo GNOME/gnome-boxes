@@ -90,8 +90,7 @@ private class Boxes.WizardMediaEntry : Gtk.Button {
             if (media.os.vendor != null)
                 // Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
                 details_label.label += _(" from %s").printf (media.os.vendor);
-        } else
-            details_label.label += _("Unknown media");
+        }
     }
 }
 
