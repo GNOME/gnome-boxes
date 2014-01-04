@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-22 20:05+0000\n"
-"PO-Revision-Date: 2013-12-28 20:02+0800\n"
-"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
+"POT-Creation-Date: 2014-01-03 18:55+0000\n"
+"PO-Revision-Date: 2014-01-04 16:34+0800\n"
+"Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -135,6 +135,22 @@ msgstr "添加密码(_A)"
 msgid "Product Key"
 msgstr "序列号"
 
+#: ../data/ui/wizard-source.ui.h:1
+msgid "Enter URL"
+msgstr "输入 URL"
+
+#: ../data/ui/wizard-source.ui.h:2
+msgid "▶"
+msgstr "▶"
+
+#: ../data/ui/wizard-source.ui.h:3
+msgid "Select a file"
+msgstr "选择文件"
+
+#: ../data/ui/wizard-source.ui.h:4
+msgid "◀"
+msgstr "◀"
+
 #: ../src/app.vala:160
 msgid "translator-credits"
 msgstr ""
@@ -208,7 +224,7 @@ msgstr[0] "%u 个 Box 已经被删除"
 
 #: ../src/app.vala:861
 msgid "_Undo"
-msgstr "撤消(U)"
+msgstr "撤消(_U)"
 
 #: ../src/app.vala:928
 #, c-format
@@ -298,6 +314,8 @@ msgstr "保存出错：%s"
 msgid "Protocol"
 msgstr "协议"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -334,16 +352,16 @@ msgstr "选择"
 msgid "Remove"
 msgstr "移除"
 
-#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:331
+#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:245
 msgid "Select a device or ISO file"
 msgstr "选择一个设备或 ISO 文件"
 
 #: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
-#: ../src/wizard-source.vala:334 ../src/wizard.vala:687
+#: ../src/wizard-source.vala:248 ../src/wizard.vala:687
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:335
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:249
 msgid "_Open"
 msgstr "打开(_O)"
 
@@ -523,7 +541,7 @@ msgstr "%s - 属性"
 
 #: ../src/properties.vala:70
 msgid "Login"
-msgstr "登陆"
+msgstr "登录"
 
 #: ../src/properties.vala:78
 msgid "Display"
@@ -712,7 +730,7 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:486
+#: ../src/vm-configurator.vala:488
 msgid "Incapable host system"
 msgstr "主机系统性能不足"
 
@@ -727,7 +745,7 @@ msgstr "正在安装..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:249
+#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "体验"
 
@@ -751,37 +769,23 @@ msgstr "Box 从文件“%s”导入时失败。"
 msgid "Read-only"
 msgstr "只读"
 
-#: ../src/wizard-source.vala:123 ../src/wizard-source.vala:150
-msgid "Enter URL"
-msgstr "输入 URL"
-
-#: ../src/wizard-source.vala:130
-msgid "Select a file"
-msgstr "选择文件"
-
-#: ../src/wizard-source.vala:167
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-"<b>桌面访问</b>\n"
-"\n"
-"将添加所有该帐户可访问系统的 box。"
-
-#: ../src/wizard-source.vala:258
+#: ../src/wizard-source.vala:86
 msgid "32-bit x86 system"
 msgstr "32位 x86 系统"
 
-#: ../src/wizard-source.vala:259
+#: ../src/wizard-source.vala:87
 msgid "64-bit x86 system"
 msgstr "64位 x86 系统"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:268
+#: ../src/wizard-source.vala:92
 #, c-format
 msgid " from %s"
 msgstr "从 %s"
+
+#: ../src/wizard-source.vala:94
+msgid "Unknown media"
+msgstr "未知介质"
 
 #: ../src/wizard.vala:100
 msgid "Box creation failed"
@@ -799,6 +803,7 @@ msgstr "将添加所有该帐户可访问系统的 box。"
 msgid "Will add a single box."
 msgstr "将添加一个 Box。"
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "桌面访问"
@@ -820,6 +825,7 @@ msgstr "正在分析..."
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "无法分析安装器介质。已损坏或不完整的介质？"
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:391
 msgid "Box setup failed"
 msgstr "Box 设置失败"
@@ -932,6 +938,15 @@ msgstr "创建(_R)"
 #: ../src/wizard.vala:807
 msgid "C_ustomize..."
 msgstr "自定义(_U)..."
+
+#~ msgid ""
+#~ "<b>Desktop Access</b>\n"
+#~ "\n"
+#~ "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "<b>桌面访问</b>\n"
+#~ "\n"
+#~ "将添加所有该帐户可访问系统的 box。"
 
 #~ msgid "D_one"
 #~ msgstr "完成(_O)"
