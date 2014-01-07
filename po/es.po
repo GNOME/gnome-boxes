@@ -2,15 +2,15 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-11 16:26+0000\n"
-"PO-Revision-Date: 2013-12-12 11:06+0100\n"
+"POT-Creation-Date: 2014-01-03 18:55+0000\n"
+"PO-Revision-Date: 2014-01-07 11:45+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -19,6 +19,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Gtranslator 2.91.5\n"
+
+#: ../data/gnome-boxes.appdata.xml.in.h:1
+msgid ""
+"A simple GNOME 3 application to access remote or virtual systems. Unlike "
+"some other virtual machine management software, Boxes is targeted towards "
+"typical desktop end-users. For this reason, Boxes will not provide many "
+"advanced options to tweak virtual machines. Instead Boxes will focus on "
+"getting things working out of the box with very little input from user."
+msgstr ""
+"Una sencilla aplicación de GNOME 3 para acceder a sistemas remotos o "
+"virtuales. A diferencia de otros programas de gestión de máquinas remotas, "
+"Cajas está orientado a usuarios finales del escritorio. Por esta razón, "
+"Cajas no proporcionará muchas opciones avanzadas para configurar las "
+"máquinas virtuales. En su lugar, Cajas se centrará en que las cosas "
+"funcionen con una implicación del usuario mínima."
+
+#: ../data/gnome-boxes.appdata.xml.in.h:2
+msgid ""
+"You want to install Boxes if you just want a very safe and easy way to try "
+"out new operating systems or new (potentially unstable) versions of your "
+"favorite operating system(s), or need to connect to a remote machine (for "
+"example, in your office)."
+msgstr ""
+"Querrá instalar Cajas si quiere una manera segura y sencilla de probar "
+"nuevos sistemas operativos o nuevas versiones (potencialmente inestables) de "
+"sus sistemas operativos favoritos, o necesita conectarse a una máquina "
+"remota (por ejemplo, en su oficina)."
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
@@ -86,32 +113,50 @@ msgstr "Ventana maximizada"
 msgid "Window maximized state"
 msgstr "Estado maximizado de la ventana"
 
-#: ../data/gnome-boxes.appdata.xml.in.h:1
+#: ../data/ui/unattended-setup-box.ui.h:1
 msgid ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
+"Choose express install to automatically preconfigure the box with optimal "
+"settings."
 msgstr ""
-"Una sencilla aplicación de GNOME 3 para acceder a sistemas remotos o "
-"virtuales. A diferencia de otros programas de gestión de máquinas remotas, "
-"Cajas está orientado a usuarios finales del escritorio. Por esta razón, "
-"Cajas no proporcionará muchas opciones avanzadas para configurar las "
-"máquinas virtuales. En su lugar, Cajas se centrará en que las cosas "
-"funcionen con una implicación del usuario mínima."
+"Elija la instalación rápida para preconfigurar automáticamente la caja con "
+"la configuración óptima."
 
-#: ../data/gnome-boxes.appdata.xml.in.h:2
-msgid ""
-"You want to install Boxes if you just want a very safe and easy way to try "
-"out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
-msgstr ""
-"Querrá instalar Cajas si quiere una manera segura y sencilla de probar "
-"nuevos sistemas operativos o nuevas versiones (potencialmente inestables) de "
-"sus sistemas operativos favoritos, o necesita conectarse a una máquina "
-"remota (por ejemplo, en su oficina)."
+#: ../data/ui/unattended-setup-box.ui.h:2
+msgid "Express Install"
+msgstr "Instalación rápida"
+
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:262
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/machine.vala:584
+#: ../src/unattended-installer.vala:263
+msgid "Password"
+msgstr "Contraseña"
+
+#: ../data/ui/unattended-setup-box.ui.h:5
+msgid "_Add Password"
+msgstr "_Añadir contraseña"
+
+#: ../data/ui/unattended-setup-box.ui.h:6
+msgid "Product Key"
+msgstr "Clave del producto"
+
+#: ../data/ui/wizard-source.ui.h:1
+msgid "Enter URL"
+msgstr "Introducir el URL"
+
+#: ../data/ui/wizard-source.ui.h:2
+msgid "▶"
+msgstr "▶"
+
+#: ../data/ui/wizard-source.ui.h:3
+msgid "Select a file"
+msgstr "Seleccionar un archivo"
+
+#: ../data/ui/wizard-source.ui.h:4
+msgid "◀"
+msgstr "◀"
 
 #: ../src/app.vala:160
 msgid "translator-credits"
@@ -172,23 +217,23 @@ msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: ../src/app.vala:842
+#: ../src/app.vala:837
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: ../src/app.vala:843
+#: ../src/app.vala:838
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: ../src/app.vala:866
+#: ../src/app.vala:861
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: ../src/app.vala:933
+#: ../src/app.vala:928
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -197,11 +242,11 @@ msgstr ""
 "no se pudo restaurar «%s» desde el disco\n"
 "¿Intentarlo sin el estado guardado?"
 
-#: ../src/app.vala:934
+#: ../src/app.vala:929
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/app.vala:939 ../src/machine.vala:153
+#: ../src/app.vala:934 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
@@ -210,7 +255,7 @@ msgstr "Falló la conexión a «%s»"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/display-page.vala:301
+#: ../src/display-page.vala:306
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pulse Ctrl+Alt para deseleccionar)"
 
@@ -231,147 +276,135 @@ msgstr "Formato de archivo de disco no soportado."
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/libvirt-machine-properties.vala:128 ../src/remote-machine.vala:53
+#: ../src/libvirt-machine-properties.vala:116 ../src/remote-machine.vala:53
 msgid "Name"
 msgstr "Nombre"
 
-#: ../src/libvirt-machine-properties.vala:133 ../src/ovirt-machine.vala:64
+#: ../src/libvirt-machine-properties.vala:121 ../src/ovirt-machine.vala:64
 msgid "Virtualizer"
 msgstr "Virtualizador"
 
-#: ../src/libvirt-machine-properties.vala:135 ../src/ovirt-machine.vala:65
+#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:65
 #: ../src/remote-machine.vala:60 ../src/wizard.vala:415
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine-properties.vala:143
-#: ../src/libvirt-machine-properties.vala:148
+#: ../src/libvirt-machine-properties.vala:131
+#: ../src/libvirt-machine-properties.vala:136
 msgid "Troubleshooting log"
 msgstr "Registro de resolución de problemas"
 
-#: ../src/libvirt-machine-properties.vala:151
-#: ../src/libvirt-machine-properties.vala:169
+#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:157
 msgid "_Save"
 msgstr "_Guardar"
 
-#: ../src/libvirt-machine-properties.vala:152
+#: ../src/libvirt-machine-properties.vala:140
 msgid "Copy to clipboard"
 msgstr "Copiar al portapapeles"
 
-#: ../src/libvirt-machine-properties.vala:153
+#: ../src/libvirt-machine-properties.vala:141
 msgid "_Close"
 msgstr "_Cerrar"
 
-#: ../src/libvirt-machine-properties.vala:167
+#: ../src/libvirt-machine-properties.vala:155
 msgid "Save log"
 msgstr "Guardar registro"
 
-#: ../src/libvirt-machine-properties.vala:183
+#: ../src/libvirt-machine-properties.vala:171
 #, c-format
 msgid "Error saving: %s"
 msgstr "Error al guardar: %s"
 
-#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
+#: ../src/libvirt-machine-properties.vala:193 ../src/ovirt-machine.vala:69
 #: ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protocolo"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:250
-#: ../src/libvirt-machine-properties.vala:267
+#: ../src/libvirt-machine-properties.vala:230
+#: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
 msgstr "Añadir soporte al invitado"
 
-#: ../src/libvirt-machine-properties.vala:252
+#: ../src/libvirt-machine-properties.vala:232
 msgid "USB device support"
 msgstr "Soporte para dispositivo USB"
 
-#: ../src/libvirt-machine-properties.vala:269
+#: ../src/libvirt-machine-properties.vala:249
 msgid "Smartcard support"
 msgstr "Soporte para tarjetas inteligentes"
 
-#: ../src/libvirt-machine-properties.vala:283
-msgid "Fastest"
-msgstr "Más rápido"
-
-#: ../src/libvirt-machine-properties.vala:284
-msgid "Most secure"
-msgstr "Más seguro"
-
-#: ../src/libvirt-machine-properties.vala:286
-msgid "Network"
-msgstr "Red"
-
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:320
-#: ../src/libvirt-machine-properties.vala:383
+#: ../src/libvirt-machine-properties.vala:281
+#: ../src/libvirt-machine-properties.vala:344
 msgid "empty"
 msgstr "vacío"
 
-#: ../src/libvirt-machine-properties.vala:326
-#: ../src/libvirt-machine-properties.vala:392
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:353
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:339
-#: ../src/libvirt-machine-properties.vala:382
+#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:343
 msgid "Select"
 msgstr "Seleccionar"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:342
-#: ../src/libvirt-machine-properties.vala:362
+#: ../src/libvirt-machine-properties.vala:303
+#: ../src/libvirt-machine-properties.vala:323
 msgid "Remove"
 msgstr "Quitar"
 
-#: ../src/libvirt-machine-properties.vala:346 ../src/wizard-source.vala:331
+#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:245
 msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
-#: ../src/libvirt-machine-properties.vala:349 ../src/topbar.vala:160
-#: ../src/wizard-source.vala:334 ../src/wizard.vala:687
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:248 ../src/wizard.vala:687
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/libvirt-machine-properties.vala:350 ../src/wizard-source.vala:335
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:249
 msgid "_Open"
 msgstr "_Abrir"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:369
+#: ../src/libvirt-machine-properties.vala:330
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Falló la inserción de «%s» como CD/DVD en «%s»"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:386
+#: ../src/libvirt-machine-properties.vala:347
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Falló al quitar el CD/DVD de «%s»"
 
-#: ../src/libvirt-machine-properties.vala:447 ../src/wizard.vala:451
+#: ../src/libvirt-machine-properties.vala:408 ../src/wizard.vala:451
 msgid "Memory"
 msgstr "Memoria"
 
-#: ../src/libvirt-machine-properties.vala:503
+#: ../src/libvirt-machine-properties.vala:464
 #, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
 msgstr "Los cambios requieren que se reinicie «%s». ¿Intentar reiniciar?"
 
-#: ../src/libvirt-machine-properties.vala:504
-#: ../src/libvirt-machine-properties.vala:560
+#: ../src/libvirt-machine-properties.vala:465
+#: ../src/libvirt-machine-properties.vala:521
 msgid "_Yes"
 msgstr "_Sí"
 
-#: ../src/libvirt-machine-properties.vala:558
+#: ../src/libvirt-machine-properties.vala:519
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: ../src/libvirt-machine-properties.vala:583
+#: ../src/libvirt-machine-properties.vala:544
 msgid "Maximum Disk Size"
 msgstr "Tamaño máximo del disco"
 
@@ -442,12 +475,6 @@ msgstr "Introducir la contraseña para %s"
 msgid "Saving..."
 msgstr "Guardando…"
 
-#. 3rd row
-#: ../src/machine.vala:584 ../src/unattended-installer.vala:299
-#: ../src/unattended-installer.vala:430
-msgid "Password"
-msgstr "Contraseña"
-
 #. FIXME: add proper UI & docs
 #: ../src/main.vala:53
 #, c-format
@@ -484,7 +511,7 @@ msgstr "Informar de errores a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s página de inicio: <%s>.\n"
 
-#: ../src/media-manager.vala:178
+#: ../src/media-manager.vala:215
 #, c-format
 msgid "No such file %s"
 msgstr "No existe el archivo %s"
@@ -654,42 +681,15 @@ msgstr[1] "%d seleccionadas"
 msgid "(Click on items to select them)"
 msgstr "(Pulse sobre los elementos para seleccionarlos)"
 
-#: ../src/unattended-installer.vala:59
-msgid "no password"
-msgstr "sin contraseña"
-
-#: ../src/unattended-installer.vala:298 ../src/unattended-installer.vala:409
-msgid "Username"
-msgstr "Nombre de usuario"
-
-#: ../src/unattended-installer.vala:365
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-"Elija la instalación rápida para preconfigurar automáticamente la caja con "
-"la configuración óptima."
-
-#. First row
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
-#. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:383
-msgid "Express Install"
-msgstr "Instalación rápida"
-
-#: ../src/unattended-installer.vala:441
-msgid "_Add Password"
-msgstr "_Añadir contraseña"
-
-#: ../src/unattended-installer.vala:474
-msgid "Product Key"
-msgstr "Clave del producto"
-
-#: ../src/unattended-installer.vala:689
+#: ../src/unattended-installer.vala:445
 msgid "Downloading device drivers..."
 msgstr "Descargando controladores de dispositivos…"
 
-#: ../src/util-app.vala:304
+#: ../src/unattended-setup-box.vala:46
+msgid "no password"
+msgstr "sin contraseña"
+
+#: ../src/util-app.vala:346
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -698,11 +698,11 @@ msgstr ""
 "Su contexto SELinux es incorrecto. Puede tratar de arreglarlo ejecutando:\n"
 "%s"
 
-#: ../src/util-app.vala:308
+#: ../src/util-app.vala:350
 msgid "SELinux not installed?"
 msgstr "¿No está SELinux instalado?"
 
-#: ../src/util-app.vala:389
+#: ../src/util-app.vala:431
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -711,7 +711,7 @@ msgstr ""
 "libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes» está funcionando."
 
-#: ../src/util-app.vala:394
+#: ../src/util-app.vala:436
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -720,7 +720,7 @@ msgstr ""
 "libvirt conoce %s como el almacenamiento de Cajas de GNOME pero esta carpeta "
 "no existe"
 
-#: ../src/util-app.vala:398
+#: ../src/util-app.vala:440
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -728,7 +728,7 @@ msgstr ""
 "libvirt conoce %s como el almacenamiento de Cajas de GNOME pero no es una "
 "carpeta"
 
-#: ../src/util-app.vala:402
+#: ../src/util-app.vala:444
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -737,17 +737,17 @@ msgstr ""
 "libvirt conoce %s como el almacenamiento de Cajas de GNOME pero el usuario "
 "no puede leer ni escribir"
 
-#: ../src/util.vala:322
+#: ../src/util.vala:318
 msgid "yes"
 msgstr "sí"
 
-#: ../src/util.vala:322
+#: ../src/util.vala:318
 msgid "no"
 msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:477
+#: ../src/vm-configurator.vala:488
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
@@ -758,18 +758,18 @@ msgstr ""
 "Ocurrió un error durante la preparación de la instalación. Se ha desactivado "
 "la instalación rápida."
 
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:176
 msgid "Installing..."
 msgstr "Instalando…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:179 ../src/wizard-source.vala:249
+#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "«Live»"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:311
+#: ../src/vm-creator.vala:312
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -789,37 +789,24 @@ msgstr "Falló al importar la caja del archivo «%s»"
 msgid "Read-only"
 msgstr "Sólo lectura"
 
-#: ../src/wizard-source.vala:123 ../src/wizard-source.vala:150
-msgid "Enter URL"
-msgstr "Introducir el URL"
-
-#: ../src/wizard-source.vala:130
-msgid "Select a file"
-msgstr "Seleccionar un archivo"
-
-#: ../src/wizard-source.vala:167
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-"<b>Acceso desde el escritorio</b>\n"
-"\n"
-"Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
-
-#: ../src/wizard-source.vala:258
+#: ../src/wizard-source.vala:86
 msgid "32-bit x86 system"
 msgstr "sistema x86 de 32 bits"
 
-#: ../src/wizard-source.vala:259
+#: ../src/wizard-source.vala:87
 msgid "64-bit x86 system"
 msgstr "sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:268
+#: ../src/wizard-source.vala:92
 #, c-format
 msgid " from %s"
 msgstr " de %s"
+
+#: ../src/wizard-source.vala:94
+#| msgid "Unknown installer media"
+msgid "Unknown media"
+msgstr "Medio desconocido"
 
 #: ../src/wizard.vala:100
 msgid "Box creation failed"
@@ -980,6 +967,24 @@ msgstr "C_rear"
 #: ../src/wizard.vala:807
 msgid "C_ustomize..."
 msgstr "_Personalizar…"
+
+#~ msgid "Fastest"
+#~ msgstr "Más rápido"
+
+#~ msgid "Most secure"
+#~ msgstr "Más seguro"
+
+#~ msgid "Network"
+#~ msgstr "Red"
+
+#~ msgid ""
+#~ "<b>Desktop Access</b>\n"
+#~ "\n"
+#~ "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "<b>Acceso desde el escritorio</b>\n"
+#~ "\n"
+#~ "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
 
 #~ msgid "D_one"
 #~ msgstr "Hech_o"
