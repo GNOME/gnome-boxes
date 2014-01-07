@@ -584,7 +584,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         stage.add_child (vbox_actor);
 
-        window.set_titlebar (topbar.widget);
+        window.set_titlebar (topbar);
 
         searchbar_revealer = new Boxes.Revealer (true);
         searchbar_revealer.resize = true;

@@ -220,7 +220,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         gtk_actor.y_expand = true;
 
         /* topbar */
-        var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;
+        var hbox = App.app.topbar.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;
 
         toolbar = new Gtk.HeaderBar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);

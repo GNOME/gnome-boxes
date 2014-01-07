@@ -27,7 +27,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
     private Gtk.Button next_button;
     private Gtk.Button continue_button;
     private Gtk.Button create_button;
-    private Gtk.SizeGroup toolbar_sizegroup;
     private CollectionSource? source;
 
     [GtkChild]
@@ -565,53 +564,22 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
 
-        /* topbar */
-        var hbox = App.app.topbar.notebook.get_nth_page (Boxes.TopbarPage.WIZARD) as Gtk.Box;
-
-        var toolbar = new Gtk.HeaderBar ();
-        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
-        toolbar.get_style_context ().add_class ("titlebar");
-        hbox.pack_start (toolbar, true, true, 0);
-
-        toolbar.title = _("Create a Box");
-
-        toolbar_sizegroup = new Gtk.SizeGroup (Gtk.SizeGroupMode.HORIZONTAL);
-        cancel_button = new Gtk.Button.with_mnemonic (_("_Cancel"));
-        cancel_button.valign = Gtk.Align.CENTER;
-        cancel_button.get_style_context ().add_class ("text-button");
-        toolbar.pack_start (cancel_button);
+        cancel_button = App.app.topbar.wizard_cancel_btn;
         cancel_button.clicked.connect (() => {
             destroy_machine ();
             vm_creator = null;
             wizard_source.page = SourcePage.MAIN;
             App.app.set_state (UIState.COLLECTION);
         });
-        toolbar_sizegroup.add_widget (cancel_button);
-
-        back_button = new Gtk.Button.with_mnemonic (_("_Back"));
-        back_button.valign = Gtk.Align.CENTER;
-        back_button.get_style_context ().add_class ("text-button");
-        toolbar.pack_end (back_button);
+        back_button = App.app.topbar.wizard_back_btn;
         back_button.clicked.connect (() => {
             page = page - 1;
         });
-        toolbar_sizegroup.add_widget (back_button);
-
-        continue_button = new Gtk.Button.with_mnemonic (_("C_ontinue"));
-        continue_button.valign = Gtk.Align.CENTER;
-        continue_button.get_style_context ().add_class ("text-button");
-        continue_button.get_style_context ().add_class ("boxes-continue");
-        toolbar.pack_end (continue_button);
+        continue_button = App.app.topbar.wizard_continue_btn;
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
-        toolbar_sizegroup.add_widget (continue_button);
-
-        create_button = new Gtk.Button.with_mnemonic (_("C_reate"));
-        create_button.valign = Gtk.Align.CENTER;
-        create_button.get_style_context ().add_class ("text-button");
-        create_button.get_style_context ().add_class ("boxes-continue");
-        toolbar.pack_end (create_button);
+        create_button = App.app.topbar.wizard_create_btn;
         create_button.clicked.connect (() => {
             create.begin ((obj, result) => {
             if (create.end (result))
@@ -620,9 +588,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
                 App.app.notificationbar.display_error (_("Box creation failed"));
             });
         });
-        toolbar_sizegroup.add_widget (create_button);
-
-        hbox.show_all ();
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {

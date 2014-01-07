@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesTopbar" parent="GtkNotebook">
+    <property name="visible">True</property>
+    <property name="show-tabs">False</property>
+
+    <!-- Separate page for each UI state and mode -->
+
+    <!-- Collection -->
+    <child>
+      <object class="GtkBox" id="collection_hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+
+        <child>
+          <object class="GtkHeaderBar" id="collection_toolbar">
+            <property name="visible">True</property>
+            <property name="show-close-button">True</property>
+            <style>
+              <class name="titlebar"/>
+              <class name="menubar"/>
+            </style>
+
+            <child>
+              <object class="GtkButton" id="new_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">_New</property>
+                <signal name="clicked" handler="on_new_btn_clicked"/>
+                <style>
+                  <class name="text-button"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="back_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <signal name="clicked" handler="on_back_btn_clicked"/>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="a11y-button1">
+                    <property name="accessible-name" translatable="yes">Back</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage" id="back_image">
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkSpinner" id="spinner">
+                <property name="visible">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="active">True</property>
+                <property name="margin">6</property>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkToggleButton" id="search_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="a11y-button2">
+                    <property name="accessible-name" translatable="yes">Search</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage" id="search_image">
+                    <property name="visible">True</property>
+                    <property name="icon-name">edit-find-symbolic</property>
+                    <property name="icon-size">1</property>
+                  </object>
+                </child>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="select_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <signal name="clicked" handler="on_select_btn_clicked"/>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="a11y-button3">
+                    <property name="accessible-name" translatable="yes">Select Items</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage" id="select_image">
+                    <property name="visible">True</property>
+                    <property name="icon-name">object-select-symbolic</property>
+                    <property name="icon-size">1</property>
+                  </object>
+                </child>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="padding">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+
+    <!-- Collection (selection mode) -->
+    <child>
+      <object class="GtkBox" id="selection_hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+
+        <child>
+          <object class="GtkHeaderBar" id="selection_toolbar">
+            <property name="visible">True</property>
+            <property name="show-close-button">False</property>
+            <style>
+              <class name="selection-mode"/>
+              <class name="titlebar"/>
+              <class name="menubar"/>
+            </style>
+
+            <child type="title">
+              <object class="GtkMenuButton" id="selection_menu_button">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="menu-model">selection-menu</property>
+
+                <style>
+                  <class name="selection-mode"/>
+                  <class name="titlebar"/>
+                  <class name="menubar"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkToggleButton" id="search2_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="a11y-button4">
+                    <property name="accessible-name" translatable="yes">Search</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage" id="search2_image">
+                    <property name="visible">True</property>
+                    <property name="icon-name">edit-find-symbolic</property>
+                    <property name="icon-size">1</property>
+                  </object>
+                </child>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="cancel_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">_Cancel</property>
+                <signal name="clicked" handler="on_cancel_btn_clicked"/>
+                <style>
+                  <class name="text-button"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="padding">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+
+    <!-- Wizard -->
+    <child>
+      <object class="GtkBox" id="wizard_hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+
+        <child>
+          <object class="GtkHeaderBar" id="wizard_toolbar">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Create a Box</property>
+            <style>
+              <class name="titlebar"/>
+              <class name="menubar"/>
+            </style>
+
+            <child>
+              <object class="GtkButton" id="wizard_cancel_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">_Cancel</property>
+                <style>
+                  <class name="text-button"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="pack-type">start</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="wizard_back_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">_Back</property>
+                <style>
+                  <class name="text-button"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="wizard_continue_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">C_ontinue</property>
+                <style>
+                  <class name="text-button"/>
+                  <class name="boxes-continue"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="wizard_create_btn">
+                <property name="visible">False</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">C_reate</property>
+                <style>
+                  <class name="text-button"/>
+                  <class name="boxes-continue"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="padding">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+
+    <!-- Properties -->
+    <child>
+      <object class="GtkBox" id="props_hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+      </object>
+    </child>
+
+    <!-- Display -->
+    <child>
+      <object class="GtkBox" id="display_hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+      </object>
+    </child>
+  </template>
+
+  <!-- We need a sizegroup to ensure the spinner is the same size as the buttons so it centers correctly -->
+  <object class="GtkSizeGroup" id="collection_sizegroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="spinner"/>
+      <widget name="select_btn"/>
+    </widgets>
+  </object>
+
+  <object class="GtkSizeGroup" id="wizard_sizegroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="wizard_cancel_btn"/>
+      <widget name="wizard_back_btn"/>
+      <widget name="wizard_continue_btn"/>
+      <widget name="wizard_create_btn"/>
+    </widgets>
+  </object>
+
+  <menu id="selection-menu">
+    <section>
+      <item>
+        <attribute name="action">win.select-all</attribute>
+        <attribute name="label" translatable="yes">Select All</attribute>
+        <attribute name="accel">&lt;Primary&gt;a</attribute>
+      </item>
+      <item>
+        <attribute name="action">win.select-running</attribute>
+        <attribute name="label" translatable="yes">Select Running</attribute>
+      </item>
+      <item>
+        <attribute name="action">win.select-none</attribute>
+        <attribute name="label" translatable="yes">Select None</attribute>
+      </item>
+    </section>
+  </menu>
+
+</interface>
