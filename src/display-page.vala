@@ -136,14 +136,13 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 private class Boxes.DisplayPage: GLib.Object {
     public Widget widget { get { return box; } }
 
-    public DisplayToolbar title_toolbar; // Toolbar used when window is not maximized
+    public DisplayToolbar toolbar;
 
     private EventBox event_box;
     private Box box;
     private DisplayToolbar overlay_toolbar;
     private EventBox overlay_toolbar_box;
     private Grid notification_grid;
-    private DisplayToolbar toolbar;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
     private ulong cursor_id;
@@ -241,12 +240,8 @@ private class Boxes.DisplayPage: GLib.Object {
 
         box.show_all ();
 
-        title_toolbar = new DisplayToolbar (false, false);
-
         toolbar.bind_property ("title", overlay_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", overlay_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
-        toolbar.bind_property ("title", title_toolbar, "title", BindingFlags.SYNC_CREATE);
-        toolbar.bind_property ("subtitle", title_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
     }
 
     public void add_notification (Widget w) {

@@ -55,9 +55,7 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
     [GtkChild]
     private Gtk.HeaderBar collection_toolbar;
     [GtkChild]
-    private Gtk.Box display_hbox;
-
-    private Gtk.HeaderBar display_toolbar;
+    private DisplayToolbar display_toolbar;
 
     public string? _status;
     public string? status {
@@ -96,9 +94,9 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
         App.app.collection.item_removed.connect (update_select_btn);
         update_selection_label ();
 
-        display_toolbar = App.app.display_page.title_toolbar;
-        display_hbox.pack_start (display_toolbar, true, true, 0);
-        display_toolbar.show_all ();
+        var toolbar = App.app.display_page.toolbar;
+        toolbar.bind_property ("title", display_toolbar, "title", BindingFlags.SYNC_CREATE);
+        toolbar.bind_property ("subtitle", display_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
 
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
