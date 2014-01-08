@@ -95,6 +95,7 @@ gnome_boxes_SOURCES =				\
 	collection-view.vala			\
 	collection.vala				\
 	display-page.vala			\
+	display-toolbar.vala			\
 	display.vala				\
 	editable-entry.vala			\
 	i-properties-provider.vala		\
