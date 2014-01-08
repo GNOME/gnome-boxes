@@ -240,7 +240,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         hbox.show_all ();
 
         /* sidebar */
-        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.Box;
+        var vbox = App.app.sidebar.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.Box;
 
         tree_view = new Gtk.TreeView ();
         tree_view.get_style_context ().add_class ("boxes-bg");

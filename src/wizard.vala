@@ -21,7 +21,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    private GenericArray<Gtk.Label> steps;
     private Gtk.Button cancel_button;
     private Gtk.Button back_button;
     private Gtk.Button next_button;
@@ -129,17 +128,10 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
 
         base.switch_page (page_widget, page_num);
 
-        for (var i = 0; i < steps.length; i++) {
-            var label = steps.get (i);
-            label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
-        }
-
-        steps.get (page).get_style_context ().add_class ("boxes-wizard-current-page-label");
+        App.app.sidebar.set_wizard_page ((WizardPage) page_num);
     }
 
     construct {
-        steps = new GenericArray<Gtk.Label> ();
-        steps.length = WizardPage.LAST;
         media_manager = MediaManager.get_instance ();
     }
 
@@ -492,20 +484,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         return true;
     }
 
-    private void add_step (string title, WizardPage page) {
-        /* sidebar */
-        var vbox = App.app.sidebar.notebook.get_nth_page (Boxes.SidebarPage.WIZARD) as Gtk.Box;
-
-        var label = new Gtk.Label (title);
-        label.margin_left = 25;
-        label.get_style_context ().add_class ("boxes-step-label");
-        label.set_halign (Gtk.Align.START);
-        vbox.pack_start (label, false, false, 10);
-
-        vbox.show_all ();
-        steps.set (page, label);
-    }
-
     private bool skip_review_for_live;
 
     private bool skip_page (Boxes.WizardPage page) {
@@ -549,12 +527,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
     }
 
     private void setup_ui () {
-        add_step (_("Introduction"), WizardPage.INTRODUCTION);
-        add_step (_("Source Selection"), WizardPage.SOURCE);
-        add_step (_("Preparation"), WizardPage.PREPARATION);
-        add_step (_("Setup"), WizardPage.SETUP);
-        add_step (_("Review"), WizardPage.REVIEW);
-
         gtk_actor = new GtkClutter.Actor.with_contents (this);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "wizard";

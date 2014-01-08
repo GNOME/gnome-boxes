@@ -9,20 +9,55 @@ private enum Boxes.SidebarPage {
     PROPERTIES,
 }
 
-private class Boxes.Sidebar: GLib.Object, Boxes.UI {
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/sidebar.ui")]
+private class Boxes.Sidebar: Gtk.Notebook, Boxes.UI {
     public Clutter.Actor actor { get { return gtk_actor; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-    public Notebook notebook;
-    private uint width;
 
     private GtkClutter.Actor gtk_actor; // the sidebar box
 
-    public Sidebar () {
-        width = 200;
+    [GtkChild]
+    private Gtk.Box wizard_vbox;
+    [GtkChild]
+    private Gtk.Label wizard_intro_label;
+    [GtkChild]
+    private Gtk.Label wizard_source_label;
+    [GtkChild]
+    private Gtk.Label wizard_preparation_label;
+    [GtkChild]
+    private Gtk.Label wizard_setup_label;
+    [GtkChild]
+    private Gtk.Label wizard_review_label;
 
+    public Sidebar () {
         notify["ui-state"].connect (ui_state_changed);
         setup_sidebar ();
+    }
+
+    public void set_wizard_page (WizardPage wizard_page) {
+        foreach (var label in wizard_vbox.get_children ())
+            label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
+
+        Gtk.Label current_label = null;
+        switch ((int) page_num) {
+        case WizardPage.INTRODUCTION:
+            current_label = wizard_intro_label;
+            break;
+        case WizardPage.SOURCE:
+            current_label = wizard_source_label;
+            break;
+        case WizardPage.PREPARATION:
+            current_label = wizard_preparation_label;
+            break;
+        case WizardPage.SETUP:
+            current_label = wizard_setup_label;
+            break;
+        case WizardPage.REVIEW:
+            current_label = wizard_review_label;
+            break;
+        }
+        current_label.get_style_context ().add_class ("boxes-wizard-current-page-label");
     }
 
     private void ui_state_changed () {
@@ -30,7 +65,7 @@ private class Boxes.Sidebar: GLib.Object, Boxes.UI {
         case UIState.WIZARD:
         case UIState.PROPERTIES:
             App.app.sidebar_revealer.reveal ();
-            notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
+            page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
 
         default:
@@ -40,30 +75,10 @@ private class Boxes.Sidebar: GLib.Object, Boxes.UI {
     }
 
     private void setup_sidebar () {
-        notebook = new Gtk.Notebook ();
-        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        gtk_actor = new GtkClutter.Actor.with_contents (this);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "sidebar";
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
-
-        notebook.get_style_context ().add_class (Gtk.STYLE_CLASS_SIDEBAR);
-        notebook.set_size_request ((int) width, 100);
-        notebook.show_tabs = false;
-
-        /* SidebarPage.COLLECTION */
-        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        notebook.append_page (vbox, null);
-
-        /* SidebarPage.WIZARD */
-        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        vbox.margin_top = 20;
-        notebook.append_page (vbox, null);
-
-        /* SidebarPage.PROPERTIES */
-        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
-        notebook.append_page (vbox, null);
-
-        notebook.show_all ();
     }
 }

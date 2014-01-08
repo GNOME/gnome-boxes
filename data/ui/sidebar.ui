@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+
+  <template class="BoxesSidebar" parent="GtkNotebook">
+    <property name="visible">True</property>
+    <property name="width-request">100</property>
+    <property name="show-tabs">False</property>
+    <style>
+      <class name="sidebar"/>
+    </style>
+
+    <!-- Separate page for each UI state -->
+
+    <!-- Collection -->
+    <child>
+      <object class="GtkBox" id="collection_vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">0</property>
+      </object>
+    </child>
+
+    <!-- Wizard -->
+    <child>
+      <object class="GtkBox" id="wizard_vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">0</property>
+
+        <child>
+          <object class="GtkLabel" id="wizard_intro_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Introduction</property>
+            <property name="margin-left">25</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="boxes-step-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">10</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="wizard_source_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Source Selection</property>
+            <property name="margin-left">25</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="boxes-step-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">10</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="wizard_preparation_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Preparation</property>
+            <property name="margin-left">25</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="boxes-step-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">10</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="wizard_setup_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Setup</property>
+            <property name="margin-left">25</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="boxes-step-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">10</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="wizard_review_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Review</property>
+            <property name="margin-left">25</property>
+            <property name="halign">start</property>
+            <style>
+              <class name="boxes-step-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="padding">10</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+
+    <!-- Properties -->
+    <child>
+      <object class="GtkBox" id="props_vbox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+      </object>
+    </child>
+  </template>
+</interface>
