@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesDisplayToolbar" parent="GtkHeaderBar">
+    <property name="visible">True</property>
+    <property name="show-close-button">True</property>
+    <style>
+      <class name="titlebar"/>
+    </style>
+
+    <child>
+      <object class="GtkButton" id="back">
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <property name="use-underline">True</property>
+        <signal name="clicked" handler="on_back_clicked"/>
+        <style>
+          <class name="image-button"/>
+        </style>
+
+        <child>
+          <object class="GtkImage" id="back_image">
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+
+      <packing>
+        <property name="pack-type">start</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="hbox">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="spacing">0</property>
+        <style>
+          <class name="linked"/>
+        </style>
+
+        <child>
+          <object class="GtkButton" id="fullscreen">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <signal name="clicked" handler="on_fullscreen_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+
+            <child>
+              <object class="GtkImage" id="fullscreen_image">
+                <property name="visible">True</property>
+                <property name="icon-name">view-fullscreen-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="props">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <signal name="clicked" handler="on_props_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+
+            <child>
+              <object class="GtkImage" id="props_image">
+                <property name="visible">True</property>
+                <property name="icon-name">preferences-system-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+      </object>
+
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+  </template>
+</interface>

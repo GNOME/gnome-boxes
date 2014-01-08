@@ -2,19 +2,32 @@
 using Gtk;
 using Gdk;
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/display-toolbar.ui")]
 private class Boxes.DisplayToolbar: Gtk.HeaderBar {
-    private bool overlay;
-    private bool handle_drag; // Handle drag events to (un)fulscreen the main window
+    public bool overlay { get; construct; }
+    public bool handle_drag { get; construct; } // Handle drag events to (un)fulscreen the main window
 
-    Gtk.Box end_button_box;
+    [GtkChild]
+    private Gtk.Image back_image;
+    [GtkChild]
+    private Gtk.Image fullscreen_image;
+    [GtkChild]
+    private Gtk.Button back;
+    [GtkChild]
+    private Gtk.Button fullscreen;
+    [GtkChild]
+    private Gtk.Button props;
 
     public DisplayToolbar (bool overlay, bool handle_drag) {
+        Object (overlay: overlay,
+                handle_drag: handle_drag);
+    }
+
+    construct {
         add_events (Gdk.EventMask.POINTER_MOTION_MASK |
                     Gdk.EventMask.BUTTON_PRESS_MASK |
                     Gdk.EventMask.BUTTON_RELEASE_MASK);
 
-        this.overlay = overlay;
-        this.handle_drag = handle_drag;
         if (overlay) {
             get_style_context ().add_class ("toolbar");
             get_style_context ().add_class ("osd");
@@ -22,46 +35,21 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
             show_close_button = true;
         }
-        get_style_context ().add_class ("titlebar");
 
-        end_button_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        pack_end (end_button_box);
-        end_button_box.get_style_context ().add_class ("linked");
+        back_image.icon_name = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
+                                                                            "go-previous-symbolic";
+        if (!overlay) {
+            back.get_style_context ().add_class ("raised");
+            fullscreen.get_style_context ().add_class ("raised");
+            props.get_style_context ().add_class ("raised");
+        }
 
-        var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
-                                                                     "go-previous-symbolic";
-        var back = add_image_button (back_icon, true);
-        back.clicked.connect ((button) => { App.app.set_state (UIState.COLLECTION); });
-
-        var fullscreen = add_image_button ("view-fullscreen-symbolic", false);
         App.app.notify["fullscreen"].connect_after ( () => {
-            var image = fullscreen.get_image() as Gtk.Image;
             if (App.app.fullscreen)
-                image.icon_name = "view-restore-symbolic";
+                fullscreen_image.icon_name = "view-restore-symbolic";
             else
-                image.icon_name = "view-fullscreen-symbolic";
+                fullscreen_image.icon_name = "view-fullscreen-symbolic";
         });
-        fullscreen.clicked.connect ((button) => { App.app.fullscreen = !App.app.fullscreen; });
-
-        var props = add_image_button ("preferences-system-symbolic", false);
-        props.clicked.connect ((button) => { App.app.set_state (UIState.PROPERTIES); });
-    }
-
-    private Gtk.Button add_image_button (string icon_name, bool pack_start) {
-        var button = new Gtk.Button ();
-        var img = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.MENU);
-        img.show ();
-        button.image = img;
-        button.valign = Gtk.Align.CENTER;
-        if (pack_start)
-            this.pack_start (button);
-        else
-            end_button_box.pack_end (button);
-
-        if (!overlay)
-            button.get_style_context ().add_class ("raised");
-        button.get_style_context ().add_class ("image-button");
-        return button;
     }
 
     private bool button_down;
@@ -127,6 +115,21 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         if (base.motion_notify_event != null)
             return base.motion_notify_event (event);
         return false;
+    }
+
+    [GtkCallback]
+    private void on_back_clicked () {
+        App.app.set_state (UIState.COLLECTION);
+    }
+
+    [GtkCallback]
+    private void on_fullscreen_clicked () {
+        App.app.fullscreen = !App.app.fullscreen;
+    }
+
+    [GtkCallback]
+    private void on_props_clicked () {
+        App.app.set_state (UIState.PROPERTIES);
     }
 }
 
