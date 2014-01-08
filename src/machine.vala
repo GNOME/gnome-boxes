@@ -799,7 +799,7 @@ private class Boxes.MachineActor: GLib.Object, Boxes.UI {
 
                     thumbnail.add_transition ("back-from-properties", transition);
                 } else
-                    App.app.display_page.show ();
+                    App.app.notebook.page = Boxes.AppPage.DISPLAY;
             }
             break;
 

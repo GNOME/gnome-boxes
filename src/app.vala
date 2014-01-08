@@ -531,7 +531,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         notebook.append_page (embed, null);
 
         display_page = new DisplayPage ();
-        notebook.append_page (display_page.widget, null);
+        notebook.append_page (display_page, null);
 
         selectionbar = new Selectionbar ();
         main_vbox.add (selectionbar);

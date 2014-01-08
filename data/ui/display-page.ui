@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesDisplayPage" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <property name="spacing">0</property>
+
+    <child>
+      <object class="BoxesDisplayToolbar" id="toolbar">
+        <property name="visible">True</property>
+        <property name="overlay">False</property>
+        <property name="handle-drag">True</property>
+      </object>
+
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">False</property>
+        <property name="padding">0</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkGrid" id="grid">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="GtkEventBox" id="event_box">
+            <property name="visible">True</property>
+            <property name="above-child">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <signal name="event" handler="on_event_box_event"/>
+            <style>
+              <class name="boxes-toplevel"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">1</property>
+            <property name="height">2</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkEventBox" id="overlay_toolbar_box">
+            <property name="visible">True</property>
+            <property name="valign">start</property>
+            <property name="vexpand">False</property>
+
+            <child>
+              <object class="BoxesDisplayToolbar" id="overlay_toolbar">
+                <property name="visible">True</property>
+                <property name="overlay">True</property>
+                <property name="handle-drag">True</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkGrid" id="notification_grid">
+            <property name="visible">True</property>
+            <property name="valign">start</property>
+            <property name="halign">center</property>
+            <property name="vexpand">True</property>
+          </object>
+
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">1</property>
+            <property name="width">1</property>
+            <property name="height">1</property>
+          </packing>
+        </child>
+      </object>
+
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="padding">0</property>
+      </packing>
+    </child>
+
+  </template>
+</interface>

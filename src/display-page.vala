@@ -2,15 +2,18 @@
 using Gtk;
 using Gdk;
 
-private class Boxes.DisplayPage: GLib.Object {
-    public Widget widget { get { return box; } }
-
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/display-page.ui")]
+private class Boxes.DisplayPage: Gtk.Box {
+    [GtkChild]
     public DisplayToolbar toolbar;
 
+    [GtkChild]
     private EventBox event_box;
-    private Box box;
+    [GtkChild]
     private DisplayToolbar overlay_toolbar;
+    [GtkChild]
     private EventBox overlay_toolbar_box;
+    [GtkChild]
     private Grid notification_grid;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
@@ -34,80 +37,13 @@ private class Boxes.DisplayPage: GLib.Object {
 
     public DisplayPage () {
         overlay_toolbar_invisible_timeout = App.app.duration;
-        event_box = new EventBox ();
-        event_box.get_style_context ().add_class ("boxes-toplevel");
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
-        event_box.above_child = true;
-        event_box.event.connect ((event) => {
-            if (App.app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
-                var y = event.motion.y;
-                if (y <= 0 && toolbar_show_id == 0) {
-                    toolbar_event_stop ();
-                    if ((event.motion.state &
-                         (ModifierType.SHIFT_MASK | ModifierType.CONTROL_MASK |
-                          ModifierType.MOD1_MASK | ModifierType.SUPER_MASK |
-                          ModifierType.HYPER_MASK | ModifierType.META_MASK |
-                          ModifierType.BUTTON1_MASK | ModifierType.BUTTON2_MASK |
-                          ModifierType.BUTTON3_MASK | ModifierType.BUTTON4_MASK |
-                          ModifierType.BUTTON5_MASK)) == 0) {
-                        toolbar_show_id = Timeout.add (App.app.duration, () => {
-                            set_overlay_toolbar_visible (true);
-                            toolbar_show_id = 0;
-                            return false;
-                        });
-                    }
-                } else if (y > 5 && toolbar_hide_id == 0) {
-                    toolbar_event_stop ();
-                    toolbar_hide_id = Timeout.add (overlay_toolbar_invisible_timeout, () => {
-                        set_overlay_toolbar_visible (false);
-                        toolbar_hide_id = 0;
-                        overlay_toolbar_invisible_timeout = App.app.duration;
-                        return false;
-                    });
-                }
-            }
 
-            if (event.type == EventType.GRAB_BROKEN)
-                return false;
-
-            if (event_box.get_child () != null)
-                event_box.get_child ().event (event);
-
-            return false;
-        });
-
-        toolbar = new DisplayToolbar (false, true);
-
-        box = new Box (Orientation.VERTICAL, 0);
-        box.pack_start (toolbar, false, false, 0);
-
-        var grid = new Gtk.Grid ();
         App.app.window.window_state_event.connect ((event) => {
             update_toolbar_visible ();
 
             return false;
         });
-        event_box.hexpand = true;
-        event_box.vexpand = true;
-
-        box.pack_start (grid, true, true, 0);
-
-        overlay_toolbar = new DisplayToolbar (true, true);
-        overlay_toolbar_box = new EventBox ();
-        overlay_toolbar_box.add (overlay_toolbar);
-        overlay_toolbar_box.valign = Gtk.Align.START;
-        overlay_toolbar_box.vexpand = false;
-
-        notification_grid = new Grid ();
-        notification_grid.valign = Gtk.Align.START;
-        notification_grid.halign = Gtk.Align.CENTER;
-        notification_grid.vexpand = true;
-
-        grid.attach (event_box, 0, 0, 1, 2);
-        grid.attach (overlay_toolbar_box, 0, 0, 1, 1);
-        grid.attach (notification_grid, 0, 1, 1, 1);
-
-        box.show_all ();
 
         toolbar.bind_property ("title", overlay_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", overlay_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
@@ -157,10 +93,6 @@ private class Boxes.DisplayPage: GLib.Object {
         if (toolbar_show_id != 0)
             GLib.Source.remove (toolbar_show_id);
         toolbar_show_id = 0;
-    }
-
-    public void show () {
-        App.app.notebook.page = Boxes.AppPage.DISPLAY;
     }
 
     public void update_title () {
@@ -221,7 +153,7 @@ private class Boxes.DisplayPage: GLib.Object {
             return false;
         });
 
-        show ();
+        App.app.notebook.page = Boxes.AppPage.DISPLAY;
         widget.grab_focus ();
     }
 
@@ -249,4 +181,42 @@ private class Boxes.DisplayPage: GLib.Object {
         return widget;
     }
 
+    [GtkCallback]
+    private bool on_event_box_event (Gdk.Event event) {
+        if (App.app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
+            var y = event.motion.y;
+            if (y <= 0 && toolbar_show_id == 0) {
+                toolbar_event_stop ();
+                if ((event.motion.state &
+                     (ModifierType.SHIFT_MASK | ModifierType.CONTROL_MASK |
+                      ModifierType.MOD1_MASK | ModifierType.SUPER_MASK |
+                      ModifierType.HYPER_MASK | ModifierType.META_MASK |
+                      ModifierType.BUTTON1_MASK | ModifierType.BUTTON2_MASK |
+                      ModifierType.BUTTON3_MASK | ModifierType.BUTTON4_MASK |
+                      ModifierType.BUTTON5_MASK)) == 0) {
+                    toolbar_show_id = Timeout.add (App.app.duration, () => {
+                        set_overlay_toolbar_visible (true);
+                        toolbar_show_id = 0;
+                        return false;
+                    });
+                }
+            } else if (y > 5 && toolbar_hide_id == 0) {
+                toolbar_event_stop ();
+                toolbar_hide_id = Timeout.add (overlay_toolbar_invisible_timeout, () => {
+                    set_overlay_toolbar_visible (false);
+                    toolbar_hide_id = 0;
+                    overlay_toolbar_invisible_timeout = App.app.duration;
+                    return false;
+                });
+            }
+        }
+
+        if (event.type == EventType.GRAB_BROKEN)
+            return false;
+
+        if (event_box.get_child () != null)
+            event_box.get_child ().event (event);
+
+        return false;
+    }
 }
