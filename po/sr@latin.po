@@ -1,15 +1,14 @@
 # Serbian translation for gnome-boxes.
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012, 2013.
-#: ../src/main.vala:15
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-02 17:10+0000\n"
-"PO-Revision-Date: 2013-09-07 06:22+0200\n"
+"POT-Creation-Date: 2013-12-29 19:22+0000\n"
+"PO-Revision-Date: 2014-01-13 10:28+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -21,7 +20,7 @@ msgstr ""
 "X-Project-Style: gnome\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Kutije"
 
@@ -187,6 +186,10 @@ msgstr[1] "%u kutije su obrisane"
 msgstr[2] "%u kutija je obrisano"
 msgstr[3] "Jedna kutija je obrisana"
 
+#: ../src/app.vala:866
+msgid "_Undo"
+msgstr "_Opozovi"
+
 #: ../src/app.vala:933
 #, c-format
 msgid ""
@@ -209,7 +212,7 @@ msgstr "Povezivanje na „%s“ nije uspelo"
 msgid "New and Recent"
 msgstr "Nove i skorašnje"
 
-#: ../src/display-page.vala:300
+#: ../src/display-page.vala:301
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(pritisnite tastere Ktrl+Alt da otpustite)"
 
@@ -225,7 +228,7 @@ msgstr "Napravite jednu koristeći dugme gore levo."
 msgid "Unsupported disk image format."
 msgstr "Nepodržani oblik odraza diska."
 
-#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Sistem"
@@ -250,7 +253,6 @@ msgstr "Dnevnik rešavanja problema"
 
 #: ../src/libvirt-machine-properties.vala:139
 #: ../src/libvirt-machine-properties.vala:157
-#| msgid "Save log"
 msgid "_Save"
 msgstr "_Sačuvaj"
 
@@ -276,6 +278,8 @@ msgstr "Greška čuvanja: %s"
 msgid "Protocol"
 msgstr "Protokol"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -316,8 +320,8 @@ msgstr "Ukloni"
 msgid "Select a device or ISO file"
 msgstr "Izaberite uređaj ili ISO datoteku"
 
-#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:152
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
 msgid "_Cancel"
 msgstr "_Otkaži"
 
@@ -400,37 +404,37 @@ msgid "Password"
 msgstr "Lozinka"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: ../src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• Procesor podržava virtuelizaciju: %s\n"
 
-#: ../src/main.vala:55
+#: ../src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM modul je učitan: %s\n"
 
-#: ../src/main.vala:56
+#: ../src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Dostupan je libvirt KVM gosta: %s\n"
 
-#: ../src/main.vala:57
+#: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr "• Dostupan je skladišni depo za Kutije: %s\n"
 
-#: ../src/main.vala:61
+#: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinuks kontekst je osnovni: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Greške prijavite na <%s>.\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "Matična stranica „%s“: <%s>.\n"
@@ -488,37 +492,36 @@ msgstr "Uređaji"
 msgid "Some changes may take effect only after reboot"
 msgstr "Neke izmene će stupiti na snagu nakon ponovnog pokretanja"
 
-#: ../src/properties.vala:278
+#: ../src/properties.vala:280
 msgid "CPU:"
 msgstr "Procesor:"
 
-#: ../src/properties.vala:285
+#: ../src/properties.vala:287
 msgid "I/O:"
 msgstr "U/I:"
 
-#: ../src/properties.vala:292
+#: ../src/properties.vala:294
 msgid "Net:"
 msgstr "Mreža:"
 
-#: ../src/properties.vala:299
+#: ../src/properties.vala:301
 msgid "Force Shutdown"
 msgstr "Primoraj gašenje"
 
-#: ../src/selectionbar.vala:34
+#: ../src/selectionbar.vala:36
 msgid "P_ause"
 msgstr "_Zastani"
 
-#: ../src/selectionbar.vala:46
+#: ../src/selectionbar.vala:49
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Privremeno zaustavljanje „%s“ nije uspelo"
 
-#: ../src/selectionbar.vala:55
+#: ../src/selectionbar.vala:58
 msgid "_Delete"
 msgstr "_Obriši"
 
-#: ../src/selectionbar.vala:62
-#| msgid "%s - Properties"
+#: ../src/selectionbar.vala:66
 msgid "_Properties"
 msgstr "_Svojstva"
 
@@ -550,7 +553,6 @@ msgid "Redirect new USB devices"
 msgstr "Preusmeri novi USB uređaj"
 
 #: ../src/spice-display.vala:326
-#| msgid "USB device support"
 msgid "USB devices"
 msgstr "USB uređaji"
 
@@ -566,40 +568,37 @@ msgstr "Priključnik mora biti naveden jednom"
 msgid "Missing port in Spice URI"
 msgstr "Nedostaje priključnik u putanji Spajsa"
 
-#: ../src/topbar.vala:73
+#: ../src/topbar.vala:74
 msgid "_New"
 msgstr "_Nova"
 
-#: ../src/topbar.vala:85
-#| msgid "_Back"
+#: ../src/topbar.vala:88
 msgid "Back"
 msgstr "Nazad"
 
-#: ../src/topbar.vala:105
-#| msgid "Search term"
+#: ../src/topbar.vala:109
 msgid "Search"
 msgstr "Potraži"
 
-#: ../src/topbar.vala:113
-#| msgid "Select None"
+#: ../src/topbar.vala:118
 msgid "Select Items"
 msgstr "Izaberi stavke"
 
-#: ../src/topbar.vala:134
+#: ../src/topbar.vala:140
 msgid "Select All"
 msgstr "Izaberi sve"
 
-#: ../src/topbar.vala:135
+#: ../src/topbar.vala:141
 msgid "Select Running"
 msgstr "Izaberi pokrenuto"
 
-#: ../src/topbar.vala:136
+#: ../src/topbar.vala:142
 msgid "Select None"
 msgstr "Poništi izbor"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:195
+#: ../src/topbar.vala:204
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -608,7 +607,7 @@ msgstr[1] "%d izabrane"
 msgstr[2] "%d izabranih"
 msgstr[3] "Jedna izabrana"
 
-#: ../src/topbar.vala:197
+#: ../src/topbar.vala:206
 msgid "(Click on items to select them)"
 msgstr "(Kliknite na stavke da ih izaberete)"
 
@@ -706,7 +705,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:439
+#: ../src/vm-configurator.vala:441
 msgid "Incapable host system"
 msgstr "Nemogućstven sistem domaćina"
 
@@ -738,7 +737,6 @@ msgstr[2] "Instalirano je %d%%"
 msgstr[3] "Instaliran je 1%%"
 
 #: ../src/vm-importer.vala:34
-#| msgid "Installing..."
 msgid "Importing..."
 msgstr "Uvozim..."
 
@@ -799,6 +797,7 @@ msgstr "Dodaće kutije za sve sisteme dostupne sa ovog naloga."
 msgid "Will add a single box."
 msgstr "Dodaće jednu kutiju."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Pristup radnoj površi"
@@ -822,6 +821,7 @@ msgstr ""
 "Nisam uspeo da ispitam instalacioni medij. Možda je medij oštećen ili "
 "nepotpun?"
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Podešavanje kutije nije uspelo"
@@ -887,7 +887,7 @@ msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Umetnite instalacioni medij operativnog sistema ili izaberite izvor ispod"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:570
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -897,23 +897,23 @@ msgstr ""
 "proizvoda koje ste već nabavili i u vlasništvu su njihovih odgovarajućih "
 "vlasnika."
 
-#: ../src/wizard.vala:585
+#: ../src/wizard.vala:581
 msgid "Preparation"
 msgstr "Priprema"
 
-#: ../src/wizard.vala:586
+#: ../src/wizard.vala:582
 msgid "Preparing to create new box"
 msgstr "Pripremam stvaranje nove kutije"
 
-#: ../src/wizard.vala:623
+#: ../src/wizard.vala:617
 msgid "Setup"
 msgstr "Podešavanja"
 
-#: ../src/wizard.vala:630
+#: ../src/wizard.vala:624
 msgid "Review"
 msgstr "Pregled"
 
-#: ../src/wizard.vala:638
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -921,22 +921,22 @@ msgstr ""
 "Proširenja virtuelizacije nisu dostupna na vašem sistemu. Ako je vaš sistem "
 "noviji (posle 2008), proverite vaša podešavanja BIOS-a da ih uključite."
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:671
 msgid "Create a Box"
 msgstr "Napravite Kutiju"
 
-#: ../src/wizard.vala:683
+#: ../src/wizard.vala:686
 msgid "_Back"
 msgstr "_Nazad"
 
-#: ../src/wizard.vala:691
+#: ../src/wizard.vala:695
 msgid "C_ontinue"
 msgstr "Na_stavi"
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:705
 msgid "C_reate"
 msgstr "Na_pravi"
 
-#: ../src/wizard.vala:787
+#: ../src/wizard.vala:793
 msgid "C_ustomize..."
 msgstr "_Prilagodi..."
