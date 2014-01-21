@@ -8,16 +8,40 @@ msgstr ""
 "Project-Id-Version: Tajik Gnome\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-23 18:57+0000\n"
-"PO-Revision-Date: 2013-10-04 13:33+0500\n"
+"POT-Creation-Date: 2014-01-03 18:55+0000\n"
+"PO-Revision-Date: 2014-01-21 14:09+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: \n"
-"Language: Tajik\n"
+"Language: tg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=1;\n"
-"X-Generator: Poedit 1.5.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.3\n"
+
+#: ../data/gnome-boxes.appdata.xml.in.h:1
+#, fuzzy
+msgid ""
+"A simple GNOME 3 application to access remote or virtual systems. Unlike "
+"some other virtual machine management software, Boxes is targeted towards "
+"typical desktop end-users. For this reason, Boxes will not provide many "
+"advanced options to tweak virtual machines. Instead Boxes will focus on "
+"getting things working out of the box with very little input from user."
+msgstr "Boxes"
+
+#: ../data/gnome-boxes.appdata.xml.in.h:2
+#, fuzzy
+msgid ""
+"You want to install Boxes if you just want a very safe and easy way to try "
+"out new operating systems or new (potentially unstable) versions of your "
+"favorite operating system(s), or need to connect to a remote machine (for "
+"example, in your office)."
+msgstr ""
+"Агар ҳамаи системаҳои оператсионии шумо дар боло номбар шуда бошанд, он гоҳ "
+"насбкунии худроҳандозӣ ба сабти асосии роҳандозии диски сахти аввалини шумо "
+"бехатар мебошад. Вақте ки компютери шумо роҳандозӣ мешавад, шумо метавонед "
+"интихоб кунед, ки яке аз ин системаҳои оператсиониро ба системаи нави худ "
+"бор кунед."
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
@@ -84,30 +108,62 @@ msgstr "Равзана ба ҳадди аксар сохта шуд"
 msgid "Window maximized state"
 msgstr "Андозаи равзана дар ҳадди аксар"
 
-#: ../data/gnome-boxes.appdata.xml.in.h:1
+#: ../data/ui/unattended-setup-box.ui.h:1
+#, fuzzy
 msgid ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
-msgstr ""
+"Choose express install to automatically preconfigure the box with optimal "
+"settings."
+msgstr "Насб кардани навсозиҳои амниятӣ ба таври худкор"
 
-#: ../data/gnome-boxes.appdata.xml.in.h:2
-msgid ""
-"You want to install Boxes if you just want a very safe and easy way to try "
-"out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
-msgstr ""
+#: ../data/ui/unattended-setup-box.ui.h:2
+msgid "Express Install"
+msgstr "Насби фаврӣ"
+
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:262
+msgid "Username"
+msgstr "Номи корбар"
+
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/machine.vala:584
+#: ../src/unattended-installer.vala:263
+msgid "Password"
+msgstr "Парол"
+
+#: ../data/ui/unattended-setup-box.ui.h:5
+msgid "_Add Password"
+msgstr "_Илова кардани парол"
+
+#: ../data/ui/unattended-setup-box.ui.h:6
+msgid "Product Key"
+msgstr "Калиди маҳсул"
+
+#: ../data/ui/wizard-source.ui.h:1
+msgid "Enter URL"
+msgstr "URL-ро ворид намоед"
+
+#: ../data/ui/wizard-source.ui.h:2
+msgid "▶"
+msgstr "▶"
+
+#: ../data/ui/wizard-source.ui.h:3
+msgid "Select a file"
+msgstr "Интихоб кардани файл"
+
+#: ../data/ui/wizard-source.ui.h:4
+msgid "◀"
+msgstr "◀"
 
 #: ../src/app.vala:160
 msgid "translator-credits"
 msgstr "Victor Ibragimov (victor.ibragimov@gmail.com)"
 
 #: ../src/app.vala:161
+#, fuzzy
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
+"Барномаи оддӣ барои кушодан, ташкил ва муболида кардани суратҳо дар GNOME. "
+"Ин барномаи оддӣ ва зеборо барои кор кардан бо суратҳо ба ивази мудири "
+"файлҳо истифода баред. Дар ин Ин барнома ҳампайвандии ҳамворро тавассути "
+"ҳисобҳои онлайни GNOME ба шумо пешниҳод мекунад."
 
 #: ../src/app.vala:178
 msgid "New"
@@ -118,8 +174,9 @@ msgid "Help"
 msgstr "Кӯмак"
 
 #: ../src/app.vala:184
-msgid "About Boxes"
-msgstr "Дар бораи Қуттиҳо"
+#| msgid "About Boxes"
+msgid "About"
+msgstr "Дар бораи барнома"
 
 #: ../src/app.vala:185
 msgid "Quit"
@@ -147,41 +204,53 @@ msgstr "Ҷустуҷӯи калидвожа"
 
 #. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
 #: ../src/app.vala:244
+#, fuzzy
 msgid "URI to display, broker or installer media"
-msgstr ""
+msgstr "URI"
 
 #: ../src/app.vala:255
+#, fuzzy
 msgid "- A simple application to access remote or virtual machines"
-msgstr ""
+msgstr "Барномаи оддии харитаҳо"
 
 #: ../src/app.vala:277
+#, fuzzy
 msgid "Too many command line arguments specified.\n"
 msgstr ""
+"Бисёр модулҳои ҳаста тавассути худроҳандозии система ба таври динамикӣ бор "
+"шудаанд, ва параметрҳои он модулҳо тавассути сатри фармон иҷро карда "
+"намешаванд."
 
-#: ../src/app.vala:842
+#: ../src/app.vala:837
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Қуттии '%s' нест карда шудааст"
 
-#: ../src/app.vala:843
+#: ../src/app.vala:838
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u қуттӣ нест карда шудааст"
 msgstr[1] "%u қуттӣ нест карда шудаанд"
 
-#: ../src/app.vala:933
-#, c-format
+#: ../src/app.vala:861
+msgid "_Undo"
+msgstr "_Ботил сохтан"
+
+#: ../src/app.vala:928
+#, fuzzy, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
 "Try without saved state?"
 msgstr ""
+"Маълумоти корбари захирашуда барои корбари асосии ‘%s’ дар анбори калидҳо "
+"ёфт нашуд"
 
-#: ../src/app.vala:934
+#: ../src/app.vala:929
 msgid "Restart"
 msgstr "Бозоғозӣ кардан"
 
-#: ../src/app.vala:939 ../src/machine.vala:153
+#: ../src/app.vala:934 ../src/machine.vala:153
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Пайвастшавӣ ба '%s' қатъ шудааст"
@@ -190,23 +259,25 @@ msgstr "Пайвастшавӣ ба '%s' қатъ шудааст"
 msgid "New and Recent"
 msgstr "Нав ва қаблӣ"
 
-#: ../src/display-page.vala:301
+#: ../src/display-page.vala:306
+#, fuzzy
 msgid "(press Ctrl+Alt keys to ungrab)"
-msgstr ""
+msgstr "Ctrl+Alt+Фосила"
 
 #: ../src/empty-boxes.vala:30
 msgid "No boxes found"
 msgstr "Ягон қуттӣ ёфт нашуд"
 
 #: ../src/empty-boxes.vala:37
+#, fuzzy
 msgid "Create one using the button on the top left."
-msgstr ""
+msgstr "Болои чап"
 
-#: ../src/installed-media.vala:48
+#: ../src/installed-media.vala:49
 msgid "Unsupported disk image format."
-msgstr ""
+msgstr "Формати тасвири диск дастгирӣ намешавад."
 
-#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
+#: ../src/installed-media.vala:104 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Система"
@@ -220,14 +291,14 @@ msgid "Virtualizer"
 msgstr "Виртуалайзер"
 
 #: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:410
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:415
 msgid "URI"
 msgstr "Суроғаи URI"
 
 #: ../src/libvirt-machine-properties.vala:131
 #: ../src/libvirt-machine-properties.vala:136
 msgid "Troubleshooting log"
-msgstr ""
+msgstr "Сабти рӯйдодҳои ҷустуҷӯи нуқсонҳо"
 
 #: ../src/libvirt-machine-properties.vala:139
 #: ../src/libvirt-machine-properties.vala:157
@@ -256,6 +327,8 @@ msgstr "Хатои захиракунӣ: %s"
 msgid "Protocol"
 msgstr "Протокол"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -292,16 +365,16 @@ msgstr "Интихоб кардан"
 msgid "Remove"
 msgstr "Тоза кардан"
 
-#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:303
+#: ../src/libvirt-machine-properties.vala:307 ../src/wizard-source.vala:245
 msgid "Select a device or ISO file"
 msgstr "Дастгоҳеро барои файли ISO интихоб намоед"
 
 #: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
+#: ../src/wizard-source.vala:248 ../src/wizard.vala:687
 msgid "_Cancel"
 msgstr "_Бекор кардан"
 
-#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:307
+#: ../src/libvirt-machine-properties.vala:311 ../src/wizard-source.vala:249
 msgid "_Open"
 msgstr "_Кушодан"
 
@@ -318,32 +391,36 @@ msgstr "Дарҷкунии '%s' ҳамчун CD/DVD ба '%s' қатъ шуда�
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Ҷудокунии CD/DVD аз '%s' қатъ шудааст"
 
-#: ../src/libvirt-machine-properties.vala:403 ../src/wizard.vala:446
+#: ../src/libvirt-machine-properties.vala:408 ../src/wizard.vala:451
 msgid "Memory"
 msgstr "Ҳофиза"
 
-#: ../src/libvirt-machine-properties.vala:459
-#, c-format
+#: ../src/libvirt-machine-properties.vala:464
+#, fuzzy, c-format
 msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr ""
+msgstr "Бозоғозӣ..."
 
-#: ../src/libvirt-machine-properties.vala:460
-#: ../src/libvirt-machine-properties.vala:516
+#: ../src/libvirt-machine-properties.vala:465
+#: ../src/libvirt-machine-properties.vala:521
 msgid "_Yes"
 msgstr "_Ҳа"
 
-#: ../src/libvirt-machine-properties.vala:514
-#, c-format
+#: ../src/libvirt-machine-properties.vala:519
+#, fuzzy, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
-msgstr ""
+msgstr "Сатри url-и \"%s\" аз ҳад дароз мебошад"
 
-#: ../src/libvirt-machine-properties.vala:539
+#: ../src/libvirt-machine-properties.vala:544
 msgid "Maximum Disk Size"
 msgstr "Андозаи зиёдтарини диск"
 
 #: ../src/libvirt-machine.vala:446
+#, fuzzy
 msgid "When you force shutdown, the box may lose data."
 msgstr ""
+"Интихоб кардани пардаи экран. Вақте ки пахши видео дар экрани пурра таваққуф "
+"карда мешавад ё диалог намоиш дода мешавад, XBMC пардаи экрани \"камнурро\" "
+"намоиш медиҳад."
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/libvirt-machine.vala:531
@@ -356,6 +433,42 @@ msgstr "Барқарорсозии %s аз диск"
 #, c-format
 msgid "Starting %s"
 msgstr "Оғозёбии %s"
+
+#: ../src/libvirt-system-importer.vala:18
+#, fuzzy, c-format
+msgid "Import '%s' from system broker"
+msgstr "Оё шумо мехоҳед, ки ҷаласаро аз \"%s\" вори кунед?"
+
+#. Translators: %u here is number of boxes availble for import
+#: ../src/libvirt-system-importer.vala:21
+#, c-format
+msgid "Import %u box from system broker"
+msgid_plural "Import %u boxes from system broker"
+msgstr[0] "Ворид кардани %u қуттӣ аз даллоли системавӣ"
+msgstr[1] "Ворид кардани %u қуттӣ аз даллоли системавӣ"
+
+#: ../src/libvirt-system-importer.vala:32
+#, fuzzy, c-format
+msgid "Will import '%s' from system broker"
+msgstr "Оё шумо мехоҳед, ки ҷаласаро аз \"%s\" вори кунед?"
+
+#. Translators: %u here is number of boxes availble for import
+#: ../src/libvirt-system-importer.vala:35
+#, c-format
+msgid "Will import %u box from system broker"
+msgid_plural "Will import %u boxes from system broker"
+msgstr[0] "%u қуттӣ аз даллоли системавӣ ворид мекунад"
+msgstr[1] "%u қуттӣ аз даллоли системавӣ ворид мекунад"
+
+#: ../src/libvirt-system-importer.vala:57
+#| msgid "No boxes found"
+msgid "No boxes to import"
+msgstr "Ягон қуттӣ барои ворид кардан нест"
+
+#: ../src/libvirt-system-importer.vala:131
+#, fuzzy, c-format
+msgid "Failed to find suitable disk to import for box '%s'"
+msgstr "Провайдер барои %s ёфт нашудааст"
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/machine.vala:136
@@ -373,37 +486,33 @@ msgstr "Паролеро барои %s ворид кунед"
 msgid "Saving..."
 msgstr "Захира шуда истодааст..."
 
-#. 3rd row
-#: ../src/machine.vala:584 ../src/unattended-installer.vala:301
-#: ../src/unattended-installer.vala:432
-msgid "Password"
-msgstr "Парол"
-
 #. FIXME: add proper UI & docs
 #: ../src/main.vala:53
-#, c-format
+#, fuzzy, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
-msgstr ""
+msgstr "Виртуализатсия"
 
 #: ../src/main.vala:54
-#, c-format
+#, fuzzy, c-format
 msgid "• The KVM module is loaded: %s\n"
-msgstr ""
+msgstr "Модул бо номи %s аллакай бор шудааст"
 
 #: ../src/main.vala:55
-#, c-format
+#, fuzzy, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr ""
+"Фазои дастрас дар ҷузвдони зерин вуҷуд надорад:\n"
+"\"%s\" мубодилашуда аз ҷониби %s"
 
 #: ../src/main.vala:56
-#, c-format
+#, fuzzy, c-format
 msgid "• Boxes storage pool available: %s\n"
-msgstr ""
+msgstr "%(free_space)s фазои дастрас"
 
 #: ../src/main.vala:60
-#, c-format
+#, fuzzy, c-format
 msgid "• The SELinux context is default: %s\n"
-msgstr ""
+msgstr "Мӯҳтаво %s аст"
 
 #: ../src/main.vala:64
 #, c-format
@@ -415,7 +524,7 @@ msgstr "Фиристодани гузориш дар бораи хатоҳо б�
 msgid "%s home page: <%s>.\n"
 msgstr "%s саҳифаи аслӣ: <%s>.\n"
 
-#: ../src/media-manager.vala:176
+#: ../src/media-manager.vala:215
 #, c-format
 msgid "No such file %s"
 msgstr "Файли %s вуҷуд надорад"
@@ -443,8 +552,9 @@ msgid "_Password"
 msgstr "_Парол"
 
 #: ../src/ovirt-broker.vala:69
+#, fuzzy
 msgid "Connection to oVirt broker failed"
-msgstr ""
+msgstr "Пайваст қатъ шудааст."
 
 #. Translators: The %s will be replaced with the name of the VM
 #: ../src/properties.vala:19
@@ -465,8 +575,10 @@ msgid "Devices"
 msgstr "Дастгоҳҳо"
 
 #: ../src/properties.vala:95
+#, fuzzy
 msgid "Some changes may take effect only after reboot"
 msgstr ""
+"Барои амалӣ шудани тағйирот пас аз навсозӣ компютер бояд бозоғозӣ шавад."
 
 #: ../src/properties.vala:280
 msgid "CPU:"
@@ -507,42 +619,43 @@ msgid "Unknown"
 msgstr "Номаълум"
 
 #: ../src/spice-display.vala:54
-#, c-format
+#, fuzzy, c-format
 msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr ""
+msgstr "Омодасозии дастгоҳи %s барои санҷиши қобилиятҳо қатъ шудааст"
 
 #: ../src/spice-display.vala:62 ../src/spice-display.vala:340
-#, c-format
+#, fuzzy, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
-msgstr ""
+msgstr "Омодасозии дастгоҳи %s барои санҷиши қобилиятҳо қатъ шудааст"
 
 #: ../src/spice-display.vala:291
 msgid "Share clipboard"
-msgstr ""
+msgstr "Мубодилаи ҳофизаи муваққатӣ"
 
 #: ../src/spice-display.vala:297
 msgid "Resize guest"
-msgstr ""
+msgstr "Тағйири андозаи меҳмон"
 
 #: ../src/spice-display.vala:306
 msgid "Redirect new USB devices"
-msgstr ""
+msgstr "Интиқол додани дастгоҳои нави USB"
 
 #: ../src/spice-display.vala:326
 msgid "USB devices"
 msgstr "Дастгоҳҳои USB"
 
-#: ../src/spice-display.vala:381 ../src/wizard.vala:248 ../src/wizard.vala:257
+#: ../src/spice-display.vala:381 ../src/wizard.vala:251 ../src/wizard.vala:260
 msgid "Invalid URI"
-msgstr ""
+msgstr "URI-и беэътибор"
 
 #: ../src/spice-display.vala:391
 msgid "The port must be specified once"
-msgstr ""
+msgstr "Порт бояд як бор муайян карда шавад"
 
 #: ../src/spice-display.vala:400
+#, fuzzy
 msgid "Missing port in Spice URI"
-msgstr ""
+msgstr "URI"
 
 #: ../src/topbar.vala:74
 msgid "_New"
@@ -566,11 +679,11 @@ msgstr "Интихоб кардани ҳама"
 
 #: ../src/topbar.vala:141
 msgid "Select Running"
-msgstr ""
+msgstr "Интихоб кардани фаъол"
 
 #: ../src/topbar.vala:142
 msgid "Select None"
-msgstr ""
+msgstr "Лағв кардани интихоб"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
@@ -585,118 +698,100 @@ msgstr[1] "%d интихоб шудаанд"
 msgid "(Click on items to select them)"
 msgstr "(Барои илова кардани объектҳо, онҳоро зер намоед)"
 
-#: ../src/unattended-installer.vala:59
-msgid "no password"
-msgstr "бепарол"
-
-#: ../src/unattended-installer.vala:300 ../src/unattended-installer.vala:411
-msgid "Username"
-msgstr "Номи корбар"
-
-#: ../src/unattended-installer.vala:367
-msgid ""
-"Choose express install to automatically preconfigure the box with optimal "
-"settings."
-msgstr ""
-
-#. First row
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
-#. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:385
-msgid "Express Install"
-msgstr "Насби фаврӣ"
-
-#: ../src/unattended-installer.vala:443
-msgid "_Add Password"
-msgstr "_Илова кардани парол"
-
-#: ../src/unattended-installer.vala:476
-msgid "Product Key"
-msgstr "Калиди маҳсул"
-
-#: ../src/unattended-installer.vala:696
+#: ../src/unattended-installer.vala:445
 msgid "Downloading device drivers..."
 msgstr "Боргирии драйверҳои дастгоҳ..."
 
-#: ../src/util-app.vala:276
-#, c-format
+#: ../src/unattended-setup-box.vala:46
+msgid "no password"
+msgstr "бепарол"
+
+#: ../src/util-app.vala:346
+#, fuzzy, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
 msgstr ""
+"Барои осон гардонидани барқарорсозӣ дар ҳолати нокомӣ, sshd-и иловагӣ дар "
+"порти \"%s\" оғоз карда мешавад. Агар бо ssh-и иҷрошаванда чизе нодуруст рӯй "
+"диҳад, шумо метавонед ба sshd пайваст шавед.\n"
 
-#: ../src/util-app.vala:280
+#: ../src/util-app.vala:350
 msgid "SELinux not installed?"
-msgstr ""
+msgstr "SELinux ҳоло насб нашудааст?"
 
-#: ../src/util-app.vala:361
+#: ../src/util-app.vala:431
+#, fuzzy
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
-msgstr ""
+msgstr "Boxes"
 
-#: ../src/util-app.vala:366
-#, c-format
+#: ../src/util-app.vala:436
+#, fuzzy, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
 "not exist"
-msgstr ""
+msgstr "Директорияи \"${DIR}\" вуҷуд надорад."
 
-#: ../src/util-app.vala:370
-#, c-format
+#: ../src/util-app.vala:440
+#, fuzzy, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
-msgstr ""
+msgstr "Манбаи ZFS %s, ҳаҷми %s"
 
-#: ../src/util-app.vala:374
-#, c-format
+#: ../src/util-app.vala:444
+#, fuzzy, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
 "readable/writable"
-msgstr ""
+msgstr "Манбаи ZFS %s, ҳаҷми %s"
 
-#: ../src/util.vala:322
+#: ../src/util.vala:318
 msgid "yes"
 msgstr "ҳа"
 
-#: ../src/util.vala:322
+#: ../src/util.vala:318
 msgid "no"
 msgstr "не"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:441
+#: ../src/vm-configurator.vala:488
 msgid "Incapable host system"
-msgstr ""
+msgstr "Системаи мизбони номувофиқ"
 
 #: ../src/vm-creator.vala:48
+#, fuzzy
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
+"Бастаи модули ҳастаи ${PACKAGE} ёфт нашуд, ё ки ҳангоми насб кардани он "
+"хатогӣ ба вуҷуд омадааст."
 
-#: ../src/vm-creator.vala:180
+#: ../src/vm-creator.vala:176
 msgid "Installing..."
 msgstr "Насб шуда истодааст..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:184 ../src/wizard-source.vala:244
+#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Мустақим"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:282
+#: ../src/vm-creator.vala:312
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
 msgstr[0] "%d%% насб шудааст"
 msgstr[1] "%d%% насб шудаанд"
 
-#: ../src/vm-importer.vala:34
+#: ../src/vm-importer.vala:36
 msgid "Importing..."
 msgstr "Ворид шуда истодааст..."
 
-#: ../src/vm-importer.vala:51
+#: ../src/vm-importer.vala:53
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Воридоти қуттӣ аз '%s' қатъ шудааст."
@@ -705,34 +800,24 @@ msgstr "Воридоти қуттӣ аз '%s' қатъ шудааст."
 msgid "Read-only"
 msgstr "Танҳо барои хондан"
 
-#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
-msgid "Enter URL"
-msgstr "URL-ро ворид намоед"
-
-#: ../src/wizard-source.vala:126
-msgid "Select a file"
-msgstr "Интихоб кардани файл"
-
-#: ../src/wizard-source.vala:163
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-
-#: ../src/wizard-source.vala:253
+#: ../src/wizard-source.vala:86
 msgid "32-bit x86 system"
 msgstr "Систеиам 32-бит x86"
 
-#: ../src/wizard-source.vala:254
+#: ../src/wizard-source.vala:87
 msgid "64-bit x86 system"
 msgstr "Системаи 64-бит x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:263
+#: ../src/wizard-source.vala:92
 #, c-format
 msgid " from %s"
 msgstr " аз %s"
+
+#: ../src/wizard-source.vala:94
+#| msgid "Unknown installer media"
+msgid "Unknown media"
+msgstr "Медиаи номаълум"
 
 #: ../src/wizard.vala:100
 msgid "Box creation failed"
@@ -750,69 +835,75 @@ msgstr "Қуттиҳо ба ҳамаи системаҳои дастрас аз 
 msgid "Will add a single box."
 msgstr "Қуттии ягона илова мешавад."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Дастрасии мизи корӣ"
 
-#: ../src/wizard.vala:271
+#: ../src/wizard.vala:274
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Протоколи дастгиринашаванда '%s'"
 
-#: ../src/wizard.vala:277 ../src/wizard.vala:319
+#: ../src/wizard.vala:280 ../src/wizard.vala:322
 msgid "Unknown installer media"
 msgstr "Медиаи насбкунандаи номаълум"
 
-#: ../src/wizard.vala:278 ../src/wizard.vala:320
+#: ../src/wizard.vala:281 ../src/wizard.vala:323
 msgid "Analyzing..."
 msgstr "Таҳлил..."
 
-#: ../src/wizard.vala:290
+#: ../src/wizard.vala:293
+#, fuzzy
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
+msgstr "медиа"
 
-#: ../src/wizard.vala:386
+#. We did this, so ignore!
+#: ../src/wizard.vala:391
 msgid "Box setup failed"
 msgstr "Танзими қуттӣ қатъ шудааст"
 
-#: ../src/wizard.vala:400
-msgid "Boxes will create a new box with the following properties:"
-msgstr ""
-
 #: ../src/wizard.vala:405
+#, fuzzy
+msgid "Boxes will create a new box with the following properties:"
+msgstr "Boxes"
+
+#: ../src/wizard.vala:410
 msgid "Type"
 msgstr "Навъ"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:413
 msgid "Host"
 msgstr "Мизбон"
 
-#: ../src/wizard.vala:419 ../src/wizard.vala:430
+#: ../src/wizard.vala:424 ../src/wizard.vala:435
 msgid "Port"
 msgstr "Порт"
 
-#: ../src/wizard.vala:421
+#: ../src/wizard.vala:426
 msgid "TLS Port"
-msgstr ""
+msgstr "Порти TLS"
 
-#: ../src/wizard.vala:435
+#: ../src/wizard.vala:440
+#, fuzzy
 msgid "Will add boxes for all systems available from this account:"
-msgstr ""
+msgstr "Ҳамаи мизбонҳои дастрас аз захирагоҳ (танҳо бо рӯйхат)"
 
-#: ../src/wizard.vala:455
+#: ../src/wizard.vala:460
 msgid "Disk"
 msgstr "Диск"
 
-#: ../src/wizard.vala:455
+#: ../src/wizard.vala:460
 #, c-format
 msgid "%s maximum"
 msgstr "Ҳадди аксар %s"
 
-#: ../src/wizard.vala:545
+#: ../src/wizard.vala:558
 msgid "Introduction"
 msgstr "Муқаддима"
 
-#: ../src/wizard.vala:549
+#: ../src/wizard.vala:562
+#, fuzzy
 msgid ""
 "Creating a Box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -820,61 +911,71 @@ msgid ""
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
+"Барчаспҳо: [B]%N[/B]: Рақами роҳча, [B]%S[/B]: Рақами диск, [B]%A[/B]: "
+"Ҳунарманд, [B]%T[/B]: Унвон, [B]%B[/B]: Албом, [B]%G[/B]: Жанр, [B]%Y[/B]: "
+"Сол, [B]%F[/B]: Номи файл, [B]%D[/B]: Давомнокӣ, [B]%J[/B]: Сана, [B]%R[/B]: "
+"Рейтинг, [B]%I[/B]: Андозаи файл."
 
-#: ../src/wizard.vala:561
+#: ../src/wizard.vala:574
 msgid "Source Selection"
 msgstr "Интихоби манбаъ"
 
-#: ../src/wizard.vala:562
+#: ../src/wizard.vala:575
+#, fuzzy
 msgid "Insert operating system installation media or select a source below"
-msgstr ""
+msgstr "Системаи омил:"
 
-#: ../src/wizard.vala:570
+#: ../src/wizard.vala:583
+#, fuzzy
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr ""
+"Азбаски қисмбандиҳо аллакай васл карда шудаанд, шумо наметавонед ягон "
+"тағйирот ворид кунед."
 
-#: ../src/wizard.vala:581
+#: ../src/wizard.vala:594
 msgid "Preparation"
 msgstr "Омодасозӣ"
 
-#: ../src/wizard.vala:582
+#: ../src/wizard.vala:595
 msgid "Preparing to create new box"
 msgstr "Омодасозии эҷоди қутти нав"
 
-#: ../src/wizard.vala:617
+#: ../src/wizard.vala:630
 msgid "Setup"
 msgstr "Танзимот"
 
-#: ../src/wizard.vala:624
+#: ../src/wizard.vala:637
 msgid "Review"
 msgstr "Тақризнависӣ"
 
-#: ../src/wizard.vala:632
+#: ../src/wizard.vala:645
+#, fuzzy
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
 msgstr ""
+"Вақти системаи шумо норуруст аст. Танзимоти вақт ва санаро тафтиш кунед."
 
-#: ../src/wizard.vala:671
+#: ../src/wizard.vala:684
 msgid "Create a Box"
 msgstr "Эҷод кардани қуттӣ"
 
-#: ../src/wizard.vala:686
+#: ../src/wizard.vala:699
 msgid "_Back"
 msgstr "_Бозгашт"
 
-#: ../src/wizard.vala:695
+#: ../src/wizard.vala:708
 msgid "C_ontinue"
 msgstr "_Идома додан"
 
-#: ../src/wizard.vala:705
+#: ../src/wizard.vala:718
 msgid "C_reate"
 msgstr "Эҷод _кардан"
 
-#: ../src/wizard.vala:793
+#: ../src/wizard.vala:807
 msgid "C_ustomize..."
 msgstr "Фар_моиш додан..."
 
