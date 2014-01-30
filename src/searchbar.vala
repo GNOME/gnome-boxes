@@ -1,5 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/searchbar.ui")]
 private class Boxes.Searchbar: Gtk.SearchBar {
     public bool enable_key_handler {
         set {
@@ -9,28 +10,30 @@ private class Boxes.Searchbar: Gtk.SearchBar {
                 GLib.SignalHandler.block (App.app.window, key_handler_id);
         }
     }
+    [GtkChild]
     private Gtk.SearchEntry entry;
 
     private ulong key_handler_id;
 
     public Searchbar () {
-        setup_searchbar ();
-
         key_handler_id = App.app.window.key_press_event.connect (on_app_key_pressed);
-        entry.search_changed.connect (on_search_changed);
-        entry.activate.connect ( () => {
-            App.app.view.activate ();
-        });
-
-        notify["search-mode-enabled"].connect (() => {
-            if (!search_mode_enabled)
-                text = "";
-        });
     }
 
+    [GtkCallback]
     private void on_search_changed () {
         App.app.filter.text = text;
         App.app.view.refilter ();
+    }
+
+    [GtkCallback]
+    private void on_search_activated () {
+        App.app.view.activate ();
+    }
+
+    [GtkCallback]
+    private void on_search_mode_notify () {
+        if (!search_mode_enabled)
+            text = "";
     }
 
     public string text {
@@ -43,14 +46,5 @@ private class Boxes.Searchbar: Gtk.SearchBar {
             return false;
 
         return handle_event ((Gdk.Event *) (&event));
-    }
-
-    private void setup_searchbar () {
-        entry = new Gtk.SearchEntry ();
-        entry.width_chars = 40;
-        entry.hexpand = true;
-        add (entry);
-
-        show_all ();
     }
 }
