@@ -62,6 +62,7 @@
                 <property name="halign">start</property>
                 <property name="valign">center</property>
                 <property name="margin-bottom">15</property>
+                <signal name="notify::active" handler="on_mandatory_input_changed"/>
               </object>
               <packing>
                 <property name="left-attach">2</property>
@@ -113,6 +114,7 @@
                 <property name="valign">baseline</property>
                 <property name="margin-bottom">10</property>
                 <signal name="activate" handler="on_username_entry_activated"/>
+                <signal name="notify::text" handler="on_mandatory_input_changed"/>
               </object>
               <packing>
                 <property name="left-attach">2</property>
@@ -201,6 +203,7 @@
                 </style>
                 <signal name="activate" handler="on_key_entry_activated"/>
                 <signal name="insert-text" handler="on_key_text_inserted"/>
+                <signal name="notify::text" handler="on_mandatory_input_changed"/>
               </object>
               <packing>
                 <property name="left-attach">2</property>

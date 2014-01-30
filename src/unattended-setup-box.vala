@@ -103,15 +103,9 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         foreach (var child in setup_grid.get_children ())
             if (child != express_label && child != express_toggle)
                 express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
-
-        // FIXME: We should do this from .ui file once this bug is fixed:
-        //        https://bugzilla.gnome.org/show_bug.cgi?id=720825
-        express_toggle.notify["active"].connect (on_mandatory_input_changed);
-        username_entry.notify["text"].connect (on_mandatory_input_changed);
-        if (product_key_format != null)
-            product_key_entry.notify["text"].connect (on_mandatory_input_changed);
     }
 
+    [GtkCallback]
     private void on_mandatory_input_changed () {
         notify_property ("ready-to-create");
     }
