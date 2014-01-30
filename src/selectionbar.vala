@@ -2,77 +2,18 @@
 using Clutter;
 using Gtk;
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/selectionbar.ui")]
 private class Boxes.Selectionbar: Gtk.Revealer {
-    private Gtk.HeaderBar headerbar;
+    [GtkChild]
     private Gtk.ToggleButton favorite_btn;
+    [GtkChild]
     private Gtk.Button pause_btn;
+    [GtkChild]
     private Gtk.Button remove_btn;
+    [GtkChild]
     private Gtk.Button properties_btn;
-    private ulong favorite_btn_clicked_handler;
 
     public Selectionbar () {
-        transition_type = Gtk.RevealerTransitionType.SLIDE_UP;
-
-        headerbar = new Gtk.HeaderBar ();
-        headerbar.get_style_context ().add_class ("titlebar");
-        add (headerbar);
-
-        favorite_btn = new Gtk.ToggleButton ();
-        headerbar.pack_start (favorite_btn);
-        favorite_btn.image = new Gtk.Image.from_icon_name ("emblem-favorite-symbolic", Gtk.IconSize.MENU);
-        favorite_btn.valign = Gtk.Align.CENTER;
-        favorite_btn.get_style_context ().add_class ("image-button");
-        favorite_btn_clicked_handler = favorite_btn.clicked.connect (() => {
-           foreach (var item in App.app.selected_items) {
-               var machine = item as Machine;
-               if (machine == null)
-                   continue;
-               machine.config.set_category ("favorite", favorite_btn.active);
-           }
-
-           App.app.selection_mode = false;
-        });
-
-        pause_btn = new Gtk.Button.with_mnemonic (_("P_ause"));
-        pause_btn.valign = Gtk.Align.CENTER;
-        headerbar.pack_start (pause_btn);
-        pause_btn.get_style_context ().add_class ("text-button");
-        pause_btn.clicked.connect (() => {
-           foreach (var item in App.app.selected_items) {
-               var machine = item as Machine;
-               if (machine == null)
-                   continue;
-               machine.save.begin ( (obj, result) => {
-                   try {
-                       machine.save.end (result);
-                   } catch (GLib.Error e) {
-                       App.app.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
-                   }
-               });
-           }
-
-           pause_btn.sensitive = false;
-           App.app.selection_mode = false;
-        });
-
-        remove_btn = new Gtk.Button.with_mnemonic (_("_Delete"));
-        remove_btn.valign = Gtk.Align.CENTER;
-        headerbar.pack_start (remove_btn);
-        remove_btn.get_style_context ().add_class ("text-button");
-        remove_btn.clicked.connect (() => {
-            App.app.remove_selected_items ();
-        });
-
-        properties_btn = new Gtk.Button.with_mnemonic (_("_Properties"));
-        properties_btn.valign = Gtk.Align.CENTER;
-        headerbar.pack_end (properties_btn);
-        properties_btn.get_style_context ().add_class ("text-button");
-        properties_btn.clicked.connect (() => {
-            App.app.show_properties ();
-        });
-
-        show_all ();
-
         App.app.notify["selection-mode"].connect (() => {
             reveal_child = App.app.selection_mode;
         });
@@ -83,6 +24,51 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             update_pause_btn ();
             update_delete_btn ();
         });
+    }
+
+    private bool ignore_favorite_btn_clicks;
+    [GtkCallback]
+    private void on_favorite_btn_clicked () {
+        if (ignore_favorite_btn_clicks)
+            return;
+
+        foreach (var item in App.app.selected_items) {
+            var machine = item as Machine;
+            if (machine == null)
+                continue;
+            machine.config.set_category ("favorite", favorite_btn.active);
+        }
+
+        App.app.selection_mode = false;
+    }
+
+    [GtkCallback]
+    private void on_pause_btn_clicked () {
+        foreach (var item in App.app.selected_items) {
+            var machine = item as Machine;
+            if (machine == null)
+                continue;
+            machine.save.begin ( (obj, result) => {
+                try {
+                    machine.save.end (result);
+                } catch (GLib.Error e) {
+                    App.app.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
+                }
+            });
+        }
+
+        pause_btn.sensitive = false;
+        App.app.selection_mode = false;
+    }
+
+    [GtkCallback]
+    private void on_remove_btn_clicked () {
+        App.app.remove_selected_items ();
+    }
+
+    [GtkCallback]
+    private void on_properties_btn_clicked () {
+        App.app.show_properties ();
     }
 
     private void update_favorite_btn () {
@@ -103,12 +89,10 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             }
         }
 
-        // Block the handler so that the selected items won't get added to the
-        // "favorite" category while changing the status of the button.
-        SignalHandler.block (favorite_btn, favorite_btn_clicked_handler);
+        ignore_favorite_btn_clicks = true;
         favorite_btn.active = active;
         favorite_btn.sensitive = sensitive;
-        SignalHandler.unblock (favorite_btn, favorite_btn_clicked_handler);
+        ignore_favorite_btn_clicks = false;
     }
 
     private void update_properties_btn () {
