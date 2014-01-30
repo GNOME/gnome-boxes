@@ -144,29 +144,20 @@ private class Boxes.Searchbar: GLib.Object, Boxes.UI {
 
     private void setup_searchbar () {
         var toolbar = new Gtk.Toolbar ();
-        var widget = toolbar;
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
 
         var item = new Gtk.ToolItem ();
         toolbar.insert(item, 0);
         item.set_expand (true);
 
-        // FIXME: https://bugzilla.gnome.org/show_bug.cgi?id=680595
-        var margin = new Gd.MarginContainer ();
-        item.add (margin);
-        margin.min_margin = 6;
-        margin.max_margin = 64;
-
-        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        margin.add (box);
-
         entry = new Gd.TaggedEntry ();
         entry.width_request = 260;
         entry.hexpand = true;
-        box.add (entry);
+        entry.margin_left = entry.margin_right = 64;
+        item.add (entry);
 
-        widget.show_all ();
-        gtk_actor = new GtkClutter.Actor.with_contents (widget);
+        toolbar.show_all ();
+        gtk_actor = new GtkClutter.Actor.with_contents (toolbar);
         gtk_actor.name = "searchbar";
     }
 }
