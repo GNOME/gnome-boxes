@@ -82,8 +82,8 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
                                                                      "go-previous-symbolic";
         back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
 
-        search_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
-        search2_btn.bind_property ("active", App.app.searchbar, "visible", BindingFlags.BIDIRECTIONAL);
+        search_btn.bind_property ("active", App.app.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
+        search2_btn.bind_property ("active", App.app.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
         App.app.notify["selection-mode"].connect (() => {
             page = App.app.selection_mode ?

@@ -75,7 +75,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public Topbar topbar;
     public Notificationbar notificationbar;
     public Boxes.Revealer sidebar_revealer;
-    public Boxes.Revealer searchbar_revealer;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
     public uint duration;
@@ -313,10 +312,8 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         if (opt_search != null) {
             call_when_ready (() => {
                 searchbar.text = string.joinv (" ", opt_search);
-                searchbar.visible = true;
-                if (ui_state == UIState.COLLECTION) {
-                    searchbar_revealer.revealed = true;
-                }
+                if (ui_state == UIState.COLLECTION)
+                    searchbar.visible = true;
             });
         }
 
@@ -527,8 +524,19 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         notebook.show_border = false;
         notebook.show_tabs = false;
         main_vbox.add (notebook);
+
+        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        vbox.halign = Gtk.Align.FILL;
+        vbox.valign = Gtk.Align.FILL;
+        vbox.hexpand = true;
+        vbox.vexpand = true;
+        notebook.append_page (vbox, null);
+
+        searchbar = new Searchbar ();
+        vbox.add (searchbar);
+
         embed = new ClutterWidget ();
-        notebook.append_page (embed, null);
+        vbox.add (embed);
 
         display_page = new DisplayPage ();
         notebook.append_page (display_page, null);
@@ -565,34 +573,13 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         sidebar = new Sidebar ();
         view = new CollectionView ();
-        searchbar = new Searchbar ();
         topbar = new Topbar ();
         notificationbar = new Notificationbar ();
         wizard = new Wizard ();
         properties = new Properties ();
         empty_boxes = new EmptyBoxes ();
 
-        var vbox_actor = new Clutter.Actor ();
-        vbox_actor.name = "top-vbox";
-        var vbox = new Clutter.BoxLayout ();
-        vbox_actor.set_layout_manager (vbox);
-        vbox.orientation = Clutter.Orientation.VERTICAL;
-        vbox_actor.x_align = Clutter.ActorAlign.FILL;
-        vbox_actor.y_align = Clutter.ActorAlign.FILL;
-        vbox_actor.x_expand = true;
-        vbox_actor.y_expand = true;
-
-        stage.add_child (vbox_actor);
-
         window.set_titlebar (topbar);
-
-        searchbar_revealer = new Boxes.Revealer (true);
-        searchbar_revealer.resize = true;
-        searchbar_revealer.unreveal ();
-        searchbar_revealer.name = "searchbar-revealer";
-        searchbar_revealer.x_expand = true;
-        vbox_actor.add_child (searchbar_revealer);
-        searchbar_revealer.add (searchbar.actor);
 
         var below_bin_actor = new Clutter.Actor ();
         below_bin_actor.name = "below-bin";
@@ -602,7 +589,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         below_bin_actor.x_expand = true;
         below_bin_actor.y_expand = true;
-        vbox_actor.add_child (below_bin_actor);
+        stage.add_child (below_bin_actor);
 
         below_bin_actor.add_child (view.actor);
 
@@ -705,7 +692,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             set_main_ui_state ();
 
         if (ui_state != UIState.COLLECTION)
-            searchbar_revealer.revealed = false;
+            searchbar.visible = false;
 
         switch (ui_state) {
         case UIState.COLLECTION:
@@ -722,7 +709,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             }
             fullscreen = false;
             view.visible = true;
-            searchbar_revealer.revealed = searchbar.visible;
 
             // Animate current_item actor to collection position
             if (current_item != null) {
