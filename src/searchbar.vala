@@ -13,36 +13,23 @@ private class Boxes.Searchbar: GLib.Object, Boxes.UI {
         }
     }
     private GtkClutter.Actor gtk_actor;
-    private Gd.TaggedEntry entry;
+    private Gtk.SearchEntry entry;
 
-    private uint refilter_delay_id;
     private ulong key_handler_id;
-    static const uint refilter_delay = 200; // in ms
 
     public Searchbar () {
         setup_searchbar ();
 
         key_handler_id = App.app.window.key_press_event.connect (on_app_key_pressed);
-        entry.notify["text"].connect ( () => {
-                if (refilter_delay_id != 0)
-                    Source.remove (refilter_delay_id);
-
-                if (text == "")
-                    refilter ();
-                else
-                    refilter_delay_id = Timeout.add (refilter_delay, refilter);
-        });
+        entry.search_changed.connect (on_search_changed);
         entry.activate.connect ( () => {
             App.app.view.activate ();
         });
     }
 
-    private bool refilter () {
+    private void on_search_changed () {
         App.app.filter.text = text;
         App.app.view.refilter ();
-        refilter_delay_id = 0;
-
-        return false;
     }
 
     private bool _visible;
@@ -56,7 +43,7 @@ private class Boxes.Searchbar: GLib.Object, Boxes.UI {
 
             App.app.searchbar_revealer.revealed = value;
             if (value)
-                grab_focus ();
+                entry.grab_focus ();
             else
                 text = "";
 
@@ -67,10 +54,6 @@ private class Boxes.Searchbar: GLib.Object, Boxes.UI {
     public string text {
         get { return entry.text; }
         set { entry.set_text (value); }
-    }
-
-    public void grab_focus () {
-        Gd.entry_focus_hack (entry, Gtk.get_current_event_device ());
     }
 
     private bool on_app_key_pressed (Gtk.Widget widget, Gdk.EventKey event) {
@@ -135,8 +118,8 @@ private class Boxes.Searchbar: GLib.Object, Boxes.UI {
             handled = true;
             if (!visible)
                 visible = true;
-            else
-                grab_focus ();
+            else if (!entry.has_focus)
+                entry.grab_focus ();
         }
 
         return handled;
@@ -150,7 +133,7 @@ private class Boxes.Searchbar: GLib.Object, Boxes.UI {
         toolbar.insert(item, 0);
         item.set_expand (true);
 
-        entry = new Gd.TaggedEntry ();
+        entry = new Gtk.SearchEntry ();
         entry.width_request = 260;
         entry.hexpand = true;
         entry.margin_left = entry.margin_right = 64;
