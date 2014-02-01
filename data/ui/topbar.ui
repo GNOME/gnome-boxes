@@ -316,10 +316,36 @@
 
     <!-- Properties -->
     <child>
-      <object class="GtkBox" id="props_hbox">
+      <object class="GtkHeaderBar" id="props_toolbar">
         <property name="visible">True</property>
-        <property name="orientation">horizontal</property>
-        <property name="spacing">0</property>
+        <property name="show-close-button">True</property>
+        <style>
+          <class name="titlebar"/>
+          <class name="menubar"/>
+        </style>
+
+        <child>
+          <object class="GtkButton" id="props_back_btn">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <signal name="clicked" handler="on_props_back_btn_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+
+            <child internal-child="accessible">
+              <object class="AtkObject" id="a11y-button5">
+                <property name="accessible-name" translatable="yes">Back</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkImage" id="props_back_image">
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
 

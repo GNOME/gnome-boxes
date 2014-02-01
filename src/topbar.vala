@@ -57,6 +57,13 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
     [GtkChild]
     private DisplayToolbar display_toolbar;
 
+    [GtkChild]
+    private Gtk.HeaderBar props_toolbar;
+    [GtkChild]
+    private Gtk.Image props_back_image;
+
+    private GLib.Binding props_name_bind;
+
     public string? _status;
     public string? status {
         get { return _status; }
@@ -64,6 +71,13 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
             _status = value;
             collection_toolbar.set_title (_status);
             display_toolbar.set_title (_status);
+        }
+    }
+
+    public string properties_title {
+        set {
+            // Translators: The %s will be replaced with the name of the VM
+            props_toolbar.title = _("%s - Properties").printf (App.app.current_item.name);
         }
     }
 
@@ -81,6 +95,7 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
         back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
+        props_back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
 
         search_btn.bind_property ("active", App.app.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
         search2_btn.bind_property ("active", App.app.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
@@ -150,6 +165,9 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
 
         case UIState.PROPERTIES:
             page = TopbarPage.PROPERTIES;
+            props_name_bind = App.app.current_item.bind_property ("name",
+                                                                  this, "properties-title",
+                                                                  BindingFlags.SYNC_CREATE);
             break;
 
         case UIState.WIZARD:
@@ -179,5 +197,10 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
     [GtkCallback]
     private void on_cancel_btn_clicked () {
         App.app.selection_mode = false;
+    }
+
+    [GtkCallback]
+    private void on_props_back_btn_clicked () {
+        App.app.set_state (App.app.previous_ui_state);
     }
 }

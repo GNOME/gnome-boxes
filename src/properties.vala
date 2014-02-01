@@ -15,23 +15,13 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    public string title {
-        set {
-            // Translators: The %s will be replaced with the name of the VM
-            toolbar.title = _("%s - Properties").printf (App.app.current_item.name);
-        }
-    }
-
     public Gtk.Widget screenshot_placeholder;
     private GtkClutter.Actor gtk_actor;
     private Gtk.Notebook notebook;
-    private Gtk.Button back;
-    private Gtk.HeaderBar toolbar;
     private Gtk.ListStore listmodel;
     private Gtk.TreeModelFilter model_filter;
     private Gtk.TreeView tree_view;
     private Gtk.Button shutdown_button;
-    private GLib.Binding toolbar_label_bind;
     private MiniGraph cpu;
     private MiniGraph io;
     private MiniGraph net;
@@ -219,26 +209,6 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
 
-        /* topbar */
-        var hbox = App.app.topbar.get_nth_page (Boxes.TopbarPage.PROPERTIES) as Gtk.Box;
-
-        toolbar = new Gtk.HeaderBar ();
-        toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
-        toolbar.get_style_context ().add_class ("titlebar");
-        toolbar.show_close_button = true;
-        hbox.pack_start (toolbar, true, true, 0);
-        var back_icon = (toolbar.get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
-                                                                             "go-previous-symbolic";
-        var back_image = new Gtk.Image.from_icon_name (back_icon, Gtk.IconSize.MENU);
-        back = new Gtk.Button ();
-        back.set_image (back_image);
-        back.valign = Gtk.Align.CENTER;
-        back.get_style_context ().add_class ("image-button");
-        toolbar.pack_start (back);
-        back.clicked.connect ((button) => { App.app.set_state (App.app.previous_ui_state); });
-
-        hbox.show_all ();
-
         /* sidebar */
         var vbox = App.app.sidebar.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.Box;
 
@@ -333,7 +303,6 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
             }
 
             populate ();
-            toolbar_label_bind = App.app.current_item.bind_property ("name", this, "title", BindingFlags.SYNC_CREATE);
         } else if (previous_ui_state == UIState.PROPERTIES) {
             for (var i = 0; i < PropertiesPage.LAST; i++) {
                 var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
