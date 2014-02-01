@@ -56,52 +56,6 @@ namespace Boxes {
         return color;
     }
 
-    public void tree_view_activate_on_single_click (Gtk.TreeView tree_view, bool should_activate) {
-        var id = tree_view.get_data<ulong> ("boxes-tree-view-activate");
-
-        if (id != 0 && should_activate == false) {
-            tree_view.disconnect (id);
-            tree_view.set_data<ulong> ("boxes-tree-view-activate", 0);
-        } else if (id == 0 && should_activate) {
-            id = tree_view.button_press_event.connect ((w, event) => {
-                Gtk.TreePath? path;
-                unowned Gtk.TreeViewColumn? column;
-                int x, y;
-
-                if (event.button == 1 && event.type == Gdk.EventType.BUTTON_PRESS) {
-                    tree_view.get_path_at_pos ((int) event.x, (int) event.y, out path, out column, out x, out y);
-                    if (path != null)
-                        tree_view.row_activated (path, column);
-                }
-
-                return false;
-            });
-            tree_view.set_data<ulong> ("boxes-tree-view-activate", id);
-        }
-    }
-
-    public void icon_view_activate_on_single_click (Gtk.IconView icon_view, bool should_activate) {
-        var id = icon_view.get_data<ulong> ("boxes-icon-view-activate");
-
-        if (id != 0 && should_activate == false) {
-            icon_view.disconnect (id);
-            icon_view.set_data<ulong> ("boxes-icon-view-activate", 0);
-        } else if (id == 0 && should_activate) {
-            id = icon_view.button_release_event.connect ((w, event) => {
-                Gtk.TreePath? path;
-
-                if (event.button == 1) {
-                    path = icon_view.get_path_at_pos ((int) event.x, (int) event.y);
-                    if (path != null)
-                        icon_view.item_activated (path);
-                }
-
-                return false;
-            });
-            icon_view.set_data<ulong> ("boxes-icon-view-activate", id);
-        }
-    }
-
     public string? extract_xpath (string xmldoc, string xpath, bool required = false) throws Boxes.Error {
         var parser = new ParserCtxt ();
         var doc = parser.read_doc (xmldoc, "doc.xml");

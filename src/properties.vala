@@ -216,7 +216,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         tree_view.get_style_context ().add_class ("boxes-bg");
         var selection = tree_view.get_selection ();
         selection.set_mode (Gtk.SelectionMode.BROWSE);
-        tree_view_activate_on_single_click (tree_view, true);
+        tree_view.activate_on_single_click = true;
         tree_view.row_activated.connect ( (treeview, path, column) => {
             Gtk.TreeIter filter_iter, iter;
             model_filter.get_iter (out filter_iter, path);
