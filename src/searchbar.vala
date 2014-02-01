@@ -1,18 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-private class Boxes.Searchbar: Gtk.SearchBar, Boxes.UI {
-    // See FIXME note on Boxes.Topbar.actor
-    public Clutter.Actor actor {
-        get {
-            if (gtk_actor == null)
-                gtk_actor = new Clutter.Actor ();
-            return gtk_actor;
-        }
-    }
-    private Clutter.Actor gtk_actor;
-
-    public UIState previous_ui_state { get; protected set; }
-    public UIState ui_state { get; protected set; }
+private class Boxes.Searchbar: Gtk.SearchBar {
     public bool enable_key_handler {
         set {
             if (value)
@@ -51,7 +39,7 @@ private class Boxes.Searchbar: Gtk.SearchBar, Boxes.UI {
     }
 
     private bool on_app_key_pressed (Gtk.Widget widget, Gdk.EventKey event) {
-        if (ui_state != UIState.COLLECTION)
+        if (App.app.ui_state != UIState.COLLECTION)
             return false;
 
         return handle_event ((Gdk.Event *) (&event));

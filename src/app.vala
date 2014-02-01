@@ -684,7 +684,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     private void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
-        foreach (var ui in new Boxes.UI[] { sidebar, searchbar, topbar, view, properties, wizard, empty_boxes }) {
+        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, properties, wizard, empty_boxes }) {
             ui.set_state (ui_state);
         }
 
