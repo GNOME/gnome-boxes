@@ -1,5 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/mini-graph.ui")]
 private class Boxes.MiniGraph: Gtk.DrawingArea {
     private double[] _points;
     public double[] points { get { return _points; }
@@ -22,14 +23,12 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
     public MiniGraph (double[] points = {}, int npoints = -1) {
         this.points = points;
         this.npoints = npoints;
-        this.set_size_request (32, -1);
     }
 
     public MiniGraph.with_ymax (double[] points, double ymax, int npoints = -1) {
         this.points = points;
         this.ymax = ymax;
         this.npoints = npoints;
-        this.set_size_request (32, -1);
     }
 
     private double max () {

@@ -254,21 +254,18 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         label.get_style_context ().add_class ("boxes-graph-label");
         grid.attach (label, 0, 1, 1, 1);
         cpu = new MiniGraph.with_ymax ({}, 100.0, 20);
-        cpu.hexpand = true;
         grid.attach (cpu, 1, 1, 1, 1);
 
         label = new Gtk.Label (_("I/O:"));
         label.get_style_context ().add_class ("boxes-graph-label");
         grid.attach (label, 2, 1, 1, 1);
         io = new MiniGraph ({}, 20);
-        io.hexpand = true;
         grid.attach (io, 3, 1, 1, 1);
 
         label = new Gtk.Label (_("Net:"));
         label.get_style_context ().add_class ("boxes-graph-label");
         grid.attach (label, 4, 1, 1, 1);
         net = new MiniGraph ({}, 20);
-        net.hexpand = true;
         grid.attach (net, 5, 1, 1, 1);
 
         shutdown_button = new Button.with_label (_("Force Shutdown"));
