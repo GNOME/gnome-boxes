@@ -549,7 +549,7 @@ private class Boxes.MachineActor: GLib.Object, Boxes.UI {
 
     ~MachineActor() {
         if (track_screenshot_id != 0)
-            App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+            App.app.sidebar.screenshot_placeholder.disconnect (track_screenshot_id);
     }
 
     public MachineActor (Machine machine) {
@@ -656,7 +656,7 @@ private class Boxes.MachineActor: GLib.Object, Boxes.UI {
 
     public void update_thumbnail (Gtk.Widget? display_widget, bool zoom = true) {
         if (track_screenshot_id != 0)
-            App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+            App.app.sidebar.screenshot_placeholder.disconnect (track_screenshot_id);
         track_screenshot_id = 0;
 
         if (thumbnail != null) {
@@ -721,7 +721,7 @@ private class Boxes.MachineActor: GLib.Object, Boxes.UI {
             Boxes.ActorFunc update_screenshot_alloc = (thumbnail) => {
                 Gtk.Allocation alloc;
 
-                App.app.properties.screenshot_placeholder.get_allocation (out alloc);
+                App.app.sidebar.screenshot_placeholder.get_allocation (out alloc);
 
                 // We disable implicit animations while setting the
                 // properties because we don't want to animate these individually
@@ -739,7 +739,7 @@ private class Boxes.MachineActor: GLib.Object, Boxes.UI {
                 thumbnail.set_easing_duration (d);
             };
 
-            track_screenshot_id = App.app.properties.screenshot_placeholder.size_allocate.connect (() => {
+            track_screenshot_id = App.app.sidebar.screenshot_placeholder.size_allocate.connect (() => {
                 // We need to update in an idle to avoid changing layout stuff in a layout cycle
                 // (i.e. inside the size_allocate)
                 Idle.add_full (Priority.HIGH, () => {
@@ -786,7 +786,7 @@ private class Boxes.MachineActor: GLib.Object, Boxes.UI {
                 if (thumbnail != null) {
                     // zoom in, back from properties
 
-                    App.app.properties.screenshot_placeholder.disconnect (track_screenshot_id);
+                    App.app.sidebar.screenshot_placeholder.disconnect (track_screenshot_id);
                     track_screenshot_id = 0;
 
                     var transition = animate_actor_geometry (x, y, width, height);

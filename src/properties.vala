@@ -15,16 +15,8 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    public Gtk.Widget screenshot_placeholder;
     private GtkClutter.Actor gtk_actor;
-    private Gtk.Notebook notebook;
-    private Gtk.ListStore listmodel;
-    private Gtk.TreeModelFilter model_filter;
-    private Gtk.TreeView tree_view;
-    private Gtk.Button shutdown_button;
-    private MiniGraph cpu;
-    private MiniGraph io;
-    private MiniGraph net;
+    public Gtk.Notebook notebook;
     private ulong stats_id;
     private bool restore_fullscreen;
 
@@ -156,14 +148,14 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
     }
 
     private void populate () {
-        listmodel.clear ();
+        App.app.sidebar.props_listmodel.clear ();
         for (var i = 0; i < PropertiesPage.LAST; i++)
             notebook.remove_page (-1);
 
         var machine = App.app.current_item as Machine;
         var libvirt_machine = App.app.current_item as LibvirtMachine;
 
-        shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
+        App.app.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
 
         if (machine == null)
             return;
@@ -177,11 +169,11 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
                 var current_page = notebook.page;
                 this.populate ();
                 var path = new Gtk.TreePath.from_indices (current_page);
-                tree_view.get_selection ().select_path (path);
+                App.app.sidebar.props_selection.select_path (path);
                 notebook.page = current_page;
             });
 
-            list_append (listmodel, page.name, !page.empty);
+            list_append (App.app.sidebar.props_listmodel, page.name, !page.empty);
         }
 
         PropertiesPage current_page;
@@ -192,7 +184,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
             current_page = PropertiesPage.LOGIN;
 
         var path = new Gtk.TreePath.from_indices (current_page);
-        tree_view.get_selection ().select_path (path);
+        App.app.sidebar.props_selection.select_path (path);
         notebook.set_current_page (current_page);
     }
 
@@ -209,74 +201,6 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
 
-        /* sidebar */
-        var vbox = App.app.sidebar.get_nth_page (Boxes.SidebarPage.PROPERTIES) as Gtk.Box;
-
-        tree_view = new Gtk.TreeView ();
-        tree_view.get_style_context ().add_class ("boxes-bg");
-        var selection = tree_view.get_selection ();
-        selection.set_mode (Gtk.SelectionMode.BROWSE);
-        tree_view.activate_on_single_click = true;
-        tree_view.row_activated.connect ( (treeview, path, column) => {
-            Gtk.TreeIter filter_iter, iter;
-            model_filter.get_iter (out filter_iter, path);
-            model_filter.convert_iter_to_child_iter (out iter, filter_iter);
-            notebook.page = listmodel.get_path (iter).get_indices ()[0];
-        });
-
-        listmodel = new Gtk.ListStore (2, typeof (string), typeof (bool));
-        model_filter = new Gtk.TreeModelFilter (listmodel, null);
-        model_filter.set_visible_column (1);
-
-        tree_view.set_model (model_filter);
-        tree_view.headers_visible = false;
-        var renderer = new CellRendererText ();
-        renderer.xpad = 20;
-        renderer.weight = Pango.Weight.BOLD;
-        tree_view.insert_column_with_attributes (-1, "", renderer, "text", 0);
-        vbox.pack_start (tree_view, true, true, 0);
-
-        var grid = new Gtk.Grid ();
-        vbox.pack_start (grid, false, false, 0);
-        grid.column_homogeneous = false;
-        grid.column_spacing = 2;
-        grid.row_spacing = 10;
-        grid.margin_left = 10;
-        grid.margin_right = 10;
-        grid.margin_bottom = 30;
-        grid.margin_top = 10;
-
-        screenshot_placeholder = new Gtk.Alignment (0.0f, 0.0f, 0.0f, 0.0f);
-        screenshot_placeholder.set_size_request (180, 130);
-        grid.attach (screenshot_placeholder, 0, 0, 6, 1);
-
-        var label = new Gtk.Label (_("CPU:"));
-        label.get_style_context ().add_class ("boxes-graph-label");
-        grid.attach (label, 0, 1, 1, 1);
-        cpu = new MiniGraph.with_ymax (100.0, 20);
-        grid.attach (cpu, 1, 1, 1, 1);
-
-        label = new Gtk.Label (_("I/O:"));
-        label.get_style_context ().add_class ("boxes-graph-label");
-        grid.attach (label, 2, 1, 1, 1);
-        io = new MiniGraph (20);
-        grid.attach (io, 3, 1, 1, 1);
-
-        label = new Gtk.Label (_("Net:"));
-        label.get_style_context ().add_class ("boxes-graph-label");
-        grid.attach (label, 4, 1, 1, 1);
-        net = new MiniGraph (20);
-        grid.attach (net, 5, 1, 1, 1);
-
-        shutdown_button = new Button.with_label (_("Force Shutdown"));
-        shutdown_button.clicked.connect ( () => {
-            var machine = App.app.current_item as LibvirtMachine;
-            if (machine != null)
-                machine.force_shutdown ();
-        });
-        grid.attach (shutdown_button, 0, 2, 6, 1);
-
-        vbox.show_all ();
         notebook.show_all ();
     }
 
@@ -293,9 +217,9 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
             if (App.app.current_item is LibvirtMachine) {
                 var libvirt_machine = App.app.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
-                    cpu.points = libvirt_machine.cpu_stats;
-                    net.points = libvirt_machine.net_stats;
-                    io.points = libvirt_machine.io_stats;
+                    App.app.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
+                    App.app.sidebar.net_graph.points = libvirt_machine.net_stats;
+                    App.app.sidebar.io_graph.points = libvirt_machine.io_stats;
                 });
             }
 
