@@ -93,4 +93,4 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
 
         return true;
     }
-} 
+}
