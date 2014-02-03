@@ -20,12 +20,12 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
     }
     private bool ymax_set = false;
 
-    public MiniGraph (double[] points = {}, int npoints = -1) {
+    public MiniGraph (int npoints = -1) {
         this.points = points;
         this.npoints = npoints;
     }
 
-    public MiniGraph.with_ymax (double[] points, double ymax, int npoints = -1) {
+    public MiniGraph.with_ymax (double ymax, int npoints = -1) {
         this.points = points;
         this.ymax = ymax;
         this.npoints = npoints;
