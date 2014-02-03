@@ -12,7 +12,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
     public int npoints { get; set; default = -1; }
 
     private double _ymax;
-    private double ymax { get { return _ymax; }
+    public double ymax { get { return _ymax; }
         set {
             _ymax = value;
             ymax_set = true;
