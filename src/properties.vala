@@ -10,13 +10,12 @@ private enum Boxes.PropertiesPage {
     LAST,
 }
 
-private class Boxes.Properties: GLib.Object, Boxes.UI {
+private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
     public Clutter.Actor actor { get { return gtk_actor; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
     private GtkClutter.Actor gtk_actor;
-    public Gtk.Notebook notebook;
     private ulong stats_id;
     private bool restore_fullscreen;
 
@@ -150,7 +149,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
     private void populate () {
         App.app.sidebar.props_listmodel.clear ();
         for (var i = 0; i < PropertiesPage.LAST; i++)
-            notebook.remove_page (-1);
+            remove_page (-1);
 
         var machine = App.app.current_item as Machine;
         var libvirt_machine = App.app.current_item as LibvirtMachine;
@@ -162,15 +161,15 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
             var page = new PageWidget (i, machine);
-            notebook.append_page (page.widget, null);
-            notebook.set_data<PageWidget> (@"boxes-property-$i", page);
+            append_page (page.widget, null);
+            set_data<PageWidget> (@"boxes-property-$i", page);
 
             page.refresh_properties.connect (() => {
-                var current_page = notebook.page;
+                var current_page = page;
                 this.populate ();
                 var path = new Gtk.TreePath.from_indices (current_page);
                 App.app.sidebar.props_selection.select_path (path);
-                notebook.page = current_page;
+                page = current_page;
             });
 
             list_append (App.app.sidebar.props_listmodel, page.name, !page.empty);
@@ -185,14 +184,14 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
 
         var path = new Gtk.TreePath.from_indices (current_page);
         App.app.sidebar.props_selection.select_path (path);
-        notebook.set_current_page (current_page);
+        set_current_page (current_page);
     }
 
     private void setup_ui () {
-        notebook = new Gtk.Notebook ();
-        notebook.show_tabs = false;
-        notebook.get_style_context ().add_class ("boxes-bg");
-        gtk_actor = new GtkClutter.Actor.with_contents (notebook);
+        show_tabs = false;
+        get_style_context ().add_class ("boxes-bg");
+
+        gtk_actor = new GtkClutter.Actor.with_contents (this);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "properties";
         gtk_actor.opacity = 0;
@@ -201,7 +200,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
 
-        notebook.show_all ();
+        show_all ();
     }
 
     private void ui_state_changed () {
@@ -226,7 +225,7 @@ private class Boxes.Properties: GLib.Object, Boxes.UI {
             populate ();
         } else if (previous_ui_state == UIState.PROPERTIES) {
             for (var i = 0; i < PropertiesPage.LAST; i++) {
-                var page = notebook.get_data<PageWidget> (@"boxes-property-$i");
+                var page = get_data<PageWidget> (@"boxes-property-$i");
                 page.flush_changes ();
             }
 
