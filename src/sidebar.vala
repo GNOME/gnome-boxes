@@ -57,7 +57,7 @@ private class Boxes.Sidebar: Gtk.Notebook, Boxes.UI {
             label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
 
         Gtk.Label current_label = null;
-        switch ((int) page_num) {
+        switch ((int) wizard_page) {
         case WizardPage.INTRODUCTION:
             current_label = wizard_intro_label;
             break;
