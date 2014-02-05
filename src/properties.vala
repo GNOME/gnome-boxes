@@ -19,12 +19,9 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
     private ulong stats_id;
     private bool restore_fullscreen;
 
-    private class PageWidget: Object {
-        public Gtk.Widget widget;
-        public string name;
+    private class PageWidget: Gtk.Grid {
         public bool empty;
 
-        private Gtk.Grid grid;
         private Gtk.InfoBar infobar;
         private List<Boxes.Property> properties;
 
@@ -66,11 +63,10 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                 break;
             }
 
-            grid = new Gtk.Grid ();
-            grid.margin = 20;
-            grid.row_spacing = 10;
-            grid.column_spacing = 20;
-            grid.valign = Gtk.Align.START;
+            margin = 20;
+            row_spacing = 10;
+            column_spacing = 20;
+            valign = Gtk.Align.START;
 
             infobar = new Gtk.InfoBar ();
             infobar.no_show_all = true;
@@ -80,7 +76,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             infobar_container.add (label);
             infobar.message_type = Gtk.MessageType.INFO;
             infobar.hexpand = true;
-            grid.attach (infobar, 0, 0, 2, 1);
+            attach (infobar, 0, 0, 2, 1);
 
             PropertyCreationFlag flags = PropertyCreationFlag.NONE;
             properties = machine.get_properties (page, ref flags);
@@ -94,23 +90,23 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                         label_name.margin_left = 25;
                         label_name.halign = Gtk.Align.START;
                         label_name.hexpand = false;
-                        grid.attach (label_name, 0, current_row, 1, 1);
+                        attach (label_name, 0, current_row, 1, 1);
                         var widget = property.widget;
                         widget.hexpand = true;
-                        grid.attach (widget, 1, current_row, 1, 1);
+                        attach (widget, 1, current_row, 1, 1);
                     } else {
                         var widget = property.widget;
                         widget.hexpand = true;
                         widget.margin_left = 25;
-                        grid.attach (widget, 0, current_row, 2, 1);
+                        attach (widget, 0, current_row, 2, 1);
                     }
 
-                    widget = property.extra_widget;
+                    var widget = property.extra_widget;
                     if (widget != null) {
                         current_row += 1;
                         widget.margin_left = 25;
                         widget.hexpand = true;
-                        grid.attach (widget, 0, current_row, 2, 1);
+                        attach (widget, 0, current_row, 2, 1);
                     }
 
                     property.notify["reboot-required"].connect (update_infobar);
@@ -123,8 +119,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                 update_infobar ();
             }
 
-            grid.show_all ();
-            widget = grid;
+            show_all ();
         }
 
         public void flush_changes () {
@@ -161,7 +156,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
             var page = new PageWidget (i, machine);
-            append_page (page.widget, null);
+            append_page (page, null);
             set_data<PageWidget> (@"boxes-property-$i", page);
 
             page.refresh_properties.connect (() => {
