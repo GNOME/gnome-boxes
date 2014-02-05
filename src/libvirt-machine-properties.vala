@@ -511,7 +511,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         shutdown_timeout = Timeout.add_seconds (5, () => {
             // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
-            Notificationbar.OKFunc really_force_shutdown = () => {
+            Notification.OKFunc really_force_shutdown = () => {
                 notification = null;
                 machine.force_shutdown (false);
             };

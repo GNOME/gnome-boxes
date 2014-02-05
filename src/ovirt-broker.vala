@@ -45,12 +45,12 @@ private class Boxes.OvirtBroker : Boxes.Broker {
             if (retrying)
                 return false;
 
-            Notificationbar.AuthenticateFunc auth_cb = (username, password) => {
+            AuthNotification.AuthFunc auth_cb = (username, password) => {
                 proxy.username = username;
                 proxy.password = password;
                 auth.unpause ();
             };
-            Notificationbar.CancelFunc cancel_cb = () => {
+            Notification.CancelFunc cancel_cb = () => {
                 // Make sure we are not stuck waiting for authentication to
                 // finish, otherwise yield add_source() will never return
                 auth.unpause ();

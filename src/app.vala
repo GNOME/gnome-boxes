@@ -831,14 +831,14 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         foreach (var item in selected_items)
             collection.remove_item (item);
 
-        Notificationbar.OKFunc undo = () => {
+        Notification.OKFunc undo = () => {
             debug ("Box deletion cancelled by user, re-adding to view");
             foreach (var selected in selected_items) {
                 collection.add_item (selected);
             }
         };
 
-        Notificationbar.CancelFunc really_remove = () => {
+        Notification.CancelFunc really_remove = () => {
             debug ("Box deletion, deleting now");
             foreach (var selected in selected_items) {
                 var machine = selected as Machine;

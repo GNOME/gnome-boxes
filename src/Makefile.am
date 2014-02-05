@@ -92,6 +92,7 @@ gnome_boxes_SOURCES =				\
 	$(BUILT_SOURCES)			\
 	clutter-widget.vala			\
 	app.vala				\
+	auth-notification.vala			\
 	collection-view.vala			\
 	collection.vala				\
 	display-page.vala			\
@@ -110,6 +111,7 @@ gnome_boxes_SOURCES =				\
 	main.vala				\
 	media-manager.vala 			\
 	mini-graph.vala				\
+	notification.vala			\
 	notificationbar.vala			\
 	os-database.vala 			\
 	properties.vala				\
