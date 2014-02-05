@@ -5,6 +5,7 @@ using Gtk;
 
 private const string EMPTY_TEXT = "\xe2\x80\x94";
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/editable-entry.ui")]
 private class Boxes.EditableEntry: Alignment {
     private enum Page {
         LABEL,
@@ -25,7 +26,7 @@ private class Boxes.EditableEntry: Alignment {
                 value = EMPTY_TEXT;
 
             label.label = value;
-            (button.get_child () as Label).label = value;
+            button_label.label = value;
         }
     }
 
@@ -86,9 +87,13 @@ private class Boxes.EditableEntry: Alignment {
     }
     public bool scale_set { get; set; }
 
+    [GtkChild]
     private Gtk.Notebook notebook;
+    [GtkChild]
     private Gtk.Label label;
-    private Gtk.Button button;
+    [GtkChild]
+    private Gtk.Label button_label;
+    [GtkChild]
     private Gtk.Entry entry;
 
     private void update_entry_font (Gtk.Entry entry) {
@@ -117,7 +122,7 @@ private class Boxes.EditableEntry: Alignment {
             attrs.insert (Pango.attr_weight_new (_weight));
 
         label.set_attributes (attrs);
-        (button.get_child () as Label).set_attributes (attrs);
+        button_label.set_attributes (attrs);
         update_entry_font (entry);
     }
 
@@ -145,59 +150,46 @@ private class Boxes.EditableEntry: Alignment {
     }
 
     public EditableEntry () {
-        notebook = new Gtk.Notebook ();
-        notebook.show_tabs = false;
-        notebook.show_border = false;
+        label.label = EMPTY_TEXT;
+        button_label.label = EMPTY_TEXT;
+    }
 
-        label = new Gtk.Label (EMPTY_TEXT);
-        label.set_ellipsize (Pango.EllipsizeMode.END);
-        label.set_alignment (0.0f, 0.5f);
-        notebook.append_page (label, null);
+    [GtkCallback]
+    private void on_button_clicked () {
+        start_editing ();
+    }
 
-        button = new Gtk.Button.with_label (EMPTY_TEXT);
-        (button.get_child () as Label).set_ellipsize (Pango.EllipsizeMode.END);
-        button.receives_default = true;
-        button.relief = Gtk.ReliefStyle.NONE;
-        button.set_alignment (0.0f, 0.5f);
-        notebook.append_page (button, null);
-        button.clicked.connect (() => {
-            start_editing ();
-        });
+    [GtkCallback]
+    private void on_button_label_size_allocate (Gtk.Widget widget, Gtk.Allocation allocation) {
+        Gtk.Allocation alloc;
 
-        (button.get_child ()).size_allocate.connect ((widget, allocation) => {
-                Gtk.Allocation alloc;
+        widget.get_parent ().get_allocation (out alloc);
+        var offset = allocation.x - alloc.x;
+        if (offset != label.xpad)
+            label.set_padding (offset, 0);
+    }
 
-                widget.get_parent ().get_allocation (out alloc);
-                var offset = allocation.x - alloc.x;
-                if (offset != label.xpad)
-                    label.set_padding (offset, 0);
+    [GtkCallback]
+    private void on_entry_activated () {
+        stop_editing ();
+    }
 
-        });
+    [GtkCallback]
+    private bool on_entry_focused_out () {
+        stop_editing ();
+        return false;
+    }
 
-        entry = new Gtk.Entry ();
-        notebook.append_page (entry, null);
-        entry.activate.connect (() => {
-            stop_editing ();
-        });
+    [GtkCallback]
+    private bool on_entry_key_press_event (Gtk.Widget widget, Gdk.EventKey event) {
+        if (event.keyval == Gdk.Key.Escape)
+            cancel_editing ();
 
-        entry.focus_out_event.connect (() => {
-            stop_editing ();
-            return false;
-        });
+        return false;
+    }
 
-        entry.key_press_event.connect ((widget, event) => {
-            if (event.keyval == Gdk.Key.Escape)
-                cancel_editing ();
-
-            return false;
-        });
-
-        entry.style_updated.connect ((entry) => {
-            update_entry_font (entry as Gtk.Entry);
-        });
-
-        notebook.page = Page.LABEL;
-        this.add (notebook);
-        this.show_all ();
+    [GtkCallback]
+    private void on_entry_style_updated () {
+        update_entry_font (entry as Gtk.Entry);
     }
 }
