@@ -1,11 +1,19 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/notification.ui")]
 private class Boxes.Notification: Gd.Notification {
     public const int DEFAULT_TIMEOUT = 6;
 
     public delegate void OKFunc ();
     public delegate void CancelFunc ();
+
+    [GtkChild]
+    private Gtk.Label message_label;
+    [GtkChild]
+    private Gtk.Label ok_button_label;
+    [GtkChild]
+    private Gtk.Button ok_button;
 
     public Notification (string            message,
                          MessageType       message_type,
@@ -13,7 +21,6 @@ private class Boxes.Notification: Gd.Notification {
                          owned OKFunc?     ok_func,
                          owned CancelFunc? cancel_func,
                          int               timeout) {
-        valign = Gtk.Align.START;
         this.timeout = timeout;
 
         bool ok_pressed = false;
@@ -22,21 +29,10 @@ private class Boxes.Notification: Gd.Notification {
                 cancel_func ();
         });
 
-        var grid = new Gtk.Grid ();
-        grid.set_orientation (Gtk.Orientation.HORIZONTAL);
-        grid.margin_left = 12;
-        grid.margin_right = 12;
-        grid.column_spacing = 12;
-        grid.valign = Gtk.Align.CENTER;
-        add (grid);
-
-        var message_label = new Label (message);
-        grid.add (message_label);
+        message_label.label = message;
 
         if (ok_label != null) {
-            var ok_button = new Button.with_mnemonic (ok_label);
-            ok_button.halign = Gtk.Align.END;
-            grid.add (ok_button);
+            ok_button_label.label = ok_label;
 
             ok_button.clicked.connect ( () => {
                 ok_pressed = true;
@@ -44,8 +40,8 @@ private class Boxes.Notification: Gd.Notification {
                     ok_func ();
                 dismiss ();
             });
-        }
 
-        show_all ();
+            ok_button.show_all ();
+        }
     }
 }
