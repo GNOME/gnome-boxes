@@ -1,80 +1,63 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/auth-notification.ui")]
 private class Boxes.AuthNotification: Gd.Notification {
     public delegate void AuthFunc (string username, string password);
+
+    [GtkChild]
+    private Gtk.Label title_label;
+    [GtkChild]
+    private Gtk.Entry username_entry;
+    [GtkChild]
+    private Gtk.Entry password_entry;
+    [GtkChild]
+    private Gtk.Button auth_button;
+
+    private AuthFunc? auth_func;
 
     public AuthNotification (string                         auth_string,
                              owned AuthFunc?                auth_func,
                              owned Notification.CancelFunc? cancel_func) {
-        valign = Gtk.Align.START;
-        timeout = -1;
-        show_close_button = false;
+        show_close_button = false; // FIXME: Seems setting this from .UI file doesn't work
+        title_label.label = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(auth_string) + "</span>";
 
-        var title_label = new Gtk.Label (null);
-        string title_str = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(auth_string) + "</span>";
+        this.auth_func = (owned) auth_func;
+    }
 
-        title_label.set_markup (title_str);
-        title_label.halign = Gtk.Align.START;
-        title_label.margin_bottom = 18;
+    [GtkCallback]
+    private bool on_entry_focus_in_event () {
+        App.app.searchbar.enable_key_handler = false;
 
-        var username_label = new Gtk.Label.with_mnemonic (_("_Username"));
-        var username_entry = new Gtk.Entry ();
-        username_entry.focus_in_event.connect ( () => {
-            App.app.searchbar.enable_key_handler = false;
-            return false;
-        });
-        username_entry.focus_out_event.connect ( () => {
-            App.app.searchbar.enable_key_handler = true;
-            return false;
-        });
-        username_entry.map.connect ( () => {
-            username_entry.grab_focus ();
-        });
-        username_label.mnemonic_widget = username_entry;
-        username_label.margin_left = 12;
-        var password_label = new Gtk.Label.with_mnemonic (_("_Password"));
-        var password_entry = new Gtk.Entry ();
-        password_entry.visibility = false;
-        password_entry.focus_in_event.connect ( () => {
-            App.app.searchbar.enable_key_handler = false;
-            return false;
-        });
-        password_entry.focus_out_event.connect ( () => {
-            App.app.searchbar.enable_key_handler = true;
-            return false;
-        });
-        password_label.mnemonic_widget = password_entry;
-        password_label.margin_left = 12;
+        return false;
+    }
 
-        var auth_button = new Button.from_stock (_("Sign In"));
-        auth_button.halign = Gtk.Align.END;
+    [GtkCallback]
+    private bool on_entry_focus_out_event () {
+        App.app.searchbar.enable_key_handler = true;
 
-        auth_button.clicked.connect ( () => {
-            if (auth_func != null)
-                 auth_func (username_entry.get_text (), password_entry.get_text ());
-            dismiss ();
-        });
+        return false;
+    }
 
-        username_entry.activate.connect (() => {
-            password_entry.grab_focus ();
-        });
-        password_entry.activate.connect (() => {
-            auth_button.activate ();
-        });
+    [GtkCallback]
+    private void on_username_entry_map () {
+        username_entry.grab_focus ();
+    }
 
-        var grid = new Gtk.Grid ();
-        grid.column_spacing = 12;
-        grid.row_spacing = 6;
-        grid.border_width = 6;
-        grid.attach (title_label, 0, 0, 2, 1);
-        grid.attach (username_label, 0, 1, 1, 1);
-        grid.attach (username_entry, 1, 1, 1, 1);
-        grid.attach (password_label, 0, 2, 1, 1);
-        grid.attach (password_entry, 1, 2, 1, 1);
-        grid.attach (auth_button, 1, 3, 1, 1);
-        add (grid);
+    [GtkCallback]
+    private void on_username_entry_activated () {
+        password_entry.grab_focus ();
+    }
 
-        show_all ();
+    [GtkCallback]
+    private void on_password_entry_activated () {
+        auth_button.activate ();
+    }
+
+    [GtkCallback]
+    private void on_auth_button_clicked () {
+        if (auth_func != null)
+            auth_func (username_entry.get_text (), password_entry.get_text ());
+        dismiss ();
     }
 }
