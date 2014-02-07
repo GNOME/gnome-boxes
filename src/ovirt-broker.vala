@@ -55,7 +55,7 @@ private class Boxes.OvirtBroker : Boxes.Broker {
                 // finish, otherwise yield add_source() will never return
                 auth.unpause ();
             };
-            App.app.notificationbar.display_for_authentication ("oVirt broker", (owned) auth_cb, (owned) cancel_cb);
+            App.app.notificationbar.display_for_optional_auth ("oVirt broker", (owned) auth_cb, (owned) cancel_cb);
             auth.pause ();
 
             return false;

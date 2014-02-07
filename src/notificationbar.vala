@@ -44,11 +44,12 @@ private class Boxes.Notificationbar: GLib.Object {
         return display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
     }
 
-    public Gd.Notification display_for_authentication (string                           broker_name,
-                                                       owned AuthNotification.AuthFunc? auth_func,
-                                                       owned Notification.CancelFunc?   cancel_func) {
+    public Gd.Notification display_for_optional_auth (string                           broker_name,
+                                                      owned AuthNotification.AuthFunc? auth_func,
+                                                      owned Notification.CancelFunc?   cancel_func) {
         Notification.OKFunc next_auth_step = () => {
-            display_for_auth_next (broker_name, (owned) auth_func, (owned) cancel_func);
+            var auth_string = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(broker_name) + "</span>";
+            display_for_auth (auth_string, (owned) auth_func, (owned) cancel_func);
         };
         return display_for_action (_("Not connected to %s").printf (broker_name),
                                    _("Sign In"),
@@ -56,10 +57,14 @@ private class Boxes.Notificationbar: GLib.Object {
                                    (owned) cancel_func, -1);
     }
 
-    private Gd.Notification display_for_auth_next (string                           auth_string,
-                                                   owned AuthNotification.AuthFunc? auth_func,
-                                                   owned Notification.CancelFunc?   cancel_func) {
-        var notification = new Boxes.AuthNotification (auth_string, (owned) auth_func, (owned) cancel_func);
+    public Gd.Notification display_for_auth (string                           auth_string,
+                                             owned AuthNotification.AuthFunc? auth_func,
+                                             owned Notification.CancelFunc?   cancel_func,
+                                             bool                             need_username = true) {
+        var notification = new Boxes.AuthNotification (auth_string,
+                                                       (owned) auth_func,
+                                                       (owned) cancel_func,
+                                                       need_username);
 
         active_notifications.prepend (notification);
 

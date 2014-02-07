@@ -8,6 +8,8 @@ private class Boxes.AuthNotification: Gd.Notification {
     [GtkChild]
     private Gtk.Label title_label;
     [GtkChild]
+    private Gtk.Label username_label;
+    [GtkChild]
     private Gtk.Entry username_entry;
     [GtkChild]
     private Gtk.Entry password_entry;
@@ -15,12 +17,22 @@ private class Boxes.AuthNotification: Gd.Notification {
     private Gtk.Button auth_button;
 
     private AuthFunc? auth_func;
+    private bool auth_pressed;
 
     public AuthNotification (string                         auth_string,
                              owned AuthFunc?                auth_func,
-                             owned Notification.CancelFunc? cancel_func) {
+                             owned Notification.CancelFunc? cancel_func,
+                             bool                           need_username) {
         show_close_button = false; // FIXME: Seems setting this from .UI file doesn't work
-        title_label.label = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(auth_string) + "</span>";
+        title_label.label = auth_string;
+
+        dismissed.connect (() => {
+            if (!auth_pressed && cancel_func != null)
+                cancel_func ();
+        });
+
+        username_label.visible = need_username;
+        username_entry.visible = need_username;
 
         this.auth_func = (owned) auth_func;
     }
@@ -58,6 +70,8 @@ private class Boxes.AuthNotification: Gd.Notification {
     private void on_auth_button_clicked () {
         if (auth_func != null)
             auth_func (username_entry.get_text (), password_entry.get_text ());
+        auth_pressed = true;
+
         dismiss ();
     }
 }
