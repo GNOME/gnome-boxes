@@ -4,8 +4,16 @@ using Gdk;
 using Gtk;
 
 private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
-    public override Clutter.Actor item_actor { get { return machine_actor.actor; } }
-    private MachineActor machine_actor;
+    // Check FIXME on Topbar.actor
+    public override Clutter.Actor item_actor {
+        get {
+            if (machine_actor == null)
+                machine_actor = new Clutter.Actor ();
+            return machine_actor;
+        }
+    }
+    private Clutter.Actor machine_actor;
+
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
@@ -33,6 +41,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public static const int SCREENSHOT_HEIGHT = 134;
     private static Cairo.Surface grid_surface;
     private bool updating_screenshot;
+    private string username;
+    private string password;
 
     public Cancellable connecting_cancellable { get; protected set; }
 
@@ -81,9 +91,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     protected void show_display () {
-        Gtk.Widget widget;
-
-        widget = display.get_display (0);
 
         switch (App.app.ui_state) {
         case Boxes.UIState.CREDS:
@@ -96,12 +103,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
 
         case Boxes.UIState.DISPLAY:
+            var widget = display.get_display (0);
+            widget_remove (widget);
+            display.set_enable_inputs (widget, true);
             App.app.display_page.show_display (display, widget);
             widget.grab_focus ();
-            break;
 
-        case Boxes.UIState.PROPERTIES:
-            machine_actor.update_thumbnail (widget, false);
             break;
         }
     }
@@ -153,17 +160,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
             });
 
-            need_password_id = _display.notify["need-password"].connect (() => {
-                // Translators: The %s will be expanded with the name of the vm
-                status = _("Enter password for %s").printf (name);
-                machine_actor.set_password_needed (display.need_password);
-            });
+            need_password_id = _display.notify["need-password"].connect (handle_auth);
+            need_username_id = _display.notify["need-username"].connect (handle_auth);
 
-            need_username_id = _display.notify["need-username"].connect (() => {
-                machine_actor.set_username_needed (display.need_username);
-            });
-
-            _display.password = machine_actor.get_password ();
+            _display.username = username;
+            _display.password = password;
         }
     }
 
@@ -187,7 +188,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         this.connecting_cancellable = new Cancellable ();
 
         pixbuf = draw_fallback_vm ();
-        machine_actor = new MachineActor (this);
 
         notify["ui-state"].connect (ui_state_changed);
         ui_state_id = App.app.notify["ui-state"].connect (() => {
@@ -386,14 +386,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-            machine_actor.set_screenshot (large_screenshot); // high resolution
+            App.app.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
         } else {
             orig_pixbuf = null;
             pixbuf = draw_stopped_vm ();
-            machine_actor.set_screenshot (pixbuf);
         }
     }
 
@@ -512,15 +511,74 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     private void ui_state_changed () {
-        machine_actor.set_state (ui_state);
+        switch (ui_state) {
+        case UIState.CREDS:
+            try_connect_display.begin ();
 
-        if (ui_state != Boxes.UIState.DISPLAY &&
-            ui_state != Boxes.UIState.PROPERTIES &&
-            ui_state != Boxes.UIState.CREDS) {
-            /* Disconnect if we go to any other state */
-            machine_actor.update_thumbnail (null, false);
+            break;
+        case Boxes.UIState.DISPLAY:
+            if (previous_ui_state == UIState.PROPERTIES)
+                App.app.notebook.page = Boxes.AppPage.DISPLAY;
+
+            break;
+
+        case UIState.COLLECTION:
+            if (auth_notification != null)
+                auth_notification.dismiss ();
             disconnect_display ();
+
+            break;
         }
+    }
+
+    private async void try_connect_display (ConnectFlags flags = ConnectFlags.NONE) {
+        try {
+            yield connect_display (flags);
+        } catch (Boxes.Error.RESTORE_FAILED e) {
+            var message = _("'%s' could not be restored from disk\nTry without saved state?").printf (name);
+            var notification = App.app.notificationbar.display_for_action (message, _("Restart"), () => {
+                try_connect_display.begin (flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
+            });
+            notification.dismissed.connect (() => {
+                App.app.set_state (UIState.COLLECTION);
+            });
+        } catch (GLib.Error e) {
+            debug ("connect display failed: %s", e.message);
+            App.app.set_state (UIState.COLLECTION);
+            App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+        }
+    }
+
+    private Gd.Notification auth_notification;
+
+    private void handle_auth () {
+        if (auth_notification != null)
+            return;
+        var need_username = display.need_username;
+        if (!display.need_username && !display.need_password)
+            return;
+        display = null;
+
+        AuthNotification.AuthFunc auth_func = (username, password) => {
+            if (username != "")
+                this.username = username;
+            if (password != "")
+                this.password = password;
+
+            auth_notification = null;
+            try_connect_display.begin ();
+        };
+        Notification.CancelFunc cancel_func = () => {
+            auth_notification = null;
+            App.app.set_state (UIState.COLLECTION);
+        };
+
+        // Translators: %s => name of launched box
+        var auth_string = _("'%s' requires authentication").printf (name);
+        auth_notification = App.app.notificationbar.display_for_auth (auth_string,
+                                                                      (owned) auth_func,
+                                                                      (owned) cancel_func,
+                                                                      need_username);
     }
 
     public override int compare (CollectionItem other) {
@@ -528,314 +586,5 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             return config.compare ((other as Machine).config);
         else
             return -1; // Machines are listed before non-machines
-    }
-}
-
-private class Boxes.MachineActor: GLib.Object, Boxes.UI {
-    public Clutter.Actor actor { get { return _actor; } }
-    public Clutter.Actor _actor;
-    public UIState previous_ui_state { get; protected set; }
-    public UIState ui_state { get; protected set; }
-
-    private GtkClutter.Texture screenshot;
-    private GtkClutter.Actor gtk_vbox;
-    private Clutter.Actor? thumbnail;
-    private GtkClutter.Texture? thumbnail_screenshot;
-    private Gtk.Label label;
-    private Gtk.Box vbox; // and the vbox under it
-    private Gtk.Entry password_entry;
-    private Machine machine;
-    ulong track_screenshot_id = 0;
-
-    ~MachineActor() {
-        if (track_screenshot_id != 0)
-            App.app.sidebar.screenshot_placeholder.disconnect (track_screenshot_id);
-    }
-
-    public MachineActor (Machine machine) {
-        this.machine = machine;
-
-        var layout = new Clutter.BoxLayout ();
-        layout.orientation = Clutter.Orientation.VERTICAL;
-        layout.spacing = 10;
-        _actor = new Clutter.Actor ();
-        _actor.set_layout_manager (layout);
-
-        screenshot = new GtkClutter.Texture ();
-        screenshot.name = "screenshot";
-        set_screenshot (machine.pixbuf);
-        _actor.min_width = _actor.natural_width = Machine.SCREENSHOT_WIDTH;
-
-        screenshot.keep_aspect_ratio = true;
-        _actor.add (screenshot);
-
-        vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        gtk_vbox = new GtkClutter.Actor.with_contents (vbox);
-        // Ensure we have enough space to fit everything without changing
-        // size, as that causes weird re-animations
-        gtk_vbox.height = 80;
-
-        gtk_vbox.get_widget ().get_style_context ().add_class ("boxes-bg");
-
-        label = new Gtk.Label (machine.name);
-        label.get_style_context ().add_class ("boxes-machine-name-label");
-        machine.bind_property ("name", label, "label", BindingFlags.DEFAULT);
-        vbox.add (label);
-        vbox.set_valign (Gtk.Align.START);
-        password_entry = new Gtk.Entry ();
-        password_entry.set_visibility (false);
-        password_entry.set_placeholder_text (_("Password"));
-        set_password_needed (false);
-        password_entry.key_press_event.connect ((event) => {
-            if (event.keyval == Gdk.Key.KP_Enter ||
-                event.keyval == Gdk.Key.ISO_Enter ||
-                event.keyval == Gdk.Key.Return) {
-                machine.connect_display.begin (Machine.ConnectFlags.NONE);
-
-                return true;
-            }
-
-            return false;
-        });
-        vbox.add (password_entry);
-
-        vbox.show_all ();
-        password_entry.hide ();
-
-        _actor.add (gtk_vbox);
-        _actor.set_reactive (true);
-
-        notify["ui-state"].connect (ui_state_changed);
-    }
-
-    public void set_screenshot (Gdk.Pixbuf pixbuf) {
-        try {
-            screenshot.set_from_pixbuf (pixbuf);
-            if (thumbnail_screenshot != null)
-                thumbnail_screenshot.set_from_pixbuf (pixbuf);
-        } catch (GLib.Error err) {
-            warning (err.message);
-        }
-    }
-
-    public void set_password_needed (bool needed) {
-        _actor.queue_relayout ();
-        password_entry.visible = needed;
-        password_entry.set_can_focus (needed);
-        if (needed) {
-            password_entry.grab_focus ();
-            machine.display = null;
-        }
-    }
-
-    public void set_username_needed (bool needed) {
-        debug ("FIXME: Do something about fetching username when required?");
-        if (needed)
-            machine.display = null;
-    }
-
-    public string get_password () {
-        return password_entry.text;
-    }
-
-    private Widget? steal_display_widget_from_thumbnail () {
-        Widget? widget = null;
-        if (thumbnail is GtkClutter.Actor) {
-            widget = (thumbnail as GtkClutter.Actor).contents;
-            (thumbnail as GtkClutter.Actor).contents = null;
-        }
-        thumbnail.destroy ();
-        thumbnail = null;
-        thumbnail_screenshot = null;
-        if (widget != null) {
-            // FIXME: enable grabs
-            machine.display.set_enable_inputs (widget, true);
-        }
-        return widget;
-    }
-
-    public void update_thumbnail (Gtk.Widget? display_widget, bool zoom = true) {
-        if (track_screenshot_id != 0)
-            App.app.sidebar.screenshot_placeholder.disconnect (track_screenshot_id);
-        track_screenshot_id = 0;
-
-        if (thumbnail != null) {
-            actor_remove (thumbnail);
-            thumbnail.destroy ();
-            thumbnail = null;
-            thumbnail_screenshot = null;
-        }
-
-        if (ui_state == UIState.PROPERTIES) {
-            if (display_widget != null) {
-                thumbnail = new GtkClutter.Actor.with_contents (display_widget);
-            } else {
-                thumbnail_screenshot = new GtkClutter.Texture ();
-                thumbnail_screenshot.set_reactive (true);
-
-                Gdk.Pixbuf pixbuf = null;
-                if (previous_ui_state == UIState.WIZARD) {
-                    var theme = Gtk.IconTheme.get_for_screen (App.app.window.get_screen ());
-                    pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, true, 8,
-                                             Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT);
-                    pixbuf.fill (0x00000000); // Transparent
-                    try {
-                        var icon = theme.load_icon ("media-optical", Machine.SCREENSHOT_HEIGHT, 0);
-                        // Center icon in pixbuf
-                        icon.copy_area (0, 0, Machine.SCREENSHOT_HEIGHT, Machine.SCREENSHOT_HEIGHT, pixbuf,
-                                        (Machine.SCREENSHOT_WIDTH - Machine.SCREENSHOT_HEIGHT) / 2, 0);
-                    } catch (GLib.Error err) {
-                        warning (err.message);
-                    }
-                } else {
-                    pixbuf = machine.pixbuf;
-                }
-                try {
-                    thumbnail_screenshot.set_from_pixbuf (pixbuf);
-                } catch (GLib.Error err) {
-                    warning (err.message);
-                }
-                thumbnail = thumbnail_screenshot;
-            }
-            thumbnail.name = "properties-thumbnail";
-            thumbnail.x_align = Clutter.ActorAlign.FILL;
-            thumbnail.y_align = Clutter.ActorAlign.FILL;
-            App.app.overlay_bin_actor.add_child (thumbnail);
-
-            var click = new Clutter.ClickAction ();
-            thumbnail.add_action (click);
-
-            if (display_widget != null) {
-                click.clicked.connect (() => {
-                    App.app.set_state (Boxes.UIState.DISPLAY);
-                });
-
-                machine.display.set_enable_inputs (display_widget, false);
-            } else if (previous_ui_state != UIState.WIZARD) {
-                click.clicked.connect (() => {
-                    App.app.connect_to (machine, thumbnail.allocation.x1, thumbnail.allocation.y1);
-                    update_thumbnail (null, false);
-                });
-            }
-
-            Boxes.ActorFunc update_screenshot_alloc = (thumbnail) => {
-                Gtk.Allocation alloc;
-
-                App.app.sidebar.screenshot_placeholder.get_allocation (out alloc);
-
-                // We disable implicit animations while setting the
-                // properties because we don't want to animate these individually
-                // we just want them to change instantly, causing a relayout
-                // and recalculation of the allocation rect, which will then
-                // be animated. Animating a rectangle between two states and
-                // animating position and size individually looks completely
-                // different.
-                var d = thumbnail.get_easing_duration ();
-                thumbnail.set_easing_duration (0);
-                thumbnail.fixed_x = alloc.x;
-                thumbnail.fixed_y = alloc.y;
-                thumbnail.min_width = thumbnail.natural_width = alloc.width;
-                thumbnail.min_height = thumbnail.natural_height = alloc.height;
-                thumbnail.set_easing_duration (d);
-            };
-
-            track_screenshot_id = App.app.sidebar.screenshot_placeholder.size_allocate.connect (() => {
-                // We need to update in an idle to avoid changing layout stuff in a layout cycle
-                // (i.e. inside the size_allocate)
-                Idle.add_full (Priority.HIGH, () => {
-                    update_screenshot_alloc (thumbnail);
-                    return false;
-                });
-            });
-
-            if (!zoom)
-                thumbnail.set_easing_duration (0);
-            update_screenshot_alloc (thumbnail);
-        }
-    }
-
-    private void ui_state_changed () {
-        int window_width, window_height;
-        int width, height;
-        int x, y;
-
-        App.app.display_page.get_size (out width, out height);
-        App.app.window.get_size (out window_width, out window_height);
-        x = window_width - width;
-        y = window_height - height;
-
-        switch (ui_state) {
-        case UIState.CREDS:
-            actor.x_align = Clutter.ActorAlign.CENTER;
-            actor.y_align = Clutter.ActorAlign.CENTER;
-            actor.x_expand = true;
-            actor.y_expand = true;
-            gtk_vbox.show ();
-            break;
-
-        case UIState.DISPLAY:
-            gtk_vbox.hide ();
-            if (previous_ui_state == UIState.CREDS) {
-                actor.x_align = Clutter.ActorAlign.FILL;
-                actor.y_align = Clutter.ActorAlign.FILL;
-                actor.x_expand = true;
-                actor.y_expand = true;
-                actor.natural_width_set = false;
-                actor.natural_height_set = false;
-            } else {
-                if (thumbnail != null) {
-                    // zoom in, back from properties
-
-                    App.app.sidebar.screenshot_placeholder.disconnect (track_screenshot_id);
-                    track_screenshot_id = 0;
-
-                    var transition = animate_actor_geometry (x, y, width, height);
-                    transition.completed.connect (() => {
-                        thumbnail.remove_transition ("back-from-properties");
-                        var widget = steal_display_widget_from_thumbnail ();
-                        if (widget != null)
-                            App.app.display_page.show_display (machine.display, widget);
-                    });
-
-                    thumbnail.add_transition ("back-from-properties", transition);
-                } else
-                    App.app.notebook.page = Boxes.AppPage.DISPLAY;
-            }
-            break;
-
-        case UIState.COLLECTION:
-            actor.x_expand = false;
-            actor.y_expand = false;
-            password_entry.set_can_focus (false);
-            password_entry.hide ();
-            label.show ();
-            break;
-
-        case UIState.PROPERTIES:
-            var display_widget = App.app.display_page.remove_display ();
-            var zoom = display_widget != null;
-
-            update_thumbnail (display_widget, zoom);
-
-
-            if (zoom) {
-                allocate_actor_no_animation (thumbnail, 0, 0, width, height);
-
-                thumbnail.set_easing_mode (Clutter.AnimationMode.LINEAR);
-                thumbnail.set_easing_duration (App.app.duration);
-                ulong completed_id = 0;
-                completed_id = thumbnail.transitions_completed.connect (() => {
-                    thumbnail.disconnect (completed_id);
-                    thumbnail.set_easing_duration (0);
-                });
-            }
-
-            thumbnail.show ();
-
-            break;
-
-        default:
-            break;
-        }
     }
 }

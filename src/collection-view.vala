@@ -72,26 +72,6 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
-    private void update_item_visible (CollectionItem item) {
-        var visible = false;
-
-        // FIXME
-        if (item is Machine) {
-            var machine = item as Machine;
-
-            switch (category.kind) {
-            case Category.Kind.USER:
-                visible = category.name in machine.config.categories;
-                break;
-            case Category.Kind.NEW:
-                visible = true;
-                break;
-            }
-        }
-
-        item.actor.visible = visible;
-    }
-
     private void update_screenshot (Gtk.TreeIter iter) {
         CollectionItem item;
         GLib.Icon[] emblem_icons = {};
@@ -188,9 +168,6 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         item.set_data<ulong> ("under_construct_id", under_construct_id);
 
         item.set_state (App.app.ui_state);
-        actor_remove (item.actor);
-
-        update_item_visible (item);
     }
 
     public List<CollectionItem> get_selected_items () {

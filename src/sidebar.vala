@@ -31,7 +31,7 @@ private class Boxes.Sidebar: Gtk.Notebook, Boxes.UI {
     private Gtk.Label wizard_review_label;
 
     [GtkChild]
-    public Gtk.Widget screenshot_placeholder;
+    public Gtk.Image screenshot;
     [GtkChild]
     public Gtk.ListStore props_listmodel;
     [GtkChild]

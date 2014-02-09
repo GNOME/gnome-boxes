@@ -651,36 +651,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         notebook.page = Boxes.AppPage.MAIN;
     }
 
-    private void position_item_actor_at_icon (CollectionItem item) {
-        float item_x, item_y;
-        view.get_item_pos (item, out item_x, out item_y);
-        var actor = item.actor;
-
-        var transition = actor.get_transition ("animate-position");
-        if (transition != null)
-            actor.remove_transition ("animate-position");
-
-        transition = animate_actor_geometry (item_x, item_y, Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT);
-
-        // Also track size changes in the icon_view during the animation
-        var id = view.main_view.size_allocate.connect ((allocation) => {
-            // We do this in an idle to avoid causing a layout inside a size_allocate cycle
-            Idle.add_full (Priority.HIGH, () => {
-                position_item_actor_at_icon (current_item);
-                return false;
-            });
-        });
-
-        transition.completed.connect (() => {
-            actor.remove_transition ("animate-position");
-            view.main_view.disconnect (id);
-            if (App.app.ui_state == UIState.COLLECTION ||
-                App.app.current_item.actor != actor)
-            actor_remove (actor);
-        });
-        actor.add_transition ("animate-position", transition);
-    }
-
     private void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
@@ -710,29 +680,17 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             fullscreen = false;
             view.visible = true;
 
-            // Animate current_item actor to collection position
-            if (current_item != null) {
-                var actor = current_item.actor;
-
-                actor.show ();
-                position_item_actor_at_icon (current_item);
-            }
-
             break;
 
         case UIState.CREDS:
-            break;
-
         case UIState.WIZARD:
-            if (current_item != null)
-                actor_remove (current_item.actor);
-            break;
-
         case UIState.PROPERTIES:
-            current_item.actor.hide ();
             break;
 
         case UIState.DISPLAY:
+            if (maximized)
+                fullscreen = true;
+
             break;
 
         default:
@@ -873,22 +831,8 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         return false;
     }
 
-    public void connect_to (Machine machine, float x, float y, Machine.ConnectFlags flags = Machine.ConnectFlags.NONE) {
+    public void connect_to (Machine machine) {
         current_item = machine;
-
-        // Set up actor for CREDS animation
-        var actor = machine.actor;
-        if (actor.get_parent () == null) {
-            App.app.overlay_bin_actor.add_child (actor);
-            allocate_actor_no_animation (actor, x, y,
-                                         Machine.SCREENSHOT_WIDTH,
-                                         Machine.SCREENSHOT_HEIGHT * 2);
-        }
-        actor.show ();
-        actor.set_easing_mode (Clutter.AnimationMode.LINEAR);
-        actor.min_width = actor.natural_width = Machine.SCREENSHOT_WIDTH * 2;
-        actor.fixed_position_set = false;
-        actor.set_easing_duration (App.app.duration);
 
         // Track machine status in toobar
         status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
@@ -897,33 +841,8 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             App.app.notificationbar.display_error (message);
         });
 
-        // Start the CREDS state
-        set_state (UIState.CREDS);
-
-        // Connect to the display
-        machine.connect_display.begin (flags, (obj, res) => {
-            try {
-                machine.connect_display.end (res);
-
-                if (maximized)
-                    fullscreen = true;
-            } catch (GLib.Error e) {
-                set_state (UIState.COLLECTION);
-                debug ("connect display failed: %s", e.message);
-                var bar = App.app.notificationbar;
-
-                if (e is Boxes.Error.RESTORE_FAILED &&
-                    !(Machine.ConnectFlags.IGNORE_SAVED_STATE in flags)) {
-                    var message =
-                        _("'%s' could not be restored from disk\nTry without saved state?").printf (machine.name);
-                    bar.display_for_action (message, _("Restart"), () => {
-                        connect_to (machine, x, y,
-                                    flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
-                    });
-                } else
-                    bar.display_error (_("Connection to '%s' failed").printf (machine.name));
-            }
-        });
+        if (ui_state != UIState.CREDS)
+            set_state (UIState.CREDS); // Start the CREDS state
     }
 
     public void select_item (CollectionItem item) {
@@ -933,10 +852,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                float item_x, item_y;
-                view.get_item_pos (item, out item_x, out item_y);
-
-                connect_to (machine, item_x, item_y);
+                connect_to (machine);
             } else
                 warning ("unknown item, fix your code");
 
