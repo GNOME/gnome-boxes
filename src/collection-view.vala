@@ -53,19 +53,6 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         });
     }
 
-    public void get_item_pos (CollectionItem item, out float x, out float y) {
-        Gdk.Rectangle rect;
-        var path = get_path_for_item (item);
-        if (path != null) {
-            (main_view.get_generic_view () as Gtk.IconView).get_cell_rect (path, null, out rect);
-            x = rect.x;
-            y = rect.y;
-        } else {
-            x = 0.0f;
-            y = 0.0f;
-        }
-    }
-
     private void ui_state_changed () {
         if (ui_state == UIState.COLLECTION)
             main_view.unselect_all ();
@@ -213,18 +200,6 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
             var categories_id = item.get_data<ulong> ("categories_id");
             machine.config.disconnect (categories_id);
         }
-    }
-
-    private Gtk.TreePath? get_path_for_item (CollectionItem item) {
-        var iter = item.get_data<Gtk.TreeIter?> ("iter");
-        if (iter == null)
-            return null;
-
-        Gtk.TreeIter filter_iter;
-        if (!model_filter.convert_child_iter_to_iter (out filter_iter, iter))
-            return null;
-
-        return model_filter.get_path (filter_iter);
     }
 
     private CollectionItem get_item_for_iter (Gtk.TreeIter iter) {
