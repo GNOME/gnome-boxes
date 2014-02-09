@@ -169,6 +169,15 @@ namespace Boxes {
         container.remove_child (actor);
     }
 
+    public void widget_remove (Gtk.Widget widget) {
+        var container = widget.get_parent () as Gtk.Container;
+
+        if (container == null)
+            return;
+
+        container.remove (widget);
+    }
+
     public Osinfo.Device? find_device_by_prop (Osinfo.DeviceList devices, string prop_name, string prop_value) {
         var filter = new Osinfo.Filter ();
         filter.add_constraint (prop_name, prop_value);
