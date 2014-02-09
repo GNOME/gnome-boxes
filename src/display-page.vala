@@ -53,17 +53,6 @@ private class Boxes.DisplayPage: Gtk.Box {
         notification_grid.attach (w, 0, 0, 1, 1);
     }
 
-    public void get_size (out int width, out int height) {
-        int tb_height;
-
-        App.app.window.get_size (out width, out height);
-
-        if (!App.app.fullscreen) {
-            toolbar.get_preferred_height (null, out tb_height);
-            height -= tb_height;
-        }
-    }
-
      private void update_toolbar_visible() {
          if (App.app.fullscreen && can_grab_mouse)
              toolbar.visible = true;
