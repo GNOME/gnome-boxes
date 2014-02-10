@@ -62,9 +62,26 @@ private class Boxes.App: GLib.Object, Boxes.UI {
                 window.unfullscreen ();
         }
     }
+    public AppPage page {
+        get {
+            if (stack.get_visible_child_name () == "display-page")
+                return AppPage.DISPLAY;
+            else
+                return AppPage.MAIN;
+        }
+        set {
+            if (value == AppPage.DISPLAY) {
+                stack.transition_type = Gtk.StackTransitionType.SLIDE_RIGHT;
+                stack.set_visible_child_name ("display-page");
+            } else {
+                stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT;
+                stack.set_visible_child_name ("main-page");
+            }
+        }
+    }
 
     private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
-    public Gtk.Notebook notebook;
+    private Gtk.Stack stack;
     public ClutterWidget embed;
     public Clutter.Stage stage;
     public Clutter.BinLayout stage_bin;
@@ -520,17 +537,15 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         var main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         window.add (main_vbox);
 
-        notebook = new Gtk.Notebook ();
-        notebook.show_border = false;
-        notebook.show_tabs = false;
-        main_vbox.add (notebook);
+        stack = new Gtk.Stack ();
+        main_vbox.add (stack);
 
         var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
         vbox.halign = Gtk.Align.FILL;
         vbox.valign = Gtk.Align.FILL;
         vbox.hexpand = true;
         vbox.vexpand = true;
-        notebook.append_page (vbox, null);
+        stack.add_named (vbox, "main-page");
 
         searchbar = new Searchbar ();
         vbox.add (searchbar);
@@ -539,7 +554,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         vbox.add (embed);
 
         display_page = new DisplayPage ();
-        notebook.append_page (display_page, null);
+        stack.add_named (display_page, "display-page");
 
         selectionbar = new Selectionbar ();
         main_vbox.add (selectionbar);
@@ -648,7 +663,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     }
 
     private void set_main_ui_state () {
-        notebook.page = Boxes.AppPage.MAIN;
+        stack.set_visible_child_name ("main-page");
     }
 
     private void ui_state_changed () {

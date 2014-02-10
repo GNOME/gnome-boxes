@@ -518,7 +518,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
         case Boxes.UIState.DISPLAY:
             if (previous_ui_state == UIState.PROPERTIES)
-                App.app.notebook.page = Boxes.AppPage.DISPLAY;
+                App.app.page = Boxes.AppPage.DISPLAY;
 
             break;
 

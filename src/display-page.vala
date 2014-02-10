@@ -142,7 +142,7 @@ private class Boxes.DisplayPage: Gtk.Box {
             return false;
         });
 
-        App.app.notebook.page = Boxes.AppPage.DISPLAY;
+        App.app.page = Boxes.AppPage.DISPLAY;
         widget.grab_focus ();
     }
 

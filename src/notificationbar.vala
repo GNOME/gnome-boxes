@@ -26,7 +26,7 @@ private class Boxes.Notificationbar: GLib.Object {
         Gdk.RGBA transparent = { 0, 0, 0, 0};
         gtk_actor.get_widget ().override_background_color (0, transparent);
 
-        App.app.notebook.notify["page"].connect ( () => {
+        App.app.notify["page"].connect ( () => {
             foreach (var w in active_notifications) {
                 var parent = w.get_parent () as Container;
                 if (parent != null)
@@ -89,7 +89,7 @@ private class Boxes.Notificationbar: GLib.Object {
     }
 
     private void add_notification (Widget w) {
-        if (App.app.notebook.page == AppPage.MAIN)
+        if (App.app.page == AppPage.MAIN)
             top_grid.attach (w, 0, 0, 1, 1);
         else
             App.app.display_page.add_notification (w);
