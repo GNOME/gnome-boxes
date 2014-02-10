@@ -153,10 +153,8 @@ LIBGD_INIT([
   gtk-hacks
   main-view
   main-icon-view
-  margin-container
   notification
   static
-  tagged-entry
   vapi
 ])
 
