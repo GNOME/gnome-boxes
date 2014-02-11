@@ -22,27 +22,9 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
     private class PageWidget: Gtk.Grid {
         public bool empty;
 
-        private Gtk.InfoBar infobar;
         private List<Boxes.Property> properties;
 
         public signal void refresh_properties ();
-
-        public void update_infobar () {
-            var show_it = false;
-            foreach (var property in properties) {
-                if (property.reboot_required) {
-                    show_it = true;
-                    break;
-                }
-            }
-            infobar.visible = show_it;
-        }
-
-        ~PageWidget () {
-            foreach (var property in properties) {
-                SignalHandler.disconnect_by_func (property, (void*)update_infobar, this);
-            }
-        }
 
         public PageWidget (PropertiesPage page, Machine machine) {
             switch (page) {
@@ -67,16 +49,6 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             row_spacing = 10;
             column_spacing = 20;
             valign = Gtk.Align.START;
-
-            infobar = new Gtk.InfoBar ();
-            infobar.no_show_all = true;
-            var infobar_container = infobar.get_content_area () as Gtk.Container;
-            var label = new Gtk.Label (_("Some changes may take effect only after reboot"));
-            label.visible = true;
-            infobar_container.add (label);
-            infobar.message_type = Gtk.MessageType.INFO;
-            infobar.hexpand = true;
-            attach (infobar, 0, 0, 2, 1);
 
             PropertyCreationFlag flags = PropertyCreationFlag.NONE;
             properties = machine.get_properties (page, ref flags);
@@ -109,14 +81,11 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                         attach (widget, 0, current_row, 2, 1);
                     }
 
-                    property.notify["reboot-required"].connect (update_infobar);
                     property.refresh_properties.connect (() => {
                         this.refresh_properties ();
                      });
                     current_row += 1;
                 }
-
-                update_infobar ();
             }
 
             show_all ();
