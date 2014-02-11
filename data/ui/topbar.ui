@@ -59,12 +59,26 @@
             </child>
 
             <child>
-              <object class="GtkSpinner" id="spinner">
+              <object class="GtkButton" id="select_btn">
                 <property name="visible">True</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="active">True</property>
-                <property name="margin">6</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <signal name="clicked" handler="on_select_btn_clicked"/>
+                <style>
+                  <class name="image-button"/>
+                </style>
+                <child internal-child="accessible">
+                  <object class="AtkObject" id="a11y-button3">
+                    <property name="accessible-name" translatable="yes">Select Items</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage" id="select_image">
+                    <property name="visible">True</property>
+                    <property name="icon-name">object-select-symbolic</property>
+                    <property name="icon-size">1</property>
+                  </object>
+                </child>
               </object>
 
               <packing>
@@ -100,26 +114,12 @@
             </child>
 
             <child>
-              <object class="GtkButton" id="select_btn">
+              <object class="GtkSpinner" id="spinner">
                 <property name="visible">True</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <signal name="clicked" handler="on_select_btn_clicked"/>
-                <style>
-                  <class name="image-button"/>
-                </style>
-                <child internal-child="accessible">
-                  <object class="AtkObject" id="a11y-button3">
-                    <property name="accessible-name" translatable="yes">Select Items</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkImage" id="select_image">
-                    <property name="visible">True</property>
-                    <property name="icon-name">object-select-symbolic</property>
-                    <property name="icon-size">1</property>
-                  </object>
-                </child>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="active">True</property>
+                <property name="margin">6</property>
               </object>
 
               <packing>
@@ -169,6 +169,23 @@
             </child>
 
             <child>
+              <object class="GtkButton" id="cancel_btn">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="use-underline">True</property>
+                <property name="label" translatable="yes">_Cancel</property>
+                <signal name="clicked" handler="on_cancel_btn_clicked"/>
+                <style>
+                  <class name="text-button"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+            <child>
               <object class="GtkToggleButton" id="search2_btn">
                 <property name="visible">True</property>
                 <property name="valign">center</property>
@@ -188,23 +205,6 @@
                     <property name="icon-size">1</property>
                   </object>
                 </child>
-              </object>
-
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="cancel_btn">
-                <property name="visible">True</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <property name="label" translatable="yes">_Cancel</property>
-                <signal name="clicked" handler="on_cancel_btn_clicked"/>
-                <style>
-                  <class name="text-button"/>
-                </style>
               </object>
 
               <packing>
@@ -255,13 +255,14 @@
             </child>
 
             <child>
-              <object class="GtkButton" id="wizard_back_btn">
-                <property name="visible">True</property>
+              <object class="GtkButton" id="wizard_create_btn">
+                <property name="visible">False</property>
                 <property name="valign">center</property>
                 <property name="use-underline">True</property>
-                <property name="label" translatable="yes">_Back</property>
+                <property name="label" translatable="yes">C_reate</property>
                 <style>
                   <class name="text-button"/>
+                  <class name="boxes-continue"/>
                 </style>
               </object>
 
@@ -288,14 +289,13 @@
             </child>
 
             <child>
-              <object class="GtkButton" id="wizard_create_btn">
-                <property name="visible">False</property>
+              <object class="GtkButton" id="wizard_back_btn">
+                <property name="visible">True</property>
                 <property name="valign">center</property>
                 <property name="use-underline">True</property>
-                <property name="label" translatable="yes">C_reate</property>
+                <property name="label" translatable="yes">_Back</property>
                 <style>
                   <class name="text-button"/>
-                  <class name="boxes-continue"/>
                 </style>
               </object>
 
