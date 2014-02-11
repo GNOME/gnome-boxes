@@ -91,9 +91,15 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             show_all ();
         }
 
-        public void flush_changes () {
-            foreach (var property in properties)
+        public bool flush_changes () {
+            var reboot_required = false;
+
+            foreach (var property in properties) {
                 property.flush ();
+                reboot_required |= property.reboot_required;
+            }
+
+            return reboot_required;
         }
     }
 
@@ -188,9 +194,19 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
             populate ();
         } else if (previous_ui_state == UIState.PROPERTIES) {
+            var reboot_required = false;
+
             for (var i = 0; i < PropertiesPage.LAST; i++) {
                 var page = get_data<PageWidget> (@"boxes-property-$i");
-                page.flush_changes ();
+                reboot_required |= page.flush_changes ();
+            }
+
+            var machine = App.app.current_item as Machine;
+            if (reboot_required && (machine.is_on () || machine.state == Machine.MachineState.SAVED)) {
+                var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
+                App.app.notificationbar.display_for_action (message, _("_Yes"), () => {
+                    machine.restart ();
+                });
             }
 
             if (restore_fullscreen) {

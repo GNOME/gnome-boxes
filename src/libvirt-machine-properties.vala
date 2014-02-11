@@ -39,7 +39,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         // This will take effect only after next reboot
         machine.domain.set_config (config);
-        notify_reboot_required ();
     }
 
     private void try_enable_smartcard () throws GLib.Error {
@@ -49,7 +48,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         // This will take effect only after next reboot
         machine.domain.set_config (config);
-        notify_reboot_required ();
     }
 
     private string collect_logs () {
@@ -234,6 +232,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         try_enable_usb_redir ();
                         machine.update_domain_config ();
                         property.refresh_properties ();
+                        property.reboot_required = true;
                     } catch (GLib.Error error) {
                         warning ("Failed to enable usb");
                     }
@@ -251,6 +250,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         try_enable_smartcard ();
                         machine.update_domain_config ();
                         property.refresh_properties ();
+                        property.reboot_required = true;
                     } catch (GLib.Error error) {
                         warning ("Failed to enable smartcard");
                     }
@@ -441,7 +441,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     config.set ("current-memory", ram);
                 machine.domain.set_config (config);
                 debug ("RAM changed to %llu KiB", ram);
-                notify_reboot_required ();
             } catch (GLib.Error error) {
                 warning ("Failed to change RAM of box '%s' to %llu KiB: %s",
                          machine.domain.get_name (),
@@ -449,19 +448,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                          error.message);
             }
 
-            if (machine.is_on ())
-                update_ram_property (property);
+            update_ram_property (property);
 
             return false;
         };
-    }
-
-    private void notify_reboot_required () {
-        if (!machine.is_on () && machine.state != Machine.MachineState.SAVED)
-            return;
-
-        var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
-        App.app.notificationbar.display_for_action (message, _("_Yes"), machine.restart);
     }
 
     private SizeProperty? add_storage_property (ref List<Boxes.Property> list) {
