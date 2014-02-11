@@ -273,6 +273,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
+    public abstract void restart ();
 
     public virtual void disconnect_display () {
         if (display == null)

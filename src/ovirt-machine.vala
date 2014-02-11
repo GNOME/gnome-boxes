@@ -75,6 +75,8 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         return list;
     }
 
+    public override void restart () {} // See FIXME on RemoteMachine.restart
+
     private Display create_display_connection () throws GLib.Error {
         if (vm.display.address == null || vm.display.address == "")
             throw new Boxes.Error.INVALID ("empty display address for %s", vm.name);

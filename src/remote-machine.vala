@@ -89,4 +89,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         source.delete ();
     }
+
+    // FIXME: Implement this. We don't currently need it because we don't set any properties here that requires a
+    //        restart and this method is currently used for that purpose only.
+    public override void restart () {}
 }

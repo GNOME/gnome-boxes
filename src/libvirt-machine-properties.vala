@@ -6,7 +6,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     private const uint64 MEGABYTES = 1000 * 1000;
 
     private weak LibvirtMachine machine; // Weak ref for avoiding cyclic ref */
-    private uint shutdown_timeout;
 
     public LibvirtMachineProperties (LibvirtMachine machine) {
         this.machine = machine;
@@ -462,72 +461,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             return;
 
         var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
-        App.app.notificationbar.display_for_action (message, _("_Yes"), reboot);
-    }
-
-    private void reboot () {
-        if (machine.state == Machine.MachineState.SAVED) {
-            debug ("'%s' is in saved state. Resuming it..", machine.name);
-            machine.start.begin (Machine.ConnectFlags.NONE, null, (obj, res) => {
-                try {
-                    machine.start.end (res);
-                    reboot ();
-                } catch (GLib.Error error) {
-                    warning ("Failed to start '%s': %s", machine.domain.get_name (), error.message);
-                }
-            });
-
-            return;
-        }
-
-        machine.stay_on_display = true;
-        ulong state_id = 0;
-        Gd.Notification notification = null;
-        debug ("Rebooting '%s'..", machine.name);
-
-        state_id = machine.notify["state"].connect (() => {
-            if (machine.state == Machine.MachineState.STOPPED ||
-                machine.state == Machine.MachineState.FORCE_STOPPED) {
-                debug ("'%s' stopped.", machine.name);
-                machine.start.begin (Machine.ConnectFlags.NONE, null, (obj, res) => {
-                    try {
-                        machine.start.end (res);
-                    } catch (GLib.Error error) {
-                        warning ("Failed to start '%s': %s", machine.domain.get_name (), error.message);
-                    }
-                });
-
-                machine.disconnect (state_id);
-                if (shutdown_timeout != 0) {
-                    Source.remove (shutdown_timeout);
-                    shutdown_timeout = 0;
-                }
-                if (notification != null) {
-                    notification.dismiss ();
-                    notification = null;
-                }
-            }
-        });
-
-        shutdown_timeout = Timeout.add_seconds (5, () => {
-            // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
-            Notification.OKFunc really_force_shutdown = () => {
-                notification = null;
-                machine.force_shutdown (false);
-            };
-
-            var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (machine.name);
-            notification = App.app.notificationbar.display_for_action (message,
-                                                                       _("_Yes"),
-                                                                       (owned) really_force_shutdown,
-                                                                       null,
-                                                                       -1);
-            shutdown_timeout = 0;
-
-            return false;
-        });
-
-        machine.try_shutdown ();
+        App.app.notificationbar.display_for_action (message, _("_Yes"), machine.restart);
     }
 
     private SizeProperty? add_storage_property (ref List<Boxes.Property> list) {
