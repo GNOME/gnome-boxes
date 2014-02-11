@@ -203,8 +203,8 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
             var machine = App.app.current_item as Machine;
             if (reboot_required && (machine.is_on () || machine.state == Machine.MachineState.SAVED)) {
-                var message = _("Changes require restart of '%s'. Attempt restart?").printf (machine.name);
-                App.app.notificationbar.display_for_action (message, _("_Yes"), () => {
+                var message = _("Changes require restart of '%s'.").printf (machine.name);
+                App.app.notificationbar.display_for_action (message, _("_Restart"), () => {
                     machine.restart ();
                 });
             }
