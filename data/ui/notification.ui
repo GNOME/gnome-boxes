@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesNotification" parent="GdNotification">
+    <property name="visible">True</property>
+    <property name="valign">start</property>
+
+    <child>
+      <object class="GtkGrid" id="grid">
+        <property name="visible">True</property>
+        <property name="orientation">horizontal</property>
+        <property name="margin-left">12</property>
+        <property name="margin-right">12</property>
+        <property name="column-spacing">12</property>
+        <property name="valign">center</property>
+
+        <child>
+          <object class="GtkLabel" id="message_label">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="ok_button">
+            <property name="halign">end</property>
+
+            <child>
+              <object class="GtkLabel" id="ok_button_label">
+                <property name="use-underline">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>
