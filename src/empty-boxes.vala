@@ -17,17 +17,19 @@ private class Boxes.EmptyBoxes : Gtk.Grid, Boxes.UI {
         gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
 
+        App.app.call_when_ready (on_app_ready);
+    }
+
+    private void on_app_ready () {
+        update_visibility ();
+
         App.app.collection.item_added.connect (update_visibility);
         App.app.collection.item_removed.connect (update_visibility);
-
-        notify["ui-state"].connect (update_visibility);
     }
 
     private void update_visibility () {
-        App.app.call_when_ready (() => {
-            var visible = ui_state == UIState.COLLECTION && App.app.collection.items.length == 0;
-            if (visible != gtk_actor.visible)
-                fade_actor (gtk_actor, visible? 255 : 0);
-        });
+        var visible = ui_state == UIState.COLLECTION && App.app.collection.items.length == 0;
+        if (visible != gtk_actor.visible)
+            fade_actor (gtk_actor, visible? 255 : 0);
     }
 }
