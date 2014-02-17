@@ -655,7 +655,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         below_bin_actor.insert_child_below (empty_boxes.actor, notificationbar.actor);
 
         properties.actor.hide ();
-        empty_boxes.actor.hide ();
 
         main_vbox.show_all ();
 

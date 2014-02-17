@@ -1,12 +1,15 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/empty-boxes.ui")]
-private class Boxes.EmptyBoxes : Gtk.Grid, Boxes.UI {
+private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
     public Clutter.Actor actor { get { return gtk_actor; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
     private GtkClutter.Actor gtk_actor;
+
+    [GtkChild]
+    private Gtk.Grid grid;
 
     public EmptyBoxes () {
         gtk_actor = new GtkClutter.Actor.with_contents (this);
@@ -31,5 +34,8 @@ private class Boxes.EmptyBoxes : Gtk.Grid, Boxes.UI {
         var visible = ui_state == UIState.COLLECTION && App.app.collection.items.length == 0;
         if (visible != gtk_actor.visible)
             fade_actor (gtk_actor, visible? 255 : 0);
+
+        if (visible && visible_child != grid)
+            visible_child = grid;
     }
 }
