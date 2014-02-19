@@ -11,11 +11,18 @@ private enum Boxes.SidebarPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/sidebar.ui")]
 private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
-    public Clutter.Actor actor { get { return gtk_actor; } }
+    // See FIXME on Topbar class
+    public Clutter.Actor actor {
+        get {
+            if (gtk_actor == null)
+                gtk_actor = new Clutter.Actor ();
+            return gtk_actor;
+        }
+    }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    private GtkClutter.Actor gtk_actor; // the sidebar box
+    private Clutter.Actor gtk_actor; // the sidebar box
 
     [GtkChild]
     private Gtk.Notebook notebook;
@@ -95,11 +102,6 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
 
     private void setup_sidebar () {
         props_model_filter.set_visible_column (1);
-
-        gtk_actor = new GtkClutter.Actor.with_contents (this);
-        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
-        gtk_actor.name = "sidebar";
-        gtk_actor.y_expand = true;
     }
 
     [GtkCallback]

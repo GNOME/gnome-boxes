@@ -101,7 +101,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public Collection collection;
     public CollectionFilter filter;
     private Gtk.Stack content_bin;
-    private Clutter.Actor content_bin_actor;
+    private Clutter.Actor hbox_actor;
 
     private bool is_ready;
     public signal void ready ();
@@ -607,10 +607,9 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         below_bin_actor.add_child (view.actor);
 
-        var hbox_actor = new Clutter.Actor ();
+        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        hbox_actor = new GtkClutter.Actor.with_contents (hbox);
         hbox_actor.name = "top-hbox";
-        var hbox = new Clutter.BoxLayout ();
-        hbox_actor.set_layout_manager (hbox);
         hbox_actor.x_align = Clutter.ActorAlign.FILL;
         hbox_actor.y_align = Clutter.ActorAlign.FILL;
         hbox_actor.x_expand = true;
@@ -618,19 +617,16 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         below_bin_actor.add_child (hbox_actor);
 
-        hbox_actor.add_child (sidebar.actor);
-
         content_bin = new Gtk.Stack ();
         content_bin.vexpand = true;
         content_bin.hexpand = true;
         content_bin.add (wizard);
         content_bin.add (properties);
-        content_bin_actor  = new GtkClutter.Actor.with_contents (content_bin);
-        content_bin_actor.x_align = Clutter.ActorAlign.FILL;
-        content_bin_actor.y_align = Clutter.ActorAlign.FILL;
-        content_bin_actor.x_expand = true;
-        content_bin_actor.y_expand = true;
-        hbox_actor.add_child (content_bin_actor);
+
+        hbox.add (sidebar);
+        hbox.add (content_bin);
+        hbox.show_all ();
+        hbox_actor.hide ();
 
         below_bin_actor.add_child (notificationbar.actor);
 
@@ -660,7 +656,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         if (ui_state != UIState.COLLECTION)
             searchbar.visible = false;
 
-        content_bin_actor.visible = (ui_state == UIState.WIZARD || ui_state == UIState.PROPERTIES);
+        hbox_actor.visible = (ui_state == UIState.WIZARD || ui_state == UIState.PROPERTIES);
 
         switch (ui_state) {
         case UIState.COLLECTION:
