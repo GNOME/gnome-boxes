@@ -549,8 +549,14 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         searchbar = new Searchbar ();
         vbox.add (searchbar);
 
+        notificationbar = new Notificationbar ();
+        var notification_overlay = new Gtk.Overlay ();
+        notification_overlay.add_overlay (notificationbar);
+
         embed = new ClutterWidget ();
-        vbox.add (embed);
+        notification_overlay.add (embed);
+
+        vbox.add (notification_overlay);
 
         display_page = new DisplayPage ();
         stack.add_named (display_page, "display-page");
@@ -588,7 +594,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         sidebar = new Sidebar ();
         view = new CollectionView ();
         topbar = new Topbar ();
-        notificationbar = new Notificationbar ();
         wizard = new Wizard ();
         properties = new Properties ();
         empty_boxes = new EmptyBoxes ();
@@ -628,9 +633,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         hbox.show_all ();
         hbox_actor.hide ();
 
-        below_bin_actor.add_child (notificationbar.actor);
-
-        below_bin_actor.insert_child_below (empty_boxes.actor, notificationbar.actor);
+        below_bin_actor.add_child (empty_boxes.actor);
 
         properties.actor.hide ();
 

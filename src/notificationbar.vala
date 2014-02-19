@@ -1,30 +1,19 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-private class Boxes.Notificationbar: GLib.Object {
+private class Boxes.Notificationbar: Gtk.Grid {
     public const int DEFAULT_TIMEOUT = 6;
-
-    public Clutter.Actor actor { get { return gtk_actor; } }
-
-    private GtkClutter.Actor gtk_actor;
-    private Gtk.Grid top_grid;
 
     GLib.List<Widget> active_notifications;
 
     public Notificationbar () {
+        valign = Gtk.Align.START;
+        halign = Gtk.Align.CENTER;
+        get_style_context ().add_class ("boxes-bg");
+
+        show ();
+
         active_notifications = new GLib.List<Widget> ();
-
-        top_grid = new Gtk.Grid ();
-        top_grid.show ();
-
-        gtk_actor = new GtkClutter.Actor.with_contents (top_grid);
-        gtk_actor.name = "notificationbar";
-        gtk_actor.x_align = Clutter.ActorAlign.CENTER;
-        gtk_actor.y_align = Clutter.ActorAlign.START;
-        gtk_actor.x_expand = true;
-        gtk_actor.y_expand = true;
-        Gdk.RGBA transparent = { 0, 0, 0, 0};
-        gtk_actor.get_widget ().override_background_color (0, transparent);
 
         App.app.notify["page"].connect ( () => {
             foreach (var w in active_notifications) {
@@ -90,7 +79,7 @@ private class Boxes.Notificationbar: GLib.Object {
 
     private void add_notification (Widget w) {
         if (App.app.page == AppPage.MAIN)
-            top_grid.attach (w, 0, 0, 1, 1);
+            attach (w, 0, 0, 1, 1);
         else
             App.app.display_page.add_notification (w);
     }
