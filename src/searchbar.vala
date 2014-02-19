@@ -27,7 +27,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
 
     [GtkCallback]
     private void on_search_activated () {
-        App.app.view.activate ();
+        App.app.view.activate_first_item ();
     }
 
     [GtkCallback]

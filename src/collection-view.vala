@@ -7,7 +7,7 @@ public enum Boxes.SelectionCriteria {
     RUNNING
 }
 
-private class Boxes.CollectionView: GLib.Object, Boxes.UI {
+private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     public Clutter.Actor actor { get { return gtkactor; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -34,28 +34,23 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         LAST
     }
 
-    public Gd.MainView main_view;
-    private Gtk.ListStore model;
+    private Gtk.ListStore store;
     private Gtk.TreeModelFilter model_filter;
-
-    public bool visible {
-        set { main_view.visible = value; }
-    }
 
     public CollectionView () {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         setup_view ();
         notify["ui-state"].connect (ui_state_changed);
         App.app.notify["selection-mode"].connect (() => {
-            main_view.set_selection_mode (App.app.selection_mode);
+            set_selection_mode (App.app.selection_mode);
             if (!App.app.selection_mode)
-                main_view.unselect_all (); // Reset selection on exiting selection mode
+                unselect_all (); // Reset selection on exiting selection mode
         });
     }
 
     private void ui_state_changed () {
         if (ui_state == UIState.COLLECTION)
-            main_view.unselect_all ();
+            unselect_all ();
         fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
@@ -63,7 +58,7 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         CollectionItem item;
         GLib.Icon[] emblem_icons = {};
 
-        model.get (iter, ModelColumns.ITEM, out item);
+        store.get (iter, ModelColumns.ITEM, out item);
         Machine machine = item as Machine;
         return_if_fail (machine != null);
         var pixbuf = machine.pixbuf;
@@ -88,8 +83,8 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
             }
         }
 
-        model.set (iter, ModelColumns.SCREENSHOT, pixbuf);
-        main_view.queue_draw ();
+        store.set (iter, ModelColumns.SCREENSHOT, pixbuf);
+        queue_draw ();
     }
 
     private Gtk.TreeIter append (string title,
@@ -97,13 +92,13 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
                                  CollectionItem item) {
         Gtk.TreeIter iter;
 
-        model.append (out iter);
-        model.set (iter, Gd.MainColumns.ID, "%p".printf (item));
-        model.set (iter, ModelColumns.TITLE, title);
+        store.append (out iter);
+        store.set (iter, Gd.MainColumns.ID, "%p".printf (item));
+        store.set (iter, ModelColumns.TITLE, title);
         if (info != null)
-            model.set (iter, ModelColumns.INFO, info);
-        model.set (iter, ModelColumns.SELECTED, false);
-        model.set (iter, ModelColumns.ITEM, item);
+            store.set (iter, ModelColumns.INFO, info);
+        store.set (iter, ModelColumns.SELECTED, false);
+        store.set (iter, ModelColumns.ITEM, item);
         update_screenshot (iter);
 
         item.set_data<Gtk.TreeIter?> ("iter", iter);
@@ -134,15 +129,15 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
 
         var name_id = item.notify["name"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
-            model.set (iter, ModelColumns.TITLE, item.name);
-            main_view.queue_draw ();
+            store.set (iter, ModelColumns.TITLE, item.name);
+            queue_draw ();
         });
         item.set_data<ulong> ("name_id", name_id);
 
         var info_id = machine.notify["info"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
-            model.set (iter, ModelColumns.INFO, machine.info);
-            main_view.queue_draw ();
+            store.set (iter, ModelColumns.INFO, machine.info);
+            queue_draw ();
         });
         item.set_data<ulong> ("info_id", info_id);
 
@@ -150,7 +145,7 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         var under_construct_id = machine.notify["under-construction"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             setup_activity (iter, machine);
-            main_view.queue_draw ();
+            queue_draw ();
         });
         item.set_data<ulong> ("under_construct_id", under_construct_id);
 
@@ -160,11 +155,11 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
     public List<CollectionItem> get_selected_items () {
         var selected = new List<CollectionItem> ();
 
-        model.foreach ((model, path, iter) => {
+        store.foreach ((store, path, iter) => {
             CollectionItem item;
             bool is_selected;
 
-            model.get (iter,
+            store.get (iter,
                        ModelColumns.SELECTED, out is_selected,
                        ModelColumns.ITEM, out item);
             if (is_selected && item != null)
@@ -183,7 +178,7 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
             return;
         }
 
-        model.remove (iter);
+        store.remove (iter);
         item.set_data<Gtk.TreeIter?> ("iter", null);
 
         var pixbuf_id = item.get_data<ulong> ("pixbuf_id");
@@ -205,7 +200,7 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
     private CollectionItem get_item_for_iter (Gtk.TreeIter iter) {
         GLib.Value value;
 
-        model.get_value (iter, ModelColumns.ITEM, out value);
+        store.get_value (iter, ModelColumns.ITEM, out value);
 
         return (CollectionItem) value;
     }
@@ -232,15 +227,15 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         model_filter.refilter ();
     }
 
-    public void activate () {
+    public void activate_first_item () {
         if (model_filter.iter_n_children (null) == 1) {
             Gtk.TreePath path = new Gtk.TreePath.from_string ("0");
-            (main_view.get_generic_view () as Gtk.IconView).item_activated (path);
+            (get_generic_view () as Gtk.IconView).item_activated (path);
         }
     }
 
     private void setup_view () {
-        model = new Gtk.ListStore (ModelColumns.LAST,
+        store = new Gtk.ListStore (ModelColumns.LAST,
                                    typeof (string),
                                    typeof (string),
                                    typeof (string),
@@ -250,49 +245,47 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
                                    typeof (bool),
                                    typeof (uint),
                                    typeof (CollectionItem));
-        model.set_default_sort_func ((model, a, b) => {
+        store.set_default_sort_func ((store, a, b) => {
             CollectionItem item_a, item_b;
 
-            model.get (a, ModelColumns.ITEM, out item_a);
-            model.get (b, ModelColumns.ITEM, out item_b);
+            store.get (a, ModelColumns.ITEM, out item_a);
+            store.get (b, ModelColumns.ITEM, out item_b);
 
             if (item_a == null || item_b == null) // FIXME?!
                 return 0;
 
             return item_a.compare (item_b);
         });
-        model.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
-        model.row_deleted.connect (() => {
+        store.set_sort_column_id (Gtk.SortColumn.DEFAULT, Gtk.SortType.ASCENDING);
+        store.row_deleted.connect (() => {
             App.app.notify_property ("selected-items");
         });
-        model.row_inserted.connect (() => {
+        store.row_inserted.connect (() => {
             App.app.notify_property ("selected-items");
         });
 
-        model_filter = new Gtk.TreeModelFilter (model, null);
+        model_filter = new Gtk.TreeModelFilter (store, null);
         model_filter.set_visible_func (model_visible);
 
-        // The normal construction has some issues
-        main_view = Object.new (typeof (Gd.MainView)) as Gd.MainView;
-        main_view.set_view_type (Gd.MainViewType.ICON);
-        main_view.set_model (model_filter);
-        main_view.get_style_context ().add_class ("boxes-icon-view");
-        main_view.item_activated.connect ((view, id, path) => {
+        set_view_type (Gd.MainViewType.ICON);
+        set_model (model_filter);
+        get_style_context ().add_class ("boxes-icon-view");
+        item_activated.connect ((view, id, path) => {
             var item = get_item_for_path (path);
             if (item is LibvirtMachine && (item as LibvirtMachine).importing)
                 return;
             App.app.select_item (item);
         });
-        main_view.view_selection_changed.connect (() => {
-            main_view.queue_draw ();
+        view_selection_changed.connect (() => {
+            queue_draw ();
             App.app.notify_property ("selected-items");
         });
-        main_view.selection_mode_request.connect (() => {
+        selection_mode_request.connect (() => {
             App.app.selection_mode = true;
         });
-        main_view.show_all ();
+        show_all ();
 
-        gtkactor = new GtkClutter.Actor.with_contents (main_view);
+        gtkactor = new GtkClutter.Actor.with_contents (this);
         gtkactor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtkactor.name = "collection-view";
         gtkactor.x_align = Clutter.ActorAlign.FILL;
@@ -319,15 +312,15 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
                 break;
             case SelectionCriteria.RUNNING:
                 CollectionItem item;
-                model.get (iter, ModelColumns.ITEM, out item);
+                store.get (iter, ModelColumns.ITEM, out item);
                 selected = item != null && item is Machine &&
                     (item as Machine).is_running ();
                 break;
             }
-            model.set (iter, ModelColumns.SELECTED, selected);
+            store.set (iter, ModelColumns.SELECTED, selected);
             return false;
         });
-        main_view.queue_draw ();
+        queue_draw ();
         App.app.notify_property ("selected-items");
     }
 
@@ -339,20 +332,20 @@ private class Boxes.CollectionView: GLib.Object, Boxes.UI {
         }
 
         if (!machine.under_construction) {
-            model.set (iter, ModelColumns.PULSE, 0);
+            store.set (iter, ModelColumns.PULSE, 0);
 
             return;
         }
 
         var pulse = 1;
-        model.set (iter, ModelColumns.PULSE, pulse++);
+        store.set (iter, ModelColumns.PULSE, pulse++);
         activity_timeout = Timeout.add (150, () => {
             var machine_iter = machine.get_data<Gtk.TreeIter?> ("iter");
             if (machine_iter == null)
                 return false; // Item removed
 
-            model.set (machine_iter, ModelColumns.PULSE, pulse++);
-            main_view.queue_draw ();
+            store.set (machine_iter, ModelColumns.PULSE, pulse++);
+            queue_draw ();
 
             return true;
         });
