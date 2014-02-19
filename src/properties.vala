@@ -11,11 +11,19 @@ private enum Boxes.PropertiesPage {
 }
 
 private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
-    public Clutter.Actor actor { get { return gtk_actor; } }
+    // See FIXME on Topbar class
+    public Clutter.Actor actor {
+        get {
+            if (gtk_actor == null)
+                gtk_actor = new Clutter.Actor ();
+            return gtk_actor;
+        }
+    }
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    private GtkClutter.Actor gtk_actor;
+    private Clutter.Actor gtk_actor;
     private ulong stats_id;
     private bool restore_fullscreen;
 
@@ -159,16 +167,8 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
     private void setup_ui () {
         show_tabs = false;
+        get_style_context ().add_class ("properties");
         get_style_context ().add_class ("boxes-bg");
-
-        gtk_actor = new GtkClutter.Actor.with_contents (this);
-        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
-        gtk_actor.name = "properties";
-        gtk_actor.opacity = 0;
-        gtk_actor.x_align = Clutter.ActorAlign.FILL;
-        gtk_actor.y_align = Clutter.ActorAlign.FILL;
-        gtk_actor.x_expand = true;
-        gtk_actor.y_expand = true;
 
         show_all ();
     }

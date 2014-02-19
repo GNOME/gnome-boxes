@@ -12,12 +12,16 @@ private enum Boxes.WizardPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard.ui")]
 private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
+    // See FIXME on Topbar class
     public Clutter.Actor actor {
         get {
+            if (gtk_actor == null)
+                gtk_actor = new Clutter.Actor ();
             return gtk_actor;
         }
     }
-    private GtkClutter.Actor gtk_actor;
+
+    private Clutter.Actor gtk_actor;
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -527,15 +531,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
     }
 
     private void setup_ui () {
-        gtk_actor = new GtkClutter.Actor.with_contents (this);
-        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
-        gtk_actor.name = "wizard";
-        gtk_actor.opacity = 0;
-        gtk_actor.x_align = Clutter.ActorAlign.FILL;
-        gtk_actor.y_align = Clutter.ActorAlign.FILL;
-        gtk_actor.x_expand = true;
-        gtk_actor.y_expand = true;
-
         cancel_button = App.app.topbar.wizard_cancel_btn;
         cancel_button.clicked.connect (() => {
             destroy_machine ();

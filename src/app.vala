@@ -100,6 +100,8 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
+    private Gtk.Stack content_bin;
+    private Clutter.Actor content_bin_actor;
 
     private bool is_ready;
     public signal void ready ();
@@ -618,21 +620,20 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         hbox_actor.add_child (sidebar.actor);
 
-        var content_bin_actor = new Clutter.Actor ();
-        content_bin_actor.name = "content-bin";
+        content_bin = new Gtk.Stack ();
+        content_bin.vexpand = true;
+        content_bin.hexpand = true;
+        content_bin.add (wizard);
+        content_bin.add (properties);
+        content_bin_actor  = new GtkClutter.Actor.with_contents (content_bin);
         content_bin_actor.x_align = Clutter.ActorAlign.FILL;
         content_bin_actor.y_align = Clutter.ActorAlign.FILL;
         content_bin_actor.x_expand = true;
         content_bin_actor.y_expand = true;
-        var content_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
-                                                 Clutter.BinAlignment.START);
-        content_bin_actor.set_layout_manager (content_bin);
         hbox_actor.add_child (content_bin_actor);
 
         below_bin_actor.add_child (notificationbar.actor);
 
-        content_bin_actor.add (wizard.actor);
-        content_bin_actor.add (properties.actor);
         below_bin_actor.insert_child_below (empty_boxes.actor, notificationbar.actor);
 
         properties.actor.hide ();
@@ -659,6 +660,8 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         if (ui_state != UIState.COLLECTION)
             searchbar.visible = false;
 
+        content_bin_actor.visible = (ui_state == UIState.WIZARD || ui_state == UIState.PROPERTIES);
+
         switch (ui_state) {
         case UIState.COLLECTION:
             topbar.status = null;
@@ -678,8 +681,17 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             break;
 
         case UIState.CREDS:
+
+            break;
+
         case UIState.WIZARD:
+            content_bin.visible_child = wizard;
+
+            break;
+
         case UIState.PROPERTIES:
+            content_bin.visible_child = properties;
+
             break;
 
         case UIState.DISPLAY:
