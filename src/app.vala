@@ -85,8 +85,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public ClutterWidget embed;
     public Clutter.Stage stage;
     public Clutter.BinLayout stage_bin;
-    public Clutter.Actor overlay_bin_actor;
-    public Clutter.BinLayout overlay_bin;
     public CollectionItem current_item; // current object/vm manipulated
     public Searchbar searchbar;
     public Topbar topbar;
@@ -618,17 +616,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         hbox_actor.y_expand = true;
 
         below_bin_actor.add_child (hbox_actor);
-
-        overlay_bin_actor = new Clutter.Actor ();
-        overlay_bin_actor.name = "overlay-bin";
-        overlay_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
-                                             Clutter.BinAlignment.START);
-        overlay_bin_actor.set_layout_manager (overlay_bin);
-        overlay_bin_actor.x_align = Clutter.ActorAlign.FILL;
-        overlay_bin_actor.y_align = Clutter.ActorAlign.FILL;
-        overlay_bin_actor.x_expand = true;
-        overlay_bin_actor.y_expand = true;
-        below_bin_actor.add_child (overlay_bin_actor);
 
         sidebar_revealer = new Boxes.Revealer (false);
         sidebar_revealer.name = "sidebar-revealer";
