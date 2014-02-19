@@ -116,7 +116,6 @@ gnome_boxes_SOURCES =				\
 	os-database.vala 			\
 	properties.vala				\
 	remote-machine.vala			\
-	revealer.vala				\
 	searchbar.vala				\
 	selectionbar.vala			\
 	sidebar.vala				\
