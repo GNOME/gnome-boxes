@@ -5,78 +5,110 @@
     <property name="visible">True</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
-    <property name="halign">center</property>
-    <property name="valign">center</property>
+    <property name="halign">fill</property>
+    <property name="valign">fill</property>
     <style>
       <class name="dim-label"/>
     </style>
 
     <child>
-      <object class="GtkSpinner" id="spinner">
+      <object class="GtkBox" id="spinner-box">
         <property name="visible">True</property>
-        <property name="active">True</property>
-        <property name="width-request">32</property>
-        <property name="height-request">32</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="halign">fill</property>
+        <property name="valign">fill</property>
+        <style>
+          <class name="empty-boxes"/>
+        </style>
+
+        <child>
+          <object class="GtkSpinner" id="spinner">
+            <property name="visible">True</property>
+            <property name="active">True</property>
+            <property name="width-request">32</property>
+            <property name="height-request">32</property>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
       </object>
     </child>
 
     <child>
-      <object class="GtkGrid" id="grid">
+      <object class="GtkBox" id="grid_box">
         <property name="visible">True</property>
-        <property name="orientation">horizontal</property>
-        <property name="column-spacing">12</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
-        <property name="halign">center</property>
-        <property name="valign">center</property>
-        <property name="row-homogeneous">True</property>
+        <property name="halign">fill</property>
+        <property name="valign">fill</property>
         <style>
-          <class name="dim-label"/>
+          <class name="empty-boxes"/>
         </style>
 
         <child>
-          <object class="GtkImage" id="image">
+          <object class="GtkGrid" id="grid">
             <property name="visible">True</property>
-            <property name="icon-name">application-x-appliance-symbolic</property>
-            <property name="icon-size">6</property>
-            <property name="pixel-size">96</property>
+            <property name="orientation">horizontal</property>
+            <property name="column-spacing">12</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="row-homogeneous">True</property>
             <style>
-              <class name="boxes-empty-image"/>
+              <class name="dim-label"/>
             </style>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkGrid" id="labels_grid">
-            <property name="visible">True</property>
-            <property name="orientation">vertical</property>
 
             <child>
-              <object class="GtkLabel" id="no_boxes_found_label">
+              <object class="GtkImage" id="image">
                 <property name="visible">True</property>
-                <property name="use-markup">True</property>
-                <property name="halign">start</property>
-                <property name="vexpand">True</property>
-                <property name="label" translatable="yes">&lt;b&gt;&lt;span size=&quot;large&quot;&gt;No boxes found&lt;/span&gt;&lt;/b&gt;</property>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkLabel" id="instructions_label">
-                <property name="visible">True</property>
-                <property name="use-markup">True</property>
-                <property name="halign">start</property>
-                <property name="vexpand">True</property>
-                <property name="xalign">0</property>
-                <property name="max-width-chars">24</property>
-                <property name="wrap">True</property>
-                <property name="label" translatable="yes">Create one using the button on the top left.</property>
+                <property name="icon-name">application-x-appliance-symbolic</property>
+                <property name="icon-size">6</property>
+                <property name="pixel-size">96</property>
                 <style>
-                  <class name="boxes-empty-details-label"/>
+                  <class name="boxes-empty-image"/>
                 </style>
               </object>
             </child>
+
+            <child>
+              <object class="GtkGrid" id="labels_grid">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+
+                <child>
+                  <object class="GtkLabel" id="no_boxes_found_label">
+                    <property name="visible">True</property>
+                    <property name="use-markup">True</property>
+                    <property name="halign">start</property>
+                    <property name="vexpand">True</property>
+                    <property name="label" translatable="yes">&lt;b&gt;&lt;span size=&quot;large&quot;&gt;No boxes found&lt;/span&gt;&lt;/b&gt;</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel" id="instructions_label">
+                    <property name="visible">True</property>
+                    <property name="use-markup">True</property>
+                    <property name="halign">start</property>
+                    <property name="vexpand">True</property>
+                    <property name="xalign">0</property>
+                    <property name="max-width-chars">24</property>
+                    <property name="wrap">True</property>
+                    <property name="label" translatable="yes">Create one using the button on the top left.</property>
+                    <style>
+                      <class name="boxes-empty-details-label"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
         </child>
       </object>
     </child>

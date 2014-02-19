@@ -8,11 +8,18 @@ public enum Boxes.SelectionCriteria {
 }
 
 private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
-    public Clutter.Actor actor { get { return gtkactor; } }
+    // See FIXME on Topbar class
+    public Clutter.Actor actor {
+        get {
+            if (gtkactor == null)
+                gtkactor = new Clutter.Actor ();
+            return gtkactor;
+        }
+    }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    private GtkClutter.Actor gtkactor;
+    private Clutter.Actor gtkactor;
 
     private Category _category;
     public Category category {
@@ -284,16 +291,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             App.app.selection_mode = true;
         });
         show_all ();
-
-        gtkactor = new GtkClutter.Actor.with_contents (this);
-        gtkactor.get_widget ().get_style_context ().add_class ("boxes-bg");
-        gtkactor.name = "collection-view";
-        gtkactor.x_align = Clutter.ActorAlign.FILL;
-        gtkactor.y_align = Clutter.ActorAlign.FILL;
-        gtkactor.x_expand = true;
-        gtkactor.y_expand = true;
     }
-
 
     public void select (SelectionCriteria selection) {
         App.app.selection_mode = true;

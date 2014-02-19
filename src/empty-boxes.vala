@@ -2,24 +2,23 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/empty-boxes.ui")]
 private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
-    public Clutter.Actor actor { get { return gtk_actor; } }
+    // See FIXME on Topbar class
+    public Clutter.Actor actor {
+        get {
+            if (gtk_actor == null)
+                gtk_actor = new Clutter.Actor ();
+            return gtk_actor;
+        }
+    }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    private GtkClutter.Actor gtk_actor;
+    private Clutter.Actor gtk_actor;
 
     [GtkChild]
-    private Gtk.Grid grid;
+    private Gtk.Box grid_box;
 
     public EmptyBoxes () {
-        gtk_actor = new GtkClutter.Actor.with_contents (this);
-        gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
-        gtk_actor.opacity = 255;
-        gtk_actor.x_align = Clutter.ActorAlign.FILL;
-        gtk_actor.y_align = Clutter.ActorAlign.FILL;
-        gtk_actor.x_expand = true;
-        gtk_actor.y_expand = true;
-
         App.app.call_when_ready (on_app_ready);
     }
 
@@ -31,11 +30,16 @@ private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
     }
 
     private void update_visibility () {
-        var visible = ui_state == UIState.COLLECTION && App.app.collection.items.length == 0;
-        if (visible != gtk_actor.visible)
-            fade_actor (gtk_actor, visible? 255 : 0);
+        var visible = App.app.collection.items.length == 0;
+        if (visible && visible_child != grid_box)
+            visible_child = grid_box;
 
-        if (visible && visible_child != grid)
-            visible_child = grid;
+        if (ui_state != UIState.COLLECTION)
+            return;
+
+        if (visible)
+            App.app.below_bin.set_visible_child_name ("empty-boxes");
+        else
+            App.app.below_bin.set_visible_child_name ("collection-view");
     }
 }

@@ -100,8 +100,9 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
+    public Gtk.Stack below_bin;
     private Gtk.Stack content_bin;
-    private Clutter.Actor hbox_actor;
+    private Gtk.Box below_bin_hbox;
 
     private bool is_ready;
     public signal void ready ();
@@ -576,21 +577,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         stage.set_layout_manager (stage_bin);
         stage.name = "boxes-stage";
 
-        var background = new GtkClutter.Texture ();
-        background.name = "background";
-        try {
-            var pixbuf = load_asset ("boxes-dark.png");
-            background.set_from_pixbuf (pixbuf);
-        } catch (GLib.Error e) {
-            warning ("Failed to load asset 'boxes-dark.png': %s", e.message);
-        }
-        background.set_repeat (true, true);
-        background.x_align = Clutter.ActorAlign.FILL;
-        background.y_align = Clutter.ActorAlign.FILL;
-        background.x_expand = true;
-        background.y_expand = true;
-        stage.add_child (background);
-
         sidebar = new Sidebar ();
         view = new CollectionView ();
         topbar = new Topbar ();
@@ -600,27 +586,24 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         window.set_titlebar (topbar);
 
-        var below_bin_actor = new Clutter.Actor ();
+        below_bin = new Gtk.Stack ();
+        below_bin.transition_type = Gtk.StackTransitionType.CROSSFADE;
+        var below_bin_actor = new GtkClutter.Actor.with_contents (below_bin);
         below_bin_actor.name = "below-bin";
-        var below_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
-                                               Clutter.BinAlignment.START);
-        below_bin_actor.set_layout_manager (below_bin);
-
         below_bin_actor.x_expand = true;
         below_bin_actor.y_expand = true;
         stage.add_child (below_bin_actor);
 
-        below_bin_actor.add_child (view.actor);
+        below_bin.add_named (empty_boxes, "empty-boxes");
+        below_bin.add_named (view, "collection-view");
 
-        var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        hbox_actor = new GtkClutter.Actor.with_contents (hbox);
-        hbox_actor.name = "top-hbox";
-        hbox_actor.x_align = Clutter.ActorAlign.FILL;
-        hbox_actor.y_align = Clutter.ActorAlign.FILL;
-        hbox_actor.x_expand = true;
-        hbox_actor.y_expand = true;
+        below_bin_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        below_bin_hbox.halign = Gtk.Align.FILL;
+        below_bin_hbox.valign = Gtk.Align.FILL;
+        below_bin_hbox.hexpand = true;
+        below_bin_hbox.vexpand = true;
 
-        below_bin_actor.add_child (hbox_actor);
+        below_bin.add_named (below_bin_hbox, "below-bin-hbox");
 
         content_bin = new Gtk.Stack ();
         content_bin.vexpand = true;
@@ -628,12 +611,11 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         content_bin.add (wizard);
         content_bin.add (properties);
 
-        hbox.add (sidebar);
-        hbox.add (content_bin);
-        hbox.show_all ();
-        hbox_actor.hide ();
+        below_bin_hbox.add (sidebar);
+        below_bin_hbox.add (content_bin);
+        below_bin_hbox.show_all ();
 
-        below_bin_actor.add_child (empty_boxes.actor);
+        below_bin.show_all ();
 
         properties.actor.hide ();
 
@@ -659,10 +641,12 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         if (ui_state != UIState.COLLECTION)
             searchbar.visible = false;
 
-        hbox_actor.visible = (ui_state == UIState.WIZARD || ui_state == UIState.PROPERTIES);
-
         switch (ui_state) {
         case UIState.COLLECTION:
+            if (collection.items.length != 0)
+                below_bin.visible_child = view;
+            else
+                below_bin.visible_child = empty_boxes;
             topbar.status = null;
             status_bind = null;
             if (current_item is Machine) {
@@ -684,11 +668,13 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             break;
 
         case UIState.WIZARD:
+            below_bin.visible_child = below_bin_hbox;
             content_bin.visible_child = wizard;
 
             break;
 
         case UIState.PROPERTIES:
+            below_bin.visible_child = below_bin_hbox;
             content_bin.visible_child = properties;
 
             break;
