@@ -10,13 +10,15 @@ private enum Boxes.SidebarPage {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/sidebar.ui")]
-private class Boxes.Sidebar: Gtk.Notebook, Boxes.UI {
+private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
     public Clutter.Actor actor { get { return gtk_actor; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
     private GtkClutter.Actor gtk_actor; // the sidebar box
 
+    [GtkChild]
+    private Gtk.Notebook notebook;
     [GtkChild]
     private Gtk.Box wizard_vbox;
     [GtkChild]
@@ -81,12 +83,12 @@ private class Boxes.Sidebar: Gtk.Notebook, Boxes.UI {
         switch (ui_state) {
         case UIState.WIZARD:
         case UIState.PROPERTIES:
-            App.app.sidebar_revealer.reveal ();
-            page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
+            reveal_child = true;
+            notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
 
         default:
-            App.app.sidebar_revealer.unreveal ();
+            reveal_child = false;
             break;
         }
     }
@@ -97,7 +99,6 @@ private class Boxes.Sidebar: Gtk.Notebook, Boxes.UI {
         gtk_actor = new GtkClutter.Actor.with_contents (this);
         gtk_actor.get_widget ().get_style_context ().add_class ("boxes-bg");
         gtk_actor.name = "sidebar";
-        gtk_actor.x_expand = true;
         gtk_actor.y_expand = true;
     }
 

@@ -89,7 +89,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public Searchbar searchbar;
     public Topbar topbar;
     public Notificationbar notificationbar;
-    public Boxes.Revealer sidebar_revealer;
     public Sidebar sidebar;
     public Selectionbar selectionbar;
     public uint duration;
@@ -617,12 +616,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         below_bin_actor.add_child (hbox_actor);
 
-        sidebar_revealer = new Boxes.Revealer (false);
-        sidebar_revealer.name = "sidebar-revealer";
-        sidebar_revealer.y_expand = true;
-        hbox_actor.add_child (sidebar_revealer);
-        sidebar_revealer.unreveal ();
-        sidebar_revealer.add (sidebar.actor);
+        hbox_actor.add_child (sidebar.actor);
 
         var content_bin_actor = new Clutter.Actor ();
         content_bin_actor.name = "content-bin";
