@@ -30,17 +30,6 @@ namespace Boxes {
         return builder;
     }
 
-    public Clutter.Color gdk_rgba_to_clutter_color (Gdk.RGBA gdk_rgba) {
-        Clutter.Color color = {
-            (uint8) (gdk_rgba.red * 255).clamp (0, 255),
-            (uint8) (gdk_rgba.green * 255).clamp (0, 255),
-            (uint8) (gdk_rgba.blue * 255).clamp (0, 255),
-            (uint8) (gdk_rgba.alpha * 255).clamp (0, 255)
-        };
-
-        return color;
-    }
-
     public Gdk.RGBA get_boxes_bg_color () {
         var style = new Gtk.StyleContext ();
         var path = new Gtk.WidgetPath ();
@@ -76,97 +65,6 @@ namespace Boxes {
             throw new Boxes.Error.INVALID ("Failed to extract xpath " + xpath);
 
         return obj->stringval;
-    }
-
-    // This can be used to ensure a specific initial allocation for a previously unallocated actor
-    public void allocate_actor_no_animation (Clutter.Actor actor,
-                                             float x, float y,
-                                             float width, float height) {
-        var old_duration = actor.get_easing_duration ();
-        actor.set_easing_duration (0);
-        Clutter.ActorBox box = { x, y, x + width, y + height};
-        actor.allocate (box, 0);
-        actor.set_easing_duration (old_duration);
-    }
-
-    public void fade_actor (Clutter.Actor actor, uint opacity) {
-        if (opacity != 0)
-            actor.show ();
-
-        // Don't react to use input while fading out
-        actor.set_reactive (opacity == 255);
-
-        var transition = actor.get_transition ("animate-opacity");
-        if (transition != null)
-            actor.remove_transition ("animate-opacity");
-
-        transition = new Clutter.PropertyTransition ("opacity");
-        var value = GLib.Value (typeof (uint));
-        value.set_uint (opacity);
-        transition.set_to_value (value);
-        transition.set_duration (App.app.duration);
-        transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
-        transition.completed.connect (() => {
-            actor.remove_transition ("animate-opacity");
-            actor.visible = actor.opacity != 0;
-        });
-        actor.add_transition ("animate-opacity", transition);
-    }
-
-    public Clutter.Transition animate_actor_geometry (float x, float y, float width, float height) {
-        var transition = new Clutter.TransitionGroup ();
-        transition.set_duration (App.app.duration);
-        transition.set_progress_mode (Clutter.AnimationMode.EASE_OUT_QUAD);
-
-        var value = GLib.Value (typeof (float));
-        if (x > 0) {
-            var x_transition = new Clutter.PropertyTransition ("x");
-            value.set_float (x);
-            x_transition.set_to_value (value);
-            transition.add_transition (x_transition);
-        }
-
-        if (y > 0) {
-            var y_transition = new Clutter.PropertyTransition ("y");
-            value.set_float (y);
-            transition.set_to_value (value);
-            transition.add_transition (y_transition);
-        }
-
-        if (width > 0) {
-            var width_transition = new Clutter.PropertyTransition ("width");
-            value.set_float (width);
-            transition.set_to_value (value);
-            transition.add_transition (width_transition);
-        }
-
-        if (height > 0) {
-            var height_transition = new Clutter.PropertyTransition ("height");
-            value.set_float (height);
-            transition.set_to_value (value);
-            transition.add_transition (height_transition);
-        }
-
-        return transition as Clutter.Transition;
-    }
-
-    public delegate void ActorFunc (Clutter.Actor actor);
-
-    public void actor_add (Clutter.Actor actor, Clutter.Actor container) {
-        if (actor.get_parent () == container)
-            return;
-
-        actor_remove (actor);
-        container.add_child (actor);
-    }
-
-    public void actor_remove (Clutter.Actor actor) {
-        var container = actor.get_parent ();
-
-        if (container == null)
-            return;
-
-        container.remove_child (actor);
     }
 
     public void widget_remove (Gtk.Widget widget) {
