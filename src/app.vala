@@ -325,7 +325,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             call_when_ready (() => {
                 searchbar.text = string.joinv (" ", opt_search);
                 if (ui_state == UIState.COLLECTION)
-                    searchbar.visible = true;
+                    searchbar.search_mode_enabled = true;
             });
         }
 
@@ -619,7 +619,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             set_main_ui_state ();
 
         if (ui_state != UIState.COLLECTION)
-            searchbar.visible = false;
+            searchbar.search_mode_enabled = false;
 
         switch (ui_state) {
         case UIState.COLLECTION:
