@@ -2,18 +2,8 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/empty-boxes.ui")]
 private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
-    // See FIXME on Topbar class
-    public Clutter.Actor actor {
-        get {
-            if (gtk_actor == null)
-                gtk_actor = new Clutter.Actor ();
-            return gtk_actor;
-        }
-    }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-
-    private Clutter.Actor gtk_actor;
 
     [GtkChild]
     private Gtk.Box grid_box;

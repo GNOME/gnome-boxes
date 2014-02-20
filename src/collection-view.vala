@@ -1,5 +1,4 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
-using Clutter;
 
 public enum Boxes.SelectionCriteria {
     ALL,
@@ -8,18 +7,8 @@ public enum Boxes.SelectionCriteria {
 }
 
 private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
-    // See FIXME on Topbar class
-    public Clutter.Actor actor {
-        get {
-            if (gtkactor == null)
-                gtkactor = new Clutter.Actor ();
-            return gtkactor;
-        }
-    }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-
-    private Clutter.Actor gtkactor;
 
     private Category _category;
     public Category category {
@@ -58,7 +47,6 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private void ui_state_changed () {
         if (ui_state == UIState.COLLECTION)
             unselect_all ();
-        fade_actor (actor, ui_state == UIState.COLLECTION ? 255 : 0);
     }
 
     private void update_screenshot (Gtk.TreeIter iter) {

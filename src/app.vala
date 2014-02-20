@@ -48,7 +48,6 @@ private class Boxes.Application: Gtk.Application {
 
 private class Boxes.App: GLib.Object, Boxes.UI {
     public static App app;
-    public Clutter.Actor actor { get { return null; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
     public Gtk.ApplicationWindow window;
@@ -600,8 +599,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         below_bin_hbox.show_all ();
 
         below_bin.show_all ();
-
-        properties.actor.hide ();
 
         main_vbox.show_all ();
 

@@ -12,16 +12,6 @@ private enum Boxes.WizardPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard.ui")]
 private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
-    // See FIXME on Topbar class
-    public Clutter.Actor actor {
-        get {
-            if (gtk_actor == null)
-                gtk_actor = new Clutter.Actor ();
-            return gtk_actor;
-        }
-    }
-
-    private Clutter.Actor gtk_actor;
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -577,8 +567,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
                 page = WizardPage.INTRODUCTION;
             }
         }
-
-        fade_actor (actor, ui_state == UIState.WIZARD ? 255 : 0);
     }
 
     private void destroy_machine () {

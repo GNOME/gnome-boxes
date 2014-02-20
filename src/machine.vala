@@ -1,19 +1,8 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
-using Clutter;
 using Gdk;
 using Gtk;
 
 private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
-    // Check FIXME on Topbar.actor
-    public override Clutter.Actor item_actor {
-        get {
-            if (machine_actor == null)
-                machine_actor = new Clutter.Actor ();
-            return machine_actor;
-        }
-    }
-    private Clutter.Actor machine_actor;
-
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }

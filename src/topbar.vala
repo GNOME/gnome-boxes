@@ -1,5 +1,4 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
-using Clutter;
 using Gtk;
 
 public enum Boxes.TopbarPage {
@@ -12,18 +11,6 @@ public enum Boxes.TopbarPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/topbar.ui")]
 private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
-    // FIXME: This is really redundant now that App is using widget property
-    // instead but parent Boxes.UI currently requires an actor. Hopefully
-    // soon we can move more towards new Gtk classes and Boxes.UI requires
-    // a widget property instead.
-    public Clutter.Actor actor {
-        get {
-            if (gtk_actor == null)
-                gtk_actor = new Clutter.Actor ();
-            return gtk_actor;
-        }
-    }
-    private Clutter.Actor gtk_actor;
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 

@@ -3,8 +3,6 @@
 private abstract class Boxes.CollectionItem: GLib.Object, Boxes.UI {
     public string name { set; get; }
 
-    public Clutter.Actor actor { get { return item_actor; } }
-    public abstract Clutter.Actor item_actor { get; }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 

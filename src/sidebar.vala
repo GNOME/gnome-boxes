@@ -1,7 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 using Gdk;
-using Clutter;
 
 private enum Boxes.SidebarPage {
     COLLECTION,
@@ -11,18 +10,8 @@ private enum Boxes.SidebarPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/sidebar.ui")]
 private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
-    // See FIXME on Topbar class
-    public Clutter.Actor actor {
-        get {
-            if (gtk_actor == null)
-                gtk_actor = new Clutter.Actor ();
-            return gtk_actor;
-        }
-    }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-
-    private Clutter.Actor gtk_actor; // the sidebar box
 
     [GtkChild]
     private Gtk.Notebook notebook;

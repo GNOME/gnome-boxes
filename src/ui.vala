@@ -11,8 +11,6 @@ private enum Boxes.UIState {
 }
 
 private interface Boxes.UI: GLib.Object {
-    public abstract Clutter.Actor actor { get; }
-
     public abstract UIState previous_ui_state { get; protected set; }
     public abstract UIState ui_state { get; protected set; }
 
