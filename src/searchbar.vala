@@ -16,7 +16,9 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     private ulong key_handler_id;
 
     public Searchbar () {
-        key_handler_id = App.app.window.key_press_event.connect (on_app_key_pressed);
+        search_mode_enabled = false;
+
+        App.app.call_when_ready (on_app_ready);
     }
 
     [GtkCallback]
@@ -39,6 +41,10 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     public string text {
         get { return entry.text; }
         set { entry.set_text (value); }
+    }
+
+    private void on_app_ready () {
+        key_handler_id = App.app.window.key_press_event.connect (on_app_key_pressed);
     }
 
     private bool on_app_key_pressed (Gtk.Widget widget, Gdk.EventKey event) {
