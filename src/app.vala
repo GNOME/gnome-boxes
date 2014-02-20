@@ -48,7 +48,7 @@ private class Boxes.Application: Gtk.Application {
 
 private class Boxes.App: GLib.Object, Boxes.UI {
     public static App app;
-    public Clutter.Actor actor { get { return stage; } }
+    public Clutter.Actor actor { get { return null; } }
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
     public Gtk.ApplicationWindow window;
@@ -82,9 +82,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
     private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
     private Gtk.Stack stack;
-    public ClutterWidget embed;
-    public Clutter.Stage stage;
-    public Clutter.BinLayout stage_bin;
     public CollectionItem current_item; // current object/vm manipulated
     public Searchbar searchbar;
     public Topbar topbar;
@@ -554,9 +551,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         var notification_overlay = new Gtk.Overlay ();
         notification_overlay.add_overlay (notificationbar);
 
-        embed = new ClutterWidget ();
-        notification_overlay.add (embed);
-
         vbox.add (notification_overlay);
 
         display_page = new DisplayPage ();
@@ -565,17 +559,9 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         selectionbar = new Selectionbar ();
         main_vbox.add (selectionbar);
 
-        stage = embed.get_stage () as Clutter.Stage;
-        stage.set_background_color (gdk_rgba_to_clutter_color (get_boxes_bg_color ()));
-
         window.delete_event.connect (() => { return quit (); });
 
         window.key_press_event.connect_after (on_key_pressed);
-
-        stage_bin = new Clutter.BinLayout (Clutter.BinAlignment.START,
-                                           Clutter.BinAlignment.START);
-        stage.set_layout_manager (stage_bin);
-        stage.name = "boxes-stage";
 
         sidebar = new Sidebar ();
         view = new CollectionView ();
@@ -588,11 +574,9 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         below_bin = new Gtk.Stack ();
         below_bin.transition_type = Gtk.StackTransitionType.CROSSFADE;
-        var below_bin_actor = new GtkClutter.Actor.with_contents (below_bin);
-        below_bin_actor.name = "below-bin";
-        below_bin_actor.x_expand = true;
-        below_bin_actor.y_expand = true;
-        stage.add_child (below_bin_actor);
+        below_bin.hexpand = true;
+        below_bin.vexpand = true;
+        notification_overlay.add (below_bin);
 
         below_bin.add_named (empty_boxes, "empty-boxes");
         below_bin.add_named (view, "collection-view");
