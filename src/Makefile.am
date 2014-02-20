@@ -90,7 +90,6 @@ bin_PROGRAMS = gnome-boxes
 
 gnome_boxes_SOURCES =				\
 	$(BUILT_SOURCES)			\
-	clutter-widget.vala			\
 	app.vala				\
 	auth-notification.vala			\
 	collection-view.vala			\
