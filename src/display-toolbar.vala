@@ -61,13 +61,9 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         if (!handle_drag)
             return res;
 
-        // With the current GdkEvent bindings this is the only way to
-        // upcast a GdkEventButton to a GdkEvent (which we need for
-        // the triggerts_context_menu() method call.
-        // TODO: Fix this when vala bindings are corrected
-        Gdk.Event *base_event = (Gdk.Event *)(&event);
+        Gdk.Event base_event = (Gdk.Event) event;
 
-        if (!res && !base_event->triggers_context_menu ()) {
+        if (!res && !base_event.triggers_context_menu ()) {
             button_down = true;
             button_down_button = event.button;
             button_down_x = (int) event.x;

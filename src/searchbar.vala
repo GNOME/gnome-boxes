@@ -45,6 +45,6 @@ private class Boxes.Searchbar: Gtk.SearchBar {
         if (App.app.ui_state != UIState.COLLECTION)
             return false;
 
-        return handle_event ((Gdk.Event *) (&event));
+        return handle_event ((Gdk.Event) event);
     }
 }
