@@ -1,5 +1,4 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
-using Clutter;
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/selectionbar.ui")]

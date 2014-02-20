@@ -1,7 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 using Gdk;
-using Clutter;
 
 private abstract class Boxes.Broker : GLib.Object {
     // Overriding subclass should chain-up at the end of its implementation
@@ -188,7 +187,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public void startup () {
         string [] args = {};
         unowned string [] args2 = args;
-        GtkClutter.init (ref args2);
+        Gtk.init (ref args2);
 
         var menu = new GLib.Menu ();
         menu.append (_("New"), "app.new");
