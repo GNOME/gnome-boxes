@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Pau Iranzo <paugnu@gmail.com>, 2012.
 # Jordi Serratosa <jordis@softcatala.cat>, 2012.
-# Gil Forcada <gilforcada@guifi.net>, 2012, 2013.
+# Gil Forcada <gilforcada@guifi.net>, 2012, 2013, 2014.
 # Josep Sànchez <papapep@gmx.com>, 2013.
 #
 msgid ""
@@ -11,9 +11,9 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-13 17:50+0000\n"
-"PO-Revision-Date: 2013-09-15 20:46+0200\n"
-"Last-Translator: Josep Sànchez <papapep@gmx.com>\n"
+"POT-Creation-Date: 2014-02-21 19:05+0000\n"
+"PO-Revision-Date: 2014-02-22 00:07+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -185,6 +185,10 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "S'ha suprimit %u màquina"
 msgstr[1] "S'han suprimit %u màquines"
 
+#: ../src/app.vala:866
+msgid "_Undo"
+msgstr "_Desfés"
+
 #: ../src/app.vala:933
 #, c-format
 msgid ""
@@ -273,6 +277,8 @@ msgstr "S'ha produït un error en el desat: %s"
 msgid "Protocol"
 msgstr "Protocol"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -789,6 +795,7 @@ msgstr ""
 msgid "Will add a single box."
 msgstr "Afegirà una màquina única."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Accés d'escriptori"
@@ -812,6 +819,7 @@ msgstr ""
 "No s'ha pogut analitzar el medi d'instal·lació. Potser el medi "
 "d'instal·lació és corromput o incomplet."
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "S'ha produït un error en la configuració de la màquina"
