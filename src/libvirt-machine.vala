@@ -444,8 +444,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                                                 Gtk.MessageType.QUESTION,
                                                 Gtk.ButtonsType.NONE,
                                                 _("When you force shutdown, the box may lose data."));
-            dialog.add_buttons (_("Cancel"), Gtk.ResponseType.CANCEL,
-                                _("Shutdown"), Gtk.ResponseType.OK);
+            dialog.add_buttons (_("_Cancel"), Gtk.ResponseType.CANCEL,
+                                _("_Shutdown"), Gtk.ResponseType.OK);
             var response = dialog.run ();
             dialog.destroy ();
 
