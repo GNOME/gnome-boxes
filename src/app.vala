@@ -533,6 +533,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         window.add (main_vbox);
 
         stack = new Gtk.Stack ();
+        stack.homogeneous = false;
         main_vbox.add (stack);
 
         var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -571,6 +572,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         window.set_titlebar (topbar);
 
         below_bin = new Gtk.Stack ();
+        below_bin.homogeneous = false;
         below_bin.transition_type = Gtk.StackTransitionType.CROSSFADE;
         below_bin.hexpand = true;
         below_bin.vexpand = true;
@@ -588,6 +590,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         below_bin.add_named (below_bin_hbox, "below-bin-hbox");
 
         content_bin = new Gtk.Stack ();
+        content_bin.homogeneous = false;
         content_bin.vexpand = true;
         content_bin.hexpand = true;
         content_bin.add (wizard);
