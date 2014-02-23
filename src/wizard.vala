@@ -130,6 +130,9 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
     }
 
     private void wizard_source_update_next () {
+        if (page != WizardPage.SOURCE)
+            return;
+
         next_button.sensitive = false;
 
         switch (wizard_source.page) {
