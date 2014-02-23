@@ -588,6 +588,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         below_bin.add_named (below_bin_hbox, "below-bin-hbox");
 
         content_bin = new Gtk.Stack ();
+        content_bin.transition_type = Gtk.StackTransitionType.SLIDE_LEFT;
         content_bin.homogeneous = false;
         content_bin.vexpand = true;
         content_bin.hexpand = true;
