@@ -68,13 +68,10 @@ private class Boxes.App: GLib.Object, Boxes.UI {
                 return AppPage.MAIN;
         }
         set {
-            if (value == AppPage.DISPLAY) {
-                stack.transition_type = Gtk.StackTransitionType.SLIDE_RIGHT;
+            if (value == AppPage.DISPLAY)
                 stack.set_visible_child_name ("display-page");
-            } else {
-                stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT;
+            else
                 stack.set_visible_child_name ("main-page");
-            }
         }
     }
 
@@ -534,6 +531,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         stack = new Gtk.Stack ();
         stack.homogeneous = false;
+        stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
         main_vbox.add (stack);
 
         var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
