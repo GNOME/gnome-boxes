@@ -98,7 +98,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
         filter = new Boxes.CollectionFilter ();
         var action = new GLib.SimpleAction ("quit", null);
-        action.activate.connect (() => { quit (); });
+        action.activate.connect (() => { quit_app (); });
         add_action (action);
 
         action = new GLib.SimpleAction ("new", null);
@@ -314,6 +314,18 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         return 0;
     }
 
+    private bool quit_app () {
+        window.hide ();
+
+        Idle.add (() => {
+            quit ();
+
+            return false;
+        });
+
+        return true;
+    }
+
     public override void shutdown () {
         base.shutdown ();
 
@@ -458,6 +470,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         window = new Gtk.ApplicationWindow (this);
         window.show_menubar = false;
+        window.delete_event.connect (() => { return quit_app (); });
 
         // restore window geometry/position
         var size = settings.get_value ("window-size");
@@ -762,11 +775,11 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
                selection_mode = false;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            quit ();
+            quit_app ();
             return true;
         } else if (event.keyval == Gdk.Key.a &&
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            quit ();
+            quit_app ();
             return true;
         }
 
