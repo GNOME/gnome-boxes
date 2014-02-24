@@ -83,7 +83,6 @@ public int main (string[] args) {
 
     var exit_status = app.run (args);
 
-    app.shutdown ();
     app.suspend_machines ();
 
     return exit_status;

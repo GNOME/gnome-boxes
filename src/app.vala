@@ -22,30 +22,7 @@ private enum Boxes.AppPage {
     DISPLAY
 }
 
-// Ideally Boxes.App should inherit from, Gtk.Application, but we can't also inherit from Boxes.UI,
-// so we make it a separate object that calls into Boxes.App
-private class Boxes.Application: Gtk.Application {
-    public Application () {
-        application_id = "org.gnome.Boxes";
-        flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
-    }
-
-    public override void startup () {
-        base.startup ();
-        App.app.startup ();
-    }
-
-    public override void activate () {
-        base.activate ();
-        App.app.activate ();
-    }
-
-    public override int command_line (GLib.ApplicationCommandLine cmdline) {
-        return App.app.command_line (cmdline);
-    }
-}
-
-private class Boxes.App: GLib.Object, Boxes.UI {
+private class Boxes.App: Gtk.Application, Boxes.UI {
     public static App app;
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -99,7 +76,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     private bool is_ready;
     public signal void ready ();
     public signal void item_selected (CollectionItem item);
-    private Boxes.Application application;
     public CollectionView view;
 
     private HashTable<string,Broker> brokers;
@@ -113,31 +89,33 @@ private class Boxes.App: GLib.Object, Boxes.UI {
     public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
+        application_id = "org.gnome.Boxes";
+        flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
+
         app = this;
-        application = new Boxes.Application ();
         settings = new GLib.Settings ("org.gnome.boxes");
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
         filter = new Boxes.CollectionFilter ();
         var action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => { quit (); });
-        application.add_action (action);
+        add_action (action);
 
         action = new GLib.SimpleAction ("new", null);
         action.activate.connect (() => { set_state (UIState.WIZARD); });
-        application.add_action (action);
+        add_action (action);
 
         action = new GLib.SimpleAction ("select-all", null);
         action.activate.connect (() => { view.select (SelectionCriteria.ALL); });
-        application.add_action (action);
+        add_action (action);
 
         action = new GLib.SimpleAction ("select-running", null);
         action.activate.connect (() => { view.select (SelectionCriteria.RUNNING); });
-        application.add_action (action);
+        add_action (action);
 
         action = new GLib.SimpleAction ("select-none", null);
         action.activate.connect (() => { view.select (SelectionCriteria.NONE); });
-        application.add_action (action);
+        add_action (action);
 
         action = new GLib.SimpleAction ("help", null);
         action.activate.connect (() => {
@@ -149,7 +127,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
                 warning ("Failed to display help: %s", e.message);
             }
         });
-        application.add_action (action);
+        add_action (action);
 
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
@@ -176,12 +154,14 @@ private class Boxes.App: GLib.Object, Boxes.UI {
                                    "website", "http://live.gnome.org/Boxes",
                                    "wrap-license", true);
         });
-        application.add_action (action);
+        add_action (action);
 
         notify["ui-state"].connect (ui_state_changed);
     }
 
-    public void startup () {
+    public override void startup () {
+        base.startup ();
+
         string [] args = {};
         unowned string [] args2 = args;
         Gtk.init (ref args2);
@@ -196,7 +176,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         menu.append (_("About"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
-        application.set_app_menu (menu);
+        set_app_menu (menu);
 
         collection = new Collection ();
         duration = settings.get_int ("animation-duration");
@@ -235,7 +215,9 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         });
     }
 
-    public void activate () {
+    public override void activate () {
+        base.startup ();
+
         setup_ui ();
         window.present ();
     }
@@ -257,7 +239,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         { null }
     };
 
-    public int command_line (GLib.ApplicationCommandLine cmdline) {
+    public override int command_line (GLib.ApplicationCommandLine cmdline) {
         opt_fullscreen = false;
         opt_help = false;
         opt_open_uuid = null;
@@ -291,7 +273,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             return 1;
         }
 
-        application.activate ();
+        activate ();
 
         var app = this;
         if (opt_open_uuid != null) {
@@ -314,7 +296,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
                 } else if (is_uri)
                     wizard.open_with_uri (file.get_uri ());
                 else
-                    open (arg);
+                    open_name (arg);
             });
         }
 
@@ -332,18 +314,14 @@ private class Boxes.App: GLib.Object, Boxes.UI {
         return 0;
     }
 
-    public int run (string [] args) {
-        return application.run (args);
+    public override void shutdown () {
+        base.shutdown ();
+
+        notificationbar.cancel ();
+        wizard.cleanup ();
     }
 
-    // To be called to tell App to release the resources it's handling.
-    // Currently this only releases the GtkApplication we use, but
-    // more shutdown work could be done here in the future
-    public void shutdown () {
-        application = null;
-    }
-
-    public void open (string name) {
+    public void open_name (string name) {
         set_state (UIState.COLLECTION);
         // we don't want to show the collection items as it will
         // appear as a glitch when opening a box immediately
@@ -447,7 +425,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         if (default_connection == null) {
             printerr ("Missing or failing default libvirt connection\n");
-            application.release (); // will end application
+            release (); // will end application
         }
     }
 
@@ -477,7 +455,7 @@ private class Boxes.App: GLib.Object, Boxes.UI {
                                                   provider,
                                                   600);
 
-        window = new Gtk.ApplicationWindow (application);
+        window = new Gtk.ApplicationWindow (this);
         window.show_menubar = false;
 
         // restore window geometry/position
@@ -555,8 +533,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
         selectionbar = new Selectionbar ();
         main_vbox.add (selectionbar);
-
-        window.delete_event.connect (() => { return quit (); });
 
         window.key_press_event.connect_after (on_key_pressed);
 
@@ -711,14 +687,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
             context.iteration (true);
 
         debug ("Running boxes suspended");
-    }
-
-    public bool quit () {
-        notificationbar.cancel ();
-        wizard.cleanup ();
-        window.destroy ();
-
-        return false;
     }
 
     private bool _selection_mode;
