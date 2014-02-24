@@ -715,7 +715,6 @@ private class Boxes.App: GLib.Object, Boxes.UI {
 
     public bool quit () {
         notificationbar.cancel ();
-        save_window_geometry ();
         wizard.cleanup ();
         window.destroy ();
 
