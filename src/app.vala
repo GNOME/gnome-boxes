@@ -319,6 +319,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         notificationbar.cancel ();
         wizard.cleanup ();
+        suspend_machines ();
     }
 
     public void open_name (string name) {
@@ -652,7 +653,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
             current_item.set_state (ui_state);
     }
 
-    public void suspend_machines () {
+    private void suspend_machines () {
         // if we are not the main Boxes instance, 'collection' won't
         // be set as it's created in GtkApplication::startup()
         if (collection == null)
