@@ -216,7 +216,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     }
 
     public override void activate () {
-        base.startup ();
+        base.activate ();
 
         setup_ui ();
         window.present ();
