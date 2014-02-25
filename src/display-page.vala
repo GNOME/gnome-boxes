@@ -35,11 +35,11 @@ private class Boxes.DisplayPage: Gtk.Box {
     private ulong display_can_grab_id;
     private ulong display_grabbed_id;
 
-    public DisplayPage () {
-        overlay_toolbar_invisible_timeout = App.app.duration;
+    public void setup_ui () {
+        overlay_toolbar_invisible_timeout = App.window.duration;
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
 
-        App.app.window.window_state_event.connect ((event) => {
+        App.window.window_state_event.connect ((event) => {
             update_toolbar_visible ();
 
             return false;
@@ -54,7 +54,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
 
      private void update_toolbar_visible() {
-         if (App.app.fullscreen && can_grab_mouse)
+         if (App.window.fullscreened && can_grab_mouse)
              toolbar.visible = true;
          else
              toolbar.visible = false;
@@ -122,7 +122,7 @@ private class Boxes.DisplayPage: Gtk.Box {
         Idle.add (() => {
             update_toolbar_visible ();
             overlay_toolbar_invisible_timeout = 1000; // 1 seconds
-            set_overlay_toolbar_visible (App.app.fullscreen);
+            set_overlay_toolbar_visible (App.window.fullscreened);
 
             return false;
         });
@@ -142,7 +142,7 @@ private class Boxes.DisplayPage: Gtk.Box {
             return false;
         });
 
-        App.app.page = Boxes.AppPage.DISPLAY;
+        App.window.page = Boxes.AppPage.DISPLAY;
         widget.grab_focus ();
     }
 
@@ -172,7 +172,7 @@ private class Boxes.DisplayPage: Gtk.Box {
 
     [GtkCallback]
     private bool on_event_box_event (Gdk.Event event) {
-        if (App.app.fullscreen && event.type == EventType.MOTION_NOTIFY) {
+        if (App.window.fullscreened && event.type == EventType.MOTION_NOTIFY) {
             var y = event.motion.y;
             if (y <= 0 && toolbar_show_id == 0) {
                 toolbar_event_stop ();
@@ -183,7 +183,7 @@ private class Boxes.DisplayPage: Gtk.Box {
                       ModifierType.BUTTON1_MASK | ModifierType.BUTTON2_MASK |
                       ModifierType.BUTTON3_MASK | ModifierType.BUTTON4_MASK |
                       ModifierType.BUTTON5_MASK)) == 0) {
-                    toolbar_show_id = Timeout.add (App.app.duration, () => {
+                    toolbar_show_id = Timeout.add (App.window.duration, () => {
                         set_overlay_toolbar_visible (true);
                         toolbar_show_id = 0;
                         return false;
@@ -194,7 +194,7 @@ private class Boxes.DisplayPage: Gtk.Box {
                 toolbar_hide_id = Timeout.add (overlay_toolbar_invisible_timeout, () => {
                     set_overlay_toolbar_visible (false);
                     toolbar_hide_id = 0;
-                    overlay_toolbar_invisible_timeout = App.app.duration;
+                    overlay_toolbar_invisible_timeout = App.window.duration;
                     return false;
                 });
             }

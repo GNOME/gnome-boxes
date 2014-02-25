@@ -6,7 +6,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
 
     GLib.List<Widget> active_notifications;
 
-    public Notificationbar () {
+    construct {
         valign = Gtk.Align.START;
         halign = Gtk.Align.CENTER;
         get_style_context ().add_class ("boxes-bg");
@@ -78,10 +78,10 @@ private class Boxes.Notificationbar: Gtk.Grid {
     }
 
     private void add_notification (Widget w) {
-        if (App.app.page == AppPage.MAIN)
+        if (App.window.page == AppPage.MAIN)
             attach (w, 0, 0, 1, 1);
         else
-            App.app.display_page.add_notification (w);
+            App.window.display_page.add_notification (w);
     }
 
     private Gd.Notification display (string                         message,

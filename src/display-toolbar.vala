@@ -43,8 +43,8 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             props.get_style_context ().add_class ("raised");
         }
 
-        App.app.notify["fullscreen"].connect_after ( () => {
-            if (App.app.fullscreen)
+        App.app.notify["fullscreened"].connect_after ( () => {
+            if (App.window.fullscreened)
                 fullscreen_image.icon_name = "view-restore-symbolic";
             else
                 fullscreen_image.icon_name = "view-fullscreen-symbolic";
@@ -88,14 +88,14 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             // Break out when the dragged distance is 40 pixels
             if (dx * dx + dy * dy > 40 * 40) {
                 button_down = false;
-                App.app.fullscreen = false;
+                App.window.fullscreened = false;
 
                 var window = get_toplevel () as Gtk.Window;
                 int old_width;
                 window.get_size (out old_width, null);
 
                 ulong id = 0;
-                id = App.app.notify["fullscreen"].connect ( () => {
+                id = App.app.notify["fullscreened"].connect ( () => {
                     int root_x, root_y, width;
                     window.get_position (out root_x, out root_y);
                     window.get_window ().get_geometry (null, null, out width, null);
@@ -119,7 +119,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
     [GtkCallback]
     private void on_fullscreen_clicked () {
-        App.app.fullscreen = !App.app.fullscreen;
+        App.window.fullscreened = !App.window.fullscreened;
     }
 
     [GtkCallback]

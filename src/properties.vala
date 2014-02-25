@@ -101,7 +101,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
         }
     }
 
-    public Properties () {
+    construct {
         notify["ui-state"].connect (ui_state_changed);
         setup_ui ();
     }
@@ -115,14 +115,14 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
     }
 
     private void populate () {
-        App.app.sidebar.props_listmodel.clear ();
+        App.window.sidebar.props_listmodel.clear ();
         for (var i = 0; i < PropertiesPage.LAST; i++)
             remove_page (-1);
 
         var machine = App.app.current_item as Machine;
         var libvirt_machine = App.app.current_item as LibvirtMachine;
 
-        App.app.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
+        App.window.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
 
         if (machine == null)
             return;
@@ -136,11 +136,11 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                 var current_page = page;
                 this.populate ();
                 var path = new Gtk.TreePath.from_indices (current_page);
-                App.app.sidebar.props_selection.select_path (path);
+                App.window.sidebar.props_selection.select_path (path);
                 page = current_page;
             });
 
-            list_append (App.app.sidebar.props_listmodel, page.name, !page.empty);
+            list_append (App.window.sidebar.props_listmodel, page.name, !page.empty);
         }
 
         PropertiesPage current_page;
@@ -151,7 +151,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             current_page = PropertiesPage.LOGIN;
 
         var path = new Gtk.TreePath.from_indices (current_page);
-        App.app.sidebar.props_selection.select_path (path);
+        App.window.sidebar.props_selection.select_path (path);
         set_current_page (current_page);
     }
 
@@ -170,15 +170,15 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
         }
 
         if (ui_state == UIState.PROPERTIES) {
-            restore_fullscreen = (previous_ui_state == UIState.DISPLAY && App.app.fullscreen);
-            App.app.fullscreen = false;
+            restore_fullscreen = (previous_ui_state == UIState.DISPLAY && App.window.fullscreened);
+            App.window.fullscreened = false;
 
             if (App.app.current_item is LibvirtMachine) {
                 var libvirt_machine = App.app.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
-                    App.app.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
-                    App.app.sidebar.net_graph.points = libvirt_machine.net_stats;
-                    App.app.sidebar.io_graph.points = libvirt_machine.io_stats;
+                    App.window.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
+                    App.window.sidebar.net_graph.points = libvirt_machine.net_stats;
+                    App.window.sidebar.io_graph.points = libvirt_machine.io_stats;
                 });
             }
 
@@ -194,13 +194,13 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             var machine = App.app.current_item as Machine;
             if (reboot_required && (machine.is_on () || machine.state == Machine.MachineState.SAVED)) {
                 var message = _("Changes require restart of '%s'.").printf (machine.name);
-                App.app.notificationbar.display_for_action (message, _("_Restart"), () => {
+                App.window.notificationbar.display_for_action (message, _("_Restart"), () => {
                     machine.restart ();
                 });
             }
 
             if (restore_fullscreen) {
-                App.app.fullscreen = true;
+                App.window.fullscreened = true;
                 restore_fullscreen = false;
             }
         }

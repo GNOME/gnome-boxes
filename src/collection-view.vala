@@ -33,7 +33,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private Gtk.ListStore store;
     private Gtk.TreeModelFilter model_filter;
 
-    public CollectionView () {
+    construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         setup_view ();
         notify["ui-state"].connect (ui_state_changed);

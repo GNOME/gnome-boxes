@@ -439,7 +439,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public void force_shutdown (bool confirm = true) {
         if (confirm) {
-            var dialog = new Gtk.MessageDialog (App.app.window,
+            var dialog = new Gtk.MessageDialog (App.window,
                                                 Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                 Gtk.MessageType.QUESTION,
                                                 Gtk.ButtonsType.NONE,
@@ -599,7 +599,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             };
 
             var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (name);
-            notification = App.app.notificationbar.display_for_action (message,
+            notification = App.window.notificationbar.display_for_action (message,
                                                                        _("_Shutdown"),
                                                                        (owned) really_force_shutdown,
                                                                        null,

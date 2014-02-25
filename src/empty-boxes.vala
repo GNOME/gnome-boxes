@@ -8,7 +8,7 @@ private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
     [GtkChild]
     private Gtk.Box grid_box;
 
-    public EmptyBoxes () {
+    construct {
         App.app.call_when_ready (on_app_ready);
     }
 
@@ -28,8 +28,8 @@ private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
             return;
 
         if (visible)
-            App.app.below_bin.set_visible_child_name ("empty-boxes");
+            App.window.below_bin.set_visible_child_name ("empty-boxes");
         else
-            App.app.below_bin.set_visible_child_name ("collection-view");
+            App.window.below_bin.set_visible_child_name ("collection-view");
     }
 }

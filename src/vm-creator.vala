@@ -45,7 +45,7 @@ private class Boxes.VMCreator {
         try {
             yield install_media.prepare_for_installation (name, cancellable);
         } catch (GLib.Error error) {
-            App.app.notificationbar.display_error (_("An error occurred during installation preparation. Express Install disabled."));
+            App.window.notificationbar.display_error (_("An error occurred during installation preparation. Express Install disabled."));
             debug("Disabling unattended installation: %s", error.message);
         }
 

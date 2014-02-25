@@ -39,14 +39,14 @@ private class Boxes.AuthNotification: Gd.Notification {
 
     [GtkCallback]
     private bool on_entry_focus_in_event () {
-        App.app.searchbar.enable_key_handler = false;
+        App.window.searchbar.enable_key_handler = false;
 
         return false;
     }
 
     [GtkCallback]
     private bool on_entry_focus_out_event () {
-        App.app.searchbar.enable_key_handler = true;
+        App.window.searchbar.enable_key_handler = true;
 
         return false;
     }

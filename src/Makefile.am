@@ -38,6 +38,7 @@ AM_VALAFLAGS =						\
 	--pkg linux					\
 	--pkg spice-client-gtk-3.0			\
 	--pkg tracker-sparql-$(TRACKER_VERSION)		\
+	--pkg gmodule-2.0				\
 	--gresources $(gresource_file)			\
 	$(VALA_DEBUG_FLAGS)			        \
 	$(NULL)
@@ -89,6 +90,7 @@ bin_PROGRAMS = gnome-boxes
 gnome_boxes_SOURCES =				\
 	$(BUILT_SOURCES)			\
 	app.vala				\
+	app-window.vala				\
 	auth-notification.vala			\
 	collection-view.vala			\
 	collection.vala				\

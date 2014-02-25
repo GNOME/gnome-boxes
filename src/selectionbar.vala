@@ -12,7 +12,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     [GtkChild]
     private Gtk.Button properties_btn;
 
-    public Selectionbar () {
+    construct {
         App.app.notify["selection-mode"].connect (() => {
             reveal_child = App.app.selection_mode;
         });
@@ -51,7 +51,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
                 try {
                     machine.save.end (result);
                 } catch (GLib.Error e) {
-                    App.app.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
+                    App.window.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
                 }
             });
         }

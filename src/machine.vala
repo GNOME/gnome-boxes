@@ -90,7 +90,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             var widget = display.get_display (0);
             widget_remove (widget);
             display.set_enable_inputs (widget, true);
-            App.app.display_page.show_display (display, widget);
+            App.window.display_page.show_display (display, widget);
             widget.grab_focus ();
 
             break;
@@ -126,7 +126,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             show_id = _display.show.connect ((id) => { show_display (); });
 
             hide_id = _display.hide.connect ((id) => {
-                App.app.display_page.remove_display ();
+                App.window.display_page.remove_display ();
             });
 
             got_error_id = _display.got_error.connect ((message) => {
@@ -138,7 +138,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 if (!stay_on_display && App.app.current_item == this)
                     App.app.set_state (Boxes.UIState.COLLECTION);
                 if (failed)
-                    App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+                    App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
             });
 
             need_password_id = _display.notify["need-password"].connect (handle_auth);
@@ -193,7 +193,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (screenshot_id != 0)
                 return;
             update_screenshot.begin (false, true);
-            var interval = App.app.settings.get_int ("screenshot-interval");
+            var interval = App.window.settings.get_int ("screenshot-interval");
             screenshot_id = Timeout.add_seconds (interval, () => {
                 update_screenshot.begin ();
 
@@ -270,7 +270,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             }
         }
 
-        App.app.display_page.remove_display ();
+        App.window.display_page.remove_display ();
         if (!display.should_keep_alive ()) {
             display.disconnect_it ();
             display = null;
@@ -368,7 +368,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-            App.app.sidebar.screenshot.set_from_pixbuf (pixbuf);
+            App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
@@ -500,7 +500,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
         case Boxes.UIState.DISPLAY:
             if (previous_ui_state == UIState.PROPERTIES)
-                App.app.page = Boxes.AppPage.DISPLAY;
+                App.window.page = Boxes.AppPage.DISPLAY;
 
             break;
 
@@ -518,7 +518,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             yield connect_display (flags);
         } catch (Boxes.Error.RESTORE_FAILED e) {
             var message = _("'%s' could not be restored from disk\nTry without saved state?").printf (name);
-            var notification = App.app.notificationbar.display_for_action (message, _("Restart"), () => {
+            var notification = App.window.notificationbar.display_for_action (message, _("Restart"), () => {
                 try_connect_display.begin (flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
             });
             notification.dismissed.connect (() => {
@@ -527,7 +527,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         } catch (GLib.Error e) {
             debug ("connect display failed: %s", e.message);
             App.app.set_state (UIState.COLLECTION);
-            App.app.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+            App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
         }
     }
 
@@ -557,10 +557,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
         // Translators: %s => name of launched box
         var auth_string = _("'%s' requires authentication").printf (name);
-        auth_notification = App.app.notificationbar.display_for_auth (auth_string,
-                                                                      (owned) auth_func,
-                                                                      (owned) cancel_func,
-                                                                      need_username);
+        auth_notification = App.window.notificationbar.display_for_auth (auth_string,
+                                                                         (owned) auth_func,
+                                                                         (owned) cancel_func,
+                                                                         need_username);
     }
 
     public override int compare (CollectionItem other) {

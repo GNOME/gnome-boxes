@@ -241,7 +241,7 @@ private class Boxes.WizardSource: Gtk.Notebook {
     [GtkCallback]
     private void on_select_file_button_clicked () {
         var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                App.app.window,
+                                                App.window,
                                                 Gtk.FileChooserAction.OPEN,
                                                 _("_Cancel"), Gtk.ResponseType.CANCEL,
                                                 _("_Open"), Gtk.ResponseType.ACCEPT);

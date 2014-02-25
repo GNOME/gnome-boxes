@@ -1,6 +1,4 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
-using Gtk;
-using Gdk;
 
 private abstract class Boxes.Broker : GLib.Object {
     // Overriding subclass should chain-up at the end of its implementation
@@ -17,83 +15,35 @@ private abstract class Boxes.Broker : GLib.Object {
     }
 }
 
-private enum Boxes.AppPage {
-    MAIN,
-    DISPLAY
-}
-
 private class Boxes.App: Gtk.Application, Boxes.UI {
     public static App app;
+    public static Boxes.AppWindow window;
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-    public Gtk.ApplicationWindow window;
-    [CCode (notify = false)]
-    public bool fullscreen {
-        get { return WindowState.FULLSCREEN in window.get_window ().get_state (); }
-        set {
-            if (value)
-                window.fullscreen ();
-            else
-                window.unfullscreen ();
-        }
-    }
-    public AppPage page {
-        get {
-            if (stack.get_visible_child_name () == "display-page")
-                return AppPage.DISPLAY;
-            else
-                return AppPage.MAIN;
-        }
-        set {
-            if (value == AppPage.DISPLAY)
-                stack.set_visible_child_name ("display-page");
-            else
-                stack.set_visible_child_name ("main-page");
-        }
-    }
 
-    private bool maximized { get { return WindowState.MAXIMIZED in window.get_window ().get_state (); } }
-    private Gtk.Stack stack;
     public CollectionItem current_item; // current object/vm manipulated
-    public Searchbar searchbar;
-    public Topbar topbar;
-    public Notificationbar notificationbar;
-    public Sidebar sidebar;
-    public Selectionbar selectionbar;
-    public uint duration;
-    public GLib.Settings settings;
-    public Wizard wizard;
-    public Properties properties;
-    public DisplayPage display_page;
-    public EmptyBoxes empty_boxes;
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
-    public Gtk.Stack below_bin;
-    private Gtk.Stack content_bin;
-    private Gtk.Box below_bin_hbox;
 
     private bool is_ready;
     public signal void ready ();
     public signal void item_selected (CollectionItem item);
-    public CollectionView view;
 
     private HashTable<string,Broker> brokers;
     private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
     public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
 
-    private uint configure_id;
     private GLib.Binding status_bind;
     private ulong got_error_id;
-    public static const uint configure_id_timeout = 100;  // 100ms
 
     public App () {
         application_id = "org.gnome.Boxes";
         flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 
         app = this;
-        settings = new GLib.Settings ("org.gnome.boxes");
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
         filter = new Boxes.CollectionFilter ();
@@ -106,15 +56,15 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         add_action (action);
 
         action = new GLib.SimpleAction ("select-all", null);
-        action.activate.connect (() => { view.select (SelectionCriteria.ALL); });
+        action.activate.connect (() => { window.view.select (SelectionCriteria.ALL); });
         add_action (action);
 
         action = new GLib.SimpleAction ("select-running", null);
-        action.activate.connect (() => { view.select (SelectionCriteria.RUNNING); });
+        action.activate.connect (() => { window.view.select (SelectionCriteria.RUNNING); });
         add_action (action);
 
         action = new GLib.SimpleAction ("select-none", null);
-        action.activate.connect (() => { view.select (SelectionCriteria.NONE); });
+        action.activate.connect (() => { window.view.select (SelectionCriteria.NONE); });
         add_action (action);
 
         action = new GLib.SimpleAction ("help", null);
@@ -179,13 +129,12 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         set_app_menu (menu);
 
         collection = new Collection ();
-        duration = settings.get_int ("animation-duration");
 
         collection.item_added.connect ((item) => {
-            view.add_item (item);
+            window.view.add_item (item);
         });
         collection.item_removed.connect ((item) => {
-            view.remove_item (item);
+            window.view.remove_item (item);
         });
 
         brokers.insert ("libvirt", LibvirtBroker.get_default ());
@@ -218,7 +167,13 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     public override void activate () {
         base.activate ();
 
-        setup_ui ();
+        if (window != null)
+            return;
+
+        window = new Boxes.AppWindow (this);
+        window.setup_ui ();
+        set_state (UIState.COLLECTION);
+
         window.present ();
     }
 
@@ -290,11 +245,11 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
                 if (file.query_exists ()) {
                     if (is_uri)
-                        wizard.open_with_uri (file.get_uri ());
+                        window.wizard.open_with_uri (file.get_uri ());
                     else
-                        wizard.open_with_uri (arg);
+                        window.wizard.open_with_uri (arg);
                 } else if (is_uri)
-                    wizard.open_with_uri (file.get_uri ());
+                    window.wizard.open_with_uri (file.get_uri ());
                 else
                     open_name (arg);
             });
@@ -302,19 +257,19 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         if (opt_search != null) {
             call_when_ready (() => {
-                searchbar.text = string.joinv (" ", opt_search);
+                window.searchbar.text = string.joinv (" ", opt_search);
                 if (ui_state == UIState.COLLECTION)
-                    searchbar.search_mode_enabled = true;
+                    window.searchbar.search_mode_enabled = true;
             });
         }
 
         if (opt_fullscreen)
-            app.fullscreen = true;
+            window.fullscreened = true;
 
         return 0;
     }
 
-    private bool quit_app () {
+    public bool quit_app () {
         window.hide ();
 
         Idle.add (() => {
@@ -329,8 +284,8 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     public override void shutdown () {
         base.shutdown ();
 
-        notificationbar.cancel ();
-        wizard.cleanup ();
+        window.notificationbar.cancel ();
+        window.wizard.cleanup ();
         suspend_machines ();
     }
 
@@ -338,7 +293,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         set_state (UIState.COLLECTION);
         // we don't want to show the collection items as it will
         // appear as a glitch when opening a box immediately
-        view.visible = false;
+        window.view.visible = false;
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
@@ -354,7 +309,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         set_state (UIState.COLLECTION);
         // we don't want to show the collection items as it will
         // appear as a glitch when opening a box immediately
-        view.visible = false;
+        window.view.visible = false;
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
@@ -442,185 +397,12 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         }
     }
 
-    private void save_window_geometry () {
-        int width, height, x, y;
-
-        if (maximized)
-            return;
-
-        window.get_size (out width, out height);
-        settings.set_value ("window-size", new int[] { width, height });
-
-        window.get_position (out x, out y);
-        settings.set_value ("window-position", new int[] { x, y });
-    }
-
-    private bool ui_is_setup;
-    private void setup_ui () {
-        if (ui_is_setup)
-            return;
-        ui_is_setup = true;
-        Gtk.Window.set_default_icon_name ("gnome-boxes");
-        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
-
-        var provider = Boxes.load_css ("gtk-style.css");
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
-                                                  provider,
-                                                  600);
-
-        window = new Gtk.ApplicationWindow (this);
-        window.show_menubar = false;
-        window.delete_event.connect (() => { return quit_app (); });
-
-        // restore window geometry/position
-        var size = settings.get_value ("window-size");
-        if (size.n_children () == 2) {
-            var width = (int) size.get_child_value (0);
-            var height = (int) size.get_child_value (1);
-
-            window.set_default_size (width, height);
-        }
-
-        if (settings.get_boolean ("window-maximized"))
-            window.maximize ();
-
-        var position = settings.get_value ("window-position");
-        if (position.n_children () == 2) {
-            var x = (int) position.get_child_value (0);
-            var y = (int) position.get_child_value (1);
-
-            window.move (x, y);
-        }
-
-        window.configure_event.connect (() => {
-            if (fullscreen)
-                return false;
-
-            if (configure_id != 0)
-                GLib.Source.remove (configure_id);
-            configure_id = Timeout.add (configure_id_timeout, () => {
-                configure_id = 0;
-                save_window_geometry ();
-
-                return false;
-            });
-
-            return false;
-        });
-        window.window_state_event.connect ((event) => {
-            if (WindowState.FULLSCREEN in event.changed_mask)
-                this.notify_property ("fullscreen");
-
-            if (fullscreen)
-                return false;
-
-            settings.set_boolean ("window-maximized", maximized);
-            return false;
-        });
-
-        var main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        window.add (main_vbox);
-
-        stack = new Gtk.Stack ();
-        stack.homogeneous = false;
-        stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
-        main_vbox.add (stack);
-
-        var vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        vbox.halign = Gtk.Align.FILL;
-        vbox.valign = Gtk.Align.FILL;
-        vbox.hexpand = true;
-        vbox.vexpand = true;
-        stack.add_named (vbox, "main-page");
-
-        searchbar = new Searchbar ();
-        vbox.add (searchbar);
-
-        notificationbar = new Notificationbar ();
-        var notification_overlay = new Gtk.Overlay ();
-        notification_overlay.add_overlay (notificationbar);
-
-        vbox.add (notification_overlay);
-
-        display_page = new DisplayPage ();
-        stack.add_named (display_page, "display-page");
-
-        selectionbar = new Selectionbar ();
-        main_vbox.add (selectionbar);
-
-        window.key_press_event.connect_after (on_key_pressed);
-
-        sidebar = new Sidebar ();
-        view = new CollectionView ();
-        topbar = new Topbar ();
-        wizard = new Wizard ();
-        properties = new Properties ();
-        empty_boxes = new EmptyBoxes ();
-
-        window.set_titlebar (topbar);
-
-        below_bin = new Gtk.Stack ();
-        below_bin.homogeneous = false;
-        below_bin.transition_type = Gtk.StackTransitionType.CROSSFADE;
-        below_bin.hexpand = true;
-        below_bin.vexpand = true;
-        notification_overlay.add (below_bin);
-
-        below_bin.add_named (empty_boxes, "empty-boxes");
-        below_bin.add_named (view, "collection-view");
-
-        below_bin_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        below_bin_hbox.halign = Gtk.Align.FILL;
-        below_bin_hbox.valign = Gtk.Align.FILL;
-        below_bin_hbox.hexpand = true;
-        below_bin_hbox.vexpand = true;
-
-        below_bin.add_named (below_bin_hbox, "below-bin-hbox");
-
-        content_bin = new Gtk.Stack ();
-        content_bin.transition_type = Gtk.StackTransitionType.SLIDE_LEFT;
-        content_bin.homogeneous = false;
-        content_bin.vexpand = true;
-        content_bin.hexpand = true;
-        content_bin.add (wizard);
-        content_bin.add (properties);
-
-        below_bin_hbox.add (sidebar);
-        below_bin_hbox.add (content_bin);
-        below_bin_hbox.show_all ();
-
-        below_bin.show_all ();
-
-        main_vbox.show_all ();
-
-        set_state (UIState.COLLECTION);
-    }
-
-    private void set_main_ui_state () {
-        stack.set_visible_child_name ("main-page");
-    }
-
     private void ui_state_changed () {
-        // The order is important for some widgets here (e.g properties must change its state before wizard so it can
-        // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
-        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, properties, wizard, empty_boxes }) {
-            ui.set_state (ui_state);
-        }
+        window.set_state (ui_state);
 
-        if (ui_state != UIState.DISPLAY)
-            set_main_ui_state ();
-
-        if (ui_state != UIState.COLLECTION)
-            searchbar.search_mode_enabled = false;
-
-        switch (ui_state) {
-        case UIState.COLLECTION:
-            if (collection.items.length != 0)
-                below_bin.visible_child = view;
-            else
-                below_bin.visible_child = empty_boxes;
-            topbar.status = null;
+        if (ui_state == UIState.COLLECTION) {
             status_bind = null;
+            window.topbar.status = null;
             if (current_item is Machine) {
                 var machine = current_item as Machine;
                 if (got_error_id != 0) {
@@ -630,36 +412,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
                 machine.connecting_cancellable.cancel (); // Cancel any in-progress connections
             }
-            fullscreen = false;
-            view.visible = true;
-
-            break;
-
-        case UIState.CREDS:
-
-            break;
-
-        case UIState.WIZARD:
-            below_bin.visible_child = below_bin_hbox;
-            content_bin.visible_child = wizard;
-
-            break;
-
-        case UIState.PROPERTIES:
-            below_bin.visible_child = below_bin_hbox;
-            content_bin.visible_child = properties;
-
-            break;
-
-        case UIState.DISPLAY:
-            if (maximized)
-                fullscreen = true;
-
-            break;
-
-        default:
-            warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
-            break;
         }
 
         if (current_item != null)
@@ -713,11 +465,11 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     }
 
     public List<CollectionItem> selected_items {
-        owned get { return view.get_selected_items (); }
+        owned get { return window.view.get_selected_items (); }
     }
 
     public void show_properties () {
-        var selected_items = view.get_selected_items ();
+        var selected_items = window.view.get_selected_items ();
 
         selection_mode = false;
 
@@ -730,7 +482,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     }
 
     public void remove_selected_items () {
-        var selected_items = view.get_selected_items ();
+        var selected_items = window.view.get_selected_items ();
         var num_selected = selected_items.length ();
         if (num_selected == 0)
             return;
@@ -761,39 +513,17 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
             }
         };
 
-        notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
-    }
-
-    private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
-        var default_modifiers = Gtk.accelerator_get_default_mod_mask ();
-
-        if (event.keyval == Gdk.Key.F11) {
-            fullscreen = !fullscreen;
-            return true;
-        } else if (event.keyval == Gdk.Key.Escape) {
-            if (selection_mode && ui_state == UIState.COLLECTION)
-               selection_mode = false;
-        } else if (event.keyval == Gdk.Key.q &&
-                   (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            quit_app ();
-            return true;
-        } else if (event.keyval == Gdk.Key.a &&
-                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            quit_app ();
-            return true;
-        }
-
-        return false;
+        window.notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
     }
 
     public void connect_to (Machine machine) {
         current_item = machine;
 
         // Track machine status in toobar
-        status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
+        status_bind = machine.bind_property ("status", window.topbar, "status", BindingFlags.SYNC_CREATE);
 
         got_error_id = machine.got_error.connect ( (message) => {
-            App.app.notificationbar.display_error (message);
+            window.notificationbar.display_error (message);
         });
 
         if (ui_state != UIState.CREDS)

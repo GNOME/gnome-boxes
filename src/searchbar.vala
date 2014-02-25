@@ -5,9 +5,9 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     public bool enable_key_handler {
         set {
             if (value)
-                GLib.SignalHandler.unblock (App.app.window, key_handler_id);
+                GLib.SignalHandler.unblock (App.window, key_handler_id);
             else
-                GLib.SignalHandler.block (App.app.window, key_handler_id);
+                GLib.SignalHandler.block (App.window, key_handler_id);
         }
     }
     [GtkChild]
@@ -15,7 +15,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
 
     private ulong key_handler_id;
 
-    public Searchbar () {
+    construct {
         search_mode_enabled = false;
 
         App.app.call_when_ready (on_app_ready);
@@ -24,12 +24,12 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     [GtkCallback]
     private void on_search_changed () {
         App.app.filter.text = text;
-        App.app.view.refilter ();
+        App.window.view.refilter ();
     }
 
     [GtkCallback]
     private void on_search_activated () {
-        App.app.view.activate_first_item ();
+        App.window.view.activate_first_item ();
     }
 
     [GtkCallback]
@@ -44,7 +44,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     }
 
     private void on_app_ready () {
-        key_handler_id = App.app.window.key_press_event.connect (on_app_key_pressed);
+        key_handler_id = App.window.key_press_event.connect (on_app_key_pressed);
     }
 
     private bool on_app_key_pressed (Gtk.Widget widget, Gdk.EventKey event) {

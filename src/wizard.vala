@@ -122,11 +122,7 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
 
         base.switch_page (page_widget, page_num);
 
-        App.app.sidebar.set_wizard_page ((WizardPage) page_num);
-    }
-
-    construct {
-        media_manager = MediaManager.get_instance ();
+        App.window.sidebar.set_wizard_page ((WizardPage) page_num);
     }
 
     private void wizard_source_update_next () {
@@ -168,7 +164,8 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         }
     }
 
-    public Wizard () {
+   construct {
+        media_manager = MediaManager.get_instance ();
         wizard_source.notify["page"].connect(wizard_source_update_next);
         wizard_source.notify["selected"].connect(wizard_source_update_next);
         wizard_source.url_entry.changed.connect (wizard_source_update_next);
@@ -181,7 +178,6 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         // Changing page to something other than INTRODUCTION here so that Gtk.Notebook doesn't ignore us setting
         // it to INTRODUCTION later (also read the comment in switch_page method above).
         page = WizardPage.PREPARATION;
-        setup_ui ();
     }
 
     public void cleanup () {
@@ -292,7 +288,7 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             debug("Failed to analyze installer image: %s", error.message);
-            App.app.notificationbar.display_error (_("Failed to analyze installer media. Corrupted or incomplete media?"));
+            App.window.notificationbar.display_error (_("Failed to analyze installer media. Corrupted or incomplete media?"));
             page = WizardPage.SOURCE;
         }
     }
@@ -331,7 +327,7 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
             try {
                 prepare_for_location (this.wizard_source.uri);
             } catch (GLib.Error error) {
-                App.app.notificationbar.display_error (error.message);
+                App.window.notificationbar.display_error (error.message);
 
                 return false;
             }
@@ -390,7 +386,7 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
                 machine = yield vm_creator.create_vm (review_cancellable);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
             } catch (GLib.Error error) {
-                App.app.notificationbar.display_error (_("Box setup failed"));
+                App.window.notificationbar.display_error (_("Box setup failed"));
                 warning (error.message);
             }
 
@@ -523,29 +519,29 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         return false;
     }
 
-    private void setup_ui () {
-        cancel_button = App.app.topbar.wizard_cancel_btn;
+    public void setup_ui () {
+        cancel_button = App.window.topbar.wizard_cancel_btn;
         cancel_button.clicked.connect (() => {
             destroy_machine ();
             vm_creator = null;
             wizard_source.page = SourcePage.MAIN;
             App.app.set_state (UIState.COLLECTION);
         });
-        back_button = App.app.topbar.wizard_back_btn;
+        back_button = App.window.topbar.wizard_back_btn;
         back_button.clicked.connect (() => {
             page = page - 1;
         });
-        continue_button = App.app.topbar.wizard_continue_btn;
+        continue_button = App.window.topbar.wizard_continue_btn;
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
-        create_button = App.app.topbar.wizard_create_btn;
+        create_button = App.window.topbar.wizard_create_btn;
         create_button.clicked.connect (() => {
             create.begin ((obj, result) => {
             if (create.end (result))
                 App.app.set_state (UIState.COLLECTION);
             else
-                App.app.notificationbar.display_error (_("Box creation failed"));
+                App.window.notificationbar.display_error (_("Box creation failed"));
             });
         });
     }

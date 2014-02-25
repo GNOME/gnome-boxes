@@ -68,24 +68,24 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
         }
     }
 
-    public Topbar () {
+    construct {
         notify["ui-state"].connect (ui_state_changed);
-
-        setup_topbar ();
 
         App.app.notify["selected-items"].connect (() => {
             update_selection_label ();
         });
     }
 
-    private void setup_topbar () {
+    public void setup_ui () {
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
         back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
         props_back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
 
-        search_btn.bind_property ("active", App.app.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
-        search2_btn.bind_property ("active", App.app.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
+        assert (App.window != null);
+        assert (App.window.searchbar != null);
+        search_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
+        search2_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
         App.app.notify["selection-mode"].connect (() => {
             page = App.app.selection_mode ?
@@ -96,7 +96,7 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
         App.app.collection.item_removed.connect (update_select_btn);
         update_selection_label ();
 
-        var toolbar = App.app.display_page.toolbar;
+        var toolbar = App.window.display_page.toolbar;
         toolbar.bind_property ("title", display_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", display_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
 
