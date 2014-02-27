@@ -500,7 +500,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
         case Boxes.UIState.DISPLAY:
             if (previous_ui_state == UIState.PROPERTIES)
-                App.window.page = Boxes.AppPage.DISPLAY;
+                App.window.below_bin.set_visible_child_name ("display-page");
 
             break;
 

@@ -2,29 +2,10 @@
 using Gtk;
 using Gdk;
 
-private enum Boxes.AppPage {
-    MAIN,
-    DISPLAY
-}
-
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/app-window.ui")]
 private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-    public AppPage page {
-        get {
-            if (stack.get_visible_child_name () == "display-page")
-                return AppPage.DISPLAY;
-            else
-                return AppPage.MAIN;
-        }
-        set {
-            if (value == AppPage.DISPLAY)
-                stack.set_visible_child_name ("display-page");
-            else
-                stack.set_visible_child_name ("main-page");
-        }
-    }
 
     [CCode (notify = false)]
     public bool fullscreened {
@@ -38,8 +19,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
     private bool maximized { get { return WindowState.MAXIMIZED in get_window ().get_state (); } }
 
-    [GtkChild]
-    private Gtk.Stack stack;
     [GtkChild]
     public Searchbar searchbar;
     [GtkChild]
@@ -127,19 +106,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         settings.set_value ("window-position", new int[] { x, y });
     }
 
-    private void set_main_ui_state () {
-        stack.set_visible_child_name ("main-page");
-    }
-
     private void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, properties, wizard, empty_boxes }) {
             ui.set_state (ui_state);
         }
-
-        if (ui_state != UIState.DISPLAY)
-            set_main_ui_state ();
 
         if (ui_state != UIState.COLLECTION)
             searchbar.search_mode_enabled = false;

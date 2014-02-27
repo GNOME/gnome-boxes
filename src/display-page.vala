@@ -13,8 +13,6 @@ private class Boxes.DisplayPage: Gtk.Box {
     private DisplayToolbar overlay_toolbar;
     [GtkChild]
     private EventBox overlay_toolbar_box;
-    [GtkChild]
-    private Grid notification_grid;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
     private ulong cursor_id;
@@ -47,10 +45,6 @@ private class Boxes.DisplayPage: Gtk.Box {
 
         toolbar.bind_property ("title", overlay_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", overlay_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
-    }
-
-    public void add_notification (Widget w) {
-        notification_grid.attach (w, 0, 0, 1, 1);
     }
 
      private void update_toolbar_visible() {
@@ -142,7 +136,8 @@ private class Boxes.DisplayPage: Gtk.Box {
             return false;
         });
 
-        App.window.page = Boxes.AppPage.DISPLAY;
+        App.window.below_bin.set_visible_child_name ("display-page");
+
         widget.grab_focus ();
     }
 

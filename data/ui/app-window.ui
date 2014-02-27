@@ -8,35 +8,33 @@
      |
      |-> main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
      |     |
-     |     |-> stack = new Gtk.Stack ();
-     |         |
-     |         |-> vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-     |         |     |
-     |         |     |-> searchbar = new Searchbar ();
-     |         |     |
-     |         |     |-> notification_overlay = new Gtk.Overlay ();
-     |         |         |
-     |         |         |-> notificationbar = Boxes.Notificationbar
-     |         |         |
-                         |-> below_bin = new Gtk.Stack ();
-                             |
-                             |-> view = new Boxes.CollectionView ();
-                             |
-                             |-> hbox = new Gtk.Box
-                             |    |
-                             |    |-> sidebar_revealer = new Gtk.Revealer
-                             |    |
-                             |    |-> content_bin_actor = Gtk.Stack
-                             |        |
-                             |        |-> wizard = new Boxes.Wizard ();
-                             |        |
-                             |        |-> properties = new Boxes.Properties ();
-                             |
-                             |-> empty_boxes = new Boxes.EmptyBoxes ();
-     |         |
-     |         |-> display_page = new Boxes.DisplayPage (); // should probably be below_bin child
+     |     |-> vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+     |          |
+     |          |-> searchbar = new Searchbar ();
+     |          |
+     |          |-> notification_overlay = new Gtk.Overlay ();
+     |              |
+     |              |-> notificationbar = Boxes.Notificationbar ();
+     |              |
+                    |-> below_bin = new Gtk.Stack ();
+                         |
+                         |-> view = new Boxes.CollectionView ();
+                         |
+                         |-> below_bin_hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+                         |    |
+                         |    |-> sidebar_revealer = new Gtk.Revealer ();
+                         |    |
+                         |    |-> content_bin = Gtk.Stack ();
+                         |        |
+                         |        |-> wizard = new Boxes.Wizard ();
+                         |        |
+                         |        |-> properties = new Boxes.Properties ();
+                         |
+                         |-> empty_boxes = new Boxes.EmptyBoxes ();
+     |                   |
+     |                   |-> display_page = new Boxes.DisplayPage ();
      |
-     |-> selectionbar = new Boxes.Selectionbar ();
+     |-> selectionbar = new Boxes.Selectionbar (); // should probably be vbox child
      |
      |-> topbar = new Boxes.Topbar (); // as titlebar
 
@@ -58,123 +56,111 @@
         <property name="spacing">0</property>
 
         <child>
-          <object class="GtkStack" id="stack">
+          <object class="GtkBox" id="vbox">
             <property name="visible">True</property>
-            <property name="homogeneous">False</property>
-            <property name="transition-type">slide-left-right</property>
+            <property name="orientation">vertical</property>
+            <property name="spacing">0</property>
+            <property name="halign">fill</property>
+            <property name="valign">fill</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
 
             <child>
-              <object class="GtkBox" id="vbox">
+              <object class="BoxesSearchbar" id="searchbar">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">0</property>
-                <property name="halign">fill</property>
-                <property name="valign">fill</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
+              </object>
+            </child>
 
-                <child>
-                  <object class="BoxesSearchbar" id="searchbar">
+            <child>
+              <object class="GtkOverlay" id="notification_overlay">
+                <property name="visible">True</property>
+
+                <child type="overlay">
+                  <object class="BoxesNotificationbar" id="notificationbar">
                     <property name="visible">True</property>
                   </object>
                 </child>
 
                 <child>
-                  <object class="GtkOverlay" id="notification_overlay">
+                  <object class="GtkStack" id="below_bin">
                     <property name="visible">True</property>
+                    <property name="homogeneous">False</property>
+                    <property name="transition-type">crossfade</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
 
-                    <child type="overlay">
-                      <object class="BoxesNotificationbar" id="notificationbar">
+                    <child>
+                      <object class="BoxesEmptyBoxes" id="empty_boxes">
                         <property name="visible">True</property>
                       </object>
+                      <packing>
+                        <property name="name">empty-boxes</property>
+                      </packing>
                     </child>
 
                     <child>
-                      <object class="GtkStack" id="below_bin">
+                      <object class="BoxesCollectionView" id="view">
                         <property name="visible">True</property>
-                        <property name="homogeneous">False</property>
-                        <property name="transition-type">crossfade</property>
+                      </object>
+                      <packing>
+                        <property name="name">collection-view</property>
+                      </packing>
+                    </child>
+
+                    <child>
+                      <object class="GtkBox" id="below_bin_hbox">
+                        <property name="visible">True</property>
+                        <property name="orientation">horizontal</property>
+                        <property name="halign">fill</property>
+                        <property name="valign">fill</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
 
                         <child>
-                          <object class="BoxesEmptyBoxes" id="empty_boxes">
+                          <object class="BoxesSidebar" id="sidebar">
                             <property name="visible">True</property>
                           </object>
-                          <packing>
-                            <property name="name">empty-boxes</property>
-                          </packing>
                         </child>
 
                         <child>
-                          <object class="BoxesCollectionView" id="view">
+                          <object class="GtkStack" id="content_bin">
                             <property name="visible">True</property>
-                          </object>
-                          <packing>
-                            <property name="name">collection-view</property>
-                          </packing>
-                        </child>
-
-                        <child>
-                          <object class="GtkBox" id="below_bin_hbox">
-                            <property name="visible">True</property>
-                            <property name="orientation">horizontal</property>
-                            <property name="halign">fill</property>
-                            <property name="valign">fill</property>
+                            <property name="homogeneous">False</property>
+                            <property name="transition-type">slide-left</property>
                             <property name="hexpand">True</property>
                             <property name="vexpand">True</property>
 
                             <child>
-                              <object class="BoxesSidebar" id="sidebar">
+                              <object class="BoxesWizard" id="wizard">
                                 <property name="visible">True</property>
                               </object>
                             </child>
 
                             <child>
-                              <object class="GtkStack" id="content_bin">
+                              <object class="BoxesProperties" id="properties">
                                 <property name="visible">True</property>
-                                <property name="homogeneous">False</property>
-                                <property name="transition-type">slide-left</property>
-                                <property name="hexpand">True</property>
-                                <property name="vexpand">True</property>
-
-                                <child>
-                                  <object class="BoxesWizard" id="wizard">
-                                    <property name="visible">True</property>
-                                  </object>
-                                </child>
-
-                                <child>
-                                  <object class="BoxesProperties" id="properties">
-                                    <property name="visible">True</property>
-                                  </object>
-                                </child>
                               </object>
                             </child>
                           </object>
-                          <packing>
-                            <property name="name">below-bin-hbox</property>
-                          </packing>
                         </child>
                       </object>
+                      <packing>
+                        <property name="name">below-bin-hbox</property>
+                      </packing>
+                    </child>
+
+                    <child>
+                      <object class="BoxesDisplayPage" id="display_page">
+                        <property name="visible">True</property>
+                      </object>
+
+                      <packing>
+                        <property name="name">display-page</property>
+                      </packing>
                     </child>
                   </object>
                 </child>
               </object>
-
-              <packing>
-                <property name="name">main-page</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="BoxesDisplayPage" id="display_page">
-                <property name="visible">True</property>
-              </object>
-
-              <packing>
-                <property name="name">display-page</property>
-              </packing>
             </child>
           </object>
         </child>

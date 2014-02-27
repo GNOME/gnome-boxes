@@ -78,10 +78,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
     }
 
     private void add_notification (Widget w) {
-        if (App.window.page == AppPage.MAIN)
-            attach (w, 0, 0, 1, 1);
-        else
-            App.window.display_page.add_notification (w);
+        attach (w, 0, 0, 1, 1);
     }
 
     private Gd.Notification display (string                         message,
