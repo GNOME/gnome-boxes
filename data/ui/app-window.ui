@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.9 -->
+
+  <!-- Widget hierarchy:
+
+    window = new Boxes.ApplicationWindow ();
+     |
+     |-> main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+     |     |
+     |     |-> stack = new Gtk.Stack ();
+     |         |
+     |         |-> vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+     |         |     |
+     |         |     |-> searchbar = new Searchbar ();
+     |         |     |
+     |         |     |-> notification_overlay = new Gtk.Overlay ();
+     |         |         |
+     |         |         |-> notificationbar = Boxes.Notificationbar
+     |         |         |
+                         |-> below_bin = new Gtk.Stack ();
+                             |
+                             |-> view = new Boxes.CollectionView ();
+                             |
+                             |-> hbox = new Gtk.Box
+                             |    |
+                             |    |-> sidebar_revealer = new Gtk.Revealer
+                             |    |
+                             |    |-> content_bin_actor = Gtk.Stack
+                             |        |
+                             |        |-> wizard = new Boxes.Wizard ();
+                             |        |
+                             |        |-> properties = new Boxes.Properties ();
+                             |
+                             |-> empty_boxes = new Boxes.EmptyBoxes ();
+     |         |
+     |         |-> display_page = new Boxes.DisplayPage (); // should probably be below_bin child
+     |
+     |-> selectionbar = new Boxes.Selectionbar ();
+     |
+     |-> topbar = new Boxes.Topbar (); // as titlebar
+
+  -->
+
   <template class="BoxesAppWindow" parent="GtkApplicationWindow">
     <property name="visible">False</property>
     <property name="show-menubar">False</property>
