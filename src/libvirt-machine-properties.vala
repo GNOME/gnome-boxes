@@ -498,7 +498,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     if (disk != null)
                         disk.resize (value, 0);
                 } else
-                    // Currently this never happens as properties page cant be reached without starting the machine
                     machine.storage_volume.resize (value, StorageVolResizeFlags.NONE);
                 debug ("Storage changed to %llu", value);
             } catch (GLib.Error error) {
