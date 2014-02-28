@@ -112,20 +112,6 @@
                 <property name="pack-type">end</property>
               </packing>
             </child>
-
-            <child>
-              <object class="GtkSpinner" id="spinner">
-                <property name="visible">True</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
-                <property name="active">True</property>
-                <property name="margin">6</property>
-              </object>
-
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
           </object>
 
           <packing>
@@ -356,15 +342,6 @@
       </object>
     </child>
   </template>
-
-  <!-- We need a sizegroup to ensure the spinner is the same size as the buttons so it centers correctly -->
-  <object class="GtkSizeGroup" id="collection_sizegroup">
-    <property name="mode">horizontal</property>
-    <widgets>
-      <widget name="spinner"/>
-      <widget name="select_btn"/>
-    </widgets>
-  </object>
 
   <object class="GtkSizeGroup" id="wizard_sizegroup">
     <property name="mode">horizontal</property>

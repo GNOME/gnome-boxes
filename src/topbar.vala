@@ -24,8 +24,6 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
     public Gtk.Button wizard_create_btn;
 
     [GtkChild]
-    private Gtk.Spinner spinner;
-    [GtkChild]
     private Gtk.Button search_btn;
     [GtkChild]
     private Gtk.Button search2_btn;
@@ -130,7 +128,6 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
         case UIState.COLLECTION:
             page = TopbarPage.COLLECTION;
             back_btn.hide ();
-            spinner.hide ();
             select_btn.show ();
             search_btn.show ();
             new_btn.show ();
@@ -140,14 +137,12 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
             page = TopbarPage.COLLECTION;
             new_btn.hide ();
             back_btn.show ();
-            spinner.show ();
             select_btn.hide ();
             search_btn.hide ();
             break;
 
         case UIState.DISPLAY:
             page = TopbarPage.DISPLAY;
-            spinner.hide ();
             break;
 
         case UIState.PROPERTIES:
