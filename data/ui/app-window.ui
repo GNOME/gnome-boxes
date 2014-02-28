@@ -150,6 +150,37 @@
                     <property name="name">display-page</property>
                   </packing>
                 </child>
+
+                <child>
+                  <object class="GtkBox" id="spinner-box">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">fill</property>
+                    <style>
+                      <class name="empty-boxes"/>
+                    </style>
+
+                    <child>
+                      <object class="GtkSpinner" id="spinner">
+                        <property name="visible">True</property>
+                        <property name="active">True</property>
+                        <property name="width-request">32</property>
+                        <property name="height-request">32</property>
+                      </object>
+
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                  </object>
+
+                  <packing>
+                    <property name="name">connecting-page</property>
+                  </packing>
+                </child>
               </object>
             </child>
           </object>

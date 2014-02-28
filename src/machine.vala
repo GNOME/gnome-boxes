@@ -495,6 +495,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
+            App.window.below_bin.set_visible_child_name ("connecting-page");
             try_connect_display.begin ();
 
             break;
