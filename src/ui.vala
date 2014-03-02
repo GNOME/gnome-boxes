@@ -5,7 +5,6 @@ private enum Boxes.UIState {
     COLLECTION,
     CREDS,
     DISPLAY,
-    SETTINGS,
     WIZARD,
     PROPERTIES
 }
