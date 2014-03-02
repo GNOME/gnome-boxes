@@ -34,7 +34,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     private ulong display_grabbed_id;
 
     public void setup_ui () {
-        overlay_toolbar_invisible_timeout = App.window.duration;
+        overlay_toolbar_invisible_timeout = AppWindow.TRANSITION_DURATION;
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
 
         App.window.window_state_event.connect ((event) => {
@@ -178,7 +178,7 @@ private class Boxes.DisplayPage: Gtk.Box {
                       ModifierType.BUTTON1_MASK | ModifierType.BUTTON2_MASK |
                       ModifierType.BUTTON3_MASK | ModifierType.BUTTON4_MASK |
                       ModifierType.BUTTON5_MASK)) == 0) {
-                    toolbar_show_id = Timeout.add (App.window.duration, () => {
+                    toolbar_show_id = Timeout.add (AppWindow.TRANSITION_DURATION, () => {
                         set_overlay_toolbar_visible (true);
                         toolbar_show_id = 0;
                         return false;
@@ -189,7 +189,7 @@ private class Boxes.DisplayPage: Gtk.Box {
                 toolbar_hide_id = Timeout.add (overlay_toolbar_invisible_timeout, () => {
                     set_overlay_toolbar_visible (false);
                     toolbar_hide_id = 0;
-                    overlay_toolbar_invisible_timeout = App.window.duration;
+                    overlay_toolbar_invisible_timeout = AppWindow.TRANSITION_DURATION;
                     return false;
                 });
             }

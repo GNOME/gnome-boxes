@@ -4,6 +4,8 @@ using Gdk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/app-window.ui")]
 private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
+    public const uint TRANSITION_DURATION = 400; // milliseconds
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -46,7 +48,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Selectionbar selectionbar;
 
-    public uint duration;
     public GLib.Settings settings;
 
     private uint configure_id;
@@ -67,7 +68,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                                                   provider,
                                                   600);
 
-        duration = settings.get_int ("animation-duration");
         // restore window geometry/position
         var size = settings.get_value ("window-size");
         if (size.n_children () == 2) {
@@ -88,11 +88,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             move (x, y);
         }
 
-        below_bin.transition_duration = duration;
-        content_bin.transition_duration = duration;
-        empty_boxes.transition_duration = duration;
-        sidebar.transition_duration = duration;
-        selectionbar.transition_duration = duration;
+        below_bin.transition_duration = TRANSITION_DURATION;
+        content_bin.transition_duration = TRANSITION_DURATION;
+        empty_boxes.transition_duration = TRANSITION_DURATION;
+        sidebar.transition_duration = TRANSITION_DURATION;
+        selectionbar.transition_duration = TRANSITION_DURATION;
     }
 
     public void setup_ui () {
