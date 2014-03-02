@@ -3,16 +3,15 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Gnome 2012-03 Finnish translation sprint participants:
 # Zeeshan Ali <zeeshanak@gnome.org>, 2012.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014.
 #
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-02 17:10+0000\n"
-"PO-Revision-Date: 2013-09-08 10:19+0300\n"
+"POT-Creation-Date: 2013-12-29 19:22+0000\n"
+"PO-Revision-Date: 2014-01-19 18:49+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -26,7 +25,7 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Boksit"
 
@@ -185,6 +184,10 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boksi on poistettu"
 msgstr[1] "%u boksia on poistettu"
 
+#: ../src/app.vala:866
+msgid "_Undo"
+msgstr "_Kumoa"
+
 #: ../src/app.vala:933
 #, c-format
 msgid ""
@@ -207,7 +210,7 @@ msgstr "Yhteys kohteeseen \"%s\" epäonnistui"
 msgid "New and Recent"
 msgstr "Uudet ja viimeisimmät"
 
-#: ../src/display-page.vala:300
+#: ../src/display-page.vala:301
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(paina Ctrl+Alt poistaaksesi sieppauksen)"
 
@@ -223,7 +226,7 @@ msgstr "Luo boksi vasemman yläreunan painikkeesta."
 msgid "Unsupported disk image format."
 msgstr "Tukematon levykuvan muoto."
 
-#: ../src/installed-media.vala:83 ../src/installer-media.vala:101
+#: ../src/installed-media.vala:95 ../src/installer-media.vala:107
 #: ../src/properties.vala:74
 msgid "System"
 msgstr "Järjestelmä"
@@ -248,7 +251,6 @@ msgstr "Ongelmanratkaisuloki"
 
 #: ../src/libvirt-machine-properties.vala:139
 #: ../src/libvirt-machine-properties.vala:157
-#| msgid "Save log"
 msgid "_Save"
 msgstr "_Tallenna"
 
@@ -274,6 +276,8 @@ msgstr "Virhe tallentaessa: %s"
 msgid "Protocol"
 msgstr "Protokolla"
 
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
 #: ../src/libvirt-machine-properties.vala:230
 #: ../src/libvirt-machine-properties.vala:247
 msgid "Add support to guest"
@@ -314,8 +318,8 @@ msgstr "Poista"
 msgid "Select a device or ISO file"
 msgstr "Valitse laite tai ISO-tiedosto"
 
-#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:152
-#: ../src/wizard-source.vala:306 ../src/wizard.vala:672
+#: ../src/libvirt-machine-properties.vala:310 ../src/topbar.vala:160
+#: ../src/wizard-source.vala:306 ../src/wizard.vala:674
 msgid "_Cancel"
 msgstr "_Peru"
 
@@ -402,37 +406,37 @@ msgid "Password"
 msgstr "Salasana"
 
 #. FIXME: add proper UI & docs
-#: ../src/main.vala:54
+#: ../src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
 msgstr "• Suoritin kykenee virtualisointiin: %s\n"
 
-#: ../src/main.vala:55
+#: ../src/main.vala:54
 #, c-format
 msgid "• The KVM module is loaded: %s\n"
 msgstr "• KVM-moduuli on ladattu: %s\n"
 
-#: ../src/main.vala:56
+#: ../src/main.vala:55
 #, c-format
 msgid "• Libvirt KVM guest available: %s\n"
 msgstr "• Libvirt KVM -asiakas käytettävissä: %s\n"
 
-#: ../src/main.vala:57
+#: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
 msgstr ""
 
-#: ../src/main.vala:61
+#: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
 msgstr "• SELinux-yhteys on oletus: %s\n"
 
-#: ../src/main.vala:65
+#: ../src/main.vala:64
 #, c-format
 msgid "Report bugs to <%s>.\n"
 msgstr "Ilmoita vioista <%s>.\n"
 
-#: ../src/main.vala:66
+#: ../src/main.vala:65
 #, c-format
 msgid "%s home page: <%s>.\n"
 msgstr "%s - verkkosivusto: <%s>.\n"
@@ -465,7 +469,6 @@ msgid "_Password"
 msgstr "_Salasana"
 
 #: ../src/ovirt-broker.vala:69
-#| msgid "Connection to '%s' failed"
 msgid "Connection to oVirt broker failed"
 msgstr "Yhteys oVirt-välittäjään epäonnistui"
 
@@ -493,37 +496,36 @@ msgstr ""
 "Jotkin muutokset saattavat tulla voimaan vasta, kun järjestelmä on "
 "käynnistetty uudelleen"
 
-#: ../src/properties.vala:278
+#: ../src/properties.vala:280
 msgid "CPU:"
 msgstr "Suoritin:"
 
-#: ../src/properties.vala:285
+#: ../src/properties.vala:287
 msgid "I/O:"
 msgstr "I/O:"
 
-#: ../src/properties.vala:292
+#: ../src/properties.vala:294
 msgid "Net:"
 msgstr "Verkko:"
 
-#: ../src/properties.vala:299
+#: ../src/properties.vala:301
 msgid "Force Shutdown"
 msgstr "Pakota sammutus"
 
-#: ../src/selectionbar.vala:34
+#: ../src/selectionbar.vala:36
 msgid "P_ause"
 msgstr "_Keskeytä"
 
-#: ../src/selectionbar.vala:46
+#: ../src/selectionbar.vala:49
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Kohteen '%s' keskeytys epäonnistui"
 
-#: ../src/selectionbar.vala:55
+#: ../src/selectionbar.vala:58
 msgid "_Delete"
 msgstr "_Poista"
 
-#: ../src/selectionbar.vala:62
-#| msgid "%s - Properties"
+#: ../src/selectionbar.vala:66
 msgid "_Properties"
 msgstr "_Ominaisuudet"
 
@@ -556,7 +558,6 @@ msgid "Redirect new USB devices"
 msgstr "Ohjaa uudelleen uudet USB-laitteet"
 
 #: ../src/spice-display.vala:326
-#| msgid "USB device support"
 msgid "USB devices"
 msgstr "USB-laitteet"
 
@@ -572,47 +573,44 @@ msgstr "Portti tulee määrittää kerran"
 msgid "Missing port in Spice URI"
 msgstr ""
 
-#: ../src/topbar.vala:73
+#: ../src/topbar.vala:74
 msgid "_New"
 msgstr "_Uusi"
 
-#: ../src/topbar.vala:85
-#| msgid "_Back"
+#: ../src/topbar.vala:88
 msgid "Back"
 msgstr "Takaisin"
 
-#: ../src/topbar.vala:105
-#| msgid "Search term"
+#: ../src/topbar.vala:109
 msgid "Search"
 msgstr "Etsi"
 
-#: ../src/topbar.vala:113
-#| msgid "Select None"
+#: ../src/topbar.vala:118
 msgid "Select Items"
 msgstr "Valitse kohteet"
 
-#: ../src/topbar.vala:134
+#: ../src/topbar.vala:140
 msgid "Select All"
 msgstr "Valitse kaikki"
 
-#: ../src/topbar.vala:135
+#: ../src/topbar.vala:141
 msgid "Select Running"
 msgstr "Valitse käynnissä oleva"
 
-#: ../src/topbar.vala:136
+#: ../src/topbar.vala:142
 msgid "Select None"
 msgstr "Älä valitse mitään"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:195
+#: ../src/topbar.vala:204
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d valittu"
 msgstr[1] "%d valittu"
 
-#: ../src/topbar.vala:197
+#: ../src/topbar.vala:206
 msgid "(Click on items to select them)"
 msgstr "(Napsauta kohteita valitaksesi ne)"
 
@@ -701,7 +699,7 @@ msgstr "ei"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:439
+#: ../src/vm-configurator.vala:441
 msgid "Incapable host system"
 msgstr "Kykenemätön isäntäjärjestelmä"
 
@@ -731,7 +729,6 @@ msgstr[0] "%d% % asennettu"
 msgstr[1] "%d% % asennettu"
 
 #: ../src/vm-importer.vala:34
-#| msgid "Installing..."
 msgid "Importing..."
 msgstr "Tuodaan..."
 
@@ -789,6 +786,7 @@ msgstr ""
 msgid "Will add a single box."
 msgstr "Lisätään yksittäinen boksi."
 
+#. ignore any parsing error
 #: ../src/wizard.vala:163
 msgid "Desktop Access"
 msgstr "Työpöydän käyttö"
@@ -812,6 +810,7 @@ msgstr ""
 "Asennusmedian analysointi epäonnistui. Media saattaa olla rikki tai "
 "puutteellinen."
 
+#. We did this, so ignore!
 #: ../src/wizard.vala:386
 msgid "Box setup failed"
 msgstr "Boksin asetuksissa tapahtui virhe"
@@ -875,7 +874,7 @@ msgstr "Lähteen valinta"
 msgid "Insert operating system installation media or select a source below"
 msgstr "Syötä käyttöjärjestelmän asennusmedia tai valitse lähde alta"
 
-#: ../src/wizard.vala:572
+#: ../src/wizard.vala:570
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -885,23 +884,23 @@ msgstr ""
 "tunnistamista varten. Kyseisten tavaramerkkien oikeudet kuuluvat niiden "
 "omistajille."
 
-#: ../src/wizard.vala:585
+#: ../src/wizard.vala:581
 msgid "Preparation"
 msgstr "Valmistelu"
 
-#: ../src/wizard.vala:586
+#: ../src/wizard.vala:582
 msgid "Preparing to create new box"
 msgstr "Valmistaudutaan uuden boksin luontiin"
 
-#: ../src/wizard.vala:623
+#: ../src/wizard.vala:617
 msgid "Setup"
 msgstr "Asetukset"
 
-#: ../src/wizard.vala:630
+#: ../src/wizard.vala:624
 msgid "Review"
 msgstr "Viimeistely"
 
-#: ../src/wizard.vala:638
+#: ../src/wizard.vala:632
 msgid ""
 "Virtualization extensions are unavailable on your system. If your system is "
 "recent (post 2008), check your BIOS settings to enable them."
@@ -910,23 +909,23 @@ msgstr ""
 "tietokoneesi on melko uusi (valmistettu vuoden 2008 jälkeen), tarkista BIOS-"
 "asetuksesi ja ota virtualisointilaajennukset käyttöön."
 
-#: ../src/wizard.vala:669
+#: ../src/wizard.vala:671
 msgid "Create a Box"
 msgstr "Luo uusi boksi"
 
-#: ../src/wizard.vala:683
+#: ../src/wizard.vala:686
 msgid "_Back"
 msgstr "_Takaisin"
 
-#: ../src/wizard.vala:691
+#: ../src/wizard.vala:695
 msgid "C_ontinue"
 msgstr "J_atka"
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:705
 msgid "C_reate"
 msgstr "_Luo"
 
-#: ../src/wizard.vala:787
+#: ../src/wizard.vala:793
 msgid "C_ustomize..."
 msgstr "_Muokkaa"
 
