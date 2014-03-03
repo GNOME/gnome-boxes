@@ -368,7 +368,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-            App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
+            if (App.app.current_item == this)
+                App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
@@ -509,6 +510,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (auth_notification != null)
                 auth_notification.dismiss ();
             disconnect_display ();
+
+            break;
+        case UIState.PROPERTIES:
+            if (pixbuf != null)
+                App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
 
             break;
         }
