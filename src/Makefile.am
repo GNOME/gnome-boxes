@@ -3,10 +3,12 @@ BUILT_SOURCES =
 EXTRA_DIST =
 MAINTAINERCLEANFILES = *.stamp
 
+cachedir=/var/cache/
 AM_CPPFLAGS =						\
 	-include config.h				\
 	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
 	-DDATADIR=\""$(datadir)"\"			\
+	-DCACHEDIR=\""$(cachedir)"\"			\
 	$(DISABLE_DEPRECATED)				\
 	-DG_LOG_DOMAIN=\""Boxes"\"			\
 	-I$(top_srcdir)/libgd                           \
