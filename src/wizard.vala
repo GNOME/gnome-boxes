@@ -123,6 +123,9 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
         base.switch_page (page_widget, page_num);
 
         App.window.sidebar.set_wizard_page ((WizardPage) page_num);
+
+        if (page_num == WizardPage.SOURCE)
+            wizard_source_update_next ();
     }
 
     private void wizard_source_update_next () {
