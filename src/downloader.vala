@@ -14,7 +14,7 @@ private class Boxes.Download {
 
 private class Boxes.Downloader : GLib.Object {
     private static Downloader downloader;
-    private Soup.SessionAsync session;
+    private Soup.Session session;
 
     private GLib.HashTable<string,Download> downloads;
 
@@ -50,7 +50,7 @@ private class Boxes.Downloader : GLib.Object {
     private Downloader () {
         downloads = new GLib.HashTable <string,Download> (str_hash, str_equal);
 
-        session = new Soup.SessionAsync ();
+        session = new Soup.Session ();
         session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
     }
 
@@ -118,7 +118,7 @@ private class Boxes.Downloader : GLib.Object {
             download_from_http.callback ();
         });
         yield;
-        if (msg.status_code != Soup.KnownStatusCode.OK)
+        if (msg.status_code != Soup.Status.OK)
             throw new Boxes.Error.INVALID (msg.reason_phrase);
         yield download.cached_file.replace_contents_async (msg.response_body.data, null, false, 0, null, null);
     }
