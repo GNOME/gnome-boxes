@@ -188,7 +188,7 @@ namespace Boxes {
     }
 
     public delegate void RunInThreadFunc () throws  GLib.Error;
-    public async void run_in_thread (owned RunInThreadFunc func, Cancellable? cancellable = null) throws GLib.Error {
+    public async void run_in_thread (owned RunInThreadFunc func) throws GLib.Error {
         GLib.Error e = null;
         GLib.SourceFunc resume = run_in_thread.callback;
         new GLib.Thread<void*> (null, () => {
@@ -220,7 +220,7 @@ namespace Boxes {
 
         yield run_in_thread (() => {
            exec_sync (argv_copy, out std_output, out std_error);
-        }, cancellable);
+        });
 
         standard_output = std_output;
         standard_error = std_error;
