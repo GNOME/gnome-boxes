@@ -190,21 +190,18 @@ namespace Boxes {
     public delegate void RunInThreadFunc () throws  GLib.Error;
     public async void run_in_thread (owned RunInThreadFunc func, Cancellable? cancellable = null) throws GLib.Error {
         GLib.Error e = null;
-        GLib.IOSchedulerJob.push ((job, cancellable) => {
+        GLib.SourceFunc resume = run_in_thread.callback;
+        new GLib.Thread<void*> (null, () => {
             try {
                 func ();
             } catch (GLib.Error err) {
                 e = err;
             }
 
-            job.send_to_mainloop (() => {
-                run_in_thread.callback ();
+            Idle.add ((owned) resume);
 
-                return false;
-            });
-
-            return false;
-        }, GLib.Priority.DEFAULT, cancellable);
+            return null;
+        });
 
         yield;
 

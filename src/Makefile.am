@@ -65,6 +65,7 @@ libcommon_a_CFLAGS = $(BOXES_COMMON_CFLAGS)
 libcommon_vala.stamp: $(libcommon_a_VALASOURCES)
 	$(AM_V_VALAC)$(VALAC) $(VALAFLAGS) $(VALA_DEBUG_FLAGS)	\
 	--enable-experimental					\
+	--target-glib=@GLIB_MIN_VERSION@			\
 	--vapidir=$(srcdir)/					\
 	--pkg config						\
 	--pkg glib-2.0						\
