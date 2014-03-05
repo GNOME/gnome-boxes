@@ -32,6 +32,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
     private Gtk.ListStore store;
     private Gtk.TreeModelFilter model_filter;
+    private Gtk.TreeIter? prelight_iter; // Iter of item under the cursor
 
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
@@ -56,7 +57,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.get (iter, ModelColumns.ITEM, out item);
         Machine machine = item as Machine;
         return_if_fail (machine != null);
-        var pixbuf = machine.pixbuf;
+        var pixbuf = (iter == prelight_iter)? machine.orig_pixbuf : machine.pixbuf;
 
         if ("favorite" in machine.config.categories)
             emblem_icons += create_symbolic_emblem ("emblem-favorite");
@@ -278,6 +279,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         selection_mode_request.connect (() => {
             App.app.selection_mode = true;
         });
+        (get_generic_view () as Gtk.IconView).motion_notify_event.connect (on_motion_notify);
         show_all ();
     }
 
@@ -336,5 +338,32 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             return true;
         });
         machine.set_data<uint> ("activity_timeout", activity_timeout);
+    }
+
+    private bool on_motion_notify (Gtk.Widget widget,
+                                   Gdk.Event  event) {
+        var icon_view = widget as Gtk.IconView;
+        var motion = (Gdk.EventMotion) event;
+        int x, y;
+
+        icon_view.convert_widget_to_bin_window_coords ((int) motion.x, (int) motion.y,
+                                                       out x, out y);
+        var path = icon_view.get_path_at_pos (x, y);
+        if (path != null) {
+            Gtk.TreeIter filter_iter;
+
+            model_filter.get_iter (out filter_iter, path);
+            model_filter.convert_iter_to_child_iter (out prelight_iter, filter_iter);
+        } else {
+            prelight_iter = null;
+        }
+
+        store.foreach ((store, path, iter) => {
+            update_screenshot (iter);
+
+            return false;
+        });
+
+        return false;
     }
 }
