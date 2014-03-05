@@ -35,7 +35,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Cancellable connecting_cancellable { get; protected set; }
 
     // The current screenshot without running status applied
-    public Gdk.Pixbuf? orig_pixbuf { get; private set; }
+    private Gdk.Pixbuf? orig_pixbuf;
+    public Gdk.Pixbuf? prelight_pixbuf { get; private set; }
 
     public enum MachineState {
         UNKNOWN,
@@ -62,8 +63,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 set_screenshot (null, false);
             else {
                 // Update existing screenshot based on machine status
-                if (orig_pixbuf != null)
+                if (orig_pixbuf != null) {
                     pixbuf = draw_vm (orig_pixbuf, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
+                    prelight_pixbuf = draw_prelighted_vm (orig_pixbuf, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
+                }
             }
 
             // If the display is active and the VM goes to a non-running
@@ -368,6 +371,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
+            prelight_pixbuf = draw_prelighted_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
             if (App.app.current_item == this)
                 App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
@@ -431,6 +435,29 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             context.set_operator (Cairo.Operator.ADD);
             context.mask (grid);
         }
+
+        return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
+    }
+
+    private Gdk.Pixbuf draw_prelighted_vm (Gdk.Pixbuf pixbuf, int width, int height) {
+        var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
+        var context = new Cairo.Context (surface);
+
+        var pw = pixbuf.get_width ();
+        var ph = pixbuf.get_height ();
+        var x = (width - pw) / 2;
+        var y = (height - ph) / 2;
+
+        context.rectangle (x, y, pw, ph);
+        context.clip ();
+
+        Gdk.cairo_set_source_pixbuf (context, pixbuf, x, y);
+        context.set_operator (Cairo.Operator.SOURCE);
+        context.paint ();
+
+        context.set_source_rgba (0.2, 0.2, 0.2, 0.2);
+        context.set_operator (Cairo.Operator.SCREEN);
+        context.paint ();
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }

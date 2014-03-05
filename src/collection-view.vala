@@ -57,7 +57,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.get (iter, ModelColumns.ITEM, out item);
         Machine machine = item as Machine;
         return_if_fail (machine != null);
-        var pixbuf = (iter == prelight_iter)? machine.orig_pixbuf : machine.pixbuf;
+        var pixbuf = (iter == prelight_iter)? machine.prelight_pixbuf : machine.pixbuf;
 
         if ("favorite" in machine.config.categories)
             emblem_icons += create_symbolic_emblem ("emblem-favorite");
