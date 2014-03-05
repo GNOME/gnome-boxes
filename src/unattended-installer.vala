@@ -498,10 +498,16 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var file_uri = location + "/" + filename;
             var file = File.new_for_uri (file_uri);
 
-            var cached_path = get_drivers_cache (location_checksum + "-" + file.get_basename ());
+            var driver_file_name = location_checksum + "-" + file.get_basename ();
+            var cached_path = get_drivers_cache (driver_file_name);
+            var system_cached_path = get_system_drivers_cache (driver_file_name);
+
+            string[] cached_paths = { cached_path };
+            if (system_cached_path != null)
+                cached_paths += system_cached_path;
 
             var file_progress = progress.add_child_activity (file_progress_scale);
-            file = yield downloader.download (file, {cached_path}, file_progress);
+            file = yield downloader.download (file, cached_paths, file_progress);
             file_progress.progress = 1.0; // Ensure progress reaches 100%
 
             driver_files.append (new UnattendedRawFile (this, cached_path, filename));

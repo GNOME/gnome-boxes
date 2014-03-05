@@ -147,9 +147,15 @@ private class Boxes.Downloader : GLib.Object {
         debug ("%s has logo '%s'.", os.name, logo_url);
 
         var remote_file = File.new_for_uri (logo_url);
+        var system_cached_path = get_system_logo_cache (remote_file.get_basename ());
         var cached_path = get_logo_cache (remote_file.get_basename ());
+
+        string[] cached_paths = { cached_path };
+        if (system_cached_path != null)
+            cached_paths += system_cached_path;
+
         try {
-            var cached_file = yield get_instance ().download (remote_file, {cached_path});
+            var cached_file = yield get_instance ().download (remote_file, cached_paths);
             var pixbuf = new Gdk.Pixbuf.from_file_at_size (cached_file.get_path (), size, size);
             image.set_from_pixbuf (pixbuf);
         } catch (GLib.Error error) {
