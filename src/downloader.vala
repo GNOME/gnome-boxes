@@ -54,21 +54,37 @@ private class Boxes.Downloader : GLib.Object {
         session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
     }
 
+    /**
+     * Downloads the given file.
+     *
+     * @param remote_file The remote file to download.
+     * @param cached_paths Array of cache directories. The file will be saved in the directory the
+     *                     first element points to.
+     * @param progress The ActivityProgress object to report progress to.
+     *
+     * @return A file handle to the (now) local file.
+     */
     public async File download (File             remote_file,
-                                string           cached_path,
+                                string[]         cached_paths,
                                 ActivityProgress progress = new ActivityProgress ()) throws GLib.Error {
         var uri = remote_file.get_uri ();
         var download = downloads.get (uri);
+        var cached_path = cached_paths[0];
+
         if (download != null)
             // Already being downloaded
             return yield await_download (download, cached_path, progress);
 
-        var cached_file = File.new_for_path (cached_path);
-        if (cached_file.query_exists ()) {
-            debug ("'%s' already available locally at '%s'. Not downloading.", uri, cached_path);
-            return cached_file;
+        GLib.File cached_file;
+        foreach (var path in cached_paths) {
+            cached_file = File.new_for_path (path);
+            if (cached_file.query_exists ()) {
+                debug ("'%s' already available locally at '%s'. Not downloading.", uri, path);
+                return cached_file;
+            }
         }
 
+        cached_file = GLib.File.new_for_path (cached_path);
         debug ("Downloading '%s'...", uri);
         download = new Download (uri, cached_file, progress);
         downloads.set (uri, download);
@@ -133,7 +149,7 @@ private class Boxes.Downloader : GLib.Object {
         var remote_file = File.new_for_uri (logo_url);
         var cached_path = get_logo_cache (remote_file.get_basename ());
         try {
-            var cached_file = yield get_instance ().download (remote_file, cached_path);
+            var cached_file = yield get_instance ().download (remote_file, {cached_path});
             var pixbuf = new Gdk.Pixbuf.from_file_at_size (cached_file.get_path (), size, size);
             image.set_from_pixbuf (pixbuf);
         } catch (GLib.Error error) {

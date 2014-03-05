@@ -501,7 +501,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var cached_path = get_drivers_cache (location_checksum + "-" + file.get_basename ());
 
             var file_progress = progress.add_child_activity (file_progress_scale);
-            file = yield downloader.download (file, cached_path, file_progress);
+            file = yield downloader.download (file, {cached_path}, file_progress);
             file_progress.progress = 1.0; // Ensure progress reaches 100%
 
             driver_files.append (new UnattendedRawFile (this, cached_path, filename));
