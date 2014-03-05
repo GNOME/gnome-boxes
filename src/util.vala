@@ -13,6 +13,10 @@ namespace Boxes {
         return Path.build_filename (DATADIR, Config.PACKAGE_TARNAME, file_name);
     }
 
+    public string get_cache (string? file_name = null) {
+        return Path.build_filename (CACHEDIR, Config.PACKAGE_TARNAME, file_name);
+    }
+
     public string get_pixmap (string? file_name = null) {
         return Path.build_filename (get_pkgdata (), "pixmaps", file_name);
     }
@@ -43,6 +47,14 @@ namespace Boxes {
         var dir = Path.build_filename (Environment.get_user_cache_dir (), Config.PACKAGE_TARNAME);
 
         ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
+    public string? get_system_pkgcache (string? file_name = null) {
+        var dir = Path.build_filename (CACHEDIR, Config.PACKAGE_TARNAME);
+        if (!FileUtils.test (dir, FileTest.EXISTS))
+            return null;
 
         return Path.build_filename (dir, file_name);
     }
@@ -86,6 +98,18 @@ namespace Boxes {
         return name;
     }
 
+    public string? get_system_logo_cache (string? file_name = null) {
+        var system_pkgcache = get_system_pkgcache ();
+        if (system_pkgcache == null)
+            return null;
+
+        var dir = Path.build_filename (system_pkgcache, "logos");
+        if (!FileUtils.test (dir, FileTest.EXISTS))
+            return null;
+
+        return Path.build_filename (dir, file_name);
+    }
+
     public string get_logo_cache (string? file_name = null) {
         var dir = Path.build_filename (get_user_pkgcache (), "logos");
 
@@ -98,6 +122,18 @@ namespace Boxes {
         var dir = Path.build_filename (get_user_pkgcache (), "drivers");
 
         ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
+    }
+
+    public string? get_system_drivers_cache (string? file_name = null) {
+        var system_pkgcache = get_system_pkgcache ();
+        if (system_pkgcache == null)
+            return null;
+
+        var dir = Path.build_filename (get_system_pkgcache (), "drivers");
+        if (!FileUtils.test (dir, FileTest.EXISTS))
+            return null;
 
         return Path.build_filename (dir, file_name);
     }
