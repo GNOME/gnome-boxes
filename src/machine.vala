@@ -34,6 +34,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public Cancellable connecting_cancellable { get; protected set; }
 
+    // The current screenshot without running status applied
+    public Gdk.Pixbuf? orig_pixbuf { get; private set; }
+
     public enum MachineState {
         UNKNOWN,
         STOPPED,
@@ -49,9 +52,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         NONE = 0,
         IGNORE_SAVED_STATE
     }
-
-    // The current screenshot without running status applied
-    private Gdk.Pixbuf? orig_pixbuf;
 
     private MachineState _state;
     public MachineState state { get { return _state; }
