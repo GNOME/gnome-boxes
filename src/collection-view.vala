@@ -279,7 +279,11 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         selection_mode_request.connect (() => {
             App.app.selection_mode = true;
         });
-        (get_generic_view () as Gtk.IconView).motion_notify_event.connect (on_motion_notify);
+        var icon_view = get_generic_view () as Gtk.IconView;
+        icon_view.add_events (Gdk.EventMask.LEAVE_NOTIFY_MASK);
+        icon_view.motion_notify_event.connect (on_motion_notify);
+        icon_view.leave_notify_event.connect (on_leave_notify);
+
         show_all ();
     }
 
@@ -363,6 +367,18 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
             return false;
         });
+
+        return false;
+    }
+
+    private bool on_leave_notify (Gtk.Widget widget,
+                                  Gdk.Event  event) {
+        if (prelight_iter == null)
+            return false;
+
+        var iter = prelight_iter;
+        prelight_iter = null;
+        update_screenshot (iter);
 
         return false;
     }
