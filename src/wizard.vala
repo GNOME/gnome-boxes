@@ -11,7 +11,9 @@ private enum Boxes.WizardPage {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard.ui")]
-private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
+private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
+    private const string[] page_names = { "introduction", "source", "preparation", "setup", "review" };
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -47,85 +49,89 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
     protected Machine? machine { get; set; }
     private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
-    public override void switch_page (Gtk.Widget page_widget, uint page_num) {
-        if (cancel_button == null) {
-            // page is set to INTRODUCTION by GtkBuilder during construction (before even construct is called) and
-            // therefore none of the state we access below is available to us (nor it could be before this object
-            // exists).
-            base.switch_page (page_widget, page_num);
+    private WizardPage _page;
+    private WizardPage page {
+        get { return _page; }
+        set {
+            back_button.sensitive = value != WizardPage.INTRODUCTION;
 
-            return;
-        }
+            var forwards = value > page;
 
-        back_button.sensitive = page_num != WizardPage.INTRODUCTION;
+            switch (value) {
+            case WizardPage.INTRODUCTION:
+                create_button.visible = false;
+                continue_button.visible = true;
+                next_button = continue_button;
+                next_button.sensitive = true;
+                next_button.grab_focus (); // FIXME: doesn't work?!
+                break;
 
-        var forwards = page_num > page;
-
-        switch (page_num) {
-        case WizardPage.INTRODUCTION:
-            create_button.visible = false;
-            continue_button.visible = true;
-            next_button = continue_button;
-            next_button.sensitive = true;
-            next_button.grab_focus (); // FIXME: doesn't work?!
-            break;
-
-        case WizardPage.SOURCE:
-            // reset page to notify deeply widgets states
-            wizard_source.page = wizard_source.page;
-            break;
-        }
-
-        if (forwards) {
-            switch (page_num) {
             case WizardPage.SOURCE:
-                wizard_source.selected = null;
-                wizard_source.page = SourcePage.MAIN;
-                break;
-
-            case WizardPage.PREPARATION:
-                if (!prepare ())
-                    return;
-                break;
-
-            case WizardPage.SETUP:
-                if (!setup ())
-                    return;
-                break;
-
-            case WizardPage.REVIEW:
-                continue_button.visible = false;
-                create_button.visible = true;
-                next_button = create_button;
-                next_button.sensitive = false;
-
-                review.begin ((obj, result) => {
-                    next_button.sensitive = true;
-                    if (!review.end (result))
-                        page = page - 1;
-                });
+                // reset page to notify deeply widgets states
+                wizard_source.page = wizard_source.page;
                 break;
             }
-        } else {
-            switch (page) {
+
+            if (forwards) {
+                switch (value) {
+                case WizardPage.SOURCE:
+                    wizard_source.selected = null;
+                    wizard_source.page = SourcePage.MAIN;
+                    break;
+
+                case WizardPage.PREPARATION:
+                    if (!prepare ())
+                        return;
+                    break;
+
+                case WizardPage.SETUP:
+                    if (!setup ())
+                        return;
+                    break;
+
+                case WizardPage.REVIEW:
+                    continue_button.visible = false;
+                    create_button.visible = true;
+                    next_button = create_button;
+                    next_button.sensitive = false;
+
+                    review.begin ((obj, result) => {
+                        next_button.sensitive = true;
+                        if (!review.end (result))
+                            page = page - 1;
+                    });
+                    break;
+
+                case WizardPage.LAST:
+                    create.begin ((obj, result) => {
+                       if (create.end (result))
+                          App.window.set_state (UIState.COLLECTION);
+                       else
+                          App.window.notificationbar.display_error (_("Box creation failed"));
+                    });
+                    return;
+                }
+            } else {
+                switch (page) {
                 case WizardPage.REVIEW:
                     create_button.visible = false;
                     continue_button.visible = true;
                     next_button = continue_button;
                     destroy_machine ();
                     break;
+                }
             }
+
+            if (skip_page (value))
+                return;
+
+            _page = value;
+            App.window.sidebar.set_wizard_page (value);
+            visible_child_name = page_names[value];
+
+            if (value == WizardPage.SOURCE)
+                wizard_source_update_next ();
         }
-
-        if (skip_page ((WizardPage) page_num))
-            return;
-
-        base.switch_page (page_widget, page_num);
-
-        App.window.sidebar.set_wizard_page ((WizardPage) page_num);
-
-        if (page_num == WizardPage.SOURCE)
-            wizard_source_update_next ();
     }
 
     private void wizard_source_update_next () {
@@ -178,9 +184,8 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
             page = WizardPage.PREPARATION;
         });
 
-        // Changing page to something other than INTRODUCTION here so that Gtk.Notebook doesn't ignore us setting
-        // it to INTRODUCTION later (also read the comment in switch_page method above).
-        page = WizardPage.PREPARATION;
+        // FIXME: Why this won't work from .ui file?
+        transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
     }
 
     public void cleanup () {
@@ -547,6 +552,8 @@ private class Boxes.Wizard: Gtk.Notebook, Boxes.UI {
                 App.window.notificationbar.display_error (_("Box creation failed"));
             });
         });
+
+        page = WizardPage.INTRODUCTION;
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
