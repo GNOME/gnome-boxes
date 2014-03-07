@@ -10,16 +10,29 @@ private enum Boxes.PropertiesPage {
     LAST,
 }
 
-private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
+private class Boxes.Properties: Gtk.Stack, Boxes.UI {
+    private const string[] page_names = { "login", "system", "display", "devices" };
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
     private ulong stats_id;
     private bool restore_fullscreen;
 
-    private class PageWidget: Gtk.Grid {
+    private PropertiesPage _page;
+    public PropertiesPage page {
+        get { return _page; }
+        set {
+            _page = value;
+
+            visible_child_name = page_names[value];
+        }
+    }
+
+    private class PageWidget: Gtk.Box {
         public bool empty;
 
+        private Gtk.Grid grid;
         private List<Boxes.Property> properties;
 
         public signal void refresh_properties ();
@@ -43,10 +56,15 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                 break;
             }
 
-            margin = 20;
-            row_spacing = 10;
-            column_spacing = 20;
-            valign = Gtk.Align.START;
+            get_style_context ().add_class ("properties");
+            get_style_context ().add_class ("boxes-bg");
+
+            grid = new Gtk.Grid ();
+            grid.margin = 20;
+            grid.row_spacing = 10;
+            grid.column_spacing = 20;
+            grid.valign = Gtk.Align.START;
+            pack_end (grid, true, true);
 
             PropertyCreationFlag flags = PropertyCreationFlag.NONE;
             properties = machine.get_properties (page, ref flags);
@@ -60,15 +78,15 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                         label_name.margin_left = 25;
                         label_name.halign = Gtk.Align.START;
                         label_name.hexpand = false;
-                        attach (label_name, 0, current_row, 1, 1);
+                        grid.attach (label_name, 0, current_row, 1, 1);
                         var widget = property.widget;
                         widget.hexpand = true;
-                        attach (widget, 1, current_row, 1, 1);
+                        grid.attach (widget, 1, current_row, 1, 1);
                     } else {
                         var widget = property.widget;
                         widget.hexpand = true;
                         widget.margin_left = 25;
-                        attach (widget, 0, current_row, 2, 1);
+                        grid.attach (widget, 0, current_row, 2, 1);
                     }
 
                     var widget = property.extra_widget;
@@ -76,7 +94,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
                         current_row += 1;
                         widget.margin_left = 25;
                         widget.hexpand = true;
-                        attach (widget, 0, current_row, 2, 1);
+                        grid.attach (widget, 0, current_row, 2, 1);
                     }
 
                     property.refresh_properties.connect (() => {
@@ -116,8 +134,8 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
     private void populate () {
         App.window.sidebar.props_listmodel.clear ();
-        for (var i = 0; i < PropertiesPage.LAST; i++)
-            remove_page (-1);
+        foreach (var page in get_children ())
+            remove (page);
 
         var machine = App.app.current_item as Machine;
         var libvirt_machine = App.app.current_item as LibvirtMachine;
@@ -129,7 +147,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
             var page = new PageWidget (i, machine);
-            append_page (page, null);
+            add_named (page, page_names[i]);
             set_data<PageWidget> (@"boxes-property-$i", page);
 
             page.refresh_properties.connect (() => {
@@ -152,13 +170,12 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
         var path = new Gtk.TreePath.from_indices (current_page);
         App.window.sidebar.props_selection.select_path (path);
-        set_current_page (current_page);
+        visible_child_name = page_names[current_page];
     }
 
     private void setup_ui () {
-        show_tabs = false;
-        get_style_context ().add_class ("properties");
-        get_style_context ().add_class ("boxes-bg");
+        transition_type = Gtk.StackTransitionType.SLIDE_UP_DOWN;
+        transition_duration = 400;
 
         show_all ();
     }

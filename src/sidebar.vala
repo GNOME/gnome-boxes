@@ -98,7 +98,7 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
         Gtk.TreeIter filter_iter, iter;
         props_model_filter.get_iter (out filter_iter, path);
         props_model_filter.convert_iter_to_child_iter (out iter, filter_iter);
-        App.window.properties.page = props_listmodel.get_path (iter).get_indices ()[0];
+        App.window.properties.page = (PropertiesPage) props_listmodel.get_path (iter).get_indices ()[0];
     }
 
     [GtkCallback]
