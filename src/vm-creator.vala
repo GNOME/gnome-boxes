@@ -161,7 +161,16 @@ private class Boxes.VMCreator {
                 // No installation during live session, so lets delete the VM
                 machine.disconnect (state_changed_id);
                 install_media.clean_up ();
-                App.app.delete_machine (machine);
+                var items = new GLib.List<CollectionItem> ();
+                items.append (machine);
+
+                Boxes.App.UndoNotifyCallback undo_notify_callback = () => {
+                    debug ("Live box deletion cancelled. Invoking post installation setup...");
+                    set_post_install_config (machine);
+                };
+
+                var msg = _("Live box '%s' has been deleted automatically.").printf (machine.name);
+                App.app.delete_machines_undoable ((owned) items, msg, (owned) undo_notify_callback);
             } else
                 try {
                     domain.start (0);

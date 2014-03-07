@@ -31,6 +31,9 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     public signal void ready ();
     public signal void item_selected (CollectionItem item);
 
+    // A callback to notify that deletion of machines was undone by user.
+    public delegate void UndoNotifyCallback ();
+
     private HashTable<string,Broker> brokers;
     private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
@@ -481,6 +484,44 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         }
     }
 
+    /**
+     * Deletes specified items, while allowing user to undo it.
+     *
+     * @param items the list of machines
+     * @param message The message to be shown together with the undo button
+     * @param callback optional function that, if provided, is called after the undo operation
+     *
+     * @attention the ownership for items is required since GLib.List is a compact class.
+     */
+    public void delete_machines_undoable (owned List<CollectionItem> items,
+                                          string                     message,
+                                          owned UndoNotifyCallback?  undo_notify_callback = null) {
+        foreach (var item in items)
+            collection.remove_item (item);
+
+        Notification.OKFunc undo = () => {
+            debug ("Box deletion cancelled by user. Re-adding to view");
+            foreach (var item in items) {
+                var machine = item as Machine;
+                collection.add_item (machine);
+            }
+            if (undo_notify_callback != null)
+                undo_notify_callback ();
+        };
+
+        Notification.CancelFunc really_remove = () => {
+            debug ("User did not cancel deletion. Deleting now...");
+            foreach (var item in items) {
+                var machine = item as Machine;
+                if (machine != null)
+                    // Will also delete associated storage volume if by_user is 'true'
+                    machine.delete (true);
+            }
+        };
+
+        window.notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
+    }
+
     public void remove_selected_items () {
         var selected_items = window.view.get_selected_items ();
         var num_selected = selected_items.length ();
@@ -493,27 +534,8 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
                                             ngettext ("%u box has been deleted",
                                                       "%u boxes have been deleted",
                                                       num_selected).printf (num_selected);
-        foreach (var item in selected_items)
-            collection.remove_item (item);
 
-        Notification.OKFunc undo = () => {
-            debug ("Box deletion cancelled by user, re-adding to view");
-            foreach (var selected in selected_items) {
-                collection.add_item (selected);
-            }
-        };
-
-        Notification.CancelFunc really_remove = () => {
-            debug ("Box deletion, deleting now");
-            foreach (var selected in selected_items) {
-                var machine = selected as Machine;
-
-                if (machine != null)
-                    machine.delete ();
-            }
-        };
-
-        window.notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
+        delete_machines_undoable ((owned) selected_items, message);
     }
 
     public void connect_to (Machine machine) {
