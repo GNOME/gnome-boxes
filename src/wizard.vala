@@ -50,9 +50,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
     private WizardPage _page;
-    private WizardPage page {
+    public WizardPage page {
         get { return _page; }
-        set {
+        private set {
             back_button.sensitive = value != WizardPage.INTRODUCTION;
 
             var forwards = value > page;

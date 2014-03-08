@@ -177,6 +177,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             App.window.topbar.click_back_button ();
             return true;
+        } else if (event.keyval == Gdk.Key.Right && // ALT + Right -> forward
+                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
+            App.window.topbar.click_forward_button ();
+            return true;
         }
 
         return false;

@@ -63,7 +63,17 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         case UIState.CREDS:
             back_btn.clicked ();
             break;
+        case UIState.WIZARD:
+            if (App.window.wizard.page != WizardPage.INTRODUCTION)
+                wizard_back_btn.clicked ();
+            break;
         }
+    }
+
+    // Clicks the appropriate forward button dependent on the ui state.
+    public void click_forward_button () {
+        if (App.window.wizard.page != WizardPage.REVIEW)
+            wizard_continue_btn.clicked ();
     }
 
     public string? _status;
