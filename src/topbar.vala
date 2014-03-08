@@ -26,6 +26,9 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public Gtk.Button wizard_create_btn;
 
     [GtkChild]
+    private Gtk.Button props_back_btn;
+
+    [GtkChild]
     private Gtk.Button search_btn;
     [GtkChild]
     private Gtk.Button search2_btn;
@@ -50,6 +53,18 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     private Gtk.Image props_back_image;
 
     private GLib.Binding props_name_bind;
+
+    // Clicks the appropriate back button depending on the ui state.
+    public void click_back_button () {
+        switch (App.app.ui_state) {
+        case UIState.PROPERTIES:
+            props_back_btn.clicked ();
+            break;
+        case UIState.CREDS:
+            back_btn.clicked ();
+            break;
+        }
+    }
 
     public string? _status;
     public string? status {

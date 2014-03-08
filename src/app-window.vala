@@ -173,6 +173,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             App.app.quit_app ();
             return true;
+        } else if (event.keyval == Gdk.Key.Left && // ALT + Left -> back
+                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
+            App.window.topbar.click_back_button ();
+            return true;
         }
 
         return false;
