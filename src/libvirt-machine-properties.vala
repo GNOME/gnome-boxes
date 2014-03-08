@@ -462,13 +462,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var volume_info = machine.storage_volume.get_info ();
             var pool = get_storage_pool (machine.connection);
             var pool_info = pool.get_info ();
-            var max_storage = volume_info.capacity + pool_info.available;
 
             var property = add_size_property (ref list,
                                               _("Maximum Disk Size"),
                                               volume_info.capacity,
                                               volume_info.capacity,
-                                              max_storage,
+                                              pool_info.available,
                                               256 * MEGABYTES);
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
