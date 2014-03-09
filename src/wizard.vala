@@ -39,7 +39,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     [GtkChild]
     private Gtk.Label review_label;
     [GtkChild]
-    private Gtk.Box nokvm_box;
+    private Gtk.InfoBar nokvm_infobar;
     [GtkChild]
     private Gtk.Image installer_image;
 
@@ -380,7 +380,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     private async bool do_review_cancellable () {
         return_if_fail (review_cancellable != null);
 
-        nokvm_box.hide ();
+        nokvm_infobar.hide ();
         summary.clear ();
 
         if (source != null) {
@@ -471,7 +471,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 }
             }
 
-            nokvm_box.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
+            nokvm_infobar.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         } else if (this.wizard_source.libvirt_sys_import) {
             review_label.set_text (this.wizard_source.libvirt_sys_importer.wizard_review_label);
         }

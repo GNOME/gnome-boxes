@@ -300,51 +300,37 @@ You may connect to an existing machine &lt;b&gt;&lt;i&gt;over the network&lt;/i&
             </style>
 
             <child>
-              <!-- FIXME: We shouldn't need this box but for some weird unknown
-                   reason, toggling the visibility of the infobar itself doesn't
-                   exactly work. The bar remains visible even after setting
-                   visibility to 'false' but its only visible as a line. Likely
-                   some bug in clutter-gtk but I failed to reproduce it outside
-                   Boxes. :( -->
-              <object class="GtkBox" id="nokvm_box">
+              <object class="GtkInfoBar" id="nokvm_infobar">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
+                <property name="halign">fill</property>
                 <property name="spacing">0</property>
+                <property name="message-type">warning</property>
 
-                <child>
-                  <object class="GtkInfoBar" id="nokvm_infobar">
-                    <property name="halign">fill</property>
-                    <property name="spacing">0</property>
-                    <property name="message-type">warning</property>
+                <child internal-child="content_area">
+                  <object class="GtkContainer" id="nokvm_container">
+                    <property name="visible">True</property>
 
-                    <child internal-child="content_area">
-                      <object class="GtkContainer" id="nokvm_container">
-                        <child>
-                          <object class="GtkImage" id="nokvm_image">
-                            <property name="visible">True</property>
-                            <property name="icon-name">dialog-warning</property>
-                            <property name="icon-size">3</property>
-                          </object>
-                        </child>
-
-                        <child>
-                          <object class="GtkLabel" id="nokvm_label">
-                            <property name="visible">True</property>
-                            <property name="label" translatable="yes">Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them.</property>
-                            <property name="wrap">True</property>
-                            <property name="halign">start</property>
-                            <property name="hexpand">True</property>
-                          </object>
-                        </child>
+                    <child>
+                      <object class="GtkImage" id="nokvm_image">
+                        <property name="visible">True</property>
+                        <property name="icon-name">dialog-warning</property>
+                        <property name="icon-size">3</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                      </packing>
+                    </child>
+
+                    <child>
+                      <object class="GtkLabel" id="nokvm_label">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them.</property>
+                        <property name="wrap">True</property>
+                        <property name="halign">start</property>
+                        <property name="hexpand">True</property>
+                      </object>
                     </child>
                   </object>
                 </child>
               </object>
+
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
