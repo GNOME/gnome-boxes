@@ -380,6 +380,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         } else {
             orig_pixbuf = null;
             pixbuf = draw_stopped_vm ();
+            prelight_pixbuf = draw_prelighted_vm (pixbuf, pixbuf.width, pixbuf.height);
         }
     }
 
