@@ -10,7 +10,9 @@ public enum Boxes.TopbarPage {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/topbar.ui")]
-private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
+private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
+    private const string[] page_names = { "collection", "selection", "wizard", "properties", "display" };
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -66,12 +68,23 @@ private class Boxes.Topbar: Gtk.Notebook, Boxes.UI {
         }
     }
 
+    private TopbarPage _page;
+    public TopbarPage page {
+        get { return _page; }
+        set {
+            _page = value;
+
+            visible_child_name = page_names[value];
+        }
+    }
+
     construct {
         notify["ui-state"].connect (ui_state_changed);
 
         App.app.notify["selected-items"].connect (() => {
             update_selection_label ();
         });
+        transition_type = Gtk.StackTransitionType.CROSSFADE; // FIXME: Why this won't work from .ui file?
     }
 
     public void setup_ui () {

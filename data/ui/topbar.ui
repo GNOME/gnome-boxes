@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.9 -->
-  <template class="BoxesTopbar" parent="GtkNotebook">
+  <template class="BoxesTopbar" parent="GtkStack">
     <property name="visible">True</property>
-    <property name="show-tabs">False</property>
+    <property name="transition-type">crossfade</property>
+    <property name="transition-duration">400</property>
 
     <!-- Separate page for each UI state and mode -->
 
@@ -121,6 +122,10 @@
           </packing>
         </child>
       </object>
+
+      <packing>
+        <property name="name">collection</property>
+      </packing>
     </child>
 
     <!-- Collection (selection mode) -->
@@ -204,6 +209,10 @@
           </packing>
         </child>
       </object>
+
+      <packing>
+        <property name="name">selection</property>
+      </packing>
     </child>
 
     <!-- Wizard -->
@@ -296,6 +305,10 @@
           </packing>
         </child>
       </object>
+
+      <packing>
+        <property name="name">wizard</property>
+      </packing>
     </child>
 
     <!-- Properties -->
@@ -331,6 +344,10 @@
           </object>
         </child>
       </object>
+
+      <packing>
+        <property name="name">properties</property>
+      </packing>
     </child>
 
     <!-- Display -->
@@ -340,6 +357,10 @@
         <property name="overlay">False</property>
         <property name="handle-drag">False</property>
       </object>
+
+      <packing>
+        <property name="name">display</property>
+      </packing>
     </child>
   </template>
 
