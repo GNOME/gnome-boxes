@@ -45,8 +45,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private Gtk.Box below_bin_hbox;
     [GtkChild]
     public CollectionView view;
-    [GtkChild]
-    public Selectionbar selectionbar;
 
     public GLib.Settings settings;
 
@@ -87,12 +85,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
             move (x, y);
         }
-
-        below_bin.transition_duration = TRANSITION_DURATION;
-        content_bin.transition_duration = TRANSITION_DURATION;
-        empty_boxes.transition_duration = TRANSITION_DURATION;
-        sidebar.transition_duration = TRANSITION_DURATION;
-        selectionbar.transition_duration = TRANSITION_DURATION;
     }
 
     public void setup_ui () {
