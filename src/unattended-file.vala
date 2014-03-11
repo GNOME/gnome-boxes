@@ -12,7 +12,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
         var source_file = yield get_source_file (cancellable);
 
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
-        // FIXME: Perhaps we should use libarchive for this?
+        // FIXME: Perhaps we should use libarchive for this? Make sure to also change the mcopy dependency in README.
         string[] argv = { "mcopy", "-n", "-o", "-i", installer.disk_file.get_path (),
                                    source_file.get_path (),
                                    "::" + dest_name };
