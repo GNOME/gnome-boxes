@@ -95,7 +95,9 @@ private class Boxes.WizardMediaEntry : Gtk.Button {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-source.ui")]
-private class Boxes.WizardSource: Gtk.Notebook {
+private class Boxes.WizardSource: Gtk.Stack {
+    private const string[] page_names = { "main-page", "url-page" };
+
     public Gtk.Widget? selected { get; set; }
     public string uri {
         get { return url_entry.get_text (); }
@@ -130,6 +132,30 @@ private class Boxes.WizardSource: Gtk.Notebook {
 
     public MediaManager media_manager;
 
+    private SourcePage _page;
+    public SourcePage page {
+        get { return _page; }
+        set {
+            _page = value;
+
+            visible_child_name = page_names[value];
+
+            if (selected != null)
+                selected.grab_focus ();
+            switch (value) {
+            case SourcePage.MAIN:
+                add_media_entries.begin ();
+                // FIXME: grab first element in the menu list
+                main_vbox.grab_focus ();
+                break;
+            case SourcePage.URL:
+                url_entry.changed ();
+                url_entry.grab_focus ();
+                break;
+            }
+        }
+    }
+
     construct {
         media_manager = MediaManager.get_instance ();
         main_vbox.grab_focus ();
@@ -140,6 +166,7 @@ private class Boxes.WizardSource: Gtk.Notebook {
 
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
+        transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT; // FIXME: Why this won't work from .ui file?
     }
 
     [GtkCallback]
@@ -151,23 +178,6 @@ private class Boxes.WizardSource: Gtk.Notebook {
     private void on_url_back_button_clicked () {
         selected = null;
         page = SourcePage.MAIN;
-    }
-
-    [GtkCallback]
-    private void on_switch_page (Gtk.Notebook self, Gtk.Widget page, uint page_num) {
-        if (selected != null)
-            selected.grab_focus ();
-        switch (page_num) {
-        case SourcePage.MAIN:
-            add_media_entries.begin ();
-            // FIXME: grab first element in the menu list
-            main_vbox.grab_focus ();
-            break;
-        case SourcePage.URL:
-            url_entry.changed ();
-            url_entry.grab_focus ();
-            break;
-        }
     }
 
     public void update_url_page(string title, string text, string icon_name) {

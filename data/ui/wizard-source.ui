@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.9 -->
-  <template class="BoxesWizardSource" parent="GtkNotebook">
+  <template class="BoxesWizardSource" parent="GtkStack">
     <property name="visible">True</property>
-    <property name="show-tabs">False</property>
+    <property name="transition-type">slide-left-right</property>
+    <property name="transition-duration">400</property>
     <property name="hexpand">True</property>
     <property name="halign">center</property>
-    <signal name="switch-page" handler="on_switch_page"/>
-    <style>
-      <class name="boxes-source-nb"/>
-    </style>
 
     <!-- main page -->
     <child>
@@ -20,6 +17,7 @@
         <property name="margin-top">15</property>
         <property name="margin-bottom">15</property>
         <style>
+          <class name="boxes-source-nb"/>
           <class name="boxes-menu"/>
         </style>
         <child>
@@ -151,6 +149,10 @@
           </object>
         </child>
       </object>
+
+      <packing>
+        <property name="name">main-page</property>
+      </packing>
     </child>
 
     <!-- URL page -->
@@ -162,6 +164,7 @@
         <property name="margin-top">15</property>
         <property name="margin-bottom">15</property>
         <style>
+          <class name="boxes-source-nb"/>
           <class name="boxes-menu"/>
         </style>
         <child>
@@ -270,6 +273,10 @@
           </object>
         </child>
       </object>
+
+      <packing>
+        <property name="name">url-page</property>
+      </packing>
     </child>
   </template>
 </interface>
