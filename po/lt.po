@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-02-27 19:06+0000\n"
-"PO-Revision-Date: 2014-02-27 23:07+0200\n"
+"POT-Creation-Date: 2014-03-11 07:07+0000\n"
+"PO-Revision-Date: 2014-03-11 16:18+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:75 ../src/main.vala:72
+#: ../src/app-window.vala:55 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Dėžės"
 
@@ -81,34 +81,26 @@ msgid "The interval in seconds between screenshot updates"
 msgstr "Intervalas sekundėmis tarp ekranvazdžių atnaujinimo"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "Animation duration"
-msgstr "Animacijos trukmė"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
-msgid "The time it takes for transitions and animation, in ms."
-msgstr "Laiko trukmė milisekundėmis perėjimui ir animacijai."
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size"
 msgstr "Lango dydis"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size (width and height)"
 msgstr "Lango dydis (plotis ir aukštis)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window position"
 msgstr "Lango padėtis"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position (x and y)"
 msgstr "Lango padėtis (x ir y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:11
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window maximized"
 msgstr "Langas išdidintas"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized state"
 msgstr "Lango išdidinimo būsena"
 
@@ -317,72 +309,76 @@ msgstr ""
 "Virtualizacijos plėtiniai neprieinami jūsų sistemoje. Jei jūsų sistema yra "
 "nesena (po 2008), patikrinkite BIOS nustatymus jiems įjungti."
 
-#: ../src/app.vala:98
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr ""
 "išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: ../src/app.vala:99
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti"
 
-#: ../src/app.vala:120
+#: ../src/app.vala:123
 msgid "New"
 msgstr "Nauja"
 
-#: ../src/app.vala:125
+#: ../src/app.vala:128
 msgid "Help"
 msgstr "Žinynas"
 
-#: ../src/app.vala:126
+#: ../src/app.vala:129
 msgid "About"
 msgstr "Apie"
 
-#: ../src/app.vala:127
+#: ../src/app.vala:130
 msgid "Quit"
 msgstr "Išeiti"
 
-#: ../src/app.vala:186 ../src/main.vala:9
+#: ../src/app.vala:189 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Vaizduoklio versijos numeris"
 
-#: ../src/app.vala:188
+#: ../src/app.vala:191
 msgid "Open in full screen"
 msgstr "Atverti visame ekrane"
 
-#: ../src/app.vala:189 ../src/main.vala:10
+#: ../src/app.vala:192 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Patikrinti virtualizacijos galimybes"
 
-#: ../src/app.vala:190
+#: ../src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Atverti dėžę su UUID"
 
-#: ../src/app.vala:191
+#: ../src/app.vala:194
 msgid "Search term"
 msgstr "Paieškos terminas"
 
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/app.vala:193
+#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
+#: ../src/app.vala:196
 msgid "URI to display, broker or installer media"
 msgstr "URI iki vaizduoklio, brokerio arba diegimo laikmenos"
 
-#: ../src/app.vala:204
+#: ../src/app.vala:207
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 
-#: ../src/app.vala:226
+#: ../src/app.vala:229
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
-#: ../src/app.vala:492
+#: ../src/app.vala:516
+msgid "_Undo"
+msgstr "_Atšaukti"
+
+#: ../src/app.vala:527
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: ../src/app.vala:493
+#: ../src/app.vala:528
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -390,15 +386,11 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: ../src/app.vala:516
-msgid "_Undo"
-msgstr "_Atšaukti"
-
-#: ../src/collection-view.vala:37
+#: ../src/collection-view.vala:38
 msgid "New and Recent"
 msgstr "Naujos ir neseniai naudotos"
 
-#: ../src/display-page.vala:94
+#: ../src/display-page.vala:88
 msgid "(press Ctrl+Alt keys to ungrab)"
 msgstr "(spauskite Vald+Alt klavišus paleidimui)"
 
@@ -407,7 +399,7 @@ msgid "Unsupported disk image format."
 msgstr "Nepalaikomas disko atvaizdžio formatas."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:34
+#: ../src/properties.vala:47
 msgid "System"
 msgstr "Sistema"
 
@@ -420,7 +412,7 @@ msgid "Virtualizer"
 msgstr "Virtualizacija"
 
 #: ../src/libvirt-machine-properties.vala:120 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:413
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:421
 msgid "URI"
 msgstr "URI"
 
@@ -515,11 +507,11 @@ msgstr "„%s“ įdėjimas kaip CD/DVD į „%s“ nepavyko"
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "CD/DVD pašalinimas iš „%s“ nepavyko"
 
-#: ../src/libvirt-machine-properties.vala:407 ../src/wizard.vala:449
+#: ../src/libvirt-machine-properties.vala:407 ../src/wizard.vala:457
 msgid "Memory"
 msgstr "Atmintis"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:467
 msgid "Maximum Disk Size"
 msgstr "Didžiausias disko dydis"
 
@@ -528,7 +520,6 @@ msgid "When you force shutdown, the box may lose data."
 msgstr "Kai priverstinai išjungiate, dėžė gali prarasti duomenis."
 
 #: ../src/libvirt-machine.vala:448 ../src/libvirt-machine.vala:603
-#| msgid "Force Shutdown"
 msgid "_Shutdown"
 msgstr "_Išjungti"
 
@@ -587,21 +578,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Nepavyko rasti tinkamo disko dėžės „%s“ importavimui"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:124
+#: ../src/machine.vala:127
 #, c-format
 msgid "Connecting to %s"
 msgstr "Jungiamasi prie %s"
 
-#: ../src/machine.vala:141 ../src/machine.vala:530
+#: ../src/machine.vala:144 ../src/machine.vala:581
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Nepavyko prisijungti prie „%s“"
 
-#: ../src/machine.vala:224
+#: ../src/machine.vala:227
 msgid "Saving..."
 msgstr "Įrašoma..."
 
-#: ../src/machine.vala:520
+#: ../src/machine.vala:571
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -610,12 +601,12 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: ../src/machine.vala:521
+#: ../src/machine.vala:572
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:559
+#: ../src/machine.vala:610
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "„%s“ reikalauja patvirtinti tapatybę"
@@ -675,26 +666,24 @@ msgstr "Neprisijungta prie %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Nepavyko prisijungti prie oVirt brokerio"
 
-#: ../src/properties.vala:30
+#: ../src/properties.vala:43
 msgid "Login"
 msgstr "Prisijungti"
 
-#: ../src/properties.vala:38
+#: ../src/properties.vala:51
 msgid "Display"
 msgstr "Vaizduoklis"
 
-#: ../src/properties.vala:42
+#: ../src/properties.vala:55
 msgid "Devices"
 msgstr "Įrenginiai"
 
-#: ../src/properties.vala:196
+#: ../src/properties.vala:213
 #, c-format
-#| msgid "Changes require restart of '%s'. Attempt restart?"
 msgid "Changes require restart of '%s'."
 msgstr "Pakeitimai reikalauja „%s“ įkėlimo iš naujo."
 
-#: ../src/properties.vala:197
-#| msgid "Restart"
+#: ../src/properties.vala:214
 msgid "_Restart"
 msgstr "Įkelti iš _naujo"
 
@@ -734,7 +723,7 @@ msgstr "Nukreipti naujus USB įrenginius"
 msgid "USB devices"
 msgstr "USB įrenginiai"
 
-#: ../src/spice-display.vala:381 ../src/wizard.vala:249 ../src/wizard.vala:258
+#: ../src/spice-display.vala:381 ../src/wizard.vala:257 ../src/wizard.vala:266
 msgid "Invalid URI"
 msgstr "Netinkamas URI"
 
@@ -754,7 +743,7 @@ msgstr "%s - Savybės"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:122
+#: ../src/topbar.vala:133
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
@@ -762,7 +751,7 @@ msgstr[0] "%d pasirinkimas"
 msgstr[1] "%d pasirinkimai"
 msgstr[2] "%d pasirinkimų"
 
-#: ../src/topbar.vala:124
+#: ../src/topbar.vala:135
 msgid "(Click on items to select them)"
 msgstr "(Spauskite ant elementų jų pasirinkimui)"
 
@@ -822,11 +811,11 @@ msgstr ""
 "%s yra žinoma libvirt kaip GNOME Dėžių saugyklos vieta, bet nėra naudotojui "
 "skaitoma/rašoma"
 
-#: ../src/util.vala:318
+#: ../src/util.vala:351
 msgid "yes"
 msgstr "taip"
 
-#: ../src/util.vala:318
+#: ../src/util.vala:351
 msgid "no"
 msgstr "ne"
 
@@ -841,18 +830,24 @@ msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Kilo klaida ruošiant diegimą. Greitasis diegimas išjungtas."
 
-#: ../src/vm-creator.vala:176
+#: ../src/vm-creator.vala:172
+#, c-format
+#| msgid "Box '%s' has been deleted"
+msgid "Live box '%s' has been deleted automatically."
+msgstr "Dėžė „%s“ buvo automatiškai ištrinta."
+
+#: ../src/vm-creator.vala:185
 msgid "Installing..."
 msgstr "Diegiama..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:82
+#: ../src/vm-creator.vala:189 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Veikia"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:312
+#: ../src/vm-creator.vala:321
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -887,84 +882,84 @@ msgstr "64-bit x86 sistema"
 msgid " from %s"
 msgstr " iš %s"
 
-#: ../src/wizard.vala:143
+#: ../src/wizard.vala:110 ../src/wizard.vala:552
+msgid "Box creation failed"
+msgstr "Dėžės sukurti nepavyko"
+
+#: ../src/wizard.vala:152
 msgid "Please enter desktop or collection URI"
 msgstr "Įveskite darbastalio arba kolekcijos URI"
 
-#: ../src/wizard.vala:149
+#: ../src/wizard.vala:158
 msgid "Will add boxes for all systems available from this account."
 msgstr "Pridės dėžes visoms šios paskyros prieinamoms sistemoms."
 
-#: ../src/wizard.vala:152
+#: ../src/wizard.vala:161
 msgid "Will add a single box."
 msgstr "Pridės vieną dėžę."
 
 #. ignore any parsing error
-#: ../src/wizard.vala:158
+#: ../src/wizard.vala:167
 msgid "Desktop Access"
 msgstr "Darbastalio prieiga"
 
-#: ../src/wizard.vala:272
+#: ../src/wizard.vala:280
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nepalaikomas protokolas „%s“"
 
-#: ../src/wizard.vala:278 ../src/wizard.vala:320
+#: ../src/wizard.vala:286 ../src/wizard.vala:328
 msgid "Unknown installer media"
 msgstr "Nežinoma diegimo laikmena"
 
-#: ../src/wizard.vala:279 ../src/wizard.vala:321
+#: ../src/wizard.vala:287 ../src/wizard.vala:329
 msgid "Analyzing..."
 msgstr "Analizuojama..."
 
-#: ../src/wizard.vala:291
+#: ../src/wizard.vala:299
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Nepavyko analizuoti diegyklės laikmenos. Sugadinta ar nepilna laikmena?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:389
+#: ../src/wizard.vala:397
 msgid "Box setup failed"
 msgstr "Dėžės nustatymas nepavyko"
 
-#: ../src/wizard.vala:403
+#: ../src/wizard.vala:411
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Dėžės sukurs naują dėžę su šiomis savybėmis:"
 
-#: ../src/wizard.vala:408
+#: ../src/wizard.vala:416
 msgid "Type"
 msgstr "Tipas"
 
-#: ../src/wizard.vala:411
+#: ../src/wizard.vala:419
 msgid "Host"
 msgstr "Serveris"
 
-#: ../src/wizard.vala:422 ../src/wizard.vala:433
+#: ../src/wizard.vala:430 ../src/wizard.vala:441
 msgid "Port"
 msgstr "Prievadas"
 
-#: ../src/wizard.vala:424
+#: ../src/wizard.vala:432
 msgid "TLS Port"
 msgstr "TLS prievadas"
 
-#: ../src/wizard.vala:438
+#: ../src/wizard.vala:446
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Pridės dėžes visoms šios paskyros prieinamoms sistemoms:"
 
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:466
 msgid "Disk"
 msgstr "Diskas"
 
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:466
 #, c-format
 msgid "%s maximum"
 msgstr "daugiausia %s"
 
-#: ../src/wizard.vala:544
-msgid "Box creation failed"
-msgstr "Dėžės sukurti nepavyko"
-
-#: ../src/wizard.vala:617
+#: ../src/wizard.vala:627
 msgid "C_ustomize..."
 msgstr "_Tinkinti..."
 
