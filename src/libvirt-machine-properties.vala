@@ -494,8 +494,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             try {
                 if (machine.is_running ()) {
                     var disk = machine.get_domain_disk ();
-                    if (disk != null)
-                        disk.resize (value, 0);
+                    if (disk != null) {
+                        var size = (value + Osinfo.KIBIBYTES - 1) / Osinfo.KIBIBYTES;
+                        disk.resize (size, 0);
+                    }
                 } else
                     machine.storage_volume.resize (value, StorageVolResizeFlags.NONE);
                 debug ("Storage changed to %llu", value);
