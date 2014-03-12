@@ -176,6 +176,14 @@ private class Boxes.OSDatabase : GLib.Object {
         return get_prefered_resources (list, prefs);
     }
 
+    public static Resources? get_minimum_resources_for_os (Os os, string architecture) {
+        string[] prefs = { architecture, ARCHITECTURE_ALL };
+
+        var list = os.get_minimum_resources ();
+
+        return get_prefered_resources (list, prefs);
+    }
+
     private Resources get_resources_from_os_resources (Resources? minimum, Resources? recommended) {
         var resources = get_default_resources ();
 

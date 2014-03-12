@@ -466,7 +466,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var property = add_size_property (ref list,
                                               _("Maximum Disk Size"),
                                               volume_info.capacity,
-                                              volume_info.capacity,
+                                              get_minimum_disk_size (),
                                               pool_info.available,
                                               256 * MEGABYTES);
             // Disable 'save on timeout' all together since that could lead us to very bad user experience:
@@ -517,7 +517,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         });
                     }
                 } else {
-                    machine.storage_volume.resize (value, StorageVolResizeFlags.NONE);
+                    resize_storage_volume (value);
                     debug ("Storage changed to %llu", value);
                 }
             } catch (GLib.Error error) {
@@ -529,5 +529,44 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             return false;
         };
+    }
+
+    private uint64 get_minimum_disk_size () throws GLib.Error {
+        var volume_info = machine.storage_volume.get_info ();
+        if (machine.vm_creator == null) {
+            // Since we disable the properties during install going on we don't need to check for
+            // previous_ui_state here to be WIZARD.
+            return volume_info.capacity;
+        }
+
+        Osinfo.Resources minimum_resources = null;
+
+        if (machine.vm_creator.install_media.os != null) {
+            var os = machine.vm_creator.install_media.os;
+            var architecture = machine.domain_config.get_os ().get_arch ();
+            minimum_resources = OSDatabase.get_minimum_resources_for_os (os, architecture);
+        }
+
+        if (minimum_resources != null) {
+            return minimum_resources.storage;
+        } else {
+            var default_resources = OSDatabase.get_default_resources ();
+            return uint64.min (volume_info.capacity, default_resources.storage);
+        }
+    }
+
+    private void resize_storage_volume (uint64 size) throws GLib.Error {
+        var volume_info = machine.storage_volume.get_info ();
+        if (machine.vm_creator != null && size < volume_info.capacity) {
+            // New VM Customization
+            var config = machine.storage_volume.get_config (GVir.DomainXMLFlags.NONE);
+            config.set_capacity (size);
+            machine.storage_volume.delete (0);
+
+            var pool = get_storage_pool (machine.connection);
+            machine.storage_volume = pool.create_volume (config);
+        } else {
+            machine.storage_volume.resize (size, StorageVolResizeFlags.NONE);
+        }
     }
 }
