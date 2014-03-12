@@ -117,6 +117,7 @@ gnome_boxes_SOURCES =				\
 	notificationbar.vala			\
 	os-database.vala 			\
 	properties.vala				\
+	properties-toolbar.vala			\
 	remote-machine.vala			\
 	searchbar.vala				\
 	selectionbar.vala			\

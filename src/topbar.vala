@@ -26,9 +26,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public Gtk.Button wizard_create_btn;
 
     [GtkChild]
-    private Gtk.Button props_back_btn;
-
-    [GtkChild]
     private Gtk.Button search_btn;
     [GtkChild]
     private Gtk.Button search2_btn;
@@ -49,8 +46,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     [GtkChild]
     private Gtk.HeaderBar props_toolbar;
-    [GtkChild]
-    private Gtk.Image props_back_image;
 
     private GLib.Binding props_name_bind;
 
@@ -58,7 +53,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public void click_back_button () {
         switch (App.app.ui_state) {
         case UIState.PROPERTIES:
-            props_back_btn.clicked ();
             break;
         case UIState.CREDS:
             back_btn.clicked ();
@@ -129,7 +123,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                      "go-previous-symbolic";
         back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
-        props_back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
 
         assert (App.window != null);
         assert (App.window.searchbar != null);
@@ -230,10 +223,5 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     [GtkCallback]
     private void on_cancel_btn_clicked () {
         App.app.selection_mode = false;
-    }
-
-    [GtkCallback]
-    private void on_props_back_btn_clicked () {
-        App.app.set_state (App.app.previous_ui_state);
     }
 }

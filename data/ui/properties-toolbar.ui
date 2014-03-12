@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesPropertiesToolbar" parent="GtkHeaderBar">
+    <property name="visible">True</property>
+    <property name="show-close-button">True</property>
+    <style>
+      <class name="titlebar"/>
+      <class name="menubar"/>
+    </style>
+
+    <child>
+      <object class="GtkButton" id="back">
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <signal name="clicked" handler="on_back_clicked"/>
+        <style>
+          <class name="image-button"/>
+        </style>
+
+        <child internal-child="accessible">
+          <object class="AtkObject" id="a11y-button5">
+            <property name="accessible-name" translatable="yes">Back</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkImage" id="back_image">
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
