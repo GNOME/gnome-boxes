@@ -97,6 +97,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
                     review.begin ((obj, result) => {
                         next_button.sensitive = true;
+                        create_button.grab_focus ();
                         if (!review.end (result))
                             page = page - 1;
                     });
