@@ -38,8 +38,69 @@ Runtime Dependencies
 
 * mcopy (usually provided by mtools package)
 
-References
-==========
+Reporting Bugs
+==============
+
+If you want to report bugs, please check if there isn't already one on:
+
+ https://bugzilla.gnome.org/buglist.cgi?quicksearch=product%3A%22gnome-boxes%22
+
+If one does not exist already, please file a new one.
+
+Please provide as much useful information as you can and have. This can
+include
+
+* steps to reproduce your problem
+* the error message, if there is one (in the UI and on the console)
+* a backtrace if the program crashes (See Appendix 1)
+* debug messages if it makes sense (See Appendix 2)
+* a fix if you have one (This greatly increases the chances of this issue
+  getting fixed soon.)
+
+The determination of what is useful is your task. If you forget about
+something important, someone will probably ask.
+
+Appendix
+========
+
+1. Backtracing
+--------------
+just run
+
+ jhbuild run gdb gnome-boxes
+
+Type
+
+ run
+
+Let the program crash.
+Type:
+
+ backtrace
+
+And copy the output to pastebin.com or a similar webpage and link it in the
+bugtracker with a hint.
+
+2. Activating debug messages
+----------------------------
+To run Boxes with debug message output on the console, just run:
+
+ G_MESSAGES_DEBUG=Boxes gnome-boxes
+
+If you want to run your jhbuild version, execute:
+
+ G_MESSAGES_DEBUG=Boxes jhbuild run gnome-boxes
+
+or start a shell under jhbuild environment:
+
+ G_MESSAGES_DEBUG=Boxes jhbuild shell
+
+to be able to use simpler commands from there:
+
+ gnome-boxes
+
+3. References
+-------------
 
 * https://live.gnome.org/ThreePointThree/Features/Boxes
 * https://live.gnome.org/Design/Apps/Boxes
