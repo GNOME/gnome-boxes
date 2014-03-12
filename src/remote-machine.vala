@@ -18,6 +18,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         config.access_last_time = get_real_time ();
 
         load_screenshot ();
+
+        notify["name"].connect (save_name);
     }
 
     private Display? create_display () throws Boxes.Error {
@@ -53,7 +55,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             var property = add_string_property (ref list, _("Name"), source.name);
             property.editable = true;
             property.changed.connect ((property, name) => {
-                source.name = name;
+                this.name = name;
                 return true;
             });
 
@@ -93,4 +95,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     // FIXME: Implement this. We don't currently need it because we don't set any properties here that requires a
     //        restart and this method is currently used for that purpose only.
     public override void restart () {}
+
+    private void save_name () {
+        source.name = name;
+    }
 }
