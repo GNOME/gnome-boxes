@@ -162,9 +162,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         if (event.keyval == Gdk.Key.F11) {
             fullscreened = !fullscreened;
             return true;
-        } else if (event.keyval == Gdk.Key.Escape) {
-            if (App.app.selection_mode && ui_state == UIState.COLLECTION)
-               App.app.selection_mode = false;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             App.app.quit_app ();
@@ -181,6 +178,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             App.window.topbar.click_forward_button ();
             return true;
+        } else if (event.keyval == Gdk.Key.Escape) { // ESC -> cancel
+            App.window.topbar.click_cancel_button ();
         }
 
         return false;

@@ -76,6 +76,19 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             wizard_continue_btn.clicked ();
     }
 
+    // Clicks the appropriate cancel button dependent on the ui state.
+    public void click_cancel_button () {
+        switch (App.app.ui_state) {
+        case UIState.COLLECTION:
+            if (App.app.selection_mode)
+                App.app.selection_mode = false;
+            return;
+        case UIState.WIZARD:
+            wizard_cancel_btn.clicked ();
+            return;
+        }
+    }
+
     public string? _status;
     public string? status {
         get { return _status; }
