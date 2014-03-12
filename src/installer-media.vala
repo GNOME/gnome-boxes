@@ -195,7 +195,7 @@ private class Boxes.InstallerMedia : GLib.Object {
 
         var decoded = "";
         for (var i = 0; i < encoded.length; ) {
-           uint8 x;
+           uint x;
 
            if (encoded[i:encoded.length].scanf ("\\x%02x", out x) > 0) {
                decoded += ((char) x).to_string ();
