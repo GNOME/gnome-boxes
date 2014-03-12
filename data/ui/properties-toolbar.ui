@@ -30,5 +30,18 @@
         </child>
       </object>
     </child>
+
+    <child type="title">
+      <object class="BoxesEditableEntry" id="title_entry">
+        <property name="visible">True</property>
+        <property name="editable">True</property>
+        <property name="text-xalign">0.5</property>
+        <style>
+          <class name="title"/>
+        </style>
+
+        <signal name="editing_done" handler="on_title_entry_changed"/>
+      </object>
+    </child>
   </template>
 </interface>

@@ -28,8 +28,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     [GtkChild]
     private PropertiesToolbar props_toolbar;
 
-    private GLib.Binding props_name_bind;
-
     private AppWindow window;
 
     // Clicks the appropriate back button depending on the ui state.
@@ -71,13 +69,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             _status = value;
             collection_toolbar.set_title (_status??"");
             display_toolbar.set_title (_status??"");
-        }
-    }
-
-    public string properties_title {
-        set {
-            // Translators: The %s will be replaced with the name of the VM
-            props_toolbar.title = _("%s - Properties").printf (window.current_item.name);
         }
     }
 
@@ -132,9 +123,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
         case UIState.PROPERTIES:
             page = TopbarPage.PROPERTIES;
-            props_name_bind = window.current_item.bind_property ("name",
-                                                                  this, "properties-title",
-                                                                  BindingFlags.SYNC_CREATE);
             break;
 
         case UIState.WIZARD:

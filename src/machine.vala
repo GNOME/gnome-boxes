@@ -184,6 +184,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 set_screenshot_enable (true);
         });
 
+        notify["name"].connect (() => {
+            status = this.name;
+        });
     }
 
     protected void load_screenshot () {
