@@ -53,9 +53,9 @@ private class Boxes.EditableEntry: Alignment {
     }
 
     private Pango.Weight _weight = Pango.Weight.NORMAL;
-	/* This is disabled for now since its impossible to
-	   declare a default for the paramspec, and the number that
-	   valac picks (0) is invalid for the Pango.Weight enum.
+    /* This is disabled for now since its impossible to
+       declare a default for the paramspec, and the number that
+       valac picks (0) is invalid for the Pango.Weight enum.
 
     public Pango.Weight weight {
         get { return _weight; }
@@ -68,8 +68,8 @@ private class Boxes.EditableEntry: Alignment {
 
             update_fonts ();
         }
-	}
-	*/
+    }
+    */
     public bool weight_set { get; set; }
 
     private double _scale = 1.0;

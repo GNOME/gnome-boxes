@@ -161,14 +161,17 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         if (event.keyval == Gdk.Key.F11) {
             fullscreened = !fullscreened;
+
             return true;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             App.app.quit_app ();
+
             return true;
         } else if (event.keyval == Gdk.Key.a &&
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             App.app.quit_app ();
+
             return true;
         } else if (event.keyval == Gdk.Key.Left && // ALT + Left -> back
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
@@ -211,6 +214,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             return false;
 
         settings.set_boolean ("window-maximized", maximized);
+
         return false;
     }
 

@@ -53,7 +53,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     public WizardPage page {
         get { return _page; }
         private set {
-            back_button.sensitive = value != WizardPage.INTRODUCTION;
+            back_button.sensitive = (value != WizardPage.INTRODUCTION);
 
             var forwards = value > page;
 
@@ -296,7 +296,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             debug("Failed to analyze installer image: %s", error.message);
-            App.window.notificationbar.display_error (_("Failed to analyze installer media. Corrupted or incomplete media?"));
+            var msg = _("Failed to analyze installer media. Corrupted or incomplete media?");
+            App.window.notificationbar.display_error (msg);
             page = WizardPage.SOURCE;
         }
     }
@@ -451,7 +452,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
             try {
                 var config = null as GVirConfig.Domain;
-                yield run_in_thread (() => { config = libvirt_machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE); });
+                yield run_in_thread (() => {
+                    config = libvirt_machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+                });
 
                 var memory = format_size (config.memory * Osinfo.KIBIBYTES, FormatSizeFlags.IEC_UNITS);
                 summary.add_property (_("Memory"), memory);
