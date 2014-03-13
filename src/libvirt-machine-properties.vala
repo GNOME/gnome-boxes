@@ -497,10 +497,25 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     if (disk != null) {
                         var size = (value + Osinfo.KIBIBYTES - 1) / Osinfo.KIBIBYTES;
                         disk.resize (size, 0);
+
+                        var pool = get_storage_pool (machine.connection);
+                        pool.refresh_async.begin (null, (obj, res) => {
+                            try {
+                                pool.refresh_async.end (res);
+                                machine.update_domain_config ();
+                                debug ("Storage changed to %llu KiB", size);
+                            } catch (GLib.Error error) {
+                                warning ("Failed to change storage capacity of volume '%s' to %llu KiB: %s",
+                                         machine.storage_volume.get_name (),
+                                         size,
+                                         error.message);
+                            }
+                        });
                     }
-                } else
+                } else {
                     machine.storage_volume.resize (value, StorageVolResizeFlags.NONE);
-                debug ("Storage changed to %llu", value);
+                    debug ("Storage changed to %llu", value);
+                }
             } catch (GLib.Error error) {
                 warning ("Failed to change storage capacity of volume '%s' to %llu: %s",
                          machine.storage_volume.get_name (),
