@@ -93,7 +93,7 @@ private class Boxes.Downloader : GLib.Object {
             if (remote_file.has_uri_scheme ("http") || remote_file.has_uri_scheme ("https"))
                 yield download_from_http (download);
             else
-                yield copy_file (remote_file, cached_file); // FIXME: No progress report in this case.
+                yield copy_file (remote_file, cached_file, progress);
         } catch (GLib.Error error) {
             download_failed (download, error);
 
