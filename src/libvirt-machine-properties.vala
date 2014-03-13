@@ -469,6 +469,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               volume_info.capacity,
                                               pool_info.available,
                                               256 * MEGABYTES);
+            // Disable 'save on timeout' all together since that could lead us to very bad user experience:
+            // You accidently increase the capacity to too high value and if you are not quick enough to change
+            // it again, you'll not be able to correct this ever as we don't support shrinking of volumes.
+            property.defer_interval = 0;
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
                 App.app.previous_ui_state != Boxes.UIState.WIZARD)

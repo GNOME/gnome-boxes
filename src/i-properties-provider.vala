@@ -35,6 +35,9 @@ private class Boxes.Property: GLib.Object {
             if (_deferred_change == null)
                 return;
 
+            if (defer_interval == 0)
+                return;
+
             deferred_change_id = Timeout.add_seconds (defer_interval, () => {
                 flush ();
 
