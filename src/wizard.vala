@@ -552,8 +552,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 App.window.notificationbar.display_error (_("Box creation failed"));
             });
         });
-
-        page = WizardPage.INTRODUCTION;
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
