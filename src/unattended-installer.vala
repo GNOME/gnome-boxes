@@ -399,6 +399,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 
+        if (!FileUtils.test (avatar_path, FileTest.EXISTS))
+            return;
+
         setup_box.avatar_path = avatar_path;
 
         try {
