@@ -30,93 +30,8 @@
 
     <!-- Wizard -->
     <child>
-      <object class="GtkBox" id="wizard_hbox">
+      <object class="BoxesWizardToolbar" id="wizard_toolbar">
         <property name="visible">True</property>
-        <property name="orientation">horizontal</property>
-        <property name="spacing">0</property>
-
-        <child>
-          <object class="GtkHeaderBar" id="wizard_toolbar">
-            <property name="visible">True</property>
-            <property name="title" translatable="yes">Create a Box</property>
-            <style>
-              <class name="titlebar"/>
-              <class name="menubar"/>
-            </style>
-
-            <child>
-              <object class="GtkButton" id="wizard_cancel_btn">
-                <property name="visible">True</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <property name="label" translatable="yes">_Cancel</property>
-                <style>
-                  <class name="text-button"/>
-                </style>
-              </object>
-
-              <packing>
-                <property name="pack-type">start</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="wizard_create_btn">
-                <property name="visible">False</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <property name="label" translatable="yes">C_reate</property>
-                <style>
-                  <class name="text-button"/>
-                  <class name="boxes-continue"/>
-                </style>
-              </object>
-
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="wizard_continue_btn">
-                <property name="visible">True</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <property name="label" translatable="yes">C_ontinue</property>
-                <style>
-                  <class name="text-button"/>
-                  <class name="boxes-continue"/>
-                </style>
-              </object>
-
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkButton" id="wizard_back_btn">
-                <property name="visible">True</property>
-                <property name="valign">center</property>
-                <property name="use-underline">True</property>
-                <property name="label" translatable="yes">_Back</property>
-                <style>
-                  <class name="text-button"/>
-                </style>
-              </object>
-
-              <packing>
-                <property name="pack-type">end</property>
-              </packing>
-            </child>
-          </object>
-
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="padding">0</property>
-          </packing>
-        </child>
       </object>
 
       <packing>
@@ -149,15 +64,5 @@
       </packing>
     </child>
   </template>
-
-  <object class="GtkSizeGroup" id="wizard_sizegroup">
-    <property name="mode">horizontal</property>
-    <widgets>
-      <widget name="wizard_cancel_btn"/>
-      <widget name="wizard_back_btn"/>
-      <widget name="wizard_continue_btn"/>
-      <widget name="wizard_create_btn"/>
-    </widgets>
-  </object>
 
 </interface>

@@ -17,20 +17,13 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    public Gtk.Button wizard_cancel_btn;
-    [GtkChild]
-    public Gtk.Button wizard_back_btn;
-    [GtkChild]
-    public Gtk.Button wizard_continue_btn;
-    [GtkChild]
-    public Gtk.Button wizard_create_btn;
-
-    [GtkChild]
     private CollectionToolbar collection_toolbar;
     [GtkChild]
     private SelectionToolbar selection_toolbar;
     [GtkChild]
     private DisplayToolbar display_toolbar;
+    [GtkChild]
+    public WizardToolbar wizard_toolbar;
 
     [GtkChild]
     private Gtk.HeaderBar props_toolbar;
@@ -46,16 +39,14 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             collection_toolbar.click_back_button ();
             break;
         case UIState.WIZARD:
-            if (App.window.wizard.page != WizardPage.INTRODUCTION)
-                wizard_back_btn.clicked ();
+            wizard_toolbar.click_back_button ();
             break;
         }
     }
 
     // Clicks the appropriate forward button dependent on the ui state.
     public void click_forward_button () {
-        if (App.window.wizard.page != WizardPage.REVIEW)
-            wizard_continue_btn.clicked ();
+        wizard_toolbar.click_forward_button ();
     }
 
     // Clicks the appropriate cancel button dependent on the ui state.
@@ -66,7 +57,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
                 App.app.selection_mode = false;
             return;
         case UIState.WIZARD:
-            wizard_cancel_btn.clicked ();
+            wizard_toolbar.cancel_btn.clicked ();
             return;
         }
     }

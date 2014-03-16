@@ -535,21 +535,21 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     public void setup_ui () {
-        cancel_button = App.window.topbar.wizard_cancel_btn;
+        cancel_button = App.window.topbar.wizard_toolbar.cancel_btn;
         cancel_button.clicked.connect (() => {
             cleanup ();
             wizard_source.page = SourcePage.MAIN;
             App.app.set_state (UIState.COLLECTION);
         });
-        back_button = App.window.topbar.wizard_back_btn;
+        back_button = App.window.topbar.wizard_toolbar.back_btn;
         back_button.clicked.connect (() => {
             page = page - 1;
         });
-        continue_button = App.window.topbar.wizard_continue_btn;
+        continue_button = App.window.topbar.wizard_toolbar.continue_btn;
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
-        create_button = App.window.topbar.wizard_create_btn;
+        create_button = App.window.topbar.wizard_toolbar.create_btn;
         create_button.clicked.connect (() => {
             page = WizardPage.LAST;
         });
