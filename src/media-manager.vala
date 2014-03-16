@@ -94,8 +94,9 @@ private class Boxes.MediaManager : Object {
         enumerator.add_match_property ("DEVTYPE", "disk");
 
         foreach (var device in enumerator.execute ()) {
-            if (device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
-                !device.get_property_as_boolean ("OSINFO_BOOTABLE"))
+            if ((device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
+                 !device.get_property_as_boolean ("OSINFO_BOOTABLE")) ||
+                 device.get_property_as_boolean ("ID_CDROM")) // Qemu has issues with CD-ROM devices
                 continue;
 
             var path = device.get_device_file ();
