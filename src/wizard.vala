@@ -63,7 +63,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 continue_button.visible = true;
                 next_button = continue_button;
                 next_button.sensitive = true;
-                next_button.grab_focus (); // FIXME: doesn't work?!
+                next_button.grab_focus ();
                 break;
 
             case WizardPage.SOURCE:
