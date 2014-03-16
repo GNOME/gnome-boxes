@@ -100,7 +100,17 @@ private class Boxes.MediaManager : Object {
                 continue;
 
             var path = device.get_device_file ();
+            var file = File.new_for_path (path);
             try {
+                var info = yield file.query_info_async (FileAttribute.ACCESS_CAN_READ,
+                                                        FileQueryInfoFlags.NONE,
+                                                        Priority.DEFAULT,
+                                                        null);
+                if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+                    debug ("No read access to '%s', ignoring..", path);
+                    continue;
+                }
+
                 var media = yield create_installer_media_for_path (path);
 
                 list.append (media);
