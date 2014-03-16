@@ -17,7 +17,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             if (num_domains == 1)
                 return _("Import '%s' from system broker").printf (domains.data.get_name ());
             else
-                // Translators: %u here is number of boxes availble for import
+                // Translators: %u here is the number of boxes available for import
                 return ngettext ("Import %u box from system broker",
                                  "Import %u boxes from system broker",
                                  num_domains).printf (num_domains);
@@ -31,7 +31,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             if (num_domains == 1)
                 return _("Will import '%s' from system broker").printf (domains.data.get_name ());
             else
-                // Translators: %u here is number of boxes availble for import
+                // Translators: %u here is the number of boxes available for import
                 return ngettext ("Will import %u box from system broker",
                                  "Will import %u boxes from system broker",
                                  num_domains).printf (num_domains);
