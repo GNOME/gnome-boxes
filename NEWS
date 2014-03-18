@@ -1,3 +1,106 @@
+3.11.92 - Marc 18, 2014
+=======================
+
+Changes since 3.11.91:
+
+- Implement prelight on mouse hover.
+- Drop use of deprecated libsoup and gio API.
+- Add missing transition animations from properties and wizard pages.
+- Provide 'undo' option for live VM autodeletion.
+- Make use of system-wide cache for logos and drivers in /var/cache/gnome-boxes.
+  This means distributions can now provide logos and drivers as part of Boxes or
+  a seperate package.
+- Fix recent regressions:
+  - Boxes showing a spinner forevever if a commandline argument was passed.
+  - An ugly looking border at the right of wizard and properties sidebar.
+  - Missing 'back' button on wizard's source URL page.
+- Add Alt+Left and Alt+Right shortcuts for going back and forward in different
+  views.
+- Add Esc shortcut for cancelling wizard.
+- Focus 'Create' button on last page of wizard so that user can quickly confirm
+  by hitting 'Enter'.
+- Existing disk capacity should not be taken into account to calculate the
+  maximum value for disk capacity. It should simply be the space available on
+  host disk.
+- Set disk size in correct units for running machines. We were setting size to
+  valuex1024.
+- Refresh disk info after resizing disk of running machines. Otherwise we keep
+  showing the older value when user goes back to properties.
+- Disable 'save on timeout' all together for storage volume size change since
+  that easily leads to horrible user experience: You accidently increase the
+  capacity to too high value and if you are not quick enough to change it again,
+  you'll not be able to correct this ever as we don't support shrinking of
+  volumes.
+- Allow shrinking storage volumes in wizard.
+- Fix a crasher bug.
+- Add info about runtime deps and reporting bugs to README.
+- Add a HACKING file for people interested in developing Boxes.
+- Report progress for non-http(s) downloads as well.
+- Don't register for 'x-content/bootable-media' mimetype as in most cases that
+  results in user given the option to launch Boxes for an ISO9660 device and
+  then Boxes failing to handle it, either because of Qemu being incapable of
+  handling CD-ROM devices or user not having read permissions on the device node.
+- Don't present CD-ROM and non-readable devices in wizard's source selection.
+- Don't try to copy non-existant avatar.
+- Remove some obsolete workarounds.
+- Added/updated/fixed translations:
+  - Catalan
+  - Chinese (China)
+  - Czech
+  - Finnish
+  - French
+  - Galician
+  - German
+  - Hebrew
+  - Indonesian
+  - Korean
+  - Latvian
+  - Lithuanian
+  - Norwegian bokmål
+  - Polish
+  - Portuguese
+  - Punjabi
+  - Russian
+  - Spanish
+  - Traditional Chinese (Hong Kong and Taiwan)
+  - Ukrainian
+
+Dependencies changed:
+
+Vala >= 0.23.3.1 (i-e latest release)
+
+All contributors to this release:
+
+Andika Triwidada <andika@gmail.com>
+A S Alam <apreet.alam@gmail.com>
+Aurimas Černius <aurisc4@gmail.com>
+Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>
+Christophe Fergeau <cfergeau@redhat.com>
+Daniel Korostil <ted.korostiled@gmail.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Ekaterina Gerasimova <kittykat3756@gmail.com>
+Fabiano Fidêncio <fidencio@redhat.com>
+Fran Dieguez <frandieguez@gnome.org>
+Frédéric Péters <fpeters@0d.be>
+Joan Montané <jmontane@softcatala.org>
+Kjartan Maraas <kmaraas@gnome.org>
+Lasse Schuirmann <lasse@schuirmann.net>
+Luca Bruno <lucabru@src.gnome.org>
+Marek Černocký <marek@manet.cz>
+Pau Iranzo <paugnu@gmail.com>
+Paweł Żołnowski <pawel@zolnowski.name>
+rhaglion <rhaglion@riseup.net>
+Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Seong-ho Cho <darkcircle.0426@gmail.com>
+Sphinx Jiang <yishanj13@gmail.com>
+Tiagosdot <almosthumane@portugalmail.pt>
+Timm Bäder <mail@baedert.org>
+Ville-Pekka Vainio <vpvainio@iki.fi>
+Wylmer Wang <wantinghard@gmail.com>
+Yaron Shahrabani <sh.yaron@gmail.com>
+Yuri Myasoedov <ymyasoedov@yandex.ru>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.11.91 - Marc 04, 2014
 =======================
 
