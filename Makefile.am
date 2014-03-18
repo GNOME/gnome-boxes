@@ -19,6 +19,7 @@ DISTCLEANFILES =				\
 EXTRA_DIST =					\
 	CodingStyle.txt				\
 	THANKS					\
+	HACKING					\
 	build-aux/git-version-gen		\
 	m4/boxes.m4				\
 	.version				\
