@@ -281,11 +281,16 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         else
             label.set_text (get_utf8_basename (source));
 
-        if (VMConfigurator.is_install_config (machine.domain_config) ||
-            VMConfigurator.is_live_config (machine.domain_config)) {
-            add_property (ref list, _("CD/DVD"), grid);
+        if (machine.vm_creator != null) {
+            var media = machine.vm_creator.install_media;
 
-            return;
+            if ((media is UnattendedInstaller && (media as UnattendedInstaller).setup_box.express_install) ||
+                (media.os_media != null && media.os_media.live)) {
+                // Don't let user eject installer media if its an express installation or a live media
+                add_property (ref list, _("CD/DVD"), grid);
+
+                return;
+            }
         }
 
         var button_label = new Gtk.Label ("");
