@@ -6,10 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-03-05 19:07+0000\n"
-"PO-Revision-Date: 2014-03-08 20:24+0800\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-23 06:20+0800\n"
+"PO-Revision-Date: 2014-03-21 21:25+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
@@ -45,7 +44,7 @@ msgstr ""
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:57 ../src/main.vala:72
+#: ../src/app-window.vala:55 ../src/main.vala:72
 msgid "Boxes"
 msgstr "機櫃"
 
@@ -186,7 +185,7 @@ msgid "Search"
 msgstr "搜尋"
 
 #: ../data/ui/topbar.ui.h:5 ../src/libvirt-machine-properties.vala:309
-#: ../src/libvirt-machine.vala:447 ../src/wizard-source.vala:246
+#: ../src/libvirt-machine.vala:447 ../src/wizard-source.vala:256
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -302,77 +301,77 @@ msgstr ""
 "您的系統沒有虛擬化延伸功能。如果您的系統是新的 (2008 年以後出廠)，請檢查您的 "
 "BIOS 設定值以啟用它們。"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2012, 2013."
 
-#: ../src/app.vala:99
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "簡易 GNOME 3 應用程式，可存取遠端或虛擬系統"
 
-#: ../src/app.vala:120
+#: ../src/app.vala:123
 msgid "New"
 msgstr "新增"
 
-#: ../src/app.vala:125
+#: ../src/app.vala:128
 msgid "Help"
 msgstr "求助"
 
-#: ../src/app.vala:126
+#: ../src/app.vala:129
 msgid "About"
 msgstr "關於"
 
-#: ../src/app.vala:127
+#: ../src/app.vala:130
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/app.vala:186 ../src/main.vala:9
+#: ../src/app.vala:189 ../src/main.vala:9
 msgid "Display version number"
 msgstr "顯示版本編號"
 
-#: ../src/app.vala:188
+#: ../src/app.vala:191
 msgid "Open in full screen"
 msgstr "以全螢幕開啟"
 
-#: ../src/app.vala:189 ../src/main.vala:10
+#: ../src/app.vala:192 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "檢查虛擬化能力"
 
-#: ../src/app.vala:190
+#: ../src/app.vala:193
 msgid "Open box with UUID"
 msgstr "以 UUID 開啟主機"
 
-#: ../src/app.vala:191
+#: ../src/app.vala:194
 msgid "Search term"
 msgstr "搜尋詞語"
 
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/app.vala:193
+#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
+#: ../src/app.vala:196
 msgid "URI to display, broker or installer media"
 msgstr "要顯示的 URI，或安裝程式媒體"
 
-#: ../src/app.vala:204
+#: ../src/app.vala:207
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- 可存取遠端機器或虛擬機的簡易應用程式"
 
-#: ../src/app.vala:226
+#: ../src/app.vala:229
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了太多命令列引數。\n"
-
-#: ../src/app.vala:492
-#, c-format
-msgid "Box '%s' has been deleted"
-msgstr "「%s」主機已刪除"
-
-#: ../src/app.vala:493
-#, c-format
-msgid "%u box has been deleted"
-msgid_plural "%u boxes have been deleted"
-msgstr[0] "%u 臺主機已刪除"
 
 #: ../src/app.vala:516
 msgid "_Undo"
 msgstr "取消動作(_U)"
+
+#: ../src/app.vala:527
+#, c-format
+msgid "Box '%s' has been deleted"
+msgstr "「%s」主機已刪除"
+
+#: ../src/app.vala:528
+#, c-format
+msgid "%u box has been deleted"
+msgid_plural "%u boxes have been deleted"
+msgstr[0] "%u 臺主機已刪除"
 
 #: ../src/collection-view.vala:38
 msgid "New and Recent"
@@ -387,7 +386,7 @@ msgid "Unsupported disk image format."
 msgstr "不支援的磁碟映像檔格式。"
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:34
+#: ../src/properties.vala:47
 msgid "System"
 msgstr "系統"
 
@@ -400,7 +399,7 @@ msgid "Virtualizer"
 msgstr "虛擬器"
 
 #: ../src/libvirt-machine-properties.vala:120 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:416
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:423
 msgid "URI"
 msgstr "URI"
 
@@ -474,11 +473,11 @@ msgstr "選取"
 msgid "Remove"
 msgstr "移除"
 
-#: ../src/libvirt-machine-properties.vala:306 ../src/wizard-source.vala:243
+#: ../src/libvirt-machine-properties.vala:306 ../src/wizard-source.vala:253
 msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
-#: ../src/libvirt-machine-properties.vala:310 ../src/wizard-source.vala:247
+#: ../src/libvirt-machine-properties.vala:310 ../src/wizard-source.vala:257
 msgid "_Open"
 msgstr "開啟(_O)"
 
@@ -495,11 +494,11 @@ msgstr "將「%s」當做 CD/DVD 插入「%s」失敗"
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "從「%s」移除 CD/DVD 失敗"
 
-#: ../src/libvirt-machine-properties.vala:407 ../src/wizard.vala:452
+#: ../src/libvirt-machine-properties.vala:407 ../src/wizard.vala:461
 msgid "Memory"
 msgstr "記憶體"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:467
 msgid "Maximum Disk Size"
 msgstr "最大磁碟容量"
 
@@ -508,7 +507,6 @@ msgid "When you force shutdown, the box may lose data."
 msgstr "當您強迫關機時，主機可能會遺失資料。"
 
 #: ../src/libvirt-machine.vala:448 ../src/libvirt-machine.vala:603
-#| msgid "Force Shutdown"
 msgid "_Shutdown"
 msgstr "關閉(_S)"
 
@@ -534,7 +532,7 @@ msgstr "「%s」的重新啟動時間過長。是否要強迫關機？"
 msgid "Import '%s' from system broker"
 msgstr "從系統中介代理匯入「%s」"
 
-#. Translators: %u here is number of boxes availble for import
+#. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
 msgid "Import %u box from system broker"
@@ -546,7 +544,7 @@ msgstr[0] "從系統中介代理匯入 %u 部主機"
 msgid "Will import '%s' from system broker"
 msgstr "將從系統中介代理匯入「%s」"
 
-#. Translators: %u here is number of boxes availble for import
+#. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:35
 #, c-format
 msgid "Will import %u box from system broker"
@@ -563,21 +561,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "找不到適當磁碟來為「%s」主機匯入"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:124
+#: ../src/machine.vala:127
 #, c-format
 msgid "Connecting to %s"
 msgstr "正在連接到 %s"
 
-#: ../src/machine.vala:141 ../src/machine.vala:553
+#: ../src/machine.vala:144 ../src/machine.vala:581
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "「%s」的連線失敗"
 
-#: ../src/machine.vala:224
+#: ../src/machine.vala:227
 msgid "Saving..."
 msgstr "正在儲存…"
 
-#: ../src/machine.vala:543
+#: ../src/machine.vala:571
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -586,12 +584,12 @@ msgstr ""
 "無法從磁碟還原「%s」\n"
 "要嘗試不使用儲存的狀態嗎？"
 
-#: ../src/machine.vala:544
+#: ../src/machine.vala:572
 msgid "Restart"
 msgstr "重新啟動"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:582
+#: ../src/machine.vala:610
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "「%s」要求核對"
@@ -632,7 +630,7 @@ msgstr "報告錯誤給 <%s>。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s 首頁：<%s>。\n"
 
-#: ../src/media-manager.vala:215
+#: ../src/media-manager.vala:226
 #, c-format
 msgid "No such file %s"
 msgstr "沒有這個檔案 %s"
@@ -651,26 +649,24 @@ msgstr "未連接至 %s"
 msgid "Connection to oVirt broker failed"
 msgstr "oVirt broker 的連線失敗"
 
-#: ../src/properties.vala:30
+#: ../src/properties.vala:43
 msgid "Login"
 msgstr "登錄資訊"
 
-#: ../src/properties.vala:38
+#: ../src/properties.vala:51
 msgid "Display"
 msgstr "顯示"
 
-#: ../src/properties.vala:42
+#: ../src/properties.vala:55
 msgid "Devices"
 msgstr "裝置"
 
-#: ../src/properties.vala:196
+#: ../src/properties.vala:213
 #, c-format
-#| msgid "Changes require restart of '%s'. Attempt restart?"
 msgid "Changes require restart of '%s'."
 msgstr "變更需要重新啟動「%s」。"
 
-#: ../src/properties.vala:197
-#| msgid "Restart"
+#: ../src/properties.vala:214
 msgid "_Restart"
 msgstr "重新啟動(_R)"
 
@@ -710,7 +706,7 @@ msgstr "重新導引新的 USB 裝置"
 msgid "USB devices"
 msgstr "USB 裝置"
 
-#: ../src/spice-display.vala:381 ../src/wizard.vala:252 ../src/wizard.vala:261
+#: ../src/spice-display.vala:381 ../src/wizard.vala:258 ../src/wizard.vala:267
 msgid "Invalid URI"
 msgstr "URI 無效"
 
@@ -723,24 +719,24 @@ msgid "Missing port in Spice URI"
 msgstr "Spice URI 中遺漏連接埠"
 
 #. Translators: The %s will be replaced with the name of the VM
-#: ../src/topbar.vala:65
+#: ../src/topbar.vala:105
 #, c-format
 msgid "%s - Properties"
 msgstr "%s - 屬性"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/topbar.vala:120
+#: ../src/topbar.vala:171
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d 個已選取"
 
-#: ../src/topbar.vala:122
+#: ../src/topbar.vala:173
 msgid "(Click on items to select them)"
 msgstr "(點擊項目來選取它們)"
 
-#: ../src/unattended-installer.vala:445
+#: ../src/unattended-installer.vala:448
 msgid "Downloading device drivers..."
 msgstr "正在下載裝置驅動程式..."
 
@@ -790,11 +786,11 @@ msgid ""
 msgstr ""
 "%s 為 libvirt 作為 GNOME Boxes 貯藏池之用，但該目錄卻非使用者可讀或可寫"
 
-#: ../src/util.vala:315
+#: ../src/util.vala:351
 msgid "yes"
 msgstr "是"
 
-#: ../src/util.vala:315
+#: ../src/util.vala:351
 msgid "no"
 msgstr "否"
 
@@ -809,18 +805,23 @@ msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "在安裝準備期間遇到錯誤。快速安裝已停用。"
 
-#: ../src/vm-creator.vala:176
+#: ../src/vm-creator.vala:173
+#, c-format
+msgid "Live box '%s' has been deleted automatically."
+msgstr "即時主機「%s」已自動刪除。"
+
+#: ../src/vm-creator.vala:186
 msgid "Installing..."
 msgstr "正在安裝…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:180 ../src/wizard-source.vala:82
+#: ../src/vm-creator.vala:190 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:312
+#: ../src/vm-creator.vala:322
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -853,83 +854,83 @@ msgstr "64 位元 x86 系統"
 msgid " from %s"
 msgstr " 來自 %s"
 
-#: ../src/wizard.vala:146
+#: ../src/wizard.vala:111 ../src/wizard.vala:556
+msgid "Box creation failed"
+msgstr "建立主機失敗"
+
+#: ../src/wizard.vala:153
 msgid "Please enter desktop or collection URI"
 msgstr "請輸入桌面或收藏集 URI"
 
-#: ../src/wizard.vala:152
+#: ../src/wizard.vala:159
 msgid "Will add boxes for all systems available from this account."
 msgstr "會將此帳號所有可用的系統加入主機。"
 
-#: ../src/wizard.vala:155
+#: ../src/wizard.vala:162
 msgid "Will add a single box."
 msgstr "會加入單一個主機。"
 
 #. ignore any parsing error
-#: ../src/wizard.vala:161
+#: ../src/wizard.vala:168
 msgid "Desktop Access"
 msgstr "桌面存取"
 
-#: ../src/wizard.vala:275
+#: ../src/wizard.vala:281
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "未支援的協定「%s」"
 
-#: ../src/wizard.vala:281 ../src/wizard.vala:323
+#: ../src/wizard.vala:287 ../src/wizard.vala:330
 msgid "Unknown installer media"
 msgstr "未知的安裝程式媒體"
 
-#: ../src/wizard.vala:282 ../src/wizard.vala:324
+#: ../src/wizard.vala:288 ../src/wizard.vala:331
 msgid "Analyzing..."
 msgstr "正在分析…"
 
-#: ../src/wizard.vala:294
+#: ../src/wizard.vala:300
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "安裝程式媒體分析失敗。媒體是否損壞或檔案不完整？"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:392
+#: ../src/wizard.vala:399
 msgid "Box setup failed"
 msgstr "主機設定失敗"
 
-#: ../src/wizard.vala:406
+#: ../src/wizard.vala:413
 msgid "Boxes will create a new box with the following properties:"
 msgstr "機櫃會以下列屬性建立新主機："
 
-#: ../src/wizard.vala:411
+#: ../src/wizard.vala:418
 msgid "Type"
 msgstr "類型"
 
-#: ../src/wizard.vala:414
+#: ../src/wizard.vala:421
 msgid "Host"
 msgstr "主機"
 
-#: ../src/wizard.vala:425 ../src/wizard.vala:436
+#: ../src/wizard.vala:432 ../src/wizard.vala:443
 msgid "Port"
 msgstr "端口"
 
-#: ../src/wizard.vala:427
+#: ../src/wizard.vala:434
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: ../src/wizard.vala:441
+#: ../src/wizard.vala:448
 msgid "Will add boxes for all systems available from this account:"
 msgstr "會為此帳號所有可用的系統加入主機："
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:470
 msgid "Disk"
 msgstr "磁碟"
 
-#: ../src/wizard.vala:461
+#: ../src/wizard.vala:470
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大"
 
-#: ../src/wizard.vala:547
-msgid "Box creation failed"
-msgstr "建立主機失敗"
-
-#: ../src/wizard.vala:620
+#: ../src/wizard.vala:629
 msgid "C_ustomize..."
 msgstr "自訂(_U)…"
 
