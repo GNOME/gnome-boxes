@@ -169,6 +169,13 @@ private class Boxes.WizardSource: Gtk.Stack {
         transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT; // FIXME: Why this won't work from .ui file?
     }
 
+    public void cleanup () {
+        install_media = null;
+        libvirt_sys_import = false;
+        selected = null;
+        uri = "";
+    }
+
     [GtkCallback]
     private void on_enter_url_button_clicked () {
         page = SourcePage.URL;

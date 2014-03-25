@@ -191,6 +191,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     public void cleanup () {
         destroy_machine ();
+        vm_creator = null;
+        source = null;
+        wizard_source.cleanup ();
     }
 
     private async bool create () {
