@@ -537,8 +537,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     public void setup_ui () {
         cancel_button = App.window.topbar.wizard_cancel_btn;
         cancel_button.clicked.connect (() => {
-            destroy_machine ();
-            vm_creator = null;
+            cleanup ();
             wizard_source.page = SourcePage.MAIN;
             App.app.set_state (UIState.COLLECTION);
         });
