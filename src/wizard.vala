@@ -69,13 +69,13 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             case WizardPage.SOURCE:
                 // reset page to notify deeply widgets states
                 wizard_source.page = wizard_source.page;
+                cleanup ();
                 break;
             }
 
             if (forwards) {
                 switch (value) {
                 case WizardPage.SOURCE:
-                    wizard_source.selected = null;
                     wizard_source.page = SourcePage.MAIN;
                     break;
 
