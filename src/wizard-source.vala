@@ -239,7 +239,6 @@ private class Boxes.WizardSource: Gtk.Stack {
             selected = entry;
         });
 
-        media_vbox.show_all ();
         media_scrolled.show ();
     }
 
@@ -252,7 +251,7 @@ private class Boxes.WizardSource: Gtk.Stack {
             return;
         }
         libvirt_sys_import_label.label = libvirt_sys_importer.wizard_menu_label;
-        main_vbox.show_all ();
+        libvirt_sys_import_button.show_all ();
     }
 
     [GtkCallback]
