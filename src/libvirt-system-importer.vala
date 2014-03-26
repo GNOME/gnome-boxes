@@ -38,18 +38,12 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
         }
     }
 
-    public async LibvirtSystemImporter () throws LibvirtSystemImporterError.NO_IMPORTS {
+    public async LibvirtSystemImporter () throws GLib.Error {
         connection = new GVir.Connection ("qemu+unix:///system");
 
-        try {
-            yield connection.open_read_only_async (null);
-            debug ("Connected to system libvirt, now fetching domains..");
-            yield connection.fetch_domains_async (null);
-        } catch (GLib.Error error) {
-            warning ("Failed to connect to system libvirt: %s", error.message);
-
-            return;
-        }
+        yield connection.open_read_only_async (null);
+        debug ("Connected to system libvirt, now fetching domains..");
+        yield connection.fetch_domains_async (null);
 
         domains = connection.get_domains ();
         debug ("Fetched %u domains from system libvirt.", domains.length ());

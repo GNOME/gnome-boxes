@@ -245,7 +245,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     private async void update_libvirt_sytem_entry_visibility () {
         try {
             libvirt_sys_importer = yield new LibvirtSystemImporter ();
-        } catch (LibvirtSystemImporterError.NO_IMPORTS error) {
+        } catch (GLib.Error error) {
             debug ("%s", error.message);
 
             return;
