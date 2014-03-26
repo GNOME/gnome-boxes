@@ -160,7 +160,8 @@ private class Boxes.WizardSource: Gtk.Stack {
         media_manager = MediaManager.get_instance ();
         main_vbox.grab_focus ();
 
-        media_scrolled.setup (5);
+        var num_visible = (Gdk.Screen.height () > 800)? 5 : 4;
+        media_scrolled.setup (num_visible);
         media_vbox = media_scrolled.vbox;
         draw_as_css_box (url_entry_bin);
 
