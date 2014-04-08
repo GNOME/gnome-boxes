@@ -85,7 +85,7 @@ private class Boxes.DisplayPage: Gtk.Box {
         var title = machine.name;
         string? hint = null;
         if (grabbed)
-            hint = _("(press Ctrl+Alt keys to ungrab)");
+            hint = _("(press [left] Ctrl+Alt keys to ungrab)");
 
         toolbar.set_title (title);
         toolbar.set_subtitle (hint);
