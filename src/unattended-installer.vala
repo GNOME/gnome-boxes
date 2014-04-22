@@ -513,7 +513,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             file = yield downloader.download (file, cached_paths, file_progress);
             file_progress.progress = 1.0; // Ensure progress reaches 100%
 
-            driver_files.append (new UnattendedRawFile (this, cached_path, filename));
+            driver_files.append (new UnattendedRawFile (this, file.get_path (), filename));
         }
 
         // We don't do this in above loop to ensure we have all the driver files
