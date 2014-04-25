@@ -64,7 +64,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
            cause deadlocks, see bug #676679. */
         if (accounts == null) {
             try {
-                accounts = Bus.get_proxy_sync (BusType.SYSTEM, "org.freedesktop.Accounts", "/org/freedesktop/Accounts");
+                accounts = Bus.get_proxy_sync (BusType.SYSTEM,
+                                               "org.freedesktop.Accounts",
+                                               "/org/freedesktop/Accounts");
             } catch (GLib.Error error) {
                 warning ("Failed to connect to D-Bus service '%s': %s", "org.freedesktop.Accounts", error.message);
             }

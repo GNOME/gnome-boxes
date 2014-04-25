@@ -151,7 +151,10 @@ public enum PropertyCreationFlag {
 private interface Boxes.IPropertiesProvider: GLib.Object {
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
 
-    protected Boxes.Property add_property (ref List<Boxes.Property> list, string? name, Widget widget, Widget? extra_widget = null) {
+    protected Boxes.Property add_property (ref List<Boxes.Property> list,
+                                           string? name,
+                                           Widget widget,
+                                           Widget? extra_widget = null) {
         var property = new Property (name, widget, extra_widget);
         list.append (property);
         return property;

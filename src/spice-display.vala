@@ -339,7 +339,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                             var box_name = get_box_name ();
                                             var msg = _("Redirection of USB device '%s' for '%s' failed");
                                             got_error (msg.printf (device_desc, box_name));
-                                            debug ("Error connecting %s to %s: %s", device_desc, box_name, err.message);
+                                            debug ("Error connecting %s to %s: %s",
+                                                   device_desc,
+                                                   box_name, err.message);
                                         }
                                     });
                                 } else {

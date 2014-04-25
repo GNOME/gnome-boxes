@@ -86,7 +86,9 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             });
     }
 
-    private void get_domain_info (Domain domain, out GVirConfig.Domain config, out string disk_path) throws GLib.Error {
+    private void get_domain_info (Domain domain,
+                                  out GVirConfig.Domain config,
+                                  out string disk_path) throws GLib.Error {
         debug ("Fetching config for '%s' from system libvirt.", domain.get_name ());
         config = domain.get_config (DomainXMLFlags.INACTIVE);
         debug ("Finding a suitable disk to import for '%s' from system libvirt.", domain.get_name ());
