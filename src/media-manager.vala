@@ -6,7 +6,8 @@ using Tracker;
 
 private class Boxes.MediaManager : Object {
     private static MediaManager media_manager;
-    private const string SPARQL_QUERY = "SELECT nie:url(?iso) nie:title(?iso) osinfo:id(?iso) osinfo:mediaId(?iso)" +
+    private const string SPARQL_QUERY = "SELECT nie:url(?iso)   nie:title(?iso)     nie:language(?iso)" +
+                                        "       osinfo:id(?iso) osinfo:mediaId(?iso)" +
                                         " { ?iso nfo:isBootable true }";
 
     public OSDatabase os_db { get; private set; }
@@ -131,11 +132,14 @@ private class Boxes.MediaManager : Object {
                 if (path == null)
                     continue; // FIXME: Support non-local files as well
                 var title = cursor.get_string (1);
-                var os_id = cursor.get_string (2);
-                var media_id = cursor.get_string (3);
+                var languages = cursor.get_string (2);
+                var os_id = cursor.get_string (3);
+                var media_id = cursor.get_string (4);
+
+                var lang_list = (languages != null)? languages.split (",") : new string[]{};
 
                 try {
-                    var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id);
+                    var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id, lang_list);
                     unowned GLib.List<InstallerMedia> dup_node = list.find_custom (media, compare_media_by_label);
                     if (dup_node != null) {
                         // In case of duplicate media, prefer:
@@ -218,10 +222,12 @@ private class Boxes.MediaManager : Object {
         }
     }
 
-    private async InstallerMedia create_installer_media_from_iso_info (string  path,
-                                                                       string? label,
-                                                                       string? os_id,
-                                                                       string? media_id) throws GLib.Error {
+    private async InstallerMedia create_installer_media_from_iso_info (string   path,
+                                                                       string?  label,
+                                                                       string?  os_id,
+                                                                       string?  media_id,
+                                                                       string[] lang_list = new string[]{})
+                                                                       throws GLib.Error {
         if (!FileUtils.test (path, FileTest.EXISTS))
             throw new Boxes.Error.INVALID (_("No such file %s").printf (path));
 
@@ -230,6 +236,8 @@ private class Boxes.MediaManager : Object {
 
         var os = yield os_db.get_os_by_id (os_id);
         var os_media = os_db.get_media_by_id (os, media_id);
+        foreach (var lang in lang_list)
+            os_media.add_param (Osinfo.MEDIA_PROP_LANG, lang);
         var resources = os_db.get_resources_for_os (os, os_media.architecture);
         var media = new InstallerMedia.from_iso_info (path, label, os, os_media, resources);
 
