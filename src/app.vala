@@ -54,10 +54,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         action.activate.connect (() => { quit_app (); });
         add_action (action);
 
-        action = new GLib.SimpleAction ("new", null);
-        action.activate.connect (() => { set_state (UIState.WIZARD); });
-        add_action (action);
-
         action = new GLib.SimpleAction ("select-all", null);
         action.activate.connect (() => { window.view.select (SelectionCriteria.ALL); });
         add_action (action);
@@ -120,11 +116,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         Gtk.init (ref args2);
 
         var menu = new GLib.Menu ();
-        menu.append (_("New"), "app.new");
-
-        var display_section = new GLib.Menu ();
-        menu.append_section (null, display_section);
-
         menu.append (_("Help"), "app.help");
         menu.append (_("About"), "app.about");
         menu.append (_("Quit"), "app.quit");
