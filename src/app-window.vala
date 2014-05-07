@@ -128,6 +128,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             break;
 
         case UIState.CREDS:
+        case UIState.DISPLAY:
 
             break;
 
@@ -140,12 +141,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         case UIState.PROPERTIES:
             below_bin.visible_child = below_bin_hbox;
             content_bin.visible_child = properties;
-
-            break;
-
-        case UIState.DISPLAY:
-            if (maximized)
-                fullscreened = true;
 
             break;
 
