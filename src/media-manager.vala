@@ -6,9 +6,6 @@ using Tracker;
 
 private class Boxes.MediaManager : Object {
     private static MediaManager media_manager;
-    private const string SPARQL_QUERY = "SELECT nie:url(?iso)   nie:title(?iso)     nie:language(?iso)" +
-                                        "       osinfo:id(?iso) osinfo:mediaId(?iso)" +
-                                        " { ?iso nfo:isBootable true }";
 
     public OSDatabase os_db { get; private set; }
     public Client client { get; private set; }
@@ -125,19 +122,15 @@ private class Boxes.MediaManager : Object {
 
         // Now ISO files
         try {
-            var cursor = yield connection.query_async (SPARQL_QUERY);
-            while (yield cursor.next_async ()) {
-                var file = File.new_for_uri (cursor.get_string (0));
-                var path = file.get_path ();
-                if (path == null)
-                    continue; // FIXME: Support non-local files as well
-                var title = cursor.get_string (1);
-                var languages = cursor.get_string (2);
-                var os_id = cursor.get_string (3);
-                var media_id = cursor.get_string (4);
+            var query = yield new TrackerISOQuery (connection);
+            string path, title, os_id, media_id;
+            string[] lang_list;
 
-                var lang_list = (languages != null)? languages.split (",") : new string[]{};
-
+            while (yield query.fetch_next_iso_data (out path,
+                                                    out title,
+                                                    out os_id,
+                                                    out media_id,
+                                                    out lang_list)) {
                 try {
                     var media = yield create_installer_media_from_iso_info (path, title, os_id, media_id, lang_list);
                     unowned GLib.List<InstallerMedia> dup_node = list.find_custom (media, compare_media_by_label);
@@ -226,12 +219,12 @@ private class Boxes.MediaManager : Object {
                                                                        string?  label,
                                                                        string?  os_id,
                                                                        string?  media_id,
-                                                                       string[] lang_list = new string[]{})
+                                                                       string[] lang_list)
                                                                        throws GLib.Error {
         if (!FileUtils.test (path, FileTest.EXISTS))
             throw new Boxes.Error.INVALID (_("No such file %s").printf (path));
 
-        if (label == null || os_id == null || media_id == null)
+        if (label == null || os_id == null || media_id == null || lang_list == null)
             return yield create_installer_media_for_path (path);
 
         var os = yield os_db.get_os_by_id (os_id);
