@@ -144,7 +144,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             break;
 
         case UIState.DISPLAY:
-            if (maximized)
+            if (maximized && previous_ui_state == UIState.CREDS)
                 fullscreened = true;
 
             break;
