@@ -357,12 +357,24 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     }
 
     private async void setup_sources () {
+        var path = get_user_pkgconfig_source ("QEMU Session");
+        var create_session_source = true;
+        try {
+            var file = File.new_for_path (path);
+            var info = yield file.query_info_async (FileAttribute.STANDARD_SIZE,
+                                                    FileQueryInfoFlags.NONE,
+                                                    Priority.DEFAULT,
+                                                    null);
+            create_session_source = (info.get_attribute_uint64 (FileAttribute.STANDARD_SIZE) <= 0);
+        } catch (GLib.Error error) {
+            debug ("Failed to query '%s': %s. Assuming it doesn't exist.", path, error.message);
+        }
 
-        if (!FileUtils.test (get_user_pkgconfig_source ("QEMU Session"), FileTest.IS_REGULAR)) {
+        if (create_session_source) {
             var src = File.new_for_path (get_pkgdata_source ("QEMU_Session"));
-            var dst = File.new_for_path (get_user_pkgconfig_source ("QEMU Session"));
+            var dst = File.new_for_path (path);
             try {
-                yield src.copy_async (dst, FileCopyFlags.NONE);
+                yield src.copy_async (dst, FileCopyFlags.OVERWRITE);
             } catch (GLib.Error error) {
                 critical ("Can't setup default sources: %s", error.message);
             }
