@@ -233,6 +233,10 @@ private class Boxes.VMCreator {
         return config;
     }
 
+    // Ensure name is less than 12 characters as its also used as the hostname of the guest OS in case of
+    // express installation and some OSes (you know who you are) don't like hostnames with more than 15
+    // characters (we later add a '-' and a number to the name if name is not unique so we leave 3 characters
+    // or that).
     protected virtual void create_domain_base_name_and_title (out string base_name, out string base_title) {
         base_title = install_media.label;
         if (install_media.os != null) {
@@ -244,6 +248,9 @@ private class Boxes.VMCreator {
                     // FIXME: Assuming first variant only from multivariant medias.
                     base_name += "-" + variants.get_nth (0).id;
             }
+
+            if (base_name.length > 12)
+                base_name = base_name[0:12];
         } else
             base_name = "boxes-unknown";
     }
