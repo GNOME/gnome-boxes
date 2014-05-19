@@ -19,11 +19,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
         // TODO: multi display
-        if (App.app.ui_state == UIState.PROPERTIES ||
-            App.app.ui_state == UIState.DISPLAY) {
+        if (App.app.ui_state == UIState.DISPLAY) {
             // disable resize guest when minimizing guest widget
             var display = get_display (0) as Spice.Display;
-            display.resize_guest = App.app.ui_state == UIState.DISPLAY ? resize_guest : false;
+            display.resize_guest = resize_guest;
         }
     }
 
