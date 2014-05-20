@@ -31,7 +31,8 @@ AM_VALAFLAGS =						\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
 	--pkg gudev-1.0					\
-	--pkg libsoup-2.4             			\
+	--pkg libarchive				\
+	--pkg libsoup-2.4				\
 	--pkg libosinfo-1.0				\
 	--pkg libvirt-gconfig-1.0			\
 	--pkg libvirt-gobject-1.0			\
@@ -72,6 +73,7 @@ libcommon_vala.stamp: $(libcommon_a_VALASOURCES)
 	--pkg config						\
 	--pkg glib-2.0						\
 	--pkg gio-2.0						\
+	--pkg libarchive					\
 	-C -H libcommon.h --library common $^
 	@touch $(libcommon_a_DEPENDENCIES)
 

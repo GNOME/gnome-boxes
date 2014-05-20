@@ -63,6 +63,7 @@ OSINFO_MIN_VERSION=0.2.9
 TRACKER_SPARQL=0.13.1
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.38
+LIBARCHIVE_MIN_VERSION=3.0.0
 
 PKG_CHECK_MODULES(BOXES, [
   glib-2.0 >= $GLIB_MIN_VERSION
@@ -77,6 +78,7 @@ PKG_CHECK_MODULES(BOXES, [
   libosinfo-1.0 >= $OSINFO_MIN_VERSION
   uuid >= $UUID_REQUIRED
   libsoup-2.4 >= $LIBSOUP_REQUIRED
+  libarchive >= $LIBARCHIVE_MIN_VERSION
 ])
 
 
@@ -93,6 +95,7 @@ VALA_ADD_CHECKFILE([src/gnome_boxes_vala.stamp])
 PKG_CHECK_MODULES(BOXES_COMMON, [
   glib-2.0 >= $GLIB_MIN_VERSION
   gio-2.0 >= $GLIB_MIN_VERSION
+  libarchive >= $LIBARCHIVE_MIN_VERSION
 ])
 
 VALA_ADD_CHECKFILE([src/libcommon_vala.stamp])
@@ -127,12 +130,13 @@ else
 fi
 AM_CONDITIONAL([HAVE_OVIRT], [test "x$have_govirt" = "xyes"])
 
-VALA_CHECK([0.23.3.1], [
+VALA_CHECK([0.24.0.65], [
   gdk-pixbuf-2.0
   glib-2.0
   gtk+-3.0
   gtk-vnc-2.0
   gudev-1.0
+  libarchive
   libosinfo-1.0
   libsoup-2.4
   libvirt-gconfig-1.0
