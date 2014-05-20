@@ -141,6 +141,13 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         try {
             yield create_disk_image (cancellable);
 
+            //FIXME: Linux-specific. Any generic way to achieve this?
+            if (os_media.kernel_path != null && os_media.initrd_path != null) {
+                var extractor = new ISOExtractor (device_file);
+
+                yield extract_boot_files (extractor, cancellable);
+            }
+
             foreach (var unattended_file in unattended_files)
                 yield unattended_file.copy (cancellable);
 
@@ -158,13 +165,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
                 yield exec (argv, cancellable);
                 debug ("Created secondary disk image '%s'...", secondary_disk_path);
-            }
-
-            //FIXME: Linux-specific. Any generic way to achieve this?
-            if (os_media.kernel_path != null && os_media.initrd_path != null) {
-                var extractor = new ISOExtractor (device_file);
-
-                yield extract_boot_files (extractor, cancellable);
             }
         } catch (GLib.Error error) {
             clean_up ();
