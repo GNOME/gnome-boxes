@@ -106,7 +106,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 case WizardPage.LAST:
                     create.begin ((obj, result) => {
                        if (create.end (result))
-                          App.window.set_state (UIState.COLLECTION);
+                          App.app.set_state (UIState.COLLECTION);
                        else
                           App.window.notificationbar.display_error (_("Box creation failed"));
                     });
