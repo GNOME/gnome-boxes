@@ -251,7 +251,7 @@ namespace Boxes {
                     break;
             }
         } catch (GLib.Error error) {
-            GLib.error (error.message);
+            critical (error.message);
         }
 
         debug ("check_cpu_vt_capability: " + yes_no (result));
@@ -271,7 +271,7 @@ namespace Boxes {
                     break;
             }
         } catch (GLib.Error error) {
-            GLib.error (error.message);
+            critical (error.message);
         }
 
         debug ("check_module_kvm_loaded: " + yes_no (result));
