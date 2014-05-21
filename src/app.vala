@@ -239,11 +239,11 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
                 if (file.query_exists ()) {
                     if (is_uri)
-                        window.wizard.open_with_uri (file.get_uri ());
-                    else
                         window.wizard.open_with_uri (arg);
+                    else
+                        window.wizard.open_with_uri (file.get_uri ());
                 } else if (is_uri)
-                    window.wizard.open_with_uri (file.get_uri ());
+                    window.wizard.open_with_uri (arg);
                 else
                     open_name (arg);
             });
