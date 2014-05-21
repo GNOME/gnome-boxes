@@ -551,12 +551,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         });
         create_button = App.window.topbar.wizard_create_btn;
         create_button.clicked.connect (() => {
-            create.begin ((obj, result) => {
-            if (create.end (result))
-                App.app.set_state (UIState.COLLECTION);
-            else
-                App.window.notificationbar.display_error (_("Box creation failed"));
-            });
+            page = WizardPage.LAST;
         });
     }
 
