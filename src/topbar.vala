@@ -41,7 +41,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     [GtkChild]
     private Gtk.Button new_btn;
     [GtkChild]
-    private Gtk.MenuButton selection_menu_button;
+    private Gtk.Label selection_menu_button_label;
     [GtkChild]
     private Gtk.HeaderBar collection_toolbar;
     [GtkChild]
@@ -168,9 +168,9 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         if (items > 0) {
             // This goes with the "Click on items to select them" string and is about selection of items (boxes)
             // when the main collection view is in selection mode.
-            selection_menu_button.label = ngettext ("%d selected", "%d selected", items).printf (items);
+            selection_menu_button_label.label = ngettext ("%d selected", "%d selected", items).printf (items);
         } else {
-            selection_menu_button.label = _("(Click on items to select them)");
+            selection_menu_button_label.label = _("(Click on items to select them)");
         }
     }
 
