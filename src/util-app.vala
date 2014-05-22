@@ -250,7 +250,7 @@ namespace Boxes {
                     break;
             }
         } catch (GLib.Error error) {
-            critical (error.message);
+            critical ("Failed to read file /proc/cpuinfo: %s", error.message);
         }
 
         debug ("check_cpu_vt_capability: " + yes_no (result));
@@ -270,7 +270,7 @@ namespace Boxes {
                     break;
             }
         } catch (GLib.Error error) {
-            critical (error.message);
+            critical ("Failed to read file /proc/modules: %s", error.message);
         }
 
         debug ("check_module_kvm_loaded: " + yes_no (result));
