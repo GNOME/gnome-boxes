@@ -4,6 +4,8 @@ using Gdk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/display-page.ui")]
 private class Boxes.DisplayPage: Gtk.Box {
+    private const uint8 SCREEN_EDGE_WIDTH = 80;
+
     [GtkChild]
     public DisplayToolbar toolbar;
 
@@ -168,8 +170,10 @@ private class Boxes.DisplayPage: Gtk.Box {
     [GtkCallback]
     private bool on_event_box_event (Gdk.Event event) {
         if (App.window.fullscreened && event.type == EventType.MOTION_NOTIFY) {
+            var x = event.motion.x;
             var y = event.motion.y;
-            if (y <= 0 && toolbar_show_id == 0) {
+            if (x >= SCREEN_EDGE_WIDTH && x <= (get_allocated_width () - SCREEN_EDGE_WIDTH) &&
+                y <= 0 && toolbar_show_id == 0) {
                 toolbar_event_stop ();
                 if ((event.motion.state &
                      (ModifierType.SHIFT_MASK | ModifierType.CONTROL_MASK |
