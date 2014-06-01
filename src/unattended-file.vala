@@ -17,15 +17,58 @@ private interface Boxes.UnattendedFile : GLib.Object {
         var source_file = yield get_source_file (cancellable);
 
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
-        // FIXME: Perhaps we should use libarchive for this? Make sure to also change the mcopy dependency in README.
-        string[] argv = { "mcopy", "-n", "-o", "-i", disk_file,
-                                   source_file.get_path (),
-                                   "::" + dest_name };
-        yield exec (argv, cancellable);
+
+        if (is_libarchive_compatible (disk_file)) {
+            yield run_in_thread(() => {
+                copy_with_libarchive (disk_file, source_file.get_path (), dest_name);
+            });
+        } else
+            yield copy_with_mcopy (disk_file, source_file.get_path (), dest_name, cancellable);
+
         debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
     }
 
     protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
+
+    private void copy_with_libarchive (string disk_file, string source_file, string dest_name) throws GLib.Error {
+        var reader = new ArchiveReader (disk_file);
+        // write into file~ since we can't write into the file we read from
+        var writer = new ArchiveWriter.from_archive_reader (reader, disk_file + "~", false);
+        // override the destination file if necessary
+        writer.import_read_archive (reader, {dest_name});
+        writer.insert_file (source_file, dest_name);
+
+        // close files for moving
+        reader = null;
+        writer = null;
+
+        var src = GLib.File.new_for_path (disk_file + "~");
+        var dst = GLib.File.new_for_path (disk_file);
+        // and copy the new file to overwrite the old one
+        src.move (dst, FileCopyFlags.OVERWRITE);
+    }
+
+    private async void copy_with_mcopy (string       disk_file,
+                                        string       source_file,
+                                        string       dest_name,
+                                        Cancellable? cancellable = null)
+                                        throws GLib.Error {
+        string[] argv = {"mcopy",
+                             "-n",
+                             "-o",
+                             "-i",
+                                 disk_file,
+                             source_file,
+                             "::" + dest_name };
+        yield exec (argv, cancellable);
+    }
+
+    private static bool is_libarchive_compatible (string filename) {
+        // FIXME: We need better way to determine libarchive compatibility cause mcopy is used
+        //        if this function returns false and mcopy can only handle MS-DOS images while
+        //        libarchive can handle other types of disk images
+        return GLib.ContentType.guess (filename, null, null) != "application/x-raw-disk-image";
+    }
 }
 
 private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
