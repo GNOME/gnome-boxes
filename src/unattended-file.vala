@@ -6,18 +6,23 @@ private interface Boxes.UnattendedFile : GLib.Object {
     public abstract string src_path { get; set; }
     public abstract string dest_name { get; set; }
 
+    protected virtual string disk_file {
+        owned get {
+            return installer.disk_file.get_path ();
+        }
+    }
     protected abstract UnattendedInstaller installer  { get; set; }
 
     public async void copy (Cancellable? cancellable) throws GLib.Error {
         var source_file = yield get_source_file (cancellable);
 
-        debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
+        debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
         // FIXME: Perhaps we should use libarchive for this? Make sure to also change the mcopy dependency in README.
-        string[] argv = { "mcopy", "-n", "-o", "-i", installer.disk_file.get_path (),
+        string[] argv = { "mcopy", "-n", "-o", "-i", disk_file,
                                    source_file.get_path (),
                                    "::" + dest_name };
         yield exec (argv, cancellable);
-        debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, installer.disk_file.get_path ());
+        debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
     }
 
     protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
