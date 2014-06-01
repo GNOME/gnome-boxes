@@ -10,8 +10,8 @@ private class Boxes.ISOExtractor: GLib.Object {
 
     public async void extract (string path, string output_path, Cancellable? cancellable) throws GLib.Error {
         debug ("Extracting '%s' from '%s' at path '%s'..", path, device_file, output_path);
-        string[] argv = { "iso-read", "-i", device_file, "-e", path, "-o", output_path };
-        yield exec (argv, cancellable);
+        var reader = new ArchiveReader (device_file);
+        reader.extract_file (path, output_path, true);
         debug ("Extracted '%s' from '%s' at path '%s'.", path, device_file, output_path);
     }
 }
