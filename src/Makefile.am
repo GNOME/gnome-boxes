@@ -97,6 +97,7 @@ gnome_boxes_SOURCES =				\
 	auth-notification.vala			\
 	collection-view.vala			\
 	collection.vala				\
+	collection-toolbar.vala			\
 	display-page.vala			\
 	display-toolbar.vala			\
 	display.vala				\

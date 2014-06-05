@@ -26,21 +26,11 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public Gtk.Button wizard_create_btn;
 
     [GtkChild]
-    private Gtk.Button search_btn;
-    [GtkChild]
     private Gtk.Button search2_btn;
-    [GtkChild]
-    private Gtk.Button select_btn;
-    [GtkChild]
-    private Gtk.Button back_btn;
-    [GtkChild]
-    private Gtk.Image back_image;
-    [GtkChild]
-    private Gtk.Button new_btn;
     [GtkChild]
     private Gtk.Label selection_menu_button_label;
     [GtkChild]
-    private Gtk.HeaderBar collection_toolbar;
+    private CollectionToolbar collection_toolbar;
     [GtkChild]
     private DisplayToolbar display_toolbar;
 
@@ -55,7 +45,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         case UIState.PROPERTIES:
             break;
         case UIState.CREDS:
-            back_btn.clicked ();
+            collection_toolbar.click_back_button ();
             break;
         case UIState.WIZARD:
             if (App.window.wizard.page != WizardPage.INTRODUCTION)
@@ -88,8 +78,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         get { return _status; }
         set {
             _status = value;
-            collection_toolbar.set_title (_status);
-            display_toolbar.set_title (_status);
+            collection_toolbar.set_title (_status??"");
+            display_toolbar.set_title (_status??"");
         }
     }
 
@@ -120,22 +110,14 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     }
 
     public void setup_ui () {
-        var back_icon = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
-                                                                     "go-previous-symbolic";
-        back_image.set_from_icon_name (back_icon, Gtk.IconSize.MENU);
-
         assert (App.window != null);
         assert (App.window.searchbar != null);
-        search_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
         search2_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
         App.app.notify["selection-mode"].connect (() => {
             page = App.app.selection_mode ?
                 TopbarPage.SELECTION : page = TopbarPage.COLLECTION;
         });
-        update_select_btn ();
-        App.app.collection.item_added.connect (update_select_btn);
-        App.app.collection.item_removed.connect (update_select_btn);
         update_selection_label ();
 
         var toolbar = App.window.display_page.toolbar;
@@ -145,15 +127,12 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
+
+        collection_toolbar.setup_ui ();
     }
 
     private void update_search_btn () {
-        search_btn.sensitive = App.app.collection.items.length != 0;
         search2_btn.sensitive = App.app.collection.items.length != 0;
-    }
-
-    private void update_select_btn () {
-        select_btn.sensitive = App.app.collection.items.length != 0;
     }
 
     private void update_selection_label () {
@@ -171,18 +150,10 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         switch (ui_state) {
         case UIState.COLLECTION:
             page = TopbarPage.COLLECTION;
-            back_btn.hide ();
-            select_btn.show ();
-            search_btn.show ();
-            new_btn.show ();
             break;
 
         case UIState.CREDS:
             page = TopbarPage.COLLECTION;
-            new_btn.hide ();
-            back_btn.show ();
-            select_btn.hide ();
-            search_btn.hide ();
             break;
 
         case UIState.DISPLAY:
@@ -203,21 +174,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         default:
             break;
         }
-    }
-
-    [GtkCallback]
-    private void on_new_btn_clicked () {
-        App.app.set_state (UIState.WIZARD);
-    }
-
-    [GtkCallback]
-    private void on_back_btn_clicked () {
-        App.app.set_state (UIState.COLLECTION);
-    }
-
-    [GtkCallback]
-    private void on_select_btn_clicked () {
-        App.app.selection_mode = true;
     }
 
     [GtkCallback]
