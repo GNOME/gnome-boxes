@@ -122,6 +122,7 @@ gnome_boxes_SOURCES =				\
 	remote-machine.vala			\
 	searchbar.vala				\
 	selectionbar.vala			\
+	selection-toolbar.vala			\
 	sidebar.vala				\
 	spice-display.vala			\
 	topbar.vala				\

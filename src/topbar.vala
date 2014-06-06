@@ -26,11 +26,9 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public Gtk.Button wizard_create_btn;
 
     [GtkChild]
-    private Gtk.Button search2_btn;
-    [GtkChild]
-    private Gtk.Label selection_menu_button_label;
-    [GtkChild]
     private CollectionToolbar collection_toolbar;
+    [GtkChild]
+    private SelectionToolbar selection_toolbar;
     [GtkChild]
     private DisplayToolbar display_toolbar;
 
@@ -103,47 +101,23 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     construct {
         notify["ui-state"].connect (ui_state_changed);
 
-        App.app.notify["selected-items"].connect (() => {
-            update_selection_label ();
-        });
         transition_type = Gtk.StackTransitionType.CROSSFADE; // FIXME: Why this won't work from .ui file?
     }
 
     public void setup_ui () {
         assert (App.window != null);
-        assert (App.window.searchbar != null);
-        search2_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
         App.app.notify["selection-mode"].connect (() => {
             page = App.app.selection_mode ?
                 TopbarPage.SELECTION : page = TopbarPage.COLLECTION;
         });
-        update_selection_label ();
 
         var toolbar = App.window.display_page.toolbar;
         toolbar.bind_property ("title", display_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", display_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
 
-        update_search_btn ();
-        App.app.collection.item_added.connect (update_search_btn);
-        App.app.collection.item_removed.connect (update_search_btn);
-
         collection_toolbar.setup_ui ();
-    }
-
-    private void update_search_btn () {
-        search2_btn.sensitive = App.app.collection.items.length != 0;
-    }
-
-    private void update_selection_label () {
-        var items = App.app.selected_items.length ();
-        if (items > 0) {
-            // This goes with the "Click on items to select them" string and is about selection of items (boxes)
-            // when the main collection view is in selection mode.
-            selection_menu_button_label.label = ngettext ("%d selected", "%d selected", items).printf (items);
-        } else {
-            selection_menu_button_label.label = _("(Click on items to select them)");
-        }
+        selection_toolbar.setup_ui ();
     }
 
     private void ui_state_changed () {
@@ -174,10 +148,5 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         default:
             break;
         }
-    }
-
-    [GtkCallback]
-    private void on_cancel_btn_clicked () {
-        App.app.selection_mode = false;
     }
 }
