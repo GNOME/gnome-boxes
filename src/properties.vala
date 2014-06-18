@@ -6,12 +6,13 @@ private enum Boxes.PropertiesPage {
     SYSTEM,
     DISPLAY,
     DEVICES,
+    SNAPSHOTS,
 
     LAST,
 }
 
 private class Boxes.Properties: Gtk.Stack, Boxes.UI {
-    private const string[] page_names = { "login", "system", "display", "devices" };
+    private const string[] page_names = { "login", "system", "display", "devices", "snapshots" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -55,6 +56,10 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
             case PropertiesPage.DEVICES:
                 name = _("Devices");
+                break;
+
+            case PropertiesPage.SNAPSHOTS:
+                name = _("Snapshots");
                 break;
             }
 
