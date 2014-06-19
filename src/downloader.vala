@@ -61,12 +61,14 @@ private class Boxes.Downloader : GLib.Object {
      * @param cached_paths Array of cache directories. The file will be saved in the directory the
      *                     first element points to.
      * @param progress The ActivityProgress object to report progress to.
+     * @param cancellable The Cancellable object for cancellation.
      *
      * @return A file handle to the (now) local file.
      */
     public async File download (File             remote_file,
                                 string[]         cached_paths,
-                                ActivityProgress progress = new ActivityProgress ()) throws GLib.Error {
+                                ActivityProgress progress = new ActivityProgress (),
+                                Cancellable?     cancellable = null) throws GLib.Error {
         var uri = remote_file.get_uri ();
         var download = downloads.get (uri);
         var cached_path = cached_paths[0];
@@ -91,9 +93,9 @@ private class Boxes.Downloader : GLib.Object {
 
         try {
             if (remote_file.has_uri_scheme ("http") || remote_file.has_uri_scheme ("https"))
-                yield download_from_http (download);
+                yield download_from_http (download, cancellable);
             else
-                yield copy_file (remote_file, cached_file, progress);
+                yield copy_file (remote_file, cached_file, progress, cancellable);
         } catch (GLib.Error error) {
             download_failed (download, error);
 
@@ -108,7 +110,7 @@ private class Boxes.Downloader : GLib.Object {
         return cached_file;
     }
 
-    private async void download_from_http (Download download) throws GLib.Error {
+    private async void download_from_http (Download download, Cancellable? cancellable = null) throws GLib.Error {
         var msg = new Soup.Message ("GET", download.uri);
         msg.response_body.set_accumulate (false);
         var address = msg.get_address ();
@@ -117,13 +119,20 @@ private class Boxes.Downloader : GLib.Object {
         if (!(yield network_monitor.can_reach_async (connectable)))
             throw new Boxes.Error.INVALID ("Failed to reach host '%s' on port '%d'", address.name, address.port);
 
+        GLib.Error? err = null;
+        ulong cancelled_id = 0;
+        if (cancellable != null)
+            cancelled_id = cancellable.connect (() => {
+                err = new GLib.IOError.CANCELLED ("Cancelled by cancellable.");
+                session.cancel_message (msg, Soup.Status.CANCELLED);
+            });
+
         int64 total_num_bytes = 0;
         msg.got_headers.connect (() => {
             total_num_bytes =  msg.response_headers.get_content_length ();
         });
 
         var cached_file_stream = yield download.cached_file.create_async (FileCreateFlags.NONE);
-        GLib.Error? err = null;
 
         int64 current_num_bytes = 0;
         // FIXME: Reduce lambda nesting by splitting out downloading to Download class
@@ -149,6 +158,10 @@ private class Boxes.Downloader : GLib.Object {
         });
 
         yield;
+
+        if (cancelled_id != 0)
+            cancellable.disconnect (cancelled_id);
+
         if (msg.status_code != Soup.Status.OK) {
             download.cached_file.delete ();
             if (err == null)
