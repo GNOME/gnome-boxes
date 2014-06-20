@@ -158,6 +158,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             fullscreened = !fullscreened;
 
             return true;
+        } else if (event.keyval == Gdk.Key.F1) {
+            App.app.activate_action ("help", null);
+
+            return true;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             App.app.quit_app ();
