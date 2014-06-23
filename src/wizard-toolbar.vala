@@ -13,12 +13,12 @@ private class Boxes.WizardToolbar: HeaderBar {
     public Button create_btn;
 
     public void click_back_button () {
-        if (App.window.wizard.page != WizardPage.INTRODUCTION)
+        if (back_btn.sensitive)
             back_btn.clicked ();
     }
 
     public void click_forward_button () {
-        if (App.window.wizard.page != WizardPage.REVIEW)
+        if (continue_btn.sensitive)
             continue_btn.clicked ();
     }
 }
