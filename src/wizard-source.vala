@@ -132,6 +132,15 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     public MediaManager media_manager;
 
+    public bool download_required {
+        get {
+            const string[] supported_schemes = { "http", "https" };
+            string scheme = Uri.parse_scheme (uri);
+
+            return (scheme != null && scheme in supported_schemes);
+        }
+    }
+
     private SourcePage _page;
     public SourcePage page {
         get { return _page; }
