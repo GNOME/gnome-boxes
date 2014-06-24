@@ -1,3 +1,27 @@
+3.12.3 - June 24, 2014
+======================
+
+Changes since 3.12.2:
+
+- Ensure VM name is <= 15 characters long. Otherwise, express installation
+  breaks for some OSes (e.g Microsoft Windows 7 professional) since we use the
+  same for hostname.
+- Don't automatically unset 'resize guest' when going to properties as that can
+  easily make the window grow beyond the screen.
+- Fetch list of supported languages for ISO files from Tracker. This ensures that
+  we don't end up using unsupported language for ISOs we find through Tracker.
+- Fix launching of Boxes with URI as commandline.
+- Fix the issue of Boxes ending up in a weird state if passed an unknown media
+  through commandline.
+- Don't abort on inability to read /proc files.
+- Added/updated/fixed translations:
+  - Greek
+
+All contributors to this release:
+
+MarMav <mavridou@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.12.2 - May 13, 2014
 ======================
 
