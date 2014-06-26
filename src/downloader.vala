@@ -195,6 +195,25 @@ private class Boxes.Downloader : GLib.Object {
         }
     }
 
+    public static async string fetch_media (string           uri,
+                                            ActivityProgress progress = new ActivityProgress (),
+                                            Cancellable?     cancellable = null) throws GLib.Error {
+        var file = File.new_for_uri (uri);
+        var basename = file.get_basename ();
+        return_val_if_fail (basename != null && basename != "" && basename != "/", null);
+
+        var downloader = Downloader.get_instance ();
+        var cache = Path.build_filename (GLib.Environment.get_user_special_dir (GLib.UserDirectory.DOWNLOAD),
+                                         basename);
+
+        progress.progress = 0;
+        debug ("Downloading media from '%s' to '%s'.", uri, cache);
+        yield downloader.download (file, {cache}, progress, cancellable);
+        progress.progress = 1;
+
+        return cache;
+    }
+
     private async File? await_download (Download         download,
                                         string           cached_path,
                                         ActivityProgress progress) throws GLib.Error {
