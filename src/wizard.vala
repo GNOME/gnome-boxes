@@ -80,7 +80,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                     break;
 
                 case WizardPage.PREPARATION:
-                    if (!prepare ())
+                    if (!prepare (create_preparation_progress ()))
                         return;
                     break;
 
@@ -133,6 +133,17 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             if (value == WizardPage.SOURCE)
                 wizard_source_update_next ();
         }
+    }
+
+    private ActivityProgress create_preparation_progress () {
+        var progress = new ActivityProgress ();
+        progress.notify["progress"].connect (() => {
+            if (progress.progress - prep_progress.fraction >= 0.01) // Only entertain >= 1% change
+                prep_progress.fraction = progress.progress;
+        });
+        prep_progress.fraction = progress.progress = 0;
+
+        return progress;
     }
 
     private void wizard_source_update_next () {
@@ -235,7 +246,11 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         return true;
     }
 
-    private void prepare_for_location (string location, bool probing = false) throws GLib.Error {
+    private void prepare_for_location (string            location,
+                                       bool              probing,
+                                       ActivityProgress? progress = null)
+                                       throws GLib.Error
+                                       requires (probing || progress != null) {
         if (location == "")
             throw new Boxes.Error.INVALID ("empty location");
 
@@ -245,7 +260,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (path != null && (file.has_uri_scheme ("file") || file.has_uri_scheme ("smb"))) {
             // FIXME: We should able to handle non-local URIs here too
             if (!probing)
-                prepare_for_installer (path);
+                prepare_for_installer (path, progress);
         } else {
             bool uncertain;
             var uri = file.get_uri ();
@@ -284,19 +299,21 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             throw new Boxes.Error.INVALID (_("Unsupported protocol '%s'").printf (uri.scheme));
     }
 
-    private void prepare_for_installer (string path) throws GLib.Error {
+    private void prepare_for_installer (string path, ActivityProgress progress) throws GLib.Error {
         next_button.sensitive = false;
 
         prep_media_label.label = _("Unknown installer media");
         prep_status_label.label = _("Analyzing..."); // Translators: Analyzing installer media
 
-        media_manager.create_installer_media_for_path.begin (path, null, on_installer_media_instantiated);
+        media_manager.create_installer_media_for_path.begin (path, null, (obj, res) => {
+            on_installer_media_instantiated (res, progress);
+        });
     }
 
-    private void on_installer_media_instantiated (Object? source_object, AsyncResult result) {
+    private void on_installer_media_instantiated (AsyncResult result, ActivityProgress progress) {
         try {
             var install_media = media_manager.create_installer_media_for_path.end (result);
-            prepare_media.begin (install_media);
+            prepare_media.begin (install_media, progress);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so no warning!
         } catch (GLib.Error error) {
             debug("Failed to analyze installer image: %s", error.message);
@@ -306,19 +323,13 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         }
     }
 
-    private async void prepare_media (InstallerMedia install_media) {
+    private async void prepare_media (InstallerMedia install_media, ActivityProgress progress) {
         if (install_media.os != null) {
             prep_media_label.label = install_media.os.name;
             Downloader.fetch_os_logo.begin (installer_image, install_media.os, 128);
         }
 
-        var progress = new ActivityProgress ();
-        progress.notify["progress"].connect (() => {
-            if (progress.progress - prep_progress.fraction >= 0.01) // Only entertain >= 1% change
-                prep_progress.fraction = progress.progress;
-        });
         progress.bind_property ("info", prep_status_label, "label");
-
         yield install_media.prepare (progress, null);
 
         vm_creator = install_media.get_vm_creator ();
@@ -326,19 +337,20 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         page = WizardPage.SETUP;
     }
 
-    private bool prepare () {
+    private bool prepare (ActivityProgress progress) {
         installer_image.set_from_icon_name ("media-optical", 0); // Reset
 
         if (this.wizard_source.install_media != null) {
             prep_media_label.label = _("Unknown installer media");
             prep_status_label.label = _("Analyzing...");
-            prepare_media.begin (wizard_source.install_media);
+            prepare_media.begin (wizard_source.install_media, progress);
+
             return true;
         } else if (this.wizard_source.libvirt_sys_import) {
             return true;
         } else {
             try {
-                prepare_for_location (this.wizard_source.uri);
+                prepare_for_location (this.wizard_source.uri, false, progress);
             } catch (GLib.Error error) {
                 App.window.notificationbar.display_error (error.message);
 
