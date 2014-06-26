@@ -14,10 +14,6 @@ namespace Boxes {
         return Path.build_filename (DATADIR, Config.PACKAGE_TARNAME, file_name);
     }
 
-    public string get_cache (string? file_name = null) {
-        return Path.build_filename (CACHEDIR, Config.PACKAGE_TARNAME, file_name);
-    }
-
     public string get_pixmap (string? file_name = null) {
         return Path.build_filename (get_pkgdata (), "pixmaps", file_name);
     }
@@ -37,11 +33,7 @@ namespace Boxes {
     }
 
     public string get_user_unattended (string? file_name = null) {
-        var dir = Path.build_filename (get_user_pkgconfig (), "unattended");
-
-        ensure_directory (dir);
-
-        return Path.build_filename (dir, file_name);
+        return get_cache ("unattended", file_name);
     }
 
     public string get_user_pkgcache (string? file_name = null) {
@@ -81,11 +73,7 @@ namespace Boxes {
     }
 
     public string get_user_pkgconfig_source (string? file_name = null) {
-        var dir = Path.build_filename (get_user_pkgconfig (), "sources");
-
-        ensure_directory (dir);
-
-        return Path.build_filename (dir, file_name);
+        return get_cache ("sources", file_name);
     }
 
     public string get_utf8_basename (string path) {
@@ -112,15 +100,15 @@ namespace Boxes {
     }
 
     public string get_logo_cache (string? file_name = null) {
-        var dir = Path.build_filename (get_user_pkgcache (), "logos");
-
-        ensure_directory (dir);
-
-        return Path.build_filename (dir, file_name);
+        return get_cache ("logos", file_name);
     }
 
     public string get_drivers_cache (string? file_name = null) {
-        var dir = Path.build_filename (get_user_pkgcache (), "drivers");
+        return get_cache ("drivers", file_name);
+    }
+
+    public string get_cache (string cache_name, string? file_name = null) {
+        var dir = Path.build_filename (get_user_pkgcache (), cache_name);
 
         ensure_directory (dir);
 
