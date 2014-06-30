@@ -213,61 +213,55 @@
         </child>
 
         <child>
-          <object class="GtkAlignment" id="url_entry_bin">
+          <object class="GtkBox" id="url_entry_vbox">
             <property name="visible">True</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
-            <property name="xscale">1</property>
-            <property name="yscale">1</property>
+            <property name="spacing">20</property>
+            <property name="orientation">vertical</property>
             <style>
               <class name="boxes-menu-row"/>
             </style>
+
             <child>
-              <object class="GtkBox" id="url_entry_vbox">
+              <object class="GtkEntry" id="url_entry">
                 <property name="visible">True</property>
                 <property name="margin-top">10</property>
+                <property name="margin-left">20</property>
+                <property name="margin-right">20</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox" id="url_entry_hbox">
+                <property name="visible">True</property>
                 <property name="margin-bottom">10</property>
                 <property name="margin-left">20</property>
                 <property name="margin-right">20</property>
-                <property name="spacing">20</property>
-                <property name="orientation">vertical</property>
+                <property name="spacing">0</property>
+                <property name="orientation">horizontal</property>
                 <child>
-                  <object class="GtkEntry" id="url_entry">
+                  <object class="GtkImage" id="url_image">
                     <property name="visible">True</property>
+                    <property name="icon-name">network-workgroup</property>
+                    <property name="icon-size">0</property>
+                    <property name="pixel-size">96</property>
                   </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
                 </child>
 
                 <child>
-                  <object class="GtkBox" id="url_entry_hbox">
+                  <object class="GtkLabel" id="url_description_label">
                     <property name="visible">True</property>
-                    <property name="spacing">0</property>
-                    <property name="orientation">horizontal</property>
-                    <child>
-                      <object class="GtkImage" id="url_image">
-                        <property name="visible">True</property>
-                        <property name="icon-name">network-workgroup</property>
-                        <property name="icon-size">0</property>
-                        <property name="pixel-size">96</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                      </packing>
-                    </child>
-
-                    <child>
-                      <object class="GtkLabel" id="url_description_label">
-                        <property name="visible">True</property>
-                        <property name="use-markup">True</property>
-                        <property name="wrap">True</property>
-                        <property name="halign">start</property>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                      </packing>
-                    </child>
+                    <property name="use-markup">True</property>
+                    <property name="wrap">True</property>
+                    <property name="halign">start</property>
                   </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
                 </child>
               </object>
             </child>

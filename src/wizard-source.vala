@@ -118,7 +118,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Gtk.Image url_image;
     [GtkChild]
-    private Gtk.Alignment url_entry_bin;
+    private Gtk.Box url_entry_vbox;
     [GtkChild]
     public Gtk.Entry url_entry;
     [GtkChild]
@@ -163,7 +163,7 @@ private class Boxes.WizardSource: Gtk.Stack {
         var num_visible = (Gdk.Screen.height () > 800)? 5 : 4;
         media_scrolled.setup (num_visible);
         media_vbox = media_scrolled.vbox;
-        draw_as_css_box (url_entry_bin);
+        draw_as_css_box (url_entry_vbox);
 
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
