@@ -6,7 +6,7 @@ using Gtk;
 private const string EMPTY_TEXT = "\xe2\x80\x94";
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/editable-entry.ui")]
-private class Boxes.EditableEntry: Alignment {
+private class Boxes.EditableEntry: Notebook {
     private enum Page {
         LABEL,
         BUTTON,
@@ -38,7 +38,7 @@ private class Boxes.EditableEntry: Alignment {
                 return;
 
             _editable = value;
-            notebook.page = editable ? Page.BUTTON : Page.LABEL;
+            page = editable ? Page.BUTTON : Page.LABEL;
         }
     }
 
@@ -88,8 +88,6 @@ private class Boxes.EditableEntry: Alignment {
     public bool scale_set { get; set; }
 
     [GtkChild]
-    private Gtk.Notebook notebook;
-    [GtkChild]
     private Gtk.Label label;
     [GtkChild]
     private Gtk.Label button_label;
@@ -127,7 +125,7 @@ private class Boxes.EditableEntry: Alignment {
     }
 
     public void start_editing () {
-        notebook.page = Page.ENTRY;
+        page = Page.ENTRY;
     }
 
     private bool in_stop_editing;
@@ -138,7 +136,7 @@ private class Boxes.EditableEntry: Alignment {
             return;
 
         in_stop_editing = true;
-        notebook.page = Page.BUTTON;
+        page = Page.BUTTON;
         text = entry.text;
         editing_done ();
         in_stop_editing = false;
@@ -146,7 +144,7 @@ private class Boxes.EditableEntry: Alignment {
 
     private void cancel_editing () {
         entry.text = text;
-        notebook.page = Page.BUTTON;
+        page = Page.BUTTON;
     }
 
     public EditableEntry () {
