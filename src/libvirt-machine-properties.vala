@@ -471,12 +471,13 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var volume_info = machine.storage_volume.get_info ();
             var pool = get_storage_pool (machine.connection);
             var pool_info = pool.get_info ();
+            var max_storage = volume_info.capacity + pool_info.available;
 
             var property = add_size_property (ref list,
                                               _("Maximum Disk Size"),
                                               volume_info.capacity,
                                               get_minimum_disk_size (),
-                                              pool_info.available,
+                                              max_storage,
                                               256 * MEGABYTES);
             // Disable 'save on timeout' all together since that could lead us to very bad user experience:
             // You accidently increase the capacity to too high value and if you are not quick enough to change
