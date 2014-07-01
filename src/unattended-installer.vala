@@ -640,11 +640,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     private string get_preferred_language () {
         var system_langs = Intl.get_language_names ();
-        var media_langs = new HashTable<string, unowned string> (str_hash, str_equal);
+        string[] media_langs = {};
         var media_langs_list = os_media.languages;
 
         foreach (var lang in media_langs_list)
-            media_langs.add (lang);
+            media_langs += lang;
 
         foreach (var lang in system_langs) {
             if (lang in media_langs) {
