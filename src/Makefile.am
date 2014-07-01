@@ -97,6 +97,7 @@ gnome_boxes_SOURCES =				\
 	app.vala				\
 	app-window.vala				\
 	archive-reader.vala			\
+	archive-writer.vala			\
 	auth-notification.vala			\
 	collection-view.vala			\
 	collection.vala				\
