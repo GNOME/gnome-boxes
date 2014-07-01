@@ -163,7 +163,7 @@ private class Boxes.EditableEntry: Notebook {
 
         widget.get_parent ().get_allocation (out alloc);
         var offset = allocation.x - alloc.x;
-        if (offset != label.xpad)
+        if (offset != label.margin_start)
             label.set_padding (offset, 0);
     }
 
