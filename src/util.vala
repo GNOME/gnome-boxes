@@ -1,4 +1,5 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
+using Archive;
 using Config;
 
 public errordomain Boxes.Error {
@@ -363,6 +364,60 @@ namespace Boxes {
         }
 
         return indented;
+    }
+
+    public delegate Archive.Result LibarchiveFunction ();
+
+    public static void execute_libarchive_function (Archive.Archive    archive,
+                                                    LibarchiveFunction function,
+                                                    uint               num_retries = 1)
+                                                    throws GLib.IOError {
+        switch (function ()) {
+        case Archive.Result.OK:
+            return;
+
+        case Archive.Result.EOF:
+            throw new GLib.IOError.CLOSED ("End of file reached.");
+
+        case Archive.Result.RETRY:
+            if (num_retries < 1)
+                break;
+
+            execute_libarchive_function (archive, function, num_retries - 1);
+            return;
+
+        case Archive.Result.WARN:
+            warning ("%s", archive.error_string ());
+            return;
+
+        default:
+            break;
+        }
+
+        var msg = archive.error_string ();
+        if (msg == "Unrecognized archive format")
+            throw new GLib.IOError.NOT_SUPPORTED ("%s", msg);
+
+        throw new GLib.IOError.FAILED ("%s", msg);
+    }
+
+    public static bool get_next_header (Archive.Read              archive,
+                                        out unowned Archive.Entry iterator,
+                                        uint                      num_retries = 1)
+                                        throws GLib.IOError {
+        // Create own iterator that can be captured by a lambda
+        unowned Archive.Entry local_iterator = null;
+        try {
+            execute_libarchive_function (archive, () => {
+                return archive.next_header (out local_iterator);
+            }, num_retries);
+
+            iterator = local_iterator;
+            return true;
+        } catch (GLib.IOError.CLOSED e) {
+            iterator = local_iterator;
+            return false;
+        }
     }
 
     // shamelessly copied form gnome-contacts
