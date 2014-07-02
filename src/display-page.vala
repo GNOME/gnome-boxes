@@ -4,7 +4,7 @@ using Gdk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/display-page.ui")]
 private class Boxes.DisplayPage: Gtk.Box {
-    private const uint8 SCREEN_EDGE_WIDTH = 80;
+    private const uint8 SCREEN_EDGE_WIDTH = 100;
 
     [GtkChild]
     public DisplayToolbar toolbar;
