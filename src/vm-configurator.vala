@@ -200,7 +200,8 @@ private class Boxes.VMConfigurator {
     }
 
     private static void set_cpu_config (Domain domain, Capabilities caps) {
-        var topology = caps.get_host ().get_cpu ().get_topology ();
+        var cpu_caps = caps.get_host ().get_cpu ();
+        var topology = cpu_caps.get_topology ();
 
         if (topology == null)
             return;
@@ -210,8 +211,14 @@ private class Boxes.VMConfigurator {
         var cpu = new DomainCpu ();
         // Ideally we should be using 'host-model' but there is currently issues with that:
         // https://bugzilla.redhat.com/show_bug.cgi?id=870071
-        cpu.set_mode (DomainCpuMode.HOST_PASSTHROUGH);
+        cpu.set_mode (DomainCpuMode.CUSTOM);
         cpu.set_topology (topology);
+
+        var model_caps = cpu_caps.get_model ();
+        var model = new DomainCpuModel ();
+        model.set_name (model_caps.get_name ());
+        cpu.set_model (model);
+
         domain.set_cpu (cpu);
     }
 
