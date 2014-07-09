@@ -49,6 +49,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     protected Machine? machine { get; set; }
     private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
+    private Cancellable? review_cancellable;
+    private bool skip_review_for_live;
+
     private WizardPage _page;
     public WizardPage page {
         get { return _page; }
@@ -164,7 +167,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             var text = _("Please enter desktop or collection URI");
             var icon = "preferences-desktop-remote-desktop";
             try {
-                prepare_for_location (this.wizard_source.uri, true);
+                prepare_for_location (wizard_source.uri, true);
 
                 if (source != null && App.app.has_broker_for_source_type (source.source_type)) {
                     text = _("Will add boxes for all systems available from this account.");
@@ -185,7 +188,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         }
     }
 
-   construct {
+    construct {
         media_manager = MediaManager.get_instance ();
         wizard_source.notify["page"].connect(wizard_source_update_next);
         wizard_source.notify["selected"].connect(wizard_source_update_next);
@@ -261,21 +264,25 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             // FIXME: We should able to handle non-local URIs here too
             if (!probing)
                 prepare_for_installer (path, progress);
-        } else {
-            bool uncertain;
-            var uri = file.get_uri ();
 
-            var mimetype = ContentType.guess (uri, null, out uncertain);
-
-            if (uncertain)
-                prepare_for_uri (uri);
-            else {
-                debug ("Can't handle remote location '%s' (mime type: '%s')",
-                        uri,
-                        ContentType.get_mime_type (mimetype));
-                throw new Boxes.Error.INVALID (_("Invalid URI"));
-            }
+            return;
         }
+
+        bool uncertain;
+        var uri = file.get_uri ();
+
+        var mimetype = ContentType.guess (uri, null, out uncertain);
+
+        if (uncertain) {
+            prepare_for_uri (uri);
+
+            return;
+        }
+
+        debug ("Can't handle remote location '%s' (mime type: '%s')",
+                uri,
+                ContentType.get_mime_type (mimetype));
+        throw new Boxes.Error.INVALID (_("Invalid URI"));
     }
 
     private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
@@ -346,24 +353,25 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             prepare_media.begin (wizard_source.install_media, progress);
 
             return true;
-        } else if (this.wizard_source.libvirt_sys_import) {
-            return true;
-        } else {
-            try {
-                prepare_for_location (this.wizard_source.uri, false, progress);
-            } catch (GLib.Error error) {
-                App.window.notificationbar.display_error (error.message);
-
-                return false;
-            }
-
-            return true;
         }
+
+        if (wizard_source.libvirt_sys_import)
+            return true;
+
+        try {
+            prepare_for_location (wizard_source.uri, false, progress);
+        } catch (GLib.Error error) {
+            App.window.notificationbar.display_error (error.message);
+
+            return false;
+        }
+
+        return true;
     }
 
     private bool setup () {
         // there is no setup yet for direct source nor libvirt system imports
-        if (source != null || this.wizard_source.libvirt_sys_import)
+        if (source != null || wizard_source.libvirt_sys_import)
             return true;
 
         return_if_fail (vm_creator != null);
@@ -379,8 +387,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         return true;
     }
-
-    private Cancellable? review_cancellable;
 
     private async bool review () {
         // only one outstanding review () permitted
@@ -491,8 +497,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             }
 
             nokvm_infobar.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
-        } else if (this.wizard_source.libvirt_sys_import) {
-            review_label.set_text (this.wizard_source.libvirt_sys_importer.wizard_review_label);
+        } else if (wizard_source.libvirt_sys_import) {
+            review_label.set_text (wizard_source.libvirt_sys_importer.wizard_review_label);
         }
 
         if (machine != null)
@@ -503,8 +509,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         return true;
     }
-
-    private bool skip_review_for_live;
 
     private bool skip_page (Boxes.WizardPage page) {
         var forwards = page > this.page;
@@ -578,14 +582,15 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private void ui_state_changed () {
-        if (ui_state == UIState.WIZARD) {
-            if (previous_ui_state == UIState.PROPERTIES)
-                review.begin ();
-            else {
-                wizard_source.uri = "";
-                wizard_source.libvirt_sys_import = false;
-                page = WizardPage.INTRODUCTION;
-            }
+        if (ui_state != UIState.WIZARD)
+            return;
+
+        if (previous_ui_state == UIState.PROPERTIES)
+            review.begin ();
+        else {
+            wizard_source.uri = "";
+            wizard_source.libvirt_sys_import = false;
+            page = WizardPage.INTRODUCTION;
         }
     }
 
