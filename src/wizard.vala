@@ -12,6 +12,8 @@ private enum Boxes.WizardPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard.ui")]
 private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
+    private const double DOWNLOAD_PROGRESS_SCALE = 0.95;
+    private const double PREPARE_PROGRESS_SCALE = 0.05;
     private const string[] page_names = { "introduction", "source", "preparation", "setup", "review" };
 
     public UIState previous_ui_state { get; protected set; }
@@ -560,6 +562,33 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         }
 
         return false;
+    }
+
+    private async void download_media (string uri, ActivityProgress progress) {
+        var download_progress = progress.add_child_activity (DOWNLOAD_PROGRESS_SCALE);
+        prep_status_label.label = _("Downloading media...");
+
+        try {
+            var cache_path = yield Downloader.fetch_media (uri, download_progress, prepare_cancellable);
+            prepare_downloaded_media (cache_path, progress);
+        } catch (GLib.IOError.CANCELLED e) {
+            debug ("Cancelled downloading media '%s'!", uri);
+            page = WizardPage.SOURCE;
+        } catch (GLib.Error e) {
+            warning ("Failed downloading media '%s'! %s", uri, e.message);
+            App.window.notificationbar.display_error (_("Download failed."));
+            page = WizardPage.SOURCE;
+        } finally {
+            prepare_cancellable = null;
+        }
+    }
+
+    private void prepare_downloaded_media (string cache_path, ActivityProgress progress) {
+        cleanup ();
+
+        // Relaunch prepare with local URI
+        wizard_source.uri = "file://" + cache_path;
+        prepare (progress);
     }
 
     public void setup_ui () {
