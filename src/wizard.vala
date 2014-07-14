@@ -261,7 +261,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         var path = file.get_path ();
 
         if (path != null && (file.has_uri_scheme ("file") || file.has_uri_scheme ("smb"))) {
-            // FIXME: We should able to handle non-local URIs here too
             if (!probing)
                 prepare_for_installer (path, progress);
 
@@ -287,9 +286,18 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
         var uri = Xml.URI.parse (uri_as_text);
-
         if (uri == null || uri.scheme == null)
             throw new Boxes.Error.INVALID (_("Invalid URI"));
+
+        if (wizard_source.download_required) {
+            var file = File.new_for_uri (uri_as_text);
+            var basename = file.get_basename ();
+
+            if (basename == null || basename == "" || basename == "/")
+                throw new Boxes.Error.INVALID (_("Invalid URI"));
+
+            return;
+        }
 
         source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
