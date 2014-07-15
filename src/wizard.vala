@@ -49,6 +49,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     protected Machine? machine { get; set; }
     private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
+    private Cancellable? prepare_cancellable;
     private Cancellable? review_cancellable;
     private bool skip_review_for_live;
 
@@ -204,6 +205,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     public void cleanup () {
+        if (prepare_cancellable != null)
+            prepare_cancellable.cancel ();
+
         destroy_machine ();
         vm_creator = null;
         source = null;
@@ -567,6 +571,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         });
         back_button = App.window.topbar.wizard_toolbar.back_btn;
         back_button.clicked.connect (() => {
+            if (prepare_cancellable != null)
+                prepare_cancellable.cancel ();
+
             page = page - 1;
         });
         continue_button = App.window.topbar.wizard_toolbar.continue_btn;
