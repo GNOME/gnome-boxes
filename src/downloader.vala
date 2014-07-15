@@ -110,6 +110,7 @@ private class Boxes.Downloader : GLib.Object {
 
     private async void download_from_http (Download download) throws GLib.Error {
         var msg = new Soup.Message ("GET", download.uri);
+        msg.response_body.set_accumulate (false);
         var address = msg.get_address ();
         var connectable = new NetworkAddress (address.name, (uint16) address.port);
         var network_monitor = NetworkMonitor.get_default ();
@@ -121,22 +122,40 @@ private class Boxes.Downloader : GLib.Object {
             total_num_bytes =  msg.response_headers.get_content_length ();
         });
 
+        var cached_file_stream = yield download.cached_file.create_async (FileCreateFlags.NONE);
+        GLib.Error? err = null;
+
         int64 current_num_bytes = 0;
+        // FIXME: Reduce lambda nesting by splitting out downloading to Download class
         msg.got_chunk.connect ((msg, chunk) => {
             if (total_num_bytes <= 0)
                 return;
 
             current_num_bytes += chunk.length;
-            download.progress.progress = (double) current_num_bytes / total_num_bytes;
+            try {
+                // Write synchronously as we have no control over order of async
+                // calls and we'll end up writing bytes out in wrong order. Besides
+                // we are writing small chunks so it wouldn't really block the UI.
+                cached_file_stream.write (chunk.data);
+                download.progress.progress = (double) current_num_bytes / total_num_bytes;
+            } catch (GLib.Error e) {
+                err = e;
+                session.cancel_message (msg, Soup.Status.CANCELLED);
+            }
         });
 
         session.queue_message (msg, (session, msg) => {
             download_from_http.callback ();
         });
+
         yield;
-        if (msg.status_code != Soup.Status.OK)
-            throw new Boxes.Error.INVALID (msg.reason_phrase);
-        yield download.cached_file.replace_contents_async (msg.response_body.data, null, false, 0, null, null);
+        if (msg.status_code != Soup.Status.OK) {
+            download.cached_file.delete ();
+            if (err == null)
+                err = new GLib.Error (Soup.http_error_quark (), (int)msg.status_code, msg.reason_phrase);
+
+            throw err;
+        }
     }
 
     public static async void fetch_os_logo (Gtk.Image image, Osinfo.Os os, int size) {
