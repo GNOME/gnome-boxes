@@ -350,8 +350,13 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             Downloader.fetch_os_logo.begin (installer_image, install_media.os, 128);
         }
 
-        progress.bind_property ("info", prep_status_label, "label");
-        yield install_media.prepare (progress, null);
+        ActivityProgress prepare_media_progress;
+        if (wizard_source.download_required)
+            prepare_media_progress = progress.add_child_activity (PREPARE_PROGRESS_SCALE);
+        else
+            prepare_media_progress = progress;
+        prepare_media_progress.bind_property ("info", prep_status_label, "label");
+        yield install_media.prepare (prepare_media_progress, prepare_cancellable);
 
         vm_creator = install_media.get_vm_creator ();
         prep_progress.fraction = 1.0;
@@ -359,6 +364,23 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private bool prepare (ActivityProgress progress) {
+        try {
+            // Validate URI
+            prepare_for_location (wizard_source.uri, true);
+        } catch (GLib.Error error) {
+            App.window.notificationbar.display_error (error.message);
+
+            return false;
+        }
+
+        prepare_cancellable = new Cancellable ();
+        if (wizard_source.download_required) {
+            continue_button.sensitive = false;
+            download_media.begin (wizard_source.uri, progress);
+
+            return true;
+        }
+
         installer_image.set_from_icon_name ("media-optical", 0); // Reset
 
         if (this.wizard_source.install_media != null) {
