@@ -401,23 +401,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
     private void ui_state_changed () {
         window.set_state (ui_state);
-
-        if (ui_state == UIState.COLLECTION) {
-            status_bind = null;
-            window.topbar.status = null;
-            if (current_item is Machine) {
-                var machine = current_item as Machine;
-                if (got_error_id != 0) {
-                    machine.disconnect (got_error_id);
-                    got_error_id = 0;
-                }
-
-                machine.connecting_cancellable.cancel (); // Cancel any in-progress connections
-            }
-        }
-
-        if (current_item != null)
-            current_item.set_state (ui_state);
     }
 
     private void suspend_machines () {

@@ -131,6 +131,18 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             fullscreened = false;
             view.visible = true;
 
+            status_bind = null;
+            topbar.status = null;
+            if (current_item is Machine) {
+                var machine = current_item as Machine;
+                if (got_error_id != 0) {
+                    machine.disconnect (got_error_id);
+                    got_error_id = 0;
+                }
+
+                machine.connecting_cancellable.cancel (); // Cancel any in-progress connections
+            }
+
             break;
 
         case UIState.CREDS:
@@ -154,6 +166,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             warning ("Unhandled UI state %s".printf (ui_state.to_string ()));
             break;
         }
+
+        if (current_item != null)
+            current_item.set_state (ui_state);
     }
 
     public void show_properties () {
