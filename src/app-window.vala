@@ -260,14 +260,14 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             return true;
         } else if (event.keyval == Gdk.Key.Left && // ALT + Left -> back
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            App.window.topbar.click_back_button ();
+            topbar.click_back_button ();
             return true;
         } else if (event.keyval == Gdk.Key.Right && // ALT + Right -> forward
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            App.window.topbar.click_forward_button ();
+            topbar.click_forward_button ();
             return true;
         } else if (event.keyval == Gdk.Key.Escape) { // ESC -> cancel
-            App.window.topbar.click_cancel_button ();
+            topbar.click_cancel_button ();
         }
 
         return false;
