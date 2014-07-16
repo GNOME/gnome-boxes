@@ -37,6 +37,9 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         setup_view ();
         notify["ui-state"].connect (ui_state_changed);
+    }
+
+    public void setup_ui () {
         App.app.notify["selection-mode"].connect (() => {
             set_selection_mode (App.app.selection_mode);
             if (!App.app.selection_mode)

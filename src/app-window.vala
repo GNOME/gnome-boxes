@@ -106,6 +106,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         topbar.setup_ui ();
         wizard.setup_ui ();
         display_page.setup_ui ();
+        view.setup_ui ();
     }
 
     private void save_window_geometry () {
