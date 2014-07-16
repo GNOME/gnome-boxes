@@ -70,7 +70,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             // state, we got to exit, as there is no way for the user
             // to progress in the vm display anymore
             if (display != null && !stay_on_display &&
-                App.app.current_item == this &&
+                App.window.current_item == this &&
                 value != MachineState.RUNNING &&
                 value != MachineState.UNKNOWN) {
                 App.app.set_state (Boxes.UIState.COLLECTION);
@@ -135,7 +135,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
-                if (!stay_on_display && App.app.current_item == this)
+                if (!stay_on_display && App.window.current_item == this)
                     App.app.set_state (Boxes.UIState.COLLECTION);
                 if (failed)
                     App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
@@ -368,7 +368,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-            if (App.app.current_item == this)
+            if (App.window.current_item == this)
                 App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);

@@ -137,8 +137,8 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
         foreach (var page in get_children ())
             remove (page);
 
-        var machine = App.app.current_item as Machine;
-        var libvirt_machine = App.app.current_item as LibvirtMachine;
+        var machine = App.window.current_item as Machine;
+        var libvirt_machine = App.window.current_item as LibvirtMachine;
 
         App.window.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
 
@@ -182,7 +182,7 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
     private void ui_state_changed () {
         if (stats_id != 0) {
-            App.app.current_item.disconnect (stats_id);
+            App.window.current_item.disconnect (stats_id);
             stats_id = 0;
         }
 
@@ -190,8 +190,8 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
             restore_fullscreen = (previous_ui_state == UIState.DISPLAY && App.window.fullscreened);
             App.window.fullscreened = false;
 
-            if (App.app.current_item is LibvirtMachine) {
-                var libvirt_machine = App.app.current_item as LibvirtMachine;
+            if (App.window.current_item is LibvirtMachine) {
+                var libvirt_machine = App.window.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
                     App.window.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
                     App.window.sidebar.net_graph.points = libvirt_machine.net_stats;
@@ -208,7 +208,7 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
                 reboot_required |= page.flush_changes ();
             }
 
-            var machine = App.app.current_item as Machine;
+            var machine = App.window.current_item as Machine;
             if (reboot_required && (machine.is_on () || machine.state == Machine.MachineState.SAVED)) {
                 var message = _("Changes require restart of '%s'.").printf (machine.name);
                 App.window.notificationbar.display_for_action (message, _("_Restart"), () => {

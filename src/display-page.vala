@@ -81,7 +81,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
 
     public void update_title () {
-        var machine = App.app.current_item as Boxes.Machine;
+        var machine = App.window.current_item as Boxes.Machine;
         return_if_fail (machine != null);
 
         var title = machine.name;

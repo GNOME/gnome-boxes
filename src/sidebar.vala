@@ -103,7 +103,7 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
 
     [GtkCallback]
     private void on_shutdown_button_clicked () {
-        var machine = App.app.current_item as LibvirtMachine;
+        var machine = App.window.current_item as LibvirtMachine;
         if (machine != null)
             machine.force_shutdown ();
     }

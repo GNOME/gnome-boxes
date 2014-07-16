@@ -9,11 +9,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    public CollectionItem current_item { get; set; } // current object/vm manipulated
+    public CollectionItem current_item; // current object/vm manipulated
     public signal void item_selected (CollectionItem item);
 
-    public GLib.Binding status_bind { get; set; }
-    public ulong got_error_id { get; set; }
+    private GLib.Binding status_bind;
+    private ulong got_error_id;
 
     [CCode (notify = false)]
     public bool fullscreened {

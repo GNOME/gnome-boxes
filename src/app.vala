@@ -22,7 +22,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    public CollectionItem current_item { get; set; } // current object/vm manipulated
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
@@ -37,9 +36,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
     public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
-
-    public GLib.Binding status_bind { get; set; }
-    public ulong got_error_id { get; set; }
 
     public App () {
         application_id = "org.gnome.Boxes";
@@ -165,9 +161,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         window = new Boxes.AppWindow (this);
         window.setup_ui ();
-        bind_property ("current-item", window, "current-item", BindingFlags.BIDIRECTIONAL);
-        bind_property ("status-bind", window, "status-bind", BindingFlags.BIDIRECTIONAL);
-        bind_property ("got-error-id", window, "got-error-id", BindingFlags.BIDIRECTIONAL);
         set_state (UIState.COLLECTION);
 
         window.present ();

@@ -75,7 +75,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public string properties_title {
         set {
             // Translators: The %s will be replaced with the name of the VM
-            props_toolbar.title = _("%s - Properties").printf (App.app.current_item.name);
+            props_toolbar.title = _("%s - Properties").printf (App.window.current_item.name);
         }
     }
 
@@ -127,7 +127,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
         case UIState.PROPERTIES:
             page = TopbarPage.PROPERTIES;
-            props_name_bind = App.app.current_item.bind_property ("name",
+            props_name_bind = App.window.current_item.bind_property ("name",
                                                                   this, "properties-title",
                                                                   BindingFlags.SYNC_CREATE);
             break;
