@@ -67,7 +67,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
 
     [GtkCallback]
     private void on_properties_btn_clicked () {
-        App.app.show_properties ();
+        App.window.show_properties ();
     }
 
     private void update_favorite_btn () {

@@ -469,19 +469,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         owned get { return window.view.get_selected_items (); }
     }
 
-    public void show_properties () {
-        var selected_items = window.view.get_selected_items ();
-
-        selection_mode = false;
-
-        // Show for the first selected item
-        foreach (var item in selected_items) {
-            current_item = item;
-            set_state (UIState.PROPERTIES);
-            break;
-        }
-    }
-
     /**
      * Deletes specified items, while allowing user to undo it.
      *

@@ -152,6 +152,19 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
     }
 
+    public void show_properties () {
+        var selected_items = view.get_selected_items ();
+
+        App.app.selection_mode = false;
+
+        // Show for the first selected item
+        foreach (var item in selected_items) {
+            current_item = item;
+            App.app.set_state (UIState.PROPERTIES);
+            break;
+        }
+    }
+
     [GtkCallback]
     public bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         var default_modifiers = Gtk.accelerator_get_default_mod_mask ();
