@@ -43,6 +43,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Notificationbar notificationbar;
     [GtkChild]
+    public Selectionbar selectionbar;
+    [GtkChild]
     public Sidebar sidebar;
     [GtkChild]
     public Wizard wizard;
@@ -107,6 +109,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         wizard.setup_ui ();
         display_page.setup_ui ();
         view.setup_ui ();
+        selectionbar.setup_ui ();
     }
 
     private void save_window_geometry () {

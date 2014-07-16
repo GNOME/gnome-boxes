@@ -13,15 +13,17 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     private Gtk.Button properties_btn;
 
     construct {
-        App.app.notify["selection-mode"].connect (() => {
-            reveal_child = App.app.selection_mode;
-        });
-
         App.app.notify["selected-items"].connect (() => {
             update_favorite_btn ();
             update_properties_btn ();
             update_pause_btn ();
             update_delete_btn ();
+        });
+    }
+
+    public void setup_ui () {
+        App.app.notify["selection-mode"].connect (() => {
+            reveal_child = App.app.selection_mode;
         });
     }
 
