@@ -269,7 +269,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             var item = get_item_for_path (path);
             if (item is LibvirtMachine && (item as LibvirtMachine).importing)
                 return;
-            App.app.select_item (item);
+            App.window.select_item (item);
         });
         view_selection_changed.connect (() => {
             queue_draw ();

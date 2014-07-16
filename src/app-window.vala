@@ -10,6 +10,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     public CollectionItem current_item { get; set; } // current object/vm manipulated
+    public signal void item_selected (CollectionItem item);
 
     public GLib.Binding status_bind { get; set; }
     public ulong got_error_id { get; set; }
@@ -180,6 +181,25 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         if (App.app.ui_state != UIState.CREDS)
             App.app.set_state (UIState.CREDS); // Start the CREDS state
+    }
+
+    public void select_item (CollectionItem item) {
+        if (App.app.ui_state == UIState.COLLECTION && !App.app.selection_mode) {
+            current_item = item;
+
+            if (current_item is Machine) {
+                var machine = current_item as Machine;
+
+                connect_to (machine);
+            } else
+                warning ("unknown item, fix your code");
+
+            item_selected (item);
+        } else if (ui_state == UIState.WIZARD) {
+            current_item = item;
+
+            App.app.set_state (UIState.PROPERTIES);
+        }
     }
 
     [GtkCallback]

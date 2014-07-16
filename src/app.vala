@@ -29,7 +29,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
     private bool is_ready;
     public signal void ready ();
-    public signal void item_selected (CollectionItem item);
 
     // A callback to notify that deletion of machines was undone by user.
     public delegate void UndoNotifyCallback ();
@@ -292,7 +291,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
             if (item.name == name) {
-                select_item (item);
+                window.select_item (item);
 
                 break;
             }
@@ -311,7 +310,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
             if (machine.config.uuid != uuid)
                 continue;
 
-            select_item (item);
+            window.select_item (item);
             return true;
         }
 
@@ -523,24 +522,5 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
                                                       num_selected).printf (num_selected);
 
         delete_machines_undoable ((owned) selected_items, message);
-    }
-
-    public void select_item (CollectionItem item) {
-        if (ui_state == UIState.COLLECTION && !selection_mode) {
-            current_item = item;
-
-            if (current_item is Machine) {
-                var machine = current_item as Machine;
-
-                window.connect_to (machine);
-            } else
-                warning ("unknown item, fix your code");
-
-            item_selected (item);
-        } else if (ui_state == UIState.WIZARD) {
-            current_item = item;
-
-            set_state (UIState.PROPERTIES);
-        }
     }
 }

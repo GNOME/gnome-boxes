@@ -540,7 +540,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (machine != null)
             summary.append_customize_button (() => {
                 // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
-                App.app.select_item (machine);
+                App.window.select_item (machine);
             });
 
         return true;

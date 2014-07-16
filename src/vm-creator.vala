@@ -72,7 +72,7 @@ private class Boxes.VMCreator {
                 if (App.app.ui_state != UIState.COLLECTION)
                     return;
 
-                App.app.select_item (machine); // This also starts the domain for us
+                App.window.select_item (machine); // This also starts the domain for us
                 App.app.disconnect (signal_id);
 
                 return;
