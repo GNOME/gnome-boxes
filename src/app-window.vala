@@ -9,6 +9,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
+    public CollectionItem current_item { get; set; } // current object/vm manipulated
+
     [CCode (notify = false)]
     public bool fullscreened {
         get { return WindowState.FULLSCREEN in get_window ().get_state (); }

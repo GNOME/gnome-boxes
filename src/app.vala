@@ -22,7 +22,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    public CollectionItem current_item; // current object/vm manipulated
+    public CollectionItem current_item { get; set; } // current object/vm manipulated
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
@@ -166,6 +166,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         window = new Boxes.AppWindow (this);
         window.setup_ui ();
+        bind_property ("current-item", window, "current-item", BindingFlags.BIDIRECTIONAL);
         set_state (UIState.COLLECTION);
 
         window.present ();
