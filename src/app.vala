@@ -39,8 +39,8 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
     public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
 
-    private GLib.Binding status_bind;
-    private ulong got_error_id;
+    public GLib.Binding status_bind { get; set; }
+    public ulong got_error_id { get; set; }
 
     public App () {
         application_id = "org.gnome.Boxes";
@@ -167,6 +167,8 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         window = new Boxes.AppWindow (this);
         window.setup_ui ();
         bind_property ("current-item", window, "current-item", BindingFlags.BIDIRECTIONAL);
+        bind_property ("status-bind", window, "status-bind", BindingFlags.BIDIRECTIONAL);
+        bind_property ("got-error-id", window, "got-error-id", BindingFlags.BIDIRECTIONAL);
         set_state (UIState.COLLECTION);
 
         window.present ();
@@ -523,20 +525,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         delete_machines_undoable ((owned) selected_items, message);
     }
 
-    public void connect_to (Machine machine) {
-        current_item = machine;
-
-        // Track machine status in toobar
-        status_bind = machine.bind_property ("status", window.topbar, "status", BindingFlags.SYNC_CREATE);
-
-        got_error_id = machine.got_error.connect ( (message) => {
-            window.notificationbar.display_error (message);
-        });
-
-        if (ui_state != UIState.CREDS)
-            set_state (UIState.CREDS); // Start the CREDS state
-    }
-
     public void select_item (CollectionItem item) {
         if (ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
@@ -544,7 +532,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
             if (current_item is Machine) {
                 var machine = current_item as Machine;
 
-                connect_to (machine);
+                window.connect_to (machine);
             } else
                 warning ("unknown item, fix your code");
 

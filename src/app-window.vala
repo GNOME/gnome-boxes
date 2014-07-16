@@ -11,6 +11,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public CollectionItem current_item { get; set; } // current object/vm manipulated
 
+    public GLib.Binding status_bind { get; set; }
+    public ulong got_error_id { get; set; }
+
     [CCode (notify = false)]
     public bool fullscreened {
         get { return WindowState.FULLSCREEN in get_window ().get_state (); }
@@ -163,6 +166,20 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             App.app.set_state (UIState.PROPERTIES);
             break;
         }
+    }
+
+    public void connect_to (Machine machine) {
+        current_item = machine;
+
+        // Track machine status in toobar
+        status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
+
+        got_error_id = machine.got_error.connect ( (message) => {
+            notificationbar.display_error (message);
+        });
+
+        if (App.app.ui_state != UIState.CREDS)
+            App.app.set_state (UIState.CREDS); // Start the CREDS state
     }
 
     [GtkCallback]
