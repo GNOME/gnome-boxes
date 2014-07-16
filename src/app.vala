@@ -161,6 +161,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         window = new Boxes.AppWindow (this);
         window.setup_ui ();
+        bind_property ("selection-mode", window, "selection-mode", BindingFlags.BIDIRECTIONAL);
         set_state (UIState.COLLECTION);
 
         window.present ();
@@ -433,14 +434,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         debug ("Running boxes suspended");
     }
 
-    private bool _selection_mode;
-    public bool selection_mode { get { return _selection_mode; }
-        set {
-            return_if_fail (ui_state == UIState.COLLECTION);
-
-            _selection_mode = value;
-        }
-    }
+    public bool selection_mode { get; set; }
 
     public List<CollectionItem> selected_items {
         owned get { return window.view.get_selected_items (); }

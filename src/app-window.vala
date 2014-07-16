@@ -27,6 +27,15 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
     private bool maximized { get { return WindowState.MAXIMIZED in get_window ().get_state (); } }
 
+    private bool _selection_mode;
+    public bool selection_mode { get { return _selection_mode; }
+        set {
+            return_if_fail (ui_state == UIState.COLLECTION);
+
+            _selection_mode = value;
+        }
+    }
+
     [GtkChild]
     public Searchbar searchbar;
     [GtkChild]
