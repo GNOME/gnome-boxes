@@ -15,12 +15,9 @@ private abstract class Boxes.Broker : GLib.Object {
     }
 }
 
-private class Boxes.App: Gtk.Application, Boxes.UI {
+private class Boxes.App: Gtk.Application {
     public static App app;
     public static Boxes.AppWindow window;
-
-    public UIState previous_ui_state { get; protected set; }
-    public UIState ui_state { get; protected set; }
 
     public string? uri { get; set; }
     public Collection collection;
@@ -99,8 +96,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
                                    "wrap-license", true);
         });
         add_action (action);
-
-        notify["ui-state"].connect (ui_state_changed);
     }
 
     public override void startup () {
@@ -161,7 +156,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         window = new Boxes.AppWindow (this);
         window.setup_ui ();
-        set_state (UIState.COLLECTION);
+        window.set_state (UIState.COLLECTION);
 
         window.present ();
     }
@@ -247,7 +242,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         if (opt_search != null) {
             call_when_ready (() => {
                 window.searchbar.text = string.joinv (" ", opt_search);
-                if (ui_state == UIState.COLLECTION)
+                if (window.ui_state == UIState.COLLECTION)
                     window.searchbar.search_mode_enabled = true;
             });
         }
@@ -279,7 +274,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     }
 
     public void open_name (string name) {
-        set_state (UIState.COLLECTION);
+        window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
@@ -292,7 +287,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
     }
 
     public bool open_uuid (string uuid) {
-        set_state (UIState.COLLECTION);
+        window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
@@ -390,10 +385,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
             printerr ("Missing or failing default libvirt connection\n");
             release (); // will end application
         }
-    }
-
-    private void ui_state_changed () {
-        window.set_state (ui_state);
     }
 
     private void suspend_machines () {

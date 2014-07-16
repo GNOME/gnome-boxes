@@ -13,6 +13,6 @@ private class Boxes.PropertiesToolbar: HeaderBar {
 
     [GtkCallback]
     private void on_back_clicked () {
-        App.app.set_state (App.app.previous_ui_state);
+        App.window.set_state (App.window.previous_ui_state);
     }
 }

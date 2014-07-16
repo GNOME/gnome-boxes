@@ -114,7 +114,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
     [GtkCallback]
     private void on_back_clicked () {
-        App.app.set_state (UIState.COLLECTION);
+        App.window.set_state (UIState.COLLECTION);
     }
 
     [GtkCallback]
@@ -124,6 +124,6 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
     [GtkCallback]
     private void on_props_clicked () {
-        App.app.set_state (UIState.PROPERTIES);
+        App.window.set_state (UIState.PROPERTIES);
     }
 }

@@ -73,16 +73,16 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 App.window.current_item == this &&
                 value != MachineState.RUNNING &&
                 value != MachineState.UNKNOWN) {
-                App.app.set_state (Boxes.UIState.COLLECTION);
+                App.window.set_state (Boxes.UIState.COLLECTION);
             }
         }
     }
 
     protected void show_display () {
 
-        switch (App.app.ui_state) {
+        switch (App.window.ui_state) {
         case Boxes.UIState.CREDS:
-            App.app.set_state (Boxes.UIState.DISPLAY);
+            App.window.set_state (Boxes.UIState.DISPLAY);
             show_display ();
             break;
 
@@ -136,7 +136,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
                 if (!stay_on_display && App.window.current_item == this)
-                    App.app.set_state (Boxes.UIState.COLLECTION);
+                    App.window.set_state (Boxes.UIState.COLLECTION);
                 if (failed)
                     App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
             });
@@ -171,8 +171,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         pixbuf = draw_fallback_vm ();
 
         notify["ui-state"].connect (ui_state_changed);
-        ui_state_id = App.app.notify["ui-state"].connect (() => {
-            if (App.app.ui_state == UIState.DISPLAY)
+        ui_state_id = App.window.notify["ui-state"].connect (() => {
+            if (App.window.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
             else
                 set_screenshot_enable (true);
@@ -545,11 +545,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 try_connect_display.begin (flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
             });
             notification.dismissed.connect (() => {
-                App.app.set_state (UIState.COLLECTION);
+                App.window.set_state (UIState.COLLECTION);
             });
         } catch (GLib.Error e) {
             debug ("connect display failed: %s", e.message);
-            App.app.set_state (UIState.COLLECTION);
+            App.window.set_state (UIState.COLLECTION);
             App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
         }
     }
@@ -575,7 +575,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         };
         Notification.CancelFunc cancel_func = () => {
             auth_notification = null;
-            App.app.set_state (UIState.COLLECTION);
+            App.window.set_state (UIState.COLLECTION);
         };
 
         // Translators: %s => name of launched box

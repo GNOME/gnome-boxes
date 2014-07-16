@@ -32,7 +32,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     // Clicks the appropriate back button depending on the ui state.
     public void click_back_button () {
-        switch (App.app.ui_state) {
+        switch (App.window.ui_state) {
         case UIState.PROPERTIES:
             break;
         case UIState.CREDS:
@@ -51,7 +51,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     // Clicks the appropriate cancel button dependent on the ui state.
     public void click_cancel_button () {
-        switch (App.app.ui_state) {
+        switch (App.window.ui_state) {
         case UIState.COLLECTION:
             if (App.window.selection_mode)
                 App.window.selection_mode = false;

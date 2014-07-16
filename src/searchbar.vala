@@ -48,7 +48,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     }
 
     private bool on_app_key_pressed (Gtk.Widget widget, Gdk.EventKey event) {
-        if (App.app.ui_state != UIState.COLLECTION)
+        if (App.window.ui_state != UIState.COLLECTION)
             return false;
 
         return handle_event ((Gdk.Event) event);

@@ -34,17 +34,17 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
         search_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
-        App.app.notify["ui-state"].connect (ui_state_changed);
+        App.window.notify["ui-state"].connect (ui_state_changed);
     }
 
     [GtkCallback]
     private void on_new_btn_clicked () {
-        App.app.set_state (UIState.WIZARD);
+        App.window.set_state (UIState.WIZARD);
     }
 
     [GtkCallback]
     private void on_back_btn_clicked () {
-        App.app.set_state (UIState.COLLECTION);
+        App.window.set_state (UIState.COLLECTION);
     }
 
     [GtkCallback]
@@ -65,7 +65,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     private void ui_state_changed () {
-        switch (App.app.ui_state) {
+        switch (App.window.ui_state) {
         case UIState.COLLECTION:
             back_btn.hide ();
             select_btn.show ();

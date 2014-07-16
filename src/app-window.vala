@@ -192,7 +192,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         // Show for the first selected item
         foreach (var item in selected_items) {
             current_item = item;
-            App.app.set_state (UIState.PROPERTIES);
+            set_state (UIState.PROPERTIES);
             break;
         }
     }
@@ -207,12 +207,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             notificationbar.display_error (message);
         });
 
-        if (App.app.ui_state != UIState.CREDS)
-            App.app.set_state (UIState.CREDS); // Start the CREDS state
+        if (ui_state != UIState.CREDS)
+            set_state (UIState.CREDS); // Start the CREDS state
     }
 
     public void select_item (CollectionItem item) {
-        if (App.app.ui_state == UIState.COLLECTION && !selection_mode) {
+        if (ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
 
             if (current_item is Machine) {
@@ -226,7 +226,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         } else if (ui_state == UIState.WIZARD) {
             current_item = item;
 
-            App.app.set_state (UIState.PROPERTIES);
+            set_state (UIState.PROPERTIES);
         }
     }
 

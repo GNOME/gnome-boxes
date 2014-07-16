@@ -147,7 +147,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         });
         item.set_data<ulong> ("under_construct_id", under_construct_id);
 
-        item.set_state (App.app.ui_state);
+        item.set_state (App.window.ui_state);
     }
 
     public List<CollectionItem> get_selected_items () {

@@ -112,7 +112,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 case WizardPage.LAST:
                     create.begin ((obj, result) => {
                        if (create.end (result))
-                          App.app.set_state (UIState.COLLECTION);
+                          App.window.set_state (UIState.COLLECTION);
                        else
                           App.window.notificationbar.display_error (_("Box creation failed"));
                     });
@@ -618,7 +618,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         cancel_button.clicked.connect (() => {
             cleanup ();
             wizard_source.page = SourcePage.MAIN;
-            App.app.set_state (UIState.COLLECTION);
+            App.window.set_state (UIState.COLLECTION);
         });
         back_button = App.window.topbar.wizard_toolbar.back_btn;
         back_button.clicked.connect (() => {
@@ -638,7 +638,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
-        App.app.set_state (UIState.WIZARD);
+        App.window.set_state (UIState.WIZARD);
         this.skip_review_for_live = skip_review_for_live;
 
         page = WizardPage.SOURCE;

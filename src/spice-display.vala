@@ -19,7 +19,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
         // TODO: multi display
-        if (App.app.ui_state == UIState.DISPLAY) {
+        if (App.window.ui_state == UIState.DISPLAY) {
             // disable resize guest when minimizing guest widget
             var display = get_display (0) as Spice.Display;
             display.resize_guest = resize_guest;
@@ -68,7 +68,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             config.sync_properties (gtk_session, gtk_session_sync_properties);
         });
 
-        App.app.notify["ui-state"].connect (ui_state_changed);
+        App.window.notify["ui-state"].connect (ui_state_changed);
     }
 
     Spice.MainChannel? main_channel;
