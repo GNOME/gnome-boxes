@@ -161,7 +161,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
 
         window = new Boxes.AppWindow (this);
         window.setup_ui ();
-        bind_property ("selection-mode", window, "selection-mode", BindingFlags.BIDIRECTIONAL);
         set_state (UIState.COLLECTION);
 
         window.present ();
@@ -434,8 +433,6 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         debug ("Running boxes suspended");
     }
 
-    public bool selection_mode { get; set; }
-
     public List<CollectionItem> selected_items {
         owned get { return window.view.get_selected_items (); }
     }
@@ -484,7 +481,7 @@ private class Boxes.App: Gtk.Application, Boxes.UI {
         if (num_selected == 0)
             return;
 
-        selection_mode = false;
+        window.selection_mode = false;
 
         var message = (num_selected == 1) ? _("Box '%s' has been deleted").printf (selected_items.data.name) :
                                             ngettext ("%u box has been deleted",

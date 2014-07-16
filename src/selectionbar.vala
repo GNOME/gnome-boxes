@@ -22,8 +22,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     }
 
     public void setup_ui () {
-        App.app.notify["selection-mode"].connect (() => {
-            reveal_child = App.app.selection_mode;
+        App.window.notify["selection-mode"].connect (() => {
+            reveal_child = App.window.selection_mode;
         });
     }
 
@@ -40,7 +40,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             machine.config.set_category ("favorite", favorite_btn.active);
         }
 
-        App.app.selection_mode = false;
+        App.window.selection_mode = false;
     }
 
     [GtkCallback]
@@ -59,7 +59,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         }
 
         pause_btn.sensitive = false;
-        App.app.selection_mode = false;
+        App.window.selection_mode = false;
     }
 
     [GtkCallback]

@@ -187,7 +187,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public void show_properties () {
         var selected_items = view.get_selected_items ();
 
-        App.app.selection_mode = false;
+        selection_mode = false;
 
         // Show for the first selected item
         foreach (var item in selected_items) {
@@ -212,7 +212,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public void select_item (CollectionItem item) {
-        if (App.app.ui_state == UIState.COLLECTION && !App.app.selection_mode) {
+        if (App.app.ui_state == UIState.COLLECTION && !selection_mode) {
             current_item = item;
 
             if (current_item is Machine) {

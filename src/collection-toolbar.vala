@@ -49,7 +49,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
     [GtkCallback]
     private void on_select_btn_clicked () {
-        App.app.selection_mode = true;
+        App.window.selection_mode = true;
     }
 
     private void update_search_btn () {

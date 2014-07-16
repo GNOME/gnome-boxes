@@ -40,9 +40,9 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     }
 
     public void setup_ui () {
-        App.app.notify["selection-mode"].connect (() => {
-            set_selection_mode (App.app.selection_mode);
-            if (!App.app.selection_mode)
+        App.window.notify["selection-mode"].connect (() => {
+            set_selection_mode (App.window.selection_mode);
+            if (!App.window.selection_mode)
                 unselect_all (); // Reset selection on exiting selection mode
         });
     }
@@ -279,13 +279,13 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             App.app.notify_property ("selected-items");
         });
         selection_mode_request.connect (() => {
-            App.app.selection_mode = true;
+            App.window.selection_mode = true;
         });
         show_all ();
     }
 
     public void select (SelectionCriteria selection) {
-        App.app.selection_mode = true;
+        App.window.selection_mode = true;
 
         model_filter.foreach ( (filter_model, filter_path, filter_iter) => {
             Gtk.TreeIter iter;

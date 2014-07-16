@@ -53,8 +53,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public void click_cancel_button () {
         switch (App.app.ui_state) {
         case UIState.COLLECTION:
-            if (App.app.selection_mode)
-                App.app.selection_mode = false;
+            if (App.window.selection_mode)
+                App.window.selection_mode = false;
             return;
         case UIState.WIZARD:
             wizard_toolbar.cancel_btn.clicked ();
@@ -98,8 +98,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public void setup_ui () {
         assert (App.window != null);
 
-        App.app.notify["selection-mode"].connect (() => {
-            page = App.app.selection_mode ?
+        App.window.notify["selection-mode"].connect (() => {
+            page = App.window.selection_mode ?
                 TopbarPage.SELECTION : page = TopbarPage.COLLECTION;
         });
 

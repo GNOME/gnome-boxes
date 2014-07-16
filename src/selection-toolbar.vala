@@ -10,7 +10,7 @@ private class Boxes.SelectionToolbar: HeaderBar {
 
     [GtkCallback]
     private void on_cancel_btn_clicked () {
-        App.app.selection_mode = false;
+        App.window.selection_mode = false;
     }
 
     construct {
