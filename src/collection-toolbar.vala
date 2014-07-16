@@ -18,8 +18,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
         var back_icon = (get_direction () == TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                  "go-previous-symbolic";
         back_image.set_from_icon_name (back_icon, IconSize.MENU);
-
-        App.app.notify["ui-state"].connect (ui_state_changed);
     }
 
     public void setup_ui () {
@@ -35,6 +33,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
         App.app.collection.item_removed.connect (update_search_btn);
 
         search_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
+
+        App.app.notify["ui-state"].connect (ui_state_changed);
     }
 
     [GtkCallback]
