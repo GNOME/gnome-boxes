@@ -109,7 +109,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         wizard.setup_ui (this);
         display_page.setup_ui (this);
         view.setup_ui (this);
-        selectionbar.setup_ui ();
+        selectionbar.setup_ui (this);
     }
 
     private void save_window_geometry () {

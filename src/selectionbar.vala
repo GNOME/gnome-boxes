@@ -12,6 +12,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     [GtkChild]
     private Gtk.Button properties_btn;
 
+    private AppWindow window;
+
     construct {
         App.app.notify["selected-items"].connect (() => {
             update_favorite_btn ();
@@ -21,9 +23,11 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         });
     }
 
-    public void setup_ui () {
-        App.window.notify["selection-mode"].connect (() => {
-            reveal_child = App.window.selection_mode;
+    public void setup_ui (AppWindow window) {
+        this.window = window;
+
+        window.notify["selection-mode"].connect (() => {
+            reveal_child = window.selection_mode;
         });
     }
 
@@ -40,7 +44,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             machine.config.set_category ("favorite", favorite_btn.active);
         }
 
-        App.window.selection_mode = false;
+        window.selection_mode = false;
     }
 
     [GtkCallback]
@@ -53,13 +57,13 @@ private class Boxes.Selectionbar: Gtk.Revealer {
                 try {
                     machine.save.end (result);
                 } catch (GLib.Error e) {
-                    App.window.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
+                    window.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
                 }
             });
         }
 
         pause_btn.sensitive = false;
-        App.window.selection_mode = false;
+        window.selection_mode = false;
     }
 
     [GtkCallback]
@@ -69,7 +73,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
 
     [GtkCallback]
     private void on_properties_btn_clicked () {
-        App.window.show_properties ();
+        window.show_properties ();
     }
 
     private void update_favorite_btn () {
