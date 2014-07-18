@@ -8,9 +8,11 @@ private class Boxes.SelectionToolbar: HeaderBar {
     [GtkChild]
     private Label menu_button_label;
 
+    private AppWindow window;
+
     [GtkCallback]
     private void on_cancel_btn_clicked () {
-        App.window.selection_mode = false;
+        window.selection_mode = false;
     }
 
     construct {
@@ -19,9 +21,8 @@ private class Boxes.SelectionToolbar: HeaderBar {
         });
     }
 
-    public void setup_ui () {
-        assert (App.window != null);
-        assert (App.window.searchbar != null);
+    public void setup_ui (AppWindow window) {
+        this.window = window;
 
         update_selection_label ();
 
@@ -29,7 +30,7 @@ private class Boxes.SelectionToolbar: HeaderBar {
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
 
-        search_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
+        search_btn.bind_property ("active", window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
     }
 
     private void update_selection_label () {

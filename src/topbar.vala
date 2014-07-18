@@ -110,7 +110,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         toolbar.bind_property ("subtitle", display_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
 
         collection_toolbar.setup_ui (window);
-        selection_toolbar.setup_ui ();
+        selection_toolbar.setup_ui (window);
     }
 
     private void ui_state_changed () {
