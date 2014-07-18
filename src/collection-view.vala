@@ -10,6 +10,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
+    private AppWindow window;
+
     private Category _category;
     public Category category {
         get { return _category; }
@@ -39,10 +41,12 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         notify["ui-state"].connect (ui_state_changed);
     }
 
-    public void setup_ui () {
-        App.window.notify["selection-mode"].connect (() => {
-            set_selection_mode (App.window.selection_mode);
-            if (!App.window.selection_mode)
+    public void setup_ui (AppWindow window) {
+        this.window = window;
+
+        window.notify["selection-mode"].connect (() => {
+            set_selection_mode (window.selection_mode);
+            if (!window.selection_mode)
                 unselect_all (); // Reset selection on exiting selection mode
         });
     }
@@ -147,7 +151,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         });
         item.set_data<ulong> ("under_construct_id", under_construct_id);
 
-        item.set_state (App.window.ui_state);
+        item.set_state (window.ui_state);
     }
 
     public List<CollectionItem> get_selected_items () {
@@ -272,20 +276,20 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             var item = get_item_for_path (path);
             if (item is LibvirtMachine && (item as LibvirtMachine).importing)
                 return;
-            App.window.select_item (item);
+            window.select_item (item);
         });
         view_selection_changed.connect (() => {
             queue_draw ();
             App.app.notify_property ("selected-items");
         });
         selection_mode_request.connect (() => {
-            App.window.selection_mode = true;
+            window.selection_mode = true;
         });
         show_all ();
     }
 
     public void select (SelectionCriteria selection) {
-        App.window.selection_mode = true;
+        window.selection_mode = true;
 
         model_filter.foreach ( (filter_model, filter_path, filter_iter) => {
             Gtk.TreeIter iter;
