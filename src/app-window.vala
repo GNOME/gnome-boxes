@@ -106,7 +106,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void setup_ui () {
         topbar.setup_ui (this);
-        wizard.setup_ui ();
+        wizard.setup_ui (this);
         display_page.setup_ui ();
         view.setup_ui ();
         selectionbar.setup_ui ();

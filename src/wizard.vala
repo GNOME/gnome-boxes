@@ -45,6 +45,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     [GtkChild]
     private Gtk.Image installer_image;
 
+    private AppWindow window;
+
     private MediaManager media_manager;
 
     private VMCreator? vm_creator;
@@ -112,9 +114,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 case WizardPage.LAST:
                     create.begin ((obj, result) => {
                        if (create.end (result))
-                          App.window.set_state (UIState.COLLECTION);
+                          window.set_state (UIState.COLLECTION);
                        else
-                          App.window.notificationbar.display_error (_("Box creation failed"));
+                          window.notificationbar.display_error (_("Box creation failed"));
                     });
                     return;
                 }
@@ -133,7 +135,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
-            App.window.sidebar.set_wizard_page (value);
+            window.sidebar.set_wizard_page (value);
             visible_child_name = page_names[value];
 
             if (value == WizardPage.SOURCE)
@@ -339,7 +341,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         } catch (GLib.Error error) {
             debug("Failed to analyze installer image: %s", error.message);
             var msg = _("Failed to analyze installer media. Corrupted or incomplete media?");
-            App.window.notificationbar.display_error (msg);
+            window.notificationbar.display_error (msg);
             page = WizardPage.SOURCE;
         }
     }
@@ -368,7 +370,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             // Validate URI
             prepare_for_location (wizard_source.uri, true);
         } catch (GLib.Error error) {
-            App.window.notificationbar.display_error (error.message);
+            window.notificationbar.display_error (error.message);
 
             return false;
         }
@@ -397,7 +399,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         try {
             prepare_for_location (wizard_source.uri, false, progress);
         } catch (GLib.Error error) {
-            App.window.notificationbar.display_error (error.message);
+            window.notificationbar.display_error (error.message);
 
             return false;
         }
@@ -453,7 +455,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 machine = yield vm_creator.create_vm (review_cancellable);
             } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
             } catch (GLib.Error error) {
-                App.window.notificationbar.display_error (_("Box setup failed"));
+                window.notificationbar.display_error (_("Box setup failed"));
                 warning (error.message);
             }
 
@@ -540,7 +542,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (machine != null)
             summary.append_customize_button (() => {
                 // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
-                App.window.select_item (machine);
+                window.select_item (machine);
             });
 
         return true;
@@ -598,7 +600,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             page = WizardPage.SOURCE;
         } catch (GLib.Error e) {
             warning ("Failed downloading media '%s'! %s", uri, e.message);
-            App.window.notificationbar.display_error (_("Download failed."));
+            window.notificationbar.display_error (_("Download failed."));
             page = WizardPage.SOURCE;
         } finally {
             prepare_cancellable = null;
@@ -613,32 +615,34 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         prepare (progress);
     }
 
-    public void setup_ui () {
-        cancel_button = App.window.topbar.wizard_toolbar.cancel_btn;
+    public void setup_ui (AppWindow window) {
+        this.window = window;
+
+        cancel_button = window.topbar.wizard_toolbar.cancel_btn;
         cancel_button.clicked.connect (() => {
             cleanup ();
             wizard_source.page = SourcePage.MAIN;
-            App.window.set_state (UIState.COLLECTION);
+            window.set_state (UIState.COLLECTION);
         });
-        back_button = App.window.topbar.wizard_toolbar.back_btn;
+        back_button = window.topbar.wizard_toolbar.back_btn;
         back_button.clicked.connect (() => {
             if (prepare_cancellable != null)
                 prepare_cancellable.cancel ();
 
             page = page - 1;
         });
-        continue_button = App.window.topbar.wizard_toolbar.continue_btn;
+        continue_button = window.topbar.wizard_toolbar.continue_btn;
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
-        create_button = App.window.topbar.wizard_toolbar.create_btn;
+        create_button = window.topbar.wizard_toolbar.create_btn;
         create_button.clicked.connect (() => {
             page = WizardPage.LAST;
         });
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
-        App.window.set_state (UIState.WIZARD);
+        window.set_state (UIState.WIZARD);
         this.skip_review_for_live = skip_review_for_live;
 
         page = WizardPage.SOURCE;
