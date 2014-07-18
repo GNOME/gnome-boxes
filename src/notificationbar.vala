@@ -6,6 +6,8 @@ private class Boxes.Notificationbar: Gtk.Grid {
 
     GLib.List<Widget> active_notifications;
 
+    public Searchbar searchbar;
+
     construct {
         valign = Gtk.Align.START;
         halign = Gtk.Align.CENTER;
@@ -53,7 +55,8 @@ private class Boxes.Notificationbar: Gtk.Grid {
         var notification = new Boxes.AuthNotification (auth_string,
                                                        (owned) auth_func,
                                                        (owned) cancel_func,
-                                                       need_username);
+                                                       need_username,
+                                                       searchbar);
 
         active_notifications.prepend (notification);
 

@@ -19,10 +19,13 @@ private class Boxes.AuthNotification: Gd.Notification {
     private AuthFunc? auth_func;
     private bool auth_pressed;
 
+    private Searchbar searchbar;
+
     public AuthNotification (string                         auth_string,
                              owned AuthFunc?                auth_func,
                              owned Notification.CancelFunc? cancel_func,
-                             bool                           need_username) {
+                             bool                           need_username,
+                             Searchbar                      searchbar) {
         show_close_button = false; // FIXME: Seems setting this from .UI file doesn't work
         title_label.label = auth_string;
 
@@ -35,18 +38,20 @@ private class Boxes.AuthNotification: Gd.Notification {
         username_entry.visible = need_username;
 
         this.auth_func = (owned) auth_func;
+
+        this.searchbar = searchbar;
     }
 
     [GtkCallback]
     private bool on_entry_focus_in_event () {
-        App.window.searchbar.enable_key_handler = false;
+        searchbar.enable_key_handler = false;
 
         return false;
     }
 
     [GtkCallback]
     private bool on_entry_focus_out_event () {
-        App.window.searchbar.enable_key_handler = true;
+        searchbar.enable_key_handler = true;
 
         return false;
     }
