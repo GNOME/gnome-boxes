@@ -17,6 +17,8 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     [GtkChild]
     private Gtk.Button props;
 
+    private AppWindow window;
+
     public DisplayToolbar (bool overlay, bool handle_drag) {
         Object (overlay: overlay,
                 handle_drag: handle_drag);
@@ -44,12 +46,16 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         }
 
         App.app.notify["fullscreened"].connect_after ( () => {
-            if (App.window.fullscreened)
+            if (window.fullscreened)
                 fullscreen_image.icon_name = "view-restore-symbolic";
             else
                 fullscreen_image.icon_name = "view-fullscreen-symbolic";
         });
     }
+
+    public void setup_ui (AppWindow window) {
+        this.window = window;
+}
 
     private bool button_down;
     private int button_down_x;
@@ -88,7 +94,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             // Break out when the dragged distance is 40 pixels
             if (dx * dx + dy * dy > 40 * 40) {
                 button_down = false;
-                App.window.fullscreened = false;
+                window.fullscreened = false;
 
                 var window = get_toplevel () as Gtk.Window;
                 int old_width;
@@ -114,16 +120,16 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
     [GtkCallback]
     private void on_back_clicked () {
-        App.window.set_state (UIState.COLLECTION);
+        window.set_state (UIState.COLLECTION);
     }
 
     [GtkCallback]
     private void on_fullscreen_clicked () {
-        App.window.fullscreened = !App.window.fullscreened;
+        window.fullscreened = !window.fullscreened;
     }
 
     [GtkCallback]
     private void on_props_clicked () {
-        App.window.set_state (UIState.PROPERTIES);
+        window.set_state (UIState.PROPERTIES);
     }
 }

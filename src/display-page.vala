@@ -51,6 +51,9 @@ private class Boxes.DisplayPage: Gtk.Box {
 
         toolbar.bind_property ("title", overlay_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", overlay_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
+
+        toolbar.setup_ui (window);
+        overlay_toolbar.setup_ui (window);
     }
 
      private void update_toolbar_visible() {

@@ -111,6 +111,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
         collection_toolbar.setup_ui (window);
         selection_toolbar.setup_ui (window);
+        display_toolbar.setup_ui (window);
     }
 
     private void ui_state_changed () {
