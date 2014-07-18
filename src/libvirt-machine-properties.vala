@@ -132,7 +132,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             button.clicked.connect (() => {
                 var log = collect_logs ();
                 var dialog = new Gtk.Dialog.with_buttons (_("Troubleshooting log"),
-                                                          App.window,
+                                                          machine.window,
                                                           DialogFlags.DESTROY_WITH_PARENT,
                                                           _("_Save"), 100,
                                                           _("Copy to clipboard"), 101,
@@ -150,7 +150,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
                 dialog.response.connect ( (response_id) => {
                     if (response_id == 100) {
-                        var chooser = new Gtk.FileChooserDialog (_("Save log"), App.window,
+                        var chooser = new Gtk.FileChooserDialog (_("Save log"), machine.window,
                                                                  Gtk.FileChooserAction.SAVE,
                                                                  _("_Save"), ResponseType.OK);
                         chooser.local_only = false;
@@ -313,7 +313,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         button.clicked.connect ( () => {
             if (empty) {
                 var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                        App.window,
+                                                        machine.window,
                                                         Gtk.FileChooserAction.OPEN,
                                                         _("_Cancel"), Gtk.ResponseType.CANCEL,
                                                         _("_Open"), Gtk.ResponseType.ACCEPT);
@@ -421,7 +421,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               FormatSizeFlags.IEC_UNITS);
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
-                App.window.previous_ui_state != Boxes.UIState.WIZARD)
+                machine.window.previous_ui_state != Boxes.UIState.WIZARD)
                 property.sensitive = false;
             else
                 property.changed.connect (on_ram_changed);
@@ -485,7 +485,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             property.defer_interval = 0;
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
-                App.window.previous_ui_state != Boxes.UIState.WIZARD)
+                machine.window.previous_ui_state != Boxes.UIState.WIZARD)
                 property.sensitive = false;
             else
                 property.changed.connect (on_storage_changed);
