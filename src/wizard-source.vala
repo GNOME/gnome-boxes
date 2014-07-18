@@ -128,6 +128,8 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Gtk.Label libvirt_sys_import_label;
 
+    private AppWindow window;
+
     private Gtk.Box media_vbox;
 
     public MediaManager media_manager;
@@ -177,6 +179,12 @@ private class Boxes.WizardSource: Gtk.Stack {
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
         transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT; // FIXME: Why this won't work from .ui file?
+    }
+
+    public void setup_ui (AppWindow window) {
+        assert (window != null);
+
+        this.window = window;
     }
 
     public void cleanup () {
@@ -267,7 +275,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkCallback]
     private void on_select_file_button_clicked () {
         var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                App.window,
+                                                window,
                                                 Gtk.FileChooserAction.OPEN,
                                                 _("_Cancel"), Gtk.ResponseType.CANCEL,
                                                 _("_Open"), Gtk.ResponseType.ACCEPT);

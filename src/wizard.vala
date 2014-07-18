@@ -639,6 +639,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         create_button.clicked.connect (() => {
             page = WizardPage.LAST;
         });
+
+        wizard_source.setup_ui (window);
     }
 
     public void open_with_uri (string uri, bool skip_review_for_live = true) {
