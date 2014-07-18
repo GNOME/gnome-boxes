@@ -19,6 +19,8 @@ private class Boxes.App: Gtk.Application {
     public static App app;
     public static Boxes.AppWindow window;
 
+    public AppWindow main_window { get; private set; }
+
     public string? uri { get; set; }
     public Collection collection;
     public CollectionFilter filter;
@@ -47,21 +49,21 @@ private class Boxes.App: Gtk.Application {
         add_action (action);
 
         action = new GLib.SimpleAction ("select-all", null);
-        action.activate.connect (() => { window.view.select (SelectionCriteria.ALL); });
+        action.activate.connect (() => { main_window.view.select (SelectionCriteria.ALL); });
         add_action (action);
 
         action = new GLib.SimpleAction ("select-running", null);
-        action.activate.connect (() => { window.view.select (SelectionCriteria.RUNNING); });
+        action.activate.connect (() => { main_window.view.select (SelectionCriteria.RUNNING); });
         add_action (action);
 
         action = new GLib.SimpleAction ("select-none", null);
-        action.activate.connect (() => { window.view.select (SelectionCriteria.NONE); });
+        action.activate.connect (() => { main_window.view.select (SelectionCriteria.NONE); });
         add_action (action);
 
         action = new GLib.SimpleAction ("help", null);
         action.activate.connect (() => {
             try {
-                Gtk.show_uri (window.get_screen (),
+                Gtk.show_uri (main_window.get_screen (),
                               "help:gnome-boxes",
                               Gtk.get_current_event_time ());
             } catch (GLib.Error e) {
@@ -83,7 +85,7 @@ private class Boxes.App: Gtk.Application {
                 "Jakub Steiner <jsteiner@redhat.com>"
             };
 
-            Gtk.show_about_dialog (window,
+            Gtk.show_about_dialog (main_window,
                                    "artists", artists,
                                    "authors", authors,
                                    "translator-credits", _("translator-credits"),
@@ -115,10 +117,10 @@ private class Boxes.App: Gtk.Application {
         collection = new Collection ();
 
         collection.item_added.connect ((item) => {
-            window.view.add_item (item);
+            main_window.view.add_item (item);
         });
         collection.item_removed.connect ((item) => {
-            window.view.remove_item (item);
+            main_window.view.remove_item (item);
         });
 
         brokers.insert ("libvirt", LibvirtBroker.get_default ());
@@ -151,14 +153,15 @@ private class Boxes.App: Gtk.Application {
     public override void activate () {
         base.activate ();
 
-        if (window != null)
+        if (main_window != null)
             return;
 
-        window = new Boxes.AppWindow (this);
-        window.setup_ui ();
-        window.set_state (UIState.COLLECTION);
+        main_window = new Boxes.AppWindow (this);
+        window = main_window;
+        main_window.setup_ui ();
+        main_window.set_state (UIState.COLLECTION);
 
-        window.present ();
+        main_window.present ();
     }
 
     static bool opt_fullscreen;
@@ -229,11 +232,11 @@ private class Boxes.App: Gtk.Application {
 
                 if (file.query_exists ()) {
                     if (is_uri)
-                        window.wizard.open_with_uri (arg);
+                        main_window.wizard.open_with_uri (arg);
                     else
-                        window.wizard.open_with_uri (file.get_uri ());
+                        main_window.wizard.open_with_uri (file.get_uri ());
                 } else if (is_uri)
-                    window.wizard.open_with_uri (arg);
+                    main_window.wizard.open_with_uri (arg);
                 else
                     open_name (arg);
             });
@@ -241,20 +244,20 @@ private class Boxes.App: Gtk.Application {
 
         if (opt_search != null) {
             call_when_ready (() => {
-                window.searchbar.text = string.joinv (" ", opt_search);
-                if (window.ui_state == UIState.COLLECTION)
-                    window.searchbar.search_mode_enabled = true;
+                main_window.searchbar.text = string.joinv (" ", opt_search);
+                if (main_window.ui_state == UIState.COLLECTION)
+                    main_window.searchbar.search_mode_enabled = true;
             });
         }
 
         if (opt_fullscreen)
-            window.fullscreened = true;
+            main_window.fullscreened = true;
 
         return 0;
     }
 
     public bool quit_app () {
-        window.hide ();
+        main_window.hide ();
 
         Idle.add (() => {
             quit ();
@@ -268,18 +271,18 @@ private class Boxes.App: Gtk.Application {
     public override void shutdown () {
         base.shutdown ();
 
-        window.notificationbar.cancel ();
-        window.wizard.cleanup ();
+        main_window.notificationbar.cancel ();
+        main_window.wizard.cleanup ();
         suspend_machines ();
     }
 
     public void open_name (string name) {
-        window.set_state (UIState.COLLECTION);
+        main_window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
             if (item.name == name) {
-                window.select_item (item);
+                main_window.select_item (item);
 
                 break;
             }
@@ -287,7 +290,7 @@ private class Boxes.App: Gtk.Application {
     }
 
     public bool open_uuid (string uuid) {
-        window.set_state (UIState.COLLECTION);
+        main_window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
@@ -298,7 +301,7 @@ private class Boxes.App: Gtk.Application {
             if (machine.config.uuid != uuid)
                 continue;
 
-            window.select_item (item);
+            main_window.select_item (item);
             return true;
         }
 
@@ -425,7 +428,7 @@ private class Boxes.App: Gtk.Application {
     }
 
     public List<CollectionItem> selected_items {
-        owned get { return window.view.get_selected_items (); }
+        owned get { return main_window.view.get_selected_items (); }
     }
 
     /**
@@ -463,16 +466,16 @@ private class Boxes.App: Gtk.Application {
             }
         };
 
-        window.notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
+        main_window.notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
     }
 
     public void remove_selected_items () {
-        var selected_items = window.view.get_selected_items ();
+        var selected_items = main_window.view.get_selected_items ();
         var num_selected = selected_items.length ();
         if (num_selected == 0)
             return;
 
-        window.selection_mode = false;
+        main_window.selection_mode = false;
 
         var message = (num_selected == 1) ? _("Box '%s' has been deleted").printf (selected_items.data.name) :
                                             ngettext ("%u box has been deleted",

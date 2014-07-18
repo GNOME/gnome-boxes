@@ -55,7 +55,7 @@ private class Boxes.OvirtBroker : Boxes.Broker {
                 // finish, otherwise yield add_source() will never return
                 auth.unpause ();
             };
-            App.window.notificationbar.display_for_optional_auth ("oVirt broker", (owned) auth_cb, (owned) cancel_cb);
+            App.app.main_window.notificationbar.display_for_optional_auth ("oVirt broker", (owned) auth_cb, (owned) cancel_cb);
             auth.pause ();
 
             return false;
@@ -66,7 +66,7 @@ private class Boxes.OvirtBroker : Boxes.Broker {
             yield proxy.fetch_vms_async (null);
         } catch (GLib.Error error) {
             debug ("Failed to connect to broker: %s", error.message);
-            App.window.notificationbar.display_error (_("Connection to oVirt broker failed"));
+            App.app.main_window.notificationbar.display_error (_("Connection to oVirt broker failed"));
         }
         proxies.insert (source.name, proxy);
 

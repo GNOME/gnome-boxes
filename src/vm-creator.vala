@@ -46,7 +46,7 @@ private class Boxes.VMCreator {
             yield install_media.prepare_for_installation (name, cancellable);
         } catch (GLib.Error error) {
             var msg = _("An error occurred during installation preparation. Express Install disabled.");
-            App.window.notificationbar.display_error (msg);
+            App.app.main_window.notificationbar.display_error (msg);
             debug("Disabling unattended installation: %s", error.message);
         }
 
@@ -68,12 +68,14 @@ private class Boxes.VMCreator {
             !(install_media as UnattendedInstaller).setup_box.express_install) {
             ulong signal_id = 0;
 
-            signal_id = App.window.notify["ui-state"].connect (() => {
-                if (App.window.ui_state != UIState.COLLECTION)
+            var window = App.app.main_window;
+
+            signal_id = window.notify["ui-state"].connect (() => {
+                if (window.ui_state != UIState.COLLECTION)
                     return;
 
-                App.window.select_item (machine); // This also starts the domain for us
-                App.window.disconnect (signal_id);
+                window.select_item (machine); // This also starts the domain for us
+                window.disconnect (signal_id);
 
                 return;
             });
