@@ -204,6 +204,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void connect_to (Machine machine) {
         current_item = machine;
+        machine.window = this;
 
         // Track machine status in toobar
         status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);

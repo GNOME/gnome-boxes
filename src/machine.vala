@@ -70,19 +70,25 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             // state, we got to exit, as there is no way for the user
             // to progress in the vm display anymore
             if (display != null && !stay_on_display &&
-                App.window.current_item == this &&
+                window.current_item == this &&
                 value != MachineState.RUNNING &&
                 value != MachineState.UNKNOWN) {
-                App.window.set_state (Boxes.UIState.COLLECTION);
+                window.set_state (Boxes.UIState.COLLECTION);
             }
         }
     }
 
+    private unowned AppWindow _window;
+    public unowned AppWindow window {
+        get { return _window ?? App.app.main_window; }
+        set { _window = value; }
+    }
+
     protected void show_display () {
 
-        switch (App.window.ui_state) {
+        switch (window.ui_state) {
         case Boxes.UIState.CREDS:
-            App.window.set_state (Boxes.UIState.DISPLAY);
+            window.set_state (Boxes.UIState.DISPLAY);
             show_display ();
             break;
 
@@ -90,7 +96,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             var widget = display.get_display (0);
             widget_remove (widget);
             display.set_enable_inputs (widget, true);
-            App.window.display_page.show_display (display, widget);
+            window.display_page.show_display (display, widget);
             widget.grab_focus ();
 
             break;
@@ -126,7 +132,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             show_id = _display.show.connect ((id) => { show_display (); });
 
             hide_id = _display.hide.connect ((id) => {
-                App.window.display_page.remove_display ();
+                window.display_page.remove_display ();
             });
 
             got_error_id = _display.got_error.connect ((message) => {
@@ -135,10 +141,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
-                if (!stay_on_display && App.window.current_item == this)
-                    App.window.set_state (Boxes.UIState.COLLECTION);
+                if (!stay_on_display && window.current_item == this)
+                    window.set_state (Boxes.UIState.COLLECTION);
                 if (failed)
-                    App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+                    window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
             });
 
             need_password_id = _display.notify["need-password"].connect (handle_auth);
@@ -171,8 +177,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         pixbuf = draw_fallback_vm ();
 
         notify["ui-state"].connect (ui_state_changed);
-        ui_state_id = App.window.notify["ui-state"].connect (() => {
-            if (App.window.ui_state == UIState.DISPLAY)
+        ui_state_id = window.notify["ui-state"].connect (() => {
+            if (window.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
             else
                 set_screenshot_enable (true);
@@ -193,7 +199,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (screenshot_id != 0)
                 return;
             update_screenshot.begin (false, true);
-            var interval = App.window.settings.get_int ("screenshot-interval");
+            var interval = window.settings.get_int ("screenshot-interval");
             screenshot_id = Timeout.add_seconds (interval, () => {
                 update_screenshot.begin ();
 
@@ -270,13 +276,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             }
         }
 
-        App.window.display_page.remove_display ();
+        window.display_page.remove_display ();
         if (!display.should_keep_alive ()) {
             display.disconnect_it ();
             display = null;
         } else {
             display.set_enable_audio (false);
         }
+
+        window = null;
     }
 
     protected void create_display_config (string? uuid = null)
@@ -368,8 +376,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-            if (App.window.current_item == this)
-                App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
+            if (window.current_item == this)
+                window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
@@ -496,13 +504,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private void ui_state_changed () {
         switch (ui_state) {
         case UIState.CREDS:
-            App.window.below_bin.set_visible_child_name ("connecting-page");
+            window.below_bin.set_visible_child_name ("connecting-page");
             try_connect_display.begin ();
 
             break;
         case Boxes.UIState.DISPLAY:
             if (previous_ui_state == UIState.PROPERTIES)
-                App.window.below_bin.set_visible_child_name ("display-page");
+                window.below_bin.set_visible_child_name ("display-page");
 
             break;
 
@@ -515,7 +523,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         case UIState.PROPERTIES:
             Gdk.Pixbuf pixbuf = null;
             if (previous_ui_state == UIState.WIZARD) {
-                var theme = Gtk.IconTheme.get_for_screen (App.window.get_screen ());
+                var theme = Gtk.IconTheme.get_for_screen (window.get_screen ());
                 pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, true, 8,
                                          Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT);
                 pixbuf.fill (0x00000000); // Transparent
@@ -530,7 +538,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             } else {
                 pixbuf = this.pixbuf;
             }
-            App.window.sidebar.screenshot.set_from_pixbuf (pixbuf);
+            window.sidebar.screenshot.set_from_pixbuf (pixbuf);
 
             break;
         }
@@ -541,16 +549,16 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             yield connect_display (flags);
         } catch (Boxes.Error.RESTORE_FAILED e) {
             var message = _("'%s' could not be restored from disk\nTry without saved state?").printf (name);
-            var notification = App.window.notificationbar.display_for_action (message, _("Restart"), () => {
+            var notification = window.notificationbar.display_for_action (message, _("Restart"), () => {
                 try_connect_display.begin (flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
             });
             notification.dismissed.connect (() => {
-                App.window.set_state (UIState.COLLECTION);
+                window.set_state (UIState.COLLECTION);
             });
         } catch (GLib.Error e) {
             debug ("connect display failed: %s", e.message);
-            App.window.set_state (UIState.COLLECTION);
-            App.window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+            window.set_state (UIState.COLLECTION);
+            window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
         }
     }
 
@@ -575,12 +583,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         };
         Notification.CancelFunc cancel_func = () => {
             auth_notification = null;
-            App.window.set_state (UIState.COLLECTION);
+            window.set_state (UIState.COLLECTION);
         };
 
         // Translators: %s => name of launched box
         var auth_string = _("'%s' requires authentication").printf (name);
-        auth_notification = App.window.notificationbar.display_for_auth (auth_string,
+        auth_notification = window.notificationbar.display_for_auth (auth_string,
                                                                          (owned) auth_func,
                                                                          (owned) cancel_func,
                                                                          need_username);
