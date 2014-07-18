@@ -14,15 +14,16 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     private Button new_btn;
 
+    private AppWindow window;
+
     construct {
         var back_icon = (get_direction () == TextDirection.RTL)? "go-previous-rtl-symbolic" :
                                                                  "go-previous-symbolic";
         back_image.set_from_icon_name (back_icon, IconSize.MENU);
     }
 
-    public void setup_ui () {
-        assert (App.window != null);
-        assert (App.window.searchbar != null);
+    public void setup_ui (AppWindow window) {
+        this.window = window;
 
         update_select_btn ();
         App.app.collection.item_added.connect (update_select_btn);
@@ -32,24 +33,24 @@ private class Boxes.CollectionToolbar: HeaderBar {
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
 
-        search_btn.bind_property ("active", App.window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
+        search_btn.bind_property ("active", window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
-        App.window.notify["ui-state"].connect (ui_state_changed);
+        window.notify["ui-state"].connect (ui_state_changed);
     }
 
     [GtkCallback]
     private void on_new_btn_clicked () {
-        App.window.set_state (UIState.WIZARD);
+        window.set_state (UIState.WIZARD);
     }
 
     [GtkCallback]
     private void on_back_btn_clicked () {
-        App.window.set_state (UIState.COLLECTION);
+        window.set_state (UIState.COLLECTION);
     }
 
     [GtkCallback]
     private void on_select_btn_clicked () {
-        App.window.selection_mode = true;
+        window.selection_mode = true;
     }
 
     private void update_search_btn () {
@@ -65,7 +66,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     private void ui_state_changed () {
-        switch (App.window.ui_state) {
+        switch (window.ui_state) {
         case UIState.COLLECTION:
             back_btn.hide ();
             select_btn.show ();
