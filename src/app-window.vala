@@ -113,6 +113,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         searchbar.setup_ui (this);
         sidebar.setup_ui (this);
         properties.setup_ui (this);
+        empty_boxes.setup_ui (this);
         notificationbar.searchbar = searchbar;
     }
 
