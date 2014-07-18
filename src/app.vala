@@ -17,7 +17,6 @@ private abstract class Boxes.Broker : GLib.Object {
 
 private class Boxes.App: Gtk.Application {
     public static App app;
-    public static Boxes.AppWindow window;
 
     public AppWindow main_window { get; private set; }
 
@@ -157,7 +156,6 @@ private class Boxes.App: Gtk.Application {
             return;
 
         main_window = new Boxes.AppWindow (this);
-        window = main_window;
         main_window.setup_ui ();
         main_window.set_state (UIState.COLLECTION);
 
