@@ -45,9 +45,15 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
     [GtkChild]
     public MiniGraph net_graph;
 
+    private AppWindow window;
+
     construct {
         notify["ui-state"].connect (ui_state_changed);
         setup_sidebar ();
+    }
+
+    public void setup_ui (AppWindow window) {
+        this.window = window;
     }
 
     public void set_wizard_page (WizardPage wizard_page) {
@@ -98,12 +104,12 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
         Gtk.TreeIter filter_iter, iter;
         props_model_filter.get_iter (out filter_iter, path);
         props_model_filter.convert_iter_to_child_iter (out iter, filter_iter);
-        App.window.properties.page = (PropertiesPage) props_listmodel.get_path (iter).get_indices ()[0];
+        window.properties.page = (PropertiesPage) props_listmodel.get_path (iter).get_indices ()[0];
     }
 
     [GtkCallback]
     private void on_shutdown_button_clicked () {
-        var machine = App.window.current_item as LibvirtMachine;
+        var machine = window.current_item as LibvirtMachine;
         if (machine != null)
             machine.force_shutdown ();
     }
