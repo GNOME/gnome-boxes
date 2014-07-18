@@ -26,7 +26,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public WizardToolbar wizard_toolbar;
 
     [GtkChild]
-    private Gtk.HeaderBar props_toolbar;
+    private PropertiesToolbar props_toolbar;
 
     private GLib.Binding props_name_bind;
 
@@ -112,6 +112,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         collection_toolbar.setup_ui (window);
         selection_toolbar.setup_ui (window);
         display_toolbar.setup_ui (window);
+        props_toolbar.setup_ui (window);
     }
 
     private void ui_state_changed () {
