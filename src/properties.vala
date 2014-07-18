@@ -16,6 +16,8 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
+    private AppWindow window;
+
     private ulong stats_id;
     private bool restore_fullscreen;
 
@@ -121,7 +123,6 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
     construct {
         notify["ui-state"].connect (ui_state_changed);
-        setup_ui ();
     }
 
     private void list_append (Gtk.ListStore listmodel, string label, bool visible) {
@@ -133,14 +134,14 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
     }
 
     private void populate () {
-        App.window.sidebar.props_listmodel.clear ();
+        window.sidebar.props_listmodel.clear ();
         foreach (var page in get_children ())
             remove (page);
 
-        var machine = App.window.current_item as Machine;
-        var libvirt_machine = App.window.current_item as LibvirtMachine;
+        var machine = window.current_item as Machine;
+        var libvirt_machine = window.current_item as LibvirtMachine;
 
-        App.window.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
+        window.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
 
         if (machine == null)
             return;
@@ -154,11 +155,11 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
                 var current_page = page;
                 this.populate ();
                 var path = new Gtk.TreePath.from_indices (current_page);
-                App.window.sidebar.props_selection.select_path (path);
+                window.sidebar.props_selection.select_path (path);
                 page = current_page;
             });
 
-            list_append (App.window.sidebar.props_listmodel, page.name, !page.empty);
+            list_append (window.sidebar.props_listmodel, page.name, !page.empty);
         }
 
         PropertiesPage current_page;
@@ -169,11 +170,13 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
             current_page = PropertiesPage.LOGIN;
 
         var path = new Gtk.TreePath.from_indices (current_page);
-        App.window.sidebar.props_selection.select_path (path);
+        window.sidebar.props_selection.select_path (path);
         visible_child_name = page_names[current_page];
     }
 
-    private void setup_ui () {
+    public void setup_ui (AppWindow window) {
+        this.window = window;
+
         transition_type = Gtk.StackTransitionType.SLIDE_UP_DOWN;
         transition_duration = 400;
 
@@ -182,20 +185,20 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
     private void ui_state_changed () {
         if (stats_id != 0) {
-            App.window.current_item.disconnect (stats_id);
+            window.current_item.disconnect (stats_id);
             stats_id = 0;
         }
 
         if (ui_state == UIState.PROPERTIES) {
-            restore_fullscreen = (previous_ui_state == UIState.DISPLAY && App.window.fullscreened);
-            App.window.fullscreened = false;
+            restore_fullscreen = (previous_ui_state == UIState.DISPLAY && window.fullscreened);
+            window.fullscreened = false;
 
-            if (App.window.current_item is LibvirtMachine) {
-                var libvirt_machine = App.window.current_item as LibvirtMachine;
+            if (window.current_item is LibvirtMachine) {
+                var libvirt_machine = window.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
-                    App.window.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
-                    App.window.sidebar.net_graph.points = libvirt_machine.net_stats;
-                    App.window.sidebar.io_graph.points = libvirt_machine.io_stats;
+                    window.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
+                    window.sidebar.net_graph.points = libvirt_machine.net_stats;
+                    window.sidebar.io_graph.points = libvirt_machine.io_stats;
                 });
             }
 
@@ -208,16 +211,16 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
                 reboot_required |= page.flush_changes ();
             }
 
-            var machine = App.window.current_item as Machine;
+            var machine = window.current_item as Machine;
             if (reboot_required && (machine.is_on () || machine.state == Machine.MachineState.SAVED)) {
                 var message = _("Changes require restart of '%s'.").printf (machine.name);
-                App.window.notificationbar.display_for_action (message, _("_Restart"), () => {
+                window.notificationbar.display_for_action (message, _("_Restart"), () => {
                     machine.restart ();
                 });
             }
 
             if (restore_fullscreen) {
-                App.window.fullscreened = true;
+                window.fullscreened = true;
                 restore_fullscreen = false;
             }
         }
