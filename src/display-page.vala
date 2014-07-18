@@ -21,6 +21,8 @@ private class Boxes.DisplayPage: Gtk.Box {
 
     private uint overlay_toolbar_invisible_timeout;
 
+    private AppWindow window;
+
     private Boxes.Display? display;
     private bool can_grab_mouse {
         get {
@@ -35,11 +37,13 @@ private class Boxes.DisplayPage: Gtk.Box {
     private ulong display_can_grab_id;
     private ulong display_grabbed_id;
 
-    public void setup_ui () {
+    public void setup_ui (AppWindow window) {
+        this.window = window;
+
         overlay_toolbar_invisible_timeout = AppWindow.TRANSITION_DURATION;
         event_box.set_events (EventMask.POINTER_MOTION_MASK | EventMask.SCROLL_MASK);
 
-        App.window.window_state_event.connect ((event) => {
+        window.window_state_event.connect ((event) => {
             update_toolbar_visible ();
 
             return false;
@@ -50,7 +54,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
 
      private void update_toolbar_visible() {
-         if (App.window.fullscreened && can_grab_mouse)
+         if (window.fullscreened && can_grab_mouse)
              toolbar.visible = true;
          else
              toolbar.visible = false;
@@ -81,7 +85,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
 
     public void update_title () {
-        var machine = App.window.current_item as Boxes.Machine;
+        var machine = window.current_item as Boxes.Machine;
         return_if_fail (machine != null);
 
         var title = machine.name;
@@ -118,7 +122,7 @@ private class Boxes.DisplayPage: Gtk.Box {
         Idle.add (() => {
             update_toolbar_visible ();
             overlay_toolbar_invisible_timeout = 1000; // 1 seconds
-            set_overlay_toolbar_visible (App.window.fullscreened);
+            set_overlay_toolbar_visible (window.fullscreened);
 
             return false;
         });
@@ -138,7 +142,7 @@ private class Boxes.DisplayPage: Gtk.Box {
             return false;
         });
 
-        App.window.below_bin.set_visible_child_name ("display-page");
+        window.below_bin.set_visible_child_name ("display-page");
 
         widget.grab_focus ();
     }
@@ -169,7 +173,7 @@ private class Boxes.DisplayPage: Gtk.Box {
 
     [GtkCallback]
     private bool on_event_box_event (Gdk.Event event) {
-        if (App.window.fullscreened && event.type == EventType.MOTION_NOTIFY) {
+        if (window.fullscreened && event.type == EventType.MOTION_NOTIFY) {
             var x = event.motion.x;
             var y = event.motion.y;
             if (x >= SCREEN_EDGE_WIDTH && x <= (get_allocated_width () - SCREEN_EDGE_WIDTH) &&
