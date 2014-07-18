@@ -346,7 +346,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         switch (type) {
         case "spice":
-            return new SpiceDisplay (config, host, int.parse (port));
+            return new SpiceDisplay (this, config, host, int.parse (port));
 
         case "vnc":
             return new VncDisplay (config, host, int.parse (port));

@@ -25,7 +25,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         switch (type) {
         case "spice":
-            return new SpiceDisplay.with_uri (config, source.uri);
+            return new SpiceDisplay.with_uri (this, config, source.uri);
 
         case "vnc":
             return new VncDisplay.with_uri (config, source.uri);

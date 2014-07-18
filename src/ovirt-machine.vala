@@ -83,7 +83,8 @@ private class Boxes.OvirtMachine: Boxes.Machine {
 
         switch (vm.display.type) {
         case Ovirt.VmDisplayType.SPICE:
-            var display = new SpiceDisplay (config,
+            var display = new SpiceDisplay (this,
+                                            config,
                                             vm.display.address,
                                             (int) vm.display.port,
                                             (int) vm.display.secure_port,

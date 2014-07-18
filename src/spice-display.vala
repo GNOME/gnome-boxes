@@ -7,6 +7,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     public override string uri { owned get { return session.uri; } }
     public GLib.ByteArray ca_cert { owned get { return session.ca; } set { session.ca = value; } }
 
+    private weak Machine machine; // Weak ref for avoiding cyclic ref
+
     private Spice.Session session;
     private unowned Spice.GtkSession gtk_session;
     private unowned Spice.Audio audio;
@@ -19,7 +21,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     public bool resize_guest { get; set; }
     private void ui_state_changed () {
         // TODO: multi display
-        if (App.window.ui_state == UIState.DISPLAY) {
+        if (machine.ui_state == UIState.DISPLAY) {
             // disable resize guest when minimizing guest widget
             var display = get_display (0) as Spice.Display;
             display.resize_guest = resize_guest;
@@ -67,8 +69,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         this.notify["config"].connect (() => {
             config.sync_properties (gtk_session, gtk_session_sync_properties);
         });
-
-        App.window.notify["ui-state"].connect (ui_state_changed);
     }
 
     Spice.MainChannel? main_channel;
@@ -91,8 +91,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         main_cleanup ();
     }
 
-    public SpiceDisplay (BoxConfig config, string host, int port, int tls_port = 0, string? host_subject = null)
+    public SpiceDisplay (Machine machine, BoxConfig config, string host, int port, int tls_port = 0, string? host_subject = null)
         requires (port != 0 || tls_port != 0) {
+        this.machine = machine;
+        machine.notify["ui-state"].connect (ui_state_changed);
+
         this.config = config;
 
         session.host = host;
@@ -112,7 +115,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
     }
 
-    public SpiceDisplay.with_uri (BoxConfig config, string uri) {
+    public SpiceDisplay.with_uri (Machine machine, BoxConfig config, string uri) {
+        this.machine = machine;
+        machine.notify["ui-state"].connect (ui_state_changed);
+
         this.config = config;
 
         session.uri = uri;
