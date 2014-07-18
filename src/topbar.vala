@@ -30,9 +30,11 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     private GLib.Binding props_name_bind;
 
+    private AppWindow window;
+
     // Clicks the appropriate back button depending on the ui state.
     public void click_back_button () {
-        switch (App.window.ui_state) {
+        switch (window.ui_state) {
         case UIState.PROPERTIES:
             break;
         case UIState.CREDS:
@@ -51,10 +53,10 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     // Clicks the appropriate cancel button dependent on the ui state.
     public void click_cancel_button () {
-        switch (App.window.ui_state) {
+        switch (window.ui_state) {
         case UIState.COLLECTION:
-            if (App.window.selection_mode)
-                App.window.selection_mode = false;
+            if (window.selection_mode)
+                window.selection_mode = false;
             return;
         case UIState.WIZARD:
             wizard_toolbar.cancel_btn.clicked ();
@@ -75,7 +77,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public string properties_title {
         set {
             // Translators: The %s will be replaced with the name of the VM
-            props_toolbar.title = _("%s - Properties").printf (App.window.current_item.name);
+            props_toolbar.title = _("%s - Properties").printf (window.current_item.name);
         }
     }
 
@@ -95,15 +97,15 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         transition_type = Gtk.StackTransitionType.CROSSFADE; // FIXME: Why this won't work from .ui file?
     }
 
-    public void setup_ui () {
-        assert (App.window != null);
+    public void setup_ui (AppWindow window) {
+        this.window = window;
 
-        App.window.notify["selection-mode"].connect (() => {
-            page = App.window.selection_mode ?
+        window.notify["selection-mode"].connect (() => {
+            page = window.selection_mode ?
                 TopbarPage.SELECTION : page = TopbarPage.COLLECTION;
         });
 
-        var toolbar = App.window.display_page.toolbar;
+        var toolbar = window.display_page.toolbar;
         toolbar.bind_property ("title", display_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", display_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
 
@@ -127,7 +129,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
         case UIState.PROPERTIES:
             page = TopbarPage.PROPERTIES;
-            props_name_bind = App.window.current_item.bind_property ("name",
+            props_name_bind = window.current_item.bind_property ("name",
                                                                   this, "properties-title",
                                                                   BindingFlags.SYNC_CREATE);
             break;
