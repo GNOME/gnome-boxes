@@ -167,11 +167,14 @@ private class Boxes.MediaManager : Object {
         filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
         install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
 
-        InstallerMedia install_media;
+        InstallerMedia install_media = media;
         if (install_scripts.get_length () > 0) {
-            install_media = new UnattendedInstaller.from_media (media, install_scripts);
-        } else
-            install_media = media;
+            try {
+                install_media = new UnattendedInstaller.from_media (media, install_scripts);
+            } catch (GLib.IOError.NOT_SUPPORTED e) {
+                debug ("Unattended installer setup failed: %s", e.message);
+            }
+        }
 
         return install_media;
     }
