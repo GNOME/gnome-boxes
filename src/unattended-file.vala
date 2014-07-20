@@ -97,10 +97,17 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
 
     private File unattended_tmp;
 
-    public UnattendedScriptFile (UnattendedInstaller installer, InstallScript script, string dest_name) {
+    public UnattendedScriptFile (UnattendedInstaller installer,
+                                 InstallScript       script,
+                                 string              dest_name)
+                                 throws GLib.Error {
         this.installer = installer;
         this.script = script;
         this.dest_name = dest_name;
+
+        var injection_methods = script.get_injection_methods ();
+        if (!(InstallScriptInjectionMethod.DISK in injection_methods))
+            throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
     }
 
     ~UnattendedScriptFile () {
