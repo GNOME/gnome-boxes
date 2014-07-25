@@ -403,7 +403,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             run_in_thread.begin ( () => {
                 try {
                     // This undefines the domain, causing it to be transient if it was running
-                    domain.delete (DomainDeleteFlags.SAVED_STATE);
+                    domain.delete (DomainDeleteFlags.SAVED_STATE |
+                                   DomainDeleteFlags.SNAPSHOTS_METADATA);
                 } catch (GLib.Error err) {
                     warning (err.message);
                 }
