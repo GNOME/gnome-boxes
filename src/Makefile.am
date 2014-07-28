@@ -149,6 +149,7 @@ gnome_boxes_SOURCES =				\
 	downloader.vala				\
 	empty-boxes.vala			\
 	tracker-iso-query.vala			\
+	snapshot-list-row.vala 			\
 	$(NULL)
 
 gnome_boxes_LDADD =				\

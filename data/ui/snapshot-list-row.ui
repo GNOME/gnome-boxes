@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <menu id="actions_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Revert to this state</attribute>
+        <attribute name="action">snap.revert-to</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Rename</attribute>
+        <attribute name="action">snap.rename</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Delete</attribute>
+        <attribute name="action">snap.delete</attribute>
+      </item>
+    </section>
+  </menu>
+
+  <template class="BoxesSnapshotListRow" parent="GtkListBoxRow">
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <child>
+      <object class="GtkRevealer" id="delete_revealer">
+        <property name="visible">true</property>
+        <property name="can_focus">false</property>
+        <property name="reveal_child">true</property>
+
+        <child>
+          <object class="GtkStack" id="mode_stack">
+            <property name="visible">true</property>
+            <property name="can_focus">false</property>
+            <property name="transition_type">slide-up-down</property>
+            <child>
+              <object class="GtkBox" id="show_name_box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <object class="GtkLabel" id="name_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
+                    <property name="margin_start">45</property>
+                    <property name="ellipsize">end</property>
+                    <property name="xalign">0</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkMenuButton" id="more_button">
+                    <property name="visible">true</property>
+                    <property name="menu_model">actions_menu</property>
+                    <property name="valign">center</property>
+                    <property name="margin_top">4</property>
+                    <property name="margin_bottom">4</property>
+                    <property name="margin_end">4</property>
+                    <style>
+                      <class name="image-button" />
+                    </style>
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">true</property>
+                        <property name="icon-name">emblem-system-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox" id="edit_name_box">
+                <property name="visible">true</property>
+                <property name="orientation">horizontal</property>
+                <property name="can_focus">false</property>
+                <child>
+                  <object class="GtkEntry" id="name_entry">
+                    <property name="visible">true</property>
+                    <property name="can_focus">true</property>
+                    <property name="margin_start">45</property>
+                    <property name="hexpand">true</property>
+                    <signal name="activate" handler="on_save_name_button_clicked" />
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton" id="save_name_button">
+                    <property name="can_focus">true</property>
+                    <property name="visible">true</property>
+                    <property name="margin_start">10</property>
+                    <property name="valign">center</property>
+                    <property name="label" translatable="yes">Done</property>
+                    <signal name="clicked" handler="on_save_name_button_clicked" />
+                    <style>
+                      <class name="text-button" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+
+      </object>
+    </child>
+  </template>
+</interface>
