@@ -11,7 +11,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
             return installer.disk_file.get_path ();
         }
     }
-    protected abstract UnattendedInstaller installer  { get; set; }
+    protected abstract UnattendedInstaller installer { get; set; }
 
     public async void copy (Cancellable? cancellable) throws GLib.Error {
         var source_file = yield get_source_file (cancellable);
@@ -32,12 +32,12 @@ private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
     public string dest_name { get; set; }
     public string src_path { get; set; }
 
-    protected UnattendedInstaller installer  { get; set; }
+    protected UnattendedInstaller installer { get; set; }
 
     public UnattendedRawFile (UnattendedInstaller installer, string src_path, string dest_name) {
-       this.installer = installer;
-       this.src_path = src_path;
-       this.dest_name = dest_name;
+        this.installer = installer;
+        this.src_path = src_path;
+        this.dest_name = dest_name;
     }
 
     protected async File get_source_file (Cancellable? cancellable)  throws GLib.Error {
@@ -55,9 +55,9 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
     private File unattended_tmp;
 
     public UnattendedScriptFile (UnattendedInstaller installer, InstallScript script, string dest_name) {
-       this.installer = installer;
-       this.script = script;
-       this.dest_name = dest_name;
+        this.installer = installer;
+        this.script = script;
+        this.dest_name = dest_name;
     }
 
     ~UnattendedScriptFile () {
