@@ -71,7 +71,9 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
             grid.row_spacing = 10;
             grid.column_spacing = 20;
             grid.valign = Gtk.Align.START;
-            pack_end (grid, true, true);
+            var scrolled_win = new Gtk.ScrolledWindow (null, null);
+            scrolled_win.add (grid);
+            pack_end (scrolled_win, true, true);
 
             PropertyCreationFlag flags = PropertyCreationFlag.NONE;
             properties = machine.get_properties (page, ref flags);
