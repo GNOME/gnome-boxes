@@ -82,7 +82,6 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
                     if (property.description != null) {
                         var label_name = new Gtk.Label (property.description);
                         label_name.get_style_context ().add_class ("boxes-property-name-label");
-                        label_name.margin_left = 25;
                         label_name.halign = Gtk.Align.START;
                         label_name.hexpand = false;
                         grid.attach (label_name, 0, current_row, 1, 1);
@@ -92,14 +91,12 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
                     } else {
                         var widget = property.widget;
                         widget.hexpand = true;
-                        widget.margin_left = 25;
                         grid.attach (widget, 0, current_row, 2, 1);
                     }
 
                     var widget = property.extra_widget;
                     if (widget != null) {
                         current_row += 1;
-                        widget.margin_left = 25;
                         widget.hexpand = true;
                         grid.attach (widget, 0, current_row, 2, 1);
                     }
