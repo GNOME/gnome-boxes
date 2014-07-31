@@ -92,10 +92,24 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
     public string dest_name { get; set; }
     public string src_path { get; set; }
 
+    protected string disk_file {
+        owned get {
+            switch (injection_method) {
+            case InstallScriptInjectionMethod.DISK:
+                return installer.disk_file.get_path ();
+            case InstallScriptInjectionMethod.INITRD:
+                return installer.initrd_file.get_path ();
+            default:
+                assert_not_reached ();
+            }
+        }
+    }
+
     protected UnattendedInstaller installer { get; set; }
     protected InstallScript script { get; set; }
 
     private File unattended_tmp;
+    private InstallScriptInjectionMethod injection_method;
 
     public UnattendedScriptFile (UnattendedInstaller installer,
                                  InstallScript       script,
@@ -106,7 +120,11 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
         this.dest_name = dest_name;
 
         var injection_methods = script.get_injection_methods ();
-        if (!(InstallScriptInjectionMethod.DISK in injection_methods))
+        if (InstallScriptInjectionMethod.DISK in injection_methods)
+            injection_method = InstallScriptInjectionMethod.DISK;
+        else if (InstallScriptInjectionMethod.INITRD in injection_methods)
+            injection_method = InstallScriptInjectionMethod.INITRD;
+        else
             throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
     }
 
