@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-05-21 06:03+0000\n"
-"PO-Revision-Date: 2014-05-21 14:49-0300\n"
+"POT-Creation-Date: 2014-08-01 14:09+0000\n"
+"PO-Revision-Date: 2014-08-01 11:31-0300\n"
 "Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -121,6 +121,22 @@ msgstr "_Senha"
 msgid "Sign In"
 msgstr "Autenticar-se"
 
+#: ../data/ui/collection-toolbar.ui.h:1
+msgid "_New"
+msgstr "_Novo"
+
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+msgid "Back"
+msgstr "Voltar"
+
+#: ../data/ui/collection-toolbar.ui.h:3
+msgid "Select Items"
+msgstr "Selecionar itens"
+
+#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+msgid "Search"
+msgstr "Pesquisar"
+
 #: ../data/ui/empty-boxes.ui.h:1
 msgid "<b><span size=\"large\">No boxes found</span></b>"
 msgstr "<b><span size=\"large\">Nenhuma máquina encontrada</span></b>"
@@ -140,6 +156,24 @@ msgstr "_Excluir"
 #: ../data/ui/selectionbar.ui.h:3
 msgid "_Properties"
 msgstr "_Propriedades"
+
+#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
+#: ../src/libvirt-machine-properties.vala:318 ../src/libvirt-machine.vala:447
+#: ../src/wizard-source.vala:272
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../data/ui/selection-toolbar.ui.h:3
+msgid "Select All"
+msgstr "Selecionar todas"
+
+#: ../data/ui/selection-toolbar.ui.h:4
+msgid "Select Running"
+msgstr "Selecionar em execução"
+
+#: ../data/ui/selection-toolbar.ui.h:5
+msgid "Select None"
+msgstr "Selecionar nenhuma"
 
 #: ../data/ui/sidebar.ui.h:1
 msgid "Introduction"
@@ -176,55 +210,6 @@ msgstr "Rede:"
 #: ../data/ui/sidebar.ui.h:9
 msgid "Force Shutdown"
 msgstr "Forçar desligamento"
-
-#: ../data/ui/topbar.ui.h:1
-msgid "_New"
-msgstr "_Novo"
-
-#: ../data/ui/topbar.ui.h:2
-msgid "Back"
-msgstr "Voltar"
-
-#: ../data/ui/topbar.ui.h:3
-msgid "Select Items"
-msgstr "Selecionar itens"
-
-#: ../data/ui/topbar.ui.h:4
-msgid "Search"
-msgstr "Pesquisar"
-
-#: ../data/ui/topbar.ui.h:5 ../src/libvirt-machine-properties.vala:318
-#: ../src/libvirt-machine.vala:447 ../src/wizard-source.vala:263
-msgid "_Cancel"
-msgstr "_Cancelar"
-
-#: ../data/ui/topbar.ui.h:6
-msgid "Create a Box"
-msgstr "Criar uma máquina"
-
-#: ../data/ui/topbar.ui.h:7
-msgid "C_reate"
-msgstr "C_riar"
-
-#: ../data/ui/topbar.ui.h:8
-msgid "C_ontinue"
-msgstr "C_ontinuar"
-
-#: ../data/ui/topbar.ui.h:9
-msgid "_Back"
-msgstr "_Voltar"
-
-#: ../data/ui/topbar.ui.h:10
-msgid "Select All"
-msgstr "Selecionar todas"
-
-#: ../data/ui/topbar.ui.h:11
-msgid "Select Running"
-msgstr "Selecionar em execução"
-
-#: ../data/ui/topbar.ui.h:12
-msgid "Select None"
-msgstr "Selecionar nenhuma"
 
 #: ../data/ui/unattended-setup-box.ui.h:1
 msgid ""
@@ -273,6 +258,22 @@ msgstr "Selecione um arquivo"
 #: ../data/ui/wizard-source.ui.h:4
 msgid "◀"
 msgstr "◀"
+
+#: ../data/ui/wizard-toolbar.ui.h:1
+msgid "Create a Box"
+msgstr "Criar uma máquina"
+
+#: ../data/ui/wizard-toolbar.ui.h:3
+msgid "C_reate"
+msgstr "C_riar"
+
+#: ../data/ui/wizard-toolbar.ui.h:4
+msgid "C_ontinue"
+msgstr "C_ontinuar"
+
+#: ../data/ui/wizard-toolbar.ui.h:5
+msgid "_Back"
+msgstr "_Voltar"
 
 #: ../data/ui/wizard.ui.h:1
 msgid ""
@@ -391,12 +392,11 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u máquina foi excluída"
 msgstr[1] "%u máquinas foram excluídas"
 
-#: ../src/collection-view.vala:38
+#: ../src/collection-view.vala:37
 msgid "New and Recent"
 msgstr "Novos e recentes"
 
-#: ../src/display-page.vala:88
-#| msgid "(press Ctrl+Alt keys to ungrab)"
+#: ../src/display-page.vala:90
 msgid "(press [left] Ctrl+Alt keys to ungrab)"
 msgstr "(pressione as teclas Ctrl [da esquerda]+Alt para desmarcar)"
 
@@ -418,7 +418,7 @@ msgid "Virtualizer"
 msgstr "Virtualizador"
 
 #: ../src/libvirt-machine-properties.vala:121 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:426
+#: ../src/remote-machine.vala:60 ../src/wizard.vala:480
 msgid "URI"
 msgstr "URI"
 
@@ -493,11 +493,11 @@ msgstr "Selecionar"
 msgid "Remove"
 msgstr "Remover"
 
-#: ../src/libvirt-machine-properties.vala:315 ../src/wizard-source.vala:260
+#: ../src/libvirt-machine-properties.vala:315 ../src/wizard-source.vala:269
 msgid "Select a device or ISO file"
 msgstr "Selecione um dispositivo ou arquivo ISO"
 
-#: ../src/libvirt-machine-properties.vala:319 ../src/wizard-source.vala:264
+#: ../src/libvirt-machine-properties.vala:319 ../src/wizard-source.vala:273
 msgid "_Open"
 msgstr "A_brir"
 
@@ -514,11 +514,11 @@ msgstr "A inserção de \"%s\" como um CD/DVD dentro de '%s' falhou"
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "A remoção de CD/DVD de \"%s\" falhou"
 
-#: ../src/libvirt-machine-properties.vala:416 ../src/wizard.vala:464
+#: ../src/libvirt-machine-properties.vala:416 ../src/wizard.vala:518
 msgid "Memory"
 msgstr "Memória"
 
-#: ../src/libvirt-machine-properties.vala:476
+#: ../src/libvirt-machine-properties.vala:477
 msgid "Maximum Disk Size"
 msgstr "Tamanho máximo do disco"
 
@@ -585,21 +585,21 @@ msgstr ""
 "Falha ao localizar disco apropriado para importar para a máquina \"%s\""
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:127
+#: ../src/machine.vala:124
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conectando-se a %s"
 
-#: ../src/machine.vala:144 ../src/machine.vala:581
+#: ../src/machine.vala:141 ../src/machine.vala:553
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Conexão ao \"%s\" falhou"
 
-#: ../src/machine.vala:227
+#: ../src/machine.vala:224
 msgid "Saving..."
 msgstr "Salvando..."
 
-#: ../src/machine.vala:571
+#: ../src/machine.vala:543
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -608,12 +608,12 @@ msgstr ""
 "\"%s\" não pode ser restaurado a partir do disco\n"
 "Tentar sem usar estado salvo?"
 
-#: ../src/machine.vala:572
+#: ../src/machine.vala:544
 msgid "Restart"
 msgstr "Reiniciar"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:610
+#: ../src/machine.vala:582
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "\"%s\" requer autenticação"
@@ -654,7 +654,7 @@ msgstr "Relatar erros para <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Página inicial do %s: <%s>.\n"
 
-#: ../src/media-manager.vala:225
+#: ../src/media-manager.vala:228
 #, c-format
 msgid "No such file %s"
 msgstr "Arquivo %s inexistente"
@@ -699,6 +699,19 @@ msgstr "_Reiniciar"
 msgid "Pausing '%s' failed"
 msgstr "Pausa em \"%s\" falhou"
 
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
+#: ../src/selection-toolbar.vala:40
+#, c-format
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d selecionada"
+msgstr[1] "%d selecionadas"
+
+#: ../src/selection-toolbar.vala:42
+msgid "(Click on items to select them)"
+msgstr "(Clique nos itens para selecioná-los)"
+
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:31
 msgid "Unknown"
@@ -731,7 +744,8 @@ msgstr "Redirecionar novos dispositivos USB"
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: ../src/spice-display.vala:382 ../src/wizard.vala:261 ../src/wizard.vala:270
+#: ../src/spice-display.vala:382 ../src/wizard.vala:290 ../src/wizard.vala:296
+#: ../src/wizard.vala:303
 msgid "Invalid URI"
 msgstr "URI inválido"
 
@@ -744,23 +758,10 @@ msgid "Missing port in Spice URI"
 msgstr "Falta porta em Spice URI"
 
 #. Translators: The %s will be replaced with the name of the VM
-#: ../src/topbar.vala:105
+#: ../src/topbar.vala:78
 #, c-format
 msgid "%s - Properties"
 msgstr "Propriedades de %s"
-
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: ../src/topbar.vala:171
-#, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "%d selecionada"
-msgstr[1] "%d selecionadas"
-
-#: ../src/topbar.vala:173
-msgid "(Click on items to select them)"
-msgstr "(Clique nos itens para selecioná-los)"
 
 #: ../src/unattended-installer.vala:450
 msgid "Downloading device drivers..."
@@ -819,17 +820,17 @@ msgstr ""
 "%s é conhecido pelo libvirt como fila de armazenamento do GNOME Boxes porém "
 "isto não é legível/gravável"
 
-#: ../src/util.vala:351
+#: ../src/util.vala:340
 msgid "yes"
 msgstr "sim"
 
-#: ../src/util.vala:351
+#: ../src/util.vala:340
 msgid "no"
 msgstr "não"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:488
+#: ../src/vm-configurator.vala:495
 msgid "Incapable host system"
 msgstr "Sistema de máquina incompatível"
 
@@ -890,86 +891,95 @@ msgstr "Sistema 64 bits x86"
 msgid " from %s"
 msgstr " da %s"
 
-#: ../src/wizard.vala:111 ../src/wizard.vala:558
+#: ../src/wizard.vala:117
 msgid "Box creation failed"
 msgstr "A criação da máquina falhou"
 
-#: ../src/wizard.vala:153
+#: ../src/wizard.vala:170
 msgid "Please enter desktop or collection URI"
 msgstr "Por favor, digite o URI da área de trabalho ou coleção"
 
-#: ../src/wizard.vala:159
+#: ../src/wizard.vala:176
 msgid "Will add boxes for all systems available from this account."
 msgstr ""
 "Irá adicionar máquinas para todos os sistemas disponíveis para esta conta."
 
-#: ../src/wizard.vala:162
+#: ../src/wizard.vala:179
 msgid "Will add a single box."
 msgstr "Irá adicionar uma única máquina."
 
 #. ignore any parsing error
-#: ../src/wizard.vala:168
+#: ../src/wizard.vala:185
 msgid "Desktop Access"
 msgstr "Acessar área de trabalho"
 
-#: ../src/wizard.vala:284
+#: ../src/wizard.vala:320
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo sem suporte \"%s\""
 
-#: ../src/wizard.vala:290 ../src/wizard.vala:333
+#: ../src/wizard.vala:326 ../src/wizard.vala:387
 msgid "Unknown installer media"
 msgstr "Mídia de instalação desconhecida"
 
-#: ../src/wizard.vala:291 ../src/wizard.vala:334
+#: ../src/wizard.vala:327 ../src/wizard.vala:388
 msgid "Analyzing..."
 msgstr "Analisando..."
 
-#: ../src/wizard.vala:303
+#: ../src/wizard.vala:341
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Ocorreu falha ao analisar mídia de instalação. Mídia incompleta ou "
 "corrompida?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:402
+#: ../src/wizard.vala:456
 msgid "Box setup failed"
 msgstr "Instalação da máquina falhou"
 
-#: ../src/wizard.vala:416
+#: ../src/wizard.vala:470
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxes criará uma nova máquina com as seguintes propriedades:"
 
-#: ../src/wizard.vala:421
+#: ../src/wizard.vala:475
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:424
+#: ../src/wizard.vala:478
 msgid "Host"
 msgstr "Máquina"
 
-#: ../src/wizard.vala:435 ../src/wizard.vala:446
+#: ../src/wizard.vala:489 ../src/wizard.vala:500
 msgid "Port"
 msgstr "Porta"
 
-#: ../src/wizard.vala:437
+#: ../src/wizard.vala:491
 msgid "TLS Port"
 msgstr "Porta TLS"
 
-#: ../src/wizard.vala:451
+#: ../src/wizard.vala:505
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Irá adicionar máquinas para todos os sistemas disponíveis desta conta:"
 
-#: ../src/wizard.vala:473
+#: ../src/wizard.vala:527
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:473
+#: ../src/wizard.vala:527
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:631
+#: ../src/wizard.vala:591
+#| msgid "Downloading device drivers..."
+msgid "Downloading media..."
+msgstr "Baixando mídia..."
+
+#: ../src/wizard.vala:601
+msgid "Download failed."
+msgstr "O download falhou."
+
+#: ../src/wizard.vala:709
 msgid "C_ustomize..."
 msgstr "P_ersonalizar..."
 
