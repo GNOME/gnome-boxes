@@ -44,14 +44,6 @@ public class Boxes.ArchiveReader : GLib.Object {
         open_archive ();
     }
 
-    // src_dest is a hash table where the key is the relative path in the archive and the value the path to extract to
-    private void extract_files (string[] src_list,
-                                string[] dest_list,
-                                bool     override_if_necessary = false)
-                                throws GLib.IOError {
-        extract_files_recursive (src_list, dest_list, override_if_necessary);
-    }
-
     private void extract_files_recursive (string[] src_list,
                                           string[] dest_list,
                                           bool     override_if_necessary = false,
