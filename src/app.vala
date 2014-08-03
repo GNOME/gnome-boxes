@@ -499,4 +499,22 @@ private class Boxes.App: Gtk.Application {
 
         return window;
     }
+
+    public new bool remove_window (AppWindow window) {
+        var initial_windows_count = windows.length ();
+
+        if (window.current_item != null)
+            (window.current_item as Machine).window = null;
+
+        window.hide ();
+        windows.remove (window);
+        base.remove_window (window);
+
+        if (windows.length () == 0)
+            return quit_app ();
+
+        notify_property ("main-window");
+
+        return initial_windows_count != windows.length ();
+    }
 }

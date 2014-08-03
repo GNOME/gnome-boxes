@@ -305,6 +305,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     [GtkCallback]
     private bool on_delete_event () {
-        return App.app.quit_app ();
+        return_if_fail (current_item == null || current_item is Machine);
+
+        if (current_item != null)
+            (current_item as Machine).window = null;
+
+        return App.app.remove_window (this);
     }
 }
