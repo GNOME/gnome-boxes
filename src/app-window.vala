@@ -219,13 +219,21 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void select_item (CollectionItem item) {
         if (ui_state == UIState.COLLECTION && !selection_mode) {
+            return_if_fail (item is Machine);
+
+            var machine = item as Machine;
+
+            if (machine.window != App.app.main_window) {
+                machine.window.present ();
+
+                return;
+            }
+
             current_item = item;
 
-            if (current_item is Machine) {
-                var machine = current_item as Machine;
-
+            if (current_item is Machine)
                 connect_to (machine);
-            } else
+            else
                 warning ("unknown item, fix your code");
 
             item_selected (item);
