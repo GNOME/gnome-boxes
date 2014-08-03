@@ -48,6 +48,11 @@ private class Boxes.Collection: GLib.Object {
         items.remove (item);
         item_removed (item);
     }
+
+    public void populate (CollectionView view) {
+        for (uint i = 0 ; i < items.length ; i++)
+            view.add_item (items[i]);
+    }
 }
 
 private class Boxes.CollectionFilter: GLib.Object {
