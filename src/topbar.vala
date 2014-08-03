@@ -101,7 +101,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         this.window = window;
 
         window.notify["selection-mode"].connect (() => {
-            page = window.selection_mode ?
+            // FIXME: Usage of 'this' is a work around for https://bugzilla.gnome.org/show_bug.cgi?id=734877
+            page = this.window.selection_mode ?
                 TopbarPage.SELECTION : page = TopbarPage.COLLECTION;
         });
 
