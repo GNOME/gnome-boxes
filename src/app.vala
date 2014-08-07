@@ -18,7 +18,11 @@ private abstract class Boxes.Broker : GLib.Object {
 private class Boxes.App: Gtk.Application {
     public static App app;
 
-    public AppWindow main_window { get; private set; }
+    private List<Boxes.AppWindow> windows;
+
+    public unowned AppWindow main_window {
+        get { return (windows.length () > 0) ? windows.data : null; }
+    }
 
     public string? uri { get; set; }
     public Collection collection;
@@ -40,6 +44,7 @@ private class Boxes.App: Gtk.Application {
         flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 
         app = this;
+        windows = new List<Boxes.AppWindow> ();
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
         filter = new Boxes.CollectionFilter ();
@@ -155,11 +160,8 @@ private class Boxes.App: Gtk.Application {
         if (main_window != null)
             return;
 
-        main_window = new Boxes.AppWindow (this);
-        main_window.setup_ui ();
-        main_window.set_state (UIState.COLLECTION);
-
-        main_window.present ();
+        var window = add_new_window ();
+        window.set_state (UIState.COLLECTION);
     }
 
     static bool opt_fullscreen;
@@ -255,7 +257,8 @@ private class Boxes.App: Gtk.Application {
     }
 
     public bool quit_app () {
-        main_window.hide ();
+        foreach (var window in windows)
+            window.hide ();
 
         Idle.add (() => {
             quit ();
@@ -269,8 +272,10 @@ private class Boxes.App: Gtk.Application {
     public override void shutdown () {
         base.shutdown ();
 
-        main_window.notificationbar.cancel ();
-        main_window.wizard.cleanup ();
+        foreach (var window in windows) {
+            window.notificationbar.cancel ();
+            window.wizard.cleanup ();
+        }
         suspend_machines ();
     }
 
@@ -481,5 +486,17 @@ private class Boxes.App: Gtk.Application {
                                                       num_selected).printf (num_selected);
 
         delete_machines_undoable ((owned) selected_items, message);
+    }
+
+    public AppWindow add_new_window () {
+        var window = new Boxes.AppWindow (this);
+
+        windows.append (window);
+        window.setup_ui ();
+        window.present ();
+
+        notify_property ("main-window");
+
+        return window;
     }
 }
