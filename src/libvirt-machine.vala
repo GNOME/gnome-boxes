@@ -22,7 +22,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     // If this machine is currently being imported
     public bool importing { get { return vm_creator != null && vm_creator is VMImporter; } }
 
-    private LibvirtMachineProperties properties;
+    public LibvirtMachineProperties properties;
 
     public bool save_on_quit {
         get { return source.get_boolean ("source", "save-on-quit"); }
