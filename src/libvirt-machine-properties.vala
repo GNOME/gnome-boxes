@@ -275,6 +275,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             }
 
             break;
+
+        case PropertiesPage.SNAPSHOTS:
+            add_snapshots_property (ref list, machine);
+
+            break;
         }
 
         return list;
@@ -633,5 +638,14 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         return yield machine.domain.create_snapshot_async (config, 0, null);
     }
+
+    private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list,
+                                                            LibvirtMachine           machine) {
+      var property = new SnapshotsProperty (machine);
+      list.append (property);
+
+      return property;
+    }
+
 
 }
