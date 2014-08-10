@@ -263,7 +263,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                                        throws GLib.Error
                                        requires (probing || progress != null) {
         if (location == "")
-            throw new Boxes.Error.INVALID ("empty location");
+            throw new Boxes.Error.INVALID (_("Empty location"));
 
         var file = location.contains ("://")? File.new_for_uri (location) : File.new_for_path (location);
         var path = file.get_path ();
