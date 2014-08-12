@@ -13,23 +13,11 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    private Gtk.Notebook notebook;
-    [GtkChild]
-    private Gtk.Box wizard_vbox;
-    [GtkChild]
-    private Gtk.Label wizard_intro_label;
-    [GtkChild]
-    private Gtk.Label wizard_source_label;
-    [GtkChild]
-    private Gtk.Label wizard_preparation_label;
-    [GtkChild]
-    private Gtk.Label wizard_setup_label;
-    [GtkChild]
-    private Gtk.Label wizard_review_label;
-
+    public WizardSidebar wizard_sidebar;
     [GtkChild]
     public Gtk.Image screenshot;
     [GtkChild]
+    private Gtk.Notebook notebook;
     public Gtk.ListStore props_listmodel;
     [GtkChild]
     private Gtk.TreeModelFilter props_model_filter;
@@ -53,31 +41,6 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
 
     public void setup_ui (AppWindow window) {
         this.window = window;
-    }
-
-    public void set_wizard_page (WizardPage wizard_page) {
-        foreach (var label in wizard_vbox.get_children ())
-            label.get_style_context ().remove_class ("boxes-wizard-current-page-label");
-
-        Gtk.Label current_label = null;
-        switch ((int) wizard_page) {
-        case WizardPage.INTRODUCTION:
-            current_label = wizard_intro_label;
-            break;
-        case WizardPage.SOURCE:
-            current_label = wizard_source_label;
-            break;
-        case WizardPage.PREPARATION:
-            current_label = wizard_preparation_label;
-            break;
-        case WizardPage.SETUP:
-            current_label = wizard_setup_label;
-            break;
-        case WizardPage.REVIEW:
-            current_label = wizard_review_label;
-            break;
-        }
-        current_label.get_style_context ().add_class ("boxes-wizard-current-page-label");
     }
 
     private void ui_state_changed () {

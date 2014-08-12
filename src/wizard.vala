@@ -135,7 +135,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
-            window.sidebar.set_wizard_page (value);
+            window.sidebar.wizard_sidebar.set_page (value);
             visible_child_name = page_names[value];
 
             if (value == WizardPage.SOURCE)
