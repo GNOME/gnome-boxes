@@ -134,14 +134,15 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
     }
 
     private void populate () {
-        window.sidebar.props_listmodel.clear ();
+        window.sidebar.props_sidebar.listmodel.clear ();
         foreach (var page in get_children ())
             remove (page);
 
         var machine = window.current_item as Machine;
         var libvirt_machine = window.current_item as LibvirtMachine;
 
-        window.sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
+        window.sidebar.props_sidebar.shutdown_button.sensitive = libvirt_machine != null &&
+                                                                 libvirt_machine.is_running ();
 
         if (machine == null)
             return;
@@ -155,11 +156,11 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
                 var current_page = page;
                 this.populate ();
                 var path = new Gtk.TreePath.from_indices (current_page);
-                window.sidebar.props_selection.select_path (path);
+                window.sidebar.props_sidebar.selection.select_path (path);
                 page = current_page;
             });
 
-            list_append (window.sidebar.props_listmodel, page.name, !page.empty);
+            list_append (window.sidebar.props_sidebar.listmodel, page.name, !page.empty);
         }
 
         PropertiesPage current_page;
@@ -170,7 +171,7 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
             current_page = PropertiesPage.LOGIN;
 
         var path = new Gtk.TreePath.from_indices (current_page);
-        window.sidebar.props_selection.select_path (path);
+        window.sidebar.props_sidebar.selection.select_path (path);
         visible_child_name = page_names[current_page];
     }
 
@@ -196,9 +197,9 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
             if (window.current_item is LibvirtMachine) {
                 var libvirt_machine = window.current_item as LibvirtMachine;
                 stats_id = libvirt_machine.stats_updated.connect (() => {
-                    window.sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
-                    window.sidebar.net_graph.points = libvirt_machine.net_stats;
-                    window.sidebar.io_graph.points = libvirt_machine.io_stats;
+                    window.sidebar.props_sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
+                    window.sidebar.props_sidebar.net_graph.points = libvirt_machine.net_stats;
+                    window.sidebar.props_sidebar.io_graph.points = libvirt_machine.io_stats;
                 });
             }
 

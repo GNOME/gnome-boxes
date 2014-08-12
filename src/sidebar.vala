@@ -15,32 +15,19 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
     [GtkChild]
     public WizardSidebar wizard_sidebar;
     [GtkChild]
-    public Gtk.Image screenshot;
+    public PropertiesSidebar props_sidebar;
     [GtkChild]
     private Gtk.Notebook notebook;
-    public Gtk.ListStore props_listmodel;
-    [GtkChild]
-    private Gtk.TreeModelFilter props_model_filter;
-    [GtkChild]
-    public Gtk.TreeSelection props_selection;
-    [GtkChild]
-    public Gtk.Button shutdown_button;
-    [GtkChild]
-    public MiniGraph cpu_graph;
-    [GtkChild]
-    public MiniGraph io_graph;
-    [GtkChild]
-    public MiniGraph net_graph;
 
     private AppWindow window;
 
     construct {
         notify["ui-state"].connect (ui_state_changed);
-        setup_sidebar ();
     }
 
     public void setup_ui (AppWindow window) {
         this.window = window;
+        props_sidebar.setup_ui (window);
     }
 
     private void ui_state_changed () {
@@ -55,24 +42,5 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
             reveal_child = false;
             break;
         }
-    }
-
-    private void setup_sidebar () {
-        props_model_filter.set_visible_column (1);
-    }
-
-    [GtkCallback]
-    private void on_props_row_activated (Gtk.TreeView treeview, Gtk.TreePath path, Gtk.TreeViewColumn column) {
-        Gtk.TreeIter filter_iter, iter;
-        props_model_filter.get_iter (out filter_iter, path);
-        props_model_filter.convert_iter_to_child_iter (out iter, filter_iter);
-        window.properties.page = (PropertiesPage) props_listmodel.get_path (iter).get_indices ()[0];
-    }
-
-    [GtkCallback]
-    private void on_shutdown_button_clicked () {
-        var machine = window.current_item as LibvirtMachine;
-        if (machine != null)
-            machine.force_shutdown ();
     }
 }
