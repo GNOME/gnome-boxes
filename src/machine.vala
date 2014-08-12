@@ -72,6 +72,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (display != null && !stay_on_display &&
                 window.current_item == this &&
                 value != MachineState.RUNNING &&
+                window.ui_state != UIState.PROPERTIES &&
                 value != MachineState.UNKNOWN) {
                 window.set_state (Boxes.UIState.COLLECTION);
             }
@@ -99,6 +100,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             window.display_page.show_display (display, widget);
             widget.grab_focus ();
 
+            break;
+
+        case Boxes.UIState.PROPERTIES:
+            var widget = display.get_display (0);
+            widget_remove (widget);
+            display.set_enable_inputs (widget, true);
+            window.display_page.replace_display (display, widget);
             break;
         }
     }
