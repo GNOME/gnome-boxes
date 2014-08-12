@@ -3,7 +3,6 @@ using Gtk;
 using Gdk;
 
 private enum Boxes.SidebarPage {
-    COLLECTION,
     WIZARD,
     PROPERTIES,
 }
