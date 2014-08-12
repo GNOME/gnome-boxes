@@ -18,7 +18,7 @@ private class Boxes.SelectionToolbar: HeaderBar {
     }
 
     construct {
-        // Work around for https://bugzilla.gnome.org/show_bug.cgi?id=734664
+        // Work around for https://bugzilla.gnome.org/show_bug.cgi?id=734676
         custom_title = menu_button;
 
         App.app.notify["selected-items"].connect (() => {
