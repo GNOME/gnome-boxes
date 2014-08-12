@@ -100,7 +100,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         kbd = lang;
         product_key_format = get_product_key_format ();
 
-        setup_box = new UnattendedSetupBox (os_media.live, product_key_format);
+        setup_box = new UnattendedSetupBox (os_media.live, product_key_format, false);
         setup_box.notify["ready-to-create"].connect (() => {
             notify_property ("ready-to-create");
         });
@@ -281,6 +281,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     public override void clean_up () {
         base.clean_up ();
+
+        setup_box.clean_up ();
 
         try {
             if (disk_file != null) {

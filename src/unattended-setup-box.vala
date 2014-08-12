@@ -87,10 +87,11 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
     private string? product_key_format;
 
-    public UnattendedSetupBox (bool live, string? product_key_format) {
+    public UnattendedSetupBox (bool live, string? product_key_format, bool needs_internet) {
         this.product_key_format = product_key_format;
-        express_toggle.active = !live;
         username_entry.text = Environment.get_user_name ();
+
+        setup_express_toggle (live, needs_internet);
 
         if (product_key_format != null) {
             product_key_label.visible = true;
@@ -103,6 +104,30 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         foreach (var child in setup_grid.get_children ())
             if (child != express_label && child != express_toggle)
                 express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
+    }
+
+    public void clean_up () {
+        NetworkMonitor.get_default ().network_changed.disconnect (update_express_toggle);
+    }
+
+    private void setup_express_toggle (bool live, bool needs_internet) {
+        express_toggle.active = !live;
+
+        if (!needs_internet)
+            return;
+
+        var network_monitor = NetworkMonitor.get_default ();
+        update_express_toggle (network_monitor.get_network_available ());
+        network_monitor.network_changed.connect (update_express_toggle);
+    }
+
+    private void update_express_toggle(bool network_available) {
+        if (network_available) {
+            express_toggle.sensitive = true;
+        } else {
+            express_toggle.sensitive = false;
+            express_toggle.active = false;
+        }
     }
 
     [GtkCallback]
