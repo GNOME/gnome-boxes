@@ -311,6 +311,28 @@ private class Boxes.App: Gtk.Application {
         return false;
     }
 
+    public void open_selected_items_in_new_window () {
+        var selected_items = main_window.view.get_selected_items ();
+
+        main_window.selection_mode = false;
+
+        foreach (var item in selected_items) {
+            if (item is Machine)
+                open_in_new_window (item as Machine);
+        }
+    }
+
+    private void open_in_new_window (Machine machine) {
+        if (machine.window != main_window) {
+            machine.window.present ();
+
+            return;
+        }
+
+        var window = add_new_window ();
+        window.connect_to (machine);
+    }
+
     public void delete_machine (Machine machine, bool by_user = true) {
         machine.delete (by_user);         // Will also delete associated storage volume if by_user is 'true'
         collection.remove_item (machine);

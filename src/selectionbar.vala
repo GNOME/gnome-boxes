@@ -11,6 +11,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     private Gtk.Button remove_btn;
     [GtkChild]
     private Gtk.Button properties_btn;
+    [GtkChild]
+    private Gtk.Button open_btn;
 
     private AppWindow window;
 
@@ -20,6 +22,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             update_properties_btn ();
             update_pause_btn ();
             update_delete_btn ();
+            update_open_btn ();
         });
     }
 
@@ -64,6 +67,11 @@ private class Boxes.Selectionbar: Gtk.Revealer {
 
         pause_btn.sensitive = false;
         window.selection_mode = false;
+    }
+
+    [GtkCallback]
+    private void on_open_btn_clicked () {
+        App.app.open_selected_items_in_new_window ();
     }
 
     [GtkCallback]
@@ -147,5 +155,16 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         }
 
         remove_btn.sensitive = sensitive;
+    }
+
+    private void update_open_btn () {
+        var items = App.app.selected_items.length ();
+
+        open_btn.sensitive = items > 0;
+        // Translators: This is a button to open box(es) in new window(s)
+        if (items == 0)
+            open_btn.label = _("_Open in new window");
+        else
+            open_btn.label = ngettext ("_Open in new window", "_Open in %d new windows", items).printf (items);
     }
 }
