@@ -6,6 +6,8 @@ private class Boxes.SelectionToolbar: HeaderBar {
     [GtkChild]
     private Button search_btn;
     [GtkChild]
+    private MenuButton menu_button;
+    [GtkChild]
     private Label menu_button_label;
 
     private AppWindow window;
@@ -16,6 +18,9 @@ private class Boxes.SelectionToolbar: HeaderBar {
     }
 
     construct {
+        // Work around for https://bugzilla.gnome.org/show_bug.cgi?id=734664
+        custom_title = menu_button;
+
         App.app.notify["selected-items"].connect (() => {
             update_selection_label ();
         });
