@@ -101,6 +101,13 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
 
     public void show_display (Boxes.Display display, Widget widget) {
+        replace_display (display, widget);
+
+        window.below_bin.set_visible_child_name ("display-page");
+        widget.grab_focus ();
+    }
+
+    public void replace_display (Boxes.Display display, Widget widget) {
         if (event_box.get_child () == widget)
             return;
 
@@ -144,10 +151,6 @@ private class Boxes.DisplayPage: Gtk.Box {
 
             return false;
         });
-
-        window.below_bin.set_visible_child_name ("display-page");
-
-        widget.grab_focus ();
     }
 
     public Widget? remove_display () {
