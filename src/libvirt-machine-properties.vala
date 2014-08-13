@@ -557,7 +557,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             minimum_resources = OSDatabase.get_minimum_resources_for_os (os, architecture);
         }
 
-        if (minimum_resources != null) {
+        if (minimum_resources != null && minimum_resources.storage != -1) {
             return minimum_resources.storage;
         } else {
             var default_resources = OSDatabase.get_default_resources ();
