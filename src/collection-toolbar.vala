@@ -36,6 +36,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
         search_btn.bind_property ("active", window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
         window.notify["ui-state"].connect (ui_state_changed);
+        App.app.notify["main-window"].connect (ui_state_changed);
     }
 
     [GtkCallback]
@@ -76,7 +77,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
         case UIState.CREDS:
             new_btn.hide ();
-            back_btn.show ();
+            back_btn.visible = (window == App.app.main_window);
             select_btn.hide ();
             search_btn.hide ();
             break;
