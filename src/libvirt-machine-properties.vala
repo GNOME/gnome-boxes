@@ -9,9 +9,16 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
     public LibvirtMachineProperties (LibvirtMachine machine) {
         this.machine = machine;
+
+        machine.notify["name"].connect (() => {
+            try_change_name (machine.name);
+        });
     }
 
     private bool try_change_name (string name) {
+        if (machine.name == name)
+            return false;
+
         try {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             // Te use libvirt "title" for free form user name
