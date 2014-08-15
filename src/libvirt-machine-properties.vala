@@ -123,6 +123,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             property.changed.connect ((property, name) => {
                 return try_change_name (name);
             });
+
+            var name_property = property;
+            machine.notify["name"].connect (() => {
+                name_property.text = machine.name;
+            });
+
             add_string_property (ref list, _("Virtualizer"), machine.source.uri);
             if (machine.display != null)
                 property = add_string_property (ref list, _("URI"), machine.display.uri);
