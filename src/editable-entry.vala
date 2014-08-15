@@ -52,6 +52,23 @@ private class Boxes.EditableEntry: Notebook {
         }
     }
 
+    public float text_xalign {
+        get { return label.xalign; }
+        set {
+            label.xalign = value;
+            button_label.xalign = value;
+            entry.xalign = value;
+        }
+    }
+
+    public float text_yalign {
+        get { return label.yalign; }
+        set {
+            label.yalign = value;
+            button_label.yalign = value;
+        }
+    }
+
     private Pango.Weight _weight = Pango.Weight.NORMAL;
     /* This is disabled for now since its impossible to
        declare a default for the paramspec, and the number that
