@@ -85,7 +85,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     [GtkChild]
     private Gtk.Entry product_key_entry;
 
-    string? product_key_format;
+    private string? product_key_format;
 
     public UnattendedSetupBox (bool live, string? product_key_format) {
         this.product_key_format = product_key_format;
@@ -149,7 +149,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             username_entry.grab_focus (); // If product key is provided, must be username thats still not provided.
     }
 
-    bool we_inserted_text;
+    private bool we_inserted_text;
 
     [GtkCallback]
     private void on_key_text_inserted (string text, int text_length, ref int position) {
