@@ -124,6 +124,11 @@ private class Boxes.StringProperty : Boxes.Property {
         set { entry.editable = value; }
     }
 
+    public string text {
+        get { return entry.text; }
+        set { entry.text = value; }
+    }
+
     private Boxes.EditableEntry entry;
 
     public StringProperty (string name, string value) {
