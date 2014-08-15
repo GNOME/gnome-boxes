@@ -9,6 +9,36 @@
     <property name="halign">center</property>
     <property name="valign">center</property>
     <child>
+      <object class="GtkInfoBar" id="needs_internet_bar">
+        <property name="visible">False</property>
+        <property name="halign">fill</property>
+        <property name="spacing">0</property>
+        <property name="message-type">info</property>
+        <child internal-child="content_area">
+          <object class="GtkContainer" id="needs_internet_container">
+            <property name="visible">True</property>
+
+            <child>
+              <object class="GtkImage" id="needs_internet_image">
+                <property name="visible">True</property>
+                <property name="icon-name">dialog-information</property>
+                <property name="icon-size">3</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel" id="needs_internet_label">
+                <property name="visible">True</property>
+                <property name="wrap">True</property>
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
       <object class="GtkLabel" id="setup_label">
         <property name="label" translatable="yes">Choose express install to automatically preconfigure the box with optimal settings.</property>
         <property name="visible">True</property>

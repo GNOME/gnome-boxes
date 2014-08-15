@@ -67,6 +67,10 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     public signal void user_wants_to_create (); // User wants to already create the VM
 
     [GtkChild]
+    private Gtk.InfoBar needs_internet_bar;
+    [GtkChild]
+    private Gtk.Label needs_internet_label;
+    [GtkChild]
     private Gtk.Grid setup_grid;
     [GtkChild]
     private Gtk.Label express_label;
@@ -87,11 +91,14 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
     private string? product_key_format;
 
-    public UnattendedSetupBox (bool live, string? product_key_format, bool needs_internet) {
+    public UnattendedSetupBox (bool live, string? product_key_format, bool needs_internet, string os_name) {
         this.product_key_format = product_key_format;
         username_entry.text = Environment.get_user_name ();
 
         setup_express_toggle (live, needs_internet);
+        var msg = _("Express installation of %s requires an internet connection.").printf (os_name);
+        needs_internet_label.label = msg;
+        needs_internet_bar.visible = needs_internet;
 
         if (product_key_format != null) {
             product_key_label.visible = true;
