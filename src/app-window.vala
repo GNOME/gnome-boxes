@@ -261,6 +261,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             App.app.quit_app ();
 
             return true;
+        } else if (event.keyval == Gdk.Key.n &&
+                   (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
+            topbar.click_new_button ();
+
+            return true;
         } else if (event.keyval == Gdk.Key.a &&
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             App.app.quit_app ();

@@ -43,6 +43,10 @@ private class Boxes.CollectionToolbar: HeaderBar {
         back_btn.clicked ();
     }
 
+    public void click_new_button () {
+        new_btn.clicked ();
+    }
+
     [GtkCallback]
     private void on_new_btn_clicked () {
         window.set_state (UIState.WIZARD);
