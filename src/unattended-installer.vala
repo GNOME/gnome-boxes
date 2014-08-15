@@ -87,10 +87,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         unattended_files = new GLib.List<UnattendedFile> ();
         secondary_unattended_files = new GLib.List<UnattendedFile> ();
+        var needs_internet = false;
         foreach (var s in scripts.get_elements ()) {
             var script = s as InstallScript;
             var filename = script.get_expected_filename ();
             add_unattended_file (new UnattendedScriptFile (this, script, filename));
+            needs_internet = needs_internet || script.get_needs_internet ();
         }
 
         additional_devices = new Osinfo.DeviceList ();
@@ -100,7 +102,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         kbd = lang;
         product_key_format = get_product_key_format ();
 
-        setup_box = new UnattendedSetupBox (os_media.live, product_key_format, false, label);
+        setup_box = new UnattendedSetupBox (os_media.live, product_key_format, needs_internet, label);
         setup_box.notify["ready-to-create"].connect (() => {
             notify_property ("ready-to-create");
         });
