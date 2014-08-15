@@ -478,6 +478,22 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 add_string_property (ref list,
                                      _("Maximum Disk Size"),
                                      "%s".printf (format_size (volume_info.capacity, FormatSizeFlags.DEFAULT)));
+
+                var infobar = new Gtk.InfoBar ();
+                infobar.message_type = Gtk.MessageType.WARNING;
+
+                var content = infobar.get_content_area ();
+
+                var image = new Gtk.Image ();
+                image.icon_name = "dialog-warning";
+                image.icon_size = 3;
+                content.add (image);
+
+                var msg = _("There is not enough space on your machine to increase the maximum disk size.");
+                var label = new Gtk.Label (msg);
+                content.add (label);
+
+                add_property (ref list, null, infobar);
                 return null;
             }
 
