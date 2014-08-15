@@ -59,6 +59,11 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
                 return true;
             });
 
+            var name_property = property;
+            notify["name"].connect (() => {
+                name_property.text = name;
+            });
+
             property = add_string_property (ref list, _("URI"), source.uri);
             if (!is_connected ())
                 property.editable = true;
