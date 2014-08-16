@@ -47,6 +47,10 @@ private class Boxes.CollectionToolbar: HeaderBar {
         new_btn.clicked ();
     }
 
+    public void click_search_button () {
+        search_btn.clicked ();
+    }
+
     [GtkCallback]
     private void on_new_btn_clicked () {
         window.set_state (UIState.WIZARD);
