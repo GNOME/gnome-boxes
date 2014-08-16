@@ -39,6 +39,10 @@ private class Boxes.CollectionToolbar: HeaderBar {
         App.app.notify["main-window"].connect (ui_state_changed);
     }
 
+    public void click_back_button () {
+        back_btn.clicked ();
+    }
+
     [GtkCallback]
     private void on_new_btn_clicked () {
         window.set_state (UIState.WIZARD);
@@ -60,10 +64,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
     private void update_select_btn () {
         select_btn.sensitive = App.app.collection.items.length != 0;
-    }
-
-    public void click_back_button () {
-        back_btn.clicked ();
     }
 
     private void ui_state_changed () {
