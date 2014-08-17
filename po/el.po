@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-11 18:04+0000\n"
-"PO-Revision-Date: 2014-08-12 01:09+0200\n"
+"POT-Creation-Date: 2014-08-16 16:27+0000\n"
+"PO-Revision-Date: 2014-08-17 12:47+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: www.gnome.gr\n"
 "Language: el\n"
@@ -144,6 +144,22 @@ msgstr "<b><span size=\"large\">Δε βρέθηκαν πλαίσια</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "Δημιουργήστε ένα χρησιμοποιώντας το κουμπί πάνω αριστερά."
 
+#: ../data/ui/properties-sidebar.ui.h:1
+msgid "CPU:"
+msgstr "CPU:"
+
+#: ../data/ui/properties-sidebar.ui.h:2
+msgid "I/O:"
+msgstr "I/O:"
+
+#: ../data/ui/properties-sidebar.ui.h:3
+msgid "Net:"
+msgstr "Δίκτυο:"
+
+#: ../data/ui/properties-sidebar.ui.h:4
+msgid "Force Shutdown"
+msgstr "Εξαναγκασμός τερματισμού"
+
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
 msgstr "Παύ_ση"
@@ -157,7 +173,7 @@ msgid "_Properties"
 msgstr "_Ιδιότητες"
 
 #: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:318 ../src/libvirt-machine.vala:447
+#: ../src/libvirt-machine-properties.vala:331 ../src/libvirt-machine.vala:447
 #: ../src/wizard-source.vala:280
 msgid "_Cancel"
 msgstr "Ακύ_ρωση"
@@ -174,42 +190,6 @@ msgstr "Επιλογή εκτελούμενων"
 msgid "Select None"
 msgstr "Επιλογή κανενός"
 
-#: ../data/ui/sidebar.ui.h:1
-msgid "Introduction"
-msgstr "Εισαγωγή"
-
-#: ../data/ui/sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "Επιλογή πηγής"
-
-#: ../data/ui/sidebar.ui.h:3
-msgid "Preparation"
-msgstr "Προετοιμασία"
-
-#: ../data/ui/sidebar.ui.h:4
-msgid "Setup"
-msgstr "Ρύθμιση"
-
-#: ../data/ui/sidebar.ui.h:5
-msgid "Review"
-msgstr "Επισκόπηση"
-
-#: ../data/ui/sidebar.ui.h:6
-msgid "CPU:"
-msgstr "CPU:"
-
-#: ../data/ui/sidebar.ui.h:7
-msgid "I/O:"
-msgstr "I/O:"
-
-#: ../data/ui/sidebar.ui.h:8
-msgid "Net:"
-msgstr "Δίκτυο:"
-
-#: ../data/ui/sidebar.ui.h:9
-msgid "Force Shutdown"
-msgstr "Εξαναγκασμός τερματισμού"
-
 #: ../data/ui/unattended-setup-box.ui.h:1
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
@@ -222,11 +202,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Γρήγορη εγκατάσταση"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:264
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:266
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:265
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:267
 msgid "Password"
 msgstr "Κωδικός πρόσβασης"
 
@@ -241,6 +221,26 @@ msgstr "Κλειδί προιόντος"
 #: ../data/ui/wizard-media-entry.ui.h:1
 msgid "Unknown media"
 msgstr "Άγνωστα μέσα"
+
+#: ../data/ui/wizard-sidebar.ui.h:1
+msgid "Introduction"
+msgstr "Εισαγωγή"
+
+#: ../data/ui/wizard-sidebar.ui.h:2
+msgid "Source Selection"
+msgstr "Επιλογή πηγής"
+
+#: ../data/ui/wizard-sidebar.ui.h:3
+msgid "Preparation"
+msgstr "Προετοιμασία"
+
+#: ../data/ui/wizard-sidebar.ui.h:4
+msgid "Setup"
+msgstr "Ρύθμιση"
+
+#: ../data/ui/wizard-sidebar.ui.h:5
+msgid "Review"
+msgstr "Επισκόπηση"
 
 #: ../data/ui/wizard-source.ui.h:1
 msgid "Enter URL"
@@ -318,7 +318,7 @@ msgstr ""
 "έχετε πρόσφατο σύστημα (μετά το 2008), ελέξτε τις ρυθμίσεις στο BIOS ώστε να "
 "τις ενεργοποιήσετε."
 
-#: ../src/app.vala:90
+#: ../src/app.vala:95
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -330,69 +330,69 @@ msgstr ""
 "Για περισσότερες πληροφορίες, επισκεφθείτε τη σελίδα\n"
 "http://gnome.gr/"
 
-#: ../src/app.vala:91
+#: ../src/app.vala:96
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε απομακρυσμένα ή "
 "εικονικά συστήματα"
 
-#: ../src/app.vala:110
+#: ../src/app.vala:115
 msgid "Help"
 msgstr "Βοήθεια"
 
-#: ../src/app.vala:111
+#: ../src/app.vala:116
 msgid "About"
 msgstr "Περί"
 
-#: ../src/app.vala:112
+#: ../src/app.vala:117
 msgid "Quit"
 msgstr "Έξοδος"
 
-#: ../src/app.vala:171 ../src/main.vala:9
+#: ../src/app.vala:173 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Εμφάνιση αριθμού έκδοσης"
 
-#: ../src/app.vala:173
+#: ../src/app.vala:175
 msgid "Open in full screen"
 msgstr "Άνοιγμα σε πλήρη οθόνη"
 
-#: ../src/app.vala:174 ../src/main.vala:10
+#: ../src/app.vala:176 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Έλεγχος δυνατοτήτων εικονικοποίησης"
 
-#: ../src/app.vala:175
+#: ../src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Άνοιγμα πλαισίου με UUID"
 
-#: ../src/app.vala:176
+#: ../src/app.vala:178
 msgid "Search term"
 msgstr "Όρος αναζήτησης"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:178
+#: ../src/app.vala:180
 msgid "URI to display, broker or installer media"
 msgstr "URI για εμφάνιση, μεσολαβητής ή πολυμέσο εγκατάστασης"
 
-#: ../src/app.vala:189
+#: ../src/app.vala:191
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Μια απλή εφαρμογή για να έχετε πρόσβαση σε απομακρυσμένα ή εικονικά "
 "συστήματα"
 
-#: ../src/app.vala:211
+#: ../src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "Καθορίστηκαν πάρα πολλά ορίσματα τερματικού.\n"
 
-#: ../src/app.vala:467
+#: ../src/app.vala:494
 msgid "_Undo"
 msgstr "Α_ναίρεση"
 
-#: ../src/app.vala:478
+#: ../src/app.vala:505
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Έχει διαγραφεί το πλαίσιο '%s'"
 
-#: ../src/app.vala:479
+#: ../src/app.vala:506
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -416,118 +416,126 @@ msgstr "Μη υποστηριζόμενη μορφή στιγμιοτύπου."
 msgid "System"
 msgstr "Σύστημα"
 
-#: ../src/libvirt-machine-properties.vala:114 ../src/remote-machine.vala:53
+#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:55
 msgid "Name"
 msgstr "Όνομα"
 
-#: ../src/libvirt-machine-properties.vala:119 ../src/ovirt-machine.vala:64
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:64
 msgid "Virtualizer"
 msgstr "Virtualizer"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:60 ../src/wizard.vala:482
+#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
+#: ../src/remote-machine.vala:67 ../src/wizard.vala:482
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine-properties.vala:129
-#: ../src/libvirt-machine-properties.vala:134
+#: ../src/libvirt-machine-properties.vala:142
+#: ../src/libvirt-machine-properties.vala:147
 msgid "Troubleshooting log"
 msgstr "Αρχείο καταγραφής αντιμετώπισης προβλημάτων"
 
-#: ../src/libvirt-machine-properties.vala:137
-#: ../src/libvirt-machine-properties.vala:155
+#: ../src/libvirt-machine-properties.vala:150
+#: ../src/libvirt-machine-properties.vala:168
 msgid "_Save"
 msgstr "_Αποθήκευση"
 
-#: ../src/libvirt-machine-properties.vala:138
+#: ../src/libvirt-machine-properties.vala:151
 msgid "Copy to clipboard"
 msgstr "Αντιγραφή στο πρόχειρο"
 
-#: ../src/libvirt-machine-properties.vala:139
+#: ../src/libvirt-machine-properties.vala:152
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: ../src/libvirt-machine-properties.vala:153
+#: ../src/libvirt-machine-properties.vala:166
 msgid "Save log"
 msgstr "Αποθήκευση ημερολογίου"
 
-#: ../src/libvirt-machine-properties.vala:169
+#: ../src/libvirt-machine-properties.vala:182
 #, c-format
 msgid "Error saving: %s"
 msgstr "Σφάλμα αποθήκευσης: %s"
 
-#: ../src/libvirt-machine-properties.vala:192 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:71
+#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
+#: ../src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "Πρωτόκολλο"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:231
-#: ../src/libvirt-machine-properties.vala:249
+#: ../src/libvirt-machine-properties.vala:244
+#: ../src/libvirt-machine-properties.vala:262
 msgid "Add support to guest"
 msgstr "Προσθήκη υποστήριξης στον επισκέπτη"
 
-#: ../src/libvirt-machine-properties.vala:233
+#: ../src/libvirt-machine-properties.vala:246
 msgid "USB device support"
 msgstr "Υποστήριξη συσκευής USB"
 
-#: ../src/libvirt-machine-properties.vala:251
+#: ../src/libvirt-machine-properties.vala:264
 msgid "Smartcard support"
 msgstr "Υποστήριξη έξυπνης κάρτας"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:284
-#: ../src/libvirt-machine-properties.vala:352
+#: ../src/libvirt-machine-properties.vala:297
+#: ../src/libvirt-machine-properties.vala:365
 msgid "empty"
 msgstr "κενό"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:294
-#: ../src/libvirt-machine-properties.vala:361
+#: ../src/libvirt-machine-properties.vala:307
+#: ../src/libvirt-machine-properties.vala:374
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:308
-#: ../src/libvirt-machine-properties.vala:351
+#: ../src/libvirt-machine-properties.vala:321
+#: ../src/libvirt-machine-properties.vala:364
 msgid "Select"
 msgstr "Επιλογή"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:311
-#: ../src/libvirt-machine-properties.vala:331
+#: ../src/libvirt-machine-properties.vala:324
+#: ../src/libvirt-machine-properties.vala:344
 msgid "Remove"
 msgstr "Αφαίρεση"
 
-#: ../src/libvirt-machine-properties.vala:315 ../src/wizard-source.vala:277
+#: ../src/libvirt-machine-properties.vala:328 ../src/wizard-source.vala:277
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
-#: ../src/libvirt-machine-properties.vala:319 ../src/wizard-source.vala:281
+#: ../src/libvirt-machine-properties.vala:332 ../src/wizard-source.vala:281
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:338
+#: ../src/libvirt-machine-properties.vala:351
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
-msgstr "Η εισαγωγή του '%s' ως CD/DVD στο '%s' απέτυχε"
+msgstr "Απέτυχε η εισαγωγή του '%s' ως CD/DVD στο '%s'"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:355
+#: ../src/libvirt-machine-properties.vala:368
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
-msgstr "Η αφαίρεση του CD/DVD από το '%s' απέτυχε"
+msgstr "Απέτυχε η αφαίρεση του CD/DVD από το '%s'"
 
-#: ../src/libvirt-machine-properties.vala:416 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:429 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Μνήμη"
 
-#: ../src/libvirt-machine-properties.vala:477
+#: ../src/libvirt-machine-properties.vala:492
+#: ../src/libvirt-machine-properties.vala:514
 msgid "Maximum Disk Size"
 msgstr "Μέγιστο μέγεθος δίσκου"
+
+#: ../src/libvirt-machine-properties.vala:505
+msgid ""
+"There is not enough space on your machine to increase the maximum disk size."
+msgstr ""
+"Δεν υπάρχει αρκετός χώρος στο μηχάνημα σας για να αυξηθεί το μέγιστο μέγεθος "
+"του δίσκου."
 
 #: ../src/libvirt-machine.vala:446
 msgid "When you force shutdown, the box may lose data."
@@ -598,16 +606,16 @@ msgstr "Αποτυχία εύρεσης κατάλληλου δίσκου για
 msgid "Connecting to %s"
 msgstr "Σύνδεση στο %s"
 
-#: ../src/machine.vala:147 ../src/machine.vala:561
+#: ../src/machine.vala:147 ../src/machine.vala:564
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Απέτυχε η σύνδεση στο '%s'"
 
-#: ../src/machine.vala:230
+#: ../src/machine.vala:233
 msgid "Saving..."
 msgstr "Αποθήκευση..."
 
-#: ../src/machine.vala:551
+#: ../src/machine.vala:554
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -616,12 +624,12 @@ msgstr ""
 "'%s' αδύνατη η επαναφορά από τον δίσκο\n"
 "Δοκιμάστε χωρίς αποθηκευμένη κατάσταση;"
 
-#: ../src/machine.vala:552
+#: ../src/machine.vala:555
 msgid "Restart"
 msgstr "Επανεκκίνηση"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:590
+#: ../src/machine.vala:593
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' απαιτεί πιστοποίηση"
@@ -693,30 +701,38 @@ msgstr "Οθόνη"
 msgid "Devices"
 msgstr "Συσκευές"
 
-#: ../src/properties.vala:216
+#: ../src/properties.vala:217
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Οι αλλαγές απαιτούν επανεκκίνηση του '%s'."
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:218
 msgid "_Restart"
 msgstr "_Επανεκκίνηση"
 
-#: ../src/selectionbar.vala:60
+#: ../src/selectionbar.vala:63
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Αποτυχία παύσης του '%s'"
 
+#. Translators: This is a button to open box(es) in new window(s)
+#: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
+#, c-format
+msgid "_Open in new window"
+msgid_plural "_Open in %d new windows"
+msgstr[0] "Ά_νοιγμα σε νέο παράθυρο"
+msgstr[1] "Ά_νοιγμα σε %d νέα παράθυρα"
+
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
-#: ../src/selection-toolbar.vala:41
+#: ../src/selection-toolbar.vala:46
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
 msgstr[0] "%d επιλεγμένο"
 msgstr[1] "%d επιλεγμένα"
 
-#: ../src/selection-toolbar.vala:43
+#: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
 msgstr "(Πατήστε στα στοιχεία για να τα επιλέξετε)"
 
@@ -764,19 +780,18 @@ msgstr "Η θύρα πρέπει να καθοριστεί μια φορά"
 msgid "Missing port in Spice URI"
 msgstr "Λείπει η θύρα στο Spice URI"
 
-#. Translators: The %s will be replaced with the name of the VM
-#: ../src/topbar.vala:80
-#, c-format
-msgid "%s - Properties"
-msgstr "%s - Ιδιότητες"
-
-#: ../src/unattended-installer.vala:450
+#: ../src/unattended-installer.vala:454
 msgid "Downloading device drivers..."
 msgstr "Λήψη οδηγών συσκευής..."
 
 #: ../src/unattended-setup-box.vala:46
 msgid "no password"
 msgstr "χωρίς κωδικό πρόσβασης"
+
+#: ../src/unattended-setup-box.vala:99
+#, c-format
+msgid "Express installation of %s requires an internet connection."
+msgstr "Η γρήγορη εγκατάσταση του %s απαιτεί σύνδεση στο διαδίκτυο."
 
 #: ../src/util-app.vala:207
 #, c-format
@@ -996,6 +1011,9 @@ msgstr "Αποτυχία λήψης."
 #: ../src/wizard.vala:715
 msgid "C_ustomize..."
 msgstr "Π_ροσαρμογή..."
+
+#~ msgid "%s - Properties"
+#~ msgstr "%s - Ιδιότητες"
 
 #~ msgid "New"
 #~ msgstr "Νέο"
