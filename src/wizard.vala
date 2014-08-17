@@ -697,7 +697,6 @@ private class Boxes.WizardSummary: Gtk.Grid {
         attach (label_name, 0, current_row, 1, 1);
 
         var label_value = new Gtk.Label (value);
-        label_value.get_style_context ().add_class ("boxes-wizard-summary-prop-value-label");
         label_value.set_ellipsize (Pango.EllipsizeMode.END);
         label_value.set_max_width_chars (32);
         label_name.halign = Gtk.Align.START;
@@ -713,7 +712,6 @@ private class Boxes.WizardSummary: Gtk.Grid {
             return;
 
         var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
-        button.get_style_context ().add_class ("boxes-wizard-summary-customize-button");
         attach (button, 2, current_row - 1, 1, 1);
         button.show ();
 
