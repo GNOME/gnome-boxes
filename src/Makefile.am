@@ -150,6 +150,7 @@ gnome_boxes_SOURCES =				\
 	empty-boxes.vala			\
 	tracker-iso-query.vala			\
 	snapshot-list-row.vala 			\
+	snapshots-property.vala 		\
 	$(NULL)
 
 gnome_boxes_LDADD =				\
