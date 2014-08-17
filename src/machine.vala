@@ -149,10 +149,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
-                if (!stay_on_display && window.current_item == this)
-                    window.set_state (Boxes.UIState.COLLECTION);
-                if (failed)
-                    window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+                if (window.ui_state != UIState.PROPERTIES) {
+                    if (!stay_on_display && window.current_item == this)
+                        window.set_state (Boxes.UIState.COLLECTION);
+
+                    if (failed)
+                        window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+                }
             });
 
             need_password_id = _display.notify["need-password"].connect (handle_auth);
