@@ -59,7 +59,7 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
             }
 
             get_style_context ().add_class ("properties");
-            get_style_context ().add_class ("boxes-bg");
+            get_style_context ().add_class ("transparent-bg");
 
             grid = new Gtk.Grid ();
             grid.margin = 20;

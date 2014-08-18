@@ -11,7 +11,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
     construct {
         valign = Gtk.Align.START;
         halign = Gtk.Align.CENTER;
-        get_style_context ().add_class ("boxes-bg");
+        get_style_context ().add_class ("transparent-bg");
 
         show ();
 
