@@ -271,7 +271,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
         set_view_type (Gd.MainViewType.ICON);
         set_model (model_filter);
-        get_style_context ().add_class ("boxes-icon-view");
+        get_style_context ().add_class ("content-bg");
         item_activated.connect ((view, id, path) => {
             var item = get_item_for_path (path);
             if (item is LibvirtMachine && (item as LibvirtMachine).importing)
