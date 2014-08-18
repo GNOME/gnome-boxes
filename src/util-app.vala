@@ -30,15 +30,6 @@ namespace Boxes {
         return builder;
     }
 
-    public Gdk.RGBA get_boxes_bg_color () {
-        var style = new Gtk.StyleContext ();
-        var path = new Gtk.WidgetPath ();
-        path.append_type (typeof (Gtk.Window));
-        style.set_path (path);
-        style.add_class ("boxes-bg");
-        return style.get_background_color (0);
-    }
-
     public Gdk.RGBA get_color (string desc) {
         Gdk.RGBA color =  Gdk.RGBA ();
         color.parse (desc);
