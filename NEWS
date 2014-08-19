@@ -1,3 +1,68 @@
+3.13.90 - Aug 19, 2014
+======================
+
+Changes since 3.13.4:
+
+- Allow running boxes in their own seperate windows.
+- Handle initrd script injection method and therefore support for Debian express
+  installation through libosinfo >= 0.2.11.
+- Introduce media downloading feature. You can now enter an HTTP(S) URL to a
+  remote media in wizard and Boxes will download it for you.
+- Allow editting the machine's name through the title in properties view.
+- More keyboard shortcuts:
+  - Ctrl+N for launching wizard.
+  - Ctrl+F for launching search.
+- If internet connection is required for express installation by an OS:
+  - ensure it is available before allowing to start express installation.
+  - Inform user of this requirement.
+- Replace hardcoded colors and background images with theme colors.
+- Menu button in selection mode disappeared recently due to a gtk+ bug, lets
+  bring it back using a simple work around.
+- Fix support for non-kvm hosts.
+- Ensure minimum storage for an OS is actually known before using that
+  information.
+- Improved maximum disk capacity calculation.
+- Warn on not enough space on the host to inscrease maximum disk size of VMs.
+- More information in DOAP file
+  - module category
+  - programming language
+- Added/updated/fixed translations:
+  - Assamese
+  - Basque
+  - Brazilian Portuguese
+  - Catalan
+  - Catalan (Valencian)
+  - Greek
+  - Japanese
+  - Lithuanian
+  - Spanish
+
+Dependencies changed:
+
+- libvirt-gconfig >= 0.1.9
+- libarchive 3
+- Drop runtime depdendency on iso-read command.
+
+All contributors to this release:
+
+Adrien Plazas <kekun.plazas@laposte.net>
+Aurimas Černius <aurisc4@gmail.com>
+Carles Ferrando <carles.ferrando@gmail.com>
+Daniel Mustieles <dnaiel.mustieles@gmail.com>
+Enrico Nicoletto <liverig@gmail.com>
+Fabiano Fidêncio <fidencio@redhat.com>
+Gil Forcada <gforcada@gnome.org>
+Hajime Taira <htaira@redhat.com>
+Inaki Larranaga Murgoitio <dooteo@zundan.com>
+Lasse Schuirmann <lasse.schuirmann@gmail.com>
+Lasse Schuirmann <lasse@schuirmann.net>
+MarMav <mavridou@gmail.com>
+ngoswami <ngoswami@redhat.com>
+Olav Vitters <olav@vitters.nl>
+Piotr Drąg <piotrdrag@gmail.com>
+Tom Tryfonidis <tomtryf@gmail.com>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.13.4 - July 21, 2014
 ======================
 
