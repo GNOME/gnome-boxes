@@ -176,7 +176,7 @@ gnome_boxes_search_provider_SOURCES =		\
 	gnome-boxes-search-provider.vala	\
 	$(NULL)
 
-gnome_boxes_search_provider_LDADD = $(BOXES_COMMON_LIBS) libcommon.a
+gnome_boxes_search_provider_LDADD = libcommon.a $(BOXES_COMMON_LIBS)
 gnome_boxes_search_provider_CFLAGS = $(BOXES_COMMON_CFLAGS)
 $(srcdir)/gnome_boxes_search_provider_vala.stamp: $(libcommon_a_DEPENDENCIES)
 
