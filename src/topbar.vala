@@ -15,6 +15,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
+    [GtkChild]
+    public PropertiesToolbar props_toolbar;
 
     [GtkChild]
     private CollectionToolbar collection_toolbar;
@@ -24,9 +26,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     private DisplayToolbar display_toolbar;
     [GtkChild]
     public WizardToolbar wizard_toolbar;
-
-    [GtkChild]
-    private PropertiesToolbar props_toolbar;
 
     private AppWindow window;
 
