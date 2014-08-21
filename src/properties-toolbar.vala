@@ -4,6 +4,8 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-toolbar.ui")]
 private class Boxes.PropertiesToolbar: HeaderBar {
     [GtkChild]
+    public Gtk.Button back_button;
+    [GtkChild]
     private Image back_image;
     [GtkChild]
     private EditableEntry title_entry;
