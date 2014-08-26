@@ -15,6 +15,7 @@ HELP_FILES = index.page			\
 	interface.page			\
 	legal.xml			\
 	search.page			\
+	shortcuts.page			\
 	supported-protocols.page	\
 	system-requirements.page	\
 	usb-redirection.page		\
