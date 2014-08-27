@@ -33,7 +33,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
     }
 
     protected override void update_machine_info (LibvirtMachine machine) {
-        machine.info = _("Importing...");
+        machine.info = _("Importing…");
     }
 
     private async void import_vm (LibvirtMachine machine) {

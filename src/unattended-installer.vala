@@ -451,7 +451,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private delegate void AddUnattendedFileFunc (UnattendedFile file);
 
     private async void setup_drivers (ActivityProgress progress, Cancellable? cancellable = null) {
-        progress.info = _("Downloading device drivers...");
+        progress.info = _("Downloading device drivers…");
 
         var scripts = get_pre_installer_scripts ();
         var drivers = get_pre_installable_drivers (scripts);

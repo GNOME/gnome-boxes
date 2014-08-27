@@ -230,7 +230,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
         var info = this.info;
         this.info = (info != null)? info + "\n" : "";
-        this.info += _("Saving...");
+        this.info += _("Saving…");
 
         yield save_real ();
 

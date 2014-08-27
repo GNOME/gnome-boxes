@@ -185,7 +185,7 @@ private class Boxes.VMCreator {
 
     protected virtual void update_machine_info (LibvirtMachine machine) {
         if (VMConfigurator.is_install_config (machine.domain_config)) {
-            machine.info = _("Installing...");
+            machine.info = _("Installing…");
 
             track_install_progress (machine);
         } else

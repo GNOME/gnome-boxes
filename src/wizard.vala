@@ -326,7 +326,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         next_button.sensitive = false;
 
         prep_media_label.label = _("Unknown installer media");
-        prep_status_label.label = _("Analyzing..."); // Translators: Analyzing installer media
+        prep_status_label.label = _("Analyzing…"); // Translators: Analyzing installer media
 
         media_manager.create_installer_media_for_path.begin (path, null, (obj, res) => {
             on_installer_media_instantiated (res, progress);
@@ -387,7 +387,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         if (this.wizard_source.install_media != null) {
             prep_media_label.label = _("Unknown installer media");
-            prep_status_label.label = _("Analyzing...");
+            prep_status_label.label = _("Analyzing…");
             prepare_media.begin (wizard_source.install_media, progress);
 
             return true;
@@ -590,7 +590,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     private async void download_media (string uri, ActivityProgress progress) {
         var download_progress = progress.add_child_activity (DOWNLOAD_PROGRESS_SCALE);
-        prep_status_label.label = _("Downloading media...");
+        prep_status_label.label = _("Downloading media…");
 
         try {
             var cache_path = yield Downloader.fetch_media (uri, download_progress, prepare_cancellable);
@@ -711,7 +711,7 @@ private class Boxes.WizardSummary: Gtk.Grid {
         if (current_row == 0)
             return;
 
-        var button = new Gtk.Button.with_mnemonic (_("C_ustomize..."));
+        var button = new Gtk.Button.with_mnemonic (_("C_ustomize…"));
         attach (button, 2, current_row - 1, 1, 1);
         button.show ();
 
