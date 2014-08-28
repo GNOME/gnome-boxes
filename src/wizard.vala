@@ -135,7 +135,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
-            window.sidebar.wizard_sidebar.set_page (value);
+            window.wizard_window.sidebar.set_page (value);
             visible_child_name = page_names[value];
 
             if (value == WizardPage.SOURCE)
@@ -600,26 +600,22 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         prepare (progress);
     }
 
-    public void setup_ui (AppWindow window) {
+    public void setup_ui (AppWindow window, WizardWindow wizard_window) {
         this.window = window;
 
-        cancel_button = window.topbar.wizard_toolbar.cancel_btn;
-        cancel_button.clicked.connect (() => {
-            cleanup ();
-            wizard_source.page = SourcePage.MAIN;
-            window.set_state (UIState.COLLECTION);
-        });
-        back_button = window.topbar.wizard_toolbar.back_btn;
+        cancel_button = wizard_window.topbar.cancel_btn;
+        cancel_button.clicked.connect (cancel);
+        back_button = wizard_window.topbar.back_btn;
         back_button.clicked.connect (() => {
             prepare_cancellable.cancel ();
 
             page = page - 1;
         });
-        continue_button = window.topbar.wizard_toolbar.continue_btn;
+        continue_button = wizard_window.topbar.continue_btn;
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
-        create_button = window.topbar.wizard_toolbar.create_btn;
+        create_button = wizard_window.topbar.create_btn;
         create_button.clicked.connect (() => {
             page = WizardPage.LAST;
         });
@@ -635,6 +631,12 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         wizard_source.page = SourcePage.URL;
         wizard_source.uri = uri;
         page = WizardPage.PREPARATION;
+    }
+
+    public void cancel () {
+        cleanup ();
+        wizard_source.page = SourcePage.MAIN;
+        window.set_state (UIState.COLLECTION);
     }
 
     private void ui_state_changed () {

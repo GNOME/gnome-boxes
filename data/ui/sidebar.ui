@@ -11,32 +11,10 @@
     <property name="hexpand">False</property>
     <property name="halign">start</property>
 
+    <!-- Properties -->
     <child>
-      <object class="GtkNotebook" id="notebook">
+      <object class="BoxesPropertiesSidebar" id="props_sidebar">
         <property name="visible">True</property>
-        <property name="show-tabs">False</property>
-        <property name="vexpand">True</property>
-        <property name="hexpand">True</property>
-        <style>
-          <class name="sidebar"/>
-        </style>
-
-        <!-- Separate page for each UI state -->
-
-        <!-- Wizard -->
-        <child>
-          <object class="BoxesWizardSidebar" id="wizard_sidebar">
-            <property name="visible">True</property>
-          </object>
-        </child>
-
-        <!-- Properties -->
-        <child>
-          <object class="BoxesPropertiesSidebar" id="props_sidebar">
-            <property name="visible">True</property>
-          </object>
-        </child>
-
       </object>
     </child>
   </template>

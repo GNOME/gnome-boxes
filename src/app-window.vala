@@ -60,15 +60,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
     }
 
-    private void on_machine_state_notify () {
-       if (this != App.app.main_window && (current_item as Machine).state != Machine.MachineState.RUNNING)
-           on_delete_event ();
-    }
-
-    private void on_machine_deleted_notify () {
-       if (this != App.app.main_window && (current_item as Machine).deleted)
-           on_delete_event ();
-    }
+    public WizardWindow wizard_window;
 
     [GtkChild]
     public Searchbar searchbar;
@@ -80,8 +72,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public Selectionbar selectionbar;
     [GtkChild]
     public Sidebar sidebar;
-    [GtkChild]
-    public Wizard wizard;
     [GtkChild]
     public Properties properties;
     [GtkChild]
@@ -140,7 +130,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void setup_ui () {
         topbar.setup_ui (this);
-        wizard.setup_ui (this);
         display_page.setup_ui (this);
         view.setup_ui (this);
         selectionbar.setup_ui (this);
@@ -149,6 +138,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         properties.setup_ui (this);
         empty_boxes.setup_ui (this);
         notificationbar.searchbar = searchbar;
+
+        wizard_window = new WizardWindow (this);
     }
 
     private void save_window_geometry () {
@@ -167,7 +158,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
-        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, properties, wizard, empty_boxes }) {
+        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, properties, wizard_window, empty_boxes }) {
             ui.set_state (ui_state);
         }
 
@@ -200,18 +191,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         case UIState.CREDS:
         case UIState.DISPLAY:
-
-            break;
-
         case UIState.WIZARD:
-            below_bin.visible_child = below_bin_hbox;
-            content_bin.visible_child = wizard;
 
             break;
 
         case UIState.PROPERTIES:
             below_bin.visible_child = below_bin_hbox;
-            content_bin.visible_child = properties;
 
             break;
 
@@ -322,10 +307,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             topbar.click_back_button ();
             return true;
-        } else if (event.keyval == Gdk.Key.Right && // ALT + Right -> forward
-                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            topbar.click_forward_button ();
-            return true;
         } else if (event.keyval == Gdk.Key.Escape) { // ESC -> cancel
             topbar.click_cancel_button ();
         }
@@ -375,5 +356,15 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
 
         return App.app.remove_window (this);
+    }
+
+    private void on_machine_state_notify () {
+       if (this != App.app.main_window && (current_item as Machine).state != Machine.MachineState.RUNNING)
+           on_delete_event ();
+    }
+
+    private void on_machine_deleted_notify () {
+       if (this != App.app.main_window && (current_item as Machine).deleted)
+           on_delete_event ();
     }
 }

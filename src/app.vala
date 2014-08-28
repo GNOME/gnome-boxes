@@ -234,11 +234,11 @@ private class Boxes.App: Gtk.Application {
 
                 if (file.query_exists ()) {
                     if (is_uri)
-                        main_window.wizard.open_with_uri (arg);
+                        main_window.wizard_window.wizard.open_with_uri (arg);
                     else
-                        main_window.wizard.open_with_uri (file.get_uri ());
+                        main_window.wizard_window.wizard.open_with_uri (file.get_uri ());
                 } else if (is_uri)
-                    main_window.wizard.open_with_uri (arg);
+                    main_window.wizard_window.wizard.open_with_uri (arg);
                 else
                     open_name (arg);
             });
@@ -276,7 +276,7 @@ private class Boxes.App: Gtk.Application {
 
         foreach (var window in windows) {
             window.notificationbar.cancel ();
-            window.wizard.cleanup ();
+            window.wizard_window.wizard.cleanup ();
         }
         suspend_machines ();
     }

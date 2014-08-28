@@ -13,11 +13,7 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    public WizardSidebar wizard_sidebar;
-    [GtkChild]
     public PropertiesSidebar props_sidebar;
-    [GtkChild]
-    private Gtk.Notebook notebook;
 
     private AppWindow window;
 
@@ -32,10 +28,8 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
 
     private void ui_state_changed () {
         switch (ui_state) {
-        case UIState.WIZARD:
         case UIState.PROPERTIES:
             reveal_child = true;
-            notebook.page = ui_state == UIState.WIZARD ? SidebarPage.WIZARD : SidebarPage.PROPERTIES;
             break;
 
         default:
