@@ -154,6 +154,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                                           _("_Save"), 100,
                                                           _("Copy to clipboard"), 101,
                                                           _("_Close"), ResponseType.OK);
+                dialog.modal = true;
                 dialog.set_default_size (640, 480);
                 var text = new Gtk.TextView ();
                 text.editable = false;
@@ -170,6 +171,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         var chooser = new Gtk.FileChooserDialog (_("Save log"), machine.window,
                                                                  Gtk.FileChooserAction.SAVE,
                                                                  _("_Save"), ResponseType.OK);
+                        chooser.modal = true;
                         chooser.local_only = false;
                         chooser.do_overwrite_confirmation = true;
                         chooser.response.connect ((response_id) => {
@@ -184,6 +186,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                                                    Gtk.MessageType.ERROR,
                                                                    Gtk.ButtonsType.CLOSE,
                                                                    _("Error saving: %s").printf (e.message));
+                                    m.modal = true;
                                     m.show_all ();
                                     m.response.connect ( () => { m.destroy (); });
                                     return;
