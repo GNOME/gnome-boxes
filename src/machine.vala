@@ -427,7 +427,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
             if (window.current_item == this)
-                window.sidebar.props_sidebar.screenshot.set_from_pixbuf (pixbuf);
+                window.props_window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
@@ -587,7 +587,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             } else {
                 pixbuf = this.pixbuf;
             }
-            window.sidebar.props_sidebar.screenshot.set_from_pixbuf (pixbuf);
+            window.props_window.sidebar.screenshot.set_from_pixbuf (pixbuf);
 
             break;
         }

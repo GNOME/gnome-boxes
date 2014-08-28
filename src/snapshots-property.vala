@@ -11,13 +11,11 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         set {
             if (value == null) {
                 snapshot_stack.visible_child = snapshot_box;
-                machine.window.sidebar.sensitive = true;
-                machine.window.topbar.props_toolbar.back_button.sensitive = true;
+                machine.window.props_window.sidebar.sensitive = true;
             } else {
                 activity_label.label = value;
                 snapshot_stack.visible_child = activity_box;
-                machine.window.sidebar.sensitive = false;
-                machine.window.topbar.props_toolbar.back_button.sensitive = false;
+                machine.window.props_window.sidebar.sensitive = false;
             }
         }
     }

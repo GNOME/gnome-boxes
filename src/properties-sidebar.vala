@@ -36,7 +36,7 @@ private class Boxes.PropertiesSidebar: Gtk.Box {
         Gtk.TreeIter filter_iter, iter;
         model_filter.get_iter (out filter_iter, path);
         model_filter.convert_iter_to_child_iter (out iter, filter_iter);
-        window.properties.page = (PropertiesPage) listmodel.get_path (iter).get_indices ()[0];
+        window.props_window.properties.page = (PropertiesPage) listmodel.get_path (iter).get_indices ()[0];
     }
 
     [GtkCallback]

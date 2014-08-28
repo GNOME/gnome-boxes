@@ -123,6 +123,7 @@ gnome_boxes_SOURCES =				\
 	notificationbar.vala			\
 	os-database.vala 			\
 	properties.vala				\
+	properties-window.vala			\
 	properties-sidebar.vala			\
 	properties-toolbar.vala			\
 	remote-machine.vala			\

@@ -61,6 +61,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public WizardWindow wizard_window;
+    public PropertiesWindow  props_window;
 
     [GtkChild]
     public Searchbar searchbar;
@@ -71,19 +72,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Selectionbar selectionbar;
     [GtkChild]
-    public Sidebar sidebar;
-    [GtkChild]
-    public Properties properties;
-    [GtkChild]
     public DisplayPage display_page;
     [GtkChild]
     public EmptyBoxes empty_boxes;
     [GtkChild]
     public Gtk.Stack below_bin;
-    [GtkChild]
-    private Gtk.Stack content_bin;
-    [GtkChild]
-    private Gtk.Box below_bin_hbox;
     [GtkChild]
     public CollectionView view;
 
@@ -134,12 +127,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         view.setup_ui (this);
         selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
-        sidebar.setup_ui (this);
-        properties.setup_ui (this);
         empty_boxes.setup_ui (this);
         notificationbar.searchbar = searchbar;
 
         wizard_window = new WizardWindow (this);
+        props_window = new PropertiesWindow (this);
     }
 
     private void save_window_geometry () {
@@ -158,7 +150,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private void ui_state_changed () {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
-        foreach (var ui in new Boxes.UI[] { sidebar, topbar, view, properties, wizard_window, empty_boxes }) {
+        foreach (var ui in new Boxes.UI[] { topbar, view, props_window, wizard_window, empty_boxes }) {
             ui.set_state (ui_state);
         }
 
@@ -192,11 +184,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         case UIState.CREDS:
         case UIState.DISPLAY:
         case UIState.WIZARD:
-
-            break;
-
         case UIState.PROPERTIES:
-            below_bin.visible_child = below_bin_hbox;
 
             break;
 
