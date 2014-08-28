@@ -60,7 +60,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     private WizardPage _page;
     public WizardPage page {
         get { return _page; }
-        private set {
+        set {
             back_button.sensitive = (value != WizardPage.INTRODUCTION);
 
             var forwards = value > page;
