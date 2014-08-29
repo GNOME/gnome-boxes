@@ -163,7 +163,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
                 machine.window.notificationbar.display_error (_("Failed to apply snapshot"));
             }
             if (show_activity)
-                activity_message = "";
+                activity_message = null;
         });
     }
 
