@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-27 22:11+0300\n"
-"PO-Revision-Date: 2014-08-27 22:11+0300\n"
+"POT-Creation-Date: 2014-08-30 21:20+0300\n"
+"PO-Revision-Date: 2014-08-30 21:21+0300\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -167,7 +167,7 @@ msgid "_Properties"
 msgstr "_מאפיינים"
 
 #: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:331 ../src/libvirt-machine.vala:447
+#: ../src/libvirt-machine-properties.vala:336 ../src/libvirt-machine.vala:448
 #: ../src/wizard-source.vala:280
 msgid "_Cancel"
 msgstr "_ביטול"
@@ -183,6 +183,22 @@ msgstr "בחירה בכאלה שרצות"
 #: ../data/ui/selection-toolbar.ui.h:5
 msgid "Select None"
 msgstr "ביטול הבחירה"
+
+#: ../data/ui/snapshot-list-row.ui.h:1
+msgid "Revert to this state"
+msgstr "שחזור למצב זה"
+
+#: ../data/ui/snapshot-list-row.ui.h:2
+msgid "Rename"
+msgstr "שינוי שם"
+
+#: ../data/ui/snapshot-list-row.ui.h:3
+msgid "Delete"
+msgstr "מחיקה"
+
+#: ../data/ui/snapshot-list-row.ui.h:4
+msgid "Done"
+msgstr "בוצע"
 
 #: ../data/ui/unattended-setup-box.ui.h:1
 msgid ""
@@ -361,7 +377,7 @@ msgstr "- יישום פשוט לגישה מרחוק או למכונות וירט
 msgid "Too many command line arguments specified.\n"
 msgstr "צוינו יותר מדי ארגומנטים בשורת הפקודה.\n"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:494 ../src/snapshot-list-row.vala:201
 msgid "_Undo"
 msgstr "_ביטול"
 
@@ -390,7 +406,7 @@ msgid "Unsupported disk image format."
 msgstr "מבנה תמונת הכונן אינה נתמכת."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:49
+#: ../src/properties.vala:50
 msgid "System"
 msgstr "מערכת"
 
@@ -455,85 +471,85 @@ msgid "Smartcard support"
 msgstr "תמיכה בכרטיס חכם"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:297
-#: ../src/libvirt-machine-properties.vala:365
+#: ../src/libvirt-machine-properties.vala:302
+#: ../src/libvirt-machine-properties.vala:370
 msgid "empty"
 msgstr "ריק"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:307
-#: ../src/libvirt-machine-properties.vala:374
+#: ../src/libvirt-machine-properties.vala:312
+#: ../src/libvirt-machine-properties.vala:379
 msgid "CD/DVD"
 msgstr "תקליטור/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:321
-#: ../src/libvirt-machine-properties.vala:364
+#: ../src/libvirt-machine-properties.vala:326
+#: ../src/libvirt-machine-properties.vala:369
 msgid "Select"
 msgstr "בחירה"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:324
-#: ../src/libvirt-machine-properties.vala:344
+#: ../src/libvirt-machine-properties.vala:329
+#: ../src/libvirt-machine-properties.vala:349
 msgid "Remove"
 msgstr "הסרה"
 
-#: ../src/libvirt-machine-properties.vala:328 ../src/wizard-source.vala:277
+#: ../src/libvirt-machine-properties.vala:333 ../src/wizard-source.vala:277
 msgid "Select a device or ISO file"
 msgstr "בחירת התקן או קובץ ISO"
 
-#: ../src/libvirt-machine-properties.vala:332 ../src/wizard-source.vala:281
+#: ../src/libvirt-machine-properties.vala:337 ../src/wizard-source.vala:281
 msgid "_Open"
 msgstr "_פתיחה"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:351
+#: ../src/libvirt-machine-properties.vala:356
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "ההכנסה של '%s' כתקליטור CD/DVD לתוך '%s' נכשלה"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:368
+#: ../src/libvirt-machine-properties.vala:373
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "הסרת ה־CD/DVD מהקופסה '%s' נכשלה"
 
-#: ../src/libvirt-machine-properties.vala:429 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:434 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "זיכרון"
 
-#: ../src/libvirt-machine-properties.vala:492
-#: ../src/libvirt-machine-properties.vala:514
+#: ../src/libvirt-machine-properties.vala:497
+#: ../src/libvirt-machine-properties.vala:519
 msgid "Maximum Disk Size"
 msgstr "גודל הכונן המרבי"
 
-#: ../src/libvirt-machine-properties.vala:505
+#: ../src/libvirt-machine-properties.vala:510
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "אין מספיק מקום במחשב שלך בכדי להגדיל את הגודל המרבי של הדיסק."
 
-#: ../src/libvirt-machine.vala:446
+#: ../src/libvirt-machine.vala:447
 msgid "When you force shutdown, the box may lose data."
 msgstr "בעת אילוץ כיבוי, הקופסה עלול לאבד נתונים."
 
-#: ../src/libvirt-machine.vala:448 ../src/libvirt-machine.vala:603
+#: ../src/libvirt-machine.vala:449 ../src/libvirt-machine.vala:604
 msgid "_Shutdown"
 msgstr "_כיבוי"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:533
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s משוחזר מהכונן"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:536
+#: ../src/libvirt-machine.vala:537
 #, c-format
 msgid "Starting %s"
 msgstr "%s מופעל"
 
-#: ../src/libvirt-machine.vala:601
+#: ../src/libvirt-machine.vala:602
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "ההפעלה מחדש של '%s' אורכת זמן רב מדי. האם לכפות כיבוי?"
@@ -574,21 +590,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "נכשל חיפוש כונן מתאים לייבוא עבור קופסה '%s'"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:138
 #, c-format
 msgid "Connecting to %s"
 msgstr "מתבצעת התחברות אל %s"
 
-#: ../src/machine.vala:147 ../src/machine.vala:564
+#: ../src/machine.vala:157 ../src/machine.vala:575
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "ההתחברות אל %s נכשלה"
 
-#: ../src/machine.vala:233
+#: ../src/machine.vala:244
 msgid "Saving…"
 msgstr "מתבצעת שמירה…"
 
-#: ../src/machine.vala:554
+#: ../src/machine.vala:565
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -597,12 +613,12 @@ msgstr ""
 "לא ניתן לשחזר את '%s' מהכונן\n"
 "האם לנסות ללא מצב שמור?"
 
-#: ../src/machine.vala:555
+#: ../src/machine.vala:566
 msgid "Restart"
 msgstr "הפעלה מחדש"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:593
+#: ../src/machine.vala:604
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' דורש אימות"
@@ -643,7 +659,7 @@ msgstr "דיווח על באגים אל <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "אתר הבית של %s: <%s>.\n"
 
-#: ../src/media-manager.vala:228
+#: ../src/media-manager.vala:227
 #, c-format
 msgid "No such file %s"
 msgstr "אין כזה קובץ: %s"
@@ -662,24 +678,28 @@ msgstr "אין חיבור אל %s"
 msgid "Connection to oVirt broker failed"
 msgstr "ההתחברות אל הסוכן של oVirt נכשלה"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:46
 msgid "Login"
 msgstr "כניסה"
 
-#: ../src/properties.vala:53
+#: ../src/properties.vala:54
 msgid "Display"
 msgstr "תצוגה"
 
-#: ../src/properties.vala:57
+#: ../src/properties.vala:58
 msgid "Devices"
 msgstr "התקנים"
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:62
+msgid "Snapshots"
+msgstr "תמונות מצב"
+
+#: ../src/properties.vala:221
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "השינויים דורשים את הפעלת '%s' מחדש."
 
-#: ../src/properties.vala:218
+#: ../src/properties.vala:222
 msgid "_Restart"
 msgstr "הפעלה מ_חדש"
 
@@ -708,6 +728,29 @@ msgstr[1] "נבחרו %d"
 #: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
 msgstr "(יש ללחוץ על הפריטים כדי לבחור אותם)"
+
+#: ../src/snapshot-list-row.vala:147
+#, c-format
+msgid "Reverting to %s…"
+msgstr "מתבצע שחזור אל %s…"
+
+#: ../src/snapshot-list-row.vala:163
+msgid "Failed to apply snapshot"
+msgstr "ארע כשל בהחלת תמונה מצב"
+
+#: ../src/snapshot-list-row.vala:181
+#, c-format
+msgid "Snapshot \"%s\" deleted."
+msgstr "תמונת מצב „%s” נמחקה."
+
+#: ../src/snapshots-property.vala:103
+msgid "Creating new snapshot…"
+msgstr "יוצר תמונה מצב…"
+
+#: ../src/snapshots-property.vala:113
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "ארע כשל ביצירת תמונת מצב של %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:33
@@ -1020,9 +1063,6 @@ msgstr "התאמה _אישית…"
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "שגיאה בהתחברות אל %s:‏ %s"
-
-#~ msgid "_Done"
-#~ msgstr "_בוצע"
 
 #~ msgid "Fullscreen"
 #~ msgstr "מסך מלא"
