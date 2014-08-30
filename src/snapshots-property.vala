@@ -100,7 +100,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
 
     private async void create_snapshot () {
         if (machine.state == Machine.MachineState.RUNNING)
-            this.activity = _("Creating new snapshot...");
+            this.activity = _("Creating new snapshot…");
 
         try {
             var new_snapshot = yield machine.properties.create_snapshot ();

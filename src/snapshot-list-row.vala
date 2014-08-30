@@ -144,7 +144,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
 
         var show_activity = (machine.state == Machine.MachineState.RUNNING);
         if (show_activity)
-            activity_message = _("Reverting to %s...").printf (snapshot_name);
+            activity_message = _("Reverting to %s…").printf (snapshot_name);
 
         if (snapshot_state == GVirConfig.DomainSnapshotDomainState.SHUTOFF) {
             ulong restart_id = 0;
