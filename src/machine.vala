@@ -574,7 +574,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             window.set_state (UIState.COLLECTION);
             window.notificationbar.display_error (_("Failed to start '%s'").printf (name));
         } catch (GLib.Error e) {
-            debug ("connect display failed: %s", e.message);
+            warning ("Failed to connect to %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
             window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
         }
