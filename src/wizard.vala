@@ -699,7 +699,7 @@ private class Boxes.WizardSummary: Gtk.Grid {
         var label_value = new Gtk.Label (value);
         label_value.set_ellipsize (Pango.EllipsizeMode.END);
         label_value.set_max_width_chars (32);
-        label_name.halign = Gtk.Align.START;
+        label_value.halign = Gtk.Align.START;
         attach (label_value, 1, current_row, 1, 1);
 
         current_row += 1;
