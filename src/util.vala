@@ -5,6 +5,7 @@ using Config;
 public errordomain Boxes.Error {
     INVALID,
     RESTORE_FAILED,
+    START_FAILED,
     COMMAND_FAILED
 }
 

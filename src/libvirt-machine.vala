@@ -541,9 +541,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 debug ("starting of %s was cancelled", name);
             } catch (GLib.Error error) {
                 if (restore)
-                    throw new Boxes.Error.RESTORE_FAILED ("Restore failed");
+                    throw new Boxes.Error.RESTORE_FAILED (error.message);
                 else
-                    throw error;
+                    throw new Boxes.Error.START_FAILED (error.message);
             }
         }
     }
