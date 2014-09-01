@@ -569,6 +569,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             notification.dismissed.connect (() => {
                 window.set_state (UIState.COLLECTION);
             });
+        } catch (Boxes.Error.START_FAILED e) {
+            warning ("Failed to start %s: %s", name, e.message);
+            window.set_state (UIState.COLLECTION);
+            window.notificationbar.display_error (_("Failed to start '%s'").printf (name));
         } catch (GLib.Error e) {
             debug ("connect display failed: %s", e.message);
             window.set_state (UIState.COLLECTION);
