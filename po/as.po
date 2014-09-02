@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-28 06:08+0000\n"
-"PO-Revision-Date: 2014-08-28 18:31+0530\n"
+"POT-Creation-Date: 2014-09-02 06:08+0000\n"
+"PO-Revision-Date: 2014-09-02 17:47+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as_IN\n"
@@ -175,7 +175,7 @@ msgid "_Properties"
 msgstr "বৈশিষ্ট্যসমূহ (_P)"
 
 #: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:331 ../src/libvirt-machine.vala:447
+#: ../src/libvirt-machine-properties.vala:336 ../src/libvirt-machine.vala:448
 #: ../src/wizard-source.vala:280
 msgid "_Cancel"
 msgstr "বাতিল কৰক (_C)"
@@ -191,6 +191,25 @@ msgstr "চলি থকা বাছক"
 #: ../data/ui/selection-toolbar.ui.h:5
 msgid "Select None"
 msgstr "কোনোটো নাবাছিব"
+
+#: ../data/ui/snapshot-list-row.ui.h:1
+msgid "Revert to this state"
+msgstr "এই অৱস্থালৈ উভতি আহক"
+
+#: ../data/ui/snapshot-list-row.ui.h:2
+#| msgid "Username"
+msgid "Rename"
+msgstr "পুনৰ নামকৰণ কৰক"
+
+#: ../data/ui/snapshot-list-row.ui.h:3
+#| msgid "_Delete"
+msgid "Delete"
+msgstr "মচি পেলাওক"
+
+#: ../data/ui/snapshot-list-row.ui.h:4
+#| msgid "_Done"
+msgid "Done"
+msgstr "কৰা হল"
 
 #: ../data/ui/unattended-setup-box.ui.h:1
 msgid ""
@@ -374,7 +393,7 @@ msgstr "- দূৰৱৰ্তী অথবা ভাৰছুৱেল চি�
 msgid "Too many command line arguments specified.\n"
 msgstr "অত্যাধিক কমান্ড শাৰী তৰ্ক ধাৰ্য্য কৰা হৈছে।\n"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:494 ../src/snapshot-list-row.vala:201
 msgid "_Undo"
 msgstr "পূৰ্বাবস্থা (_U)"
 
@@ -403,7 +422,7 @@ msgid "Unsupported disk image format."
 msgstr "অসমৰ্থিত ডিস্ক ছবি বিন্যাস।"
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:49
+#: ../src/properties.vala:50
 msgid "System"
 msgstr "চিস্টেম"
 
@@ -468,85 +487,85 @@ msgid "Smartcard support"
 msgstr "স্মাৰ্টকাৰ্ড সমৰ্থন"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:297
-#: ../src/libvirt-machine-properties.vala:365
+#: ../src/libvirt-machine-properties.vala:302
+#: ../src/libvirt-machine-properties.vala:370
 msgid "empty"
 msgstr "ৰিক্ত"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:307
-#: ../src/libvirt-machine-properties.vala:374
+#: ../src/libvirt-machine-properties.vala:312
+#: ../src/libvirt-machine-properties.vala:379
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:321
-#: ../src/libvirt-machine-properties.vala:364
+#: ../src/libvirt-machine-properties.vala:326
+#: ../src/libvirt-machine-properties.vala:369
 msgid "Select"
 msgstr "বাছক"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:324
-#: ../src/libvirt-machine-properties.vala:344
+#: ../src/libvirt-machine-properties.vala:329
+#: ../src/libvirt-machine-properties.vala:349
 msgid "Remove"
 msgstr "আতৰাওক"
 
-#: ../src/libvirt-machine-properties.vala:328 ../src/wizard-source.vala:277
+#: ../src/libvirt-machine-properties.vala:333 ../src/wizard-source.vala:277
 msgid "Select a device or ISO file"
 msgstr "এটা ডিভাইচ অথবা ISO ফাইল বাছক"
 
-#: ../src/libvirt-machine-properties.vala:332 ../src/wizard-source.vala:281
+#: ../src/libvirt-machine-properties.vala:337 ../src/wizard-source.vala:281
 msgid "_Open"
 msgstr "খোলক (_O)"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:351
+#: ../src/libvirt-machine-properties.vala:356
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "'%s' ক এটা CD/DVD হিচাপে '%s' ত সুমুৱা ব্যৰ্থ হল"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:368
+#: ../src/libvirt-machine-properties.vala:373
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "'%s' পৰা CD/DVD আতৰোৱাটো ব্যৰ্থ হল"
 
-#: ../src/libvirt-machine-properties.vala:429 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:434 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "মেমৰি"
 
-#: ../src/libvirt-machine-properties.vala:492
-#: ../src/libvirt-machine-properties.vala:514
+#: ../src/libvirt-machine-properties.vala:497
+#: ../src/libvirt-machine-properties.vala:519
 msgid "Maximum Disk Size"
 msgstr "সৰ্বাধিক ডিস্ক আকাৰ"
 
-#: ../src/libvirt-machine-properties.vala:505
+#: ../src/libvirt-machine-properties.vala:510
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "সৰ্বাধিক ডিস্ক আকাৰ বৃদ্ধি কৰিবলে আপোনাৰ মেচিনত পৰ্যাপ্ত স্থান নাই।"
 
-#: ../src/libvirt-machine.vala:446
+#: ../src/libvirt-machine.vala:447
 msgid "When you force shutdown, the box may lose data."
 msgstr "যেতিয়া আপুনি বলৱৎভাৱে বন্ধ কৰে, বাকচৰ তথ্য হেৰুৱাব পাৰে।"
 
-#: ../src/libvirt-machine.vala:448 ../src/libvirt-machine.vala:603
+#: ../src/libvirt-machine.vala:449 ../src/libvirt-machine.vala:604
 msgid "_Shutdown"
 msgstr "বন্ধ কৰক (_S)"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:533
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "ডিস্কৰ পৰা %s পুনৰুদ্ধাৰ কৰা"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:536
+#: ../src/libvirt-machine.vala:537
 #, c-format
 msgid "Starting %s"
 msgstr "%s আৰম্ভ কৰা হৈছে"
 
-#: ../src/libvirt-machine.vala:601
+#: ../src/libvirt-machine.vala:602
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "'%s' পুনৰাম্ভ হবলে বহু সময় লৈ আছে। ইয়াক বন্ধ কৰিবলে বলৱৎ কৰিব নে?"
@@ -587,22 +606,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "বাকচ '%s' ৰ বাবে ইমপোৰ্ট কৰিবলৈ উপযুক্ত ডিস্ক পোৱা নগল"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:138
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s ৰ  সৈতে সংযোগ কৰা হৈছে"
 
-#: ../src/machine.vala:147 ../src/machine.vala:564
+#: ../src/machine.vala:157 ../src/machine.vala:579
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s' লে সংযোগ ব্যৰ্থ হল"
 
-#: ../src/machine.vala:233
-#| msgid "Saving..."
+#: ../src/machine.vala:244
 msgid "Saving…"
 msgstr "সংৰক্ষণ কৰা হৈছে…"
 
-#: ../src/machine.vala:554
+#: ../src/machine.vala:565
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -611,12 +629,17 @@ msgstr ""
 "'%s' ক ডিস্কৰ পৰা পুনৰুদ্ধাৰ কৰিব পৰা নগল\n"
 "সংৰক্ষিত অৱস্থাৰ বাহিৰে চেষ্টা কৰিব?"
 
-#: ../src/machine.vala:555
+#: ../src/machine.vala:566
 msgid "Restart"
 msgstr "পুনৰাম্ভ কৰক"
 
+#: ../src/machine.vala:575
+#, c-format
+msgid "Failed to start '%s'"
+msgstr "'%s' আৰম্ভ কৰিবলে ব্যৰ্থ"
+
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:593
+#: ../src/machine.vala:608
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' ৰ প্ৰমাণীকৰণৰ প্ৰয়োজন"
@@ -657,7 +680,7 @@ msgstr "বাগসমূহ <%s> লে প্ৰতিবেদন কৰক�
 msgid "%s home page: <%s>.\n"
 msgstr "%s ঘৰ পৃষ্ঠা: <%s>।\n"
 
-#: ../src/media-manager.vala:228
+#: ../src/media-manager.vala:227
 #, c-format
 msgid "No such file %s"
 msgstr "এই ধৰণৰ কোনো ফাইল %s নাই"
@@ -676,24 +699,28 @@ msgstr "%s ৰ  সৈতে সংযুক্ত নহয়"
 msgid "Connection to oVirt broker failed"
 msgstr "oVirt ব্ৰকাৰলে সংযোগ ব্যৰ্থ হল"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:46
 msgid "Login"
 msgstr "লগিন"
 
-#: ../src/properties.vala:53
+#: ../src/properties.vala:54
 msgid "Display"
 msgstr "প্ৰদৰ্শন"
 
-#: ../src/properties.vala:57
+#: ../src/properties.vala:58
 msgid "Devices"
 msgstr "ডিভাইচসমূহ"
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:62
+msgid "Snapshots"
+msgstr "স্নেপশ্বটসমূহ"
+
+#: ../src/properties.vala:221
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "পৰিবৰ্তনসমূহ প্ৰয়োগ হবলে '%s' পুনৰাম্ভ হোৱাৰ প্ৰয়োজন।"
 
-#: ../src/properties.vala:218
+#: ../src/properties.vala:222
 msgid "_Restart"
 msgstr "পুনৰাম্ভ কৰক (_R)"
 
@@ -722,6 +749,32 @@ msgstr[1] "%d নিৰ্বাচন কৰা হৈছে"
 #: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
 msgstr "(বস্তুবোৰ নিৰ্বাচন কৰিবলে সিহতত ক্লিক কৰক)"
+
+#: ../src/snapshot-list-row.vala:147
+#, c-format
+#| msgid "Connecting to %s"
+msgid "Reverting to %s…"
+msgstr "%s লৈ উভতাই নিয়া হৈছে…"
+
+#: ../src/snapshot-list-row.vala:163
+msgid "Failed to apply snapshot"
+msgstr "স্নেপশ্বট প্ৰয়োগ কৰিবলে ব্যৰ্থ"
+
+#: ../src/snapshot-list-row.vala:181
+#, c-format
+msgid "Snapshot \"%s\" deleted."
+msgstr ""
+"স্নেপশ্বট \"%s\" মচি পেলোৱা হল।"
+"."
+
+#: ../src/snapshots-property.vala:103
+msgid "Creating new snapshot…"
+msgstr "নতুন স্নেপশ্বট সৃষ্টি কৰা হৈছে…"
+
+#: ../src/snapshots-property.vala:113
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "%s ৰ স্নেপশ্বট সৃষ্টি কৰিবলে ব্যৰ্থ"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:33
@@ -768,7 +821,6 @@ msgid "Missing port in Spice URI"
 msgstr "Spice URL ত পোৰ্ট নাই"
 
 #: ../src/unattended-installer.vala:454
-#| msgid "Downloading device drivers..."
 msgid "Downloading device drivers…"
 msgstr "ডিভাইচ ড্ৰাইভাৰসমূহ ডাউনল'ড কৰা হৈছে…"
 
@@ -829,11 +881,11 @@ msgstr ""
 "%s ক libvirt এ GNOME বাকচসমূহৰ সংৰক্ষণ পুল হিচাপে জানে কিন্তু ই ব্যৱহাৰকাৰী- "
 "পঢ়াযোগ্য/লিখাযোগ্য নহয়"
 
-#: ../src/util.vala:340
+#: ../src/util.vala:341
 msgid "yes"
 msgstr "হয়"
 
-#: ../src/util.vala:340
+#: ../src/util.vala:341
 msgid "no"
 msgstr "নহয়"
 
@@ -856,7 +908,6 @@ msgid "Live box '%s' has been deleted automatically."
 msgstr "জীৱন্ত বাকচ '%s' ক স্বচালিতভাৱে মচি পেলোৱা হৈছে।"
 
 #: ../src/vm-creator.vala:188
-#| msgid "Installing..."
 msgid "Installing…"
 msgstr "ইনস্টল কৰা হৈছে…"
 
@@ -875,7 +926,6 @@ msgstr[0] "%d%% ইনস্টল কৰা হল"
 msgstr[1] "%d%% ইনস্টল কৰা হল"
 
 #: ../src/vm-importer.vala:36
-#| msgid "Importing..."
 msgid "Importing…"
 msgstr "ইমপৰ্ট কৰা হৈছে…"
 
@@ -937,7 +987,6 @@ msgid "Unknown installer media"
 msgstr "অজ্ঞাত ইনস্টলাৰ মাধ্যম"
 
 #: ../src/wizard.vala:329 ../src/wizard.vala:390
-#| msgid "Analyzing..."
 msgid "Analyzing…"
 msgstr "বিশ্লেষণ কৰা হৈছে…"
 
@@ -985,7 +1034,6 @@ msgid "%s maximum"
 msgstr "%s সৰ্বাধিক"
 
 #: ../src/wizard.vala:593
-#| msgid "Downloading media..."
 msgid "Downloading media…"
 msgstr "মাধ্যম ডাউনল'ড কৰা হৈছে…"
 
@@ -994,7 +1042,6 @@ msgid "Download failed."
 msgstr "ডাউনল'ড ব্যৰ্থ হল।"
 
 #: ../src/wizard.vala:714
-#| msgid "C_ustomize..."
 msgid "C_ustomize…"
 msgstr "স্বনিৰ্বাচন কৰক (_u)…"
 
@@ -1047,9 +1094,6 @@ msgstr "স্বনিৰ্বাচন কৰক (_u)…"
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "%s সংযোগ কৰোতে ত্ৰুটি: %s"
-
-#~ msgid "_Done"
-#~ msgstr "কৰা হল (_D)"
 
 #~ msgid "Fullscreen"
 #~ msgstr "সম্পূৰ্ণ পৰ্দা"
