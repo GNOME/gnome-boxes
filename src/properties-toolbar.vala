@@ -16,8 +16,7 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     private ulong item_name_id;
 
     construct {
-        back_image.icon_name = (get_direction () == TextDirection.RTL)? "go-previous-rtl-symbolic" :
-                                                                        "go-previous-symbolic";
+        back_image.icon_name = "go-previous-symbolic";
 
         // Work around for https://bugzilla.gnome.org/show_bug.cgi?id=734676
         set_custom_title (title_entry);

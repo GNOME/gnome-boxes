@@ -17,9 +17,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
     private AppWindow window;
 
     construct {
-        var back_icon = (get_direction () == TextDirection.RTL)? "go-previous-rtl-symbolic" :
-                                                                 "go-previous-symbolic";
-        back_image.set_from_icon_name (back_icon, IconSize.MENU);
+        back_image.set_from_icon_name ("go-previous-symbolic", IconSize.MENU);
     }
 
     public void setup_ui (AppWindow window) {

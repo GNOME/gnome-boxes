@@ -37,8 +37,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             show_close_button = true;
         }
 
-        back_image.icon_name = (get_direction () == Gtk.TextDirection.RTL)? "go-previous-rtl-symbolic" :
-                                                                            "go-previous-symbolic";
+        back_image.icon_name = "go-previous-symbolic";
         if (!overlay) {
             back.get_style_context ().add_class ("raised");
             fullscreen.get_style_context ().add_class ("raised");
