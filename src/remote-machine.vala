@@ -14,12 +14,10 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         state = MachineState.RUNNING;
 
         create_display_config ();
-        source.bind_property ("name", this, "name", BindingFlags.DEFAULT);
+        source.bind_property ("name", this, "name", BindingFlags.BIDIRECTIONAL);
         config.access_last_time = get_real_time ();
 
         load_screenshot ();
-
-        notify["name"].connect (save_name);
     }
 
     private Display? create_display () throws Boxes.Error {
@@ -100,8 +98,4 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     // FIXME: Implement this. We don't currently need it because we don't set any properties here that requires a
     //        restart and this method is currently used for that purpose only.
     public override void restart () {}
-
-    private void save_name () {
-        source.name = name;
-    }
 }
