@@ -190,8 +190,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         pixbuf = draw_fallback_vm ();
 
         notify["ui-state"].connect (ui_state_changed);
-        ui_state_id = window.notify["ui-state"].connect (() => {
-            if (window.ui_state == UIState.DISPLAY)
+        ui_state_id = App.app.main_window.notify["ui-state"].connect (() => {
+            if (App.app.main_window.ui_state == UIState.DISPLAY)
                 set_screenshot_enable (false);
             else
                 set_screenshot_enable (true);
@@ -215,7 +215,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (screenshot_id != 0)
                 return;
             update_screenshot.begin (false, true);
-            var interval = window.settings.get_int ("screenshot-interval");
+            var interval = App.app.main_window.settings.get_int ("screenshot-interval");
             screenshot_id = Timeout.add_seconds (interval, () => {
                 update_screenshot.begin ();
 
@@ -504,7 +504,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
         set_screenshot_enable (false);
         if (ui_state_id != 0) {
-            window.disconnect (ui_state_id);
+            App.app.main_window.disconnect (ui_state_id);
             ui_state_id = 0;
         }
 
