@@ -97,7 +97,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (display == null)
             return;
 
+        var current_window = this.window;
         disconnect_display ();
+        this.window = current_window;
         connect_display.begin (Machine.ConnectFlags.NONE);
     }
 
