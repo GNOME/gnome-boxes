@@ -17,13 +17,24 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
 
         set {
+            if (_current_item != null) {
+                _current_item.disconnect (machine_state_notify_id);
+                machine_state_notify_id = 0;
+            }
+
             _current_item = value;
+            if (_current_item != null) {
+                var machine = (_current_item as Machine);
+
+                machine_state_notify_id = machine.notify["state"].connect (on_machine_state_notify);
+            }
         }
     }
     public signal void item_selected (CollectionItem item);
 
     private GLib.Binding status_bind;
     private ulong got_error_id;
+    private ulong machine_state_notify_id;
 
     [CCode (notify = false)]
     public bool fullscreened {
@@ -44,6 +55,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
             _selection_mode = value;
         }
+    }
+
+    private void on_machine_state_notify () {
+       if (this != App.app.main_window && (current_item as Machine).state != Machine.MachineState.RUNNING)
+           on_delete_event ();
     }
 
     [GtkChild]
