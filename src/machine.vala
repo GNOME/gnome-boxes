@@ -85,6 +85,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         set { _window = value; }
     }
 
+    public bool deleted { get; private set; }
+
     protected void show_display () {
 
         switch (window.ui_state) {
@@ -497,7 +499,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 
-    public bool deleted;
     public virtual void delete (bool by_user = true) {
         deleted = true;
 
