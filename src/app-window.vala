@@ -20,6 +20,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             if (_current_item != null) {
                 _current_item.disconnect (machine_state_notify_id);
                 machine_state_notify_id = 0;
+                machine_deleted_notify_id = 0;
             }
 
             _current_item = value;
@@ -27,6 +28,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                 var machine = (_current_item as Machine);
 
                 machine_state_notify_id = machine.notify["state"].connect (on_machine_state_notify);
+                machine_deleted_notify_id = machine.notify["deleted"].connect (on_machine_deleted_notify);
             }
         }
     }
@@ -35,6 +37,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private GLib.Binding status_bind;
     private ulong got_error_id;
     private ulong machine_state_notify_id;
+    private ulong machine_deleted_notify_id;
 
     [CCode (notify = false)]
     public bool fullscreened {
@@ -59,6 +62,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     private void on_machine_state_notify () {
        if (this != App.app.main_window && (current_item as Machine).state != Machine.MachineState.RUNNING)
+           on_delete_event ();
+    }
+
+    private void on_machine_deleted_notify () {
+       if (this != App.app.main_window && (current_item as Machine).deleted)
            on_delete_event ();
     }
 
