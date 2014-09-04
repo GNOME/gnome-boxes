@@ -504,7 +504,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
         set_screenshot_enable (false);
         if (ui_state_id != 0) {
-            App.app.disconnect (ui_state_id);
+            window.disconnect (ui_state_id);
             ui_state_id = 0;
         }
 
