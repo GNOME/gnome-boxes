@@ -9,7 +9,17 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    public CollectionItem current_item; // current object/vm manipulated
+    // current object/vm manipulated
+    private CollectionItem _current_item;
+    public CollectionItem current_item {
+        get {
+            return _current_item;
+        }
+
+        set {
+            _current_item = value;
+        }
+    }
     public signal void item_selected (CollectionItem item);
 
     private GLib.Binding status_bind;
