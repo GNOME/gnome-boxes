@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-30 18:21+0000\n"
-"PO-Revision-Date: 2014-08-31 00:57+0200\n"
+"POT-Creation-Date: 2014-09-03 06:08+0000\n"
+"PO-Revision-Date: 2014-09-03 15:41+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: www.gnome.gr\n"
 "Language: el\n"
@@ -33,10 +33,10 @@ msgstr ""
 "Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε απομακρυσμένα ή "
 "εικονικά συστήματα. Αντίθετα με άλλο λογισμικό διαχείρισης εικονικών "
 "μηχανών, το λογισμικό Πλαίσια απευθύνεται σε απλούς χρήστες του "
-"λειτουργικού. Για τον λόγο αυτό, το πρόγραμμα Πλαίσια (Boxes) δεν παρέχει "
-"πολλές επιλογές για προχωρημένους για τη ρύθμιση εικονικών μηχανών. "
-"Αντιθέτως, εστιάζει στο να πετύχει να τα κάνει όλα να λειτουργούν ομαλά με "
-"την πρώτη, με ελάχιστες ενέργειες από τον χρήστη."
+"λειτουργικού. Για τον λόγο αυτό, το πρόγραμμα Πλαίσια δεν παρέχει πολλές "
+"επιλογές για προχωρημένους για τη ρύθμιση εικονικών μηχανών. Αντιθέτως, "
+"εστιάζει στο να πετύχει να τα κάνει όλα να λειτουργούν ομαλά με την πρώτη, "
+"με ελάχιστες ενέργειες από τον χρήστη."
 
 #: ../data/gnome-boxes.appdata.xml.in.h:2
 msgid ""
@@ -622,7 +622,7 @@ msgstr "Αποτυχία εύρεσης κατάλληλου δίσκου για
 msgid "Connecting to %s"
 msgstr "Σύνδεση στο %s"
 
-#: ../src/machine.vala:157 ../src/machine.vala:575
+#: ../src/machine.vala:157 ../src/machine.vala:579
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Απέτυχε η σύνδεση στο '%s'"
@@ -644,8 +644,14 @@ msgstr ""
 msgid "Restart"
 msgstr "Επανεκκίνηση"
 
+#: ../src/machine.vala:575
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to start '%s'"
+msgstr "Αποτυχία εκκίνησης '%s'"
+
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:604
+#: ../src/machine.vala:608
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' απαιτεί πιστοποίηση"
@@ -754,11 +760,10 @@ msgstr[1] "%d επιλεγμένα"
 
 #: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
-msgstr "(Πατήστε στα στοιχεία για να τα επιλέξετε)"
+msgstr "(Πατήστε στα αντικείμενα για να τα επιλέξετε)"
 
 #: ../src/snapshot-list-row.vala:147
 #, c-format
-#| msgid "Reverting to %s..."
 msgid "Reverting to %s…"
 msgstr "Γίνεται επαναφορά στο %s…"
 
@@ -772,7 +777,6 @@ msgid "Snapshot \"%s\" deleted."
 msgstr "Το στιγμιότυπο \"%s\" διαγράφηκε."
 
 #: ../src/snapshots-property.vala:103
-#| msgid "Creating new snapshot..."
 msgid "Creating new snapshot…"
 msgstr "Δημιουργία νέου στιγμιότυπου…"
 
@@ -887,11 +891,11 @@ msgstr ""
 "Το %s είναι γνωστό στο libvirt ως ομάδα αποθήκευσης των πλαισίων GNOME, αλλά "
 "δεν είναι αναγνώσιμο/εγγράψιμο από τον χρήστη"
 
-#: ../src/util.vala:340
+#: ../src/util.vala:341
 msgid "yes"
 msgstr "ναι"
 
-#: ../src/util.vala:340
+#: ../src/util.vala:341
 msgid "no"
 msgstr "όχι"
 
