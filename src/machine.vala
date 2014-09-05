@@ -158,6 +158,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     if (failed)
                         window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
                 }
+
+                load_screenshot ();
             });
 
             need_password_id = _display.notify["need-password"].connect (handle_auth);
