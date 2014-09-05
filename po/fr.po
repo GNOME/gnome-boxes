@@ -6,17 +6,17 @@
 # Luc Pionchon <pionchon.luc@gmail.com>, 2012
 # Alain Lojewski <allomervan@gmail.com>, 2012
 # Alexandre Franke <alexandre.franke@gmail.com>, 2012-2013
-# Christophe Fergeau <cfergeau@redhat.com>, 2013
 # Bruno Cauet <brunocauet@gmail.com>, 2014
+# Christophe Fergeau <cfergeau@redhat.com>, 2013-2014
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-08-28 18:07+0000\n"
-"PO-Revision-Date: 2014-03-16 18:07+0100\n"
-"Last-Translator: Bruno Cauet <brunocauet@gmail.com>\n"
+"POT-Creation-Date: 2014-09-05 18:06+0000\n"
+"PO-Revision-Date: 2014-09-05 22:17+0200\n"
+"Last-Translator: Christophe Fergeau <cfergeau@redhat.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +55,7 @@ msgstr ""
 
 #: ../data/gnome-boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:72 ../src/main.vala:72
+#: ../src/app-window.vala:106 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Machines"
 
@@ -178,7 +178,7 @@ msgid "_Properties"
 msgstr "_Propriétés"
 
 #: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:331 ../src/libvirt-machine.vala:447
+#: ../src/libvirt-machine-properties.vala:336 ../src/libvirt-machine.vala:448
 #: ../src/wizard-source.vala:280
 msgid "_Cancel"
 msgstr "_Annuler"
@@ -194,6 +194,22 @@ msgstr "Sélectionner les machines en fonctionnement"
 #: ../data/ui/selection-toolbar.ui.h:5
 msgid "Select None"
 msgstr "Annuler la sélection"
+
+#: ../data/ui/snapshot-list-row.ui.h:1
+msgid "Revert to this state"
+msgstr "Revenir à cet état"
+
+#: ../data/ui/snapshot-list-row.ui.h:2
+msgid "Rename"
+msgstr "Renommer"
+
+#: ../data/ui/snapshot-list-row.ui.h:3
+msgid "Delete"
+msgstr "Effacer"
+
+#: ../data/ui/snapshot-list-row.ui.h:4
+msgid "Done"
+msgstr "Terminé"
 
 #: ../data/ui/unattended-setup-box.ui.h:1
 msgid ""
@@ -387,7 +403,7 @@ msgstr ""
 msgid "Too many command line arguments specified.\n"
 msgstr "Trop d'arguments spécifiés dans la commande.\n"
 
-#: ../src/app.vala:494
+#: ../src/app.vala:494 ../src/snapshot-list-row.vala:201
 msgid "_Undo"
 msgstr "Ann_uler"
 
@@ -408,21 +424,19 @@ msgid "New and Recent"
 msgstr "Nouveau et récent"
 
 #: ../src/display-page.vala:97
-#, fuzzy
-#| msgid "(press Ctrl+Alt keys to ungrab)"
 msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(appuyez sur les touches Ctrl+Alt pour libérer le clavier)"
+msgstr "(appuyez sur les touches Ctrl+Alt (de gauche) pour libérer le clavier)"
 
 #: ../src/installed-media.vala:49
 msgid "Unsupported disk image format."
 msgstr "Format d'image disque non pris en charge"
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:49
+#: ../src/properties.vala:50
 msgid "System"
 msgstr "Système"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:55
+#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:53
 msgid "Name"
 msgstr "Nom"
 
@@ -431,7 +445,7 @@ msgid "Virtualizer"
 msgstr "Virtualiseur"
 
 #: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:67 ../src/wizard.vala:482
+#: ../src/remote-machine.vala:65 ../src/wizard.vala:482
 msgid "URI"
 msgstr "URI"
 
@@ -463,7 +477,7 @@ msgid "Error saving: %s"
 msgstr "Erreur lors de l'enregistrement : %s"
 
 #: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:78
+#: ../src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "Protocole"
 
@@ -483,86 +497,87 @@ msgid "Smartcard support"
 msgstr "Prise en charge des cartes à puce"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:297
-#: ../src/libvirt-machine-properties.vala:365
+#: ../src/libvirt-machine-properties.vala:302
+#: ../src/libvirt-machine-properties.vala:370
 msgid "empty"
 msgstr "vide"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:307
-#: ../src/libvirt-machine-properties.vala:374
+#: ../src/libvirt-machine-properties.vala:312
+#: ../src/libvirt-machine-properties.vala:379
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:321
-#: ../src/libvirt-machine-properties.vala:364
+#: ../src/libvirt-machine-properties.vala:326
+#: ../src/libvirt-machine-properties.vala:369
 msgid "Select"
 msgstr "Sélectionner"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:324
-#: ../src/libvirt-machine-properties.vala:344
+#: ../src/libvirt-machine-properties.vala:329
+#: ../src/libvirt-machine-properties.vala:349
 msgid "Remove"
 msgstr "Retirer"
 
-#: ../src/libvirt-machine-properties.vala:328 ../src/wizard-source.vala:277
+#: ../src/libvirt-machine-properties.vala:333 ../src/wizard-source.vala:277
 msgid "Select a device or ISO file"
 msgstr "Choisissez un périphérique ou un fichier ISO"
 
-#: ../src/libvirt-machine-properties.vala:332 ../src/wizard-source.vala:281
+#: ../src/libvirt-machine-properties.vala:337 ../src/wizard-source.vala:281
 msgid "_Open"
 msgstr "_Ouvrir"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:351
+#: ../src/libvirt-machine-properties.vala:356
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "L'insertion de « %s » comme CD/DVD dans « %s » a échoué"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:368
+#: ../src/libvirt-machine-properties.vala:373
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Le retrait du CD/DVD de « %s » a échoué"
 
-#: ../src/libvirt-machine-properties.vala:429 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:434 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Mémoire"
 
-#: ../src/libvirt-machine-properties.vala:492
-#: ../src/libvirt-machine-properties.vala:514
+#: ../src/libvirt-machine-properties.vala:497
+#: ../src/libvirt-machine-properties.vala:519
 msgid "Maximum Disk Size"
 msgstr "Taille maximum du disque"
 
-#: ../src/libvirt-machine-properties.vala:505
+#: ../src/libvirt-machine-properties.vala:510
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
-"Il n'y a pas assez d'espace disponible sur votre machine pour augmenter la taille maximale du disque."
+"Il n'y a pas assez d'espace disponible sur votre machine pour augmenter la "
+"taille maximale du disque."
 
-#: ../src/libvirt-machine.vala:446
+#: ../src/libvirt-machine.vala:447
 msgid "When you force shutdown, the box may lose data."
 msgstr "Quand vous forcez l'arrêt, la machine peut perdre des données."
 
-#: ../src/libvirt-machine.vala:448 ../src/libvirt-machine.vala:603
+#: ../src/libvirt-machine.vala:449 ../src/libvirt-machine.vala:604
 msgid "_Shutdown"
 msgstr "_Arrêt"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:533
+#: ../src/libvirt-machine.vala:534
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restauration de %s depuis le disque en cours"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:536
+#: ../src/libvirt-machine.vala:537
 #, c-format
 msgid "Starting %s"
 msgstr "Démarrage de %s"
 
-#: ../src/libvirt-machine.vala:601
+#: ../src/libvirt-machine.vala:602
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
@@ -606,23 +621,21 @@ msgstr ""
 "Impossible de trouver un disque approprié à importer pour la machine « %s »"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:130
+#: ../src/machine.vala:140
 #, c-format
 msgid "Connecting to %s"
 msgstr "Connexion à %s en cours"
 
-#: ../src/machine.vala:147 ../src/machine.vala:564
+#: ../src/machine.vala:159 ../src/machine.vala:580
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "La connexion à %s a échoué"
 
-#: ../src/machine.vala:233
-#, fuzzy
-#| msgid "Saving..."
+#: ../src/machine.vala:246
 msgid "Saving…"
-msgstr "Suspension en cours..."
+msgstr "Suspension en cours…"
 
-#: ../src/machine.vala:554
+#: ../src/machine.vala:566
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -631,12 +644,17 @@ msgstr ""
 "Impossible de restaurer « %s » depuis le disque\n"
 "Réessayer sans l'état sauvegardé ?"
 
-#: ../src/machine.vala:555
+#: ../src/machine.vala:567
 msgid "Restart"
 msgstr "Redémarrer"
 
+#: ../src/machine.vala:576
+#, c-format
+msgid "Failed to start '%s'"
+msgstr "Impossible de démarrer « %s »"
+
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:593
+#: ../src/machine.vala:609
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "Il faut s'authentifier pour accéder à « %s »."
@@ -677,7 +695,7 @@ msgstr "Rapporter les bugs à <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Page d'accueil %s : <%s>.\n"
 
-#: ../src/media-manager.vala:228
+#: ../src/media-manager.vala:227
 #, c-format
 msgid "No such file %s"
 msgstr "Aucun fichier nommé « %s »"
@@ -696,24 +714,28 @@ msgstr "Non connecté à %s"
 msgid "Connection to oVirt broker failed"
 msgstr "La connexion au fournisseur oVirt a échoué"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:46
 msgid "Login"
 msgstr "Identification"
 
-#: ../src/properties.vala:53
+#: ../src/properties.vala:54
 msgid "Display"
 msgstr "Affichage"
 
-#: ../src/properties.vala:57
+#: ../src/properties.vala:58
 msgid "Devices"
 msgstr "Périphériques"
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:62
+msgid "Snapshots"
+msgstr "Instantanés"
+
+#: ../src/properties.vala:221
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Les modifications nécessitent le redémarrage de « %s »."
 
-#: ../src/properties.vala:218
+#: ../src/properties.vala:222
 msgid "_Restart"
 msgstr "_Redémarrer"
 
@@ -742,6 +764,28 @@ msgstr[1] "%d sélectionnés"
 #: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
 msgstr "(Cliquer sur les éléments pour les sélectionner)"
+
+#: ../src/snapshot-list-row.vala:147
+msgid "Reverting to %s…"
+msgstr "Retour à « %s »…"
+
+#: ../src/snapshot-list-row.vala:163
+msgid "Failed to apply snapshot"
+msgstr "Impossible de revenir à l'instantané"
+
+#: ../src/snapshot-list-row.vala:181
+#, c-format
+msgid "Snapshot \"%s\" deleted."
+msgstr "Instantané « %s » effacé."
+
+#: ../src/snapshots-property.vala:103
+msgid "Creating new snapshot…"
+msgstr "Création d'un nouvel instantané…"
+
+#: ../src/snapshots-property.vala:113
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "Impossible de créer un instantané pour « %s »"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:33
@@ -850,11 +894,11 @@ msgstr ""
 "libvirt indique que « %s » est la réserve de stockage pour GNOME Machines, "
 "mais l'utilisateur courant ne peut pas y lire/écrire."
 
-#: ../src/util.vala:340
+#: ../src/util.vala:341
 msgid "yes"
 msgstr "oui"
 
-#: ../src/util.vala:340
+#: ../src/util.vala:341
 msgid "no"
 msgstr "non"
 
