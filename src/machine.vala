@@ -151,7 +151,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
-                if (window.ui_state != UIState.PROPERTIES) {
+                if (window.ui_state == UIState.CREDS || window.ui_state == UIState.DISPLAY) {
                     if (!stay_on_display && window.current_item == this)
                         window.set_state (Boxes.UIState.COLLECTION);
 
