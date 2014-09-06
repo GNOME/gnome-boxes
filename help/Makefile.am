@@ -6,6 +6,7 @@ HELP_MEDIA = figures/boxes_icon.png
 
 HELP_FILES = index.page			\
 	connect.page			\
+	continuous.page			\
 	create.page			\
 	interface.page			\
 	legal.xml			\

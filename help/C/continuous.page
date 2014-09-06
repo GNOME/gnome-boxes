@@ -1,0 +1,51 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="continuous">
+  <info>
+    <link type="guide" xref="index#advanced"/>
+    <revision pkgversion="3.14" date="2014-09-06" status="review"/>
+
+    <credit type="author copyright">
+      <name>Michael Hill</name>
+      <email>mdhill@gnome.org</email>
+      <years>2014</years>
+    </credit>
+
+    <desc>Create a box using a Continuous disk image.</desc>
+  </info>
+
+  <title>Using Boxes with Continuous</title>
+
+  <p><link href="https://wiki.gnome.org/Projects/GnomeContinuous">Continuous</link>
+  is GNOME's continuous build system. Boxes is able to create a box from a
+  Continuous qcow2 image.</p>
+
+  <steps>
+    <item><p>Save the latest image using the link provided in the
+    <link href="https://wiki.gnome.org/Projects/GnomeContinuous#Installation">Installation</link>
+    section of the wiki page.</p>
+      <note style="info">
+        <p>Images are available in <em>runtime</em> and <em>devel-debug</em>
+        flavors. The <em>devel-debug</em> image results in a virtual machine
+        containing developer tools and headers.</p>
+      </note>
+    </item>
+    <item><p>In <app>Boxes</app>, click <gui style="button">New</gui> to launch
+    the box creation wizard.</p></item>
+    <item><p>An introductory message is displayed. Click
+    <gui style="button">Continue</gui>.</p></item>
+    <item><p>Click <gui style="button">Select a file</gui> and navigate to the
+    Continuous qcow2 image. Select the file and click
+    <gui style="button">Open</gui>.</p></item>
+    <item><p>Click <gui style="button">Continue</gui>. The <gui>Review</gui>
+    page opens.</p></item>
+    <item><p>Click <gui style="button">Customize</gui> to adjust memory or disk
+    size, or to rename the box.</p></item>
+    <item><p>Click <gui style="button">Create</gui>. The collection view
+    returns, and the installation of the box begins.</p></item>
+  </steps>
+
+  <p>The information necessary to upgrade a Continuous vm  can be found on the
+  <link href="https://wiki.gnome.org/Projects/GnomeContinuous">wiki page</link>.</p>
+
+</page>
