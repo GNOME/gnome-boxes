@@ -2,12 +2,7 @@
 
 HELP_ID = gnome-boxes
 
-HELP_MEDIA = figures/boxes_icon.png	\
-	figures/collection.png		\
-	figures/list.png		\
-	figures/properties.png		\
-	figures/selection.png		\
-	figures/wizard.png
+HELP_MEDIA = figures/boxes_icon.png
 
 HELP_FILES = index.page			\
 	connect.page			\
