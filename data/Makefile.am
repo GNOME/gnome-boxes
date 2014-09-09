@@ -2,7 +2,7 @@ NULL=
 SUBDIRS = icons
 
 desktopdir       = $(datadir)/applications
-desktop_in_files = gnome-boxes.desktop.in
+desktop_in_files = org.gnome.Boxes.desktop.in
 desktop_DATA     = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
@@ -45,7 +45,7 @@ gresource_file = gnome-boxes.gresource.xml
 resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(gresource_file))
 
 EXTRA_DIST =					\
-	gnome-boxes.desktop.in			\
+	org.gnome.Boxes.desktop.in		\
 	gnome-boxes-search-provider.ini.in      \
 	org.gnome.boxes.gschema.xml.in		\
 	$(gresource_file)			\

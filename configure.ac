@@ -194,7 +194,7 @@ AC_SUBST(VALA_DEBUG_FLAGS)
 AC_CONFIG_FILES([
   Makefile
   data/Makefile
-  data/gnome-boxes.desktop.in
+  data/org.gnome.Boxes.desktop.in
   data/icons/Makefile
   help/Makefile
   libgd/Makefile
