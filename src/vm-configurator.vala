@@ -226,6 +226,19 @@ private class Boxes.VMConfigurator {
         domain.set_cpu (cpu);
     }
 
+    public static async void update_existing_domain (Domain          domain,
+                                                     GVir.Connection connection) {
+        try {
+            if (domain.get_cpu ().get_mode () == DomainCpuMode.HOST_PASSTHROUGH &&
+                is_boxes_installed (domain)) {
+                var capabilities = yield connection.get_capabilities_async (null);
+                set_cpu_config (domain, capabilities);
+            }
+        } catch (GLib.Error e) {
+            warning ("Failed to update CPU config for '%s': %s", domain.name, e.message);
+        }
+    }
+
     private static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);

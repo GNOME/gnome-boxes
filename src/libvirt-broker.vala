@@ -35,6 +35,18 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         App.app.collection.add_item (machine);
         domain.set_data<LibvirtMachine> ("machine", machine);
 
+        if (source.name != App.DEFAULT_SOURCE_NAME)
+            return machine;
+
+
+        try {
+            var config = machine.domain.get_config (0);
+            yield VMConfigurator.update_existing_domain (config, connection);
+            machine.domain.set_config (config);
+        } catch (GLib.Error e) {
+            warning ("Failed to update domain '%s': %s", domain.get_name (), e.message);
+        }
+
         return machine;
     }
 
