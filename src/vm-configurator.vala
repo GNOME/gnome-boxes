@@ -136,6 +136,10 @@ private class Boxes.VMConfigurator {
         return get_os_state (domain) == LIBVIRT_SYS_IMPORT_STATE;
     }
 
+    public static bool is_boxes_installed (Domain domain) {
+        return get_os_state (domain) == INSTALLED_STATE;
+    }
+
     public static StorageVol create_volume_config (string name, int64 storage) throws GLib.Error {
         var volume = new StorageVol ();
         volume.set_name (name);
