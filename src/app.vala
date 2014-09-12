@@ -18,6 +18,8 @@ private abstract class Boxes.Broker : GLib.Object {
 private class Boxes.App: Gtk.Application {
     public static App app;
 
+    public const string DEFAULT_SOURCE_NAME = "QEMU Session";
+
     private List<Boxes.AppWindow> windows;
 
     public unowned AppWindow main_window {
@@ -37,7 +39,7 @@ private class Boxes.App: Gtk.Application {
     private HashTable<string,Broker> brokers;
     private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
-    public CollectionSource default_source { get { return sources.get ("QEMU Session"); } }
+    public CollectionSource default_source { get { return sources.get (DEFAULT_SOURCE_NAME); } }
 
     public App () {
         application_id = "org.gnome.Boxes";
@@ -363,7 +365,7 @@ private class Boxes.App: Gtk.Application {
             if (broker != null) {
                 yield broker.add_source (source);
                 sources.insert (source.name, source);
-                if (source.name == "QEMU Session") {
+                if (source.name == DEFAULT_SOURCE_NAME) {
                     notify_property ("default-connection");
                     notify_property ("default-source");
                 }
@@ -375,7 +377,7 @@ private class Boxes.App: Gtk.Application {
     }
 
     private async void setup_sources () {
-        var path = get_user_pkgconfig_source ("QEMU Session");
+        var path = get_user_pkgconfig_source (DEFAULT_SOURCE_NAME);
         var create_session_source = true;
         try {
             var file = File.new_for_path (path);
