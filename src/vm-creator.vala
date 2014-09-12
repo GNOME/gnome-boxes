@@ -55,9 +55,9 @@ private class Boxes.VMCreator {
         var config = yield create_domain_config (name, title, volume, cancellable);
         var domain = connection.create_domain (config);
 
-        var machine = LibvirtBroker.get_default ().add_domain (App.app.default_source,
-                                                               App.app.default_connection,
-                                                               domain);
+        var machine = yield LibvirtBroker.get_default ().add_domain (App.app.default_source,
+                                                                     App.app.default_connection,
+                                                                     domain);
         machine.vm_creator = this;
 
         return machine;

@@ -22,8 +22,8 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         return broker.connections.get (name);
     }
 
-    public LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
-                                      throws GLib.Error {
+    public async LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
+                                            throws GLib.Error {
         return_if_fail (broker != null);
 
         var machine = domain.get_data<LibvirtMachine> ("machine");
@@ -39,18 +39,18 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
     }
 
     // New == Added after Boxes launch
-    private void try_add_new_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+    private async void try_add_new_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         try {
-            add_domain (source, connection, domain);
+            yield add_domain (source, connection, domain);
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
         }
     }
 
     // Existing == Existed before Boxes was launched
-    private void try_add_existing_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+    private async void try_add_existing_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
         try {
-            var machine = add_domain (source, connection, domain);
+            var machine = yield add_domain (source, connection, domain);
             var config = machine.domain_config;
 
             // These instance will take care of their own lifecycles
@@ -93,7 +93,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         connections.insert (source.name, connection);
 
         foreach (var domain in connection.get_domains ())
-            try_add_existing_domain (source, connection, domain);
+            yield try_add_existing_domain (source, connection, domain);
 
         connection.domain_removed.connect ((connection, domain) => {
             var machine = domain.get_data<LibvirtMachine> ("machine");
@@ -105,7 +105,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
 
         connection.domain_added.connect ((connection, domain) => {
             debug ("New domain '%s'", domain.get_name ());
-            try_add_new_domain (source, connection, domain);
+            try_add_new_domain.begin (source, connection, domain);
         });
 
         yield base.add_source (source);
