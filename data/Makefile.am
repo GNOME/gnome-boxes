@@ -44,6 +44,15 @@ disk.img:
 gresource_file = gnome-boxes.gresource.xml
 resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(gresource_file))
 
+dbusservicedir = $(datadir)/dbus-1/services
+dbusservice_DATA = org.gnome.Boxes.service
+
+org.gnome.Boxes.service: Makefile
+		$(AM_V_GEN) (echo '[D-BUS Service]'; \
+		echo 'Name=org.gnome.Boxes'; \
+		echo 'Exec=${bindir}/gnome-boxes --gapplication-service') > $@.tmp && \
+		mv $@.tmp $@
+
 EXTRA_DIST =					\
 	org.gnome.Boxes.desktop.in		\
 	gnome-boxes-search-provider.ini.in      \
@@ -57,6 +66,10 @@ EXTRA_DIST =					\
 	$(logosdb_DATA)				\
 	$(service_in_files)			\
 	$(appdata_in_file)			\
+	$(NULL)
+
+CLEANFILES =					\
+	$(dbusservice_DATA)			\
 	$(NULL)
 
 DISTCLEANFILES =				\
