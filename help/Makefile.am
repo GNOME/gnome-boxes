@@ -13,9 +13,15 @@ HELP_FILES = index.page			\
 	disk-images.page		\
 	interface.page			\
 	legal.xml			\
+	prop-system.page		\
+	prop-trouble.page		\
 	search.page			\
 	shortcuts.page			\
 	shutdown.page			\
+	snapshot-create.page		\
+	snapshot-delete.page		\
+	snapshot-rename.page		\
+	snapshot-revert.page		\
 	supported-protocols.page	\
 	system-requirements.page	\
 	usb-redirection.page		\
