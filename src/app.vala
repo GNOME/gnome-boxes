@@ -131,12 +131,6 @@ private class Boxes.App: Gtk.Application {
         if (Config.HAVE_OVIRT)
             brokers.insert ("ovirt", OvirtBroker.get_default ());
 
-        setup_sources.begin ((obj, result) => {
-            setup_sources.end (result);
-            is_ready = true;
-            ready ();
-        });
-
         check_cpu_vt_capability.begin ();
         check_module_kvm_loaded.begin ();
     }
@@ -162,6 +156,12 @@ private class Boxes.App: Gtk.Application {
 
         var window = add_new_window ();
         window.set_state (UIState.COLLECTION);
+
+        setup_sources.begin ((obj, result) => {
+            setup_sources.end (result);
+            is_ready = true;
+            ready ();
+        });
     }
 
     static bool opt_fullscreen;
