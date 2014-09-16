@@ -14,7 +14,7 @@ gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
 @GSETTINGS_RULES@
 
 appdatadir = $(datadir)/appdata
-appdata_in_file = gnome-boxes.appdata.xml.in
+appdata_in_file = org.gnome.Boxes.appdata.xml.in
 appdata_DATA = $(appdata_in_file:.xml.in=.xml)
 @INTLTOOL_XML_RULE@
 
