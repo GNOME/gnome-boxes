@@ -335,8 +335,12 @@ private class Boxes.VMConfigurator {
     }
 
     private static void set_tablet_config (Domain domain, InstallerMedia install_media) {
+        set_input_config (domain, DomainInputDeviceType.TABLET);
+    }
+
+    private static void set_input_config (Domain domain, DomainInputDeviceType device_type) {
         var input = new DomainInput ();
-        input.set_device_type (DomainInputDeviceType.TABLET);
+        input.set_device_type (device_type);
 
         domain.add_device (input);
     }
