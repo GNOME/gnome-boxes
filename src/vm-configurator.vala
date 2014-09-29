@@ -341,6 +341,7 @@ private class Boxes.VMConfigurator {
     private static void set_input_config (Domain domain, DomainInputDeviceType device_type) {
         var input = new DomainInput ();
         input.set_device_type (device_type);
+        input.set_bus (DomainInputBus.USB);
 
         domain.add_device (input);
     }
