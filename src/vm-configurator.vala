@@ -229,7 +229,9 @@ private class Boxes.VMConfigurator {
     public static async void update_existing_domain (Domain          domain,
                                                      GVir.Connection connection) {
         try {
-            if (domain.get_cpu ().get_mode () == DomainCpuMode.HOST_PASSTHROUGH &&
+            var mode = domain.get_cpu ().get_mode ();
+            if ((mode == DomainCpuMode.HOST_PASSTHROUGH ||
+                 mode == DomainCpuMode.HOST_MODEL) &&
                 is_boxes_installed (domain)) {
                 var capabilities = yield connection.get_capabilities_async (null);
                 set_cpu_config (domain, capabilities);
