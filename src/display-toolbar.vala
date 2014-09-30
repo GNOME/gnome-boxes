@@ -7,8 +7,6 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     public bool handle_drag { get; construct; } // Handle drag events to (un)fulscreen the main window
 
     [GtkChild]
-    private Gtk.Image back_image;
-    [GtkChild]
     private Gtk.Image fullscreen_image;
     [GtkChild]
     private Gtk.Button back;
@@ -37,7 +35,6 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             show_close_button = true;
         }
 
-        back_image.icon_name = "go-previous-symbolic";
         if (!overlay) {
             back.get_style_context ().add_class ("raised");
             fullscreen.get_style_context ().add_class ("raised");
