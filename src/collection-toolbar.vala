@@ -10,15 +10,9 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     private Button back_btn;
     [GtkChild]
-    private Image back_image;
-    [GtkChild]
     private Button new_btn;
 
     private AppWindow window;
-
-    construct {
-        back_image.set_from_icon_name ("go-previous-symbolic", IconSize.MENU);
-    }
 
     public void setup_ui (AppWindow window) {
         this.window = window;

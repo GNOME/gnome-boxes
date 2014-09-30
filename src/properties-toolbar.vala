@@ -6,8 +6,6 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     [GtkChild]
     public Gtk.Button back_button;
     [GtkChild]
-    private Image back_image;
-    [GtkChild]
     private EditableEntry title_entry;
 
     private AppWindow window;
@@ -16,8 +14,6 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     private ulong item_name_id;
 
     construct {
-        back_image.icon_name = "go-previous-symbolic";
-
         // Work around for https://bugzilla.gnome.org/show_bug.cgi?id=734676
         set_custom_title (title_entry);
     }
