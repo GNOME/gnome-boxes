@@ -31,7 +31,6 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             get_style_context ().add_class ("toolbar");
             get_style_context ().add_class ("osd");
         } else {
-            get_style_context ().add_class (Gtk.STYLE_CLASS_MENUBAR);
             show_close_button = true;
         }
 
