@@ -275,21 +275,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             return;
         }
 
-        bool uncertain;
-        var uri = file.get_uri ();
-
-        var mimetype = ContentType.guess (uri, null, out uncertain);
-
-        if (uncertain) {
-            prepare_for_uri (uri);
-
-            return;
-        }
-
-        debug ("Can't handle remote location '%s' (mime type: '%s')",
-                uri,
-                ContentType.get_mime_type (mimetype));
-        throw new Boxes.Error.INVALID (_("Invalid URI"));
+        prepare_for_uri (file.get_uri ());
     }
 
     private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
