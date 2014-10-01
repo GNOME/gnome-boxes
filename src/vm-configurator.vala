@@ -239,6 +239,27 @@ private class Boxes.VMConfigurator {
         } catch (GLib.Error e) {
             warning ("Failed to update CPU config for '%s': %s", domain.name, e.message);
         }
+
+        if (!is_libvirt_bridge_net_available ())
+            return;
+
+        // First remove user interface device
+        GLib.List<GVirConfig.DomainDevice> devices = null;
+        DomainInterfaceUser iface = null;
+        foreach (var device in domain.get_devices ()) {
+            if (device is DomainInterfaceUser)
+                iface = device as DomainInterfaceUser;
+            else
+                devices.prepend (device);
+        }
+        devices.reverse ();
+        domain.set_devices (devices);
+
+        // If user interface device was found and removed, let's add bridge device now.
+        if (iface != null) {
+            var virtio = iface.get_model () == "virtio";
+            add_network_interface (domain, true, virtio);
+        }
     }
 
     private static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
