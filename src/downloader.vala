@@ -79,14 +79,9 @@ private class Boxes.Downloader : GLib.Object {
             // Already being downloaded
             return yield await_download (download, cached_path, progress);
 
-        GLib.File cached_file;
-        foreach (var path in cached_paths) {
-            cached_file = File.new_for_path (path);
-            if (cached_file.query_exists ()) {
-                debug ("'%s' already available locally at '%s'. Not downloading.", uri, path);
-                return cached_file;
-            }
-        }
+        var cached_file = get_cached_file (remote_file, cached_paths);
+        if (cached_file != null)
+            return cached_file;
 
         cached_file = GLib.File.new_for_path (cached_path);
         debug ("Downloading '%s'...", uri);
@@ -270,5 +265,17 @@ private class Boxes.Downloader : GLib.Object {
             });
             debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
         } catch (IOError.EXISTS error) {}
+    }
+
+    private File? get_cached_file (File remote_file, string[] cached_paths) {
+        foreach (var path in cached_paths) {
+            var cached_file = File.new_for_path (path);
+            if (cached_file.query_exists ()) {
+                debug ("'%s' already available locally at '%s'. Not downloading.", remote_file.get_uri (), path);
+                return cached_file;
+            }
+        }
+
+        return null;
     }
 }
