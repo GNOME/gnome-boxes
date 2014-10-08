@@ -159,6 +159,8 @@ private class Boxes.Downloader : GLib.Object {
         if (cancelled_id != 0)
             cancellable.disconnect (cancelled_id);
 
+        yield cached_file_stream.close_async (Priority.DEFAULT, cancellable);
+
         if (msg.status_code != Soup.Status.OK) {
             download.cached_file.delete ();
             if (err == null)
