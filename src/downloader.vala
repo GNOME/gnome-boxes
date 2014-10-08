@@ -83,9 +83,10 @@ private class Boxes.Downloader : GLib.Object {
         if (cached_file != null)
             return cached_file;
 
-        cached_file = GLib.File.new_for_path (cached_path);
+        var tmp_path = cached_path + "~";
+        var tmp_file = GLib.File.new_for_path (tmp_path);
         debug ("Downloading '%s'...", uri);
-        download = new Download (remote_file, cached_file, progress);
+        download = new Download (remote_file, tmp_file, progress);
         downloads.set (uri, download);
 
         try {
@@ -100,6 +101,10 @@ private class Boxes.Downloader : GLib.Object {
         } finally {
             downloads.remove (uri);
         }
+
+        cached_file = GLib.File.new_for_path (cached_path);
+        tmp_file.move (cached_file, FileCopyFlags.NONE, cancellable);
+        download.cached_file = cached_file;
 
         debug ("Downloaded '%s' and its now locally available at '%s'.", uri, cached_path);
         downloaded (download);
@@ -129,7 +134,9 @@ private class Boxes.Downloader : GLib.Object {
             total_num_bytes =  msg.response_headers.get_content_length ();
         });
 
-        var cached_file_stream = yield download.cached_file.create_async (FileCreateFlags.NONE);
+        var cached_file_stream = yield download.cached_file.replace_async (null,
+                                                                           false,
+                                                                           FileCreateFlags.REPLACE_DESTINATION);
 
         int64 current_num_bytes = 0;
         // FIXME: Reduce lambda nesting by splitting out downloading to Download class
@@ -262,7 +269,11 @@ private class Boxes.Downloader : GLib.Object {
 
         try {
             debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
-            yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable, (current, total) => {
+            yield src_file.copy_async (dest_file,
+                                       FileCopyFlags.OVERWRITE,
+                                       Priority.DEFAULT,
+                                       cancellable,
+                                       (current, total) => {
                 download.progress.progress = (double) current / total;
             });
             debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
