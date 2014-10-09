@@ -356,19 +356,6 @@ namespace Boxes {
          });
     }
 
-    public async void copy_file (File             src_file,
-                                 File             dest_file,
-                                 ActivityProgress progress,
-                                 Cancellable?     cancellable = null) throws GLib.Error {
-        try {
-            debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
-            yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable, (current, total) => {
-                progress.progress = (double) current / total;
-            });
-            debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
-        } catch (IOError.EXISTS error) {}
-    }
-
     // Warning: architecture compability is not computative. e.g "i386" is compatible with "i686" but "i686" is
     // incompatible with "i386".
     public enum CPUArchCompatibility {

@@ -255,4 +255,17 @@ private class Boxes.Downloader : GLib.Object {
 
         return cached_file;
     }
+
+    private async void copy_file (File             src_file,
+                                  File             dest_file,
+                                  ActivityProgress progress,
+                                  Cancellable?     cancellable = null) throws GLib.Error {
+        try {
+            debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
+            yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable, (current, total) => {
+                progress.progress = (double) current / total;
+            });
+            debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
+        } catch (IOError.EXISTS error) {}
+    }
 }
