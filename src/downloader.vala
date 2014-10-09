@@ -2,11 +2,13 @@
 
 private class Boxes.Download {
     public string uri;
+    public File remote_file;
     public File cached_file;
     public ActivityProgress progress;
 
-    public Download (string uri, File cached_file, ActivityProgress progress) {
-        this.uri = uri;
+    public Download (File remote_file, File cached_file, ActivityProgress progress) {
+        this.remote_file = remote_file;
+        this.uri = remote_file.get_uri ();
         this.cached_file = cached_file;
         this.progress = progress;
     }
@@ -88,14 +90,14 @@ private class Boxes.Downloader : GLib.Object {
 
         cached_file = GLib.File.new_for_path (cached_path);
         debug ("Downloading '%s'...", uri);
-        download = new Download (uri, cached_file, progress);
+        download = new Download (remote_file, cached_file, progress);
         downloads.set (uri, download);
 
         try {
             if (remote_file.has_uri_scheme ("http") || remote_file.has_uri_scheme ("https"))
                 yield download_from_http (download, cancellable);
             else
-                yield copy_file (remote_file, cached_file, progress, cancellable);
+                yield download_from_filesystem (download, cancellable);
         } catch (GLib.Error error) {
             download_failed (download, error);
 
@@ -256,14 +258,15 @@ private class Boxes.Downloader : GLib.Object {
         return cached_file;
     }
 
-    private async void copy_file (File             src_file,
-                                  File             dest_file,
-                                  ActivityProgress progress,
-                                  Cancellable?     cancellable = null) throws GLib.Error {
+    private async void download_from_filesystem (Download     download,
+                                                 Cancellable? cancellable = null) throws GLib.Error {
+        var src_file = download.remote_file;
+        var dest_file = download.cached_file;
+
         try {
             debug ("Copying '%s' to '%s'..", src_file.get_path (), dest_file.get_path ());
             yield src_file.copy_async (dest_file, 0, Priority.DEFAULT, cancellable, (current, total) => {
-                progress.progress = (double) current / total;
+                download.progress.progress = (double) current / total;
             });
             debug ("Copied '%s' to '%s'.", src_file.get_path (), dest_file.get_path ());
         } catch (IOError.EXISTS error) {}
