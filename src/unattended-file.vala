@@ -91,6 +91,7 @@ private class Boxes.UnattendedRawFile : GLib.Object, Boxes.UnattendedFile {
 private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
     public string dest_name { get; set; }
     public string src_path { get; set; }
+    public InstallScriptInjectionMethod injection_method { get; set; }
 
     protected string disk_file {
         owned get {
@@ -110,7 +111,6 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
     protected InstallScript script { get; set; }
 
     private File unattended_tmp;
-    private InstallScriptInjectionMethod injection_method;
 
     public UnattendedScriptFile (UnattendedInstaller installer,
                                  InstallScript       script,
