@@ -96,6 +96,7 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
         owned get {
             switch (injection_method) {
             case InstallScriptInjectionMethod.DISK:
+            case InstallScriptInjectionMethod.FLOPPY:
                 return installer.disk_file.get_path ();
             case InstallScriptInjectionMethod.INITRD:
                 return installer.initrd_file.get_path ();
@@ -122,6 +123,8 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
         var injection_methods = script.get_injection_methods ();
         if (InstallScriptInjectionMethod.DISK in injection_methods)
             injection_method = InstallScriptInjectionMethod.DISK;
+        if (InstallScriptInjectionMethod.FLOPPY in injection_methods)
+            injection_method = InstallScriptInjectionMethod.FLOPPY;
         else if (InstallScriptInjectionMethod.INITRD in injection_methods)
             injection_method = InstallScriptInjectionMethod.INITRD;
         else
