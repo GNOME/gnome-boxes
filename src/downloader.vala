@@ -141,16 +141,15 @@ private class Boxes.Downloader : GLib.Object {
         int64 current_num_bytes = 0;
         // FIXME: Reduce lambda nesting by splitting out downloading to Download class
         msg.got_chunk.connect ((msg, chunk) => {
-            if (total_num_bytes <= 0)
-                return;
-
             current_num_bytes += chunk.length;
             try {
                 // Write synchronously as we have no control over order of async
                 // calls and we'll end up writing bytes out in wrong order. Besides
                 // we are writing small chunks so it wouldn't really block the UI.
                 cached_file_stream.write (chunk.data);
-                download.progress.progress = (double) current_num_bytes / total_num_bytes;
+                if (total_num_bytes > 0)
+                    // Don't report progress if there is no way to determine it
+                    download.progress.progress = (double) current_num_bytes / total_num_bytes;
             } catch (GLib.Error e) {
                 err = e;
                 session.cancel_message (msg, Soup.Status.CANCELLED);
