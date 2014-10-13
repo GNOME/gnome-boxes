@@ -53,6 +53,17 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     private static Fdo.Accounts? accounts;
 
+    private InstallScriptInjectionMethod injection_method {
+        private get {
+            foreach (var unattended_file in unattended_files) {
+                if (unattended_file is UnattendedScriptFile)
+                    return (unattended_file as UnattendedScriptFile).injection_method;
+            }
+
+            return InstallScriptInjectionMethod.DISK;
+        }
+    }
+
     private static string escape_mkisofs_path (string path) {
         var str = path.replace ("\\", "\\\\");
 
@@ -338,8 +349,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_driver_format (DomainDiskFormat.RAW);
         disk.set_source (disk_file.get_path ());
 
-        // FIXME: Ideally, we shouldn't need to check for distro
-        if (os.distro == "win") {
+        if (injection_method == InstallScriptInjectionMethod.FLOPPY) {
             disk.set_target_dev ((path_format == PathFormat.DOS)? "A" : "fd");
             disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
             disk.set_target_bus (DomainDiskBus.FDC);
