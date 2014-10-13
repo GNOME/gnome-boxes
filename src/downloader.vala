@@ -54,6 +54,8 @@ private class Boxes.Downloader : GLib.Object {
 
         session = new Soup.Session ();
         session.add_feature_by_type (typeof (Soup.ProxyResolverDefault));
+        if (Environment.get_variable ("SOUP_DEBUG") != null)
+            session.add_feature (new Soup.Logger (Soup.LoggerLogLevel.HEADERS, -1));
     }
 
     /**
