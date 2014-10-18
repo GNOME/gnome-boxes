@@ -135,8 +135,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             });
             config.sync_properties (this, display_sync_properties);
             display.scaling = true;
-            if (display.get_class ().find_property ("only-downscale") != null)
-                display.set ("only-downscale", true);
 
             displays.replace (n, display);
         }
