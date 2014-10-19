@@ -53,7 +53,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     protected Machine? machine { get; set; }
     private LibvirtMachine? libvirt_machine { get { return (machine as LibvirtMachine); } }
 
-    private Cancellable? prepare_cancellable;
+    private Cancellable prepare_cancellable = new Cancellable ();
     private Cancellable? review_cancellable;
     private bool skip_review_for_live;
 
@@ -209,8 +209,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     public void cleanup () {
-        if (prepare_cancellable != null)
-            prepare_cancellable.cancel ();
+        prepare_cancellable.cancel ();
 
         destroy_machine ();
         vm_creator = null;
@@ -361,7 +360,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             return false;
         }
 
-        prepare_cancellable = new Cancellable ();
+        prepare_cancellable.reset ();
+
         if (wizard_source.download_required) {
             continue_button.sensitive = false;
             download_media.begin (wizard_source.uri, progress);
@@ -588,8 +588,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             warning ("Failed downloading media '%s'! %s", uri, e.message);
             window.notificationbar.display_error (_("Download failed."));
             page = WizardPage.SOURCE;
-        } finally {
-            prepare_cancellable = null;
         }
     }
 
@@ -612,8 +610,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         });
         back_button = window.topbar.wizard_toolbar.back_btn;
         back_button.clicked.connect (() => {
-            if (prepare_cancellable != null)
-                prepare_cancellable.cancel ();
+            prepare_cancellable.cancel ();
 
             page = page - 1;
         });
