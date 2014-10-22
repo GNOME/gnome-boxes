@@ -146,7 +146,9 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
         if (show_activity)
             activity_message = _("Reverting to %s…").printf (snapshot_name);
 
-        if (snapshot_state == GVirConfig.DomainSnapshotDomainState.SHUTOFF) {
+        if (machine.window.previous_ui_state == UIState.DISPLAY &&
+            snapshot_state == GVirConfig.DomainSnapshotDomainState.SHUTOFF) {
+            // Previous UI state being DISPLAY implies that machine is running
             ulong restart_id = 0;
             restart_id = machine.domain.stopped.connect (() => {
                 machine.start.begin (Machine.ConnectFlags.NONE, null);
