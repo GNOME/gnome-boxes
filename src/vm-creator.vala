@@ -42,14 +42,7 @@ private class Boxes.VMCreator {
 
         string title, name;
         yield create_domain_name_and_title_from_media (out name, out title);
-        try {
-            yield install_media.prepare_for_installation (name, cancellable);
-        } catch (GLib.Error error) {
-            var msg = _("An error occurred during installation preparation. Express Install disabled.");
-            App.app.main_window.notificationbar.display_error (msg);
-            debug("Disabling unattended installation: %s", error.message);
-        }
-
+        yield install_media.prepare_for_installation (name, cancellable);
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
         var config = yield create_domain_config (name, title, volume, cancellable);

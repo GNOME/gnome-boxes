@@ -142,7 +142,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) throws GLib.Error {
+    public override async void prepare_for_installation (string vm_name, Cancellable? cancellable) {
         if (!setup_box.express_install) {
             debug ("Unattended installation disabled.");
 
@@ -185,8 +185,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             // installation will work. When this happens, just disable unattended installs, and let the caller decide
             // if it wants to retry a non-automatic install or to just abort the box creation..
             setup_box.express_install = false;
-
-            throw error;
+            var msg = _("An error occurred during installation preparation. Express Install disabled.");
+            App.app.main_window.notificationbar.display_error (msg);
+            debug ("Disabling unattended installation: %s", error.message);
         }
     }
 
