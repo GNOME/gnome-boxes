@@ -143,6 +143,9 @@ private class Boxes.Downloader : GLib.Object {
         int64 current_num_bytes = 0;
         // FIXME: Reduce lambda nesting by splitting out downloading to Download class
         msg.got_chunk.connect ((msg, chunk) => {
+            if (session.would_redirect (msg))
+                return;
+
             current_num_bytes += chunk.length;
             try {
                 // Write synchronously as we have no control over order of async
