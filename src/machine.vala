@@ -11,7 +11,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public string? status { get; set; }
     public bool suspend_at_exit;
 
-    public bool can_save { get; protected set; default = false; }
+    public virtual bool can_save { get { return false; } }
     public bool can_delete { get; protected set; default = true; }
     public bool under_construction { get; protected set; default = false; }
 
