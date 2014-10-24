@@ -552,7 +552,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             // Skip SETUP page if installer media doesn't need it
             if (page == Boxes.WizardPage.SETUP &&
                 !vm_creator.install_media.need_user_input_for_vm_creation)
-                    skip_to = forwards ? page + 1 : page - 1;
+                skip_to = forwards ? page + 1 : page - 1;
 
             // Skip review for live media if told to do so
             if (page == Boxes.WizardPage.REVIEW && forwards
