@@ -45,7 +45,7 @@ private class Boxes.VncDisplay: Boxes.Display {
             debug ("auth unsupported");
         });
 
-        display.vnc_auth_credential.connect ((vnc, creds) => {
+        display.vnc_auth_credential.connect ((creds) => {
             foreach (var cred in creds) {
                 var credential = cred as DisplayCredential;
 
