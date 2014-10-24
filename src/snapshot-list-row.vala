@@ -142,9 +142,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
             snapshot_state = snapshot_config.get_state ();
         } catch (GLib.Error e) {}
 
-        var show_activity = (machine.state == Machine.MachineState.RUNNING);
-        if (show_activity)
-            activity_message = _("Reverting to %s…").printf (snapshot_name);
+        activity_message = _("Reverting to %s…").printf (snapshot_name);
 
         if (machine.window.previous_ui_state == UIState.DISPLAY &&
             snapshot_state == GVirConfig.DomainSnapshotDomainState.SHUTOFF) {
@@ -164,8 +162,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
                 warning (e.message);
                 machine.window.notificationbar.display_error (_("Failed to apply snapshot"));
             }
-            if (show_activity)
-                activity_message = null;
+            activity_message = null;
         });
     }
 
