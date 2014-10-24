@@ -78,6 +78,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private MachineStat[] stats;
 
     private bool force_stopped;
+    private bool saving; // Machine is being saved currently..
 
     construct {
         stats = new MachineStat[STATS_SIZE];
@@ -431,7 +432,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public async override void save_real () throws GLib.Error {
+        saving = true;
         yield domain.save_async (0, null);
+        saving = false;
     }
 
     public async void suspend () throws GLib.Error {
