@@ -200,6 +200,11 @@ private class Boxes.WizardSource: Gtk.Stack {
     }
 
     [GtkCallback]
+    private void on_url_entry_activated () {
+        activated ();
+    }
+
+    [GtkCallback]
     private void on_url_back_button_clicked () {
         selected = null;
         page = SourcePage.MAIN;
