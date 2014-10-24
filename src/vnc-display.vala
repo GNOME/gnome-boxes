@@ -47,7 +47,7 @@ private class Boxes.VncDisplay: Boxes.Display {
 
         display.vnc_auth_credential.connect ((creds) => {
             foreach (var cred in creds) {
-                var credential = cred as DisplayCredential;
+                var credential = (DisplayCredential) cred;
 
                 switch (credential) {
                 case DisplayCredential.USERNAME:
