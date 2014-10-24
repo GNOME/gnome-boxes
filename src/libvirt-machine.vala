@@ -29,7 +29,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
-    public override bool can_save { get { return state != MachineState.SAVED; } }
+    public override bool can_save { get { return !saving && state != MachineState.SAVED; } }
 
     public override void disconnect_display () {
         stay_on_display = false;
