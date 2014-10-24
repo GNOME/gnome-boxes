@@ -121,7 +121,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
                 continue;
 
             var machine = item as Machine;
-            if (machine.can_save && machine.state != Machine.MachineState.SAVED) {
+            if (machine.can_save) {
                 sensitive = true;
 
                 break;
