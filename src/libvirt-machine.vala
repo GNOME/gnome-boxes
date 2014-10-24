@@ -29,6 +29,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
+    public override bool can_save { get { return true; } }
+
     public override void disconnect_display () {
         stay_on_display = false;
 
@@ -80,7 +82,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     construct {
         stats = new MachineStat[STATS_SIZE];
         stats_cancellable = new Cancellable ();
-        can_save = true;
     }
 
     public void update_domain_config () {
