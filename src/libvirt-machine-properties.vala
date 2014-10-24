@@ -11,26 +11,22 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         this.machine = machine;
 
         machine.notify["name"].connect (() => {
-            try_change_name (machine.name);
+            save_machine_name_change ();
         });
     }
 
-    private bool try_change_name (string name) {
-        if (machine.name == name)
-            return false;
-
+    private bool save_machine_name_change () {
         try {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             // Te use libvirt "title" for free form user name
-            config.title = name;
+            config.title = machine.name;
             // This will take effect only after next reboot, but we use pending/inactive config for name and title
             machine.domain.set_config (config);
 
-            machine.name = name;
             return true;
         } catch (GLib.Error error) {
-            warning ("Failed to change title of box '%s' to '%s': %s",
-                     machine.domain.get_name (), name, error.message);
+            warning ("Failed to save change of title of box from '%s' to '%s': %s",
+                     machine.domain.get_name (), machine.name, error.message);
             return false;
         }
     }
@@ -121,7 +117,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var property = add_string_property (ref list, _("Name"), machine.name);
             property.editable = true;
             property.changed.connect ((property, name) => {
-                return try_change_name (name);
+                machine.name = name;
+
+                // Its unlikely that machine name change fails and even if it
+                // does, name is still changed in the UI at least (it just
+                // doesn't get saved).
+                return true;
             });
 
             var name_property = property;
