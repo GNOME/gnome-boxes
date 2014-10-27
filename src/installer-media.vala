@@ -82,7 +82,6 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual void set_direct_boot_params (DomainOs os) {}
-    // Returns true on success, false otherwise
     public virtual async bool prepare (ActivityProgress progress = new ActivityProgress (),
                                        Cancellable?     cancellable = null) {
         return true;
