@@ -343,7 +343,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         else
             prepare_media_progress = progress;
         prepare_media_progress.bind_property ("info", prep_status_label, "label");
-        yield install_media.prepare (prepare_media_progress, prepare_cancellable);
+        if (!yield install_media.prepare (prepare_media_progress, prepare_cancellable))
+            return;
 
         vm_creator = install_media.get_vm_creator ();
         prep_progress.fraction = 1.0;
