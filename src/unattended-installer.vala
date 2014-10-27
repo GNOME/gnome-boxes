@@ -326,9 +326,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return get_user_pkgcache (filename);
     }
 
-    public override async void prepare (ActivityProgress progress = new ActivityProgress (),
-                                        Cancellable? cancellable = null) {
-        yield setup_drivers (progress, cancellable);
+    public override async bool prepare (ActivityProgress progress = new ActivityProgress (),
+                                        Cancellable?     cancellable = null) {
+        return yield setup_drivers (progress, cancellable);
     }
 
     private DomainDisk? get_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
@@ -450,7 +450,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     private delegate void AddUnattendedFileFunc (UnattendedFile file);
 
-    private async void setup_drivers (ActivityProgress progress, Cancellable? cancellable = null) {
+    private async bool setup_drivers (ActivityProgress progress, Cancellable? cancellable = null) {
         progress.info = _("Downloading device drivers…");
 
         var scripts = get_pre_installer_scripts ();
@@ -458,7 +458,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
-            yield setup_drivers_from_list (drivers, drivers_progress, add_unattended_file, cancellable);
+            if (!yield setup_drivers_from_list (drivers, drivers_progress, add_unattended_file, cancellable))
+                return false;
         } else
             progress.progress = 0.5;
 
@@ -467,12 +468,14 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         if (drivers.length () != 0 && scripts.length () != 0) {
             var drivers_progress = progress.add_child_activity (0.5);
-            yield setup_drivers_from_list (drivers, drivers_progress, add_secondary_unattended_file, cancellable);
+            return yield setup_drivers_from_list (drivers, drivers_progress, add_secondary_unattended_file, cancellable);
         } else
             progress.progress = 1.0;
+
+        return true;
     }
 
-    private async void setup_drivers_from_list (GLib.List<DeviceDriver> drivers,
+    private async bool setup_drivers_from_list (GLib.List<DeviceDriver> drivers,
                                                 ActivityProgress        progress,
                                                 AddUnattendedFileFunc   add_func,
                                                 Cancellable?            cancellable = null) {
@@ -483,12 +486,18 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             try {
                 yield setup_driver (driver, driver_progress, add_func, cancellable);
                 additional_devices.add_all (driver.get_devices ());
+            } catch (IOError.CANCELLED e) {
+                debug ("Media preparation cancelled during driver setup.");
+
+                return false;
             } catch (GLib.Error e) {
                 debug ("Failed to make use of drivers at '%s': %s", driver.get_location (), e.message);
             } finally {
                 driver_progress.progress = 1.0; // Ensure progress reaches 100%
             }
         }
+
+        return true;
     }
 
     private async void setup_driver (DeviceDriver          driver,
@@ -516,7 +525,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 cached_paths += system_cached_path;
 
             var file_progress = progress.add_child_activity (file_progress_scale);
-            file = yield downloader.download (file, cached_paths, file_progress);
+            file = yield downloader.download (file, cached_paths, file_progress, cancellable);
             file_progress.progress = 1.0; // Ensure progress reaches 100%
 
             driver_files.append (new UnattendedRawFile (this, file.get_path (), filename));
