@@ -6,8 +6,6 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
     public string activity_message { get; set; default = ""; }
 
     [GtkChild]
-    private Gtk.Revealer delete_revealer;
-    [GtkChild]
     private Gtk.Label name_label;
     [GtkChild]
     private Gtk.Stack mode_stack;
@@ -63,14 +61,6 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
         var action_group = new GLib.SimpleActionGroup ();
         action_group.add_action_entries (action_entries, this);
         this.insert_action_group ("snap", action_group);
-
-        delete_revealer.notify["child-revealed"].connect (() => {
-            if (!delete_revealer.child_revealed) {
-                parent_container = (Gtk.Container) this.get_parent ();
-                if (parent_container != null)
-                    parent_container.remove (this);
-            }
-        });
     }
 
     // Need to override this in order to connect the indicators without any gaps.
@@ -178,12 +168,13 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
                       e.message);
         }
         var message = _("Snapshot \"%s\" deleted.").printf (snapshot_identifier);
-        delete_revealer.reveal_child = false;
+        parent_container = (Gtk.Container) this.get_parent ();
+        var row = this;
+        parent_container.remove (this);
 
         Notification.OKFunc undo = () => {
             parent_container.add (this);
-            this.visible = true;
-            delete_revealer.reveal_child = true;
+            row = null;
         };
 
         Notification.CancelFunc really_remove = () => {
@@ -195,6 +186,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
                     warning ("Error while deleting snapshot %s: %s", snapshot.get_name (), e.message);
                 }
             });
+            row = null;
         };
         machine.window.notificationbar.display_for_action (message,
                                                            _("_Undo"),
@@ -207,15 +199,6 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
         mode_stack.visible_child = edit_name_box;
         name_entry.grab_focus ();
     }
-
-    public void unreveal () {
-        delete_revealer.reveal_child = false;
-    }
-
-    public void reveal () {
-        delete_revealer.reveal_child = true;
-    }
-
 
     private void update_index () {
         var parent = this.get_parent ();
