@@ -110,14 +110,16 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
 
     [GtkCallback]
     private void on_save_name_button_clicked () {
+        var name = name_entry.text;
+
         try {
             var config = snapshot.get_config (0);
-            config.set_description (name_entry.text);
+            config.set_description (name);
             snapshot.set_config (config);
-            name_label.label = name_entry.get_text ();
+            name_label.label = name;
             mode_stack.visible_child = show_name_box;
         } catch (GLib.Error e) {
-            warning (e.message);
+            warning ("Failed to change name of snapshot to %s: %s", name, e.message);
         }
     }
 
