@@ -18,13 +18,12 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private BoxConfig.SyncProperty[] gtk_session_sync_properties;
     private bool closed;
 
-    public bool resize_guest { get; set; }
     private void ui_state_changed () {
         // TODO: multi display
         if (machine.ui_state == UIState.DISPLAY) {
             // disable resize guest when minimizing guest widget
             var display = get_display (0) as Spice.Display;
-            display.resize_guest = resize_guest;
+            display.resize_guest = true;
         }
     }
 
@@ -34,10 +33,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     construct {
-        display_sync_properties = {
-            BoxConfig.SyncProperty () { name = "resize-guest", default_value = true }
-        };
-
         gtk_session_sync_properties = {
             BoxConfig.SyncProperty () { name = "auto-clipboard", default_value = true },
             BoxConfig.SyncProperty () { name = "auto-usbredir", default_value = false }
@@ -179,7 +174,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
     public override void collect_logs (StringBuilder builder) {
         builder.append_printf ("URI: %s\n", uri);
-        builder.append_printf ("Auto resize guest: %s\n", resize_guest ? "yes" : "no");
         if (gtk_session != null) {
             builder.append_printf ("Auto redirect USB: %s\n", gtk_session.auto_usbredir ? "yes" : "no");
             builder.append_printf ("Auto clipboard sync: %s\n", gtk_session.auto_clipboard ? "yes" : "no");
@@ -292,12 +286,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             toggle.halign = Gtk.Align.START;
             add_property (ref list, _("Share clipboard"), toggle);
-
-            toggle = new Gtk.Switch ();
-            this.bind_property ("resize-guest", toggle, "active",
-                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            toggle.halign = Gtk.Align.START;
-            add_property (ref list, _("Resize guest"), toggle);
             break;
 
         case PropertiesPage.DEVICES:
