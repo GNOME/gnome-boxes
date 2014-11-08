@@ -35,7 +35,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     construct {
         gtk_session_sync_properties = {
             BoxConfig.SyncProperty () { name = "auto-clipboard", default_value = true },
-            BoxConfig.SyncProperty () { name = "auto-usbredir", default_value = false }
         };
 
         need_password = false;
@@ -44,13 +43,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         gtk_session = GtkSession.get (session);
         try {
             var manager = UsbDeviceManager.get (session);
-            manager.auto_connect_failed.connect ( (dev, err) => {
-                var device_description = dev.get_description ("%1$s %2$s");
-                var box_name = get_box_name ();
-                got_error (_("Automatic redirection of USB device '%s' for '%s' failed").printf (device_description,
-                                                                                                 box_name));
-                debug ("Error auto-connecting %s for %s: %s", device_description, box_name, err.message);
-            });
 
             manager.device_error.connect ( (dev, err) => {
                 var device_description = dev.get_description ("%1$s %2$s");
@@ -175,7 +167,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     public override void collect_logs (StringBuilder builder) {
         builder.append_printf ("URI: %s\n", uri);
         if (gtk_session != null) {
-            builder.append_printf ("Auto redirect USB: %s\n", gtk_session.auto_usbredir ? "yes" : "no");
             builder.append_printf ("Auto clipboard sync: %s\n", gtk_session.auto_clipboard ? "yes" : "no");
         }
         if (main_channel != null) {
@@ -290,14 +281,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         case PropertiesPage.DEVICES:
             if (!(PropertyCreationFlag.NO_USB in flags) && Config.HAVE_USBREDIR) {
-                var toggle = new Gtk.Switch ();
-                gtk_session.bind_property ("auto-usbredir", toggle, "active",
-                                           BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-                toggle.halign =  Gtk.Align.START;
-                Boxes.Property usb_property = add_property (ref list, _("Redirect new USB devices"), toggle);
-
                 if (connected) {
                     bool found_dev = false;
+                    Boxes.Property usb_property = null;
                     try {
                         var manager = UsbDeviceManager.get (session);
                         var devs = manager.get_devices ();
@@ -314,9 +300,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                             dev_toggle.halign =  Gtk.Align.START;
 
                             if (!found_dev)
-                                add_property (ref list, _("USB devices"), new Gtk.Label (""));
+                                usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""));
                             found_dev = true;
-                            add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
+                            usb_property = add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
                             dev_toggle.active = manager.is_device_connected (dev);
 
                             dev_toggle.notify["active"].connect ( () => {
@@ -340,6 +326,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                 }
                             });
                         }
+
+                        if (usb_property == null)
+                            break;
+
                         manager.device_added.connect ((manager, dev) => {
                             usb_property.refresh_properties ();
                         });
