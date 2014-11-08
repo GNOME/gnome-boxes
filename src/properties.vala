@@ -4,7 +4,6 @@ using Gtk;
 private enum Boxes.PropertiesPage {
     GENERAL,
     SYSTEM,
-    DISPLAY,
     DEVICES,
     SNAPSHOTS,
 
@@ -48,10 +47,6 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
             case PropertiesPage.SYSTEM:
                 name = _("System");
-                break;
-
-            case PropertiesPage.DISPLAY:
-                name = _("Display");
                 break;
 
             case PropertiesPage.DEVICES:
