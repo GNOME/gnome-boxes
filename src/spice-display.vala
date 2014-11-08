@@ -271,7 +271,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
-        case PropertiesPage.DISPLAY:
+        case PropertiesPage.GENERAL:
             var toggle = new Gtk.Switch ();
             gtk_session.bind_property ("auto-clipboard", toggle, "active",
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
