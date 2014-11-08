@@ -280,72 +280,71 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case PropertiesPage.DEVICES:
-            if (!(PropertyCreationFlag.NO_USB in flags) && Config.HAVE_USBREDIR) {
-                if (connected) {
-                    bool found_dev = false;
-                    Boxes.Property usb_property = null;
-                    try {
-                        var manager = UsbDeviceManager.get (session);
-                        var devs = manager.get_devices ();
-                        devs.sort ( (a, b) => {
-                            string str_a = a.get_description ("    %1$s %2$s");
-                            string str_b = b.get_description ("    %1$s %2$s");
+            if (PropertyCreationFlag.NO_USB in flags || !Config.HAVE_USBREDIR|| !connected)
+                break;
 
-                            return strcmp (str_a, str_b);
-                        });
-                        for (int i = 0; i < devs.length; i++) {
-                            var dev = devs[i];
+            bool found_dev = false;
+            Boxes.Property usb_property = null;
+            try {
+                var manager = UsbDeviceManager.get (session);
+                var devs = manager.get_devices ();
+                devs.sort ( (a, b) => {
+                    string str_a = a.get_description ("    %1$s %2$s");
+                    string str_b = b.get_description ("    %1$s %2$s");
 
-                            var dev_toggle = new Gtk.Switch ();
-                            dev_toggle.halign =  Gtk.Align.START;
+                    return strcmp (str_a, str_b);
+                });
+                for (int i = 0; i < devs.length; i++) {
+                    var dev = devs[i];
 
-                            if (!found_dev)
-                                usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""));
-                            found_dev = true;
-                            usb_property = add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
-                            dev_toggle.active = manager.is_device_connected (dev);
+                    var dev_toggle = new Gtk.Switch ();
+                    dev_toggle.halign =  Gtk.Align.START;
 
-                            dev_toggle.notify["active"].connect ( () => {
-                                if (dev_toggle.active) {
-                                    manager.connect_device_async.begin (dev, null, (obj, res) => {
-                                        try {
-                                            manager.connect_device_async.end (res);
-                                        } catch (GLib.Error err) {
-                                            dev_toggle.active = false;
-                                            var device_desc = dev.get_description ("%1$s %2$s");
-                                            var box_name = get_box_name ();
-                                            var msg = _("Redirection of USB device '%s' for '%s' failed");
-                                            got_error (msg.printf (device_desc, box_name));
-                                            debug ("Error connecting %s to %s: %s",
-                                                   device_desc,
-                                                   box_name, err.message);
-                                        }
-                                    });
-                                } else {
-                                    manager.disconnect_device (dev);
+                    if (!found_dev)
+                        usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""));
+                    found_dev = true;
+                    usb_property = add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
+                    dev_toggle.active = manager.is_device_connected (dev);
+
+                    dev_toggle.notify["active"].connect ( () => {
+                        if (dev_toggle.active) {
+                            manager.connect_device_async.begin (dev, null, (obj, res) => {
+                                try {
+                                    manager.connect_device_async.end (res);
+                                } catch (GLib.Error err) {
+                                    dev_toggle.active = false;
+                                    var device_desc = dev.get_description ("%1$s %2$s");
+                                    var box_name = get_box_name ();
+                                    var msg = _("Redirection of USB device '%s' for '%s' failed");
+                                    got_error (msg.printf (device_desc, box_name));
+                                    debug ("Error connecting %s to %s: %s",
+                                           device_desc,
+                                           box_name, err.message);
                                 }
                             });
+                        } else {
+                            manager.disconnect_device (dev);
                         }
+                    });
+                }
 
-                        if (usb_property == null)
-                            break;
+                if (usb_property == null)
+                    break;
 
-                        manager.device_added.connect ((manager, dev) => {
-                            usb_property.refresh_properties ();
+                manager.device_added.connect ((manager, dev) => {
+                        usb_property.refresh_properties ();
                         });
-                        manager.device_removed.connect ((manager, dev) => {
-                            Idle.add (() => {
+                manager.device_removed.connect ((manager, dev) => {
+                        Idle.add (() => {
                                 // FIXME: This is done in an idle to workaround a bug in spice-gtk 0.18 where calling
                                 // UsbDeviceManager.get_devices() from the "device-removed" signal callback will
                                 // return a list of devices which still contains the removed device.
                                 // This is fixed in spice-gtk by 09124ecc50.
                                 usb_property.refresh_properties ();
                                 return false;
-                            });
+                                });
                         });
-                    } catch (GLib.Error error) {
-                    }
-                }
+            } catch (GLib.Error error) {
             }
             break;
         }
