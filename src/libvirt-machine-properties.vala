@@ -131,8 +131,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             });
 
             add_string_property (ref list, _("Virtualizer"), machine.source.uri);
-            if (machine.display != null)
+            if (machine.display != null) {
+                add_string_property (ref list, _("Protocol"), machine.display.protocol);
                 property = add_string_property (ref list, _("URI"), machine.display.uri);
+            }
             break;
 
         case PropertiesPage.SYSTEM:
@@ -199,11 +201,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     }
                 });
             });
-            break;
-
-        case PropertiesPage.DISPLAY:
-            if (machine.display != null)
-                add_string_property (ref list, _("Protocol"), machine.display.protocol);
             break;
 
         case PropertiesPage.DEVICES:

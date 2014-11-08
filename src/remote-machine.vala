@@ -62,6 +62,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
                 name_property.text = name;
             });
 
+            add_string_property (ref list, _("Protocol"), source.source_type.up ());
             property = add_string_property (ref list, _("URI"), source.uri);
             if (!is_connected ())
                 property.editable = true;
@@ -70,10 +71,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
                 return true;
             });
 
-            break;
-
-        case PropertiesPage.DISPLAY:
-            add_string_property (ref list, _("Protocol"), source.source_type.up ());
             break;
         }
 

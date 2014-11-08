@@ -62,11 +62,8 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         switch (page) {
         case PropertiesPage.GENERAL:
             add_string_property (ref list, _("Virtualizer"), source.uri);
-            add_string_property (ref list, _("URI"), display.uri);
-            break;
-
-        case PropertiesPage.DISPLAY:
             add_string_property (ref list, _("Protocol"), display.protocol);
+            add_string_property (ref list, _("URI"), display.uri);
             break;
         }
 
