@@ -137,7 +137,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
-        case PropertiesPage.DISPLAY:
+        case PropertiesPage.GENERAL:
             var toggle = new Gtk.Switch ();
             toggle.halign = Gtk.Align.START;
             display.bind_property ("read-only", toggle, "active",
