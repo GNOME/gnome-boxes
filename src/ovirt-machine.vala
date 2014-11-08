@@ -60,7 +60,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
-        case PropertiesPage.LOGIN:
+        case PropertiesPage.GENERAL:
             add_string_property (ref list, _("Virtualizer"), source.uri);
             add_string_property (ref list, _("URI"), display.uri);
             break;

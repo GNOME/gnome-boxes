@@ -113,7 +113,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             }
 
         switch (page) {
-        case PropertiesPage.LOGIN:
+        case PropertiesPage.GENERAL:
             var property = add_string_property (ref list, _("Name"), machine.name);
             property.editable = true;
             property.changed.connect ((property, name) => {

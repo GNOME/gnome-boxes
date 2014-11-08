@@ -2,7 +2,7 @@
 using Gtk;
 
 private enum Boxes.PropertiesPage {
-    LOGIN,
+    GENERAL,
     SYSTEM,
     DISPLAY,
     DEVICES,
@@ -42,8 +42,8 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
         public PageWidget (PropertiesPage page, Machine machine) {
             switch (page) {
-            case PropertiesPage.LOGIN:
-                name = _("Login");
+            case PropertiesPage.GENERAL:
+                name = _("General");
                 break;
 
             case PropertiesPage.SYSTEM:
@@ -170,9 +170,9 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
         PropertiesPage current_page;
 
         if (libvirt_machine != null)
-            current_page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.LOGIN;
+            current_page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.GENERAL;
         else
-            current_page = PropertiesPage.LOGIN;
+            current_page = PropertiesPage.GENERAL;
 
         var path = new Gtk.TreePath.from_indices (current_page);
         window.sidebar.props_sidebar.selection.select_path (path);
