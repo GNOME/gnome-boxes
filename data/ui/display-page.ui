@@ -4,6 +4,7 @@
   <template class="BoxesDisplayPage" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="spacing">0</property>
+    <signal name="size-allocate" handler="on_size_allocate"/>
 
     <child>
       <object class="BoxesDisplayToolbar" id="toolbar">
@@ -25,15 +26,31 @@
         <property name="visible">True</property>
 
         <child>
-          <object class="GtkEventBox" id="event_box">
+          <object class="GtkOverlay" id="size_overlay">
             <property name="visible">True</property>
-            <property name="above-child">True</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <signal name="event" handler="on_event_box_event"/>
-            <style>
-              <class name="boxes-toplevel"/>
-            </style>
+
+            <child type="overlay">
+              <object class="GtkLabel" id="size_label">
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <style>
+                  <class name="content-bg"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkEventBox" id="event_box">
+                <property name="visible">True</property>
+                <property name="above-child">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <signal name="event" handler="on_event_box_event"/>
+                <style>
+                  <class name="boxes-toplevel"/>
+                </style>
+              </object>
+            </child>
           </object>
 
           <packing>

@@ -10,6 +10,9 @@ private class Boxes.DisplayPage: Gtk.Box {
     public DisplayToolbar toolbar;
 
     [GtkChild]
+    public Gtk.Label size_label;
+
+    [GtkChild]
     private EventBox event_box;
     [GtkChild]
     private DisplayToolbar overlay_toolbar;
@@ -20,6 +23,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     private ulong cursor_id;
 
     private uint overlay_toolbar_invisible_timeout;
+    private uint size_label_timeout;
 
     private AppWindow window;
 
@@ -216,5 +220,23 @@ private class Boxes.DisplayPage: Gtk.Box {
             event_box.get_child ().event (event);
 
         return false;
+    }
+
+    [GtkCallback]
+    private void on_size_allocate (Gtk.Allocation allocation) {
+        // Translators: Showing size of widget as WIDTHxHEIGHT here.
+        size_label.label = _("%dx%d").printf (allocation.width, allocation.height);
+        size_label.visible = true;
+
+        if (size_label_timeout != 0) {
+            Source.remove (size_label_timeout);
+            size_label_timeout = 0;
+        }
+        size_label_timeout = Timeout.add_seconds (3, () => {
+            size_label.visible = false;
+            size_label_timeout = 0;
+
+            return false;
+        });
     }
 }
