@@ -63,6 +63,9 @@ private class Boxes.VMConfigurator {
         timer = new DomainTimerPit ();
         timer.set_tick_policy (DomainTimerTickPolicy.DELAY);
         clock.add_timer (timer);
+        timer = new DomainTimerHpet ();
+        timer.set_present (false);
+        clock.add_timer (timer);
         domain.set_clock (clock);
 
         set_target_media_config (domain, target_path, install_media);
