@@ -217,4 +217,5 @@ AC_MSG_NOTICE([
         build from vala sources:  $enable_vala
         USB redirection support:  $enable_usbredir
         Smartcard support:        $enable_smartcard
+        oVirt support:            $have_govirt
 ])
