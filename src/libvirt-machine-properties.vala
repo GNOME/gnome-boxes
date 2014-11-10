@@ -130,7 +130,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 name_property.text = machine.name;
             });
 
-            add_string_property (ref list, _("Broker"), machine.source.uri);
+            add_string_property (ref list, _("Broker"), machine.source.name);
             if (machine.display != null) {
                 add_string_property (ref list, _("Protocol"), machine.display.protocol);
                 property = add_string_property (ref list, _("URI"), machine.display.uri);
