@@ -56,6 +56,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     private string collect_logs () {
         var builder = new StringBuilder ();
 
+        builder.append_printf ("Broker URL: %s\n", machine.source.uri);
         builder.append_printf ("Domain: %s\n", machine.domain.get_name ());
         builder.append_printf ("UUID: %s\n", machine.domain.get_uuid ());
         builder.append_printf ("Persistent: %s\n", machine.domain.get_persistent () ? "yes" : "no");
