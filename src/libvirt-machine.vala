@@ -40,6 +40,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
         connecting_cancellable.reset ();
 
+        yield wait_for_save ();
+
+        if (connecting_cancellable.is_cancelled ()) {
+            connecting_cancellable.reset ();
+
+            return;
+        }
+
         yield start (flags, connecting_cancellable);
         if (connecting_cancellable.is_cancelled ()) {
             connecting_cancellable.reset ();
@@ -617,5 +625,31 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         });
 
         try_shutdown ();
+    }
+
+    private async void wait_for_save () {
+        if (!saving)
+            return;
+
+        var state_notify_id = notify["state"].connect (() => {
+            if (state == MachineState.SAVED)
+                wait_for_save.callback ();
+        });
+        var cancelled_id = connecting_cancellable.cancelled.connect (() => {
+            Idle.add (() => {
+                // This callback is synchronous and calling it directly from cancelled callback will mean
+                // disconnecting from this signal and resetting cancellable from right here and that seems to hang
+                // the application.
+                wait_for_save.callback ();
+
+                return false;
+            });
+        });
+
+        debug ("%s is being saved, delaying starting untill its saved", name);
+        yield;
+
+        disconnect (state_notify_id);
+        connecting_cancellable.disconnect (cancelled_id);
     }
 }
