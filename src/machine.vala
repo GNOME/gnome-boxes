@@ -3,6 +3,8 @@ using Gdk;
 using Gtk;
 
 private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
+    const uint AUTOSAVE_TIMEOUT = 60; // seconds
+
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
@@ -250,6 +252,18 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         yield save_real ();
 
         this.info = info;
+    }
+
+    public void schedule_autosave () {
+        if (!can_save)
+            return;
+
+        debug ("Scheduling autosave for '%s'", name);
+        Timeout.add_seconds (AUTOSAVE_TIMEOUT, () => {
+            try_save.begin ();
+
+            return false;
+        });
     }
 
     protected virtual async void save_real () throws GLib.Error {
@@ -620,5 +634,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             return config.compare ((other as Machine).config);
         else
             return -1; // Machines are listed before non-machines
+    }
+
+    private async void try_save () {
+        try {
+            yield save ();
+        } catch (GLib.Error error) {
+            warning ("Failed to save '%s': %s", name, error.message);
+        }
     }
 }
