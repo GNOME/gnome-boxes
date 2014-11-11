@@ -34,6 +34,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private string username;
     private string password;
 
+    private uint autosave_timeout_id;
+
     public Cancellable connecting_cancellable { get; protected set; }
 
     public enum MachineState {
@@ -255,15 +257,25 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public void schedule_autosave () {
-        if (!can_save)
+        if (!can_save || autosave_timeout_id != 0)
             return;
 
         debug ("Scheduling autosave for '%s'", name);
-        Timeout.add_seconds (AUTOSAVE_TIMEOUT, () => {
+        autosave_timeout_id = Timeout.add_seconds (AUTOSAVE_TIMEOUT, () => {
             try_save.begin ();
+            autosave_timeout_id = 0;
 
             return false;
         });
+    }
+
+    public void unschedule_autosave () {
+        if (autosave_timeout_id == 0)
+            return;
+
+        debug ("Unscheduling autosave for '%s'", name);
+        Source.remove (autosave_timeout_id);
+        autosave_timeout_id = 0;
     }
 
     protected virtual async void save_real () throws GLib.Error {
