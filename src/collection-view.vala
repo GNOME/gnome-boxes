@@ -150,6 +150,12 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             queue_draw ();
         });
         item.set_data<ulong> ("under_construct_id", under_construct_id);
+        var machine_state_id = machine.notify["state"].connect (() => {
+            // apparently iter is stable after insertion/removal/sort
+            setup_activity (iter, machine);
+            queue_draw ();
+        });
+        item.set_data<ulong> ("machine_state_id", machine_state_id);
 
         item.set_state (window.ui_state);
     }
@@ -191,6 +197,9 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         item.disconnect (info_id);
         var under_construct_id = item.get_data<ulong> ("under_construct_id");
         item.disconnect (under_construct_id);
+        var machine_state_id = item.get_data<ulong> ("machine_state_id");
+        if (machine_state_id != 0)
+            item.disconnect (machine_state_id);
 
         if (item as Machine != null) {
             var machine = item as Machine;
@@ -326,12 +335,21 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
         if (!machine.under_construction) {
             store.set (iter, ModelColumns.PULSE, 0);
+            var machine_state_id = machine.get_data<ulong> ("machine_state_id");
+            if (machine_state_id != 0) {
+                machine.disconnect (machine_state_id);
+                machine.set_data<ulong> ("machine_state_id", 0);
+            }
 
             return;
         }
 
         var pulse = 1;
         store.set (iter, ModelColumns.PULSE, pulse++);
+
+        if (machine.state == Machine.MachineState.SAVED)
+            return;
+
         activity_timeout = Timeout.add (150, () => {
             var machine_iter = machine.get_data<Gtk.TreeIter?> ("iter");
             if (machine_iter == null)
