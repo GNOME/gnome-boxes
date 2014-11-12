@@ -156,6 +156,7 @@ private class Boxes.VMCreator {
             if (VMConfigurator.is_live_config (machine.domain_config) || !install_trackable ())
                 machine.info = null;
             machine.vm_creator = null;
+            machine.schedule_autosave ();
         } else {
             if (VMConfigurator.is_live_config (machine.domain_config) &&
                 machine.state != Machine.MachineState.FORCE_STOPPED) {
