@@ -313,8 +313,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         if (machine.vm_creator != null) {
             var media = machine.vm_creator.install_media;
 
-            if ((media is UnattendedInstaller && (media as UnattendedInstaller).setup_box.express_install) ||
-                (media.os_media != null && media.os_media.live)) {
+            if (machine.vm_creator.express_install || (media.os_media != null && media.os_media.live)) {
                 // Don't let user eject installer media if its an express installation or a live media
                 add_property (ref list, _("CD/DVD"), grid);
 
