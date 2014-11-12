@@ -193,6 +193,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                 }
 
                 machine.connecting_cancellable.cancel (); // Cancel any in-progress connections
+                machine.schedule_autosave ();
             }
 
             break;
@@ -239,6 +240,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public void connect_to (Machine machine) {
         current_item = machine;
         machine.window = this;
+        machine.unschedule_autosave ();
 
         // Track machine status in toobar
         status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
@@ -359,8 +361,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private bool on_delete_event () {
         return_if_fail (current_item == null || current_item is Machine);
 
-        if (current_item != null)
-            (current_item as Machine).window = null;
+        if (current_item != null) {
+            var machine = current_item as Machine;
+
+            machine.window = null;
+            machine.schedule_autosave ();
+        }
 
         return App.app.remove_window (this);
     }
