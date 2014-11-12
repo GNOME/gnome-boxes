@@ -19,6 +19,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public signal void got_error (string message);
 
+    protected virtual bool should_autosave {
+        get {
+            return (can_save && autosave_timeout_id == 0);
+        }
+    }
+
     private ulong show_id;
     private ulong hide_id;
     private ulong disconnected_id;
@@ -257,7 +263,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public void schedule_autosave () {
-        if (!can_save || autosave_timeout_id != 0)
+        if (!should_autosave)
             return;
 
         debug ("Scheduling autosave for '%s'", name);
