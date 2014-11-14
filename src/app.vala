@@ -324,7 +324,7 @@ private class Boxes.App: Gtk.Application {
         }
     }
 
-    private void open_in_new_window (Machine machine) {
+    public void open_in_new_window (Machine machine) {
         if (machine.window != main_window) {
             machine.window.present ();
 
