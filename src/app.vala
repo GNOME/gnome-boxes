@@ -462,14 +462,25 @@ private class Boxes.App: Gtk.Application {
      * Deletes specified items, while allowing user to undo it.
      *
      * @param items the list of machines
-     * @param message The message to be shown together with the undo button
+     * @param message optional message to be shown together with the undo button. If not provided, an appropriate messsage
+     *                is created.
      * @param callback optional function that, if provided, is called after the undo operation
      *
      * @attention the ownership for items is required since GLib.List is a compact class.
      */
     public void delete_machines_undoable (owned List<CollectionItem> items,
-                                          string                     message,
+                                          string?                    message = null,
                                           owned UndoNotifyCallback?  undo_notify_callback = null) {
+        var num_items = items.length ();
+        if (num_items == 0)
+            return;
+
+        var msg = message;
+        if (msg == null)
+            msg = (num_items == 1) ? _("Box '%s' has been deleted").printf (items.data.name) :
+                                     ngettext ("%u box has been deleted",
+                                               "%u boxes have been deleted",
+                                               num_items).printf (num_items);
         foreach (var item in items)
             collection.remove_item (item);
 
@@ -486,30 +497,23 @@ private class Boxes.App: Gtk.Application {
         Notification.CancelFunc really_remove = () => {
             debug ("User did not cancel deletion. Deleting now...");
             foreach (var item in items) {
-                var machine = item as Machine;
-                if (machine != null)
-                    // Will also delete associated storage volume if by_user is 'true'
-                    machine.delete (true);
+                if (!(item is Machine))
+                    continue;
+
+                // Will also delete associated storage volume if by_user is 'true'
+                (item as Machine).delete (true);
             }
         };
 
-        main_window.notificationbar.display_for_action (message, _("_Undo"), (owned) undo, (owned) really_remove);
+        main_window.notificationbar.display_for_action (msg, _("_Undo"), (owned) undo, (owned) really_remove);
     }
 
     public void remove_selected_items () {
         var selected_items = main_window.view.get_selected_items ();
-        var num_selected = selected_items.length ();
-        if (num_selected == 0)
-            return;
 
         main_window.selection_mode = false;
 
-        var message = (num_selected == 1) ? _("Box '%s' has been deleted").printf (selected_items.data.name) :
-                                            ngettext ("%u box has been deleted",
-                                                      "%u boxes have been deleted",
-                                                      num_selected).printf (num_selected);
-
-        delete_machines_undoable ((owned) selected_items, message);
+        delete_machines_undoable ((owned) selected_items);
     }
 
     public AppWindow add_new_window () {
