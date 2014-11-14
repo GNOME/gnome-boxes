@@ -77,6 +77,8 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     }
 
     private void delete_activated () {
+        window.set_state (UIState.COLLECTION);
+
         var items = new List<CollectionItem> ();
         items.append (window.current_item);
 
