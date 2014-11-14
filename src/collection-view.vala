@@ -291,9 +291,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             queue_draw ();
             App.app.notify_property ("selected-items");
         });
-        selection_mode_request.connect (() => {
-            window.selection_mode = true;
-        });
+
         show_all ();
     }
 
