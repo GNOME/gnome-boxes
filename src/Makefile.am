@@ -96,6 +96,7 @@ gnome_boxes_SOURCES =				\
 	$(BUILT_SOURCES)			\
 	app.vala				\
 	app-window.vala				\
+	actions-popover.vala			\
 	archive-reader.vala			\
 	archive-writer.vala			\
 	auth-notification.vala			\
