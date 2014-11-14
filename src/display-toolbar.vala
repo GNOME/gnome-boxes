@@ -54,7 +54,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         App.app.notify["main-window"].connect (() => {
             back.visible = (window == App.app.main_window);
         });
-}
+    }
 
     private bool button_down;
     private int button_down_x;
