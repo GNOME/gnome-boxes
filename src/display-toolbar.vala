@@ -13,7 +13,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     [GtkChild]
     private Gtk.Button fullscreen;
     [GtkChild]
-    private Gtk.Button props;
+    private Gtk.MenuButton menu_button;
 
     private AppWindow window;
 
@@ -37,7 +37,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         if (!overlay) {
             back.get_style_context ().add_class ("raised");
             fullscreen.get_style_context ().add_class ("raised");
-            props.get_style_context ().add_class ("raised");
+            menu_button.get_style_context ().add_class ("raised");
         }
 
         App.app.notify["fullscreened"].connect_after ( () => {
@@ -51,8 +51,13 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     public void setup_ui (AppWindow window) {
         this.window = window;
 
+        menu_button.popover = new ActionsPopover (window);
         App.app.notify["main-window"].connect (() => {
             back.visible = (window == App.app.main_window);
+        });
+        window.notify["ui-state"].connect (() => {
+            if (window.ui_state == UIState.DISPLAY)
+                (menu_button.popover as ActionsPopover).update_for_item (window.current_item);
         });
     }
 
@@ -125,10 +130,5 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     [GtkCallback]
     private void on_fullscreen_clicked () {
         window.fullscreened = !window.fullscreened;
-    }
-
-    [GtkCallback]
-    private void on_props_clicked () {
-        window.set_state (UIState.PROPERTIES);
     }
 }
