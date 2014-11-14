@@ -34,6 +34,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
     private Gtk.ListStore store;
     private Gtk.TreeModelFilter model_filter;
+    private Boxes.ActionsPopover context_popover;
 
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
@@ -49,6 +50,11 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             if (!window.selection_mode)
                 unselect_all (); // Reset selection on exiting selection mode
         });
+
+        var icon_view = get_generic_view () as Gtk.IconView;
+        icon_view.button_release_event.connect (on_button_press_event);
+        context_popover = new Boxes.ActionsPopover (window);
+        context_popover.relative_to = icon_view;
     }
 
     private void ui_state_changed () {
@@ -359,5 +365,37 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             return true;
         });
         machine.set_data<uint> ("activity_timeout", activity_timeout);
+    }
+
+    private bool on_button_press_event (Gdk.EventButton event) {
+        if (event.type != Gdk.EventType.BUTTON_RELEASE || event.button != 3)
+            return false;
+
+        var generic_view = get_generic_view () as Gd.MainViewGeneric;
+        var path = generic_view.get_path_at_pos ((int) event.x, (int) event.y);
+        if (path == null)
+            return false;
+
+        return launch_context_popover_for_path (path);
+    }
+
+    private bool launch_context_popover_for_path (Gtk.TreePath path) {
+        var item = get_item_for_path (path);
+        if (item == null)
+            return false;
+
+        var icon_view = get_generic_view () as Gtk.IconView;
+        Gdk.Rectangle rect;
+        icon_view.get_cell_rect (path, null, out rect);
+
+        context_popover.update_for_item (item);
+        var rectangle = Cairo.RectangleInt () { x = rect.x,
+                                                y = rect.y,
+                                                width = rect.width,
+                                                height = rect.height / 2}; // Show in the middle
+        context_popover.pointing_to = rectangle;
+        context_popover.show ();
+
+        return true;
     }
 }
