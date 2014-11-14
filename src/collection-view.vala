@@ -53,6 +53,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
         var icon_view = get_generic_view () as Gtk.IconView;
         icon_view.button_release_event.connect (on_button_press_event);
+        icon_view.key_press_event.connect (on_key_press_event);
         context_popover = new Boxes.ActionsPopover (window);
         context_popover.relative_to = icon_view;
     }
@@ -374,6 +375,19 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         var generic_view = get_generic_view () as Gd.MainViewGeneric;
         var path = generic_view.get_path_at_pos ((int) event.x, (int) event.y);
         if (path == null)
+            return false;
+
+        return launch_context_popover_for_path (path);
+    }
+
+    private bool on_key_press_event (Gdk.EventKey event) {
+        if (event.keyval != Gdk.Key.Menu)
+            return false;
+
+        var icon_view = get_generic_view () as Gtk.IconView;
+        Gtk.TreePath path;
+        Gtk.CellRenderer cell;
+        if (!icon_view.get_cursor (out path, out cell))
             return false;
 
         return launch_context_popover_for_path (path);
