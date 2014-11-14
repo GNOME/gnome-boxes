@@ -225,6 +225,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public void show_properties () {
+        if (current_item != null) {
+            set_state (UIState.PROPERTIES);
+
+            return;
+        }
+
         var selected_items = view.get_selected_items ();
 
         selection_mode = false;
