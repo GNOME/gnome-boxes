@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.15.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-13 20:27+0100\n"
-"PO-Revision-Date: 2014-11-13 20:28+0100\n"
+"POT-Creation-Date: 2014-11-16 21:03+0100\n"
+"PO-Revision-Date: 2014-11-16 21:03+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -191,7 +191,8 @@ msgstr "Gå tilbake til denne tilstanden"
 msgid "Rename"
 msgstr "Endre navn"
 
-#: ../data/ui/snapshot-list-row.ui.h:3
+#. Delete
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:44
 msgid "Delete"
 msgstr "Slett"
 
@@ -324,6 +325,35 @@ msgstr ""
 "Utvidelser for virtualisering er ikke tilgjengelig på ditt system. Sjekk "
 "innstillingene i BIOS hvis systemet er nytt (etter 2008) og slå dem på der."
 
+#. Open in new Window
+#: ../src/actions-popover.vala:30
+msgid "Open in new Window"
+msgstr "Åpne i nytt vindu"
+
+#. Favorite
+#: ../src/actions-popover.vala:34
+msgid "Remove favorite"
+msgstr "Fjern favoritt"
+
+#: ../src/actions-popover.vala:36
+msgid "Favorite"
+msgstr "Merk som favoritt"
+
+#. Pause
+#: ../src/actions-popover.vala:39
+msgid "Pause"
+msgstr "Pause"
+
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:50
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: ../src/actions-popover.vala:74 ../src/selectionbar.vala:63
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "Pause av «%s» feilet"
+
 #: ../src/app.vala:97
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
@@ -378,23 +408,23 @@ msgstr "- Et enkelt program for å aksessere eksterne eller virtuelle maskiner"
 msgid "Too many command line arguments specified.\n"
 msgstr "For mange kommandolinjeargumenter oppgitt.\n"
 
-#: ../src/app.vala:496 ../src/snapshot-list-row.vala:194
-msgid "_Undo"
-msgstr "A_ngre"
-
-#: ../src/app.vala:507
+#: ../src/app.vala:480
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boks «%s» er slettet"
 
-#: ../src/app.vala:508
+#: ../src/app.vala:481
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: ../src/collection-view.vala:39
+#: ../src/app.vala:508 ../src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "A_ngre"
+
+#: ../src/collection-view.vala:40
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
@@ -710,11 +740,6 @@ msgstr "Endringer krever omstart av «%s»."
 #: ../src/properties.vala:217
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
-
-#: ../src/selectionbar.vala:63
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "Pause av «%s» feilet"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
