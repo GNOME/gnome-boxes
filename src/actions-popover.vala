@@ -18,6 +18,11 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         action_group = new GLib.SimpleActionGroup ();
         action_group.add_action_entries (action_entries, this);
         this.insert_action_group ("box", action_group);
+
+        var a11y = get_accessible ();
+        a11y.role = Atk.Role.POPUP_MENU;
+        // Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+        a11y.name = _("Box actions");
     }
 
     public void update_for_item (CollectionItem item) {
