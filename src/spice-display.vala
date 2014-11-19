@@ -204,6 +204,14 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             channel_new_id = session.channel_new.connect ((channel) => {
                 var id = channel.channel_id;
 
+                if (open_fd != null)
+                    channel.open_fd.connect (() => {
+                        int fd;
+
+                        fd = open_fd ();
+                        channel.open_fd (fd);
+                    });
+
                 if (channel is Spice.MainChannel) {
                     main_channel = channel as Spice.MainChannel;
                     main_event_id = main_channel.channel_event.connect (main_event);
@@ -238,7 +246,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             });
 
         session.password = password;
-        session.connect ();
+        if (open_fd != null)
+            session.open_fd (-1);
+        else
+            session.connect ();
     }
 
     public override void disconnect_it () {
