@@ -199,7 +199,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         main_cleanup ();
 
-        // FIXME: vala does't want to put this in ctor..
+        // FIXME: vala does't want to put this in constructor..
         if (channel_new_id == 0)
             channel_new_id = session.channel_new.connect ((channel) => {
                 var id = channel.channel_id;
