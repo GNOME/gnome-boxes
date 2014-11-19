@@ -39,6 +39,7 @@ AM_VALAFLAGS =						\
 	--pkg libxml-2.0				\
 	--pkg posix					\
 	--pkg linux					\
+	--pkg libusb-1.0				\
 	--pkg spice-client-gtk-3.0			\
 	--pkg tracker-sparql-$(TRACKER_VERSION)		\
 	--pkg gmodule-2.0				\
