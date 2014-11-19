@@ -20,6 +20,8 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public signal void disconnected (bool connection_failed);
     public signal void got_error (string message);
 
+    public delegate int OpenFDFunc ();
+
     public abstract Gtk.Widget get_display (int n);
     public abstract Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error;
     public abstract void set_enable_inputs (Gtk.Widget widget, bool enable);
@@ -29,7 +31,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
         return false;
     }
 
-    public abstract void connect_it () throws GLib.Error;
+    public abstract void connect_it (OpenFDFunc? open_fd = null) throws GLib.Error;
     public abstract void disconnect_it ();
 
     public virtual void collect_logs (StringBuilder builder) {
