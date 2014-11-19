@@ -1,6 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 using Spice;
+using LibUSB;
 
 private class Boxes.SpiceDisplay: Boxes.Display {
     public override string protocol { get { return "SPICE"; } }
@@ -287,7 +288,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             Boxes.Property usb_property = null;
             try {
                 var manager = UsbDeviceManager.get (session);
-                var devs = manager.get_devices ();
+                var devs = get_usb_devices (manager);
+
                 devs.sort ( (a, b) => {
                     string str_a = a.get_description ("    %1$s %2$s");
                     string str_b = b.get_description ("    %1$s %2$s");
@@ -357,6 +359,76 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         var display = get_display (0) as Spice.Display;
 
         display.send_keys (keyvals, DisplayKeyEvent.CLICK);
+    }
+
+    private GLib.GenericArray<UsbDevice> get_usb_devices (UsbDeviceManager manager) {
+        GLib.GenericArray<UsbDevice> ret = new GLib.GenericArray<UsbDevice> ();
+        var devs = manager.get_devices ();
+
+        for (int i = 0; i < devs.length; i++) {
+            var dev = devs[i];
+            var libusb_dev = (LibUSB.Device) dev.get_libusb_device ();
+
+            // The info about the device class, subclass and protocol can be in the device descriptor ...
+            LibUSB.DeviceDescriptor desc;
+            if (libusb_dev.get_device_descriptor (out desc) != 0)
+                continue;
+
+            if (is_usb_kbd_or_mouse (desc.bDeviceClass, desc.bDeviceSubClass, desc.bDeviceProtocol))
+                continue;
+
+            // ... or in one of the interfaces descriptors
+            if (desc.bDeviceClass == LibUSB.ClassCode.PER_INTERFACE) {
+                LibUSB.ConfigDescriptor config;
+                if (libusb_dev.get_active_config_descriptor (out config) != 0)
+                    continue;
+
+                var kbd_or_mouse = false;
+                for (int j = 0; j < config.@interface.length && !kbd_or_mouse; j++) {
+                    for (int k = 0; k < config.@interface[j].altsetting.length && !kbd_or_mouse; k++) {
+                        var class = config.@interface[j].altsetting[k].bInterfaceClass;
+                        var subclass = config.@interface[j].altsetting[k].bInterfaceSubClass;
+                        var protocol = config.@interface[j].altsetting[k].bInterfaceProtocol;
+
+                        kbd_or_mouse = is_usb_kbd_or_mouse (class, subclass, protocol);
+                    }
+                }
+
+                if (kbd_or_mouse)
+                    continue;
+            }
+
+            ret.add (dev);
+        }
+
+        return ret;
+    }
+
+    private bool is_usb_kbd_or_mouse (uint8 class, uint8 subclass, uint8 protocol) {
+        var ret = false;
+
+        if (class == LibUSB.ClassCode.HID) {
+            switch (subclass) {
+            case 0x00: // None
+                break;
+            case 0x01: // BootInterface
+               switch (protocol) {
+               case 0x00: // None
+                   break;
+               case 0x01: // Keyboard
+               case 0x02: // Mouse
+                   ret = true;
+                   break;
+                default:
+                    break;
+               }
+               break;
+            default:
+                break;
+            }
+        }
+
+        return ret;
     }
 }
 
