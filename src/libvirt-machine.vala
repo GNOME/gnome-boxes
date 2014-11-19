@@ -61,7 +61,20 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         if (update_display ()) {
-            display.connect_it ();
+            Display.OpenFDFunc? open_fd = null;
+
+            if (source.uri.has_prefix ("qemu+unix"))
+                open_fd = () => {
+                    try {
+                        return domain.open_graphics_fd (0, 0);
+                    } catch (GLib.Error error) {
+                        critical ("Failed to open graphics for %s: %s", name, error.message);
+
+                        return -1;
+                    }
+                };
+
+            display.connect_it (open_fd);
         } else {
             show_display ();
             display.set_enable_audio (true);
