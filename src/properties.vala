@@ -17,7 +17,6 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     private AppWindow window;
-    private PropertiesSidebar sidebar;
 
     private ulong stats_id;
     private bool restore_fullscreen;
@@ -117,23 +116,12 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
         notify["ui-state"].connect (ui_state_changed);
     }
 
-    private void list_append (Gtk.ListStore listmodel, string label, bool visible) {
-        Gtk.TreeIter iter;
-
-        listmodel.append (out iter);
-        listmodel.set (iter, 0, label);
-        listmodel.set (iter, 1, visible);
-    }
-
     private void populate () {
-        sidebar.listmodel.clear ();
         foreach (var page in get_children ())
             remove (page);
 
         var machine = window.current_item as Machine;
         var libvirt_machine = window.current_item as LibvirtMachine;
-
-        sidebar.shutdown_button.sensitive = libvirt_machine != null && libvirt_machine.is_running ();
 
         if (machine == null)
             return;
@@ -147,29 +135,18 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             page.refresh_properties.connect (() => {
                 var current_page = page;
                 this.populate ();
-                var path = new Gtk.TreePath.from_indices (current_page);
-                sidebar.selection.select_path (path);
                 page = current_page;
             });
-
-            list_append (sidebar.listmodel, page.name, !page.empty);
         }
 
-        PropertiesPage current_page;
-
         if (libvirt_machine != null)
-            current_page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.GENERAL;
+            page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.GENERAL;
         else
-            current_page = PropertiesPage.GENERAL;
-
-        var path = new Gtk.TreePath.from_indices (current_page);
-        sidebar.selection.select_path (path);
-        visible_child_name = page_names[current_page];
+            page = PropertiesPage.GENERAL;
     }
 
     public void setup_ui (AppWindow window, PropertiesWindow dialog) {
         this.window = window;
-        this.sidebar = dialog.sidebar;
 
         show_all ();
     }
@@ -183,15 +160,6 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
         if (ui_state == UIState.PROPERTIES) {
             restore_fullscreen = (previous_ui_state == UIState.DISPLAY && window.fullscreened);
             window.fullscreened = false;
-
-            if (window.current_item is LibvirtMachine) {
-                var libvirt_machine = window.current_item as LibvirtMachine;
-                stats_id = libvirt_machine.stats_updated.connect (() => {
-                    sidebar.cpu_graph.points = libvirt_machine.cpu_stats;
-                    sidebar.net_graph.points = libvirt_machine.net_stats;
-                    sidebar.io_graph.points = libvirt_machine.io_stats;
-                });
-            }
 
             populate ();
         } else if (previous_ui_state == UIState.PROPERTIES) {

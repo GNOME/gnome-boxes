@@ -12,9 +12,6 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
-    [GtkChild]
-    public PropertiesSidebar props_sidebar;
-
     private AppWindow window;
 
     construct {
@@ -23,7 +20,6 @@ private class Boxes.Sidebar: Gtk.Revealer, Boxes.UI {
 
     public void setup_ui (AppWindow window) {
         this.window = window;
-        props_sidebar.setup_ui (window);
     }
 
     private void ui_state_changed () {

@@ -426,8 +426,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             orig_pixbuf = small_screenshot;
             pixbuf = draw_vm (small_screenshot, SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT);
-            if (window.current_item == this)
-                window.props_window.sidebar.screenshot.set_from_pixbuf (pixbuf);
             if (save)
                 save_pixbuf_as_screenshot (small_screenshot);
 
@@ -567,27 +565,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (auth_notification != null)
                 auth_notification.dismiss ();
             disconnect_display ();
-
-            break;
-        case UIState.PROPERTIES:
-            Gdk.Pixbuf pixbuf = null;
-            if (previous_ui_state == UIState.WIZARD) {
-                var theme = Gtk.IconTheme.get_for_screen (window.get_screen ());
-                pixbuf = new Gdk.Pixbuf (Gdk.Colorspace.RGB, true, 8,
-                                         Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT);
-                pixbuf.fill (0x00000000); // Transparent
-                try {
-                    var icon = theme.load_icon ("media-optical", Machine.SCREENSHOT_HEIGHT, 0);
-                    // Center icon in pixbuf
-                    icon.copy_area (0, 0, Machine.SCREENSHOT_HEIGHT, Machine.SCREENSHOT_HEIGHT, pixbuf,
-                                    (Machine.SCREENSHOT_WIDTH - Machine.SCREENSHOT_HEIGHT) / 2, 0);
-                } catch (GLib.Error err) {
-                    warning (err.message);
-                }
-            } else {
-                pixbuf = this.pixbuf;
-            }
-            window.props_window.sidebar.screenshot.set_from_pixbuf (pixbuf);
 
             break;
         }

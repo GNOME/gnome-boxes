@@ -7,8 +7,6 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    public PropertiesSidebar sidebar;
-    [GtkChild]
     public Properties properties;
     [GtkChild]
     public PropertiesToolbar topbar;
@@ -18,7 +16,6 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     public PropertiesWindow (AppWindow app_window) {
         this.app_window = app_window;
 
-        sidebar.setup_ui (app_window);
         properties.setup_ui (app_window, this);
         topbar.setup_ui (app_window);
 
