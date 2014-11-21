@@ -135,7 +135,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
-            window.wizard_window.sidebar.set_page (value);
             window.wizard_window.set_title_for_page (value);
             visible_child_name = page_names[value];
 

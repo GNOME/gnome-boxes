@@ -144,7 +144,6 @@ gnome_boxes_SOURCES =				\
 	libvirt-system-vm-importer.vala 	\
 	vnc-display.vala			\
 	wizard-window.vala			\
-	wizard-sidebar.vala			\
 	wizard-source.vala			\
 	wizard-toolbar.vala			\
 	wizard.vala				\

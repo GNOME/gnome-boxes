@@ -7,8 +7,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    public WizardSidebar sidebar;
-    [GtkChild]
     public Wizard wizard;
     [GtkChild]
     public WizardToolbar topbar;

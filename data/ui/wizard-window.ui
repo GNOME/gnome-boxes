@@ -6,13 +6,7 @@
 
      Boxes.WizardWindow : Gtk.Window
         |
-        |-> vbox (internal child)
-        |     |
-        |     |-> hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        |     |
-        |     |-> sidebar = new Boxes.WizardSidebar ();
-        |     |
-        |     |-> wizard = new Boxes.Wizard ();
+        |-> wizard = new Boxes.Wizard ();
         |
         |-> topbar = new Boxes.WizardTopbar (); // as titlebar
   -->
@@ -27,35 +21,8 @@
     <signal name="delete-event" handler="on_delete_event"/>
 
     <child>
-      <object class="GtkBox" id="vbox">
+      <object class="BoxesWizard" id="wizard">
         <property name="visible">True</property>
-        <property name="spacing">10</property>
-
-        <child>
-          <object class="GtkBox" id="hbox">
-            <property name="visible">True</property>
-            <property name="orientation">horizontal</property>
-            <property name="halign">fill</property>
-            <property name="valign">fill</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="spacing">10</property>
-
-            <child>
-              <object class="BoxesWizardSidebar" id="sidebar">
-                <property name="visible">True</property>
-              </object>
-            </child>
-
-            <child>
-              <object class="BoxesWizard" id="wizard">
-                <property name="visible">True</property>
-              </object>
-            </child>
-
-          </object>
-        </child>
-
       </object>
     </child>
 
