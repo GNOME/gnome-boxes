@@ -297,8 +297,6 @@ You may connect to an existing machine &lt;b&gt;&lt;i&gt;over the network&lt;/i&
             <property name="visible">True</property>
             <property name="orientation">vertical</property>
             <property name="spacing">0</property>
-            <property name="margin-start">10</property>
-            <property name="margin-end">10</property>
             <style>
               <class name="content-bg"/>
             </style>
@@ -319,13 +317,15 @@ You may connect to an existing machine &lt;b&gt;&lt;i&gt;over the network&lt;/i&
                         <property name="visible">True</property>
                         <property name="icon-name">dialog-warning</property>
                         <property name="icon-size">3</property>
+                        <property name="pixel-size">48</property>
                       </object>
                     </child>
 
                     <child>
                       <object class="GtkLabel" id="nokvm_label">
                         <property name="visible">True</property>
-                        <property name="label" translatable="yes">Virtualization extensions are unavailable on your system. If your system is recent (post 2008), check your BIOS settings to enable them.</property>
+                        <property name="label" translatable="yes">Virtualization extensions are unavailable on your system.
+Check your BIOS settings to enable them.</property>
                         <property name="wrap">True</property>
                         <property name="halign">start</property>
                         <property name="hexpand">True</property>
