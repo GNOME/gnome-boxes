@@ -139,6 +139,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             break;
 
         case PropertiesPage.SYSTEM:
+            add_resource_usage_graphs (ref list);
+
             var ram_property = add_ram_property (ref list);
             var storage_property = add_storage_property (ref list);
             mark_recommended_resources.begin (ram_property, storage_property);
@@ -435,6 +437,48 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
     }
 
+    private void add_resource_usage_graphs (ref List<Boxes.Property> list) {
+        var grid = new Gtk.Grid ();
+        grid.row_spacing = 5;
+        grid.column_spacing = 10;
+        grid.column_homogeneous = true;
+
+        // CPU
+        var cpu_graph = new MiniGraph ();
+        cpu_graph.ymax = 100;
+        cpu_graph.npoints = 20;
+        grid.attach (cpu_graph, 0, 0, 1, 1);
+        var label = new Gtk.Label (_("CPU"));
+        grid.attach (label, 0, 1, 1, 1);
+
+        // I/O
+        var io_graph = new MiniGraph ();
+        io_graph.ymax = 20;
+        grid.attach (io_graph, 1, 0, 1, 1);
+        label = new Gtk.Label (_("I/O"));
+        grid.attach (label, 1, 1, 1, 1);
+
+        // Network
+        var net_graph = new MiniGraph ();
+        net_graph.ymax = 20;
+        grid.attach (net_graph, 2, 0, 1, 1);
+        label = new Gtk.Label (_("Network"));
+        grid.attach (label, 2, 1, 1, 1);
+
+        var stats_id = machine.stats_updated.connect (() => {
+            cpu_graph.points = machine.cpu_stats;
+            io_graph.points = machine.io_stats;
+            net_graph.points = machine.net_stats;
+        });
+
+        var prop = add_property (ref list, null, grid);
+        ulong flushed_id = 0;
+        flushed_id = prop.flushed.connect (() => {
+            machine.disconnect (stats_id);
+            prop.disconnect (flushed_id);
+        });
+    }
+
     private SizeProperty? add_ram_property (ref List<Boxes.Property> list) {
         try {
             var max_ram = machine.connection.get_node_info ().memory;
@@ -446,6 +490,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               max_ram * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               FormatSizeFlags.IEC_UNITS);
+            property.widget.margin_top = 5;
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
                 machine.window.previous_ui_state != Boxes.UIState.WIZARD)
