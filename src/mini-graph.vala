@@ -20,6 +20,12 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
     }
     private bool ymax_set = false;
 
+    public MiniGraph () {
+        width_request = 120;
+        height_request = 60;
+        expand = true;
+    }
+
     private double max () {
         if (points.length == 0)
             return 1.0;
