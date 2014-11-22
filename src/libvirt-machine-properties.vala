@@ -141,7 +141,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         case PropertiesPage.SYSTEM:
             add_resource_usage_graphs (ref list);
 
-            add_troubleshoot_log_button (ref list);
+            add_system_props_buttons (ref list);
 
             var ram_property = add_ram_property (ref list);
             var storage_property = add_storage_property (ref list);
@@ -419,11 +419,14 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         });
     }
 
-    private void add_troubleshoot_log_button (ref List<Boxes.Property> list) {
+    private void add_system_props_buttons (ref List<Boxes.Property> list) {
+        var grid = new Gtk.Grid ();
+        grid.margin_top = 5;
+        grid.column_spacing = 5;
+        grid.halign = Gtk.Align.START;
+
         var button = new Gtk.Button.with_label (_("Troubleshooting log"));
-        button.halign = Gtk.Align.START;
-        button.margin_top = 5;
-        add_property (ref list, null, button);
+        grid.attach (button, 0, 0, 1, 1);
         button.clicked.connect (() => {
             var log = collect_logs ();
             var dialog = new Gtk.Dialog.with_buttons (_("Troubleshooting log"),
@@ -482,6 +485,24 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         dialog.destroy ();
                 }
             });
+        });
+
+        button = new Gtk.Button.with_label (_("Force Shutdown"));
+        button.clicked.connect (() => {
+            machine.force_shutdown ();
+        });
+        grid.attach (button, 1, 0, 1, 1);
+
+        button.sensitive = machine.is_running ();
+        var state_notify_id = machine.notify["state"].connect (() => {
+            button.sensitive = machine.is_running ();
+        });
+
+        var prop = add_property (ref list, null, grid);
+        ulong flushed_id = 0;
+        flushed_id = prop.flushed.connect (() => {
+            machine.disconnect (state_notify_id);
+            prop.disconnect (flushed_id);
         });
     }
 
