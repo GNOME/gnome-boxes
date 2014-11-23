@@ -10,8 +10,8 @@ private enum Boxes.PropertiesPage {
     LAST,
 }
 
-private class Boxes.Properties: Gtk.Stack, Boxes.UI {
-    private const string[] page_names = { "general", "system", "devices", "snapshots" };
+private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
+    private const string[] page_titles = { N_("General"), N_("System"), N_("Devices"), N_("Snapshots") };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -21,16 +21,6 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
     private ulong stats_id;
     private bool restore_fullscreen;
-
-    private PropertiesPage _page;
-    public PropertiesPage page {
-        get { return _page; }
-        set {
-            _page = value;
-
-            visible_child_name = page_names[value];
-        }
-    }
 
     private class PageWidget: Gtk.Box {
         public bool empty;
@@ -150,7 +140,8 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
             var page = new PageWidget (i, machine);
-            add_named (page, page_names[i]);
+            var label = new Gtk.Label (page_titles[i]);
+            insert_page (page, label, i);
             set_data<PageWidget> (@"boxes-property-$i", page);
 
             page.refresh_properties.connect (() => {
@@ -179,9 +170,6 @@ private class Boxes.Properties: Gtk.Stack, Boxes.UI {
     public void setup_ui (AppWindow window, PropertiesWindow dialog) {
         this.window = window;
         this.sidebar = dialog.sidebar;
-
-        transition_type = Gtk.StackTransitionType.SLIDE_UP_DOWN;
-        transition_duration = 400;
 
         show_all ();
     }
