@@ -8,6 +8,7 @@ private class Boxes.Property: GLib.Object {
     public bool reboot_required { get; set; }
 
     public signal void refresh_properties ();
+    public signal void flushed ();
 
     public uint defer_interval { get; set; default = 1; } // In seconds
 
@@ -39,7 +40,7 @@ private class Boxes.Property: GLib.Object {
                 return;
 
             deferred_change_id = Timeout.add_seconds (defer_interval, () => {
-                flush ();
+                flush_changes ();
 
                 return false;
             });
@@ -51,6 +52,12 @@ private class Boxes.Property: GLib.Object {
     }
 
     public void flush () {
+        flush_changes ();
+
+        flushed ();
+    }
+
+    private void flush_changes () {
         if (deferred_change == null)
             return;
 
