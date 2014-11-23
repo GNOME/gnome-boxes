@@ -141,11 +141,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         case PropertiesPage.SYSTEM:
             add_resource_usage_graphs (ref list);
 
+            add_troubleshoot_log_button (ref list);
+
             var ram_property = add_ram_property (ref list);
             var storage_property = add_storage_property (ref list);
             mark_recommended_resources.begin (ram_property, storage_property);
 
-            add_troubleshoot_log_button (ref list);
             break;
 
         case PropertiesPage.DEVICES:
@@ -421,6 +422,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     private void add_troubleshoot_log_button (ref List<Boxes.Property> list) {
         var button = new Gtk.Button.with_label (_("Troubleshooting log"));
         button.halign = Gtk.Align.START;
+        button.margin_top = 5;
         add_property (ref list, null, button);
         button.clicked.connect (() => {
             var log = collect_logs ();
