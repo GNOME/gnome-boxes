@@ -145,68 +145,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var storage_property = add_storage_property (ref list);
             mark_recommended_resources.begin (ram_property, storage_property);
 
-            var button = new Gtk.Button.with_label (_("Troubleshooting log"));
-            button.halign = Gtk.Align.START;
-            add_property (ref list, null, button);
-            button.clicked.connect (() => {
-                var log = collect_logs ();
-                var dialog = new Gtk.Dialog.with_buttons (_("Troubleshooting log"),
-                                                          machine.window,
-                                                          DialogFlags.DESTROY_WITH_PARENT,
-                                                          _("_Save"), 100,
-                                                          _("Copy to clipboard"), 101,
-                                                          _("_Close"), ResponseType.OK);
-                dialog.modal = true;
-                dialog.set_default_size (640, 480);
-                var text = new Gtk.TextView ();
-                text.editable = false;
-                var scroll = new Gtk.ScrolledWindow (null, null);
-                scroll.add (text);
-                scroll.vexpand = true;
-
-                dialog.get_content_area ().add (scroll);
-                text.buffer.set_text (log);
-                dialog.show_all ();
-
-                dialog.response.connect ( (response_id) => {
-                    if (response_id == 100) {
-                        var chooser = new Gtk.FileChooserDialog (_("Save log"), machine.window,
-                                                                 Gtk.FileChooserAction.SAVE,
-                                                                 _("_Save"), ResponseType.OK);
-                        chooser.modal = true;
-                        chooser.local_only = false;
-                        chooser.do_overwrite_confirmation = true;
-                        chooser.response.connect ((response_id) => {
-                            if (response_id == ResponseType.OK) {
-                                var file = chooser.get_file ();
-                                try {
-                                    file.replace_contents (log.data, null, false,
-                                                           FileCreateFlags.REPLACE_DESTINATION, null);
-                                } catch (GLib.Error e) {
-                                    var m = new Gtk.MessageDialog (chooser,
-                                                                   Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                                   Gtk.MessageType.ERROR,
-                                                                   Gtk.ButtonsType.CLOSE,
-                                                                   _("Error saving: %s").printf (e.message));
-                                    m.modal = true;
-                                    m.show_all ();
-                                    m.response.connect ( () => { m.destroy (); });
-                                    return;
-                                }
-                                chooser.destroy ();
-                            } else {
-                                chooser.destroy ();
-                            }
-                        });
-                        chooser.show_all ();
-                    } else if (response_id == 101){
-                        Gtk.Clipboard.get_for_display (dialog.get_display (),
-                                                       Gdk.SELECTION_CLIPBOARD).set_text (log, -1);
-                    } else {
-                        dialog.destroy ();
-                    }
-                });
-            });
+            add_troubleshoot_log_button (ref list);
             break;
 
         case PropertiesPage.DEVICES:
@@ -476,6 +415,71 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         flushed_id = prop.flushed.connect (() => {
             machine.disconnect (stats_id);
             prop.disconnect (flushed_id);
+        });
+    }
+
+    private void add_troubleshoot_log_button (ref List<Boxes.Property> list) {
+        var button = new Gtk.Button.with_label (_("Troubleshooting log"));
+        button.halign = Gtk.Align.START;
+        add_property (ref list, null, button);
+        button.clicked.connect (() => {
+            var log = collect_logs ();
+            var dialog = new Gtk.Dialog.with_buttons (_("Troubleshooting log"),
+                                                      machine.window,
+                                                      DialogFlags.DESTROY_WITH_PARENT,
+                                                      _("_Save"), 100,
+                                                      _("Copy to clipboard"), 101,
+                                                      _("_Close"), ResponseType.OK);
+            dialog.modal = true;
+            dialog.set_default_size (640, 480);
+            var text = new Gtk.TextView ();
+            text.editable = false;
+            var scroll = new Gtk.ScrolledWindow (null, null);
+            scroll.add (text);
+            scroll.vexpand = true;
+
+            dialog.get_content_area ().add (scroll);
+            text.buffer.set_text (log);
+            dialog.show_all ();
+
+            dialog.response.connect ( (response_id) => {
+                if (response_id == 100) {
+                    var chooser = new Gtk.FileChooserDialog (_("Save log"), machine.window,
+                                                             Gtk.FileChooserAction.SAVE,
+                                                             _("_Save"), ResponseType.OK);
+                    chooser.modal = true;
+                    chooser.local_only = false;
+                    chooser.do_overwrite_confirmation = true;
+                    chooser.response.connect ((response_id) => {
+                        if (response_id == ResponseType.OK) {
+                            var file = chooser.get_file ();
+                            try {
+                                file.replace_contents (log.data, null, false,
+                                                       FileCreateFlags.REPLACE_DESTINATION, null);
+                            } catch (GLib.Error e) {
+                                var m = new Gtk.MessageDialog (chooser,
+                                                               Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                               Gtk.MessageType.ERROR,
+                                                               Gtk.ButtonsType.CLOSE,
+                                                               _("Error saving: %s").printf (e.message));
+                                m.modal = true;
+                                m.show_all ();
+                                m.response.connect ( () => { m.destroy (); });
+                                return;
+                            }
+                            chooser.destroy ();
+                        } else {
+                            chooser.destroy ();
+                        }
+                    });
+                    chooser.show_all ();
+                } else if (response_id == 101){
+                    Gtk.Clipboard.get_for_display (dialog.get_display (),
+                                                   Gdk.SELECTION_CLIPBOARD).set_text (log, -1);
+                } else {
+                        dialog.destroy ();
+                }
+            });
         });
     }
 
