@@ -11,7 +11,7 @@ private enum Boxes.PropertiesPage {
 }
 
 private class Boxes.Properties: Gtk.Stack, Boxes.UI {
-    private const string[] page_names = { "login", "system", "display", "devices", "snapshots" };
+    private const string[] page_names = { "general", "system", "devices", "snapshots" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
