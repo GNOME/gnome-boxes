@@ -129,7 +129,6 @@ gnome_boxes_SOURCES =				\
 	searchbar.vala				\
 	selectionbar.vala			\
 	selection-toolbar.vala			\
-	sidebar.vala				\
 	spice-display.vala			\
 	topbar.vala				\
 	ui.vala					\
