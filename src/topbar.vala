@@ -4,14 +4,13 @@ using Gtk;
 public enum Boxes.TopbarPage {
     COLLECTION,
     SELECTION,
-    WIZARD,
     PROPERTIES,
     DISPLAY
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/topbar.ui")]
 private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
-    private const string[] page_names = { "collection", "selection", "wizard", "properties", "display" };
+    private const string[] page_names = { "collection", "selection", "properties", "display" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -24,8 +23,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     private SelectionToolbar selection_toolbar;
     [GtkChild]
     private DisplayToolbar display_toolbar;
-    [GtkChild]
-    public WizardToolbar wizard_toolbar;
 
     private AppWindow window;
 
@@ -37,28 +34,13 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         case UIState.CREDS:
             collection_toolbar.click_back_button ();
             break;
-        case UIState.WIZARD:
-            wizard_toolbar.click_back_button ();
-            break;
         }
-    }
-
-    // Clicks the appropriate forward button dependent on the ui state.
-    public void click_forward_button () {
-        wizard_toolbar.click_forward_button ();
     }
 
     // Clicks the appropriate cancel button dependent on the ui state.
     public void click_cancel_button () {
-        switch (window.ui_state) {
-        case UIState.COLLECTION:
-            if (window.selection_mode)
-                window.selection_mode = false;
-            return;
-        case UIState.WIZARD:
-            wizard_toolbar.cancel_btn.clicked ();
-            return;
-        }
+        if (window.ui_state == UIState.COLLECTION && window.selection_mode)
+            window.selection_mode = false;
     }
 
     public void click_new_button () {
@@ -131,10 +113,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
         case UIState.PROPERTIES:
             page = TopbarPage.PROPERTIES;
-            break;
-
-        case UIState.WIZARD:
-            page = TopbarPage.WIZARD;
             break;
 
         default:
