@@ -4,18 +4,15 @@ using Gtk;
 public enum Boxes.TopbarPage {
     COLLECTION,
     SELECTION,
-    PROPERTIES,
     DISPLAY
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/topbar.ui")]
 private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
-    private const string[] page_names = { "collection", "selection", "properties", "display" };
+    private const string[] page_names = { "collection", "selection", "display" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
-    [GtkChild]
-    public PropertiesToolbar props_toolbar;
 
     [GtkChild]
     private CollectionToolbar collection_toolbar;
@@ -94,7 +91,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         collection_toolbar.setup_ui (window);
         selection_toolbar.setup_ui (window);
         display_toolbar.setup_ui (window);
-        props_toolbar.setup_ui (window);
     }
 
     private void ui_state_changed () {
@@ -109,10 +105,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
         case UIState.DISPLAY:
             page = TopbarPage.DISPLAY;
-            break;
-
-        case UIState.PROPERTIES:
-            page = TopbarPage.PROPERTIES;
             break;
 
         default:
