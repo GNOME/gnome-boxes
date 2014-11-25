@@ -95,7 +95,6 @@ private class Boxes.VMConfigurator {
         set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
         set_mouse_config (domain, install_media);
-        set_keyboard_config (domain, install_media);
 
         domain.set_lifecycle (DomainLifecycleEvent.ON_POWEROFF, DomainLifecycleAction.DESTROY);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.DESTROY);
@@ -345,10 +344,6 @@ private class Boxes.VMConfigurator {
 
     private static void set_mouse_config (Domain domain, InstallerMedia install_media) {
         set_input_config (domain, DomainInputDeviceType.MOUSE);
-    }
-
-    private static void set_keyboard_config (Domain domain, InstallerMedia install_media) {
-        set_input_config (domain, DomainInputDeviceType.KEYBOARD);
     }
 
     private static void set_input_config (Domain domain, DomainInputDeviceType device_type) {
