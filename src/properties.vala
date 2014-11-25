@@ -57,8 +57,8 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             grid.column_spacing = 20;
             grid.valign = Gtk.Align.START;
             var scrolled_win = new Gtk.ScrolledWindow (null, null);
-            scrolled_win.min_content_width = 640;
             scrolled_win.min_content_height = 480;
+            scrolled_win.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
             scrolled_win.add (grid);
             pack_end (scrolled_win, true, true);
 
