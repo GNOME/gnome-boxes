@@ -1,3 +1,90 @@
+3.15.2 - Nov 25, 2014
+=====================
+
+Changes since 3.14.0, that were not included in any subsequent stable releases:
+
+- Properties view rework:
+  - Now a separate dialog-like window.
+  - Rename 'Login' section to 'General'.
+  - Merge 'Display' secion into 'General' section.
+  - Replace sidebar with:
+    - system stats and controls in the 'System' section.
+    - notebook tabs for each section.
+  - Remove the vague 'Resize guest' property and instead tell SPICE to always
+    try to scale the guest display to allocated size.
+  - Remove vague auto-usbredirection option.
+  - Replace use of vague term 'Virtualizer' with a more friendlier (and
+    consistent) term, 'Broker'.
+  - Show broker name instead of URL in properties view but do show broker URL
+    in troubleshooting log.
+- Wizard view rework:
+  - Now a separate dialog-like window.
+  - Replace sidebar with step info in the title.
+- Present a popover with item-specific actions menu that includes:
+  - Open in new window
+  - Favorite
+  - Pause
+  - Delete
+  - Properties
+  when user:
+  - right-clicks (or hits menu key) over an item.
+  - clicks a new menu button in display view that replaces the 'properties'
+    button.
+- Show box display resolution on window resize.
+- Automatically save/pause VMs running in background, except for ones under
+  express installation.
+- Tell SPICE to also upscale the display when needed so that we don't end up
+  with a very tiny box display on hidpi screens when no autoresolution is in
+  effect (e.g boot loader screen or guests with no qxl/agent).
+- Download files to temporary location first. This fixes the issue of Boxes
+  trying to use partially downloaded files.
+- Set 'USB' bus for mouse since the default PS/2 bus has been reported to be
+  much slower.
+- Correctly handle the case of user clicking on a box that is being saved.
+- Explicitly disable HPET, based on input from libvirt and Qemu developers.
+- Report ovirt support in the configure summary.
+- Don't spin spinner on paused machines.
+- If Boxes is launched with SOUP_DEBUG environment variable set, attach a
+  logger to libsoup session.
+- Added/updated/fixed translations:
+  - Arabic
+  - Czech
+  - French
+  - Greek
+  - Hebrew
+  - Hindi
+  - Italian
+  - Kazakh
+  - Latvian
+  - Norwegian bokmål
+  - Simplified Chinese
+  - Spanish
+  - Telugu
+  - Turkish
+
+All contributors to this release:
+
+Abderrahim Kitouni <a.kitouni@gmail.com>
+Alain Lojewski <allomervan@gmail.com>
+Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Florian Müllner <fmuellner@gnome.org>
+Kjartan Maraas <kmaraas@gnome.org>
+Krishnababu Krothapalli <k.meetme@gmail.com>
+Lasse Schuirmann <lasse.schuirmann@gmail.com>
+Marek Černocký <marek@manet.cz>
+Michael Hill <mdhill@gnome.org>
+Milo Casagrande <milo@ubuntu.com>
+Mosaab Alzoubi <moceap@hotmail.com>
+Osman Karagöz <osmank3@gmail.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Rajesh Ranjan <rajeshkajha@yahoo.com>
+Rūdolfs Mazurs <rudolfsm@src.gnome.org>
+Tom Tryfonidis <tomtryf@gmail.com>
+Yosef Or Boczko <yoseforb@src.gnome.org>
+YunQiang Su <yqsu@src.gnome.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.14.0 - Sep 23, 2014
 =====================
 
