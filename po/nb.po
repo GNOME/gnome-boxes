@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.15.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-16 21:03+0100\n"
-"PO-Revision-Date: 2014-11-16 21:03+0100\n"
+"POT-Creation-Date: 2014-11-25 23:44+0100\n"
+"PO-Revision-Date: 2014-11-25 23:45+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:106 ../src/main.vala:72
+#: ../src/app-window.vala:89 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Bokser"
 
@@ -137,22 +137,6 @@ msgstr "<b><span size=\"large>Ingen bokser funnet</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "Lag en med knappen øverst til venstre."
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "CPU:"
-
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "I/O:"
-
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "Nettverk:"
-
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "Tving nedstenging"
-
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
 msgstr "P_ause"
@@ -166,7 +150,7 @@ msgid "_Properties"
 msgstr "Egenska_per"
 
 #: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:342 ../src/libvirt-machine.vala:467
+#: ../src/libvirt-machine-properties.vala:287 ../src/libvirt-machine.vala:467
 #: ../src/wizard-source.vala:285
 msgid "_Cancel"
 msgstr "A_vbryt"
@@ -192,7 +176,7 @@ msgid "Rename"
 msgstr "Endre navn"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:44
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:49
 msgid "Delete"
 msgstr "Slett"
 
@@ -232,26 +216,6 @@ msgstr "Produktnøkkel"
 msgid "Unknown media"
 msgstr "Ukjent medie"
 
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "Innledning"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "Valg av kilde"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "Forberedelse"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "Oppsett"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "Gjennomgang"
-
 #: ../data/ui/wizard-source.ui.h:1
 msgid "Enter URL"
 msgstr "Oppgi URL"
@@ -268,7 +232,7 @@ msgstr "Velg en fil"
 msgid "◀"
 msgstr "◀"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "Lag en boks"
 
@@ -319,37 +283,42 @@ msgstr "Forbereder å lage en ny boks"
 
 #: ../data/ui/wizard.ui.h:7
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"Utvidelser for virtualisering er ikke tilgjengelig på ditt system. Sjekk "
-"innstillingene i BIOS hvis systemet er nytt (etter 2008) og slå dem på der."
+"Utvidelser for virtualisering er ikke tilgjengelig på ditt system.\n"
+"Sjekk innstillingene i BIOS og slå dem på der."
+
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: ../src/actions-popover.vala:25
+msgid "Box actions"
+msgstr "Handlinger for boks"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:30
+#: ../src/actions-popover.vala:35
 msgid "Open in new Window"
 msgstr "Åpne i nytt vindu"
 
 #. Favorite
-#: ../src/actions-popover.vala:34
+#: ../src/actions-popover.vala:39
 msgid "Remove favorite"
 msgstr "Fjern favoritt"
 
-#: ../src/actions-popover.vala:36
+#: ../src/actions-popover.vala:41
 msgid "Favorite"
 msgstr "Merk som favoritt"
 
 #. Pause
-#: ../src/actions-popover.vala:39
+#: ../src/actions-popover.vala:44
 msgid "Pause"
 msgstr "Pause"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:50
+#: ../src/actions-popover.vala:55
 msgid "Properties"
 msgstr "Egenskaper"
 
-#: ../src/actions-popover.vala:74 ../src/selectionbar.vala:63
+#: ../src/actions-popover.vala:79 ../src/selectionbar.vala:63
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Pause av «%s» feilet"
@@ -443,7 +412,7 @@ msgid "Unsupported disk image format."
 msgstr "Ikke støttet format for diskavtrykk."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:109
-#: ../src/properties.vala:49
+#: ../src/properties.vala:14 ../src/properties.vala:39
 msgid "System"
 msgstr "System"
 
@@ -465,103 +434,119 @@ msgstr "Protokoll"
 msgid "URI"
 msgstr "URI"
 
-#: ../src/libvirt-machine-properties.vala:146
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Troubleshooting log"
-msgstr "Feilsøkingslogg"
-
-#: ../src/libvirt-machine-properties.vala:154
-#: ../src/libvirt-machine-properties.vala:172
-msgid "_Save"
-msgstr "_Lagre"
-
-#: ../src/libvirt-machine-properties.vala:155
-msgid "Copy to clipboard"
-msgstr "Kopier til utklippstavle"
-
-#: ../src/libvirt-machine-properties.vala:156
-msgid "_Close"
-msgstr "L_ukk"
-
-#: ../src/libvirt-machine-properties.vala:170
-msgid "Save log"
-msgstr "Lagre logg"
-
-#: ../src/libvirt-machine-properties.vala:186
-#, c-format
-msgid "Error saving: %s"
-msgstr "Feil ved lagring: %s"
-
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:243
-#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:188
+#: ../src/libvirt-machine-properties.vala:206
 msgid "Add support to guest"
 msgstr "Legg til støtte for gjest"
 
-#: ../src/libvirt-machine-properties.vala:245
+#: ../src/libvirt-machine-properties.vala:190
 msgid "USB device support"
 msgstr "Støtte for USB-enheter"
 
-#: ../src/libvirt-machine-properties.vala:263
+#: ../src/libvirt-machine-properties.vala:208
 msgid "Smartcard support"
 msgstr "Støtte for smartkort"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:309
-#: ../src/libvirt-machine-properties.vala:376
+#: ../src/libvirt-machine-properties.vala:254
+#: ../src/libvirt-machine-properties.vala:321
 msgid "empty"
 msgstr "tom"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:318
-#: ../src/libvirt-machine-properties.vala:385
+#: ../src/libvirt-machine-properties.vala:263
+#: ../src/libvirt-machine-properties.vala:330
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:332
-#: ../src/libvirt-machine-properties.vala:375
+#: ../src/libvirt-machine-properties.vala:277
+#: ../src/libvirt-machine-properties.vala:320
 msgid "Select"
 msgstr "Velg"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:335
-#: ../src/libvirt-machine-properties.vala:355
+#: ../src/libvirt-machine-properties.vala:280
+#: ../src/libvirt-machine-properties.vala:300
 msgid "Remove"
 msgstr "Fjern"
 
-#: ../src/libvirt-machine-properties.vala:339 ../src/wizard-source.vala:282
+#: ../src/libvirt-machine-properties.vala:284 ../src/wizard-source.vala:282
 msgid "Select a device or ISO file"
 msgstr "Velg en enhet eller ISO-fil"
 
-#: ../src/libvirt-machine-properties.vala:343 ../src/wizard-source.vala:286
+#: ../src/libvirt-machine-properties.vala:288 ../src/wizard-source.vala:286
 msgid "_Open"
 msgstr "_Åpne"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:362
+#: ../src/libvirt-machine-properties.vala:307
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Innsetting av «%s» som en CD/DVD i «%s» feilet"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:379
+#: ../src/libvirt-machine-properties.vala:324
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Fjerning av CD/DVD fra «%s» feilet"
 
-#: ../src/libvirt-machine-properties.vala:440 ../src/wizard.vala:507
+#: ../src/libvirt-machine-properties.vala:391
+msgid "CPU"
+msgstr "CPU"
+
+#: ../src/libvirt-machine-properties.vala:398
+msgid "I/O"
+msgstr "I/O"
+
+#: ../src/libvirt-machine-properties.vala:405
+msgid "Network"
+msgstr "Nettverk"
+
+#: ../src/libvirt-machine-properties.vala:428
+#: ../src/libvirt-machine-properties.vala:432
+msgid "Troubleshooting log"
+msgstr "Feilsøkingslogg"
+
+#: ../src/libvirt-machine-properties.vala:435
+#: ../src/libvirt-machine-properties.vala:454
+msgid "_Save"
+msgstr "_Lagre"
+
+#: ../src/libvirt-machine-properties.vala:436
+msgid "Copy to clipboard"
+msgstr "Kopier til utklippstavle"
+
+#: ../src/libvirt-machine-properties.vala:437
+msgid "_Close"
+msgstr "L_ukk"
+
+#: ../src/libvirt-machine-properties.vala:452
+msgid "Save log"
+msgstr "Lagre logg"
+
+#: ../src/libvirt-machine-properties.vala:469
+#, c-format
+msgid "Error saving: %s"
+msgstr "Feil ved lagring: %s"
+
+#: ../src/libvirt-machine-properties.vala:490
+msgid "Force Shutdown"
+msgstr "Tving nedstenging"
+
+#: ../src/libvirt-machine-properties.vala:514 ../src/wizard.vala:507
 msgid "Memory"
 msgstr "Minne"
 
-#: ../src/libvirt-machine-properties.vala:503
-#: ../src/libvirt-machine-properties.vala:525
+#: ../src/libvirt-machine-properties.vala:578
+#: ../src/libvirt-machine-properties.vala:600
 msgid "Maximum Disk Size"
 msgstr "Maksimal diskstørrelse"
 
-#: ../src/libvirt-machine-properties.vala:516
+#: ../src/libvirt-machine-properties.vala:591
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Det er ikke nok plass på din maskin til å øke maksimal diskstørrelse."
@@ -632,7 +617,7 @@ msgstr "Klarte ikke å finne en passende disk å importere for boks «%s»"
 msgid "Connecting to %s"
 msgstr "Kobler til %s"
 
-#: ../src/machine.vala:169 ../src/machine.vala:614
+#: ../src/machine.vala:169 ../src/machine.vala:591
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Tilkobling til «%s» feilet"
@@ -641,7 +626,7 @@ msgstr "Tilkobling til «%s» feilet"
 msgid "Saving…"
 msgstr "Lagrer …"
 
-#: ../src/machine.vala:600
+#: ../src/machine.vala:577
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -650,17 +635,17 @@ msgstr ""
 "«%s» kunne ikke gjenopprettes fra disk\n"
 "Prøv uten lagret tilstand?"
 
-#: ../src/machine.vala:601
+#: ../src/machine.vala:578
 msgid "Restart"
 msgstr "Start på nytt"
 
-#: ../src/machine.vala:610
+#: ../src/machine.vala:587
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Klarte ikke å starte «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:643
+#: ../src/machine.vala:620
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» krever autentisering"
@@ -720,24 +705,24 @@ msgstr "Ikke koblet til %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Tilkobling til oVirt-forhandler feilet"
 
-#: ../src/properties.vala:45
+#: ../src/properties.vala:14 ../src/properties.vala:35
 msgid "General"
 msgstr "Generelt"
 
-#: ../src/properties.vala:53
+#: ../src/properties.vala:14 ../src/properties.vala:43
 msgid "Devices"
 msgstr "Enheter"
 
-#: ../src/properties.vala:57
+#: ../src/properties.vala:14 ../src/properties.vala:47
 msgid "Snapshots"
 msgstr "Øyeblikksbilder"
 
-#: ../src/properties.vala:216
+#: ../src/properties.vala:177
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Endringer krever omstart av «%s»."
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:178
 msgid "_Restart"
 msgstr "Sta_rt på nytt"
 
@@ -776,11 +761,11 @@ msgstr "Klarte ikke å bruke øyeblikksbilde"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Øyeblikksbilde «%s» er slettet."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:99
 msgid "Creating new snapshot…"
 msgstr "Lager nytt øyeblikksbilde …"
 
-#: ../src/snapshots-property.vala:111
+#: ../src/snapshots-property.vala:107
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Klarte ikke å lage øyeblikksbilde av %s"
@@ -896,7 +881,7 @@ msgstr "nei"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:553
+#: ../src/vm-configurator.vala:548
 msgid "Incapable host system"
 msgstr "Vertssystemet kan ikke brukes"
 
@@ -949,6 +934,15 @@ msgstr "64-bit x86-system"
 #, c-format
 msgid " from %s"
 msgstr " fra %s"
+
+#: ../src/wizard-window.vala:28
+msgid "Create a box"
+msgstr "Lag en boks"
+
+#: ../src/wizard-window.vala:32
+#, c-format
+msgid "Create a box (step %d/5)"
+msgstr "Lag en boks (steg %d/5)"
 
 #: ../src/wizard.vala:119
 msgid "Box creation failed"
@@ -1043,6 +1037,6 @@ msgstr "Laster ned medie …"
 msgid "Download failed."
 msgstr "Nedlasting feilet."
 
-#: ../src/wizard.vala:698
+#: ../src/wizard.vala:700
 msgid "C_ustomize…"
 msgstr "T_ilpass …"
