@@ -462,14 +462,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                 file.replace_contents (log.data, null, false,
                                                        FileCreateFlags.REPLACE_DESTINATION, null);
                             } catch (GLib.Error e) {
-                                var m = new Gtk.MessageDialog (chooser,
-                                                               Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                               Gtk.MessageType.ERROR,
-                                                               Gtk.ButtonsType.CLOSE,
-                                                               _("Error saving: %s").printf (e.message));
-                                m.modal = true;
-                                m.show_all ();
-                                m.response.connect ( () => { m.destroy (); });
+                                var message = _("Error saving: %s").printf (e.message);
+                                machine.window.notificationbar.display_error (message);
                                 return;
                             }
                             chooser.destroy ();
