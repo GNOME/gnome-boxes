@@ -46,6 +46,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     private Gtk.Image installer_image;
 
     private AppWindow window;
+    private unowned WizardWindow wizard_window;
 
     private MediaManager media_manager;
 
@@ -135,7 +136,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
-            window.wizard_window.topbar.set_title_for_page (value);
+            wizard_window.topbar.set_title_for_page (value);
             visible_child_name = page_names[value];
 
             if (value == WizardPage.SOURCE)
@@ -602,6 +603,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     public void setup_ui (AppWindow window, WizardWindow wizard_window) {
         this.window = window;
+        this.wizard_window = wizard_window;
 
         cancel_button = wizard_window.topbar.cancel_btn;
         cancel_button.clicked.connect (cancel);
