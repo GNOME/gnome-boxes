@@ -60,6 +60,19 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
     }
 
+    public Notificationbar notificationbar {
+        get {
+            switch (ui_state) {
+            case UIState.WIZARD:
+                return wizard_window.notificationbar;
+            case UIState.PROPERTIES:
+                return props_window.notificationbar;
+            default:
+                return _notificationbar;
+            }
+        }
+    }
+
     public WizardWindow wizard_window;
     public PropertiesWindow  props_window;
 
@@ -67,8 +80,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public Searchbar searchbar;
     [GtkChild]
     public Topbar topbar;
-    [GtkChild]
-    public Notificationbar notificationbar;
     [GtkChild]
     public Selectionbar selectionbar;
     [GtkChild]
@@ -81,6 +92,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public CollectionView view;
 
     public GLib.Settings settings;
+
+    [GtkChild]
+    private Notificationbar _notificationbar;
 
     private uint configure_id;
     public static const uint configure_id_timeout = 100;  // 100ms
