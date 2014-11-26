@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-26 14:44+0000\n"
+"POT-Creation-Date: 2014-11-26 18:54+0000\n"
 "PO-Revision-Date: 2014-11-26 18:39+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
@@ -50,7 +50,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:89 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Boxy"
 
@@ -436,7 +436,7 @@ msgid "Protocol"
 msgstr "Protokol"
 
 #: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:66
-#: ../src/remote-machine.vala:66 ../src/wizard.vala:469
+#: ../src/remote-machine.vala:66 ../src/wizard.vala:470
 msgid "URI"
 msgstr "Adresa URI"
 
@@ -543,7 +543,7 @@ msgstr "Chyba ukládání: %s"
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
-#: ../src/libvirt-machine-properties.vala:514 ../src/wizard.vala:507
+#: ../src/libvirt-machine-properties.vala:514 ../src/wizard.vala:508
 msgid "Memory"
 msgstr "Paměť"
 
@@ -800,7 +800,7 @@ msgstr "Sdílet obsah schránky"
 msgid "USB devices"
 msgstr "Zařízení USB"
 
-#: ../src/spice-display.vala:363 ../src/wizard.vala:283 ../src/wizard.vala:290
+#: ../src/spice-display.vala:363 ../src/wizard.vala:284 ../src/wizard.vala:291
 msgid "Invalid URI"
 msgstr "Neplatná adresa URI"
 
@@ -948,94 +948,103 @@ msgstr "64bitový systém x86"
 msgid " from %s"
 msgstr " od %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:31
+msgid "Create a box"
+msgstr "Vytvoření boxu"
+
+#: ../src/wizard-toolbar.vala:35
+#, c-format
+msgid "Create a box (step %d/4)"
+msgstr "Vytvoření boxu (krok %d/4)"
+
+#: ../src/wizard.vala:120
 msgid "Box creation failed"
 msgstr "Vytváření boxu selhalo"
 
-#: ../src/wizard.vala:172
+#: ../src/wizard.vala:173
 msgid "Please enter desktop or collection URI"
 msgstr "Zadejte prosím adresu URI počítače nebo skupiny"
 
-#: ../src/wizard.vala:178
+#: ../src/wizard.vala:179
 msgid "Will add boxes for all systems available from this account."
 msgstr "Přidají se boxy pro všechny systémy dostupné z tohoto účtu."
 
-#: ../src/wizard.vala:181
+#: ../src/wizard.vala:182
 msgid "Will add a single box."
 msgstr "Přidá se jeden box."
 
 #. ignore any parsing error
-#: ../src/wizard.vala:187
+#: ../src/wizard.vala:188
 msgid "Desktop Access"
 msgstr "Přístup k pracovní ploše"
 
-#: ../src/wizard.vala:265
+#: ../src/wizard.vala:266
 msgid "Empty location"
 msgstr "Prázdné umístění"
 
-#: ../src/wizard.vala:307
+#: ../src/wizard.vala:308
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nepodporovaný protol „%s“"
 
-#: ../src/wizard.vala:313 ../src/wizard.vala:376
+#: ../src/wizard.vala:314 ../src/wizard.vala:377
 msgid "Unknown installer media"
 msgstr "Neznámé instalační médium"
 
-#: ../src/wizard.vala:314 ../src/wizard.vala:377
+#: ../src/wizard.vala:315 ../src/wizard.vala:378
 msgid "Analyzing…"
 msgstr "Analyzuje se…"
 
-#: ../src/wizard.vala:328
+#: ../src/wizard.vala:329
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:445
+#: ../src/wizard.vala:446
 msgid "Box setup failed"
 msgstr "Nastavení boxu selhalo"
 
-#: ../src/wizard.vala:459
+#: ../src/wizard.vala:460
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxy vytvoří se nový box s následujícími vlastnostmi:"
 
-#: ../src/wizard.vala:464
+#: ../src/wizard.vala:465
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/wizard.vala:467
+#: ../src/wizard.vala:468
 msgid "Host"
 msgstr "Počítač"
 
-#: ../src/wizard.vala:478 ../src/wizard.vala:489
+#: ../src/wizard.vala:479 ../src/wizard.vala:490
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:481
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: ../src/wizard.vala:494
+#: ../src/wizard.vala:495
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Přidá boxy pro všechny systémy dostupné z tohoto účtu:"
 
-#: ../src/wizard.vala:516
+#: ../src/wizard.vala:517
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:516
+#: ../src/wizard.vala:517
 #, c-format
 msgid "%s maximum"
 msgstr "nejvýše %s"
 
-#: ../src/wizard.vala:580
+#: ../src/wizard.vala:581
 msgid "Downloading media…"
 msgstr "Stahuje se médium…"
 
-#: ../src/wizard.vala:590
+#: ../src/wizard.vala:591
 msgid "Download failed."
 msgstr "Stažení selhalo."
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:702
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
