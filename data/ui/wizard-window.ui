@@ -6,7 +6,11 @@
 
      Boxes.WizardWindow : Gtk.Window
         |
-        |-> wizard = new Boxes.Wizard ();
+        |-> notification_overlay = new Gtk.Overlay ();
+        |    |
+        |    |-> notificationbar = Boxes.Notificationbar ();
+        |    |
+        |    |-> wizard = new Boxes.Wizard ();
         |
         |-> topbar = new Boxes.WizardTopbar (); // as titlebar
   -->
@@ -21,8 +25,20 @@
     <signal name="delete-event" handler="on_delete_event"/>
 
     <child>
-      <object class="BoxesWizard" id="wizard">
+      <object class="GtkOverlay" id="notification_overlay">
         <property name="visible">True</property>
+
+        <child type="overlay">
+          <object class="BoxesNotificationbar" id="notificationbar">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="BoxesWizard" id="wizard">
+            <property name="visible">True</property>
+          </object>
+        </child>
       </object>
     </child>
 

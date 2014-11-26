@@ -10,6 +10,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public Wizard wizard;
     [GtkChild]
     public WizardToolbar topbar;
+    [GtkChild]
+    public Notificationbar notificationbar;
 
     public WizardWindow (AppWindow app_window) {
         wizard.setup_ui (app_window, this);
