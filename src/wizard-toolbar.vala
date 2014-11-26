@@ -21,4 +21,20 @@ private class Boxes.WizardToolbar: HeaderBar {
         if (continue_btn.sensitive)
             continue_btn.clicked ();
     }
+
+    public void set_title_for_page (WizardPage page) {
+        switch (page) {
+        case WizardPage.LAST:
+
+            break;
+        case WizardPage.INTRODUCTION:
+            title = _("Create a box");
+
+            break;
+        default:
+            title = _("Create a box (step %d/5)").printf (page);
+
+            break;
+        }
+    }
 }

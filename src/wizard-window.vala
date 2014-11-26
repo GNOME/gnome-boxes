@@ -19,22 +19,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         notify["ui-state"].connect (ui_state_changed);
     }
 
-    public void set_title_for_page (WizardPage page) {
-        switch (page) {
-        case WizardPage.LAST:
-
-            break;
-        case WizardPage.INTRODUCTION:
-            title = _("Create a box");
-
-            break;
-        default:
-            title = _("Create a box (step %d/5)").printf (page);
-
-            break;
-        }
-    }
-
     private void ui_state_changed () {
         wizard.set_state (ui_state);
 
