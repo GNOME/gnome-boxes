@@ -32,7 +32,7 @@ private class Boxes.WizardToolbar: HeaderBar {
 
             break;
         default:
-            title = _("Create a box (step %d/5)").printf (page);
+            title = _("Create a box (step %d/4)").printf (page);
 
             break;
         }
