@@ -10,6 +10,8 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     public Properties properties;
     [GtkChild]
     public PropertiesToolbar topbar;
+    [GtkChild]
+    public Notificationbar notificationbar;
 
     private unowned AppWindow app_window;
 
