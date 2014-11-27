@@ -488,6 +488,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         });
 
         button = new Gtk.Button.with_label (_("Force Shutdown"));
+        button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
         button.clicked.connect (() => {
             machine.force_shutdown ();
         });
