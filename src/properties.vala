@@ -11,8 +11,6 @@ private enum Boxes.PropertiesPage {
 }
 
 private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
-    private const string[] page_titles = { N_("General"), N_("System"), N_("Devices"), N_("Snapshots") };
-
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -130,7 +128,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
             var page = new PageWidget (i, machine);
-            var label = new Gtk.Label (page_titles[i]);
+            var label = new Gtk.Label (page.name);
             insert_page (page, label, i);
             set_data<PageWidget> (@"boxes-property-$i", page);
 
