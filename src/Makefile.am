@@ -124,6 +124,7 @@ gnome_boxes_SOURCES =				\
 	os-database.vala 			\
 	properties.vala				\
 	properties-window.vala			\
+	properties-page-widget.vala		\
 	properties-toolbar.vala			\
 	remote-machine.vala			\
 	searchbar.vala				\
