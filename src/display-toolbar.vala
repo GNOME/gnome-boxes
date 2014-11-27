@@ -28,16 +28,16 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
                     Gdk.EventMask.BUTTON_RELEASE_MASK);
 
         if (overlay) {
-            get_style_context ().add_class ("toolbar");
-            get_style_context ().add_class ("osd");
+            get_style_context ().add_class (Gtk.STYLE_CLASS_TOOLBAR);
+            get_style_context ().add_class (Gtk.STYLE_CLASS_OSD);
         } else {
             show_close_button = true;
         }
 
         if (!overlay) {
-            back.get_style_context ().add_class ("raised");
-            fullscreen.get_style_context ().add_class ("raised");
-            menu_button.get_style_context ().add_class ("raised");
+            back.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
+            fullscreen.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
+            menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
         }
 
         App.app.notify["fullscreened"].connect_after ( () => {
