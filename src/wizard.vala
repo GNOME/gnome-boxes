@@ -526,7 +526,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 try {
                     var volume_info = libvirt_machine.storage_volume.get_info ();
                     var capacity = format_size (volume_info.capacity);
-                    summary.add_property (_("Disk"),  _("%s maximum".printf (capacity)));
+                    summary.add_property (_("Disk"),
+                                          // Translators: This is disk size. E.g "1 GB maximum".
+                                          _("%s maximum").printf (capacity));
                 } catch (GLib.Error error) {
                     warning ("Failed to get information on volume '%s': %s",
                              libvirt_machine.storage_volume.get_name (),

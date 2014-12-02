@@ -116,7 +116,8 @@ private class Boxes.SizeProperty : Boxes.Property {
 
         scale.add_mark (min, Gtk.PositionType.BOTTOM, format_size (min, format_flags));
         scale.add_mark (max, Gtk.PositionType.BOTTOM,
-                        "%s (maximum)".printf (format_size (max, format_flags)));
+                        // Translators: This is memory or disk size. E.g "1 GB (maximum)".
+                        _("%s (maximum)").printf (format_size (max, format_flags)));
 
         scale.set_show_fill_level (true);
         scale.set_restrict_to_fill_level (false);
