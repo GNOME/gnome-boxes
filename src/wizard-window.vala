@@ -1,17 +1,49 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
+private enum Boxes.WizardWindowPage {
+    MAIN,
+    CUSTOMIZATION,
+}
+
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-window.ui")]
 private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
+    public const string[] page_names = { "main", "customization" };
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
+    private WizardWindowPage _page;
+    public WizardWindowPage page {
+        get { return _page; }
+        set {
+            if (_page == WizardWindowPage.CUSTOMIZATION && value != WizardWindowPage.CUSTOMIZATION &&
+                resource_properties != null && resource_properties.length () > 0) {
+                foreach (var property in resource_properties)
+                    property.flush ();
+                resource_properties = null;
+
+                wizard.review.begin ();
+            }
+
+            _page = value;
+
+            view.visible_child_name = page_names[value];
+        }
+    }
+
+    [GtkChild]
+    public Gtk.Stack view;
     [GtkChild]
     public Wizard wizard;
+    [GtkChild]
+    public Gtk.Grid customization_grid;
     [GtkChild]
     public WizardToolbar topbar;
     [GtkChild]
     public Notificationbar notificationbar;
+
+    private GLib.List<Boxes.Property> resource_properties;
 
     public WizardWindow (AppWindow app_window) {
         wizard.setup_ui (app_window, this);
@@ -19,6 +51,42 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         set_transient_for (app_window);
 
         notify["ui-state"].connect (ui_state_changed);
+    }
+
+    public void show_customization_page (LibvirtMachine machine) {
+        resource_properties = new GLib.List<Boxes.Property> ();
+        machine.properties.get_resources_properties (ref resource_properties);
+
+        return_if_fail (resource_properties.length () > 0);
+
+        foreach (var child in customization_grid.get_children ())
+            customization_grid.remove (child);
+
+        var current_row = 0;
+        foreach (var property in resource_properties) {
+            if (property.widget == null || property.extra_widget == null || property.description == null) {
+                warn_if_reached ();
+
+                continue;
+            }
+
+            var label_name = new Gtk.Label (property.description);
+            label_name.get_style_context ().add_class ("boxes-property-name-label");
+            label_name.halign = Gtk.Align.START;
+            label_name.hexpand = false;
+            customization_grid.attach (label_name, 0, current_row, 1, 1);
+
+            property.widget.hexpand = true;
+            customization_grid.attach (property.widget, 1, current_row, 1, 1);
+
+            property.extra_widget.hexpand = true;
+            customization_grid.attach (property.extra_widget, 0, current_row + 1, 2, 1);
+
+            current_row += 2;
+        }
+        customization_grid.show_all ();
+
+        page = WizardWindowPage.CUSTOMIZATION;
     }
 
     private void ui_state_changed () {

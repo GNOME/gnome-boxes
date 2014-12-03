@@ -10,7 +10,11 @@
         |    |
         |    |-> notificationbar = Boxes.Notificationbar ();
         |    |
-        |    |-> wizard = new Boxes.Wizard ();
+        |    |-> view = Gtk.Stack ();
+        |         |
+        |         |-> wizard = new Boxes.Wizard ();
+        |         |
+        |         |-> customization_grid = new Gtk.Grid ();
         |
         |-> topbar = new Boxes.WizardTopbar (); // as titlebar
   -->
@@ -35,10 +39,41 @@
         </child>
 
         <child>
-          <object class="BoxesWizard" id="wizard">
+          <object class="GtkStack" id="view">
             <property name="visible">True</property>
+            <property name="transition-type">slide-left-right</property>
+            <property name="transition-duration">400</property>
+            <style>
+              <class name="content-bg"/>
+            </style>
+
+            <child>
+              <object class="BoxesWizard" id="wizard">
+                <property name="visible">True</property>
+              </object>
+
+              <packing>
+                <property name="name">main</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkGrid" id="customization_grid">
+                <property name="visible">True</property>
+                <property name="margin-start">20</property>
+                <property name="margin-end">20</property>
+                <property name="margin-top">20</property>
+                <property name="margin-bottom">20</property>
+              </object>
+
+              <packing>
+                <property name="name">customization</property>
+              </packing>
+            </child>
+
           </object>
         </child>
+
       </object>
     </child>
 
