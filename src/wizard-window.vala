@@ -4,11 +4,14 @@ using Gtk;
 private enum Boxes.WizardWindowPage {
     MAIN,
     CUSTOMIZATION,
+    FILE_CHOOSER,
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-window.ui")]
 private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
-    public const string[] page_names = { "main", "customization" };
+    public const string[] page_names = { "main", "customization", "file_chooser" };
+
+    public delegate void FileChosenFunc (string uri);
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -40,6 +43,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     [GtkChild]
     public Gtk.Grid customization_grid;
     [GtkChild]
+    public Gtk.FileChooserWidget file_chooser;
+    [GtkChild]
     public WizardToolbar topbar;
     [GtkChild]
     public Notificationbar notificationbar;
@@ -49,6 +54,12 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public WizardWindow (AppWindow app_window) {
         wizard.setup_ui (app_window, this);
         topbar.setup_ui (this);
+
+        // FIXME: Can we do this from UI file somehow? Would be nice, if so
+        file_chooser.filter = new Gtk.FileFilter ();
+        file_chooser.filter.add_mime_type ("application/x-cd-image");
+        foreach (var extension in InstalledMedia.supported_extensions)
+            file_chooser.filter.add_pattern ("*" + extension);
 
         set_transient_for (app_window);
 
@@ -89,6 +100,18 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         customization_grid.show_all ();
 
         page = WizardWindowPage.CUSTOMIZATION;
+    }
+
+    public void show_file_chooser (owned FileChosenFunc file_chosen_func) {
+        ulong activated_id = 0;
+        activated_id = file_chooser.file_activated.connect (() => {
+            var uri = file_chooser.get_uri ();
+            file_chosen_func (uri);
+            file_chooser.disconnect (activated_id);
+
+            page = WizardWindowPage.MAIN;
+        });
+        page = WizardWindowPage.FILE_CHOOSER;
     }
 
     private void ui_state_changed () {
