@@ -281,37 +281,22 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         button.clicked.connect ( () => {
             if (empty) {
-                var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                        machine.window,
-                                                        Gtk.FileChooserAction.OPEN,
-                                                        _("_Cancel"), Gtk.ResponseType.CANCEL,
-                                                        _("_Open"), Gtk.ResponseType.ACCEPT);
-                dialog.modal = true;
-                dialog.show_hidden = false;
-                dialog.local_only = true;
-                dialog.filter = new Gtk.FileFilter ();
-                dialog.filter.add_mime_type ("application/x-cd-image");
-                dialog.response.connect ( (response) => {
-                    if (response == Gtk.ResponseType.ACCEPT) {
-                        var path = dialog.get_filename ();
-                        disk_config.set_source (path);
-                        try {
-                            machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
-                            button_label.set_text (_("Remove"));
-                            label.set_text (get_utf8_basename (path));
-                            empty = false;
-                        } catch (GLib.Error e) {
-                            var path_basename = get_utf8_basename (path);
-                            // Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
-                            //              Second '%s' is name of the box.
-                            var msg = _("Insertion of '%s' as a CD/DVD into '%s' failed");
-                            machine.got_error (msg.printf (path_basename, machine.name));
-                            debug ("Error inserting '%s' as CD into '%s': %s", path_basename, machine.name, e.message);
-                        }
+                machine.window.props_window.show_file_chooser ((path) => {
+                    disk_config.set_source (path);
+                    try {
+                        machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
+                        button_label.set_text (_("Remove"));
+                        label.set_text (get_utf8_basename (path));
+                        empty = false;
+                    } catch (GLib.Error e) {
+                        var path_basename = get_utf8_basename (path);
+                        // Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
+                        //              Second '%s' is name of the box.
+                        var msg = _("Insertion of '%s' as a CD/DVD into '%s' failed");
+                        machine.got_error (msg.printf (path_basename, machine.name));
+                        debug ("Error inserting '%s' as CD into '%s': %s", path_basename, machine.name, e.message);
                     }
-                    dialog.destroy ();
                 });
-                dialog.show_all ();
             } else {
                 disk_config.set_source ("");
                 try {
