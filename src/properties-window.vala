@@ -3,12 +3,15 @@ using Gtk;
 
 private enum Boxes.PropsWindowPage {
     MAIN,
-    TROUBLESHOOTING_LOG
+    TROUBLESHOOTING_LOG,
+    FILE_CHOOSER,
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-window.ui")]
 private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
-    public const string[] page_names = { "main", "troubleshoot_log" };
+    public const string[] page_names = { "main", "troubleshoot_log", "file_chooser" };
+
+    public delegate void FileChosenFunc (string path);
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -31,6 +34,8 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     [GtkChild]
     public TroubleshootLog troubleshoot_log;
     [GtkChild]
+    public Gtk.FileChooserWidget file_chooser;
+    [GtkChild]
     public PropertiesToolbar topbar;
     [GtkChild]
     public Notificationbar notificationbar;
@@ -43,6 +48,10 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         properties.setup_ui (app_window, this);
         topbar.setup_ui (app_window, this);
 
+        // FIXME: Can we do this from UI file somehow? Would be nice, if so
+        file_chooser.filter = new Gtk.FileFilter ();
+        file_chooser.filter.add_mime_type ("application/x-cd-image");
+
         set_transient_for (app_window);
 
         notify["ui-state"].connect (ui_state_changed);
@@ -51,6 +60,18 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     public void show_troubleshoot_log (string log) {
         troubleshoot_log.view.buffer.text = log;
         page = PropsWindowPage.TROUBLESHOOTING_LOG;
+    }
+
+    public void show_file_chooser (owned FileChosenFunc file_chosen_func) {
+        ulong activated_id = 0;
+        activated_id = file_chooser.file_activated.connect (() => {
+            var path = file_chooser.get_filename ();
+            file_chosen_func (path);
+            file_chooser.disconnect (activated_id);
+
+            page = PropsWindowPage.MAIN;
+        });
+        page = PropsWindowPage.FILE_CHOOSER;
     }
 
     public void copy_troubleshoot_log_to_clipboard () {

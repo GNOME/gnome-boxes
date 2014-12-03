@@ -15,6 +15,8 @@
         |         |-> properties = new Boxes.Properties ();
         |         |
         |         |-> troubleshoot_log = new Boxes.TroubleshootLog ();
+        |         |
+        |         |-> file_chooser = new Gtk.FileChooserWidget ();
         |
         |-> topbar = new Boxes.PropertiesToolbar (); // as titlebar
   -->
@@ -60,6 +62,18 @@
 
               <packing>
                 <property name="name">troubleshoot_log</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkFileChooserWidget" id="file_chooser">
+                <property name="visible">True</property>
+                <property name="show-hidden">False</property>
+                <property name="local-only">True</property>
+              </object>
+
+              <packing>
+                <property name="name">file_chooser</property>
               </packing>
             </child>
 
