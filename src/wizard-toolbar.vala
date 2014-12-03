@@ -2,7 +2,20 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-toolbar.ui")]
-private class Boxes.WizardToolbar: HeaderBar {
+private class Boxes.WizardToolbar: Gtk.Stack {
+    private WizardWindowPage _page;
+    public WizardWindowPage page {
+        get { return _page; }
+        set {
+            _page = value;
+
+            visible_child_name = WizardWindow.page_names[value];
+        }
+    }
+
+    [GtkChild]
+    public Gtk.HeaderBar main;
+
     [GtkChild]
     public Button cancel_btn;
     [GtkChild]
@@ -34,13 +47,18 @@ private class Boxes.WizardToolbar: HeaderBar {
 
             break;
         case WizardPage.INTRODUCTION:
-            title = _("Create a box");
+            main.title = _("Create a box");
 
             break;
         default:
-            title = _("Create a box (step %d/4)").printf (page);
+            main.title = _("Create a box (step %d/4)").printf (page);
 
             break;
         }
+    }
+
+    [GtkCallback]
+    private void on_customization_back_clicked () requires (page == WizardWindowPage.CUSTOMIZATION) {
+        wizard_window.page = WizardWindowPage.MAIN;
     }
 }

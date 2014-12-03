@@ -1,76 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.9 -->
-  <template class="BoxesWizardToolbar" parent="GtkHeaderBar">
+  <template class="BoxesWizardToolbar" parent="GtkStack">
     <property name="visible">True</property>
-    <property name="title" translatable="yes">Create a Box</property>
-    <style>
-      <class name="titlebar"/>
-    </style>
+    <property name="transition-type">slide-left-right</property>
+    <property name="transition-duration">400</property>
 
+    <!-- Main page -->
     <child>
-      <object class="GtkButton" id="cancel_btn">
+      <object class="GtkHeaderBar" id="main">
         <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="use-underline">True</property>
-        <property name="label" translatable="yes">_Cancel</property>
+        <property name="title" translatable="yes">Create a Box</property>
         <style>
-          <class name="text-button"/>
+          <class name="titlebar"/>
         </style>
+
+        <child>
+          <object class="GtkButton" id="cancel_btn">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">_Cancel</property>
+            <style>
+              <class name="text-button"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="create_btn">
+            <property name="visible">False</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">C_reate</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="continue_btn">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">C_ontinue</property>
+            <style>
+              <class name="suggested-action"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="back_btn">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">_Back</property>
+            <style>
+              <class name="text-button"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+
       </object>
 
       <packing>
-        <property name="pack-type">start</property>
+        <property name="name">main</property>
       </packing>
     </child>
 
+    <!-- Customization page -->
     <child>
-      <object class="GtkButton" id="create_btn">
-        <property name="visible">False</property>
-        <property name="valign">center</property>
-        <property name="use-underline">True</property>
-        <property name="label" translatable="yes">C_reate</property>
-        <style>
-          <class name="suggested-action"/>
-        </style>
-      </object>
-
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
-
-    <child>
-      <object class="GtkButton" id="continue_btn">
+      <object class="GtkHeaderBar" id="customization">
         <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="use-underline">True</property>
-        <property name="label" translatable="yes">C_ontinue</property>
+        <property name="show-close-button">False</property>
+        <property name="title" translatable="yes">Customize Resources</property>
         <style>
-          <class name="suggested-action"/>
+          <class name="titlebar"/>
         </style>
+
+        <child>
+          <object class="GtkButton" id="customization_back_btn">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <signal name="clicked" handler="on_customization_back_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+
+            <child internal-child="accessible">
+              <object class="AtkObject" id="a11y-button">
+                <property name="accessible-name" translatable="yes">Back</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkImage" id="back_image">
+                <property name="visible">True</property>
+                <property name="icon-name">go-previous-symbolic</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+
       </object>
 
       <packing>
-        <property name="pack-type">end</property>
+        <property name="name">customization</property>
       </packing>
     </child>
 
-    <child>
-      <object class="GtkButton" id="back_btn">
-        <property name="visible">True</property>
-        <property name="valign">center</property>
-        <property name="use-underline">True</property>
-        <property name="label" translatable="yes">_Back</property>
-        <style>
-          <class name="text-button"/>
-        </style>
-      </object>
-
-      <packing>
-        <property name="pack-type">end</property>
-      </packing>
-    </child>
   </template>
 
   <object class="GtkSizeGroup" id="sizegroup">
