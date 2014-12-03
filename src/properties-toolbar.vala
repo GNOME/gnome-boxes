@@ -2,9 +2,25 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-toolbar.ui")]
-private class Boxes.PropertiesToolbar: HeaderBar {
+private class Boxes.PropertiesToolbar: Gtk.Stack {
+    private PropsWindowPage _page;
+    public PropsWindowPage page {
+        get { return _page; }
+        set {
+            _page = value;
+
+            visible_child_name = PropertiesWindow.page_names[value];
+        }
+    }
+
     [GtkChild]
-    public Gtk.Button back_button;
+    public Gtk.HeaderBar main;
+
+    [GtkChild]
+    public Gtk.Button main_back_button;
+    [GtkChild]
+    public Gtk.Button troubleshooting_back_button;
+
     [GtkChild]
     private EditableEntry title_entry;
 
@@ -16,7 +32,7 @@ private class Boxes.PropertiesToolbar: HeaderBar {
 
     construct {
         // Work around for https://bugzilla.gnome.org/show_bug.cgi?id=734676
-        set_custom_title (title_entry);
+        main.set_custom_title (title_entry);
     }
 
     public void setup_ui (AppWindow window, PropertiesWindow props_window) {
@@ -27,8 +43,18 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     }
 
     [GtkCallback]
-    private void on_back_clicked () {
+    private void on_main_back_clicked () requires (page == PropsWindowPage.MAIN) {
         props_window.revert_state ();
+    }
+
+    [GtkCallback]
+    private void on_troubleshooting_back_clicked () requires (page == PropsWindowPage.TROUBLESHOOTING_LOG) {
+        props_window.page = PropsWindowPage.MAIN;
+    }
+
+    [GtkCallback]
+    private void on_copy_clipboard_clicked () requires (page == PropsWindowPage.TROUBLESHOOTING_LOG) {
+        props_window.copy_troubleshooting_log_to_clipboard ();
     }
 
     [GtkCallback]
@@ -37,8 +63,8 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     }
 
     private void ui_state_changed () {
-        back_button.visible = (window.previous_ui_state == UIState.WIZARD);
-        show_close_button = (window.previous_ui_state != UIState.WIZARD);
+        main_back_button.visible = (window.previous_ui_state == UIState.WIZARD);
+        main.show_close_button = (window.previous_ui_state != UIState.WIZARD);
 
         if (item_name_id != 0) {
             item.disconnect (item_name_id);

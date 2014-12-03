@@ -20,6 +20,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
             _page = value;
 
             view.visible_child_name = page_names[value];
+            topbar.page = value;
         }
     }
 
