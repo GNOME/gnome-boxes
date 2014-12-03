@@ -150,6 +150,7 @@ gnome_boxes_SOURCES =				\
 	downloader.vala				\
 	empty-boxes.vala			\
 	tracker-iso-query.vala			\
+	troubleshoot-log.vala			\
 	snapshot-list-row.vala 			\
 	snapshots-property.vala 		\
 	$(NULL)
