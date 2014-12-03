@@ -122,5 +122,40 @@
       </packing>
     </child>
 
+    <!-- File chooser page -->
+    <child>
+      <object class="GtkHeaderBar" id="file_chooser">
+        <property name="visible">True</property>
+        <property name="show-close-button">True</property>
+        <property name="title" translatable="yes">Select a device or ISO file</property>
+        <style>
+          <class name="titlebar"/>
+        </style>
+
+        <child>
+          <object class="GtkButton" id="file_chooser_cancel_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">_Cancel</property>
+            <signal name="clicked" handler="on_file_chooser_cancel_clicked"/>
+            <style>
+              <class name="text-button"/>
+            </style>
+
+          </object>
+
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+
+      </object>
+
+      <packing>
+        <property name="name">file_chooser</property>
+      </packing>
+    </child>
+
   </template>
 </interface>

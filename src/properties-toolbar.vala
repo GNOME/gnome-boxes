@@ -65,6 +65,11 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     [GtkCallback]
+    private void on_file_chooser_cancel_clicked () requires (page == PropsWindowPage.FILE_CHOOSER) {
+        props_window.page = PropsWindowPage.MAIN;
+    }
+
+    [GtkCallback]
     private void on_title_entry_changed () {
         window.current_item.name = title_entry.text;
     }
