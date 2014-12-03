@@ -10,7 +10,11 @@
         |    |
         |    |-> notificationbar = Boxes.Notificationbar ();
         |    |
-        |    |-> properties = new Boxes.Properties ();
+        |    |-> view = Gtk.Stack ();
+        |         |
+        |         |-> properties = new Boxes.Properties ();
+        |         |
+        |         |-> troubleshoot_log = new Boxes.TroubleshootLog ();
         |
         |-> topbar = new Boxes.PropertiesToolbar (); // as titlebar
   -->
@@ -34,10 +38,34 @@
         </child>
 
         <child>
-          <object class="BoxesProperties" id="properties">
+          <object class="GtkStack" id="view">
             <property name="visible">True</property>
+            <property name="transition-type">slide-left-right</property>
+            <property name="transition-duration">400</property>
+
+            <child>
+              <object class="BoxesProperties" id="properties">
+                <property name="visible">True</property>
+              </object>
+
+              <packing>
+                <property name="name">main</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="BoxesTroubleshootLog" id="troubleshoot_log">
+                <property name="visible">True</property>
+              </object>
+
+              <packing>
+                <property name="name">troubleshooting_log</property>
+              </packing>
+            </child>
+
           </object>
         </child>
+
       </object>
     </child>
 
