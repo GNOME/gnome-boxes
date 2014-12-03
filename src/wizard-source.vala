@@ -279,27 +279,14 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     [GtkCallback]
     private void on_select_file_button_clicked () {
-        var dialog = new Gtk.FileChooserDialog (_("Select a device or ISO file"),
-                                                window,
-                                                Gtk.FileChooserAction.OPEN,
-                                                _("_Cancel"), Gtk.ResponseType.CANCEL,
-                                                _("_Open"), Gtk.ResponseType.ACCEPT);
-        dialog.show_hidden = false;
-        dialog.local_only = false;
-        dialog.filter = new Gtk.FileFilter ();
-        dialog.filter.add_mime_type ("application/x-cd-image");
-        foreach (var extension in InstalledMedia.supported_extensions)
-            dialog.filter.add_pattern ("*" + extension);
-        if (dialog.run () == Gtk.ResponseType.ACCEPT) {
-            uri = dialog.get_uri ();
+        window.wizard_window.show_file_chooser ((uri) => {
+            this.uri = uri;
             // clean install_media as this may be set already when going back in the wizard
             install_media = null;
             activated ();
 
             selected = select_file_button;
-        }
-
-        dialog.destroy ();
+        });
     }
 
     [GtkCallback]
