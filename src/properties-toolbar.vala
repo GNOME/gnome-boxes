@@ -42,6 +42,13 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
         window.notify["ui-state"].connect (ui_state_changed);
     }
 
+    public void click_back_button () {
+        if (page == PropsWindowPage.MAIN)
+            main_back_button.clicked ();
+        else
+            troubleshooting_back_button.clicked ();
+    }
+
     [GtkCallback]
     private void on_main_back_clicked () requires (page == PropsWindowPage.MAIN) {
         props_window.revert_state ();
