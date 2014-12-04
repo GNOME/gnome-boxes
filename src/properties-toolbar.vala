@@ -9,6 +9,7 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     private EditableEntry title_entry;
 
     private AppWindow window;
+    private unowned PropertiesWindow props_window;
 
     private CollectionItem item;
     private ulong item_name_id;
@@ -18,8 +19,10 @@ private class Boxes.PropertiesToolbar: HeaderBar {
         set_custom_title (title_entry);
     }
 
-    public void setup_ui (AppWindow window) {
+    public void setup_ui (AppWindow window, PropertiesWindow props_window) {
         this.window = window;
+        this.props_window = props_window;
+
         window.notify["ui-state"].connect (ui_state_changed);
     }
 

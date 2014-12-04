@@ -19,7 +19,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         this.app_window = app_window;
 
         properties.setup_ui (app_window, this);
-        topbar.setup_ui (app_window);
+        topbar.setup_ui (app_window, this);
 
         set_transient_for (app_window);
 
