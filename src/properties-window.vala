@@ -38,8 +38,6 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         properties.set_state (ui_state);
 
         visible = (ui_state == UIState.PROPERTIES);
-        topbar.back_button.visible = (previous_ui_state == UIState.WIZARD);
-        topbar.show_close_button = (previous_ui_state != UIState.WIZARD);
     }
 
     [GtkCallback]

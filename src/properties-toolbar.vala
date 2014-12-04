@@ -37,6 +37,9 @@ private class Boxes.PropertiesToolbar: HeaderBar {
     }
 
     private void ui_state_changed () {
+        back_button.visible = (window.previous_ui_state == UIState.WIZARD);
+        show_close_button = (window.previous_ui_state != UIState.WIZARD);
+
         if (item_name_id != 0) {
             item.disconnect (item_name_id);
             item_name_id = 0;
