@@ -52,6 +52,13 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         page = PropsWindowPage.TROUBLESHOOTING_LOG;
     }
 
+    public void copy_troubleshooting_log_to_clipboard () {
+        var log = troubleshoot_log.view.buffer.text;
+        var clipboard = Gtk.Clipboard.get_for_display (get_display (), Gdk.SELECTION_CLIPBOARD);
+
+        clipboard.set_text (log, -1);
+    }
+
     public void revert_state () {
         if ((app_window.current_item as Machine).state != Machine.MachineState.RUNNING &&
              app_window.previous_ui_state == UIState.DISPLAY)
