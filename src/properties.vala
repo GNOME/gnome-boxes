@@ -133,9 +133,9 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             set_data<PageWidget> (@"boxes-property-$i", page);
 
             page.refresh_properties.connect (() => {
-                var current_page = page;
+                var current_page = this.page;
                 this.populate ();
-                page = current_page;
+                this.page = current_page;
             });
         }
 
