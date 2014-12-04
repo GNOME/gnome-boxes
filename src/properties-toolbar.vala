@@ -28,11 +28,7 @@ private class Boxes.PropertiesToolbar: HeaderBar {
 
     [GtkCallback]
     private void on_back_clicked () {
-        if ((window.current_item as Machine).state != Machine.MachineState.RUNNING &&
-             window.previous_ui_state == UIState.DISPLAY)
-            window.set_state (UIState.COLLECTION);
-        else
-            window.set_state (window.previous_ui_state);
+        props_window.revert_state ();
     }
 
     [GtkCallback]

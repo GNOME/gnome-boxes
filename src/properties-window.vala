@@ -26,6 +26,14 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         notify["ui-state"].connect (ui_state_changed);
     }
 
+    public void revert_state () {
+        if ((app_window.current_item as Machine).state != Machine.MachineState.RUNNING &&
+             app_window.previous_ui_state == UIState.DISPLAY)
+            app_window.set_state (UIState.COLLECTION);
+        else
+            app_window.set_state (app_window.previous_ui_state);
+    }
+
     private void ui_state_changed () {
         properties.set_state (ui_state);
 
@@ -37,14 +45,14 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     [GtkCallback]
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         if (event.keyval == Gdk.Key.Escape) // ESC -> back
-            topbar.back_button.clicked ();
+            revert_state ();
 
         return false;
     }
 
     [GtkCallback]
     private bool on_delete_event () {
-        topbar.back_button.clicked ();
+        revert_state ();
 
         return true;
     }
