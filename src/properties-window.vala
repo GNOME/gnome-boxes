@@ -78,8 +78,18 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
 
     [GtkCallback]
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
-        if (event.keyval == Gdk.Key.Escape) // ESC -> back
+        var default_modifiers = Gtk.accelerator_get_default_mod_mask ();
+
+        if (event.keyval == Gdk.Key.Left && // ALT + Left -> back
+            (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
+            topbar.click_back_button ();
+
+            return true;
+        } else if (event.keyval == Gdk.Key.Escape) { // ESC -> back
             revert_state ();
+
+            return true;
+        }
 
         return false;
     }
