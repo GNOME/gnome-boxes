@@ -8,7 +8,7 @@ private enum Boxes.PropsWindowPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-window.ui")]
 private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
-    public const string[] page_names = { "main", "troubleshooting_log" };
+    public const string[] page_names = { "main", "troubleshoot_log" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -53,7 +53,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         page = PropsWindowPage.TROUBLESHOOTING_LOG;
     }
 
-    public void copy_troubleshooting_log_to_clipboard () {
+    public void copy_troubleshoot_log_to_clipboard () {
         var log = troubleshoot_log.view.buffer.text;
         var clipboard = Gtk.Clipboard.get_for_display (get_display (), Gdk.SELECTION_CLIPBOARD);
 

@@ -61,7 +61,7 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
 
     [GtkCallback]
     private void on_copy_clipboard_clicked () requires (page == PropsWindowPage.TROUBLESHOOTING_LOG) {
-        props_window.copy_troubleshooting_log_to_clipboard ();
+        props_window.copy_troubleshoot_log_to_clipboard ();
     }
 
     [GtkCallback]
