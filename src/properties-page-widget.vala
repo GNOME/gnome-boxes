@@ -37,7 +37,6 @@ private class Boxes.ProperitesPageWidget: Gtk.Box {
         grid.column_spacing = 20;
         grid.valign = Gtk.Align.START;
         var scrolled_win = new Gtk.ScrolledWindow (null, null);
-        scrolled_win.min_content_height = 480;
         scrolled_win.margin_start = 20;
         scrolled_win.margin_end = 20;
         scrolled_win.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
