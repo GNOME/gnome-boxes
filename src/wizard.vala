@@ -529,8 +529,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         if (machine != null)
             summary.append_customize_button (() => {
-                // Selecting an item in UIState.WIZARD implies changing state to UIState.PROPERTIES
-                window.select_item (machine);
+                wizard_window.show_customization_page (libvirt_machine);
             });
 
         return true;
