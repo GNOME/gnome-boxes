@@ -143,9 +143,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             add_system_props_buttons (ref list);
 
-            var ram_property = add_ram_property (ref list);
-            var storage_property = add_storage_property (ref list);
-            mark_recommended_resources.begin (ram_property, storage_property);
+            get_resources_properties (ref list);
 
             break;
 
@@ -235,6 +233,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
 
         return list;
+    }
+
+    public void get_resources_properties (ref List<Boxes.Property> list) {
+        var ram_property = add_ram_property (ref list);
+        var storage_property = add_storage_property (ref list);
+        mark_recommended_resources.begin (ram_property, storage_property);
     }
 
     private void add_cdrom_property (GVirConfig.DomainDisk disk_config, ref List<Boxes.Property> list) {
