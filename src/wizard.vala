@@ -644,13 +644,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (ui_state != UIState.WIZARD)
             return;
 
-        if (previous_ui_state == UIState.PROPERTIES)
-            review.begin ();
-        else {
-            wizard_source.uri = "";
-            wizard_source.libvirt_sys_import = false;
-            page = WizardPage.INTRODUCTION;
-        }
+        wizard_source.uri = "";
+        wizard_source.libvirt_sys_import = false;
+        page = WizardPage.INTRODUCTION;
     }
 
     private void destroy_machine () {
