@@ -12,6 +12,12 @@ private class Boxes.WizardToolbar: HeaderBar {
     [GtkChild]
     public Button create_btn;
 
+    private unowned WizardWindow wizard_window;
+
+    public void setup_ui (WizardWindow wizard_window) {
+        this.wizard_window = wizard_window;
+    }
+
     public void click_back_button () {
         if (back_btn.sensitive)
             back_btn.clicked ();

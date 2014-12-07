@@ -47,6 +47,7 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
     public WizardWindow (AppWindow app_window) {
         wizard.setup_ui (app_window, this);
+        topbar.setup_ui (this);
 
         set_transient_for (app_window);
 
