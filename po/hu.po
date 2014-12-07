@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-28 18:54+0000\n"
-"PO-Revision-Date: 2014-11-29 00:07+0100\n"
+"POT-Creation-Date: 2014-12-07 07:00+0000\n"
+"PO-Revision-Date: 2014-12-07 12:42+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -141,6 +141,26 @@ msgstr "<b><span size=\"large\">Nincsenek gépek</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "Hozzon létre egyet a bal felső gomb használatával."
 
+#: ../data/ui/properties-toolbar.ui.h:2
+#| msgid "Troubleshooting log"
+msgid "Troubleshooting Log"
+msgstr "Hibaelhárítási napló"
+
+#: ../data/ui/properties-toolbar.ui.h:3
+#| msgid "Copy to clipboard"
+msgid "_Copy to Clipboard"
+msgstr "_Másolás a vágólapra"
+
+#: ../data/ui/properties-toolbar.ui.h:4 ../src/wizard-source.vala:282
+msgid "Select a device or ISO file"
+msgstr "Válasszon egy eszközt vagy ISO fájlt"
+
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2 ../src/libvirt-machine.vala:467
+#: ../src/wizard-source.vala:285
+msgid "_Cancel"
+msgstr "Mé_gse"
+
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
 msgstr "_Szünet"
@@ -152,12 +172,6 @@ msgstr "_Törlés"
 #: ../data/ui/selectionbar.ui.h:3
 msgid "_Properties"
 msgstr "T_ulajdonságok"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:287 ../src/libvirt-machine.vala:467
-#: ../src/wizard-source.vala:285
-msgid "_Cancel"
-msgstr "Mé_gse"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -253,12 +267,6 @@ msgid "_Back"
 msgstr "_Vissza"
 
 #: ../data/ui/wizard.ui.h:1
-#| msgid ""
-#| "Creating a Box will allow you to use another operating system directly "
-#| "from your existing login.\n"
-#| "\n"
-#| "You may connect to an existing machine <b><i>over the network</i></b> or "
-#| "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgid ""
 "Creating a box will allow you to use another operating system directly from "
 "your existing login.\n"
@@ -266,8 +274,8 @@ msgid ""
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
-"Egy gép létrehozása lehetővé teszi egy másik operációs rendszer használatát a "
-"meglévő bejelentkezésből.\n"
+"Egy gép létrehozása lehetővé teszi egy másik operációs rendszer használatát "
+"a meglévő bejelentkezésből.\n"
 "Kapcsolódhat egy meglévő géphez <b><i>a hálózaton keresztül</i></b>, vagy "
 "létrehozhat egy <b><i>virtuális gépet</i></b>, amely helyileg fut a saját "
 "gépén."
@@ -292,9 +300,6 @@ msgid "Preparing to create new box"
 msgstr "Felkészülés új gép létrehozására"
 
 #: ../data/ui/wizard.ui.h:7
-#| msgid ""
-#| "Virtualization extensions are unavailable on your system. If your system "
-#| "is recent (post 2008), check your BIOS settings to enable them."
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -304,14 +309,11 @@ msgstr ""
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: ../src/actions-popover.vala:25
-#| msgid "Collections"
 msgid "Box actions"
 msgstr "Gép műveletek"
 
 #. Open in new Window
 #: ../src/actions-popover.vala:35
-#| msgid "_Open in new window"
-#| msgid_plural "_Open in %d new windows"
 msgid "Open in new Window"
 msgstr "Megnyitás új ablakban"
 
@@ -326,13 +328,11 @@ msgstr "Kedvenc"
 
 #. Pause
 #: ../src/actions-popover.vala:44
-#| msgid "P_ause"
 msgid "Pause"
 msgstr "Szünet"
 
 #. Properties (in separate section)
 #: ../src/actions-popover.vala:55
-#| msgid "_Properties"
 msgid "Properties"
 msgstr "Tulajdonságok"
 
@@ -432,7 +432,6 @@ msgid "Unsupported disk image format."
 msgstr "Nem támogatott lemezképformátum."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:109
-#: ../src/properties.vala:14 ../src/properties.vala:39
 msgid "System"
 msgstr "Rendszer"
 
@@ -471,104 +470,71 @@ msgstr "Intelligenskártya-támogatás"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: ../src/libvirt-machine-properties.vala:254
-#: ../src/libvirt-machine-properties.vala:321
+#: ../src/libvirt-machine-properties.vala:306
 msgid "empty"
 msgstr "üres"
 
 #. Don't let user eject installer media if its an express installation or a live media
 #: ../src/libvirt-machine-properties.vala:263
-#: ../src/libvirt-machine-properties.vala:330
+#: ../src/libvirt-machine-properties.vala:315
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
 #: ../src/libvirt-machine-properties.vala:277
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:305
 msgid "Select"
 msgstr "Kijelölés"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
 #: ../src/libvirt-machine-properties.vala:280
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:288
 msgid "Remove"
 msgstr "Eltávolítás"
 
-#: ../src/libvirt-machine-properties.vala:284 ../src/wizard-source.vala:282
-msgid "Select a device or ISO file"
-msgstr "Válasszon egy eszközt vagy ISO fájlt"
-
-#: ../src/libvirt-machine-properties.vala:288 ../src/wizard-source.vala:286
-msgid "_Open"
-msgstr "_Megnyitás"
-
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:307
+#: ../src/libvirt-machine-properties.vala:295
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "„%s” behelyezése sikertelen CD/DVD-ként ide: „%s”"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:324
+#: ../src/libvirt-machine-properties.vala:309
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "A CD/DVD eltávolítása sikertelen innen: „%s”"
 
-#: ../src/libvirt-machine-properties.vala:391
-#| msgid "CPU:"
+#: ../src/libvirt-machine-properties.vala:376
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/libvirt-machine-properties.vala:398
-#| msgid "I/O:"
+#: ../src/libvirt-machine-properties.vala:383
 msgid "I/O"
 msgstr "I/O"
 
-#: ../src/libvirt-machine-properties.vala:405
+#: ../src/libvirt-machine-properties.vala:390
 msgid "Network"
 msgstr "Hálózat"
 
-#: ../src/libvirt-machine-properties.vala:428
-#: ../src/libvirt-machine-properties.vala:432
+#: ../src/libvirt-machine-properties.vala:413
 msgid "Troubleshooting log"
 msgstr "Hibaelhárítási napló"
 
-#: ../src/libvirt-machine-properties.vala:435
-#: ../src/libvirt-machine-properties.vala:454
-msgid "_Save"
-msgstr "M_entés"
-
-#: ../src/libvirt-machine-properties.vala:436
-msgid "Copy to clipboard"
-msgstr "Másolás a vágólapra"
-
-#: ../src/libvirt-machine-properties.vala:437
-msgid "_Close"
-msgstr "_Bezárás"
-
-#: ../src/libvirt-machine-properties.vala:452
-msgid "Save log"
-msgstr "Naplófájl mentése"
-
-#: ../src/libvirt-machine-properties.vala:469
-#, c-format
-msgid "Error saving: %s"
-msgstr "Hiba a mentés közben: %s"
-
-#: ../src/libvirt-machine-properties.vala:490
+#: ../src/libvirt-machine-properties.vala:420
 msgid "Force Shutdown"
 msgstr "Erőltetett leállítás"
 
-#: ../src/libvirt-machine-properties.vala:515 ../src/wizard.vala:508
+#: ../src/libvirt-machine-properties.vala:445 ../src/wizard.vala:508
 msgid "Memory"
 msgstr "Memória"
 
-#: ../src/libvirt-machine-properties.vala:579
-#: ../src/libvirt-machine-properties.vala:601
+#: ../src/libvirt-machine-properties.vala:509
+#: ../src/libvirt-machine-properties.vala:531
 msgid "Maximum Disk Size"
 msgstr "Maximális lemezméret"
 
-#: ../src/libvirt-machine-properties.vala:592
+#: ../src/libvirt-machine-properties.vala:522
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Nincs elég hely a számítógépén a maximális lemezméret növeléséhez."
@@ -727,24 +693,12 @@ msgstr "Nincs kapcsolódva ehhez: %s"
 msgid "Connection to oVirt broker failed"
 msgstr "A kapcsolódás meghiúsult az oVirt közvetítőhöz"
 
-#: ../src/properties.vala:14 ../src/properties.vala:35
-msgid "General"
-msgstr "Általános"
-
-#: ../src/properties.vala:14 ../src/properties.vala:43
-msgid "Devices"
-msgstr "Eszközök"
-
-#: ../src/properties.vala:14 ../src/properties.vala:47
-msgid "Snapshots"
-msgstr "Pillanatképek"
-
-#: ../src/properties.vala:177
+#: ../src/properties.vala:82
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "A módosítások a(z) „%s” újraindítását igénylik."
 
-#: ../src/properties.vala:178
+#: ../src/properties.vala:83
 msgid "_Restart"
 msgstr "Újr_aindítás"
 
@@ -957,14 +911,16 @@ msgstr "64 bites x86 rendszer"
 msgid " from %s"
 msgstr " gyártó: %s"
 
+#: ../src/wizard-source.vala:286
+msgid "_Open"
+msgstr "_Megnyitás"
+
 #: ../src/wizard-toolbar.vala:31
-#| msgid "Create a Box"
 msgid "Create a box"
 msgstr "Gép létrehozása"
 
 #: ../src/wizard-toolbar.vala:35
 #, c-format
-#| msgid "Create a Box"
 msgid "Create a box (step %d/4)"
 msgstr "Gép létrehozása (%d/4. lépés)"
 
@@ -1060,6 +1016,27 @@ msgstr "A letöltés meghiúsult."
 #: ../src/wizard.vala:702
 msgid "C_ustomize…"
 msgstr "_Testreszabás…"
+
+#~ msgid "_Save"
+#~ msgstr "M_entés"
+
+#~ msgid "_Close"
+#~ msgstr "_Bezárás"
+
+#~ msgid "Save log"
+#~ msgstr "Naplófájl mentése"
+
+#~ msgid "Error saving: %s"
+#~ msgstr "Hiba a mentés közben: %s"
+
+#~ msgid "General"
+#~ msgstr "Általános"
+
+#~ msgid "Devices"
+#~ msgstr "Eszközök"
+
+#~ msgid "Snapshots"
+#~ msgstr "Pillanatképek"
 
 #~ msgid "Net:"
 #~ msgstr "Hálózat:"
