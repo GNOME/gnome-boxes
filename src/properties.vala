@@ -28,7 +28,6 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             remove (page);
 
         var machine = window.current_item as Machine;
-        var libvirt_machine = window.current_item as LibvirtMachine;
 
         if (machine == null)
             return;
@@ -46,10 +45,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
             });
         }
 
-        if (libvirt_machine != null)
-            page = (previous_ui_state == UIState.WIZARD) ? PropertiesPage.SYSTEM : PropertiesPage.GENERAL;
-        else
-            page = PropertiesPage.GENERAL;
+        page = PropertiesPage.GENERAL;
     }
 
     public void setup_ui (AppWindow window, PropertiesWindow dialog) {
