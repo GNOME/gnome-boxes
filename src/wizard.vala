@@ -218,6 +218,18 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         wizard_source.cleanup ();
     }
 
+    public async bool review () {
+        // only one outstanding review () permitted
+        return_if_fail (review_cancellable == null);
+
+        review_cancellable = new Cancellable ();
+        var result = yield do_review_cancellable ();
+        review_cancellable = null;
+
+        skip_review_for_live = false;
+        return result;
+    }
+
     private async bool create () {
         if (vm_creator != null) {
             if (libvirt_machine == null) {
@@ -412,18 +424,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         });
 
         return true;
-    }
-
-    private async bool review () {
-        // only one outstanding review () permitted
-        return_if_fail (review_cancellable == null);
-
-        review_cancellable = new Cancellable ();
-        var result = yield do_review_cancellable ();
-        review_cancellable = null;
-
-        skip_review_for_live = false;
-        return result;
     }
 
     private async bool do_review_cancellable () {
