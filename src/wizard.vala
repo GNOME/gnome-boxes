@@ -527,7 +527,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             review_label.set_text (wizard_source.libvirt_sys_importer.wizard_review_label);
         }
 
-        if (machine != null)
+        if (libvirt_machine != null)
             summary.append_customize_button (() => {
                 wizard_window.show_customization_page (libvirt_machine);
             });
