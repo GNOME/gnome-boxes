@@ -17,8 +17,6 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     public Gtk.HeaderBar main;
 
     [GtkChild]
-    public Gtk.Button main_back_button;
-    [GtkChild]
     public Gtk.Button troubleshooting_back_button;
 
     [GtkChild]
@@ -43,15 +41,10 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     public void click_back_button () {
-        if (page == PropsWindowPage.MAIN)
-            main_back_button.clicked ();
-        else
-            troubleshooting_back_button.clicked ();
-    }
+        if (page != PropsWindowPage.TROUBLESHOOTING_LOG)
+            return;
 
-    [GtkCallback]
-    private void on_main_back_clicked () requires (page == PropsWindowPage.MAIN) {
-        props_window.revert_state ();
+        troubleshooting_back_button.clicked ();
     }
 
     [GtkCallback]
@@ -75,7 +68,6 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     private void ui_state_changed () {
-        main_back_button.visible = (window.previous_ui_state == UIState.WIZARD);
         main.show_close_button = (window.previous_ui_state != UIState.WIZARD);
 
         if (item_name_id != 0) {
