@@ -247,30 +247,27 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public void select_item (CollectionItem item) {
-        if (ui_state == UIState.COLLECTION && !selection_mode) {
-            return_if_fail (item is Machine);
+        if (ui_state != UIState.COLLECTION || selection_mode)
+            return;
 
-            var machine = item as Machine;
+        return_if_fail (item is Machine);
 
-            if (machine.window != App.app.main_window) {
-                machine.window.present ();
+        var machine = item as Machine;
 
-                return;
-            }
+        if (machine.window != App.app.main_window) {
+            machine.window.present ();
 
-            current_item = item;
-
-            if (current_item is Machine)
-                connect_to (machine);
-            else
-                warning ("unknown item, fix your code");
-
-            item_selected (item);
-        } else if (ui_state == UIState.WIZARD) {
-            current_item = item;
-
-            set_state (UIState.PROPERTIES);
+            return;
         }
+
+        current_item = item;
+
+        if (current_item is Machine)
+            connect_to (machine);
+        else
+            warning ("unknown item, fix your code");
+
+        item_selected (item);
     }
 
     [GtkCallback]
