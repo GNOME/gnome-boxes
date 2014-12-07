@@ -68,8 +68,6 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     private void ui_state_changed () {
-        main.show_close_button = (window.previous_ui_state != UIState.WIZARD);
-
         if (item_name_id != 0) {
             item.disconnect (item_name_id);
             item_name_id = 0;
