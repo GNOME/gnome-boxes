@@ -123,6 +123,22 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             return;
         }
 
+        var window = machine.window;
+        if (window.ui_state == UIState.WIZARD) {
+            // Don't show newly created items until user is out of wizard
+            ulong ui_state_id = 0;
+
+            ui_state_id = window.notify["ui-state"].connect (() => {
+                if (window.ui_state == UIState.WIZARD)
+                    return;
+
+                add_item (item);
+                window.disconnect (ui_state_id);
+            });
+
+            return;
+        }
+
         var iter = append (machine.name, machine.info,  item);
         var pixbuf_id = machine.notify["pixbuf"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
