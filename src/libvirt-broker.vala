@@ -60,7 +60,9 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
     }
 
     // Existing == Existed before Boxes was launched
-    private async void try_add_existing_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+    private async void try_add_existing_domain (CollectionSource source,
+                                                GVir.Connection  connection,
+                                                GVir.Domain      domain) {
         try {
             var machine = yield add_domain (source, connection, domain);
             var config = machine.domain_config;
