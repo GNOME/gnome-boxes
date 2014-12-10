@@ -15,28 +15,14 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
     public double ymax { get { return _ymax; }
         set {
             _ymax = value;
-            ymax_set = true;
         }
     }
-    private bool ymax_set = false;
 
-    public MiniGraph () {
+    public MiniGraph (double ymax) {
+        this.ymax = ymax;
         width_request = 120;
         height_request = 60;
         expand = true;
-    }
-
-    private double max () {
-        if (points.length == 0)
-            return 1.0;
-
-        double max = points[0];
-        foreach (var p in points) {
-            if (p > max)
-                max = p;
-        }
-
-        return max;
     }
 
     public override bool draw (Cairo.Context cr) {
@@ -49,7 +35,6 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         cr.fill ();
 
         var nstep = (npoints == -1 ? points.length : npoints) - 1;
-        var ymax = ymax_set ? ymax : max ();
         var dy = 0.0;
         var dx = 0.0;
         if (nstep != 0)
