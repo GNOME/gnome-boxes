@@ -457,22 +457,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             domain.suspend ();
     }
 
-    public void force_shutdown (bool confirm = true) {
-        if (confirm) {
-            var dialog = new Gtk.MessageDialog (window,
-                                                Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                Gtk.MessageType.QUESTION,
-                                                Gtk.ButtonsType.NONE,
-                                                _("When you force shutdown, the box may lose data."));
-            dialog.add_buttons (_("_Cancel"), Gtk.ResponseType.CANCEL,
-                                _("_Shutdown"), Gtk.ResponseType.OK);
-            var response = dialog.run ();
-            dialog.destroy ();
-
-            if (response != Gtk.ResponseType.OK)
-                return;
-        }
-
+    public void force_shutdown () {
         debug ("Force shutdown '%s'..", name);
         try {
             force_stopped = true;
@@ -615,7 +600,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
             Notification.OKFunc really_force_shutdown = () => {
                 notification = null;
-                force_shutdown (false);
+                force_shutdown ();
             };
 
             var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (name);
