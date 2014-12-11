@@ -34,6 +34,9 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
         for (var i = 0; i < PropertiesPage.LAST; i++) {
             var page = new PropertiesPageWidget (i, machine);
+            if (page.empty)
+                continue;
+
             var label = new Gtk.Label (page.name);
             insert_page (page, label, i);
             set_data<PropertiesPageWidget> (@"boxes-property-$i", page);
