@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-private class Boxes.ProperitesPageWidget: Gtk.Box {
+private class Boxes.PropertiesPageWidget: Gtk.Box {
     public bool empty;
 
     private Gtk.Grid grid;
@@ -9,7 +9,7 @@ private class Boxes.ProperitesPageWidget: Gtk.Box {
 
     public signal void refresh_properties ();
 
-    public ProperitesPageWidget (PropertiesPage page, Machine machine) {
+    public PropertiesPageWidget (PropertiesPage page, Machine machine) {
         switch (page) {
         case PropertiesPage.GENERAL:
             name = _("General");
