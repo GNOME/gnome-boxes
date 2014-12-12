@@ -40,30 +40,6 @@
         </style>
 
         <child>
-          <object class="GtkButton" id="fullscreen">
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="use-underline">True</property>
-            <signal name="clicked" handler="on_fullscreen_clicked"/>
-            <style>
-              <class name="image-button"/>
-            </style>
-
-            <child>
-              <object class="GtkImage" id="fullscreen_image">
-                <property name="visible">True</property>
-                <property name="icon-name">view-fullscreen-symbolic</property>
-                <property name="icon-size">1</property>
-              </object>
-            </child>
-          </object>
-
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
-        </child>
-
-        <child>
           <object class="GtkMenuButton" id="menu_button">
             <property name="visible">True</property>
             <property name="valign">center</property>
@@ -97,6 +73,30 @@
               <object class="GtkImage" id="keyboard_image">
                 <property name="visible">True</property>
                 <property name="icon-name">input-keyboard-symbolic</property>
+                <property name="icon-size">1</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="fullscreen">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <signal name="clicked" handler="on_fullscreen_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+
+            <child>
+              <object class="GtkImage" id="fullscreen_image">
+                <property name="visible">True</property>
+                <property name="icon-name">view-fullscreen-symbolic</property>
                 <property name="icon-size">1</property>
               </object>
             </child>
