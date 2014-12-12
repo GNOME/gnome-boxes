@@ -110,6 +110,7 @@ gnome_boxes_SOURCES =				\
 	i-properties-provider.vala		\
 	installer-media.vala 			\
 	installed-media.vala 			\
+	keys-input-popover.vala			\
 	libvirt-system-media.vala 		\
 	iso-extractor.vala			\
 	libvirt-broker.vala			\
