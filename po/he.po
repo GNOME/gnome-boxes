@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-24 20:20+0200\n"
-"PO-Revision-Date: 2014-11-24 20:22+0200\n"
+"POT-Creation-Date: 2014-12-12 11:51+0200\n"
+"PO-Revision-Date: 2014-12-12 11:53+0200\n"
 "Last-Translator: Yosef Or Boczko <yoseforb@gnome.org>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -46,7 +46,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:106 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/main.vala:72
 msgid "Boxes"
 msgstr "קופסאות"
 
@@ -118,7 +118,8 @@ msgstr "כניסה"
 msgid "_New"
 msgstr "_חדש"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "חזרה"
 
@@ -138,21 +139,26 @@ msgstr "<b><span size=\"large\">לא נמצאו קופסאות</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "ניתן ליצור אחת באמצעות הלחצן מימין למעלה."
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "מעבד:"
+#: ../data/ui/properties-toolbar.ui.h:1
+msgid "Troubleshooting Log"
+msgstr "יומן טיפול בבעיות"
 
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "קלט/פלט:"
+#: ../data/ui/properties-toolbar.ui.h:3
+msgid "_Copy to Clipboard"
+msgstr "הע_תקה ללוח הגזירים"
 
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "רשת:"
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "בחירת התקן או קובץ ISO"
 
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "אילוץ כיבוי"
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
+msgid "_Cancel"
+msgstr "_ביטול"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_פתיחה"
 
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
@@ -165,12 +171,6 @@ msgstr "_מחיקה"
 #: ../data/ui/selectionbar.ui.h:3
 msgid "_Properties"
 msgstr "_מאפיינים"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:342 ../src/libvirt-machine.vala:467
-#: ../src/wizard-source.vala:285
-msgid "_Cancel"
-msgstr "_ביטול"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -233,26 +233,6 @@ msgstr "מפתח המוצר"
 msgid "Unknown media"
 msgstr "מדיה בלתי מוכרת"
 
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "היכרות"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "בחירת המקור"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "הכנות"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "התקנה"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "סקירה"
-
 #: ../data/ui/wizard-source.ui.h:1
 msgid "Enter URL"
 msgstr "נא להזין כתובת"
@@ -269,7 +249,7 @@ msgstr "בחירת קובץ"
 msgid "◀"
 msgstr "▶"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "יצירת קופסה"
 
@@ -284,6 +264,10 @@ msgstr "המ_שך"
 #: ../data/ui/wizard-toolbar.ui.h:5
 msgid "_Back"
 msgstr "ח_זרה"
+
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "התאמת משאבים"
 
 #: ../data/ui/wizard.ui.h:1
 msgid ""
@@ -317,11 +301,11 @@ msgstr "הכנות ליצירת קופסה חדשה"
 
 #: ../data/ui/wizard.ui.h:7
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"הרחבות הווירטואליזציה אינן פעילות במערכת שלך. אם המערכת שלך עדכנית (לאחר "
-"2008) כדאי לבדוק בהגדרות ה־BIOS ולאפשר אותן."
+"הרחבות ההדמיה אינן זמינות במערכת שלך.\n"
+"יש לבדוק בהגדרות ה־BIOS ולאפשר אותן."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: ../src/actions-popover.vala:25
@@ -447,7 +431,6 @@ msgid "Unsupported disk image format."
 msgstr "מבנה תמונת הכונן אינה נתמכת."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:109
-#: ../src/properties.vala:49
 msgid "System"
 msgstr "מערכת"
 
@@ -465,135 +448,116 @@ msgid "Protocol"
 msgstr "פרוטוקול"
 
 #: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:66
-#: ../src/remote-machine.vala:66 ../src/wizard.vala:469
+#: ../src/remote-machine.vala:66 ../src/wizard.vala:470
 msgid "URI"
 msgstr "כתובת"
 
-#: ../src/libvirt-machine-properties.vala:146
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Troubleshooting log"
-msgstr "יומן טיפול בבעיות"
-
-#: ../src/libvirt-machine-properties.vala:154
-#: ../src/libvirt-machine-properties.vala:172
-msgid "_Save"
-msgstr "_שמירה"
-
-#: ../src/libvirt-machine-properties.vala:155
-msgid "Copy to clipboard"
-msgstr "העתקה ללוח הגזירים"
-
-#: ../src/libvirt-machine-properties.vala:156
-msgid "_Close"
-msgstr "_סגירה"
-
-#: ../src/libvirt-machine-properties.vala:170
-msgid "Save log"
-msgstr "שמירת היומן"
-
-#: ../src/libvirt-machine-properties.vala:186
-#, c-format
-msgid "Error saving: %s"
-msgstr "שגיאה בשמירה: %s"
-
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:243
-#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:186
+#: ../src/libvirt-machine-properties.vala:204
 msgid "Add support to guest"
 msgstr "הוספת תמיכה לאורח"
 
-#: ../src/libvirt-machine-properties.vala:245
+#: ../src/libvirt-machine-properties.vala:188
 msgid "USB device support"
 msgstr "תמיכה בהתקן USB"
 
-#: ../src/libvirt-machine-properties.vala:263
+#: ../src/libvirt-machine-properties.vala:206
 msgid "Smartcard support"
 msgstr "תמיכה בכרטיס חכם"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:309
-#: ../src/libvirt-machine-properties.vala:376
+#: ../src/libvirt-machine-properties.vala:258
+#: ../src/libvirt-machine-properties.vala:310
 msgid "empty"
 msgstr "ריק"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:318
-#: ../src/libvirt-machine-properties.vala:385
+#: ../src/libvirt-machine-properties.vala:267
+#: ../src/libvirt-machine-properties.vala:319
 msgid "CD/DVD"
 msgstr "תקליטור/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:332
-#: ../src/libvirt-machine-properties.vala:375
+#: ../src/libvirt-machine-properties.vala:281
+#: ../src/libvirt-machine-properties.vala:309
 msgid "Select"
 msgstr "בחירה"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:335
-#: ../src/libvirt-machine-properties.vala:355
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:292
 msgid "Remove"
 msgstr "הסרה"
 
-#: ../src/libvirt-machine-properties.vala:339 ../src/wizard-source.vala:282
-msgid "Select a device or ISO file"
-msgstr "בחירת התקן או קובץ ISO"
-
-#: ../src/libvirt-machine-properties.vala:343 ../src/wizard-source.vala:286
-msgid "_Open"
-msgstr "_פתיחה"
-
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:362
+#: ../src/libvirt-machine-properties.vala:299
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "ההכנסה של '%s' כתקליטור CD/DVD לתוך '%s' נכשלה"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:379
+#: ../src/libvirt-machine-properties.vala:313
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "הסרת ה־CD/DVD מהקופסה '%s' נכשלה"
 
-#: ../src/libvirt-machine-properties.vala:440 ../src/wizard.vala:507
+#: ../src/libvirt-machine-properties.vala:379
+msgid "CPU"
+msgstr "מעבד"
+
+#: ../src/libvirt-machine-properties.vala:385
+msgid "I/O"
+msgstr "קלט/פלט"
+
+#: ../src/libvirt-machine-properties.vala:391
+msgid "Network"
+msgstr "רשת"
+
+#: ../src/libvirt-machine-properties.vala:414
+msgid "Troubleshooting log"
+msgstr "יומן טיפול בבעיות"
+
+#: ../src/libvirt-machine-properties.vala:421
+msgid "Force Shutdown"
+msgstr "אילוץ כיבוי"
+
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
 msgid "Memory"
 msgstr "זיכרון"
 
-#: ../src/libvirt-machine-properties.vala:503
-#: ../src/libvirt-machine-properties.vala:525
+#: ../src/libvirt-machine-properties.vala:510
+#: ../src/libvirt-machine-properties.vala:532
 msgid "Maximum Disk Size"
 msgstr "גודל הכונן המרבי"
 
-#: ../src/libvirt-machine-properties.vala:516
+#: ../src/libvirt-machine-properties.vala:523
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "אין מספיק מקום במחשב שלך בכדי להגדיל את הגודל המרבי של הדיסק."
 
-#: ../src/libvirt-machine.vala:466
-msgid "When you force shutdown, the box may lose data."
-msgstr "בעת אילוץ כיבוי, הקופסה עלול לאבד נתונים."
-
-#: ../src/libvirt-machine.vala:468 ../src/libvirt-machine.vala:623
-msgid "_Shutdown"
-msgstr "_כיבוי"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:538
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s משוחזר מהכונן"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:556
+#: ../src/libvirt-machine.vala:541
 #, c-format
 msgid "Starting %s"
 msgstr "%s מופעל"
 
-#: ../src/libvirt-machine.vala:621
+#: ../src/libvirt-machine.vala:606
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "ההפעלה מחדש של '%s' אורכת זמן רב מדי. האם לכפות כיבוי?"
+
+#: ../src/libvirt-machine.vala:608
+msgid "_Shutdown"
+msgstr "_כיבוי"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -636,7 +600,7 @@ msgstr "נכשל חיפוש כונן מתאים לייבוא עבור קופסה
 msgid "Connecting to %s"
 msgstr "מתבצעת התחברות אל %s"
 
-#: ../src/machine.vala:169 ../src/machine.vala:614
+#: ../src/machine.vala:169 ../src/machine.vala:591
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "ההתחברות אל %s נכשלה"
@@ -645,7 +609,7 @@ msgstr "ההתחברות אל %s נכשלה"
 msgid "Saving…"
 msgstr "מתבצעת שמירה…"
 
-#: ../src/machine.vala:600
+#: ../src/machine.vala:577
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -654,17 +618,17 @@ msgstr ""
 "לא ניתן לשחזר את '%s' מהכונן\n"
 "האם לנסות ללא מצב שמור?"
 
-#: ../src/machine.vala:601
+#: ../src/machine.vala:578
 msgid "Restart"
 msgstr "הפעלה מחדש"
 
-#: ../src/machine.vala:610
+#: ../src/machine.vala:587
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "ארע כשל בהפעלת '%s'"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:643
+#: ../src/machine.vala:620
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' דורש אימות"
@@ -724,24 +688,12 @@ msgstr "אין חיבור אל %s"
 msgid "Connection to oVirt broker failed"
 msgstr "ההתחברות אל הסוכן של oVirt נכשלה"
 
-#: ../src/properties.vala:45
-msgid "General"
-msgstr "כללי"
-
-#: ../src/properties.vala:53
-msgid "Devices"
-msgstr "התקנים"
-
-#: ../src/properties.vala:57
-msgid "Snapshots"
-msgstr "תמונות מצב"
-
-#: ../src/properties.vala:216
+#: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "השינויים דורשים את הפעלת '%s' מחדש."
 
-#: ../src/properties.vala:217
+#: ../src/properties.vala:82
 msgid "_Restart"
 msgstr "הפעלה מ_חדש"
 
@@ -780,11 +732,11 @@ msgstr "ארע כשל בהחלת תמונה מצב"
 msgid "Snapshot \"%s\" deleted."
 msgstr "תמונת מצב „%s” נמחקה."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:99
 msgid "Creating new snapshot…"
 msgstr "יוצר תמונה מצב…"
 
-#: ../src/snapshots-property.vala:111
+#: ../src/snapshots-property.vala:107
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "ארע כשל ביצירת תמונת מצב של %s"
@@ -807,7 +759,7 @@ msgstr "שיתוף לוח הגזירים"
 msgid "USB devices"
 msgstr "התקני USB"
 
-#: ../src/spice-display.vala:363 ../src/wizard.vala:283 ../src/wizard.vala:290
+#: ../src/spice-display.vala:363 ../src/wizard.vala:296 ../src/wizard.vala:303
 msgid "Invalid URI"
 msgstr "כתובת שגויה"
 
@@ -949,82 +901,91 @@ msgstr "מערכת 64-סיביות x86"
 msgid " from %s"
 msgstr "מבית %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:60
+msgid "Create a box"
+msgstr "יצירת קופסה"
+
+#: ../src/wizard-toolbar.vala:64
+#, c-format
+msgid "Create a box (step %d/4)"
+msgstr "יצירת קופסה (צעד %d/4)"
+
+#: ../src/wizard.vala:120
 msgid "Box creation failed"
 msgstr "יצירת הקופסה נכשלה"
 
-#: ../src/wizard.vala:172
+#: ../src/wizard.vala:173
 msgid "Please enter desktop or collection URI"
 msgstr "נא להזין את כתובת שולחן העבודה או האוסף"
 
-#: ../src/wizard.vala:178
+#: ../src/wizard.vala:179
 msgid "Will add boxes for all systems available from this account."
 msgstr "הפעולה תוסיף את קופסאות לכל המערכות הזמינות מחשבון זה."
 
-#: ../src/wizard.vala:181
+#: ../src/wizard.vala:182
 msgid "Will add a single box."
 msgstr "תתווסף קופסה יחידה."
 
 #. ignore any parsing error
-#: ../src/wizard.vala:187
+#: ../src/wizard.vala:188
 msgid "Desktop Access"
 msgstr "גישה לשולחן עבודה"
 
-#: ../src/wizard.vala:265
+#: ../src/wizard.vala:278
 msgid "Empty location"
 msgstr "מיקום ריק"
 
-#: ../src/wizard.vala:307
+#: ../src/wizard.vala:320
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "הפרוטוקול '%s' אינו נתמך"
 
-#: ../src/wizard.vala:313 ../src/wizard.vala:376
+#: ../src/wizard.vala:326 ../src/wizard.vala:389
 msgid "Unknown installer media"
 msgstr "המדיה להתקנה בלתי מוכרת"
 
-#: ../src/wizard.vala:314 ../src/wizard.vala:377
+#: ../src/wizard.vala:327 ../src/wizard.vala:390
 msgid "Analyzing…"
 msgstr "מתבצע ניתוח…"
 
-#: ../src/wizard.vala:328
+#: ../src/wizard.vala:341
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "זיהוי המדיה של ההתקנה נכשל. האם המדיה פגומה או חלקית?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:445
+#: ../src/wizard.vala:446
 msgid "Box setup failed"
 msgstr "הגדרת הקופסה נכשלה"
 
-#: ../src/wizard.vala:459
+#: ../src/wizard.vala:460
 msgid "Boxes will create a new box with the following properties:"
 msgstr "תכנית הקופסאות תיצור קופסה חדשה עם המאפיינים הבאים:"
 
-#: ../src/wizard.vala:464
+#: ../src/wizard.vala:465
 msgid "Type"
 msgstr "סוג"
 
-#: ../src/wizard.vala:467
+#: ../src/wizard.vala:468
 msgid "Host"
 msgstr "מארח"
 
-#: ../src/wizard.vala:478 ../src/wizard.vala:489
+#: ../src/wizard.vala:479 ../src/wizard.vala:490
 msgid "Port"
 msgstr "פתחה"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:481
 msgid "TLS Port"
 msgstr "פתחת TLS"
 
-#: ../src/wizard.vala:494
+#: ../src/wizard.vala:495
 msgid "Will add boxes for all systems available from this account:"
 msgstr "הפעולה תוסיף את קופסאות לכל המערכות הזמינות דרך חשבון זה:"
 
-#: ../src/wizard.vala:516
+#: ../src/wizard.vala:517
 msgid "Disk"
 msgstr "כונן"
 
-#: ../src/wizard.vala:516
+#: ../src/wizard.vala:517
 #, c-format
 msgid "%s maximum"
 msgstr "%s לכל היותר"
@@ -1037,9 +998,51 @@ msgstr "מוריד תוכן…"
 msgid "Download failed."
 msgstr "ההורדה נכשלה."
 
-#: ../src/wizard.vala:698
+#: ../src/wizard.vala:697
 msgid "C_ustomize…"
 msgstr "התאמה _אישית…"
+
+#~ msgid "Net:"
+#~ msgstr "רשת:"
+
+#~ msgid "Introduction"
+#~ msgstr "היכרות"
+
+#~ msgid "Source Selection"
+#~ msgstr "בחירת המקור"
+
+#~ msgid "Preparation"
+#~ msgstr "הכנות"
+
+#~ msgid "Setup"
+#~ msgstr "התקנה"
+
+#~ msgid "Review"
+#~ msgstr "סקירה"
+
+#~ msgid "_Save"
+#~ msgstr "_שמירה"
+
+#~ msgid "_Close"
+#~ msgstr "_סגירה"
+
+#~ msgid "Save log"
+#~ msgstr "שמירת היומן"
+
+#~ msgid "Error saving: %s"
+#~ msgstr "שגיאה בשמירה: %s"
+
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "בעת אילוץ כיבוי, הקופסה עלול לאבד נתונים."
+
+#~ msgid "General"
+#~ msgstr "כללי"
+
+#~ msgid "Devices"
+#~ msgstr "התקנים"
+
+#~ msgid "Snapshots"
+#~ msgstr "תמונות מצב"
 
 #~ msgid "Virtualizer"
 #~ msgstr "מחולל מכונות וירטואליות"
