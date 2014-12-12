@@ -148,4 +148,8 @@ private class Boxes.VncDisplay: Boxes.Display {
 
         return list;
     }
+
+    public override void send_keys (uint[] keyvals) {
+        display.send_keys (keyvals);
+    }
 }

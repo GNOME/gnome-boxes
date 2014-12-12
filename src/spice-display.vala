@@ -351,6 +351,13 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         return list;
     }
+
+    public override void send_keys (uint[] keyvals) {
+        // TODO: multi display
+        var display = get_display (0) as Spice.Display;
+
+        display.send_keys (keyvals, DisplayKeyEvent.CLICK);
+    }
 }
 
 // FIXME: this kind of function should be part of spice-gtk
