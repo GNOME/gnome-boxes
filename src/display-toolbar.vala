@@ -14,6 +14,8 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     private Gtk.Button fullscreen;
     [GtkChild]
     private Gtk.MenuButton menu_button;
+    [GtkChild]
+    private Gtk.MenuButton keys_menu_button;
 
     private AppWindow window;
 
@@ -38,6 +40,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             back.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
             fullscreen.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
             menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
+            keys_menu_button.get_style_context ().add_class (Gtk.STYLE_CLASS_RAISED);
         }
 
         App.app.notify["fullscreened"].connect_after ( () => {
@@ -59,6 +62,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             if (window.ui_state == UIState.DISPLAY)
                 (menu_button.popover as ActionsPopover).update_for_item (window.current_item);
         });
+        keys_menu_button.popover = new KeysInputPopover (window);
     }
 
     private bool button_down;
