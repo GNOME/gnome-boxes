@@ -1,3 +1,60 @@
+3.15.3 - Dec 15, 2014
+=====================
+
+Changes since 3.15.2:
+
+- Add a menu button that, when clicked pops up a menu to allow user to send
+  system key combos to guest. Currently supported combos are:
+  - Ctrl+Alt+Backspace
+  - Ctrl+Alt+F1
+  - Ctrl+Alt+F2
+  - Ctrl+Alt+F7
+- Drop all nested dialogs by use of notifications and GtkStack widget. This also
+  implies that we now only allow customization of resources before a box is
+  created.
+- As a USB device is no longer available on the host after being redirected
+  to guest, do not present keyboards and mice to user for redirection.
+- Place fullscreen button before others in display headerbar. This is for
+  consistency with UI mockups and other apps.
+- Show correct number of steps in wizard title.
+- Show notifications on correct window in properties and wizard views.
+- Apply appropriate theme to 'Force shutdown' button.
+- Correctly restore notebook page in properties view.
+- Don't show empty pages in properties view.
+- Bigger properties and wizard windows.
+- Add a USB keyboard to new domains.
+- Added/updated/fixed translations:
+  - Czech
+  - Dutch
+  - German
+  - Hebrew
+  - Hungarian
+  - Japanese
+  - Norwegian bokmål
+  - Spanish
+  - Turkish
+
+Dependencies changed:
+
+- Require spice-gtk >= 0.27
+- Require libusb explicitly
+
+All contributors to this release:
+
+Balázs Úr <urbalazs@gmail.com>
+Christian Kirbach <Christian.Kirbach@gmail.com>
+Daniel Mustieles <daniel.mustieles@gmail.com>
+Fabiano Fidêncio <fidencio@redhat.com>
+Hajime Taira <htaira@redhat.com>
+Hannie Dumoleyn <hannie@ubuntu-nl.org>
+Kjartan Maraas <kmaraas@gnome.org>
+Marek Černocký <marek@manet.cz>
+Muhammet Kara <muhammetk@gmail.com>
+Piotr Drąg <piotrdrag@gmail.com>
+Yaşar Şentürk <yasarix@gmail.com>
+Yosef Or Boczko <yoseforb@src.gnome.org>
+Zeeshan Ali (Khattak) <zeeshanak@gnome.org>
+
 3.15.2 - Nov 25, 2014
 =====================
 
