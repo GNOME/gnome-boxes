@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-07 07:00+0000\n"
-"PO-Revision-Date: 2014-12-07 12:42+0100\n"
+"POT-Creation-Date: 2014-12-20 07:00+0000\n"
+"PO-Revision-Date: 2014-12-20 12:17+0100\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
@@ -121,7 +121,8 @@ msgstr "Bejelentkezés"
 msgid "_New"
 msgstr "Ú_j"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Vissza"
 
@@ -141,25 +142,26 @@ msgstr "<b><span size=\"large\">Nincsenek gépek</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "Hozzon létre egyet a bal felső gomb használatával."
 
-#: ../data/ui/properties-toolbar.ui.h:2
-#| msgid "Troubleshooting log"
+#: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
 msgstr "Hibaelhárítási napló"
 
 #: ../data/ui/properties-toolbar.ui.h:3
-#| msgid "Copy to clipboard"
 msgid "_Copy to Clipboard"
 msgstr "_Másolás a vágólapra"
 
-#: ../data/ui/properties-toolbar.ui.h:4 ../src/wizard-source.vala:282
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
 msgid "Select a device or ISO file"
 msgstr "Válasszon egy eszközt vagy ISO fájlt"
 
 #: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
-#: ../data/ui/wizard-toolbar.ui.h:2 ../src/libvirt-machine.vala:467
-#: ../src/wizard-source.vala:285
+#: ../data/ui/wizard-toolbar.ui.h:2
 msgid "_Cancel"
 msgstr "Mé_gse"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_Megnyitás"
 
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
@@ -265,6 +267,10 @@ msgstr "_Folytatás"
 #: ../data/ui/wizard-toolbar.ui.h:5
 msgid "_Back"
 msgstr "_Vissza"
+
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "Erőforrások testreszabása"
 
 #: ../data/ui/wizard.ui.h:1
 msgid ""
@@ -432,8 +438,32 @@ msgid "Unsupported disk image format."
 msgstr "Nem támogatott lemezképformátum."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:109
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Rendszer"
+
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "Billentyűkombinációk küldése"
 
 #: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:53
 msgid "Name"
@@ -455,114 +485,110 @@ msgstr "URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:188
-#: ../src/libvirt-machine-properties.vala:206
+#: ../src/libvirt-machine-properties.vala:186
+#: ../src/libvirt-machine-properties.vala:204
 msgid "Add support to guest"
 msgstr "Támogatás hozzáadása a vendéghez"
 
-#: ../src/libvirt-machine-properties.vala:190
+#: ../src/libvirt-machine-properties.vala:188
 msgid "USB device support"
 msgstr "USB-eszköztámogatás"
 
-#: ../src/libvirt-machine-properties.vala:208
+#: ../src/libvirt-machine-properties.vala:206
 msgid "Smartcard support"
 msgstr "Intelligenskártya-támogatás"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:254
-#: ../src/libvirt-machine-properties.vala:306
+#: ../src/libvirt-machine-properties.vala:258
+#: ../src/libvirt-machine-properties.vala:310
 msgid "empty"
 msgstr "üres"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:263
-#: ../src/libvirt-machine-properties.vala:315
+#: ../src/libvirt-machine-properties.vala:267
+#: ../src/libvirt-machine-properties.vala:319
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:277
-#: ../src/libvirt-machine-properties.vala:305
+#: ../src/libvirt-machine-properties.vala:281
+#: ../src/libvirt-machine-properties.vala:309
 msgid "Select"
 msgstr "Kijelölés"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:280
-#: ../src/libvirt-machine-properties.vala:288
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:292
 msgid "Remove"
 msgstr "Eltávolítás"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:295
+#: ../src/libvirt-machine-properties.vala:299
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "„%s” behelyezése sikertelen CD/DVD-ként ide: „%s”"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:309
+#: ../src/libvirt-machine-properties.vala:313
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "A CD/DVD eltávolítása sikertelen innen: „%s”"
 
-#: ../src/libvirt-machine-properties.vala:376
+#: ../src/libvirt-machine-properties.vala:379
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/libvirt-machine-properties.vala:383
+#: ../src/libvirt-machine-properties.vala:385
 msgid "I/O"
 msgstr "I/O"
 
-#: ../src/libvirt-machine-properties.vala:390
+#: ../src/libvirt-machine-properties.vala:391
 msgid "Network"
 msgstr "Hálózat"
 
-#: ../src/libvirt-machine-properties.vala:413
+#: ../src/libvirt-machine-properties.vala:414
 msgid "Troubleshooting log"
 msgstr "Hibaelhárítási napló"
 
-#: ../src/libvirt-machine-properties.vala:420
+#: ../src/libvirt-machine-properties.vala:421
 msgid "Force Shutdown"
 msgstr "Erőltetett leállítás"
 
-#: ../src/libvirt-machine-properties.vala:445 ../src/wizard.vala:508
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
 msgid "Memory"
 msgstr "Memória"
 
-#: ../src/libvirt-machine-properties.vala:509
-#: ../src/libvirt-machine-properties.vala:531
+#: ../src/libvirt-machine-properties.vala:510
+#: ../src/libvirt-machine-properties.vala:532
 msgid "Maximum Disk Size"
 msgstr "Maximális lemezméret"
 
-#: ../src/libvirt-machine-properties.vala:522
+#: ../src/libvirt-machine-properties.vala:523
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Nincs elég hely a számítógépén a maximális lemezméret növeléséhez."
 
-#: ../src/libvirt-machine.vala:466
-msgid "When you force shutdown, the box may lose data."
-msgstr "Erőltetett kilépésnél a gép adatai elveszhetnek."
-
-#: ../src/libvirt-machine.vala:468 ../src/libvirt-machine.vala:623
-msgid "_Shutdown"
-msgstr "_Leállítás"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:538
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s visszaállítása lemezről"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:556
+#: ../src/libvirt-machine.vala:541
 #, c-format
 msgid "Starting %s"
 msgstr "%s indítása"
 
-#: ../src/libvirt-machine.vala:621
+#: ../src/libvirt-machine.vala:606
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "A(z) „%s” újraindítása túl sokáig tart. Erőlteti a leállítást?"
+
+#: ../src/libvirt-machine.vala:608
+msgid "_Shutdown"
+msgstr "_Leállítás"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -693,14 +719,26 @@ msgstr "Nincs kapcsolódva ehhez: %s"
 msgid "Connection to oVirt broker failed"
 msgstr "A kapcsolódás meghiúsult az oVirt közvetítőhöz"
 
-#: ../src/properties.vala:82
+#: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "A módosítások a(z) „%s” újraindítását igénylik."
 
-#: ../src/properties.vala:83
+#: ../src/properties.vala:82
 msgid "_Restart"
 msgstr "Újr_aindítás"
+
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "Általános"
+
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "Eszközök"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "Pillanatképek"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
@@ -747,32 +785,32 @@ msgid "Failed to create snapshot of %s"
 msgstr "Nem sikerült a(z) %s pillanatképének létrehozása"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:32
+#: ../src/spice-display.vala:33
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../src/spice-display.vala:50 ../src/spice-display.vala:318
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:320
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "„%s” USB-eszköz átirányítása meghiúsult ehhez: „%s”"
 
-#: ../src/spice-display.vala:279
+#: ../src/spice-display.vala:280
 msgid "Share clipboard"
 msgstr "Vágólap megosztása"
 
-#: ../src/spice-display.vala:304
+#: ../src/spice-display.vala:306
 msgid "USB devices"
 msgstr "USB eszközök"
 
-#: ../src/spice-display.vala:363 ../src/wizard.vala:284 ../src/wizard.vala:291
+#: ../src/spice-display.vala:442 ../src/wizard.vala:296 ../src/wizard.vala:303
 msgid "Invalid URI"
 msgstr "Érvénytelen URI"
 
-#: ../src/spice-display.vala:373
+#: ../src/spice-display.vala:452
 msgid "The port must be specified once"
 msgstr "A portot csak egyszer lehet megadni"
 
-#: ../src/spice-display.vala:382
+#: ../src/spice-display.vala:461
 msgid "Missing port in Spice URI"
 msgstr "Hiányzó port a Spice URI-ban"
 
@@ -911,15 +949,11 @@ msgstr "64 bites x86 rendszer"
 msgid " from %s"
 msgstr " gyártó: %s"
 
-#: ../src/wizard-source.vala:286
-msgid "_Open"
-msgstr "_Megnyitás"
-
-#: ../src/wizard-toolbar.vala:31
+#: ../src/wizard-toolbar.vala:60
 msgid "Create a box"
 msgstr "Gép létrehozása"
 
-#: ../src/wizard-toolbar.vala:35
+#: ../src/wizard-toolbar.vala:64
 #, c-format
 msgid "Create a box (step %d/4)"
 msgstr "Gép létrehozása (%d/4. lépés)"
@@ -945,24 +979,24 @@ msgstr "Egyetlen gép felvétele."
 msgid "Desktop Access"
 msgstr "Asztal elérése"
 
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:278
 msgid "Empty location"
 msgstr "Üres hely"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:320
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nem támogatott protokoll: „%s”"
 
-#: ../src/wizard.vala:314 ../src/wizard.vala:377
+#: ../src/wizard.vala:326 ../src/wizard.vala:389
 msgid "Unknown installer media"
 msgstr "Ismeretlen telepítő média"
 
-#: ../src/wizard.vala:315 ../src/wizard.vala:378
+#: ../src/wizard.vala:327 ../src/wizard.vala:390
 msgid "Analyzing…"
 msgstr "Elemzés…"
 
-#: ../src/wizard.vala:329
+#: ../src/wizard.vala:341
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Nem sikerült a telepítő média elemzése. A média sérült vagy befejezetlen?"
@@ -1005,17 +1039,20 @@ msgstr "Lemez"
 msgid "%s maximum"
 msgstr "%s maximum"
 
-#: ../src/wizard.vala:581
+#: ../src/wizard.vala:580
 msgid "Downloading media…"
 msgstr "Média letöltése…"
 
-#: ../src/wizard.vala:591
+#: ../src/wizard.vala:590
 msgid "Download failed."
 msgstr "A letöltés meghiúsult."
 
-#: ../src/wizard.vala:702
+#: ../src/wizard.vala:697
 msgid "C_ustomize…"
 msgstr "_Testreszabás…"
+
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "Erőltetett kilépésnél a gép adatai elveszhetnek."
 
 #~ msgid "_Save"
 #~ msgstr "M_entés"
@@ -1028,15 +1065,6 @@ msgstr "_Testreszabás…"
 
 #~ msgid "Error saving: %s"
 #~ msgstr "Hiba a mentés közben: %s"
-
-#~ msgid "General"
-#~ msgstr "Általános"
-
-#~ msgid "Devices"
-#~ msgstr "Eszközök"
-
-#~ msgid "Snapshots"
-#~ msgstr "Pillanatképek"
 
 #~ msgid "Net:"
 #~ msgstr "Hálózat:"
