@@ -100,7 +100,7 @@ private class Boxes.App: Gtk.Application {
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "logo-icon-name", "gnome-boxes",
                                    "version", Config.VERSION,
-                                   "website", "https://wiki.gnome.org/Apps/Boxes",
+                                   "website", Config.PACKAGE_URL,
                                    "wrap-license", true);
         });
         add_action (action);
