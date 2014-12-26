@@ -9,7 +9,7 @@ private errordomain Boxes.VMConfiguratorError {
 
 private class Boxes.VMConfigurator {
     private const string BOXES_NS = "boxes";
-    private const string BOXES_NS_URI = "http://live.gnome.org/Boxes/";
+    private const string BOXES_NS_URI = "https://wiki.gnome.org/Apps/Boxes/";
     private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
     private const string LIVE_STATE = "live";
     private const string INSTALLATION_STATE = "installation";

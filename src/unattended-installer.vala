@@ -94,7 +94,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         resources = media.resources;
 
         this.scripts = scripts;
-        config = new InstallConfig ("http://live.gnome.org/Boxes/unattended");
+        config = new InstallConfig ("https://wiki.gnome.org/Boxes/unattended");
 
         unattended_files = new GLib.List<UnattendedFile> ();
         secondary_unattended_files = new GLib.List<UnattendedFile> ();

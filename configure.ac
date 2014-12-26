@@ -4,7 +4,7 @@ AC_INIT([gnome-boxes],
         [m4_esyscmd(build-aux/git-version-gen .tarball-version)],
         [https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes],
         [gnome-boxes],
-        [http://live.gnome.org/Boxes])
+        [https://wiki.gnome.org/Apps/Boxes])
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
