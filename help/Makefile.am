@@ -29,4 +29,4 @@ HELP_FILES = index.page			\
 	what-is-a-virtual-machine.page	\
 	why-do-i-need-virtual-machine.page
 
-HELP_LINGUAS = cs de el es fr ko pt_BR
+HELP_LINGUAS = cs de el es fr hu ko pt_BR
