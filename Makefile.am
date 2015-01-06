@@ -78,6 +78,7 @@ INSTALLED_TESTS=				\
 	general.feature				\
 	import-vms.feature			\
 	livecd.feature				\
+	multi-windows.feature			\
 	$(NULL)
 INSTALLED_TESTS_TYPE=session-exclusive
 -include $(top_srcdir)/git.mk
