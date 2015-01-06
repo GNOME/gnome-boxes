@@ -68,6 +68,13 @@ def before_scenario(context, scenario):
     pass
 
 def before_tag(context, tag):
+    if 'system_broker' in tag:
+        if call('pkcheck -a org.libvirt.unix.manage --process $BASHPID', shell=True) != 0 \
+            or not os.path.isfile('/usr/bin/virt-install') \
+            or call('systemctl status libvirtd  > /dev/null 2>&1', shell=True) != 0:
+
+            sys.exit(77)
+
     if 'help' in tag:
         os.system('pkill -9 yelp')
 
@@ -88,6 +95,13 @@ def after_step(context, step):
 def after_tag(context, tag):
     if 'help' in tag:
         os.system('pkill -9 yelp')
+
+    if 'system_broker' in tag:
+        if tag == 'pause_system_broker_box' or tag == 'resume_system_broker_box':
+            os.system('virsh -q -c qemu:///system start Core-5.3 > /dev/null 2>&1')
+
+        os.system('virsh -q -c qemu:///system destroy Core-5.3 > /dev/null 2>&1')
+        os.system('virsh -q -c qemu:///system undefine Core-5.3 > /dev/null 2>&1')
 
 def after_scenario(context, scenario):
     """Teardown for each scenario
