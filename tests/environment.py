@@ -68,6 +68,13 @@ def before_scenario(context, scenario):
     pass
 
 def before_tag(context, tag):
+    if 'vnc' in tag:
+        if not os.path.isfile('/usr/bin/vncserver'):
+            sys.exit(77)
+
+        os.system('vncserver -SecurityTypes None > /dev/null 2>&1')
+        sleep(1)
+
     if 'system_broker' in tag:
         if call('pkcheck -a org.libvirt.unix.manage --process $BASHPID', shell=True) != 0 \
             or not os.path.isfile('/usr/bin/virt-install') \
@@ -93,6 +100,11 @@ def after_step(context, step):
         print "Error in after_step: %s" % str(e)
 
 def after_tag(context, tag):
+    if 'vnc' in tag:
+        os.system('vncserver -kill :1 > /dev/null 2>&1')
+        os.system('rm -rf /tmp/vnc_text.txt')
+        sleep(1)
+
     if 'help' in tag:
         os.system('pkill -9 yelp')
 

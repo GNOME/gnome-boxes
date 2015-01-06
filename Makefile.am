@@ -82,6 +82,7 @@ INSTALLED_TESTS=				\
 	snapshots.feature			\
 	spice.feature				\
 	system-broker.feature			\
+	vnc.feature				\
 	$(NULL)
 INSTALLED_TESTS_TYPE=session-exclusive
 -include $(top_srcdir)/git.mk
