@@ -73,4 +73,9 @@ vala-clean:
 win-tools.iso:
 	@wget -O $@ http://people.gnome.org/~teuf/gnome-boxes/boxes-unattended-win-drivers/boxes-unattended-win-drivers-LATEST.iso
 
+@BEHAVE_INSTALLED_TESTS_RULE@
+INSTALLED_TESTS=				\
+	general.feature				\
+	$(NULL)
+INSTALLED_TESTS_TYPE=session-exclusive
 -include $(top_srcdir)/git.mk

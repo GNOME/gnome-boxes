@@ -194,6 +194,9 @@ fi
 
 AC_SUBST(VALA_DEBUG_FLAGS)
 
+dnl Installed tests
+BEHAVE_INSTALLED_TESTS
+
 AC_CONFIG_FILES([
   Makefile
   data/Makefile
@@ -221,4 +224,5 @@ AC_MSG_NOTICE([
         USB redirection support:  $enable_usbredir
         Smartcard support:        $enable_smartcard
         oVirt support:            $have_govirt
+        Installed tests:          $enable_installed_tests
 ])

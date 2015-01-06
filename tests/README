@@ -1,0 +1,57 @@
+Introduction
+============
+
+Tests for GNOME 3 Boxes application. Tests are written in python using Behave [1]
+and Dogtail [2] frameworks. Tests are divided into several feature files and can
+be executed accordingly.
+
+Structure
+=========
+
+* Feature Files
+  * general.feature
+    * start/stop
+    * help/credits
+    * download iso
+    * customize machine memory
+    * start box
+    * search boxes
+* Environment file
+  * everything for setting/cleaning up the environment
+* Steps
+  * Dogtail implementation of Behave steps
+* README
+
+Requirements
+============
+
+* for downstream package maintainers
+  * behave (python-behave in Fedora)
+  * dogtail
+
+Execution
+=========
+
+WARNING: These tests are designed to run in a prestine test environment and to
+         that end, remove all your VMs.
+
+* in tests directory run:
+  * behave
+  to run full test set
+
+  * behave -t $test -k
+  to run single test
+
+  * behave -i $category.feature
+  to run whole feature file
+
+Authors
+======
+
+* Vladimir Benes <vbenes@redhat.com>
+
+References
+==========
+
+* [1] http://pythonhosted.org/behave/
+* [2] https://fedorahosted.org/dogtail/
