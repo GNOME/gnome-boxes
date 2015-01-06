@@ -80,6 +80,7 @@ INSTALLED_TESTS=				\
 	livecd.feature				\
 	multi-windows.feature			\
 	snapshots.feature			\
+	spice.feature				\
 	$(NULL)
 INSTALLED_TESTS_TYPE=session-exclusive
 -include $(top_srcdir)/git.mk
