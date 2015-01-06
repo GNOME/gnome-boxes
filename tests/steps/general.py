@@ -5,7 +5,7 @@ from dogtail.tree import root
 from dogtail.rawinput import typeText, pressKey, keyCombo
 from time import sleep
 from common_steps import wait_until
-from subprocess import call, check_output, Popen
+from subprocess import call, check_output, Popen, CalledProcessError
 
 @step(u'About is shown')
 def about_shown(context):

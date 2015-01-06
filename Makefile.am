@@ -76,6 +76,7 @@ win-tools.iso:
 @BEHAVE_INSTALLED_TESTS_RULE@
 INSTALLED_TESTS=				\
 	general.feature				\
+	import-vms.feature			\
 	$(NULL)
 INSTALLED_TESTS_TYPE=session-exclusive
 -include $(top_srcdir)/git.mk
