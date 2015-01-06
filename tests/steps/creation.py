@@ -19,6 +19,18 @@ def create_machine(context, name):
         * Press "back" in vm
         """ %(name, name))
 
+@step(u'Create new box from file "{location}"')
+def create_new_vm_via_file(context, location):
+    path = location.split('/')
+    context.app.child('New').click()
+    context.app.child('Continue').click()
+    context.app.child('Select a file').click()
+
+    selector = context.app.child('Select a device or ISO file')
+    for item in path:
+        selector.child(item).click()
+    selector.child('Open').click()
+
 @step(u'Create new box from url "{url}"')
 def create_new_vm_via_url(context, url):
     context.app.child('New').click()
@@ -44,6 +56,14 @@ def create_new_vm_from_menu(context, sys_name):
     context.app.child('New').click()
     context.app.child('Continue').click()
     get_showing_node_name(sys_name, context.app).click()
+
+@step(u'Import machine "{name}" from image "{location}"')
+def import_image(context, name, location):
+    context.execute_steps(u"""
+        * Create new box from file "%s"
+        * Press "Create"
+        * Save IP for machine "%s"
+        """ %(location, name))
 
 @step(u'Initiate new box "{name}" installation')
 def create_machine_no_wait(context, name):
