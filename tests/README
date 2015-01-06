@@ -33,6 +33,13 @@ Structure
   * spice.feature
     * connect to spice box
     * restart persistence
+  * system-broker.feature
+    * connect to system broker (SB)
+    * delete/undo machine from SB
+    * reflect delete/addition in SB
+    * pause/resume SB box
+    * force shutdown in SB
+    * restart persistence
 * Environment file
   * everything for setting/cleaning up the environment
 * Steps
@@ -45,6 +52,16 @@ Requirements
 * for downstream package maintainers
   * behave (python-behave in Fedora)
   * dogtail
+
+* for system-broker test execution
+  * virt-install
+  * passwordless access to virtualization to wheel group
+   * run this as root to create the polkit rule:
+    echo "polkit.addRule(function(action, subject) {
+            if(action.id == \"org.libvirt.unix.manage\" && subject.isInGroup(\"wheel\")) {
+                    return polkit.Result.YES;
+            }
+    });" > /etc/polkit-1/rules.d/51-virtmgr.rules
 
 Execution
 =========
