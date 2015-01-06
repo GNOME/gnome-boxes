@@ -176,6 +176,18 @@ def start_boxes_via_vm(context, box):
     sleep(5)
     context.app = root.application('gnome-boxes')
 
+@step(u'Verify back button "{state}" visible for machine "{vm_name}"')
+def verify_back_button_visibility(context, state, vm_name):
+    if state == "is":
+        main = context.app.children[0]
+        core = context.app.findChildren(lambda x: x.name == vm_name)[-1]
+        frame = core.findAncestor(predicate.GenericPredicate(name='Boxes', roleName='frame'))
+        assert frame != main, "Cannot focus detached window"
+        top_frame_panel = frame.children[0]
+        main_window_panel = top_frame_panel.children[-1]
+        back_button = main_window_panel.child(roleName='push button')
+        assert back_button.showing == False, "Back button is visible but it shouldn't be"
+
 @step(u'Wait until overview is loaded')
 def initial_page_loaded(context):
     wait_until(lambda x: x.name != 'New', context.app)
