@@ -30,6 +30,13 @@ def cannot_ping_vm(context, vm):
     cmd = "ping -qn -c 1 %s" %context.ips[vm]
     assert call(cmd, shell=True) != 0, "Machine %s is pingable!" %vm
 
+@step(u'Close warning')
+def close_warning(context):
+    context.app.findChildren(lambda x: x.name == 'Undo' and x.showing)[0].grabFocus()
+    pressKey('Tab')
+    pressKey('Enter')
+    sleep(1)
+
 @step(u'Hit "{keycombo}"')
 def hit_keycombo(context, keycombo):
     sleep(0.2)
