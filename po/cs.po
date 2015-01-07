@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Adam Matoušek <adydas95@gmail.com>, 2012.
-# Marek Černocký <marek@manet.cz>, 2013, 2014.
+# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-11-26 18:54+0000\n"
-"PO-Revision-Date: 2014-11-26 18:39+0100\n"
+"POT-Creation-Date: 2015-01-07 18:57+0000\n"
+"PO-Revision-Date: 2015-01-07 21:39+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -122,7 +122,8 @@ msgstr "Přihlásit"
 msgid "_New"
 msgstr "_Nový"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Zpět"
 
@@ -142,6 +143,27 @@ msgstr "<b><span size=\"large\">Nenalezen žádný box</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "Můžete jej vytvořit pomocí tlačítka vlevo nahoře."
 
+#: ../data/ui/properties-toolbar.ui.h:1
+msgid "Troubleshooting Log"
+msgstr "Zaznamenané problémy"
+
+#: ../data/ui/properties-toolbar.ui.h:3
+msgid "_Copy to Clipboard"
+msgstr "_Kopírovat do schránky"
+
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "Vyberte zařízení nebo soubor ISO"
+
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
+msgid "_Cancel"
+msgstr "_Zrušit"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_Otevřít"
+
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
 msgstr "Poz_astavit"
@@ -153,12 +175,6 @@ msgstr "O_dstranit"
 #: ../data/ui/selectionbar.ui.h:3
 msgid "_Properties"
 msgstr "_Vlastnosti"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:287 ../src/libvirt-machine.vala:467
-#: ../src/wizard-source.vala:285
-msgid "_Cancel"
-msgstr "_Zrušit"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -252,6 +268,10 @@ msgstr "_Pokračovat"
 #: ../data/ui/wizard-toolbar.ui.h:5
 msgid "_Back"
 msgstr "Z_pět"
+
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "Přizpůsobit prostředky"
 
 #: ../data/ui/wizard.ui.h:1
 msgid ""
@@ -418,9 +438,32 @@ msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
 #: ../src/installed-media.vala:104 ../src/installer-media.vala:109
-#: ../src/properties.vala:14 ../src/properties.vala:39
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systém"
+
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "Odeslat kombinaci kláves"
 
 #: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:53
 msgid "Name"
@@ -442,147 +485,112 @@ msgstr "Adresa URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:188
-#: ../src/libvirt-machine-properties.vala:206
+#: ../src/libvirt-machine-properties.vala:186
+#: ../src/libvirt-machine-properties.vala:204
 msgid "Add support to guest"
 msgstr "Přidat podporu do hosta"
 
-#: ../src/libvirt-machine-properties.vala:190
+#: ../src/libvirt-machine-properties.vala:188
 msgid "USB device support"
 msgstr "Podpora zařízení USB"
 
-#: ../src/libvirt-machine-properties.vala:208
+#: ../src/libvirt-machine-properties.vala:206
 msgid "Smartcard support"
 msgstr "Podpora čipových karet"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:254
-#: ../src/libvirt-machine-properties.vala:321
+#: ../src/libvirt-machine-properties.vala:258
+#: ../src/libvirt-machine-properties.vala:310
 msgid "empty"
 msgstr "prázdné"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:263
-#: ../src/libvirt-machine-properties.vala:330
+#: ../src/libvirt-machine-properties.vala:267
+#: ../src/libvirt-machine-properties.vala:319
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:277
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:281
+#: ../src/libvirt-machine-properties.vala:309
 msgid "Select"
 msgstr "Vybrat"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:280
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:292
 msgid "Remove"
 msgstr "Odstranit"
 
-#: ../src/libvirt-machine-properties.vala:284 ../src/wizard-source.vala:282
-msgid "Select a device or ISO file"
-msgstr "Vyberte zařízení nebo soubor ISO"
-
-#: ../src/libvirt-machine-properties.vala:288 ../src/wizard-source.vala:286
-msgid "_Open"
-msgstr "_Otevřít"
-
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:307
+#: ../src/libvirt-machine-properties.vala:299
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Vložení „%s“ jako CD/DVD do stroje „%s“ selhalo"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:324
+#: ../src/libvirt-machine-properties.vala:313
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Odebrání CD/DVD z boxu „%s“ selhalo"
 
-#: ../src/libvirt-machine-properties.vala:391
+#: ../src/libvirt-machine-properties.vala:379
 msgid "CPU"
 msgstr "Procesor"
 
-#: ../src/libvirt-machine-properties.vala:398
+#: ../src/libvirt-machine-properties.vala:385
 msgid "I/O"
 msgstr "V/V"
 
-#: ../src/libvirt-machine-properties.vala:405
+#: ../src/libvirt-machine-properties.vala:391
 msgid "Network"
 msgstr "Síť"
 
-#: ../src/libvirt-machine-properties.vala:428
-#: ../src/libvirt-machine-properties.vala:432
+#: ../src/libvirt-machine-properties.vala:414
 msgid "Troubleshooting log"
 msgstr "Zaznamenané problémy"
 
-#: ../src/libvirt-machine-properties.vala:435
-#: ../src/libvirt-machine-properties.vala:454
-msgid "_Save"
-msgstr "_Uložit"
-
-#: ../src/libvirt-machine-properties.vala:436
-msgid "Copy to clipboard"
-msgstr "Kopírovat do schránky"
-
-#: ../src/libvirt-machine-properties.vala:437
-msgid "_Close"
-msgstr "_Zavřít"
-
-#: ../src/libvirt-machine-properties.vala:452
-msgid "Save log"
-msgstr "Uložit protokol"
-
-#: ../src/libvirt-machine-properties.vala:469
-#, c-format
-msgid "Error saving: %s"
-msgstr "Chyba ukládání: %s"
-
-#: ../src/libvirt-machine-properties.vala:490
+#: ../src/libvirt-machine-properties.vala:421
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
-#: ../src/libvirt-machine-properties.vala:514 ../src/wizard.vala:508
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
 msgid "Memory"
 msgstr "Paměť"
 
-#: ../src/libvirt-machine-properties.vala:578
-#: ../src/libvirt-machine-properties.vala:600
+#: ../src/libvirt-machine-properties.vala:510
+#: ../src/libvirt-machine-properties.vala:532
 msgid "Maximum Disk Size"
 msgstr "Maximální velikost disku"
 
-#: ../src/libvirt-machine-properties.vala:591
+#: ../src/libvirt-machine-properties.vala:523
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Ve vašem počítači není dostatek místa pro zvětšení maximální velikosti disku."
 
-#: ../src/libvirt-machine.vala:466
-msgid "When you force shutdown, the box may lose data."
-msgstr "Pokud si vynutíte vypnutí, může v boxu dojít ke ztrátě dat."
-
-#: ../src/libvirt-machine.vala:468 ../src/libvirt-machine.vala:623
-msgid "_Shutdown"
-msgstr "_Vypnout"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:538
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:556
+#: ../src/libvirt-machine.vala:541
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: ../src/libvirt-machine.vala:621
+#: ../src/libvirt-machine.vala:606
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
+
+#: ../src/libvirt-machine.vala:608
+msgid "_Shutdown"
+msgstr "_Vypnout"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -715,26 +723,26 @@ msgstr "Nepřipojeno k %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Připojení ke zprostředkovateli oVirt selhalo"
 
-#: ../src/properties.vala:14 ../src/properties.vala:35
-msgid "General"
-msgstr "Obecné"
-
-#: ../src/properties.vala:14 ../src/properties.vala:43
-msgid "Devices"
-msgstr "Zařízení"
-
-#: ../src/properties.vala:14 ../src/properties.vala:47
-msgid "Snapshots"
-msgstr "Snímky"
-
-#: ../src/properties.vala:177
+#: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Změny vyžadují restartování boxu „%s“."
 
-#: ../src/properties.vala:178
+#: ../src/properties.vala:82
 msgid "_Restart"
 msgstr "_Restartovat"
+
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "Obecné"
+
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "Zařízení"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "Snímky"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
@@ -783,32 +791,32 @@ msgid "Failed to create snapshot of %s"
 msgstr "Selhalo vytvoření snímku pro %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:32
+#: ../src/spice-display.vala:33
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: ../src/spice-display.vala:50 ../src/spice-display.vala:318
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:320
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Přesměrování zařízení USB „%s“ pro „%s“ selhalo"
 
-#: ../src/spice-display.vala:279
+#: ../src/spice-display.vala:280
 msgid "Share clipboard"
 msgstr "Sdílet obsah schránky"
 
-#: ../src/spice-display.vala:304
+#: ../src/spice-display.vala:306
 msgid "USB devices"
 msgstr "Zařízení USB"
 
-#: ../src/spice-display.vala:363 ../src/wizard.vala:284 ../src/wizard.vala:291
+#: ../src/spice-display.vala:442 ../src/wizard.vala:296 ../src/wizard.vala:303
 msgid "Invalid URI"
 msgstr "Neplatná adresa URI"
 
-#: ../src/spice-display.vala:373
+#: ../src/spice-display.vala:452
 msgid "The port must be specified once"
 msgstr "Port musí být zadán jednou"
 
-#: ../src/spice-display.vala:382
+#: ../src/spice-display.vala:461
 msgid "Missing port in Spice URI"
 msgstr "Schází port v adrese Spice URI"
 
@@ -948,11 +956,11 @@ msgstr "64bitový systém x86"
 msgid " from %s"
 msgstr " od %s"
 
-#: ../src/wizard-toolbar.vala:31
+#: ../src/wizard-toolbar.vala:60
 msgid "Create a box"
 msgstr "Vytvoření boxu"
 
-#: ../src/wizard-toolbar.vala:35
+#: ../src/wizard-toolbar.vala:64
 #, c-format
 msgid "Create a box (step %d/4)"
 msgstr "Vytvoření boxu (krok %d/4)"
@@ -978,24 +986,24 @@ msgstr "Přidá se jeden box."
 msgid "Desktop Access"
 msgstr "Přístup k pracovní ploše"
 
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:278
 msgid "Empty location"
 msgstr "Prázdné umístění"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:320
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Nepodporovaný protol „%s“"
 
-#: ../src/wizard.vala:314 ../src/wizard.vala:377
+#: ../src/wizard.vala:326 ../src/wizard.vala:389
 msgid "Unknown installer media"
 msgstr "Neznámé instalační médium"
 
-#: ../src/wizard.vala:315 ../src/wizard.vala:378
+#: ../src/wizard.vala:327 ../src/wizard.vala:390
 msgid "Analyzing…"
 msgstr "Analyzuje se…"
 
-#: ../src/wizard.vala:329
+#: ../src/wizard.vala:341
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
@@ -1037,14 +1045,14 @@ msgstr "Disk"
 msgid "%s maximum"
 msgstr "nejvýše %s"
 
-#: ../src/wizard.vala:581
+#: ../src/wizard.vala:580
 msgid "Downloading media…"
 msgstr "Stahuje se médium…"
 
-#: ../src/wizard.vala:591
+#: ../src/wizard.vala:590
 msgid "Download failed."
 msgstr "Stažení selhalo."
 
-#: ../src/wizard.vala:702
+#: ../src/wizard.vala:697
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
