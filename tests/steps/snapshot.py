@@ -41,7 +41,7 @@ def add_snapshot(context, name):
 
 @step('Create snapshot "{snap_name}" from machine "{vm_name}"')
 def create_snapshot(context, snap_name, vm_name):
-    context.execute_steps(u"""
+    context.execute_steps("""
         * Select "%s" box
         * Press "Properties"
         * Press "Snapshots"
@@ -51,7 +51,7 @@ def create_snapshot(context, snap_name, vm_name):
 
 @step('Delete machines "{vm_name}" snapshot "{snap_name}"')
 def delete_snapshot(context, vm_name, snap_name):
-    context.execute_steps(u"""
+    context.execute_steps("""
         * Select "%s" box
         * Press "Properties"
         * Press "Snapshots"
@@ -72,7 +72,7 @@ def delete_snapshot(context, vm_name, snap_name):
 
 @step('Revert machine "{vm_name}" to state "{snap_name}"')
 def revert_snapshot(context, vm_name, snap_name):
-    context.execute_steps(u"""
+    context.execute_steps("""
         * Select "%s" box
         * Press "Properties"
         * Press "Snapshots"
