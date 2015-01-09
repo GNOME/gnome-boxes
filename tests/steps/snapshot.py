@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
 
+from __future__ import unicode_literals
 from behave import step
 from dogtail.rawinput import typeText, pressKey
 from time import sleep
 from utils import get_showing_node_name
 
-@step(u'Add Snapshot named "{name}"')
+@step('Add Snapshot named "{name}"')
 def add_snapshot(context, name):
     wait = 0
     while len(context.app.findChildren(lambda x: x.roleName == 'push button' and x.showing and not x.name)) == 0:
@@ -18,7 +19,7 @@ def add_snapshot(context, name):
 
     wait = 0
     while len(context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing \
-                                                                            and x.sensitive and x.name == 'Menu')) == 0:
+                                                                            and x.sensitive and x.name == 'Men')) == 0:
         sleep(1)
         wait += 1
         if wait == 5:
@@ -26,19 +27,19 @@ def add_snapshot(context, name):
 
     sleep(1)
     context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing \
-                                                                     and x.sensitive and x.name == 'Menu')[-1].click()
+                                                                     and x.sensitive and x.name == 'Men')[-1].click()
 
     renames = context.app.findChildren(lambda x: x.name == 'Rename' and x.showing)
     if not renames:
         context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing and x.sensitive \
-                                                                                      and x.name == 'Menu')[-1].click()
+                                                                                      and x.name == 'Men')[-1].click()
         renames = context.app.findChildren(lambda x: x.name == 'Rename' and x.showing)
     renames[0].click()
     sleep(0.5)
     typeText(name)
     context.app.findChildren(lambda x: x.showing and x.name == 'Done')[0].click()
 
-@step(u'Create snapshot "{snap_name}" from machine "{vm_name}"')
+@step('Create snapshot "{snap_name}" from machine "{vm_name}"')
 def create_snapshot(context, snap_name, vm_name):
     context.execute_steps(u"""
         * Select "%s" box
@@ -48,7 +49,7 @@ def create_snapshot(context, snap_name, vm_name):
         * Press "Back"
         """ %(vm_name, snap_name))
 
-@step(u'Delete machines "{vm_name}" snapshot "{snap_name}"')
+@step('Delete machines "{vm_name}" snapshot "{snap_name}"')
 def delete_snapshot(context, vm_name, snap_name):
     context.execute_steps(u"""
         * Select "%s" box
@@ -57,7 +58,7 @@ def delete_snapshot(context, vm_name, snap_name):
         """ % vm_name)
 
     name = context.app.findChildren(lambda x: x.name == snap_name and x.showing)[0]
-    name.parent.child('Menu').click()
+    name.parent.child('Men').click()
     delete = context.app.findChildren(lambda x: x.name == "Delete" and x.showing)[0]
     delete.click()
 
@@ -69,7 +70,7 @@ def delete_snapshot(context, vm_name, snap_name):
     get_showing_node_name('Back', context.app).click()
     sleep(0.5)
 
-@step(u'Revert machine "{vm_name}" to state "{snap_name}"')
+@step('Revert machine "{vm_name}" to state "{snap_name}"')
 def revert_snapshot(context, vm_name, snap_name):
     context.execute_steps(u"""
         * Select "%s" box
@@ -78,7 +79,7 @@ def revert_snapshot(context, vm_name, snap_name):
         """ % vm_name)
 
     name = context.app.findChildren(lambda x: x.name == snap_name and x.showing)[0]
-    name.parent.child('Menu').click()
+    name.parent.child('Men').click()
     revert = context.app.findChildren(lambda x: x.name == "Revert to this state" and x.showing)[0]
     revert.click()
 

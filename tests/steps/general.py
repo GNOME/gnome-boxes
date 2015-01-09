@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+from __future__ import unicode_literals
 from behave import step
 from dogtail.tree import root
 from dogtail.rawinput import typeText, pressKey, keyCombo
@@ -7,11 +8,11 @@ from time import sleep
 from common_steps import wait_until
 from subprocess import call, check_output, Popen, CalledProcessError
 
-@step(u'About is shown')
+@step('About is shown')
 def about_shown(context):
     assert context.app.child('About Boxes') != None, "About window cannot be focused"
 
-@step(u'Box "{name}" "{state}" exist')
+@step('Box "{name}" "{state}" exist')
 def does_box_exists(context, name, state):
     found = False
     pane = context.app.child(roleName='layered pane')
@@ -25,17 +26,17 @@ def does_box_exists(context, name, state):
     if state == 'does not':
         assert found == False, "Machine %s was found in overview" % name
 
-@step(u'Boxes are not running')
+@step('Boxes are not running')
 def boxes_not_running(context):
     assert context.app_class.isRunning() != True, "Boxes window still visible"
 
-@step(u'Boxes app has "{num}" windows')
+@step('Boxes app has "{num}" windows')
 def number_of_windows(context, num):
     assert len(context.app.children) == int(num), "App has just %s windows not %s" %(len(context.app.children), num)
 
-@step(u'Customize mem to 64 MB')
+@step('Customize mem to 64 MB')
 def customize_vm(context):
-    context.app.child(u'Customize…').click()
+    context.app.child('Customize…').click()
     sleep(0.5)
     pressKey('Tab')
     pressKey('Tab')
@@ -45,7 +46,7 @@ def customize_vm(context):
     context.app.children[0].children[0].children[3].child('Back').click()
     sleep(0.5)
 
-@step(u'Delete all boxes')
+@step('Delete all boxes')
 def delete_all(context):
     context.app.findChildren(lambda x: x.name == 'New')[0].grabFocus()
     pane = context.app.child(roleName='layered pane')
@@ -58,7 +59,7 @@ def delete_all(context):
         pressKey('Enter')
         sleep(4)
 
-@step(u'Go into "{vm}" box')
+@step('Go into "{vm}" box')
 def go_into_vm(context, vm):
     pane = context.app.child(roleName='layered pane')
     for child in pane.children:
@@ -67,17 +68,17 @@ def go_into_vm(context, vm):
             sleep(0.5)
             break
 
-@step(u'Help is shown')
+@step('Help is shown')
 def help_shown(context):
     sleep(1)
     yelp = root.application('yelp')
     assert yelp.child('Boxes') != None, "Yelp wasn't opened"
 
-@step(u'No box is visible')
+@step('No box is visible')
 def no_box_sign(context):
     assert context.app.child('No boxes found') != None
 
-@step(u'Press "{action}" in vm')
+@step('Press "{action}" in vm')
 def press_back_in_vm(context, action):
     panel = context.app.child('Boxes').children[0].findChildren(lambda x: x.roleName == 'panel' and x.showing)[0]
     buttons = panel.findChildren(lambda x: x.roleName == 'push button' and x.showing)
@@ -87,18 +88,18 @@ def press_back_in_vm(context, action):
         buttons[1].click()
     sleep(0.5)
 
-@step(u'Press "{action}" in alert')
+@step('Press "{action}" in alert')
 def press_back_in_prefs(context, action):
     button = context.app.child(roleName='alert').child(action)
     button.click()
     sleep(0.5)
 
-@step(u'Quit Boxes')
+@step('Quit Boxes')
 def quit_boxes(context):
     keyCombo('<Ctrl><Q>')
     sleep(5)
 
-@step(u'Rename "{machine}" to "{name}" via "{way}"')
+@step('Rename "{machine}" to "{name}" via "{way}"')
 def rename_vm(context, machine, name, way):
     if way == 'button':
         context.app.child(machine, roleName='push button').click()
@@ -109,7 +110,7 @@ def rename_vm(context, machine, name, way):
     pressKey('Enter')
     sleep(0.5)
 
-@step(u'Save IP for machine "{vm}"')
+@step('Save IP for machine "{vm}"')
 def save_ip_for_vm(context, vm):
     if not hasattr(context, 'ips'):
         context.ips = {}
@@ -143,7 +144,7 @@ def save_ip_for_vm(context, vm):
 
     context.ips[vm] = ip
 
-@step(u'Select "{vm}" box')
+@step('Select "{vm}" box')
 def select_vm(context, vm):
     pane = context.app.child(roleName='layered pane')
     for child in pane.children:
@@ -152,7 +153,7 @@ def select_vm(context, vm):
             sleep(0.2)
             break
 
-@step(u'Select "{action}" from supermenu')
+@step('Select "{action}" from supermenu')
 def select_menu_action(context, action):
     keyCombo("<Super_L><F10>")
     if action == 'About':
@@ -162,21 +163,21 @@ def select_menu_action(context, action):
         pressKey('Down')
     pressKey('Enter')
 
-@step(u'Start Boxes')
+@step('Start Boxes')
 def start_boxes(context):
     cmd = 'gnome-boxes'
     Popen(cmd, shell=True)
     sleep(1)
     context.app = root.application('gnome-boxes')
 
-@step(u'Start box name "{box}"')
+@step('Start box name "{box}"')
 def start_boxes_via_vm(context, box):
     cmd = 'gnome-boxes %s' %box
     Popen(cmd, shell=True)
     sleep(5)
     context.app = root.application('gnome-boxes')
 
-@step(u'Verify back button "{state}" visible for machine "{vm_name}"')
+@step('Verify back button "{state}" visible for machine "{vm_name}"')
 def verify_back_button_visibility(context, state, vm_name):
     if state == "is":
         main = context.app.children[0]
@@ -188,7 +189,7 @@ def verify_back_button_visibility(context, state, vm_name):
         back_button = main_window_panel.child(roleName='push button')
         assert back_button.showing == False, "Back button is visible but it shouldn't be"
 
-@step(u'Wait until overview is loaded')
+@step('Wait until overview is loaded')
 def initial_page_loaded(context):
     wait_until(lambda x: x.name != 'New', context.app)
     context.execute_steps(u"""

@@ -1,12 +1,13 @@
 # -*- coding: UTF-8 -*-
 
+from __future__ import unicode_literals
 from behave import step
 from dogtail.rawinput import pressKey
 from dogtail import predicate
 from time import sleep
 from utils import get_showing_node_rolename, get_showing_node_name
 
-@step(u'Focus "{window}" window')
+@step('Focus "{window}" window')
 def focus_window(context, window):
     if window == 'main':
         context.app.findChildren(lambda x: x.name == 'New' and x.showing and x.sensitive)[0].grabFocus()
@@ -21,7 +22,7 @@ def focus_window(context, window):
                 pressKey('Tab')
                 sleep(0.5)
 
-@step(u'Open "{vm_names_list}" in new windows')
+@step('Open "{vm_names_list}" in new windows')
 def open_new_windows(context, vm_names_list):
     vm_names = vm_names_list.split(',')
     names = []
