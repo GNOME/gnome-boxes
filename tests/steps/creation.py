@@ -1,11 +1,12 @@
 # -*- coding: UTF-8 -*-
 
+from __future__ import unicode_literals
 from behave import step
 from dogtail.rawinput import typeText
 from time import sleep
 from utils import get_showing_node_name
 
-@step(u'Create new box "{name}"')
+@step('Create new box "{name}"')
 def create_machine(context, name):
     """
     Create new box, wait till it finish and save IP
@@ -19,7 +20,7 @@ def create_machine(context, name):
         * Press "back" in vm
         """ %(name, name))
 
-@step(u'Create new box from file "{location}"')
+@step('Create new box from file "{location}"')
 def create_new_vm_via_file(context, location):
     path = location.split('/')
     context.app.child('New').click()
@@ -31,7 +32,7 @@ def create_new_vm_via_file(context, location):
         selector.child(item).click()
     selector.child('Open').click()
 
-@step(u'Create new box from url "{url}"')
+@step('Create new box from url "{url}"')
 def create_new_vm_via_url(context, url):
     context.app.child('New').click()
     context.app.child('Continue').click()
@@ -51,13 +52,13 @@ def create_new_vm_via_url(context, url):
             else:
                 sleep(30)
 
-@step(u'Create new box from menu "{sys_name}"')
+@step('Create new box from menu "{sys_name}"')
 def create_new_vm_from_menu(context, sys_name):
     context.app.child('New').click()
     context.app.child('Continue').click()
     get_showing_node_name(sys_name, context.app).click()
 
-@step(u'Import machine "{name}" from image "{location}"')
+@step('Import machine "{name}" from image "{location}"')
 def import_image(context, name, location):
     context.execute_steps(u"""
         * Create new box from file "%s"
@@ -65,7 +66,7 @@ def import_image(context, name, location):
         * Save IP for machine "%s"
         """ %(location, name))
 
-@step(u'Initiate new box "{name}" installation')
+@step('Initiate new box "{name}" installation')
 def create_machine_no_wait(context, name):
     """
     Initiate new box installation, no IP saved, no wait for box readines
