@@ -192,6 +192,6 @@ def verify_back_button_visibility(context, state, vm_name):
 @step('Wait until overview is loaded')
 def initial_page_loaded(context):
     wait_until(lambda x: x.name != 'New', context.app)
-    context.execute_steps(u"""
+    context.execute_steps("""
         * Delete all boxes
         """)
