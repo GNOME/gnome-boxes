@@ -99,7 +99,7 @@ Feature: LiceCD
 
   # https://bugzilla.gnome.org/show_bug.cgi?id=742392
   @poweroff_local_livecd_box
-  Scenario: Go into local liveCD box
+  Scenario: Power off local liveCD box
     * Create new box "Core-5"
     * Box "Core-5" "does" exist
     * Ping "Core-5"
