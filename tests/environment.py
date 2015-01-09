@@ -64,6 +64,56 @@ def before_all(context):
     except Exception as e:
         print "Error in before_all: %s" % e.message
 
+    f = open(os.devnull, "w")
+
+    try:
+        call("mkdir ~/boxes_backup", shell=True)
+
+        print "** Backing up session machines"
+
+        # First ensure all boxes are shutdown
+        call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+             "    virsh destroy $i; done", shell=True, stdout=f, stderr=f)
+
+        # copy configuration XML of all machines
+        call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+             "    virsh dumpxml $i > ~/boxes_backup/$i.xml; done", shell=True, stdout=f)
+
+        # move disk images
+        call("mkdir ~/boxes_backup/images", shell=True)
+        call("mv ~/.local/share/gnome-boxes/images/* ~/boxes_backup/images/ || true", shell=True, stderr=f)
+
+        # Backup snapshots
+        call("mkdir ~/boxes_backup/snapshot", shell=True)
+        call("cp -R ~/.config/libvirt/qemu/snapshot/* ~/boxes_backup/snapshot/ || true", shell=True, stderr=f)
+
+        # now remove all snapshots
+        call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+             "    for j in $(virsh snapshot-list $i|tail -n +3|head -n -1|sed 's/^ //'|cut -d' ' -f1); do " +
+             "        virsh snapshot-delete $i $j|| true; done; done", shell=True, stdout=f)
+
+        # move save states
+        call("mkdir ~/boxes_backup/save", shell=True)
+        call("mv ~/.config/libvirt/qemu/save/* ~/boxes_backup/save/ || true", shell=True, stderr=f)
+
+        # move all sources
+        print "** Backing up all sources"
+
+        call("mkdir ~/boxes_backup/sources", shell=True)
+        call("mv ~/.cache/gnome-boxes/sources/* ~/boxes_backup/sources/ || true", shell=True, stderr=f)
+
+        # create marker
+        call('touch /tmp/boxes_backup', shell=True)
+        print "* Done\n"
+
+    except Exception as e:
+        print "Error in backup: %s" % e.message
+
+    # Undefine all boxes
+    call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+         "    virsh undefine --managed-save $i; done", shell=True, stdout=f)
+    f.close()
+
 def before_scenario(context, scenario):
     pass
 
@@ -122,6 +172,13 @@ def after_scenario(context, scenario):
     """
 
     try:
+        # Remove qemu____system to avoid deleting system broker machines
+        for tag in scenario.tags:
+            if 'system_broker' in tag:
+                call("rm -rf ~/.cache/gnome-boxes/sources/qemu____system", shell=True)
+                context.app_class.quit()
+                context.app_class = App('gnome-boxes')
+                context.app = context.app_class.startViaCommand()
 
         # Attach journalctl logs
         if hasattr(context, "embed"):
@@ -173,3 +230,47 @@ def after_scenario(context, scenario):
         # Stupid behave simply crashes in case exception has occurred
         print "Error in after_scenario: %s" % e.message
 
+def after_all(context):
+    if not os.path.isfile('/tmp/boxes_backup'):
+        return
+
+    f = open(os.devnull, "w")
+
+    print "** Restoring Boxes backup"
+    # move images back
+    call("mv ~/boxes_backup/images/* ~/.local/share/gnome-boxes/images/", shell=True)
+
+    # move save states back
+    call("mv ~/boxes_backup/save/* ~/.config/libvirt/qemu/save/", shell=True, stdout=f)
+
+    # import machines
+    call("for i in $(ls ~/boxes_backup |grep xml); do virsh define ~/boxes_backup/$i; done", shell=True, stdout=f)
+
+    # import snapshots
+    # IFS moved to _ as snapshots have spaces in names
+    # there are two types of snapshots running/shutoff
+    # so we need to import each typo into different state running vs shutted down
+    call("export IFS='_'; cd ~/boxes_backup/snapshot/; \
+          for i in * ; do\
+              for s in $i/*.xml; \
+                  do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
+              done; \
+              virsh start $i; \
+              for s in $i/*.xml; \
+                  do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
+              done; \
+              virsh save $i ~/.config/libvirt/qemu/save/$i.save ; \
+              cd -; \
+              done", shell=True, stdout=f, stderr=f)
+
+    call("mv ~/boxes_backup/sources/* ~/.cache/gnome-boxes/sources/", shell=True, stdout=f)
+
+    # delete marker
+    call("rm -rf /tmp/boxes_backup", shell=True, stdout=f)
+
+    # delete backup
+    call("rm -rf ~/boxes_backup", shell=True, stdout=f)
+
+    print "* Done\n"
+
+    f.close()

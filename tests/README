@@ -5,6 +5,17 @@ Tests for GNOME 3 Boxes application. Tests are written in python using Behave [1
 and Dogtail [2] frameworks. Tests are divided into several feature files and can
 be executed accordingly.
 
+Warning
+=======
+
+All existing VMs and brokers are deleted prior to execution of test batch and
+are restored after wards.
+
+Do not interrupt running tests as such action may corrupt VM restoration. If
+that happens all data are stored in ~/boxes_backup and have to be imported
+manually. Steps to import can be found in environment.py in after_all()
+function.
+
 Structure
 =========
 
@@ -71,9 +82,6 @@ Requirements
 
 Execution
 =========
-
-WARNING: These tests are designed to run in a prestine test environment and to
-         that end, remove all your VMs.
 
 * in tests directory run:
   * behave
