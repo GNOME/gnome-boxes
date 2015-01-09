@@ -19,7 +19,7 @@ def add_snapshot(context, name):
 
     wait = 0
     while len(context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing \
-                                                                            and x.sensitive and x.name == 'Men')) == 0:
+                                                                            and x.sensitive and x.name == 'Menu')) == 0:
         sleep(1)
         wait += 1
         if wait == 5:
@@ -27,12 +27,12 @@ def add_snapshot(context, name):
 
     sleep(1)
     context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing \
-                                                                     and x.sensitive and x.name == 'Men')[-1].click()
+                                                                     and x.sensitive and x.name == 'Menu')[-1].click()
 
     renames = context.app.findChildren(lambda x: x.name == 'Rename' and x.showing)
     if not renames:
         context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing and x.sensitive \
-                                                                                      and x.name == 'Men')[-1].click()
+                                                                                      and x.name == 'Menu')[-1].click()
         renames = context.app.findChildren(lambda x: x.name == 'Rename' and x.showing)
     renames[0].click()
     sleep(0.5)
@@ -58,7 +58,7 @@ def delete_snapshot(context, vm_name, snap_name):
         """ % vm_name)
 
     name = context.app.findChildren(lambda x: x.name == snap_name and x.showing)[0]
-    name.parent.child('Men').click()
+    name.parent.child('Menu').click()
     delete = context.app.findChildren(lambda x: x.name == "Delete" and x.showing)[0]
     delete.click()
 
@@ -79,7 +79,7 @@ def revert_snapshot(context, vm_name, snap_name):
         """ % vm_name)
 
     name = context.app.findChildren(lambda x: x.name == snap_name and x.showing)[0]
-    name.parent.child('Men').click()
+    name.parent.child('Menu').click()
     revert = context.app.findChildren(lambda x: x.name == "Revert to this state" and x.showing)[0]
     revert.click()
 
