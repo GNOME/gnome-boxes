@@ -4,13 +4,13 @@
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en http://www.trasno.net
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014.
+# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-03 10:08+0200\n"
-"PO-Revision-Date: 2014-09-03 10:11+0200\n"
+"POT-Creation-Date: 2015-01-12 23:55+0100\n"
+"PO-Revision-Date: 2015-01-12 23:57+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-boxes.appdata.xml.in.h:1
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -36,7 +36,7 @@ msgstr ""
 "virtuais. No lugar, Caixas enfócase en obter as mellores cousas da máquina "
 "virtual con moi pouca información requirida do usuario."
 
-#: ../data/gnome-boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -48,21 +48,21 @@ msgstr ""
 "sistema operativo favorito, ou se precisa conectarse a máquinas remotas (por "
 "exemplo, na súa oficina)."
 
-#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:72 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/main.vala:72
 msgid "Boxes"
 msgstr "Boxes"
 
-#: ../data/gnome-boxes.desktop.in.in.h:2
+#: ../data/org.gnome.Boxes.desktop.in.in.h:2
 msgid "Virtual machine viewer/manager"
 msgstr "Visor/Xestor de máquinas virtuais"
 
-#: ../data/gnome-boxes.desktop.in.in.h:3
+#: ../data/org.gnome.Boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "Ver e usar máquinas virtuais"
 
-#: ../data/gnome-boxes.desktop.in.in.h:4
+#: ../data/org.gnome.Boxes.desktop.in.in.h:4
 msgid "virtual machine;vm;"
 msgstr "máquina virtual;vm;"
 
@@ -122,7 +122,8 @@ msgstr "Iniciar sesión"
 msgid "_New"
 msgstr "_Novo"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Atrás"
 
@@ -142,21 +143,26 @@ msgstr "<b><span size=\"large\">Non se atoparon caixas</span></b>"
 msgid "Create one using the button on the top left."
 msgstr "Cree unha usando o botón arriba á esquerda."
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "CPU:"
+#: ../data/ui/properties-toolbar.ui.h:1
+msgid "Troubleshooting Log"
+msgstr "Rexistro de resolución de problemas"
 
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "E/S:"
+#: ../data/ui/properties-toolbar.ui.h:3
+msgid "_Copy to Clipboard"
+msgstr "_Copiar ao portapapeis"
 
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "Rede:"
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "Seleccione un dispositivo ou ficheiro ISO"
 
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "Forzar apagado"
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_Abrir"
 
 #: ../data/ui/selectionbar.ui.h:1
 msgid "P_ause"
@@ -169,12 +175,6 @@ msgstr "E_liminar"
 #: ../data/ui/selectionbar.ui.h:3
 msgid "_Properties"
 msgstr "_Propiedades"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:336 ../src/libvirt-machine.vala:448
-#: ../src/wizard-source.vala:280
-msgid "_Cancel"
-msgstr "_Cancelar"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -196,7 +196,8 @@ msgstr "Reverter a este estado"
 msgid "Rename"
 msgstr "Renomear"
 
-#: ../data/ui/snapshot-list-row.ui.h:3
+#. Delete
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:49
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -216,11 +217,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalación rápida"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:266
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Nome de usuario"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:267
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Contrasinal"
 
@@ -235,26 +236,6 @@ msgstr "Chave de produto"
 #: ../data/ui/wizard-media-entry.ui.h:1
 msgid "Unknown media"
 msgstr "Soporte descoñecido"
-
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "Introdución"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "Selección de orixe"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "Preparación"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "Configuración"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "Opinión"
 
 #: ../data/ui/wizard-source.ui.h:1
 msgid "Enter URL"
@@ -272,7 +253,7 @@ msgstr "Seleccione un ficheiro"
 msgid "◀"
 msgstr "◀"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "Crear unha caixa"
 
@@ -288,19 +269,23 @@ msgstr "C_ontinuar"
 msgid "_Back"
 msgstr "_Atrás"
 
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "Personalizar recursos"
+
 #: ../data/ui/wizard.ui.h:1
 msgid ""
-"Creating a Box will allow you to use another operating system directly from "
+"Creating a box will allow you to use another operating system directly from "
 "your existing login.\n"
 "\n"
 "You may connect to an existing machine <b><i>over the network</i></b> or "
 "create a <b><i>virtual machine</i></b> that runs locally on your own."
 msgstr ""
-"Ao crear unha caixa permitiralle usar outro sistema operativo directamente "
+"Crear unha caixa permitiralle usar outro sistema operativo directamente "
 "desde o seu inicio de sesión existente.\n"
 "\n"
 "Pode conectarse a unha máquina existente <b><i>na rede</i></b> ou crear unha "
-"<b><i>máquina virtual</i></b> que se execute localmente por si mesmo."
+"<b><i>máquina virtual</i></b> que se execute localmente por si mesma."
 
 #: ../data/ui/wizard.ui.h:4
 msgid "Insert operating system installation media or select a source below"
@@ -324,247 +309,290 @@ msgstr "Preparando a creación dunha nova caixa"
 
 #: ../data/ui/wizard.ui.h:7
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"As extensións de virtualización non están dispoñíbeis no seu sistema. Se o "
-"seu sistema é recente (despois do 2008), comprobe as configuracións da súa "
-"BIOS para activalas."
+"As extensións de virtualización non están dispoñíbeis no seu sistema.\n"
+"Comprobe as configuracións da súa BIOS para activalas."
 
-#: ../src/app.vala:95
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: ../src/actions-popover.vala:25
+msgid "Box actions"
+msgstr "Accións da caixa"
+
+#. Open in new Window
+#: ../src/actions-popover.vala:35
+msgid "Open in new Window"
+msgstr "Abrir en nova xanela"
+
+#. Favorite
+#: ../src/actions-popover.vala:39
+msgid "Remove favorite"
+msgstr "Retirar favorito"
+
+#: ../src/actions-popover.vala:41
+msgid "Favorite"
+msgstr "Favoritas"
+
+#. Pause
+#: ../src/actions-popover.vala:44
+msgid "Pause"
+msgstr "Pausar"
+
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:55
+msgid "Properties"
+msgstr "Propiedades"
+
+#: ../src/actions-popover.vala:79 ../src/selectionbar.vala:63
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "Pausa de «%s» fallada"
+
+#: ../src/app.vala:97
 msgid "translator-credits"
 msgstr "Fran Dieguez <frandieguez@gnome.org>, 2012."
 
-#: ../src/app.vala:96
+#: ../src/app.vala:98
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Un aplicativo sinxelo de GNOME 3 para acceder a sistemas remotos ou virtuais"
 
-#: ../src/app.vala:115
+#: ../src/app.vala:117
 msgid "Help"
 msgstr "Axuda"
 
-#: ../src/app.vala:116
+#: ../src/app.vala:118
 msgid "About"
 msgstr "Sobre"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:119
 msgid "Quit"
 msgstr "Saír"
 
-#: ../src/app.vala:173 ../src/main.vala:9
+#: ../src/app.vala:175 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar número de versión"
 
-#: ../src/app.vala:175
+#: ../src/app.vala:177
 msgid "Open in full screen"
 msgstr "Abrir a pantalla completa"
 
-#: ../src/app.vala:176 ../src/main.vala:10
+#: ../src/app.vala:178 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprobar capacidades de virtualizacińo"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:179
 msgid "Open box with UUID"
 msgstr "Abrir caixa con UUID"
 
-#: ../src/app.vala:178
+#: ../src/app.vala:180
 msgid "Search term"
 msgstr "Buscar termo"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:180
+#: ../src/app.vala:182
 msgid "URI to display, broker or installer media"
 msgstr "URI que mostrar, axente ou medio de instalación"
 
-#: ../src/app.vala:191
+#: ../src/app.vala:193
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Un aplicativo sinxelo para acceder a máquinas remotas ou virtuais"
 
-#: ../src/app.vala:213
+#: ../src/app.vala:215
 msgid "Too many command line arguments specified.\n"
 msgstr "Especifiou demasiados argumentos na liña de ordes\n"
 
-#: ../src/app.vala:494 ../src/snapshot-list-row.vala:201
-msgid "_Undo"
-msgstr "_Desfacer"
-
-#: ../src/app.vala:505
+#: ../src/app.vala:480
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A caixa «%s» foi eliminada"
 
-#: ../src/app.vala:506
+#: ../src/app.vala:481
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Eliminouse %u caixa"
 msgstr[1] "Elimináronse %u caixas"
 
-#: ../src/collection-view.vala:39
+#: ../src/app.vala:508 ../src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "_Desfacer"
+
+#: ../src/collection-view.vala:40
 msgid "New and Recent"
 msgstr "Novo e recente"
 
-#: ../src/display-page.vala:97
+#: ../src/display-page.vala:101
 msgid "(press [left] Ctrl+Alt keys to ungrab)"
 msgstr "(prema as teclas Ctrl+Alt [esquerda] para deseleccionar)"
+
+#. Translators: Showing size of widget as WIDTHxHEIGHT here.
+#: ../src/display-page.vala:228
+#, c-format
+msgid "%dx%d"
+msgstr "%dx%d"
 
 #: ../src/installed-media.vala:49
 msgid "Unsupported disk image format."
 msgstr "Formato de imaxe de disco non compatíbel."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:50
+#: ../src/installed-media.vala:104 ../src/installer-media.vala:109
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:55
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Retroceso"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "Enviar combinacións de teclas"
+
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:53
 msgid "Name"
 msgstr "Nome"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:64
-msgid "Virtualizer"
-msgstr "Virtualizador"
+#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:64
+msgid "Broker"
+msgstr "Broker"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:67 ../src/wizard.vala:482
-msgid "URI"
-msgstr "URI"
-
-#: ../src/libvirt-machine-properties.vala:142
-#: ../src/libvirt-machine-properties.vala:147
-msgid "Troubleshooting log"
-msgstr "Rexistro de resolución de problemas"
-
-#: ../src/libvirt-machine-properties.vala:150
-#: ../src/libvirt-machine-properties.vala:168
-msgid "_Save"
-msgstr "_Gardar"
-
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Copy to clipboard"
-msgstr "Copiar ao portapapeis"
-
-#: ../src/libvirt-machine-properties.vala:152
-msgid "_Close"
-msgstr "_Pechar"
-
-#: ../src/libvirt-machine-properties.vala:166
-msgid "Save log"
-msgstr "Gardar rexistro"
-
-#: ../src/libvirt-machine-properties.vala:182
-#, c-format
-msgid "Error saving: %s"
-msgstr "Produciuse un erro ao gardar: %s"
-
-#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:78
+#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:65
+#: ../src/remote-machine.vala:65
 msgid "Protocol"
 msgstr "Protocolo"
 
+#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:66
+#: ../src/remote-machine.vala:66 ../src/wizard.vala:470
+msgid "URI"
+msgstr "URI"
+
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:244
-#: ../src/libvirt-machine-properties.vala:262
+#: ../src/libvirt-machine-properties.vala:186
+#: ../src/libvirt-machine-properties.vala:204
 msgid "Add support to guest"
 msgstr "Engadir compatibilidade ao hóspede"
 
-#: ../src/libvirt-machine-properties.vala:246
+#: ../src/libvirt-machine-properties.vala:188
 msgid "USB device support"
 msgstr "Compatibilidade de dispositivos USB"
 
-#: ../src/libvirt-machine-properties.vala:264
+#: ../src/libvirt-machine-properties.vala:206
 msgid "Smartcard support"
 msgstr "Compatiblidade de tarxetas intelixentes"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:302
-#: ../src/libvirt-machine-properties.vala:370
+#: ../src/libvirt-machine-properties.vala:258
+#: ../src/libvirt-machine-properties.vala:310
 msgid "empty"
 msgstr "baleiro"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:312
-#: ../src/libvirt-machine-properties.vala:379
+#: ../src/libvirt-machine-properties.vala:267
+#: ../src/libvirt-machine-properties.vala:319
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:326
-#: ../src/libvirt-machine-properties.vala:369
+#: ../src/libvirt-machine-properties.vala:281
+#: ../src/libvirt-machine-properties.vala:309
 msgid "Select"
 msgstr "Seleccionar"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:329
-#: ../src/libvirt-machine-properties.vala:349
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:292
 msgid "Remove"
 msgstr "Extraer"
 
-#: ../src/libvirt-machine-properties.vala:333 ../src/wizard-source.vala:277
-msgid "Select a device or ISO file"
-msgstr "Seleccione un dispositivo ou ficheiro ISO"
-
-#: ../src/libvirt-machine-properties.vala:337 ../src/wizard-source.vala:281
-msgid "_Open"
-msgstr "_Abrir"
-
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:356
+#: ../src/libvirt-machine-properties.vala:299
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "A inserción de «%s» como un CD/DVD en «%s»"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:373
+#: ../src/libvirt-machine-properties.vala:313
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "A extracción do CD/DVD desde «%s» fallou"
 
-#: ../src/libvirt-machine-properties.vala:434 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:379
+msgid "CPU"
+msgstr "CPU"
+
+#: ../src/libvirt-machine-properties.vala:385
+msgid "I/O"
+msgstr "E/S"
+
+#: ../src/libvirt-machine-properties.vala:391
+msgid "Network"
+msgstr "Rede"
+
+#: ../src/libvirt-machine-properties.vala:414
+msgid "Troubleshooting log"
+msgstr "Rexistro de resolución de problemas"
+
+#: ../src/libvirt-machine-properties.vala:421
+msgid "Force Shutdown"
+msgstr "Forzar apagado"
+
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
 msgid "Memory"
 msgstr "Memoria"
 
-#: ../src/libvirt-machine-properties.vala:497
-#: ../src/libvirt-machine-properties.vala:519
+#: ../src/libvirt-machine-properties.vala:510
+#: ../src/libvirt-machine-properties.vala:532
 msgid "Maximum Disk Size"
 msgstr "Tamaño máximo do disco"
 
-#: ../src/libvirt-machine-properties.vala:510
+#: ../src/libvirt-machine-properties.vala:523
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Non hai espazo dabondo no teu computador para incrementar o tamaño de disco "
 "máximo."
 
-#: ../src/libvirt-machine.vala:447
-msgid "When you force shutdown, the box may lose data."
-msgstr "Ao forzar o apagado, a caixa podería perder datos."
-
-#: ../src/libvirt-machine.vala:449 ../src/libvirt-machine.vala:604
-msgid "_Shutdown"
-msgstr "_Apagar"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:534
+#: ../src/libvirt-machine.vala:538
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde o disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:537
+#: ../src/libvirt-machine.vala:541
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: ../src/libvirt-machine.vala:602
+#: ../src/libvirt-machine.vala:606
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "O reinicio de «%s» está levando debando demasiado tempo. Desexa forzar o "
 "apagado?"
+
+#: ../src/libvirt-machine.vala:608
+msgid "_Shutdown"
+msgstr "_Apagar"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -603,21 +631,21 @@ msgstr ""
 "Produciuse un fallo ao atopar o disco axeitado a importar para a caixa «%s»"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:138
+#: ../src/machine.vala:150
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conectándose a %s"
 
-#: ../src/machine.vala:157 ../src/machine.vala:579
+#: ../src/machine.vala:169 ../src/machine.vala:591
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Conexión «%s» fallada"
 
-#: ../src/machine.vala:244
+#: ../src/machine.vala:258
 msgid "Saving…"
 msgstr "Gardando…"
 
-#: ../src/machine.vala:565
+#: ../src/machine.vala:577
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -626,17 +654,17 @@ msgstr ""
 "«%s» non pode restaurarse desde o disco\n"
 "Desexa tentalo sen o estado gardado?"
 
-#: ../src/machine.vala:566
+#: ../src/machine.vala:578
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/machine.vala:575
+#: ../src/machine.vala:587
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Produciuse un fallo ao iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:608
+#: ../src/machine.vala:620
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» require autenticación"
@@ -696,35 +724,26 @@ msgstr "Non conectado a %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Conexión fallada ao broker oVirt"
 
-#: ../src/properties.vala:46
-msgid "Login"
-msgstr "Iniciar sesión"
-
-#: ../src/properties.vala:54
-msgid "Display"
-msgstr "Pantalla"
-
-#: ../src/properties.vala:58
-msgid "Devices"
-msgstr "Dispositivos"
-
-#: ../src/properties.vala:62
-msgid "Snapshots"
-msgstr "Instantánea"
-
-#: ../src/properties.vala:221
+#: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Os cambios requiren que se reinicie «%s»."
 
-#: ../src/properties.vala:222
+#: ../src/properties.vala:82
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: ../src/selectionbar.vala:63
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "Pausa de «%s» fallada"
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "Xeral"
+
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "Instantánea"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
@@ -747,25 +766,25 @@ msgstr[1] "%d seleccionadas"
 msgid "(Click on items to select them)"
 msgstr "(Prema nos elementos para seleccionalos)"
 
-#: ../src/snapshot-list-row.vala:147
+#: ../src/snapshot-list-row.vala:137
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Revertendo a %s…"
 
-#: ../src/snapshot-list-row.vala:163
+#: ../src/snapshot-list-row.vala:155
 msgid "Failed to apply snapshot"
 msgstr "Produciuse un fallo ao aplicar a instantánea"
 
-#: ../src/snapshot-list-row.vala:181
+#: ../src/snapshot-list-row.vala:172
 #, c-format
 msgid "Snapshot \"%s\" deleted."
 msgstr "Instantánea «%s» eliminada."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:99
 msgid "Creating new snapshot…"
 msgstr "Creando novas instantáneas…"
 
-#: ../src/snapshots-property.vala:113
+#: ../src/snapshots-property.vala:107
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Produciuse un fallo ao crear unha instantánea de %s"
@@ -775,46 +794,42 @@ msgstr "Produciuse un fallo ao crear unha instantánea de %s"
 msgid "Unknown"
 msgstr "Descoñecida"
 
-#: ../src/spice-display.vala:55
-#, c-format
-msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr "A redirección automática do dispositivo USB «%s» cara «%s» fallou"
-
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:345
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:320
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "A redirección do dispositivo USB «%s» cara «%s» fallou"
 
-#: ../src/spice-display.vala:296
+#: ../src/spice-display.vala:280
 msgid "Share clipboard"
 msgstr "Compartir portapapeis"
 
-#: ../src/spice-display.vala:302
-msgid "Resize guest"
-msgstr "Redimensionar convidado"
-
-#: ../src/spice-display.vala:311
-msgid "Redirect new USB devices"
-msgstr "Redireccionar novos dispositivos USB"
-
-#: ../src/spice-display.vala:331
+#: ../src/spice-display.vala:306
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: ../src/spice-display.vala:388 ../src/wizard.vala:292 ../src/wizard.vala:298
-#: ../src/wizard.vala:305
+#: ../src/spice-display.vala:442 ../src/wizard.vala:296 ../src/wizard.vala:303
 msgid "Invalid URI"
 msgstr "URI non válida"
 
-#: ../src/spice-display.vala:398
+#: ../src/spice-display.vala:452
 msgid "The port must be specified once"
 msgstr "O porto debe especificarse unha vez"
 
-#: ../src/spice-display.vala:407
+#: ../src/spice-display.vala:461
 msgid "Missing port in Spice URI"
 msgstr "Falta o porto no URI Spice"
 
-#: ../src/unattended-installer.vala:454
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: ../src/unattended-installer.vala:188
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr ""
+"Produciuse un erro durante a preparación da instalación. A instalación "
+"rápida está desactivada."
+
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "Descargando controladores de dispositivo…"
 
@@ -886,34 +901,27 @@ msgstr "non"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:495
+#: ../src/vm-configurator.vala:553
 msgid "Incapable host system"
 msgstr "Equipo non capacitado"
 
-#: ../src/vm-creator.vala:48
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr ""
-"Produciuse un erro durante a preparación da instalación. A instalación "
-"rápida está desactivada."
-
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:174
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "A caixa live «%s» foi eliminada automaticamente."
 
-#: ../src/vm-creator.vala:188
+#: ../src/vm-creator.vala:187
 msgid "Installing…"
 msgstr "Instalando…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:192 ../src/wizard-source.vala:82
+#: ../src/vm-creator.vala:191 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Vivo"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:331
+#: ../src/vm-creator.vala:330
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -947,99 +955,159 @@ msgstr "Sistema x86 de 64 bits"
 msgid " from %s"
 msgstr " desde %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:60
+msgid "Create a box"
+msgstr "Crear unha caixa"
+
+#: ../src/wizard-toolbar.vala:64
+#, c-format
+msgid "Create a box (step %d/4)"
+msgstr "Crear unha caixa (paso %d/4)"
+
+#: ../src/wizard.vala:120
 msgid "Box creation failed"
 msgstr "Produciuse un erro ao crear a caixa"
 
-#: ../src/wizard.vala:172
+#: ../src/wizard.vala:173
 msgid "Please enter desktop or collection URI"
 msgstr "Escriba o URI de escritorio ou colección"
 
-#: ../src/wizard.vala:178
+#: ../src/wizard.vala:179
 msgid "Will add boxes for all systems available from this account."
 msgstr "Engadirá caixas para todos os sistemas dispoñíbeis para esta conta."
 
-#: ../src/wizard.vala:181
+#: ../src/wizard.vala:182
 msgid "Will add a single box."
 msgstr "Engadirá unha única caixa."
 
 #. ignore any parsing error
-#: ../src/wizard.vala:187
+#: ../src/wizard.vala:188
 msgid "Desktop Access"
 msgstr "Acceso a escritorio"
 
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:278
 msgid "Empty location"
 msgstr "Localización baleira"
 
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:320
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo «%s» non admitido"
 
-#: ../src/wizard.vala:328 ../src/wizard.vala:389
+#: ../src/wizard.vala:326 ../src/wizard.vala:389
 msgid "Unknown installer media"
 msgstr "Soporte de instalación descoñecido"
 
-#: ../src/wizard.vala:329 ../src/wizard.vala:390
+#: ../src/wizard.vala:327 ../src/wizard.vala:390
 msgid "Analyzing…"
 msgstr "Analizando…"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:341
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Produciuse un fallo ao analizar o medio de instalación. Pode ser que sexa un "
 "medio corrompido ou incompleto?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:446
 msgid "Box setup failed"
 msgstr "Produciuse un erro ao configurar a caixa"
 
-#: ../src/wizard.vala:472
+#: ../src/wizard.vala:460
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Creará unha nova caixa coas seguintes propiedades:"
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:465
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:468
 msgid "Host"
 msgstr "Equipo"
 
-#: ../src/wizard.vala:491 ../src/wizard.vala:502
+#: ../src/wizard.vala:479 ../src/wizard.vala:490
 msgid "Port"
 msgstr "Porto"
 
-#: ../src/wizard.vala:493
+#: ../src/wizard.vala:481
 msgid "TLS Port"
 msgstr "Porto TLS"
 
-#: ../src/wizard.vala:507
+#: ../src/wizard.vala:495
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Engadirá caixas para todos os sistemas dispoñíbeis para esta conta:"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:517
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:517
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:593
+#: ../src/wizard.vala:580
 msgid "Downloading media…"
 msgstr "Descargando multimedia…"
 
-#: ../src/wizard.vala:603
+#: ../src/wizard.vala:590
 msgid "Download failed."
 msgstr "Produciuse un fallo na descarga."
 
-#: ../src/wizard.vala:714
+#: ../src/wizard.vala:697
 msgid "C_ustomize…"
 msgstr "P_ersonalizar…"
+
+#~ msgid "Net:"
+#~ msgstr "Rede:"
+
+#~ msgid "Introduction"
+#~ msgstr "Introdución"
+
+#~ msgid "Source Selection"
+#~ msgstr "Selección de orixe"
+
+#~ msgid "Preparation"
+#~ msgstr "Preparación"
+
+#~ msgid "Setup"
+#~ msgstr "Configuración"
+
+#~ msgid "Review"
+#~ msgstr "Opinión"
+
+#~ msgid "Virtualizer"
+#~ msgstr "Virtualizador"
+
+#~ msgid "_Save"
+#~ msgstr "_Gardar"
+
+#~ msgid "_Close"
+#~ msgstr "_Pechar"
+
+#~ msgid "Save log"
+#~ msgstr "Gardar rexistro"
+
+#~ msgid "Error saving: %s"
+#~ msgstr "Produciuse un erro ao gardar: %s"
+
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "Ao forzar o apagado, a caixa podería perder datos."
+
+#~ msgid "Login"
+#~ msgstr "Iniciar sesión"
+
+#~ msgid "Display"
+#~ msgstr "Pantalla"
+
+#~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
+#~ msgstr "A redirección automática do dispositivo USB «%s» cara «%s» fallou"
+
+#~ msgid "Resize guest"
+#~ msgstr "Redimensionar convidado"
+
+#~ msgid "Redirect new USB devices"
+#~ msgstr "Redireccionar novos dispositivos USB"
 
 #~ msgid "%s - Properties"
 #~ msgstr "%s - Propiedades"
@@ -1080,9 +1148,6 @@ msgstr "P_ersonalizar…"
 
 #~ msgid "Most secure"
 #~ msgstr "O máis seguro"
-
-#~ msgid "Network"
-#~ msgstr "Rede"
 
 #~ msgid "D_one"
 #~ msgstr "Feit_o"
@@ -1128,9 +1193,6 @@ msgstr "P_ersonalizar…"
 
 #~ msgid "_Add Product Key"
 #~ msgstr "_Engadir chave de produto"
-
-#~ msgid "Favorites"
-#~ msgstr "Favoritas"
 
 #~ msgid "Private"
 #~ msgstr "Privada"
