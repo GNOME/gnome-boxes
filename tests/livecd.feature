@@ -120,7 +120,7 @@ Feature: LiceCD
     Then Cannot ping "Core-5"
 
   @resume_livecd_box
-  Scenario: Pause liveCD box
+  Scenario: Resume liveCD box
     * Create new box "Core-5"
     * Select "Core-5" box
     * Press "Pause"
