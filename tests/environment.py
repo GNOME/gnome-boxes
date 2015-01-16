@@ -123,7 +123,7 @@ def after_scenario(context, scenario):
 
     try:
 
-    # Delete all boxes from GUI
+        # Delete all boxes from GUI
         if context.app_class.isRunning():
             new = context.app.findChildren(lambda x: x.name == 'New')[0]
 
@@ -137,7 +137,7 @@ def after_scenario(context, scenario):
             # Is new finally visible?
             new = context.app.findChildren(lambda x: x.name == 'New')[0]
             if not new.showing:
-            # Have to press vm unnamed back button
+                # Have to press vm unnamed back button
                 panel = context.app.child('Boxes').children[0].findChildren(lambda x: x.roleName == 'panel' \
                                                                                                      and x.showing)[0]
                 buttons = panel.findChildren(lambda x: x.roleName == 'push button' and x.showing)
