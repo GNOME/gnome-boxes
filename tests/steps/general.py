@@ -46,19 +46,6 @@ def customize_vm(context):
     context.app.children[0].children[0].children[3].child('Back').click()
     sleep(0.5)
 
-@step('Delete all boxes')
-def delete_all(context):
-    context.app.findChildren(lambda x: x.name == 'New')[0].grabFocus()
-    pane = context.app.child(roleName='layered pane')
-    if len(pane.children) != 0:
-        for child in pane.children:
-            child.click(button=3)
-        context.app.child('Delete').click()
-        context.app.findChildren(lambda x: x.name == 'Undo' and x.showing)[0].grabFocus()
-        pressKey('Tab')
-        pressKey('Enter')
-        sleep(4)
-
 @step('Go into "{vm}" box')
 def go_into_vm(context, vm):
     pane = context.app.child(roleName='layered pane')
@@ -192,6 +179,3 @@ def verify_back_button_visibility(context, state, vm_name):
 @step('Wait until overview is loaded')
 def initial_page_loaded(context):
     wait_until(lambda x: x.name != 'New', context.app)
-    context.execute_steps("""
-        * Delete all boxes
-        """)

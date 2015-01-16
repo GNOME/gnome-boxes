@@ -123,38 +123,6 @@ def after_scenario(context, scenario):
 
     try:
 
-        # Delete all boxes from GUI
-        if context.app_class.isRunning():
-            new = context.app.findChildren(lambda x: x.name == 'New')[0]
-
-            # Is new visible?
-            if not new.showing:
-            # ave to press back button if visible
-                backs = context.app.findChildren(lambda x: x.name == 'Back' and x.showing)
-                if backs:
-                    backs[0].click()
-
-            # Is new finally visible?
-            new = context.app.findChildren(lambda x: x.name == 'New')[0]
-            if not new.showing:
-                # Have to press vm unnamed back button
-                panel = context.app.child('Boxes').children[0].findChildren(lambda x: x.roleName == 'panel' \
-                                                                                                     and x.showing)[0]
-                buttons = panel.findChildren(lambda x: x.roleName == 'push button' and x.showing)
-                if buttons:
-                    buttons[0].click()
-
-            new.grabFocus()
-            pane = context.app.child(roleName='layered pane')
-            if len(pane.children) != 0:
-                for child in pane.children:
-                    child.click(button=3)
-                context.app.findChildren(lambda x: x.name == 'Delete' and x.showing)[0].click()
-                context.app.findChildren(lambda x: x.name == 'Undo' and x.showing)[0].grabFocus()
-                pressKey('Tab')
-                pressKey('Enter')
-                sleep(2)
-
         # Attach journalctl logs
         if hasattr(context, "embed"):
             os.system("journalctl /usr/bin/gnome-session --no-pager -o cat --since='%s'> /tmp/journal-session.log" \
@@ -174,11 +142,34 @@ def after_scenario(context, scenario):
             if stderr:
                 context.embed('text/plain', stderr)
 
+        f = open(os.devnull, "w")
+
+        # Shutdown all boxes
+        call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+             "    virsh destroy $i || true; done", shell=True, stdout=f, stderr=f)
+
+        # Remove all snapshots
+        call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+             "    for j in $(virsh snapshot-list $i|tail -n +3|head -n -1|sed 's/^ //'|cut -d' ' -f1); do " +
+             "        virsh snapshot-delete $i $j|| true; done; done", shell=True, stdout=f, stderr=f)
+
+        # Remove all volumes
+        call("for i in $(virsh vol-list gnome-boxes|tail -n +3|head -n -1|sed 's/^ //'|cut -d' ' -f1); do " +
+             "    virsh vol-delete $i gnome-boxes; done", shell=True, stdout=f)
+
+        # Remove all save states
+        call("rm -rf ~/.config/libvirt/qemu/save/*", shell=True, stderr=f)
+
+        # Remove all sources
+        call("rm -rf ~/.cache/gnome-boxes/sources/*", shell=True, stderr=f)
+
+        # Undefine all boxes
+        call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
+             "    virsh undefine --managed-save $i; done", shell=True, stdout=f)
+
+        f.close()
+
     except Exception as e:
         # Stupid behave simply crashes in case exception has occurred
         print "Error in after_scenario: %s" % e.message
 
-    # clean all boxes
-    os.system("rm -rf ~/.config/libvirt/storage/*")
-    os.system("rm -rf ~/.cache/gnome-boxes/sources/qemu*")
-    os.system("rm -rf ~/.local/share/gnome-boxes/images/*")
