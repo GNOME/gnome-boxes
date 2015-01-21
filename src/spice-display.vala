@@ -308,6 +308,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             disconnected (true);
             break;
 
+        case ChannelEvent.OPENED:
+            break;
+
         default:
             debug ("unhandled main SPICE channel event: %d", event);
             break;
