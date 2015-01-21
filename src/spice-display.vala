@@ -553,6 +553,14 @@ static void spice_validate_uri (string uri_as_text,
             tls_port = int.parse (query.get ("tls-port"));
     }
 
-    if (port <= 0 && tls_port <= 0)
-        throw new Boxes.Error.INVALID (_("Missing port in Spice URI"));
+    if (uri.scheme == "spice+unix") {
+        if (port > 0 ||
+            (uri.query_raw ?? uri.query) != null)
+            throw new Boxes.Error.INVALID (_("Invalid Spice UNIX URI"));
+    } else if (uri.scheme.has_prefix("spice+")) {
+        throw new Boxes.Error.INVALID (_("Invalid URI"));
+    } else {
+        if (port <= 0 && tls_port <= 0)
+            throw new Boxes.Error.INVALID (_("Missing port in Spice URI"));
+    }
 }
