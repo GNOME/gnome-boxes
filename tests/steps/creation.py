@@ -9,7 +9,7 @@ from utils import get_showing_node_name
 @step('Create new box "{name}"')
 def create_machine(context, name):
     """
-    Create new box, wait till it finish and save IP
+    Create new box, wait till it finishes and save its IP
     """
     context.execute_steps(u"""
         * Create new box from menu "%s"
@@ -69,7 +69,7 @@ def import_image(context, name, location):
 @step('Initiate new box "{name}" installation')
 def create_machine_no_wait(context, name):
     """
-    Initiate new box installation, no IP saved, no wait for box readines
+    Initiate new box installation but don't save its IP nor wait for it to be ready
     """
     context.execute_steps(u"""
         * Create new box from menu "%s"
