@@ -6,6 +6,11 @@
     <property name="spacing">0</property>
     <signal name="size-allocate" handler="on_size_allocate"/>
 
+    <!-- Both the toolbars are only shown when in fullscreen. We show:
+
+         * toolbar, when mouse is grabbable (i-e server-side mouse) while
+         * overlay_toolbar when mouse is not grabbble (i-e client-side mouse)
+    !-->
     <child>
       <object class="BoxesDisplayToolbar" id="toolbar">
         <property name="visible">True</property>
