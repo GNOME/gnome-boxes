@@ -235,7 +235,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         machine.window = this;
         machine.unschedule_autosave ();
 
-        // Track machine status in toobar
+        // Track machine status in toolbar
         status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
 
         got_error_id = machine.got_error.connect ( (message) => {
