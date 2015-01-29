@@ -50,13 +50,13 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             collection_toolbar.click_search_button ();
     }
 
-    public string? _status;
-    public string? status {
+    public string _status;
+    public string status {
         get { return _status; }
         set {
             _status = value;
-            collection_toolbar.set_title (_status??"");
-            display_toolbar.set_title (_status??"");
+            collection_toolbar.set_title (_status);
+            display_toolbar.set_title (_status);
         }
     }
 
@@ -91,6 +91,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         collection_toolbar.setup_ui (window);
         selection_toolbar.setup_ui (window);
         display_toolbar.setup_ui (window);
+        status = _("Boxes");
     }
 
     private void ui_state_changed () {

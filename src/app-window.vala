@@ -181,7 +181,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             view.visible = true;
 
             status_bind = null;
-            topbar.status = null;
+            topbar.status = _("Boxes");
             if (current_item is Machine) {
                 var machine = current_item as Machine;
                 if (got_error_id != 0) {
