@@ -10,7 +10,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Gdk.Pixbuf? pixbuf { get; set; }
     public bool stay_on_display;
     public string? info { get; set; }
-    public string? status { get; set; }
+    public string status { get; set; }
     public bool suspend_at_exit;
 
     public virtual bool can_save { get { return false; } }
@@ -209,6 +209,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 set_screenshot_enable (true);
         });
 
+        status = this.name;
         notify["name"].connect (() => {
             status = this.name;
         });
