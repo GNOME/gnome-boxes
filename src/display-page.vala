@@ -91,16 +91,14 @@ private class Boxes.DisplayPage: Gtk.Box {
         toolbar_show_id = 0;
     }
 
-    public void update_title () {
+    public void update_subtitle () {
         var machine = window.current_item as Boxes.Machine;
         return_if_fail (machine != null);
 
-        var title = machine.name;
         string? hint = null;
         if (grabbed)
             hint = _("(press [left] Ctrl+Alt keys to ungrab)");
 
-        toolbar.set_title (title);
         toolbar.set_subtitle (hint);
     }
 
@@ -121,9 +119,9 @@ private class Boxes.DisplayPage: Gtk.Box {
         display_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
             // In some cases this is sent inside size_allocate (see bug #692465)
             // which causes the label change queue_resize to be ignored
-            // So we delay the update_title call to an idle to work around this.
+            // So we delay the update_subtitle call to an idle to work around this.
             Idle.add_full (Priority.HIGH, () => {
-                update_title ();
+                update_subtitle ();
                 return false;
             });
         });
@@ -140,7 +138,7 @@ private class Boxes.DisplayPage: Gtk.Box {
 
             return false;
         });
-        update_title ();
+        update_subtitle ();
         widget.set_events (widget.get_events () & ~Gdk.EventMask.POINTER_MOTION_MASK);
         event_box.add (widget);
         event_box.show_all ();
