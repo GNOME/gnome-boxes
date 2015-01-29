@@ -146,6 +146,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         wizard_window = new WizardWindow (this);
         props_window = new PropertiesWindow (this);
+
+        var a11y = get_accessible ();
+        topbar.bind_property ("status", a11y, "accessible-name", BindingFlags.SYNC_CREATE);
     }
 
     private void save_window_geometry () {
