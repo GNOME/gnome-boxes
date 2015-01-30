@@ -221,6 +221,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void show_properties () {
         if (current_item != null) {
+            selection_mode = false;
             set_state (UIState.PROPERTIES);
 
             return;
