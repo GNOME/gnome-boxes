@@ -205,6 +205,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         case UIState.DISPLAY:
         case UIState.WIZARD:
         case UIState.PROPERTIES:
+            if (current_item != null)
+                (current_item as Machine).unschedule_autosave ();
 
             break;
 
