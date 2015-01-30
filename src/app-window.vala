@@ -183,7 +183,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             fullscreened = false;
             view.visible = true;
 
-            status_bind = null;
+            if (status_bind != null) {
+                status_bind.unbind ();  // FIXME: We shouldn't neeed to explicitly unbind (Vala bug?)
+                status_bind = null;
+            }
             topbar.status = _("Boxes");
             if (current_item is Machine) {
                 var machine = current_item as Machine;
