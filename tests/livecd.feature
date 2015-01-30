@@ -140,17 +140,6 @@ Feature: LiceCD
     Then Box "Core-5" "does" exist
     Then Cannot ping "Core-5"
 
-  @force_shutdown_local_machine_cancel
-  Scenario: Cancel Force off of local liveCD box
-    * Create new box "Core-5"
-    * Select "Core-5" box
-    * Press "Properties"
-    * Press "Force Shutdown"
-    * Press "Cancel" in alert
-    * Press "Back"
-    Then Box "Core-5" "does" exist
-    Then Ping "Core-5"
-
   @livecd_restart_persistence
   Scenario: LiveCD restart persistence
     * Initiate new box "Core-5" installation
