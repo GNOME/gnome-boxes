@@ -46,7 +46,7 @@ def create_snapshot(context, snap_name, vm_name):
         * Press "Properties"
         * Press "Snapshots"
         * Add Snapshot named "%s"
-        * Press "Back"
+        * Hit "Esc"
         """ %(vm_name, snap_name))
 
 @step('Delete machines "{vm_name}" snapshot "{snap_name}"')
@@ -67,7 +67,7 @@ def delete_snapshot(context, vm_name, snap_name):
     pressKey('Enter')
     sleep(2)
 
-    get_showing_node_name('Back', context.app).click()
+    pressKey('Esc')
     sleep(0.5)
 
 @step('Revert machine "{vm_name}" to state "{snap_name}"')
@@ -83,5 +83,5 @@ def revert_snapshot(context, vm_name, snap_name):
     revert = context.app.findChildren(lambda x: x.name == "Revert to this state" and x.showing)[0]
     revert.click()
 
-    get_showing_node_name('Back', context.app).click()
+    pressKey('Esc')
     sleep(0.5)

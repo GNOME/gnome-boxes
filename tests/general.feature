@@ -59,7 +59,7 @@ Feature: General
     * Select "Core-5" box
     * Press "Properties"
     * Rename "Core-5" to "Kernel-6" via "button"
-    * Press "Back"
+    * Hit "Esc"
     * Quit Boxes
     * Start Boxes
     Then Box "Kernel-6" "does" exist
@@ -70,7 +70,7 @@ Feature: General
     * Select "Core-5" box
     * Press "Properties"
     * Rename "Core-5" to "Kernel-6" via "label"
-    * Press "Back"
+    * Hit "Esc"
     * Quit Boxes
     * Start Boxes
     Then Box "Kernel-6" "does" exist
