@@ -26,8 +26,8 @@ Feature: Multi Window
   @open_three_new_windows
   Scenario: Open three new windows
     * Create new box "Core-5"
-    * Create new box "Core-5"
-    * Create new box "Core-5"
+    * Create new box "Core-5 2" from "Core-5" menuitem
+    * Create new box "Core-5 3" from "Core-5" menuitem
     * Select "Core-5" box
     * Select "Core-5 2" box
     * Select "Core-5 3" box

@@ -9,7 +9,7 @@ Feature: System Broker
     * Connect to system broker
     Then Box "Core-5.3" "does" exist
     Then Go into "Core-5.3" box
-    Then Press "back" in vm
+    Then Press "back" in "Core-5.3" vm
     Then Box "Core-5.3" "does" exist
 
   @delete_system_broker_machine
@@ -33,7 +33,7 @@ Feature: System Broker
     * Wait for "virt-install -r 128 --name Core-5.3 --nodisks --cdrom /tmp/Core-5.3.iso --os-type linux --accelerate --connect qemu:///system --wait 0" end
     Then Box "Core-5.3" "does" exist
     Then Go into "Core-5.3" box
-    Then Press "back" in vm
+    Then Press "back" in "Core-5.3" vm
     Then Box "Core-5.3" "does" exist
 
   @undo_delete_system_broker_machine
@@ -63,7 +63,7 @@ Feature: System Broker
     * Go into "Core-5.3" box
     * Wait for "sleep 10" end
     Then Ping "Core-5.3"
-    Then Press "back" in vm
+    Then Press "back" in "Core-5.3" vm
 
   @force_shutdown_system_broker_machine
   Scenario: Force off system broker box

@@ -12,7 +12,7 @@ Feature: LiceCD
     * Hit "Enter"
     * Wait for "sleep 20" end
     * Save IP for machine "Core-5"
-    * Press "back" in vm
+    * Press "back" in "Core-5" vm
     Then Box "Core-5" "does" exist
     Then Ping "Core-5"
 
@@ -24,7 +24,7 @@ Feature: LiceCD
     * Hit "Enter"
     * Wait for "sleep 20" end
     * Save IP for machine "Core-5"
-    * Press "back" in vm
+    * Press "back" in "Core-5" vm
     Then Box "Core-5" "does" exist
     Then Ping "Core-5"
 
@@ -32,13 +32,13 @@ Feature: LiceCD
   Scenario: Create five liveCD boxes
     * Create new box "Core-5"
     Then Ping "Core-5"
-    * Create new box "Core-5"
+    * Create new box "Core-5 2" from "Core-5" menuitem
     Then Ping "Core-5 2"
-    * Create new box "Core-5"
+    * Create new box "Core-5 3" from "Core-5" menuitem
     Then Ping "Core-5 3"
-    * Create new box "Core-5"
+    * Create new box "Core-5 4" from "Core-5" menuitem
     Then Ping "Core-5 4"
-    * Create new box "Core-5"
+    * Create new box "Core-5 5" from "Core-5" menuitem
     Then Ping "Core-5 5"
 
   @go_into_local_livecd_box
@@ -75,10 +75,10 @@ Feature: LiceCD
   @delete_five_local_livecd_boxes
   Scenario: Delete five local liveCD boxes
     * Create new box "Core-5"
-    * Create new box "Core-5"
-    * Create new box "Core-5"
-    * Create new box "Core-5"
-    * Create new box "Core-5"
+    * Create new box "Core-5 2" from "Core-5" menuitem
+    * Create new box "Core-5 3" from "Core-5" menuitem
+    * Create new box "Core-5 4" from "Core-5" menuitem
+    * Create new box "Core-5 5" from "Core-5" menuitem
     * Select "Core-5" box
     * Select "Core-5 2" box
     * Select "Core-5 3" box
@@ -143,7 +143,7 @@ Feature: LiceCD
   @livecd_restart_persistence
   Scenario: LiveCD restart persistence
     * Initiate new box "Core-5" installation
-    * Initiate new box "Core-5" installation
+    * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Import machine "Core-5" from image "Downloads/Core-5.3.qcow2"
     * Import machine "Core-5" from image "Downloads/Core-5.3.vmdk"
     * Quit Boxes

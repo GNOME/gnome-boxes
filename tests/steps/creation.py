@@ -6,8 +6,8 @@ from dogtail.rawinput import typeText
 from time import sleep
 from utils import get_showing_node_name
 
-@step('Create new box "{name}"')
-def create_machine(context, name):
+@step('Create new box "{name}" from "{item}" menuitem')
+def create_machine_from_menuitem(context, name, item):
     """
     Create new box, wait till it finishes and save its IP
     """
@@ -17,7 +17,16 @@ def create_machine(context, name):
         * Wait for "sleep 3" end
         * Hit "Enter"
         * Save IP for machine "%s"
-        * Press "back" in vm
+        * Press "back" in "%s" vm
+        """ %(item, name, name))
+
+@step('Create new box "{name}"')
+def create_machine(context, name):
+    """
+    Same as create_machine_from_menuitem except it assumes menu item and created box to have the same name.
+    """
+    context.execute_steps(u"""
+        * Create new box "%s" from "%s" menuitem
         """ %(name, name))
 
 @step('Create new box from file "{location}"')
@@ -66,8 +75,8 @@ def import_image(context, name, location):
         * Save IP for machine "%s"
         """ %(location, name))
 
-@step('Initiate new box "{name}" installation')
-def create_machine_no_wait(context, name):
+@step('Initiate new box "{name}" installation from "{item}" menuitem')
+def create_machine_from_menuitem_no_wait(context, name, item):
     """
     Initiate new box installation but don't save its IP nor wait for it to be ready
     """
@@ -76,5 +85,14 @@ def create_machine_no_wait(context, name):
         * Press "Create"
         * Wait for "sleep 3" end
         * Hit "Enter"
-        * Press "back" in vm
-        """ %(name))
+        * Press "back" in "%s" vm
+        """ %(item, name))
+
+@step('Initiate new box "{name}" installation')
+def create_machine_no_wait(context, name):
+    """
+    Same as create_machine_from_menuitem_no_wait except it assumes menu item and created box to have the same name.
+    """
+    context.execute_steps(u"""
+        * Initiate new box "%s" installation from "%s" menuitem
+        """ %(name, name))

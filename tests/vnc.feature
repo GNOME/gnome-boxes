@@ -18,7 +18,7 @@ Feature: Vnc
     * Wait for "sleep 10" end
     * Type "echo 'walderon' > /tmp/vnc_text.txt"
     Then "walderon" is visible with command "cat /tmp/vnc_text.txt"
-    Then Press "back" in vm
+    Then Press "back" in "localhost" vm
 
   @vnc_restart_persistence
   Scenario: VNC restart persistence

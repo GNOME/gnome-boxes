@@ -41,7 +41,7 @@ Feature: General
     * Wait for "sleep 10" end
     * Hit "Enter"
     * Save IP for machine "Core-5"
-    * Press "back" in vm
+    * Press "back" in "Core-5" vm
     Then Box "Core-5" "does" exist
     Then Ping "Core-5"
 
@@ -88,7 +88,7 @@ Feature: General
   @search_via_shortcut
   Scenario: Search via shotcut
     * Initiate new box "Core-5" installation
-    * Initiate new box "Core-5" installation
+    * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Hit "<Ctrl><f>"
     * Type "Core-5 2"
     Then Box "Core-5 2" "does" exist
@@ -101,7 +101,7 @@ Feature: General
   @search_via_button
   Scenario: Search via button
     * Initiate new box "Core-5" installation
-    * Initiate new box "Core-5" installation
+    * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Press "Search"
     * Type "Core-5 2"
     Then Box "Core-5 2" "does" exist
@@ -114,7 +114,7 @@ Feature: General
   @search_escape
   Scenario: Return from search via Esc
     * Initiate new box "Core-5" installation
-    * Initiate new box "Core-5" installation
+    * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Hit "<Ctrl><f>"
     * Type "Core-5 2"
     Then Box "Core-5 2" "does" exist
