@@ -8,9 +8,9 @@ Feature: LiceCD
   Scenario: New local liveCD box via file
     * Create new box from file "Downloads/Core-5.3.iso"
     * Press "Create"
-    * Wait for "sleep 10" end
+    * Wait for "sleep 3" end
     * Hit "Enter"
-    * Wait for "sleep 20" end
+    * Wait for "sleep 5" end
     * Save IP for machine "Core-5"
     * Press "back" in "Core-5" vm
     Then Box "Core-5" "does" exist
@@ -20,9 +20,9 @@ Feature: LiceCD
   Scenario: New local liveCD box
     * Create new box from menu "Core-5"
     * Press "Create"
-    * Wait for "sleep 10" end
+    * Wait for "sleep 3" end
     * Hit "Enter"
-    * Wait for "sleep 20" end
+    * Wait for "sleep 5" end
     * Save IP for machine "Core-5"
     * Press "back" in "Core-5" vm
     Then Box "Core-5" "does" exist

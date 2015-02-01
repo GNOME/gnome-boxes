@@ -68,7 +68,6 @@ def delete_snapshot(context, vm_name, snap_name):
     sleep(2)
 
     pressKey('Esc')
-    sleep(0.5)
 
 @step('Revert machine "{vm_name}" to state "{snap_name}"')
 def revert_snapshot(context, vm_name, snap_name):
@@ -84,4 +83,3 @@ def revert_snapshot(context, vm_name, snap_name):
     revert.click()
 
     pressKey('Esc')
-    sleep(0.5)
