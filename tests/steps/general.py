@@ -131,10 +131,13 @@ def save_ip_for_vm(context, vm):
 
 @step('Select "{vm}" box')
 def select_vm(context, vm):
+    select_button = context.app.child('Select Items')
+    if select_button.showing:
+        select_button.click()
     pane = context.app.child(roleName='layered pane')
     for child in pane.children:
         if child.text == vm:
-            child.click(button='3')
+            child.click()
             sleep(0.2)
             break
 
