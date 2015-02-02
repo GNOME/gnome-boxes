@@ -89,3 +89,15 @@ Feature: System Broker
     * Quit Boxes
     * Start Boxes
     Then Box "Core-5.3" "does" exist
+
+  @import_box_from_system_broker
+  Scenario: Import box from system broker
+    * Import Core-5.3 box on system broker
+    * Quit Boxes
+    * Start Boxes
+    * Create new box from menu "Import 'Core-5.3' from system broker"
+    * Press "Create"
+    Then Box "Core-5.3" "does" exist
+    Then Go into "Core-5.3" box
+    Then Press "back" in "Core-5.3" vm
+    Then Box "Core-5.3" "does" exist
