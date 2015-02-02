@@ -70,6 +70,7 @@ Feature: System Broker
     * Connect to system broker
     * Select "Core-5.3" box
     * Press "Properties"
+    * Press "System"
     * Press "Force Shutdown"
     * Press "Shutdown" in alert
     Then Box "Core-5.3" "does" exist

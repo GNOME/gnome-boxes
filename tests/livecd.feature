@@ -135,6 +135,7 @@ Feature: LiceCD
     * Create new box "Core-5"
     * Select "Core-5" box
     * Press "Properties"
+    * Press "System"
     * Press "Force Shutdown"
     * Press "Shutdown" in alert
     Then Box "Core-5" "does" exist
