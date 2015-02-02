@@ -72,7 +72,6 @@ Feature: System Broker
     * Press "Properties"
     * Press "System"
     * Press "Force Shutdown"
-    * Press "Shutdown" in alert
     Then Box "Core-5.3" "does" exist
     Then Cannot ping "Core-5.3"
 
