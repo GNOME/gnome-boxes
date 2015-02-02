@@ -646,7 +646,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     public async GVir.DomainSnapshot create_snapshot () throws GLib.Error {
         var config = new GVirConfig.DomainSnapshot ();
         var now = new GLib.DateTime.now_local ();
-        config.set_name (now.format ("%y-%m-%e-%H-%M-%S"));
+        config.set_name (now.format ("%F-%H-%M-%S"));
         config.set_description (now.format ("%x, %X"));
 
         return yield machine.domain.create_snapshot_async (config, 0, null);
