@@ -38,8 +38,6 @@ def number_of_windows(context, num):
 def customize_vm(context):
     context.app.child('Customize…').click()
     sleep(0.5)
-    pressKey('Tab')
-    pressKey('Tab')
     pressKey('Page_Up')
     pressKey('Page_Up')
 
