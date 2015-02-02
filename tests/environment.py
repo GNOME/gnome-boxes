@@ -46,6 +46,7 @@ def before_all(context):
             downloadfile('https://dl.dropboxusercontent.com/u/93657599/vbenes/Core-5.3.vmdk')
             downloadfile('https://dl.dropboxusercontent.com/u/93657599/vbenes/Core-5.3.qcow2')
             call('cp ~/Downloads/Core-5.3.iso /tmp', shell=True)
+            call('cp ~/Downloads/Core-5.3.qcow2 /tmp', shell=True)
             call('touch /tmp/boxes_configured', shell=True)
 
         # Skip dogtail actions to print to stdout
