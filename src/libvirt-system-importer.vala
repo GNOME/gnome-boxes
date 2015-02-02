@@ -135,8 +135,21 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
         argv += "pkexec";
         argv += "chmod";
         argv += "a+r";
-        foreach (var disk_path in disk_paths)
-            argv += disk_path;
+
+        foreach (var disk_path in disk_paths) {
+            var file = File.new_for_path (disk_path);
+            var info = yield file.query_info_async (FileAttribute.ACCESS_CAN_READ,
+                                                    FileQueryInfoFlags.NONE,
+                                                    Priority.DEFAULT,
+                                                    null);
+            if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+                debug ("'%s' not readable, gotta make it readable..", disk_path);
+                argv += disk_path;
+            }
+        }
+
+        if (argv.length == 3)
+            return;
 
         debug ("Making all libvirt system disks readable..");
         yield exec (argv, null);
