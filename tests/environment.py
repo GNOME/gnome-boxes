@@ -238,10 +238,10 @@ def after_all(context):
 
     print "** Restoring Boxes backup"
     # move images back
-    call("mv ~/boxes_backup/images/* ~/.local/share/gnome-boxes/images/", shell=True)
+    call("mv ~/boxes_backup/images/* ~/.local/share/gnome-boxes/images/", shell=True, stderr=f)
 
     # move save states back
-    call("mv ~/boxes_backup/save/* ~/.config/libvirt/qemu/save/", shell=True, stdout=f)
+    call("mv ~/boxes_backup/save/* ~/.config/libvirt/qemu/save/", shell=True, stdout=f, stderr=f)
 
     # import machines
     call("for i in $(ls ~/boxes_backup |grep xml); do virsh define ~/boxes_backup/$i; done", shell=True, stdout=f)
