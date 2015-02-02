@@ -41,7 +41,7 @@ def customize_vm(context):
     pressKey('Page_Up')
     pressKey('Page_Up')
 
-    context.app.children[0].children[0].children[3].child('Back').click()
+    context.app.findChildren(lambda x: x.name == 'Back' and x.showing)[0].click()
     sleep(0.5)
 
 @step('Go into "{vm}" box')
