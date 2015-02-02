@@ -32,6 +32,7 @@ private class Boxes.LibvirtSystemVMImporter : Boxes.VMImporter {
         config.title = title;
 
         VMConfigurator.setup_custom_xml (config, install_media);
+        yield VMConfigurator.update_existing_domain (config, connection);
 
         var devices = config.get_devices ();
         foreach (var device in devices) {
