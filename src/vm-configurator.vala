@@ -248,12 +248,12 @@ private class Boxes.VMConfigurator {
         if (!is_libvirt_bridge_net_available ())
             return;
 
-        // First remove user interface device
+        // First remove user and 'network' (used by system libvirt machines) interface device
         GLib.List<GVirConfig.DomainDevice> devices = null;
-        DomainInterfaceUser iface = null;
+        DomainInterface iface = null;
         foreach (var device in domain.get_devices ()) {
-            if (device is DomainInterfaceUser)
-                iface = device as DomainInterfaceUser;
+            if (device is DomainInterfaceUser || device is DomainInterfaceNetwork)
+                iface = device as DomainInterface;
             else
                 devices.prepend (device);
         }
