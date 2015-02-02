@@ -16,7 +16,7 @@ private class Boxes.VMCreator {
         }
     }
 
-    private Connection? connection { owned get { return App.app.default_connection; } }
+    protected Connection? connection { owned get { return App.app.default_connection; } }
     private ulong state_changed_id;
 
     private uint num_reboots { get; private set; }
