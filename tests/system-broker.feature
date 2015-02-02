@@ -6,6 +6,7 @@ Feature: System Broker
 
   @connect_to_system_broker_machine
   Scenario: Connect to system broker
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     Then Box "Core-5.3" "does" exist
     Then Go into "Core-5.3" box
@@ -14,6 +15,7 @@ Feature: System Broker
 
   @delete_system_broker_machine
   Scenario: Delete system broker machine
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     * Select "Core-5.3" box
     * Press "Delete"
@@ -23,6 +25,7 @@ Feature: System Broker
 
   @reflect_delete_from_system_broker
   Scenario: System broker machine deleted from outside
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     * Wait for "virsh -c qemu:///system destroy Core-5.3; virsh -c qemu:///system undefine Core-5.3" end
     Then Box "Core-5.3" "does not" exist
@@ -38,6 +41,7 @@ Feature: System Broker
 
   @undo_delete_system_broker_machine
   Scenario: Undo system broker machine delete
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     * Select "Core-5.3" box
     * Press "Delete"
@@ -47,6 +51,7 @@ Feature: System Broker
 
   @pause_system_broker_box
   Scenario: Pause system broker box
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     When Ping "Core-5.3"
     * Select "Core-5.3" box
@@ -56,6 +61,7 @@ Feature: System Broker
 
   @resume_system_broker_box
   Scenario: Resume system broker box
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     * Select "Core-5.3" box
     * Press "Pause"
@@ -67,6 +73,7 @@ Feature: System Broker
 
   @force_shutdown_system_broker_machine
   Scenario: Force off system broker box
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     * Select "Core-5.3" box
     * Press "Properties"
@@ -77,6 +84,7 @@ Feature: System Broker
 
   @system_broker_restart_persistence
   Scenario: System broker restart persistence
+    * Create Core-5.3 box on system broker
     * Connect to system broker
     * Quit Boxes
     * Start Boxes
