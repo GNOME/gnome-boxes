@@ -365,6 +365,12 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private bool prepare (ActivityProgress progress) {
+        if (wizard_source.libvirt_sys_import) {
+            prepare_cancellable.reset ();
+
+            return true;
+        }
+
         try {
             // Validate URI
             prepare_for_location (wizard_source.uri, true);
@@ -392,9 +398,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
             return true;
         }
-
-        if (wizard_source.libvirt_sys_import)
-            return true;
 
         try {
             prepare_for_location (wizard_source.uri, false, progress);
