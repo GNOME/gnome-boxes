@@ -36,10 +36,9 @@ def create_new_vm_via_file(context, location):
     context.app.child('Continue').click()
     context.app.child('Select a file').click()
 
-    selector = context.app.child('Select a device or ISO file')
     for item in path:
-        selector.child(item).click()
-    selector.child('Open').click()
+        context.app.child(item).click()
+    context.app.child('Open').click()
 
 @step('Create new box from url "{url}"')
 def create_new_vm_via_url(context, url):
