@@ -73,6 +73,15 @@ def press_back_in_vm(context, action, vm):
         buttons[1].click()
     sleep(0.5)
 
+@step('Launch "{action}" for "{box}" box')
+def launch_action_for_box(context, action, box):
+    pane = context.app.child(roleName='layered pane')
+    item = pane.findChildren(lambda x: x.text == box and x.roleName == 'icon')[0]
+    item.click(button=3)
+    popup = context.app.findChildren(lambda x: x.name == 'Box actions' and x.roleName == 'popup menu' and x.showing)[0]
+    popup.child(action).click()
+    sleep(0.5)
+
 @step('Press "{action}" in alert')
 def press_back_in_prefs(context, action):
     button = context.app.child(roleName='alert').child(action)

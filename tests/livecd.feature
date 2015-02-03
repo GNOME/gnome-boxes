@@ -61,6 +61,15 @@ Feature: LiceCD
     Then Box "Core-5" "does not" exist
     Then Cannot ping "Core-5"
 
+  @delete_local_livecd_box_via_context_menu
+  Scenario: Delete local liveCD box via context menu
+    * Create new box "Core-5"
+    * Launch "Delete" for "Core-5" box
+    * Close warning
+    * Wait for "sleep 1" end
+    Then Box "Core-5" "does not" exist
+    Then Cannot ping "Core-5"
+
   @undo_delete_local_livecd_box
   Scenario: Undo Delete of local liveCD box
     * Create new box "Core-5"
