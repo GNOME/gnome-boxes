@@ -125,6 +125,5 @@ Feature: General
 
 ### TBD ###
   # local_machine_paused_after_quit
-  # import_from_system_broker
   # detach_from_system_broker
   # add_machine_from_system_broker_via_url
