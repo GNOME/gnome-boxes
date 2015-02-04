@@ -58,6 +58,7 @@ Feature: LiceCD
     * Select "Core-5" box
     * Press "Delete"
     * Close warning
+    * Wait for "sleep 2" end
     Then Box "Core-5" "does not" exist
     Then Cannot ping "Core-5"
 
@@ -66,7 +67,7 @@ Feature: LiceCD
     * Create new box "Core-5"
     * Launch "Delete" for "Core-5" box
     * Close warning
-    * Wait for "sleep 1" end
+    * Wait for "sleep 2" end
     Then Box "Core-5" "does not" exist
     Then Cannot ping "Core-5"
 
@@ -95,6 +96,7 @@ Feature: LiceCD
     * Select "Core-5 5" box
     * Press "Delete"
     * Close warning
+    * Wait for "sleep 2" end
     Then Box "Core-5" "does not" exist
     Then Cannot ping "Core-5"
     Then Box "Core-5 2" "does not" exist
