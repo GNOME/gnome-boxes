@@ -121,6 +121,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             display.mouse_grab.connect((status) => {
                 mouse_grabbed = status != 0;
             });
+            display.keyboard_grab.connect((status) => {
+                keyboard_grabbed = status != 0;
+            });
             config.sync_properties (this, display_sync_properties);
             display.scaling = true;
 
