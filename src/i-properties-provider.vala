@@ -6,6 +6,7 @@ private class Boxes.Property: GLib.Object {
     public Gtk.Widget widget { get; construct set; }
     public Gtk.Widget? extra_widget { get; construct set; }
     public bool reboot_required { get; set; }
+    public Gtk.Align description_alignment { get; set; default = Gtk.Align.END; }
 
     public signal void refresh_properties ();
     public signal void flushed ();

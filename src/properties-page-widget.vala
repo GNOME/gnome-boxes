@@ -52,7 +52,7 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
                 if (property.description != null) {
                     var label_name = new Gtk.Label (property.description);
                     label_name.get_style_context ().add_class ("boxes-property-name-label");
-                    label_name.halign = Gtk.Align.END;
+                    label_name.halign = property.description_alignment;
                     label_name.hexpand = false;
                     grid.attach (label_name, 0, current_row, 1, 1);
                     var widget = property.widget;
