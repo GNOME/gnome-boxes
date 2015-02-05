@@ -449,6 +449,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               max_ram * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               FormatSizeFlags.IEC_UNITS);
+            property.description_alignment = Gtk.Align.START;
             property.widget.margin_top = 5;
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
@@ -534,6 +535,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               min_storage,
                                               max_storage,
                                               256 * MEGABYTES);
+            property.description_alignment = Gtk.Align.START;
             // Disable 'save on timeout' all together since that could lead us to very bad user experience:
             // You accidently increase the capacity to too high value and if you are not quick enough to change
             // it again, you'll not be able to correct this ever as we don't support shrinking of volumes.
