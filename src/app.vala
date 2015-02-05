@@ -87,8 +87,10 @@ private class Boxes.App: Gtk.Application {
                 "Zeeshan Ali (Khattak) <zeeshanak@gnome.org>"
             };
             string[] artists = {
+                "Allan Day <aday@gnome.org>",
                 "Jon McCann <jmccann@redhat.com>",
-                "Jakub Steiner <jsteiner@redhat.com>"
+                "Jakub Steiner <jsteiner@redhat.com>",
+                "Dave Jones <eevblog@yahoo.com.au>"
             };
 
             Gtk.show_about_dialog (main_window,
