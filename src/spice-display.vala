@@ -277,7 +277,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             gtk_session.bind_property ("auto-clipboard", toggle, "active",
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             toggle.halign = Gtk.Align.START;
-            add_property (ref list, _("Share clipboard"), toggle);
+            add_property (ref list, _("Share Clipboard"), toggle);
             break;
 
         case PropertiesPage.DEVICES:
