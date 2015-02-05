@@ -36,9 +36,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
 
         // Favorite
         if (("favorite" in machine.config.categories))
-            menu.append (_("Remove favorite"), "box.favorite");
+            menu.append (_("Add to favorites"), "box.favorite");
         else
-            menu.append (_("Favorite"), "box.favorite");
+            menu.append (_("Remove from Favorites"), "box.favorite");
 
         // Pause
         menu.append (_("Pause"), "box.pause");
