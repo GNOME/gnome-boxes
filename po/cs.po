@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-01-07 18:57+0000\n"
-"PO-Revision-Date: 2015-01-07 21:39+0100\n"
+"POT-Creation-Date: 2015-02-06 07:03+0000\n"
+"PO-Revision-Date: 2015-02-06 08:12+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -50,7 +50,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
 
@@ -136,12 +137,17 @@ msgid "Search"
 msgstr "Hledat"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">Nenalezen žádný box</span></b>"
+msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgstr "<b><span size=\"large\">Nejmodernější virtualizace</span></b>"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "Můžete jej vytvořit pomocí tlačítka vlevo nahoře."
+msgid "Boxes can be virtual or remote machines."
+msgstr "Boxem může být virtuální nebo vzdálený stroj."
+
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr ""
+"Pro vytvoření vašeho prvního boxu stačí zmáčknout tlačítko <b>Nový</b>."
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -319,17 +325,17 @@ msgstr "Činnosti boxu"
 
 #. Open in new Window
 #: ../src/actions-popover.vala:35
-msgid "Open in new Window"
+msgid "Open in New Window"
 msgstr "Otevřít v novém okně"
 
 #. Favorite
 #: ../src/actions-popover.vala:39
-msgid "Remove favorite"
-msgstr "Odebrat oblíbený"
+msgid "Add to favorites"
+msgstr "Přidat do oblíbených"
 
 #: ../src/actions-popover.vala:41
-msgid "Favorite"
-msgstr "Oblíbený"
+msgid "Remove from Favorites"
+msgstr "Odebrat z oblíbených"
 
 #. Pause
 #: ../src/actions-popover.vala:44
@@ -346,68 +352,68 @@ msgstr "Vlastnosti"
 msgid "Pausing '%s' failed"
 msgstr "Pozastavení „%s“ selhalo"
 
-#: ../src/app.vala:97
+#: ../src/app.vala:99
 msgid "translator-credits"
 msgstr ""
 "Adam Matoušek <adydas95@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:100
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:119
 msgid "Help"
 msgstr "Nápověda"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:120
 msgid "About"
 msgstr "O aplikaci"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:121
 msgid "Quit"
 msgstr "Ukončit"
 
-#: ../src/app.vala:175 ../src/main.vala:9
+#: ../src/app.vala:177 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:179
 msgid "Open in full screen"
 msgstr "Otevřít přes celou obrazovku"
 
-#: ../src/app.vala:178 ../src/main.vala:10
+#: ../src/app.vala:180 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Zkontrolovat vybavenost pro virtualizaci"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:181
 msgid "Open box with UUID"
 msgstr "Otevřít box s UUID"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:182
 msgid "Search term"
 msgstr "Hledat výraz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:182
+#: ../src/app.vala:184
 msgid "URI to display, broker or installer media"
 msgstr "Adresa URI k zobrazení, správce nebo instalační médium"
 
-#: ../src/app.vala:193
+#: ../src/app.vala:195
 msgid "- A simple application to access remote or virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným nebo virtuálním strojům"
 
-#: ../src/app.vala:215
+#: ../src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: ../src/app.vala:480
+#: ../src/app.vala:482
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: ../src/app.vala:481
+#: ../src/app.vala:483
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -415,7 +421,7 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: ../src/app.vala:508 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:510 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Zpět"
 
@@ -423,12 +429,12 @@ msgstr "_Zpět"
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
-#: ../src/display-page.vala:101
+#: ../src/display-page.vala:100
 msgid "(press [left] Ctrl+Alt keys to ungrab)"
 msgstr "(pro ukončení zachytávání zmáčkněte klávesy levý Ctrl+Alt)"
 
 #. Translators: Showing size of widget as WIDTHxHEIGHT here.
-#: ../src/display-page.vala:228
+#: ../src/display-page.vala:226
 #, c-format
 msgid "%dx%d"
 msgstr "%d × %d"
@@ -465,21 +471,21 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Odeslat kombinaci kláves"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:53
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
 msgid "Name"
 msgstr "Název"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:64
+#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:66
 msgid "Broker"
 msgstr "Zprostředkovatel"
 
-#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:65
+#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:67
+#: ../src/remote-machine.vala:67
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:66
-#: ../src/remote-machine.vala:66 ../src/wizard.vala:470
+#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:68
+#: ../src/remote-machine.vala:68 ../src/wizard.vala:473
 msgid "URI"
 msgstr "Adresa URI"
 
@@ -555,40 +561,40 @@ msgstr "Zaznamenané problémy"
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
-#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:511
 msgid "Memory"
 msgstr "Paměť"
 
-#: ../src/libvirt-machine-properties.vala:510
-#: ../src/libvirt-machine-properties.vala:532
+#: ../src/libvirt-machine-properties.vala:511
+#: ../src/libvirt-machine-properties.vala:533
 msgid "Maximum Disk Size"
 msgstr "Maximální velikost disku"
 
-#: ../src/libvirt-machine-properties.vala:523
+#: ../src/libvirt-machine-properties.vala:524
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Ve vašem počítači není dostatek místa pro zvětšení maximální velikosti disku."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:538
+#: ../src/libvirt-machine.vala:540
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:541
+#: ../src/libvirt-machine.vala:543
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: ../src/libvirt-machine.vala:606
+#: ../src/libvirt-machine.vala:608
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: ../src/libvirt-machine.vala:608
+#: ../src/libvirt-machine.vala:610
 msgid "_Shutdown"
 msgstr "_Vypnout"
 
@@ -635,16 +641,16 @@ msgstr "Selhalo vyhledání vhodného disku pro import boxu „%s“"
 msgid "Connecting to %s"
 msgstr "Připojuje se k %s"
 
-#: ../src/machine.vala:169 ../src/machine.vala:591
+#: ../src/machine.vala:169 ../src/machine.vala:592
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Připojení k „%s“ selhalo"
 
-#: ../src/machine.vala:258
+#: ../src/machine.vala:259
 msgid "Saving…"
 msgstr "Ukládá se…"
 
-#: ../src/machine.vala:577
+#: ../src/machine.vala:578
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -653,17 +659,17 @@ msgstr ""
 "Stroj „%s“ nelze z disku obnovit\n"
 "Zkusit to bez uloženého stavu?"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:579
 msgid "Restart"
 msgstr "Restartovat"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:588
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Selhalo spuštění „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:620
+#: ../src/machine.vala:621
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "„%s“ vyžaduje ověření"
@@ -801,8 +807,8 @@ msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Přesměrování zařízení USB „%s“ pro „%s“ selhalo"
 
 #: ../src/spice-display.vala:280
-msgid "Share clipboard"
-msgstr "Sdílet obsah schránky"
+msgid "Share Clipboard"
+msgstr "Sdílet schránku"
 
 #: ../src/spice-display.vala:306
 msgid "USB devices"
@@ -995,11 +1001,11 @@ msgstr "Prázdné umístění"
 msgid "Unsupported protocol '%s'"
 msgstr "Nepodporovaný protol „%s“"
 
-#: ../src/wizard.vala:326 ../src/wizard.vala:389
+#: ../src/wizard.vala:326 ../src/wizard.vala:395
 msgid "Unknown installer media"
 msgstr "Neznámé instalační médium"
 
-#: ../src/wizard.vala:327 ../src/wizard.vala:390
+#: ../src/wizard.vala:327 ../src/wizard.vala:396
 msgid "Analyzing…"
 msgstr "Analyzuje se…"
 
@@ -1008,51 +1014,51 @@ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:446
+#: ../src/wizard.vala:449
 msgid "Box setup failed"
 msgstr "Nastavení boxu selhalo"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:463
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxy vytvoří nový box s následujícími vlastnostmi:"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:468
 msgid "Type"
 msgstr "Typ"
 
-#: ../src/wizard.vala:468
+#: ../src/wizard.vala:471
 msgid "Host"
 msgstr "Počítač"
 
-#: ../src/wizard.vala:479 ../src/wizard.vala:490
+#: ../src/wizard.vala:482 ../src/wizard.vala:493
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:484
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: ../src/wizard.vala:495
+#: ../src/wizard.vala:498
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Přidá boxy pro všechny systémy dostupné z tohoto účtu:"
 
-#: ../src/wizard.vala:517
+#: ../src/wizard.vala:520
 msgid "Disk"
 msgstr "Disk"
 
-#: ../src/wizard.vala:517
+#: ../src/wizard.vala:520
 #, c-format
 msgid "%s maximum"
 msgstr "nejvýše %s"
 
-#: ../src/wizard.vala:580
+#: ../src/wizard.vala:583
 msgid "Downloading media…"
 msgstr "Stahuje se médium…"
 
-#: ../src/wizard.vala:590
+#: ../src/wizard.vala:593
 msgid "Download failed."
 msgstr "Stažení selhalo."
 
-#: ../src/wizard.vala:697
+#: ../src/wizard.vala:700
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
