@@ -38,6 +38,11 @@ private class Boxes.DisplayPage: Gtk.Box {
             return display != null ? display.mouse_grabbed : false;
         }
     }
+    private bool keyboard_grabbed {
+        get {
+            return display != null ? display.keyboard_grabbed : false;
+        }
+    }
     private ulong can_grab_mouse_id;
     private ulong mouse_grabbed_id;
 
