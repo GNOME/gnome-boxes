@@ -33,13 +33,13 @@ private class Boxes.DisplayPage: Gtk.Box {
             return display != null ? display.can_grab_mouse : false;
         }
     }
-    private bool grabbed {
+    private bool mouse_grabbed {
         get {
             return display != null ? display.mouse_grabbed : false;
         }
     }
-    private ulong display_can_grab_id;
-    private ulong display_grabbed_id;
+    private ulong can_grab_mouse_id;
+    private ulong mouse_grabbed_id;
 
     public void setup_ui (AppWindow window) {
         this.window = window;
@@ -96,7 +96,7 @@ private class Boxes.DisplayPage: Gtk.Box {
         return_if_fail (machine != null);
 
         string? hint = null;
-        if (grabbed)
+        if (mouse_grabbed)
             hint = _("Press (left) Ctrl+Alt to ungrab");
 
         toolbar.set_subtitle (hint);
@@ -116,7 +116,7 @@ private class Boxes.DisplayPage: Gtk.Box {
         remove_display ();
 
         this.display = display;
-        display_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
+        mouse_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
             // In some cases this is sent inside size_allocate (see bug #692465)
             // which causes the label change queue_resize to be ignored
             // So we delay the update_subtitle call to an idle to work around this.
@@ -126,7 +126,7 @@ private class Boxes.DisplayPage: Gtk.Box {
             });
         });
         update_toolbar_visible ();
-        display_can_grab_id = display.notify["can-grab-mouse"].connect(() => {
+        can_grab_mouse_id = display.notify["can-grab-mouse"].connect(() => {
             update_toolbar_visible ();
         });
 
@@ -156,14 +156,14 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
 
     public Widget? remove_display () {
-        if (display_grabbed_id != 0) {
-            display.disconnect (display_grabbed_id);
-            display_grabbed_id = 0;
+        if (mouse_grabbed_id != 0) {
+            display.disconnect (mouse_grabbed_id);
+            mouse_grabbed_id = 0;
         }
 
-        if (display_can_grab_id != 0) {
-            display.disconnect (display_can_grab_id);
-            display_can_grab_id = 0;
+        if (can_grab_mouse_id != 0) {
+            display.disconnect (can_grab_mouse_id);
+            can_grab_mouse_id = 0;
         }
 
         var widget = event_box.get_child ();
