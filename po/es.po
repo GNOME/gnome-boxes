@@ -2,15 +2,15 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-12-17 07:01+0000\n"
-"PO-Revision-Date: 2014-12-17 12:00+0100\n"
+"POT-Creation-Date: 2015-02-09 07:02+0000\n"
+"PO-Revision-Date: 2015-02-09 18:50+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -49,7 +49,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cajas"
 
@@ -136,20 +137,25 @@ msgid "Search"
 msgstr "Buscar"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">No se han encontrado cajas</span></b>"
+#| msgid "<b><span size=\"large\">No boxes found</span></b>"
+msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgstr ""
+"<b><span size=\"large\">Estado del arte de la virtualización</span></b>"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "Cree una usando en botón de la parte superior izquierda."
+#| msgid "View and use virtual machines"
+msgid "Boxes can be virtual or remote machines."
+msgstr "Las cajas pueden ser máquinas virtuales o remotas."
+
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr "Simplemente pulse el botón <b>Nueva</b> para crear la primera."
 
 #: ../data/ui/properties-toolbar.ui.h:1
-#| msgid "Troubleshooting log"
 msgid "Troubleshooting Log"
 msgstr "Registro de resolución de problemas"
 
 #: ../data/ui/properties-toolbar.ui.h:3
-#| msgid "Copy to clipboard"
 msgid "_Copy to Clipboard"
 msgstr "_Copiar al portapapeles"
 
@@ -325,17 +331,20 @@ msgstr "Acciones sobre la caja"
 
 #. Open in new Window
 #: ../src/actions-popover.vala:35
-msgid "Open in new Window"
+#| msgid "Open in new Window"
+msgid "Open in New Window"
 msgstr "Abrir en una ventana nueva"
 
 #. Favorite
 #: ../src/actions-popover.vala:39
-msgid "Remove favorite"
-msgstr "Favorita remota"
+#| msgid "Remove favorite"
+msgid "Add to favorites"
+msgstr "Añadir a favoritos"
 
 #: ../src/actions-popover.vala:41
-msgid "Favorite"
-msgstr "Favorita"
+#| msgid "Remove favorite"
+msgid "Remove from Favorites"
+msgstr "Quitar de favoritos"
 
 #. Pause
 #: ../src/actions-popover.vala:44
@@ -352,74 +361,74 @@ msgstr "Propiedades"
 msgid "Pausing '%s' failed"
 msgstr "Falló al pausar «%s»"
 
-#: ../src/app.vala:97
+#: ../src/app.vala:99
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012 - 2014"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:100
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:119
 msgid "Help"
 msgstr "Ayuda"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:120
 msgid "About"
 msgstr "Acerca de"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:121
 msgid "Quit"
 msgstr "Salir"
 
-#: ../src/app.vala:175 ../src/main.vala:9
+#: ../src/app.vala:177 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:179
 msgid "Open in full screen"
 msgstr "Abrir en pantalla completa"
 
-#: ../src/app.vala:178 ../src/main.vala:10
+#: ../src/app.vala:180 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprobar la capacidad de virtualización"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:181
 msgid "Open box with UUID"
 msgstr "Abrir caja con UUID"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:182
 msgid "Search term"
 msgstr "Buscar término"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:182
+#: ../src/app.vala:184
 msgid "URI to display, broker or installer media"
 msgstr "URI que mostrar, agente o medio de instalación"
 
-#: ../src/app.vala:193
+#: ../src/app.vala:195
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 
-#: ../src/app.vala:215
+#: ../src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: ../src/app.vala:480
+#: ../src/app.vala:482
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: ../src/app.vala:481
+#: ../src/app.vala:483
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: ../src/app.vala:508 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:510 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Deshacer"
 
@@ -427,12 +436,12 @@ msgstr "_Deshacer"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/display-page.vala:101
+#: ../src/display-page.vala:100
 msgid "(press [left] Ctrl+Alt keys to ungrab)"
 msgstr "(pulse las teclas Ctrl+Alt [izquierda] para deseleccionar)"
 
 #. Translators: Showing size of widget as WIDTHxHEIGHT here.
-#: ../src/display-page.vala:228
+#: ../src/display-page.vala:226
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
@@ -469,21 +478,21 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Enviar combinaciones de teclas"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:53
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
 msgid "Name"
 msgstr "Nombre"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:64
+#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:66
 msgid "Broker"
 msgstr "Agente"
 
-#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:65
+#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:67
+#: ../src/remote-machine.vala:67
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:66
-#: ../src/remote-machine.vala:66 ../src/wizard.vala:470
+#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:68
+#: ../src/remote-machine.vala:68 ../src/wizard.vala:473
 msgid "URI"
 msgstr "URI"
 
@@ -559,39 +568,39 @@ msgstr "Registro de resolución de problemas"
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
-#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:511
 msgid "Memory"
 msgstr "Memoria"
 
-#: ../src/libvirt-machine-properties.vala:510
-#: ../src/libvirt-machine-properties.vala:532
+#: ../src/libvirt-machine-properties.vala:511
+#: ../src/libvirt-machine-properties.vala:533
 msgid "Maximum Disk Size"
 msgstr "Tamaño máximo del disco"
 
-#: ../src/libvirt-machine-properties.vala:523
+#: ../src/libvirt-machine-properties.vala:524
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "No espacio suficiente en su equipo para aumentar el tamaño máximo del disco."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:538
+#: ../src/libvirt-machine.vala:540
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde el disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:541
+#: ../src/libvirt-machine.vala:543
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: ../src/libvirt-machine.vala:606
+#: ../src/libvirt-machine.vala:608
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: ../src/libvirt-machine.vala:608
+#: ../src/libvirt-machine.vala:610
 msgid "_Shutdown"
 msgstr "_Apagar"
 
@@ -636,16 +645,16 @@ msgstr "Falló al buscar un disco adecuado para importar para la caja «%s»"
 msgid "Connecting to %s"
 msgstr "Conectando a %s"
 
-#: ../src/machine.vala:169 ../src/machine.vala:591
+#: ../src/machine.vala:169 ../src/machine.vala:592
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
 
-#: ../src/machine.vala:258
+#: ../src/machine.vala:259
 msgid "Saving…"
 msgstr "Guardando…"
 
-#: ../src/machine.vala:577
+#: ../src/machine.vala:578
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -654,17 +663,17 @@ msgstr ""
 "no se pudo restaurar «%s» desde el disco\n"
 "¿Intentarlo sin el estado guardado?"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:579
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:588
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Falló al iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:620
+#: ../src/machine.vala:621
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» requiere autenticación"
@@ -800,7 +809,8 @@ msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Falló al redireccionar el dispositivo USB «%s» para «%s»"
 
 #: ../src/spice-display.vala:280
-msgid "Share clipboard"
+#| msgid "Share clipboard"
+msgid "Share Clipboard"
 msgstr "Compartir portapapeles"
 
 #: ../src/spice-display.vala:306
@@ -960,7 +970,6 @@ msgstr "Crear una caja"
 
 #: ../src/wizard-toolbar.vala:64
 #, c-format
-#| msgid "Create a box (step %d/5)"
 msgid "Create a box (step %d/4)"
 msgstr "Crear una caja (paso %d/4)"
 
@@ -994,11 +1003,11 @@ msgstr "Ubicación vacía"
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo «%s» no soportado"
 
-#: ../src/wizard.vala:326 ../src/wizard.vala:389
+#: ../src/wizard.vala:326 ../src/wizard.vala:395
 msgid "Unknown installer media"
 msgstr "Instalador del medio desconocido"
 
-#: ../src/wizard.vala:327 ../src/wizard.vala:390
+#: ../src/wizard.vala:327 ../src/wizard.vala:396
 msgid "Analyzing…"
 msgstr "Analizando…"
 
@@ -1007,55 +1016,61 @@ msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Falló al analizar"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:446
+#: ../src/wizard.vala:449
 msgid "Box setup failed"
 msgstr "Falló la configuración de la caja"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:463
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Se creará una caja nueva con las siguientes propiedades:"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:468
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:468
+#: ../src/wizard.vala:471
 msgid "Host"
 msgstr "Servidor"
 
-#: ../src/wizard.vala:479 ../src/wizard.vala:490
+#: ../src/wizard.vala:482 ../src/wizard.vala:493
 msgid "Port"
 msgstr "Puerto"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:484
 msgid "TLS Port"
 msgstr "Puerto TLS"
 
-#: ../src/wizard.vala:495
+#: ../src/wizard.vala:498
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Se añadirán cajas para todos los sistemas disponibles desde esta cuenta:"
 
-#: ../src/wizard.vala:517
+#: ../src/wizard.vala:520
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:517
+#: ../src/wizard.vala:520
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:580
+#: ../src/wizard.vala:583
 msgid "Downloading media…"
 msgstr "Descargando medios…"
 
-#: ../src/wizard.vala:590
+#: ../src/wizard.vala:593
 msgid "Download failed."
 msgstr "Falló la descarga."
 
-#: ../src/wizard.vala:697
+#: ../src/wizard.vala:700
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
+
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "Cree una usando en botón de la parte superior izquierda."
+
+#~ msgid "Favorite"
+#~ msgstr "Favorita"
 
 #~ msgid "_Save"
 #~ msgstr "_Guardar"
