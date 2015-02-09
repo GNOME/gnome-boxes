@@ -45,6 +45,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     }
     private ulong can_grab_mouse_id;
     private ulong mouse_grabbed_id;
+    private ulong keyboard_grabbed_id;
 
     public void setup_ui (AppWindow window) {
         this.window = window;
@@ -101,9 +102,12 @@ private class Boxes.DisplayPage: Gtk.Box {
         return_if_fail (machine != null);
 
         string? hint = null;
-        if (mouse_grabbed)
-            hint = _("Press (left) Ctrl+Alt to ungrab");
-
+        if (can_grab_mouse) {
+            if (mouse_grabbed)
+                hint = _("Press (left) Ctrl+Alt to ungrab");
+        } else if (keyboard_grabbed) {
+            hint = _("Press & release (left) Ctrl+Alt to ungrab keyboard.");
+        }
         toolbar.set_subtitle (hint);
     }
 
@@ -125,6 +129,12 @@ private class Boxes.DisplayPage: Gtk.Box {
             // In some cases this is sent inside size_allocate (see bug #692465)
             // which causes the label change queue_resize to be ignored
             // So we delay the update_subtitle call to an idle to work around this.
+            Idle.add_full (Priority.HIGH, () => {
+                update_subtitle ();
+                return false;
+            });
+        });
+        keyboard_grabbed_id = display.notify["keyboard-grabbed"].connect(() => {
             Idle.add_full (Priority.HIGH, () => {
                 update_subtitle ();
                 return false;
@@ -169,6 +179,11 @@ private class Boxes.DisplayPage: Gtk.Box {
         if (can_grab_mouse_id != 0) {
             display.disconnect (can_grab_mouse_id);
             can_grab_mouse_id = 0;
+        }
+
+        if (keyboard_grabbed_id != 0) {
+            display.disconnect (keyboard_grabbed_id);
+            keyboard_grabbed_id = 0;
         }
 
         var widget = event_box.get_child ();
