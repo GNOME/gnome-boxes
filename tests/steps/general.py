@@ -7,6 +7,7 @@ from dogtail.rawinput import typeText, pressKey, keyCombo
 from time import sleep
 from common_steps import wait_until
 from subprocess import call, check_output, Popen, CalledProcessError
+import re
 
 @step('About is shown')
 def about_shown(context):
@@ -109,22 +110,28 @@ def save_ip_for_vm(context, vm):
     if not hasattr(context, 'ips'):
         context.ips = {}
 
-    ip_cmd = "head -n 1 /var/lib/libvirt/dnsmasq/default.leases | awk {'print $3'}"
-
     wait = 0
     while True:
-        ip = check_output(ip_cmd, shell=True).strip()
-        cmd = "ping -q -c 1 %s > /dev/null 2>&1" % ip
-        ret = call(cmd, shell=True)
+        virsh_cmd = "virsh -r -c qemu:///system net-dhcp-leases default |grep box"
+        virsh_out = check_output(virsh_cmd, shell=True).split('\n')[0:-1]
+
+        time = 0
+        for line in virsh_out:
+            t = line.strip().split(" ")[1]
+            if t > time:
+                time = t
+                ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', line)
+
+        if ips:
+            ip = ips[0]
+            cmd = "ping -q -w 1 %s > /dev/null 2>&1" % ip
+            ret = call(cmd, shell=True)
 
         if ip in context.ips.values() or ret != 0:
             wait += 1
             sleep(1)
-            if wait == 80:
-                print check_output('cat /var/lib/libvirt/dnsmasq/default.leases', shell=True)
-                print context.ips.values()
-                print check_output('date', shell=True)
-                print check_output('ip a s', shell=True)
+            if wait == 20:
+                print virsh_out
                 raise Exception("no new address cannot be found for machine %s" %vm)
         else:
             break
