@@ -97,7 +97,7 @@ private class Boxes.DisplayPage: Gtk.Box {
 
         string? hint = null;
         if (grabbed)
-            hint = _("(press [left] Ctrl+Alt keys to ungrab)");
+            hint = _("Press (left) Ctrl+Alt to ungrab");
 
         toolbar.set_subtitle (hint);
     }
