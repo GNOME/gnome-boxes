@@ -56,12 +56,8 @@ private class Boxes.WizardToolbar: Gtk.Stack {
         case WizardPage.LAST:
 
             break;
-        case WizardPage.INTRODUCTION:
-            main.title = _("Create a box");
-
-            break;
         default:
-            main.title = _("Create a box (step %d/4)").printf (page);
+            main.title = _("Create a box (step %d/4)").printf (page + 1);
 
             break;
         }

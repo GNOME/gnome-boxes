@@ -1,7 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 private enum Boxes.WizardPage {
-    INTRODUCTION,
     SOURCE,
     PREPARATION,
     SETUP,
@@ -14,7 +13,7 @@ private enum Boxes.WizardPage {
 private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     private const double DOWNLOAD_PROGRESS_SCALE = 0.95;
     private const double PREPARE_PROGRESS_SCALE = 0.05;
-    private const string[] page_names = { "introduction", "source", "preparation", "setup", "review" };
+    private const string[] page_names = { "source", "preparation", "setup", "review" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -62,21 +61,18 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     public WizardPage page {
         get { return _page; }
         set {
-            back_button.sensitive = (value != WizardPage.INTRODUCTION);
+            back_button.sensitive = (value != WizardPage.SOURCE);
 
             var forwards = value > page;
 
             switch (value) {
-            case WizardPage.INTRODUCTION:
+            case WizardPage.SOURCE:
+                // reset page to notify deeply widgets states
                 create_button.visible = false;
                 continue_button.visible = true;
                 next_button = continue_button;
                 next_button.sensitive = true;
                 next_button.grab_focus ();
-                break;
-
-            case WizardPage.SOURCE:
-                // reset page to notify deeply widgets states
                 wizard_source.page = wizard_source.page;
                 cleanup ();
                 break;
@@ -649,7 +645,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         wizard_source.uri = "";
         wizard_source.libvirt_sys_import = false;
-        page = WizardPage.INTRODUCTION;
+        page = WizardPage.SOURCE;
     }
 
     private void destroy_machine () {
