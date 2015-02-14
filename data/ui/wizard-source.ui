@@ -14,12 +14,30 @@
         <property name="visible">True</property>
         <property name="orientation">vertical</property>
         <property name="spacing">0</property>
-        <property name="margin-top">15</property>
-        <property name="margin-bottom">15</property>
+        <property name="margin-top">30</property>
+        <property name="margin-bottom">30</property>
         <style>
           <class name="boxes-source-nb"/>
           <class name="boxes-menu"/>
         </style>
+
+        <child>
+          <object class="GtkLabel" id="instruction_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Insert operating system installation media or select a source below</property>
+            <property name="wrap">True</property>
+            <property name="halign">start</property>
+            <property name="margin-bottom">20</property>
+            <style>
+              <class name="boxes-wizard-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
+        </child>
+
         <child>
           <object class="BoxesWizardScrolled" id="media_scrolled"/>
         </child>
@@ -147,6 +165,23 @@
               </object>
             </child>
           </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="trademark_label">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Any trademarks shown above are used merely for identification of software products you have already obtained and are the property of their respective owners.</property>
+            <property name="wrap">True</property>
+            <property name="max-width-chars">50</property>
+            <property name="margin-top">20</property>
+            <style>
+              <class name="boxes-logo-notice-label"/>
+            </style>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+          </packing>
         </child>
       </object>
 
