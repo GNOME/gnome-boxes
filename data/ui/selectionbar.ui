@@ -10,6 +10,23 @@
       <object class="GtkActionBar" id="actionbar">
         <property name="visible">True</property>
 
+        <!-- Open in new windows button -->
+        <child>
+          <object class="GtkButton" id="open_btn">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <signal name="clicked" handler="on_open_btn_clicked"/>
+            <style>
+              <class name="text-button"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+
         <!-- Favorite button -->
         <child>
           <object class="GtkToggleButton" id="favorite_btn">
@@ -36,23 +53,6 @@
             <property name="use-underline">True</property>
             <property name="label" translatable="yes">P_ause</property>
             <signal name="clicked" handler="on_pause_btn_clicked"/>
-            <style>
-              <class name="text-button"/>
-            </style>
-          </object>
-
-          <packing>
-            <property name="pack-type">start</property>
-          </packing>
-        </child>
-
-        <!-- Open in new windows button -->
-        <child>
-          <object class="GtkButton" id="open_btn">
-            <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="use-underline">True</property>
-            <signal name="clicked" handler="on_open_btn_clicked"/>
             <style>
               <class name="text-button"/>
             </style>
