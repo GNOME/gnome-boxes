@@ -3,6 +3,12 @@ using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-toolbar.ui")]
 private class Boxes.WizardToolbar: Gtk.Stack {
+    private const string[] page_titles = { N_("Source Selection"),
+                                           N_("Box Preparation"),
+                                           N_("Box Setup"),
+                                           N_("Review"),
+                                           "" };
+
     private WizardWindowPage _page;
     public WizardWindowPage page {
         get { return _page; }
@@ -14,7 +20,7 @@ private class Boxes.WizardToolbar: Gtk.Stack {
     }
 
     [GtkChild]
-    public Gtk.HeaderBar main;
+    private Gtk.HeaderBar main;
 
     [GtkChild]
     public Button cancel_btn;
@@ -52,15 +58,7 @@ private class Boxes.WizardToolbar: Gtk.Stack {
     }
 
     public void set_title_for_page (WizardPage page) {
-        switch (page) {
-        case WizardPage.LAST:
-
-            break;
-        default:
-            main.title = _("Create a box (step %d/4)").printf (page + 1);
-
-            break;
-        }
+        main.title = page_titles[page];
     }
 
     [GtkCallback]
