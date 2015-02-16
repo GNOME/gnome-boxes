@@ -165,6 +165,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         case Boxes.SourcePage.URL:
             next_button.sensitive = false;
+            if (wizard_source.uri.length == 0)
+                return;
 
             var text = _("Please enter desktop or collection URI");
             var icon = "preferences-desktop-remote-desktop";
