@@ -74,6 +74,21 @@ private class Boxes.SizeProperty : Boxes.Property {
     private Gtk.Scale scale;
     private FormatSizeFlags format_flags;
 
+    private static void set_size_label_msg (Gtk.Label       label,
+                                            uint64          size,
+                                            uint64          allocation,
+                                            FormatSizeFlags format_flags) {
+        var capacity = format_size (size, format_flags);
+
+        if (allocation == 0) {
+            label.set_text (capacity);
+        } else {
+            var allocation_str = format_size (allocation, format_flags);
+
+            label.set_markup (_("%s <span color=\"grey\">(%s used)</span>").printf (capacity, allocation_str));
+        }
+    }
+
     public uint64 recommended  {
         set {
             // FIXME: Better way to ensure recommended mark is not too close to min and max marks?
@@ -90,9 +105,11 @@ private class Boxes.SizeProperty : Boxes.Property {
                          uint64          size,
                          uint64          min,
                          uint64          max,
+                         uint64          allocation,
                          uint64          step,
                          FormatSizeFlags format_flags) {
-        var label = new Gtk.Label (format_size ((uint64) size, format_flags));
+        var label = new Gtk.Label ("");
+        set_size_label_msg (label, size, allocation, format_flags);
         label.halign = Gtk.Align.CENTER;
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
@@ -116,7 +133,7 @@ private class Boxes.SizeProperty : Boxes.Property {
 
         scale.value_changed.connect (() => {
             uint64 v = (uint64) scale.get_value ();
-            label.set_text (format_size (v, format_flags));
+            set_size_label_msg (label, v, allocation, format_flags);
             scale.set_fill_level (v);
 
             changed ((uint64) scale.get_value ());
@@ -187,9 +204,10 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
                                                     uint64                   size,
                                                     uint64                   min,
                                                     uint64                   max,
+                                                    uint64                   allocation,
                                                     uint64                   step,
                                                     FormatSizeFlags          format_flags = FormatSizeFlags.DEFAULT) {
-        var property = new SizeProperty (name, size, min, max, step, format_flags);
+        var property = new SizeProperty (name, size, min, max, allocation, step, format_flags);
         list.append (property);
 
         return property;

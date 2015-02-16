@@ -447,6 +447,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               machine.domain_config.memory * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               max_ram * Osinfo.KIBIBYTES,
+                                              0,
                                               64 * Osinfo.MEBIBYTES,
                                               FormatSizeFlags.IEC_UNITS);
             property.description_alignment = Gtk.Align.START;
@@ -507,9 +508,14 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var max_storage = volume_info.allocation + pool_info.available;
 
             if (min_storage >= max_storage) {
-                add_string_property (ref list,
-                                     _("Maximum Disk Size"),
-                                     "%s".printf (format_size (volume_info.capacity, FormatSizeFlags.DEFAULT)));
+                var label = new Gtk.Label ("");
+                var capacity = format_size (volume_info.capacity, FormatSizeFlags.DEFAULT);
+                var allocation = format_size (volume_info.allocation, FormatSizeFlags.DEFAULT);
+                var markup = _("<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey\">(%s used)</span>").printf (capacity, allocation);
+                label.set_markup (markup);
+                label.halign = Gtk.Align.START;
+
+                add_property (ref list, null, label);
 
                 var infobar = new Gtk.InfoBar ();
                 infobar.message_type = Gtk.MessageType.WARNING;
@@ -522,7 +528,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 content.add (image);
 
                 var msg = _("There is not enough space on your machine to increase the maximum disk size.");
-                var label = new Gtk.Label (msg);
+                label = new Gtk.Label (msg);
                 content.add (label);
 
                 add_property (ref list, null, infobar);
@@ -534,6 +540,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               volume_info.capacity,
                                               min_storage,
                                               max_storage,
+                                              volume_info.allocation,
                                               256 * MEGABYTES);
             property.description_alignment = Gtk.Align.START;
             // Disable 'save on timeout' all together since that could lead us to very bad user experience:
