@@ -279,6 +279,25 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (path != null && (file.has_uri_scheme ("file") || file.has_uri_scheme ("smb"))) {
             if (!probing)
                 prepare_for_installer (path, progress);
+            else {
+                var supported = false;
+                var extensions = InstalledMedia.supported_extensions;
+                extensions += "iso";
+                foreach (var extension in extensions)
+                    if (path.has_suffix (extension)) {
+                        supported = true;
+
+                        break;
+                    }
+                if (!supported)
+                    throw new Boxes.Error.INVALID (_("Unsupported file"));
+
+                var info = file.query_info (FileAttribute.STANDARD_TYPE, FileQueryInfoFlags.NONE, null);
+                var file_type = info.get_file_type ();
+
+                if (file_type != FileType.REGULAR && file_type != FileType.SYMBOLIC_LINK)
+                    throw new Boxes.Error.INVALID (_("Invalid file"));
+            }
 
             return;
         }
