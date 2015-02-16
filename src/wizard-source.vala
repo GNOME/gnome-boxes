@@ -16,7 +16,7 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
     [GtkChild]
     public Gtk.Box vbox;
 
-    private int num_visible;
+    private int num_visible { get; set; }
 
     // Ideally, we shouldn't need this fuction but is there a way to connect
     // vscrollbar signals from the UI template?
