@@ -164,7 +164,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             break;
 
         case Boxes.SourcePage.URL:
-            next_button.sensitive = wizard_source.uri.length != 0;
+            next_button.sensitive = false;
 
             var text = _("Please enter desktop or collection URI");
             var icon = "preferences-desktop-remote-desktop";
@@ -177,6 +177,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 } else
                     text = _("Will add a single box.");
 
+                next_button.sensitive = true;
             } catch (GLib.Error error) {
                 // ignore any parsing error
             }
