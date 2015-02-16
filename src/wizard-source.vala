@@ -114,10 +114,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Boxes.WizardScrolled media_scrolled;
     [GtkChild]
-    private Gtk.Label url_description_label;
-    [GtkChild]
-    private Gtk.Image url_image;
-    [GtkChild]
     private Gtk.Box url_entry_vbox;
     [GtkChild]
     public Gtk.Entry url_entry;
@@ -208,11 +204,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     private void on_url_back_button_clicked () {
         selected = null;
         page = SourcePage.MAIN;
-    }
-
-    public void update_url_page(string title, string text, string icon_name) {
-        url_description_label.set_markup ("<b>"  + title + "</b>\n\n" + text);
-        url_image.icon_name = icon_name;
     }
 
     private async void add_media_entries () {

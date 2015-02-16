@@ -168,23 +168,14 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             if (wizard_source.uri.length == 0)
                 return;
 
-            var text = _("Please enter desktop or collection URI");
-            var icon = "preferences-desktop-remote-desktop";
             try {
                 prepare_for_location (wizard_source.uri, true);
-
-                if (source != null && App.app.has_broker_for_source_type (source.source_type)) {
-                    text = _("Will add boxes for all systems available from this account.");
-                    icon = "network-workgroup";
-                } else
-                    text = _("Will add a single box.");
 
                 next_button.sensitive = true;
             } catch (GLib.Error error) {
                 // ignore any parsing error
             }
 
-            wizard_source.update_url_page (_("Desktop Access"), text, icon);
             break;
 
         default:
