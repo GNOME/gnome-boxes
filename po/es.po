@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-09 07:02+0000\n"
-"PO-Revision-Date: 2015-02-09 18:50+0100\n"
+"POT-Creation-Date: 2015-02-17 14:28+0000\n"
+"PO-Revision-Date: 2015-02-17 18:01+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -137,13 +137,11 @@ msgid "Search"
 msgstr "Buscar"
 
 #: ../data/ui/empty-boxes.ui.h:1
-#| msgid "<b><span size=\"large\">No boxes found</span></b>"
 msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
 msgstr ""
 "<b><span size=\"large\">Estado del arte de la virtualización</span></b>"
 
 #: ../data/ui/empty-boxes.ui.h:2
-#| msgid "View and use virtual machines"
 msgid "Boxes can be virtual or remote machines."
 msgstr "Las cajas pueden ser máquinas virtuales o remotas."
 
@@ -173,14 +171,19 @@ msgid "_Open"
 msgstr "_Abrir"
 
 #: ../data/ui/selectionbar.ui.h:1
+#| msgid "Favorite"
+msgid "_Favorite"
+msgstr "_Favorita"
+
+#: ../data/ui/selectionbar.ui.h:2
 msgid "P_ause"
 msgstr "P_ausar"
 
-#: ../data/ui/selectionbar.ui.h:2
+#: ../data/ui/selectionbar.ui.h:3
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: ../data/ui/selectionbar.ui.h:3
+#: ../data/ui/selectionbar.ui.h:4
 msgid "_Properties"
 msgstr "_Propiedades"
 
@@ -246,20 +249,52 @@ msgid "Unknown media"
 msgstr "Medio desconocido"
 
 #: ../data/ui/wizard-source.ui.h:1
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Inserte el medio de instalación del sistema operativo o seleccione una "
+"fuente a continuación"
+
+#: ../data/ui/wizard-source.ui.h:2
 msgid "Enter URL"
 msgstr "Introducir URL"
 
-#: ../data/ui/wizard-source.ui.h:2
+#: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "▶"
 
-#: ../data/ui/wizard-source.ui.h:3
+#: ../data/ui/wizard-source.ui.h:4
 msgid "Select a file"
 msgstr "Seleccionar un archivo"
 
-#: ../data/ui/wizard-source.ui.h:4
+#: ../data/ui/wizard-source.ui.h:5
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Cualquier marca mostrada anteriormente se usa meramente para la "
+"identificación de productos de software que haya obtenido y pertenecen a sus "
+"respectivos propietarios."
+
+#: ../data/ui/wizard-source.ui.h:6
 msgid "◀"
 msgstr "◀"
+
+#: ../data/ui/wizard-source.ui.h:7
+msgid ""
+"Enter an address for the box you want to add. Addresses can be of\n"
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
+"\n"
+"<span color=\"grey\">Examples: http://download./image.iso, spice://"
+"somehost:5051, ovirt://host/path</span>"
+msgstr ""
+"Introduzca la dirección de la caja que quiere añadir. Las direcciones pueden "
+"ser\n"
+"imágenes de instalación, servidores SPICE y VNC, o «brokers» de oVirt o "
+"Libvirt.\n"
+"\n"
+"<span color=\"grey\">Ejemplos: http://descarga./imagen.iso, spice://"
+"equipo:5051, ovirt://equipo/ruta</span>"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -282,41 +317,10 @@ msgid "Customize Resources"
 msgstr "Personalizar recursos"
 
 #: ../data/ui/wizard.ui.h:1
-msgid ""
-"Creating a box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"Crear una caja le permitirá usar otro sistema operativo directamente desde "
-"su sesión existente.\n"
-"\n"
-"Puede conectarse a una máquina existente<b><i>mediante la red</i></b> o "
-"crear una <b><i>máquina virtual</i></b> que se ejecute localmente en su "
-"equipo."
-
-#: ../data/ui/wizard.ui.h:4
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Inserte el medio de instalación del sistema operativo o seleccione una "
-"fuente a continuación"
-
-#: ../data/ui/wizard.ui.h:5
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Cualquier marca mostrada anteriormente se usa meramente para la "
-"identificación de productos de software que haya obtenido y pertenecen a sus "
-"respectivos propietarios."
-
-#: ../data/ui/wizard.ui.h:6
 msgid "Preparing to create new box"
 msgstr "Preparándose para crear la caja nueva"
 
-#: ../data/ui/wizard.ui.h:7
+#: ../data/ui/wizard.ui.h:2
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -331,18 +335,16 @@ msgstr "Acciones sobre la caja"
 
 #. Open in new Window
 #: ../src/actions-popover.vala:35
-#| msgid "Open in new Window"
 msgid "Open in New Window"
 msgstr "Abrir en una ventana nueva"
 
 #. Favorite
 #: ../src/actions-popover.vala:39
-#| msgid "Remove favorite"
-msgid "Add to favorites"
-msgstr "Añadir a favoritos"
+#| msgid "Add to favorites"
+msgid "Add to Favorites"
+msgstr "Añadir a favoritas"
 
 #: ../src/actions-popover.vala:41
-#| msgid "Remove favorite"
 msgid "Remove from Favorites"
 msgstr "Quitar de favoritos"
 
@@ -436,12 +438,19 @@ msgstr "_Deshacer"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: ../src/display-page.vala:100
-msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(pulse las teclas Ctrl+Alt [izquierda] para deseleccionar)"
+#: ../src/display-page.vala:107
+#| msgid "(press [left] Ctrl+Alt keys to ungrab)"
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "Pulse las teclas Ctrl+Alt [izquierda] para liberar"
+
+#: ../src/display-page.vala:109
+#| msgid "(press [left] Ctrl+Alt keys to ungrab)"
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr ""
+"Pulse y suelte las teclas Ctrl+Alt [izquierda] para liberar el teclado."
 
 #. Translators: Showing size of widget as WIDTHxHEIGHT here.
-#: ../src/display-page.vala:226
+#: ../src/display-page.vala:246
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
@@ -492,7 +501,7 @@ msgid "Protocol"
 msgstr "Protocolo"
 
 #: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:68
-#: ../src/remote-machine.vala:68 ../src/wizard.vala:473
+#: ../src/remote-machine.vala:68 ../src/wizard.vala:482
 msgid "URI"
 msgstr "URI"
 
@@ -568,7 +577,7 @@ msgstr "Registro de resolución de problemas"
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
-#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:511
+#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Memoria"
 
@@ -803,29 +812,28 @@ msgstr "Falló al crear la instantánea de %s"
 msgid "Unknown"
 msgstr "Desconocida"
 
-#: ../src/spice-display.vala:51 ../src/spice-display.vala:320
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:323
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Falló al redireccionar el dispositivo USB «%s» para «%s»"
 
-#: ../src/spice-display.vala:280
-#| msgid "Share clipboard"
+#: ../src/spice-display.vala:283
 msgid "Share Clipboard"
 msgstr "Compartir portapapeles"
 
-#: ../src/spice-display.vala:306
+#: ../src/spice-display.vala:309
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: ../src/spice-display.vala:442 ../src/wizard.vala:296 ../src/wizard.vala:303
+#: ../src/spice-display.vala:445 ../src/wizard.vala:305 ../src/wizard.vala:312
 msgid "Invalid URI"
 msgstr "URI no válido"
 
-#: ../src/spice-display.vala:452
+#: ../src/spice-display.vala:455
 msgid "The port must be specified once"
 msgstr "El puedo se debe especificar una vez"
 
-#: ../src/spice-display.vala:461
+#: ../src/spice-display.vala:464
 msgid "Missing port in Spice URI"
 msgstr "Falta el puerto en el URI de Spice"
 
@@ -964,113 +972,145 @@ msgstr "sistema x86 de 64 bits"
 msgid " from %s"
 msgstr " de %s"
 
-#: ../src/wizard-toolbar.vala:60
-msgid "Create a box"
-msgstr "Crear una caja"
+#: ../src/wizard-toolbar.vala:6
+msgid "Source Selection"
+msgstr "Selección de la fuente"
 
-#: ../src/wizard-toolbar.vala:64
-#, c-format
-msgid "Create a box (step %d/4)"
-msgstr "Crear una caja (paso %d/4)"
+#: ../src/wizard-toolbar.vala:7
+#| msgid "Preparation"
+msgid "Box Preparation"
+msgstr "Preparación de la caja"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard-toolbar.vala:8
+#| msgid "Setup"
+msgid "Box Setup"
+msgstr "Configuración de la caja"
+
+#: ../src/wizard-toolbar.vala:9
+msgid "Review"
+msgstr "Revisar"
+
+#: ../src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Falló la creación de la caja"
 
-#: ../src/wizard.vala:173
-msgid "Please enter desktop or collection URI"
-msgstr "Introduzca el URI del escritorio o la colección"
-
-#: ../src/wizard.vala:179
-msgid "Will add boxes for all systems available from this account."
-msgstr "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
-
-#: ../src/wizard.vala:182
-msgid "Will add a single box."
-msgstr "Se añadirá una sola caja."
-
-#. ignore any parsing error
-#: ../src/wizard.vala:188
-msgid "Desktop Access"
-msgstr "Acceso desde el escritorio"
-
-#: ../src/wizard.vala:278
+#: ../src/wizard.vala:268
 msgid "Empty location"
 msgstr "Ubicación vacía"
 
-#: ../src/wizard.vala:320
+#: ../src/wizard.vala:287
+#| msgid "Unsupported protocol '%s'"
+msgid "Unsupported file"
+msgstr "Archivo no soportado"
+
+#: ../src/wizard.vala:293
+#| msgid "Invalid URI"
+msgid "Invalid file"
+msgstr "Archivo no válido"
+
+#: ../src/wizard.vala:329
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Protocolo «%s» no soportado"
 
-#: ../src/wizard.vala:326 ../src/wizard.vala:395
+#: ../src/wizard.vala:335 ../src/wizard.vala:404
 msgid "Unknown installer media"
 msgstr "Instalador del medio desconocido"
 
-#: ../src/wizard.vala:327 ../src/wizard.vala:396
+#: ../src/wizard.vala:336 ../src/wizard.vala:405
 msgid "Analyzing…"
 msgstr "Analizando…"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:350
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Falló al analizar"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:449
+#: ../src/wizard.vala:458
 msgid "Box setup failed"
 msgstr "Falló la configuración de la caja"
 
-#: ../src/wizard.vala:463
+#: ../src/wizard.vala:472
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Se creará una caja nueva con las siguientes propiedades:"
 
-#: ../src/wizard.vala:468
+#: ../src/wizard.vala:477
 msgid "Type"
 msgstr "Tipo"
 
-#: ../src/wizard.vala:471
+#: ../src/wizard.vala:480
 msgid "Host"
 msgstr "Servidor"
 
-#: ../src/wizard.vala:482 ../src/wizard.vala:493
+#: ../src/wizard.vala:491 ../src/wizard.vala:502
 msgid "Port"
 msgstr "Puerto"
 
-#: ../src/wizard.vala:484
+#: ../src/wizard.vala:493
 msgid "TLS Port"
 msgstr "Puerto TLS"
 
-#: ../src/wizard.vala:498
+#: ../src/wizard.vala:507
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Se añadirán cajas para todos los sistemas disponibles desde esta cuenta:"
 
-#: ../src/wizard.vala:520
+#: ../src/wizard.vala:529
 msgid "Disk"
 msgstr "Disco"
 
-#: ../src/wizard.vala:520
+#: ../src/wizard.vala:529
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: ../src/wizard.vala:583
+#: ../src/wizard.vala:592
 msgid "Downloading media…"
 msgstr "Descargando medios…"
 
-#: ../src/wizard.vala:593
+#: ../src/wizard.vala:602
 msgid "Download failed."
 msgstr "Falló la descarga."
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:709
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
 
+#~ msgid ""
+#~ "Creating a box will allow you to use another operating system directly "
+#~ "from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or "
+#~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "Crear una caja le permitirá usar otro sistema operativo directamente "
+#~ "desde su sesión existente.\n"
+#~ "\n"
+#~ "Puede conectarse a una máquina existente<b><i>mediante la red</i></b> o "
+#~ "crear una <b><i>máquina virtual</i></b> que se ejecute localmente en su "
+#~ "equipo."
+
+#~ msgid "Create a box"
+#~ msgstr "Crear una caja"
+
+#~ msgid "Create a box (step %d/4)"
+#~ msgstr "Crear una caja (paso %d/4)"
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "Introduzca el URI del escritorio o la colección"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "Añadirá cajas para todos los sistemas disponibles desde esta cuenta."
+
+#~ msgid "Will add a single box."
+#~ msgstr "Se añadirá una sola caja."
+
+#~ msgid "Desktop Access"
+#~ msgstr "Acceso desde el escritorio"
+
 #~ msgid "Create one using the button on the top left."
 #~ msgstr "Cree una usando en botón de la parte superior izquierda."
-
-#~ msgid "Favorite"
-#~ msgstr "Favorita"
 
 #~ msgid "_Save"
 #~ msgstr "_Guardar"
@@ -1092,18 +1132,6 @@ msgstr "_Personalizar…"
 
 #~ msgid "Introduction"
 #~ msgstr "Introducción"
-
-#~ msgid "Source Selection"
-#~ msgstr "Selección de la fuente"
-
-#~ msgid "Preparation"
-#~ msgstr "Preparación"
-
-#~ msgid "Setup"
-#~ msgstr "Configuración"
-
-#~ msgid "Review"
-#~ msgstr "Revisar"
 
 #~ msgid "Virtualizer"
 #~ msgstr "Virtualizador"
