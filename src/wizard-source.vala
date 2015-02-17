@@ -181,6 +181,26 @@ private class Boxes.WizardSource: Gtk.Stack {
         assert (window != null);
 
         this.window = window;
+
+        var os_db = media_manager.os_db;
+        os_db.get_all_media_urls_as_store.begin ((db, result) => {
+            try {
+                var url_store = os_db.get_all_media_urls_as_store.end (result);
+                var completion = new Gtk.EntryCompletion ();
+                completion.text_column = 0;
+                completion.model = url_store;
+                completion.set_match_func ((store, key, iter) => {
+                    string url;
+
+                    url_store.get (iter, 0, out url);
+
+                    return url.contains (key);
+                });
+                url_entry.completion = completion;
+            } catch (OSDatabaseError error) {
+                debug ("Failed to get all known media URLs: %s", error.message);
+            }
+        });
     }
 
     public void cleanup () {
