@@ -189,6 +189,8 @@ private class Boxes.WizardSource: Gtk.Stack {
                 var completion = new Gtk.EntryCompletion ();
                 completion.text_column = 0;
                 completion.model = url_store;
+                weak Gtk.CellRendererText cell = completion.get_cells ().nth_data (0) as Gtk.CellRendererText;
+                cell.ellipsize = Pango.EllipsizeMode.START;
                 completion.set_match_func ((store, key, iter) => {
                     string url;
 
