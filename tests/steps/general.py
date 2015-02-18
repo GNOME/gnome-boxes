@@ -35,13 +35,20 @@ def boxes_not_running(context):
 def number_of_windows(context, num):
     assert len(context.app.children) == int(num), "App has just %s windows not %s" %(len(context.app.children), num)
 
-@step('Customize mem to 64 MB')
-def customize_vm(context):
+@step('Customize mem to "{mem}" MB')
+def customize_vm(context, mem):
     context.app.child('Customize…').click()
     sleep(0.5)
-    pressKey('Page_Up')
-    pressKey('Page_Up')
-
+    pressKey('Tab')
+    pressKey('Tab')
+    memory_label = context.app.findChildren(lambda x: x.name == 'Memory' and x.showing)[0]
+    mem = mem+" MiB"
+    counter = 0
+    while not memory_label.parent.findChildren(lambda x: x.name == mem and x.showing):
+        pressKey('Left')
+        counter += 1
+        if counter == 100:
+            break
     context.app.findChildren(lambda x: x.name == 'Back' and x.showing)[0].click()
     sleep(0.5)
 

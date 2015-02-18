@@ -48,7 +48,7 @@ Feature: General
   @customize_machine_before_installation
   Scenario: Customize machine before installation
     * Create new box from menu "Core-5"
-    * Customize mem to 64 MB
+    * Customize mem to "64.0" MB
     * Press "Create"
     * Wait for "sleep 10" end
     Then "65536 KiB" is visible with command "DOM=$(virsh list |grep boxes |awk {'print $1'}); virsh dominfo $DOM"
