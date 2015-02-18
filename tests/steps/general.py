@@ -69,7 +69,7 @@ def help_shown(context):
 
 @step('No box is visible')
 def no_box_sign(context):
-    assert context.app.child('No boxes found') != None
+    assert context.app.child('Just hit the New button to create your first one.') != None
 
 @step('Press "{action}" in "{vm}" vm')
 def press_back_in_vm(context, action, vm):
