@@ -215,6 +215,10 @@ def after_tag(context, tag):
         os.system('virsh -q -c qemu:///system destroy Core-5.3 > /dev/null 2>&1')
         os.system('virsh -q -c qemu:///system undefine Core-5.3 > /dev/null 2>&1')
 
+        if tag == "import_2_boxs_from_system_broker":
+            os.system('virsh -q -c qemu:///system destroy Core-5.3-2 > /dev/null 2>&1')
+            os.system('virsh -q -c qemu:///system undefine Core-5.3-2 > /dev/null 2>&1')
+
 
 def after_scenario(context, scenario):
     """Teardown for each scenario
