@@ -169,6 +169,7 @@ def before_scenario(context, scenario):
 def before_tag(context, tag):
     if 'vnc' in tag:
         if not os.path.isfile('/usr/bin/vncserver'):
+            do_restore()
             sys.exit(77)
 
         os.system('vncserver -SecurityTypes None > /dev/null 2>&1')
@@ -178,7 +179,7 @@ def before_tag(context, tag):
         if call('pkcheck -a org.libvirt.unix.manage --process $BASHPID', shell=True) != 0 \
             or not os.path.isfile('/usr/bin/virt-install') \
             or call('systemctl status libvirtd  > /dev/null 2>&1', shell=True) != 0:
-
+            do_restore()
             sys.exit(77)
 
     if 'help' in tag:
