@@ -110,8 +110,7 @@ def do_restore():
                   do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
               done; \
               virsh save $i ~/.config/libvirt/qemu/save/$i.save ; \
-              cd -; \
-              done;", shell=True, stdout=f, stderr=f)
+              done; cd -;", shell=True, stdout=f, stderr=f)
 
     call("mv ~/boxes_backup/sources/* ~/.cache/gnome-boxes/sources/", shell=True, stdout=f)
 
