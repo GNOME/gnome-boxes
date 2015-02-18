@@ -17,9 +17,11 @@ Feature: Snapshots
     When "network down" is visible with command "virsh snapshot-current boxes-unknown |grep description"
     When Cannot ping "Core-5"
     * Revert machine "Core-5" to state "working network"
+    * Wait for "sleep 5" end
     When "working network" is visible with command "virsh snapshot-current boxes-unknown |grep description"
     When Ping "Core-5"
     * Revert machine "Core-5" to state "network down"
+    * Wait for "sleep 5" end
     Then Cannot ping "Core-5"
 
   @delete_snapshots
