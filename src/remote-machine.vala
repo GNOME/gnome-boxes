@@ -52,8 +52,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         switch (page) {
         case PropertiesPage.GENERAL:
-            var property = add_string_property (ref list, _("Name"), source.name);
-            property.editable = true;
+            var property = add_editable_string_property (ref list, _("Name"), source.name);
             property.changed.connect ((property, name) => {
                 this.name = name;
                 return true;
@@ -65,13 +64,15 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             });
 
             add_string_property (ref list, _("Protocol"), source.source_type.up ());
-            property = add_string_property (ref list, _("URI"), source.uri);
-            if (!is_connected ())
-                property.editable = true;
-            property.changed.connect ((property, uri) => {
-                source.uri = uri;
-                return true;
-            });
+            if (is_connected ()) {
+                add_string_property (ref list, _("URI"), source.uri);
+            } else {
+                property = add_editable_string_property (ref list, _("URI"), source.uri);
+                property.changed.connect ((property, uri) => {
+                    source.uri = uri;
+                    return true;
+               });
+            }
 
             break;
         }

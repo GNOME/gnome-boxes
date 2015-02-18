@@ -115,8 +115,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         switch (page) {
         case PropertiesPage.GENERAL:
-            var property = add_string_property (ref list, _("Name"), machine.name);
-            property.editable = true;
+            var property = add_editable_string_property (ref list, _("Name"), machine.name);
             property.changed.connect ((property, name) => {
                 machine.name = name;
 
@@ -134,7 +133,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             add_string_property (ref list, _("Broker"), machine.source.name);
             if (machine.display != null) {
                 add_string_property (ref list, _("Protocol"), machine.display.protocol);
-                property = add_string_property (ref list, _("URI"), machine.display.uri);
+                add_string_property (ref list, _("URI"), machine.display.uri);
             }
             break;
 

@@ -142,12 +142,20 @@ private class Boxes.SizeProperty : Boxes.Property {
 }
 
 private class Boxes.StringProperty : Boxes.Property {
-    public signal bool changed (string value);
-
-    public bool editable {
-        get { return entry.editable; }
-        set { entry.editable = value; }
+    public string text {
+        get { return (widget as Gtk.Label).label; }
     }
+
+    public StringProperty (string name, string value) {
+        var label = new Gtk.Label (value);
+        label.halign = Gtk.Align.START;
+
+        base (name, label, null);
+    }
+}
+
+private class Boxes.EditableStringProperty : Boxes.Property {
+    public signal bool changed (string value);
 
     public string text {
         get { return entry.text; }
@@ -156,8 +164,9 @@ private class Boxes.StringProperty : Boxes.Property {
 
     private Boxes.EditableEntry entry;
 
-    public StringProperty (string name, string value) {
+    public EditableStringProperty (string name, string value) {
         var entry = new Boxes.EditableEntry ();
+        entry.editable = true;
 
         base (name, entry, null);
         this.entry = entry;
@@ -194,6 +203,15 @@ private interface Boxes.IPropertiesProvider: GLib.Object {
                                                         string                   name,
                                                         string                   value) {
         var property = new StringProperty (name, value);
+        list.append (property);
+
+        return property;
+    }
+
+    protected Boxes.EditableStringProperty add_editable_string_property (ref List<Boxes.Property> list,
+                                                                         string                   name,
+                                                                         string                   value) {
+        var property = new EditableStringProperty (name, value);
         list.append (property);
 
         return property;
