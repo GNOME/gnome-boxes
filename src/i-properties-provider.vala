@@ -162,21 +162,18 @@ private class Boxes.EditableStringProperty : Boxes.Property {
         set { entry.text = value; }
     }
 
-    private Boxes.EditableEntry entry;
+    private Gtk.Entry entry;
 
     public EditableStringProperty (string name, string value) {
-        var entry = new Boxes.EditableEntry ();
-        entry.editable = true;
+        var entry = new Gtk.Entry ();
 
         base (name, entry, null);
         this.entry = entry;
 
         entry.text = value;
-        entry.selectable = true;
 
-        entry.editing_done.connect (() => {
-            if (!changed (entry.text))
-                entry.start_editing ();
+        entry.notify["text"].connect (() => {
+            changed (entry.text);
         });
     }
 }
