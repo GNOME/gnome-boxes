@@ -118,11 +118,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var property = add_editable_string_property (ref list, _("Name"), machine.name);
             property.changed.connect ((property, name) => {
                 machine.name = name;
-
-                // Its unlikely that machine name change fails and even if it
-                // does, name is still changed in the UI at least (it just
-                // doesn't get saved).
-                return true;
             });
 
             var name_property = property;

@@ -155,7 +155,7 @@ private class Boxes.StringProperty : Boxes.Property {
 }
 
 private class Boxes.EditableStringProperty : Boxes.Property {
-    public signal bool changed (string value);
+    public signal void changed (string value);
 
     public string text {
         get { return entry.text; }
