@@ -28,43 +28,7 @@ def downloadfile(url):
     except URLError, e:
         print "URL Error:", e.reason, url
 
-def before_all(context):
-    """Setup stuff
-    Being executed once before any test
-    """
-
-    try:
-        if not os.path.isfile('/tmp/boxes_configured'):
-            print "** Turning off gnome idle"
-            if call("gsettings set org.gnome.desktop.session idle-delay 0", shell=True) == 0:
-                print "PASS\n"
-            else:
-                print "FAIL: unable to turn off screensaver. This can cause failures"
-
-            # Download Core-5.3.iso and images for import if not there
-            downloadfile('http://distro.ibiblio.org/tinycorelinux/5.x/x86/archive/5.3/Core-5.3.iso')
-            downloadfile('https://dl.dropboxusercontent.com/u/93657599/vbenes/Core-5.3.vmdk')
-            downloadfile('https://dl.dropboxusercontent.com/u/93657599/vbenes/Core-5.3.qcow2')
-            call('cp ~/Downloads/Core-5.3.iso /tmp', shell=True)
-            call('cp ~/Downloads/Core-5.3.qcow2 /tmp', shell=True)
-            call('touch /tmp/boxes_configured', shell=True)
-
-        # Skip dogtail actions to print to stdout
-        config.logDebugToStdOut = False
-        config.typingDelay = 0.1
-        config.childrenLimit = 500
-
-        # Include assertion object
-        context.assertion = dummy()
-
-        # Store scenario start time for session logs
-        context.log_start_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
-
-        context.app_class = App('gnome-boxes')
-
-    except Exception as e:
-        print "Error in before_all: %s" % e.message
-
+def do_backup():
     f = open(os.devnull, "w")
 
     try:
@@ -114,6 +78,91 @@ def before_all(context):
     call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
          "    virsh undefine --managed-save $i; done", shell=True, stdout=f)
     f.close()
+
+def do_restore():
+    if not os.path.isfile('/tmp/boxes_backup'):
+        return
+
+    f = open(os.devnull, "w")
+
+    print "** Restoring Boxes backup"
+    # move images back
+    call("mv ~/boxes_backup/images/* ~/.local/share/gnome-boxes/images/", shell=True, stderr=f)
+
+    # move save states back
+    #call("mkdir ~/.config/libvirt/qemu/save/", shell=True, stdout=f, stderr=f)
+    call("mv ~/boxes_backup/save/* ~/.config/libvirt/qemu/save/", shell=True, stdout=f, stderr=f)
+
+    # import machines
+    call("for i in $(ls ~/boxes_backup |grep xml); do virsh define ~/boxes_backup/$i; done", shell=True, stdout=f)
+
+    # import snapshots
+    # IFS moved to _ as snapshots have spaces in names
+    # there are two types of snapshots running/shutoff
+    # so we need to import each typo into different state running vs shutted down
+    call("export IFS='_'; cd ~/boxes_backup/snapshot/; \
+          for i in * ; do \
+              for s in $i/*.xml; \
+                  do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
+              done; \
+              virsh start $i; \
+              for s in $i/*.xml; \
+                  do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
+              done; \
+              virsh save $i ~/.config/libvirt/qemu/save/$i.save ; \
+              cd -; \
+              done;", shell=True, stdout=f, stderr=f)
+
+    call("mv ~/boxes_backup/sources/* ~/.cache/gnome-boxes/sources/", shell=True, stdout=f)
+
+    # delete marker
+    call("rm -rf /tmp/boxes_backup", shell=True, stdout=f)
+
+    # delete backup
+    call("rm -rf ~/boxes_backup", shell=True, stdout=f)
+
+    print "* Done\n"
+
+    f.close()
+
+def before_all(context):
+    """Setup stuff
+    Being executed once before any test
+    """
+
+    try:
+        if not os.path.isfile('/tmp/boxes_configured'):
+            print "** Turning off gnome idle"
+            if call("gsettings set org.gnome.desktop.session idle-delay 0", shell=True) == 0:
+                print "PASS\n"
+            else:
+                print "FAIL: unable to turn off screensaver. This can cause failures"
+
+            # Download Core-5.3.iso and images for import if not there
+            downloadfile('http://distro.ibiblio.org/tinycorelinux/5.x/x86/archive/5.3/Core-5.3.iso')
+            downloadfile('https://dl.dropboxusercontent.com/u/93657599/vbenes/Core-5.3.vmdk')
+            downloadfile('https://dl.dropboxusercontent.com/u/93657599/vbenes/Core-5.3.qcow2')
+            call('cp ~/Downloads/Core-5.3.iso /tmp', shell=True)
+            call('cp ~/Downloads/Core-5.3.qcow2 /tmp', shell=True)
+            call('touch /tmp/boxes_configured', shell=True)
+
+        # Skip dogtail actions to print to stdout
+        config.logDebugToStdOut = False
+        config.typingDelay = 0.1
+        config.childrenLimit = 500
+
+        # Include assertion object
+        context.assertion = dummy()
+
+        # Store scenario start time for session logs
+        context.log_start_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
+
+        context.app_class = App('gnome-boxes')
+
+    except Exception as e:
+        print "Error in before_all: %s" % e.message
+
+    do_backup()
 
 def before_scenario(context, scenario):
     pass
@@ -232,46 +281,4 @@ def after_scenario(context, scenario):
         print "Error in after_scenario: %s" % e.message
 
 def after_all(context):
-    if not os.path.isfile('/tmp/boxes_backup'):
-        return
-
-    f = open(os.devnull, "w")
-
-    print "** Restoring Boxes backup"
-    # move images back
-    call("mv ~/boxes_backup/images/* ~/.local/share/gnome-boxes/images/", shell=True, stderr=f)
-
-    # move save states back
-    call("mv ~/boxes_backup/save/* ~/.config/libvirt/qemu/save/", shell=True, stdout=f, stderr=f)
-
-    # import machines
-    call("for i in $(ls ~/boxes_backup |grep xml); do virsh define ~/boxes_backup/$i; done", shell=True, stdout=f)
-
-    # import snapshots
-    # IFS moved to _ as snapshots have spaces in names
-    # there are two types of snapshots running/shutoff
-    # so we need to import each typo into different state running vs shutted down
-    call("export IFS='_'; cd ~/boxes_backup/snapshot/; \
-          for i in * ; do\
-              for s in $i/*.xml; \
-                  do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
-              done; \
-              virsh start $i; \
-              for s in $i/*.xml; \
-                  do virsh snapshot-create $i ~/boxes_backup/snapshot/$s; \
-              done; \
-              virsh save $i ~/.config/libvirt/qemu/save/$i.save ; \
-              cd -; \
-              done", shell=True, stdout=f, stderr=f)
-
-    call("mv ~/boxes_backup/sources/* ~/.cache/gnome-boxes/sources/", shell=True, stdout=f)
-
-    # delete marker
-    call("rm -rf /tmp/boxes_backup", shell=True, stdout=f)
-
-    # delete backup
-    call("rm -rf ~/boxes_backup", shell=True, stdout=f)
-
-    print "* Done\n"
-
-    f.close()
+    do_restore()
