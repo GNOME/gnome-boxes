@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-18 07:02+0000\n"
-"PO-Revision-Date: 2015-02-18 15:46+0100\n"
+"POT-Creation-Date: 2015-02-19 07:14+0000\n"
+"PO-Revision-Date: 2015-02-19 19:26+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -474,6 +474,14 @@ msgstr "Nepodporovaný formát obrazu disku."
 msgid "System"
 msgstr "Systém"
 
+#: ../src/i-properties-provider.vala:88
+#, c-format
+#| msgid ""
+#| "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#| "\">(%s used)</span>"
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s využitých)</span>"
+
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
@@ -501,58 +509,59 @@ msgstr "Odoslať kombináciu klávesov"
 msgid "Name"
 msgstr "Názov"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:66
+#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
 msgid "Broker"
 msgstr "Správca virtualizácie"
 
-#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:67
-#: ../src/remote-machine.vala:67
+#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
+#: ../src/remote-machine.vala:65
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:68
-#: ../src/remote-machine.vala:68 ../src/wizard.vala:482
+#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
+#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
+#: ../src/wizard.vala:482
 msgid "URI"
 msgstr "URI"
 
 # button label
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:186
-#: ../src/libvirt-machine-properties.vala:204
+#: ../src/libvirt-machine-properties.vala:180
+#: ../src/libvirt-machine-properties.vala:198
 msgid "Add support to guest"
 msgstr "Pridať podporu hosťovi"
 
-#: ../src/libvirt-machine-properties.vala:188
+#: ../src/libvirt-machine-properties.vala:182
 msgid "USB device support"
 msgstr "Podpora zariadení USB"
 
-#: ../src/libvirt-machine-properties.vala:206
+#: ../src/libvirt-machine-properties.vala:200
 msgid "Smartcard support"
 msgstr "Podpora kariet Smart"
 
 # DK: nahradza nazov suboru ked neni pripojeny obraz disku
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:258
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:252
+#: ../src/libvirt-machine-properties.vala:304
 msgid "empty"
 msgstr "prázdne"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:267
-#: ../src/libvirt-machine-properties.vala:319
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:281
-#: ../src/libvirt-machine-properties.vala:309
+#: ../src/libvirt-machine-properties.vala:275
+#: ../src/libvirt-machine-properties.vala:303
 msgid "Select"
 msgstr "Vybrať"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:284
-#: ../src/libvirt-machine-properties.vala:292
+#: ../src/libvirt-machine-properties.vala:278
+#: ../src/libvirt-machine-properties.vala:286
 msgid "Remove"
 msgstr "Odstrániť"
 
@@ -560,45 +569,45 @@ msgstr "Odstrániť"
 # DK:https://bugzilla.gnome.org/show_bug.cgi?id=695548
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:299
+#: ../src/libvirt-machine-properties.vala:293
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Vloženie súboru „%s“ ako CD/DVD do virtuálneho stroja „%s“ zlyhalo"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:307
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Odstránenie CD/DVD z virtuálneho stroja „%s“ zlyhalo"
 
-#: ../src/libvirt-machine-properties.vala:379
+#: ../src/libvirt-machine-properties.vala:373
 msgid "CPU"
 msgstr "Procesor"
 
 # DK: prekladame ako Vstupno/Vystupne alebo ostava I/O ?
 # PK: V/V
-#: ../src/libvirt-machine-properties.vala:385
+#: ../src/libvirt-machine-properties.vala:379
 msgid "I/O"
 msgstr "V/V"
 
-#: ../src/libvirt-machine-properties.vala:391
+#: ../src/libvirt-machine-properties.vala:385
 msgid "Network"
 msgstr "Sieť"
 
 # dalog
-#: ../src/libvirt-machine-properties.vala:414
+#: ../src/libvirt-machine-properties.vala:408
 msgid "Troubleshooting log"
 msgstr "Záznam pre riešenie problémov"
 
-#: ../src/libvirt-machine-properties.vala:421
+#: ../src/libvirt-machine-properties.vala:415
 msgid "Force Shutdown"
 msgstr "Vynútiť vypnutie"
 
-#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:440 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Pamäť"
 
-#: ../src/libvirt-machine-properties.vala:514
+#: ../src/libvirt-machine-properties.vala:508
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -607,14 +616,14 @@ msgstr ""
 "<span color=\"grey\">Maximálna veľkosť disku</span>\t\t %s <span color=\"grey"
 "\">(%s využitých)</span>"
 
-#: ../src/libvirt-machine-properties.vala:530
+#: ../src/libvirt-machine-properties.vala:524
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Na zvýšenie maximálnej veľkosti disku nie je dostatok miesta vo vašom "
 "počítači."
 
-#: ../src/libvirt-machine-properties.vala:539
+#: ../src/libvirt-machine-properties.vala:533
 msgid "Maximum Disk Size"
 msgstr "Maximálna veľkosť disku"
 
