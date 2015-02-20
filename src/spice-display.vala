@@ -287,11 +287,12 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             if (PropertyCreationFlag.NO_USB in flags || !Config.HAVE_USBREDIR|| !connected)
                 break;
 
-            bool found_dev = false;
-            Boxes.Property usb_property = null;
             try {
                 var manager = UsbDeviceManager.get (session);
                 var devs = get_usb_devices (manager);
+
+                if (devs.length <= 0)
+                    return list;
 
                 devs.sort ( (a, b) => {
                     string str_a = a.get_description ("    %1$s %2$s");
@@ -299,15 +300,15 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
                     return strcmp (str_a, str_b);
                 });
+
+                var usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""));
+
                 for (int i = 0; i < devs.length; i++) {
                     var dev = devs[i];
 
                     var dev_toggle = new Gtk.Switch ();
                     dev_toggle.halign =  Gtk.Align.START;
 
-                    if (!found_dev)
-                        usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""));
-                    found_dev = true;
                     usb_property = add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
                     dev_toggle.active = manager.is_device_connected (dev);
 
@@ -332,9 +333,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                         }
                     });
                 }
-
-                if (usb_property == null)
-                    break;
 
                 manager.device_added.connect ((manager, dev) => {
                     usb_property.refresh_properties ();
