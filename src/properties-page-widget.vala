@@ -72,8 +72,8 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
                 }
 
                 property.refresh_properties.connect (() => {
-                        this.refresh_properties ();
-                        });
+                    this.refresh_properties ();
+                });
                 current_row += 1;
             }
         }
