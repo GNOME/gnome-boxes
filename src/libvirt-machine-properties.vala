@@ -310,7 +310,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             }
         });
 
-        add_property (ref list, _("CD/DVD"), grid);
+        var property = add_property (ref list, _("CD/DVD"), grid);
+        property.description_alignment = Gtk.Align.START;
     }
 
     private void update_ram_property (Boxes.Property property) {
