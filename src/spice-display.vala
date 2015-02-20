@@ -301,15 +301,27 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                     return strcmp (str_a, str_b);
                 });
 
-                var usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""));
+                var frame = new Gtk.Frame (null);
+                var listbox = new Gtk.ListBox ();
+                listbox.hexpand = true;
+                frame.add (listbox);
 
                 for (int i = 0; i < devs.length; i++) {
                     var dev = devs[i];
 
+                    var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+                    hbox.margin_start = 12;
+                    hbox.margin_end = 12;
+                    hbox.margin_top = 6;
+                    hbox.margin_bottom = 6;
+                    var label = new Gtk.Label (dev.get_description ("%1$s %2$s"));
+                    label.halign = Gtk.Align.START;
+                    hbox.pack_start (label, true, true, 0);
                     var dev_toggle = new Gtk.Switch ();
-                    dev_toggle.halign =  Gtk.Align.START;
+                    dev_toggle.halign = Gtk.Align.END;
+                    hbox.pack_start (dev_toggle, true, true, 0);
+                    listbox.prepend (hbox);
 
-                    usb_property = add_property (ref list, dev.get_description ("    %1$s %2$s"), dev_toggle);
                     dev_toggle.active = manager.is_device_connected (dev);
 
                     dev_toggle.notify["active"].connect ( () => {
@@ -333,6 +345,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                         }
                     });
                 }
+
+                var usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""), frame);
 
                 manager.device_added.connect ((manager, dev) => {
                     usb_property.refresh_properties ();
