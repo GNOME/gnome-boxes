@@ -340,14 +340,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                     usb_property.refresh_properties ();
                 });
                 manager.device_removed.connect ((manager, dev) => {
-                    Idle.add (() => {
-                        // FIXME: This is done in an idle to workaround a bug in spice-gtk 0.18 where calling
-                        // UsbDeviceManager.get_devices() from the "device-removed" signal callback will
-                        // return a list of devices which still contains the removed device.
-                        // This is fixed in spice-gtk by 09124ecc50.
-                        usb_property.refresh_properties ();
-                        return false;
-                    });
+                    usb_property.refresh_properties ();
                 });
             } catch (GLib.Error error) {
             }
