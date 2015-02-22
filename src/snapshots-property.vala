@@ -36,6 +36,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         var toolbar = new Gtk.Toolbar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
         toolbar.icon_size = Gtk.IconSize.MENU;
+        toolbar.valign = Gtk.Align.START;
 
         var create_snapshot_button = new Gtk.ToolButton (null, null);
         create_snapshot_button.clicked.connect (() => {
@@ -64,7 +65,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
 
         snapshot_list_frame.add (snapshot_stack);
         snapshot_box.pack_start (snapshot_list_frame, true, true);
-        snapshot_box.pack_start (toolbar, true, false);
+        snapshot_box.pack_start (toolbar, true, true);
         stack.add (snapshot_box);
 
         // Activity page
