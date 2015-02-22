@@ -366,6 +366,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         grid.row_spacing = 5;
         grid.column_spacing = 10;
         grid.column_homogeneous = true;
+        grid.vexpand = false;
 
         // CPU
         var cpu_graph = new MiniGraph (100);
