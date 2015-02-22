@@ -3,28 +3,28 @@
 private class Boxes.SnapshotsProperty : Boxes.Property {
     private LibvirtMachine machine;
     private Gtk.ListBox snapshot_list = new Gtk.ListBox ();
-    private Gtk.Stack snapshot_stack;
+    private Gtk.Stack stack;
     private Gtk.Label activity_label = new Gtk.Label ("");
     private Gtk.Box activity_box;
     private Gtk.Box snapshot_box;
     private string? activity {
         set {
             if (value == null) {
-                snapshot_stack.visible_child = snapshot_box;
+                stack.visible_child = snapshot_box;
             } else {
                 activity_label.label = value;
-                snapshot_stack.visible_child = activity_box;
+                stack.visible_child = activity_box;
             }
         }
     }
 
     public SnapshotsProperty (LibvirtMachine machine) {
-        var snapshot_stack = new Gtk.Stack ();
-        snapshot_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
+        var stack = new Gtk.Stack ();
+        stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
-        base (null, snapshot_stack, null);
+        base (null, stack, null);
 
-        this.snapshot_stack = snapshot_stack;
+        this.stack = stack;
         this.machine = machine;
 
         // Snapshots page
@@ -50,7 +50,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         snapshot_list_frame.add (snapshot_list);
         snapshot_box.pack_start (snapshot_list_frame, true, true);
         snapshot_box.pack_start (toolbar, true, false);
-        snapshot_stack.add (snapshot_box);
+        stack.add (snapshot_box);
 
         // Activity page
         activity_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
@@ -61,7 +61,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         activity_box.pack_start (activity_spinner, false, false);
         activity_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         activity_box.pack_start (activity_label, false, false);
-        snapshot_stack.add (activity_box);
+        stack.add (activity_box);
 
         fetch_snapshots.begin ();
     }
