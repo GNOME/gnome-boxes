@@ -20,37 +20,40 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
 
     public SnapshotsProperty (LibvirtMachine machine) {
         var snapshot_stack = new Gtk.Stack ();
+        snapshot_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
 
         base (null, snapshot_stack, null);
 
+        this.snapshot_stack = snapshot_stack;
         this.machine = machine;
-        snapshot_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
-        this.activity_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
-        this.snapshot_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
-        var create_snapshot_button = new Gtk.ToolButton (null, null);
+        // Snapshots page
+        snapshot_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        snapshot_box.margin = 20;
+
         var toolbar = new Gtk.Toolbar ();
         toolbar.get_style_context ().add_class (Gtk.STYLE_CLASS_INLINE_TOOLBAR);
         toolbar.icon_size = Gtk.IconSize.MENU;
-        snapshot_box.margin = 20;
-        snapshot_list.selection_mode = Gtk.SelectionMode.NONE;
-        snapshot_list.set_size_request (-1, 250);
-        snapshot_list.set_sort_func (config_sort_func);
 
+        var create_snapshot_button = new Gtk.ToolButton (null, null);
         create_snapshot_button.clicked.connect (() => {
             create_snapshot.begin ();
         });
         var icon_img = new Gtk.Image.from_icon_name ("list-add-symbolic", Gtk.IconSize.MENU);
         create_snapshot_button.icon_widget = icon_img;
+        toolbar.add (create_snapshot_button);
 
+        snapshot_list.selection_mode = Gtk.SelectionMode.NONE;
+        snapshot_list.set_size_request (-1, 250);
+        snapshot_list.set_sort_func (config_sort_func);
         var snapshot_list_frame = new Gtk.Frame (null);
         snapshot_list_frame.add (snapshot_list);
         snapshot_box.pack_start (snapshot_list_frame, true, true);
-        toolbar.add (create_snapshot_button);
         snapshot_box.pack_start (toolbar, true, false);
         snapshot_stack.add (snapshot_box);
 
         // Activity page
+        activity_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 12);
         activity_box.valign = Gtk.Align.CENTER;
         var activity_spinner = new Gtk.Spinner ();
         activity_spinner.set_size_request (64, 64);
@@ -59,8 +62,6 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         activity_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         activity_box.pack_start (activity_label, false, false);
         snapshot_stack.add (activity_box);
-
-        this.snapshot_stack = snapshot_stack;
 
         fetch_snapshots.begin ();
     }
