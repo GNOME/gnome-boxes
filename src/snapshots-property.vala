@@ -5,6 +5,8 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
     private Gtk.ListBox snapshot_list = new Gtk.ListBox ();
     private Gtk.Stack stack;
     private Gtk.Label activity_label = new Gtk.Label ("");
+    private Gtk.Stack snapshot_stack;
+    private Gtk.Label empty_label;
     private Gtk.Box activity_box;
     private Gtk.Box snapshot_box;
     private string? activity {
@@ -43,11 +45,24 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         create_snapshot_button.icon_widget = icon_img;
         toolbar.add (create_snapshot_button);
 
+        var snapshot_list_frame = new Gtk.Frame (null);
+
+        snapshot_stack = new Gtk.Stack ();
+        empty_label = new Gtk.Label (_("No snapshots created yet. Create one using the button below."));
+        empty_label.expand = true;
+        empty_label.halign = Gtk.Align.CENTER;
+        empty_label.valign = Gtk.Align.CENTER;
+        snapshot_stack.add (empty_label);
+
+        snapshot_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
         snapshot_list.selection_mode = Gtk.SelectionMode.NONE;
         snapshot_list.set_size_request (-1, 250);
         snapshot_list.set_sort_func (config_sort_func);
-        var snapshot_list_frame = new Gtk.Frame (null);
-        snapshot_list_frame.add (snapshot_list);
+        snapshot_list.add.connect (update_snapshot_stack_page);
+        snapshot_list.remove.connect (update_snapshot_stack_page);
+        snapshot_stack.add (snapshot_list);
+
+        snapshot_list_frame.add (snapshot_stack);
         snapshot_box.pack_start (snapshot_list_frame, true, true);
         snapshot_box.pack_start (toolbar, true, false);
         stack.add (snapshot_box);
@@ -79,6 +94,8 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         } catch (GLib.Error e) {
             warning ("Could not fetch snapshots: %s", e.message);
         }
+
+        update_snapshot_stack_page ();
     }
 
     private int config_sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
@@ -115,5 +132,13 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
     private void row_activity_changed (GLib.Object source, GLib.ParamSpec param_spec) {
         var row = source as SnapshotListRow;
         this.activity = row.activity_message;
+    }
+
+    private void update_snapshot_stack_page () {
+        var num_snapshots = snapshot_list.get_children ().length ();
+        if (num_snapshots > 0)
+            snapshot_stack.visible_child = snapshot_list;
+        else
+            snapshot_stack.visible_child = empty_label;
     }
 }
