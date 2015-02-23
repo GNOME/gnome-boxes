@@ -32,7 +32,8 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var menu = new GLib.Menu ();
 
         // Open in new Window
-        menu.append (_("Open in New Window"), "box.open-in-new-win");
+        if (machine.window == App.app.main_window || machine.window != window)
+            menu.append (_("Open in New Window"), "box.open-in-new-win");
 
         // Favorite
         if (("favorite" in machine.config.categories))
