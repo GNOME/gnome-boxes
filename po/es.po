@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-18 07:02+0000\n"
-"PO-Revision-Date: 2015-02-18 10:43+0100\n"
+"POT-Creation-Date: 2015-02-23 13:19+0000\n"
+"PO-Revision-Date: 2015-02-23 18:58+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -460,6 +460,14 @@ msgstr "Formato de archivo de disco no soportado."
 msgid "System"
 msgstr "Sistema"
 
+#: ../src/i-properties-provider.vala:88
+#, c-format
+#| msgid ""
+#| "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#| "\">(%s used)</span>"
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s usado)</span>"
+
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Retroceso"
@@ -487,97 +495,98 @@ msgstr "Enviar combinaciones de teclas"
 msgid "Name"
 msgstr "Nombre"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:66
+#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
 msgid "Broker"
 msgstr "Agente"
 
-#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:67
-#: ../src/remote-machine.vala:67
+#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
+#: ../src/remote-machine.vala:65
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:68
-#: ../src/remote-machine.vala:68 ../src/wizard.vala:482
+#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
+#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
+#: ../src/wizard.vala:482
 msgid "URI"
 msgstr "URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:186
-#: ../src/libvirt-machine-properties.vala:204
+#: ../src/libvirt-machine-properties.vala:180
+#: ../src/libvirt-machine-properties.vala:198
 msgid "Add support to guest"
 msgstr "Añadir soporte al invitado"
 
-#: ../src/libvirt-machine-properties.vala:188
+#: ../src/libvirt-machine-properties.vala:182
 msgid "USB device support"
 msgstr "Soporte para dispositivos USB"
 
-#: ../src/libvirt-machine-properties.vala:206
+#: ../src/libvirt-machine-properties.vala:200
 msgid "Smartcard support"
 msgstr "Soporte para tarjetas inteligentes"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:258
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:252
+#: ../src/libvirt-machine-properties.vala:304
 msgid "empty"
 msgstr "vacío"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:267
-#: ../src/libvirt-machine-properties.vala:319
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:281
-#: ../src/libvirt-machine-properties.vala:309
+#: ../src/libvirt-machine-properties.vala:275
+#: ../src/libvirt-machine-properties.vala:303
 msgid "Select"
 msgstr "Seleccionar"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:284
-#: ../src/libvirt-machine-properties.vala:292
+#: ../src/libvirt-machine-properties.vala:278
+#: ../src/libvirt-machine-properties.vala:286
 msgid "Remove"
 msgstr "Quitar"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:299
+#: ../src/libvirt-machine-properties.vala:293
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Falló la inserción de «%s» como CD/DVD en «%s»"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:307
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Falló al quitar el CD/DVD de «%s»"
 
-#: ../src/libvirt-machine-properties.vala:379
+#: ../src/libvirt-machine-properties.vala:375
 msgid "CPU"
 msgstr "CPU"
 
-#: ../src/libvirt-machine-properties.vala:385
+#: ../src/libvirt-machine-properties.vala:381
 msgid "I/O"
 msgstr "E/S"
 
-#: ../src/libvirt-machine-properties.vala:391
+#: ../src/libvirt-machine-properties.vala:387
 msgid "Network"
 msgstr "Red"
 
-#: ../src/libvirt-machine-properties.vala:414
+#: ../src/libvirt-machine-properties.vala:410
 msgid "Troubleshooting log"
 msgstr "Registro de resolución de problemas"
 
-#: ../src/libvirt-machine-properties.vala:421
+#: ../src/libvirt-machine-properties.vala:417
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
-#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Memoria"
 
-#: ../src/libvirt-machine-properties.vala:514
+#: ../src/libvirt-machine-properties.vala:510
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -586,13 +595,13 @@ msgstr ""
 "<span color=\"grey\">Tamaño máximo del disco</span>\t\t %s <span color=\"grey"
 "\">(%s usado)</span>"
 
-#: ../src/libvirt-machine-properties.vala:530
+#: ../src/libvirt-machine-properties.vala:526
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "No espacio suficiente en su equipo para aumentar el tamaño máximo del disco."
 
-#: ../src/libvirt-machine-properties.vala:539
+#: ../src/libvirt-machine-properties.vala:535
 msgid "Maximum Disk Size"
 msgstr "Tamaño máximo del disco"
 
@@ -802,11 +811,16 @@ msgstr "Falló al aplicar las instantáneas"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Instantánea «%s» eliminada."
 
-#: ../src/snapshots-property.vala:99
+#: ../src/snapshots-property.vala:52
+msgid "No snapshots created yet. Create one using the button below."
+msgstr ""
+"Todavía no se han creado instantáneas. Cree una usando el siguiente botón."
+
+#: ../src/snapshots-property.vala:118
 msgid "Creating new snapshot…"
 msgstr "Creando instantánea nueva…"
 
-#: ../src/snapshots-property.vala:107
+#: ../src/snapshots-property.vala:126
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Falló al crear la instantánea de %s"
@@ -816,7 +830,7 @@ msgstr "Falló al crear la instantánea de %s"
 msgid "Unknown"
 msgstr "Desconocida"
 
-#: ../src/spice-display.vala:51 ../src/spice-display.vala:323
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:336
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Falló al redireccionar el dispositivo USB «%s» para «%s»"
@@ -825,19 +839,19 @@ msgstr "Falló al redireccionar el dispositivo USB «%s» para «%s»"
 msgid "Share Clipboard"
 msgstr "Compartir portapapeles"
 
-#: ../src/spice-display.vala:309
+#: ../src/spice-display.vala:349
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: ../src/spice-display.vala:445 ../src/wizard.vala:305 ../src/wizard.vala:312
+#: ../src/spice-display.vala:450 ../src/wizard.vala:305 ../src/wizard.vala:312
 msgid "Invalid URI"
 msgstr "URI no válido"
 
-#: ../src/spice-display.vala:455
+#: ../src/spice-display.vala:460
 msgid "The port must be specified once"
 msgstr "El puedo se debe especificar una vez"
 
-#: ../src/spice-display.vala:464
+#: ../src/spice-display.vala:469
 msgid "Missing port in Spice URI"
 msgstr "Falta el puerto en el URI de Spice"
 
