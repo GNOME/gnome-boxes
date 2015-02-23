@@ -333,6 +333,10 @@ private class Boxes.App: Gtk.Application {
             return;
         }
 
+        // machine.window == main_window could just mean machine is not running on any window so lets make sure..
+        if (machine.ui_state == UIState.DISPLAY)
+            machine.window.set_state (UIState.COLLECTION);
+
         var window = add_new_window ();
         window.connect_to (machine);
     }
