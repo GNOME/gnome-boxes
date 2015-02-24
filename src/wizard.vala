@@ -630,6 +630,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         continue_button.clicked.connect (() => {
             page = page + 1;
         });
+        next_button = continue_button;
         create_button = wizard_window.topbar.create_btn;
         create_button.clicked.connect (() => {
             page = WizardPage.LAST;
