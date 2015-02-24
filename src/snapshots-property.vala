@@ -46,8 +46,6 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         create_snapshot_button.icon_widget = icon_img;
         toolbar.add (create_snapshot_button);
 
-        var snapshot_list_frame = new Gtk.Frame (null);
-
         snapshot_stack = new Gtk.Stack ();
         empty_label = new Gtk.Label (_("No snapshots created yet. Create one using the button below."));
         empty_label.expand = true;
@@ -63,6 +61,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         snapshot_list.remove.connect (update_snapshot_stack_page);
         snapshot_stack.add (snapshot_list);
 
+        var snapshot_list_frame = new Gtk.Frame (null);
         snapshot_list_frame.add (snapshot_stack);
         snapshot_box.pack_start (snapshot_list_frame, true, true);
         snapshot_box.pack_start (toolbar, true, true);
