@@ -47,11 +47,6 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         toolbar.add (create_snapshot_button);
 
         snapshot_stack = new Gtk.Stack ();
-        empty_label = new Gtk.Label (_("No snapshots created yet. Create one using the button below."));
-        empty_label.expand = true;
-        empty_label.halign = Gtk.Align.CENTER;
-        empty_label.valign = Gtk.Align.CENTER;
-        snapshot_stack.add (empty_label);
 
         snapshot_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
         snapshot_list.selection_mode = Gtk.SelectionMode.NONE;
@@ -60,6 +55,12 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         snapshot_list.add.connect (update_snapshot_stack_page);
         snapshot_list.remove.connect (update_snapshot_stack_page);
         snapshot_stack.add (snapshot_list);
+
+        empty_label = new Gtk.Label (_("No snapshots created yet. Create one using the button below."));
+        empty_label.expand = true;
+        empty_label.halign = Gtk.Align.CENTER;
+        empty_label.valign = Gtk.Align.CENTER;
+        snapshot_stack.add (empty_label);
 
         var snapshot_list_frame = new Gtk.Frame (null);
         snapshot_list_frame.add (snapshot_stack);
