@@ -120,7 +120,7 @@ gnome_boxes_SOURCES =				\
 	machine.vala				\
 	main.vala				\
 	media-manager.vala 			\
-	mini-graph.vala				\
+	resource-graph.vala			\
 	notification.vala			\
 	notificationbar.vala			\
 	os-database.vala 			\

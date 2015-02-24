@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/mini-graph.ui")]
-private class Boxes.MiniGraph: Gtk.DrawingArea {
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/resource-graph.ui")]
+private class Boxes.ResourceGraph: Gtk.DrawingArea {
     private double[] _points;
     public double[] points { get { return _points; }
         set {
@@ -18,7 +18,7 @@ private class Boxes.MiniGraph: Gtk.DrawingArea {
         }
     }
 
-    public MiniGraph (double ymax) {
+    public ResourceGraph (double ymax) {
         this.ymax = ymax;
         width_request = 120;
         height_request = 60;
