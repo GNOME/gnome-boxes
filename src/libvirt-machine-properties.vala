@@ -376,13 +376,13 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         grid.attach (label, 0, 1, 1, 1);
 
         // I/O
-        var io_graph = new ResourceGraph (20);
+        var io_graph = new ResourceGraph (104857600); // 100 MiB/s
         grid.attach (io_graph, 1, 0, 1, 1);
         label = new Gtk.Label (_("I/O"));
         grid.attach (label, 1, 1, 1, 1);
 
         // Network
-        var net_graph = new ResourceGraph (20);
+        var net_graph = new ResourceGraph (1048576); // 1 MiB/s
         grid.attach (net_graph, 2, 0, 1, 1);
         label = new Gtk.Label (_("Network"));
         grid.attach (label, 2, 1, 1, 1);
