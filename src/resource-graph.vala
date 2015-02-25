@@ -5,10 +5,8 @@ private class Boxes.ResourceGraph: Gtk.DrawingArea {
     private double[] _points;
     public double[] points { get { return _points; }
         set {
-            for (var i = 0; i < value.length; i++) {
-                if (value[i] > ymax)
-                    ymax = value[i];
-            }
+            if (value[value.length - 1] > ymax)
+                ymax = value[value.length - 1];
 
             _points = value;
             queue_draw ();
