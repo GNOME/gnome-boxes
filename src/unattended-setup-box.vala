@@ -2,6 +2,12 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/unattended-setup-box.ui")]
 private class Boxes.UnattendedSetupBox : Gtk.Box {
+    private const string KEY_FILE = "setup-data.conf";
+    private const string EXPRESS_KEY = "express-install";
+    private const string USERNAME_KEY = "username";
+    private const string PASSWORD_KEY = "password";
+    private const string PRODUCTKEY_KEY = "product-key";
+
     public bool ready_for_express {
         get {
             return username != "" &&
@@ -90,15 +96,32 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     private Gtk.Entry product_key_entry;
 
     private string? product_key_format;
+    private string media_path;
+    private GLib.KeyFile keyfile;
 
     public UnattendedSetupBox (InstallerMedia media, string? product_key_format, bool needs_internet) {
         this.product_key_format = product_key_format;
-        username_entry.text = Environment.get_user_name ();
 
-        setup_express_toggle (media.os_media.live, needs_internet);
         var msg = _("Express installation of %s requires an internet connection.").printf (media.label);
         needs_internet_label.label = msg;
         needs_internet_bar.visible = needs_internet;
+        media_path = media.device_file;
+        keyfile = new GLib.KeyFile ();
+
+        try {
+            var filename = get_user_unattended (KEY_FILE);
+            keyfile.load_from_file (filename, KeyFileFlags.KEEP_COMMENTS);
+
+            set_entry_text_from_key (username_entry, USERNAME_KEY, Environment.get_user_name ());
+            set_entry_text_from_key (password_entry, PASSWORD_KEY);
+            set_entry_text_from_key (password_entry, PASSWORD_KEY);
+            if (password != "")
+                password_notebook.next_page ();
+            set_entry_text_from_key (product_key_entry, PRODUCTKEY_KEY);
+        } catch (GLib.Error error) {
+            debug ("%s either doesn't already exist or we failed to load it: %s", media_path, error.message);
+        }
+        setup_express_toggle (media.os_media.live, needs_internet);
 
         if (product_key_format != null) {
             product_key_label.visible = true;
@@ -117,8 +140,27 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         NetworkMonitor.get_default ().network_changed.disconnect (update_express_toggle);
     }
 
+    public void save_settings () {
+        keyfile.set_boolean (media_path, EXPRESS_KEY, express_install);
+        keyfile.set_string (media_path, USERNAME_KEY, username);
+        keyfile.set_string (media_path, PASSWORD_KEY, password);
+        keyfile.set_string (media_path, PRODUCTKEY_KEY, product_key);
+
+        var filename = get_user_unattended (KEY_FILE);
+        try {
+            keyfile.save_to_file (filename);
+        } catch (GLib.Error error) {
+            debug ("Error saving settings for '%s': %s", media_path, error.message);
+        }
+    }
+
     private void setup_express_toggle (bool live, bool needs_internet) {
-        express_toggle.active = !live;
+        try {
+            express_toggle.active = keyfile.get_boolean (media_path, EXPRESS_KEY);
+        } catch (GLib.Error error) {
+            debug ("Failed to read key '%s' under '%s': %s\n", EXPRESS_KEY, media_path, error.message);
+            express_toggle.active = !live;
+        }
 
         if (!needs_internet)
             return;
@@ -135,6 +177,20 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             express_toggle.sensitive = false;
             express_toggle.active = false;
         }
+    }
+
+    private void set_entry_text_from_key (Gtk.Entry entry, string key, string? default_value = null) {
+        string? str = null;
+        try {
+            str = keyfile.get_string (media_path, key);
+        } catch (GLib.Error error) {
+            debug ("Failed to read key '%s' under '%s': %s\n", key, media_path, error.message);
+        }
+
+        if (str != null && str != "")
+            entry.text = str;
+        else if (default_value != null)
+            entry.text = default_value;
     }
 
     [GtkCallback]
