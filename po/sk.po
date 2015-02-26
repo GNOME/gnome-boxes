@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-19 07:14+0000\n"
-"PO-Revision-Date: 2015-02-19 19:26+0100\n"
+"POT-Creation-Date: 2015-02-26 07:04+0000\n"
+"PO-Revision-Date: 2015-02-26 12:12+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -209,7 +209,7 @@ msgstr "Premenovať"
 
 # menu item
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:49
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:50
 msgid "Delete"
 msgstr "Odstrániť"
 
@@ -287,14 +287,14 @@ msgid ""
 "Enter an address for the box you want to add. Addresses can be of\n"
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
 "\n"
-"<span color=\"grey\">Examples: http://download./image.iso, spice://"
+"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
 "somehost:5051, ovirt://host/path</span>"
 msgstr ""
 "Zadajte adresu boxu, ktorý chcete pridať. Adresy sa môžu týkať inštalačných "
 "obrazov,\n"
-"serverov SPICE a VNC, alebo správcov virtualizácie Virt alebo Libvirt.\n"
+"serverov SPICE a VNC, alebo správcov virtualizácie oVirt alebo Libvirt.\n"
 "\n"
-"<span color=\"grey\">Príklady: http://download./obraz.iso, spice://"
+"<span color=\"grey\">Príklady: http://download.com/obraz.iso, spice://"
 "hostiteľ:5051, ovirt://hostiteľ/cesta</span>"
 
 # dialog title
@@ -336,30 +336,30 @@ msgid "Box actions"
 msgstr "Akcie boxu"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:35
+#: ../src/actions-popover.vala:36
 msgid "Open in New Window"
 msgstr "Otvoriť v novom okne"
 
 #. Favorite
-#: ../src/actions-popover.vala:39
+#: ../src/actions-popover.vala:40
 msgid "Add to Favorites"
 msgstr "Pridať do obľúbených"
 
-#: ../src/actions-popover.vala:41
+#: ../src/actions-popover.vala:42
 msgid "Remove from Favorites"
 msgstr "Odstrániť z obľúbených"
 
 #. Pause
-#: ../src/actions-popover.vala:44
+#: ../src/actions-popover.vala:45
 msgid "Pause"
 msgstr "Pozastaviť"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:55
+#: ../src/actions-popover.vala:56
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../src/actions-popover.vala:79 ../src/selectionbar.vala:63
+#: ../src/actions-popover.vala:80 ../src/selectionbar.vala:63
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Pozastavenie „%s“ zlyhalo"
@@ -429,12 +429,12 @@ msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: ../src/app.vala:482
+#: ../src/app.vala:486
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: ../src/app.vala:483
+#: ../src/app.vala:487
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -442,7 +442,7 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: ../src/app.vala:510 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:514 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "V_rátiť"
 
@@ -476,11 +476,15 @@ msgstr "Systém"
 
 #: ../src/i-properties-provider.vala:88
 #, c-format
-#| msgid ""
-#| "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-#| "\">(%s used)</span>"
 msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(%s využitých)</span>"
+
+# DK: jedna sa o kapacitu disku
+#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:120
+#, c-format
+msgid "%s (maximum)"
+msgstr "%s (maximálne)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -580,34 +584,38 @@ msgstr "Vloženie súboru „%s“ ako CD/DVD do virtuálneho stroja „%s“ zl
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Odstránenie CD/DVD z virtuálneho stroja „%s“ zlyhalo"
 
-#: ../src/libvirt-machine-properties.vala:373
+#: ../src/libvirt-machine-properties.vala:375
 msgid "CPU"
 msgstr "Procesor"
 
 # DK: prekladame ako Vstupno/Vystupne alebo ostava I/O ?
 # PK: V/V
-#: ../src/libvirt-machine-properties.vala:379
+#. I/O
+#. 100 MiB/s
+#: ../src/libvirt-machine-properties.vala:381
 msgid "I/O"
 msgstr "V/V"
 
-#: ../src/libvirt-machine-properties.vala:385
+#. Network
+#. 1 MiB/s
+#: ../src/libvirt-machine-properties.vala:387
 msgid "Network"
 msgstr "Sieť"
 
 # dalog
-#: ../src/libvirt-machine-properties.vala:408
+#: ../src/libvirt-machine-properties.vala:410
 msgid "Troubleshooting log"
 msgstr "Záznam pre riešenie problémov"
 
-#: ../src/libvirt-machine-properties.vala:415
+#: ../src/libvirt-machine-properties.vala:417
 msgid "Force Shutdown"
 msgstr "Vynútiť vypnutie"
 
-#: ../src/libvirt-machine-properties.vala:440 ../src/wizard.vala:520
+#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Pamäť"
 
-#: ../src/libvirt-machine-properties.vala:508
+#: ../src/libvirt-machine-properties.vala:510
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -616,36 +624,36 @@ msgstr ""
 "<span color=\"grey\">Maximálna veľkosť disku</span>\t\t %s <span color=\"grey"
 "\">(%s využitých)</span>"
 
-#: ../src/libvirt-machine-properties.vala:524
+#: ../src/libvirt-machine-properties.vala:526
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Na zvýšenie maximálnej veľkosti disku nie je dostatok miesta vo vašom "
 "počítači."
 
-#: ../src/libvirt-machine-properties.vala:533
+#: ../src/libvirt-machine-properties.vala:535
 msgid "Maximum Disk Size"
 msgstr "Maximálna veľkosť disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:540
+#: ../src/libvirt-machine.vala:553
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje sa %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:543
+#: ../src/libvirt-machine.vala:556
 #, c-format
 msgid "Starting %s"
 msgstr "Spúšťa sa %s"
 
-#: ../src/libvirt-machine.vala:608
+#: ../src/libvirt-machine.vala:621
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Reštartovanie boxu „%s“ trvá príliš dlho. Chcete vynútiť jeho vypnutie?"
 
-#: ../src/libvirt-machine.vala:610
+#: ../src/libvirt-machine.vala:623
 msgid "_Shutdown"
 msgstr "_Vypnúť"
 
@@ -840,11 +848,17 @@ msgstr "Zlyhalo aplikovanie snímku"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Snímka „%s“ bola odstránená."
 
-#: ../src/snapshots-property.vala:99
+#: ../src/snapshots-property.vala:59
+msgid "No snapshots created yet. Create one using the button below."
+msgstr ""
+"Zatiaľ nie sú vytvorené žiadne snímky. Vytvoríte ju stlačením tlačidla "
+"nižšie."
+
+#: ../src/snapshots-property.vala:118
 msgid "Creating new snapshot…"
 msgstr "Vytvára sa nová snímka…"
 
-#: ../src/snapshots-property.vala:107
+#: ../src/snapshots-property.vala:126
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Zlyhalo vytvorenie snímky boxu %s"
@@ -854,28 +868,28 @@ msgstr "Zlyhalo vytvorenie snímky boxu %s"
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: ../src/spice-display.vala:51 ../src/spice-display.vala:323
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:347
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Presmerovanie zariadenia „%s“ typu USB pre „%s“ zlyhalo"
 
-#: ../src/spice-display.vala:283
+#: ../src/spice-display.vala:294
 msgid "Share Clipboard"
 msgstr "Zdieľať schránku"
 
-#: ../src/spice-display.vala:309
+#: ../src/spice-display.vala:360
 msgid "USB devices"
 msgstr "Zariadenia USB"
 
-#: ../src/spice-display.vala:445 ../src/wizard.vala:305 ../src/wizard.vala:312
+#: ../src/spice-display.vala:461 ../src/wizard.vala:305 ../src/wizard.vala:312
 msgid "Invalid URI"
 msgstr "Neplatný URI"
 
-#: ../src/spice-display.vala:455
+#: ../src/spice-display.vala:471
 msgid "The port must be specified once"
 msgstr "Port musí byť zadaný raz"
 
-#: ../src/spice-display.vala:464
+#: ../src/spice-display.vala:480
 msgid "Missing port in Spice URI"
 msgstr "V URI systému Spice chýba port"
 
@@ -1102,20 +1116,21 @@ msgid "Disk"
 msgstr "Disk"
 
 # DK: jedna sa o kapacitu disku
-#: ../src/wizard.vala:529
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: ../src/wizard.vala:531
 #, c-format
 msgid "%s maximum"
 msgstr "maximálne %s"
 
-#: ../src/wizard.vala:592
+#: ../src/wizard.vala:594
 msgid "Downloading media…"
 msgstr "Preberajú sa multimédiá…"
 
-#: ../src/wizard.vala:602
+#: ../src/wizard.vala:604
 msgid "Download failed."
 msgstr "Preberanie zlyhalo."
 
-#: ../src/wizard.vala:709
+#: ../src/wizard.vala:712
 msgid "C_ustomize…"
 msgstr "_Prispôsobiť…"
 
