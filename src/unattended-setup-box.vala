@@ -91,12 +91,12 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
     private string? product_key_format;
 
-    public UnattendedSetupBox (bool live, string? product_key_format, bool needs_internet, string os_name) {
+    public UnattendedSetupBox (InstallerMedia media, string? product_key_format, bool needs_internet) {
         this.product_key_format = product_key_format;
         username_entry.text = Environment.get_user_name ();
 
-        setup_express_toggle (live, needs_internet);
-        var msg = _("Express installation of %s requires an internet connection.").printf (os_name);
+        setup_express_toggle (media.os_media.live, needs_internet);
+        var msg = _("Express installation of %s requires an internet connection.").printf (media.label);
         needs_internet_label.label = msg;
         needs_internet_bar.visible = needs_internet;
 

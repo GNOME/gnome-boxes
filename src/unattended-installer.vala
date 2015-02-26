@@ -113,7 +113,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         kbd = lang;
         product_key_format = get_product_key_format ();
 
-        setup_box = new UnattendedSetupBox (os_media.live, product_key_format, needs_internet, label);
+        setup_box = new UnattendedSetupBox (this, product_key_format, needs_internet);
         setup_box.notify["ready-to-create"].connect (() => {
             notify_property ("ready-to-create");
         });
