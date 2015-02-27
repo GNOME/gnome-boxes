@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-10-20 12:22+0000\n"
-"PO-Revision-Date: 2014-10-29 15:14+0600\n"
+"POT-Creation-Date: 2015-02-27 07:04+0000\n"
+"PO-Revision-Date: 2015-02-27 22:13+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk@li.org>\n"
 "Language: kk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.6.9\n"
+"X-Generator: Poedit 1.7.3\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -48,7 +48,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:106 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Бокстар"
 
@@ -120,7 +121,8 @@ msgstr "Кіру"
 msgid "_New"
 msgstr "Ж_аңа"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Кері"
 
@@ -133,46 +135,54 @@ msgid "Search"
 msgstr "Іздеу"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">Бокстар табылмады</span></b>"
+#| msgid "<b><span size=\"large\">No boxes found</span></b>"
+msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgstr "<b><span size=\"large\">Дамыған виртуализация</span></b>"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "Жоғары сол жақтағы батырманы қолданып, жаңасын жасаңыз."
+msgid "Boxes can be virtual or remote machines."
+msgstr "Бокстар виртуалды не қашықтағы машиналар бола алады."
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "Процессор:"
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr "Жаңасын жасау үшін <b>Жаңа</b> батырмасын басыңыз."
 
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "Е/Ш:"
+#: ../data/ui/properties-toolbar.ui.h:1
+msgid "Troubleshooting Log"
+msgstr "Мәселелер журналы"
 
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "Желі:"
+#: ../data/ui/properties-toolbar.ui.h:3
+msgid "_Copy to Clipboard"
+msgstr "Алмасу буферіне кө_шіріп алу"
 
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "Мәжбүрлі сөндіру"
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "Құрылғыны не ISO файлын таңдаңыз"
+
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
+msgid "_Cancel"
+msgstr "Ба_с тарту"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_Ашу"
 
 #: ../data/ui/selectionbar.ui.h:1
+msgid "_Favorite"
+msgstr "Т_аңдамалы"
+
+#: ../data/ui/selectionbar.ui.h:2
 msgid "P_ause"
 msgstr "А_ялдату"
 
-#: ../data/ui/selectionbar.ui.h:2
+#: ../data/ui/selectionbar.ui.h:3
 msgid "_Delete"
 msgstr "Ө_шіру"
 
-#: ../data/ui/selectionbar.ui.h:3
+#: ../data/ui/selectionbar.ui.h:4
 msgid "_Properties"
 msgstr "Қас_иеттері"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:344 ../src/libvirt-machine.vala:450
-#: ../src/wizard-source.vala:280
-msgid "_Cancel"
-msgstr "Ба_с тарту"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -194,7 +204,8 @@ msgstr "Бұл күйге қайтару"
 msgid "Rename"
 msgstr "Атын өзгерту"
 
-#: ../data/ui/snapshot-list-row.ui.h:3
+#. Delete
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:50
 msgid "Delete"
 msgstr "Өшіру"
 
@@ -212,11 +223,11 @@ msgstr "Оңтайлы баптаулары бар боксты алу үшін 
 msgid "Express Install"
 msgstr "Жылдам орнату"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:277
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Пайдаланушы аты"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Пароль"
 
@@ -232,43 +243,53 @@ msgstr "Өнім кілті"
 msgid "Unknown media"
 msgstr "Белгісіз тасушы"
 
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "Бастау үшін"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "Қайнар көзін таңдау"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "Дайындау"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "Баптау"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "Қарап шығу"
-
 #: ../data/ui/wizard-source.ui.h:1
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Операциялық жүйенің орнату тасушысын салыңыз немесе төменнен қайнар көзін "
+"таңдаңыз"
+
+#: ../data/ui/wizard-source.ui.h:2
 msgid "Enter URL"
 msgstr "Сілтемені енгізіңіз"
 
-#: ../data/ui/wizard-source.ui.h:2
+#: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "▶"
 
-#: ../data/ui/wizard-source.ui.h:3
+#: ../data/ui/wizard-source.ui.h:4
 msgid "Select a file"
 msgstr "Файлды таңдау"
 
-#: ../data/ui/wizard-source.ui.h:4
+#: ../data/ui/wizard-source.ui.h:5
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Жоғарыда көрсетілген сауда белгілерінің барлығы тек сізде бар болып тұрған "
+"бағдарламалық қамтаманы анықтау үшін қолданылады, және өз иелерінің жеке "
+"меншігі болып табылады."
+
+#: ../data/ui/wizard-source.ui.h:6
 msgid "◀"
 msgstr "◀"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-source.ui.h:7
+msgid ""
+"Enter an address for the box you want to add. Addresses can be of\n"
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
+"\n"
+"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+"somehost:5051, ovirt://host/path</span>"
+msgstr ""
+"Қосқыңыз келетін бокс адресін енгізіңіз. Адрестер ретінде орнату бейнелері,\n"
+"SPICE және VNC серверлері, немесе oVirt не Libvirt блокерлері бола алады.\n"
+"\n"
+"<span color=\"grey\">Мысалдар: http://download.com/image.iso, spice://"
+"somehost:5051, ovirt://host/path</span>"
+
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "Боксты жасау"
 
@@ -284,282 +305,329 @@ msgstr "Жа_лғастыру"
 msgid "_Back"
 msgstr "Ар_тқа"
 
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "Ресурстарды баптау"
+
 #: ../data/ui/wizard.ui.h:1
-msgid ""
-"Creating a box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"Боксты жасау арқылы сізге өз тіркелгіңізден басқа операциялық жүйеге қатынау "
-"мүмкіндігін береді.\n"
-"\n"
-"Сіз <b><i>желі арқылы</i></b> бар болып тұрған машинаға байланысып, немесе "
-"өз жүйеңізде орындалатын <b><i>виртуалды машинаны</i></b> жасай аласыз."
-
-#: ../data/ui/wizard.ui.h:4
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Операциялық жүйенің орнату тасушысын салыңыз немесе төменнен қайнар көзін "
-"таңдаңыз"
-
-#: ../data/ui/wizard.ui.h:5
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Жоғарыда көрсетілген сауда белгілерінің барлығы тек сізде бар болып тұрған "
-"бағдарламалық қамтаманы анықтау үшін қолданылады, және өз иелерінің жеке "
-"меншігі болып табылады."
-
-#: ../data/ui/wizard.ui.h:6
 msgid "Preparing to create new box"
 msgstr "Жаңа боксты жасауға дайындалу"
 
-#: ../data/ui/wizard.ui.h:7
+#: ../data/ui/wizard.ui.h:2
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"Сіздің жүйеңізде виртуализация кеңейтулері табылмады. Егер жүйеңіз жаңа "
-"болса (2008 ж. және жаңалау), оларды іске қосу үшін BIOS баптауларын "
-"тексеріңіз."
+"Сіздің жүйеңізде виртуализация кеңейтулері табылмады.\n"
+"Оларды іске қосу үшін BIOS баптауларын тексеріңіз."
 
-#: ../src/app.vala:97
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: ../src/actions-popover.vala:25
+msgid "Box actions"
+msgstr "Бокс әрекеттері"
+
+#. Open in new Window
+#: ../src/actions-popover.vala:36
+msgid "Open in New Window"
+msgstr "Жаңа терезеде ашу"
+
+#. Favorite
+#: ../src/actions-popover.vala:40
+msgid "Add to Favorites"
+msgstr "Таңдамалыларға қосу"
+
+#: ../src/actions-popover.vala:42
+msgid "Remove from Favorites"
+msgstr "Таңдамалылардан өшіру"
+
+#. Pause
+#: ../src/actions-popover.vala:45
+msgid "Pause"
+msgstr "Аялдату"
+
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:56
+msgid "Properties"
+msgstr "Қасиеттері"
+
+#: ../src/actions-popover.vala:80 ../src/selectionbar.vala:63
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "'%s' жөнелту сәтсіз"
+
+#: ../src/app.vala:99
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:100
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Қашықтағы не виртуалды машиналарға қатынауға арналған қарапайым GNOME 3 "
 "қолданбасы"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:119
 msgid "Help"
 msgstr "Көмек"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:120
 msgid "About"
 msgstr "Осы туралы"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:121
 msgid "Quit"
 msgstr "Шығу"
 
-#: ../src/app.vala:175 ../src/main.vala:9
+#: ../src/app.vala:177 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Нұсқа нөмірін көрсету"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:179
 msgid "Open in full screen"
 msgstr "Толық экранда ашу"
 
-#: ../src/app.vala:178 ../src/main.vala:10
+#: ../src/app.vala:180 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Виртуализация мүмкіндіктерін тексеру"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:181
 msgid "Open box with UUID"
 msgstr "UUID бар боксты ашу"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:182
 msgid "Search term"
 msgstr "Ізделетін мәтін"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:182
+#: ../src/app.vala:184
 msgid "URI to display, broker or installer media"
 msgstr "Ашу үшін URI, виртуалды машиналар диспетчері немесе орнату тасушысы"
 
-#: ../src/app.vala:193
+#: ../src/app.vala:195
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Қашықтағы не виртуалды машиналарға қатынауға арналған қарапайым қолданба"
 
-#: ../src/app.vala:215
+#: ../src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Тым көп командалық жол аргументтері көрсетілді.\n"
 
-#: ../src/app.vala:496 ../src/snapshot-list-row.vala:201
-msgid "_Undo"
-msgstr "Бол_дырмау"
-
-#: ../src/app.vala:507
+#: ../src/app.vala:486
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' боксы өшірілді"
 
-#: ../src/app.vala:508
+#: ../src/app.vala:487
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u бокс өшірілді"
 
-#: ../src/collection-view.vala:39
+#: ../src/app.vala:514 ../src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "Бол_дырмау"
+
+#: ../src/collection-view.vala:40
 msgid "New and Recent"
 msgstr "Жаңа және жуырдағы"
 
-#: ../src/display-page.vala:97
-msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(босату үшін [сол жақ] Ctrl+Alt пернелерін басыңыз)"
+#: ../src/display-page.vala:107
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "Босату үшін (сол жақ) Ctrl+Alt пернелерін басыңыз"
+
+#: ../src/display-page.vala:109
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr ""
+"Пернетақтаны босату үшін (сол жақ) Ctrl+Alt пернелерін басып, жіберіңіз."
+
+#. Translators: Showing size of widget as WIDTHxHEIGHT here.
+#: ../src/display-page.vala:246
+#, c-format
+msgid "%dx%d"
+msgstr "%dx%d"
 
 #: ../src/installed-media.vala:49
 msgid "Unsupported disk image format."
 msgstr "Қолдауы жоқ диск бейнесінің пішімі."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:50
+#: ../src/installed-media.vala:104 ../src/installer-media.vala:109
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Жүйе"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:53
+#: ../src/i-properties-provider.vala:88
+#, c-format
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s қолданылуда)</span>"
+
+#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:120
+#, c-format
+#| msgid "%s maximum"
+msgid "%s (maximum)"
+msgstr "%s (максимум)"
+
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "Пернелер жарлықтарын жіберу"
+
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
 msgid "Name"
 msgstr "Аты"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:64
-msgid "Virtualizer"
-msgstr "Виртуализатор"
+#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
+msgid "Broker"
+msgstr "Брокер"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:65 ../src/wizard.vala:468
-msgid "URI"
-msgstr "URI"
-
-#: ../src/libvirt-machine-properties.vala:142
-#: ../src/libvirt-machine-properties.vala:147
-msgid "Troubleshooting log"
-msgstr "Мәселелер журналы"
-
-#: ../src/libvirt-machine-properties.vala:150
-#: ../src/libvirt-machine-properties.vala:168
-msgid "_Save"
-msgstr "_Сақтау"
-
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Copy to clipboard"
-msgstr "Алмасу буферіне көшіріп алу"
-
-#: ../src/libvirt-machine-properties.vala:152
-msgid "_Close"
-msgstr "Жа_бу"
-
-#: ../src/libvirt-machine-properties.vala:166
-msgid "Save log"
-msgstr "Журналды сақтау"
-
-#: ../src/libvirt-machine-properties.vala:182
-#, c-format
-msgid "Error saving: %s"
-msgstr "Сақтау қатесі: %s"
-
-#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:76
+#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
+#: ../src/remote-machine.vala:65
 msgid "Protocol"
 msgstr "Хаттама"
 
+#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
+#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
+#: ../src/wizard.vala:482
+msgid "URI"
+msgstr "URI"
+
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:244
-#: ../src/libvirt-machine-properties.vala:262
+#: ../src/libvirt-machine-properties.vala:180
+#: ../src/libvirt-machine-properties.vala:198
 msgid "Add support to guest"
 msgstr "Қоңақ жүйесіне қолдауды қосу"
 
-#: ../src/libvirt-machine-properties.vala:246
+#: ../src/libvirt-machine-properties.vala:182
 msgid "USB device support"
 msgstr "USB құрылғыларын қолдау"
 
-#: ../src/libvirt-machine-properties.vala:264
+#: ../src/libvirt-machine-properties.vala:200
 msgid "Smartcard support"
 msgstr "Смарткарталарды қолдау"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:310
-#: ../src/libvirt-machine-properties.vala:378
+#: ../src/libvirt-machine-properties.vala:252
+#: ../src/libvirt-machine-properties.vala:304
 msgid "empty"
 msgstr "бос"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:320
-#: ../src/libvirt-machine-properties.vala:387
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:334
-#: ../src/libvirt-machine-properties.vala:377
+#: ../src/libvirt-machine-properties.vala:275
+#: ../src/libvirt-machine-properties.vala:303
 msgid "Select"
 msgstr "Таңдау"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:337
-#: ../src/libvirt-machine-properties.vala:357
+#: ../src/libvirt-machine-properties.vala:278
+#: ../src/libvirt-machine-properties.vala:286
 msgid "Remove"
 msgstr "Өшіру"
 
-#: ../src/libvirt-machine-properties.vala:341 ../src/wizard-source.vala:277
-msgid "Select a device or ISO file"
-msgstr "Құрылғыны не ISO файлын таңдаңыз"
-
-#: ../src/libvirt-machine-properties.vala:345 ../src/wizard-source.vala:281
-msgid "_Open"
-msgstr "_Ашу"
-
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:364
+#: ../src/libvirt-machine-properties.vala:293
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "'%s' CD/DVD дискі ретінде '%s' боксына салу сәтсіз аяқталды"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:381
+#: ../src/libvirt-machine-properties.vala:307
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "'%s' боксынан CD/DVD шығару сәтсіз аяқталды"
 
-#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:506
+#: ../src/libvirt-machine-properties.vala:375
+msgid "CPU"
+msgstr "Процессор"
+
+#. I/O
+#. 100 MiB/s
+#: ../src/libvirt-machine-properties.vala:381
+msgid "I/O"
+msgstr "Е/Ш"
+
+#. Network
+#. 1 MiB/s
+#: ../src/libvirt-machine-properties.vala:387
+msgid "Network"
+msgstr "Желі"
+
+#: ../src/libvirt-machine-properties.vala:410
+msgid "Troubleshooting log"
+msgstr "Мәселелер журналы"
+
+#: ../src/libvirt-machine-properties.vala:417
+msgid "Force Shutdown"
+msgstr "Мәжбүрлі сөндіру"
+
+#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Жады"
 
-#: ../src/libvirt-machine-properties.vala:505
-#: ../src/libvirt-machine-properties.vala:527
-msgid "Maximum Disk Size"
-msgstr "Максималды диск өлшемі"
+#: ../src/libvirt-machine-properties.vala:510
+#, c-format
+msgid ""
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+"\">(%s used)</span>"
+msgstr ""
+"<span color=\"grey\">Максималды диск өлшемі</span>\t\t %s <span color=\"grey"
+"\">(%s қолданылуда)</span>"
 
-#: ../src/libvirt-machine-properties.vala:518
+#: ../src/libvirt-machine-properties.vala:526
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Максималды диск өлшемін арттыру үшін машинаңызда диск орны жеткіліксіз."
 
-#: ../src/libvirt-machine.vala:449
-msgid "When you force shutdown, the box may lose data."
-msgstr "Сөндіруді мәжбүрлетсеңіз, бокс деректерді жоғалтуы мүмкін."
-
-#: ../src/libvirt-machine.vala:451 ../src/libvirt-machine.vala:606
-msgid "_Shutdown"
-msgstr "_Сөндіру"
+#: ../src/libvirt-machine-properties.vala:535
+msgid "Maximum Disk Size"
+msgstr "Максималды диск өлшемі"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:536
+#: ../src/libvirt-machine.vala:553
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s дисктен қалпына келтіру"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:539
+#: ../src/libvirt-machine.vala:556
 #, c-format
 msgid "Starting %s"
 msgstr "%s іске қосу"
 
-#: ../src/libvirt-machine.vala:604
+#: ../src/libvirt-machine.vala:621
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "'%s' қайта қосу тым көп уақыт алып отыр. Оны мәжбүрлетіп сөндіру керек пе?"
+
+#: ../src/libvirt-machine.vala:623
+msgid "_Shutdown"
+msgstr "_Сөндіру"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -595,21 +663,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "'%s' боксы үшін импорттау үшін сай келетін диск табылмады"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:140
+#: ../src/machine.vala:150
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s байланысын орнату"
 
-#: ../src/machine.vala:159 ../src/machine.vala:582
+#: ../src/machine.vala:169 ../src/machine.vala:592
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "%s байланысын орнату сәтсіз"
 
-#: ../src/machine.vala:248
+#: ../src/machine.vala:259
 msgid "Saving…"
 msgstr "Сақтау…"
 
-#: ../src/machine.vala:568
+#: ../src/machine.vala:578
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -618,17 +686,17 @@ msgstr ""
 "'%s' дисктен қалпына келтіру мүмкін емес\n"
 "Сақталған қалып-күйсіз қайта көру керек пе?"
 
-#: ../src/machine.vala:569
+#: ../src/machine.vala:579
 msgid "Restart"
 msgstr "Қайта қосу"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:588
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "'%s' іске қосу сәтсіз аяқталды"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:611
+#: ../src/machine.vala:621
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' аутентификацияны талап етеді"
@@ -688,35 +756,26 @@ msgstr "%s байланысы орнатылмаған"
 msgid "Connection to oVirt broker failed"
 msgstr "oVirt диспетчеріне байланысты орнату сәтсіз аяқталды"
 
-#: ../src/properties.vala:46
-msgid "Login"
-msgstr "Кіру"
-
-#: ../src/properties.vala:54
-msgid "Display"
-msgstr "Экран"
-
-#: ../src/properties.vala:58
-msgid "Devices"
-msgstr "Құрылғылар"
-
-#: ../src/properties.vala:62
-msgid "Snapshots"
-msgstr "Снапшоттар"
-
-#: ../src/properties.vala:221
+#: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Өзгерістер іске асу үшін '%s' қайта қосылуы керек."
 
-#: ../src/properties.vala:222
+#: ../src/properties.vala:82
 msgid "_Restart"
 msgstr "Қа_йта қосу"
 
-#: ../src/selectionbar.vala:63
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "'%s' жөнелту сәтсіз"
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "Жалпы"
+
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "Құрылғылар"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "Снапшоттар"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
@@ -737,25 +796,30 @@ msgstr[0] "%d таңдалды"
 msgid "(Click on items to select them)"
 msgstr "(Бірнәрсені таңдау үшін оның үстіне шертіңіз)"
 
-#: ../src/snapshot-list-row.vala:147
+#: ../src/snapshot-list-row.vala:137
 #, c-format
 msgid "Reverting to %s…"
 msgstr "%s дейін қайтару…"
 
-#: ../src/snapshot-list-row.vala:163
+#: ../src/snapshot-list-row.vala:155
 msgid "Failed to apply snapshot"
 msgstr "Снапшотты іске асыру сәтсіз аяқталды"
 
-#: ../src/snapshot-list-row.vala:181
+#: ../src/snapshot-list-row.vala:172
 #, c-format
 msgid "Snapshot \"%s\" deleted."
 msgstr "\"%s\" снапшоты өшірілді."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:59
+msgid "No snapshots created yet. Create one using the button below."
+msgstr ""
+"Снапшоттар әрі жасалмаған. Төмендегі батырма көмегімен біреуін жасаңыз."
+
+#: ../src/snapshots-property.vala:118
 msgid "Creating new snapshot…"
 msgstr "Жаңа снапшотты жасау…"
 
-#: ../src/snapshots-property.vala:113
+#: ../src/snapshots-property.vala:126
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "%s снашотын жасау сәтсіз"
@@ -765,47 +829,42 @@ msgstr "%s снашотын жасау сәтсіз"
 msgid "Unknown"
 msgstr "Белгісіз"
 
-#: ../src/spice-display.vala:55
-#, c-format
-msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr ""
-"'%s' USB құрылғысын'%s' боксына автоматты түрде қайта бағдарлау сәтсіз "
-"аяқталды"
-
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:343
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:347
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "'%s' USB құрылғысын'%s' боксына қайта бағдарлау сәтсіз аяқталды"
 
 #: ../src/spice-display.vala:294
-msgid "Share clipboard"
+msgid "Share Clipboard"
 msgstr "Алмасу буферімен бөлісу"
 
-#: ../src/spice-display.vala:300
-msgid "Resize guest"
-msgstr "Қоңақ өлшемін өзгерту"
-
-#: ../src/spice-display.vala:309
-msgid "Redirect new USB devices"
-msgstr "Жаңа USB құрылғыларын қайта бағдарлау"
-
-#: ../src/spice-display.vala:329
+#: ../src/spice-display.vala:360
 msgid "USB devices"
 msgstr "USB"
 
-#: ../src/spice-display.vala:386 ../src/wizard.vala:284 ../src/wizard.vala:291
+#: ../src/spice-display.vala:461 ../src/wizard.vala:305 ../src/wizard.vala:312
 msgid "Invalid URI"
 msgstr "URI қате"
 
-#: ../src/spice-display.vala:396
+#: ../src/spice-display.vala:471
 msgid "The port must be specified once"
 msgstr "Порт бір рет көрсетілуі керек"
 
-#: ../src/spice-display.vala:405
+#: ../src/spice-display.vala:480
 msgid "Missing port in Spice URI"
 msgstr "Spice URI ішініде порт көрсетілмеген"
 
-#: ../src/unattended-installer.vala:464
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: ../src/unattended-installer.vala:188
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr ""
+"Орнатуды дайындау кезінде қате орын алды. Жылдам орнату мүмкіндігі "
+"сөндірілді."
+
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "Құрылғы драйверлерін жүктеу…"
 
@@ -877,34 +936,27 @@ msgstr "жоқ"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:550
+#: ../src/vm-configurator.vala:553
 msgid "Incapable host system"
 msgstr "Жүйе керек функцияларды қолдамайды"
 
-#: ../src/vm-creator.vala:48
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr ""
-"Орнатуды дайындау кезінде қате орын алды. Жылдам орнату мүмкіндігі "
-"сөндірілді."
-
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:174
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "'%s' Live боксы автоөшірілді."
 
-#: ../src/vm-creator.vala:188
+#: ../src/vm-creator.vala:187
 msgid "Installing…"
 msgstr "Орнату…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:192 ../src/wizard-source.vala:82
+#: ../src/vm-creator.vala:191 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
 #. This string is about automatic installation progress
-#: ../src/vm-creator.vala:331
+#: ../src/vm-creator.vala:330
 #, c-format
 msgid "%d%% Installed"
 msgid_plural "%d%% Installed"
@@ -937,96 +989,174 @@ msgstr "64-биттік x86 жүйесі"
 msgid " from %s"
 msgstr " жасаған: %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:6
+msgid "Source Selection"
+msgstr "Қайнар көзін таңдау"
+
+#: ../src/wizard-toolbar.vala:7
+msgid "Box Preparation"
+msgstr "Боксты дайындау"
+
+#: ../src/wizard-toolbar.vala:8
+msgid "Box Setup"
+msgstr "Боксты баптау"
+
+#: ../src/wizard-toolbar.vala:9
+msgid "Review"
+msgstr "Қарап шығу"
+
+#: ../src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Боксты жасау сәтсіз"
 
-#: ../src/wizard.vala:172
-msgid "Please enter desktop or collection URI"
-msgstr "Жұмыс үстел не жинақ URI-ін енгізіңіз"
-
-#: ../src/wizard.vala:178
-msgid "Will add boxes for all systems available from this account."
-msgstr "Бұл тіркелгіге қолжетерлік бокстар қосылады."
-
-#: ../src/wizard.vala:181
-msgid "Will add a single box."
-msgstr "Бір бокс қосылады."
-
-#. ignore any parsing error
-#: ../src/wizard.vala:187
-msgid "Desktop Access"
-msgstr "Жұмыс үстелге қатынау"
-
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:268
 msgid "Empty location"
 msgstr "Бос орналасу"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:287
+msgid "Unsupported file"
+msgstr "Қолдауы жоқ файл"
+
+#: ../src/wizard.vala:293
+msgid "Invalid file"
+msgstr "Қате файл"
+
+#: ../src/wizard.vala:329
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "'%s' хаттамасына қолдау жоқ"
 
-#: ../src/wizard.vala:314 ../src/wizard.vala:375
+#: ../src/wizard.vala:335 ../src/wizard.vala:404
 msgid "Unknown installer media"
 msgstr "Белгісіз орнату тасушысы"
 
-#: ../src/wizard.vala:315 ../src/wizard.vala:376
+#: ../src/wizard.vala:336 ../src/wizard.vala:405
 msgid "Analyzing…"
 msgstr "Анализдеу…"
 
-#: ../src/wizard.vala:329
+#: ../src/wizard.vala:350
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Орнату тасушысын анализдеу сәтсіз аяқталды. Тасушы зақымдалған не толық емес "
 "шығар?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:444
+#: ../src/wizard.vala:458
 msgid "Box setup failed"
 msgstr "Боксты баптау сәтсіз аяқталды"
 
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:472
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Бокстар келесі қасиеттері бар жаңа боксты жасайды:"
 
-#: ../src/wizard.vala:463
+#: ../src/wizard.vala:477
 msgid "Type"
 msgstr "Түрі"
 
-#: ../src/wizard.vala:466
+#: ../src/wizard.vala:480
 msgid "Host"
 msgstr "Хост"
 
-#: ../src/wizard.vala:477 ../src/wizard.vala:488
+#: ../src/wizard.vala:491 ../src/wizard.vala:502
 msgid "Port"
 msgstr "Порт"
 
-#: ../src/wizard.vala:479
+#: ../src/wizard.vala:493
 msgid "TLS Port"
 msgstr "TLS порты"
 
-#: ../src/wizard.vala:493
+#: ../src/wizard.vala:507
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Бұл тіркелгіге қолжетерлік бокстар қосылады:"
 
-#: ../src/wizard.vala:515
+#: ../src/wizard.vala:529
 msgid "Disk"
 msgstr "Диск"
 
-#: ../src/wizard.vala:515
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: ../src/wizard.vala:531
 #, c-format
 msgid "%s maximum"
 msgstr "Максимум %s"
 
-#: ../src/wizard.vala:579
+#: ../src/wizard.vala:594
 msgid "Downloading media…"
 msgstr "Тасушыны жүктеп алу…"
 
-#: ../src/wizard.vala:589
+#: ../src/wizard.vala:604
 msgid "Download failed."
 msgstr "Жүктеп алу сәтсіз аяқталды."
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:712
 msgid "C_ustomize…"
 msgstr "Б_аптау"
+
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "Жоғары сол жақтағы батырманы қолданып, жаңасын жасаңыз."
+
+#~ msgid "Net:"
+#~ msgstr "Желі:"
+
+#~ msgid "Introduction"
+#~ msgstr "Бастау үшін"
+
+#~ msgid ""
+#~ "Creating a box will allow you to use another operating system directly "
+#~ "from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or "
+#~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "Боксты жасау арқылы сізге өз тіркелгіңізден басқа операциялық жүйеге "
+#~ "қатынау мүмкіндігін береді.\n"
+#~ "\n"
+#~ "Сіз <b><i>желі арқылы</i></b> бар болып тұрған машинаға байланысып, "
+#~ "немесе өз жүйеңізде орындалатын <b><i>виртуалды машинаны</i></b> жасай "
+#~ "аласыз."
+
+#~ msgid "Virtualizer"
+#~ msgstr "Виртуализатор"
+
+#~ msgid "_Save"
+#~ msgstr "_Сақтау"
+
+#~ msgid "_Close"
+#~ msgstr "Жа_бу"
+
+#~ msgid "Save log"
+#~ msgstr "Журналды сақтау"
+
+#~ msgid "Error saving: %s"
+#~ msgstr "Сақтау қатесі: %s"
+
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "Сөндіруді мәжбүрлетсеңіз, бокс деректерді жоғалтуы мүмкін."
+
+#~ msgid "Login"
+#~ msgstr "Кіру"
+
+#~ msgid "Display"
+#~ msgstr "Экран"
+
+#~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
+#~ msgstr ""
+#~ "'%s' USB құрылғысын'%s' боксына автоматты түрде қайта бағдарлау сәтсіз "
+#~ "аяқталды"
+
+#~ msgid "Resize guest"
+#~ msgstr "Қоңақ өлшемін өзгерту"
+
+#~ msgid "Redirect new USB devices"
+#~ msgstr "Жаңа USB құрылғыларын қайта бағдарлау"
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "Жұмыс үстел не жинақ URI-ін енгізіңіз"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr "Бұл тіркелгіге қолжетерлік бокстар қосылады."
+
+#~ msgid "Will add a single box."
+#~ msgstr "Бір бокс қосылады."
+
+#~ msgid "Desktop Access"
+#~ msgstr "Жұмыс үстелге қатынау"
