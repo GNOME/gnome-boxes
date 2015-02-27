@@ -190,7 +190,7 @@ private class Boxes.WizardSource: Gtk.Stack {
                 completion.text_column = 0;
                 completion.model = url_store;
                 weak Gtk.CellRendererText cell = completion.get_cells ().nth_data (0) as Gtk.CellRendererText;
-                cell.ellipsize = Pango.EllipsizeMode.START;
+                cell.ellipsize = Pango.EllipsizeMode.MIDDLE;
                 completion.set_match_func ((store, key, iter) => {
                     string url;
 
