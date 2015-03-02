@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-01 19:04+0000\n"
-"PO-Revision-Date: 2015-03-02 00:38+0300\n"
+"POT-Creation-Date: 2015-03-02 17:25+0000\n"
+"PO-Revision-Date: 2015-03-02 20:51+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -207,7 +207,7 @@ msgid "Rename"
 msgstr "Переименовать"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:50
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:51
 msgid "Delete"
 msgstr "Удалить"
 
@@ -227,11 +227,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Быстрая установка"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
 msgid "Password"
 msgstr "Пароль"
 
@@ -279,16 +279,30 @@ msgid "◀"
 msgstr "◀"
 
 #: ../data/ui/wizard-source.ui.h:7
+#| msgid ""
+#| "Enter an address for the box you want to add. Addresses can be of\n"
+#| "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
+#| "\n"
+#| "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+#| "somehost:5051, ovirt://host/path</span>"
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of\n"
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
-"\n"
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+msgstr ""
+"Введите адрес для бокса, который хотите добавить. Адресами могут быть\n"
+"установочные образы, серверы SPICE или VNC, или диспетчеры oVirt или Libvirt."
+
+#: ../data/ui/wizard-source.ui.h:9
+#| msgid ""
+#| "Enter an address for the box you want to add. Addresses can be of\n"
+#| "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
+#| "\n"
+#| "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+#| "somehost:5051, ovirt://host/path</span>"
+msgid ""
 "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
 "somehost:5051, ovirt://host/path</span>"
 msgstr ""
-"Введите адрес для бокса, который хотите добавить. Адресами могут быть\n"
-"установочные образы, серверы SPICE или VNC, или брокеры oVirt или Libvirt.\n"
-"\n"
 "<span color=\"grey\">Примеры: http://download.com/image.iso, spice://"
 "somehost:5051, ovirt://host/path</span>"
 
@@ -330,30 +344,30 @@ msgid "Box actions"
 msgstr "Действия"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:36
+#: ../src/actions-popover.vala:37
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
 #. Favorite
-#: ../src/actions-popover.vala:40
+#: ../src/actions-popover.vala:41
 msgid "Add to Favorites"
 msgstr "Добавить в избранное"
 
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:43
 msgid "Remove from Favorites"
 msgstr "Удалить из избранного"
 
 #. Pause
-#: ../src/actions-popover.vala:45
+#: ../src/actions-popover.vala:46
 msgid "Pause"
 msgstr "Приостановить"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:56
+#: ../src/actions-popover.vala:59
 msgid "Properties"
 msgstr "Свойства"
 
-#: ../src/actions-popover.vala:80 ../src/selectionbar.vala:63
+#: ../src/actions-popover.vala:83 ../src/selectionbar.vala:63
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Ошибка приостановки «%s»"
@@ -866,20 +880,20 @@ msgstr "Отсутствует порт в Spice URI"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:190
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Во время установки произошла ошибка. Быстрая установка отключена."
 
-#: ../src/unattended-installer.vala:465
+#: ../src/unattended-installer.vala:467
 msgid "Downloading device drivers…"
 msgstr "Загрузка драйверов устройств…"
 
-#: ../src/unattended-setup-box.vala:46
+#: ../src/unattended-setup-box.vala:52
 msgid "no password"
 msgstr "без пароля"
 
-#: ../src/unattended-setup-box.vala:99
+#: ../src/unattended-setup-box.vala:105
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Для быстрой установки %s требуется подключение к Интернету."
