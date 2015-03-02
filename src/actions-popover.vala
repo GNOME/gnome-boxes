@@ -30,29 +30,32 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var machine = item as Machine;
 
         var menu = new GLib.Menu ();
+        var section = new GLib.Menu ();
 
         // Open in new Window
         if (machine.window == App.app.main_window || machine.window != window)
-            menu.append (_("Open in New Window"), "box.open-in-new-win");
+            section.append (_("Open in New Window"), "box.open-in-new-win");
 
         // Favorite
         if (("favorite" in machine.config.categories))
-            menu.append (_("Add to Favorites"), "box.favorite");
+            section.append (_("Add to Favorites"), "box.favorite");
         else
-            menu.append (_("Remove from Favorites"), "box.favorite");
+            section.append (_("Remove from Favorites"), "box.favorite");
 
         // Pause
-        menu.append (_("Pause"), "box.pause");
+        section.append (_("Pause"), "box.pause");
         var action = action_group.lookup_action ("pause") as GLib.SimpleAction;
         action.set_enabled (machine.can_save);
 
         // Delete
-        menu.append (_("Delete"), "box.delete");
+        section.append (_("Delete"), "box.delete");
         action = action_group.lookup_action ("delete") as GLib.SimpleAction;
         action.set_enabled (machine.can_delete);
 
+        menu.append_section (null, section);
+
         // Properties (in separate section)
-        var section = new GLib.Menu ();
+        section = new GLib.Menu ();
         section.append (_("Properties"), "box.properties");
         menu.append_section (null, section);
 
