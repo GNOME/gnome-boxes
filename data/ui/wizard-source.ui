@@ -250,7 +250,6 @@
         <child>
           <object class="GtkBox" id="url_entry_vbox">
             <property name="visible">True</property>
-            <property name="spacing">20</property>
             <property name="orientation">vertical</property>
             <style>
               <class name="boxes-menu-row"/>
@@ -259,16 +258,31 @@
             <child>
               <object class="GtkLabel" id="url_description_label">
                 <property name="visible">True</property>
-                <property name="margin-top">10</property>
-                <property name="margin-start">20</property>
-                <property name="margin-end">20</property>
-                <property name="use-markup">True</property>
+                <property name="margin-top">24</property>
+                <property name="margin-start">24</property>
+                <property name="margin-end">24</property>
                 <property name="wrap">True</property>
                 <property name="halign">start</property>
                 <property name="label" translatable="yes">Enter an address for the box you want to add. Addresses can be of
-installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.
+installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.</property>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+              </packing>
+            </child>
 
-&lt;span color="grey"&gt;Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/path&lt;/span&gt;</property>
+            <child>
+              <object class="GtkLabel" id="url_examples_label">
+                <property name="visible">True</property>
+                <property name="margin-start">24</property>
+                <property name="margin-end">24</property>
+                <property name="margin-top">12</property>
+                <property name="margin-bottom">18</property>
+                <property name="use-markup">True</property>
+                <property name="wrap">True</property>
+                <property name="halign">start</property>
+                <property name="label" translatable="yes">&lt;span color="grey"&gt;Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/path&lt;/span&gt;</property>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -279,10 +293,9 @@ installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.
             <child>
               <object class="GtkEntry" id="url_entry">
                 <property name="visible">True</property>
-                <property name="margin-top">10</property>
-                <property name="margin-start">20</property>
-                <property name="margin-end">20</property>
-                <property name="margin-bottom">10</property>
+                <property name="margin-start">24</property>
+                <property name="margin-end">24</property>
+                <property name="margin-bottom">24</property>
                 <signal name="activate" handler="on_url_entry_activated"/>
               </object>
             </child>
