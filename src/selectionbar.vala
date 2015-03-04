@@ -10,6 +10,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     [GtkChild]
     private Gtk.Button remove_btn;
     [GtkChild]
+    private Gtk.Button properties_btn;
+    [GtkChild]
     private Gtk.Button open_btn;
 
     private AppWindow window;
@@ -17,6 +19,7 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     construct {
         App.app.notify["selected-items"].connect (() => {
             update_favorite_btn ();
+            update_properties_btn ();
             update_pause_btn ();
             update_delete_btn ();
             update_open_btn ();
@@ -76,6 +79,11 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         App.app.remove_selected_items ();
     }
 
+    [GtkCallback]
+    private void on_properties_btn_clicked () {
+        window.show_properties ();
+    }
+
     private void update_favorite_btn () {
         var active = false;
         var sensitive = App.app.selected_items.length () > 0;
@@ -98,6 +106,12 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         favorite_btn.active = active;
         favorite_btn.sensitive = sensitive;
         ignore_favorite_btn_clicks = false;
+    }
+
+    private void update_properties_btn () {
+        var sensitive = App.app.selected_items.length () == 1;
+
+        properties_btn.sensitive = sensitive;
     }
 
     private void update_pause_btn () {
