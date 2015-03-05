@@ -80,6 +80,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             // state, we got to exit, as there is no way for the user
             // to progress in the vm display anymore
             if (display != null && !stay_on_display &&
+                window != null && // This being null would mean app is exitting & no window exists anymore
                 window.current_item == this &&
                 value != MachineState.RUNNING &&
                 window.ui_state != UIState.PROPERTIES &&
@@ -161,6 +162,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
+                if (window == null) // App exitting & no window exists anymore
+                    return;
+
                 if (window.ui_state == UIState.CREDS || window.ui_state == UIState.DISPLAY) {
                     if (!stay_on_display && window.current_item == this)
                         window.set_state (Boxes.UIState.COLLECTION);
