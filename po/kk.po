@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-02-27 07:04+0000\n"
-"PO-Revision-Date: 2015-02-27 22:13+0500\n"
+"POT-Creation-Date: 2015-03-04 19:03+0000\n"
+"PO-Revision-Date: 2015-03-05 10:11+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk@li.org>\n"
 "Language: kk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.7.3\n"
+"X-Generator: Poedit 1.7.4\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -135,7 +135,6 @@ msgid "Search"
 msgstr "Іздеу"
 
 #: ../data/ui/empty-boxes.ui.h:1
-#| msgid "<b><span size=\"large\">No boxes found</span></b>"
 msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
 msgstr "<b><span size=\"large\">Дамыған виртуализация</span></b>"
 
@@ -205,7 +204,7 @@ msgid "Rename"
 msgstr "Атын өзгерту"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:50
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:51
 msgid "Delete"
 msgstr "Өшіру"
 
@@ -223,11 +222,11 @@ msgstr "Оңтайлы баптаулары бар боксты алу үшін 
 msgid "Express Install"
 msgstr "Жылдам орнату"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
 msgid "Username"
 msgstr "Пайдаланушы аты"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
 msgid "Password"
 msgstr "Пароль"
 
@@ -277,15 +276,17 @@ msgstr "◀"
 
 #: ../data/ui/wizard-source.ui.h:7
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of\n"
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers.\n"
-"\n"
+"Enter an address for the box you want to add. Addresses can be of "
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+msgstr ""
+"Қосқыңыз келетін бокс адресін енгізіңіз. Адрестер ретінде орнату бейнелері, "
+"SPICE және VNC серверлері, немесе oVirt не Libvirt брокерлері бола алады."
+
+#: ../data/ui/wizard-source.ui.h:8
+msgid ""
 "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
 "somehost:5051, ovirt://host/path</span>"
 msgstr ""
-"Қосқыңыз келетін бокс адресін енгізіңіз. Адрестер ретінде орнату бейнелері,\n"
-"SPICE және VNC серверлері, немесе oVirt не Libvirt блокерлері бола алады.\n"
-"\n"
 "<span color=\"grey\">Мысалдар: http://download.com/image.iso, spice://"
 "somehost:5051, ovirt://host/path</span>"
 
@@ -327,30 +328,30 @@ msgid "Box actions"
 msgstr "Бокс әрекеттері"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:36
+#: ../src/actions-popover.vala:37
 msgid "Open in New Window"
 msgstr "Жаңа терезеде ашу"
 
 #. Favorite
-#: ../src/actions-popover.vala:40
+#: ../src/actions-popover.vala:41
 msgid "Add to Favorites"
 msgstr "Таңдамалыларға қосу"
 
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:43
 msgid "Remove from Favorites"
 msgstr "Таңдамалылардан өшіру"
 
 #. Pause
-#: ../src/actions-popover.vala:45
+#: ../src/actions-popover.vala:46
 msgid "Pause"
 msgstr "Аялдату"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:56
+#: ../src/actions-popover.vala:59
 msgid "Properties"
 msgstr "Қасиеттері"
 
-#: ../src/actions-popover.vala:80 ../src/selectionbar.vala:63
+#: ../src/actions-popover.vala:83 ../src/selectionbar.vala:63
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "'%s' жөнелту сәтсіз"
@@ -462,7 +463,6 @@ msgstr "%s <span color=\"grey\">(%s қолданылуда)</span>"
 #. Translators: This is memory or disk size. E.g "1 GB (maximum)".
 #: ../src/i-properties-provider.vala:120
 #, c-format
-#| msgid "%s maximum"
 msgid "%s (maximum)"
 msgstr "%s (максимум)"
 
@@ -857,22 +857,22 @@ msgstr "Spice URI ішініде порт көрсетілмеген"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:190
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Орнатуды дайындау кезінде қате орын алды. Жылдам орнату мүмкіндігі "
 "сөндірілді."
 
-#: ../src/unattended-installer.vala:465
+#: ../src/unattended-installer.vala:467
 msgid "Downloading device drivers…"
 msgstr "Құрылғы драйверлерін жүктеу…"
 
-#: ../src/unattended-setup-box.vala:46
+#: ../src/unattended-setup-box.vala:52
 msgid "no password"
 msgstr "пароль жоқ"
 
-#: ../src/unattended-setup-box.vala:99
+#: ../src/unattended-setup-box.vala:105
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s жылдам орнатуы интернетпен байланысты талап етеді."
