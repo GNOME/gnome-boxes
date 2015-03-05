@@ -47,6 +47,9 @@ private class Boxes.DisplayPage: Gtk.Box {
     private ulong mouse_grabbed_id;
     private ulong keyboard_grabbed_id;
 
+    private int width = -1;
+    private int height = -1;
+
     public void setup_ui (AppWindow window) {
         this.window = window;
 
@@ -242,6 +245,12 @@ private class Boxes.DisplayPage: Gtk.Box {
 
     [GtkCallback]
     private void on_size_allocate (Gtk.Allocation allocation) {
+        if (width == allocation.width && height == allocation.height)
+            return;
+
+        width = allocation.width;
+        height = allocation.height;
+
         // Translators: Showing size of widget as WIDTHxHEIGHT here.
         size_label.label = _("%dx%d").printf (allocation.width, allocation.height);
         size_label.visible = true;
