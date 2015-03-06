@@ -80,6 +80,62 @@
     </child>
 
     <child>
+      <object class="GtkButton" id="list_btn">
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <property name="use-underline">True</property>
+        <signal name="clicked" handler="on_list_btn_clicked"/>
+        <style>
+          <class name="image-button"/>
+        </style>
+        <child internal-child="accessible">
+          <object class="AtkObject" id="a11y-button4">
+            <property name="accessible-name" translatable="yes">List view</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="list_image">
+            <property name="visible">True</property>
+            <property name="icon-name">view-list-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
+      </object>
+
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="grid_btn">
+        <property name="visible">False</property>
+        <property name="valign">center</property>
+        <property name="use-underline">True</property>
+        <signal name="clicked" handler="on_grid_btn_clicked"/>
+        <style>
+          <class name="image-button"/>
+        </style>
+        <child internal-child="accessible">
+          <object class="AtkObject" id="a11y-button5">
+            <property name="accessible-name" translatable="yes">Grid view</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="grid_image">
+            <property name="visible">True</property>
+            <property name="icon-name">view-grid-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
+      </object>
+
+      <packing>
+        <property name="pack-type">end</property>
+      </packing>
+    </child>
+
+    <child>
       <object class="GtkToggleButton" id="search_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>

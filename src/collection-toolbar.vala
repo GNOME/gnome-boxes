@@ -8,6 +8,10 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     private Button select_btn;
     [GtkChild]
+    private Button list_btn;
+    [GtkChild]
+    private Button grid_btn;
+    [GtkChild]
     private Button back_btn;
     [GtkChild]
     private Button new_btn;
@@ -26,6 +30,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
+
+        update_view_type (AppWindow.ViewType.ICON);
 
         search_btn.bind_property ("active", window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
@@ -58,6 +64,16 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     [GtkCallback]
+    private void on_list_btn_clicked () {
+        update_view_type (AppWindow.ViewType.LIST);
+    }
+
+    [GtkCallback]
+    private void on_grid_btn_clicked () {
+        update_view_type (AppWindow.ViewType.ICON);
+    }
+
+    [GtkCallback]
     private void on_select_btn_clicked () {
         window.selection_mode = true;
     }
@@ -70,6 +86,12 @@ private class Boxes.CollectionToolbar: HeaderBar {
         select_btn.sensitive = App.app.collection.items.length != 0;
     }
 
+    private void update_view_type (AppWindow.ViewType view_type) {
+        window.view_type = view_type;
+
+        ui_state_changed ();
+    }
+
     private void ui_state_changed () {
         switch (window.ui_state) {
         case UIState.COLLECTION:
@@ -77,6 +99,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
             select_btn.show ();
             search_btn.show ();
             new_btn.show ();
+            grid_btn.visible = window.view_type != AppWindow.ViewType.ICON;
+            list_btn.visible = window.view_type != AppWindow.ViewType.LIST;
             custom_title = filter_switcher;
             break;
 
@@ -85,6 +109,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
             back_btn.visible = (window == App.app.main_window);
             select_btn.hide ();
             search_btn.hide ();
+            grid_btn.hide ();
+            list_btn.hide ();
             custom_title = null;
             break;
 
