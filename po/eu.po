@@ -2,15 +2,16 @@
 # Copyright (C) 2013 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 #
-#
 # asiersar <asiersar@yahoo.com>, 2013.
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-17 14:26+0100\n"
-"PO-Revision-Date: 2015-01-17 14:39+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"boxes&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-03-23 18:49+0100\n"
+"PO-Revision-Date: 2015-03-23 18:59+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
 "Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -48,7 +49,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Makinak"
 
@@ -134,12 +136,16 @@ msgid "Search"
 msgstr "Bilatu"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">Ez da makinarik aurkitu</span></b>"
+msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgstr "<b><span size=\"large\">Birtualizazioaren abangoardia</span></b>"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "Sortu bat goi-ezkerreko botoia erabiliz."
+msgid "Boxes can be virtual or remote machines."
+msgstr "'Makinak' birtuala edo urrunekoa izan daiteke."
+
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr "Sakatu <b>Berria</b> botoia aurrenekoa sortzeko."
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -163,14 +169,18 @@ msgid "_Open"
 msgstr "_Ireki"
 
 #: ../data/ui/selectionbar.ui.h:1
+msgid "_Favorite"
+msgstr "_Gogokoa"
+
+#: ../data/ui/selectionbar.ui.h:2
 msgid "P_ause"
 msgstr "_Pausatu"
 
-#: ../data/ui/selectionbar.ui.h:2
+#: ../data/ui/selectionbar.ui.h:3
 msgid "_Delete"
 msgstr "_Ezabatu"
 
-#: ../data/ui/selectionbar.ui.h:3
+#: ../data/ui/selectionbar.ui.h:4
 msgid "_Properties"
 msgstr "_Propietateak"
 
@@ -195,7 +205,7 @@ msgid "Rename"
 msgstr "Aldatu izena"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:49
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:51
 msgid "Delete"
 msgstr "Ezabatu"
 
@@ -215,11 +225,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalazio azkarra"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
 msgid "Password"
 msgstr "Pasahitza"
 
@@ -236,20 +246,52 @@ msgid "Unknown media"
 msgstr "Euskarri ezezaguna"
 
 #: ../data/ui/wizard-source.ui.h:1
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Sartu sistema eragilearen instalazio-euskarria edo hautatu iturburu bat "
+"azpian"
+
+#: ../data/ui/wizard-source.ui.h:2
 msgid "Enter URL"
 msgstr "Sartu URLa"
 
-#: ../data/ui/wizard-source.ui.h:2
+#: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "▶"
 
-#: ../data/ui/wizard-source.ui.h:3
+#: ../data/ui/wizard-source.ui.h:4
 msgid "Select a file"
 msgstr "Hautatu fitxategia"
 
-#: ../data/ui/wizard-source.ui.h:4
+#: ../data/ui/wizard-source.ui.h:5
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Goian erakutsitako edozein markak jadanik eskuratu dituzun eta haien "
+"jabeenak diren software-produktuak identifikatzeko soilik balio du."
+
+#: ../data/ui/wizard-source.ui.h:6
 msgid "◀"
 msgstr "◀"
+
+#: ../data/ui/wizard-source.ui.h:7
+msgid ""
+"Enter an address for the box you want to add. Addresses can be of "
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+msgstr ""
+"Sartu gehitzea nahi duzun makinaren helbidea. Helbideak instalazioko "
+"irudiak, SPICE eta VNC zerbitzariak edo oVirt edo libvirt hornitzaileak izan "
+"daitezke."
+
+#: ../data/ui/wizard-source.ui.h:8
+msgid ""
+"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+"somehost:5051, ovirt://host/path</span>"
+msgstr ""
+"<span color=\"grey\">Adibidez: http://deskargak.com/irudia.iso, spice://"
+"ostalari_bat:5051, ovirt://ostalaria/bide-izena</span>"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -272,40 +314,10 @@ msgid "Customize Resources"
 msgstr "Pertsonalizatu baliabideak"
 
 #: ../data/ui/wizard.ui.h:1
-msgid ""
-"Creating a box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"Makina bat sortzean, beste sistema eragile bat zuzenean zure saio-hasieratik "
-"erabili ahal izango duzu.\n"
-"\n"
-"Existitzen den makina batekin konektatu ahal izango duzu <b><i>sarearen "
-"bidez</i></b> edo lokalean exekutatzen den <b><i>makina birtual bat</i></b> "
-"sortu."
-
-#: ../data/ui/wizard.ui.h:4
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Sartu sistema eragilearen instalazio-euskarria edo hautatu iturburu bat "
-"azpian"
-
-#: ../data/ui/wizard.ui.h:5
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Goian erakutsitako edozein markak jadanik eskuratu dituzun eta haien "
-"jabeenak diren software-produktuak identifikatzeko soilik balio du."
-
-#: ../data/ui/wizard.ui.h:6
 msgid "Preparing to create new box"
 msgstr "Makina berria sortzeko prestatzen"
 
-#: ../data/ui/wizard.ui.h:7
+#: ../data/ui/wizard.ui.h:2
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -319,103 +331,105 @@ msgid "Box actions"
 msgstr "Makinaren ekintzak"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:35
-msgid "Open in new Window"
+#: ../src/actions-popover.vala:37
+msgid "Open in New Window"
 msgstr "Ireki leiho berrian"
 
-#: ../src/actions-popover.vala:39
-msgid "Remove favorite"
-msgstr "Kendu gogokoa"
-
+#. Favorite
 #: ../src/actions-popover.vala:41
-msgid "Favorite"
-msgstr "Gogokoa"
+msgid "Remove from Favorites"
+msgstr "Kendu gogokoetatik"
+
+#: ../src/actions-popover.vala:43
+msgid "Add to Favorites"
+msgstr "Gehitu gogokoetan"
 
 #. Pause
-#: ../src/actions-popover.vala:44
+#: ../src/actions-popover.vala:46
 msgid "Pause"
 msgstr "Pausatu"
 
-#: ../src/actions-popover.vala:55
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:59
 msgid "Properties"
 msgstr "Propietateak"
 
-#: ../src/actions-popover.vala:79 ../src/selectionbar.vala:63
+#: ../src/actions-popover.vala:83 ../src/selectionbar.vala:63
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "'%s' pausatzeak huts egin du"
 
-#: ../src/app.vala:97
+#: ../src/app.vala:99
 msgid "translator-credits"
 msgstr ""
 "Asier Sarasua Garmendia <asiersar@yahoo.com>\n"
 "Iñaki Larrañaga Murgoitio <dooteo@zundan.com>"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:100
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Urruneko sistemetara edo sistema birtualetara sartzeko GNOME 3 aplikazio "
 "sinplea"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:119
 msgid "Help"
 msgstr "Laguntza"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:120
 msgid "About"
 msgstr "Honi buruz"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:121
 msgid "Quit"
 msgstr "Irten"
 
-#: ../src/app.vala:175 ../src/main.vala:9
+#: ../src/app.vala:177 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Bistaratu bertsio-zenbakia"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:179
 msgid "Open in full screen"
 msgstr "Ireki pantaila osoan"
 
-#: ../src/app.vala:178 ../src/main.vala:10
+#: ../src/app.vala:180 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Egiaztatu birtualizazioaren gaitasunak"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:181
 msgid "Open box with UUID"
 msgstr "Ireki honako UUIDa duen makina:"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:182
 msgid "Search term"
 msgstr "Bilaketa-terminoa"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:182
+#: ../src/app.vala:184
 msgid "URI to display, broker or installer media"
 msgstr "Bistaratuko den URIa, artekaria edo instalatzaile-euskarria"
 
-#: ../src/app.vala:193
+#: ../src/app.vala:195
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Urruneko makinetara edo makina birtualetara sartzeko aplikazio sinplea"
 
-#: ../src/app.vala:215
+#: ../src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "Komando-lerroko argumentu gehiegi zehaztu dira.\n"
 
-#: ../src/app.vala:480
+#: ../src/app.vala:486
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' makina ezabatu da"
 
-#: ../src/app.vala:481
+#: ../src/app.vala:487
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Makina %u ezabatu da"
 msgstr[1] "%u makina ezabatu dira"
 
-#: ../src/app.vala:508 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:514 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desegin"
 
@@ -423,12 +437,16 @@ msgstr "_Desegin"
 msgid "New and Recent"
 msgstr "Berria eta azken aldikoa"
 
-#: ../src/display-page.vala:101
-msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(sakatu [ezkerreko] Ktrl-Alt teklak askatzeko)"
+#: ../src/display-page.vala:110
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "Sakatu (ezkerreko) Ktrl+Alt teklak askatzeko"
+
+#: ../src/display-page.vala:112
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr "sakatu eta askatu (ezkerreko)  Ktrl+Alt teklatua askatzeko."
 
 #. Translators: Showing size of widget as WIDTHxHEIGHT here.
-#: ../src/display-page.vala:228
+#: ../src/display-page.vala:255
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
@@ -442,10 +460,22 @@ msgstr "Onartu gabeko disko-irudiaren formatua."
 msgid "System"
 msgstr "Sistema"
 
+#: ../src/i-properties-provider.vala:88
+#, c-format
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s erabilita)</span>"
+
+#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:120
+#, c-format
+msgid "%s (maximum)"
+msgstr "%s (gehienez)"
+
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ktrl + Alt + Atzera tekla"
 
+#. New section
 #: ../src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + F1"
 msgstr "Ktrl + Alt + F1"
@@ -464,127 +494,143 @@ msgstr "Ktrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Bidali teklen konbinazioak"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:53
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
 msgid "Name"
 msgstr "Izena"
 
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:64
+#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
 msgid "Broker"
 msgstr "Hornitzailea"
 
-#: ../src/libvirt-machine-properties.vala:136 ../src/ovirt-machine.vala:65
+#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
 #: ../src/remote-machine.vala:65
 msgid "Protocol"
 msgstr "Protokoloa"
 
-#: ../src/libvirt-machine-properties.vala:137 ../src/ovirt-machine.vala:66
-#: ../src/remote-machine.vala:66 ../src/wizard.vala:470
+#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
+#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
+#: ../src/wizard.vala:482
 msgid "URI"
 msgstr "URIa"
 
-#: ../src/libvirt-machine-properties.vala:186
-#: ../src/libvirt-machine-properties.vala:204
+#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
+#. without smartcard support will not start vms with it.
+#: ../src/libvirt-machine-properties.vala:180
+#: ../src/libvirt-machine-properties.vala:198
 msgid "Add support to guest"
 msgstr "Gehitu gonbidatuentzako euskarria"
 
-#: ../src/libvirt-machine-properties.vala:188
+#: ../src/libvirt-machine-properties.vala:182
 msgid "USB device support"
 msgstr "USB gailuen euskarria"
 
-#: ../src/libvirt-machine-properties.vala:206
+#: ../src/libvirt-machine-properties.vala:200
 msgid "Smartcard support"
 msgstr "Txartel adimendunen euskarria"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:258
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:252
+#: ../src/libvirt-machine-properties.vala:304
 msgid "empty"
 msgstr "hutsik"
 
 #. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:267
-#: ../src/libvirt-machine-properties.vala:319
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "CD/DVD"
 msgstr "CD/DVDa"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:281
-#: ../src/libvirt-machine-properties.vala:309
+#: ../src/libvirt-machine-properties.vala:275
+#: ../src/libvirt-machine-properties.vala:303
 msgid "Select"
 msgstr "Hautatu"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:284
-#: ../src/libvirt-machine-properties.vala:292
+#: ../src/libvirt-machine-properties.vala:278
+#: ../src/libvirt-machine-properties.vala:286
 msgid "Remove"
 msgstr "Kendu"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:299
+#: ../src/libvirt-machine-properties.vala:293
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Huts egin du '%s' CD/DVD gisa txertatzean '%s'(e)n"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:307
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Huts egin du '%s'(e)tik CD/DVDa kentzean "
 
-#: ../src/libvirt-machine-properties.vala:379
+#: ../src/libvirt-machine-properties.vala:375
 msgid "CPU"
 msgstr "PUZa"
 
-#: ../src/libvirt-machine-properties.vala:385
+#. I/O
+#. 100 MiB/s
+#: ../src/libvirt-machine-properties.vala:381
 msgid "I/O"
 msgstr "S/I"
 
-#: ../src/libvirt-machine-properties.vala:391
+#. Network
+#. 1 MiB/s
+#: ../src/libvirt-machine-properties.vala:387
 msgid "Network"
 msgstr "Sarea"
 
-#: ../src/libvirt-machine-properties.vala:414
+#: ../src/libvirt-machine-properties.vala:410
 msgid "Troubleshooting log"
 msgstr "Arazoen konponketa"
 
-#: ../src/libvirt-machine-properties.vala:421
+#: ../src/libvirt-machine-properties.vala:417
 msgid "Force Shutdown"
 msgstr "Behartu ixtea"
 
-#: ../src/libvirt-machine-properties.vala:446 ../src/wizard.vala:508
+#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:520
 msgid "Memory"
 msgstr "Memoria"
 
 #: ../src/libvirt-machine-properties.vala:510
-#: ../src/libvirt-machine-properties.vala:532
-msgid "Maximum Disk Size"
-msgstr "Gehienezko disko-tamaina"
+#, c-format
+msgid ""
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+"\">(%s used)</span>"
+msgstr ""
+"<span color=\"grey\">Diskoaren gehienezko tamaina</span>\t\t %s <span "
+"color=\"grey"
+"\">(%s erabilita)</span>"
 
-#: ../src/libvirt-machine-properties.vala:523
+#: ../src/libvirt-machine-properties.vala:526
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Ez dago nahikoa leku makinan diskoaren tamaina gehiengora handiagotzeko."
 
+#: ../src/libvirt-machine-properties.vala:535
+msgid "Maximum Disk Size"
+msgstr "Gehienezko disko-tamaina"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:538
+#: ../src/libvirt-machine.vala:553
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s diskotik leheneratzen"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:541
+#: ../src/libvirt-machine.vala:556
 #, c-format
 msgid "Starting %s"
 msgstr "%s hasieratzen"
 
-#: ../src/libvirt-machine.vala:606
+#: ../src/libvirt-machine.vala:621
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "'%s'(r)en hasieratzea luze doa. Behartu ixtera?"
 
-#: ../src/libvirt-machine.vala:608
+#: ../src/libvirt-machine.vala:623
 msgid "_Shutdown"
 msgstr "_Itzali"
 
@@ -624,21 +670,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Huts egin du disko egokia bilatzean '%s' makinarentzako inportatzeko"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:150
+#: ../src/machine.vala:151
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s(e)ra konektatzen"
 
-#: ../src/machine.vala:169 ../src/machine.vala:591
+#: ../src/machine.vala:173 ../src/machine.vala:596
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s'(e)rako konexioak huts egin du"
 
-#: ../src/machine.vala:258
+#: ../src/machine.vala:263
 msgid "Saving…"
 msgstr "Gordetzen…"
 
-#: ../src/machine.vala:577
+#: ../src/machine.vala:582
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -647,17 +693,17 @@ msgstr ""
 "Ezin izan da '%s' diskotik leheneratu\n"
 "Saiatu gordetako egoerarik gabe?"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:583
 msgid "Restart"
 msgstr "Berrabiarazi"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:592
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Huts egin du '%s' abiaraztean"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:620
+#: ../src/machine.vala:625
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s'(e)k autentifikazioa eskatzen du"
@@ -736,10 +782,10 @@ msgstr "Gailuak"
 
 # Mmmmm.. berez instantanea gisa adieraz nahi da, baina ez dakit _argazkia_ egokia den, edo nola ezarri termino hau
 #: ../src/properties-page-widget.vala:27
-#, fuzzy
 msgid "Snapshots"
-msgstr "Argazkiak"
+msgstr "Bat-batekoak"
 
+#. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
 #, c-format
 msgid "_Open in new window"
@@ -766,70 +812,75 @@ msgid "Reverting to %s…"
 msgstr "%s(e)ra leheneratzen…"
 
 #: ../src/snapshot-list-row.vala:155
-#, fuzzy
 msgid "Failed to apply snapshot"
-msgstr "Huts egin du argazkia aplikatzean"
+msgstr "Huts egin du bat-batekoa aplikatzean"
 
 #: ../src/snapshot-list-row.vala:172
-#, fuzzy, c-format
+#, c-format
 msgid "Snapshot \"%s\" deleted."
-msgstr "'%s' argazkia ezabatuta."
+msgstr "'%s' bat-batekoa ezabatuta."
 
-#: ../src/snapshots-property.vala:99
-#, fuzzy
+#: ../src/snapshots-property.vala:59
+msgid "No snapshots created yet. Create one using the button below."
+msgstr "Ez da bat-batekorik sortu oraindik. Sortu bat azpiko botoia erabiliz."
+
+#: ../src/snapshots-property.vala:118
 msgid "Creating new snapshot…"
-msgstr "Argazki berria sortzen…"
+msgstr "Bat-bateko berria sortzen…"
 
-#: ../src/snapshots-property.vala:107
-#, fuzzy, c-format
+#: ../src/snapshots-property.vala:126
+#, c-format
 msgid "Failed to create snapshot of %s"
-msgstr "Huts egin du %s(r)en argazkia sortzean"
+msgstr "Huts egin du %s(r)en bat-batekoa sortzean"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: ../src/spice-display.vala:33
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: ../src/spice-display.vala:51 ../src/spice-display.vala:320
+#: ../src/spice-display.vala:51 ../src/spice-display.vala:347
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Huts egin du '%s' USB gailua '%s'(e)ra birbideratzean"
 
-#: ../src/spice-display.vala:280
-msgid "Share clipboard"
+#: ../src/spice-display.vala:294
+msgid "Share Clipboard"
 msgstr "Partekatu arbela"
 
-#: ../src/spice-display.vala:306
+#: ../src/spice-display.vala:360
 msgid "USB devices"
 msgstr "USB gailuak"
 
-#: ../src/spice-display.vala:442 ../src/wizard.vala:296 ../src/wizard.vala:303
+#: ../src/spice-display.vala:461 ../src/wizard.vala:305 ../src/wizard.vala:312
 msgid "Invalid URI"
 msgstr "URI baliogabea"
 
-#: ../src/spice-display.vala:452
+#: ../src/spice-display.vala:471
 msgid "The port must be specified once"
 msgstr "Ataka behin adierazi behar da"
 
-#: ../src/spice-display.vala:461
+#: ../src/spice-display.vala:480
 msgid "Missing port in Spice URI"
 msgstr "Ez da ataka aurkitzen Spice URIan"
 
-#: ../src/unattended-installer.vala:188
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: ../src/unattended-installer.vala:190
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Errorea gertatu da instalazioa prestatzean. Instalazio azkarra desgaituta."
 
-#: ../src/unattended-installer.vala:465
+#: ../src/unattended-installer.vala:467
 msgid "Downloading device drivers…"
 msgstr "Gailuaren kontrolatzaileak deskargatzen…"
 
-#: ../src/unattended-setup-box.vala:46
+#: ../src/unattended-setup-box.vala:52
 msgid "no password"
 msgstr "pasahitzik ez"
 
-#: ../src/unattended-setup-box.vala:99
+#: ../src/unattended-setup-box.vala:105
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "'%s'(r)en zuzeneko instalazioak interneteko konexioa behar du."
@@ -947,110 +998,146 @@ msgstr "64-bit x86 sistema"
 msgid " from %s"
 msgstr " %s(e)tik"
 
-#: ../src/wizard-toolbar.vala:60
-msgid "Create a box"
-msgstr "Sortu makina"
+#: ../src/wizard-toolbar.vala:6
+msgid "Source Selection"
+msgstr "Iturburuaren hautapena"
 
-#: ../src/wizard-toolbar.vala:64
-#, c-format
-msgid "Create a box (step %d/4)"
-msgstr "Sortu makina (%d/4 urratsa)"
+#: ../src/wizard-toolbar.vala:7
+msgid "Box Preparation"
+msgstr "Kutxaren prestaketa"
 
-#: ../src/wizard.vala:120
+#: ../src/wizard-toolbar.vala:8
+msgid "Box Setup"
+msgstr "Kutxaren konfigurazioa"
+
+#: ../src/wizard-toolbar.vala:9
+msgid "Review"
+msgstr "Berrikuspena"
+
+#: ../src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Makinaren sorrerak huts egin du"
 
-#: ../src/wizard.vala:173
-msgid "Please enter desktop or collection URI"
-msgstr "Sartu mahaigainaren edo bildumaren URIa"
-
-#: ../src/wizard.vala:179
-msgid "Will add boxes for all systems available from this account."
-msgstr ""
-"Kontu honetatik eskuragarri dauden sistema guztietarako makinak gehituko "
-"ditu."
-
-#: ../src/wizard.vala:182
-msgid "Will add a single box."
-msgstr "Makina bakarra gehituko du."
-
-#: ../src/wizard.vala:188
-msgid "Desktop Access"
-msgstr "Mahaigaineko sarbidea"
-
-#: ../src/wizard.vala:278
+#: ../src/wizard.vala:268
 msgid "Empty location"
 msgstr "Kokaleku hutsa"
 
-#: ../src/wizard.vala:320
+#: ../src/wizard.vala:287
+msgid "Unsupported file"
+msgstr "Onartu gabeko fitxategia"
+
+#: ../src/wizard.vala:293
+msgid "Invalid file"
+msgstr "Fitxategi baliogabea"
+
+#: ../src/wizard.vala:329
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Onartu gabeko '%s' protokoloa"
 
-#: ../src/wizard.vala:326 ../src/wizard.vala:389
+#: ../src/wizard.vala:335 ../src/wizard.vala:404
 msgid "Unknown installer media"
 msgstr "Instalazio-euskarri ezezaguna"
 
-#: ../src/wizard.vala:327 ../src/wizard.vala:390
+#: ../src/wizard.vala:336 ../src/wizard.vala:405
 msgid "Analyzing…"
 msgstr "Analizatzen…"
 
-#: ../src/wizard.vala:341
+#: ../src/wizard.vala:350
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Instalazio-euskarriaren analisiak huts egin du. Euskarri hondatua edo "
 "osatugabea?"
 
-#: ../src/wizard.vala:446
+#. We did this, so ignore!
+#: ../src/wizard.vala:458
 msgid "Box setup failed"
 msgstr "Makinaren konfigurazioak huts egin du"
 
-#: ../src/wizard.vala:460
+#: ../src/wizard.vala:472
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Makinek ondorengo propietateak dituen makina berria sortuko du:"
 
-#: ../src/wizard.vala:465
+#: ../src/wizard.vala:477
 msgid "Type"
 msgstr "Mota"
 
-#: ../src/wizard.vala:468
+#: ../src/wizard.vala:480
 msgid "Host"
 msgstr "Ostalaria"
 
-#: ../src/wizard.vala:479 ../src/wizard.vala:490
+#: ../src/wizard.vala:491 ../src/wizard.vala:502
 msgid "Port"
 msgstr "Ataka"
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:493
 msgid "TLS Port"
 msgstr "TLS ataka"
 
-#: ../src/wizard.vala:495
+#: ../src/wizard.vala:507
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Kontu honetatik eskuragarri dauden sistema guztietarako makinak gehituko "
 "ditu:"
 
-#: ../src/wizard.vala:517
+#: ../src/wizard.vala:529
 msgid "Disk"
 msgstr "Diskoa"
 
-#: ../src/wizard.vala:517
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: ../src/wizard.vala:531
 #, c-format
 msgid "%s maximum"
 msgstr "%s gehienez"
 
-#: ../src/wizard.vala:580
+#: ../src/wizard.vala:594
 msgid "Downloading media…"
 msgstr "Multimedia deskargatzen…"
 
-#: ../src/wizard.vala:590
+#: ../src/wizard.vala:604
 msgid "Download failed."
 msgstr "Huts egin du deskargatzean."
 
-#: ../src/wizard.vala:697
+#: ../src/wizard.vala:712
 msgid "C_ustomize…"
 msgstr "_Pertsonalizatu…"
+
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "Sortu bat goi-ezkerreko botoia erabiliz."
+
+#~ msgid ""
+#~ "Creating a box will allow you to use another operating system directly "
+#~ "from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or "
+#~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "Makina bat sortzean, beste sistema eragile bat zuzenean zure saio-"
+#~ "hasieratik erabili ahal izango duzu.\n"
+#~ "\n"
+#~ "Existitzen den makina batekin konektatu ahal izango duzu <b><i>sarearen "
+#~ "bidez</i></b> edo lokalean exekutatzen den <b><i>makina birtual bat</i></"
+#~ "b> sortu."
+
+#~ msgid "Create a box"
+#~ msgstr "Sortu makina"
+
+#~ msgid "Create a box (step %d/4)"
+#~ msgstr "Sortu makina (%d/4 urratsa)"
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "Sartu mahaigainaren edo bildumaren URIa"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "Kontu honetatik eskuragarri dauden sistema guztietarako makinak gehituko "
+#~ "ditu."
+
+#~ msgid "Will add a single box."
+#~ msgstr "Makina bakarra gehituko du."
+
+#~ msgid "Desktop Access"
+#~ msgstr "Mahaigaineko sarbidea"
 
 #~ msgid "_Save"
 #~ msgstr "_Gorde"
@@ -1069,18 +1156,6 @@ msgstr "_Pertsonalizatu…"
 
 #~ msgid "Introduction"
 #~ msgstr "Sarrera"
-
-#~ msgid "Source Selection"
-#~ msgstr "Iturburuaren hautapena"
-
-#~ msgid "Preparation"
-#~ msgstr "Prestaketa"
-
-#~ msgid "Setup"
-#~ msgstr "Konfigurazioa"
-
-#~ msgid "Review"
-#~ msgstr "Berrikuspena"
 
 #~ msgid "Net:"
 #~ msgstr "Sarea:"
