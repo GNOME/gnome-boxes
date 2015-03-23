@@ -58,7 +58,7 @@ private class Boxes.WizardToolbar: Gtk.Stack {
     }
 
     public void set_title_for_page (WizardPage page) {
-        main.title = page_titles[page];
+        main.title = _(page_titles[page]);
     }
 
     [GtkCallback]
