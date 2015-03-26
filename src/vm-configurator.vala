@@ -274,7 +274,7 @@ private class Boxes.VMConfigurator {
         disk.set_driver_name ("qemu");
         disk.set_driver_format (DomainDiskFormat.QCOW2);
         disk.set_source (target_path);
-        disk.set_driver_cache (DomainDiskCacheType.NONE);
+        disk.set_driver_cache (DomainDiskCacheType.WRITEBACK);
 
         if (install_media.supports_virtio_disk) {
             debug ("Using virtio controller for the main disk");
