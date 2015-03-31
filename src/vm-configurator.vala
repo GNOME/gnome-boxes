@@ -344,10 +344,20 @@ private class Boxes.VMConfigurator {
     }
 
     private static void set_mouse_config (Domain domain, InstallerMedia install_media) {
+        var device = find_usb_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "mouse");
+        if (device == null)
+            // USB mouse not supported, let libvirt add default PS/2 mouse
+            return;
+
         set_input_config (domain, DomainInputDeviceType.MOUSE);
     }
 
     private static void set_keyboard_config (Domain domain, InstallerMedia install_media) {
+        var device = find_usb_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "keyboard");
+        if (device == null)
+            // USB keyboard not supported, let libvirt add default PS/2 keyboard
+            return;
+
         set_input_config (domain, DomainInputDeviceType.KEYBOARD);
     }
 
