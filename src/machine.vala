@@ -221,7 +221,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     protected void load_screenshot () {
         try {
-            var screenshot = new Gdk.Pixbuf.from_file (get_screenshot_filename ());
+            var screenshot = (state != MachineState.STOPPED && state != MachineState.FORCE_STOPPED) ?
+                             new Gdk.Pixbuf.from_file (get_screenshot_filename ()) :
+                             null;
             set_screenshot (screenshot, false);
         } catch (GLib.Error error) {
         }
