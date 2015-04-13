@@ -133,7 +133,11 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
             topbar.click_forward_button ();
             return true;
         } else if (event.keyval == Gdk.Key.Escape) { // ESC -> cancel
-            topbar.cancel_btn.clicked ();
+            if (page == WizardWindowPage.MAIN)
+                topbar.cancel_btn.clicked ();
+            else
+                page = WizardWindowPage.MAIN;
+
         }
 
         return false;
