@@ -277,12 +277,16 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 var supported = false;
                 var extensions = InstalledMedia.supported_extensions;
                 extensions += "iso";
-                foreach (var extension in extensions)
-                    if (path.has_suffix (extension)) {
+                foreach (var extension in extensions) {
+                    var path_casefolded = path.casefold ();
+                    var extension_casefolded = extension.casefold ();
+
+                    if (path_casefolded.has_suffix (extension_casefolded)) {
                         supported = true;
 
                         break;
                     }
+                }
                 if (!supported)
                     throw new Boxes.Error.INVALID (_("Unsupported file"));
 
