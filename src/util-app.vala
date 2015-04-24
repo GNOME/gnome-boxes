@@ -67,18 +67,9 @@ namespace Boxes {
         container.remove (widget);
     }
 
-    public Osinfo.Device? find_usb_device_by_prop (Osinfo.DeviceList devices, string prop_name, string prop_value) {
-        return find_device_by_prop (devices, prop_name, prop_value, "usb");
-    }
-
-    public Osinfo.Device? find_device_by_prop (Osinfo.DeviceList devices,
-                                               string            prop_name,
-                                               string            prop_value,
-                                               string?           bus_type = null) {
+    public Osinfo.Device? find_device_by_prop (Osinfo.DeviceList devices, string prop_name, string prop_value) {
         var filter = new Osinfo.Filter ();
         filter.add_constraint (prop_name, prop_value);
-        if (bus_type != null)
-            filter.add_constraint (Osinfo.DEVICE_PROP_BUS_TYPE, bus_type);
 
         var filtered = (devices as Osinfo.List).new_filtered (filter);
         if (filtered.get_length () > 0)
