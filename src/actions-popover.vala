@@ -47,10 +47,12 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var action = action_group.lookup_action ("pause") as GLib.SimpleAction;
         action.set_enabled (machine.can_save);
 
-        // Delete
-        section.append (_("Delete"), "box.delete");
-        action = action_group.lookup_action ("delete") as GLib.SimpleAction;
-        action.set_enabled (machine.can_delete);
+        if (window.ui_state != UIState.DISPLAY) {
+            // Delete
+            section.append (_("Delete"), "box.delete");
+            action = action_group.lookup_action ("delete") as GLib.SimpleAction;
+            action.set_enabled (machine.can_delete);
+        }
 
         menu.append_section (null, section);
 
