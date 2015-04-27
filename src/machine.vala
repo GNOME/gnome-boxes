@@ -21,7 +21,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     protected virtual bool should_autosave {
         get {
-            return (can_save && autosave_timeout_id == 0);
+            return (can_save && is_running () && autosave_timeout_id == 0);
         }
     }
 
