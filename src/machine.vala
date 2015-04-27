@@ -264,9 +264,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         this.info = (info != null)? info + "\n" : "";
         this.info += _("Saving…");
 
-        yield save_real ();
-
-        this.info = info;
+        try {
+            yield save_real ();
+        } finally {
+            this.info = info;
+        }
     }
 
     public void schedule_autosave () {
