@@ -4,13 +4,14 @@ public_icons_themes =				\
 	hicolor					\
 	$(NULL)
 
-public_icons =					\
-	hicolor_apps_16x16_gnome-boxes.png	\
-	hicolor_apps_22x22_gnome-boxes.png	\
-	hicolor_apps_24x24_gnome-boxes.png	\
-	hicolor_apps_32x32_gnome-boxes.png	\
-	hicolor_apps_48x48_gnome-boxes.png	\
-	hicolor_apps_256x256_gnome-boxes.png	\
+public_icons =						\
+	hicolor_apps_16x16_gnome-boxes.png		\
+	hicolor_apps_22x22_gnome-boxes.png		\
+	hicolor_apps_24x24_gnome-boxes.png		\
+	hicolor_apps_32x32_gnome-boxes.png		\
+	hicolor_apps_48x48_gnome-boxes.png		\
+	hicolor_apps_256x256_gnome-boxes.png		\
+	hicolor_apps_symbolic_gnome-boxes-symbolic.svg	\
 	$(NULL)
 
 noinst_DATA =					\
