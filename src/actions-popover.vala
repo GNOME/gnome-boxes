@@ -5,6 +5,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"open-in-new-win", open_in_new_win_activated},
         {"favorite",        favorite_activated},
         {"pause",           pause_activated},
+        {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
         {"properties",      properties_activated}
     };
@@ -41,6 +42,12 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Remove from Favorites"), "box.favorite");
         else
             section.append (_("Add to Favorites"), "box.favorite");
+
+        if (machine is LibvirtMachine) {
+            section.append (_("Force Shutdown"), "box.force_shutdown");
+            var action = action_group.lookup_action ("force_shutdown") as GLib.SimpleAction;
+            action.set_enabled (machine.is_running ());
+        }
 
         // Pause
         section.append (_("Pause"), "box.pause");
@@ -85,6 +92,12 @@ private class Boxes.ActionsPopover: Gtk.Popover {
                 window.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
             }
         });
+    }
+
+    private void force_shutdown_activated () {
+        var machine = window.current_item as LibvirtMachine;
+
+        machine.force_shutdown ();
     }
 
     private void delete_activated () {
