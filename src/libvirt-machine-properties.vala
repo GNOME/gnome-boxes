@@ -417,6 +417,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         button = new Gtk.Button.with_label (_("Restart"));
         button.clicked.connect (() => {
             machine.restart ();
+            machine.window.props_window.revert_state ();
         });
         grid.attach (button, 1, 0, 1, 1);
 
@@ -424,6 +425,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
         button.clicked.connect (() => {
             machine.force_shutdown ();
+            machine.window.props_window.revert_state ();
         });
         grid.attach (button, 2, 0, 1, 1);
 
