@@ -437,7 +437,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             shutdown_button.sensitive = machine.is_running ();
         });
 
-        var log_button = new Gtk.Button.with_label (_("Troubleshooting log"));
+        var log_button = new Gtk.Button.with_label (_("Troubleshooting Log"));
         log_button.halign = Gtk.Align.END;
         grid.attach (log_button, 1, 0, 1, 1);
         log_button.clicked.connect (() => {
