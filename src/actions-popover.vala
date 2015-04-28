@@ -42,6 +42,10 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Remove from Favorites"), "box.favorite");
         else
             section.append (_("Add to Favorites"), "box.favorite");
+        menu.append_section (null, section);
+
+        // New section for force shutdown, pause and delete
+        section = new GLib.Menu ();
 
         if (machine is LibvirtMachine) {
             section.append (_("Force Shutdown"), "box.force_shutdown");
