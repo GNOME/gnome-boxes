@@ -405,21 +405,20 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         var grid = new Gtk.Grid ();
         grid.margin_top = 5;
         grid.column_spacing = 5;
-        grid.halign = Gtk.Align.START;
+        grid.hexpand = true;
 
-        var button = new Gtk.Button.with_label (_("Troubleshooting log"));
-        grid.attach (button, 0, 0, 1, 1);
-        button.clicked.connect (() => {
-            var log = collect_logs ();
-            machine.window.props_window.show_troubleshoot_log (log);
-        });
+        var inner_grid = new Gtk.Grid ();
+        inner_grid.column_spacing = 5;
+        inner_grid.halign = Gtk.Align.START;
+        inner_grid.hexpand = true;
+        grid.attach (inner_grid, 0, 0, 1, 1);
 
-        button = new Gtk.Button.with_label (_("Restart"));
+        var button = new Gtk.Button.with_label (_("Restart"));
         button.clicked.connect (() => {
             machine.restart ();
             machine.window.props_window.revert_state ();
         });
-        grid.attach (button, 1, 0, 1, 1);
+        inner_grid.attach (button, 1, 0, 1, 1);
 
         button = new Gtk.Button.with_label (_("Force Shutdown"));
         button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
@@ -427,11 +426,19 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             machine.force_shutdown ();
             machine.window.props_window.revert_state ();
         });
-        grid.attach (button, 2, 0, 1, 1);
+        inner_grid.attach (button, 2, 0, 1, 1);
 
         button.sensitive = machine.is_running ();
         var state_notify_id = machine.notify["state"].connect (() => {
             button.sensitive = machine.is_running ();
+        });
+
+        button = new Gtk.Button.with_label (_("Troubleshooting log"));
+        button.halign = Gtk.Align.END;
+        grid.attach (button, 1, 0, 1, 1);
+        button.clicked.connect (() => {
+            var log = collect_logs ();
+            machine.window.props_window.show_troubleshoot_log (log);
         });
 
         var prop = add_property (ref list, null, grid);
