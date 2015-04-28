@@ -414,12 +414,18 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             machine.window.props_window.show_troubleshoot_log (log);
         });
 
+        button = new Gtk.Button.with_label (_("Restart"));
+        button.clicked.connect (() => {
+            machine.restart ();
+        });
+        grid.attach (button, 1, 0, 1, 1);
+
         button = new Gtk.Button.with_label (_("Force Shutdown"));
         button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
         button.clicked.connect (() => {
             machine.force_shutdown ();
         });
-        grid.attach (button, 1, 0, 1, 1);
+        grid.attach (button, 2, 0, 1, 1);
 
         button.sensitive = machine.is_running ();
         var state_notify_id = machine.notify["state"].connect (() => {
