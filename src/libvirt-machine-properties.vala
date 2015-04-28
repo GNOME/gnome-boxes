@@ -420,6 +420,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             machine.restart ();
             machine.window.props_window.revert_state ();
         });
+        restart_button.sensitive = machine.is_running ();
         inner_grid.attach (restart_button, 1, 0, 1, 1);
 
         var shutdown_button = new Gtk.Button.with_label (_("Force Shutdown"));
@@ -428,10 +429,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             machine.force_shutdown ();
             machine.window.props_window.revert_state ();
         });
+        shutdown_button.sensitive = machine.is_running ();
         inner_grid.attach (shutdown_button, 2, 0, 1, 1);
 
-        shutdown_button.sensitive = machine.is_running ();
         var state_notify_id = machine.notify["state"].connect (() => {
+            restart_button.sensitive = machine.is_running ();
             shutdown_button.sensitive = machine.is_running ();
         });
 
