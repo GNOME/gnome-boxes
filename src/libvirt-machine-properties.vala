@@ -363,6 +363,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
     private void add_resource_usage_graphs (ref List<Boxes.Property> list) {
         var grid = new Gtk.Grid ();
+        grid.margin_top = 20;
+        grid.margin_bottom = 20;
         grid.row_spacing = 5;
         grid.column_spacing = 10;
         grid.column_homogeneous = true;
@@ -403,7 +405,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
     private void add_system_props_buttons (ref List<Boxes.Property> list) {
         var grid = new Gtk.Grid ();
-        grid.margin_top = 5;
+        grid.margin_bottom = 20;
         grid.column_spacing = 5;
         grid.hexpand = true;
 
