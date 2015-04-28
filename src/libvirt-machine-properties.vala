@@ -415,30 +415,30 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         inner_grid.hexpand = true;
         grid.attach (inner_grid, 0, 0, 1, 1);
 
-        var button = new Gtk.Button.with_label (_("Restart"));
-        button.clicked.connect (() => {
+        var restart_button = new Gtk.Button.with_label (_("Restart"));
+        restart_button.clicked.connect (() => {
             machine.restart ();
             machine.window.props_window.revert_state ();
         });
-        inner_grid.attach (button, 1, 0, 1, 1);
+        inner_grid.attach (restart_button, 1, 0, 1, 1);
 
-        button = new Gtk.Button.with_label (_("Force Shutdown"));
-        button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-        button.clicked.connect (() => {
+        var shutdown_button = new Gtk.Button.with_label (_("Force Shutdown"));
+        shutdown_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        shutdown_button.clicked.connect (() => {
             machine.force_shutdown ();
             machine.window.props_window.revert_state ();
         });
-        inner_grid.attach (button, 2, 0, 1, 1);
+        inner_grid.attach (shutdown_button, 2, 0, 1, 1);
 
-        button.sensitive = machine.is_running ();
+        shutdown_button.sensitive = machine.is_running ();
         var state_notify_id = machine.notify["state"].connect (() => {
-            button.sensitive = machine.is_running ();
+            shutdown_button.sensitive = machine.is_running ();
         });
 
-        button = new Gtk.Button.with_label (_("Troubleshooting log"));
-        button.halign = Gtk.Align.END;
-        grid.attach (button, 1, 0, 1, 1);
-        button.clicked.connect (() => {
+        var log_button = new Gtk.Button.with_label (_("Troubleshooting log"));
+        log_button.halign = Gtk.Align.END;
+        grid.attach (log_button, 1, 0, 1, 1);
+        log_button.clicked.connect (() => {
             var log = collect_logs ();
             machine.window.props_window.show_troubleshoot_log (log);
         });
