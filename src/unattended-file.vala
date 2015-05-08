@@ -146,7 +146,10 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
         installer.configure_install_script (script);
         var output_dir = File.new_for_path (get_user_pkgcache ());
 
-        unattended_tmp = yield script.generate_output_async (installer.os, installer.config, output_dir, cancellable);
+        unattended_tmp = yield script.generate_output_for_media_async (installer.os_media,
+                                                                       installer.config,
+                                                                       output_dir,
+                                                                       cancellable);
 
         return unattended_tmp;
     }

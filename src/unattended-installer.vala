@@ -292,7 +292,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         domain_os.set_kernel (kernel_file.get_path ());
         domain_os.set_ramdisk (initrd_file.get_path ());
-        domain_os.set_cmdline (script.generate_command_line (os, config));
+        domain_os.set_cmdline (script.generate_command_line_for_media (os_media, config));
     }
 
     public override void clean_up () {
