@@ -114,7 +114,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         return display.get_pixbuf ();
     }
 
-    public override void connect_it (Display.OpenFDFunc? open_fd = null) throws GLib.Error {
+    public override void connect_it (owned Display.OpenFDFunc? open_fd = null) throws GLib.Error {
         // We only initiate connection once
         if (connected)
             return;

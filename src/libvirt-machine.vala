@@ -80,7 +80,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                     }
                 };
 
-            display.connect_it (open_fd);
+            display.connect_it ((owned) open_fd);
         } else {
             show_display ();
             display.set_enable_audio (true);

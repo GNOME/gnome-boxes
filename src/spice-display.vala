@@ -191,7 +191,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
     }
 
-    public override void connect_it (Display.OpenFDFunc? open_fd = null) {
+    public override void connect_it (owned Display.OpenFDFunc? open_fd = null) {
         // We only initiate connection once
         if (connected)
             return;

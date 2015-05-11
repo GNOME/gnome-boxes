@@ -31,7 +31,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
         return false;
     }
 
-    public abstract void connect_it (OpenFDFunc? open_fd = null) throws GLib.Error;
+    public abstract void connect_it (owned OpenFDFunc? open_fd = null) throws GLib.Error;
     public abstract void disconnect_it ();
 
     public virtual void collect_logs (StringBuilder builder) {
