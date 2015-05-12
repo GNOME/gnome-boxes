@@ -254,6 +254,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
     public override void disconnect_it () {
         session.disconnect ();
+        main_cleanup ();
     }
 
     private void main_event (ChannelEvent event) {
