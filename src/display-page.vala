@@ -188,6 +188,7 @@ private class Boxes.DisplayPage: Gtk.Box {
             display.disconnect (keyboard_grabbed_id);
             keyboard_grabbed_id = 0;
         }
+        display = null;
 
         var widget = event_box.get_child ();
 
