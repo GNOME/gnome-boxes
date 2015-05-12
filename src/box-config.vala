@@ -147,7 +147,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         foreach (var prop in properties)
             load_property (object, prop.name, prop.default_value);
 
-        object.notify.connect ((pspec) => {
+        object.notify.connect ((object, pspec) => {
             foreach (var prop in properties)
                 if (pspec.name == prop.name) {
                     save_property (object, pspec.name);
