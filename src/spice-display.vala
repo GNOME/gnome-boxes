@@ -19,6 +19,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private BoxConfig.SyncProperty[] gtk_session_sync_properties;
     private bool closed;
 
+    private GLib.HashTable<Spice.Channel,SpiceChannelHandler> channel_handlers;
+    private Display.OpenFDFunc? open_fd;
+
     private void ui_state_changed () {
         // TODO: multi display
         if (machine.ui_state == UIState.DISPLAY) {
@@ -59,7 +62,25 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         });
     }
 
-    Spice.MainChannel? main_channel;
+    private Spice.MainChannel? _main_channel;
+    public Spice.MainChannel? main_channel {
+            get {
+                return _main_channel;
+            }
+
+            set {
+                _main_channel = value;
+                if (_main_channel == null)
+                    return;
+
+                main_event_id = main_channel.channel_event.connect (main_event);
+                main_mouse_mode_id = main_channel.notify["mouse-mode"].connect(() => {
+                    can_grab_mouse = main_channel.mouse_mode != 2;
+                });
+
+                can_grab_mouse = main_channel.mouse_mode != 2;
+            }
+    }
     ulong main_event_id;
     ulong main_mouse_mode_id;
 
@@ -196,54 +217,16 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         if (connected)
             return;
         connected = true;
+        this.open_fd = (owned) open_fd;
 
         main_cleanup ();
+        channel_handlers = new GLib.HashTable<Spice.Channel,SpiceChannelHandler> (GLib.direct_hash, GLib.direct_equal);
 
         // FIXME: vala does't want to put this in constructor..
         if (channel_new_id == 0)
-            channel_new_id = session.channel_new.connect ((channel) => {
-                var id = channel.channel_id;
-
-                if (open_fd != null)
-                    channel.open_fd.connect (() => {
-                        int fd;
-
-                        fd = open_fd ();
-                        channel.open_fd (fd);
-                    });
-
-                if (channel is Spice.MainChannel) {
-                    main_channel = channel as Spice.MainChannel;
-                    main_event_id = main_channel.channel_event.connect (main_event);
-                    main_mouse_mode_id = main_channel.notify["mouse-mode"].connect(() => {
-                        can_grab_mouse = main_channel.mouse_mode != 2;
-                    });
-                    can_grab_mouse = main_channel.mouse_mode != 2;
-                }
-
-                if (channel is Spice.DisplayChannel) {
-                    if (id != 0)
-                        return;
-
-                    access_start ();
-                    var display = get_display (id) as Spice.Display;
-                    display.notify["ready"].connect (() => {
-                        if (display.ready)
-                            show (display.channel_id);
-                        else
-                            hide (display.channel_id);
-                    });
-                }
-            });
-
+            channel_new_id = session.channel_new.connect (on_channel_new);
         if (channel_destroy_id == 0)
-            channel_destroy_id = session.channel_destroy.connect ((channel) => {
-                if (channel is Spice.DisplayChannel) {
-                    var display = channel as DisplayChannel;
-                    hide (display.channel_id);
-                    access_finish ();
-                }
-            });
+            channel_destroy_id = session.channel_destroy.connect (on_channel_destroy);
 
         session.password = password;
         if (open_fd != null)
@@ -263,6 +246,30 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
         session.disconnect ();
         main_cleanup ();
+        channel_handlers = null;
+        this.open_fd = null;
+        displays.remove_all ();
+    }
+
+    private void on_channel_new (Spice.Session session, Spice.Channel channel) {
+        var handler = new SpiceChannelHandler (this, channel, (owned) open_fd);
+        channel_handlers.set (channel, handler);
+
+        if (channel is Spice.DisplayChannel) {
+            if (channel.channel_id != 0)
+                return;
+
+            access_start ();
+        }
+    }
+
+    private void on_channel_destroy (Spice.Session session, Spice.Channel channel) {
+        if (!(channel is Spice.DisplayChannel))
+            return;
+
+        var display = channel as DisplayChannel;
+        hide (display.channel_id);
+        access_finish ();
     }
 
     private void main_event (ChannelEvent event) {
@@ -457,6 +464,48 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
 
         return ret;
+    }
+}
+
+private class Boxes.SpiceChannelHandler : GLib.Object {
+    private unowned SpiceDisplay display;
+    private Spice.Channel channel;
+    private Display.OpenFDFunc? open_fd;
+
+    public SpiceChannelHandler (SpiceDisplay display, Spice.Channel channel, owned Display.OpenFDFunc? open_fd = null) {
+        this.display = display;
+        this.channel = channel;
+        this.open_fd = (owned) open_fd;
+        var id = channel.channel_id;
+
+        if (open_fd != null)
+            channel.open_fd.connect (on_open_fd);
+
+        if (channel is Spice.MainChannel)
+            display.main_channel = (channel as Spice.MainChannel);
+
+        if (channel is Spice.DisplayChannel) {
+            if (id != 0)
+                return;
+
+            var spice_display = display.get_display (id) as Spice.Display;
+            spice_display.notify["ready"].connect (on_display_ready);
+        }
+    }
+
+    private void on_display_ready (GLib.Object object, GLib.ParamSpec param_spec) {
+        var spice_display = object as Spice.Display;
+        if (spice_display.ready)
+            display.show (spice_display.channel_id);
+        else
+            display.hide (spice_display.channel_id);
+    }
+
+    private void on_open_fd (Spice.Channel channel, int with_tls) {
+        int fd;
+
+        fd = open_fd ();
+        channel.open_fd (fd);
     }
 }
 
