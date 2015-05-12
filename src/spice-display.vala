@@ -253,6 +253,14 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     public override void disconnect_it () {
+        if (channel_new_id > 0) {
+            (session as GLib.Object).disconnect (channel_new_id);
+            channel_new_id = 0;
+        }
+        if (channel_destroy_id > 0) {
+            (session as GLib.Object).disconnect (channel_destroy_id);
+            channel_destroy_id = 0;
+        }
         session.disconnect ();
         main_cleanup ();
     }
