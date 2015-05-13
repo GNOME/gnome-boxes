@@ -9,6 +9,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
     public Searchbar searchbar;
 
     construct {
+        orientation = Gtk.Orientation.VERTICAL;
         valign = Gtk.Align.START;
         halign = Gtk.Align.CENTER;
         get_style_context ().add_class ("transparent-bg");
@@ -81,7 +82,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
     }
 
     private void add_notification (Widget w) {
-        attach (w, 0, 0, 1, 1);
+        add (w);
     }
 
     private Gd.Notification display (string                         message,
