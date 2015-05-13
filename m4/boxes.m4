@@ -37,11 +37,6 @@ AC_DEFUN([VALA_CHECK],
                  [AC_MSG_ERROR([Cannot find the "valac" compiler in your PATH])],
                  [VALA_CHECK_PACKAGES([$2])])
 
-           dnl check for vapigen
-           AC_PATH_PROG(VAPIGEN, vapigen, no)
-           AS_IF([test x$VAPIGEN = "xno"],
-                 [AC_MSG_ERROR([Cannot find the "vapigen compiler in your PATH])])
-
            ],
            []
     )
