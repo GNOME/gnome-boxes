@@ -161,10 +161,12 @@ private class Boxes.App: Gtk.Application {
         var window = add_new_window ();
         window.set_state (UIState.COLLECTION);
 
-        setup_sources.begin ((obj, result) => {
-            setup_sources.end (result);
+        setup_default_source.begin ((obj, result) => {
+            setup_default_source.end (result);
             is_ready = true;
             ready ();
+
+            setup_sources.begin ();
         });
     }
 
@@ -382,7 +384,7 @@ private class Boxes.App: Gtk.Application {
         }
     }
 
-    private async void setup_sources () {
+    private async void setup_default_source () {
         var path = get_user_pkgconfig_source (DEFAULT_SOURCE_NAME);
         var create_session_source = true;
         try {
@@ -406,9 +408,24 @@ private class Boxes.App: Gtk.Application {
             }
         }
 
+        try {
+            var source = new CollectionSource.with_file (DEFAULT_SOURCE_NAME);
+            yield add_collection_source (source);
+        } catch (GLib.Error error) {
+            printerr ("Error setting up default broker: %s\n", error.message);
+            release (); // will end application
+        }
+
+        assert (default_connection != null);
+    }
+
+    private async void setup_sources () {
         var dir = File.new_for_path (get_user_pkgconfig_source ());
         var new_sources = new GLib.List<CollectionSource> ();
         yield foreach_filename_from_dir (dir, (filename) => {
+            if (filename == DEFAULT_SOURCE_NAME)
+                return false;
+
             var source = new CollectionSource.with_file (filename);
             new_sources.append (source);
             return false;
