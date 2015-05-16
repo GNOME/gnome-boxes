@@ -126,8 +126,6 @@ private class Boxes.VMCreator {
         if (machine.is_on ())
             return;
 
-        var domain = machine.domain;
-
         if (machine.deleted) {
             machine.disconnect (state_changed_id);
             debug ("'%s' was deleted, no need for post-installation setup on it", machine.name);
@@ -144,6 +142,7 @@ private class Boxes.VMCreator {
 
         increment_num_reboots (machine);
 
+        var domain = machine.domain;
         if (guest_installed_os (machine)) {
             set_post_install_config (machine);
             install_media.clean_up ();
