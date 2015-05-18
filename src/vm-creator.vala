@@ -218,6 +218,7 @@ private class Boxes.VMCreator {
             yield pool.start_async (0, null);
             yield pool.refresh_async (null);
         }
+        pool.set_autostart (true);
 
         return pool;
     }
