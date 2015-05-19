@@ -154,6 +154,7 @@ private class Boxes.VMCreator {
             machine.disconnect (state_changed_id);
             if (VMConfigurator.is_live_config (machine.domain_config) || !install_trackable ())
                 machine.info = null;
+            App.app.notify_machine_installed (machine);
             machine.vm_creator = null;
             machine.schedule_autosave ();
         } else {
