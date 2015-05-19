@@ -78,6 +78,10 @@ private class Boxes.App: Gtk.Application {
         });
         add_action (action);
 
+        action = new GLib.SimpleAction ("launch-box", GLib.VariantType.STRING);
+        action.activate.connect ((param) => { open_name (param.get_string ()); });
+        add_action (action);
+
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
