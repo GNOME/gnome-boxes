@@ -423,6 +423,20 @@ private class Boxes.App: Gtk.Application {
         assert (default_connection != null);
     }
 
+    public void notify_machine_installed (Machine machine) {
+        if (machine.window.is_active) {
+            debug ("Window is focused, no need for system notification");
+
+            return;
+        }
+
+        var msg = _("Box '%s' installed and ready to use").printf (machine.name);
+        var notification = new GLib.Notification (msg);
+        notification.add_button ("Launch", "app.launch-box::" + machine.name);
+
+        send_notification (null, notification);
+    }
+
     private async void setup_sources () {
         var dir = File.new_for_path (get_user_pkgconfig_source ());
         var new_sources = new GLib.List<CollectionSource> ();
