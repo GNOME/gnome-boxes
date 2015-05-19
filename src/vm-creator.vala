@@ -5,7 +5,7 @@ using GVir;
 
 private class Boxes.VMCreator {
     // Seems installers aren't very consistent about exact number of bytes written so we ought to leave some margin
-    // of error. Its better to report '100%' done while its not exactly 100% than reporting '99%' done forever..
+    // of error. It's better to report '100%' done while it's not exactly 100% than reporting '99%' done forever..
     private const int INSTALL_COMPLETE_PERCENT = 99;
 
     public InstallerMedia? install_media { get; protected set; }
@@ -234,7 +234,7 @@ private class Boxes.VMCreator {
         return config;
     }
 
-    // Ensure name is less than 12 characters as its also used as the hostname of the guest OS in case of
+    // Ensure name is less than 12 characters as it's also used as the hostname of the guest OS in case of
     // express installation and some OSes (you know who you are) don't like hostnames with more than 15
     // characters (we later add a '-' and a number to the name if name is not unique so we leave 3 characters
     // or that).

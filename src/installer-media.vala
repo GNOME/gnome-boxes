@@ -113,8 +113,8 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public bool is_architecture_compatible (string architecture) {
         if (this.architecture == null)
-            // Architecture unknown, Lets say all architectures are compatible so caller can choose the best available
-            // architecture instead. Although this is bound to fail but its still much better than us hard coding an
+            // Architecture unknown: let's say all architectures are compatible so caller can choose the best available
+            // architecture instead. Although this is bound to fail, it's still much better than us hard coding an
             // architecture.
             return true;
 

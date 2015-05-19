@@ -257,7 +257,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var media = machine.vm_creator.install_media;
 
             if (machine.vm_creator.express_install || (media.os_media != null && media.os_media.live)) {
-                // Don't let user eject installer media if its an express installation or a live media
+                // Don't let user eject installer media if it's an express installation or a live media
                 add_property (ref list, _("CD/DVD"), grid);
 
                 return;

@@ -651,7 +651,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             });
         });
 
-        debug ("%s is being saved, delaying starting untill its saved", name);
+        debug ("%s is being saved, delaying starting until it's saved", name);
         yield;
 
         disconnect (state_notify_id);

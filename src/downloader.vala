@@ -108,7 +108,7 @@ private class Boxes.Downloader : GLib.Object {
         tmp_file.move (cached_file, FileCopyFlags.NONE, cancellable);
         download.cached_file = cached_file;
 
-        debug ("Downloaded '%s' and its now locally available at '%s'.", uri, cached_path);
+        debug ("Downloaded '%s' and it's now locally available at '%s'.", uri, cached_path);
         downloaded (download);
 
         return cached_file;

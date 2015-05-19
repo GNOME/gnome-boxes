@@ -256,7 +256,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public async void save () throws GLib.Error {
         if (state == Machine.MachineState.SAVED) {
-            debug ("Not saving '%s' since its already in saved state.", name);
+            debug ("Not saving '%s' since it's already in saved state.", name);
             return;
         }
 

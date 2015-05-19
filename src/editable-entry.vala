@@ -70,7 +70,7 @@ private class Boxes.EditableEntry: Notebook {
     }
 
     private Pango.Weight _weight = Pango.Weight.NORMAL;
-    /* This is disabled for now since its impossible to
+    /* This is disabled for now since it's impossible to
        declare a default for the paramspec, and the number that
        valac picks (0) is invalid for the Pango.Weight enum.
 

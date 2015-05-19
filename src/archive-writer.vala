@@ -41,7 +41,7 @@ public class Boxes.ArchiveWriter : GLib.Object {
             import_read_archive (archive_reader);
     }
 
-    // if omit_hardlinked_files is true a file body will be omitted if its on the list independently from it having a
+    // if omit_hardlinked_files is true a file body will be omitted if it's on the list independently from it having a
     // hardlink pointing to it or not. If it is set to false a file body with a hardlink on the omittion list will
     // result in the file NOT being omitted.
     public void import_read_archive (ArchiveReader archive_reader,
