@@ -145,7 +145,12 @@ namespace Boxes {
             // Now check if unprivileged qemu is allowed to access it
             var file = File.new_for_path ("/etc/qemu/bridge.conf");
             uint8[] contents;
-            file.load_contents (null, out contents, null);
+            try {
+                file.load_contents (null, out contents, null);
+            } catch (IOError.NOT_FOUND error) {
+                file = File.new_for_path ("/etc/qemu-kvm/bridge.conf");
+                file.load_contents (null, out contents, null);
+            }
 
             libvirt_bridge_net_available = (Regex.match_simple ("^allow.*virbr0", (string) contents));
         } catch (GLib.Error error) {
