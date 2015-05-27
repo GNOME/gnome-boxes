@@ -6,8 +6,10 @@ from dogtail.tree import root
 from dogtail.rawinput import typeText, pressKey, keyCombo
 from time import sleep
 from common_steps import wait_until
-from subprocess import call, check_output, Popen, CalledProcessError
+from subprocess import call, check_output, Popen, CalledProcessError, PIPE
 import re
+import libvirt
+import libxml2
 
 @step('About is shown')
 def about_shown(context):
@@ -75,10 +77,15 @@ def no_box_sign(context):
 def press_back_in_vm(context, action, vm):
     panel = context.app.child(vm).children[0].findChildren(lambda x: x.roleName == 'panel' and x.showing)[0]
     buttons = panel.findChildren(lambda x: x.roleName == 'push button' and x.showing)
+    menus = panel.findChildren(lambda x: x.name == 'Menu' and x.showing)
     if action == 'back':
         buttons[0].click()
-    if action == 'prefs':
+    elif action == 'prefs':
         buttons[1].click()
+    elif action == "Send key combinations":
+        menus[0].click()
+    else:
+        context.app.child(vm).child(action).click()
     sleep(0.5)
 
 @step('Launch "{action}" for "{box}" box')
@@ -112,36 +119,69 @@ def rename_vm(context, machine, name, way):
     pressKey('Enter')
     sleep(0.5)
 
+def libvirt_domain_get_context(dom):
+    xmldesc = dom.XMLDesc(0)
+    doc = libxml2.parseDoc(xmldesc)
+    return doc.xpathNewContext()
+
+def libvirt_domain_get_val(ctx, path):
+    res = ctx.xpathEval(path)
+    if res is None or len(res) == 0:
+        value="Unknown"
+    else:
+        value = res[0].content
+    return value
+
+def libvirt_domain_get_mac(vm_title):
+    mac = None
+
+    conn = libvirt.openReadOnly(None)
+    doms = conn.listAllDomains()
+    for dom in doms:
+        try:
+            dom0 = conn.lookupByName(dom.name())
+            # Annoyiingly, libvirt prints its own error message here
+        except libvirt.libvirtError:
+            print("Domain %s is not running" % name)
+        ctx = libvirt_domain_get_context(dom0)
+        if libvirt_domain_get_val(ctx, "/domain/title") == vm_title:
+            return libvirt_domain_get_val(ctx, "/domain/devices/interface/mac/@address")
+
+    conn = libvirt.openReadOnly('qemu:///system')
+    doms = conn.listAllDomains()
+    for dom in doms:
+        try:
+            dom0 = conn.lookupByName(dom.name())
+            # Annoyiingly, libvirt prints its own error message here
+        except libvirt.libvirtError:
+            print("Domain %s is not running" % name)
+        ctx = libvirt_domain_get_context(dom0)
+        if libvirt_domain_get_val(ctx, "/domain/name") == vm_title:
+            return libvirt_domain_get_val(ctx, "/domain/devices/interface/mac/@address")
+    return mac
+
+def get_ip_through_arp_cmd(mac):
+    out = ""
+    wait = 0
+    while wait < 120:
+        cmd = Popen("arp -an |grep '%s' |grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'" %mac, shell=True, stdout=PIPE)
+        out = cmd.communicate()[0]
+        ret = cmd.wait()
+        if out != "":
+            return out.strip()
+        sleep(0.25)
+        wait += 1
+    return None
+
 @step('Save IP for machine "{vm}"')
 def save_ip_for_vm(context, vm):
     if not hasattr(context, 'ips'):
         context.ips = {}
 
-    wait = 0
-    while True:
-        virsh_cmd = "virsh -r -c qemu:///system net-dhcp-leases default |grep box"
-        virsh_out = check_output(virsh_cmd, shell=True).split('\n')[0:-1]
+    ip = get_ip_through_arp_cmd(libvirt_domain_get_mac(vm))
 
-        time = 0
-        for line in virsh_out:
-            t = line.strip().split(" ")[1]
-            if t > time:
-                time = t
-                ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', line)
-
-        if ips:
-            ip = ips[0]
-            cmd = "ping -q -w 1 %s > /dev/null 2>&1" % ip
-            ret = call(cmd, shell=True)
-
-        if ip in context.ips.values() or ret != 0:
-            wait += 1
-            sleep(1)
-            if wait == 20:
-                print virsh_out
-                raise Exception("no new address cannot be found for machine %s" %vm)
-        else:
-            break
+    if not ip:
+        raise Exception("No address was assigned for this machine %s" %vm)
 
     count = 1
     for key in context.ips.keys():
