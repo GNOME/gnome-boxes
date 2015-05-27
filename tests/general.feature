@@ -123,6 +123,36 @@ Feature: General
     Then Box "Core-5 2" "does" exist
     Then Box "Core-5" "does" exist
 
+  @selections
+  Scenario: Selection menu
+    * Initiate new box "Core-5" installation
+    * Initiate new box "Core-5 2" installation from "Core-5" menuitem
+    * Initiate new box "Core-5 3" installation from "Core-5" menuitem
+    * Select "Core-5 2" box
+    * Select "Core-5 3" box
+    * Press "Pause"
+    * Wait for "sleep 2" end
+    * Press "Select Items"
+    * Press "(Click on items to select them)"
+    * Press "Select All"
+    * Press "3 selected"
+    * Press "Select None"
+    * Press "(Click on items to select them)"
+    * Press "Select Running"
+    * Press "Delete"
+    * Close warning
+    Then Box "Core-5" "does not" exist
+    Then Box "Core-5 2" "does" exist
+    Then Box "Core-5 3" "does" exist
+    * Press "Select Items"
+    * Press "(Click on items to select them)"
+    * Press "Select All"
+    * Press "Delete"
+    * Close warning
+    Then Box "Core-5" "does not" exist
+    Then Box "Core-5 2" "does not " exist
+    Then Box "Core-5 3" "does not" exist
+
 ### TBD ###
   # local_machine_paused_after_quit
   # detach_from_system_broker
