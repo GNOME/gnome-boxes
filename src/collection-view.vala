@@ -419,11 +419,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         icon_view.get_cell_rect (path, null, out rect);
 
         context_popover.update_for_item (item);
-        var rectangle = Cairo.RectangleInt () { x = rect.x,
-                                                y = rect.y,
-                                                width = rect.width,
-                                                height = rect.height / 2}; // Show in the middle
-        context_popover.pointing_to = rectangle;
+        rect.height /= 2; // Show in the middle
+        context_popover.pointing_to = rect;
         context_popover.show ();
 
         return true;
