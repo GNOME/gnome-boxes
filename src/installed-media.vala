@@ -96,7 +96,9 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         }
     }
 
-    public override void setup_domain_config (Domain domain) {}
+    public override void setup_domain_config (Domain domain) {
+        add_cd_config (domain, from_image? DomainDiskType.FILE : DomainDiskType.BLOCK, null, "hdc", false);
+    }
 
     public override GLib.List<Pair<string,string>> get_vm_properties () {
         var properties = new GLib.List<Pair<string,string>> ();
