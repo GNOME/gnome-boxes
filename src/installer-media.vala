@@ -129,7 +129,7 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     protected void add_cd_config (Domain         domain,
                                   DomainDiskType type,
-                                  string         iso_path,
+                                  string?        iso_path,
                                   string         device_name,
                                   bool           mandatory = false) {
         var disk = new DomainDisk ();
@@ -139,7 +139,8 @@ private class Boxes.InstallerMedia : GLib.Object {
         disk.set_driver_name ("qemu");
         disk.set_driver_format (DomainDiskFormat.RAW);
         disk.set_target_dev (device_name);
-        disk.set_source (iso_path);
+        if (iso_path != null)
+            disk.set_source (iso_path);
         disk.set_target_bus (DomainDiskBus.IDE);
         if (mandatory)
             disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
