@@ -69,6 +69,16 @@ def help_shown(context):
     yelp = root.application('yelp')
     assert yelp.child('Boxes') != None, "Yelp wasn't opened"
 
+@step('Install TC Linux package "{pkg}" and wait "{time}" seconds')
+def install_tc_linux_package(context, pkg, time):
+    if "/" in pkg:
+        call("xdotool type --delay 150 'wget %s\n'" %pkg, shell=True)
+        call("xdotool type --delay 150 'tce-load -i %s\n'" %pkg.split('/')[-1], shell=True)
+    else:
+        typeText('tce-load -wi %s\n' %pkg)
+
+    sleep(int(time))
+
 @step('No box is visible')
 def no_box_sign(context):
     assert context.app.child('Just hit the New button to create your first one.') != None
