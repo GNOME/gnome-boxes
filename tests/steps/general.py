@@ -54,6 +54,13 @@ def customize_vm(context, mem):
     context.app.findChildren(lambda x: x.name == 'Back' and x.showing)[0].click()
     sleep(0.5)
 
+@step('Focus VM')
+def focus_vm(context):
+    drawing_area = None
+    drawing_area = context.app.findChildren(lambda x: x.roleName == 'drawing area' and x.showing)
+    if drawing_area:
+        drawing_area[0].click()
+
 @step('Go into "{vm}" box')
 def go_into_vm(context, vm):
     pane = context.app.child(roleName='layered pane')
