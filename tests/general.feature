@@ -81,7 +81,7 @@ Feature: General
     Then Ping "Core-5"
     * Quit Boxes
     * Start box name "Core-5"
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     * Wait for "sleep 4" end
     Then Cannot ping "Core-5"
 
@@ -90,11 +90,11 @@ Feature: General
     * Initiate new box "Core-5" installation
     * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Hit "<Ctrl><f>"
-    * Type "Core-5 2"
+    * Type text "Core-5 2" and return
     Then Box "Core-5 2" "does" exist
     Then Box "Core-5" "does not" exist
     * Hit "<Ctrl><a>"
-    * Type "Core"
+    * Type text "Core" and return
     Then Box "Core-5 2" "does" exist
     Then Box "Core-5" "does" exist
 
@@ -103,11 +103,11 @@ Feature: General
     * Initiate new box "Core-5" installation
     * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Press "Search"
-    * Type "Core-5 2"
+    * Type text "Core-5 2" and return
     Then Box "Core-5 2" "does" exist
     Then Box "Core-5" "does not" exist
     * Hit "<Ctrl><a>"
-    * Type "Core"
+    * Type text "Core" and return
     Then Box "Core-5 2" "does" exist
     Then Box "Core-5" "does" exist
 
@@ -116,7 +116,7 @@ Feature: General
     * Initiate new box "Core-5" installation
     * Initiate new box "Core-5 2" installation from "Core-5" menuitem
     * Hit "<Ctrl><f>"
-    * Type "Core-5 2"
+    * Type text "Core-5 2" and return
     Then Box "Core-5 2" "does" exist
     Then Box "Core-5" "does not" exist
     * Hit "Esc"

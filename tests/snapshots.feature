@@ -10,7 +10,7 @@ Feature: Snapshots
     * Create snapshot "working network" from machine "Core-5"
     * Go into "Core-5" box
     * Wait for "sleep 1" end
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     * Press "back" in "Core-5" vm
     * Wait for "sleep 5" end
     * Create snapshot "network down" from machine "Core-5"

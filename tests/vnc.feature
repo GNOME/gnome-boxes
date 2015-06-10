@@ -14,9 +14,9 @@ Feature: Vnc
     * Wait for "sleep 10" end
     * Hit "<Super_L>"
     * Wait for "sleep 5" end
-    * Type "gnome-terminal"
+    * Type text "gnome-terminal" and return
     * Wait for "sleep 10" end
-    * Type "echo 'walderon' > /tmp/vnc_text.txt"
+    * Type text "echo walderon > /tmp/vnc_text.txt" and return
     Then "walderon" is visible with command "cat /tmp/vnc_text.txt"
     Then Press "back" in "localhost" vm
 

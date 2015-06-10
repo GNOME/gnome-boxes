@@ -48,7 +48,7 @@ Feature: LiceCD
     * Ping "Core-5"
     * Go into "Core-5" box
     * Wait for "sleep 2" end
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     * Wait for "sleep 5" end
     Then Cannot ping "Core-5"
 
@@ -116,7 +116,7 @@ Feature: LiceCD
     * Ping "Core-5"
     * Go into "Core-5" box
     * Wait for "sleep 1" end
-    * Type "sudo poweroff"
+    * Type text "sudo poweroff" and return
     * Wait for "sleep 20" end
     Then Box "Core-5" "does not" exist
     Then Cannot ping "Core-5"

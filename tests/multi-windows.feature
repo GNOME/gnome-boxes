@@ -19,7 +19,7 @@ Feature: Multi Window
     * Select "Core-5" box
     * Press "Open in new window"
     * Wait for "sleep 2" end
-    * Type "sudo poweroff"
+    * Type text "sudo poweroff" and return
     * Wait for "sleep 20" end
     Then Boxes app has "1" windows
 
@@ -40,11 +40,11 @@ Feature: Multi Window
     When Ping "Core-5 2"
     When Ping "Core-5 3"
     * Focus "Core-5" window
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     * Focus "Core-5 2" window
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     * Focus "Core-5 3" window
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     Then Cannot ping "Core-5"
     Then Cannot ping "Core-5 2"
     Then Cannot ping "Core-5 3"

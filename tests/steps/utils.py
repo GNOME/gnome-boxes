@@ -75,8 +75,8 @@ def press_button(context, button):
 
 @step('Type "{text}"')
 def type_text(context, text):
-    typeText(text)
-    pressKey('Enter')
+    call("xdotool type --delay 150 '%s'" %text, shell=True)
+    sleep(0.5)
 
 @step('Type text "{text}" and return')
 def type_text_and_return(context, text):

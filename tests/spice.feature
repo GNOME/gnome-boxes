@@ -13,7 +13,7 @@ Feature: Spice
     Then Box "127.0.0.1" "does" exist
     * Go into "127.0.0.1" box
     * Wait for "sleep 1" end
-    * Type "sudo ifconfig eth0 down"
+    * Type text "sudo ifconfig eth0 down" and return
     * Wait for "sleep 5" end
     Then Cannot ping "Core-5"
 
