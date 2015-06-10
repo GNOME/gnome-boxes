@@ -200,6 +200,13 @@ def after_step(context, step):
         print "Error in after_step: %s" % str(e)
 
 def after_tag(context, tag):
+    if 'express_install' in tag:
+        if 'express_install_fedora_20' in tag:
+            call('rm -rf ~/Downloads/Fedora-20*', shell=True)
+
+        # need to remove cache file as otherwise prefilled values may be in use
+        call('rm -rf ~/.cache/gnome-boxes/unattended', shell=True)
+
     if 'vnc' in tag:
         os.system('vncserver -kill :1 > /dev/null 2>&1')
         os.system('rm -rf /tmp/vnc_text.txt')
