@@ -78,6 +78,12 @@ def type_text(context, text):
     typeText(text)
     pressKey('Enter')
 
+@step('Type text "{text}" and return')
+def type_text_and_return(context, text):
+    call("xdotool type --delay 150 '%s'" %text, shell=True)
+    call("xdotool key 'Return'", shell=True)
+    sleep(1)
+
 @step('Wait for "{cmd}" end')
 def wait_for_cmd(context, cmd):
     call(cmd, shell=True)
