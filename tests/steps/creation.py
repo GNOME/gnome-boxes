@@ -3,6 +3,7 @@
 from __future__ import unicode_literals
 from behave import step
 from dogtail.rawinput import typeText
+from dogtail.predicate import GenericPredicate
 from time import sleep
 from utils import get_showing_node_name
 
@@ -53,6 +54,12 @@ def create_new_vm_via_url(context, url):
         half_minutes = 0
         while half_minutes < 40:
             half_minutes += 1
+            if context.app.findChild(
+                GenericPredicate(name='Choose express install to automatically '
+                                      'preconfigure the box with optimal settings.'),
+                retry=False,
+                requireResult=False):
+                return
             create = context.app.child('Create')
             if create.sensitive and create.showing:
                 create.click()
