@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 import libvirt
+from time import sleep
 from general import libvirt_domain_get_val, libvirt_domain_get_context
 
 def libvirt_domain_get_install_state(title):
@@ -21,3 +22,16 @@ def libvirt_domain_get_install_state(title):
             return libvirt_domain_get_val(ctx, "/domain/metadata/*/os-state")
 
     return None
+
+@step('Installation of "{machine}" is finished in "{max_time}" minutes')
+def check_finished_installation(context, machine, max_time):
+    minutes = 0
+    state = None
+    while minutes < max_time:
+        state = libvirt_domain_get_install_state(machine)
+        if state == 'installed':
+            break
+        else:
+            sleep(60)
+
+    assert state == 'installed', "%s is not installed but still in %s after %s minutes" %(machine, state, max_time)
