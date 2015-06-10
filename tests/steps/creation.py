@@ -52,7 +52,7 @@ def create_new_vm_via_url(context, url):
 
     if url.find('http') != -1:
         half_minutes = 0
-        while half_minutes < 40:
+        while half_minutes < 120:
             half_minutes += 1
             if context.app.findChild(
                 GenericPredicate(name='Choose express install to automatically '
