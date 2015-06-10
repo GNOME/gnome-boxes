@@ -153,6 +153,31 @@ Feature: General
     Then Box "Core-5 2" "does not " exist
     Then Box "Core-5 3" "does not" exist
 
+  @send_keycombos
+  Scenario: Send key combos
+    * Create new box from menu "Core-5"
+    * Press "Create"
+    * Wait for "sleep 3" end
+    * Hit "Enter"
+    * Save IP for machine "Core-5"
+    * Install TC Linux package "distro.ibiblio.org/tinycorelinux/3.x/tcz/showkey.tcz" and wait "1" seconds
+    * Start showkey signal recording
+    * Press "Send key combinations" in "Core-5" vm
+    * Press "Ctrl + Alt + Backspace" in "Core-5" vm
+    * Press "Send key combinations" in "Core-5" vm
+    * Press "Ctrl + Alt + F1" in "Core-5" vm
+    * Press "Send key combinations" in "Core-5" vm
+    * Press "Ctrl + Alt + F2" in "Core-5" vm
+    * Press "Send key combinations" in "Core-5" vm
+    * Press "Ctrl + Alt + F7" in "Core-5" vm
+    # showkey ends automatically after 10 seconds w/o signals
+    * Wait for "sleep 9" end
+    * Focus VM
+    # If all signals received as expected turn down network
+    Then Verify previously recorded signals
+    # and network should be unreachable from outside
+    Then Cannot ping "Core-5"
+
 ### TBD ###
   # local_machine_paused_after_quit
   # detach_from_system_broker

@@ -238,6 +238,25 @@ def start_boxes(context):
     sleep(1)
     context.app = root.application('gnome-boxes')
 
+@step('Start showkey signal recording')
+def start_showkey_recording(context):
+    # Have to sleep a bit before as otherwise release of return can be caught
+    call("xdotool type --delay 100 'sleep 0.5; showkey > /tmp/showkey.txt\n'", shell=True)
+    sleep(1)
+
+@step('Verify previously recorded signals')
+def verify_existing_showkey_signals(context):
+    call("xdotool type --delay 100 'grep keycode /tmp/showkey.txt > /tmp/final.txt\n'", shell=True)
+    # If all signals received as expected
+    call("xdotool type --delay 100 'if [[ \"$(echo $(sed \"s/keycode//g\" /tmp/final.txt))\" == '", shell=True)
+    call("xdotool type --delay 100 ' \"29 press 56 press 14 press 14 release 56 release 29 release'", shell=True)
+    call("xdotool type --delay 100 ' 29 press 56 press 59 press 59 release 56 release 29 release'", shell=True)
+    call("xdotool type --delay 100 ' 29 press 56 press 60 press 60 release 56 release 29 release'", shell=True)
+    call("xdotool type --delay 100 ' 29 press 56 press 65 press 65 release 56 release 29 release\"'", shell=True)
+    # Turn down network so observer from outside the VM can say pass/fail.
+    call("xdotool type --delay 100 ' ]]; then sudo ifconfig eth0 down; fi\n'", shell=True)
+    sleep(0.5)
+
 @step('Start box name "{box}"')
 def start_boxes_via_vm(context, box):
     cmd = 'gnome-boxes %s' %box
