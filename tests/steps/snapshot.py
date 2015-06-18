@@ -22,7 +22,7 @@ def add_snapshot(context, name):
                                                                             and x.sensitive and x.name == 'Menu')) == 0:
         sleep(1)
         wait += 1
-        if wait == 5:
+        if wait == 20:
             raise Exception("Timeout: Node %s wasn't found showing" %name)
 
     sleep(1)
