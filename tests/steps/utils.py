@@ -28,7 +28,7 @@ def get_showing_node_rolename(rolename, parent, timeout=30, step=0.25):
 
 @step('Cannot ping "{vm}"')
 def cannot_ping_vm(context, vm):
-    cmd = "ping -qn -c 1 %s" %context.ips[vm]
+    cmd = "ping -qn -W1 -s1 -l2 -c1 %s" %context.ips[vm]
     assert call(cmd, shell=True) != 0, "Machine %s is pingable!" %vm
 
 @step('Close warning')
@@ -65,7 +65,7 @@ def check_pattern_not_visible(context, pattern, command):
 
 @step('Ping "{vm}"')
 def ping_vm(context, vm):
-    cmd = "ping -qn -c 2 %s > /dev/null 2>&1" %context.ips[vm]
+    cmd = "ping -qn -W1 -s1 -l2 -c2 %s > /dev/null 2>&1" %context.ips[vm]
     assert call(cmd, shell=True) == 0, "Machine %s is not pingable" %vm
 
 @step('Press "{button}"')
