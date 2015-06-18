@@ -131,7 +131,8 @@ def rename_vm(context, machine, name, way):
         context.app.child(machine, roleName='push button').click()
         sleep(0.5)
     if way == 'label':
-        context.app.child('Name').parent.children[-2].child(roleName='push button').click()
+        context.app.child('General').child('Name').parent.child(roleName='text').click()
+        keyCombo('<Ctrl><a>')
     typeText(name)
     pressKey('Enter')
     sleep(0.5)
