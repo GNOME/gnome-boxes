@@ -28,6 +28,7 @@ Feature: System Broker
     * Create Core-5.3 box on system broker
     * Connect to system broker
     * Wait for "virsh -c qemu:///system destroy Core-5.3; virsh -c qemu:///system undefine Core-5.3" end
+    * Wait for "sleep 2" end
     Then Box "Core-5.3" "does not" exist
 
   @reflect_addition_from_system_broker
