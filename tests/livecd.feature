@@ -138,7 +138,7 @@ Feature: LiceCD
     * Wait for "sleep 2" end
     * Hit "Esc"
     * Go into "Core-5" box
-    * Wait for "sleep 2" end
+    * Wait for "sleep 4" end
     Then Ping "Core-5"
 
   @force_shutdown_local_machine
