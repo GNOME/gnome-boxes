@@ -123,7 +123,13 @@ def press_back_in_prefs(context, action):
 @step('Quit Boxes')
 def quit_boxes(context):
     keyCombo('<Ctrl><Q>')
-    sleep(5)
+    counter = 0
+    while call('pidof gnome-boxes > /dev/null', shell=True) != 1:
+        sleep(0.5)
+        counter += 1
+        if counter == 100:
+            raise Exception("Failed to turn off Boxes in 50 seconds")
+
 
 @step('Rename "{machine}" to "{name}" via "{way}"')
 def rename_vm(context, machine, name, way):
