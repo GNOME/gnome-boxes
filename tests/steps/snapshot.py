@@ -20,9 +20,9 @@ def add_snapshot(context, name):
     wait = 0
     while len(context.app.findChildren(lambda x: x.roleName == 'toggle button' and x.showing \
                                                                             and x.sensitive and x.name == 'Menu')) == 0:
-        sleep(1)
+        sleep(0.25)
         wait += 1
-        if wait == 20:
+        if wait == 80:
             raise Exception("Timeout: Node %s wasn't found showing" %name)
 
     sleep(1)
