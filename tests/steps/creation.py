@@ -15,7 +15,11 @@ def create_machine_from_menuitem(context, name, item):
     context.execute_steps(u"""
         * Create new box from menu "%s"
         * Press "Create"
-        * Wait for "sleep 3" end
+        * Wait for "sleep 1" end
+        * Hit "Enter"
+        * Wait for "sleep 1" end
+        * Hit "Enter"
+        * Wait for "sleep 1" end
         * Hit "Enter"
         * Save IP for machine "%s"
         * Press "back" in "%s" vm
@@ -89,7 +93,9 @@ def create_machine_from_menuitem_no_wait(context, name, item):
     context.execute_steps(u"""
         * Create new box from menu "%s"
         * Press "Create"
-        * Wait for "sleep 3" end
+        * Wait for "sleep 1" end
+        * Hit "Enter"
+        * Wait for "sleep 1" end
         * Hit "Enter"
         * Press "back" in "%s" vm
         """ %(item, name))
