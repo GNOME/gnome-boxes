@@ -35,9 +35,11 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private Gtk.ListStore store;
     private Gtk.TreeModelFilter model_filter;
     private Boxes.ActionsPopover context_popover;
+    private GLib.List<CollectionItem> hidden_items;
 
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
+        hidden_items = new GLib.List<CollectionItem> ();
         setup_view ();
         notify["ui-state"].connect (ui_state_changed);
     }
@@ -126,13 +128,18 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         var window = machine.window;
         if (window.ui_state == UIState.WIZARD) {
             // Don't show newly created items until user is out of wizard
+            hidden_items.append (item);
+
             ulong ui_state_id = 0;
 
             ui_state_id = window.notify["ui-state"].connect (() => {
                 if (window.ui_state == UIState.WIZARD)
                     return;
 
-                add_item (item);
+                if (hidden_items.find (item) != null) {
+                    add_item (item);
+                    hidden_items.remove (item);
+                }
                 window.disconnect (ui_state_id);
             });
 
@@ -203,6 +210,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     }
 
     public void remove_item (CollectionItem item) {
+        hidden_items.remove (item);
+
         var iter = item.get_data<Gtk.TreeIter?> ("iter");
         if (iter == null) {
             debug ("item not in view or already removed");
