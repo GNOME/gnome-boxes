@@ -56,8 +56,7 @@ Feature: General
   @rename_via_button
   Scenario: Rename via button
     * Initiate new box "Core-5" installation
-    * Select "Core-5" box
-    * Press "Properties"
+    * Launch "Properties" for "Core-5" box
     * Rename "Core-5" to "Kernel-6" via "button"
     * Hit "Esc"
     * Quit Boxes
@@ -67,8 +66,7 @@ Feature: General
   @rename_via_label
   Scenario: Rename via label
     * Initiate new box "Core-5" installation
-    * Select "Core-5" box
-    * Press "Properties"
+    * Launch "Properties" for "Core-5" box
     * Rename "Core-5" to "Kernel-6" via "label"
     * Hit "Esc"
     * Quit Boxes

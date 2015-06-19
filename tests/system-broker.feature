@@ -76,8 +76,7 @@ Feature: System Broker
   Scenario: Force off system broker box
     * Create Core-5.3 box on system broker
     * Connect to system broker
-    * Select "Core-5.3" box
-    * Press "Properties"
+    * Launch "Properties" for "Core-5.3" box
     * Press "System"
     * Press "Force Shutdown"
     Then Box "Core-5.3" "does" exist

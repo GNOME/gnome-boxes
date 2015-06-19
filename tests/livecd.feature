@@ -144,8 +144,7 @@ Feature: LiceCD
   @force_shutdown_local_machine
   Scenario: Force off local liveCD box
     * Create new box "Core-5"
-    * Select "Core-5" box
-    * Press "Properties"
+    * Launch "Properties" for "Core-5" box
     * Press "System"
     * Press "Force Shutdown"
     Then Box "Core-5" "does" exist
