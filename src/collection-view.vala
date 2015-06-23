@@ -40,7 +40,13 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private const Gtk.CornerType[] right_corners = { Gtk.CornerType.TOP_RIGHT, Gtk.CornerType.BOTTOM_RIGHT };
     private const Gtk.CornerType[] bottom_corners = { Gtk.CornerType.BOTTOM_LEFT, Gtk.CornerType.BOTTOM_RIGHT };
 
+    public const Gdk.RGBA FRAME_BORDER_COLOR = { 0x3b / 255.0, 0x3c / 255.0, 0x38 / 255.0, 1.0 };
+    public const Gdk.RGBA FRAME_BACKGROUND_COLOR = { 0x2d / 255.0, 0x2d / 255.0, 0x2d / 255.0, 1.0 };
+    public const double FRAME_RADIUS = 2.0;
+
+    public const Gdk.RGBA CENTERED_EMBLEM_COLOR = { 0xbe / 255.0, 0xbe / 255.0, 0xbe / 255.0, 1.0 };
     public const Gdk.RGBA SMALL_EMBLEM_COLOR = { 1.0, 1.0, 1.0, 1.0 };
+    public const int BIG_EMBLEM_SIZE = 32;
     public const int SMALL_EMBLEM_SIZE = 16;
     public const int EMBLEM_PADDING = 8;
 
@@ -78,7 +84,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.get (iter, ModelColumns.ITEM, out item);
         Machine machine = item as Machine;
         return_if_fail (machine != null);
-        var pixbuf = machine.pixbuf;
+        var pixbuf = is_stopped (machine) ? paint_stopped_machine_thumbnail () : machine.pixbuf;
 
         if ("favorite" in machine.config.categories)
             pixbuf = add_emblem_icon (pixbuf, "starred-symbolic", Gtk.CornerType.BOTTOM_LEFT);
@@ -86,6 +92,44 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.set (iter, ModelColumns.SCREENSHOT, pixbuf);
         queue_draw ();
     }
+
+    private bool is_stopped (Machine machine) {
+        return machine.state == Machine.MachineState.FORCE_STOPPED || machine.state == Machine.MachineState.STOPPED;
+    }
+
+    private Gdk.Pixbuf paint_stopped_machine_thumbnail () {
+        // FIXME The frame is currently drawn lacking its right border because of this bug in libgd:
+        // https://bugzilla.gnome.org/show_bug.cgi?id=751494
+        var frame = paint_empty_frame (Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT, FRAME_RADIUS,
+                                       FRAME_BORDER_COLOR, FRAME_BACKGROUND_COLOR);
+        return add_centered_emblem_icon (frame, "system-shutdown-symbolic", BIG_EMBLEM_SIZE);
+    }
+
+    private Gdk.Pixbuf add_centered_emblem_icon (Gdk.Pixbuf pixbuf, string icon_name, int size) {
+        Gdk.Pixbuf? emblem = null;
+
+        var theme = Gtk.IconTheme.get_default ();
+        try {
+            var icon_info = theme.lookup_icon (icon_name, size, Gtk.IconLookupFlags.FORCE_SIZE);
+            emblem = icon_info.load_symbolic (CENTERED_EMBLEM_COLOR);
+        } catch (GLib.Error error) {
+            warning (@"Unable to get icon '$icon_name': $(error.message)");
+            return pixbuf;
+        }
+
+        if (emblem == null)
+            return pixbuf;
+
+        double offset_x = pixbuf.width / 2.0 - emblem.width / 2.0;
+        double offset_y = pixbuf.height / 2.0 - emblem.height / 2.0;
+
+        var emblemed = pixbuf.copy ();
+        emblem.composite (emblemed, (int) offset_x, (int) offset_y, size, size,
+                          offset_x, offset_y, 1.0, 1.0, Gdk.InterpType.BILINEAR, 255);
+
+        return emblemed;
+    }
+
 
     private Gdk.Pixbuf add_emblem_icon (Gdk.Pixbuf pixbuf, string icon_name, Gtk.CornerType corner_type) {
         Gdk.Pixbuf? emblem = null;
