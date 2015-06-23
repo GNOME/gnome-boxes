@@ -37,6 +37,13 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private Boxes.ActionsPopover context_popover;
     private GLib.List<CollectionItem> hidden_items;
 
+    private const Gtk.CornerType[] right_corners = { Gtk.CornerType.TOP_RIGHT, Gtk.CornerType.BOTTOM_RIGHT };
+    private const Gtk.CornerType[] bottom_corners = { Gtk.CornerType.BOTTOM_LEFT, Gtk.CornerType.BOTTOM_RIGHT };
+
+    public const Gdk.RGBA SMALL_EMBLEM_COLOR = { 1.0, 1.0, 1.0, 1.0 };
+    public const int SMALL_EMBLEM_SIZE = 16;
+    public const int EMBLEM_PADDING = 8;
+
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         hidden_items = new GLib.List<CollectionItem> ();
@@ -67,7 +74,6 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
 
     private void update_screenshot (Gtk.TreeIter iter) {
         CollectionItem item;
-        GLib.Icon[] emblem_icons = {};
 
         store.get (iter, ModelColumns.ITEM, out item);
         Machine machine = item as Machine;
@@ -75,27 +81,38 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         var pixbuf = machine.pixbuf;
 
         if ("favorite" in machine.config.categories)
-            emblem_icons += create_symbolic_emblem ("emblem-favorite");
-
-        if (emblem_icons.length > 0) {
-            var emblemed_icon = new GLib.EmblemedIcon (pixbuf, null);
-            foreach (var emblem_icon in emblem_icons)
-                emblemed_icon.add_emblem (new GLib.Emblem (emblem_icon));
-
-            var theme = Gtk.IconTheme.get_default ();
-
-            try {
-                var size = int.max (pixbuf.width, pixbuf.height);
-                var icon_info = theme.lookup_by_gicon (emblemed_icon, size,
-                                                       Gtk.IconLookupFlags.FORCE_SIZE);
-                pixbuf = icon_info.load_icon ();
-            } catch (GLib.Error error) {
-                warning ("Unable to render the emblem: " + error.message);
-            }
-        }
+            pixbuf = add_emblem_icon (pixbuf, "emblem-favorite-symbolic", Gtk.CornerType.BOTTOM_LEFT);
 
         store.set (iter, ModelColumns.SCREENSHOT, pixbuf);
         queue_draw ();
+    }
+
+    private Gdk.Pixbuf add_emblem_icon (Gdk.Pixbuf pixbuf, string icon_name, Gtk.CornerType corner_type) {
+        Gdk.Pixbuf? emblem = null;
+
+        var theme = Gtk.IconTheme.get_default ();
+        try {
+            var icon_info = theme.lookup_icon (icon_name, SMALL_EMBLEM_SIZE, Gtk.IconLookupFlags.FORCE_SIZE);
+            emblem = icon_info.load_symbolic (SMALL_EMBLEM_COLOR);
+        } catch (GLib.Error error) {
+            warning (@"Unable to get icon '$icon_name': $(error.message)");
+            return pixbuf;
+        }
+
+        if (emblem == null)
+            return pixbuf;
+
+        var offset_x = corner_type in right_corners ? pixbuf.width - emblem.width - EMBLEM_PADDING :
+                                                      EMBLEM_PADDING;
+
+        var offset_y = corner_type in bottom_corners ? pixbuf.height - emblem.height - EMBLEM_PADDING :
+                                                       EMBLEM_PADDING;
+
+        var emblemed = pixbuf.copy ();
+        emblem.composite (emblemed, offset_x, offset_y, SMALL_EMBLEM_SIZE, SMALL_EMBLEM_SIZE,
+                          offset_x, offset_y, 1.0, 1.0, Gdk.InterpType.BILINEAR, 255);
+
+        return emblemed;
     }
 
     private Gtk.TreeIter append (string title,
