@@ -81,7 +81,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         var pixbuf = machine.pixbuf;
 
         if ("favorite" in machine.config.categories)
-            pixbuf = add_emblem_icon (pixbuf, "emblem-favorite-symbolic", Gtk.CornerType.BOTTOM_LEFT);
+            pixbuf = add_emblem_icon (pixbuf, "starred-symbolic", Gtk.CornerType.BOTTOM_LEFT);
 
         store.set (iter, ModelColumns.SCREENSHOT, pixbuf);
         queue_draw ();
