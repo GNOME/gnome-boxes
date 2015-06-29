@@ -195,6 +195,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             state = MachineState.SLEEPING;
         });
         notify["state"].connect (() => {
+            update_info ();
+
             if (state == MachineState.RUNNING) {
                 reconnect_display ();
                 set_stats_enable (true);
@@ -208,6 +210,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (state != MachineState.STOPPED)
             load_screenshot ();
         set_screenshot_enable (true);
+
+        update_info ();
     }
 
     private void update_cpu_stat (DomainInfo info, ref MachineStat stat) {
@@ -656,5 +660,16 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         disconnect (state_notify_id);
         connecting_cancellable.disconnect (cancelled_id);
+    }
+
+    private void update_info () {
+        if (VMConfigurator.is_install_config (domain_config))
+            info = _("Installing…");
+        else if (VMConfigurator.is_live_config (domain_config))
+            info = _("Live");
+        else if (VMConfigurator.is_import_config (domain_config))
+            info = _("Importing…");
+        else
+            info = null;
     }
 }

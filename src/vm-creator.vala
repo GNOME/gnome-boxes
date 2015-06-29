@@ -82,7 +82,6 @@ private class Boxes.VMCreator {
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.config.access_last_time = get_real_time ();
-        update_machine_info (machine);
     }
 
     protected virtual async void continue_installation (LibvirtMachine machine) {
@@ -108,7 +107,6 @@ private class Boxes.VMCreator {
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
         machine.vm_creator = this;
-        update_machine_info (machine);
 
         on_machine_state_changed (machine);
 
@@ -152,7 +150,6 @@ private class Boxes.VMCreator {
                 warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
             }
             machine.disconnect (state_changed_id);
-            machine.info = null;
             App.app.notify_machine_installed (machine);
             machine.vm_creator = null;
             machine.schedule_autosave ();
@@ -179,13 +176,6 @@ private class Boxes.VMCreator {
                     warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
                 }
         }
-    }
-
-    protected virtual void update_machine_info (LibvirtMachine machine) {
-        if (VMConfigurator.is_install_config (machine.domain_config))
-            machine.info = _("Installing…");
-        else
-            machine.info = _("Live");
     }
 
     protected void set_post_install_config (LibvirtMachine machine) {

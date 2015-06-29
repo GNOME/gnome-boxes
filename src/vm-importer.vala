@@ -19,7 +19,6 @@ private class Boxes.VMImporter : Boxes.VMCreator {
     public override void launch_vm (LibvirtMachine machine) throws GLib.Error {
         machine.vm_creator = this;
         machine.config.access_last_time = get_real_time ();
-        update_machine_info (machine);
 
         import_vm.begin (machine);
     }
@@ -27,13 +26,8 @@ private class Boxes.VMImporter : Boxes.VMCreator {
     protected override async void continue_installation (LibvirtMachine machine) {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
         machine.vm_creator = this;
-        update_machine_info (machine);
 
         yield import_vm (machine);
-    }
-
-    protected override void update_machine_info (LibvirtMachine machine) {
-        machine.info = _("Importing…");
     }
 
     private async void import_vm (LibvirtMachine machine) {
@@ -65,7 +59,6 @@ private class Boxes.VMImporter : Boxes.VMCreator {
                 warning ("Failed to start domain '%s': %s", machine.domain.get_name (), error.message);
             }
         }
-        machine.info = null;
         machine.vm_creator = null;
     }
 }
