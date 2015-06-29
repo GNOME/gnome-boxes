@@ -28,7 +28,6 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
             break;
         }
 
-        get_style_context ().add_class ("content-bg");
         get_style_context ().add_class ("transparent-bg");
 
         grid = new Gtk.Grid ();
