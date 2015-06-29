@@ -42,6 +42,16 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public bool run_in_bg { get; set; } // If true, machine will never be paused automatically by Boxes.
 
+    public override bool is_local {
+        get {
+            // If the URI is prefixed by "qemu" or "qemu+unix" and the domain is "system" of "session" then it is local.
+            if (/^qemu(\+unix)?:\/\/\/(system|session)/i.match (source.uri))
+                return true;
+
+            return base.is_local;
+        }
+    }
+
     public override void disconnect_display () {
         stay_on_display = false;
 

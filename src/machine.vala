@@ -55,6 +55,16 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    public virtual bool is_local {
+        get {
+            // If the adress is in the 127.0.0.0 block or is localhost, then it is local
+            if (/:\/\/(127\.\d+\.\d+\.\d+|localhost)/i.match (source.uri))
+                return true;
+
+            return false;
+        }
+    }
+
     private ulong show_id;
     private ulong hide_id;
     private ulong disconnected_id;
