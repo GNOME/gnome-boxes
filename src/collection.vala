@@ -56,6 +56,9 @@ private class Boxes.Collection: GLib.Object {
 }
 
 private class Boxes.CollectionFilter: GLib.Object {
+    // Need a signal cause delegate properties aren't real properties and hence are not notified.
+    public signal void filter_func_changed ();
+
     private string [] terms;
 
     private string _text;
@@ -69,15 +72,31 @@ private class Boxes.CollectionFilter: GLib.Object {
         }
     }
 
+    private unowned Boxes.CollectionFilterFunc _filter_func;
+    public unowned Boxes.CollectionFilterFunc filter_func {
+        get { return _filter_func; }
+        set {
+            _filter_func = value;
+            filter_func_changed ();
+        }
+        default = null;
+    }
+
     public bool filter (CollectionItem item) {
         var name = canonicalize_for_search (item.name);
         foreach (var term in terms) {
             if (! (term in name))
                 return false;
         }
+
+        if (filter_func != null)
+            return filter_func (item);
+
         return true;
     }
 }
+
+private delegate bool Boxes.CollectionFilterFunc (Boxes.CollectionItem item);
 
 private class Boxes.Category: GLib.Object {
     public enum Kind {

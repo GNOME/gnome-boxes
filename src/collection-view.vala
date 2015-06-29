@@ -61,6 +61,9 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         filter.notify["text"].connect (() => {
             model_filter.refilter ();
         });
+        filter.filter_func_changed.connect (() => {
+            model_filter.refilter ();
+        });
     }
 
     public void setup_ui (AppWindow window) {
