@@ -152,8 +152,7 @@ private class Boxes.VMCreator {
                 warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
             }
             machine.disconnect (state_changed_id);
-            if (VMConfigurator.is_live_config (machine.domain_config) || !install_trackable ())
-                machine.info = null;
+            machine.info = null;
             App.app.notify_machine_installed (machine);
             machine.vm_creator = null;
             machine.schedule_autosave ();
@@ -183,11 +182,9 @@ private class Boxes.VMCreator {
     }
 
     protected virtual void update_machine_info (LibvirtMachine machine) {
-        if (VMConfigurator.is_install_config (machine.domain_config)) {
+        if (VMConfigurator.is_install_config (machine.domain_config))
             machine.info = _("Installing…");
-
-            track_install_progress (machine);
-        } else
+        else
             machine.info = _("Live");
     }
 
@@ -272,10 +269,7 @@ private class Boxes.VMCreator {
         var volume = machine.storage_volume;
 
         try {
-            if (install_trackable ())
-                // Great! We know how much storage installed guest consumes
-                return get_progress (volume) == INSTALL_COMPLETE_PERCENT;
-            else if (install_media.os_media != null && VMConfigurator.is_install_config (machine.domain_config))
+            if (install_media.os_media != null && VMConfigurator.is_install_config (machine.domain_config))
                 return (num_reboots == install_media.os_media.installer_reboots);
             else {
                 var info = volume.get_info ();
@@ -287,69 +281,6 @@ private class Boxes.VMCreator {
             warning ("Failed to get information from volume '%s': %s", volume.get_name (), error.message);
             return false;
         }
-    }
-
-    int prev_progress = 0;
-    bool updating_install_progress;
-    private void track_install_progress (LibvirtMachine machine) {
-        if (!install_trackable ())
-            return;
-
-        return_if_fail (machine.storage_volume != null);
-
-        Timeout.add_seconds (6, () => {
-            if (prev_progress == 100) {
-                machine.info = null;
-
-                return false;
-            }
-
-            if (!updating_install_progress)
-                update_install_progress.begin (machine);
-
-            return true;
-        });
-    }
-
-    private async void update_install_progress (LibvirtMachine machine) {
-        updating_install_progress = true;
-
-        int progress = 0;
-        try {
-            yield run_in_thread (() => {
-                progress = get_progress (machine.storage_volume);
-            });
-        } catch (GLib.Error error) {
-            warning ("Failed to get information from volume '%s': %s",
-                     machine.storage_volume.get_name (),
-                     error.message);
-        }
-        if (progress < 0)
-            return;
-
-        // This string is about automatic installation progress
-        machine.info = ngettext ("%d%% Installed", "%d%% Installed", progress).printf (progress);
-        prev_progress = progress;
-        updating_install_progress = false;
-    }
-
-    private bool install_trackable () {
-        return (install_media.installed_size > 0);
-    }
-
-    private int get_progress (GVir.StorageVol volume) throws GLib.Error {
-        var volume_info = volume.get_info ();
-
-        var percent = (int) (volume_info.allocation * 100 /  install_media.installed_size);
-
-        // Make sure we don't display some rediculous figure in case we are wrong about installed size or libvirt
-        // gives us incorrect value for bytes written to disk.
-        percent = percent.clamp (0, INSTALL_COMPLETE_PERCENT);
-
-        if (percent == INSTALL_COMPLETE_PERCENT)
-            percent = 100;
-
-        return percent;
     }
 
     private async void create_domain_name_and_title_from_media (out string name, out string title) throws GLib.Error {
