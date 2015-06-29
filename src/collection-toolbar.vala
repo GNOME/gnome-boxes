@@ -11,6 +11,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
     private Button back_btn;
     [GtkChild]
     private Button new_btn;
+    [GtkChild]
+    private CollectionFilterSwitcher filter_switcher;
 
     private AppWindow window;
 
@@ -29,6 +31,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
         window.notify["ui-state"].connect (ui_state_changed);
         App.app.notify["main-window"].connect (ui_state_changed);
+
+        filter_switcher.setup_ui (window);
     }
 
     public void click_back_button () {
@@ -73,6 +77,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
             select_btn.show ();
             search_btn.show ();
             new_btn.show ();
+            custom_title = filter_switcher;
             break;
 
         case UIState.CREDS:
@@ -80,6 +85,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
             back_btn.visible = (window == App.app.main_window);
             select_btn.hide ();
             search_btn.hide ();
+            custom_title = null;
             break;
 
         default:
