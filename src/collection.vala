@@ -58,8 +58,11 @@ private class Boxes.Collection: GLib.Object {
 private class Boxes.CollectionFilter: GLib.Object {
     private string [] terms;
 
+    private string _text;
     public string text {
+        get { return _text; }
         set {
+            _text = value;
             terms = value.split(" ");
             for (int i = 0; i < terms.length; i++)
                 terms[i] = canonicalize_for_search (terms[i]);
