@@ -27,6 +27,10 @@ private class Boxes.MachineThumbnailer: Object {
             update_thumbnail ();
         });
 
+        machine.notify["under-construction"].connect (() => {
+            update_thumbnail ();
+        });
+
         machine.config.notify["categories"].connect (() => {
             update_thumbnail ();
         });
@@ -35,7 +39,13 @@ private class Boxes.MachineThumbnailer: Object {
     }
 
     private void update_thumbnail () {
-        var new_thumbnail = machine.is_stopped ? get_stopped_thumbnail () : machine.pixbuf;
+        Gdk.Pixbuf new_thumbnail;
+
+        if (machine.is_stopped)
+            new_thumbnail = machine.under_construction ? get_under_construction_thumbnail () :
+                                                         get_stopped_thumbnail ();
+        else
+            new_thumbnail = machine.pixbuf;
 
         // Use the default thumbnail if no thumbnail have been chosen
         if (new_thumbnail == null)
@@ -78,6 +88,11 @@ private class Boxes.MachineThumbnailer: Object {
         stopped_thumbnail = add_centered_emblem_icon (frame, "system-shutdown-symbolic", BIG_EMBLEM_SIZE);
 
         return stopped_thumbnail;
+    }
+
+    private static Gdk.Pixbuf get_under_construction_thumbnail () {
+        // If the machine is being constructed, it will draw a spinner itself, so we only need to draw an empty frame.
+        return get_empty_thumbnail ();
     }
 
     private static Gdk.Pixbuf add_centered_emblem_icon (Gdk.Pixbuf pixbuf, string icon_name, int size) {
