@@ -37,6 +37,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private Boxes.ActionsPopover context_popover;
     private GLib.List<CollectionItem> hidden_items;
 
+    public CollectionFilter filter { construct; get; }
+
     private const Gtk.CornerType[] right_corners = { Gtk.CornerType.TOP_RIGHT, Gtk.CornerType.BOTTOM_RIGHT };
     private const Gtk.CornerType[] bottom_corners = { Gtk.CornerType.BOTTOM_LEFT, Gtk.CornerType.BOTTOM_RIGHT };
 
@@ -53,8 +55,12 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
         hidden_items = new GLib.List<CollectionItem> ();
+        filter = new CollectionFilter ();
         setup_view ();
         notify["ui-state"].connect (ui_state_changed);
+        filter.notify["text"].connect (() => {
+            model_filter.refilter ();
+        });
     }
 
     public void setup_ui (AppWindow window) {
@@ -256,11 +262,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         if (item  == null)
             return false;
 
-        return App.app.filter.filter (item);
-    }
-
-    public void refilter () {
-        model_filter.refilter ();
+        return filter.filter (item);
     }
 
     public void activate_first_item () {

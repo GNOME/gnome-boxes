@@ -28,7 +28,6 @@ private class Boxes.App: Gtk.Application {
 
     public string? uri { get; set; }
     public Collection collection;
-    public CollectionFilter filter;
 
     private bool is_ready;
     public signal void ready ();
@@ -49,7 +48,6 @@ private class Boxes.App: Gtk.Application {
         windows = new List<Boxes.AppWindow> ();
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
-        filter = new Boxes.CollectionFilter ();
         var action = new GLib.SimpleAction ("quit", null);
         action.activate.connect (() => { quit_app (); });
         add_action (action);

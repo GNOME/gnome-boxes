@@ -282,6 +282,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         item_selected (item);
     }
 
+    public void filter (string text) {
+        view.filter.text = text;
+    }
+
     [GtkCallback]
     public bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         var default_modifiers = Gtk.accelerator_get_default_mod_mask ();

@@ -29,8 +29,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
 
     [GtkCallback]
     private void on_search_changed () {
-        App.app.filter.text = text;
-        window.view.refilter ();
+        window.filter (text);
     }
 
     [GtkCallback]
