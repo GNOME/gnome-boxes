@@ -37,6 +37,10 @@ private class Boxes.MachineThumbnailer: Object {
     private void update_thumbnail () {
         var new_thumbnail = machine.is_stopped ? get_stopped_thumbnail () : machine.pixbuf;
 
+        // Use the default thumbnail if no thumbnail have been chosen
+        if (new_thumbnail == null)
+            new_thumbnail = get_default_thumbnail ();
+
         if ("favorite" in machine.config.categories)
             new_thumbnail = add_emblem_icon (new_thumbnail, "starred-symbolic", Gtk.CornerType.BOTTOM_LEFT);
 
@@ -52,6 +56,17 @@ private class Boxes.MachineThumbnailer: Object {
                                              FRAME_BORDER_COLOR, FRAME_BACKGROUND_COLOR);
 
         return empty_thumbnail;
+    }
+
+    private static Gdk.Pixbuf? default_thumbnail;
+    private static Gdk.Pixbuf get_default_thumbnail () {
+        if (default_thumbnail != null)
+            return default_thumbnail;
+
+        var frame = get_empty_thumbnail ();
+        default_thumbnail = add_centered_emblem_icon (frame, "computer-symbolic", BIG_EMBLEM_SIZE);
+
+        return default_thumbnail;
     }
 
     private static Gdk.Pixbuf? stopped_thumbnail;

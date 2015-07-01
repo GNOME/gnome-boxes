@@ -233,8 +233,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         this.source = source;
         this.connecting_cancellable = new Cancellable ();
 
-        pixbuf = draw_fallback_vm ();
-
         notify["ui-state"].connect (ui_state_changed);
         ui_state_id = App.app.main_window.notify["ui-state"].connect (() => {
             if (App.app.main_window.ui_state == UIState.DISPLAY)
@@ -530,40 +528,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private static Gdk.Pixbuf draw_stopped_vm (int width = SCREENSHOT_WIDTH,
                                                int height = SCREENSHOT_HEIGHT) {
         var surface = new Cairo.ImageSurface (Cairo.Format.RGB24, width, height);
-        return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
-    }
-
-    private static Gdk.Pixbuf? default_fallback = null;
-    private static Gdk.Pixbuf draw_fallback_vm (int width = SCREENSHOT_WIDTH,
-                                                int height = SCREENSHOT_HEIGHT,
-                                                bool force = false) {
-        Gdk.Pixbuf pixbuf = null;
-
-        if (width == SCREENSHOT_WIDTH && height == SCREENSHOT_HEIGHT && !force)
-            if (default_fallback != null)
-                return default_fallback;
-            else
-                default_fallback = draw_fallback_vm (width, height, true);
-
-        try {
-            var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
-            var context = new Cairo.Context (surface);
-
-            int size = (int) (height * 0.6);
-            var icon_info = IconTheme.get_default ().lookup_icon ("computer-symbolic", size,
-                                                                  IconLookupFlags.GENERIC_FALLBACK);
-            Gdk.cairo_set_source_pixbuf (context, icon_info.load_icon (),
-                                         (width - size) / 2, (height - size) / 2);
-            context.rectangle ((width - size) / 2, (height - size) / 2, size, size);
-            context.fill ();
-            pixbuf = Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
-        } catch {
-        }
-
-        if (pixbuf != null)
-            return pixbuf;
-
-        var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
 
