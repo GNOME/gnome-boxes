@@ -84,79 +84,10 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.get (iter, ModelColumns.ITEM, out item);
         Machine machine = item as Machine;
         return_if_fail (machine != null);
-        var pixbuf = is_stopped (machine) ? paint_stopped_machine_thumbnail () : machine.pixbuf;
-
-        if ("favorite" in machine.config.categories)
-            pixbuf = add_emblem_icon (pixbuf, "starred-symbolic", Gtk.CornerType.BOTTOM_LEFT);
+        var pixbuf = machine.thumbnailer.thumbnail;
 
         store.set (iter, ModelColumns.SCREENSHOT, pixbuf);
         queue_draw ();
-    }
-
-    private bool is_stopped (Machine machine) {
-        return machine.state == Machine.MachineState.FORCE_STOPPED || machine.state == Machine.MachineState.STOPPED;
-    }
-
-    private Gdk.Pixbuf paint_stopped_machine_thumbnail () {
-        // FIXME The frame is currently drawn lacking its right border because of this bug in libgd:
-        // https://bugzilla.gnome.org/show_bug.cgi?id=751494
-        var frame = paint_empty_frame (Machine.SCREENSHOT_WIDTH, Machine.SCREENSHOT_HEIGHT, FRAME_RADIUS,
-                                       FRAME_BORDER_COLOR, FRAME_BACKGROUND_COLOR);
-        return add_centered_emblem_icon (frame, "system-shutdown-symbolic", BIG_EMBLEM_SIZE);
-    }
-
-    private Gdk.Pixbuf add_centered_emblem_icon (Gdk.Pixbuf pixbuf, string icon_name, int size) {
-        Gdk.Pixbuf? emblem = null;
-
-        var theme = Gtk.IconTheme.get_default ();
-        try {
-            var icon_info = theme.lookup_icon (icon_name, size, Gtk.IconLookupFlags.FORCE_SIZE);
-            emblem = icon_info.load_symbolic (CENTERED_EMBLEM_COLOR);
-        } catch (GLib.Error error) {
-            warning (@"Unable to get icon '$icon_name': $(error.message)");
-            return pixbuf;
-        }
-
-        if (emblem == null)
-            return pixbuf;
-
-        double offset_x = pixbuf.width / 2.0 - emblem.width / 2.0;
-        double offset_y = pixbuf.height / 2.0 - emblem.height / 2.0;
-
-        var emblemed = pixbuf.copy ();
-        emblem.composite (emblemed, (int) offset_x, (int) offset_y, size, size,
-                          offset_x, offset_y, 1.0, 1.0, Gdk.InterpType.BILINEAR, 255);
-
-        return emblemed;
-    }
-
-
-    private Gdk.Pixbuf add_emblem_icon (Gdk.Pixbuf pixbuf, string icon_name, Gtk.CornerType corner_type) {
-        Gdk.Pixbuf? emblem = null;
-
-        var theme = Gtk.IconTheme.get_default ();
-        try {
-            var icon_info = theme.lookup_icon (icon_name, SMALL_EMBLEM_SIZE, Gtk.IconLookupFlags.FORCE_SIZE);
-            emblem = icon_info.load_symbolic (SMALL_EMBLEM_COLOR);
-        } catch (GLib.Error error) {
-            warning (@"Unable to get icon '$icon_name': $(error.message)");
-            return pixbuf;
-        }
-
-        if (emblem == null)
-            return pixbuf;
-
-        var offset_x = corner_type in right_corners ? pixbuf.width - emblem.width - EMBLEM_PADDING :
-                                                      EMBLEM_PADDING;
-
-        var offset_y = corner_type in bottom_corners ? pixbuf.height - emblem.height - EMBLEM_PADDING :
-                                                       EMBLEM_PADDING;
-
-        var emblemed = pixbuf.copy ();
-        emblem.composite (emblemed, offset_x, offset_y, SMALL_EMBLEM_SIZE, SMALL_EMBLEM_SIZE,
-                          offset_x, offset_y, 1.0, 1.0, Gdk.InterpType.BILINEAR, 255);
-
-        return emblemed;
     }
 
     private Gtk.TreeIter append (string title,
@@ -208,11 +139,11 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         }
 
         var iter = append (machine.name, machine.info,  item);
-        var pixbuf_id = machine.notify["pixbuf"].connect (() => {
+        var thumbnail_id = machine.thumbnailer.notify["thumbnail"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             update_screenshot (iter);
         });
-        item.set_data<ulong> ("pixbuf_id", pixbuf_id);
+        item.set_data<ulong> ("thumbnail_id", thumbnail_id);
 
         var categories_id = machine.config.notify["categories"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
@@ -282,8 +213,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.remove (iter);
         item.set_data<Gtk.TreeIter?> ("iter", null);
 
-        var pixbuf_id = item.get_data<ulong> ("pixbuf_id");
-        item.disconnect (pixbuf_id);
+        var thumbnail_id = item.get_data<ulong> ("thumbnail_id");
+        item.disconnect (thumbnail_id);
         var name_id = item.get_data<ulong> ("name_id");
         item.disconnect (name_id);
         var info_id = item.get_data<ulong> ("info_id");

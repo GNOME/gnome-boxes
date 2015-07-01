@@ -8,6 +8,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
+    public MachineThumbnailer thumbnailer { get; private set; }
     public bool stay_on_display;
     public string? info { get; protected set; }
     public string status { get; set; }
@@ -248,6 +249,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         });
 
         create_display_config (uuid);
+
+        // This needs to be set after the 'config' prop has been set.
+        thumbnailer = new MachineThumbnailer (this);
     }
 
     protected void load_screenshot () {

@@ -118,6 +118,7 @@ gnome_boxes_SOURCES =				\
 	libvirt-machine.vala			\
 	libvirt-machine-properties.vala		\
 	machine.vala				\
+	machine-thumbnailer.vala		\
 	main.vala				\
 	media-manager.vala 			\
 	resource-graph.vala			\
