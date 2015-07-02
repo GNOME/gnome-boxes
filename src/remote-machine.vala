@@ -13,7 +13,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         // assume the remote is running for now
         state = MachineState.RUNNING;
 
-        create_display_config ();
         source.bind_property ("name", this, "name", BindingFlags.BIDIRECTIONAL);
         config.access_last_time = get_real_time ();
 

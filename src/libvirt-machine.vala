@@ -140,10 +140,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                                  GVir.Domain     domain) throws GLib.Error {
         var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
         var item_name = config.get_title () ?? domain.get_name ();
-        base (source, item_name);
+        base (source, item_name, domain.get_uuid ());
 
         debug ("new libvirt machine: " + domain.get_name ());
-        create_display_config (domain.get_uuid ());
         this.connection = connection;
         this.domain = domain;
         this.properties = new LibvirtMachineProperties (this);

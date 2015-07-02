@@ -9,10 +9,9 @@ private class Boxes.OvirtMachine: Boxes.Machine {
     public OvirtMachine (CollectionSource source,
                          Ovirt.Proxy proxy,
                          Ovirt.Vm vm) throws GLib.Error {
-        base (source, vm.name);
+        base (source, vm.name, vm.guid);
 
         debug ("new ovirt machine: " + name);
-        create_display_config (vm.guid);
         this.proxy = proxy;
         this.vm = vm;
 

@@ -221,7 +221,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         cr.fill ();
     }
 
-    public Machine (Boxes.CollectionSource source, string name) {
+    public Machine (Boxes.CollectionSource source, string name, string? uuid = null) {
         this.name = name;
         this.source = source;
         this.connecting_cancellable = new Cancellable ();
@@ -240,6 +240,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         notify["name"].connect (() => {
             status = this.name;
         });
+
+        create_display_config (uuid);
     }
 
     protected void load_screenshot () {
@@ -364,7 +366,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         window = null;
     }
 
-    protected void create_display_config (string? uuid = null)
+    private void create_display_config (string? uuid = null)
         requires (this.config == null)
         ensures (this.config != null) {
 
