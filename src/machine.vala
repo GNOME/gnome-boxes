@@ -48,6 +48,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    public bool is_stopped {
+        get {
+            return state == Machine.MachineState.FORCE_STOPPED || state == Machine.MachineState.STOPPED;
+        }
+    }
+
     private ulong show_id;
     private ulong hide_id;
     private ulong disconnected_id;
