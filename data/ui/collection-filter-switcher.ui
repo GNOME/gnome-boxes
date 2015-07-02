@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesCollectionFilterSwitcher" parent="GtkButtonBox">
+    <property name="visible">True</property>
+    <property name="homogeneous">True</property>
+    <style>
+      <class name="linked"/>
+    </style>
+
+    <child>
+      <object class="GtkToggleButton" id="all_button">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">All</property>
+        <signal name="toggled" handler="activate_button"/>
+      </object>
+
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkToggleButton" id="local_button">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Local</property>
+        <signal name="toggled" handler="activate_button"/>
+      </object>
+
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkToggleButton" id="remote_button">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Remote</property>
+        <signal name="toggled" handler="activate_button"/>
+      </object>
+
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+      </packing>
+    </child>
+  </template>
+</interface>
