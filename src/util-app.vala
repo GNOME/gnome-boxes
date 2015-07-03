@@ -176,6 +176,7 @@ namespace Boxes {
 
         debug ("Connected to system libvirt, now fetching domains..");
         yield system_virt_connection.fetch_domains_async (null);
+        yield system_virt_connection.fetch_networks_async (null);
 
         return system_virt_connection;
     }
