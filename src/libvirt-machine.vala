@@ -662,7 +662,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         connecting_cancellable.disconnect (cancelled_id);
     }
 
-    private void update_info () {
+    protected override void update_info () {
+        base.update_info ();
+
+        if (info != null)
+            return;
+
         if (VMConfigurator.is_install_config (domain_config))
             info = _("Installing…");
         else if (VMConfigurator.is_live_config (domain_config))

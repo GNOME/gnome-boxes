@@ -254,21 +254,23 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return Boxes.get_screenshot_filename (config.uuid);
     }
 
+    private bool saving;
     public async void save () throws GLib.Error {
         if (state == Machine.MachineState.SAVED) {
             debug ("Not saving '%s' since it's already in saved state.", name);
             return;
         }
 
-        var info = this.info;
-        this.info = (info != null)? info + "\n" : "";
-        this.info += _("Saving…");
+        saving = true;
+        update_info ();
 
         try {
             yield save_real ();
         } finally {
             this.info = info;
         }
+        saving = false;
+        update_info ();
     }
 
     public void schedule_autosave () {
@@ -366,6 +368,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             config.uuid = uuid_generate ();
 
         config.save ();
+    }
+
+    protected virtual void update_info () {
+        if (saving)
+            info = _("Saving…");
+        else
+            info = null;
     }
 
     public bool is_running () {
