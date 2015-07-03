@@ -18,6 +18,10 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         config.access_last_time = get_real_time ();
 
         load_screenshot ();
+        update_info ();
+
+        notify["name"].connect (on_name_or_uri_changed);
+        source.notify["uri"].connect (on_name_or_uri_changed);
     }
 
     private Display? create_display () throws Boxes.Error {
@@ -96,4 +100,21 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     // FIXME: Implement this. We don't currently need it because we don't set any properties here that requires a
     //        restart and this method is currently used for that purpose only.
     public override void restart () {}
+
+    protected override void update_info () {
+        base.update_info ();
+
+        if (info != null)
+            return;
+
+        var uri = Xml.URI.parse (source.uri);
+        if (uri.server == name) // By default server is chosen as name
+            return;
+
+        info = uri.server;
+    }
+
+    private void on_name_or_uri_changed () {
+        update_info ();
+    }
 }
