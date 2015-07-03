@@ -108,6 +108,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private bool force_stopped;
     private bool saving; // Machine is being saved currently..
 
+    private GVir.Connection system_virt_connection;
+
     construct {
         stats = new MachineStat[STATS_SIZE];
         stats_cancellable = new Cancellable ();
@@ -210,6 +212,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         if (state != MachineState.STOPPED)
             load_screenshot ();
         set_screenshot_enable (true);
+
+        try {
+            system_virt_connection = yield get_system_virt_connection ();
+        } catch (GLib.Error error) {
+            warning ("Failed to connection to system libvirt: %s", error.message);
+        }
 
         update_info ();
     }
@@ -636,6 +644,33 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         try_shutdown ();
     }
 
+    public string? get_ip_address () {
+        if (system_virt_connection == null || !is_on ())
+            return null;
+
+        var mac = get_mac_address ();
+        if (mac == null)
+            return null;
+
+        foreach (var network in system_virt_connection.get_networks ()) {
+            try {
+                var leases = network.get_dhcp_leases (mac, 0);
+
+                if (leases.length () == 0 || leases.data.get_iface () != "virbr0")
+                    continue;
+
+                // Get first IP in the list
+                return leases.data.get_ip ();
+            } catch (GLib.Error error) {
+                warning ("Failed to get DHCP leases from network '%s': %s",
+                         network.get_name (),
+                         error.message);
+            }
+        }
+
+        return null;
+    }
+
     private async void wait_for_save () {
         if (!saving)
             return;
@@ -676,5 +711,24 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             info = _("Importing…");
         else
             info = null;
+    }
+
+    private string? get_mac_address () {
+        GVirConfig.DomainInterface? iface_config = null;
+
+        foreach (var device_config in domain_config.get_devices ()) {
+            // Only entertain bridge network. With user networking, the IP address isn't even reachable from host so
+            // it's pretty much useless to show that to user.
+            if (device_config is GVirConfig.DomainInterfaceBridge) {
+                iface_config = device_config as GVirConfig.DomainInterface;
+
+                break;
+            }
+        }
+
+        if (iface_config == null)
+            return null;
+
+        return iface_config.get_mac ().dup ();
     }
 }
