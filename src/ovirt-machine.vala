@@ -19,6 +19,9 @@ private class Boxes.OvirtMachine: Boxes.Machine {
 
         load_screenshot ();
         set_screenshot_enable (true);
+        update_info ();
+
+        source.notify["uri"].connect (update_info);
     }
 
     public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
@@ -76,6 +79,17 @@ private class Boxes.OvirtMachine: Boxes.Machine {
     }
 
     public override void restart () {} // See FIXME on RemoteMachine.restart
+
+    protected override void update_info () {
+        base.update_info ();
+
+        if (info != null)
+            return;
+
+        var uri = Xml.URI.parse (source.uri);
+
+        info = _("host: %s").printf (uri.server);
+    }
 
     private Display create_display_connection () throws GLib.Error {
         if (vm.display.address == null || vm.display.address == "")
