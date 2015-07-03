@@ -125,6 +125,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 name_property.text = machine.name;
             });
 
+            var ip = machine.get_ip_address ();
+            if (ip != null)
+                add_string_property (ref list, _("IP Address"), ip);
+
             add_string_property (ref list, _("Broker"), machine.source.name);
             if (machine.display != null) {
                 add_string_property (ref list, _("Display Protocol"), machine.display.protocol);
