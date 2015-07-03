@@ -237,6 +237,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         update_info ();
+        source.notify["uri"].connect (update_info);
 
         sync_properties = {
             BoxConfig.SyncProperty () { name = "run-in-bg", default_value = false },
@@ -732,7 +733,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             info = _("Live");
         else if (VMConfigurator.is_import_config (domain_config))
             info = _("Importing…");
-        else
+        else if (!is_local) {
+            var uri = Xml.URI.parse (source.uri);
+
+            info = _("host: %s").printf (uri.server);
+        } else
             info = null;
     }
 
