@@ -39,13 +39,9 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
     }
 
     public async LibvirtSystemImporter () throws GLib.Error {
-        connection = new GVir.Connection ("qemu+unix:///system");
+        connection = yield get_system_virt_connection ();
 
-        yield connection.open_read_only_async (null);
-        debug ("Connected to system libvirt, now fetching domains..");
-        yield connection.fetch_domains_async (null);
-
-        domains = connection.get_domains ();
+        domains = system_virt_connection.get_domains ();
         debug ("Fetched %u domains from system libvirt.", domains.length ());
         if (domains.length () == 0)
             throw new LibvirtSystemImporterError.NO_IMPORTS (_("No boxes to import"));

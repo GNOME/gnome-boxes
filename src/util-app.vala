@@ -164,6 +164,22 @@ namespace Boxes {
         return libvirt_bridge_net_available;
     }
 
+    private static GVir.Connection? system_virt_connection = null;
+
+    public async GVir.Connection get_system_virt_connection () throws GLib.Error {
+        if (system_virt_connection != null)
+            return system_virt_connection;
+
+        system_virt_connection = new GVir.Connection ("qemu+unix:///system");
+
+        yield system_virt_connection.open_read_only_async (null);
+
+        debug ("Connected to system libvirt, now fetching domains..");
+        yield system_virt_connection.fetch_domains_async (null);
+
+        return system_virt_connection;
+    }
+
     private string? get_logo_path (Osinfo.Os os, string[] extensions = {".svg", ".png", ".jpg"}) {
         if (extensions.length == 0)
             return null;
