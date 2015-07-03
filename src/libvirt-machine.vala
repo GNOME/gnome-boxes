@@ -133,9 +133,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         connect_display.begin (Machine.ConnectFlags.NONE);
     }
 
-    public LibvirtMachine (CollectionSource source,
-                           GVir.Connection connection,
-                           GVir.Domain     domain) throws GLib.Error {
+    public async LibvirtMachine (CollectionSource source,
+                                 GVir.Connection connection,
+                                 GVir.Domain     domain) throws GLib.Error {
         var config = domain.get_config (GVir.DomainXMLFlags.INACTIVE);
         var item_name = config.get_title () ?? domain.get_name ();
         base (source, item_name);

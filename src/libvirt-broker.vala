@@ -30,7 +30,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         if (machine != null)
             return machine; // Already added
 
-        machine = new LibvirtMachine (source, connection, domain);
+        machine = yield new LibvirtMachine (source, connection, domain);
         machine.suspend_at_exit = (connection == App.app.default_connection);
         App.app.collection.add_item (machine);
         domain.set_data<LibvirtMachine> ("machine", machine);
