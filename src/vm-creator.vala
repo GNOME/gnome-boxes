@@ -121,7 +121,7 @@ private class Boxes.VMCreator {
     private void on_machine_state_changed (GLib.Object object, GLib.ParamSpec? pspec = null) {
         var machine = object as LibvirtMachine;
 
-        if (machine.is_on ())
+        if (machine.is_on)
             return;
 
         if (machine.deleted) {

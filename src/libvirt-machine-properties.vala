@@ -106,7 +106,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         var list = new List<Boxes.Property> ();
 
         // the wizard may want to modify display properties, before connect_display()
-        if (machine.is_on () && machine.display == null)
+        if (machine.is_on && machine.display == null)
             try {
                 machine.update_display ();
             } catch (GLib.Error e) {
@@ -479,7 +479,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 property.changed.connect (on_ram_changed);
 
             machine.notify["state"].connect (() => {
-                if (!machine.is_on ())
+                if (!machine.is_on)
                     property.reboot_required = false;
             });
 

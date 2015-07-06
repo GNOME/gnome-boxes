@@ -40,6 +40,14 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    public bool is_on {
+        get {
+            return state == MachineState.RUNNING ||
+                state == MachineState.PAUSED ||
+                state == MachineState.SLEEPING;
+        }
+    }
+
     private ulong show_id;
     private ulong hide_id;
     private ulong disconnected_id;
@@ -383,12 +391,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             info = _("Saving…");
         else
             info = null;
-    }
-
-    public bool is_on () {
-        return state == MachineState.RUNNING ||
-            state == MachineState.PAUSED ||
-            state == MachineState.SLEEPING;
     }
 
     private void save_pixbuf_as_screenshot (Gdk.Pixbuf? pixbuf) {
