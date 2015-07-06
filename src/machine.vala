@@ -25,6 +25,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    public bool is_connected {
+        get {
+            if (display == null)
+                return false;
+
+            return display.connected;
+        }
+    }
+
     private ulong show_id;
     private ulong hide_id;
     private ulong disconnected_id;
@@ -312,13 +321,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
-
-    public bool is_connected () {
-        if (display == null)
-            return false;
-
-        return display.connected;
-    }
 
     public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
     public abstract void restart ();
