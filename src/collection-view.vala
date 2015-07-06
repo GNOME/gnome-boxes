@@ -406,7 +406,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
                 CollectionItem item;
                 store.get (iter, ModelColumns.ITEM, out item);
                 selected = item != null && item is Machine &&
-                    (item as Machine).is_running ();
+                    (item as Machine).is_running;
                 break;
             }
             store.set (iter, ModelColumns.SELECTED, selected);

@@ -21,7 +21,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     protected virtual bool should_autosave {
         get {
-            return (can_save && is_running () && autosave_timeout_id == 0);
+            return (can_save && is_running && autosave_timeout_id == 0);
         }
     }
 
@@ -31,6 +31,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 return false;
 
             return display.connected;
+        }
+    }
+
+    public bool is_running {
+        get {
+            return state == MachineState.RUNNING;
         }
     }
 
@@ -379,10 +385,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             info = null;
     }
 
-    public bool is_running () {
-        return state == MachineState.RUNNING;
-    }
-
     public bool is_on () {
         return state == MachineState.RUNNING ||
             state == MachineState.PAUSED ||
@@ -495,7 +497,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         context.set_operator (Cairo.Operator.SOURCE);
         context.paint ();
 
-        if (!is_running ()) {
+        if (!is_running) {
             context.set_source_rgba (1, 1, 1, 1);
             context.set_operator (Cairo.Operator.HSL_SATURATION);
             context.paint ();

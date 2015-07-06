@@ -50,7 +50,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         if (machine is LibvirtMachine) {
             section.append (_("Force Shutdown"), "box.force_shutdown");
             var action = action_group.lookup_action ("force_shutdown") as GLib.SimpleAction;
-            action.set_enabled (machine.is_running ());
+            action.set_enabled (machine.is_running);
         }
 
         // Pause
