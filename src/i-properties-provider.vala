@@ -150,6 +150,7 @@ private class Boxes.StringProperty : Boxes.Property {
     public StringProperty (string name, string value) {
         var label = new Gtk.Label (value);
         label.halign = Gtk.Align.START;
+        label.selectable = true;
 
         base (name, label, null);
     }
