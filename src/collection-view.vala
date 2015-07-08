@@ -213,8 +213,6 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         store.remove (iter);
         item.set_data<Gtk.TreeIter?> ("iter", null);
 
-        var thumbnail_id = item.get_data<ulong> ("thumbnail_id");
-        (item as Machine).thumbnailer.disconnect (thumbnail_id);
         var name_id = item.get_data<ulong> ("name_id");
         item.disconnect (name_id);
         var info_id = item.get_data<ulong> ("info_id");
@@ -229,6 +227,9 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
             var machine = item as Machine;
             var categories_id = item.get_data<ulong> ("categories_id");
             machine.config.disconnect (categories_id);
+
+            var thumbnail_id = item.get_data<ulong> ("thumbnail_id");
+            machine.thumbnailer.disconnect (thumbnail_id);
         }
     }
 
