@@ -5,6 +5,7 @@ using Gtk;
 private class Boxes.LibvirtBroker : Boxes.Broker {
     private static LibvirtBroker broker;
     private HashTable<string,GVir.Connection> connections;
+    private GLib.List<GVir.Domain> pending_domains;
 
     public static LibvirtBroker get_default () {
         if (broker == null)
@@ -15,6 +16,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
 
     private LibvirtBroker () {
         connections = new HashTable<string, GVir.Connection> (str_hash, str_equal);
+        pending_domains = new GLib.List<GVir.Domain> ();
     }
 
     public GVir.Connection get_connection (string name) {
@@ -26,14 +28,32 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
                                             throws GLib.Error {
         return_if_fail (broker != null);
 
+        if (pending_domains.find (domain) != null) {
+            // Already being added asychronously
+            SourceFunc callback = add_domain.callback;
+            ulong id = 0;
+            id = App.app.collection.item_added.connect ((item) => {
+                if (!(item is LibvirtMachine) || (item as LibvirtMachine).domain != domain)
+                    return;
+
+                App.app.collection.disconnect (id);
+                callback ();
+            });
+
+            yield;
+        }
+
         var machine = domain.get_data<LibvirtMachine> ("machine");
         if (machine != null)
             return machine; // Already added
 
+        pending_domains.append (domain);
         machine = yield new LibvirtMachine (source, connection, domain);
+        pending_domains.remove (domain);
+
         machine.suspend_at_exit = (connection == App.app.default_connection);
-        App.app.collection.add_item (machine);
         domain.set_data<LibvirtMachine> ("machine", machine);
+        App.app.collection.add_item (machine);
 
         if (source.name != App.DEFAULT_SOURCE_NAME)
             return machine;
