@@ -214,7 +214,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         item.set_data<Gtk.TreeIter?> ("iter", null);
 
         var thumbnail_id = item.get_data<ulong> ("thumbnail_id");
-        item.disconnect (thumbnail_id);
+        (item as Machine).thumbnailer.disconnect (thumbnail_id);
         var name_id = item.get_data<ulong> ("name_id");
         item.disconnect (name_id);
         var info_id = item.get_data<ulong> ("info_id");
