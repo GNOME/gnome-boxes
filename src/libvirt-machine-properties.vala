@@ -134,6 +134,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 add_string_property (ref list, _("Display Protocol"), machine.display.protocol);
                 add_string_property (ref list, _("Display URI"), machine.display.uri);
             }
+
             break;
 
         case PropertiesPage.SYSTEM:
@@ -681,11 +682,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     }
 
     private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list) {
-      var property = new SnapshotsProperty (machine);
-      list.append (property);
+        var property = new SnapshotsProperty (machine);
+        list.append (property);
 
-      return property;
+        return property;
     }
-
-
 }
