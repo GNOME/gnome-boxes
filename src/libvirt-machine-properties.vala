@@ -144,6 +144,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             get_resources_properties (ref list);
 
+            add_run_in_bg_property (ref list);
+
             break;
 
         case PropertiesPage.DEVICES:
@@ -679,6 +681,34 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         config.set_description (now.format ("%x, %X"));
 
         return yield machine.domain.create_snapshot_async (config, 0, null);
+    }
+
+    private void add_run_in_bg_property (ref List<Boxes.Property> list) {
+        if (machine.connection != App.app.default_connection)
+            return; // We only autosuspend machines on default connection so this property is N/A to other machines
+
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
+        box.halign = Gtk.Align.END;
+        box.has_tooltip = true;
+
+        var label = new Gtk.Label (_("Run in background"));
+        label.get_style_context ().add_class ("boxes-property-name-label");
+        box.add (label);
+        var toggle = new Gtk.Switch ();
+        machine.bind_property ("run-in-bg", toggle, "active",
+                               BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+        toggle.halign = Gtk.Align.START;
+        box.add (toggle);
+
+        var name = machine.name;
+        box.tooltip_text = toggle.active? _("'%s' will not be paused automatically.").printf (name) :
+                                          _("'%s' will be paused automatically to save resources.").printf (name);
+        toggle.notify["active"].connect ((tooltip) => {
+            box.tooltip_text = toggle.active? _("'%s' will not be paused automatically.").printf (name) :
+                                              _("'%s' will be paused automatically to save resources.").printf (name);
+        });
+
+        add_property (ref list, null, box, null);
     }
 
     private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list) {
