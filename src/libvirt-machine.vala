@@ -29,6 +29,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
+    public override bool suspend_at_exit { get { return connection == App.app.default_connection; } }
     public override bool can_save { get { return !saving && state != MachineState.SAVED; } }
     protected override bool should_autosave {
         get {

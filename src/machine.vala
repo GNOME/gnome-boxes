@@ -12,7 +12,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public bool stay_on_display;
     public string? info { get; protected set; }
     public string status { get; set; }
-    public bool suspend_at_exit;
+    public virtual bool suspend_at_exit { get { return false; } }
 
     public virtual bool can_save { get { return false; } }
     public bool can_delete { get; protected set; default = true; }

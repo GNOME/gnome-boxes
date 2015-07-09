@@ -51,7 +51,6 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         machine = yield new LibvirtMachine (source, connection, domain);
         pending_domains.remove (domain);
 
-        machine.suspend_at_exit = (connection == App.app.default_connection);
         domain.set_data<LibvirtMachine> ("machine", machine);
         App.app.collection.add_item (machine);
 
