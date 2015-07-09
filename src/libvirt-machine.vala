@@ -32,7 +32,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public override bool can_save { get { return !saving && state != MachineState.SAVED; } }
     protected override bool should_autosave {
         get {
-            return (base.should_autosave && (vm_creator == null || !vm_creator.express_install));
+            return (base.should_autosave &&
+                    connection == App.app.default_connection &&
+                    (vm_creator == null || !vm_creator.express_install));
         }
     }
 
