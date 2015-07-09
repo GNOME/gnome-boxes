@@ -222,7 +222,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 // Snapshots currently don't work with host-passthrough
                 if (config.get_cpu ().get_mode () != GVirConfig.DomainCpuMode.HOST_PASSTHROUGH &&
                     !VMConfigurator.is_install_config (config))
-                    add_snapshots_property (ref list, machine);
+                    add_snapshots_property (ref list);
             } catch (GLib.Error e) {
                 warning (e.message);
             }
@@ -680,8 +680,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         return yield machine.domain.create_snapshot_async (config, 0, null);
     }
 
-    private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list,
-                                                            LibvirtMachine           machine) {
+    private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list) {
       var property = new SnapshotsProperty (machine);
       list.append (property);
 
