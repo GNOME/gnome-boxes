@@ -29,15 +29,18 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         set { source.set_boolean ("source", "save-on-quit", value); }
     }
 
-    public override bool suspend_at_exit { get { return connection == App.app.default_connection; } }
+    public override bool suspend_at_exit { get { return connection == App.app.default_connection && !run_in_bg; } }
     public override bool can_save { get { return !saving && state != MachineState.SAVED; } }
     protected override bool should_autosave {
         get {
             return (base.should_autosave &&
                     connection == App.app.default_connection &&
+                    !run_in_bg &&
                     (vm_creator == null || !vm_creator.express_install));
         }
     }
+
+    public bool run_in_bg { get; set; } // If true, machine will never be paused automatically by Boxes.
 
     public override void disconnect_display () {
         stay_on_display = false;
@@ -112,6 +115,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private bool saving; // Machine is being saved currently..
 
     private GVir.Connection system_virt_connection;
+
+    private BoxConfig.SyncProperty[] sync_properties;
 
     construct {
         stats = new MachineStat[STATS_SIZE];
@@ -222,6 +227,12 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         update_info ();
+
+        sync_properties = {
+            BoxConfig.SyncProperty () { name = "run-in-bg", default_value = false },
+        };
+
+        this.config.sync_properties (this, sync_properties);
     }
 
     private void update_cpu_stat (DomainInfo info, ref MachineStat stat) {
