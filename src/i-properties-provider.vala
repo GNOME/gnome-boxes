@@ -74,10 +74,10 @@ private class Boxes.SizeProperty : Boxes.Property {
     private Gtk.Scale scale;
     private FormatSizeFlags format_flags;
 
-    private static void set_size_label_msg (Gtk.Label       label,
-                                            uint64          size,
-                                            uint64          allocation,
-                                            FormatSizeFlags format_flags) {
+    private static void set_size_value_label_msg (Gtk.Label       label,
+                                                  uint64          size,
+                                                  uint64          allocation,
+                                                  FormatSizeFlags format_flags) {
         var capacity = format_size (size, format_flags);
 
         if (allocation == 0) {
@@ -108,9 +108,15 @@ private class Boxes.SizeProperty : Boxes.Property {
                          uint64          allocation,
                          uint64          step,
                          FormatSizeFlags format_flags) {
-        var label = new Gtk.Label ("");
-        set_size_label_msg (label, size, allocation, format_flags);
-        label.halign = Gtk.Align.CENTER;
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        var name_label = new Gtk.Label (name);
+        name_label.halign = Gtk.Align.START;
+        name_label.get_style_context ().add_class ("boxes-property-name-label");
+        box.add (name_label);
+        var value_label = new Gtk.Label ("");
+        set_size_value_label_msg (value_label, size, allocation, format_flags);
+        value_label.halign = Gtk.Align.START;
+        box.add (value_label);
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
 
@@ -127,14 +133,14 @@ private class Boxes.SizeProperty : Boxes.Property {
         scale.hexpand = true;
         scale.margin_bottom = 20;
 
-        base (name, label, scale);
+        base (null, box, scale);
 
         this.scale = scale;
         this.format_flags = format_flags;
 
         scale.value_changed.connect (() => {
             uint64 v = (uint64) scale.get_value ();
-            set_size_label_msg (label, v, allocation, format_flags);
+            set_size_value_label_msg (value_label, v, allocation, format_flags);
             scale.set_fill_level (v);
 
             changed ((uint64) scale.get_value ());
