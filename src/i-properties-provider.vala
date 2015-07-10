@@ -96,7 +96,7 @@ private class Boxes.SizeProperty : Boxes.Property {
                 value > (scale.adjustment.upper - Osinfo.GIBIBYTES))
                 return;
 
-            var size = "<small>%s (recommended)</small>".printf (format_size (value, format_flags));
+            var size = _("<small>%s (recommended)</small>").printf (format_size (value, format_flags));
             scale.add_mark (value, Gtk.PositionType.BOTTOM, size);
         }
     }
