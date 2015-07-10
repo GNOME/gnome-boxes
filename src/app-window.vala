@@ -6,6 +6,11 @@ using Gdk;
 private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public const uint TRANSITION_DURATION = 400; // milliseconds
 
+    public enum ViewType {
+        ICON,
+        LIST,
+    }
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -93,8 +98,18 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     private ListView list_view;
 
+    public ViewType view_type { get; set; }
+
     public ICollectionView view {
-        get { return collection_view; }
+        get {
+            switch (view_type) {
+            default:
+            case ViewType.ICON:
+                return collection_view;
+            case ViewType.LIST:
+                return list_view;
+            }
+        }
     }
 
     private ICollectionView[] views;
@@ -157,6 +172,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         wizard_window = new WizardWindow (this);
         props_window = new PropertiesWindow (this);
+
+        notify["view-type"].connect (ui_state_changed);
 
         var a11y = get_accessible ();
         topbar.bind_property ("status", a11y, "accessible-name", BindingFlags.SYNC_CREATE);
