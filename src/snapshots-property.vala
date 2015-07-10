@@ -19,6 +19,8 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
             }
         }
     }
+    private ulong added_id;
+    private ulong removed_id;
 
     public SnapshotsProperty (LibvirtMachine machine) {
         var stack = new Gtk.Stack ();
@@ -52,8 +54,8 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         snapshot_list.selection_mode = Gtk.SelectionMode.NONE;
         snapshot_list.set_size_request (-1, 250);
         snapshot_list.set_sort_func (config_sort_func);
-        snapshot_list.add.connect (update_snapshot_stack_page);
-        snapshot_list.remove.connect (update_snapshot_stack_page);
+        added_id = snapshot_list.add.connect (update_snapshot_stack_page);
+        removed_id = snapshot_list.remove.connect (update_snapshot_stack_page);
         snapshot_stack.add (snapshot_list);
 
         empty_label = new Gtk.Label (_("No snapshots created yet. Create one using the button below."));
@@ -78,6 +80,8 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
         activity_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         activity_box.pack_start (activity_label, false, false);
         stack.add (activity_box);
+
+        flushed.connect (on_flushed);
 
         fetch_snapshots.begin ();
     }
@@ -141,5 +145,16 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
             snapshot_stack.visible_child = snapshot_list;
         else
             snapshot_stack.visible_child = empty_label;
+    }
+
+    private void on_flushed () {
+        if (added_id != 0) {
+            snapshot_list.disconnect (added_id);
+            added_id = 0;
+        }
+        if (removed_id != 0) {
+            snapshot_list.disconnect (removed_id);
+            removed_id = 0;
+        }
     }
 }
