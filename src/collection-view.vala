@@ -6,7 +6,7 @@ public enum Boxes.SelectionCriteria {
     RUNNING
 }
 
-private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
+private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -37,7 +37,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
     private Boxes.ActionsPopover context_popover;
     private GLib.List<CollectionItem> hidden_items;
 
-    public CollectionFilter filter { construct; get; }
+    public CollectionFilter filter { get; protected set; }
 
     private const Gtk.CornerType[] right_corners = { Gtk.CornerType.TOP_RIGHT, Gtk.CornerType.BOTTOM_RIGHT };
     private const Gtk.CornerType[] bottom_corners = { Gtk.CornerType.BOTTOM_LEFT, Gtk.CornerType.BOTTOM_RIGHT };

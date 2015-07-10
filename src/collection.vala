@@ -49,7 +49,7 @@ private class Boxes.Collection: GLib.Object {
         item_removed (item);
     }
 
-    public void populate (CollectionView view) {
+    public void populate (ICollectionView view) {
         for (uint i = 0 ; i < items.length ; i++)
             view.add_item (items[i]);
     }
