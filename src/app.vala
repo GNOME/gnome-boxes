@@ -127,10 +127,10 @@ private class Boxes.App: Gtk.Application {
         collection = new Collection ();
 
         collection.item_added.connect ((item) => {
-            main_window.view.add_item (item);
+            main_window.foreach_view ((view) => { view.add_item (item); });
         });
         collection.item_removed.connect ((item) => {
-            main_window.view.remove_item (item);
+            main_window.foreach_view ((view) => { view.remove_item (item); });
         });
 
         brokers.insert ("libvirt", LibvirtBroker.get_default ());
@@ -584,7 +584,7 @@ private class Boxes.App: Gtk.Application {
         // If the main window have been removed,
         // populate the new main window's collection view.
         if (window_was_main)
-            collection.populate (main_window.view);
+            main_window.foreach_view ((view) => { collection.populate (view); });
 
         notify_property ("main-window");
 

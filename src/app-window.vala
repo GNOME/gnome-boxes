@@ -95,6 +95,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         get { return collection_view; }
     }
 
+    private ICollectionView[] views;
+
     public GLib.Settings settings;
 
     [GtkChild]
@@ -137,6 +139,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
             move (x, y);
         }
+
+        views = { collection_view };
     }
 
     public void setup_ui () {
@@ -187,7 +191,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             else
                 below_bin.visible_child = empty_boxes;
             fullscreened = false;
-            view.visible = true;
+            foreach_view ((view) => { view.visible = true; });
 
             if (status_bind != null) {
                 status_bind.unbind ();  // FIXME: We shouldn't neeed to explicitly unbind (Vala bug?)
@@ -222,6 +226,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         if (machine != null && this == machine.window)
             current_item.set_state (ui_state);
+    }
+
+    public void foreach_view (Func<ICollectionView> func) {
+        foreach (var view in views)
+            func (view);
     }
 
     public void show_properties () {
@@ -287,7 +296,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public void filter (string text) {
-        view.filter.text = text;
+        foreach_view ((view) => { view.filter.text = text; });
     }
 
     [GtkCallback]

@@ -10,16 +10,16 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
     private Gtk.ToggleButton remote_button;
 
     private Gtk.ToggleButton active_button;
-    private CollectionFilter filter;
+    private weak AppWindow window;
 
     public void setup_ui (AppWindow window) {
-        filter = window.view.filter;
-        assert (filter != null);
+        this.window = window;
+        assert (window != null);
 
         all_button.active = true;
         activate_button (all_button);
 
-        filter.filter_func = null;
+        window.foreach_view ((view) => { view.filter.filter_func = null; });
     }
 
     private unowned CollectionFilterFunc? get_filter_func () {
@@ -55,6 +55,6 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
                 toggle_button.active = toggle_button == active_button;
         }
 
-        filter.filter_func = get_filter_func ();
+        window.foreach_view ((view) => { view.filter.filter_func = get_filter_func (); });
     }
 }
