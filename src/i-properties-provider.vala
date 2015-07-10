@@ -96,7 +96,7 @@ private class Boxes.SizeProperty : Boxes.Property {
                 value > (scale.adjustment.upper - Osinfo.GIBIBYTES))
                 return;
 
-            var size = "%s (recommended)".printf (format_size (value, format_flags));
+            var size = "<small>%s (recommended)</small>".printf (format_size (value, format_flags));
             scale.add_mark (value, Gtk.PositionType.BOTTOM, size);
         }
     }
@@ -120,10 +120,13 @@ private class Boxes.SizeProperty : Boxes.Property {
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
 
-        scale.add_mark (min, Gtk.PositionType.BOTTOM, format_size (min, format_flags));
-        scale.add_mark (max, Gtk.PositionType.BOTTOM,
-                        // Translators: This is memory or disk size. E.g "1 GB (maximum)".
-                        _("%s (maximum)").printf (format_size (max, format_flags)));
+        var size_str = format_size (min, format_flags);
+        size_str = "<small>" + size_str + "</small>";
+        scale.add_mark (min, Gtk.PositionType.BOTTOM, size_str);
+
+        // Translators: This is memory or disk size. E.g "1 GB (maximum)".
+        size_str =  _("<small>%s (maximum)</small>").printf (format_size (max, format_flags));
+        scale.add_mark (max, Gtk.PositionType.BOTTOM, size_str);
 
         scale.set_show_fill_level (true);
         scale.set_restrict_to_fill_level (false);
