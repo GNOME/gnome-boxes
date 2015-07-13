@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-26 06:17+0000\n"
-"PO-Revision-Date: 2015-05-26 18:58+0200\n"
+"POT-Creation-Date: 2015-07-13 06:15+0000\n"
+"PO-Revision-Date: 2015-07-13 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -150,7 +150,7 @@ msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Simplemente pulse el botón <b>Nueva</b> para crear la primera."
 
 #: ../data/ui/properties-toolbar.ui.h:1
-#: ../src/libvirt-machine-properties.vala:440
+#: ../src/libvirt-machine-properties.vala:447
 msgid "Troubleshooting Log"
 msgstr "Registro de resolución de problemas"
 
@@ -344,7 +344,7 @@ msgstr "Quitar de favoritos"
 msgid "Add to Favorites"
 msgstr "Añadir a favoritas"
 
-#: ../src/actions-popover.vala:51 ../src/libvirt-machine-properties.vala:426
+#: ../src/actions-popover.vala:51 ../src/libvirt-machine-properties.vala:433
 msgid "Force Shutdown"
 msgstr "Forzar apagado"
 
@@ -439,7 +439,7 @@ msgstr[1] "Se han eliminado %u cajas"
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: ../src/collection-view.vala:40
+#: ../src/collection-view.vala:54
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
@@ -462,7 +462,7 @@ msgstr "%dx%d"
 msgid "Unsupported disk image format."
 msgstr "Formato de archivo de disco no soportado."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:106 ../src/installer-media.vala:109
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistema"
@@ -473,10 +473,11 @@ msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(%s usado)</span>"
 
 #. Translators: This is memory or disk size. E.g "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:120
+#: ../src/i-properties-provider.vala:128
 #, c-format
-msgid "%s (maximum)"
-msgstr "%s (máximo)"
+#| msgid "%s (maximum)"
+msgid "<small>%s (maximum)</small>"
+msgstr "<small>%s (máximo)</small>"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -501,140 +502,176 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Enviar combinaciones de teclas"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
 msgid "Name"
 msgstr "Nombre"
 
-#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
+#: ../src/libvirt-machine-properties.vala:130
+msgid "IP Address"
+msgstr "Dirección IP"
+
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:65
 msgid "Broker"
 msgstr "Agente"
 
-#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
-#: ../src/remote-machine.vala:65
-msgid "Protocol"
-msgstr "Protocolo"
+#: ../src/libvirt-machine-properties.vala:134
+#| msgid "Protocol"
+msgid "Display Protocol"
+msgstr "Mostrar protocolo"
 
-#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
-#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
-#: ../src/wizard.vala:486
-msgid "URI"
-msgstr "URI"
+#: ../src/libvirt-machine-properties.vala:135
+#| msgid "Display"
+msgid "Display URI"
+msgstr "Mostrar URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:180
-#: ../src/libvirt-machine-properties.vala:198
+#: ../src/libvirt-machine-properties.vala:187
+#: ../src/libvirt-machine-properties.vala:205
 msgid "Add support to guest"
 msgstr "Añadir soporte al invitado"
 
-#: ../src/libvirt-machine-properties.vala:182
+#: ../src/libvirt-machine-properties.vala:189
 msgid "USB device support"
 msgstr "Soporte para dispositivos USB"
 
-#: ../src/libvirt-machine-properties.vala:200
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Smartcard support"
 msgstr "Soporte para tarjetas inteligentes"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:252
-#: ../src/libvirt-machine-properties.vala:304
+#: ../src/libvirt-machine-properties.vala:259
+#: ../src/libvirt-machine-properties.vala:311
 msgid "empty"
 msgstr "vacío"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:261
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:268
+#: ../src/libvirt-machine-properties.vala:320
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:275
-#: ../src/libvirt-machine-properties.vala:303
+#: ../src/libvirt-machine-properties.vala:282
+#: ../src/libvirt-machine-properties.vala:310
 msgid "Select"
 msgstr "Seleccionar"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:278
-#: ../src/libvirt-machine-properties.vala:286
+#: ../src/libvirt-machine-properties.vala:285
+#: ../src/libvirt-machine-properties.vala:293
 msgid "Remove"
 msgstr "Quitar"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:300
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Falló la inserción de «%s» como CD/DVD en «%s»"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:307
+#: ../src/libvirt-machine-properties.vala:314
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Falló al quitar el CD/DVD de «%s»"
 
-#: ../src/libvirt-machine-properties.vala:377
+#: ../src/libvirt-machine-properties.vala:384
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:383
+#: ../src/libvirt-machine-properties.vala:390
 msgid "I/O"
 msgstr "E/S"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:389
+#: ../src/libvirt-machine-properties.vala:396
 msgid "Network"
 msgstr "Red"
 
-#: ../src/libvirt-machine-properties.vala:418 ../src/machine.vala:587
+#: ../src/libvirt-machine-properties.vala:425 ../src/machine.vala:578
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/libvirt-machine-properties.vala:461 ../src/wizard.vala:524
-msgid "Memory"
-msgstr "Memoria"
+#: ../src/libvirt-machine-properties.vala:468
+#| msgid "Memory"
+msgid "Memory: "
+msgstr "Memoria:"
 
-#: ../src/libvirt-machine-properties.vala:529
+#: ../src/libvirt-machine-properties.vala:536
 #, c-format
 msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey\">(%"
+"s used)</span>"
 msgstr ""
 "<span color=\"grey\">Tamaño máximo del disco</span>\t\t %s <span color=\"grey"
 "\">(%s usado)</span>"
 
-#: ../src/libvirt-machine-properties.vala:545
+#: ../src/libvirt-machine-properties.vala:552
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "No espacio suficiente en su equipo para aumentar el tamaño máximo del disco."
 
-#: ../src/libvirt-machine-properties.vala:554
-msgid "Maximum Disk Size"
-msgstr "Tamaño máximo del disco"
+#: ../src/libvirt-machine-properties.vala:561
+#| msgid "Maximum Disk Size"
+msgid "Maximum Disk Size: "
+msgstr "Tamaño máximo del disco:"
+
+#: ../src/libvirt-machine-properties.vala:694
+msgid "Run in background"
+msgstr "Ejecutar en segundo plano"
+
+#: ../src/libvirt-machine-properties.vala:704
+#: ../src/libvirt-machine-properties.vala:707
+#, c-format
+#| msgid "Live box '%s' has been deleted automatically."
+msgid "'%s' will not be paused automatically."
+msgstr "«%s» no se pausará automáticamente."
+
+#: ../src/libvirt-machine-properties.vala:705
+#: ../src/libvirt-machine-properties.vala:708
+#, c-format
+msgid "'%s' will be paused automatically to save resources."
+msgstr "«%s» se pausará automáticamente para ahorrar recursos."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:578
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde el disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:556
+#: ../src/libvirt-machine.vala:581
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: ../src/libvirt-machine.vala:621
+#: ../src/libvirt-machine.vala:646
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: ../src/libvirt-machine.vala:623
+#: ../src/libvirt-machine.vala:648
 msgid "_Shutdown"
 msgstr "_Apagar"
+
+#: ../src/libvirt-machine.vala:720
+msgid "Installing…"
+msgstr "Instalando…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/libvirt-machine.vala:722 ../src/wizard-source.vala:82
+msgid "Live"
+msgstr "«Live»"
+
+#: ../src/libvirt-machine.vala:724
+msgid "Importing…"
+msgstr "Importando…"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -662,31 +699,31 @@ msgid_plural "Will import %u boxes from system broker"
 msgstr[0] "Se importará %u caja desde un agente del sistema"
 msgstr[1] "Se importarán %u cajas desde un agente del sistema"
 
-#: ../src/libvirt-system-importer.vala:51
+#: ../src/libvirt-system-importer.vala:47
 msgid "No boxes to import"
 msgstr "No hay cajas que importar"
 
-#: ../src/libvirt-system-importer.vala:127
+#: ../src/libvirt-system-importer.vala:123
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Falló al buscar un disco adecuado para importar para la caja «%s»"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:151
+#: ../src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conectando a %s"
 
-#: ../src/machine.vala:173 ../src/machine.vala:600
+#: ../src/machine.vala:203 ../src/machine.vala:591
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
 
-#: ../src/machine.vala:265
+#: ../src/machine.vala:401
 msgid "Saving…"
 msgstr "Guardando…"
 
-#: ../src/machine.vala:586
+#: ../src/machine.vala:577
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -695,13 +732,13 @@ msgstr ""
 "no se pudo restaurar «%s» desde el disco\n"
 "¿Intentarlo sin el estado guardado?"
 
-#: ../src/machine.vala:596
+#: ../src/machine.vala:587
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Falló al iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:629
+#: ../src/machine.vala:620
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» requiere autenticación"
@@ -761,6 +798,15 @@ msgstr "No conectado a %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Falló la conexión a oVirt broker"
 
+#: ../src/ovirt-machine.vala:66 ../src/remote-machine.vala:68
+msgid "Protocol"
+msgstr "Protocolo"
+
+#: ../src/ovirt-machine.vala:67 ../src/remote-machine.vala:70
+#: ../src/remote-machine.vala:72 ../src/wizard.vala:486
+msgid "URI"
+msgstr "URI"
+
 #: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
@@ -817,16 +863,16 @@ msgstr "Falló al aplicar las instantáneas"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Instantánea «%s» eliminada."
 
-#: ../src/snapshots-property.vala:59
+#: ../src/snapshots-property.vala:61
 msgid "No snapshots created yet. Create one using the button below."
 msgstr ""
 "Todavía no se han creado instantáneas. Cree una usando el siguiente botón."
 
-#: ../src/snapshots-property.vala:118
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
 msgstr "Creando instantánea nueva…"
 
-#: ../src/snapshots-property.vala:126
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Falló al crear la instantánea de %s"
@@ -884,7 +930,7 @@ msgstr "sin contraseña"
 msgid "Express installation of %s requires an internet connection."
 msgstr "La instalación rápida de %s necesita una conexión a Internet."
 
-#: ../src/util-app.vala:203
+#: ../src/util-app.vala:220
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -893,20 +939,20 @@ msgstr ""
 "Su contexto SELinux no es correcto. Puede tratar de arreglarlo ejecutando:\n"
 "%s"
 
-#: ../src/util-app.vala:207
+#: ../src/util-app.vala:224
 msgid "SELinux not installed?"
 msgstr "¿No está SELinux instalado?"
 
-#: ../src/util-app.vala:289
+#: ../src/util-app.vala:306
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
 msgstr ""
 "No se pudo obtener la información de almacenamiento de «gnome-boxes» desde "
-"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-"
-"boxes» está funcionando."
+"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-boxes» "
+"está funcionando."
 
-#: ../src/util-app.vala:294
+#: ../src/util-app.vala:311
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -915,7 +961,7 @@ msgstr ""
 "libvirt conoce %s como el almacenamiento de Cajas de GNOME pero esta carpeta "
 "no existe"
 
-#: ../src/util-app.vala:298
+#: ../src/util-app.vala:315
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -923,7 +969,7 @@ msgstr ""
 "libvirt conoce %s como el almacenamiento de Cajas de GNOME pero no es una "
 "carpeta"
 
-#: ../src/util-app.vala:302
+#: ../src/util-app.vala:319
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -946,34 +992,12 @@ msgstr "no"
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:170
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Se ha eliminado la caja «%s» automáticamente."
 
-#: ../src/vm-creator.vala:187
-msgid "Installing…"
-msgstr "Instalando…"
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:191 ../src/wizard-source.vala:82
-msgid "Live"
-msgstr "«Live»"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:330
-#, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "%d%% instalado"
-msgstr[1] "%d%% instalados"
-
-#: ../src/vm-importer.vala:36
-msgid "Importing…"
-msgstr "Importando…"
-
-#: ../src/vm-importer.vala:53
+#: ../src/vm-importer.vala:47
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Falló al importar la caja del archivo «%s»"
@@ -1075,6 +1099,10 @@ msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Se añadirán cajas para todos los sistemas disponibles desde esta cuenta:"
 
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "Memoria"
+
 #: ../src/wizard.vala:533
 msgid "Disk"
 msgstr "Disco"
@@ -1096,6 +1124,11 @@ msgstr "Falló la descarga."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
+
+#~ msgid "%d%% Installed"
+#~ msgid_plural "%d%% Installed"
+#~ msgstr[0] "%d%% instalado"
+#~ msgstr[1] "%d%% instalados"
 
 #~ msgid "_Properties"
 #~ msgstr "_Propiedades"
@@ -1165,9 +1198,6 @@ msgstr "_Personalizar…"
 
 #~ msgid "Login"
 #~ msgstr "Iniciar sesión"
-
-#~ msgid "Display"
-#~ msgstr "Pantalla"
 
 #~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
 #~ msgstr "Falló la redirección automática del dispositivo USB «%s» para «%s»"
