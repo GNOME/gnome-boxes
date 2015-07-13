@@ -174,6 +174,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         if (ui_state != UIState.COLLECTION)
             searchbar.search_mode_enabled = false;
 
+        var machine = (current_item is Machine)? current_item as Machine : null;
+
         switch (ui_state) {
         case UIState.COLLECTION:
             if (App.app.collection.items.length != 0)
@@ -188,8 +190,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                 status_bind = null;
             }
             topbar.status = _("Boxes");
-            if (current_item is Machine) {
-                var machine = current_item as Machine;
+            if (machine != null) {
                 if (got_error_id != 0) {
                     machine.disconnect (got_error_id);
                     got_error_id = 0;
@@ -215,7 +216,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             break;
         }
 
-        if (current_item != null)
+        if (machine != null && this == machine.window)
             current_item.set_state (ui_state);
     }
 
