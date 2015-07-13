@@ -85,6 +85,7 @@ private class Boxes.SizeProperty : Boxes.Property {
         } else {
             var allocation_str = format_size (allocation, format_flags);
 
+            // Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
             label.set_markup (_("%s <span color=\"grey\">(%s used)</span>").printf (capacity, allocation_str));
         }
     }
@@ -96,6 +97,7 @@ private class Boxes.SizeProperty : Boxes.Property {
                 value > (scale.adjustment.upper - Osinfo.GIBIBYTES))
                 return;
 
+            // Translators: This is memory or disk size. E.g. "1 GB (recommended)".
             var size = _("<small>%s (recommended)</small>").printf (format_size (value, format_flags));
             scale.add_mark (value, Gtk.PositionType.BOTTOM, size);
         }
