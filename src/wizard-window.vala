@@ -77,23 +77,17 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
         var current_row = 0;
         foreach (var property in resource_properties) {
-            if (property.widget == null || property.extra_widget == null || property.description == null) {
+            if (property.widget == null || property.extra_widget == null) {
                 warn_if_reached ();
 
                 continue;
             }
 
-            var label_name = new Gtk.Label (property.description);
-            label_name.get_style_context ().add_class ("boxes-property-name-label");
-            label_name.halign = Gtk.Align.START;
-            label_name.hexpand = false;
-            customization_grid.attach (label_name, 0, current_row, 1, 1);
-
             property.widget.hexpand = true;
-            customization_grid.attach (property.widget, 1, current_row, 1, 1);
+            customization_grid.attach (property.widget, 0, current_row, 1, 1);
 
             property.extra_widget.hexpand = true;
-            customization_grid.attach (property.extra_widget, 0, current_row + 1, 2, 1);
+            customization_grid.attach (property.extra_widget, 0, current_row + 1, 1, 1);
 
             current_row += 2;
         }
