@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-13 06:15+0000\n"
-"PO-Revision-Date: 2015-07-13 \n"
+"POT-Creation-Date: 2015-07-14 06:14+0000\n"
+"PO-Revision-Date: 2015-07-14 \n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
 #: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cajas"
@@ -467,15 +467,22 @@ msgstr "Formato de archivo de disco no soportado."
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/i-properties-provider.vala:88
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
 msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(%s usado)</span>"
 
-#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:128
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
 #, c-format
-#| msgid "%s (maximum)"
+#| msgid "<small>%s (maximum)</small>"
+msgid "<small>%s (recommended)</small>"
+msgstr "<small>%s (recomendado)</small>"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:130
+#, c-format
 msgid "<small>%s (maximum)</small>"
 msgstr "<small>%s (máximo)</small>"
 
@@ -515,12 +522,10 @@ msgid "Broker"
 msgstr "Agente"
 
 #: ../src/libvirt-machine-properties.vala:134
-#| msgid "Protocol"
 msgid "Display Protocol"
 msgstr "Mostrar protocolo"
 
 #: ../src/libvirt-machine-properties.vala:135
-#| msgid "Display"
 msgid "Display URI"
 msgstr "Mostrar URI"
 
@@ -597,7 +602,6 @@ msgid "Restart"
 msgstr "Reiniciar"
 
 #: ../src/libvirt-machine-properties.vala:468
-#| msgid "Memory"
 msgid "Memory: "
 msgstr "Memoria:"
 
@@ -617,7 +621,6 @@ msgstr ""
 "No espacio suficiente en su equipo para aumentar el tamaño máximo del disco."
 
 #: ../src/libvirt-machine-properties.vala:561
-#| msgid "Maximum Disk Size"
 msgid "Maximum Disk Size: "
 msgstr "Tamaño máximo del disco:"
 
@@ -628,7 +631,6 @@ msgstr "Ejecutar en segundo plano"
 #: ../src/libvirt-machine-properties.vala:704
 #: ../src/libvirt-machine-properties.vala:707
 #, c-format
-#| msgid "Live box '%s' has been deleted automatically."
 msgid "'%s' will not be paused automatically."
 msgstr "«%s» no se pausará automáticamente."
 
