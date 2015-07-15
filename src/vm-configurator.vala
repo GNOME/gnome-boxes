@@ -160,7 +160,6 @@ private class Boxes.VMConfigurator {
 
     public static StoragePool get_pool_config () throws GLib.Error {
         var pool_path = get_user_pkgdata ("images");
-        ensure_directory (pool_path);
 
         var pool = new StoragePool ();
         pool.set_pool_type (StoragePoolType.DIR);
