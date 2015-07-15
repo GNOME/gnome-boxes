@@ -196,14 +196,14 @@ private class Boxes.VMCreator {
             var config = VMConfigurator.get_pool_config ();
             pool = connection.create_storage_pool (config, 0);
             yield pool.build_async (0, null);
-            yield pool.start_async (0, null);
-            yield pool.refresh_async (null);
             debug ("Created storage pool.");
-        } else if (pool.get_info ().state == StoragePoolState.INACTIVE) {
-            // Ensure pool directory exists in case user deleted it after pool creation
-            var pool_path = get_user_pkgdata ("images");
-            ensure_directory (pool_path);
+        }
 
+        // Ensure pool directory exists in case user deleted it after pool creation
+        var pool_path = get_user_pkgdata ("images");
+        ensure_directory (pool_path);
+
+        if (pool.get_info ().state == StoragePoolState.INACTIVE) {
             yield pool.start_async (0, null);
             yield pool.refresh_async (null);
         }
