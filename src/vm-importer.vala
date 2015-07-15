@@ -37,8 +37,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
             yield source_media.copy (destination_path);
 
             // Without refreshing the pool, libvirt will not know of changes to volume we just made
-            var pool = yield Boxes.ensure_storage_pool (connection);
-            yield pool.refresh_async (null);
+            yield Boxes.ensure_storage_pool (connection);
         } catch (GLib.Error error) {
             warning ("Failed to import box '%s' from file '%s': %s",
                      machine.name,

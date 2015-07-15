@@ -116,10 +116,9 @@ namespace Boxes {
         var pool_path = get_user_pkgdata ("images");
         ensure_directory (pool_path);
 
-        if (pool.get_info ().state == GVir.StoragePoolState.INACTIVE) {
+        if (pool.get_info ().state == GVir.StoragePoolState.INACTIVE)
             yield pool.start_async (0, null);
-            yield pool.refresh_async (null);
-        }
+        yield pool.refresh_async (null);
         pool.set_autostart (true);
 
         return pool;
