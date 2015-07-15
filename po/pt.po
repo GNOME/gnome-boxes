@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2012, 2013, 2014.
 # Tiago S. <almosthumane@portugalmail.pt>, 2014, 2015.
-# Pedro Albuquerque <palbuquerque73@openmailbox.com>, 2015.
+# Pedro Albuquerque <palbuquerque73o@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-07-10 06:15+0000\n"
-"PO-Revision-Date: 2015-07-10 09:33+0100\n"
-"Last-Translator: Pedro Albuquerque <palbuquerque73@openmailbox.com>\n"
+"POT-Creation-Date: 2015-07-15 06:15+0000\n"
+"PO-Revision-Date: 2015-07-15 10:02+0100\n"
+"Last-Translator: Pedro Albuquerque <palbuquerque73o@gmail.com>\n"
 "Language-Team: Português <palbuquerque73@openmailbox.com>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
 #: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Caixas"
@@ -467,16 +467,24 @@ msgstr "Formato de imagem de disco não suportado."
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/i-properties-provider.vala:88
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
 msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(%s usado)</span>"
 
-#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:120
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "%s (maximum)"
-msgstr "%s (máximo)"
+msgid "<small>%s (recommended)</small>"
+msgstr "<small>%s (recomendado)</small>"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:130
+#, c-format
+#| msgid "%s (maximum)"
+msgid "<small>%s (maximum)</small>"
+msgstr "<small>%s (máximo)</small>"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -514,12 +522,10 @@ msgid "Broker"
 msgstr "Gestor"
 
 #: ../src/libvirt-machine-properties.vala:134
-#| msgid "Protocol"
 msgid "Display Protocol"
 msgstr "Protocolo de exibição"
 
 #: ../src/libvirt-machine-properties.vala:135
-#| msgid "Display"
 msgid "Display URI"
 msgstr "Mostrar URI"
 
@@ -595,9 +601,10 @@ msgstr "Rede"
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/libvirt-machine-properties.vala:468 ../src/wizard.vala:524
-msgid "Memory"
-msgstr "Memória"
+#: ../src/libvirt-machine-properties.vala:468
+#| msgid "Memory"
+msgid "Memory: "
+msgstr "Memória: "
 
 #: ../src/libvirt-machine-properties.vala:536
 #, c-format
@@ -616,8 +623,9 @@ msgstr ""
 "disco,"
 
 #: ../src/libvirt-machine-properties.vala:561
-msgid "Maximum Disk Size"
-msgstr "Tamanho máximo do disco"
+#| msgid "Maximum Disk Size"
+msgid "Maximum Disk Size: "
+msgstr "Tamanho máximo do disco: "
 
 #: ../src/libvirt-machine-properties.vala:694
 msgid "Run in background"
@@ -626,7 +634,6 @@ msgstr "Executar em 2º plano"
 #: ../src/libvirt-machine-properties.vala:704
 #: ../src/libvirt-machine-properties.vala:707
 #, c-format
-#| msgid "Live box '%s' has been deleted automatically."
 msgid "'%s' will not be paused automatically."
 msgstr "\"%s\" não será pausada automaticamente."
 
@@ -861,15 +868,15 @@ msgstr "Falha ao aplicar imagem"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Imagem \"%s\" eliminada."
 
-#: ../src/snapshots-property.vala:59
+#: ../src/snapshots-property.vala:61
 msgid "No snapshots created yet. Create one using the button below."
 msgstr "Ainda não criou imagens. Crie uma usando o botão abaixo."
 
-#: ../src/snapshots-property.vala:118
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
 msgstr "A criar nova imagem…"
 
-#: ../src/snapshots-property.vala:126
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Falha ao criar imagem de %s"
@@ -1096,6 +1103,10 @@ msgstr "Porta TLS"
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Vai adicionar caixas para todos os sistemas disponíveis a partir desta conta:"
+
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "Memória"
 
 #: ../src/wizard.vala:533
 msgid "Disk"
