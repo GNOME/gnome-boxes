@@ -203,28 +203,6 @@ private class Boxes.VMCreator {
         }
     }
 
-    protected async StoragePool get_storage_pool () throws GLib.Error {
-        var pool = Boxes.get_storage_pool (connection);
-        if (pool == null) {
-            debug ("Creating storage pool..");
-            var config = VMConfigurator.get_pool_config ();
-            pool = connection.create_storage_pool (config, 0);
-            yield pool.build_async (0, null);
-            debug ("Created storage pool.");
-        }
-
-        // Ensure pool directory exists in case user deleted it after pool creation
-        var pool_path = get_user_pkgdata ("images");
-        ensure_directory (pool_path);
-
-        if (pool.get_info ().state == StoragePoolState.INACTIVE) {
-            yield pool.start_async (0, null);
-            yield pool.refresh_async (null);
-        }
-
-        return pool;
-    }
-
     protected virtual async GVirConfig.Domain create_domain_config (string       name,
                                                                     string       title,
                                                                     StorageVol   volume,
@@ -361,7 +339,7 @@ private class Boxes.VMCreator {
 
         name = base_name;
         title = base_title;
-        var pool = yield get_storage_pool ();
+        var pool = yield Boxes.ensure_storage_pool (connection);
         for (var i = 2;
              connection.find_domain_by_name (name) != null ||
              connection.find_domain_by_name (title) != null || // We used to use title as name
@@ -373,7 +351,7 @@ private class Boxes.VMCreator {
     }
 
     private async StorageVol create_target_volume (string name, int64 storage) throws GLib.Error {
-        var pool = yield get_storage_pool ();
+        var pool = yield Boxes.ensure_storage_pool (connection);
 
         var config = VMConfigurator.create_volume_config (name, storage);
         debug ("Creating volume '%s'..", name);
