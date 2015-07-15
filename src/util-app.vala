@@ -102,6 +102,28 @@ namespace Boxes {
         }
     }
 
+    public async GVir.StoragePool ensure_storage_pool (GVir.Connection connection) throws GLib.Error {
+        var pool = get_storage_pool (connection);
+        if (pool == null) {
+            debug ("Creating storage pool..");
+            var config = VMConfigurator.get_pool_config ();
+            pool = connection.create_storage_pool (config, 0);
+            yield pool.build_async (0, null);
+            debug ("Created storage pool.");
+        }
+
+        // Ensure pool directory exists in case user deleted it after pool creation
+        var pool_path = get_user_pkgdata ("images");
+        ensure_directory (pool_path);
+
+        if (pool.get_info ().state == GVir.StoragePoolState.INACTIVE) {
+            yield pool.start_async (0, null);
+            yield pool.refresh_async (null);
+        }
+
+        return pool;
+    }
+
     public GVir.StoragePool? get_storage_pool (GVir.Connection connection) {
         return connection.find_storage_pool_by_name (Config.PACKAGE_TARNAME);
     }
