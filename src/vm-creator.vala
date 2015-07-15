@@ -201,7 +201,9 @@ private class Boxes.VMCreator {
             debug ("Created storage pool.");
         } else if (pool.get_info ().state == StoragePoolState.INACTIVE) {
             // Ensure pool directory exists in case user deleted it after pool creation
-            DirUtils.create_with_parents (GLib.Path.build_filename (get_user_pkgdata (), "images", null), 0775);
+            var pool_path = get_user_pkgdata ("images");
+            ensure_directory (pool_path);
+
             yield pool.start_async (0, null);
             yield pool.refresh_async (null);
         }
