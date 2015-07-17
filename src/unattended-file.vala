@@ -66,8 +66,13 @@ private interface Boxes.UnattendedFile : GLib.Object {
     private static bool is_libarchive_compatible (string filename) {
         // FIXME: We need better way to determine libarchive compatibility cause mcopy is used
         //        if this function returns false and mcopy can only handle MS-DOS images while
-        //        libarchive can handle other types of disk images
-        return GLib.ContentType.guess (filename, null, null) != "application/x-raw-disk-image";
+        //        libarchive can handle other types of disk images.
+        //
+        //        Just in case you get the idea to compare the content_type to
+        //        "application/x-raw-disk-image", that's what we were doing but then it failed
+        //        on systems with slighly older shared-mime-info where the content_type is
+        //        detected as 'application-octetstream'.
+        return !filename.has_suffix (".img") && !filename.has_suffix (".IMG");
     }
 }
 
