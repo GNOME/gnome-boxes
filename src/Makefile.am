@@ -119,6 +119,7 @@ gnome_boxes_SOURCES =				\
 	libvirt-broker.vala			\
 	libvirt-machine.vala			\
 	libvirt-machine-properties.vala		\
+	list-view.vala				\
 	list-view-row.vala			\
 	machine.vala				\
 	machine-thumbnailer.vala		\
