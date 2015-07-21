@@ -73,13 +73,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
         }
 
         for (var i = 0; i < configs.length; i++)
-            import_domain.begin (configs[i], disk_paths[i], null, (obj, result) => {
-                try {
-                    import_domain.end (result);
-                } catch (GLib.Error error) {
-                    warning ("Failed to import '%s': %s", configs[i].name, error.message);
-                }
-            });
+            import_domain.begin (configs[i], disk_paths[i], null);
     }
 
     private void get_domain_info (Domain domain,
@@ -93,13 +87,17 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
 
     private async void import_domain (GVirConfig.Domain config,
                                       string            disk_path,
-                                      Cancellable?      cancellable = null) throws GLib.Error {
+                                      Cancellable?      cancellable = null) {
         debug ("Importing '%s' from system libvirt..", config.name);
 
-        var media = new LibvirtSystemMedia (disk_path, config);
-        var vm_importer = media.get_vm_creator ();
-        var machine = yield vm_importer.create_vm (cancellable);
-        vm_importer.launch_vm (machine);
+        try {
+            var media = new LibvirtSystemMedia (disk_path, config);
+            var vm_importer = media.get_vm_creator ();
+            var machine = yield vm_importer.create_vm (cancellable);
+            vm_importer.launch_vm (machine);
+        } catch (GLib.Error error) {
+            warning ("Failed to import '%s': %s", config.name, error.message);
+        }
     }
 
     private string get_disk_path (GVirConfig.Domain config) throws LibvirtSystemImporterError.NO_SUITABLE_DISK {
