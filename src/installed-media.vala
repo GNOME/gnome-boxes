@@ -37,11 +37,15 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
     public InstalledMedia (string path) throws GLib.Error {
         var supported = false;
-        foreach (var extension in supported_extensions) {
-            supported = path.has_suffix (extension);
-            if (supported)
-                break;
-        }
+
+        if (path.has_prefix ("/dev/"))
+            supported = true; // Let's assume it's device file in raw format
+        else
+            foreach (var extension in supported_extensions) {
+                supported = path.has_suffix (extension);
+                if (supported)
+                    break;
+            }
 
         if (!supported)
             throw new IOError.NOT_SUPPORTED (_("Unsupported disk image format."));
