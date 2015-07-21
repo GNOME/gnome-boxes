@@ -17,8 +17,6 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     public override bool ready_to_create { get { return true; } }
     public override bool live { get { return false; } }
 
-    public string format { get { return device_file.has_suffix (".qcow2")? "qcow2" : "raw"; } }
-
     protected override string? architecture {
         owned get {
             // Many distributors provide arch name on the image file so lets try to use that if possible
