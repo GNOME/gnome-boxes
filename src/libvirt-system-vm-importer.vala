@@ -35,18 +35,32 @@ private class Boxes.LibvirtSystemVMImporter : Boxes.VMImporter {
         yield VMConfigurator.update_existing_domain (config, connection);
 
         var devices = config.get_devices ();
+        var filtered = new GLib.List<DomainDevice> ();
+        var hd_index = 0;
         foreach (var device in devices) {
-            if (!(device is DomainDisk))
-                continue;
+            if (device is DomainDisk) {
+                var disk = device as DomainDisk;
 
-            var disk = device as DomainDisk;
-            if (disk.get_source () == media.device_file) {
-                disk.set_source (volume.get_path ());
+                if (disk.get_source () == media.device_file)
+                    /* Remove the copied over main disk configuration. */
+                    continue;
 
-                break;
+                /* Let's ensure main disk configuration we're going to add, doesn't conflict with CD-ROM device. */
+                if (disk.get_guest_device_type () == DomainDiskGuestDeviceType.CDROM) {
+                    var dev = disk.get_target_dev ();
+                    var cd_index = ((uint8) dev[dev.length - 1] - 97);
+
+                    hd_index = (cd_index != 0)? 0 : cd_index + 1;
+                }
             }
+
+            filtered.prepend (device);
         }
-        config.set_devices (devices);
+        filtered.reverse ();
+        config.set_devices (filtered);
+
+        /* Add new disk configuration to match the corresponding target volume/media */
+        VMConfigurator.set_target_media_config (config, volume.get_path (), install_media, hd_index);
 
         return config;
     }
