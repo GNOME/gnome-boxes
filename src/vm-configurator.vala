@@ -267,7 +267,7 @@ private class Boxes.VMConfigurator {
         }
     }
 
-    private static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
+    public static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
