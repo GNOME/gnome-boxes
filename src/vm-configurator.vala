@@ -267,7 +267,10 @@ private class Boxes.VMConfigurator {
         }
     }
 
-    public static void set_target_media_config (Domain domain, string target_path, InstallerMedia install_media) {
+    public static void set_target_media_config (Domain         domain,
+                                                string         target_path,
+                                                InstallerMedia install_media,
+                                                uint8          dev_index = 0) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
@@ -276,14 +279,15 @@ private class Boxes.VMConfigurator {
         disk.set_source (target_path);
         disk.set_driver_cache (DomainDiskCacheType.WRITEBACK);
 
+        var dev_letter_str = ((char) (dev_index + 97)).to_string ();
         if (install_media.supports_virtio_disk) {
             debug ("Using virtio controller for the main disk");
             disk.set_target_bus (DomainDiskBus.VIRTIO);
-            disk.set_target_dev ("vda");
+            disk.set_target_dev ("vd" + dev_letter_str);
         } else {
             debug ("Using IDE controller for the main disk");
             disk.set_target_bus (DomainDiskBus.IDE);
-            disk.set_target_dev ("hda");
+            disk.set_target_dev ("hd" + dev_letter_str);
         }
 
         domain.add_device (disk);
