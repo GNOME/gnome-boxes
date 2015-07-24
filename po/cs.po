@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-05-31 18:13+0000\n"
-"PO-Revision-Date: 2015-05-31 22:09+0200\n"
+"POT-Creation-Date: 2015-07-24 06:16+0000\n"
+"PO-Revision-Date: 2015-07-24 15:17+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -50,7 +50,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
 #: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
@@ -150,7 +150,7 @@ msgstr ""
 "Pro vytvoření vašeho prvního boxu stačí zmáčknout tlačítko <b>Nový</b>."
 
 #: ../data/ui/properties-toolbar.ui.h:1
-#: ../src/libvirt-machine-properties.vala:440
+#: ../src/libvirt-machine-properties.vala:447
 msgid "Troubleshooting Log"
 msgstr "Zaznamenané problémy"
 
@@ -340,7 +340,7 @@ msgstr "Odebrat z oblíbených"
 msgid "Add to Favorites"
 msgstr "Přidat do oblíbených"
 
-#: ../src/actions-popover.vala:51 ../src/libvirt-machine-properties.vala:426
+#: ../src/actions-popover.vala:51 ../src/libvirt-machine-properties.vala:433
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
@@ -405,7 +405,7 @@ msgstr "Hledat výraz"
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
 #: ../src/app.vala:190
 msgid "URI to display, broker or installer media"
-msgstr "Adresa URI k zobrazení, správce nebo instalační médium"
+msgstr "Adresa URI k zobrazení, správci nebo instalačnímu médium"
 
 #: ../src/app.vala:201
 msgid "- A simple application to access remote or virtual machines"
@@ -437,7 +437,7 @@ msgstr[2] "%u boxů bylo odstraněno"
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../src/collection-view.vala:40
+#: ../src/collection-view.vala:54
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
@@ -455,25 +455,32 @@ msgstr "Pro ukončení zachytávání klávesnice zmáčkněte a uvolněte levý
 msgid "%dx%d"
 msgstr "%d × %d"
 
-#: ../src/installed-media.vala:49
+#: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systém"
 
-#: ../src/i-properties-provider.vala:88
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
 msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(použito %s)</span>"
 
-#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:120
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "%s (maximum)"
-msgstr "%s (nejvýše)"
+msgid "<small>%s (recommended)</small>"
+msgstr "<small>%s (doporučeno)</small>"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:130
+#, c-format
+msgid "<small>%s (maximum)</small>"
+msgstr "<small>%s (maximum)</small>"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -498,141 +505,172 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Odeslat kombinaci kláves"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
 msgid "Name"
 msgstr "Název"
 
-#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
+#: ../src/libvirt-machine-properties.vala:130
+msgid "IP Address"
+msgstr "Adresa IP"
+
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:65
 msgid "Broker"
 msgstr "Zprostředkovatel"
 
-#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
-#: ../src/remote-machine.vala:65
-msgid "Protocol"
-msgstr "Protokol"
+#: ../src/libvirt-machine-properties.vala:134
+msgid "Display Protocol"
+msgstr "Protokol zobrazení"
 
-#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
-#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
-#: ../src/wizard.vala:486
-msgid "URI"
-msgstr "Adresa URI"
+#: ../src/libvirt-machine-properties.vala:135
+msgid "Display URI"
+msgstr "Adresa URI zobrazení"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:180
-#: ../src/libvirt-machine-properties.vala:198
+#: ../src/libvirt-machine-properties.vala:187
+#: ../src/libvirt-machine-properties.vala:205
 msgid "Add support to guest"
 msgstr "Přidat podporu do hosta"
 
-#: ../src/libvirt-machine-properties.vala:182
+#: ../src/libvirt-machine-properties.vala:189
 msgid "USB device support"
 msgstr "Podpora zařízení USB"
 
-#: ../src/libvirt-machine-properties.vala:200
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Smartcard support"
 msgstr "Podpora čipových karet"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:252
-#: ../src/libvirt-machine-properties.vala:304
+#: ../src/libvirt-machine-properties.vala:259
+#: ../src/libvirt-machine-properties.vala:311
 msgid "empty"
 msgstr "prázdné"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:261
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:268
+#: ../src/libvirt-machine-properties.vala:320
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:275
-#: ../src/libvirt-machine-properties.vala:303
+#: ../src/libvirt-machine-properties.vala:282
+#: ../src/libvirt-machine-properties.vala:310
 msgid "Select"
 msgstr "Vybrat"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:278
-#: ../src/libvirt-machine-properties.vala:286
+#: ../src/libvirt-machine-properties.vala:285
+#: ../src/libvirt-machine-properties.vala:293
 msgid "Remove"
 msgstr "Odstranit"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:300
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Vložení „%s“ jako CD/DVD do stroje „%s“ selhalo"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:307
+#: ../src/libvirt-machine-properties.vala:314
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Odebrání CD/DVD z boxu „%s“ selhalo"
 
-#: ../src/libvirt-machine-properties.vala:377
+#: ../src/libvirt-machine-properties.vala:384
 msgid "CPU"
 msgstr "Procesor"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:383
+#: ../src/libvirt-machine-properties.vala:390
 msgid "I/O"
 msgstr "V/V"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:389
+#: ../src/libvirt-machine-properties.vala:396
 msgid "Network"
 msgstr "Síť"
 
-#: ../src/libvirt-machine-properties.vala:418 ../src/machine.vala:587
+#: ../src/libvirt-machine-properties.vala:425 ../src/machine.vala:578
 msgid "Restart"
 msgstr "Restartovat"
 
-#: ../src/libvirt-machine-properties.vala:461 ../src/wizard.vala:524
-msgid "Memory"
-msgstr "Paměť"
+#: ../src/libvirt-machine-properties.vala:468
+msgid "Memory: "
+msgstr "Paměť:"
 
-#: ../src/libvirt-machine-properties.vala:529
+#: ../src/libvirt-machine-properties.vala:536
 #, c-format
 msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey\">"
+"(%s used)</span>"
 msgstr ""
 "<span color=\"grey\">Maximální velikost disku</span>\t %s <span color=\"grey"
 "\">(použito %s)</span>"
 
-#: ../src/libvirt-machine-properties.vala:545
+#: ../src/libvirt-machine-properties.vala:552
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Ve vašem počítači není dostatek místa pro zvětšení maximální velikosti disku."
 
-#: ../src/libvirt-machine-properties.vala:554
-msgid "Maximum Disk Size"
-msgstr "Maximální velikost disku"
+#: ../src/libvirt-machine-properties.vala:561
+msgid "Maximum Disk Size: "
+msgstr "Maximální velikost disku:"
+
+#: ../src/libvirt-machine-properties.vala:694
+msgid "Run in background"
+msgstr "Běžet na pozadí"
+
+#: ../src/libvirt-machine-properties.vala:704
+#: ../src/libvirt-machine-properties.vala:707
+#, c-format
+msgid "'%s' will not be paused automatically."
+msgstr "„%s“ nebude automaticky pozastaven."
+
+#: ../src/libvirt-machine-properties.vala:705
+#: ../src/libvirt-machine-properties.vala:708
+#, c-format
+msgid "'%s' will be paused automatically to save resources."
+msgstr "„%s“ bude automaticky pozastaven, aby se ušetřily prostředky."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:578
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:556
+#: ../src/libvirt-machine.vala:581
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: ../src/libvirt-machine.vala:621
+#: ../src/libvirt-machine.vala:646
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: ../src/libvirt-machine.vala:623
+#: ../src/libvirt-machine.vala:648
 msgid "_Shutdown"
 msgstr "_Vypnout"
+
+#: ../src/libvirt-machine.vala:720
+msgid "Installing…"
+msgstr "Instaluje se…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/libvirt-machine.vala:722 ../src/wizard-source.vala:82
+msgid "Live"
+msgstr "Živé médium"
+
+#: ../src/libvirt-machine.vala:724
+msgid "Importing…"
+msgstr "Importuje se…"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -662,31 +700,31 @@ msgstr[0] "Bude importován %u box ze systémového zprostředkovatele"
 msgstr[1] "Budou importovány %u boxy ze systémového zprostředkovatele"
 msgstr[2] "Bude importováno %u boxů ze systémového zprostředkovatele"
 
-#: ../src/libvirt-system-importer.vala:51
+#: ../src/libvirt-system-importer.vala:47
 msgid "No boxes to import"
 msgstr "Nenalezen žádný box pro import"
 
-#: ../src/libvirt-system-importer.vala:127
+#: ../src/libvirt-system-importer.vala:121
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Selhalo vyhledání vhodného disku pro import boxu „%s“"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:151
+#: ../src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "Připojuje se k %s"
 
-#: ../src/machine.vala:173 ../src/machine.vala:600
+#: ../src/machine.vala:203 ../src/machine.vala:591
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Připojení k „%s“ selhalo"
 
-#: ../src/machine.vala:265
+#: ../src/machine.vala:401
 msgid "Saving…"
 msgstr "Ukládá se…"
 
-#: ../src/machine.vala:586
+#: ../src/machine.vala:577
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -695,13 +733,13 @@ msgstr ""
 "Stroj „%s“ nelze z disku obnovit\n"
 "Zkusit to bez uloženého stavu?"
 
-#: ../src/machine.vala:596
+#: ../src/machine.vala:587
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Selhalo spuštění „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:629
+#: ../src/machine.vala:620
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "„%s“ vyžaduje ověření"
@@ -761,6 +799,15 @@ msgstr "Nepřipojeno k %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Připojení ke zprostředkovateli oVirt selhalo"
 
+#: ../src/ovirt-machine.vala:66 ../src/remote-machine.vala:68
+msgid "Protocol"
+msgstr "Protokol"
+
+#: ../src/ovirt-machine.vala:67 ../src/remote-machine.vala:70
+#: ../src/remote-machine.vala:72 ../src/wizard.vala:486
+msgid "URI"
+msgstr "Adresa URI"
+
 #: ../src/properties.vala:81
 #, c-format
 msgid "Changes require restart of '%s'."
@@ -819,15 +866,15 @@ msgstr "Selhalo použití snímku"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Snímek „%s“ byl smazán."
 
-#: ../src/snapshots-property.vala:59
+#: ../src/snapshots-property.vala:61
 msgid "No snapshots created yet. Create one using the button below."
 msgstr "Doposud nebyl žádný snímek vytvořen. Můžete tak učinit tlačítkem níže."
 
-#: ../src/snapshots-property.vala:118
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
 msgstr "Vytváří se nový snímek…"
 
-#: ../src/snapshots-property.vala:126
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Selhalo vytvoření snímku pro %s"
@@ -884,7 +931,7 @@ msgstr "žádné heslo"
 msgid "Express installation of %s requires an internet connection."
 msgstr "Rychlá instalace %s vyžaduje připojení k Internetu."
 
-#: ../src/util-app.vala:203
+#: ../src/util-app.vala:242
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -894,11 +941,11 @@ msgstr ""
 "pomocí:\n"
 "%s"
 
-#: ../src/util-app.vala:207
+#: ../src/util-app.vala:246
 msgid "SELinux not installed?"
 msgstr "SELinux není nainstalován?"
 
-#: ../src/util-app.vala:289
+#: ../src/util-app.vala:328
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -907,7 +954,7 @@ msgstr ""
 "boxes“. Ujistěte se, že funguje „virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes“"
 
-#: ../src/util-app.vala:294
+#: ../src/util-app.vala:333
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -916,7 +963,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale tato "
 "složka neexistuje"
 
-#: ../src/util-app.vala:298
+#: ../src/util-app.vala:337
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -924,7 +971,7 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale "
 "nejedná se o složku"
 
-#: ../src/util-app.vala:302
+#: ../src/util-app.vala:341
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -943,39 +990,16 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:554
+#: ../src/vm-configurator.vala:557
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:170
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Živý box „%s“ byl automaticky odstraněn."
 
-#: ../src/vm-creator.vala:187
-msgid "Installing…"
-msgstr "Instaluje se…"
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:191 ../src/wizard-source.vala:82
-msgid "Live"
-msgstr "Živé médium"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:330
-#, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "Nainstalováno %d %%"
-msgstr[1] "Nainstalována %d %%"
-msgstr[2] "Nainstalováno %d %%"
-
-#: ../src/vm-importer.vala:36
-msgid "Importing…"
-msgstr "Importuje se…"
-
-#: ../src/vm-importer.vala:53
+#: ../src/vm-importer.vala:46
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Import boxu ze souboru „%s“ selhal."
@@ -1076,6 +1100,10 @@ msgstr "Port TLS"
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Přidá boxy pro všechny systémy dostupné z tohoto účtu:"
 
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "Paměť"
+
 #: ../src/wizard.vala:533
 msgid "Disk"
 msgstr "Disk"
@@ -1097,9 +1125,3 @@ msgstr "Stažení selhalo."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
-
-#~ msgid "_Properties"
-#~ msgstr "_Vlastnosti"
-
-#~ msgid "Troubleshooting log"
-#~ msgstr "Zaznamenané problémy"
