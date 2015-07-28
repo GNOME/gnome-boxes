@@ -74,7 +74,6 @@ def create_new_vm_via_url(context, url):
 @step('Create new box from menu "{sys_name}"')
 def create_new_vm_from_menu(context, sys_name):
     context.app.child('New').click()
-    context.app.child('Continue').click()
     get_showing_node_name(sys_name, context.app).click()
 
 @step('Import machine "{name}" from image "{location}"')
