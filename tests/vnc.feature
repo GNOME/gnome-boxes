@@ -6,7 +6,7 @@ Feature: Vnc
 
   @new_vnc_localhost_box
   Scenario: New VNC box
-    * Create new box from url "vnc://localhost:5901;"
+    * Create new box from url "vnc://localhost:5901"
     * Press "Create"
     * Wait for "sleep 2" end
     Then Box "localhost" "does" exist
@@ -22,7 +22,7 @@ Feature: Vnc
 
   @vnc_restart_persistence
   Scenario: VNC restart persistence
-    * Create new box from url "vnc://localhost:5901;"
+    * Create new box from url "vnc://localhost:5901"
     * Press "Create"
     * Quit Boxes
     * Start Boxes
