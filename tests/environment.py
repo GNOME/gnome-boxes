@@ -16,7 +16,7 @@ def downloadfile(url):
     # Open the url
     try:
         f = urlopen(url)
-        print "** Downloading: " + url
+        print("** Downloading: " + url)
 
         # Open our local file for writing
         if not os.path.isfile("%s/Downloads/%s" % (os.path.expanduser("~"), os.path.basename(url))):
@@ -24,9 +24,9 @@ def downloadfile(url):
                 local_file.write(f.read())
 
     except HTTPError, e:
-        print "HTTP Error:", e.code, url
+        print("HTTP Error:", e.code, url)
     except URLError, e:
-        print "URL Error:", e.reason, url
+        print("URL Error:", e.reason, url)
 
 def do_backup():
     f = open(os.devnull, "w")
@@ -34,7 +34,7 @@ def do_backup():
     try:
         call("mkdir ~/boxes_backup", shell=True)
 
-        print "** Backing up session machines"
+        print("** Backing up session machines")
 
         # First ensure all boxes are shutdown
         call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
@@ -62,17 +62,17 @@ def do_backup():
         call("mv ~/.config/libvirt/qemu/save/* ~/boxes_backup/save/ || true", shell=True, stderr=f)
 
         # move all sources
-        print "** Backing up all sources"
+        print("** Backing up all sources")
 
         call("mkdir ~/boxes_backup/sources", shell=True)
         call("mv ~/.cache/gnome-boxes/sources/* ~/boxes_backup/sources/ || true", shell=True, stderr=f)
 
         # create marker
         call('touch /tmp/boxes_backup', shell=True)
-        print "* Done\n"
+        print("* Done\n")
 
     except Exception as e:
-        print "Error in backup: %s" % e.message
+        print("Error in backup: %s" % e.message)
 
     # Undefine all boxes
     call("for i in $(virsh list --all|tail -n +3|head -n -1|sed -e 's/^ \(-\|[0-9]\+\) *//'|cut -d' ' -f1); do " +
@@ -85,7 +85,7 @@ def do_restore():
 
     f = open(os.devnull, "w")
 
-    print "** Restoring Boxes backup"
+    print("** Restoring Boxes backup")
     # move images back
     call("mv ~/boxes_backup/images/* ~/.local/share/gnome-boxes/images/", shell=True, stderr=f)
 
@@ -120,7 +120,7 @@ def do_restore():
     # delete backup
     call("rm -rf ~/boxes_backup", shell=True, stdout=f)
 
-    print "* Done\n"
+    print("* Done\n")
 
     f.close()
 
@@ -131,11 +131,11 @@ def before_all(context):
 
     try:
         if not os.path.isfile('/tmp/boxes_configured'):
-            print "** Turning off gnome idle"
+            print("** Turning off gnome idle")
             if call("gsettings set org.gnome.desktop.session idle-delay 0", shell=True) == 0:
-                print "PASS\n"
+                print("PASS\n")
             else:
-                print "FAIL: unable to turn off screensaver. This can cause failures"
+                print("FAIL: unable to turn off screensaver. This can cause failures")
 
             # Download Core-5.3.iso and images for import if not there
             downloadfile('http://distro.ibiblio.org/tinycorelinux/5.x/x86/archive/5.3/Core-5.3.iso')
@@ -159,7 +159,7 @@ def before_all(context):
         context.app_class = App('gnome-boxes')
 
     except Exception as e:
-        print "Error in before_all: %s" % e.message
+        print("Error in before_all: %s" % e.message)
 
     do_backup()
 
@@ -197,7 +197,7 @@ def after_step(context, step):
             context.embed('image/png', open("/tmp/screenshot.png", 'r').read())
 
     except Exception as e:
-        print "Error in after_step: %s" % str(e)
+        print("Error in after_step: %s" % str(e))
 
 def after_tag(context, tag):
     if 'express_install' in tag:
@@ -289,7 +289,7 @@ def after_scenario(context, scenario):
 
     except Exception as e:
         # Stupid behave simply crashes in case exception has occurred
-        print "Error in after_scenario: %s" % e.message
+        print("Error in after_scenario: %s" % e.message)
 
 def after_all(context):
     do_restore()
