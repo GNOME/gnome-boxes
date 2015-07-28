@@ -33,6 +33,8 @@ private class Boxes.OvirtMachine: Boxes.Machine {
                 this.update_state ();
             } catch (IOError.CANCELLED error) {
                 debug ("connection to %s was cancelled", name);
+
+                return;
             } catch (GLib.Error error) {
                 throw new Boxes.Error.INVALID ("Couldn't start oVirt VM '%s': %s", vm.name, error.message);
             }
