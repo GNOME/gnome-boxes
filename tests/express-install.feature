@@ -6,7 +6,7 @@ Feature: Express install
 
   @express_install_fedora_20
   Scenario: Express install Fedora 20
-    * Create new box from url "http://mirrors.nic.cz/pub/fedora/linux/releases/20/Fedora/x86_64/iso/Fedora-20-x86_64-DVD.iso"
+    * Create new box from url "http://mirrors.nic.cz/pub/fedora-archive/fedora/linux/releases/20/Fedora/x86_64/iso/Fedora-20-x86_64-DVD.iso"
     * Hit "Tab"
     * Hit "Tab"
     * Type "test"
