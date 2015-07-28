@@ -43,7 +43,7 @@ def customize_vm(context, mem):
     sleep(0.5)
     pressKey('Tab')
     pressKey('Tab')
-    memory_label = context.app.findChildren(lambda x: x.name == 'Memory' and x.showing)[0]
+    memory_label = context.app.findChildren(lambda x: x.name == 'Memory: ' and x.showing)[0]
     mem = mem+" MiB"
     counter = 0
     while not memory_label.parent.findChildren(lambda x: x.name == mem and x.showing):
