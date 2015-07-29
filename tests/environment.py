@@ -205,6 +205,8 @@ def after_tag(context, tag):
             call('rm -rf ~/Downloads/Fedora-20*', shell=True)
         if 'express_install_fedora_21' in tag:
             call('rm -rf ~/Downloads/Fedora-Server-netinst-x86_64-21.iso', shell=True)
+        if 'express_install_fedora_22' in tag:
+            call('rm -rf ~/Downloads/Fedora-Workstation-netinst-x86_64-22.iso', shell=True)
 
         # need to remove cache file as otherwise prefilled values may be in use
         call('rm -rf ~/.cache/gnome-boxes/unattended', shell=True)

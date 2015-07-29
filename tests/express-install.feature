@@ -40,3 +40,22 @@ Feature: Express install
     Then Press "back" in "Fedora 21" vm
     Then Ping "Fedora 21"
     Then Verify "test" user with "secretpasswordnumber1" password in "Fedora 21"
+
+  @express_install_fedora_22
+  Scenario: Express install Fedora 22
+    * Create new box from url "http://mirrors.nic.cz/pub/fedora/linux/releases/22/Workstation/x86_64/iso/Fedora-Workstation-netinst-x86_64-22.iso"
+    * Hit "Tab"
+    * Hit "Tab"
+    * Type "test"
+    * Press "Add Password"
+    * Type "secretpasswordnumber1"
+    * Press "Continue"
+    * Press "Create"
+    Then Installation of "Fedora 22 Workstation" is finished in "30" minutes
+    * Wait for "sleep 60" end
+    Then Box "Fedora 22 Workstation" "does" exist
+    Then Go into "Fedora 22 Workstation" box
+    * Save IP for machine "Fedora 22 Workstation"
+    Then Press "back" in "Fedora 22 Workstation" vm
+    Then Ping "Fedora 22 Workstation"
+    Then Verify "test" user with "secretpasswordnumber1" password in "Fedora 22 Workstation"
