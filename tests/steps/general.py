@@ -184,11 +184,16 @@ def libvirt_domain_get_mac(vm_title):
             return libvirt_domain_get_val(ctx, "/domain/devices/interface/mac/@address")
     return mac
 
-def get_ip_through_arp_cmd(mac):
+def get_ip_from_ip_neigh_cmd(mac):
     out = ""
     wait = 0
     while wait < 120:
-        cmd = Popen("arp -an |grep '%s' |grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'" %mac, shell=True, stdout=PIPE)
+        cmd = Popen("ip neigh show nud reachable\
+                        |grep %s\
+                        |tail -n 1\
+                        |grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
+                        %mac, shell=True, stdout=PIPE)
+
         out = cmd.communicate()[0]
         ret = cmd.wait()
         if out != "":
@@ -202,7 +207,7 @@ def save_ip_for_vm(context, vm):
     if not hasattr(context, 'ips'):
         context.ips = {}
 
-    ip = get_ip_through_arp_cmd(libvirt_domain_get_mac(vm))
+    ip = get_ip_from_ip_neigh_cmd(libvirt_domain_get_mac(vm))
 
     if not ip:
         raise Exception("No address was assigned for this machine %s" %vm)
