@@ -279,10 +279,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
         if (empty)
             // Translators: This is the text on the button to select an iso for the cd
-            button_label.set_text (_("Select"));
+            button_label.set_text_with_mnemonic (_("_Select"));
         else
             // Translators: Remove is the label on the button to remove an iso from a cdrom drive
-            button_label.set_text (_("Remove"));
+            button_label.set_text_with_mnemonic (_("_Remove"));
 
         button.clicked.connect ( () => {
             if (empty) {
@@ -290,7 +290,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     disk_config.set_source (path);
                     try {
                         machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
-                        button_label.set_text (_("Remove"));
+                        button_label.set_text_with_mnemonic (_("_Remove"));
                         label.set_text (get_utf8_basename (path));
                         empty = false;
                     } catch (GLib.Error e) {
@@ -307,7 +307,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 try {
                     machine.domain.update_device (disk_config, DomainUpdateDeviceFlags.CURRENT);
                     empty = true;
-                    button_label.set_text (_("Select"));
+                    button_label.set_text_with_mnemonic (_("_Select"));
                     label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
                 } catch (GLib.Error e) {
                     // Translators: '%s' here is name of the box.
@@ -422,7 +422,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         inner_grid.hexpand = true;
         grid.attach (inner_grid, 0, 0, 1, 1);
 
-        var restart_button = new Gtk.Button.with_label (_("Restart"));
+        var restart_button = new Gtk.Button.with_mnemonic (_("_Restart"));
         restart_button.clicked.connect (() => {
             machine.restart ();
             machine.window.props_window.revert_state ();
@@ -430,7 +430,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         restart_button.sensitive = machine.is_running;
         inner_grid.attach (restart_button, 1, 0, 1, 1);
 
-        var shutdown_button = new Gtk.Button.with_label (_("Force Shutdown"));
+        var shutdown_button = new Gtk.Button.with_mnemonic (_("_Force Shutdown"));
         shutdown_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
         shutdown_button.clicked.connect (() => {
             machine.force_shutdown ();
@@ -444,7 +444,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             shutdown_button.sensitive = machine.is_running;
         });
 
-        var log_button = new Gtk.Button.with_label (_("Troubleshooting Log"));
+        var log_button = new Gtk.Button.with_mnemonic (_("_Troubleshooting Log"));
         log_button.halign = Gtk.Align.END;
         grid.attach (log_button, 1, 0, 1, 1);
         log_button.clicked.connect (() => {
