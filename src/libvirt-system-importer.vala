@@ -15,11 +15,11 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             var num_domains = domains.length ();
 
             if (num_domains == 1)
-                return _("Import '%s' from system broker").printf (domains.data.get_name ());
+                return _("_Import '%s' from system broker").printf (domains.data.get_name ());
             else
                 // Translators: %u here is the number of boxes available for import
-                return ngettext ("Import %u box from system broker",
-                                 "Import %u boxes from system broker",
+                return ngettext ("_Import %u box from system broker",
+                                 "_Import %u boxes from system broker",
                                  num_domains).printf (num_domains);
         }
     }
