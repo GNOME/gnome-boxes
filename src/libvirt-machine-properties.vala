@@ -465,7 +465,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var max_ram = machine.connection.get_node_info ().memory;
 
             var property = add_size_property (ref list,
-                                              _("Memory: "),
+                                              _("_Memory: "),
                                               machine.domain_config.memory * Osinfo.KIBIBYTES,
                                               64 * Osinfo.MEBIBYTES,
                                               max_ram * Osinfo.KIBIBYTES,
@@ -558,7 +558,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             }
 
             var property = add_size_property (ref list,
-                                              _("Maximum Disk Size: "),
+                                              _("Maximum _Disk Size: "),
                                               volume_info.capacity,
                                               min_storage,
                                               max_storage,
