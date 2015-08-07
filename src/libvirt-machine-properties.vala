@@ -691,7 +691,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         box.halign = Gtk.Align.END;
         box.has_tooltip = true;
 
-        var label = new Gtk.Label (_("Run in background"));
+        var label = new Gtk.Label.with_mnemonic (_("_Run in background"));
         label.get_style_context ().add_class ("boxes-property-name-label");
         box.add (label);
         var toggle = new Gtk.Switch ();
@@ -699,6 +699,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
         toggle.halign = Gtk.Align.START;
         box.add (toggle);
+        label.mnemonic_widget = toggle;
 
         var name = machine.name;
         box.tooltip_text = toggle.active? _("'%s' will not be paused automatically.").printf (name) :
