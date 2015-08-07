@@ -48,7 +48,7 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
             int current_row = 1;
             foreach (var property in properties) {
                 if (property.description != null) {
-                    var label_name = new Gtk.Label (property.description);
+                    var label_name = new Gtk.Label.with_mnemonic (property.description);
                     label_name.get_style_context ().add_class ("boxes-property-name-label");
                     label_name.halign = property.description_alignment;
                     label_name.hexpand = false;
@@ -56,6 +56,7 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
                     var widget = property.widget;
                     widget.hexpand = true;
                     grid.attach (widget, 1, current_row, 1, 1);
+                    label_name.mnemonic_widget = widget;
                 } else {
                     var widget = property.widget;
                     widget.hexpand = true;
