@@ -111,7 +111,7 @@ private class Boxes.SizeProperty : Boxes.Property {
                          uint64          step,
                          FormatSizeFlags format_flags) {
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var name_label = new Gtk.Label (name);
+        var name_label = new Gtk.Label.with_mnemonic (name);
         name_label.halign = Gtk.Align.START;
         name_label.get_style_context ().add_class ("boxes-property-name-label");
         box.add (name_label);
@@ -121,6 +121,7 @@ private class Boxes.SizeProperty : Boxes.Property {
         box.add (value_label);
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
+        name_label.mnemonic_widget = scale;
 
         var size_str = format_size (min, format_flags);
         size_str = "<small>" + size_str + "</small>";
