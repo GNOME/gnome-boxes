@@ -125,7 +125,11 @@ private class Boxes.VncDisplay: Boxes.Display {
         display.set_credential (DisplayCredential.PASSWORD, password);
         display.set_credential (DisplayCredential.CLIENTNAME, "boxes");
 
-        display.open_host (host, port.to_string ());
+        if (open_fd != null) {
+            var fd = open_fd ();
+            display.open_fd_with_hostname (fd, host);
+        } else
+            display.open_host (host, port.to_string ());
     }
 
     public override void disconnect_it () {
