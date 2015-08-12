@@ -75,6 +75,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private uint screenshot_id;
     public static const int SCREENSHOT_WIDTH = 180;
     public static const int SCREENSHOT_HEIGHT = 134;
+    public const int CENTERED_EMBLEM_SIZE = 32;
+    public const int EMBLEM_SIZE = 16;
+    public const Gdk.RGBA FRAME_BORDER_COLOR = { 0x3b / 255.0, 0x3c / 255.0, 0x38 / 255.0, 1.0 };
+    public const Gdk.RGBA FRAME_BACKGROUND_COLOR = { 0x2d / 255.0, 0x2d / 255.0, 0x2d / 255.0, 1.0 };
     private static Cairo.Surface grid_surface;
     private bool updating_screenshot;
     private string username;
@@ -259,7 +263,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         create_display_config (uuid);
 
         // This needs to be set after the 'config' prop has been set.
-        thumbnailer = new MachineThumbnailer (this);
+        thumbnailer = new MachineThumbnailer (this,
+                                              SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT,
+                                              CENTERED_EMBLEM_SIZE, EMBLEM_SIZE,
+                                              FRAME_BORDER_COLOR, FRAME_BACKGROUND_COLOR);
     }
 
     protected void load_screenshot () {
