@@ -36,8 +36,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public InstallConfig config;
     public InstallScriptList scripts;
 
-    private string? product_key_format;
-
     private GLib.List<UnattendedFile> unattended_files;
     private GLib.List<UnattendedFile> secondary_unattended_files;
     private UnattendedAvatarFile avatar_file;
@@ -111,8 +109,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         timezone = get_timezone ();
         lang = get_preferred_language ();
         kbd = lang;
-        product_key_format = get_product_key_format ();
 
+        var product_key_format = get_product_key_format ();
         setup_box = new UnattendedSetupBox (this, product_key_format, needs_internet);
         setup_box.notify["ready-to-create"].connect (() => {
             notify_property ("ready-to-create");
