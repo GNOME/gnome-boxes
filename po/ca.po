@@ -9,19 +9,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-06 18:07+0000\n"
-"PO-Revision-Date: 2014-09-07 01:23+0200\n"
-"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-14 19:38+0200\n"
+"PO-Revision-Date: 2015-08-14 15:48+0100\n"
+"Last-Translator: David Medina <opensusecatala@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 1.6.9\n"
 
-#: ../data/gnome-boxes.appdata.xml.in.h:1
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -36,7 +36,7 @@ msgstr ""
 "virtuals. A canvi, el Boxes es centra en que les coses funcionin sense "
 "gaires problemes, ni massa intervenció de l'usuari."
 
-#: ../data/gnome-boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -48,21 +48,22 @@ msgstr ""
 "sistema operatiu preferit, o us cal connectar-vos a una màquina remota (per "
 "exemple, de la vostra feina)."
 
-#: ../data/gnome-boxes.desktop.in.in.h:1
+#: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:106 ../src/main.vala:72
+#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
+#: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
 
-#: ../data/gnome-boxes.desktop.in.in.h:2
+#: ../data/org.gnome.Boxes.desktop.in.in.h:2
 msgid "Virtual machine viewer/manager"
 msgstr "Gestor i visualitzador de màquines virtuals"
 
-#: ../data/gnome-boxes.desktop.in.in.h:3
+#: ../data/org.gnome.Boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
 msgstr "Visualitzeu i utilitzeu màquines virtuals"
 
-#: ../data/gnome-boxes.desktop.in.in.h:4
+#: ../data/org.gnome.Boxes.desktop.in.in.h:4
 msgid "virtual machine;vm;"
 msgstr "màquina virtual;vm;"
 
@@ -114,7 +115,7 @@ msgstr "Nom d'_usuari"
 msgid "_Password"
 msgstr "_Contrasenya"
 
-#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:46
+#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
 msgid "Sign In"
 msgstr "Entra"
 
@@ -122,7 +123,8 @@ msgstr "Entra"
 msgid "_New"
 msgstr "_Nou"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "_Enrere"
 
@@ -135,46 +137,49 @@ msgid "Search"
 msgstr "Cerca"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">No s'ha trobat cap màquina virtual</span></b>"
+msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgstr "<b><span size=\"large\">L'últim crit de virtualització</span></b>"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "Creeu-ne una amb el botó de dalt a l'esquerra."
+msgid "Boxes can be virtual or remote machines."
+msgstr "Les màquines poden ser virtuals o remotes"
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "CPU:"
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr "Premeu només el botó <b>Nou</b> per crear-ne la primera."
 
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "E/S:"
+#: ../data/ui/properties-toolbar.ui.h:1
+msgid "Troubleshooting Log"
+msgstr "Registre de problemes"
 
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "Xarxa:"
+#: ../data/ui/properties-toolbar.ui.h:3
+msgid "_Copy to Clipboard"
+msgstr "_Copia-ho al porta-retalls"
 
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "Força l'aturada"
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "Seleccioneu un dispositiu o un fitxer ISO"
+
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
+msgid "_Cancel"
+msgstr "_Cancel·la"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_Obre"
 
 #: ../data/ui/selectionbar.ui.h:1
+msgid "_Favorite"
+msgstr "_Favorit"
+
+#: ../data/ui/selectionbar.ui.h:2
 msgid "P_ause"
 msgstr "En _pausa"
 
-#: ../data/ui/selectionbar.ui.h:2
+#: ../data/ui/selectionbar.ui.h:3
 msgid "_Delete"
 msgstr "_Suprimeix"
-
-#: ../data/ui/selectionbar.ui.h:3
-msgid "_Properties"
-msgstr "_Propietats"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:336 ../src/libvirt-machine.vala:448
-#: ../src/wizard-source.vala:280
-msgid "_Cancel"
-msgstr "_Cancel·la"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -196,7 +201,8 @@ msgstr "Torna a aquest estat"
 msgid "Rename"
 msgstr "Canvia el nom"
 
-#: ../data/ui/snapshot-list-row.ui.h:3
+#. Delete
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:63
 msgid "Delete"
 msgstr "Suprimeix"
 
@@ -216,11 +222,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instal·lació ràpida"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:266
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
 msgid "Username"
 msgstr "Nom d'usuari"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:267
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
 msgid "Password"
 msgstr "Contrasenya"
 
@@ -236,43 +242,60 @@ msgstr "Clau del producte"
 msgid "Unknown media"
 msgstr "Medi d'instal·lació desconegut"
 
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "Introducció"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "Selecció de l'origen"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "Preparació"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "Configuració"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "Revisió"
-
 #: ../data/ui/wizard-source.ui.h:1
-msgid "Enter URL"
-msgstr "Introduïu un URL"
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Inseriu un mitjà d'instal·lació de sistema operatiu o seleccioneu-ne un a "
+"continuació"
 
 #: ../data/ui/wizard-source.ui.h:2
+msgid "_Enter URL"
+msgstr "_Introduïu un URL"
+
+#: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "▶"
 
-#: ../data/ui/wizard-source.ui.h:3
-msgid "Select a file"
-msgstr "Seleccioneu un fitxer"
-
 #: ../data/ui/wizard-source.ui.h:4
+msgid "_Select a file"
+msgstr "_Seleccioneu un fitxer"
+
+#: ../data/ui/wizard-source.ui.h:5
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Qualsevol de les marques registrades que es mostren a continuació "
+"s'utilitzen simplement per identificar productes de programari que heu "
+"obtingut i pertanyen als seus propietaris respectius."
+
+#: ../data/ui/wizard-source.ui.h:6
 msgid "◀"
 msgstr "◀"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-source.ui.h:7
+msgid "Enter URL"
+msgstr "Introduïu un URL"
+
+#: ../data/ui/wizard-source.ui.h:8
+msgid ""
+"Enter an address for the box you want to add. Addresses can be of "
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+msgstr ""
+"Introduïu una adreça per a la màquina que voleu afegir. Les adreces poden "
+"ser d'imatges d'instal·lació, servidors SPICE i VNC o bé gestors oVirt o "
+"Libvirt."
+
+#: ../data/ui/wizard-source.ui.h:9
+msgid ""
+"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+"somehost:5051, ovirt://host/path</span>"
+msgstr ""
+"<span color=\"grey\">Exemples: http://download.com/image.iso, spice://"
+"somehost:5051, ovirt://host/path</span>"
+
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "Crea una màquina"
 
@@ -288,294 +311,390 @@ msgstr "C_ontinua"
 msgid "_Back"
 msgstr "_Enrere"
 
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "Personalitzeu els recursos"
+
 #: ../data/ui/wizard.ui.h:1
-msgid ""
-"Creating a Box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"La creació d'una màquina us permetrà utilitzar un altre sistema operatiu "
-"directament des de la vostra sessió.\n"
-"\n"
-"Podeu connectar-vos a una màquina existent <b><i>a través de la xarxa</i></"
-"b> o crear una <b><i>màquina virtual</i></b> que s'executi localment."
-
-#: ../data/ui/wizard.ui.h:4
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Inseriu un mitjà d'instal·lació de sistema operatiu o seleccioneu-ne un a "
-"continuació"
-
-#: ../data/ui/wizard.ui.h:5
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Qualsevol de les marques registrades que es mostren a continuació "
-"s'utilitzen simplement per identificar productes de programari que heu "
-"obtingut i pertanyen als seus propietaris respectius."
-
-#: ../data/ui/wizard.ui.h:6
 msgid "Preparing to create new box"
 msgstr "S'està preparant la creació d'una màquina nova"
 
-#: ../data/ui/wizard.ui.h:7
+#: ../data/ui/wizard.ui.h:2
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"Les extensions de virtualització no són disponibles al vostre sistema. Si "
-"els vostre sistema és nou (posterior a 2008), reviseu els paràmetres de la "
-"BIOS per a habilitar-les."
+"Les extensions de virtualització no estan disponibles al vostre sistema.\n"
+"Reviseu els paràmetres de la BIOS per a habilitar-les."
 
-#: ../src/app.vala:95
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: ../src/actions-popover.vala:26
+msgid "Box actions"
+msgstr "Accions de la màquina"
+
+#. Open in new Window
+#: ../src/actions-popover.vala:38
+msgid "Open in New Window"
+msgstr "Obre en una finestra nova"
+
+#. Favorite
+#: ../src/actions-popover.vala:42
+msgid "Remove from Favorites"
+msgstr "Suprimeix dels favorits"
+
+#: ../src/actions-popover.vala:44
+msgid "Add to Favorites"
+msgstr "Afegeix als favorits"
+
+#: ../src/actions-popover.vala:51
+msgid "Force Shutdown"
+msgstr "Força l'aturada"
+
+#. Pause
+#: ../src/actions-popover.vala:57
+msgid "Pause"
+msgstr "Pausa"
+
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:72
+msgid "Properties"
+msgstr "Propietats"
+
+#: ../src/actions-popover.vala:96 ../src/selectionbar.vala:60
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "Ha fallat el fer una pausa a «%s»"
+
+#: ../src/app.vala:103
 msgid "translator-credits"
 msgstr "Pau Iranzo <paugnu@gmail.com>"
 
-#: ../src/app.vala:96
+#: ../src/app.vala:104
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Una aplicació del GNOME 3 senzilla per accedir a sistemes remots o virtuals"
 
-#: ../src/app.vala:115
+#: ../src/app.vala:123
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/app.vala:116
+#: ../src/app.vala:124
 msgid "About"
 msgstr "Quant a"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:125
 msgid "Quit"
 msgstr "Surt"
 
-#: ../src/app.vala:173 ../src/main.vala:9
+#: ../src/app.vala:183 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Mostra el número de versió"
 
-#: ../src/app.vala:175
+#: ../src/app.vala:185
 msgid "Open in full screen"
 msgstr "Obre a pantalla completa"
 
-#: ../src/app.vala:176 ../src/main.vala:10
+#: ../src/app.vala:186 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprova les capacitats de virtualització"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:187
 msgid "Open box with UUID"
 msgstr "Obre la màquina amb l'UUID"
 
-#: ../src/app.vala:178
+#: ../src/app.vala:188
 msgid "Search term"
 msgstr "Paraula de cerca"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:180
+#: ../src/app.vala:190
 msgid "URI to display, broker or installer media"
 msgstr ""
 "URI que es mostrarà, gestor de màquines virtual o instal·lador de medis"
 
-#: ../src/app.vala:191
+#: ../src/app.vala:201
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Una aplicació senzilla per accedir a sistemes remots o virtuals"
 
-#: ../src/app.vala:213
+#: ../src/app.vala:223
 msgid "Too many command line arguments specified.\n"
 msgstr "S'han especificat massa arguments a la línia d'ordres.\n"
 
-#: ../src/app.vala:494 ../src/snapshot-list-row.vala:201
-msgid "_Undo"
-msgstr "_Desfés"
+#: ../src/app.vala:433
+#, c-format
+msgid "Box '%s' installed and ready to use"
+msgstr "La màquina «%s» ja està instal·lada i a punt per fer servir"
 
-#: ../src/app.vala:505
+#: ../src/app.vala:521
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "S'ha suprimit la màquina «%s»"
 
-#: ../src/app.vala:506
+#: ../src/app.vala:522
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "S'ha suprimit %u màquina"
 msgstr[1] "S'han suprimit %u màquines"
 
-#: ../src/collection-view.vala:39
+#: ../src/app.vala:549 ../src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "_Desfés"
+
+#: ../src/collection-view.vala:54
 msgid "New and Recent"
 msgstr "Noves i recents"
 
-#: ../src/display-page.vala:97
-msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(premeu les tecles Ctrl[esquerra]+Alt per treure el focus)"
+#: ../src/display-page.vala:110
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "Premeu les tecles Ctrl[esquerra]+Alt per treure el focus"
 
-#: ../src/installed-media.vala:49
+#: ../src/display-page.vala:112
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr "Premeu les tecles Ctrl[esquerra]+Alt per treure el focus"
+
+#. Translators: Showing size of widget as WIDTHxHEIGHT here.
+#: ../src/display-page.vala:256
+#, c-format
+msgid "%dx%d"
+msgstr "%dx%d"
+
+#: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "Aquest format d'imatge de disc no està implementat."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:50
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:53
-msgid "Name"
-msgstr "Nom"
-
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:64
-msgid "Virtualizer"
-msgstr "Virtualitzador"
-
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:65 ../src/wizard.vala:482
-msgid "URI"
-msgstr "URI"
-
-#: ../src/libvirt-machine-properties.vala:142
-#: ../src/libvirt-machine-properties.vala:147
-msgid "Troubleshooting log"
-msgstr "Registre de problemes"
-
-#: ../src/libvirt-machine-properties.vala:150
-#: ../src/libvirt-machine-properties.vala:168
-msgid "_Save"
-msgstr "De_sa"
-
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Copy to clipboard"
-msgstr "Copia-ho al porta-retalls"
-
-#: ../src/libvirt-machine-properties.vala:152
-msgid "_Close"
-msgstr "Tan_ca"
-
-#: ../src/libvirt-machine-properties.vala:166
-msgid "Save log"
-msgstr "Desa el registre"
-
-#: ../src/libvirt-machine-properties.vala:182
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
-msgid "Error saving: %s"
-msgstr "S'ha produït un error en el desat: %s"
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s usat)</span>"
 
-#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:76
-msgid "Protocol"
-msgstr "Protocol"
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
+#, c-format
+msgid "<small>%s (recommended)</small>"
+msgstr "<small>%s (recomanat)</small>"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:131
+#, c-format
+msgid "<small>%s (maximum)</small>"
+msgstr "<small>%s (màxim)</small>"
+
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Retrocés"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "Envia les combinacions de tecles"
+
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
+msgid "_Name"
+msgstr "_Nom"
+
+#: ../src/libvirt-machine-properties.vala:130
+msgid "IP Address"
+msgstr "Adreça IP"
+
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:67
+msgid "Broker"
+msgstr "Gestor"
+
+#: ../src/libvirt-machine-properties.vala:134
+msgid "Display Protocol"
+msgstr "Mostra el protocol"
+
+#: ../src/libvirt-machine-properties.vala:135
+msgid "Display URI"
+msgstr "Mostra l'URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:244
-#: ../src/libvirt-machine-properties.vala:262
+#: ../src/libvirt-machine-properties.vala:187
+#: ../src/libvirt-machine-properties.vala:205
 msgid "Add support to guest"
 msgstr "Permet-ne l'ús al client"
 
-#: ../src/libvirt-machine-properties.vala:246
+#: ../src/libvirt-machine-properties.vala:189
 msgid "USB device support"
 msgstr "Habilita els dispositius USB"
 
-#: ../src/libvirt-machine-properties.vala:264
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Smartcard support"
 msgstr "Habilita les targetes intel·ligents"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:302
-#: ../src/libvirt-machine-properties.vala:370
+#: ../src/libvirt-machine-properties.vala:259
+#: ../src/libvirt-machine-properties.vala:311
 msgid "empty"
 msgstr "buit"
 
-#. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:312
-#: ../src/libvirt-machine-properties.vala:379
+#. Don't let user eject installer media if it's an express installation or a live media
+#: ../src/libvirt-machine-properties.vala:268
+#: ../src/libvirt-machine-properties.vala:320
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:326
-#: ../src/libvirt-machine-properties.vala:369
-msgid "Select"
-msgstr "Selecciona"
+#: ../src/libvirt-machine-properties.vala:282
+#: ../src/libvirt-machine-properties.vala:310
+msgid "_Select"
+msgstr "_Selecciona"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:329
-#: ../src/libvirt-machine-properties.vala:349
-msgid "Remove"
-msgstr "Suprimeix"
-
-#: ../src/libvirt-machine-properties.vala:333 ../src/wizard-source.vala:277
-msgid "Select a device or ISO file"
-msgstr "Seleccioneu un dispositiu o un fitxer ISO"
-
-#: ../src/libvirt-machine-properties.vala:337 ../src/wizard-source.vala:281
-msgid "_Open"
-msgstr "_Obre"
+#: ../src/libvirt-machine-properties.vala:285
+#: ../src/libvirt-machine-properties.vala:293
+msgid "_Remove"
+msgstr "Sup_rimeix"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:356
+#: ../src/libvirt-machine-properties.vala:300
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Ha fallat la inserció de «%s» com a CD/DVD a «%s»"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:373
+#: ../src/libvirt-machine-properties.vala:314
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Ha fallat l'expulsió del CD/DVD a «%s»"
 
-#: ../src/libvirt-machine-properties.vala:434 ../src/wizard.vala:520
-msgid "Memory"
-msgstr "Memòria"
+#: ../src/libvirt-machine-properties.vala:384
+msgid "CPU"
+msgstr "CPU"
 
-#: ../src/libvirt-machine-properties.vala:497
-#: ../src/libvirt-machine-properties.vala:519
-msgid "Maximum Disk Size"
-msgstr "Espai màxim de disc"
+#. I/O
+#. 100 MiB/s
+#: ../src/libvirt-machine-properties.vala:390
+msgid "I/O"
+msgstr "E/S"
 
-#: ../src/libvirt-machine-properties.vala:510
+#. Network
+#. 1 MiB/s
+#: ../src/libvirt-machine-properties.vala:396
+msgid "Network"
+msgstr "Xarxa"
+
+#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:83
+msgid "_Restart"
+msgstr "_Reinicia"
+
+#: ../src/libvirt-machine-properties.vala:433
+msgid "_Force Shutdown"
+msgstr "_Força l'aturada"
+
+#: ../src/libvirt-machine-properties.vala:447
+msgid "_Troubleshooting Log"
+msgstr "_Registre de problemes"
+
+#: ../src/libvirt-machine-properties.vala:468
+msgid "_Memory: "
+msgstr "_Memòria:"
+
+#: ../src/libvirt-machine-properties.vala:536
+#, c-format
+msgid ""
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+"\">(%s used)</span>"
+msgstr ""
+"<span color=\"grey\">Mida màxima del disc</span>\t\t %s <span color=\"grey"
+"\">(%s usat)</span>"
+
+#: ../src/libvirt-machine-properties.vala:552
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "No teniu prou espai per incrementar la mida màxima del disc."
 
-#: ../src/libvirt-machine.vala:447
-msgid "When you force shutdown, the box may lose data."
-msgstr "La màquina pot perdre dades si en forceu l'aturada."
+#: ../src/libvirt-machine-properties.vala:561
+msgid "Maximum _Disk Size: "
+msgstr "Espai màxim de _disc:"
 
-#: ../src/libvirt-machine.vala:449 ../src/libvirt-machine.vala:604
-msgid "_Shutdown"
-msgstr "_Apaga"
+#: ../src/libvirt-machine-properties.vala:694
+msgid "_Run in background"
+msgstr "_Executa en segon pla"
+
+#: ../src/libvirt-machine-properties.vala:705
+#: ../src/libvirt-machine-properties.vala:708
+#, c-format
+msgid "'%s' will not be paused automatically."
+msgstr "«%s» no es pausarà automàticament."
+
+#: ../src/libvirt-machine-properties.vala:706
+#: ../src/libvirt-machine-properties.vala:709
+#, c-format
+msgid "'%s' will be paused automatically to save resources."
+msgstr "«%s» es paursarà automàticament per estalviar recursos."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:534
+#: ../src/libvirt-machine.vala:578
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "S'està restaurant %s des del disc"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:537
+#: ../src/libvirt-machine.vala:581
 #, c-format
 msgid "Starting %s"
 msgstr "S'està iniciant %s"
 
-#: ../src/libvirt-machine.vala:602
+#: ../src/libvirt-machine.vala:646
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "La màquina «%s» està tardant molt a reiniciar. Voleu forçar-ne l'aturada?"
 
+#: ../src/libvirt-machine.vala:648
+msgid "_Shutdown"
+msgstr "_Apaga"
+
+#: ../src/libvirt-machine.vala:720
+msgid "Installing…"
+msgstr "S'està instal·lant…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/libvirt-machine.vala:722 ../src/wizard-source.vala:82
+msgid "Live"
+msgstr "Proves"
+
+#: ../src/libvirt-machine.vala:724
+msgid "Importing…"
+msgstr "S'està important…"
+
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
-msgid "Import '%s' from system broker"
-msgstr "Importa «%s» del gestor del sistema"
+msgid "_Import '%s' from system broker"
+msgstr "_Importa «%s» del gestor del sistema"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
-msgid "Import %u box from system broker"
-msgid_plural "Import %u boxes from system broker"
-msgstr[0] "Importa %u màquina virtual del gestor del sistema"
-msgstr[1] "Importa %u màquines virtuals del gestor del sistema"
+msgid "_Import %u box from system broker"
+msgid_plural "_Import %u boxes from system broker"
+msgstr[0] "_Importa %u màquina virtual del gestor del sistema"
+msgstr[1] "_Importa %u màquines virtuals del gestor del sistema"
 
 #: ../src/libvirt-system-importer.vala:32
 #, c-format
@@ -590,31 +709,31 @@ msgid_plural "Will import %u boxes from system broker"
 msgstr[0] "S'importarà %u màquina virtual del gestor del sistema"
 msgstr[1] "S'importarà %u màquines virtuals del gestor del sistema"
 
-#: ../src/libvirt-system-importer.vala:51
+#: ../src/libvirt-system-importer.vala:47
 msgid "No boxes to import"
 msgstr "No hi ha cap màquina virtual per importar"
 
-#: ../src/libvirt-system-importer.vala:127
+#: ../src/libvirt-system-importer.vala:121
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "No s'ha pogut trobar un disc adequat per la màquina virtual «%s»"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:140
+#: ../src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "S'està connectant a %s"
 
-#: ../src/machine.vala:159 ../src/machine.vala:580
+#: ../src/machine.vala:203 ../src/machine.vala:591
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Ha fallat la connexió a «%s»"
 
-#: ../src/machine.vala:246
+#: ../src/machine.vala:401
 msgid "Saving…"
 msgstr "S'està desant…"
 
-#: ../src/machine.vala:566
+#: ../src/machine.vala:577
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -623,17 +742,17 @@ msgstr ""
 "No s'ha pogut restaurar «%s» des del disc\n"
 "Voleu provar-ho sense l'estat desat?"
 
-#: ../src/machine.vala:567
+#: ../src/machine.vala:578
 msgid "Restart"
 msgstr "Reinicia"
 
-#: ../src/machine.vala:576
+#: ../src/machine.vala:587
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "No s'ha pogut iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:609
+#: ../src/machine.vala:620
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "Es requereix autenticació per «%s»"
@@ -662,7 +781,7 @@ msgstr "• Hi ha disponible una bateria d'emmagatzematge de màquines: %s\n"
 #: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
-msgstr "• El context de l'SELinux és el per defecte: %s\n"
+msgstr "• El context de l'SELinux és el predeterminat: %s\n"
 
 #: ../src/main.vala:64
 #, c-format
@@ -679,12 +798,12 @@ msgstr "Pàgina d'inici del %s: <%s>.\n"
 msgid "No such file %s"
 msgstr "No s'ha trobat el fitxer %s"
 
-#: ../src/notificationbar.vala:42
+#: ../src/notificationbar.vala:43
 #, c-format
 msgid "Sign In to %s"
 msgstr "Entra a %s"
 
-#: ../src/notificationbar.vala:45
+#: ../src/notificationbar.vala:46
 #, c-format
 msgid "Not connected to %s"
 msgstr "No està connectat a %s"
@@ -693,38 +812,38 @@ msgstr "No està connectat a %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Ha fallat la connexió al gestor de màquines virtual de l'oVirt"
 
-#: ../src/properties.vala:46
-msgid "Login"
-msgstr "Entrada"
+#: ../src/ovirt-machine.vala:68 ../src/remote-machine.vala:68
+msgid "Protocol"
+msgstr "Protocol"
 
-#: ../src/properties.vala:54
-msgid "Display"
-msgstr "Pantalla"
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:70
+#: ../src/wizard.vala:486
+msgid "URI"
+msgstr "URI"
 
-#: ../src/properties.vala:58
-msgid "Devices"
-msgstr "Dispositius"
-
-#: ../src/properties.vala:62
-msgid "Snapshots"
-msgstr "Instantànies"
-
-#: ../src/properties.vala:221
+#: ../src/properties.vala:82
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Els canvis requereixen reiniciar «%s»."
 
-#: ../src/properties.vala:222
-msgid "_Restart"
-msgstr "_Reinicia"
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "General"
 
-#: ../src/selectionbar.vala:63
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "Ha fallat el fer una pausa a «%s»"
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "Dispositius"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "Instantànies"
+
+#: ../src/remote-machine.vala:72
+msgid "_URI"
+msgstr "_URI"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
+#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -744,88 +863,88 @@ msgstr[1] "%d seleccionades"
 msgid "(Click on items to select them)"
 msgstr "(Feu clic als elements per seleccionar-los)"
 
-#: ../src/snapshot-list-row.vala:147
+#: ../src/snapshot-list-row.vala:137
 #, c-format
 msgid "Reverting to %s…"
 msgstr "S'està retornant a %s…"
 
-#: ../src/snapshot-list-row.vala:163
+#: ../src/snapshot-list-row.vala:155
 msgid "Failed to apply snapshot"
 msgstr "No s'ha pogut aplicar l'instantània"
 
-#: ../src/snapshot-list-row.vala:181
+#: ../src/snapshot-list-row.vala:172
 #, c-format
 msgid "Snapshot \"%s\" deleted."
 msgstr "S'ha suprimit la instantània «%s»."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:61
+msgid "No snapshots created yet. Create one using the button below."
+msgstr ""
+"Encara no s'ha creat cap instantània. Creeu-ne una usant el botó de sota."
+
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
 msgstr "S'està creant una instantània nova…"
 
-#: ../src/snapshots-property.vala:113
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "No s'ha pogut crear una instantània de %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:33
+#: ../src/spice-display.vala:36
 msgid "Unknown"
 msgstr "Desconeguda"
 
-#: ../src/spice-display.vala:55
-#, c-format
-msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr "Ha fallat la redirecció automàtica del dispositiu USB «%s» a «%s»"
-
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:345
+#: ../src/spice-display.vala:54 ../src/spice-display.vala:363
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Ha fallat la redirecció del dispositiu USB «%s» a «%s»"
 
-#: ../src/spice-display.vala:296
-msgid "Share clipboard"
+#: ../src/spice-display.vala:310
+msgid "Share Clipboard"
 msgstr "Comparteix el porta-retalls"
 
-# «Client» per 'guest' i «Amfitrió» per 'Host' és el que fem servir al VirtualBox
-#: ../src/spice-display.vala:302
-msgid "Resize guest"
-msgstr "Canvia la mida del client"
-
-#: ../src/spice-display.vala:311
-msgid "Redirect new USB devices"
-msgstr "Redirecciona els dispositius USB nous"
-
-#: ../src/spice-display.vala:331
+#: ../src/spice-display.vala:376
 msgid "USB devices"
 msgstr "Dispositius USB"
 
-#: ../src/spice-display.vala:388 ../src/wizard.vala:292 ../src/wizard.vala:298
-#: ../src/wizard.vala:305
+#: ../src/spice-display.vala:519 ../src/wizard.vala:309 ../src/wizard.vala:316
 msgid "Invalid URI"
 msgstr "URI no vàlid"
 
-#: ../src/spice-display.vala:398
+#: ../src/spice-display.vala:529
 msgid "The port must be specified once"
 msgstr "El port només s'ha d'especificar una vegada"
 
-#: ../src/spice-display.vala:407
+#: ../src/spice-display.vala:538
 msgid "Missing port in Spice URI"
 msgstr "Manca el port a l'URI d'Spice"
 
-#: ../src/unattended-installer.vala:454
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: ../src/unattended-installer.vala:190
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr ""
+"S'ha produït un error durant la preparació de la instal·lació. S'ha "
+"inhabilitat la instal·lació exprés."
+
+#: ../src/unattended-installer.vala:467
 msgid "Downloading device drivers…"
 msgstr "S'estan baixant els controladors del dispositiu…"
 
-#: ../src/unattended-setup-box.vala:46
+#: ../src/unattended-setup-box.vala:52
 msgid "no password"
 msgstr "sense contrasenya"
 
-#: ../src/unattended-setup-box.vala:99
+#: ../src/unattended-setup-box.vala:105
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "L'instal·lació exprés de %s requereix una connexió a Internet."
 
-#: ../src/util-app.vala:198
+#: ../src/util-app.vala:242
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -835,11 +954,11 @@ msgstr ""
 "executeu:\n"
 "%s"
 
-#: ../src/util-app.vala:202
+#: ../src/util-app.vala:246
 msgid "SELinux not installed?"
 msgstr "No està instal·lat l'SELinux?"
 
-#: ../src/util-app.vala:284
+#: ../src/util-app.vala:328
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -848,7 +967,7 @@ msgstr ""
 "«gnome-boxes». Assegureu-vos que l'ordre «virsh -c qemu:///session pool-"
 "dumpxml gnome-boxes» funciona."
 
-#: ../src/util-app.vala:289
+#: ../src/util-app.vala:333
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -857,7 +976,7 @@ msgstr ""
 "La libvirt té definit el directori %s com la bateria d'emmagatzematge del "
 "GNOME Boxes, però el directori no existeix"
 
-#: ../src/util-app.vala:293
+#: ../src/util-app.vala:337
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -865,7 +984,7 @@ msgstr ""
 "La libvirt té definit el directori %s com la bateria d'emmagatzematge del "
 "GNOME Boxes, però no és un directori"
 
-#: ../src/util-app.vala:297
+#: ../src/util-app.vala:341
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -884,50 +1003,21 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:495
+#: ../src/vm-configurator.vala:557
 msgid "Incapable host system"
 msgstr "El sistema amfitrió no pot"
 
-#: ../src/vm-creator.vala:48
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr ""
-"S'ha produït un error durant la preparació de la instal·lació. S'ha "
-"inhabilitat la instal·lació exprés."
-
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:170
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "S'ha suprimit la màquina de proves «%s» automàticament."
 
-#: ../src/vm-creator.vala:188
-msgid "Installing…"
-msgstr "S'està instal·lant…"
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:192 ../src/wizard-source.vala:82
-msgid "Live"
-msgstr "Proves"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:331
-#, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "%d%% instal·lat"
-msgstr[1] "%d%% instal·lat"
-
-#: ../src/vm-importer.vala:36
-msgid "Importing…"
-msgstr "S'està important…"
-
-#: ../src/vm-importer.vala:53
+#: ../src/vm-importer.vala:46
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "S'ha produït un error en importar la màquina des del fitxer «%s»."
 
-#: ../src/vnc-display.vala:145
+#: ../src/vnc-display.vala:149
 msgid "Read-only"
 msgstr "Només de lectura"
 
@@ -945,97 +1035,179 @@ msgstr "Sistema x86 de 64 bits"
 msgid " from %s"
 msgstr " de %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:6
+msgid "Source Selection"
+msgstr "Selecció de l'origen"
+
+#: ../src/wizard-toolbar.vala:7
+msgid "Box Preparation"
+msgstr "Preparació de la màquina"
+
+#: ../src/wizard-toolbar.vala:8
+msgid "Box Setup"
+msgstr "Configuració de la màquina"
+
+#: ../src/wizard-toolbar.vala:9
+msgid "Review"
+msgstr "Revisió"
+
+#: ../src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "S'ha produït un error en crear la màquina"
 
-#: ../src/wizard.vala:172
-msgid "Please enter desktop or collection URI"
-msgstr "Introduïu un URI d'escriptori o d'una col·lecció"
-
-#: ../src/wizard.vala:178
-msgid "Will add boxes for all systems available from this account."
-msgstr ""
-"Afegirà totes les màquines per als sistemes disponibles en aquest compte."
-
-#: ../src/wizard.vala:181
-msgid "Will add a single box."
-msgstr "Afegirà una màquina única."
-
-#. ignore any parsing error
-#: ../src/wizard.vala:187
-msgid "Desktop Access"
-msgstr "Accés d'escriptori"
-
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:268
 msgid "Empty location"
 msgstr "Ubicació buida"
 
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:291
+msgid "Unsupported file"
+msgstr "Fitxer no admès"
+
+#: ../src/wizard.vala:297
+msgid "Invalid file"
+msgstr "Fitxer no vàlid"
+
+#: ../src/wizard.vala:333
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "El protocol «%s» no és compatible"
 
-#: ../src/wizard.vala:328 ../src/wizard.vala:389
+#: ../src/wizard.vala:339 ../src/wizard.vala:408
 msgid "Unknown installer media"
 msgstr "Es desconeix  el medi d'instal·lació"
 
-#: ../src/wizard.vala:329 ../src/wizard.vala:390
+#: ../src/wizard.vala:340 ../src/wizard.vala:409
 msgid "Analyzing…"
 msgstr "S'està analitzant…"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:354
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "No s'ha pogut analitzar el medi d'instal·lació. Potser el medi "
 "d'instal·lació és corromput o incomplet."
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:462
 msgid "Box setup failed"
 msgstr "S'ha produït un error en la configuració de la màquina"
 
-#: ../src/wizard.vala:472
+#: ../src/wizard.vala:476
 msgid "Boxes will create a new box with the following properties:"
 msgstr "El Boxes crearà una màquina nova amb les propietats següents:"
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:481
 msgid "Type"
 msgstr "Tipus"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:484
 msgid "Host"
 msgstr "Amfitrió"
 
-#: ../src/wizard.vala:491 ../src/wizard.vala:502
+#: ../src/wizard.vala:495 ../src/wizard.vala:506
 msgid "Port"
 msgstr "Port"
 
-#: ../src/wizard.vala:493
+#: ../src/wizard.vala:497
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: ../src/wizard.vala:507
+#: ../src/wizard.vala:511
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Afegirà màquines per a tots els sistemes disponibles en aquest compte:"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "Memòria"
+
+#: ../src/wizard.vala:533
 msgid "Disk"
 msgstr "Disc"
 
-#: ../src/wizard.vala:529
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: ../src/wizard.vala:535
 #, c-format
 msgid "%s maximum"
 msgstr "màxim %s"
 
-#: ../src/wizard.vala:593
+#: ../src/wizard.vala:598
 msgid "Downloading media…"
 msgstr "S'està baixant el medi…"
 
-#: ../src/wizard.vala:603
+#: ../src/wizard.vala:608
 msgid "Download failed."
 msgstr "La baixada ha fallat."
 
-#: ../src/wizard.vala:714
+#: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Personalitza…"
+
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "Creeu-ne una amb el botó de dalt a l'esquerra."
+
+#~ msgid "Net:"
+#~ msgstr "Xarxa:"
+
+#~ msgid "Introduction"
+#~ msgstr "Introducció"
+
+#~ msgid ""
+#~ "Creating a Box will allow you to use another operating system directly "
+#~ "from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or "
+#~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "La creació d'una màquina us permetrà utilitzar un altre sistema operatiu "
+#~ "directament des de la vostra sessió.\n"
+#~ "\n"
+#~ "Podeu connectar-vos a una màquina existent <b><i>a través de la xarxa</"
+#~ "i></b> o crear una <b><i>màquina virtual</i></b> que s'executi localment."
+
+#~ msgid "Virtualizer"
+#~ msgstr "Virtualitzador"
+
+#~ msgid "_Save"
+#~ msgstr "De_sa"
+
+#~ msgid "_Close"
+#~ msgstr "Tan_ca"
+
+#~ msgid "Save log"
+#~ msgstr "Desa el registre"
+
+#~ msgid "Error saving: %s"
+#~ msgstr "S'ha produït un error en el desat: %s"
+
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "La màquina pot perdre dades si en forceu l'aturada."
+
+#~ msgid "Login"
+#~ msgstr "Entrada"
+
+#~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
+#~ msgstr "Ha fallat la redirecció automàtica del dispositiu USB «%s» a «%s»"
+
+# «Client» per 'guest' i «Amfitrió» per 'Host' és el que fem servir al VirtualBox
+#~ msgid "Resize guest"
+#~ msgstr "Canvia la mida del client"
+
+#~ msgid "Redirect new USB devices"
+#~ msgstr "Redirecciona els dispositius USB nous"
+
+#~ msgid "%d%% Installed"
+#~ msgid_plural "%d%% Installed"
+#~ msgstr[0] "%d%% instal·lat"
+#~ msgstr[1] "%d%% instal·lat"
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "Introduïu un URI d'escriptori o d'una col·lecció"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "Afegirà totes les màquines per als sistemes disponibles en aquest compte."
+
+#~ msgid "Will add a single box."
+#~ msgstr "Afegirà una màquina única."
+
+#~ msgid "Desktop Access"
+#~ msgstr "Accés d'escriptori"
