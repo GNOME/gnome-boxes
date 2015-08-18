@@ -53,15 +53,15 @@ private class Boxes.App: Gtk.Application {
         add_action (action);
 
         action = new GLib.SimpleAction ("select-all", null);
-        action.activate.connect (() => { main_window.view.select (SelectionCriteria.ALL); });
+        action.activate.connect (() => { main_window.view.select_by_criteria (SelectionCriteria.ALL); });
         add_action (action);
 
         action = new GLib.SimpleAction ("select-running", null);
-        action.activate.connect (() => { main_window.view.select (SelectionCriteria.RUNNING); });
+        action.activate.connect (() => { main_window.view.select_by_criteria (SelectionCriteria.RUNNING); });
         add_action (action);
 
         action = new GLib.SimpleAction ("select-none", null);
-        action.activate.connect (() => { main_window.view.select (SelectionCriteria.NONE); });
+        action.activate.connect (() => { main_window.view.select_by_criteria (SelectionCriteria.NONE); });
         add_action (action);
 
         action = new GLib.SimpleAction ("help", null);

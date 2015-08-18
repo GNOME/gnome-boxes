@@ -324,14 +324,14 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.UI {
         show_all ();
     }
 
-    public void select (SelectionCriteria selection) {
+    public void select_by_criteria (SelectionCriteria criteria) {
         window.selection_mode = true;
 
         model_filter.foreach ( (filter_model, filter_path, filter_iter) => {
             Gtk.TreeIter iter;
             model_filter.convert_iter_to_child_iter (out iter, filter_iter);
             bool selected;
-            switch (selection) {
+            switch (criteria) {
             default:
             case SelectionCriteria.ALL:
                 selected = true;
