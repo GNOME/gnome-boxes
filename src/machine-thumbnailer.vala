@@ -20,9 +20,7 @@ private class Boxes.MachineThumbnailer: Object {
 
     public MachineThumbnailer (Machine machine) {
         this.machine = machine;
-    }
 
-    construct {
         machine.notify["pixbuf"].connect (() => {
             update_thumbnail ();
         });
