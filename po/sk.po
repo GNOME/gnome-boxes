@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-15 06:18+0000\n"
-"PO-Revision-Date: 2015-08-15 10:52+0200\n"
+"POT-Creation-Date: 2015-08-19 06:17+0000\n"
+"PO-Revision-Date: 2015-08-19 13:04+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -116,6 +116,18 @@ msgstr "_Heslo"
 #: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
 msgid "Sign In"
 msgstr "Prihlásiť sa"
+
+#: ../data/ui/collection-filter-switcher.ui.h:1
+msgid "All"
+msgstr "Všetky"
+
+#: ../data/ui/collection-filter-switcher.ui.h:2
+msgid "Local"
+msgstr "Miestne"
+
+#: ../data/ui/collection-filter-switcher.ui.h:3
+msgid "Remote"
+msgstr "Vzdialené"
 
 #: ../data/ui/collection-toolbar.ui.h:1
 msgid "_New"
@@ -225,11 +237,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Rýchla inštalácia"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Používateľské meno"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Heslo"
 
@@ -371,82 +383,82 @@ msgstr "Vlastnosti"
 msgid "Pausing '%s' failed"
 msgstr "Pozastavenie boxu „%s“ zlyhalo"
 
-#: ../src/app.vala:103
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
-#: ../src/app.vala:104
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikácia pre GNOME 3 na prístup k vzdialeným alebo virtuálnym "
 "systémom"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:121
 msgid "Help"
 msgstr "Pomocník"
 
-#: ../src/app.vala:124
+#: ../src/app.vala:122
 msgid "About"
 msgstr "O programe"
 
-#: ../src/app.vala:125
+#: ../src/app.vala:123
 msgid "Quit"
 msgstr "Ukončiť"
 
 # PK: tuto pockame na ML, ja by som dal Zobrazi cislo verzie
-#: ../src/app.vala:183 ../src/main.vala:9
+#: ../src/app.vala:181 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazí číslo verzie"
 
 # cmd tooltip
-#: ../src/app.vala:185
+#: ../src/app.vala:183
 msgid "Open in full screen"
 msgstr "Otvorí v režime celej obrazovky"
 
 # cmd tooltip
-#: ../src/app.vala:186 ../src/main.vala:10
+#: ../src/app.vala:184 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Skontroluje virtualizačné schopnosti"
 
 # cmd tooltip
-#: ../src/app.vala:187
+#: ../src/app.vala:185
 msgid "Open box with UUID"
 msgstr "Otvorí box s UUID"
 
 # cmd tooltip
-#: ../src/app.vala:188
+#: ../src/app.vala:186
 msgid "Search term"
 msgstr "Vyhľadá výraz"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=695547
 # cmd tooltip
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:190
+#: ../src/app.vala:188
 msgid "URI to display, broker or installer media"
 msgstr ""
 "URI počítača, ktoré sa zobrazí, správca virtualizácie alebo inštalačný nosič"
 
-#: ../src/app.vala:201
+#: ../src/app.vala:199
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Jednoduchá aplikácia na prístup k vzdialeným alebo virtuálnym strojom"
 
-#: ../src/app.vala:223
+#: ../src/app.vala:221
 msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
-#: ../src/app.vala:433
+#: ../src/app.vala:431
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Box „%s“ je nainštalovaný a pripravený na použitie"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: ../src/app.vala:521
+#: ../src/app.vala:519
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:520
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -454,12 +466,12 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: ../src/app.vala:549 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "V_rátiť"
 
 # PK: Nemysli sa tu mnozne cislo? akoze Nove a nedavne?
-#: ../src/collection-view.vala:54
+#: ../src/collection-view.vala:56
 msgid "New and Recent"
 msgstr "Nové a nedávne"
 
@@ -535,7 +547,7 @@ msgstr "_Názov"
 msgid "IP Address"
 msgstr "Adresa IP"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:67
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:70
 msgid "Broker"
 msgstr "Správca virtualizácie"
 
@@ -676,41 +688,46 @@ msgid "'%s' will be paused automatically to save resources."
 msgstr "Box „%s“ bude automaticky pozastavený, aby ušetril prostriedky."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:578
+#: ../src/libvirt-machine.vala:589
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje sa %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:581
+#: ../src/libvirt-machine.vala:592
 #, c-format
 msgid "Starting %s"
 msgstr "Spúšťa sa %s"
 
-#: ../src/libvirt-machine.vala:646
+#: ../src/libvirt-machine.vala:657
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Reštartovanie boxu „%s“ trvá príliš dlho. Chcete vynútiť jeho vypnutie?"
 
-#: ../src/libvirt-machine.vala:648
+#: ../src/libvirt-machine.vala:659
 msgid "_Shutdown"
 msgstr "_Vypnúť"
 
-#: ../src/libvirt-machine.vala:720
+#: ../src/libvirt-machine.vala:731
 msgid "Installing…"
 msgstr "Inštaluje sa…"
 
 # DK: ide o Live distribuciu. pravdepodobne neprekladame
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:722 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:733 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:724
+#: ../src/libvirt-machine.vala:735
 msgid "Importing…"
 msgstr "Importuje sa…"
+
+#: ../src/libvirt-machine.vala:739 ../src/ovirt-machine.vala:91
+#, c-format
+msgid "host: %s"
+msgstr "hostiteľ: %s"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -750,21 +767,21 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Zlyhalo nájdenie vhodného disku na importovanie pre box „%s“"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:181
+#: ../src/machine.vala:191
 #, c-format
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
-#: ../src/machine.vala:203 ../src/machine.vala:591
+#: ../src/machine.vala:213 ../src/machine.vala:601
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
 
-#: ../src/machine.vala:401
+#: ../src/machine.vala:411
 msgid "Saving…"
 msgstr "Ukladá sa…"
 
-#: ../src/machine.vala:577
+#: ../src/machine.vala:587
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -773,17 +790,17 @@ msgstr ""
 "Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:588
 msgid "Restart"
 msgstr "Reštartovať"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:597
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Zlyhalo spustenie boxu „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:620
+#: ../src/machine.vala:630
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "Virtuálny stroj „%s“ vyžaduje overenie totožnosti"
@@ -845,11 +862,11 @@ msgstr "Nepripojené k %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Pripojenie k správcovi virtualizácie oVirt zlyhalo"
 
-#: ../src/ovirt-machine.vala:68 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:71 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:70
 #: ../src/wizard.vala:486
 msgid "URI"
 msgstr "URI"
@@ -960,13 +977,13 @@ msgstr "V URI systému Spice chýba port"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:190
+#: ../src/unattended-installer.vala:188
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Počas prípravy inštalácie sa vyskytla chyba. Rýchla inštalácia bude zakázaná."
 
-#: ../src/unattended-installer.vala:467
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "Preberajú sa ovládače zariadenia…"
 
