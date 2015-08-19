@@ -14,12 +14,12 @@ private class Boxes.MachineThumbnailer: Object {
     public const int SMALL_EMBLEM_SIZE = 16;
     public const int EMBLEM_PADDING = 8;
 
-    public weak Machine machine { get; construct; }
+    public weak Machine machine { get; private set; }
 
     public Gdk.Pixbuf thumbnail { get; private set; }
 
     public MachineThumbnailer (Machine machine) {
-        Object (machine: machine);
+        this.machine = machine;
     }
 
     construct {
