@@ -1,23 +1,23 @@
 # Slovak translation for gnome-boxes.
 # Copyright (C) 2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-boxes package.
-# Dušan Kazik <prescott66@gmail.com>, 2012, 2013.
+# Dušan Kazik <prescott66@gmail.com>, 2012, 2013, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-19 06:17+0000\n"
-"PO-Revision-Date: 2015-08-19 13:04+0200\n"
+"POT-Creation-Date: 2015-08-24 06:17+0000\n"
+"PO-Revision-Date: 2015-08-24 16:40+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
-"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"Language-Team: slovenčina <>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -48,7 +48,7 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
+#: ../src/app-window.vala:126 ../src/app-window.vala:225 ../src/main.vala:72
 #: ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
@@ -143,8 +143,16 @@ msgstr "Späť"
 msgid "Select Items"
 msgstr "Vybrať položky"
 
+#: ../data/ui/collection-toolbar.ui.h:4
+msgid "List view"
+msgstr "Zobrazenie zoznamu"
+
+#: ../data/ui/collection-toolbar.ui.h:5
+msgid "Grid view"
+msgstr "Zobrazenie mriežky"
+
 # button
-#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Vyhľadať"
 
@@ -766,22 +774,46 @@ msgstr "Žiadne boxy na importovanie"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Zlyhalo nájdenie vhodného disku na importovanie pre box „%s“"
 
+#: ../src/list-view-row.vala:124
+#| msgid "Not connected to %s"
+msgid "connected"
+msgstr "pripojený"
+
+#: ../src/list-view-row.vala:124
+#| msgid "%d selected"
+#| msgid_plural "%d selected"
+msgid "disconnected"
+msgstr "odpojený"
+
+#: ../src/list-view-row.vala:131
+msgid "running"
+msgstr "spustený"
+
+#: ../src/list-view-row.vala:138
+#| msgid "Pause"
+msgid "paused"
+msgstr "pozastavený"
+
+#: ../src/list-view-row.vala:144
+msgid "powered off"
+msgstr "vypnutý"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:191
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
-#: ../src/machine.vala:213 ../src/machine.vala:601
+#: ../src/machine.vala:217 ../src/machine.vala:608
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
 
-#: ../src/machine.vala:411
+#: ../src/machine.vala:418
 msgid "Saving…"
 msgstr "Ukladá sa…"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:594
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -790,17 +822,17 @@ msgstr ""
 "Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
-#: ../src/machine.vala:588
+#: ../src/machine.vala:595
 msgid "Restart"
 msgstr "Reštartovať"
 
-#: ../src/machine.vala:597
+#: ../src/machine.vala:604
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Zlyhalo spustenie boxu „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:630
+#: ../src/machine.vala:637
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "Virtuálny stroj „%s“ vyžaduje overenie totožnosti"
