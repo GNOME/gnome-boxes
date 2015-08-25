@@ -74,7 +74,8 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
             for (var i = 0; i < PropertiesPage.LAST; i++) {
                 var page = get_data<PropertiesPageWidget> (@"boxes-property-$i");
-                reboot_required |= page.flush_changes ();
+                if (page != null)
+                    reboot_required |= page.flush_changes ();
             }
 
             var machine = window.current_item as Machine;
