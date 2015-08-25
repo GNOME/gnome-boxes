@@ -109,13 +109,6 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     private void update_info () {
-        if (machine is RemoteMachine) {
-            var remote_machine = machine as RemoteMachine;
-            info_label.label = remote_machine.source.uri;
-
-            return;
-        }
-
         info_label.label = machine.info;
     }
 
