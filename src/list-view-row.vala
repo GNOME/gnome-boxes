@@ -106,6 +106,8 @@ private class Boxes.ListViewRow: Gtk.Box {
 
     private void update_info () {
         info_label.label = machine.info;
+
+        info_label.visible = (info_label.label != "");
     }
 
     private void update_state () {
