@@ -74,15 +74,15 @@ private class Boxes.ListViewRow: Gtk.Box {
 
         machine.config.notify["categories"].connect (update_favorite);
         machine.notify["under-construction"].connect (update_thumbnail);
-        machine.notify["name"].connect (update_name);
         machine.notify["info"].connect (update_info);
         machine.notify["state"].connect (update_state);
 
         update_thumbnail ();
-        update_name ();
         update_favorite ();
         update_info ();
         update_state ();
+
+        machine.bind_property ("name", machine_name, "label", BindingFlags.SYNC_CREATE);
     }
 
     private void update_thumbnail () {
@@ -102,10 +102,6 @@ private class Boxes.ListViewRow: Gtk.Box {
             favorite.set_from_icon_name ("starred-symbolic", Gtk.IconSize.MENU);
         else
             favorite.clear ();
-    }
-
-    private void update_name () {
-        machine_name.label = machine.name;
     }
 
     private void update_info () {
