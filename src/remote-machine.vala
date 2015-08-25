@@ -107,7 +107,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             return;
 
         var uri = Xml.URI.parse (source.uri);
-        if (uri.server == name) // By default server is chosen as name
+        if (uri == null || uri.server == name) // By default server is chosen as name
             return;
 
         info = uri.server;
