@@ -10,7 +10,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     [GtkChild]
     private Gtk.ListBox list_box;
 
-    private ListStore store;
     private GLib.List<CollectionItem> hidden_items;
     private HashTable<CollectionItem, ItemConnections> items_connections;
 
@@ -55,7 +54,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         hidden_items = new GLib.List<CollectionItem> ();
         items_connections = new HashTable<CollectionItem, ItemConnections> (direct_hash, direct_equal);
 
-        setup_store ();
         setup_list_box ();
 
         filter = new CollectionFilter ();
@@ -112,37 +110,42 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             return;
         }
 
-        store.append (item);
+        add_row (item);
         items_connections[item] = new ItemConnections (this, machine);
 
         item.set_state (window.ui_state);
     }
 
+    private void add_row (CollectionItem item) {
+        var box_row = new Gtk.ListBoxRow ();
+        var view_row = new ListViewRow (item);
+
+        view_row.notify["selected"].connect (() => {
+            propagate_view_row_selection (view_row);
+        });
+
+        box_row.visible = true;
+        view_row.visible = true;
+
+        box_row.add (view_row);
+        list_box.add (box_row);
+    }
+
     public void remove_item (CollectionItem item) {
         hidden_items.remove (item);
         items_connections.remove (item);
+        remove_row (item);
+    }
 
-        uint index = 0;
-        while (index < store.get_n_items () && store.get_item (index) != item)
-            index++;
+    private void remove_row (CollectionItem item) {
+        foreach_row ((box_row) => {
+            var view_row = box_row.get_child () as ListViewRow;
+            if (view_row == null)
+                return;
 
-        if (index >= store.get_n_items ()) {
-            debug ("item not in view or already removed");
-
-            return;
-        }
-
-        // FIXME: Dirty hack to workaround this bug in GTK+: https://bugzilla.gnome.org/show_bug.cgi?id=752615
-        // Set the default sorting and filtering functions to make the model's and the view's orders match before
-        // removing the element, then set the regular sorting and filtering functions back.
-        list_box.set_sort_func (default_sort);
-        list_box.set_filter_func (default_filter);
-
-        store.remove (index);
-
-        // FIXME: Workaround for bug #752615 (see above).
-        list_box.set_sort_func (model_sort);
-        list_box.set_filter_func (model_filter);
+            if (view_row.item == item)
+                list_box.remove (box_row);
+        });
     }
 
     public void select_by_criteria (SelectionCriteria criteria) {
@@ -185,37 +188,20 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     }
 
     public void activate_first_item () {
-        if (store.get_n_items () >= 1) {
-            var box_row = list_box.get_row_at_index (0);
-            list_box.row_activated (box_row);
-        }
-    }
-
-    private void setup_store () {
-        store = new ListStore (typeof (CollectionItem));
-
-        store.items_changed.connect (() => {
-            App.app.notify_property ("selected-items");
+        Gtk.ListBoxRow first_row = null;
+        foreach_row ((box_row) => {
+            if (first_row == null)
+                first_row = box_row;
         });
 
-        store.items_changed.connect (() => {
-            App.app.notify_property ("selected-items");
-        });
+        if (first_row == null)
+            list_box.row_activated (first_row);
     }
 
     private void setup_list_box () {
         list_box.selection_mode = Gtk.SelectionMode.NONE;
         list_box.set_sort_func (model_sort);
         list_box.set_filter_func (model_filter);
-
-        list_box.bind_model (store, (object) => {
-            var view_row = new ListViewRow (object as CollectionItem);
-            view_row.notify["selected"].connect (() => {
-                propagate_view_row_selection (view_row);
-            });
-
-            return view_row;
-        });
 
         list_box.row_activated.connect ((box_row) => {
             if (window.selection_mode)
@@ -247,28 +233,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
             func (box_row);
         });
-    }
-
-    // FIXME: Part of the workaround for this bug in GTK+: https://bugzilla.gnome.org/show_bug.cgi?id=752615
-    // Sort the items in the same order than in the model.
-    private int default_sort (Gtk.ListBoxRow box_row1, Gtk.ListBoxRow box_row2) {
-            var item1 = get_item_for_row (box_row1);
-            uint pos1 = 0;
-            while (pos1 < store.get_n_items () && store.get_item (pos1) != item1)
-                pos1++;
-
-            var item2 = get_item_for_row (box_row2);
-            uint pos2 = 0;
-            while (pos2 < store.get_n_items () && store.get_item (pos2) != item2)
-                pos2++;
-
-            return ((pos1 > pos2) ? 1 : 0) - ((pos1 < pos2) ? 1 : 0);
-    }
-
-    // FIXME: Part of the workaround for this bug in GTK+: https://bugzilla.gnome.org/show_bug.cgi?id=752615
-    // Show all items.
-    private bool default_filter (Gtk.ListBoxRow box_row) {
-        return true;
     }
 
     private int model_sort (Gtk.ListBoxRow box_row1, Gtk.ListBoxRow box_row2) {
