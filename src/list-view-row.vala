@@ -105,9 +105,10 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     private void update_info () {
-        info_label.label = machine.info;
+        var info = (machine.info != null && machine.info != "")? "<small>" + machine.info + "</small>": "";
+        info_label.label = info;
 
-        info_label.visible = (info_label.label != "");
+        info_label.visible = (info != "");
     }
 
     private void update_state () {
