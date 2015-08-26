@@ -10,6 +10,8 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     [GtkChild]
     private Gtk.ListBox list_box;
 
+    private Gtk.SizeGroup size_group;
+
     private GLib.List<CollectionItem> hidden_items;
     private HashTable<CollectionItem, ItemConnections> items_connections;
 
@@ -56,6 +58,7 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
         setup_list_box ();
 
+        size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.VERTICAL);
         filter = new CollectionFilter ();
         filter.notify["text"].connect (() => {
             list_box.invalidate_filter ();
@@ -118,6 +121,7 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
     private void add_row (CollectionItem item) {
         var box_row = new Gtk.ListBoxRow ();
+        size_group.add_widget (box_row);
         var view_row = new ListViewRow (item);
 
         view_row.notify["selected"].connect (() => {
@@ -143,8 +147,10 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             if (view_row == null)
                 return;
 
-            if (view_row.item == item)
+            if (view_row.item == item) {
                 list_box.remove (box_row);
+                size_group.remove_widget (box_row);
+            }
         });
     }
 
