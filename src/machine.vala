@@ -312,10 +312,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         try {
             yield save_real ();
         } finally {
-            this.info = info;
+            saving = false;
+            update_info ();
         }
-        saving = false;
-        update_info ();
     }
 
     public void schedule_autosave () {
