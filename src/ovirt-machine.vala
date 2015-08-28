@@ -58,8 +58,6 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         } catch (GLib.Error e) {
             throw new Boxes.Error.INVALID ("Error opening display: %s", e.message);
         }
-
-        status = name;
     }
 
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {

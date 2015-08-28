@@ -46,8 +46,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             show_display ();
             display.set_enable_audio (true);
         }
-
-        status = name;
     }
 
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {

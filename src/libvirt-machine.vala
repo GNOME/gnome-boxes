@@ -95,8 +95,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             show_display ();
             display.set_enable_audio (true);
         }
-
-        status = name;
     }
 
     struct MachineStat {

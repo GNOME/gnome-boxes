@@ -11,7 +11,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public MachineThumbnailer thumbnailer { get; private set; }
     public bool stay_on_display;
     public string? info { get; protected set; }
-    public string status { get; set; }
+    public string? status { get; set; }
     public virtual bool suspend_at_exit { get { return false; } }
 
     public virtual bool can_save { get { return false; } }
@@ -255,7 +255,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 set_screenshot_enable (true);
         });
 
-        status = this.name;
         notify["name"].connect (() => {
             status = this.name;
         });
