@@ -255,10 +255,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 set_screenshot_enable (true);
         });
 
-        notify["name"].connect (() => {
-            status = this.name;
-        });
-
         create_display_config (uuid);
 
         // This needs to be set after the 'config' prop has been set.
@@ -564,7 +560,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
+    private GLib.Binding? name_status_bind;
+
     private void ui_state_changed () {
+        if (name_status_bind != null) {
+            name_status_bind.unbind ();
+            name_status_bind = null;
+            status = null;
+        }
+
         switch (ui_state) {
         case UIState.CREDS:
             window.below_bin.set_visible_child_name ("connecting-page");
@@ -574,6 +578,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         case Boxes.UIState.DISPLAY:
             if (previous_ui_state == UIState.PROPERTIES)
                 window.below_bin.set_visible_child_name ("display-page");
+            name_status_bind = bind_property ("name", this, "status", BindingFlags.SYNC_CREATE);
 
             break;
 
