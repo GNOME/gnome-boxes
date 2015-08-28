@@ -167,11 +167,7 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI
         });
         item.set_data<ulong> ("name_id", name_id);
 
-        var info_id = machine.notify["info"].connect (() => {
-            // apparently iter is stable after insertion/removal/sort
-            store.set (iter, ModelColumns.INFO, machine.info);
-            queue_draw ();
-        });
+        var info_id = machine.notify["info"].connect (on_machine_info_changed);
         item.set_data<ulong> ("info_id", info_id);
 
         setup_activity (iter, machine);
@@ -430,5 +426,14 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI
         context_popover.show ();
 
         return true;
+    }
+
+    private void on_machine_info_changed (GLib.Object object, GLib.ParamSpec spec) {
+        var machine = object as Machine;
+        var iter = machine.get_data<Gtk.TreeIter?> ("iter");
+        return_if_fail (iter != null);
+
+        store.set (iter, ModelColumns.INFO, machine.info);
+        queue_draw ();
     }
 }
