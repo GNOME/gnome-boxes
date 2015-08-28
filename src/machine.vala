@@ -307,13 +307,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
 
         saving = true;
-        update_info ();
+        update_status ();
 
         try {
             yield save_real ();
         } finally {
             saving = false;
-            update_info ();
+            update_status ();
         }
     }
 
@@ -407,11 +407,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         config.save ();
     }
 
-    protected virtual void update_info () {
+    protected virtual void update_status () {
         if (saving)
-            info = _("Saving…");
+            status = _("Saving…");
         else
-            info = null;
+            status = null;
     }
 
     private void save_pixbuf_as_screenshot (Gdk.Pixbuf? pixbuf) {

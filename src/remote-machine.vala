@@ -98,12 +98,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     //        restart and this method is currently used for that purpose only.
     public override void restart () {}
 
-    protected override void update_info () {
-        base.update_info ();
-
-        if (info != null)
-            return;
-
+    private void update_info () {
         var uri = Xml.URI.parse (source.uri);
         if (uri == null || uri.server == name) // By default server is chosen as name
             return;

@@ -212,7 +212,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             state = MachineState.SLEEPING;
         });
         notify["state"].connect (() => {
-            update_info ();
+            update_status ();
 
             if (state == MachineState.RUNNING) {
                 reconnect_display ();
@@ -234,6 +234,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             warning ("Failed to connection to system libvirt: %s", error.message);
         }
 
+        update_status ();
         update_info ();
         source.notify["uri"].connect (update_info);
 
@@ -719,19 +720,24 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         connecting_cancellable.disconnect (cancelled_id);
     }
 
-    protected override void update_info () {
-        base.update_info ();
+    protected override void update_status () {
+        base.update_status ();
 
-        if (info != null)
+        if (status != null)
             return;
 
         if (VMConfigurator.is_install_config (domain_config))
-            info = _("Installing…");
+            status = _("Installing…");
         else if (VMConfigurator.is_live_config (domain_config))
-            info = _("Live");
+            status = _("Live");
         else if (VMConfigurator.is_import_config (domain_config))
-            info = _("Importing…");
-        else if (!is_local) {
+            status = _("Importing…");
+        else
+            status = null;
+    }
+
+    private void update_info () {
+        if (!is_local) {
             var uri = Xml.URI.parse (source.uri);
 
             info = _("host: %s").printf (uri.server);

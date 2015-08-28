@@ -78,12 +78,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
 
     public override void restart () {} // See FIXME on RemoteMachine.restart
 
-    protected override void update_info () {
-        base.update_info ();
-
-        if (info != null)
-            return;
-
+    private void update_info () {
         var uri = Xml.URI.parse (source.uri);
 
         info = _("host: %s").printf (uri.server);
