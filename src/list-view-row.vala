@@ -76,6 +76,7 @@ private class Boxes.ListViewRow: Gtk.Box {
         machine.notify["under-construction"].connect (update_thumbnail);
         machine.notify["info"].connect (update_info);
         machine.notify["state"].connect (update_status);
+        machine.notify["status"].connect (update_status);
 
         update_thumbnail ();
         update_favorite ();
@@ -112,6 +113,13 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     private void update_status () {
+        if (machine.status != null) {
+            status_label.label = machine.status;
+            update_status_label_style (false);
+
+            return;
+        }
+
         if (machine is RemoteMachine) {
             status_label.label = machine.is_connected ? _("connected"): _("disconnected");
             update_status_label_style (!machine.is_connected);
