@@ -51,7 +51,7 @@ private class Boxes.ListViewRow: Gtk.Box {
     [GtkChild]
     private Gtk.Label info_label;
     [GtkChild]
-    private Gtk.Label state_label;
+    private Gtk.Label status_label;
 
     private Boxes.MachineThumbnailer thumbnailer;
 
@@ -75,12 +75,12 @@ private class Boxes.ListViewRow: Gtk.Box {
         machine.config.notify["categories"].connect (update_favorite);
         machine.notify["under-construction"].connect (update_thumbnail);
         machine.notify["info"].connect (update_info);
-        machine.notify["state"].connect (update_state);
+        machine.notify["state"].connect (update_status);
 
         update_thumbnail ();
         update_favorite ();
         update_info ();
-        update_state ();
+        update_status ();
 
         machine.bind_property ("name", machine_name, "label", BindingFlags.SYNC_CREATE);
     }
@@ -111,29 +111,29 @@ private class Boxes.ListViewRow: Gtk.Box {
         info_label.visible = (info != "");
     }
 
-    private void update_state () {
+    private void update_status () {
         if (machine is RemoteMachine) {
-            state_label.label = machine.is_connected ? _("connected"): _("disconnected");
-            state_label.sensitive = machine.is_connected;
+            status_label.label = machine.is_connected ? _("connected"): _("disconnected");
+            status_label.sensitive = machine.is_connected;
 
             return;
         }
 
         if (machine.is_running) {
-            state_label.label = _("running");
-            state_label.sensitive = true;
+            status_label.label = _("running");
+            status_label.sensitive = true;
 
             return;
         }
 
         if (machine.is_on) {
-            state_label.label = _("paused");
-            state_label.sensitive = false;
+            status_label.label = _("paused");
+            status_label.sensitive = false;
 
             return;
         }
 
-        state_label.label = _("powered off");
-        state_label.sensitive = false;
+        status_label.label = _("powered off");
+        status_label.sensitive = false;
     }
 }
