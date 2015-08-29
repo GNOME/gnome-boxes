@@ -147,7 +147,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI
             return;
         }
 
-        var iter = append (machine.name, machine.info,  item);
+        var info = machine.status?? machine.info;
+        var iter = append (machine.name, info,  item);
         var thumbnail_id = machine.thumbnailer.notify["thumbnail"].connect (() => {
             // apparently iter is stable after insertion/removal/sort
             update_screenshot (iter);
@@ -169,6 +170,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI
 
         var info_id = machine.notify["info"].connect (on_machine_info_changed);
         item.set_data<ulong> ("info_id", info_id);
+        var status_id = machine.notify["status"].connect (on_machine_info_changed);
+        item.set_data<ulong> ("status_id", status_id);
 
         setup_activity (iter, machine);
         var under_construct_id = machine.notify["under-construction"].connect (() => {
@@ -220,6 +223,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI
 
         var name_id = item.get_data<ulong> ("name_id");
         item.disconnect (name_id);
+        var status_id = item.get_data<ulong> ("status_id");
+        item.disconnect (status_id);
         var info_id = item.get_data<ulong> ("info_id");
         item.disconnect (info_id);
         var under_construct_id = item.get_data<ulong> ("under_construct_id");
@@ -433,7 +438,8 @@ private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI
         var iter = machine.get_data<Gtk.TreeIter?> ("iter");
         return_if_fail (iter != null);
 
-        store.set (iter, ModelColumns.INFO, machine.info);
+        var info = machine.status?? machine.info;
+        store.set (iter, ModelColumns.INFO, info);
         queue_draw ();
     }
 }
