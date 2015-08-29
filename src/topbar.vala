@@ -50,8 +50,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             collection_toolbar.click_search_button ();
     }
 
-    public string _status;
-    public string status {
+    public string? _status;
+    public string? status {
         get { return _status; }
         set {
             _status = value;
