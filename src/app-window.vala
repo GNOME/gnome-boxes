@@ -174,9 +174,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         props_window = new PropertiesWindow (this);
 
         notify["view-type"].connect (ui_state_changed);
-
-        var a11y = get_accessible ();
-        topbar.bind_property ("status", a11y, "accessible-name", BindingFlags.SYNC_CREATE);
     }
 
     private void save_window_geometry () {
@@ -223,6 +220,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                 status_bind = null;
             }
             topbar.status = _("Boxes");
+            var a11y = get_accessible ();
+            a11y.accessible_name = _("Boxes");
+
             if (machine != null) {
                 if (got_error_id != 0) {
                     machine.disconnect (got_error_id);
@@ -284,6 +284,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         current_item = machine;
         machine.window = this;
         machine.unschedule_autosave ();
+
+        var a11y = get_accessible ();
+        a11y.accessible_name = machine.name;
 
         // Track machine status in toolbar
         status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
