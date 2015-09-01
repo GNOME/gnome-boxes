@@ -98,7 +98,7 @@ private class Boxes.SizeProperty : Boxes.Property {
                 return;
 
             // Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-            var size = _("<small>%s (recommended)</small>").printf (format_size (value, format_flags));
+            var size = "<small>" + _("%s (recommended)").printf (format_size (value, format_flags)) + "</small>";
             scale.add_mark (value, Gtk.PositionType.BOTTOM, size);
         }
     }
@@ -128,7 +128,7 @@ private class Boxes.SizeProperty : Boxes.Property {
         scale.add_mark (min, Gtk.PositionType.BOTTOM, size_str);
 
         // Translators: This is memory or disk size. E.g. "1 GB (maximum)".
-        size_str =  _("<small>%s (maximum)</small>").printf (format_size (max, format_flags));
+        size_str =  "<small>" + _("%s (maximum)").printf (format_size (max, format_flags)) + "</small>";
         scale.add_mark (max, Gtk.PositionType.BOTTOM, size_str);
 
         scale.set_show_fill_level (true);
