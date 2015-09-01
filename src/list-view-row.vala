@@ -121,27 +121,27 @@ private class Boxes.ListViewRow: Gtk.Box {
         }
 
         if (machine is RemoteMachine) {
-            status_label.label = machine.is_connected ? _("connected"): _("disconnected");
+            status_label.label = machine.is_connected ? _("Connected"): _("Disconnected");
             update_status_label_style (!machine.is_connected);
 
             return;
         }
 
         if (machine.is_running) {
-            status_label.label = _("running");
+            status_label.label = _("Running");
             update_status_label_style (false);
 
             return;
         }
 
         if (machine.is_on) {
-            status_label.label = _("paused");
+            status_label.label = _("Paused");
             update_status_label_style (true);
 
             return;
         }
 
-        status_label.label = _("powered off");
+        status_label.label = _("Powered Off");
         update_status_label_style (true);
     }
 
