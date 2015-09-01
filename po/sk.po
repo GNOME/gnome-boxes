@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-24 06:17+0000\n"
-"PO-Revision-Date: 2015-08-24 16:40+0200\n"
+"POT-Creation-Date: 2015-09-01 12:31+0000\n"
+"PO-Revision-Date: 2015-09-01 16:30+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -48,8 +48,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:225 ../src/main.vala:72
-#: ../src/topbar.vala:94
+#: ../src/app-window.vala:126 ../src/app-window.vala:222
+#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
 
@@ -157,8 +157,8 @@ msgid "Search"
 msgstr "Vyhľadať"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr "<b><span size=\"large\">Súčasná virtualizácia</span></b>"
+msgid "State of the art virtualization"
+msgstr "Súčasná virtualizácia"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -314,11 +314,11 @@ msgstr ""
 
 #: ../data/ui/wizard-source.ui.h:9
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 msgstr ""
-"<span color=\"grey\">Príklady: http://download.com/obraz.iso, spice://"
-"hostiteľ:5051, ovirt://hostiteľ/cesta</span>"
+"Príklady: http://download.com/obraz.iso, spice://hostiteľ:5051, ovirt://"
+"hostiteľ/cesta"
 
 # dialog title
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
@@ -515,14 +515,15 @@ msgstr "%s <span color=\"grey\">(%s využitých)</span>"
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
 #: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "<small>%s (recommended)</small>"
-msgstr "<small>%s (odporúčané)</small>"
+msgid "%s (recommended)"
+msgstr "%s (odporúčaná)"
 
+# DK: jedna sa o kapacitu disku
 #. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
 #: ../src/i-properties-provider.vala:131
 #, c-format
-msgid "<small>%s (maximum)</small>"
-msgstr "<small>%s (maximálne)</small>"
+msgid "%s (maximum)"
+msgstr "%s (maximálne)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -547,7 +548,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Odoslať kombináciu klávesov"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
 msgid "_Name"
 msgstr "_Názov"
 
@@ -555,7 +556,7 @@ msgstr "_Názov"
 msgid "IP Address"
 msgstr "Adresa IP"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:70
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
 msgstr "Správca virtualizácie"
 
@@ -641,7 +642,7 @@ msgstr "V/V"
 msgid "Network"
 msgstr "Sieť"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:83
+#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "_Reštartovať"
 
@@ -696,43 +697,43 @@ msgid "'%s' will be paused automatically to save resources."
 msgstr "Box „%s“ bude automaticky pozastavený, aby ušetril prostriedky."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:589
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje sa %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:592
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "Spúšťa sa %s"
 
-#: ../src/libvirt-machine.vala:657
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Reštartovanie boxu „%s“ trvá príliš dlho. Chcete vynútiť jeho vypnutie?"
 
-#: ../src/libvirt-machine.vala:659
+#: ../src/libvirt-machine.vala:658
 msgid "_Shutdown"
 msgstr "_Vypnúť"
 
-#: ../src/libvirt-machine.vala:731
+#: ../src/libvirt-machine.vala:730
 msgid "Installing…"
 msgstr "Inštaluje sa…"
 
 # DK: ide o Live distribuciu. pravdepodobne neprekladame
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:733 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:735
+#: ../src/libvirt-machine.vala:734
 msgid "Importing…"
 msgstr "Importuje sa…"
 
-#: ../src/libvirt-machine.vala:739 ../src/ovirt-machine.vala:91
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "hostiteľ: %s"
@@ -775,13 +776,10 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Zlyhalo nájdenie vhodného disku na importovanie pre box „%s“"
 
 #: ../src/list-view-row.vala:124
-#| msgid "Not connected to %s"
 msgid "connected"
 msgstr "pripojený"
 
 #: ../src/list-view-row.vala:124
-#| msgid "%d selected"
-#| msgid_plural "%d selected"
 msgid "disconnected"
 msgstr "odpojený"
 
@@ -790,7 +788,6 @@ msgid "running"
 msgstr "spustený"
 
 #: ../src/list-view-row.vala:138
-#| msgid "Pause"
 msgid "paused"
 msgstr "pozastavený"
 
@@ -804,16 +801,16 @@ msgstr "vypnutý"
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:608
+#: ../src/machine.vala:217 ../src/machine.vala:611
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
 
-#: ../src/machine.vala:418
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "Ukladá sa…"
 
-#: ../src/machine.vala:594
+#: ../src/machine.vala:597
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -822,17 +819,17 @@ msgstr ""
 "Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
-#: ../src/machine.vala:595
+#: ../src/machine.vala:598
 msgid "Restart"
 msgstr "Reštartovať"
 
-#: ../src/machine.vala:604
+#: ../src/machine.vala:607
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Zlyhalo spustenie boxu „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:637
+#: ../src/machine.vala:640
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "Virtuálny stroj „%s“ vyžaduje overenie totožnosti"
@@ -894,16 +891,16 @@ msgstr "Nepripojené k %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Pripojenie k správcovi virtualizácie oVirt zlyhalo"
 
-#: ../src/ovirt-machine.vala:71 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
 #: ../src/wizard.vala:486
 msgid "URI"
 msgstr "URI"
 
-#: ../src/properties.vala:82
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Zmeny vyžadujú reštartovanie virtuálneho stroja „%s“. "
@@ -920,7 +917,7 @@ msgstr "Zariadenia"
 msgid "Snapshots"
 msgstr "Snímky"
 
-#: ../src/remote-machine.vala:72
+#: ../src/remote-machine.vala:70
 msgid "_URI"
 msgstr "_URI"
 
@@ -1226,6 +1223,9 @@ msgstr "Preberanie zlyhalo."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Prispôsobiť…"
+
+#~ msgid "<small>%s (maximum)</small>"
+#~ msgstr "<small>%s (maximálne)</small>"
 
 #~ msgid "_Properties"
 #~ msgstr "_Vlastnosti"
