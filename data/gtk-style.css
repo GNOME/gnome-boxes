@@ -2,11 +2,6 @@
 @define-color boxes_bg2_color mix (@theme_bg_color, @boxes_bg_color, 0.5);
 @define-color boxes_selected_color #3465a4;
 
-#CollectionLabel {
-    font-size: 11px;
-    font-weight: bold;
-}
-
 .boxes-snapshot-list-row {
     border-bottom: 1px solid @borders;
 }
@@ -24,33 +19,6 @@ BoxesResourceGraph {
     background-color: @boxes_bg_color;
     border-color: @theme_fg_color;
     color: @theme_bg_color;
-}
-
-.sidebar {
-    background-color: @theme_bg_color;
-    border-style: solid;
-    border-width: 0 2px 0 0;
-    border-color: @borders;
-}
-
-.sidebar GtkTreeView:selected {
-    background-color: @boxes_selected_color;
-    border-width: 2px 8px 2px 0;
-    border-color: transparent;
-    border-image-source: url("icons/boxes-arrow.svg");
-    border-image-slice: 0 8 0 0;
-    border-image-width: 2px 8px 2px 0;
-    border-image-repeat: stretch;
-    border-style: solid;
-}
-
-.sidebar GtkTreeView {
-    -GtkTreeView-vertical-separator: 8;
-}
-
-.sidebar .cell {
-    font-size: 11px;
-    font-weight: bold;
 }
 
 .transparent-bg {
@@ -85,10 +53,6 @@ BoxesResourceGraph {
     font-weight: bold;
 }
 
-.boxes-wizard-current-page-label {
-    color: @theme_fg_color;
-}
-
 .boxes-logo-notice-label {
     color: #989898;
     font-style: italic;
@@ -99,18 +63,8 @@ BoxesResourceGraph {
     font-weight: bold;
 }
 
-.boxes-graph-label {
-    font-size: 8px;
-    font-family: monospace;
-    color: #989898;
-}
-
 .boxes-source-nb {
     background-color: alpha(#fff, 0.0);
-}
-
-.boxes-selected {
-    background-color: @boxes_selected_color;
 }
 
 .boxes-product-key-entry {
