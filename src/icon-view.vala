@@ -6,7 +6,7 @@ public enum Boxes.SelectionCriteria {
     RUNNING
 }
 
-private class Boxes.CollectionView: Gd.MainView, Boxes.ICollectionView, Boxes.UI {
+private class Boxes.IconView: Gd.MainView, Boxes.ICollectionView, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 

@@ -94,7 +94,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Gtk.Stack below_bin;
     [GtkChild]
-    private CollectionView collection_view;
+    private IconView icon_view;
     [GtkChild]
     private ListView list_view;
 
@@ -105,7 +105,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             switch (view_type) {
             default:
             case ViewType.ICON:
-                return collection_view;
+                return icon_view;
             case ViewType.LIST:
                 return list_view;
             }
@@ -157,13 +157,13 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             move (x, y);
         }
 
-        views = { collection_view, list_view };
+        views = { icon_view, list_view };
     }
 
     public void setup_ui () {
         topbar.setup_ui (this);
         display_page.setup_ui (this);
-        collection_view.setup_ui (this);
+        icon_view.setup_ui (this);
         list_view.setup_ui (this);
         selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
@@ -193,7 +193,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { topbar,
-                                            collection_view,
+                                            icon_view,
                                             list_view,
                                             props_window,
                                             wizard_window,

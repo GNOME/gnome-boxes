@@ -101,7 +101,6 @@ gnome_boxes_SOURCES =				\
 	archive-reader.vala			\
 	archive-writer.vala			\
 	auth-notification.vala			\
-	collection-view.vala			\
 	collection.vala				\
 	collection-filter-switcher.vala		\
 	collection-toolbar.vala			\
@@ -111,6 +110,7 @@ gnome_boxes_SOURCES =				\
 	editable-entry.vala			\
 	i-properties-provider.vala		\
 	i-collection-view.vala			\
+	icon-view.vala				\
 	installer-media.vala 			\
 	installed-media.vala 			\
 	keys-input-popover.vala			\
