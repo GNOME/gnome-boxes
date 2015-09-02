@@ -2,7 +2,8 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# 
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2012, 2013, 2014, 2015., 2015.
 #
 msgid ""
@@ -10,10 +11,10 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-25 06:18+0000\n"
-"PO-Revision-Date: 2015-08-25 \n"
+"POT-Creation-Date: 2015-09-02 06:17+0000\n"
+"PO-Revision-Date: 2015-09-02 18:34+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,8 +51,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:225 ../src/main.vala:72
-#: ../src/topbar.vala:94
+#: ../src/app-window.vala:126 ../src/app-window.vala:222
+#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cajas"
 
@@ -158,9 +159,9 @@ msgid "Search"
 msgstr "Buscar"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr ""
-"<b><span size=\"large\">Estado del arte de la virtualización</span></b>"
+#| msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgid "State of the art virtualization"
+msgstr "Estado del arte de la virtualización"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -310,12 +311,15 @@ msgstr ""
 "Libvirt."
 
 #: ../data/ui/wizard-source.ui.h:9
+#| msgid ""
+#| "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+#| "somehost:5051, ovirt://host/path</span>"
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 msgstr ""
-"<span color=\"grey\">Ejemplos: http://descarga.com/imagen.iso, spice://"
-"equipo:5051, ovirt://equipo/ruta</span>"
+"Ejemplos: http://descarga.com/imagen.iso, spice://equipo:5051, ovirt://"
+"equipo/ruta"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -500,14 +504,16 @@ msgstr "%s <span color=\"grey\">(%s usado)</span>"
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
 #: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "<small>%s (recommended)</small>"
-msgstr "<small>%s (recomendado)</small>"
+#| msgid "<small>%s (recommended)</small>"
+msgid "%s (recommended)"
+msgstr "%s (recomendado)"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
 #: ../src/i-properties-provider.vala:131
 #, c-format
-msgid "<small>%s (maximum)</small>"
-msgstr "<small>%s (máximo)</small>"
+#| msgid "%s maximum"
+msgid "%s (maximum)"
+msgstr "%s (máximo)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -532,7 +538,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Enviar combinaciones de teclas"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
 msgid "_Name"
 msgstr "_Nombre"
 
@@ -540,7 +546,7 @@ msgstr "_Nombre"
 msgid "IP Address"
 msgstr "Dirección IP"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:70
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
 msgstr "Agente"
 
@@ -620,7 +626,7 @@ msgstr "E/S"
 msgid "Network"
 msgstr "Red"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:83
+#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "_Reiniciar"
 
@@ -639,8 +645,8 @@ msgstr "_Memoria:"
 #: ../src/libvirt-machine-properties.vala:536
 #, c-format
 msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey\">(%"
-"s used)</span>"
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+"\">(%s used)</span>"
 msgstr ""
 "<span color=\"grey\">Tamaño máximo del disco</span>\t\t %s <span color=\"grey"
 "\">(%s usado)</span>"
@@ -672,41 +678,41 @@ msgid "'%s' will be paused automatically to save resources."
 msgstr "«%s» se pausará automáticamente para ahorrar recursos."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:589
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde el disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:592
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: ../src/libvirt-machine.vala:657
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: ../src/libvirt-machine.vala:659
+#: ../src/libvirt-machine.vala:658
 msgid "_Shutdown"
 msgstr "_Apagar"
 
-#: ../src/libvirt-machine.vala:731
+#: ../src/libvirt-machine.vala:730
 msgid "Installing…"
 msgstr "Instalando…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:733 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "«Live»"
 
-#: ../src/libvirt-machine.vala:735
+#: ../src/libvirt-machine.vala:734
 msgid "Importing…"
 msgstr "Importando…"
 
-#: ../src/libvirt-machine.vala:739 ../src/ovirt-machine.vala:91
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "equipo: %s"
@@ -747,28 +753,29 @@ msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Falló al buscar un disco adecuado para importar para la caja «%s»"
 
 #: ../src/list-view-row.vala:124
-#| msgid "Not connected to %s"
-msgid "connected"
+#| msgid "connected"
+msgid "Connected"
 msgstr "Conectada"
 
 #: ../src/list-view-row.vala:124
-#| msgid "%d selected"
-#| msgid_plural "%d selected"
-msgid "disconnected"
-msgstr "desconectada"
+#| msgid "disconnected"
+msgid "Disconnected"
+msgstr "Desconectada"
 
 #: ../src/list-view-row.vala:131
-msgid "running"
-msgstr "en ejecución"
+#| msgid "running"
+msgid "Running"
+msgstr "En ejecución"
 
 #: ../src/list-view-row.vala:138
 #| msgid "Pause"
-msgid "paused"
-msgstr "pausada"
+msgid "Paused"
+msgstr "Pausada"
 
 #: ../src/list-view-row.vala:144
-msgid "powered off"
-msgstr "apagada"
+#| msgid "powered off"
+msgid "Powered Off"
+msgstr "Apagada"
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/machine.vala:195
@@ -776,16 +783,16 @@ msgstr "apagada"
 msgid "Connecting to %s"
 msgstr "Conectando a %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:608
+#: ../src/machine.vala:217 ../src/machine.vala:611
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falló la conexión a «%s»"
 
-#: ../src/machine.vala:418
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "Guardando…"
 
-#: ../src/machine.vala:594
+#: ../src/machine.vala:597
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -794,17 +801,17 @@ msgstr ""
 "no se pudo restaurar «%s» desde el disco\n"
 "¿Intentarlo sin el estado guardado?"
 
-#: ../src/machine.vala:595
+#: ../src/machine.vala:598
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: ../src/machine.vala:604
+#: ../src/machine.vala:607
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Falló al iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:637
+#: ../src/machine.vala:640
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» requiere autenticación"
@@ -864,16 +871,16 @@ msgstr "No conectado a %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Falló la conexión a oVirt broker"
 
-#: ../src/ovirt-machine.vala:71 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
 #: ../src/wizard.vala:486
 msgid "URI"
 msgstr "URI"
 
-#: ../src/properties.vala:82
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Los cambios requieren que se reinicie «%s»."
@@ -890,7 +897,7 @@ msgstr "Dispositivos"
 msgid "Snapshots"
 msgstr "Instantáneas"
 
-#: ../src/remote-machine.vala:72
+#: ../src/remote-machine.vala:70
 msgid "_URI"
 msgstr "_URI"
 
@@ -1015,8 +1022,8 @@ msgid ""
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
 msgstr ""
 "No se pudo obtener la información de almacenamiento de «gnome-boxes» desde "
-"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-boxes» "
-"está funcionando."
+"libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-"
+"boxes» está funcionando."
 
 #: ../src/util-app.vala:333
 #, c-format
@@ -1190,6 +1197,13 @@ msgstr "Falló la descarga."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
+
+#~ msgid "<small>%s (maximum)</small>"
+#~ msgstr "<small>%s (máximo)</small>"
+
+#~| msgid "Pause"
+#~ msgid "paused"
+#~ msgstr "pausada"
 
 #~ msgid "%d%% Installed"
 #~ msgid_plural "%d%% Installed"
