@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-20 18:18+0000\n"
-"PO-Revision-Date: 2015-08-20 22:44+0300\n"
+"POT-Creation-Date: 2015-09-07 06:18+0000\n"
+"PO-Revision-Date: 2015-09-07 14:11+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -48,8 +48,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
-#: ../src/topbar.vala:94
+#: ../src/app-window.vala:126 ../src/app-window.vala:222
+#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Dėžės"
 
@@ -126,7 +126,6 @@ msgid "Local"
 msgstr "Vietinės"
 
 #: ../data/ui/collection-filter-switcher.ui.h:3
-#| msgid "Remove"
 msgid "Remote"
 msgstr "Nutolusios"
 
@@ -143,13 +142,22 @@ msgstr "Atgal"
 msgid "Select Items"
 msgstr "Pasirinkite elementus"
 
-#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:4
+msgid "List view"
+msgstr "Sąrašo vaizdas"
+
+#: ../data/ui/collection-toolbar.ui.h:5
+msgid "Grid view"
+msgstr "Tinklelio vaizdas"
+
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Ieškoti"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr "<b><span size=\"large\">Aukščiausios klasės virtualizacija</span></b>"
+#| msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgid "State of the art virtualization"
+msgstr "Aukščiausios klasės virtualizacija"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -259,7 +267,6 @@ msgstr ""
 "Įdėkite operacinės sistemos diegimo laikmeną arba pasirinkite šaltinį žemiau"
 
 #: ../data/ui/wizard-source.ui.h:2
-#| msgid "Enter URL"
 msgid "_Enter URL"
 msgstr "Į_veskite URL"
 
@@ -268,7 +275,6 @@ msgid "▶"
 msgstr "▶"
 
 #: ../data/ui/wizard-source.ui.h:4
-#| msgid "Select a file"
 msgid "_Select a file"
 msgstr "Pa_sirinkite failą"
 
@@ -298,12 +304,15 @@ msgstr ""
 "SPICE ar VNC serveriai, oVirt arba Libvirt brokeriai."
 
 #: ../data/ui/wizard-source.ui.h:9
+#| msgid ""
+#| "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+#| "somehost:5051, ovirt://host/path</span>"
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 msgstr ""
-"<span color=\"grey\">Pavyzdžiai: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Pavyzdžiai: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+"host/path"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -453,10 +462,6 @@ msgstr[2] "%u dėžių buvo ištrintos"
 msgid "_Undo"
 msgstr "_Atšaukti"
 
-#: ../src/collection-view.vala:56
-msgid "New and Recent"
-msgstr "Naujos ir neseniai naudotos"
-
 #: ../src/display-page.vala:110
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Spauskite (kairiuosius) Vald+Alt klavišus paleidimui"
@@ -472,6 +477,10 @@ msgstr ""
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
+
+#: ../src/icon-view.vala:56
+msgid "New and Recent"
+msgstr "Naujos ir neseniai naudotos"
 
 #: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
@@ -491,15 +500,16 @@ msgstr "%s <span color=\"grey\">(%s naudojama)</span>"
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
 #: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "<small>%s (recommended)</small>"
-msgstr "<small>%s (rekomenduojama)</small>"
+#| msgid "<small>%s (recommended)</small>"
+msgid "%s (recommended)"
+msgstr "%s (rekomenduojama)"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
 #: ../src/i-properties-provider.vala:131
 #, c-format
-#| msgid "%s (maximum)"
-msgid "<small>%s (maximum)</small>"
-msgstr "<small>%s (daugiausia)</small>"
+#| msgid "%s maximum"
+msgid "%s (maximum)"
+msgstr "%s (daugiausia)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -524,8 +534,7 @@ msgstr "Vald + Alt + F7"
 msgid "Send key combinations"
 msgstr "Siųsti klavišų kombinacijas"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
-#| msgid "Name"
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
 msgid "_Name"
 msgstr "_Pavadinimas"
 
@@ -533,17 +542,15 @@ msgstr "_Pavadinimas"
 msgid "IP Address"
 msgstr "IP adresas"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:70
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
 msgstr "Brokeris"
 
 #: ../src/libvirt-machine-properties.vala:134
-#| msgid "Protocol"
 msgid "Display Protocol"
 msgstr "Vaizduoklio protokolas"
 
 #: ../src/libvirt-machine-properties.vala:135
-#| msgid "Display"
 msgid "Display URI"
 msgstr "Vaizduoklio URI"
 
@@ -577,14 +584,12 @@ msgstr "CD/DVD"
 #. Translators: This is the text on the button to select an iso for the cd
 #: ../src/libvirt-machine-properties.vala:282
 #: ../src/libvirt-machine-properties.vala:310
-#| msgid "Select"
 msgid "_Select"
 msgstr "Pa_sirinkite"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
 #: ../src/libvirt-machine-properties.vala:285
 #: ../src/libvirt-machine-properties.vala:293
-#| msgid "Remove"
 msgid "_Remove"
 msgstr "_Nutolusi"
 
@@ -617,22 +622,19 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Tinklas"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:83
+#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "Įkelti iš _naujo"
 
 #: ../src/libvirt-machine-properties.vala:433
-#| msgid "Force Shutdown"
 msgid "_Force Shutdown"
 msgstr "_Priverstinai išjungti"
 
 #: ../src/libvirt-machine-properties.vala:447
-#| msgid "Troubleshooting Log"
 msgid "_Troubleshooting Log"
 msgstr "P_roblemų žurnalas"
 
 #: ../src/libvirt-machine-properties.vala:468
-#| msgid "Memory"
 msgid "_Memory: "
 msgstr "_Atmintis:"
 
@@ -652,7 +654,6 @@ msgstr ""
 "Jūsų kompiuteryje nėra pakankamai vietos didžiausiam disko dydžiui padidinti."
 
 #: ../src/libvirt-machine-properties.vala:561
-#| msgid "Maximum Disk Size"
 msgid "Maximum _Disk Size: "
 msgstr "Didžiausias _disko dydis: "
 
@@ -663,7 +664,6 @@ msgstr "_Vykdyti fone"
 #: ../src/libvirt-machine-properties.vala:705
 #: ../src/libvirt-machine-properties.vala:708
 #, c-format
-#| msgid "Live box '%s' has been deleted automatically."
 msgid "'%s' will not be paused automatically."
 msgstr "Dėžė „%s“ nebus automatiškai pristabdoma."
 
@@ -674,56 +674,53 @@ msgid "'%s' will be paused automatically to save resources."
 msgstr "„%s“ bus automatiškai pristabdoma taupant išteklius."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:589
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Atkuriama %s iš disko"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:592
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "Paleidžiama %s"
 
-#: ../src/libvirt-machine.vala:657
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "„%s“ perleidimas trunka per ilgai. Priverstinai išjungti?"
 
-#: ../src/libvirt-machine.vala:659
+#: ../src/libvirt-machine.vala:658
 msgid "_Shutdown"
 msgstr "_Išjungti"
 
-#: ../src/libvirt-machine.vala:731
+#: ../src/libvirt-machine.vala:730
 msgid "Installing…"
 msgstr "Diegiama…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:733 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Veikia"
 
-#: ../src/libvirt-machine.vala:735
+#: ../src/libvirt-machine.vala:734
 msgid "Importing…"
 msgstr "Importuojama…"
 
-#: ../src/libvirt-machine.vala:739 ../src/ovirt-machine.vala:91
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "serveris: %s"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
-#| msgid "Import '%s' from system broker"
 msgid "_Import '%s' from system broker"
 msgstr "_Importuoti „%s“ iš sistemos brokerio"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
-#| msgid "Import %u box from system broker"
-#| msgid_plural "Import %u boxes from system broker"
 msgid "_Import %u box from system broker"
 msgid_plural "_Import %u boxes from system broker"
 msgstr[0] "_Importuoti %u dėžę iš sistemos brokerio"
@@ -753,22 +750,44 @@ msgstr "Nėra importuojamų dėžių"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Nepavyko rasti tinkamo disko dėžės „%s“ importavimui"
 
+#: ../src/list-view-row.vala:124
+msgid "Connected"
+msgstr "Prisijungta"
+
+#: ../src/list-view-row.vala:124
+msgid "Disconnected"
+msgstr "Atsijungta"
+
+#: ../src/list-view-row.vala:131
+#| msgid "Select Running"
+msgid "Running"
+msgstr "Veikia"
+
+#: ../src/list-view-row.vala:138
+#| msgid "Pause"
+msgid "Paused"
+msgstr "Pristabdyta"
+
+#: ../src/list-view-row.vala:144
+msgid "Powered Off"
+msgstr "Išjungta"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:191
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "Jungiamasi prie %s"
 
-#: ../src/machine.vala:213 ../src/machine.vala:601
+#: ../src/machine.vala:217 ../src/machine.vala:611
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Nepavyko prisijungti prie „%s“"
 
-#: ../src/machine.vala:411
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "Įrašoma…"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:597
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -777,17 +796,17 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: ../src/machine.vala:588
+#: ../src/machine.vala:598
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
-#: ../src/machine.vala:597
+#: ../src/machine.vala:607
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Nepavyko paleisti „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:630
+#: ../src/machine.vala:640
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "„%s“ reikalauja patvirtinti tapatybę"
@@ -847,16 +866,16 @@ msgstr "Neprisijungta prie %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Nepavyko prisijungti prie oVirt brokerio"
 
-#: ../src/ovirt-machine.vala:71 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
 msgid "Protocol"
 msgstr "Protokolas"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
 #: ../src/wizard.vala:486
 msgid "URI"
 msgstr "URI"
 
-#: ../src/properties.vala:82
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Pakeitimai reikalauja „%s“ įkėlimo iš naujo."
@@ -873,7 +892,7 @@ msgstr "Įrenginiai"
 msgid "Snapshots"
 msgstr "Momentinės kopijos"
 
-#: ../src/remote-machine.vala:72
+#: ../src/remote-machine.vala:70
 msgid "_URI"
 msgstr "_URI"
 
@@ -1173,6 +1192,10 @@ msgstr "Parsiųsti nepavyko."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Tinkinti…"
+
+#~| msgid "%s (maximum)"
+#~ msgid "<small>%s (maximum)</small>"
+#~ msgstr "<small>%s (daugiausia)</small>"
 
 #~ msgid "_Properties"
 #~ msgstr "_Savybės"
