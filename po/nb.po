@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.17.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-07 11:40+0200\n"
-"PO-Revision-Date: 2015-08-07 11:41+0200\n"
+"POT-Creation-Date: 2015-09-07 20:03+0200\n"
+"PO-Revision-Date: 2015-09-07 20:07+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -45,8 +45,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:192 ../src/main.vala:72
-#: ../src/topbar.vala:94
+#: ../src/app-window.vala:126 ../src/app-window.vala:222
+#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Bokser"
 
@@ -114,6 +114,18 @@ msgstr "_Passord"
 msgid "Sign In"
 msgstr "Logg inn"
 
+#: ../data/ui/collection-filter-switcher.ui.h:1
+msgid "All"
+msgstr "Alle"
+
+#: ../data/ui/collection-filter-switcher.ui.h:2
+msgid "Local"
+msgstr "Lokal"
+
+#: ../data/ui/collection-filter-switcher.ui.h:3
+msgid "Remote"
+msgstr "Ekstern"
+
 #: ../data/ui/collection-toolbar.ui.h:1
 msgid "_New"
 msgstr "_Ny"
@@ -127,13 +139,21 @@ msgstr "Tilbake"
 msgid "Select Items"
 msgstr "Velg oppføringer"
 
-#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:4
+msgid "List view"
+msgstr "Listevisning"
+
+#: ../data/ui/collection-toolbar.ui.h:5
+msgid "Grid view"
+msgstr "Rutenettvisning"
+
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Søk"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr "<b><span size=\"large>Den beste virtualiseringen</span></b>"
+msgid "State of the art virtualization"
+msgstr "State-of-the-art virtualisering"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -144,7 +164,6 @@ msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Trykk på <b>Ny</b>-knappen for å lage den første."
 
 #: ../data/ui/properties-toolbar.ui.h:1
-#: ../src/libvirt-machine-properties.vala:447
 msgid "Troubleshooting Log"
 msgstr "Feilsøkingslogg"
 
@@ -216,11 +235,11 @@ msgstr "Velg hurtiginstallasjon for å bruke boksen med forvalgt oppsett."
 msgid "Express Install"
 msgstr "Hurtiginstallasjon"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Brukernavn"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Passord"
 
@@ -282,11 +301,9 @@ msgstr ""
 
 #: ../data/ui/wizard-source.ui.h:9
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
-msgstr ""
-"<span color=\"grey\">Eksempler: http://download.com/image.iso, spice://"
-"tjener:5051, ovirt://vert/sti/</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
+msgstr "Eksempler: http://download.com/image.iso, spice://tjener:5051, ovirt://vert/sti/"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -339,7 +356,7 @@ msgstr "Fjern fra favoritter"
 msgid "Add to Favorites"
 msgstr "Legg til i favoritter"
 
-#: ../src/actions-popover.vala:51 ../src/libvirt-machine-properties.vala:433
+#: ../src/actions-popover.vala:51
 msgid "Force Shutdown"
 msgstr "Tving avslutning"
 
@@ -358,88 +375,84 @@ msgstr "Egenskaper"
 msgid "Pausing '%s' failed"
 msgstr "Pause av «%s» mislyktes"
 
-#: ../src/app.vala:103
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr ""
 "Kjartan Maraas <kmaraas@gnome.org>\n"
 "Åka Sikrom <a4NOSPAMPLEASETHANKYOU@hush.com>"
 
-#: ../src/app.vala:104
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Et enkelt GNOME 3-program som gir tilgang til eksterne eller virtuelle "
 "systemer"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:121
 msgid "Help"
 msgstr "Hjelp"
 
-#: ../src/app.vala:124
+#: ../src/app.vala:122
 msgid "About"
 msgstr "Om"
 
-#: ../src/app.vala:125
+#: ../src/app.vala:123
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../src/app.vala:183 ../src/main.vala:9
+#: ../src/app.vala:181 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Vis versjonsnummer"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:183
 msgid "Open in full screen"
 msgstr "Åpne i fullskjerm"
 
-#: ../src/app.vala:186 ../src/main.vala:10
+#: ../src/app.vala:184 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Kontroller virtualiseringsstøtte"
 
-#: ../src/app.vala:187
+#: ../src/app.vala:185
 msgid "Open box with UUID"
 msgstr "Åpne boks med UUID"
 
-#: ../src/app.vala:188
+#: ../src/app.vala:186
 msgid "Search term"
 msgstr "Søkeord"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:190
+#: ../src/app.vala:188
 msgid "URI to display, broker or installer media"
 msgstr "URI som skal vises, VM-forhandler, eller installasjonsmedie"
 
-#: ../src/app.vala:201
+#: ../src/app.vala:199
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Et enkelt program som gir tilgang til eksterne eller virtuelle maskiner"
 
-#: ../src/app.vala:223
+#: ../src/app.vala:221
 msgid "Too many command line arguments specified.\n"
 msgstr "Du har brukt for mange argumenter på kommandolinjen.\n"
 
-#: ../src/app.vala:433
+#: ../src/app.vala:431
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Boks «%s» er installert og klar for bruk"
 
-#: ../src/app.vala:521
+#: ../src/app.vala:519
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boksen «%s» er slettet"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:520
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: ../src/app.vala:549 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "A_ngre"
-
-#: ../src/collection-view.vala:54
-msgid "New and Recent"
-msgstr "Nye og nylige"
 
 #: ../src/display-page.vala:110
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -455,6 +468,10 @@ msgstr ""
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
+
+#: ../src/icon-view.vala:56
+msgid "New and Recent"
+msgstr "Nye og nylige"
 
 #: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
@@ -474,14 +491,14 @@ msgstr "%s <span color=\"grey\">(%s brukt(</span>"
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
 #: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "<small>%s (recommended)</small>"
-msgstr "<small>%s (anbefalt)</small>"
+msgid "%s (recommended)"
+msgstr "%s (anbefalt)"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:130
+#: ../src/i-properties-provider.vala:131
 #, c-format
-msgid "<small>%s (maximum)</small>"
-msgstr "<small>%s (maksimum)</small>"
+msgid "%s (maximum)"
+msgstr "%s (maksimum)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -506,15 +523,15 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Send knappekombinasjoner"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
-msgid "Name"
-msgstr "Navn"
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
+msgid "_Name"
+msgstr "_Navn"
 
 #: ../src/libvirt-machine-properties.vala:130
 msgid "IP Address"
 msgstr "IP-adresse"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:67
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
 msgstr "Megler"
 
@@ -556,14 +573,14 @@ msgstr "CD/DVD"
 #. Translators: This is the text on the button to select an iso for the cd
 #: ../src/libvirt-machine-properties.vala:282
 #: ../src/libvirt-machine-properties.vala:310
-msgid "Select"
-msgstr "Velg"
+msgid "_Select"
+msgstr "_Velg"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
 #: ../src/libvirt-machine-properties.vala:285
 #: ../src/libvirt-machine-properties.vala:293
-msgid "Remove"
-msgstr "Fjern"
+msgid "_Remove"
+msgstr "Fje_rn"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
@@ -594,13 +611,21 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Nettverk"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/machine.vala:578
-msgid "Restart"
-msgstr "Start på nytt"
+#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
+msgid "_Restart"
+msgstr "Sta_rt på nytt"
+
+#: ../src/libvirt-machine-properties.vala:433
+msgid "_Force Shutdown"
+msgstr "_Tving avslutning"
+
+#: ../src/libvirt-machine-properties.vala:447
+msgid "_Troubleshooting Log"
+msgstr "_Feilsøkingslogg"
 
 #: ../src/libvirt-machine-properties.vala:468
-msgid "Memory: "
-msgstr "Minne: "
+msgid "_Memory: "
+msgstr "_Minne: "
 
 #: ../src/libvirt-machine-properties.vala:536
 #, c-format
@@ -618,59 +643,64 @@ msgstr ""
 "Det er ikke nok plass på denne maskinen til å øke maksimal diskstørrelse."
 
 #: ../src/libvirt-machine-properties.vala:561
-msgid "Maximum Disk Size: "
-msgstr "Maksimal diskstørrelse: "
+msgid "Maximum _Disk Size: "
+msgstr "Maksimal _diskstørrelse: "
 
 #: ../src/libvirt-machine-properties.vala:694
-msgid "Run in background"
-msgstr "Kjør i bakgrunnen"
+msgid "_Run in background"
+msgstr "Kjø_r i bakgrunnen"
 
-#: ../src/libvirt-machine-properties.vala:704
-#: ../src/libvirt-machine-properties.vala:707
+#: ../src/libvirt-machine-properties.vala:705
+#: ../src/libvirt-machine-properties.vala:708
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "«%s» vil ikke bli satt på pause automatisk."
 
-#: ../src/libvirt-machine-properties.vala:705
-#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:706
+#: ../src/libvirt-machine-properties.vala:709
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "«%s» vil bli satt på pause automatisk for å spare ressurser."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:578
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Gjenoppretter %s fra disk"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:581
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: ../src/libvirt-machine.vala:646
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "Omstart av «%s» tar for lang tid. Vil du tvinge den til å slå seg av?"
 
-#: ../src/libvirt-machine.vala:648
+#: ../src/libvirt-machine.vala:658
 msgid "_Shutdown"
 msgstr "_Slå av"
 
-#: ../src/libvirt-machine.vala:720
+#: ../src/libvirt-machine.vala:730
 msgid "Installing…"
 msgstr "Installerer …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:722 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:724
+#: ../src/libvirt-machine.vala:734
 msgid "Importing…"
 msgstr "Importerer …"
+
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#, c-format
+msgid "host: %s"
+msgstr "vert: %s"
 
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
@@ -707,22 +737,42 @@ msgstr "Ingen bokser å importere"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Klarte ikke å finne en passende disk å importere for boks «%s»"
 
+#: ../src/list-view-row.vala:124
+msgid "Connected"
+msgstr "Koblet til"
+
+#: ../src/list-view-row.vala:124
+msgid "Disconnected"
+msgstr "Koblet fra"
+
+#: ../src/list-view-row.vala:131
+msgid "Running"
+msgstr "Kjørende"
+
+#: ../src/list-view-row.vala:138
+msgid "Paused"
+msgstr "Pauset"
+
+#: ../src/list-view-row.vala:144
+msgid "Powered Off"
+msgstr "Slått av"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:181
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "Kobler til %s"
 
-#: ../src/machine.vala:203 ../src/machine.vala:591
+#: ../src/machine.vala:217 ../src/machine.vala:611
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Tilkobling til «%s» mislyktes"
 
-#: ../src/machine.vala:401
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "Lagrer …"
 
-#: ../src/machine.vala:577
+#: ../src/machine.vala:597
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -731,13 +781,17 @@ msgstr ""
 "Klarte ikke å gjenopprette «%s» fra disk\n"
 "Vil du prøve uten lagret tilstand?"
 
-#: ../src/machine.vala:587
+#: ../src/machine.vala:598
+msgid "Restart"
+msgstr "Start på nytt"
+
+#: ../src/machine.vala:607
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Klarte ikke å starte «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:620
+#: ../src/machine.vala:640
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» krever autentisering"
@@ -797,23 +851,19 @@ msgstr "Ikke koblet til %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Tilkobling til oVirt-forhandler mislyktes"
 
-#: ../src/ovirt-machine.vala:68 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:70
-#: ../src/remote-machine.vala:72 ../src/wizard.vala:486
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
+#: ../src/wizard.vala:486
 msgid "URI"
 msgstr "Adresse"
 
-#: ../src/properties.vala:81
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "«%s» må startes på nytt for å ta endringer i bruk."
-
-#: ../src/properties.vala:82
-msgid "_Restart"
-msgstr "Sta_rt på nytt"
 
 #: ../src/properties-page-widget.vala:15
 msgid "General"
@@ -826,6 +876,10 @@ msgstr "Enheter"
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
 msgstr "Øyeblikksbilder"
+
+#: ../src/remote-machine.vala:70
+msgid "_URI"
+msgstr "_URI"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
@@ -908,14 +962,14 @@ msgstr "Mangler port i Spice-adresse"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:190
+#: ../src/unattended-installer.vala:188
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Det oppstod en feil under forberedelse til installasjon. Hurtiginstallasjon "
 "er slått av."
 
-#: ../src/unattended-installer.vala:467
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "Laster ned enhetsdrivere …"
 
@@ -1001,7 +1055,7 @@ msgstr "Live-boks «%s» ble slettet automatisk."
 msgid "Box import from file '%s' failed."
 msgstr "Importering av boks fra filen «%s» mislyktes."
 
-#: ../src/vnc-display.vala:145
+#: ../src/vnc-display.vala:149
 msgid "Read-only"
 msgstr "Skrivebeskyttet"
 
