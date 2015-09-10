@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-03-05 19:04+0000\n"
-"PO-Revision-Date: 2015-03-05 21:42+0200\n"
+"POT-Creation-Date: 2015-09-05 06:17+0000\n"
+"PO-Revision-Date: 2015-09-05 20:15+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:103 ../src/app-window.vala:190 ../src/main.vala:72
-#: ../src/topbar.vala:94
+#: ../src/app-window.vala:126 ../src/app-window.vala:222
+#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boksit"
 
@@ -117,9 +117,22 @@ msgstr "_Käyttäjätunnus"
 msgid "_Password"
 msgstr "_Salasana"
 
-#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:46
+#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
 msgid "Sign In"
 msgstr "Kirjaudu sisään"
+
+#: ../data/ui/collection-filter-switcher.ui.h:1
+msgid "All"
+msgstr "Kaikki"
+
+#: ../data/ui/collection-filter-switcher.ui.h:2
+msgid "Local"
+msgstr "Paikallinen"
+
+#: ../data/ui/collection-filter-switcher.ui.h:3
+#| msgid "Remove"
+msgid "Remote"
+msgstr "Etä"
 
 #: ../data/ui/collection-toolbar.ui.h:1
 msgid "_New"
@@ -134,17 +147,24 @@ msgstr "Takaisin"
 msgid "Select Items"
 msgstr "Valitse kohteet"
 
-#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:4
+msgid "List view"
+msgstr "Luettelonäkymä"
+
+#: ../data/ui/collection-toolbar.ui.h:5
+msgid "Grid view"
+msgstr "Ruudukkonäkymä"
+
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Etsi"
 
 #: ../data/ui/empty-boxes.ui.h:1
-#| msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr "<b><span size=\"large\">Ensiluokkaista virtualisointia</span></b>"
+#| msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
+msgid "State of the art virtualization"
+msgstr "Ensiluokkaista virtualisointia"
 
 #: ../data/ui/empty-boxes.ui.h:2
-#| msgid "View and use virtual machines"
 msgid "Boxes can be virtual or remote machines."
 msgstr "Boksit voivat olla virtuaalikoneita tai etäkoneita."
 
@@ -153,12 +173,10 @@ msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Napsauta <b>Uusi</b> luodaksesi ensimmäisen boksin."
 
 #: ../data/ui/properties-toolbar.ui.h:1
-#| msgid "Troubleshooting log"
 msgid "Troubleshooting Log"
 msgstr "Ongelmanratkaisuloki"
 
 #: ../data/ui/properties-toolbar.ui.h:3
-#| msgid "Copy to clipboard"
 msgid "_Copy to Clipboard"
 msgstr "_Kopioi leikepöydälle"
 
@@ -176,7 +194,6 @@ msgid "_Open"
 msgstr "_Avaa"
 
 #: ../data/ui/selectionbar.ui.h:1
-#| msgid "Favorites"
 msgid "_Favorite"
 msgstr "_Lisää suosikiksi"
 
@@ -187,10 +204,6 @@ msgstr "_Keskeytä"
 #: ../data/ui/selectionbar.ui.h:3
 msgid "_Delete"
 msgstr "_Poista"
-
-#: ../data/ui/selectionbar.ui.h:4
-msgid "_Properties"
-msgstr "_Ominaisuudet"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -213,7 +226,7 @@ msgid "Rename"
 msgstr "Nimeä uudelleen"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:51
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:63
 msgid "Delete"
 msgstr "Poista"
 
@@ -233,11 +246,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Pika-asennus"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:280
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Tunnus"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:281
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Salasana"
 
@@ -258,16 +271,18 @@ msgid "Insert operating system installation media or select a source below"
 msgstr "Syötä käyttöjärjestelmän asennusmedia tai valitse lähde alta"
 
 #: ../data/ui/wizard-source.ui.h:2
-msgid "Enter URL"
-msgstr "Syötä verkko-osoite"
+#| msgid "Enter URL"
+msgid "_Enter URL"
+msgstr "_Syötä verkko-osoite"
 
 #: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "▶"
 
 #: ../data/ui/wizard-source.ui.h:4
-msgid "Select a file"
-msgstr "Valitse tiedosto"
+#| msgid "Select a file"
+msgid "_Select a file"
+msgstr "_Valitse tiedosto"
 
 #: ../data/ui/wizard-source.ui.h:5
 msgid ""
@@ -284,6 +299,10 @@ msgid "◀"
 msgstr "◀"
 
 #: ../data/ui/wizard-source.ui.h:7
+msgid "Enter URL"
+msgstr "Syötä verkko-osoite"
+
+#: ../data/ui/wizard-source.ui.h:8
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -292,13 +311,16 @@ msgstr ""
 "linkkejä asennuslevykuviin, SPICE- ja VNC-palvelimiin tai oVirt- tai Libvirt-"
 "välittäjiin."
 
-#: ../data/ui/wizard-source.ui.h:8
+#: ../data/ui/wizard-source.ui.h:9
+#| msgid ""
+#| "<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
+#| "somehost:5051, ovirt://host/path</span>"
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 msgstr ""
-"<span color=\"grey\">Esimerkit: http://palvelin.fi/levykuva.iso, spice://"
-"palvelin:5051, ovirt://kone/polku</span>"
+"Esimerkkejä: http://palvelin.fi/levykuva.iso, spice://palvelin:5051, ovirt://"
+"kone/polku"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -325,9 +347,6 @@ msgid "Preparing to create new box"
 msgstr "Valmistaudutaan uuden boksin luontiin"
 
 #: ../data/ui/wizard.ui.h:2
-#| msgid ""
-#| "Virtualization extensions are unavailable on your system. If your system "
-#| "is recent (post 2008), check your BIOS settings to enable them."
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -336,154 +355,160 @@ msgstr ""
 "Tarkista BIOS-asetukset ja ota virtualisointilaajennukset käyttöön."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:25
-#| msgid "Collections"
+#: ../src/actions-popover.vala:26
 msgid "Box actions"
 msgstr "Boksin toiminnot"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:37
-#| msgid "_Open in new window"
-#| msgid_plural "_Open in %d new windows"
+#: ../src/actions-popover.vala:38
 msgid "Open in New Window"
 msgstr "Avaa uudessa ikkunassa"
 
 #. Favorite
-#: ../src/actions-popover.vala:41
-#| msgid "Favorites"
+#: ../src/actions-popover.vala:42
 msgid "Remove from Favorites"
 msgstr "Poista suosikeista"
 
-#: ../src/actions-popover.vala:43
-#| msgid "Favorites"
+#: ../src/actions-popover.vala:44
 msgid "Add to Favorites"
 msgstr "Lisää suosikkeihin"
 
+#: ../src/actions-popover.vala:51
+msgid "Force Shutdown"
+msgstr "Pakota sammutus"
+
 #. Pause
-#: ../src/actions-popover.vala:46
-#| msgid "P_ause"
+#: ../src/actions-popover.vala:57
 msgid "Pause"
 msgstr "Keskeytä"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:59
-#| msgid "_Properties"
+#: ../src/actions-popover.vala:72
 msgid "Properties"
 msgstr "Ominaisuudet"
 
-#: ../src/actions-popover.vala:83 ../src/selectionbar.vala:63
+#: ../src/actions-popover.vala:96 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Kohteen '%s' keskeytys epäonnistui"
 
-#: ../src/app.vala:99
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: ../src/app.vala:100
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Sovellus etä- tai virtuaalikoneiden käsittelyyn"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:121
 msgid "Help"
 msgstr "Ohje"
 
-#: ../src/app.vala:120
+#: ../src/app.vala:122
 msgid "About"
 msgstr "Tietoja"
 
-#: ../src/app.vala:121
+#: ../src/app.vala:123
 msgid "Quit"
 msgstr "Lopeta"
 
-#: ../src/app.vala:177 ../src/main.vala:9
+#: ../src/app.vala:181 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Näytä versionumero"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:183
 msgid "Open in full screen"
 msgstr "Avaa koko näytön tilassa"
 
-#: ../src/app.vala:180 ../src/main.vala:10
+#: ../src/app.vala:184 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Tarkista virtualisointikyvyt"
 
-#: ../src/app.vala:181
+#: ../src/app.vala:185
 msgid "Open box with UUID"
 msgstr "Avaa boksi UUID:llä"
 
-#: ../src/app.vala:182
+#: ../src/app.vala:186
 msgid "Search term"
 msgstr "Hakuehto"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:184
+#: ../src/app.vala:188
 msgid "URI to display, broker or installer media"
 msgstr ""
 
-#: ../src/app.vala:195
+#: ../src/app.vala:199
 msgid "- A simple application to access remote or virtual machines"
 msgstr "Helppo sovellus etä- tai virtuaalikoneisiin käsiksi pääsemiseen"
 
-#: ../src/app.vala:217
+#: ../src/app.vala:221
 msgid "Too many command line arguments specified.\n"
 msgstr "Liian monta komentoriviargumenttia määritetty.\n"
 
-#: ../src/app.vala:486
+#: ../src/app.vala:431
+#, c-format
+msgid "Box '%s' installed and ready to use"
+msgstr "Boksi '%s' on asennettu ja käyttövalmis"
+
+#: ../src/app.vala:519
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boksi '%s' on poistettu"
 
-#: ../src/app.vala:487
+#: ../src/app.vala:520
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boksi on poistettu"
 msgstr[1] "%u boksia on poistettu"
 
-#: ../src/app.vala:514 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Kumoa"
 
-#: ../src/collection-view.vala:40
-msgid "New and Recent"
-msgstr "Uudet ja viimeisimmät"
-
 #: ../src/display-page.vala:110
-#| msgid "(press [left] Ctrl+Alt keys to ungrab)"
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Paina (vasen) Ctrl+Alt poistaaksesi sieppauksen"
 
 #: ../src/display-page.vala:112
-#| msgid "(press [left] Ctrl+Alt keys to ungrab)"
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "Paina ja vapauta (vasen) Ctrl+Alt poistaaksesi näppäimistön sieppauksen."
 
 #. Translators: Showing size of widget as WIDTHxHEIGHT here.
-#: ../src/display-page.vala:255
+#: ../src/display-page.vala:256
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
 
-#: ../src/installed-media.vala:49
+#: ../src/icon-view.vala:56
+msgid "New and Recent"
+msgstr "Uudet ja viimeisimmät"
+
+#: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "Tukematon levykuvan muoto."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Järjestelmä"
 
-#: ../src/i-properties-provider.vala:88
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
 msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(%s käytetty)</span>"
 
-#. Translators: This is memory or disk size. E.g "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:120
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
 #, c-format
-#| msgid "%s maximum"
+msgid "%s (recommended)"
+msgstr "%s (suositeltu)"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:131
+#, c-format
 msgid "%s (maximum)"
 msgstr "%s (enintään)"
 
@@ -510,108 +535,121 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Lähetä näppäinyhdistelmiä"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:55
-msgid "Name"
-msgstr "Nimi"
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
+#| msgid "Name"
+msgid "_Name"
+msgstr "_Nimi"
 
-#: ../src/libvirt-machine-properties.vala:128 ../src/ovirt-machine.vala:66
+#: ../src/libvirt-machine-properties.vala:130
+msgid "IP Address"
+msgstr "IP-osoite"
+
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
 msgstr "Välittäjä"
 
-#: ../src/libvirt-machine-properties.vala:130 ../src/ovirt-machine.vala:67
-#: ../src/remote-machine.vala:65
-msgid "Protocol"
+#: ../src/libvirt-machine-properties.vala:134
+#, fuzzy
+#| msgid "Protocol"
+msgid "Display Protocol"
 msgstr "Protokolla"
 
-#: ../src/libvirt-machine-properties.vala:131 ../src/ovirt-machine.vala:68
-#: ../src/remote-machine.vala:67 ../src/remote-machine.vala:69
-#: ../src/wizard.vala:482
-msgid "URI"
-msgstr "URI"
+#: ../src/libvirt-machine-properties.vala:135
+#, fuzzy
+#| msgid "Display"
+msgid "Display URI"
+msgstr "Näyttö"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:180
-#: ../src/libvirt-machine-properties.vala:198
+#: ../src/libvirt-machine-properties.vala:187
+#: ../src/libvirt-machine-properties.vala:205
 msgid "Add support to guest"
 msgstr "Lisää tuki asiakkaaseen"
 
-#: ../src/libvirt-machine-properties.vala:182
+#: ../src/libvirt-machine-properties.vala:189
 msgid "USB device support"
 msgstr "USB-laitteiden tuki"
 
-#: ../src/libvirt-machine-properties.vala:200
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Smartcard support"
 msgstr "Älykortin tuki"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:252
-#: ../src/libvirt-machine-properties.vala:304
+#: ../src/libvirt-machine-properties.vala:259
+#: ../src/libvirt-machine-properties.vala:311
 msgid "empty"
 msgstr "tyhjä"
 
-#. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:261
-#: ../src/libvirt-machine-properties.vala:313
+#. Don't let user eject installer media if it's an express installation or a live media
+#: ../src/libvirt-machine-properties.vala:268
+#: ../src/libvirt-machine-properties.vala:320
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:275
-#: ../src/libvirt-machine-properties.vala:303
-msgid "Select"
-msgstr "Valitse"
+#: ../src/libvirt-machine-properties.vala:282
+#: ../src/libvirt-machine-properties.vala:310
+#| msgid "Select"
+msgid "_Select"
+msgstr "V_alitse"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:278
-#: ../src/libvirt-machine-properties.vala:286
-msgid "Remove"
-msgstr "Poista"
+#: ../src/libvirt-machine-properties.vala:285
+#: ../src/libvirt-machine-properties.vala:293
+#| msgid "Remove"
+msgid "_Remove"
+msgstr "_Poista"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:300
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Kohteen '%s' lisäys CD-/DVD-levynä boksiin '%s' epäonnistui"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:307
+#: ../src/libvirt-machine-properties.vala:314
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "CD:n/DVD:n poisto boksista '%s' epäonnistui"
 
-#: ../src/libvirt-machine-properties.vala:375
-#| msgid "CPU:"
+#: ../src/libvirt-machine-properties.vala:384
 msgid "CPU"
 msgstr "Suoritin"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:381
-#| msgid "I/O:"
+#: ../src/libvirt-machine-properties.vala:390
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:387
+#: ../src/libvirt-machine-properties.vala:396
 msgid "Network"
 msgstr "Verkko"
 
-#: ../src/libvirt-machine-properties.vala:410
-msgid "Troubleshooting log"
-msgstr "Ongelmanratkaisuloki"
+#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
+msgid "_Restart"
+msgstr "_Käynnistä uudelleen"
 
-#: ../src/libvirt-machine-properties.vala:417
-msgid "Force Shutdown"
-msgstr "Pakota sammutus"
+#: ../src/libvirt-machine-properties.vala:433
+#| msgid "Force Shutdown"
+msgid "_Force Shutdown"
+msgstr "_Pakota sammutus"
 
-#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:520
-msgid "Memory"
-msgstr "Muisti"
+#: ../src/libvirt-machine-properties.vala:447
+#| msgid "Troubleshooting Log"
+msgid "_Troubleshooting Log"
+msgstr "_Ongelmanratkaisuloki"
 
-#: ../src/libvirt-machine-properties.vala:510
+#: ../src/libvirt-machine-properties.vala:468
+#| msgid "Memory"
+msgid "_Memory: "
+msgstr "_Muisti:"
+
+#: ../src/libvirt-machine-properties.vala:536
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -620,55 +658,95 @@ msgstr ""
 "<span color=\"grey\">Levyn enimmäiskoko</span>\t\t %s <span color=\"grey"
 "\">(%s käytetty)</span>"
 
-#: ../src/libvirt-machine-properties.vala:526
+#: ../src/libvirt-machine-properties.vala:552
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Järjestelmän levytila ei riitä levyn enimmäistilan kasvattamiseen."
 
-#: ../src/libvirt-machine-properties.vala:535
-msgid "Maximum Disk Size"
-msgstr "Levyn enimmäiskoko"
+#: ../src/libvirt-machine-properties.vala:561
+#| msgid "Maximum Disk Size"
+msgid "Maximum _Disk Size: "
+msgstr "Levyn _enimmäiskoko:"
+
+#: ../src/libvirt-machine-properties.vala:694
+msgid "_Run in background"
+msgstr "Suo_rita taustalla"
+
+#: ../src/libvirt-machine-properties.vala:705
+#: ../src/libvirt-machine-properties.vala:708
+#, c-format
+#| msgid "Live box '%s' has been deleted automatically."
+msgid "'%s' will not be paused automatically."
+msgstr "Boksia '%s' ei keskeytetä automaattisesti."
+
+#: ../src/libvirt-machine-properties.vala:706
+#: ../src/libvirt-machine-properties.vala:709
+#, c-format
+msgid "'%s' will be paused automatically to save resources."
+msgstr "Boksi '%s' keskeytetään automaattisesti resurssien säästämiseksi."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:553
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Palautetaan %s levyltä"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:556
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "Käynnistetään %s"
 
-#: ../src/libvirt-machine.vala:621
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Kohteen '%s' käynnistäminen uudelleen kestää liian pitkään. Pakotetaanko sen "
 "sammutus?"
 
-#: ../src/libvirt-machine.vala:623
+#: ../src/libvirt-machine.vala:658
 msgid "_Shutdown"
 msgstr "_Sammuta"
 
+#: ../src/libvirt-machine.vala:730
+msgid "Installing…"
+msgstr "Asennetaan…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+msgid "Live"
+msgstr "Live"
+
+#: ../src/libvirt-machine.vala:734
+msgid "Importing…"
+msgstr "Tuodaan…"
+
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#, c-format
+msgid "host: %s"
+msgstr "isäntä: %s"
+
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
-msgid "Import '%s' from system broker"
-msgstr "Tuo \"%s\" järjestelmävälittäjältä"
+#| msgid "Import '%s' from system broker"
+msgid "_Import '%s' from system broker"
+msgstr "_Tuo '%s' järjestelmävälittäjältä"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
-msgid "Import %u box from system broker"
-msgid_plural "Import %u boxes from system broker"
-msgstr[0] "Tuo %u boksi järjestelmävälittäjältä"
-msgstr[1] "Tuo %u boksia järjestelmävälittäjältä"
+#| msgid "Import %u box from system broker"
+#| msgid_plural "Import %u boxes from system broker"
+msgid "_Import %u box from system broker"
+msgid_plural "_Import %u boxes from system broker"
+msgstr[0] "_Tuo %u boksi järjestelmävälittäjältä"
+msgstr[1] "_Tuo %u boksia järjestelmävälittäjältä"
 
 #: ../src/libvirt-system-importer.vala:32
 #, c-format
 msgid "Will import '%s' from system broker"
-msgstr "Tuodaan \"%s\" järjestelmävälittäjältä"
+msgstr "Tuodaan '%s' järjestelmävälittäjältä"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:35
@@ -678,31 +756,53 @@ msgid_plural "Will import %u boxes from system broker"
 msgstr[0] "Tuodaan %u boksi järjestelmävälittäjältä"
 msgstr[1] "Tuodaan %u boksia järjestelmävälittäjältä"
 
-#: ../src/libvirt-system-importer.vala:51
+#: ../src/libvirt-system-importer.vala:47
 msgid "No boxes to import"
 msgstr "Ei bokseja tuotavaksi"
 
-#: ../src/libvirt-system-importer.vala:127
+#: ../src/libvirt-system-importer.vala:121
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr ""
 
+#: ../src/list-view-row.vala:124
+msgid "Connected"
+msgstr "Yhdistetty"
+
+#: ../src/list-view-row.vala:124
+msgid "Disconnected"
+msgstr "Yhteys katkaistu"
+
+#: ../src/list-view-row.vala:131
+#| msgid "Select Running"
+msgid "Running"
+msgstr "Käynnissä"
+
+#: ../src/list-view-row.vala:138
+#| msgid "Pause"
+msgid "Paused"
+msgstr "Keskeytetty"
+
+#: ../src/list-view-row.vala:144
+msgid "Powered Off"
+msgstr "Sammutettu"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:151
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "Yhdistetään kohteeseen %s"
 
-#: ../src/machine.vala:173 ../src/machine.vala:596
+#: ../src/machine.vala:217 ../src/machine.vala:611
 #, c-format
 msgid "Connection to '%s' failed"
-msgstr "Yhteys kohteeseen \"%s\" epäonnistui"
+msgstr "Yhteys kohteeseen '%s' epäonnistui"
 
-#: ../src/machine.vala:263
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "Tallennetaan…"
 
-#: ../src/machine.vala:582
+#: ../src/machine.vala:597
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -711,17 +811,17 @@ msgstr ""
 "Kohteen '%s' palautus levyltä epäonnistui\n"
 "Yritetäänkö uudelleen ilman tallennettua tilaa?"
 
-#: ../src/machine.vala:583
+#: ../src/machine.vala:598
 msgid "Restart"
 msgstr "Käynnistä uudelleen"
 
-#: ../src/machine.vala:592
+#: ../src/machine.vala:607
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Kohteen '%s' käynnistäminen epäonnistui"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:625
+#: ../src/machine.vala:640
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' vaatii tunnistautumisen"
@@ -767,12 +867,12 @@ msgstr "%s - verkkosivusto: <%s>.\n"
 msgid "No such file %s"
 msgstr "Ei tiedostoa %s"
 
-#: ../src/notificationbar.vala:42
+#: ../src/notificationbar.vala:43
 #, c-format
 msgid "Sign In to %s"
 msgstr "Kirjaudu kohteeseen %s"
 
-#: ../src/notificationbar.vala:45
+#: ../src/notificationbar.vala:46
 #, c-format
 msgid "Not connected to %s"
 msgstr "Ei yhteyttä kohteeseen %s"
@@ -781,14 +881,19 @@ msgstr "Ei yhteyttä kohteeseen %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Yhteys oVirt-välittäjään epäonnistui"
 
-#: ../src/properties.vala:81
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
+msgid "Protocol"
+msgstr "Protokolla"
+
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
+#: ../src/wizard.vala:486
+msgid "URI"
+msgstr "URI"
+
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
-msgstr "Muutokset vaativat, että \"%s\" käynnistetään uudelleen."
-
-#: ../src/properties.vala:82
-msgid "_Restart"
-msgstr "_Käynnistä uudelleen"
+msgstr "Muutokset vaativat, että '%s' käynnistetään uudelleen."
 
 #: ../src/properties-page-widget.vala:15
 msgid "General"
@@ -802,8 +907,12 @@ msgstr "Laitteet"
 msgid "Snapshots"
 msgstr "Tilannevedokset"
 
+#: ../src/remote-machine.vala:70
+msgid "_URI"
+msgstr ""
+
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
+#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -837,63 +946,62 @@ msgstr "Tilannevedoksen toteuttaminen epäonnistui"
 msgid "Snapshot \"%s\" deleted."
 msgstr "Tilannevedos \"%s\" poistettu."
 
-#: ../src/snapshots-property.vala:59
+#: ../src/snapshots-property.vala:61
 msgid "No snapshots created yet. Create one using the button below."
 msgstr ""
 "Tilannevedoksia ei ole vielä luotu. Luo vedos alla olevaa painiketta "
 "käyttäen."
 
-#: ../src/snapshots-property.vala:118
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
 msgstr "Luodaan uutta tilannevedosta…"
 
-#: ../src/snapshots-property.vala:126
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Tilannevedoksen luominen kohteesta %s epäonnistui"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:33
+#: ../src/spice-display.vala:36
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: ../src/spice-display.vala:51 ../src/spice-display.vala:347
+#: ../src/spice-display.vala:54 ../src/spice-display.vala:363
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "USB-laitteen '%s' uudelleenohjaus boksille '%s' epäonnistui"
 
-#: ../src/spice-display.vala:294
-#| msgid "Share clipboard"
+#: ../src/spice-display.vala:310
 msgid "Share Clipboard"
 msgstr "Jaa leikepöytä"
 
-#: ../src/spice-display.vala:360
+#: ../src/spice-display.vala:376
 msgid "USB devices"
 msgstr "USB-laitteet"
 
-#: ../src/spice-display.vala:461 ../src/wizard.vala:305 ../src/wizard.vala:312
+#: ../src/spice-display.vala:519 ../src/wizard.vala:309 ../src/wizard.vala:316
 msgid "Invalid URI"
 msgstr "Virheellinen URI"
 
-#: ../src/spice-display.vala:471
+#: ../src/spice-display.vala:529
 msgid "The port must be specified once"
 msgstr "Portti tulee määrittää kerran"
 
-#: ../src/spice-display.vala:480
+#: ../src/spice-display.vala:538
 msgid "Missing port in Spice URI"
 msgstr "Spice URI:sta puuttuu portti"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:190
+#: ../src/unattended-installer.vala:188
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Asennuksen valmistelun yhteydessä tapahtui virhe. Pika-asennus on poistettu "
 "käytöstä."
 
-#: ../src/unattended-installer.vala:467
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "Ladataan laiteajureita…"
 
@@ -906,7 +1014,7 @@ msgstr "ei salasanaa"
 msgid "Express installation of %s requires an internet connection."
 msgstr "Kohteen %s pika-asennus vaatii internetyhteyden."
 
-#: ../src/util-app.vala:198
+#: ../src/util-app.vala:242
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -916,30 +1024,30 @@ msgstr ""
 "komennon:\n"
 "%s"
 
-#: ../src/util-app.vala:202
+#: ../src/util-app.vala:246
 msgid "SELinux not installed?"
 msgstr "Onko SELinux asentamatta?"
 
-#: ../src/util-app.vala:284
+#: ../src/util-app.vala:328
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
 msgstr ""
 
-#: ../src/util-app.vala:289
+#: ../src/util-app.vala:333
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
 "not exist"
 msgstr ""
 
-#: ../src/util-app.vala:293
+#: ../src/util-app.vala:337
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
 msgstr ""
 
-#: ../src/util-app.vala:297
+#: ../src/util-app.vala:341
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -956,43 +1064,21 @@ msgstr "ei"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:553
+#: ../src/vm-configurator.vala:557
 msgid "Incapable host system"
 msgstr "Kykenemätön isäntäjärjestelmä"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:170
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Live-boksi '%s' on poistettu automaattisesti."
 
-#: ../src/vm-creator.vala:187
-msgid "Installing…"
-msgstr "Asennetaan…"
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:191 ../src/wizard-source.vala:82
-msgid "Live"
-msgstr "Live"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:330
-#, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "%d% % asennettu"
-msgstr[1] "%d% % asennettu"
-
-#: ../src/vm-importer.vala:36
-msgid "Importing…"
-msgstr "Tuodaan…"
-
-#: ../src/vm-importer.vala:53
+#: ../src/vm-importer.vala:46
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Boksin tuonti tiedostosta '%s' epäonnistui."
 
-#: ../src/vnc-display.vala:145
+#: ../src/vnc-display.vala:149
 msgid "Read-only"
 msgstr "Vain luku"
 
@@ -1015,12 +1101,10 @@ msgid "Source Selection"
 msgstr "Lähteen valinta"
 
 #: ../src/wizard-toolbar.vala:7
-#| msgid "Preparation"
 msgid "Box Preparation"
 msgstr "Boksin valmistelu"
 
 #: ../src/wizard-toolbar.vala:8
-#| msgid "Setup"
 msgid "Box Setup"
 msgstr "Boksin asetukset"
 
@@ -1036,85 +1120,99 @@ msgstr "Boksin luonti epäonnistui"
 msgid "Empty location"
 msgstr "Tyhjä sijainti"
 
-#: ../src/wizard.vala:287
-#| msgid "Unsupported protocol '%s'"
+#: ../src/wizard.vala:291
 msgid "Unsupported file"
 msgstr "Tiedosto ei ole tuettu"
 
-#: ../src/wizard.vala:293
-#| msgid "Invalid URI"
+#: ../src/wizard.vala:297
 msgid "Invalid file"
 msgstr "Virheellinen tiedosto"
 
-#: ../src/wizard.vala:329
+#: ../src/wizard.vala:333
 #, c-format
 msgid "Unsupported protocol '%s'"
-msgstr "Protokolla \"%s\" ei ole tuettu"
+msgstr "Protokolla '%s' ei ole tuettu"
 
-#: ../src/wizard.vala:335 ../src/wizard.vala:404
+#: ../src/wizard.vala:339 ../src/wizard.vala:408
 msgid "Unknown installer media"
 msgstr "Tuntematon asennusmedia"
 
-#: ../src/wizard.vala:336 ../src/wizard.vala:405
+#: ../src/wizard.vala:340 ../src/wizard.vala:409
 msgid "Analyzing…"
 msgstr "Analysoidaan…"
 
-#: ../src/wizard.vala:350
+#: ../src/wizard.vala:354
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Asennusmedian analysointi epäonnistui. Media saattaa olla rikki tai "
 "puutteellinen."
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:462
 msgid "Box setup failed"
 msgstr "Boksin asetuksissa tapahtui virhe"
 
-#: ../src/wizard.vala:472
+#: ../src/wizard.vala:476
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Uusi boksi luodaan seuraavin ominaisuuksin:"
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:481
 msgid "Type"
 msgstr "Tyyppi"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:484
 msgid "Host"
 msgstr "Isäntä"
 
-#: ../src/wizard.vala:491 ../src/wizard.vala:502
+#: ../src/wizard.vala:495 ../src/wizard.vala:506
 msgid "Port"
 msgstr "Portti"
 
-#: ../src/wizard.vala:493
+#: ../src/wizard.vala:497
 msgid "TLS Port"
 msgstr "TLS-portti"
 
-#: ../src/wizard.vala:507
+#: ../src/wizard.vala:511
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
+"Lisätään boksit kaikille saatavilla oleville järjestelmille tältä tililtä:"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "Muisti"
+
+#: ../src/wizard.vala:533
 msgid "Disk"
 msgstr "Levy"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: ../src/wizard.vala:531
+#: ../src/wizard.vala:535
 #, c-format
 msgid "%s maximum"
 msgstr "%s enintään"
 
-#: ../src/wizard.vala:594
+#: ../src/wizard.vala:598
 msgid "Downloading media…"
 msgstr "Ladataan mediaa…"
 
-#: ../src/wizard.vala:604
+#: ../src/wizard.vala:608
 msgid "Download failed."
 msgstr "Lataus epäonnistui."
 
-#: ../src/wizard.vala:712
+#: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Muokkaa…"
+
+#~ msgid "_Properties"
+#~ msgstr "_Ominaisuudet"
+
+#~ msgid "Troubleshooting log"
+#~ msgstr "Ongelmanratkaisuloki"
+
+#~ msgid "%d%% Installed"
+#~ msgid_plural "%d%% Installed"
+#~ msgstr[0] "%d% % asennettu"
+#~ msgstr[1] "%d% % asennettu"
 
 #~ msgid "Create one using the button on the top left."
 #~ msgstr "Luo boksi vasemman yläreunan painikkeesta."
@@ -1160,9 +1258,6 @@ msgstr "_Muokkaa…"
 
 #~ msgid "Login"
 #~ msgstr "Kirjautuminen"
-
-#~ msgid "Display"
-#~ msgstr "Näyttö"
 
 #~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
 #~ msgstr ""
