@@ -192,7 +192,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 return;
 
             // Translators: The %s will be expanded with the name of the vm
-            status = _("Connecting to %s").printf (name);
+            window.topbar.status = _("Connecting to %s").printf (name);
 
             show_id = _display.show.connect ((id) => { show_display (); });
 

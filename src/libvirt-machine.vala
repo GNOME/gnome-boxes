@@ -585,10 +585,10 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 !(Machine.ConnectFlags.IGNORE_SAVED_STATE in flags);
             if (restore)
                 // Translators: The %s will be expanded with the name of the vm
-                status = _("Restoring %s from disk").printf (name);
+                window.topbar.status = _("Restoring %s from disk").printf (name);
             else
                 // Translators: The %s will be expanded with the name of the vm
-                status = _("Starting %s").printf (name);
+                 window.topbar.status = _("Starting %s").printf (name);
             try {
                 yield domain.start_async (connect_flags_to_gvir (flags), cancellable);
             } catch (IOError.CANCELLED error) {
