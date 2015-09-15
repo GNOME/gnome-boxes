@@ -577,7 +577,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         case Boxes.UIState.DISPLAY:
             if (previous_ui_state == UIState.PROPERTIES)
                 window.below_bin.set_visible_child_name ("display-page");
-            name_status_bind = bind_property ("name", this, "status", BindingFlags.SYNC_CREATE);
+            if (window.current_item == this)
+                name_status_bind = bind_property ("name", this, "status", BindingFlags.SYNC_CREATE);
 
             break;
 
