@@ -563,9 +563,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     private void ui_state_changed () {
         if (name_status_bind != null) {
+            var topbar = name_status_bind.target as Topbar;
+            topbar.status = null;
             name_status_bind.unbind ();
             name_status_bind = null;
-            status = null;
         }
 
         switch (ui_state) {
@@ -578,7 +579,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (previous_ui_state == UIState.PROPERTIES)
                 window.below_bin.set_visible_child_name ("display-page");
             if (window.current_item == this)
-                name_status_bind = bind_property ("name", this, "status", BindingFlags.SYNC_CREATE);
+                name_status_bind = bind_property ("name", window.topbar, "status", BindingFlags.SYNC_CREATE);
 
             break;
 
