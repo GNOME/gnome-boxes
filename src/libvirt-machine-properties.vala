@@ -694,7 +694,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         box.has_tooltip = true;
 
         var label = new Gtk.Label.with_mnemonic (_("_Run in background"));
-        label.get_style_context ().add_class ("boxes-property-name-label");
+        label.get_style_context ().add_class ("dim-label");
         box.add (label);
         var toggle = new Gtk.Switch ();
         machine.bind_property ("run-in-bg", toggle, "active",

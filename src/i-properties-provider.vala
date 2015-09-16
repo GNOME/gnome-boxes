@@ -113,7 +113,7 @@ private class Boxes.SizeProperty : Boxes.Property {
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         var name_label = new Gtk.Label.with_mnemonic (name);
         name_label.halign = Gtk.Align.START;
-        name_label.get_style_context ().add_class ("boxes-property-name-label");
+        name_label.get_style_context ().add_class ("dim-label");
         box.add (name_label);
         var value_label = new Gtk.Label ("");
         set_size_value_label_msg (value_label, size, allocation, format_flags);
