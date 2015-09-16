@@ -26,14 +26,26 @@ BoxesResourceGraph {
     background-image: none;
 }
 
+.content-bg {
+    background-color: @content_view_bg;
+}
+
+.boxes-toplevel {
+    background-color: @theme_bg_color;
+}
+
+.slow-spinner {
+    animation-duration: 2s;
+}
+
+/******************
+ * New Box Wizard *
+ ******************/
+
 /* This is the subtitle in the ISOs/media list */
 .boxes-step-label {
     font-size: smaller;
     font-weight: normal;
-}
-
-.content-bg {
-    background-color: @content_view_bg;
 }
 
 .boxes-wizard-media-os-label {
@@ -105,11 +117,3 @@ BoxesResourceGraph {
 
 /* Adds a border to the ISOs lists top undershoot */
 .boxes-menu-scrolled.undershoot.top { border-top: 1px solid @borders; }
-
-.boxes-toplevel {
-    background-color: @theme_bg_color;
-}
-
-.slow-spinner {
-    animation-duration: 2s;
-}
