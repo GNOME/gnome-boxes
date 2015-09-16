@@ -4,14 +4,14 @@
 #
 #
 # Peteris Krisjanis <pecisk@gmail.com>, 2012.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2012, 2013, 2014.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-10-10 12:04+0000\n"
-"PO-Revision-Date: 2014-10-12 16:55+0300\n"
+"POT-Creation-Date: 2015-09-16 06:23+0000\n"
+"PO-Revision-Date: 2015-09-16 16:40+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -50,7 +50,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:106 ../src/main.vala:72
+#: ../src/app-window.vala:126 ../src/app-window.vala:222
+#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Kastes"
 
@@ -114,15 +115,29 @@ msgstr "_Lietotājvārds"
 msgid "_Password"
 msgstr "_Parole"
 
-#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:46
+#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
 msgid "Sign In"
 msgstr "Ierakstīties"
+
+#: ../data/ui/collection-filter-switcher.ui.h:1
+msgid "All"
+msgstr "Visas"
+
+#: ../data/ui/collection-filter-switcher.ui.h:2
+msgid "Local"
+msgstr "Lokālie"
+
+#: ../data/ui/collection-filter-switcher.ui.h:3
+#| msgid "Remove"
+msgid "Remote"
+msgstr "Attālinātie"
 
 #: ../data/ui/collection-toolbar.ui.h:1
 msgid "_New"
 msgstr "Jau_ns"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Atpakaļ"
 
@@ -130,51 +145,66 @@ msgstr "Atpakaļ"
 msgid "Select Items"
 msgstr "Izvēlēties vienumus"
 
-#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:4
+msgid "List view"
+msgstr "Saraksta skats"
+
+#: ../data/ui/collection-toolbar.ui.h:5
+msgid "Grid view"
+msgstr "Režģa skats"
+
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Meklēt"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">Kastes nav atrastas</span></b>"
+msgid "State of the art virtualization"
+msgstr "Pati mūsdienīgākā virtualizācija"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "Izveido tādu, izmantojot pogu augšējā kreisajā stūrī."
+#| msgid "View and use virtual machines"
+msgid "Boxes can be virtual or remote machines."
+msgstr "Kastes var būt virtuālās vai attālinātas mašīnas."
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "CPU:"
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr "Spiediet <b>Jauns</b> pogu, lai izveidotu savu pirmo."
 
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "I/O:"
+#: ../data/ui/properties-toolbar.ui.h:1
+#| msgid "Troubleshooting log"
+msgid "Troubleshooting Log"
+msgstr "Atkļūdošanas žurnāls"
 
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "Tīkls:"
+#: ../data/ui/properties-toolbar.ui.h:3
+#| msgid "Copy to clipboard"
+msgid "_Copy to Clipboard"
+msgstr "_Kopēt uz starpliktuvi"
 
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "Piespiedu izslēgšana"
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "Izvēlieties ierīci vai ISO datni"
+
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
+msgid "_Cancel"
+msgstr "At_celt"
+
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "_Atvērt"
 
 #: ../data/ui/selectionbar.ui.h:1
+#| msgid "Favorites"
+msgid "_Favorite"
+msgstr "_Iecienītās"
+
+#: ../data/ui/selectionbar.ui.h:2
 msgid "P_ause"
 msgstr "P_auzēt"
 
-#: ../data/ui/selectionbar.ui.h:2
+#: ../data/ui/selectionbar.ui.h:3
 msgid "_Delete"
 msgstr "_Dzēst"
-
-#: ../data/ui/selectionbar.ui.h:3
-msgid "_Properties"
-msgstr "Ī_pašības"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:344 ../src/libvirt-machine.vala:450
-#: ../src/wizard-source.vala:280
-msgid "_Cancel"
-msgstr "At_celt"
 
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
@@ -193,12 +223,11 @@ msgid "Revert to this state"
 msgstr "Atgriezt uz šo stāvokli"
 
 #: ../data/ui/snapshot-list-row.ui.h:2
-#| msgid "Username"
 msgid "Rename"
 msgstr "Pārsaukt"
 
-#: ../data/ui/snapshot-list-row.ui.h:3
-#| msgid "_Delete"
+#. Delete
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:63
 msgid "Delete"
 msgstr "Dzēst"
 
@@ -218,11 +247,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Ātrā instalēšana"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:266
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Lietotājvārds"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:267
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Parole"
 
@@ -238,43 +267,61 @@ msgstr "Produkta atslēga"
 msgid "Unknown media"
 msgstr "Nezināms datu nesējs"
 
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "Ievads"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "Avota izvēle"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "Gatavošanās"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "Iestatīt"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "Pārskatīt"
-
 #: ../data/ui/wizard-source.ui.h:1
-msgid "Enter URL"
-msgstr "Ievadiet URL"
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Ievietojiet operētājsistēmas instalēšanas datu nesēju, vai izvēlieties avotu "
+"zemāk"
 
 #: ../data/ui/wizard-source.ui.h:2
+#| msgid "Enter URL"
+msgid "_Enter URL"
+msgstr "I_evadiet URL"
+
+#: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "▶"
 
-#: ../data/ui/wizard-source.ui.h:3
-msgid "Select a file"
-msgstr "Izvēlieties datni"
-
 #: ../data/ui/wizard-source.ui.h:4
+#| msgid "Select a file"
+msgid "_Select a file"
+msgstr "Izvēlietie_s datni"
+
+#: ../data/ui/wizard-source.ui.h:5
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Visas tirdzniecības zīmes, kas parādītas augstāk, tiek izmantotas tikai, lai "
+"identificētu programmatūras produktus, kurus jau esat ieguvuši, un kuras "
+"pieder to atbilstošajiem īpašniekiem."
+
+#: ../data/ui/wizard-source.ui.h:6
 msgid "◀"
 msgstr "◀"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-source.ui.h:7
+msgid "Enter URL"
+msgstr "Ievadiet URL"
+
+#: ../data/ui/wizard-source.ui.h:8
+msgid ""
+"Enter an address for the box you want to add. Addresses can be of "
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+msgstr ""
+"Ievadiet adresi kastei, kuru vēlaties pievienot. Adrese var būt instalācijas "
+"attēliem, SPICE un VNC serveri vai oVirt vai Libvirt starpnieki."
+
+#: ../data/ui/wizard-source.ui.h:9
+msgid ""
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
+msgstr ""
+"Piemēri: http://download.com/attēls.iso, spice://vietne:5051, "
+"ovirt://viente/ceļš"
+
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "Izveidot kasti"
 
@@ -290,113 +337,137 @@ msgstr "T_urpināt"
 msgid "_Back"
 msgstr "_Atpakaļ"
 
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "Pielāgot resursus"
+
 #: ../data/ui/wizard.ui.h:1
-msgid ""
-"Creating a Box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"Kastes izveidošana ļaus jums izmantot citu operētājsistēmu tieši no jūsu "
-"eksistējošās vides.\n"
-"Jūs varat savienoties ar esošu mašīnu, <b><i>izmantojot tīklu</i></b>, kā "
-"arī izveidojot <b><i>virtuālo mašīnu</i></b>, kas strādā lokāli."
-
-#: ../data/ui/wizard.ui.h:4
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Ievietojiet operētājsistēmas instalēšanas datu nesēju, vai izvēlieties avotu "
-"zemāk"
-
-#: ../data/ui/wizard.ui.h:5
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Visas tirdzniecības zīmes, kas parādītas augstāk, tiek izmantotas tikai, lai "
-"identificētu programmatūras produktus, kurus jau esat ieguvuši, un kuras "
-"pieder to atbilstošajiem īpašniekiem."
-
-#: ../data/ui/wizard.ui.h:6
 msgid "Preparing to create new box"
 msgstr "Gatavojas izveidot jaunu kasti"
 
-#: ../data/ui/wizard.ui.h:7
+#: ../data/ui/wizard.ui.h:2
+#| msgid ""
+#| "Virtualization extensions are unavailable on your system. If your system "
+#| "is recent (post 2008), check your BIOS settings to enable them."
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"Šajā sistēmā ir pieejami virtualizācijas paplašinājumi. Ja sistēma ir nesena "
-"(pēc 2008. gada), pārbaudiet savus BIOS iestatījumus, lai tos aktivētu."
+"Šajā sistēmā nav pieejami virtualizācijas paplašinājumi.\n"
+"Pārbaudiet savus BIOS iestatījumus, lai tos ieslēgtu."
 
-#: ../src/app.vala:97
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: ../src/actions-popover.vala:26
+#| msgid "Collections"
+msgid "Box actions"
+msgstr "Kastes darbības"
+
+#. Open in new Window
+#: ../src/actions-popover.vala:38
+#| msgid "_Open in new window"
+#| msgid_plural "_Open in %d new windows"
+msgid "Open in New Window"
+msgstr "Atvērt jaunā logā"
+
+#. Favorite
+#: ../src/actions-popover.vala:42
+#| msgid "Favorites"
+msgid "Remove from Favorites"
+msgstr "Izņemt no izlases"
+
+#: ../src/actions-popover.vala:44
+#| msgid "Favorites"
+msgid "Add to Favorites"
+msgstr "Pievienot izlasei"
+
+#: ../src/actions-popover.vala:51
+msgid "Force Shutdown"
+msgstr "Piespiedu izslēgšana"
+
+#. Pause
+#: ../src/actions-popover.vala:57
+#| msgid "P_ause"
+msgid "Pause"
+msgstr "Pauzēt"
+
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:72
+#| msgid "_Properties"
+msgid "Properties"
+msgstr "Īpašības"
+
+#: ../src/actions-popover.vala:96 ../src/selectionbar.vala:60
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "“%s” pauzēšana neizdevās"
+
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr ""
 "Pēteris Krišjānis <pecisk@gmail.com>\n"
 "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Vienkārša GNOME 3 lietotne, lai piekļūtu attālinātām vai virtuālām sistēmām"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:121
 msgid "Help"
 msgstr "Palīdzība"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:122
 msgid "About"
 msgstr "Par"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:123
 msgid "Quit"
 msgstr "Iziet"
 
-#: ../src/app.vala:175 ../src/main.vala:9
+#: ../src/app.vala:181 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Rādīt versijas numuru"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:183
 msgid "Open in full screen"
 msgstr "Atvērt pilnekrāna režīmā"
 
-#: ../src/app.vala:178 ../src/main.vala:10
+#: ../src/app.vala:184 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Pārbaudīt virtualizācijas iespējas"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:185
 msgid "Open box with UUID"
 msgstr "Atvērt kasti ar UUID"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:186
 msgid "Search term"
 msgstr "Meklēšanas teksts"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:182
+#: ../src/app.vala:188
 msgid "URI to display, broker or installer media"
-msgstr "URI ar norādītu displeju, brokeri, vai instalēšanas datu nesēju"
+msgstr "URI ar norādītu displeju, starpnieku vai instalēšanas datu nesēju"
 
-#: ../src/app.vala:193
+#: ../src/app.vala:199
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- vienkārša lietotne attālinātu vai virtuālu mašīnu piekļuvei"
 
-#: ../src/app.vala:215
+#: ../src/app.vala:221
 msgid "Too many command line arguments specified.\n"
 msgstr "Tika norādīti pārāk daudz komandrindas parametri.\n"
 
-#: ../src/app.vala:496 ../src/snapshot-list-row.vala:201
-msgid "_Undo"
-msgstr "Atsa_ukt"
+#: ../src/app.vala:431
+#, c-format
+msgid "Box '%s' installed and ready to use"
+msgstr "Kaste “%s” ir uzinstalēta un gatava lietošanai"
 
-#: ../src/app.vala:507
+#: ../src/app.vala:519
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Kaste “%s” ir izdzēsta"
 
-#: ../src/app.vala:508
+#: ../src/app.vala:520
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -404,222 +475,352 @@ msgstr[0] "%u kaste ir izdzēsta"
 msgstr[1] "%u kastes ir izdzēstas"
 msgstr[2] "%u kastu ir izdzēstas"
 
-#: ../src/collection-view.vala:39
+#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "Atsa_ukt"
+
+#: ../src/display-page.vala:110
+#| msgid "(press [left] Ctrl+Alt keys to ungrab)"
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "Spiediet (kreiso) Ctrl+Alt, lai atlaistu tvērienu"
+
+#: ../src/display-page.vala:112
+#| msgid "(press [left] Ctrl+Alt keys to ungrab)"
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr ""
+"Spiediet un atlaidiet (kreiso) Ctrl+Alt taustiņus, lai atlaistu tastatūru."
+
+#. Translators: Showing size of widget as WIDTHxHEIGHT here.
+#: ../src/display-page.vala:256
+#, c-format
+msgid "%dx%d"
+msgstr "%dx%d"
+
+#: ../src/icon-view.vala:56
 msgid "New and Recent"
-msgstr "Jauns un nesens"
+msgstr "Jaunie un nesenie"
 
-#: ../src/display-page.vala:97
-#| msgid "(press Ctrl+Alt keys to ungrab)"
-msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(spiediet [kreisais]Ctrl+Alt taustiņus, lai atlaistu tvērienu)"
-
-#: ../src/installed-media.vala:49
+#: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "Neatbalstīts diska formāts."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:50
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistēma"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:53
-msgid "Name"
-msgstr "Nosaukums"
-
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:64
-msgid "Virtualizer"
-msgstr "Virtualizētājs"
-
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:65 ../src/wizard.vala:482
-msgid "URI"
-msgstr "URI"
-
-#: ../src/libvirt-machine-properties.vala:142
-#: ../src/libvirt-machine-properties.vala:147
-msgid "Troubleshooting log"
-msgstr "Atkļūdošanas žurnāls"
-
-#: ../src/libvirt-machine-properties.vala:150
-#: ../src/libvirt-machine-properties.vala:168
-msgid "_Save"
-msgstr "_Saglabāt"
-
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Copy to clipboard"
-msgstr "Kopēt uz starpliktuvi"
-
-#: ../src/libvirt-machine-properties.vala:152
-msgid "_Close"
-msgstr "_Aizvērt"
-
-#: ../src/libvirt-machine-properties.vala:166
-msgid "Save log"
-msgstr "Saglabāt žurnālu"
-
-#: ../src/libvirt-machine-properties.vala:182
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
-msgid "Error saving: %s"
-msgstr "Kļūda, saglabājot %s"
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s izmantots)</span>"
 
-#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:76
-msgid "Protocol"
-msgstr "Protokols"
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
+#, c-format
+msgid "%s (recommended)"
+msgstr "%s (ieteicams)"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:131
+#, c-format
+#| msgid "%s maximum"
+msgid "%s (maximum)"
+msgstr "%s (maksimums)"
+
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "Sūtīt taustiņu kombinācijas"
+
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
+#| msgid "Name"
+msgid "_Name"
+msgstr "_Nosaukums"
+
+#: ../src/libvirt-machine-properties.vala:130
+msgid "IP Address"
+msgstr "IP adrese"
+
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
+msgid "Broker"
+msgstr "Starpnieks"
+
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
+#| msgid "Protocol"
+msgid "Display Protocol"
+msgstr "Displeja protokols"
+
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
+#| msgid "Display"
+msgid "Display URI"
+msgstr "Displeja URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:244
-#: ../src/libvirt-machine-properties.vala:262
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "Pievienot atbalstu viesim"
 
-#: ../src/libvirt-machine-properties.vala:246
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "USB ierīču atbalsts"
 
-#: ../src/libvirt-machine-properties.vala:264
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "Smartcard atbalsts"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:310
-#: ../src/libvirt-machine-properties.vala:378
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "tukšs"
 
-#. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:320
-#: ../src/libvirt-machine-properties.vala:387
+#. Don't let user eject installer media if it's an express installation or a live media
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:334
-#: ../src/libvirt-machine-properties.vala:377
-msgid "Select"
-msgstr "Izvēlēties"
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
+#| msgid "Select"
+msgid "_Select"
+msgstr "Izvēlētie_s"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:337
-#: ../src/libvirt-machine-properties.vala:357
-msgid "Remove"
-msgstr "Izņemt"
-
-#: ../src/libvirt-machine-properties.vala:341 ../src/wizard-source.vala:277
-msgid "Select a device or ISO file"
-msgstr "Izvēlieties ierīci vai ISO datni"
-
-#: ../src/libvirt-machine-properties.vala:345 ../src/wizard-source.vala:281
-msgid "_Open"
-msgstr "_Atvērt"
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
+#| msgid "Remove"
+msgid "_Remove"
+msgstr "_Izņemt"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:364
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Neizdevās ievietot “%s” kā CD/DVD iekš “%s”"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:381
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Neizdevās izņemt CD/DVD no “%s”"
 
-#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:520
-msgid "Memory"
-msgstr "Atmiņa"
+#: ../src/libvirt-machine-properties.vala:386
+#| msgid "CPU:"
+msgid "CPU"
+msgstr "CPU"
 
-#: ../src/libvirt-machine-properties.vala:505
-#: ../src/libvirt-machine-properties.vala:527
-msgid "Maximum Disk Size"
-msgstr "Maksimālais diska izmērs"
+#. I/O
+#. 100 MiB/s
+#: ../src/libvirt-machine-properties.vala:392
+#| msgid "I/O:"
+msgid "I/O"
+msgstr "I/O"
 
-#: ../src/libvirt-machine-properties.vala:518
+#. Network
+#. 1 MiB/s
+#: ../src/libvirt-machine-properties.vala:398
+msgid "Network"
+msgstr "Tīkls"
+
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
+msgid "_Restart"
+msgstr "Pā_rstartēt"
+
+#: ../src/libvirt-machine-properties.vala:435
+#| msgid "Force Shutdown"
+msgid "_Force Shutdown"
+msgstr "_Piespiedu izslēgšana"
+
+#: ../src/libvirt-machine-properties.vala:449
+#| msgid "Troubleshooting log"
+msgid "_Troubleshooting Log"
+msgstr "_Atkļūdošanas žurnāls"
+
+#: ../src/libvirt-machine-properties.vala:470
+#| msgid "Memory"
+msgid "_Memory: "
+msgstr "_Atmiņa: "
+
+#: ../src/libvirt-machine-properties.vala:538
+#, c-format
+msgid ""
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+"\">(%s used)</span>"
+msgstr ""
+"<span color=\"grey\">Maksimālais diska izmērs</span>\t\t %s <span color=\"grey"
+"\">(%s izmantots)</span>"
+
+#: ../src/libvirt-machine-properties.vala:554
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Uz datora nepietiek vietas maksimālās diska vietas palielināšanai."
 
-#: ../src/libvirt-machine.vala:449
-msgid "When you force shutdown, the box may lose data."
-msgstr "Vai izslēgt piespiedu kārtā (kaste var zaudēt datus)"
+#: ../src/libvirt-machine-properties.vala:563
+#| msgid "Maximum Disk Size"
+msgid "Maximum _Disk Size: "
+msgstr "Maksimālais _diska izmērs:"
 
-#: ../src/libvirt-machine.vala:451 ../src/libvirt-machine.vala:606
-msgid "_Shutdown"
-msgstr "Iz_slēgt"
+#: ../src/libvirt-machine-properties.vala:696
+msgid "_Run in background"
+msgstr "_Palaist fonā"
+
+#: ../src/libvirt-machine-properties.vala:707
+#: ../src/libvirt-machine-properties.vala:710
+#, c-format
+#| msgid "Live box '%s' has been deleted automatically."
+msgid "'%s' will not be paused automatically."
+msgstr "“%s” netiks automātiski pauzēta."
+
+#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:711
+#, c-format
+msgid "'%s' will be paused automatically to save resources."
+msgstr "“%s” tiks automātiski pauzēts, lai taupītu resursus."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:536
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Atjauno %s no diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:539
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "Palaiž %s"
 
-#: ../src/libvirt-machine.vala:604
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "“%s” pārstartēšana aizņem pārāk daudz laika. Izslēgt piespiedu kārtā?"
 
+#: ../src/libvirt-machine.vala:658
+msgid "_Shutdown"
+msgstr "Iz_slēgt"
+
+#: ../src/libvirt-machine.vala:730
+msgid "Installing…"
+msgstr "Instalē…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+msgid "Live"
+msgstr "Dzīvais"
+
+#: ../src/libvirt-machine.vala:734
+msgid "Importing…"
+msgstr "Importē…"
+
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#, c-format
+msgid "host: %s"
+msgstr "resursdators: %s"
+
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
-msgid "Import '%s' from system broker"
-msgstr "Importēt “%s” no sistēmas brokera"
+#| msgid "Import '%s' from system broker"
+msgid "_Import '%s' from system broker"
+msgstr "_Importēt “%s” no sistēmas starpnieka"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
-msgid "Import %u box from system broker"
-msgid_plural "Import %u boxes from system broker"
-msgstr[0] "Importēt %u kasti no sistēmas brokera"
-msgstr[1] "Importēt %u kastes no sistēmas brokera"
-msgstr[2] "Importēt %u kastes no sistēmas brokera"
+#| msgid "Import %u box from system broker"
+#| msgid_plural "Import %u boxes from system broker"
+msgid "_Import %u box from system broker"
+msgid_plural "_Import %u boxes from system broker"
+msgstr[0] "_Importēt %u kasti no sistēmas brokera"
+msgstr[1] "_Importēt %u kastes no sistēmas starpnieka"
+msgstr[2] "_Importēt %u kastes no sistēmas starpnieka"
 
 #: ../src/libvirt-system-importer.vala:32
 #, c-format
 msgid "Will import '%s' from system broker"
-msgstr "Importēs “%s” no sistēmas brokera"
+msgstr "Importēs “%s” no sistēmas starpnieka"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:35
 #, c-format
 msgid "Will import %u box from system broker"
 msgid_plural "Will import %u boxes from system broker"
-msgstr[0] "Importēs %u kasti no sistēmas brokera"
-msgstr[1] "Importēs %u kastes no sistēmas brokera"
-msgstr[2] "Importēs %u kastes no sistēmas brokera"
+msgstr[0] "Importēs %u kasti no sistēmas starpnieka"
+msgstr[1] "Importēs %u kastes no sistēmas starpnieka"
+msgstr[2] "Importēs %u kastes no sistēmas starpnieka"
 
-#: ../src/libvirt-system-importer.vala:51
+#: ../src/libvirt-system-importer.vala:47
 msgid "No boxes to import"
 msgstr "Nav kastu, ko importēt"
 
-#: ../src/libvirt-system-importer.vala:127
+#: ../src/libvirt-system-importer.vala:121
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Neizdevās atrast piemērotu disku, ko importēt kastei “%s”"
 
+#: ../src/list-view-row.vala:128
+msgid "Connected"
+msgstr "Savienots"
+
+#: ../src/list-view-row.vala:128
+msgid "Disconnected"
+msgstr "Atvienots"
+
+#: ../src/list-view-row.vala:134
+#| msgid "Select Running"
+msgid "Running"
+msgstr "Strādā"
+
+#: ../src/list-view-row.vala:140
+#| msgid "P_ause"
+msgid "Paused"
+msgstr "Pauzēts"
+
+#: ../src/list-view-row.vala:145
+msgid "Powered Off"
+msgstr "Ieslēgts"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:140
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "Savienojas ar %s"
 
-#: ../src/machine.vala:159 ../src/machine.vala:582
+#: ../src/machine.vala:217 ../src/machine.vala:613
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Savienojums ar “%s” neizdevās"
 
-#: ../src/machine.vala:248
-#| msgid "Saving..."
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "Saglabā…"
 
-#: ../src/machine.vala:568
+#: ../src/machine.vala:599
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -628,17 +829,17 @@ msgstr ""
 "Nevarēja atjaunot “%s” no diska.\n"
 "Mēģināt bez saglabātā stāvokļa?"
 
-#: ../src/machine.vala:569
+#: ../src/machine.vala:600
 msgid "Restart"
 msgstr "Pārstartēt"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:609
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Neizdevās startēt “%s”"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:611
+#: ../src/machine.vala:642
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "“%s” pieprasa autentificēšanos"
@@ -684,52 +885,52 @@ msgstr "%s mājas lapa — <%s>.\n"
 msgid "No such file %s"
 msgstr "Nav tādas datnes %s"
 
-#: ../src/notificationbar.vala:42
+#: ../src/notificationbar.vala:43
 #, c-format
 msgid "Sign In to %s"
 msgstr "Ierakstīties %s"
 
-#: ../src/notificationbar.vala:45
+#: ../src/notificationbar.vala:46
 #, c-format
 msgid "Not connected to %s"
 msgstr "Nav savienots ar %s"
 
 #: ../src/ovirt-broker.vala:69
 msgid "Connection to oVirt broker failed"
-msgstr "Savienojums ar oVirt brokeri neizdevās"
+msgstr "Savienojums ar oVirt starpnieku neizdevās"
 
-#: ../src/properties.vala:46
-msgid "Login"
-msgstr "Ierakstīties"
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
+msgid "Protocol"
+msgstr "Protokols"
 
-#: ../src/properties.vala:54
-msgid "Display"
-msgstr "Displejs"
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
+#: ../src/wizard.vala:486
+msgid "URI"
+msgstr "URI"
 
-#: ../src/properties.vala:58
-msgid "Devices"
-msgstr "Ierīces"
-
-#: ../src/properties.vala:62
-msgid "Snapshots"
-msgstr "Momentuzņēmums"
-
-#: ../src/properties.vala:221
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "Veiktajām izmaiņām nepieciešama “%s” pārstartēšana."
 
-#: ../src/properties.vala:222
-msgid "_Restart"
-msgstr "Pā_rstartēt"
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "Vispārīgi"
 
-#: ../src/selectionbar.vala:63
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "“%s” pauzēšana neizdevās"
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "Ierīces"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "Momentuzņēmums"
+
+#: ../src/remote-machine.vala:70
+msgid "_URI"
+msgstr "_URI"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
+#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -751,89 +952,86 @@ msgstr[2] "%d izvēlētu"
 msgid "(Click on items to select them)"
 msgstr "(Spiediet uz vienumiem, lai tos izvēlētos)"
 
-#: ../src/snapshot-list-row.vala:147
+#: ../src/snapshot-list-row.vala:137
 #, c-format
-#| msgid "Connecting to %s"
 msgid "Reverting to %s…"
 msgstr "Atgriež uz %s…"
 
-#: ../src/snapshot-list-row.vala:163
+#: ../src/snapshot-list-row.vala:155
 msgid "Failed to apply snapshot"
 msgstr "Neizdevās pielietot momentuzņēmumu"
 
-#: ../src/snapshot-list-row.vala:181
+#: ../src/snapshot-list-row.vala:172
 #, c-format
 msgid "Snapshot \"%s\" deleted."
 msgstr "Momentuzņēmums “%s” ir izdzēsts."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:61
+msgid "No snapshots created yet. Create one using the button below."
+msgstr "Vēl nav izveidotu momentuzņēmumu. To var izveidot ar zemā esošo pogu."
+
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
 msgstr "Veido jaunu momentuzņēmumu…"
 
-#: ../src/snapshots-property.vala:113
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Neizdevās izveidot momentuzņēmumu %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:33
+#: ../src/spice-display.vala:36
 msgid "Unknown"
 msgstr "Nezināms"
 
-#: ../src/spice-display.vala:55
-#, c-format
-msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr "Neizdevās automātiski pārsūtīt USB ierīci “%s” priekš “%s”"
-
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:345
+#: ../src/spice-display.vala:54 ../src/spice-display.vala:363
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Neizdevās pārsūtīt USB ierīci “%s” priekš “%s”"
 
-#: ../src/spice-display.vala:296
-msgid "Share clipboard"
+#: ../src/spice-display.vala:310
+#| msgid "Share clipboard"
+msgid "Share Clipboard"
 msgstr "Koplietot starpliktuvi"
 
-#: ../src/spice-display.vala:302
-msgid "Resize guest"
-msgstr "Mainīt viessistēmas izmēru"
-
-#: ../src/spice-display.vala:311
-msgid "Redirect new USB devices"
-msgstr "Pārsūtīt jaunās USB ierīces"
-
-#: ../src/spice-display.vala:331
+#: ../src/spice-display.vala:376
 msgid "USB devices"
 msgstr "USB ierīces"
 
-#: ../src/spice-display.vala:388 ../src/wizard.vala:292 ../src/wizard.vala:298
-#: ../src/wizard.vala:305
+#: ../src/spice-display.vala:519 ../src/wizard.vala:309 ../src/wizard.vala:316
 msgid "Invalid URI"
 msgstr "Nederīgs URI"
 
-#: ../src/spice-display.vala:398
+#: ../src/spice-display.vala:529
 msgid "The port must be specified once"
 msgstr "Portam ir jābūt norādītam"
 
-#: ../src/spice-display.vala:407
+#: ../src/spice-display.vala:538
 msgid "Missing port in Spice URI"
 msgstr "Spice URI trūkst ports"
 
-#: ../src/unattended-installer.vala:454
-#| msgid "Downloading device drivers..."
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: ../src/unattended-installer.vala:188
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr "Gadījās kļūda, gatavojot instalāciju. Ātrā instalēšana ir deaktivēta."
+
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "Lejupielādē ierīču draiverus…"
 
-#: ../src/unattended-setup-box.vala:46
+#: ../src/unattended-setup-box.vala:52
 msgid "no password"
 msgstr "nav paroles"
 
-#: ../src/unattended-setup-box.vala:99
+#: ../src/unattended-setup-box.vala:105
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Ātrai %s instalēšanai ir vajadzīgs savienojums ar internetu."
 
-#: ../src/util-app.vala:198
+#: ../src/util-app.vala:242
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -842,11 +1040,11 @@ msgstr ""
 "SELinux konteksts izskatās nepareizs. To var mēģināt salabot, palaižot:\n"
 "%s"
 
-#: ../src/util-app.vala:202
+#: ../src/util-app.vala:246
 msgid "SELinux not installed?"
 msgstr "SELinux nav instalēts?"
 
-#: ../src/util-app.vala:284
+#: ../src/util-app.vala:328
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -855,7 +1053,7 @@ msgstr ""
 "Pārliecinieties, ka “virsh -c qemu:///session pool-dumpxml gnome-boxes” "
 "darbojas."
 
-#: ../src/util-app.vala:289
+#: ../src/util-app.vala:333
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -863,13 +1061,13 @@ msgid ""
 msgstr ""
 "libvirt pazīst %s kā GNOME Boxes krātuves pūlu, bet šī direktorija neeksistē"
 
-#: ../src/util-app.vala:293
+#: ../src/util-app.vala:337
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
 msgstr "libvirt pazīst %s kā GNOME Boxes krātuves pūlu, bet šī nav direktorija"
 
-#: ../src/util-app.vala:297
+#: ../src/util-app.vala:341
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -888,51 +1086,21 @@ msgstr "nē"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:512
+#: ../src/vm-configurator.vala:557
 msgid "Incapable host system"
 msgstr "Nespējīga saimnieka sistēma"
 
-#: ../src/vm-creator.vala:48
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr "Gadījās kļūda, gatavojot instalāciju. Ātrā instalēšana ir deaktivēta."
-
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:170
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Dzīvā kaste “%s” tika automātiski izdzēsta."
 
-#: ../src/vm-creator.vala:188
-#| msgid "Installing..."
-msgid "Installing…"
-msgstr "Instalē…"
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:192 ../src/wizard-source.vala:82
-msgid "Live"
-msgstr "Dzīvais"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:331
-#, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "%d%% instalēts"
-msgstr[1] "%d%% instalēti"
-msgstr[2] "%d%% instalētu"
-
-#: ../src/vm-importer.vala:36
-#| msgid "Importing..."
-msgid "Importing…"
-msgstr "Importē…"
-
-#: ../src/vm-importer.vala:53
+#: ../src/vm-importer.vala:46
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Neizdevās Kasti importēt no datnes “%s”."
 
-#: ../src/vnc-display.vala:145
+#: ../src/vnc-display.vala:149
 msgid "Read-only"
 msgstr "Tikai lasāms"
 
@@ -950,173 +1118,112 @@ msgstr "64 bitu x86 sistēma"
 msgid " from %s"
 msgstr " no %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:6
+msgid "Source Selection"
+msgstr "Avota izvēle"
+
+#: ../src/wizard-toolbar.vala:7
+#| msgid "Preparation"
+msgid "Box Preparation"
+msgstr "Kastu sagatavošana"
+
+#: ../src/wizard-toolbar.vala:8
+#| msgid "Setup"
+msgid "Box Setup"
+msgstr "Kastes iestatīšana"
+
+#: ../src/wizard-toolbar.vala:9
+msgid "Review"
+msgstr "Pārskatīt"
+
+#: ../src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Kastes izveide neizdevās"
 
-#: ../src/wizard.vala:172
-msgid "Please enter desktop or collection URI"
-msgstr "Lūdzu, ievadiet darbvirsmas vai kolekcijas URI"
-
-#: ../src/wizard.vala:178
-msgid "Will add boxes for all systems available from this account."
-msgstr "Pievienos kastes visām sistēmām, kas ir pieejamas no šī konta."
-
-#: ../src/wizard.vala:181
-msgid "Will add a single box."
-msgstr "Pievienos vienu kasti."
-
-#. ignore any parsing error
-#: ../src/wizard.vala:187
-msgid "Desktop Access"
-msgstr "Darbvirsmas piekļuve"
-
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:268
 msgid "Empty location"
 msgstr "Tukša atrašanās vieta"
 
-#: ../src/wizard.vala:322
+#: ../src/wizard.vala:291
+#| msgid "Unsupported protocol '%s'"
+msgid "Unsupported file"
+msgstr "Neatbalstīta datne"
+
+#: ../src/wizard.vala:297
+#| msgid "Invalid URI"
+msgid "Invalid file"
+msgstr "Nederīga datne"
+
+#: ../src/wizard.vala:333
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "Neatbalstīts protokols “%s”"
 
-#: ../src/wizard.vala:328 ../src/wizard.vala:389
+#: ../src/wizard.vala:339 ../src/wizard.vala:408
 msgid "Unknown installer media"
 msgstr "Nezināms instalēšanas datu nesējs"
 
-#: ../src/wizard.vala:329 ../src/wizard.vala:390
-#| msgid "Analyzing..."
+#: ../src/wizard.vala:340 ../src/wizard.vala:409
 msgid "Analyzing…"
 msgstr "Analizē…"
 
-#: ../src/wizard.vala:343
+#: ../src/wizard.vala:354
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Neizdevās izanalizēt instalēšanas datu nesēju. Bojāts vai nepilnīgs datu "
 "nesējs?"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:462
 msgid "Box setup failed"
 msgstr "Neizdevās iestatīt kasti"
 
-#: ../src/wizard.vala:472
+#: ../src/wizard.vala:476
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Kastes izveidos jaunu kasti ar sekojošiem parametriem:"
 
-#: ../src/wizard.vala:477
+#: ../src/wizard.vala:481
 msgid "Type"
 msgstr "Tips"
 
-#: ../src/wizard.vala:480
+#: ../src/wizard.vala:484
 msgid "Host"
 msgstr "Resursdators"
 
-#: ../src/wizard.vala:491 ../src/wizard.vala:502
+#: ../src/wizard.vala:495 ../src/wizard.vala:506
 msgid "Port"
 msgstr "Ports"
 
-#: ../src/wizard.vala:493
+#: ../src/wizard.vala:497
 msgid "TLS Port"
 msgstr "TLS ports"
 
-#: ../src/wizard.vala:507
+#: ../src/wizard.vala:511
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Pievienos kastes visām sistēmām, kas ir pieejamas no šī konta:"
 
-#: ../src/wizard.vala:529
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "Atmiņa"
+
+#: ../src/wizard.vala:533
 msgid "Disk"
 msgstr "Disks"
 
-#: ../src/wizard.vala:529
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: ../src/wizard.vala:535
 #, c-format
 msgid "%s maximum"
 msgstr "%s maksimums"
 
-#: ../src/wizard.vala:593
-#| msgid "Downloading device drivers..."
+#: ../src/wizard.vala:598
 msgid "Downloading media…"
 msgstr "Lejupielādē datu nesēju…"
 
-#: ../src/wizard.vala:603
+#: ../src/wizard.vala:608
 msgid "Download failed."
 msgstr "Neizdevās lejupielādēt."
 
-#: ../src/wizard.vala:714
-#| msgid "C_ustomize..."
+#: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Pielāgot…"
-
-#~ msgid "New"
-#~ msgstr "Jauna"
-
-#~ msgid "%s - Properties"
-#~ msgstr "%s — īpašības"
-
-#~ msgid "Animation duration"
-#~ msgstr "Animāciju ilgums"
-
-#~ msgid "The time it takes for transitions and animation, in ms."
-#~ msgstr "Laiks pārejām un animācijām milisekundēs"
-
-#~ msgid "_Yes"
-#~ msgstr "_Jā"
-
-#~ msgid "Enter password for %s"
-#~ msgstr "Ievadiet %s paroli"
-
-#~ msgid "Some changes may take effect only after reboot"
-#~ msgstr "Dažas izmaiņas stāsies spēkā tikai pēc pārstartēšanas"
-
-#~ msgid ""
-#~ "<b>Desktop Access</b>\n"
-#~ "\n"
-#~ "Will add boxes for all systems available from this account."
-#~ msgstr ""
-#~ "<b>Darbvirsmas piekļuve</b>\n"
-#~ "\n"
-#~ "Pievienos kastes visām sistēmām, kurām ir pieejamas no šī konta."
-
-#~ msgid "D_one"
-#~ msgstr "Pa_beigts"
-
-#~ msgid ""
-#~ "Virtualization extensions are unavailable on your system. Expect this box "
-#~ "to be extremely slow. If your system is recent enough (made in or after "
-#~ "2008), these extensions are probably available on your system and you may "
-#~ "need to enable them in your system's BIOS setup."
-#~ msgstr ""
-#~ "Šajā sistēmā nav pieejami virtualizācijas paplašinājumi. Visdrīzāk šī "
-#~ "kaste būs ļoti lēna. Ja šī sistēma ir salīdzinoši jauna (veidota ap 2008. "
-#~ "gadu vai vēlāk), šie paplašinājumi uz šīs sistēmas visdrīzāk ir pieejami "
-#~ "un jūs varat tos aktivēt BIOS iestatījumos."
-
-#~ msgid "Fullscreen"
-#~ msgstr "Pilnekrāns"
-
-#~ msgid "USB redirection"
-#~ msgstr "USB pārsūtīšana"
-
-#~ msgid "RAM"
-#~ msgstr "RAM"
-
-#~ msgid "Storage"
-#~ msgstr "Glabātuve"
-
-#~ msgid "Favorites"
-#~ msgstr "Iecienītās"
-
-#~ msgid "Private"
-#~ msgstr "Privāts"
-
-#~ msgid "Shared with you"
-#~ msgstr "Koplietots ar tevi"
-
-#~ msgid "Create"
-#~ msgstr "Izveidot"
-
-#~ msgid "No username provided"
-#~ msgstr "Nav norādīts lietotājvārds"
-
-#~ msgid "_Add Product Key"
-#~ msgstr "_Pievienot produkta atslēgu"
