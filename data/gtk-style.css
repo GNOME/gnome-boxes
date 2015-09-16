@@ -46,10 +46,6 @@ BoxesResourceGraph {
     font-style: italic;
 }
 
-.boxes-source-nb {
-    background-color: alpha(#fff, 0.0);
-}
-
 .boxes-product-key-entry {
     font-family: monospace;
 }
@@ -62,42 +58,53 @@ BoxesResourceGraph {
     border-style: none;
 }
 
-.boxes-menu-row {
-    -GtkWidget-focus-line-width: 0;
-    border-style: ridge none none none;
-    border-color: shade (@boxes_bg2_color, 0.7);
-    border-width: 2px 0 0 0;
-    box-shadow: none;
-    border-image: none;
-    background-image: none;
-    background-color: @boxes_bg2_color;
-    border-radius: 0;
+/* Corner rounding */
+.boxes-menu >.boxes-menu-row:nth-last-child(2) {
+    border-radius: 0 0 15px 15px;
+    outline-radius: 0 0 13px 13px;
 }
 
-.boxes-menu-row:nth-child(first) {
-    border-radius: 15px 15px 0 0;
-    border-style: none;
-}
-
-.boxes-menu-scrolled .boxes-menu-row:nth-child(first) {
-    border-radius: 0;
-}
-
-.boxes-menu > .boxes-menu-row:nth-child(last) {
+.boxes-menu > .boxes-menu-row:last-child {
     border-radius: 0 0 15px 15px;
 }
 
-.boxes-menu-row:prelight, .boxes-menu-row:focus {
-    background-color: shade (@boxes_bg2_color, 1.2);
+.label + .boxes-menu-row,
+.boxes-menu-row.button:first-child {
+    border-radius: 15px 15px 0 0;
+    border-top-style: none;
+    outline-radius: 13px 13px 0 0;
+}
+
+/* Row styling */
+.boxes-menu-row {
+    border-style: solid none none none;
+    border-width: 1px;
+    border-radius: 0;
+    border-color: transparent;
+    background-color: @boxes_bg2_color;
+    background-clip: padding-box;
+}
+
+.boxes-menu-row.button {
+    background-image: none;
+    font-weight: bold;
+    text-shadow: none;
+    icon-shadow: none;
+    box-shadow: none;
+    outline-color: alpha(currentColor, 0.15);
+}
+
+.boxes-menu-row:hover {
+    background-color: @theme_bg_color;
 }
 
 .boxes-menu-row:active {
+    color: @theme_selected_fg_color;
     background-color: @theme_selected_bg_color;
 }
 
-.boxes-menu-row *:active {
-    color: #ffffff;
-}
+/* Adds a border to the ISOs lists top undershoot */
+.boxes-menu-scrolled.undershoot.top { border-top: 1px solid @borders; }
 
 .boxes-toplevel {
     background-color: @theme_bg_color;
