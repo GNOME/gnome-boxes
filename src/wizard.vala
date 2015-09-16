@@ -694,7 +694,7 @@ private class Boxes.WizardSummary: Gtk.Grid {
             return;
 
         var label_name = new Gtk.Label (name);
-        label_name.get_style_context ().add_class ("boxes-wizard-summary-prop-name-label");
+        label_name.get_style_context ().add_class ("dim-label");
         label_name.halign = Gtk.Align.END;
         attach (label_name, 0, current_row, 1, 1);
 
