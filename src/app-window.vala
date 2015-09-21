@@ -98,7 +98,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     private ListView list_view;
 
-    public ViewType view_type { get; set; }
+    public ViewType view_type { get; set; default = ViewType.ICON; }
 
     public ICollectionView view {
         get {
