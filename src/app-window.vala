@@ -123,7 +123,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public static const uint configure_id_timeout = 100;  // 100ms
 
     public AppWindow (Gtk.Application app) {
-        Object (application: app, title: _("Boxes"));
+        Object (application:  app,
+                title:        _("Boxes"),
+                // Can't be set from template: https://bugzilla.gnome.org/show_bug.cgi?id=754426#c14
+                show_menubar: false);
 
         settings = new GLib.Settings ("org.gnome.boxes");
 
