@@ -1,4 +1,10 @@
 <schemalist>
+
+  <enum id="org.gnome.boxes.view-type">
+    <value nick="icon-view" value="1"/>
+    <value nick="list-view" value="2"/>
+  </enum>
+
   <schema id="org.gnome.boxes" path="/org/gnome/boxes/" gettext-domain="gnome-boxes">
 
     <key name="collections" type="as">
@@ -15,6 +21,10 @@
         The interval in seconds between screenshot updates
       </_description>
       <default>5</default>
+    </key>
+
+    <key name='view' enum='org.gnome.boxes.view-type'>
+      <default>'icon-view'</default>
     </key>
 
     <key name="window-size" type="ai">
