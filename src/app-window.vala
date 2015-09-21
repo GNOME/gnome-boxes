@@ -7,8 +7,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public const uint TRANSITION_DURATION = 400; // milliseconds
 
     public enum ViewType {
-        ICON,
-        LIST,
+        ICON = 1,
+        LIST = 2,
     }
 
     public UIState previous_ui_state { get; protected set; }
