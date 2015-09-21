@@ -31,7 +31,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
         App.app.collection.item_added.connect (update_search_btn);
         App.app.collection.item_removed.connect (update_search_btn);
 
-        update_view_type (AppWindow.ViewType.ICON);
+        var view_type = (AppWindow.ViewType) window.settings.get_enum ("view");
+        update_view_type (view_type);
 
         search_btn.bind_property ("active", window.searchbar, "search-mode-enabled", BindingFlags.BIDIRECTIONAL);
 
@@ -88,6 +89,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
     private void update_view_type (AppWindow.ViewType view_type) {
         window.view_type = view_type;
+        window.settings.set_enum ("view", view_type);
 
         ui_state_changed ();
     }
