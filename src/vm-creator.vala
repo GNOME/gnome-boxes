@@ -138,6 +138,11 @@ private class Boxes.VMCreator {
             return;
         }
 
+        if (machine.state == Machine.MachineState.FORCE_STOPPED) {
+            debug ("'%s' has forced stopped, no need for post-installation setup on it", machine.name);
+            return;
+        }
+
         increment_num_reboots (machine);
 
         var domain = machine.domain;
@@ -154,8 +159,7 @@ private class Boxes.VMCreator {
             machine.vm_creator = null;
             machine.schedule_autosave ();
         } else {
-            if (VMConfigurator.is_live_config (machine.domain_config) &&
-                machine.state != Machine.MachineState.FORCE_STOPPED) {
+            if (VMConfigurator.is_live_config (machine.domain_config)) {
                 // No installation during live session, so lets delete the VM
                 machine.disconnect (state_changed_id);
                 install_media.clean_up ();
