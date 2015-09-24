@@ -668,7 +668,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public string? get_ip_address () {
-        if (system_virt_connection == null || is_on)
+        if (system_virt_connection == null || !is_on)
             return null;
 
         var mac = get_mac_address ();
