@@ -1,27 +1,27 @@
 # Arabic translation for gnome-boxes.
 # Copyright (C) 2014 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-#
 # seven <s.o.d@hacker.ps>, 2012.
 # Aminos Amigos <aminosamigos@gmail.com>, 2012.
 # مصعب الزعبي <moceap@hotmail.com>, 2014.
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014.
+# Khaled Hosny <khaledhosny@eglug.org>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-10-13 18:08+0000\n"
-"PO-Revision-Date: 2014-10-18 16:54+0300\n"
-"Last-Translator: Mosaab Alzoubi <moceap@hotmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-24 05:52+0200\n"
+"PO-Revision-Date: 2015-09-24 05:52+0200\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural= n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;;\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -49,17 +49,18 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:106 ../src/main.vala:72
+#: ../src/app-window.vala:127 ../src/app-window.vala:225
+#: ../src/app-window.vala:227 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "«صناديق»"
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:2
 msgid "Virtual machine viewer/manager"
-msgstr "مدير وعارض للأجهزة الافتراضية"
+msgstr "مدير و عارض للأجهزة الافتراضية"
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:3
 msgid "View and use virtual machines"
-msgstr "اعرض واستخدم أجهزة افتراضية"
+msgstr "اعرض و استخدم أجهزة افتراضية"
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:4
 msgid "virtual machine;vm;"
@@ -67,11 +68,11 @@ msgstr "جهاز افتراضي;vm;"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:1
 msgid "Collections"
-msgstr "التّشكيلات"
+msgstr "المجموعات"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:2
 msgid "The list of boxes collections"
-msgstr "قائمة تشكيلات الصّناديق"
+msgstr "قائمة مجموعات الصّناديق"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
 msgid "Screenshot interval"
@@ -111,81 +112,105 @@ msgstr "ا_سم المُستخدم"
 
 #: ../data/ui/auth-notification.ui.h:2
 msgid "_Password"
-msgstr "_كلمة المرور"
+msgstr "_كلمة السر"
 
-#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:46
+#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
 msgid "Sign In"
 msgstr "لِج"
+
+#: ../data/ui/collection-filter-switcher.ui.h:1
+msgid "All"
+msgstr "الكل"
+
+#: ../data/ui/collection-filter-switcher.ui.h:2
+msgid "Local"
+msgstr "محلي"
+
+#: ../data/ui/collection-filter-switcher.ui.h:3
+msgid "Remote"
+msgstr "بعيد"
 
 #: ../data/ui/collection-toolbar.ui.h:1
 msgid "_New"
 msgstr "_جديد"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:1
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
+#: ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "ارجع"
 
 #: ../data/ui/collection-toolbar.ui.h:3
 msgid "Select Items"
-msgstr "انتقِ عناصرًا"
+msgstr "اختر العناصر"
 
-#: ../data/ui/collection-toolbar.ui.h:4 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:4
+msgid "List view"
+msgstr "منظور القائمة"
+
+#: ../data/ui/collection-toolbar.ui.h:5
+msgid "Grid view"
+msgstr "منظور الشبكة"
+
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "ابحث"
 
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">No boxes found</span></b>"
-msgstr "<b><span size=\"large\">لم يُعثر على أي صندوق</span></b>"
+msgid "State of the art virtualization"
+msgstr "أحدث تقنيات الأجهزة الافتراضية"
 
 #: ../data/ui/empty-boxes.ui.h:2
-msgid "Create one using the button on the top left."
-msgstr "أنشئ واحدًا باستخدام الزّر أعلاه."
+msgid "Boxes can be virtual or remote machines."
+msgstr "الصناديق قد تكون افتراضية أو أجهزة بعيدة."
 
-#: ../data/ui/properties-sidebar.ui.h:1
-msgid "CPU:"
-msgstr "المعالج:"
+#: ../data/ui/empty-boxes.ui.h:3
+msgid "Just hit the <b>New</b> button to create your first one."
+msgstr "انقر على زر <b>جديد</b> لإنشاء أول صندوق."
 
-#: ../data/ui/properties-sidebar.ui.h:2
-msgid "I/O:"
-msgstr "الدَخْل/الخَرْج:"
+#: ../data/ui/properties-toolbar.ui.h:1
+msgid "Troubleshooting Log"
+msgstr "سجلّ مواجهة الأعطال"
 
-#: ../data/ui/properties-sidebar.ui.h:3
-msgid "Net:"
-msgstr "الشّبكة:"
+#: ../data/ui/properties-toolbar.ui.h:3
+msgid "_Copy to Clipboard"
+msgstr "ا_نسخ إلى الحافظة"
 
-#: ../data/ui/properties-sidebar.ui.h:4
-msgid "Force Shutdown"
-msgstr "أجبِر الإطفاء"
+#: ../data/ui/properties-toolbar.ui.h:4 ../data/ui/wizard-toolbar.ui.h:8
+msgid "Select a device or ISO file"
+msgstr "اختر جهازًا أو ملف ISO"
 
-#: ../data/ui/selectionbar.ui.h:1
-msgid "P_ause"
-msgstr "ألبِ_ث"
-
-#: ../data/ui/selectionbar.ui.h:2
-msgid "_Delete"
-msgstr "اح_ذف"
-
-#: ../data/ui/selectionbar.ui.h:3
-msgid "_Properties"
-msgstr "_خصائص"
-
-#: ../data/ui/selection-toolbar.ui.h:1 ../data/ui/wizard-toolbar.ui.h:2
-#: ../src/libvirt-machine-properties.vala:344 ../src/libvirt-machine.vala:450
-#: ../src/wizard-source.vala:280
+#: ../data/ui/properties-toolbar.ui.h:5 ../data/ui/selection-toolbar.ui.h:1
+#: ../data/ui/wizard-toolbar.ui.h:2
 msgid "_Cancel"
 msgstr "أل_غِ"
 
+#: ../data/ui/properties-toolbar.ui.h:6 ../data/ui/wizard-toolbar.ui.h:9
+msgid "_Open"
+msgstr "ا_فتح"
+
+#: ../data/ui/selectionbar.ui.h:1
+msgid "_Favorite"
+msgstr "ال_مفضلة"
+
+#: ../data/ui/selectionbar.ui.h:2
+msgid "P_ause"
+msgstr "ألبِ_ث"
+
+#: ../data/ui/selectionbar.ui.h:3
+msgid "_Delete"
+msgstr "اح_ذف"
+
 #: ../data/ui/selection-toolbar.ui.h:3
 msgid "Select All"
-msgstr "انتقِ الكل"
+msgstr "اختر الكل"
 
 #: ../data/ui/selection-toolbar.ui.h:4
 msgid "Select Running"
-msgstr "انتقِ المُشغّلة"
+msgstr "اختر المُشغّلة"
 
 #: ../data/ui/selection-toolbar.ui.h:5
 msgid "Select None"
-msgstr "ألغِ الانتقاء"
+msgstr "ألغِ الاختيار"
 
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
@@ -193,9 +218,10 @@ msgstr "اعكس إلى هذه الحالة"
 
 #: ../data/ui/snapshot-list-row.ui.h:2
 msgid "Rename"
-msgstr "أعد التّسمية"
+msgstr "غيّر التّسمية"
 
-#: ../data/ui/snapshot-list-row.ui.h:3
+#. Delete
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:63
 msgid "Delete"
 msgstr "احذف"
 
@@ -213,17 +239,17 @@ msgstr "اختر التّثبيت السّريع لتهيئة الصّندوق �
 msgid "Express Install"
 msgstr "التّثبيت السّريع"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:277
+#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "اسم المُستخدم"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
 msgid "Password"
-msgstr "كلمة المرور"
+msgstr "كلمة السر"
 
 #: ../data/ui/unattended-setup-box.ui.h:5
 msgid "_Add Password"
-msgstr "أ_ضف كلمة مرور"
+msgstr "أ_ضف كلمة سر"
 
 #: ../data/ui/unattended-setup-box.ui.h:6
 msgid "Product Key"
@@ -231,45 +257,57 @@ msgstr "مفتاح المُنتج"
 
 #: ../data/ui/wizard-media-entry.ui.h:1
 msgid "Unknown media"
-msgstr "وسيط مجهول"
-
-#: ../data/ui/wizard-sidebar.ui.h:1
-msgid "Introduction"
-msgstr "المُقدّمة"
-
-#: ../data/ui/wizard-sidebar.ui.h:2
-msgid "Source Selection"
-msgstr "انتقاء المصدر"
-
-#: ../data/ui/wizard-sidebar.ui.h:3
-msgid "Preparation"
-msgstr "التّجهيز"
-
-#: ../data/ui/wizard-sidebar.ui.h:4
-msgid "Setup"
-msgstr "الإعداد"
-
-#: ../data/ui/wizard-sidebar.ui.h:5
-msgid "Review"
-msgstr "المراجعة"
+msgstr "وسط مجهول"
 
 #: ../data/ui/wizard-source.ui.h:1
-msgid "Enter URL"
-msgstr "أدخل الرّابط"
+msgid "Insert operating system installation media or select a source below"
+msgstr "أدخل وسط تثبيت نظام التّشغيل أو اختر المصدر أدناه"
 
 #: ../data/ui/wizard-source.ui.h:2
+msgid "_Enter URL"
+msgstr "أدخل ال_مسار"
+
+#: ../data/ui/wizard-source.ui.h:3
 msgid "▶"
 msgstr "◀"
 
-#: ../data/ui/wizard-source.ui.h:3
-msgid "Select a file"
-msgstr "انتقِ ملفًا"
-
 #: ../data/ui/wizard-source.ui.h:4
+msgid "_Select a file"
+msgstr "ا_ختر ملفًا"
+
+#: ../data/ui/wizard-source.ui.h:5
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"أي علامات تجارية ظاهرة أعلاه مُستخدَمة فقط لتعريف المنتجات البرمجيّة التي حصلت "
+"عليها بالفعل و هي مملوكة لمالكيها."
+
+#: ../data/ui/wizard-source.ui.h:6
 msgid "◀"
 msgstr "▶"
 
-#: ../data/ui/wizard-toolbar.ui.h:1
+#: ../data/ui/wizard-source.ui.h:7
+msgid "Enter URL"
+msgstr "أدخل المسار"
+
+#: ../data/ui/wizard-source.ui.h:8
+msgid ""
+"Enter an address for the box you want to add. Addresses can be of "
+"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+msgstr ""
+"أدخل عنوانًا للصندوق الذي تريد إضافته. العنوان قد يكون لملف التثبيت، أو خادوم "
+"SPICE أو VNC، أو سماسرة oVirt أو Libvirt."
+
+#: ../data/ui/wizard-source.ui.h:9
+msgid ""
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
+msgstr ""
+"مثلا:‏ http://download.com/image.iso،‏ spice://somehost:5051،‏ ovirt://host/path‏"
+
+#: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
 msgstr "أنشئ صندوقًا"
 
@@ -285,110 +323,128 @@ msgstr "اس_تمر"
 msgid "_Back"
 msgstr "ا_رجع"
 
+#: ../data/ui/wizard-toolbar.ui.h:6
+msgid "Customize Resources"
+msgstr "خصص الموارد"
+
 #: ../data/ui/wizard.ui.h:1
-msgid ""
-"Creating a box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"يسمح لك إنشاء صندوق باستخدام نظام آخر مباشرةً من نظامك الحالي.\n"
-"\n"
-"قد ترغب بالاتّصال بآلة موجودة <b><i>عبر الشبكة</i></b> أو إنشاء <b><i>آلة "
-"افتراضية</i></b> تعمل محليًّا لديك."
-
-#: ../data/ui/wizard.ui.h:4
-msgid "Insert operating system installation media or select a source below"
-msgstr "أدخل وسيط تثبيت نظام التّشغيل أو اختر المصدر أدناه"
-
-#: ../data/ui/wizard.ui.h:5
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"أيّة علامات تجارية ظاهرة أعلاه مُستخدَمة فقط لتعريف منتجات البرمجيّة التي حصلت "
-"عليها بالفعل وخاصيّة مالكيها."
-
-#: ../data/ui/wizard.ui.h:6
 msgid "Preparing to create new box"
-msgstr "يحضّر إنشاء صندوق جديد"
+msgstr "يحضّر لإنشاء صندوق جديد"
 
-#: ../data/ui/wizard.ui.h:7
+#: ../data/ui/wizard.ui.h:2
 msgid ""
-"Virtualization extensions are unavailable on your system. If your system is "
-"recent (post 2008), check your BIOS settings to enable them."
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
 msgstr ""
-"امتدادات الأجهزة الافتراضية غير مُتاحة لنظامك. إن كان نظامك حديثًا (بعد 2008)، "
+"امتدادات الأجهزة الافتراضية غير مُتاحة لنظامك.\n"
 "تحقّق من إعدادات BIOS لتمكينها."
 
-#: ../src/app.vala:97
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: ../src/actions-popover.vala:26
+msgid "Box actions"
+msgstr "إجراءات الصندوق"
+
+#. Open in new Window
+#: ../src/actions-popover.vala:38
+msgid "Open in New Window"
+msgstr "افتح في نافذة جديدة"
+
+#. Favorite
+#: ../src/actions-popover.vala:42
+msgid "Remove from Favorites"
+msgstr "أزِل من المفضّلة"
+
+#: ../src/actions-popover.vala:44
+msgid "Add to Favorites"
+msgstr "أضِف إلى المفضّلة"
+
+#: ../src/actions-popover.vala:51
+msgid "Force Shutdown"
+msgstr "أجبِر الإطفاء"
+
+#. Pause
+#: ../src/actions-popover.vala:57
+msgid "Pause"
+msgstr "ألبِث"
+
+#. Properties (in separate section)
+#: ../src/actions-popover.vala:72
+msgid "Properties"
+msgstr "الخصائص"
+
+#: ../src/actions-popover.vala:96 ../src/selectionbar.vala:60
+#, c-format
+msgid "Pausing '%s' failed"
+msgstr "فشل إلباث '%s'"
+
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
-"Aminos Amigos\t<aminosamigos@gmail.com>\n"
-"مصعب الزّعبي\t<moceap@hotmail.com>"
+"Aminos Amigos <aminosamigos@gmail.com>\n"
+"مصعب الزّعبي <moceap@hotmail.com>\n"
+"خالد حسني <khaledhosny@eglug.org>"
 
-#: ../src/app.vala:98
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "تطبيق جنوم 3 بسيط للوصول إلى الأنظمة الافتراضية أو البعيدة"
 
-#: ../src/app.vala:117
+#: ../src/app.vala:121
 msgid "Help"
 msgstr "مساعدة"
 
-#: ../src/app.vala:118
+#: ../src/app.vala:122
 msgid "About"
-msgstr "عنّ"
+msgstr "عن"
 
-#: ../src/app.vala:119
+#: ../src/app.vala:123
 msgid "Quit"
 msgstr "أنهِ"
 
-#: ../src/app.vala:175 ../src/main.vala:9
+#: ../src/app.vala:181 ../src/main.vala:9
 msgid "Display version number"
 msgstr "اعرض رقم الإصدار"
 
-#: ../src/app.vala:177
+#: ../src/app.vala:183
 msgid "Open in full screen"
-msgstr "افتح بشاشة كاملة"
+msgstr "افتح بملء الشاشة"
 
-#: ../src/app.vala:178 ../src/main.vala:10
+#: ../src/app.vala:184 ../src/main.vala:10
 msgid "Check virtualization capabilities"
-msgstr "تحقّق من توافقيات الأجهزة الافتراضية"
+msgstr "تحقّق من إمكانيات الأجهزة الافتراضية"
 
-#: ../src/app.vala:179
+#: ../src/app.vala:185
 msgid "Open box with UUID"
 msgstr "افتح صندوقًا بمعرّف UUID"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:186
 msgid "Search term"
 msgstr "مصطلح البحث"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:182
+#: ../src/app.vala:188
 msgid "URI to display, broker or installer media"
 msgstr "رابط URI لعرضه، أو لتوسيطه"
 
-#: ../src/app.vala:193
+#: ../src/app.vala:199
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- تطبيق بسيط للوصول إلى الأجهزة الافتراضية أو البعيدة"
 
-#: ../src/app.vala:215
+#: ../src/app.vala:221
 msgid "Too many command line arguments specified.\n"
 msgstr "حُدِّدت الكثير من معاملات سطر الأوامر.\n"
 
-#: ../src/app.vala:496 ../src/snapshot-list-row.vala:201
-msgid "_Undo"
-msgstr "_تراجع"
+#: ../src/app.vala:431
+#, c-format
+msgid "Box '%s' installed and ready to use"
+msgstr "الصندوق '%s' مثبّت و جاهز للاستخدام"
 
-#: ../src/app.vala:507
+#: ../src/app.vala:519
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "حُذِف الصندوق '%s'"
 
-#: ../src/app.vala:508
+#: ../src/app.vala:520
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -399,184 +455,274 @@ msgstr[3] "حُذِفت %u صناديق"
 msgstr[4] "حُذِف %u صندوقًا"
 msgstr[5] "حُذِف %u صندوق"
 
-#: ../src/collection-view.vala:39
+#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "_تراجع"
+
+#: ../src/display-page.vala:110
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "اضغط مفتاحيّ Ctrl [الأيسر] مع Alt لإزالة الجذب"
+
+#: ../src/display-page.vala:112
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr "اضغط ثم اترك مفتاحيّ Ctrl [الأيسر] مع Alt لإزالة الجذب"
+
+#. Translators: Showing size of widget as WIDTHxHEIGHT here.
+#: ../src/display-page.vala:256
+#, c-format
+msgid "%dx%d"
+msgstr "%Id×%Id"
+
+#: ../src/icon-view.vala:56
 msgid "New and Recent"
-msgstr "الجديدة والحديثة"
+msgstr "الجديدة و الحديثة"
 
-#: ../src/display-page.vala:97
-msgid "(press [left] Ctrl+Alt keys to ungrab)"
-msgstr "(اضغط مفتاحيّ Ctrl [الأيسر] مع Alt لإزالة الجذب)"
-
-#: ../src/installed-media.vala:49
+#: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
-msgstr "نُسُق صورة قرص غير مدعومة."
+msgstr "نسق صورة قرص غير مدعوم."
 
-#: ../src/installed-media.vala:104 ../src/installer-media.vala:107
-#: ../src/properties.vala:50
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "النظام"
 
-#: ../src/libvirt-machine-properties.vala:121 ../src/remote-machine.vala:53
-msgid "Name"
-msgstr "الاسم"
-
-# تدل هذه الكلمة على البروتوكول الذي يستعمله الصندوق الوهمي الآن
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:64
-msgid "Virtualizer"
-msgstr "الميفاق الوهمي"
-
-#: ../src/libvirt-machine-properties.vala:134 ../src/ovirt-machine.vala:65
-#: ../src/remote-machine.vala:65 ../src/wizard.vala:468
-msgid "URI"
-msgstr "معرّف URI"
-
-#: ../src/libvirt-machine-properties.vala:142
-#: ../src/libvirt-machine-properties.vala:147
-msgid "Troubleshooting log"
-msgstr "سجلّ مواجهة الأعطال"
-
-#: ../src/libvirt-machine-properties.vala:150
-#: ../src/libvirt-machine-properties.vala:168
-msgid "_Save"
-msgstr "ا_حفظ"
-
-#: ../src/libvirt-machine-properties.vala:151
-msgid "Copy to clipboard"
-msgstr "انسخ إلى الحافظة"
-
-#: ../src/libvirt-machine-properties.vala:152
-msgid "_Close"
-msgstr "أ_غلق"
-
-#: ../src/libvirt-machine-properties.vala:166
-msgid "Save log"
-msgstr "احفظ السجلّ"
-
-#: ../src/libvirt-machine-properties.vala:182
+#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
+#: ../src/i-properties-provider.vala:89
 #, c-format
-msgid "Error saving: %s"
-msgstr "خطأ في الحفظ: %s"
+msgid "%s <span color=\"grey\">(%s used)</span>"
+msgstr "%s <span color=\"grey\">(%s مستخدمة)</span>"
 
-#: ../src/libvirt-machine-properties.vala:205 ../src/ovirt-machine.vala:69
-#: ../src/remote-machine.vala:76
-msgid "Protocol"
-msgstr "الميفاق"
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: ../src/i-properties-provider.vala:101
+#, c-format
+msgid "%s (recommended)"
+msgstr "%s (مُستحسَـن)"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
+#: ../src/i-properties-provider.vala:131
+#, c-format
+msgid "%s (maximum)"
+msgstr "%s (الحد الأقصى)"
+
+#: ../src/keys-input-popover.vala:24
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#. New section
+#: ../src/keys-input-popover.vala:28
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: ../src/keys-input-popover.vala:29
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: ../src/keys-input-popover.vala:30
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: ../src/keys-input-popover.vala:39
+msgid "Send key combinations"
+msgstr "أرسل مجموعات المفاتيح"
+
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
+msgid "_Name"
+msgstr "الا_سم"
+
+#: ../src/libvirt-machine-properties.vala:130
+msgid "IP Address"
+msgstr "عنوان IP"
+
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
+msgid "Broker"
+msgstr "السمسار"
+
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
+msgid "Display Protocol"
+msgstr "بروتوكول العرض"
+
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
+msgid "Display URI"
+msgstr "مسار العرض"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:244
-#: ../src/libvirt-machine-properties.vala:262
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "أضف دعم الضّيف"
 
-#: ../src/libvirt-machine-properties.vala:246
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "دعم أجهزة USB"
 
-#: ../src/libvirt-machine-properties.vala:264
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "دعم البطاقات الذكية"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:310
-#: ../src/libvirt-machine-properties.vala:378
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "فارغ"
 
-#. Don't let user eject installer media if its an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:320
-#: ../src/libvirt-machine-properties.vala:387
+#. Don't let user eject installer media if it's an express installation or a live media
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "أسطوانة/دي‌ڤي‌دي"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:334
-#: ../src/libvirt-machine-properties.vala:377
-msgid "Select"
-msgstr "انتقِ"
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
+msgid "_Select"
+msgstr "ا_ختر"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:337
-#: ../src/libvirt-machine-properties.vala:357
-msgid "Remove"
-msgstr "أزل"
-
-#: ../src/libvirt-machine-properties.vala:341 ../src/wizard-source.vala:277
-msgid "Select a device or ISO file"
-msgstr "انتقِ جهازًا أو ملف ISO"
-
-#: ../src/libvirt-machine-properties.vala:345 ../src/wizard-source.vala:281
-msgid "_Open"
-msgstr "ا_فتح"
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
+msgid "_Remove"
+msgstr "أ_زل"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:364
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "فشل إدراج '%s' إلى '%s' كأسطوانة/دي‌ڤي‌دي"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:381
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "فشلت إزالة أسطوانة/دي‌ڤي‌دي من '%s'"
 
-#: ../src/libvirt-machine-properties.vala:442 ../src/wizard.vala:506
-msgid "Memory"
-msgstr "الذّاكرة"
+#: ../src/libvirt-machine-properties.vala:386
+msgid "CPU"
+msgstr "المعالج"
 
-#: ../src/libvirt-machine-properties.vala:505
-#: ../src/libvirt-machine-properties.vala:527
-msgid "Maximum Disk Size"
-msgstr "حجم القرص الأقصى"
+#. I/O
+#. 100 MiB/s
+#: ../src/libvirt-machine-properties.vala:392
+msgid "I/O"
+msgstr "الدَخْل/الخَرْج"
 
-#: ../src/libvirt-machine-properties.vala:518
+#. Network
+#. 1 MiB/s
+#: ../src/libvirt-machine-properties.vala:398
+msgid "Network"
+msgstr "الشبكة"
+
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
+msgid "_Restart"
+msgstr "أ_عد التّشغيل"
+
+#: ../src/libvirt-machine-properties.vala:435
+msgid "_Force Shutdown"
+msgstr "أجبِر الإ_طفاء"
+
+#: ../src/libvirt-machine-properties.vala:449
+msgid "_Troubleshooting Log"
+msgstr "_سجلّ مواجهة الأعطال"
+
+#: ../src/libvirt-machine-properties.vala:470
+msgid "_Memory: "
+msgstr "ال_ذّاكرة:"
+
+#: ../src/libvirt-machine-properties.vala:538
+#, c-format
+msgid ""
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+"\">(%s used)</span>"
+msgstr ""
+"<span color=\"grey\">أقصى حجم للقرص</span>\t\t %s <span color=\"grey\">(%s "
+"مستخدمة)</span>"
+
+#: ../src/libvirt-machine-properties.vala:554
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
-msgstr "لا مساحة كافية في الآلة لزيادة حجم القرص الأقصى."
+msgstr "لا مساحة كافية في جهازك لزيادة حجم القرص الأقصى."
 
-#: ../src/libvirt-machine.vala:449
-msgid "When you force shutdown, the box may lose data."
-msgstr "عندما تُجبِر الإطفاء، قد يفقد الصندوق بعض البيانات."
+#: ../src/libvirt-machine-properties.vala:563
+msgid "Maximum _Disk Size: "
+msgstr "الحجم الأقصى لل_قرص:"
 
-#: ../src/libvirt-machine.vala:451 ../src/libvirt-machine.vala:606
-msgid "_Shutdown"
-msgstr "أ_طفئ"
+#: ../src/libvirt-machine-properties.vala:696
+msgid "_Run in background"
+msgstr "_شغّل في الخلفية"
+
+#: ../src/libvirt-machine-properties.vala:707
+#: ../src/libvirt-machine-properties.vala:710
+#, c-format
+msgid "'%s' will not be paused automatically."
+msgstr "لن يُلبث '%s' تلقائيًا."
+
+#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:711
+#, c-format
+msgid "'%s' will be paused automatically to save resources."
+msgstr "سيُلبث '%s' تلقائيًا لحفظ الموارد."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:536
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "يستعيد %s من القرص"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:539
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "يبدأ %s"
 
-#: ../src/libvirt-machine.vala:604
+#: ../src/libvirt-machine.vala:656
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "إعادة تشغيل '%s' تأخذ وقتًا طويلًا. أأُجبِر الإطفاء؟"
 
+#: ../src/libvirt-machine.vala:658
+msgid "_Shutdown"
+msgstr "أ_طفئ"
+
+#: ../src/libvirt-machine.vala:730
+msgid "Installing…"
+msgstr "يُثبّت…"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+msgid "Live"
+msgstr "حي"
+
+#: ../src/libvirt-machine.vala:734
+msgid "Importing…"
+msgstr "يستورد…"
+
+#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#, c-format
+msgid "host: %s"
+msgstr "المضيف: %s"
+
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
-msgid "Import '%s' from system broker"
-msgstr "استورد '%s' من سمسار النّظام"
+msgid "_Import '%s' from system broker"
+msgstr "ا_ستورد '%s' من سمسار النّظام"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
-msgid "Import %u box from system broker"
-msgid_plural "Import %u boxes from system broker"
-msgstr[0] "لا تستورد شيئًا من سمسار النّظام"
-msgstr[1] "استورد صندوقًا واحدًا من سمسار النّظام"
-msgstr[2] "استورد صندوقان من سمسار النّظام"
-msgstr[3] "استورد %u صناديق من سمسار النّظام"
-msgstr[4] "استورد %u صندوقًا من سمسار النّظام"
-msgstr[5] "استورد %u صندوق من سمسار النّظام"
+msgid "_Import %u box from system broker"
+msgid_plural "_Import %u boxes from system broker"
+msgstr[0] "لا ت_ستورد شيئًا من سمسار النّظام"
+msgstr[1] "ا_ستورد صندوقًا واحدًا من سمسار النّظام"
+msgstr[2] "ا_ستورد صندوقان من سمسار النّظام"
+msgstr[3] "ا_ستورد %u صناديق من سمسار النّظام"
+msgstr[4] "ا_ستورد %u صندوقًا من سمسار النّظام"
+msgstr[5] "ا_ستورد %u صندوق من سمسار النّظام"
 
 #: ../src/libvirt-system-importer.vala:32
 #, c-format
@@ -595,31 +741,51 @@ msgstr[3] "ستُستورد %u صناديق من سمسار النّظام"
 msgstr[4] "سيُستورد %u صندوقًا من سمسار النّظام"
 msgstr[5] "سيُستورد %u صندوق من سمسار النّظام"
 
-#: ../src/libvirt-system-importer.vala:51
+#: ../src/libvirt-system-importer.vala:47
 msgid "No boxes to import"
 msgstr "لا صناديق لاستيرادها"
 
-#: ../src/libvirt-system-importer.vala:127
+#: ../src/libvirt-system-importer.vala:121
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "فشل العثور على قرص ملائم لاستيراد الصندوق '%s'"
 
+#: ../src/list-view-row.vala:128
+msgid "Connected"
+msgstr "متّصل"
+
+#: ../src/list-view-row.vala:128
+msgid "Disconnected"
+msgstr "غير متّصل"
+
+#: ../src/list-view-row.vala:134
+msgid "Running"
+msgstr "يعمل"
+
+#: ../src/list-view-row.vala:140
+msgid "Paused"
+msgstr "مُلبث"
+
+#: ../src/list-view-row.vala:145
+msgid "Powered Off"
+msgstr "مطفأ"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:140
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
-msgstr "يتّصل بِـ %s"
+msgstr "يتّصل بِ‍ %s"
 
-#: ../src/machine.vala:159 ../src/machine.vala:582
+#: ../src/machine.vala:217 ../src/machine.vala:613
 #, c-format
 msgid "Connection to '%s' failed"
-msgstr "فشل الاتّصال بِـ '%s'"
+msgstr "فشل الاتّصال بِ‍ '%s'"
 
-#: ../src/machine.vala:248
+#: ../src/machine.vala:412
 msgid "Saving…"
-msgstr "يحفظ..."
+msgstr "يحفظ…"
 
-#: ../src/machine.vala:568
+#: ../src/machine.vala:599
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -628,17 +794,17 @@ msgstr ""
 "تعذّر استرجاع '%s' من القرص\n"
 "أأحاول دون الحالة المحفوظة؟"
 
-#: ../src/machine.vala:569
+#: ../src/machine.vala:600
 msgid "Restart"
 msgstr "أعد التّشغيل"
 
-#: ../src/machine.vala:578
+#: ../src/machine.vala:609
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "تعذّر بدء '%s'"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:611
+#: ../src/machine.vala:642
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "يتطلب '%s' الاستيثاق"
@@ -662,12 +828,12 @@ msgstr "• ضيف Libvirt KVM مُتاح: %s\n"
 #: ../src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
-msgstr "• ساحة التّخزين المُتاحة لـ «صناديق»: %s\n"
+msgstr "• مساحة التّخزين المُتاحة ل‍«‍صناديق»: %s\n"
 
 #: ../src/main.vala:60
 #, c-format
 msgid "• The SELinux context is default: %s\n"
-msgstr "• محتوى SELinux هو الافتراضي: %s\n"
+msgstr "• سياق SELinux هو الافتراضي: %s\n"
 
 #: ../src/main.vala:64
 #, c-format
@@ -684,52 +850,52 @@ msgstr "صفحة %s الرئيسية: <%s>.\n"
 msgid "No such file %s"
 msgstr "لا ملف %s كهذا"
 
-#: ../src/notificationbar.vala:42
+#: ../src/notificationbar.vala:43
 #, c-format
 msgid "Sign In to %s"
 msgstr "لِج إلى %s"
 
-#: ../src/notificationbar.vala:45
+#: ../src/notificationbar.vala:46
 #, c-format
 msgid "Not connected to %s"
-msgstr "غير مُتصل بِـ %s"
+msgstr "غير مُتصل بِ‍ %s"
 
 #: ../src/ovirt-broker.vala:69
 msgid "Connection to oVirt broker failed"
 msgstr "تعذّر الاتصال مع سمسار oVirt"
 
-#: ../src/properties.vala:46
-msgid "Login"
-msgstr "الولوج"
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
+msgid "Protocol"
+msgstr "البروتوكول"
 
-#: ../src/properties.vala:54
-msgid "Display"
-msgstr "العرض"
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
+#: ../src/wizard.vala:486
+msgid "URI"
+msgstr "معرّف URI"
 
-#: ../src/properties.vala:58
-msgid "Devices"
-msgstr "الأجهزة"
-
-#: ../src/properties.vala:62
-msgid "Snapshots"
-msgstr "نقاط الوقوف"
-
-#: ../src/properties.vala:221
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "يتطلّب التغيير إعادة تشغيل '%s'."
 
-#: ../src/properties.vala:222
-msgid "_Restart"
-msgstr "أ_عد التّشغيل"
+#: ../src/properties-page-widget.vala:15
+msgid "General"
+msgstr "عام"
 
-#: ../src/selectionbar.vala:63
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "فشل إلباث '%s'"
+#: ../src/properties-page-widget.vala:23
+msgid "Devices"
+msgstr "الأجهزة"
+
+#: ../src/properties-page-widget.vala:27
+msgid "Snapshots"
+msgstr "نقاط الوقوف"
+
+#: ../src/remote-machine.vala:70
+msgid "_URI"
+msgstr "الم_سار"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:166 ../src/selectionbar.vala:168
+#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -746,110 +912,109 @@ msgstr[5] "ا_فتح في %d نافذة جديدة"
 #, c-format
 msgid "%d selected"
 msgid_plural "%d selected"
-msgstr[0] "لا شيء منتقى"
-msgstr[1] "واحد منتقى"
-msgstr[2] "اثنان منتقيان"
-msgstr[3] "%d مُنتقاة"
-msgstr[4] "%d مُنتقى"
-msgstr[5] "%d مُنتقى"
+msgstr[0] "لا شيء محدد"
+msgstr[1] "واحد محدد"
+msgstr[2] "اثنان محددان"
+msgstr[3] "%d محددة"
+msgstr[4] "%d محدد"
+msgstr[5] "%d محدد"
 
 #: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
-msgstr "(انقر العناصر لانتقائها)"
+msgstr "(انقر العناصر لتحديدها)"
 
-#: ../src/snapshot-list-row.vala:147
+#: ../src/snapshot-list-row.vala:137
 #, c-format
 msgid "Reverting to %s…"
 msgstr "يرجع إلى %s..."
 
-#: ../src/snapshot-list-row.vala:163
+#: ../src/snapshot-list-row.vala:155
 msgid "Failed to apply snapshot"
 msgstr "فشلت العودة لنقطة الوقوف"
 
-#: ../src/snapshot-list-row.vala:181
+#: ../src/snapshot-list-row.vala:172
 #, c-format
 msgid "Snapshot \"%s\" deleted."
-msgstr "حُذِقت نقطة الوقوف \"%s\"."
+msgstr "حُذِفت نقطة الوقوف \"%s\"."
 
-#: ../src/snapshots-property.vala:103
+#: ../src/snapshots-property.vala:61
+msgid "No snapshots created yet. Create one using the button below."
+msgstr "لم تُنشأ أي نقاط وقوف بعد. أنشئ واحدة بالنقر على الزر أدناه."
+
+#: ../src/snapshots-property.vala:122
 msgid "Creating new snapshot…"
-msgstr "يُنشئ نقطة وقوف جديدة..."
+msgstr "يُنشئ نقطة وقوف جديدة…"
 
-#: ../src/snapshots-property.vala:113
+#: ../src/snapshots-property.vala:130
 #, c-format
 msgid "Failed to create snapshot of %s"
-msgstr "فشل إنشاء نقطة وقوف لِـ %s"
+msgstr "فشل إنشاء نقطة وقوف لِ‍ %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:33
+#: ../src/spice-display.vala:36
 msgid "Unknown"
 msgstr "مجهول"
 
-#: ../src/spice-display.vala:55
-#, c-format
-msgid "Automatic redirection of USB device '%s' for '%s' failed"
-msgstr "فشل تحويل جهاز USB ‏'%s' لِـ '%s' تلقائيًا"
-
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:345
+#: ../src/spice-display.vala:54 ../src/spice-display.vala:363
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
-msgstr "فشل تحويل جهاز USB ‏'%s' لِـ '%s'"
+msgstr "فشل تحويل جهاز USB ‏'%s' لِ‍ '%s'"
 
-#: ../src/spice-display.vala:296
-msgid "Share clipboard"
-msgstr "مشاركة الحافظة"
+#: ../src/spice-display.vala:310
+msgid "Share Clipboard"
+msgstr "شارك الحافظة"
 
-#: ../src/spice-display.vala:302
-msgid "Resize guest"
-msgstr "تحجيم الضّيف"
-
-#: ../src/spice-display.vala:311
-msgid "Redirect new USB devices"
-msgstr "تحويل أجهزة USB الجديدة"
-
-#: ../src/spice-display.vala:331
+#: ../src/spice-display.vala:376
 msgid "USB devices"
 msgstr "أجهزة USB"
 
-#: ../src/spice-display.vala:388 ../src/wizard.vala:284 ../src/wizard.vala:291
+#: ../src/spice-display.vala:519 ../src/wizard.vala:309 ../src/wizard.vala:316
 msgid "Invalid URI"
 msgstr "معرّف URI غير صالح"
 
-#: ../src/spice-display.vala:398
+#: ../src/spice-display.vala:529
 msgid "The port must be specified once"
 msgstr "المنفذ يُحدَّد مرة واحدة فقط"
 
-#: ../src/spice-display.vala:407
+#: ../src/spice-display.vala:538
 msgid "Missing port in Spice URI"
 msgstr "منفذ Spice URI مفقود"
 
-#: ../src/unattended-installer.vala:464
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: ../src/unattended-installer.vala:188
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr "حدث خطأ أثناء تجهيز عملية التّثبيت. عُطِّل التّثبيت السّريع."
+
+#: ../src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
-msgstr "ينزّل تعارف الأجهزة..."
+msgstr "ينزّل مشغّلات الأجهزة…"
 
-#: ../src/unattended-setup-box.vala:46
+#: ../src/unattended-setup-box.vala:52
 msgid "no password"
-msgstr "لا كلمة مرور"
+msgstr "لا كلمة سر"
 
-#: ../src/unattended-setup-box.vala:99
+#: ../src/unattended-setup-box.vala:105
 #, c-format
 msgid "Express installation of %s requires an internet connection."
-msgstr "التّثبيت السّريع لِـ %s يتطلب اتصالًا بالشّابكة."
+msgstr "تّثبيت %s السّريع يتطلب اتصالًا بالشّبكة."
 
-#: ../src/util-app.vala:198
+#: ../src/util-app.vala:242
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
 msgstr ""
-"يبدو أن محتوى SELinux الخاص بك غير صالح، بإمكانك محاولة إصلاحه بتشغيل:\n"
+"يبدو أن سياق SELinux الخاص بك غير صالح، بإمكانك محاولة إصلاحه بتشغيل:\n"
 "%s"
 
-#: ../src/util-app.vala:202
+#: ../src/util-app.vala:246
 msgid "SELinux not installed?"
-msgstr "SELinux غير مُثبّت؟"
+msgstr "‏SELinux غير مُثبّت؟"
 
-#: ../src/util-app.vala:284
+#: ../src/util-app.vala:328
 msgid ""
 "Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
@@ -857,7 +1022,7 @@ msgstr ""
 "تعذّر إحضار معلومات ساحة تخزين 'gnome-boxes' من المكتبة libvirt. تأكد من عمل "
 "'virsh -c qemu:///session pool-dumpxml gnome-boxes' ."
 
-#: ../src/util-app.vala:289
+#: ../src/util-app.vala:333
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
@@ -866,7 +1031,7 @@ msgstr ""
 "إنّ %s معروف لمكتبة libvirt على أنّه ساحة تخزين لِـ «صناديق جنوم»، لكنّ دليله "
 "غير موجود"
 
-#: ../src/util-app.vala:293
+#: ../src/util-app.vala:337
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
@@ -874,7 +1039,7 @@ msgstr ""
 "إن %s معروف لمكتبة libvirt على أنّه ساحة تخزين لِـ «صناديق جنوم»، لكنّه لا يحمل "
 "دليلًا"
 
-#: ../src/util-app.vala:297
+#: ../src/util-app.vala:341
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
@@ -893,52 +1058,21 @@ msgstr "لا"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:550
+#: ../src/vm-configurator.vala:557
 msgid "Incapable host system"
 msgstr "نظام المُضيف غير متوافق"
 
-#: ../src/vm-creator.vala:48
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr "حدث خطأ أثناء تجهيز عملية التّثبيت. عُطِّل التّثبيت السّريع."
-
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:170
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "حُذِف الصّندوق الحي '%s' تلقائيًا."
 
-#: ../src/vm-creator.vala:188
-msgid "Installing…"
-msgstr "يُثبّت..."
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:192 ../src/wizard-source.vala:82
-msgid "Live"
-msgstr "حي"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:331
-#, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "%d%% مُثبّتة"
-msgstr[1] "%d%% مُثبّتة"
-msgstr[2] "%d%% مُثبّتة"
-msgstr[3] "%d%% مُثبّتة"
-msgstr[4] "%d%% مُثبّتة"
-msgstr[5] "%d%% مُثبّتة"
-
-#: ../src/vm-importer.vala:36
-msgid "Importing…"
-msgstr "يستورد..."
-
-#: ../src/vm-importer.vala:53
+#: ../src/vm-importer.vala:46
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "فشل استيراد الصّندوق من '%s'."
 
-#: ../src/vnc-display.vala:145
+#: ../src/vnc-display.vala:149
 msgid "Read-only"
 msgstr "للقراءة فقط"
 
@@ -956,94 +1090,182 @@ msgstr "نظام 64 بت"
 msgid " from %s"
 msgstr " من %s"
 
-#: ../src/wizard.vala:119
+#: ../src/wizard-toolbar.vala:6
+msgid "Source Selection"
+msgstr "اختيار المصدر"
+
+#: ../src/wizard-toolbar.vala:7
+msgid "Box Preparation"
+msgstr "تحضير الصندوق"
+
+#: ../src/wizard-toolbar.vala:8
+msgid "Box Setup"
+msgstr "إعداد الصندوق"
+
+#: ../src/wizard-toolbar.vala:9
+msgid "Review"
+msgstr "المراجعة"
+
+#: ../src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "فشل إنشاء الصّندوق"
 
-#: ../src/wizard.vala:172
-msgid "Please enter desktop or collection URI"
-msgstr "أدخل رجاءً معرّف URI لتشكيل أو لسطح مكتب"
-
-#: ../src/wizard.vala:178
-msgid "Will add boxes for all systems available from this account."
-msgstr "ستُضاف صناديق لجميع الأنظمة المُتاحة من هذا الحساب."
-
-#: ../src/wizard.vala:181
-msgid "Will add a single box."
-msgstr "سيُضاف صندوقًا واحدًا."
-
-#. ignore any parsing error
-#: ../src/wizard.vala:187
-msgid "Desktop Access"
-msgstr "وصول سطح المكتب"
-
-#: ../src/wizard.vala:266
+#: ../src/wizard.vala:268
 msgid "Empty location"
 msgstr "المكان فارغ"
 
-#: ../src/wizard.vala:308
+#: ../src/wizard.vala:291
+msgid "Unsupported file"
+msgstr "الملف غير مدعوم"
+
+#: ../src/wizard.vala:297
+msgid "Invalid file"
+msgstr "الملف غير صحيح"
+
+#: ../src/wizard.vala:333
 #, c-format
 msgid "Unsupported protocol '%s'"
-msgstr "الميفاق '%s' غير مدعوم"
+msgstr "البروتوكول '%s' غير مدعوم"
 
-#: ../src/wizard.vala:314 ../src/wizard.vala:375
+#: ../src/wizard.vala:339 ../src/wizard.vala:408
 msgid "Unknown installer media"
-msgstr "مُثبت الوسيط مجهول"
+msgstr "وسط التثبيت مجهول"
 
-#: ../src/wizard.vala:315 ../src/wizard.vala:376
+#: ../src/wizard.vala:340 ../src/wizard.vala:409
 msgid "Analyzing…"
-msgstr "يُحلّل..."
+msgstr "يُحلّل…"
 
-#: ../src/wizard.vala:329
+#: ../src/wizard.vala:354
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr "تعذّر تحليل مُثبّت الوسيط. الوسيط معطوب أو غير مُكتمل؟"
+msgstr "تعذّر تحليل وسط التثبيت. الوسط معطوب أو غير مُكتمل؟"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:444
+#: ../src/wizard.vala:462
 msgid "Box setup failed"
 msgstr "فشل إعداد الصّندوق"
 
-#: ../src/wizard.vala:458
+#: ../src/wizard.vala:476
 msgid "Boxes will create a new box with the following properties:"
-msgstr "سينشئ «صناديق» بالخصائص التّالية صندوقًا جديدًا:"
+msgstr "سينشئ صندوقًا جديدًا بالخصائص التّالية:"
 
-#: ../src/wizard.vala:463
+#: ../src/wizard.vala:481
 msgid "Type"
 msgstr "النّوع"
 
-#: ../src/wizard.vala:466
+#: ../src/wizard.vala:484
 msgid "Host"
 msgstr "المُضيف"
 
-#: ../src/wizard.vala:477 ../src/wizard.vala:488
+#: ../src/wizard.vala:495 ../src/wizard.vala:506
 msgid "Port"
 msgstr "المنفذ"
 
-#: ../src/wizard.vala:479
+#: ../src/wizard.vala:497
 msgid "TLS Port"
 msgstr "منفذ TLS"
 
-#: ../src/wizard.vala:493
+#: ../src/wizard.vala:511
 msgid "Will add boxes for all systems available from this account:"
 msgstr "ستُضاف الأقراص إلى كل الأنظمة المُتاحة لهذا الحساب:"
 
-#: ../src/wizard.vala:515
+#: ../src/wizard.vala:524
+msgid "Memory"
+msgstr "الذّاكرة"
+
+#: ../src/wizard.vala:533
 msgid "Disk"
 msgstr "القرص"
 
-#: ../src/wizard.vala:515
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: ../src/wizard.vala:535
 #, c-format
 msgid "%s maximum"
 msgstr "%s كحد أقصى"
 
-#: ../src/wizard.vala:579
+#: ../src/wizard.vala:598
 msgid "Downloading media…"
-msgstr "ينزّل الوسيط..."
+msgstr "ينزّل الوسط…"
 
-#: ../src/wizard.vala:589
+#: ../src/wizard.vala:608
 msgid "Download failed."
 msgstr "فشل التّنزيل."
 
-#: ../src/wizard.vala:700
+#: ../src/wizard.vala:716
 msgid "C_ustomize…"
-msgstr "_خصّص..."
+msgstr "_خصّص…"
+
+#~ msgid "<b><span size=\"large\">No boxes found</span></b>"
+#~ msgstr "<b><span size=\"large\">لم يُعثر على أي صندوق</span></b>"
+
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "أنشئ واحدًا باستخدام الزّر أعلاه."
+
+#~ msgid "Net:"
+#~ msgstr "الشّبكة:"
+
+#~ msgid "Introduction"
+#~ msgstr "المُقدّمة"
+
+#~ msgid ""
+#~ "Creating a box will allow you to use another operating system directly "
+#~ "from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or "
+#~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "يسمح لك إنشاء صندوق باستخدام نظام آخر مباشرةً من نظامك الحالي.\n"
+#~ "\n"
+#~ "قد ترغب بالاتّصال بآلة موجودة <b><i>عبر الشبكة</i></b> أو إنشاء <b><i>آلة "
+#~ "افتراضية</i></b> تعمل محليًّا لديك."
+
+# تدل هذه الكلمة على البروتوكول الذي يستعمله الصندوق الوهمي الآن
+#~ msgid "Virtualizer"
+#~ msgstr "الميفاق الوهمي"
+
+#~ msgid "_Save"
+#~ msgstr "ا_حفظ"
+
+#~ msgid "_Close"
+#~ msgstr "أ_غلق"
+
+#~ msgid "Save log"
+#~ msgstr "احفظ السجلّ"
+
+#~ msgid "Error saving: %s"
+#~ msgstr "خطأ في الحفظ: %s"
+
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "عندما تُجبِر الإطفاء، قد يفقد الصندوق بعض البيانات."
+
+#~ msgid "Login"
+#~ msgstr "الولوج"
+
+#~ msgid "Automatic redirection of USB device '%s' for '%s' failed"
+#~ msgstr "فشل تحويل جهاز USB ‏'%s' لِـ '%s' تلقائيًا"
+
+#~ msgid "Resize guest"
+#~ msgstr "تحجيم الضّيف"
+
+#~ msgid "Redirect new USB devices"
+#~ msgstr "تحويل أجهزة USB الجديدة"
+
+#~ msgid "%d%% Installed"
+#~ msgid_plural "%d%% Installed"
+#~ msgstr[0] "%d%% مُثبّتة"
+#~ msgstr[1] "%d%% مُثبّتة"
+#~ msgstr[2] "%d%% مُثبّتة"
+#~ msgstr[3] "%d%% مُثبّتة"
+#~ msgstr[4] "%d%% مُثبّتة"
+#~ msgstr[5] "%d%% مُثبّتة"
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "أدخل رجاءً معرّف URI لتشكيل أو لسطح مكتب"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr "ستُضاف صناديق لجميع الأنظمة المُتاحة من هذا الحساب."
+
+#~ msgid "Will add a single box."
+#~ msgstr "سيُضاف صندوقًا واحدًا."
+
+#~ msgid "Desktop Access"
+#~ msgstr "وصول سطح المكتب"
