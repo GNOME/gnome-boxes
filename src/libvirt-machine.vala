@@ -674,6 +674,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         var mac = get_mac_address ();
         if (mac == null)
             return null;
+        debug ("MAC address of '%s': %s", name, mac);
 
         foreach (var network in system_virt_connection.get_networks ()) {
             try {
@@ -681,6 +682,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
                 if (leases.length () == 0 || leases.data.get_iface () != "virbr0")
                     continue;
+                debug ("Found a lease for '%s' on network '%s'", name, network.get_name ());
 
                 // Get first IP in the list
                 return leases.data.get_ip ();
@@ -690,6 +692,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                          error.message);
             }
         }
+        debug ("No lease for '%s' on any network", name);
 
         return null;
     }
