@@ -18,6 +18,7 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
 
         all_button.active = true;
         activate_button (all_button);
+        App.app.call_when_ready (on_app_ready);
 
         window.foreach_view ((view) => { view.filter.filter_func = null; });
     }
@@ -39,6 +40,17 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
 
     private bool remote_filter_func (Boxes.CollectionItem item) {
         return (item is Machine) && !(item as Machine).is_local;
+    }
+
+    private void on_app_ready () {
+        update_sensitivity ();
+
+        App.app.collection.item_added.connect (update_sensitivity);
+        App.app.collection.item_removed.connect (update_sensitivity);
+    }
+
+    private void update_sensitivity () {
+        sensitive = (App.app.collection.items.length != 0);
     }
 
     [GtkCallback]
