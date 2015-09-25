@@ -478,7 +478,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             property.widget.margin_top = 5;
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
-                machine.window.ui_state != Boxes.UIState.WIZARD)
+                machine.window.ui_state != Boxes.UIState.WIZARD &&
+                machine.state != Machine.MachineState.FORCE_STOPPED)
                 property.sensitive = false;
             else
                 property.changed.connect (on_ram_changed);
@@ -573,7 +574,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             property.defer_interval = 0;
             if ((VMConfigurator.is_install_config (machine.domain_config) ||
                  VMConfigurator.is_live_config (machine.domain_config)) &&
-                machine.window.ui_state != Boxes.UIState.WIZARD)
+                machine.window.ui_state != Boxes.UIState.WIZARD &&
+                machine.state != Machine.MachineState.FORCE_STOPPED)
                 property.sensitive = false;
             else
                 property.changed.connect (on_storage_changed);
