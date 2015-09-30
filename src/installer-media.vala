@@ -79,6 +79,9 @@ private class Boxes.InstallerMedia : GLib.Object {
         // FIXME: these values could be made editable somehow
         var architecture = this.architecture ?? "i686";
         resources = media_manager.os_db.get_resources_for_os (os, architecture);
+        resources.ram = (architecture == "i686" || architecture == "i386") ?
+                        resources.ram.clamp (Osinfo.MEBIBYTES, uint32.MAX) :
+                        resources.ram.clamp (Osinfo.MEBIBYTES, int64.MAX);
     }
 
     public virtual void set_direct_boot_params (DomainOs os) {}
