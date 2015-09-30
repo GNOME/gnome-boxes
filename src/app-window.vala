@@ -122,6 +122,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private uint configure_id;
     public static const uint configure_id_timeout = 100;  // 100ms
 
+    private Gtk.WindowGroup group;
+
     public AppWindow (Gtk.Application app) {
         Object (application:  app,
                 title:        _("Boxes"),
@@ -173,8 +175,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         empty_boxes.setup_ui (this);
         notificationbar.searchbar = searchbar;
 
+        group = new Gtk.WindowGroup ();
         wizard_window = new WizardWindow (this);
+        group.add_window (wizard_window);
         props_window = new PropertiesWindow (this);
+        group.add_window (props_window);
 
         notify["view-type"].connect (ui_state_changed);
     }
