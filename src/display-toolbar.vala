@@ -48,7 +48,7 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
 
             if (window.fullscreened) {
                 fullscreen_image.icon_name = "view-restore-symbolic";
-                a11y.accessible_name = _("Restore from fullscreen");
+                a11y.accessible_name = _("Exit fullscreen");
             } else {
                 fullscreen_image.icon_name = "view-fullscreen-symbolic";
                 a11y.accessible_name = _("Fullscreen");
