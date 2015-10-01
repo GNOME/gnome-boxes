@@ -44,10 +44,15 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         }
 
         App.app.notify["fullscreened"].connect_after ( () => {
-            if (window.fullscreened)
+            var a11y = fullscreen.get_accessible ();
+
+            if (window.fullscreened) {
                 fullscreen_image.icon_name = "view-restore-symbolic";
-            else
+                a11y.accessible_name = _("Restore from fullscreen");
+            } else {
                 fullscreen_image.icon_name = "view-fullscreen-symbolic";
+                a11y.accessible_name = _("Fullscreen");
+            }
         });
     }
 
