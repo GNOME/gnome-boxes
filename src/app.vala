@@ -267,6 +267,9 @@ private class Boxes.App: Gtk.Application {
     public bool quit_app () {
         foreach (var window in windows)
             window.hide ();
+        // Ensure windows are hidden before returning from this function
+        var display = Gdk.Display.get_default ();
+        display.flush ();
 
         Idle.add (() => {
             quit ();
