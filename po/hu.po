@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-01 18:55+0000\n"
-"PO-Revision-Date: 2015-09-01 22:11+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
+"POT-Creation-Date: 2015-10-25 08:00+0000\n"
+"PO-Revision-Date: 2015-10-25 14:12+0100\n"
+"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -49,8 +49,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:222
-#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:230
+#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Gépek"
 
@@ -134,8 +134,8 @@ msgstr "Távoli"
 msgid "_New"
 msgstr "Ú_j"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
-#: ../data/ui/wizard-toolbar.ui.h:7
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/display-toolbar.ui.h:1
+#: ../data/ui/properties-toolbar.ui.h:2 ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Vissza"
 
@@ -154,6 +154,18 @@ msgstr "Rács"
 #: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Keresés"
+
+#: ../data/ui/display-toolbar.ui.h:2
+msgid "Actions"
+msgstr "Műveletek"
+
+#: ../data/ui/display-toolbar.ui.h:3
+msgid "Keyboard shortcuts"
+msgstr "Gyorsbillentyűk"
+
+#: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
+msgid "Fullscreen"
+msgstr "Teljes képernyő"
 
 #: ../data/ui/empty-boxes.ui.h:1
 msgid "State of the art virtualization"
@@ -439,30 +451,26 @@ msgstr "– Egyszerű alkalmazás távoli vagy virtuális gépek eléréséhez"
 msgid "Too many command line arguments specified.\n"
 msgstr "Túl sok parancssori argumentum lett megadva.\n"
 
-#: ../src/app.vala:431
+#: ../src/app.vala:434
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "A(z) „%s” gép telepítve és használatra kész"
 
-#: ../src/app.vala:519
+#: ../src/app.vala:522
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A(z) „%s” gép törlésre került"
 
-#: ../src/app.vala:520
+#: ../src/app.vala:523
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u gép törlésre került"
 msgstr[1] "%u gép törlésre került"
 
-#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Visszavonás"
-
-#: ../src/collection-view.vala:56
-msgid "New and Recent"
-msgstr "Új és legutóbbi"
 
 #: ../src/display-page.vala:110
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -480,11 +488,19 @@ msgstr ""
 msgid "%dx%d"
 msgstr "%dx%d"
 
+#: ../src/display-toolbar.vala:51
+msgid "Exit fullscreen"
+msgstr "Kilépés a teljes képernyős módból"
+
+#: ../src/icon-view.vala:56
+msgid "New and Recent"
+msgstr "Új és legutóbbi"
+
 #: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "Nem támogatott lemezképformátum."
 
-#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:112
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Rendszer"
@@ -542,99 +558,101 @@ msgstr "IP-cím"
 msgid "Broker"
 msgstr "Közvetítő"
 
-#: ../src/libvirt-machine-properties.vala:134
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
 msgid "Display Protocol"
 msgstr "Protokoll megjelenítése"
 
-#: ../src/libvirt-machine-properties.vala:135
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
 msgid "Display URI"
 msgstr "URI megjelenítése"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:187
-#: ../src/libvirt-machine-properties.vala:205
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "Támogatás hozzáadása a vendéghez"
 
-#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "USB-eszköztámogatás"
 
-#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "Intelligenskártya-támogatás"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:259
-#: ../src/libvirt-machine-properties.vala:311
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "üres"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:268
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:282
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
 msgid "_Select"
 msgstr "_Kijelölés"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
 msgid "_Remove"
 msgstr "_Eltávolítás"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "„%s” behelyezése sikertelen CD/DVD-ként ide: „%s”"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "A CD/DVD eltávolítása sikertelen innen: „%s”"
 
-#: ../src/libvirt-machine-properties.vala:384
+#: ../src/libvirt-machine-properties.vala:386
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:390
+#: ../src/libvirt-machine-properties.vala:392
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:396
+#: ../src/libvirt-machine-properties.vala:398
 msgid "Network"
 msgstr "Hálózat"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "Újr_aindítás"
 
-#: ../src/libvirt-machine-properties.vala:433
+#: ../src/libvirt-machine-properties.vala:435
 msgid "_Force Shutdown"
 msgstr "Erőltetett _leállítás"
 
-#: ../src/libvirt-machine-properties.vala:447
+#: ../src/libvirt-machine-properties.vala:449
 msgid "_Troubleshooting Log"
 msgstr "_Hibaelhárítási napló"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:470
 msgid "_Memory: "
 msgstr "_Memória: "
 
-#: ../src/libvirt-machine-properties.vala:536
+#: ../src/libvirt-machine-properties.vala:539
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -643,27 +661,27 @@ msgstr ""
 "<span color=\"grey\">Legnagyobb lemezméret</span>\t\t %s <span color=\"grey"
 "\">(%s használatban)</span>"
 
-#: ../src/libvirt-machine-properties.vala:552
+#: ../src/libvirt-machine-properties.vala:555
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Nincs elég hely a számítógépén a legnagyobb lemezméret növeléséhez."
 
-#: ../src/libvirt-machine-properties.vala:561
+#: ../src/libvirt-machine-properties.vala:564
 msgid "Maximum _Disk Size: "
 msgstr "Legnagyobb _lemezméret: "
 
-#: ../src/libvirt-machine-properties.vala:694
+#: ../src/libvirt-machine-properties.vala:698
 msgid "_Run in background"
 msgstr "_Futtatás a háttérben"
 
-#: ../src/libvirt-machine-properties.vala:705
-#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:712
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "a(z) „%s” nem lesz automatikusan szüneteltetve."
 
-#: ../src/libvirt-machine-properties.vala:706
-#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:710
+#: ../src/libvirt-machine-properties.vala:713
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr ""
@@ -690,21 +708,21 @@ msgstr "A(z) „%s” újraindítása túl sokáig tart. Erőlteti a leállítá
 msgid "_Shutdown"
 msgstr "_Leállítás"
 
-#: ../src/libvirt-machine.vala:730
+#: ../src/libvirt-machine.vala:733
 msgid "Installing…"
 msgstr "Telepítés…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Élő"
 
-#: ../src/libvirt-machine.vala:734
+#: ../src/libvirt-machine.vala:737
 msgid "Importing…"
 msgstr "Importálás…"
 
-#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "gazdagép: %s"
@@ -744,23 +762,23 @@ msgstr "Nincsenek importálható gépek"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "Nem található megfelelő lemez a(z) „%s” gép importálásához"
 
-#: ../src/list-view-row.vala:124
+#: ../src/list-view-row.vala:128
 msgid "Connected"
 msgstr "Kapcsolódva"
 
-#: ../src/list-view-row.vala:124
+#: ../src/list-view-row.vala:128
 msgid "Disconnected"
 msgstr "Bontva"
 
-#: ../src/list-view-row.vala:131
+#: ../src/list-view-row.vala:134
 msgid "Running"
 msgstr "Fut"
 
-#: ../src/list-view-row.vala:138
+#: ../src/list-view-row.vala:140
 msgid "Paused"
 msgstr "Szüneteltetve"
 
-#: ../src/list-view-row.vala:144
+#: ../src/list-view-row.vala:145
 msgid "Powered Off"
 msgstr "Kikapcsolva"
 
@@ -770,7 +788,7 @@ msgstr "Kikapcsolva"
 msgid "Connecting to %s"
 msgstr "Kapcsolódás: %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:611
+#: ../src/machine.vala:217 ../src/machine.vala:613
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "A kapcsolódás meghiúsult a következőhöz: „%s”"
@@ -779,7 +797,7 @@ msgstr "A kapcsolódás meghiúsult a következőhöz: „%s”"
 msgid "Saving…"
 msgstr "Mentés…"
 
-#: ../src/machine.vala:597
+#: ../src/machine.vala:599
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -788,17 +806,17 @@ msgstr ""
 "„%s” nem állítható helyre a lemezről\n"
 "Megpróbálja a mentett állapot nélkül?"
 
-#: ../src/machine.vala:598
+#: ../src/machine.vala:600
 msgid "Restart"
 msgstr "Újraindítás"
 
-#: ../src/machine.vala:607
+#: ../src/machine.vala:609
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Nem sikerült elindítani: „%s”"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:640
+#: ../src/machine.vala:642
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "„%s” hitelesítést igényel"
@@ -1049,11 +1067,11 @@ msgstr "nem"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "A gazda rendszer képességei hiányoznak"
 
-#: ../src/vm-creator.vala:170
+#: ../src/vm-creator.vala:174
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "A(z) „%s” futó gép automatikusan törlésre került."
@@ -1315,9 +1333,6 @@ msgstr "_Testreszabás…"
 #~ "ban vagy később készült), akkor ezek a kiterjesztések valószínűleg "
 #~ "elérhetők a rendszerén, és szükség lehet ezek engedélyezésére a gép BIOS "
 #~ "beállításaiban."
-
-#~ msgid "Fullscreen"
-#~ msgstr "Teljes képernyő"
 
 #~| msgid "Connecting to %s"
 #~ msgid "Error connecting %s: %s"
