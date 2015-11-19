@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-30 10:37+0300\n"
-"PO-Revision-Date: 2015-08-30 10:41+0300\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gnome.org>\n"
+"POT-Creation-Date: 2015-11-19 21:29+0200\n"
+"PO-Revision-Date: 2015-11-19 21:31+0200\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -46,8 +46,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:222
-#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:230
+#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "קופסאות"
 
@@ -131,8 +131,8 @@ msgstr "מרוחק"
 msgid "_New"
 msgstr "_חדש"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
-#: ../data/ui/wizard-toolbar.ui.h:7
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/display-toolbar.ui.h:1
+#: ../data/ui/properties-toolbar.ui.h:2 ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "חזרה"
 
@@ -152,9 +152,21 @@ msgstr "תצוגת רשת"
 msgid "Search"
 msgstr "חיפוש"
 
+#: ../data/ui/display-toolbar.ui.h:2
+msgid "Actions"
+msgstr "פעולות"
+
+#: ../data/ui/display-toolbar.ui.h:3
+msgid "Keyboard shortcuts"
+msgstr "צירופי מקשים"
+
+#: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
+msgid "Fullscreen"
+msgstr "מסך מלא"
+
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr "<b><span size=\"large\">מצב אמנות ההדמיה</span></b>"
+msgid "State of the art virtualization"
+msgstr "מצב אמנות ההדמיה"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -301,11 +313,11 @@ msgstr ""
 
 #: ../data/ui/wizard-source.ui.h:9
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 msgstr ""
-"<span color=\"grey\">לדוגמה: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"לדוגמה: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -432,30 +444,26 @@ msgstr "- יישום פשוט לגישה מרחוק או למכונות וירט
 msgid "Too many command line arguments specified.\n"
 msgstr "צוינו יותר מדי ארגומנטים בשורת הפקודה.\n"
 
-#: ../src/app.vala:431
+#: ../src/app.vala:434
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "הקופסה '%s' מותקנת ומוכנה לשימוש"
 
-#: ../src/app.vala:519
+#: ../src/app.vala:522
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "הקופסה '%s' נמחקה"
 
-#: ../src/app.vala:520
+#: ../src/app.vala:523
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "קופסה אחת נמחקה"
 msgstr[1] "%u קופסאות נמחקו"
 
-#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_ביטול"
-
-#: ../src/collection-view.vala:56
-msgid "New and Recent"
-msgstr "חדשים ואחרונים"
 
 #: ../src/display-page.vala:110
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -472,11 +480,19 @@ msgstr ""
 msgid "%dx%d"
 msgstr "%dx%d"
 
+#: ../src/display-toolbar.vala:51
+msgid "Exit fullscreen"
+msgstr "יציאה ממסך מלא"
+
+#: ../src/icon-view.vala:56
+msgid "New and Recent"
+msgstr "חדשים ואחרונים"
+
 #: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "מבנה תמונת הכונן אינה נתמכת."
 
-#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:112
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "מערכת"
@@ -490,14 +506,14 @@ msgstr "%s <span color=\"grey\">(%s בשימוש)</span>"
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
 #: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "<small>%s (recommended)</small>"
-msgstr "<small>‏%s (מומלץ)</small>"
+msgid "%s (recommended)"
+msgstr "%s (מומלץ)"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
 #: ../src/i-properties-provider.vala:131
 #, c-format
-msgid "<small>%s (maximum)</small>"
-msgstr "<small>%s (מרב)</small>"
+msgid "%s (maximum)"
+msgstr "%s (לכל היותר)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -534,99 +550,101 @@ msgstr "כתובת IP"
 msgid "Broker"
 msgstr "מתווך"
 
-#: ../src/libvirt-machine-properties.vala:134
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
 msgid "Display Protocol"
 msgstr "פרוטוקול תצוגה"
 
-#: ../src/libvirt-machine-properties.vala:135
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
 msgid "Display URI"
 msgstr "כתובת תצוגה"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:187
-#: ../src/libvirt-machine-properties.vala:205
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "הוספת תמיכה לאורח"
 
-#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "תמיכה בהתקן USB"
 
-#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "תמיכה בכרטיס חכם"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:259
-#: ../src/libvirt-machine-properties.vala:311
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "ריק"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:268
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "תקליטור/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:282
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
 msgid "_Select"
 msgstr "_בחירה"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
 msgid "_Remove"
 msgstr "ה_סרה"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "ההכנסה של '%s' כתקליטור CD/DVD לתוך '%s' נכשלה"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "הסרת ה־CD/DVD מהקופסה '%s' נכשלה"
 
-#: ../src/libvirt-machine-properties.vala:384
+#: ../src/libvirt-machine-properties.vala:386
 msgid "CPU"
 msgstr "מעבד"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:390
+#: ../src/libvirt-machine-properties.vala:392
 msgid "I/O"
 msgstr "קלט/פלט"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:396
+#: ../src/libvirt-machine-properties.vala:398
 msgid "Network"
 msgstr "רשת"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "הפעלה מ_חדש"
 
-#: ../src/libvirt-machine-properties.vala:433
+#: ../src/libvirt-machine-properties.vala:435
 msgid "_Force Shutdown"
 msgstr "_אילוץ כיבוי"
 
-#: ../src/libvirt-machine-properties.vala:447
+#: ../src/libvirt-machine-properties.vala:449
 msgid "_Troubleshooting Log"
 msgstr "יומן _טיפול בבעיות"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:470
 msgid "_Memory: "
 msgstr "זי_כרון: "
 
-#: ../src/libvirt-machine-properties.vala:536
+#: ../src/libvirt-machine-properties.vala:539
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -635,27 +653,27 @@ msgstr ""
 "<span color=\"grey\">גודל כונן מרבי</span>\t\t %s <span color=\"grey\">(%s "
 "בשימוש)</span>"
 
-#: ../src/libvirt-machine-properties.vala:552
+#: ../src/libvirt-machine-properties.vala:555
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "אין מספיק מקום במחשב שלך בכדי להגדיל את הגודל המרבי של הדיסק."
 
-#: ../src/libvirt-machine-properties.vala:561
+#: ../src/libvirt-machine-properties.vala:564
 msgid "Maximum _Disk Size: "
 msgstr "גודל ה_כונן המרבי: "
 
-#: ../src/libvirt-machine-properties.vala:694
+#: ../src/libvirt-machine-properties.vala:698
 msgid "_Run in background"
 msgstr "הרצה ב_רקע"
 
-#: ../src/libvirt-machine-properties.vala:705
-#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:712
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "הקופסה החיה '%s' הושהתה אוטומטית."
 
-#: ../src/libvirt-machine-properties.vala:706
-#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:710
+#: ../src/libvirt-machine-properties.vala:713
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "‏'%s' תושהה אוטומטית על מנת לשמור משאבים."
@@ -681,21 +699,21 @@ msgstr "ההפעלה מחדש של '%s' אורכת זמן רב מדי. האם ל
 msgid "_Shutdown"
 msgstr "_כיבוי"
 
-#: ../src/libvirt-machine.vala:730
+#: ../src/libvirt-machine.vala:733
 msgid "Installing…"
 msgstr "מתבצעת התקנה…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "חי"
 
-#: ../src/libvirt-machine.vala:734
+#: ../src/libvirt-machine.vala:737
 msgid "Importing…"
 msgstr "מתבצע יבוא…"
 
-#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "מארח: %s"
@@ -735,24 +753,24 @@ msgstr "לא נמצאו קופסאות לייבוא"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "נכשל חיפוש כונן מתאים לייבוא עבור קופסה '%s'"
 
-#: ../src/list-view-row.vala:124
-msgid "connected"
+#: ../src/list-view-row.vala:128
+msgid "Connected"
 msgstr "מחובר"
 
-#: ../src/list-view-row.vala:124
-msgid "disconnected"
+#: ../src/list-view-row.vala:128
+msgid "Disconnected"
 msgstr "מנותק"
 
-#: ../src/list-view-row.vala:131
-msgid "running"
+#: ../src/list-view-row.vala:134
+msgid "Running"
 msgstr "רץ"
 
-#: ../src/list-view-row.vala:138
-msgid "paused"
+#: ../src/list-view-row.vala:140
+msgid "Paused"
 msgstr "מושהה"
 
-#: ../src/list-view-row.vala:144
-msgid "powered off"
+#: ../src/list-view-row.vala:145
+msgid "Powered Off"
 msgstr "כבוי"
 
 #. Translators: The %s will be expanded with the name of the vm
@@ -761,7 +779,7 @@ msgstr "כבוי"
 msgid "Connecting to %s"
 msgstr "מתבצעת התחברות אל %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:611
+#: ../src/machine.vala:217 ../src/machine.vala:613
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "ההתחברות אל %s נכשלה"
@@ -770,7 +788,7 @@ msgstr "ההתחברות אל %s נכשלה"
 msgid "Saving…"
 msgstr "מתבצעת שמירה…"
 
-#: ../src/machine.vala:597
+#: ../src/machine.vala:599
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -779,17 +797,17 @@ msgstr ""
 "לא ניתן לשחזר את '%s' מהכונן\n"
 "האם לנסות ללא מצב שמור?"
 
-#: ../src/machine.vala:598
+#: ../src/machine.vala:600
 msgid "Restart"
 msgstr "הפעלה מחדש"
 
-#: ../src/machine.vala:607
+#: ../src/machine.vala:609
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "ארע כשל בהפעלת '%s'"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:640
+#: ../src/machine.vala:642
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' דורש אימות"
@@ -1033,11 +1051,11 @@ msgstr "לא"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "מערכת האירוח אינה מסוגלת לכך"
 
-#: ../src/vm-creator.vala:170
+#: ../src/vm-creator.vala:174
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "הקופסה החיה '%s' נמחקה אוטומטית."
@@ -1169,6 +1187,12 @@ msgstr "ההורדה נכשלה."
 msgid "C_ustomize…"
 msgstr "התאמה _אישית…"
 
+#~ msgid "<small>%s (maximum)</small>"
+#~ msgstr "<small>%s (מרב)</small>"
+
+#~ msgid "paused"
+#~ msgstr "מושהה"
+
 #~ msgid "_Properties"
 #~ msgstr "_מאפיינים"
 
@@ -1297,9 +1321,6 @@ msgstr "התאמה _אישית…"
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "שגיאה בהתחברות אל %s:‏ %s"
-
-#~ msgid "Fullscreen"
-#~ msgstr "מסך מלא"
 
 #~ msgid "USB redirection"
 #~ msgstr "הפניית USB"
