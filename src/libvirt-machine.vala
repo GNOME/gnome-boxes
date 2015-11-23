@@ -599,6 +599,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 else
                     throw new Boxes.Error.START_FAILED (error.message);
             }
+
+            if (restore) {
+                try {
+                    yield domain.set_time_async (null, 0, null);
+                } catch (GLib.Error error) {
+                    debug ("Failed to update clock on %s: %s", name, error.message);
+                }
+            }
         }
     }
 
