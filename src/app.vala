@@ -80,6 +80,14 @@ private class Boxes.App: Gtk.Application {
         action.activate.connect ((param) => { open_name (param.get_string ()); });
         add_action (action);
 
+        action = new GLib.SimpleAction ("kbd_shortcuts", null);
+        action.activate.connect (() => {
+            var window = new Boxes.KbdShortcutsWindow ();
+
+            window.show ();
+        });
+        add_action (action);
+
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
@@ -119,6 +127,7 @@ private class Boxes.App: Gtk.Application {
 
         var menu = new GLib.Menu ();
         menu.append (_("Help"), "app.help");
+        menu.append (_("Keyboard shortcuts"), "app.kbd_shortcuts");
         menu.append (_("About"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
@@ -594,3 +603,6 @@ private class Boxes.App: Gtk.Application {
         return initial_windows_count != windows.length ();
     }
 }
+
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/kbd-shortcuts-window.ui")]
+private class Boxes.KbdShortcutsWindow: Gtk.ShortcutsWindow {}
