@@ -117,12 +117,19 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     [GtkCallback]
     private bool on_key_pressed (Widget widget, Gdk.EventKey event) {
         var default_modifiers = Gtk.accelerator_get_default_mod_mask ();
+        var direction = get_direction ();
 
-        if (event.keyval == Gdk.Key.Left && // ALT + Left -> back
-                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
+        if (((direction == Gtk.TextDirection.LTR && // LTR
+              event.keyval == Gdk.Key.Left) ||      // ALT + Left -> back
+             (direction == Gtk.TextDirection.RTL && // RTL
+              event.keyval == Gdk.Key.Right)) &&    // ALT + Right -> back
+            (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             topbar.click_back_button ();
             return true;
-        } else if (event.keyval == Gdk.Key.Right && // ALT + Right -> forward
+        } else if (((direction == Gtk.TextDirection.LTR && // LTR
+                     event.keyval == Gdk.Key.Right) ||     // ALT + Right -> forward
+                    (direction == Gtk.TextDirection.RTL && // RTL
+                     event.keyval == Gdk.Key.Left)) &&     // ALT + Left -> forward
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             topbar.click_forward_button ();
             return true;
