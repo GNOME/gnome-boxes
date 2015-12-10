@@ -119,7 +119,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
                 password_notebook.next_page ();
             set_entry_text_from_key (product_key_entry, PRODUCTKEY_KEY);
         } catch (GLib.Error error) {
-            debug ("%s either doesn't already exist or we failed to load it: %s", media_path, error.message);
+            debug ("%s either doesn't already exist or we failed to load it: %s", KEY_FILE, error.message);
         }
         setup_express_toggle (media.os_media.live, needs_internet);
 
