@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-24 08:28+0000\n"
-"PO-Revision-Date: 2015-11-03 09:43+0000\n"
+"POT-Creation-Date: 2015-12-13 07:59+0000\n"
+"PO-Revision-Date: 2015-12-13 08:06+0000\n"
 "Last-Translator: Pedro Albuquerque <palbuquerque73@gmail.com>\n"
 "Language-Team: Português <palbuquerque73@gmail.com>\n"
 "Language: pt\n"
@@ -152,7 +152,8 @@ msgstr "Vista Lista"
 msgid "Grid view"
 msgstr "Vista Grelha"
 
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Procurar"
 
@@ -160,7 +161,7 @@ msgstr "Procurar"
 msgid "Actions"
 msgstr "Ações"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:130
 msgid "Keyboard shortcuts"
 msgstr "Atalhos de teclado"
 
@@ -179,6 +180,62 @@ msgstr "O Caixas pode ser uma máquina virtual ou remota."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Simplesmente clique no botão <b>Nova</b> para criar a sua primeira."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+#| msgid "Review"
+msgid "Overview"
+msgstr "Resumo"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:129
+msgid "Help"
+msgstr "Ajuda"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+#| msgid "Create a Box"
+msgid "Create a new box"
+msgstr "Criar uma nova caixa"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgid "Close Window/Quit Boxes"
+msgstr "Fechar janela/Sair do Caixas"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+#| msgid "Box creation failed"
+msgid "Box Creation and Properties"
+msgstr "Criação e propriedades de caixa"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Switch to the next page"
+msgstr "Mudar para a página seguinte"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the previous page"
+msgstr "Mudar para a página anterior"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Close window"
+msgstr "Fechar janela"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+#| msgid "Display URI"
+msgid "Box Display"
+msgstr "Mostrar caixa"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Agarrar/Largar teclado"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Voltar ao resumo"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Fechar janela/Sair do Caixas"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Ecrã completo/Restaurar de ecrã completo"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -398,81 +455,77 @@ msgstr "Propriedades"
 msgid "Pausing '%s' failed"
 msgstr "Falha ao pausar \"%s\""
 
-#: ../src/app.vala:101
+#: ../src/app.vala:109
 msgid "translator-credits"
 msgstr ""
 "Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Tiago S. <almosthumane@portugalmail.pt>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>"
 
-#: ../src/app.vala:102
+#: ../src/app.vala:110
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Uma aplicação GNOME 3 simples para aceder a sistemas remotos ou virtuais"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Ajuda"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:131
 msgid "About"
 msgstr "Sobre"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:132
 msgid "Quit"
 msgstr "Sair"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:190 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar o número de versão"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:192
 msgid "Open in full screen"
 msgstr "Abrir em ecrã completo"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:193 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Verificar capacidades de virtualização"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Abrir caixa com o UUID"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:195
 msgid "Search term"
 msgstr "Termo de procura"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:197
 msgid "URI to display, broker or installer media"
 msgstr "URI a mostrar, gestor de máquinas virtuais ou suporte de instalação"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:208
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- uma aplicação simples para aceder a máquinas remotas ou virtuais"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:230
 msgid "Too many command line arguments specified.\n"
 msgstr "Especificados demasiados argumentos na linha de comando.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:443
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Caixa \"%s\" instalada e pronta a usar"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:531
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A caixa \"%s\" foi eliminada"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:532
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Foi eliminada %u caixa"
 msgstr[1] "Foram eliminadas %u caixas"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:559 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desfazer"
 
@@ -702,30 +755,30 @@ msgstr "A restaurar %s do disco"
 msgid "Starting %s"
 msgstr "A iniciar %s"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "O reinício de \"%s\" está a demorar demasiado tempo. Forçar Desligar?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "De_Sligar"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:741
 msgid "Installing…"
 msgstr "A instalar…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:743 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Ao vivo"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:745
 msgid "Importing…"
 msgstr "A importar…"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:754 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "máquina: %s"
