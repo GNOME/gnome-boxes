@@ -363,11 +363,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             topbar.click_search_button ();
 
             return true;
-        } else if (event.keyval == Gdk.Key.a &&
-                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            App.app.quit_app ();
-
-            return true;
         } else if (((direction == Gtk.TextDirection.LTR && // LTR
                      event.keyval == Gdk.Key.Left) ||      // ALT + Left -> back
                     (direction == Gtk.TextDirection.RTL && // RTL
