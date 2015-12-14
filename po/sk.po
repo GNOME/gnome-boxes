@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-12-05 08:00+0000\n"
-"PO-Revision-Date: 2015-12-05 12:06+0100\n"
+"POT-Creation-Date: 2015-12-14 07:59+0000\n"
+"PO-Revision-Date: 2015-12-14 17:58+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -152,7 +152,8 @@ msgid "Grid view"
 msgstr "Zobrazenie mriežky"
 
 # button
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Vyhľadať"
 
@@ -160,7 +161,7 @@ msgstr "Vyhľadať"
 msgid "Actions"
 msgstr "Akcie"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:130
 msgid "Keyboard shortcuts"
 msgstr "Klávesové skratky"
 
@@ -180,6 +181,58 @@ msgstr "Boxy môžu byť virtuálne alebo vzdialené stroje."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Na vytvorenie vášho prvého boxu stačí stlačiť tlačidlo <b>Nový</b>."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgid "Overview"
+msgstr "Prehľad"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:129
+msgid "Help"
+msgstr "Pomocník"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgid "Create a new box"
+msgstr "Vytvorenie nového boxu"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgid "Close Window/Quit Boxes"
+msgstr "Zatvorenie okna / ukončenie aplikácie Boxy"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgid "Box Creation and Properties"
+msgstr "Tvorba boxu a nastavenia"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Switch to the next page"
+msgstr "Prepnutie na nasledujúcu stránku"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the previous page"
+msgstr "Prepnutie na predchádzajúcu stránku"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Close window"
+msgstr "Zatvorenie okna"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgid "Box Display"
+msgstr "Zobrazenie boxu"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Zachytenie / zrušenie zachytenia klávesnice"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Späť na prehľad"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Zatvorenie okna / ukončenie aplikácie Boxy"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Režim na celú obrazovku / obnova z režimu na celú obrazovku"
 
 # dalog
 #: ../data/ui/properties-toolbar.ui.h:1
@@ -404,82 +457,78 @@ msgstr "Vlastnosti"
 msgid "Pausing '%s' failed"
 msgstr "Pozastavenie boxu „%s“ zlyhalo"
 
-#: ../src/app.vala:101
+#: ../src/app.vala:109
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
-#: ../src/app.vala:102
+#: ../src/app.vala:110
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikácia pre GNOME 3 na prístup k vzdialeným alebo virtuálnym "
 "systémom"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Pomocník"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:131
 msgid "About"
 msgstr "O programe"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:132
 msgid "Quit"
 msgstr "Ukončiť"
 
 # PK: tuto pockame na ML, ja by som dal Zobrazi cislo verzie
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:190 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazí číslo verzie"
 
 # cmd tooltip
-#: ../src/app.vala:183
+#: ../src/app.vala:192
 msgid "Open in full screen"
 msgstr "Otvorí v režime celej obrazovky"
 
 # cmd tooltip
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:193 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Skontroluje virtualizačné schopnosti"
 
 # cmd tooltip
-#: ../src/app.vala:185
+#: ../src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Otvorí box s UUID"
 
 # cmd tooltip
-#: ../src/app.vala:186
+#: ../src/app.vala:195
 msgid "Search term"
 msgstr "Vyhľadá výraz"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=695547
 # cmd tooltip
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:197
 msgid "URI to display, broker or installer media"
 msgstr ""
 "URI počítača, ktoré sa zobrazí, správca virtualizácie alebo inštalačný nosič"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:208
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Jednoduchá aplikácia na prístup k vzdialeným alebo virtuálnym strojom"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:230
 msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:443
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Box „%s“ je nainštalovaný a pripravený na použitie"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: ../src/app.vala:522
+#: ../src/app.vala:531
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:532
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -487,7 +536,7 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:559 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "V_rátiť"
 
@@ -1275,10 +1324,6 @@ msgstr "_Prispôsobiť…"
 #~ "\n"
 #~ "Môžete sa pripojiť k existujúcemu stroju <b><i>cez sieť</i></b> alebo "
 #~ "vytvoriť <b><i>virtuálny stroj</i></b>, ktorý bude spustený priamo u vás."
-
-# dialog title
-#~ msgid "Create a box"
-#~ msgstr "Vytvorenie boxu"
 
 # dialog title
 #~ msgid "Create a box (step %d/4)"
