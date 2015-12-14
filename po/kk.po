@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-04 06:17+0000\n"
-"PO-Revision-Date: 2015-09-04 23:19+0500\n"
+"POT-Creation-Date: 2015-12-13 20:00+0000\n"
+"PO-Revision-Date: 2015-12-14 08:45+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk@li.org>\n"
 "Language: kk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -48,8 +48,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:222
-#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:230
+#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Бокстар"
 
@@ -133,8 +133,8 @@ msgstr "Қашықтағы"
 msgid "_New"
 msgstr "Ж_аңа"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
-#: ../data/ui/wizard-toolbar.ui.h:7
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/display-toolbar.ui.h:1
+#: ../data/ui/properties-toolbar.ui.h:2 ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Кері"
 
@@ -150,9 +150,22 @@ msgstr "Тізім көрінісі"
 msgid "Grid view"
 msgstr "Тор көрінісі"
 
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Іздеу"
+
+#: ../data/ui/display-toolbar.ui.h:2
+msgid "Actions"
+msgstr "Әрекеттер"
+
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:130
+msgid "Keyboard shortcuts"
+msgstr "Пернетақта жарлықтары"
+
+#: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
+msgid "Fullscreen"
+msgstr "Толық экранға"
 
 #: ../data/ui/empty-boxes.ui.h:1
 msgid "State of the art virtualization"
@@ -165,6 +178,59 @@ msgstr "Бокстар виртуалды не қашықтағы машинал
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Жаңасын жасау үшін <b>Жаңа</b> батырмасын басыңыз."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgid "Overview"
+msgstr "Шолу"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:129
+msgid "Help"
+msgstr "Көмек"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgid "Create a new box"
+msgstr "Жаңа боксты жасау"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgid "Close Window/Quit Boxes"
+msgstr "Терезені жабу/Boxes жұмысын аяқтау"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgid "Box Creation and Properties"
+msgstr "Боксты жасау және қасиеттері"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Switch to the next page"
+msgstr "Келесі бетке ауысу"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the previous page"
+msgstr "Алдыңғы бетке ауысу"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Close window"
+msgstr "Терезені жабу"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+#| msgid "Display URI"
+msgid "Box Display"
+msgstr "Бокс экраны"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Пернетақтаны ұстау/жіберу"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Шолу көрінісіне оралу"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Терезені жабу/Boxes жұмысын аяқтау"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Толық экранға/одан шығу"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -380,79 +446,75 @@ msgstr "Қасиеттері"
 msgid "Pausing '%s' failed"
 msgstr "'%s' жөнелту сәтсіз"
 
-#: ../src/app.vala:101
+#: ../src/app.vala:109
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
-#: ../src/app.vala:102
+#: ../src/app.vala:110
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Қашықтағы не виртуалды машиналарға қатынауға арналған қарапайым GNOME 3 "
 "қолданбасы"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Көмек"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:131
 msgid "About"
 msgstr "Осы туралы"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:132
 msgid "Quit"
 msgstr "Шығу"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:190 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Нұсқа нөмірін көрсету"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:192
 msgid "Open in full screen"
 msgstr "Толық экранда ашу"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:193 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Виртуализация мүмкіндіктерін тексеру"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:194
 msgid "Open box with UUID"
 msgstr "UUID бар боксты ашу"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:195
 msgid "Search term"
 msgstr "Ізделетін мәтін"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:197
 msgid "URI to display, broker or installer media"
 msgstr "Ашу үшін URI, виртуалды машиналар диспетчері немесе орнату тасушысы"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:208
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Қашықтағы не виртуалды машиналарға қатынауға арналған қарапайым қолданба"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:230
 msgid "Too many command line arguments specified.\n"
 msgstr "Тым көп командалық жол аргументтері көрсетілді.\n"
 
-#: ../src/app.vala:431
+#: ../src/app.vala:443
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "'%s' боксы орнатылған және қолдануға дайын"
 
-#: ../src/app.vala:519
+#: ../src/app.vala:531
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' боксы өшірілді"
 
-#: ../src/app.vala:520
+#: ../src/app.vala:532
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u бокс өшірілді"
 
-#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:559 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Бол_дырмау"
 
@@ -471,6 +533,10 @@ msgstr ""
 msgid "%dx%d"
 msgstr "%dx%d"
 
+#: ../src/display-toolbar.vala:51
+msgid "Exit fullscreen"
+msgstr "Толық экраннан шығу"
+
 #: ../src/icon-view.vala:56
 msgid "New and Recent"
 msgstr "Жаңа және жуырдағы"
@@ -479,7 +545,7 @@ msgstr "Жаңа және жуырдағы"
 msgid "Unsupported disk image format."
 msgstr "Қолдауы жоқ диск бейнесінің пішімі."
 
-#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:112
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Жүйе"
@@ -537,99 +603,101 @@ msgstr "IP адресі"
 msgid "Broker"
 msgstr "Брокер"
 
-#: ../src/libvirt-machine-properties.vala:134
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
 msgid "Display Protocol"
 msgstr "Экран хаттамасы"
 
-#: ../src/libvirt-machine-properties.vala:135
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
 msgid "Display URI"
 msgstr "Экран URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:187
-#: ../src/libvirt-machine-properties.vala:205
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "Қоңақ жүйесіне қолдауды қосу"
 
-#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "USB құрылғыларын қолдау"
 
-#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "Смарткарталарды қолдау"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:259
-#: ../src/libvirt-machine-properties.vala:311
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "бос"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:268
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:282
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
 msgid "_Select"
 msgstr "_Таңдау"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
 msgid "_Remove"
 msgstr "Ө_шіру"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "'%s' CD/DVD дискі ретінде '%s' боксына салу сәтсіз аяқталды"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "'%s' боксынан CD/DVD шығару сәтсіз аяқталды"
 
-#: ../src/libvirt-machine-properties.vala:384
+#: ../src/libvirt-machine-properties.vala:386
 msgid "CPU"
 msgstr "Процессор"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:390
+#: ../src/libvirt-machine-properties.vala:392
 msgid "I/O"
 msgstr "Е/Ш"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:396
+#: ../src/libvirt-machine-properties.vala:398
 msgid "Network"
 msgstr "Желі"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "Қа_йта қосу"
 
-#: ../src/libvirt-machine-properties.vala:433
+#: ../src/libvirt-machine-properties.vala:435
 msgid "_Force Shutdown"
 msgstr "Мә_жбүрлі сөндіру"
 
-#: ../src/libvirt-machine-properties.vala:447
+#: ../src/libvirt-machine-properties.vala:449
 msgid "_Troubleshooting Log"
 msgstr "Мә_селелер журналы"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:470
 msgid "_Memory: "
 msgstr "_Жады: "
 
-#: ../src/libvirt-machine-properties.vala:536
+#: ../src/libvirt-machine-properties.vala:539
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -638,28 +706,28 @@ msgstr ""
 "<span color=\"grey\">Максималды диск өлшемі</span>\t\t %s <span color=\"grey"
 "\">(%s қолданылуда)</span>"
 
-#: ../src/libvirt-machine-properties.vala:552
+#: ../src/libvirt-machine-properties.vala:555
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Максималды диск өлшемін арттыру үшін машинаңызда диск орны жеткіліксіз."
 
-#: ../src/libvirt-machine-properties.vala:561
+#: ../src/libvirt-machine-properties.vala:564
 msgid "Maximum _Disk Size: "
 msgstr "Максималды _диск өлшемі: "
 
-#: ../src/libvirt-machine-properties.vala:694
+#: ../src/libvirt-machine-properties.vala:698
 msgid "_Run in background"
 msgstr "Ф_онда орындау"
 
-#: ../src/libvirt-machine-properties.vala:705
-#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:712
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "'%s' автоаялдатылмайды."
 
-#: ../src/libvirt-machine-properties.vala:706
-#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:710
+#: ../src/libvirt-machine-properties.vala:713
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "'%s' ресурстарды үнемдеу үшін автоаялдатылатын болады."
@@ -676,31 +744,31 @@ msgstr "%s дисктен қалпына келтіру"
 msgid "Starting %s"
 msgstr "%s іске қосу"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "'%s' қайта қосу тым көп уақыт алып отыр. Оны мәжбүрлетіп сөндіру керек пе?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Сөндіру"
 
-#: ../src/libvirt-machine.vala:730
+#: ../src/libvirt-machine.vala:741
 msgid "Installing…"
 msgstr "Орнату…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:743 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:734
+#: ../src/libvirt-machine.vala:745
 msgid "Importing…"
 msgstr "Импорттау…"
 
-#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:754 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "хост: %s"
@@ -738,23 +806,23 @@ msgstr "Импорттау үшін бокстар жоқ"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "'%s' боксы үшін импорттау үшін сай келетін диск табылмады"
 
-#: ../src/list-view-row.vala:124
+#: ../src/list-view-row.vala:128
 msgid "Connected"
 msgstr "Байланысқан"
 
-#: ../src/list-view-row.vala:124
+#: ../src/list-view-row.vala:128
 msgid "Disconnected"
 msgstr "Ажыратылған"
 
-#: ../src/list-view-row.vala:131
+#: ../src/list-view-row.vala:134
 msgid "Running"
 msgstr "Орындалуда"
 
-#: ../src/list-view-row.vala:138
+#: ../src/list-view-row.vala:140
 msgid "Paused"
 msgstr "Аялдатылған"
 
-#: ../src/list-view-row.vala:144
+#: ../src/list-view-row.vala:145
 msgid "Powered Off"
 msgstr "Сөндірілген"
 
@@ -764,7 +832,7 @@ msgstr "Сөндірілген"
 msgid "Connecting to %s"
 msgstr "%s байланысын орнату"
 
-#: ../src/machine.vala:217 ../src/machine.vala:611
+#: ../src/machine.vala:217 ../src/machine.vala:613
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "%s байланысын орнату сәтсіз"
@@ -773,7 +841,7 @@ msgstr "%s байланысын орнату сәтсіз"
 msgid "Saving…"
 msgstr "Сақтау…"
 
-#: ../src/machine.vala:597
+#: ../src/machine.vala:599
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -782,17 +850,17 @@ msgstr ""
 "'%s' дисктен қалпына келтіру мүмкін емес\n"
 "Сақталған қалып-күйсіз қайта көру керек пе?"
 
-#: ../src/machine.vala:598
+#: ../src/machine.vala:600
 msgid "Restart"
 msgstr "Қайта қосу"
 
-#: ../src/machine.vala:607
+#: ../src/machine.vala:609
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "'%s' іске қосу сәтсіз аяқталды"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:640
+#: ../src/machine.vala:642
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' аутентификацияны талап етеді"
@@ -1041,11 +1109,11 @@ msgstr "жоқ"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "Жүйе керек функцияларды қолдамайды"
 
-#: ../src/vm-creator.vala:170
+#: ../src/vm-creator.vala:174
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "'%s' Live боксы автоөшірілді."
