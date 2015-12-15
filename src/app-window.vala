@@ -163,6 +163,14 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
 
         views = { icon_view, list_view };
+
+        var action = new GLib.SimpleAction ("kbd-shortcuts", null);
+        action.activate.connect (() => {
+            var window = new Boxes.KbdShortcutsWindow ();
+
+            window.show ();
+        });
+        add_action (action);
     }
 
     public void setup_ui () {
@@ -350,7 +358,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             return true;
         } else if (event.keyval == Gdk.Key.k &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            App.app.activate_action ("kbd-shortcuts", null);
+            activate_action ("kbd-shortcuts", null);
 
             return true;
         } else if (event.keyval == Gdk.Key.q &&
