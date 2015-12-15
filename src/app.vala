@@ -80,7 +80,7 @@ private class Boxes.App: Gtk.Application {
         action.activate.connect ((param) => { open_name (param.get_string ()); });
         add_action (action);
 
-        action = new GLib.SimpleAction ("kbd_shortcuts", null);
+        action = new GLib.SimpleAction ("kbd-shortcuts", null);
         action.activate.connect (() => {
             var window = new Boxes.KbdShortcutsWindow ();
 
@@ -127,7 +127,7 @@ private class Boxes.App: Gtk.Application {
 
         var menu = new GLib.Menu ();
         menu.append (_("Help"), "app.help");
-        menu.append (_("Keyboard shortcuts"), "app.kbd_shortcuts");
+        menu.append (_("Keyboard shortcuts"), "app.kbd-shortcuts");
         menu.append (_("About"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
