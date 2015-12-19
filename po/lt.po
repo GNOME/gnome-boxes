@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-11-13 07:59+0000\n"
-"PO-Revision-Date: 2015-11-13 14:01+0200\n"
+"POT-Creation-Date: 2015-12-17 20:02+0000\n"
+"PO-Revision-Date: 2015-12-17 23:40+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid ""
@@ -48,8 +48,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Dėžės"
 
@@ -150,7 +150,8 @@ msgstr "Sąrašo vaizdas"
 msgid "Grid view"
 msgstr "Tinklelio vaizdas"
 
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Ieškoti"
 
@@ -158,7 +159,8 @@ msgstr "Ieškoti"
 msgid "Actions"
 msgstr "Veiksmai"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../data/ui/kbd-shortcuts-window.ui.h:5
+#: ../src/app.vala:122
 msgid "Keyboard shortcuts"
 msgstr "Klaviatūros trumpiniai"
 
@@ -177,6 +179,54 @@ msgstr "Dėžės gali būti virtualios arba nutolusios mašinos."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Tiesiog spauskite mygtuką <b>Nauja</b> pirmajai sukurti."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgid "Overview"
+msgstr "Apžvalga"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:121
+msgid "Help"
+msgstr "Žinynas"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgid "Create a new box"
+msgstr "Sukurti naują dėžę"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgid "Close Window/Quit Boxes"
+msgstr "Užverti langą/Išeiti iš Dėžių"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Box Creation and Properties"
+msgstr "Dėžės kūrimas ir savybės"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the next page"
+msgstr "Perjungti į kitą puslapį"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Switch to the previous page"
+msgstr "Perjungti į ankstesnį puslapį"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgid "Box Display"
+msgstr "Dėžės vaizduoklis"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Sugriebti/Paleisti klaviatūrą"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Atgal į apžvalgą"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Užverti langą/Išeiti iš Dėžių"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Visas ekranas/Išeiti iš viso ekrano"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -403,62 +453,58 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Žinynas"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "Apie"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Išeiti"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Vaizduoklio versijos numeris"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "Atverti visame ekrane"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Patikrinti virtualizacijos galimybes"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Atverti dėžę su UUID"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "Paieškos terminas"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr "URI iki vaizduoklio, brokerio arba diegimo laikmenos"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Dėžė „%s“ įdiegta ir paruošta naudojimui"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -466,7 +512,7 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Atšaukti"
 
@@ -697,30 +743,30 @@ msgstr "Atkuriama %s iš disko"
 msgid "Starting %s"
 msgstr "Paleidžiama %s"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "„%s“ perleidimas trunka per ilgai. Priverstinai išjungti?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Išjungti"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:741
 msgid "Installing…"
 msgstr "Diegiama…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:743 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Veikia"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:745
 msgid "Importing…"
 msgstr "Importuojama…"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:754 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "serveris: %s"
