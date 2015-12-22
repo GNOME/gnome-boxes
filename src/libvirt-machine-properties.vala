@@ -678,15 +678,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         return machine.domain.get_snapshots ();
     }
 
-    public async GVir.DomainSnapshot create_snapshot () throws GLib.Error {
-        var config = new GVirConfig.DomainSnapshot ();
-        var now = new GLib.DateTime.now_local ();
-        config.set_name (now.format ("%F-%H-%M-%S"));
-        config.set_description (now.format ("%x, %X"));
-
-        return yield machine.domain.create_snapshot_async (config, 0, null);
-    }
-
     private void add_run_in_bg_property (ref List<Boxes.Property> list) {
         if (machine.connection != App.app.default_connection)
             return; // We only autosuspend machines on default connection so this property is N/A to other machines

@@ -122,7 +122,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
             this.activity = _("Creating new snapshot…");
 
         try {
-            var new_snapshot = yield machine.properties.create_snapshot ();
+            var new_snapshot = yield machine.create_snapshot ();
             var new_row = new SnapshotListRow (new_snapshot, machine);
             new_row.notify["activity-message"].connect (row_activity_changed);
             snapshot_list.add (new_row);
