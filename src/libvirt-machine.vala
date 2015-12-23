@@ -705,11 +705,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return null;
     }
 
-    public async GVir.DomainSnapshot create_snapshot () throws GLib.Error {
+    public async GVir.DomainSnapshot create_snapshot (string description_prefix = "") throws GLib.Error {
         var config = new GVirConfig.DomainSnapshot ();
         var now = new GLib.DateTime.now_local ();
         config.set_name (now.format ("%F-%H-%M-%S"));
-        config.set_description (now.format ("%x, %X"));
+        config.set_description (description_prefix + now.format ("%x, %X"));
 
         return yield domain.create_snapshot_async (config, 0, null);
     }
