@@ -158,6 +158,7 @@ private class Boxes.VMCreator {
             App.app.notify_machine_installed (machine);
             machine.vm_creator = null;
             machine.schedule_autosave ();
+            try_create_snapshot.begin (machine);
         } else {
             if (VMConfigurator.is_live_config (machine.domain_config)) {
                 // No installation during live session, so lets delete the VM
@@ -179,6 +180,14 @@ private class Boxes.VMCreator {
                 } catch (GLib.Error error) {
                     warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
                 }
+        }
+    }
+
+    private async void try_create_snapshot (LibvirtMachine machine) {
+        try {
+            yield machine.create_snapshot ("Just installed ");
+        } catch (GLib.Error error) {
+            warning ("Failed to create snapshot for domain '%s': %s", machine.name, error.message);
         }
     }
 
