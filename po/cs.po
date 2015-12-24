@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-24 18:51+0000\n"
-"PO-Revision-Date: 2015-10-24 22:52+0200\n"
+"POT-Creation-Date: 2015-12-24 07:59+0000\n"
+"PO-Revision-Date: 2015-12-24 13:17+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -50,8 +50,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
 
@@ -152,7 +152,8 @@ msgstr "Zobrazení v seznamu"
 msgid "Grid view"
 msgstr "Zobrazení v mřížce"
 
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Hledat"
 
@@ -160,7 +161,8 @@ msgstr "Hledat"
 msgid "Actions"
 msgstr "Činnosti"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../data/ui/kbd-shortcuts-window.ui.h:5
+#: ../src/app.vala:122
 msgid "Keyboard shortcuts"
 msgstr "Klávesové zkratky"
 
@@ -180,6 +182,54 @@ msgstr "Boxem může být virtuální nebo vzdálený stroj."
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr ""
 "Pro vytvoření vašeho prvního boxu stačí zmáčknout tlačítko <b>Nový</b>."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgid "Overview"
+msgstr "Přehled"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:121
+msgid "Help"
+msgstr "Nápověda"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgid "Create a new box"
+msgstr "Vytvořit nový box"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgid "Close Window/Quit Boxes"
+msgstr "Zavřít okno/ukončit boxy"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Box Creation and Properties"
+msgstr "Vytváření boxů a vlastnosti"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the next page"
+msgstr "Přepnout na následující stránku"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Switch to the previous page"
+msgstr "Přepnout na předchozí stránku"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgid "Box Display"
+msgstr "Zobrazení boxu"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Zachytávat/nezachytávat klávesnici"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Zpět na přehled"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Zavřít okno/ukončit boxy"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Celá obrazovky/vrátit se z celé obrazovky"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -405,62 +455,58 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Nápověda"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "O aplikaci"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Ukončit"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "Otevřít přes celou obrazovku"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Zkontrolovat vybavenost pro virtualizaci"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Otevřít box s UUID"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "Hledat výraz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr "Adresa URI k zobrazení, správci nebo instalačnímu médium"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným nebo virtuálním strojům"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Box „%s“ je nainstalován a připraven k použití"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -468,7 +514,7 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Zpět"
 
@@ -669,18 +715,18 @@ msgstr ""
 msgid "Maximum _Disk Size: "
 msgstr "Maximální velikost _disku:"
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "Běžet na _pozadí"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "„%s“ nebude automaticky pozastaven."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "„%s“ bude automaticky pozastaven, aby se ušetřily prostředky."
@@ -697,31 +743,31 @@ msgstr "Obnovuje se %s z disku"
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Vypnout"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Instaluje se…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Živé médium"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "Importuje se…"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "počítač: %s"
@@ -1072,7 +1118,7 @@ msgstr "ne"
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Živý box „%s“ byl automaticky odstraněn."
