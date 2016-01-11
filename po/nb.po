@@ -1,14 +1,14 @@
 # Norwegian bokmål translation of gnome-boxes.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2011-2015.
+# Kjartan Maraas <kmaraas@gnome.org>, 2011-2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.19.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-14 16:11+0100\n"
-"PO-Revision-Date: 2015-11-14 16:11+0100\n"
+"POT-Creation-Date: 2016-01-11 07:40+0100\n"
+"PO-Revision-Date: 2016-01-11 07:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -45,8 +45,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Bokser"
 
@@ -114,15 +114,18 @@ msgstr "_Passord"
 msgid "Sign In"
 msgstr "Logg inn"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "Alle"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "Lokal"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "Ekstern"
 
@@ -147,7 +150,8 @@ msgstr "Listevisning"
 msgid "Grid view"
 msgstr "Rutenettvisning"
 
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Søk"
 
@@ -155,7 +159,8 @@ msgstr "Søk"
 msgid "Actions"
 msgstr "Handlinger"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../data/ui/kbd-shortcuts-window.ui.h:5
+#: ../src/app.vala:122
 msgid "Keyboard shortcuts"
 msgstr "Tastatursnarveier"
 
@@ -174,6 +179,54 @@ msgstr "Bokser kan være virtuelle eller eksterne maskiner."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Trykk på <b>Ny</b>-knappen for å lage den første."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgid "Overview"
+msgstr "Oversikt"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:121
+msgid "Help"
+msgstr "Hjelp"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgid "Create a new box"
+msgstr "Lag en ny boks"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgid "Close Window/Quit Boxes"
+msgstr "Lukk vindu/Avslutt Bokser"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Box Creation and Properties"
+msgstr "Egenskaper og oppretting"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the next page"
+msgstr "Bytt til neste side"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Switch to the previous page"
+msgstr "Bytt til forrige side"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgid "Box Display"
+msgstr "Skjerm for boks"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Ta/slipp tastatur"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Tilbake til oversikt"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Lukk vindu/Avslutt Bokser"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Start/stopp fullskjerm"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -243,23 +296,24 @@ msgid ""
 "settings."
 msgstr "Velg hurtiginstallasjon for å bruke boksen med forvalgt oppsett."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "Hurtiginstallasjon"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Brukernavn"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Passord"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "_Legg til passord"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "Produktnøkkel"
 
@@ -401,70 +455,66 @@ msgstr ""
 "Et enkelt GNOME 3-program som gir tilgang til eksterne eller virtuelle "
 "systemer"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Hjelp"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "Om"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Vis versjonsnummer"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "Åpne i fullskjerm"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Kontroller virtualiseringsstøtte"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Åpne boks med UUID"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "Søkeord"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr "URI som skal vises, VM-forhandler, eller installasjonsmedie"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Et enkelt program som gir tilgang til eksterne eller virtuelle maskiner"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "Du har brukt for mange argumenter på kommandolinjen.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Boks «%s» er installert og klar for bruk"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boksen «%s» er slettet"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "A_ngre"
 
@@ -666,18 +716,18 @@ msgstr ""
 msgid "Maximum _Disk Size: "
 msgstr "Maksimal _diskstørrelse: "
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "Kjø_r i bakgrunnen"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "«%s» vil ikke bli satt på pause automatisk."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "«%s» vil bli satt på pause automatisk for å spare ressurser."
@@ -694,30 +744,30 @@ msgstr "Gjenoppretter %s fra disk"
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "Omstart av «%s» tar for lang tid. Vil du tvinge den til å slå seg av?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Slå av"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Installerer …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "Importerer …"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "vert: %s"
@@ -1065,7 +1115,7 @@ msgstr "nei"
 msgid "Incapable host system"
 msgstr "Vertssystemet kan ikke brukes"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Live-boks «%s» ble slettet automatisk."
