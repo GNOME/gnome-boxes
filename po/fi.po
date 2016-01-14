@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Gnome 2012-03 Finnish translation sprint participants:
 # Zeeshan Ali <zeeshanak@gnome.org>, 2012.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014, 2015.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-12-07 19:01+0000\n"
-"PO-Revision-Date: 2015-12-07 21:36+0200\n"
+"POT-Creation-Date: 2016-01-14 08:00+0000\n"
+"PO-Revision-Date: 2016-01-14 21:10+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -52,8 +52,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boksit"
 
@@ -121,15 +121,18 @@ msgstr "_Salasana"
 msgid "Sign In"
 msgstr "Kirjaudu sisään"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "Kaikki"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "Paikallinen"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "Etä"
 
@@ -163,7 +166,8 @@ msgstr "Etsi"
 msgid "Actions"
 msgstr "Toiminnot"
 
-#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:130
+#: ../data/ui/display-toolbar.ui.h:3 ../data/ui/kbd-shortcuts-window.ui.h:5
+#: ../src/app.vala:122
 msgid "Keyboard shortcuts"
 msgstr "Pikanäppäimet"
 
@@ -184,40 +188,33 @@ msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Napsauta <b>Uusi</b> luodaksesi ensimmäisen boksin."
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:1
-#, fuzzy
 #| msgid "Review"
 msgid "Overview"
-msgstr "Viimeistely"
+msgstr "Päänäkymä"
 
-#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:129
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:121
 msgid "Help"
 msgstr "Ohje"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:3
-#| msgid "Create a Box"
 msgid "Create a new box"
 msgstr "Luo uusi boksi"
 
-#: ../data/ui/kbd-shortcuts-window.ui.h:5
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
 msgid "Close Window/Quit Boxes"
 msgstr "Sulje ikkuna/lopeta Boksit"
 
-#: ../data/ui/kbd-shortcuts-window.ui.h:6
-#| msgid "Box creation failed"
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
 msgid "Box Creation and Properties"
 msgstr "Boksin luonti ja ominaisuudet"
 
-#: ../data/ui/kbd-shortcuts-window.ui.h:7
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
 msgid "Switch to the next page"
 msgstr "Vaihda seuraavalle sivulle"
 
-#: ../data/ui/kbd-shortcuts-window.ui.h:8
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
 msgid "Switch to the previous page"
 msgstr "Vaihda edelliselle sivulle"
-
-#: ../data/ui/kbd-shortcuts-window.ui.h:9
-msgid "Close window"
-msgstr "Sulje ikkuna"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:10
 #, fuzzy
@@ -231,7 +228,7 @@ msgstr "Kaappaa näppäimistö tai lopeta näppäimistön kaappaus"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:12
 msgid "Back to overview"
-msgstr ""
+msgstr "Takaisin päänäkymään"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:13
 msgid "Close window/Quit Boxes"
@@ -311,23 +308,24 @@ msgstr ""
 "Valitse pika-asennus, jos haluat että boksin asetukset määritellään "
 "automaattisesti parhaiksi mahdollisiksi."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "Pika-asennus"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Tunnus"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Salasana"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "_Lisää salasana"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "Tuoteavain"
 
@@ -456,73 +454,73 @@ msgstr "Ominaisuudet"
 msgid "Pausing '%s' failed"
 msgstr "Kohteen '%s' keskeytys epäonnistui"
 
-#: ../src/app.vala:109
+#: ../src/app.vala:101
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: ../src/app.vala:110
+#: ../src/app.vala:102
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Sovellus etä- tai virtuaalikoneiden käsittelyyn"
 
-#: ../src/app.vala:131
+#: ../src/app.vala:123
 msgid "About"
 msgstr "Tietoja"
 
-#: ../src/app.vala:132
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Lopeta"
 
-#: ../src/app.vala:190 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Näytä versionumero"
 
-#: ../src/app.vala:192
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "Avaa koko näytön tilassa"
 
-#: ../src/app.vala:193 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Tarkista virtualisointikyvyt"
 
-#: ../src/app.vala:194
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Avaa boksi UUID:llä"
 
-#: ../src/app.vala:195
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "Hakuehto"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:197
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr ""
 
-#: ../src/app.vala:208
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "Helppo sovellus etä- tai virtuaalikoneisiin käsiksi pääsemiseen"
 
-#: ../src/app.vala:230
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "Liian monta komentoriviargumenttia määritetty.\n"
 
-#: ../src/app.vala:443
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Boksi '%s' on asennettu ja käyttövalmis"
 
-#: ../src/app.vala:531
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Boksi '%s' on poistettu"
 
-#: ../src/app.vala:532
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boksi on poistettu"
 msgstr[1] "%u boksia on poistettu"
 
-#: ../src/app.vala:559 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Kumoa"
 
@@ -725,18 +723,18 @@ msgstr "Järjestelmän levytila ei riitä levyn enimmäistilan kasvattamiseen."
 msgid "Maximum _Disk Size: "
 msgstr "Levyn _enimmäiskoko:"
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "Suo_rita taustalla"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "Boksia '%s' ei keskeytetä automaattisesti."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "Boksi '%s' keskeytetään automaattisesti resurssien säästämiseksi."
@@ -764,21 +762,21 @@ msgstr ""
 msgid "_Shutdown"
 msgstr "_Sammuta"
 
-#: ../src/libvirt-machine.vala:741
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Asennetaan…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:743 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:745
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "Tuodaan…"
 
-#: ../src/libvirt-machine.vala:754 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "isäntä: %s"
@@ -1119,7 +1117,7 @@ msgstr "ei"
 msgid "Incapable host system"
 msgstr "Kykenemätön isäntäjärjestelmä"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Live-boksi '%s' on poistettu automaattisesti."
@@ -1253,6 +1251,9 @@ msgstr "Lataus epäonnistui."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Muokkaa…"
+
+#~ msgid "Close window"
+#~ msgstr "Sulje ikkuna"
 
 #~ msgid "_Properties"
 #~ msgstr "_Ominaisuudet"
