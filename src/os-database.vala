@@ -164,6 +164,7 @@ private class Boxes.OSDatabase : GLib.Object {
         return media;
     }
 
+    // This one needs to be fixed to for non-x86
     public Resources get_resources_for_os (Os? os, string? architecture) {
         if (os == null)
             return get_default_resources ();

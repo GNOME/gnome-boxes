@@ -411,11 +411,13 @@ namespace Boxes {
     }
 
     public CPUArchCompatibility compare_cpu_architectures (string arch1, string arch2) {
+        print ("Comparing %s and %s\n", arch1, arch2);
+        if (arch1 == arch2)
+            return CPUArchCompatibility.IDENTICAL;
+
         switch (arch2) {
         case "i386":
             switch (arch1) {
-            case "i386":
-                return CPUArchCompatibility.IDENTICAL;
             case "i486":
             case "i586":
             case "i686":
@@ -427,8 +429,6 @@ namespace Boxes {
             }
         case "i486":
             switch (arch1) {
-            case "i486":
-                return CPUArchCompatibility.IDENTICAL;
             case "i586":
             case "i686":
                 return CPUArchCompatibility.COMPATIBLE;
@@ -439,8 +439,6 @@ namespace Boxes {
             }
         case "i586":
             switch (arch1) {
-            case "i586":
-                return CPUArchCompatibility.IDENTICAL;
             case "i686":
                 return CPUArchCompatibility.COMPATIBLE;
             case "x86_64":
@@ -450,20 +448,13 @@ namespace Boxes {
             }
         case "i686":
             switch (arch1) {
-            case "i686":
-                return CPUArchCompatibility.IDENTICAL;
             case "x86_64":
                 return CPUArchCompatibility.COMPATIBLE_DIFF_WORDSIZE;
             default:
                 return CPUArchCompatibility.INCOMPATIBLE;
             }
         case "x86_64":
-            switch (arch1) {
-            case "x86_64":
-                return CPUArchCompatibility.IDENTICAL;
-            default:
-                return CPUArchCompatibility.INCOMPATIBLE;
-            }
+            return CPUArchCompatibility.INCOMPATIBLE;
         case Osinfo.ARCHITECTURE_ALL:
             return CPUArchCompatibility.COMPATIBLE;
         default:
@@ -561,6 +552,14 @@ namespace Boxes {
         } catch (GLib.Error error) {
             warning (error.message);
         }
+    }
+
+    string? get_file_extension (string str) {
+        var index = str.last_index_of_char ('.');
+        if (index < 0)
+            return null;
+
+        return str[index:str.length];
     }
 
     namespace UUID {

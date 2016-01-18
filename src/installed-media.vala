@@ -3,14 +3,15 @@
 using GVirConfig;
 
 private class Boxes.InstalledMedia : Boxes.InstallerMedia {
-    public const string[] supported_extensions = { ".qcow2", ".qcow2.gz",
-                                                   ".qcow", ".qcow.gz",
-                                                   ".img", ".img.gz",
-                                                   ".cow", ".cow.gz",
-                                                   ".vdi", ".vdi.gz",
-                                                   ".vmdk", ".vmdk.gz",
-                                                   ".vpc", ".vpc.gz",
-                                                   ".cloop", ".cloop.gz" };
+    public const string[] supported_extensions = { ".qcow2", ".qcow2.gz", ".qcow2.xz",
+                                                   ".qcow", ".qcow.gz", ".qcow.xz",
+                                                   ".img", ".img.gz", ".img.xz",
+                                                   ".raw", ".raw.gz", ".raw.xz",
+                                                   ".cow", ".cow.gz", ".cow.xz",
+                                                   ".vdi", ".vdi.gz", ".vdi.xz",
+                                                   ".vmdk", ".vmdk.gz", ".vmdk.xz",
+                                                   ".vpc", ".vpc.gz", ".vmdk.xz",
+                                                   ".cloop", ".cloop.gz", ".cloop.xz" };
     private static Regex date_regex = /20[0-9]{6,6}/;
 
     public override bool need_user_input_for_vm_creation { get { return false; } }
@@ -23,10 +24,14 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
             if (device_file.contains ("amd64") || device_file.contains ("x86_64"))
                 return "x86_64";
             else {
-                string[] arch_list = { "i686", "i586", "i486", "i386" };
+                string[] arch_list = { "i686", "i586", "i486", "i386", "armhfp" };
                 foreach (var arch in arch_list) {
-                    if (device_file.contains (arch))
-                        return arch;
+                    if (device_file.contains (arch)) {
+                        if (arch == "armhfp")
+                            return "armv7l";
+                        else
+                            return arch;
+                    }
                 }
 
                 debug ("Failed to guess architecture for media '%s'.", device_file);
@@ -156,19 +161,21 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     }
 
     private async bool decompress () throws GLib.Error {
-        if (!device_file.has_suffix (".gz"))
+        var extension = get_file_extension (device_file);
+        if (extension != ".gz" && extension != ".xz")
             return false;
 
         var compressed = File.new_for_path (device_file);
         var input_stream = yield compressed.read_async ();
 
-        var decompressed_path = Path.get_basename (device_file).replace (".gz", "");
+        var decompressed_path = Path.get_basename (device_file).replace (extension, "");
         decompressed_path = get_user_pkgcache (decompressed_path);
         var decompressed = File.new_for_path (decompressed_path);
         GLib.OutputStream output_stream = yield decompressed.replace_async (null,
                                                                             false,
                                                                             FileCreateFlags.REPLACE_DESTINATION);
-        var decompressor = new ZlibDecompressor (ZlibCompressorFormat.GZIP);
+        var format = (extension == ".gz")? ZlibCompressorFormat.GZIP : ZlibCompressorFormat.ZLIB;
+        var decompressor = new ZlibDecompressor (format);
         output_stream = new ConverterOutputStream (output_stream, decompressor);
 
         debug ("Decompressing '%s'..", device_file);

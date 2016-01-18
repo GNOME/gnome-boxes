@@ -38,7 +38,7 @@ private class Boxes.VMConfigurator {
 
         var best_caps = get_best_guest_caps (caps, install_media);
         domain.memory = install_media.resources.ram / KIBIBYTES;
-        set_cpu_config (domain, caps);
+        //set_cpu_config (domain, caps);
 
         var virt_type = guest_kvm_enabled (best_caps) ? DomainVirtType.KVM : DomainVirtType.QEMU;
         domain.set_virt_type (virt_type);
@@ -97,11 +97,11 @@ private class Boxes.VMConfigurator {
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.DESTROY);
         domain.set_lifecycle (DomainLifecycleEvent.ON_CRASH, DomainLifecycleAction.DESTROY);
 
-        var pm = new DomainPowerManagement ();
+        /*var pm = new DomainPowerManagement ();
         // Disable S3 and S4 states for now due to many issues with it currently in qemu/libvirt
         pm.set_mem_suspend_enabled (false);
         pm.set_disk_suspend_enabled (false);
-        domain.set_power_management (pm);
+        domain.set_power_management (pm);*/
         var console = new DomainConsole ();
         console.set_source (new DomainChardevSourcePty ());
         domain.add_device (console);
@@ -294,7 +294,7 @@ private class Boxes.VMConfigurator {
             disk.set_target_dev ("vd" + dev_letter_str);
         } else {
             debug ("Using IDE controller for the main disk");
-            disk.set_target_bus (DomainDiskBus.IDE);
+            disk.set_target_bus (DomainDiskBus.SCSI);
             disk.set_target_dev ("hd" + dev_letter_str);
         }
 
@@ -331,7 +331,8 @@ private class Boxes.VMConfigurator {
 
     private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
-        video.set_model (DomainVideoModel.QXL);
+        var model = DomainVideoModel.VGA;
+        video.set_model ((DomainVideoModel) model);
 
         domain.add_device (video);
     }
@@ -553,8 +554,10 @@ private class Boxes.VMConfigurator {
         foreach (var guest_caps in guests_caps) {
             var guest_arch = guest_caps.get_arch ().get_name ();
 
-            if (install_media.is_architecture_compatible (guest_arch))
+            if (install_media.is_architecture_compatible (guest_arch)) {
+                print ("%s is compatible\n", guest_arch);
                 compat_guests_caps.append (guest_caps);
+            }
         }
 
         // Now lets see if there is any KVM-enabled guest caps
