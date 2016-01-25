@@ -2,7 +2,7 @@
 # Copyright (C) 2012, 2013. Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-boxes package.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2012, 2013, 2014, 2015.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2012, 2013, 2014, 2015, 2016.
 # Lukács Bence <lukacs.bence1 at gmail dot com>, 2012.
 # Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015.
 msgid ""
@@ -10,18 +10,28 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-25 08:00+0000\n"
-"PO-Revision-Date: 2015-10-25 14:12+0100\n"
-"Last-Translator: Meskó Balázs <meskobalazs@gmail.com>\n"
+"POT-Creation-Date: 2016-01-22 16:40+0000\n"
+"PO-Revision-Date: 2016-01-25 01:57+0100\n"
+"Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
+#| msgid "Boxes"
+msgid "GNOME Boxes"
+msgstr "GNOME Gépek"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#| msgid "View and use virtual machines"
+msgid "Simple remote and virtual machines"
+msgstr "Távoli és virtuális gépek egyszerűen"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:3
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -35,7 +45,7 @@ msgstr ""
 "lehetőséget a virtuális gépek finomhangolására. Ehelyett a Gépek célja az "
 "azonnali működés minél kevesebb felhasználói közreműködéssel."
 
-#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:4
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -49,8 +59,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Gépek"
 
@@ -118,15 +128,18 @@ msgstr "_Jelszó"
 msgid "Sign In"
 msgstr "Bejelentkezés"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "Mind"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "Helyi"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "Távoli"
 
@@ -151,7 +164,8 @@ msgstr "Lista"
 msgid "Grid view"
 msgstr "Rács"
 
-#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/selection-toolbar.ui.h:2
+#: ../data/ui/collection-toolbar.ui.h:6 ../data/ui/kbd-shortcuts-window.ui.h:4
+#: ../data/ui/selection-toolbar.ui.h:2
 msgid "Search"
 msgstr "Keresés"
 
@@ -159,7 +173,8 @@ msgstr "Keresés"
 msgid "Actions"
 msgstr "Műveletek"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../data/ui/kbd-shortcuts-window.ui.h:5
+#: ../src/app.vala:122
 msgid "Keyboard shortcuts"
 msgstr "Gyorsbillentyűk"
 
@@ -178,6 +193,54 @@ msgstr "A gépek lehetnek virtuális vagy távoli gépek."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Csak nyomja meg az <b>Új</b> gombot az első létrehozásához."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgid "Overview"
+msgstr "Áttekintés"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2 ../src/app.vala:121
+msgid "Help"
+msgstr "Súgó"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgid "Create a new box"
+msgstr "Új gép létrehozása"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgid "Close Window/Quit Boxes"
+msgstr "Ablak bezárása/Kilépés a Gépekből"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgid "Box Creation and Properties"
+msgstr "Gép létrehozása és tulajdonságok"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgid "Switch to the next page"
+msgstr "Váltás a következő oldalra"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgid "Switch to the previous page"
+msgstr "Váltás az előző oldalra"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgid "Box Display"
+msgstr "Gép megjelenítése"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgid "Grab/Ungrab keyboard"
+msgstr "Billentyűzet megragadása/elengedése"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgid "Back to overview"
+msgstr "Vissza az áttekintéshez"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgid "Close window/Quit Boxes"
+msgstr "Ablak bezárása/Kilépés a Gépekből"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Váltás teljes képernyős módba"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -249,23 +312,24 @@ msgstr ""
 "Válassza az Expressz telepítést a gép automatikus előkonfigurálásához az "
 "optimális beállításokkal."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "Expressz telepítés"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Jelszó"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "Jelszó _hozzáadása"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "Termékkulcs"
 
@@ -406,69 +470,65 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Egyszerű GNOME 3 alkalmazás távoli vagy virtuális rendszerek eléréséhez"
 
-#: ../src/app.vala:121
-msgid "Help"
-msgstr "Súgó"
-
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "Névjegy"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Kilépés"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Verziószám kiírása"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "Megnyitás teljes képernyős módban"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Virtualizációs képességek tesztelése"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Gép megnyitása UUID-vel"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "Keresett kifejezés"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr "Megjelenítendő URI, közvetítő vagy telepítőmédia"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "– Egyszerű alkalmazás távoli vagy virtuális gépek eléréséhez"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "Túl sok parancssori argumentum lett megadva.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "A(z) „%s” gép telepítve és használatra kész"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "A(z) „%s” gép törlésre került"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u gép törlésre került"
 msgstr[1] "%u gép törlésre került"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Visszavonás"
 
@@ -670,18 +730,18 @@ msgstr "Nincs elég hely a számítógépén a legnagyobb lemezméret növelés�
 msgid "Maximum _Disk Size: "
 msgstr "Legnagyobb _lemezméret: "
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "_Futtatás a háttérben"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "a(z) „%s” nem lesz automatikusan szüneteltetve."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr ""
@@ -699,30 +759,30 @@ msgstr "%s visszaállítása lemezről"
 msgid "Starting %s"
 msgstr "%s indítása"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "A(z) „%s” újraindítása túl sokáig tart. Erőlteti a leállítást?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Leállítás"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Telepítés…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Élő"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "Importálás…"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "gazdagép: %s"
@@ -1071,7 +1131,7 @@ msgstr "nem"
 msgid "Incapable host system"
 msgstr "A gazda rendszer képességei hiányoznak"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "A(z) „%s” futó gép automatikusan törlésre került."
@@ -1246,9 +1306,6 @@ msgstr "_Testreszabás…"
 #~ "Kapcsolódhat egy meglévő géphez <b><i>a hálózaton keresztül</i></b>, vagy "
 #~ "létrehozhat egy <b><i>virtuális gépet</i></b>, amely helyileg fut a saját "
 #~ "gépén."
-
-#~ msgid "Create a box"
-#~ msgstr "Gép létrehozása"
 
 #~ msgid "Create a box (step %d/4)"
 #~ msgstr "Gép létrehozása (%d/4. lépés)"
