@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-25 06:18+0000\n"
-"PO-Revision-Date: 2015-08-25 15:02+0800\n"
+"POT-Creation-Date: 2016-02-20 20:01+0000\n"
+"PO-Revision-Date: 2016-02-21 10:43+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
@@ -17,9 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
+#| msgid "Boxes"
+msgid "GNOME Boxes"
+msgstr "GNOME Boxes"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+msgid "Simple remote and virtual machines"
+msgstr "簡單的遠端和虛擬機器"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:3
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -32,7 +41,7 @@ msgstr ""
 "虛擬機器的進階選項。取而代之的，Boxes 會著重在讓使用者不需多做輸入就可以讓事"
 "情得以運作。"
 
-#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:4
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -45,8 +54,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:225 ../src/main.vala:72
-#: ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "機櫃"
 
@@ -114,15 +123,18 @@ msgstr "密碼(_P)"
 msgid "Sign In"
 msgstr "登入"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "全部"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "本機"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "遠端"
 
@@ -130,8 +142,8 @@ msgstr "遠端"
 msgid "_New"
 msgstr "新增(_N)"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
-#: ../data/ui/wizard-toolbar.ui.h:7
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/display-toolbar.ui.h:1
+#: ../data/ui/properties-toolbar.ui.h:2 ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "向後"
 
@@ -151,9 +163,21 @@ msgstr "方格檢視"
 msgid "Search"
 msgstr "搜尋"
 
+#: ../data/ui/display-toolbar.ui.h:2
+msgid "Actions"
+msgstr "行動"
+
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:122
+msgid "Keyboard shortcuts"
+msgstr "鍵盤捷徑鍵"
+
+#: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
+msgid "Fullscreen"
+msgstr "全螢幕"
+
 #: ../data/ui/empty-boxes.ui.h:1
-msgid "<b><span size=\"large\">State of the art virtualization</span></b>"
-msgstr "<b><span size=\"large\">最新的虛擬化技術</span></b>"
+msgid "State of the art virtualization"
+msgstr "art 虛擬化技術的狀態"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -162,6 +186,76 @@ msgstr "機櫃可以是虛擬機或遠端機器。"
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "只要按下 <b>新增</b> 按鈕就能建立。"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "概覽"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "求助"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgctxt "shortcut window"
+msgid "Create a new box"
+msgstr "建立新機櫃"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:4
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "搜尋"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "鍵盤捷徑鍵"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "關閉視窗/退出 Boxes"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "機櫃建立與屬性"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "切換至下一個頁面"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "切換到上一個頁面"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr "機櫃顯示"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "抓取/取消抓取鍵盤"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "回到概覽"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgctxt "shortcut window"
+msgid "Close window/Quit Boxes"
+msgstr "關閉視窗/退出 Boxes"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "全螢幕模式/從全螢幕回復"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -231,23 +325,24 @@ msgid ""
 "settings."
 msgstr "選擇快速安裝能以最佳化設定值自動將主機預先設定好。"
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "快速安裝"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "使用者名稱"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "密碼"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "加入密碼(_A)"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "產品金鑰"
 
@@ -298,15 +393,14 @@ msgstr ""
 
 #: ../data/ui/wizard-source.ui.h:9
 msgid ""
-"<span color=\"grey\">Examples: http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+"path"
 msgstr ""
-"<span color=\"grey\">例如：http://download.com/image.iso, spice://"
-"somehost:5051, ovirt://host/path</span>"
+"例如：http://download.com/image.iso, spice://somehost:5051, ovirt://host/path"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
-msgstr "建立主機"
+msgstr "建立機櫃"
 
 #: ../data/ui/wizard-toolbar.ui.h:3
 msgid "C_reate"
@@ -386,70 +480,66 @@ msgstr "可存取遠端或虛擬系統的簡易 GNOME 3 應用程式"
 msgid "Help"
 msgstr "求助"
 
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "關於"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "顯示版本編號"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "以全螢幕開啟"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "檢查虛擬化能力"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "以 UUID 開啟主機"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "搜尋詞語"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr "要顯示的 URI，或安裝程式媒體"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- 可存取遠端機器或虛擬機的簡易應用程式"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了太多命令列引數。\n"
 
-#: ../src/app.vala:431
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "機櫃「%s」已安裝並準備好可以使用"
 
-#: ../src/app.vala:519
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "「%s」主機已刪除"
 
-#: ../src/app.vala:520
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 臺主機已刪除"
 
-#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "取消動作(_U)"
-
-#: ../src/collection-view.vala:56
-msgid "New and Recent"
-msgstr "新增與最近"
 
 #: ../src/display-page.vala:110
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -465,11 +555,19 @@ msgstr "(按下後放開 [左側] Ctrl+Alt 取消抓取鍵盤)"
 msgid "%dx%d"
 msgstr "%dx%d"
 
+#: ../src/display-toolbar.vala:51
+msgid "Exit fullscreen"
+msgstr "離開全螢幕"
+
+#: ../src/icon-view.vala:56
+msgid "New and Recent"
+msgstr "新增與最近"
+
 #: ../src/installed-media.vala:51
 msgid "Unsupported disk image format."
 msgstr "不支援的磁碟映像檔格式。"
 
-#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:112
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "系統"
@@ -483,15 +581,14 @@ msgstr "%s <span color=\"grey\">(已使用 %s)</span>"
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
 #: ../src/i-properties-provider.vala:101
 #, c-format
-msgid "<small>%s (recommended)</small>"
-msgstr "<small>%s (建議值)</small>"
+msgid "%s (recommended)"
+msgstr "%s (推薦的)"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
 #: ../src/i-properties-provider.vala:131
 #, c-format
-#| msgid "%s (maximum)"
-msgid "<small>%s (maximum)</small>"
-msgstr "<small>%s (最大值)</small>"
+msgid "%s (maximum)"
+msgstr "%s (最大值)"
 
 #: ../src/keys-input-popover.vala:24
 msgid "Ctrl + Alt + Backspace"
@@ -516,7 +613,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "傳送組合鍵"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
 msgid "_Name"
 msgstr "名稱(_N)"
 
@@ -524,103 +621,105 @@ msgstr "名稱(_N)"
 msgid "IP Address"
 msgstr "IP 位址"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:70
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
 msgstr "Broker"
 
-#: ../src/libvirt-machine-properties.vala:134
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
 msgid "Display Protocol"
 msgstr "顯示通訊協定"
 
-#: ../src/libvirt-machine-properties.vala:135
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
 msgid "Display URI"
 msgstr "顯示 URI"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:187
-#: ../src/libvirt-machine-properties.vala:205
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "為客端加入支援"
 
-#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "USB 裝置支援"
 
-#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "智慧卡支援"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:259
-#: ../src/libvirt-machine-properties.vala:311
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "空"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:268
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:282
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
 msgid "_Select"
 msgstr "選擇(_S)"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
 msgid "_Remove"
 msgstr "移除(_R)"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "將「%s」當做 CD/DVD 插入「%s」失敗"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "從「%s」移除 CD/DVD 失敗"
 
-#: ../src/libvirt-machine-properties.vala:384
+#: ../src/libvirt-machine-properties.vala:386
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:390
+#: ../src/libvirt-machine-properties.vala:392
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:396
+#: ../src/libvirt-machine-properties.vala:398
 msgid "Network"
 msgstr "網路"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:83
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "重新啟動(_R)"
 
-#: ../src/libvirt-machine-properties.vala:433
+#: ../src/libvirt-machine-properties.vala:435
 msgid "_Force Shutdown"
 msgstr "強制關機(_F)"
 
-#: ../src/libvirt-machine-properties.vala:447
+#: ../src/libvirt-machine-properties.vala:449
 msgid "_Troubleshooting Log"
 msgstr "問題處理紀錄(_T)"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:470
 msgid "_Memory: "
 msgstr "記憶體(_M): "
 
-#: ../src/libvirt-machine-properties.vala:536
+#: ../src/libvirt-machine-properties.vala:539
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -629,67 +728,67 @@ msgstr ""
 "<span color=\"grey\">最大化磁碟容量</span>\t\t %s <span color=\"grey\">(已使"
 "用 %s )</span>"
 
-#: ../src/libvirt-machine-properties.vala:552
+#: ../src/libvirt-machine-properties.vala:555
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "您的機器沒有足夠空間以增加最大磁碟大小。"
 
-#: ../src/libvirt-machine-properties.vala:561
+#: ../src/libvirt-machine-properties.vala:564
 msgid "Maximum _Disk Size: "
 msgstr "磁碟最大容量(_D): "
 
-#: ../src/libvirt-machine-properties.vala:694
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "於背景中執行(_R)"
 
-#: ../src/libvirt-machine-properties.vala:705
-#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "「%s」不會自動暫停。"
 
-#: ../src/libvirt-machine-properties.vala:706
-#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "「%s」會自動暫停以節省資源。"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:589
+#: ../src/libvirt-machine.vala:588
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正從磁碟還原 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:592
+#: ../src/libvirt-machine.vala:591
 #, c-format
 msgid "Starting %s"
 msgstr "正在啟動 %s"
 
-#: ../src/libvirt-machine.vala:657
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "「%s」的重新啟動時間過長。是否要強迫關機？"
 
-#: ../src/libvirt-machine.vala:659
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "關閉(_S)"
 
-#: ../src/libvirt-machine.vala:731
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "正在安裝…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:733 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:735
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "正在匯入…"
 
-#: ../src/libvirt-machine.vala:739 ../src/ovirt-machine.vala:91
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "主機：%s"
@@ -727,25 +826,25 @@ msgstr "沒有主機會匯入"
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "找不到適當磁碟來為「%s」主機匯入"
 
-#: ../src/list-view-row.vala:124
-msgid "connected"
+#: ../src/list-view-row.vala:128
+msgid "Connected"
 msgstr "已連線"
 
-#: ../src/list-view-row.vala:124
-msgid "disconnected"
+#: ../src/list-view-row.vala:128
+msgid "Disconnected"
 msgstr "已斷線"
 
-#: ../src/list-view-row.vala:131
-msgid "running"
-msgstr "執行中"
+#: ../src/list-view-row.vala:134
+msgid "Running"
+msgstr "正在執行"
 
-#: ../src/list-view-row.vala:138
-msgid "paused"
+#: ../src/list-view-row.vala:140
+msgid "Paused"
 msgstr "已暫停"
 
-#: ../src/list-view-row.vala:144
-msgid "powered off"
-msgstr "電源關閉"
+#: ../src/list-view-row.vala:145
+msgid "Powered Off"
+msgstr "已關閉"
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/machine.vala:195
@@ -753,16 +852,16 @@ msgstr "電源關閉"
 msgid "Connecting to %s"
 msgstr "正在連接到 %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:608
+#: ../src/machine.vala:217 ../src/machine.vala:613
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "「%s」的連線失敗"
 
-#: ../src/machine.vala:418
+#: ../src/machine.vala:412
 msgid "Saving…"
 msgstr "正在儲存…"
 
-#: ../src/machine.vala:594
+#: ../src/machine.vala:599
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -771,17 +870,17 @@ msgstr ""
 "無法從磁碟還原「%s」\n"
 "要嘗試不使用儲存的狀態嗎？"
 
-#: ../src/machine.vala:595
+#: ../src/machine.vala:600
 msgid "Restart"
 msgstr "重新啟動"
 
-#: ../src/machine.vala:604
+#: ../src/machine.vala:609
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "無法啟動「%s」"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:637
+#: ../src/machine.vala:642
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "「%s」要求核對身份"
@@ -841,16 +940,16 @@ msgstr "未連接至 %s"
 msgid "Connection to oVirt broker failed"
 msgstr "oVirt broker 的連線失敗"
 
-#: ../src/ovirt-machine.vala:71 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
 msgid "Protocol"
 msgstr "協定"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
 #: ../src/wizard.vala:486
 msgid "URI"
 msgstr "URI"
 
-#: ../src/properties.vala:82
+#: ../src/properties.vala:83
 #, c-format
 msgid "Changes require restart of '%s'."
 msgstr "變更需要重新啟動「%s」。"
@@ -867,7 +966,7 @@ msgstr "裝置"
 msgid "Snapshots"
 msgstr "快照"
 
-#: ../src/remote-machine.vala:72
+#: ../src/remote-machine.vala:70
 msgid "_URI"
 msgstr "_URI"
 
@@ -1020,11 +1119,11 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "無能力的主控系統"
 
-#: ../src/vm-creator.vala:170
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Live 主機「%s」已自動刪除。"
@@ -1156,6 +1255,13 @@ msgstr "下載失敗。"
 msgid "C_ustomize…"
 msgstr "自訂(_U)…"
 
+#~| msgid "%s (maximum)"
+#~ msgid "<small>%s (maximum)</small>"
+#~ msgstr "<small>%s (最大值)</small>"
+
+#~ msgid "paused"
+#~ msgstr "已暫停"
+
 #~ msgid "_Properties"
 #~ msgstr "屬性(_P)"
 
@@ -1277,9 +1383,6 @@ msgstr "自訂(_U)…"
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "連接到 %s 時發生錯誤：%s"
-
-#~ msgid "Fullscreen"
-#~ msgstr "全螢幕"
 
 #~ msgid "USB redirection"
 #~ msgstr "USB 重新導引"
