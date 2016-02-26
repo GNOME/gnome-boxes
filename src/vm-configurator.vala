@@ -82,7 +82,9 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        var graphics = create_graphics_device ();
+        bool accel3d;
+        set_video_config (domain, install_media, out accel3d);
+        var graphics = create_graphics_device (accel3d);
         domain.add_device (graphics);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
@@ -102,7 +104,6 @@ private class Boxes.VMConfigurator {
         add_smartcard_support (domain);
 #endif
 
-        set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
         set_mouse_config (domain, install_media);
@@ -274,12 +275,18 @@ private class Boxes.VMConfigurator {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
         DomainGraphicsSpice graphics = null;
+        bool accel3d = false;
         DomainChannel channel_webdav = null;
         foreach (var device in domain.get_devices ()) {
             if (device is DomainInterface)
                 iface = device as DomainInterface;
             else if (device is DomainGraphicsSpice)
                 graphics = device as DomainGraphicsSpice;
+            else if (device is DomainVideo) {
+                var model = (device as DomainVideo).get_model ();
+                accel3d = (model == DomainVideoModel.VIRTIO);
+                devices.prepend (device);
+            }
             else if (device is DomainChannel) {
                 var device_channel = device as DomainChannel;
                 if (device_channel.get_target_name () == WEBDAV_CHANNEL_URI)
@@ -303,7 +310,7 @@ private class Boxes.VMConfigurator {
         }
 
         if (graphics != null)
-            devices.prepend (create_graphics_device ());
+            devices.prepend (create_graphics_device (accel3d));
         if (channel_webdav == null)
             devices.prepend (create_webdav_channel ());
 
@@ -373,9 +380,16 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private static void set_video_config (Domain domain, InstallerMedia install_media) {
+    private static void set_video_config (Domain domain, InstallerMedia install_media, out bool accel3d) {
         var video = new DomainVideo ();
-        video.set_model (DomainVideoModel.VIRTIO);
+        video.set_model (DomainVideoModel.QXL);
+
+        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "virtio1.0-gpu");
+        accel3d = (device != null);
+        if (accel3d) {
+            video.set_model (DomainVideoModel.VIRTIO);
+            video.set_accel3d (accel3d);
+        }
 
         domain.add_device (video);
     }
@@ -615,9 +629,10 @@ private class Boxes.VMConfigurator {
         return iface;
     }
 
-    public static DomainGraphicsSpice create_graphics_device () {
+    public static DomainGraphicsSpice create_graphics_device (bool accel3d = false) {
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (false);
+        graphics.set_gl (accel3d);
         graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
 
         return graphics;
