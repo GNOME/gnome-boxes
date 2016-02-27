@@ -428,7 +428,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     [GtkCallback]
     private bool on_delete_event () {
-        return_if_fail (current_item == null || current_item is Machine);
+        return_val_if_fail (current_item == null || current_item is Machine, false);
 
         if (current_item != null) {
             var machine = current_item as Machine;

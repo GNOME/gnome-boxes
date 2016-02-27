@@ -210,7 +210,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     public async bool review () {
         // only one outstanding review () permitted
-        return_if_fail (review_cancellable == null);
+        return_val_if_fail (review_cancellable == null, false);
 
         review_cancellable = new Cancellable ();
         var result = yield do_review_cancellable ();
@@ -428,7 +428,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (source != null || wizard_source.libvirt_sys_import)
             return true;
 
-        return_if_fail (vm_creator != null);
+        return_val_if_fail (vm_creator != null, false);
 
         vm_creator.install_media.bind_property ("ready-to-create",
                                                 continue_button, "sensitive",
@@ -443,7 +443,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private async bool do_review_cancellable () {
-        return_if_fail (review_cancellable != null);
+        return_val_if_fail (review_cancellable != null, false);
 
         nokvm_infobar.hide ();
         summary.clear ();
