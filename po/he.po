@@ -2,15 +2,15 @@
 # Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2012.
-# Yosef Or Boczko <yoseforb@gnome.org>, 2013, 2014, 2015.
+# Yosef Or Boczko <yoseforb@gnome.org>, 2013, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-19 21:29+0200\n"
-"PO-Revision-Date: 2015-11-19 21:31+0200\n"
-"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"POT-Creation-Date: 2016-03-02 13:30+0200\n"
+"PO-Revision-Date: 2016-03-02 13:32+0200\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gnome.org>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,14 @@ msgstr ""
 "X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
+msgid "GNOME Boxes"
+msgstr "קופסאות GNOME"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+msgid "Simple remote and virtual machines"
+msgstr "מכונה וירטואלית ומרחוקת פשוטה"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:3
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -33,7 +41,7 @@ msgstr ""
 "מסיבה זו, קופסאות לא יספק הרבה אפשרויות מתקדמות להתאמת מכונות וירטואליות. "
 "במקום קופסאות יתמקד בקבלת דברים עובדים מחוץ לקופסה עם מעט מאוד קלט מהמשתמש."
 
-#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:4
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -46,8 +54,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "קופסאות"
 
@@ -115,15 +123,18 @@ msgstr "_ססמה"
 msgid "Sign In"
 msgstr "כניסה"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "הכל"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "מקומי"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "מרוחק"
 
@@ -156,7 +167,7 @@ msgstr "חיפוש"
 msgid "Actions"
 msgstr "פעולות"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:122
 msgid "Keyboard shortcuts"
 msgstr "צירופי מקשים"
 
@@ -175,6 +186,76 @@ msgstr "קופסאות יכול להתחבר למכונות ווירטואליו
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "כל שיש לעשות הוא ללחוץ על הכפתור <b>חדש</b> ליצירת המכונה הראשונה שלך."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "סקירה"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "עזרה"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgctxt "shortcut window"
+msgid "Create a new box"
+msgstr "יצירת קופסה חדשה"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:4
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "חיפוש"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "צירופי מקשים"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "סגירת חלון/יציאת מקופסאות"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "יצירת קופסה ומאפיינים"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "מעבר לדף הבא"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "מעבר לדף הקודם"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr "תצוגת קופסאות"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "לכידה/ביטול לכידת המקלדת"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "חזרה לסקירה"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgctxt "shortcut window"
+msgid "Close window/Quit Boxes"
+msgstr "סגירת חלון/יציאה מקופסאות"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "מסך מלא/שחזור ממסך מלא"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -246,23 +327,24 @@ msgstr ""
 "יש לבחור בהתקנה מהירה כדי להגדיר מראש אוטומטית את הקופסה עם ההגדרות הטובות "
 "ביותר."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "התקנה מהירה"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "שם משתמש"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "ססמה"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "הוספת _ססמה"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "מפתח המוצר"
 
@@ -403,65 +485,65 @@ msgstr "יישום פשוט ל־GNOME 3 לגישה מרחוק או למערכו�
 msgid "Help"
 msgstr "עזרה"
 
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "על אודות"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "יציאה"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "הצגת מספר הגרסה"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "פתיחה במסך מלא"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "בדיקת יכולות הווירטואליזציה"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "פתיחת קופסה עם UUID"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "ביטוי לחיפוש"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
 msgstr "הכתובת להצגה, תפעול או מדיית ההתקנה"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- יישום פשוט לגישה מרחוק או למכונות וירטואליות"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "צוינו יותר מדי ארגומנטים בשורת הפקודה.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "הקופסה '%s' מותקנת ומוכנה לשימוש"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "הקופסה '%s' נמחקה"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "קופסה אחת נמחקה"
 msgstr[1] "%u קופסאות נמחקו"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_ביטול"
 
@@ -662,18 +744,18 @@ msgstr "אין מספיק מקום במחשב שלך בכדי להגדיל את 
 msgid "Maximum _Disk Size: "
 msgstr "גודל ה_כונן המרבי: "
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "הרצה ב_רקע"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "הקופסה החיה '%s' הושהתה אוטומטית."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "‏'%s' תושהה אוטומטית על מנת לשמור משאבים."
@@ -690,30 +772,30 @@ msgstr "%s משוחזר מהכונן"
 msgid "Starting %s"
 msgstr "%s מופעל"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "ההפעלה מחדש של '%s' אורכת זמן רב מדי. האם לכפות כיבוי?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_כיבוי"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "מתבצעת התקנה…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "חי"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "מתבצע יבוא…"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "מארח: %s"
@@ -898,7 +980,12 @@ msgid "_URI"
 msgstr "_כתובת"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:152
+msgctxt "0 items selected"
+msgid "_Open in new window"
+msgstr "_פתיחה בחלון חדש"
+
+#: ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1055,7 +1142,7 @@ msgstr "לא"
 msgid "Incapable host system"
 msgstr "מערכת האירוח אינה מסוגלת לכך"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "הקופסה החיה '%s' נמחקה אוטומטית."
@@ -1230,9 +1317,6 @@ msgstr "התאמה _אישית…"
 #~ "\n"
 #~ "באפשרותך להתחבר למכונה קיימת  <b>דרך הרשת</b> או ליצור <b>מכונה "
 #~ "וירטואלית</b> שפועלת מקומית על המכונה שלך."
-
-#~ msgid "Create a box"
-#~ msgstr "יצירת קופסה"
 
 #~ msgid "Create a box (step %d/4)"
 #~ msgstr "יצירת קופסה (צעד %d/4)"
