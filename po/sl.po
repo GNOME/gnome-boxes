@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-05 22:26+0100\n"
-"PO-Revision-Date: 2016-03-05 22:28+0100\n"
+"POT-Creation-Date: 2016-03-08 21:52+0100\n"
+"PO-Revision-Date: 2016-03-08 21:56+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -24,6 +24,14 @@ msgstr ""
 "X-Generator: Poedit 1.8.4\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
+msgid "GNOME Boxes"
+msgstr "GNOME škatle"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+msgid "Simple remote and virtual machines"
+msgstr "Enostaven program za upravljanje oddaljenih in navideznih računalnikov"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:3
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -37,7 +45,7 @@ msgstr ""
 "nabor nabor možnosti, ki so na voljo. Program je zasnovan tako, da zahteva "
 "zelo malo uporabniškega odziva."
 
-#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:4
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -50,8 +58,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Škatle"
 
@@ -119,15 +127,18 @@ msgstr "_Geslo"
 msgid "Sign In"
 msgstr "Prijava"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "Vse"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "Krajevno"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "Oddaljeno"
 
@@ -135,8 +146,8 @@ msgstr "Oddaljeno"
 msgid "_New"
 msgstr "_Nova"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
-#: ../data/ui/wizard-toolbar.ui.h:7
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/display-toolbar.ui.h:1
+#: ../data/ui/properties-toolbar.ui.h:2 ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Nazaj"
 
@@ -156,10 +167,21 @@ msgstr "Mrežni prikaz"
 msgid "Search"
 msgstr "Iskanje"
 
+#: ../data/ui/display-toolbar.ui.h:2
+msgid "Actions"
+msgstr "Dejanja"
+
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:122
+msgid "Keyboard shortcuts"
+msgstr "Tipkovne bližnjice"
+
+#: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
+msgid "Fullscreen"
+msgstr "Celozaslonski način"
+
 #: ../data/ui/empty-boxes.ui.h:1
-#, fuzzy
 msgid "State of the art virtualization"
-msgstr "Ustvarjanje navideznih naprav"
+msgstr "Umetnost virtualizacije"
 
 #: ../data/ui/empty-boxes.ui.h:2
 msgid "Boxes can be virtual or remote machines."
@@ -168,6 +190,76 @@ msgstr "Škatle so lahko navidezne ali oddaljene naprave."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Pritisnite gumb <b>Novo</b> in ustvarite prvo."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Pregled"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Pomoč"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgctxt "shortcut window"
+msgid "Create a new box"
+msgstr "Ustvari novo škatlo"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:4
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Poišči"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Tipkovne bližnjice"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "Zapri okno/Končaj program"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "Ustvarjanje škatle in lastnosti"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "Preklopi na naslednjo stran"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "Preklopi na predhodno stran"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr "Prikaz škatel"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "Prevzemi/Sprosti tipkovnico"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "Nazaj na pregled"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgctxt "shortcut window"
+msgid "Close window/Quit Boxes"
+msgstr "Zapri okno/Končaj program"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:14
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Celozaslonski način/Pomanjšaj iz celozaslonskega načina"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -239,23 +331,24 @@ msgstr ""
 "Izberite hitro namestitev, če želite samodejno prilagoditi škatlo z "
 "optimalnimi nastavitvami."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "Hitra namestitev"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Uporabniško ime"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Geslo"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "_Dodaj geslo"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "Ključ izdelka"
 
@@ -311,6 +404,8 @@ msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
 msgstr ""
+"Primer: http://prejem.si/slika.iso, spice://gostitelj:5051, ovirt://"
+"gostitelj/pot"
 
 #: ../data/ui/wizard-toolbar.ui.h:1 ../data/ui/wizard-window.ui.h:1
 msgid "Create a Box"
@@ -395,58 +490,58 @@ msgstr ""
 msgid "Help"
 msgstr "Pomoč"
 
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "O programu"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Končaj"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:182 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Pokaži številko različice"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:184
 msgid "Open in full screen"
 msgstr "Odpri v celozaslonskem načinu"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:185 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Preveri zmožnosti virtualizacije"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Odpri škatlo z UUID"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:187
 msgid "Search term"
 msgstr "Iskalni niz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:189
 msgid "URI to display, broker or installer media"
-msgstr "Naslov URI do nosilca namestilnika oziroma upravljalnika"
+msgstr "Naslov URI do sistemskega posrednika oziroma upravljalnika"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:200
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:222
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:435
 #, c-format
 msgid "Box '%s' installed and ready to use"
-msgstr ""
+msgstr "Škatla '%s' je nameščena in pripravljena za uporabo"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:523
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Škatla '%s' je bila izbrisana"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:524
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -455,7 +550,7 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Razveljavi"
 
@@ -472,6 +567,10 @@ msgstr "Pritisk in sprostitev CTRL+ALT sprosti tipkovnico"
 #, c-format
 msgid "%dx%d"
 msgstr "%dx%d"
+
+#: ../src/display-toolbar.vala:51
+msgid "Exit fullscreen"
+msgstr "Končaj celozaslonski način"
 
 #: ../src/icon-view.vala:56
 msgid "New and Recent"
@@ -537,7 +636,7 @@ msgstr "Naslov IP"
 
 #: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
 msgid "Broker"
-msgstr "Posrednik"
+msgstr "Sistemski posrednik"
 
 #. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
 #: ../src/libvirt-machine-properties.vala:135
@@ -622,14 +721,12 @@ msgid "_Restart"
 msgstr "_Ponoven zagon"
 
 #: ../src/libvirt-machine-properties.vala:435
-#, fuzzy
 msgid "_Force Shutdown"
-msgstr "Zagon/Izklop programa"
+msgstr "Vsili izklop"
 
 #: ../src/libvirt-machine-properties.vala:449
-#, fuzzy
 msgid "_Troubleshooting Log"
-msgstr "Prijava"
+msgstr "_Dnevniško sporočilo razhroščevanja"
 
 #: ../src/libvirt-machine-properties.vala:470
 msgid "_Memory: "
@@ -651,25 +748,24 @@ msgstr ""
 "Ni dovolj prostora na disku za povečanje največjega razpoložljivega prostora."
 
 #: ../src/libvirt-machine-properties.vala:564
-#, fuzzy
 msgid "Maximum _Disk Size: "
-msgstr "Največja velikost predmeta"
+msgstr "Največja velikost _diska:"
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "_Zaženi v ozadju:"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
-#, fuzzy, c-format
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
+#, c-format
 msgid "'%s' will not be paused automatically."
-msgstr "Premor"
+msgstr "'%s' ni mogoče samodejno začasno ustaviti."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
-msgstr ""
+msgstr "'%s' bo začasno zaustavljen za varčevanje z viri."
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/libvirt-machine.vala:588
@@ -683,30 +779,30 @@ msgstr "Obnavljanje %s z diska"
 msgid "Starting %s"
 msgstr "Zaganjanje %s"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "Ponovni zagon '%s' traja predolgo. Ali naj se izklop vsili?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Izklopi"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Nameščanje ..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Živi sistem"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "Uvažanje ..."
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "gostitelj: %s"
@@ -714,17 +810,17 @@ msgstr "gostitelj: %s"
 #: ../src/libvirt-system-importer.vala:18
 #, c-format
 msgid "_Import '%s' from system broker"
-msgstr "_Uvozi '%s' iz sistema nadzora različic"
+msgstr "_Uvozi '%s' iz sistemskega posrednika"
 
 #. Translators: %u here is the number of boxes available for import
 #: ../src/libvirt-system-importer.vala:21
 #, c-format
 msgid "_Import %u box from system broker"
 msgid_plural "_Import %u boxes from system broker"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "_Uvozi %u škatel iz sistemskega posrednika"
+msgstr[1] "_Uvozi %u škatlo iz sistemskega posrednika"
+msgstr[2] "_Uvozi %u škatli iz sistemskega posrednika"
+msgstr[3] "_Uvozi %u škatle iz sistemskega posrednika"
 
 #: ../src/libvirt-system-importer.vala:32
 #, c-format
@@ -767,9 +863,8 @@ msgid "Paused"
 msgstr "Premor"
 
 #: ../src/list-view-row.vala:145
-#, fuzzy
 msgid "Powered Off"
-msgstr "napredno"
+msgstr "Izklopljeno"
 
 #. Translators: The %s will be expanded with the name of the vm
 #: ../src/machine.vala:195
@@ -863,7 +958,7 @@ msgstr "Ni povezave s %s"
 
 #: ../src/ovirt-broker.vala:69
 msgid "Connection to oVirt broker failed"
-msgstr "Povezava z oVirt je spodletela"
+msgstr "Povezava z posrednikom oVirt je spodletela"
 
 #: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
 msgid "Protocol"
@@ -896,7 +991,12 @@ msgid "_URI"
 msgstr "_Naslov URI"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:152
+msgctxt "0 items selected"
+msgid "_Open in new window"
+msgstr "_Odpri v novem oknu"
+
+#: ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1060,11 +1160,11 @@ msgstr "Ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "Gostiteljski sistem brez podpore"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Škatla '%s' je bila samodejno izbrisana."
@@ -1362,9 +1462,6 @@ msgstr "Prila_godi ..."
 
 #~ msgid "Error connecting %s: %s"
 #~ msgstr "Napaka med povezovanjem %s: %s"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Celozaslonski način"
 
 #~ msgid "USB redirection"
 #~ msgstr "Preusmeritev USB"
