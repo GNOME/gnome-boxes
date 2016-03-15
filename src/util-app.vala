@@ -551,7 +551,7 @@ namespace Boxes {
                     var config_file = File.new_for_path (path);
 
                     cache_file.move (config_file, FileCopyFlags.OVERWRITE);
-                    print ("moved %s to %s\n", cache_file.get_path (), config_file.get_path ());
+                    debug ("moved %s to %s", cache_file.get_path (), config_file.get_path ());
                 }
             }
 
