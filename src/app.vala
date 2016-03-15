@@ -458,11 +458,6 @@ private class Boxes.App: Gtk.Application {
 
         foreach (var source in new_sources)
             yield add_collection_source (source);
-
-        if (default_connection == null) {
-            printerr ("Missing or failing default libvirt connection\n");
-            release (); // will end application
-        }
     }
 
     private void suspend_machines () {
