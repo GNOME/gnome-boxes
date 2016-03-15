@@ -164,13 +164,7 @@ private class Boxes.App: Gtk.Application {
         var window = add_new_window ();
         window.set_state (UIState.COLLECTION);
 
-        setup_default_source.begin ((obj, result) => {
-            setup_default_source.end (result);
-            is_ready = true;
-            ready ();
-
-            setup_sources.begin ();
-        });
+        activate_async.begin ();
     }
 
     static bool opt_fullscreen;
@@ -388,6 +382,15 @@ private class Boxes.App: Gtk.Application {
             }
             break;
         }
+    }
+
+    private async void activate_async () {
+        yield setup_default_source ();
+
+        is_ready = true;
+        ready ();
+
+        setup_sources.begin ();
     }
 
     private async void setup_default_source () {
