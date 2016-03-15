@@ -108,14 +108,10 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
 
         var connection = new GVir.Connection (source.uri);
 
-        try {
-            yield connection.open_async (null);
-            yield connection.fetch_domains_async (null);
-            yield connection.fetch_storage_pools_async (null);
-            yield Boxes.ensure_storage_pool (connection);
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        yield connection.open_async (null);
+        yield connection.fetch_domains_async (null);
+        yield connection.fetch_storage_pools_async (null);
+        yield Boxes.ensure_storage_pool (connection);
 
         connections.insert (source.name, connection);
 
