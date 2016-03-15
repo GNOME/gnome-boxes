@@ -34,7 +34,11 @@ namespace Boxes {
     }
 
     public string get_user_unattended (string? file_name = null) {
-        return get_cache ("unattended", file_name);
+        var dir = Path.build_filename (get_user_pkgconfig (), "unattended");
+
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
     }
 
     public string get_user_pkgcache (string? file_name = null) {
@@ -74,7 +78,11 @@ namespace Boxes {
     }
 
     public string get_user_pkgconfig_source (string? file_name = null) {
-        return get_cache ("sources", file_name);
+        var dir = Path.build_filename (get_user_pkgconfig (), "sources");
+
+        ensure_directory (dir);
+
+        return Path.build_filename (dir, file_name);
     }
 
     public string get_utf8_basename (string path) {
