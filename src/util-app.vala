@@ -526,6 +526,43 @@ namespace Boxes {
         return tokens[1];
     }
 
+    // Move all configurations from ~/.cache to ~/.config
+    public async void move_configs_from_cache () {
+        yield move_config_from_cache ("unattended");
+        yield move_config_from_cache ("sources");
+    }
+
+    private async void move_config_from_cache (string config_name) {
+        var path = get_cache (config_name);
+        var cache_dir = File.new_for_path (path);
+        var config_path = Path.build_filename (get_user_pkgconfig (), config_name);
+
+        try {
+            var enumerator = yield cache_dir.enumerate_children_async (FileAttribute.STANDARD_NAME, 0);
+            while (true) {
+                var files = yield enumerator.next_files_async (10);
+                if (files == null)
+                    break;
+
+                foreach (var info in files) {
+                    path = Path.build_filename (cache_dir.get_path (), info.get_name ());
+                    var cache_file = File.new_for_path (path);
+                    path = Path.build_filename (config_path, info.get_name ());
+                    var config_file = File.new_for_path (path);
+
+                    cache_file.move (config_file, FileCopyFlags.OVERWRITE);
+                    print ("moved %s to %s\n", cache_file.get_path (), config_file.get_path ());
+                }
+            }
+
+            yield cache_dir.delete_async ();
+        } catch (IOError.NOT_FOUND error) {
+            // That just means config doesn't exist in cache dir
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
+    }
+
     namespace UUID {
         [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
         internal extern static void generate ([CCode (array_length = false)] uchar[] uuid);

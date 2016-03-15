@@ -385,6 +385,8 @@ private class Boxes.App: Gtk.Application {
     }
 
     private async void activate_async () {
+        yield move_configs_from_cache ();
+
         yield setup_default_source ();
 
         is_ready = true;
