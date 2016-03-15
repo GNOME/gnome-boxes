@@ -33,9 +33,7 @@ private class Boxes.ResourceGraph: Gtk.DrawingArea {
         var height = get_allocated_height ();
         var style = get_style_context ();
 
-        Gdk.cairo_set_source_rgba (cr, style.get_background_color (get_state_flags ()));
-        cr.rectangle (0, 0, width, height);
-        cr.fill ();
+        style.render_background (cr, 0, 0, width, height);
 
         var nstep = (npoints == -1 ? points.length : npoints) - 1;
         var dy = 0.0;
