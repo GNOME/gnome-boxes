@@ -43,7 +43,10 @@ private class Boxes.ResourceGraph: Gtk.DrawingArea {
         if (ymax != 0)
             dy = (double) height / ymax;
 
-        Gdk.cairo_set_source_rgba (cr, style.get_color (Gtk.StateFlags.NORMAL));
+        style.save ();
+        style.set_state (Gtk.StateFlags.NORMAL);
+        Gdk.cairo_set_source_rgba (cr, style.get_color (get_state_flags ()));
+        style.restore ();
         var x = 0.0;
         foreach (var p in points) {
             var y = height - p * dy;
