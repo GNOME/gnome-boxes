@@ -102,7 +102,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         }
     }
 
-    public override async void add_source (CollectionSource source) {
+    public override async void add_source (CollectionSource source) throws GLib.Error {
         if (connections.lookup (source.name) != null)
             return;
 

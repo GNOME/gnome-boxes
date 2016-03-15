@@ -25,7 +25,7 @@ private class Boxes.OvirtBroker : Boxes.Broker {
         }
     }
 
-    public override async void add_source (CollectionSource source) {
+    public override async void add_source (CollectionSource source) throws GLib.Error {
         if (proxies.lookup (source.name) != null)
             return;
 

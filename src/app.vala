@@ -2,7 +2,7 @@
 
 private abstract class Boxes.Broker : GLib.Object {
     // Overriding subclass should chain-up at the end of its implementation
-    public virtual async void add_source (CollectionSource source) {
+    public virtual async void add_source (CollectionSource source) throws GLib.Error {
         var used_configs = new GLib.List<BoxConfig> ();
         foreach (var item in App.app.collection.items.data) {
             if (!(item is Machine))
@@ -348,7 +348,7 @@ private class Boxes.App: Gtk.Application {
         collection.remove_item (machine);
     }
 
-    public async void add_collection_source (CollectionSource source) {
+    public async void add_collection_source (CollectionSource source) throws GLib.Error {
         if (!source.enabled)
             return;
 
@@ -456,8 +456,13 @@ private class Boxes.App: Gtk.Application {
             return false;
         });
 
-        foreach (var source in new_sources)
-            yield add_collection_source (source);
+        foreach (var source in new_sources) {
+            try {
+                yield add_collection_source (source);
+            } catch (GLib.Error error) {
+                warning ("Failed to add '%s': %s", source.name, error.message);
+            }
+        }
     }
 
     private void suspend_machines () {
