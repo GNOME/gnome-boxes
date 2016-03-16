@@ -5,7 +5,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public abstract string protocol { get; }
     public abstract string uri { owned get; }
 
-    public BoxConfig? config { get; set; }
+    public BoxConfig? config { get; protected set; }
     public bool can_grab_mouse { get; protected set; }
     public bool mouse_grabbed { get; protected set; }
     public bool keyboard_grabbed { get; protected set; }
