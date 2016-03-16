@@ -197,7 +197,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             show_id = _display.show.connect ((id) => { show_display (); });
 
             hide_id = _display.hide.connect ((id) => {
-                window.display_page.remove_display ();
+                if (window != null)
+                    window.display_page.remove_display ();
             });
 
             got_error_id = _display.got_error.connect ((message) => {
