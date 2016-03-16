@@ -119,10 +119,11 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         save ();
     }
 
-    private void load_property (Object object, string property_name, Value default_value) {
+    private ParamSpec? load_property (Object object, string property_name, Value default_value) {
         var property = object.get_class ().find_property (property_name);
         if (property == null) {
             debug ("You forgot the property '%s' needs to have public getter!", property_name);
+            return null;
         }
 
         var value = Value (property.value_type);
@@ -141,19 +142,21 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         }
 
         object.set_property (property_name, value);
+
+        return property;
     }
 
     public void save_properties (Object object, SavedProperty[] properties) {
-        foreach (var prop in properties)
-            load_property (object, prop.name, prop.default_value);
+        foreach (var prop in properties) {
+            var property = load_property (object, prop.name, prop.default_value);
+            if (property == null)
+                return;
 
-        object.notify.connect ((object, pspec) => {
-            foreach (var prop in properties)
-                if (pspec.name == prop.name) {
+            object.notify.connect ((object, pspec) => {
+                if (pspec.name == property.name)
                     save_property (object, pspec.name);
-                    break;
-                }
-        });
+           });
+        }
     }
 
     private string? filter_data;
