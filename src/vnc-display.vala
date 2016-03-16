@@ -69,10 +69,6 @@ private class Boxes.VncDisplay: Boxes.Display {
 
             display.close ();
         });
-
-        this.notify["config"].connect (() => {
-            config.save_properties (display, saved_properties);
-        });
     }
 
     public VncDisplay (BoxConfig config, string host, int port) {
@@ -80,6 +76,8 @@ private class Boxes.VncDisplay: Boxes.Display {
 
         this.host = host;
         this.port = port;
+
+        config.save_properties (display, saved_properties);
     }
 
     public VncDisplay.with_uri (BoxConfig config, string _uri) throws Boxes.Error {
@@ -95,6 +93,8 @@ private class Boxes.VncDisplay: Boxes.Display {
 
         this.host = uri.server;
         this.port = uri.port <= 0 ? 5900 : uri.port;
+
+        config.save_properties (display, saved_properties);
     }
 
     public override Gtk.Widget get_display (int n) {

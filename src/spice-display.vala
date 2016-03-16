@@ -56,10 +56,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             });
         } catch (GLib.Error error) {
         }
-
-        this.notify["config"].connect (() => {
-            config.save_properties (gtk_session, gtk_session_saved_properties);
-        });
     }
 
     private Spice.MainChannel? _main_channel;
@@ -122,6 +118,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             session.cert_subject = host_subject;
         else
             session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
+
+        config.save_properties (gtk_session, gtk_session_saved_properties);
     }
 
     public SpiceDisplay.with_uri (Machine machine, BoxConfig config, string uri) {
@@ -131,6 +129,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         this.config = config;
 
         session.uri = uri;
+
+        config.save_properties (gtk_session, gtk_session_saved_properties);
     }
 
     public override Gtk.Widget get_display (int n) {
