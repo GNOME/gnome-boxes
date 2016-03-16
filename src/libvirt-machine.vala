@@ -124,7 +124,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private GVir.Connection system_virt_connection;
 
-    private BoxConfig.SyncProperty[] sync_properties;
+    private BoxConfig.SavedProperty[] saved_properties;
 
     construct {
         stats = new MachineStat[STATS_SIZE];
@@ -238,11 +238,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         update_info ();
         source.notify["uri"].connect (update_info);
 
-        sync_properties = {
-            BoxConfig.SyncProperty () { name = "run-in-bg", default_value = false },
+        saved_properties = {
+            BoxConfig.SavedProperty () { name = "run-in-bg", default_value = false },
         };
 
-        this.config.sync_properties (this, sync_properties);
+        this.config.save_properties (this, saved_properties);
     }
 
     private void update_cpu_stat (DomainInfo info, ref MachineStat stat) {

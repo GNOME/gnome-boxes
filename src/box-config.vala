@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
-    public struct SyncProperty {
+    public struct SavedProperty {
         string name;
         Value default_value;
     }
@@ -41,14 +41,14 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
     public int64 access_first_time { set; get; }
     public int64 access_total_time { set; get; } // in seconds
     public int64 access_ntimes { set; get; }
-    private SyncProperty[] access_properties;
+    private SavedProperty[] access_properties;
 
     construct {
         access_properties = {
-            SyncProperty () { name = "access-last-time", default_value = (int64) (-1) },
-            SyncProperty () { name = "access-first-time", default_value = (int64) (-1) },
-            SyncProperty () { name = "access-total-time", default_value = (int64) (-1) },
-            SyncProperty () { name = "access-ntimes", default_value = (uint64) 0 }
+            SavedProperty () { name = "access-last-time", default_value = (int64) (-1) },
+            SavedProperty () { name = "access-first-time", default_value = (int64) (-1) },
+            SavedProperty () { name = "access-total-time", default_value = (int64) (-1) },
+            SavedProperty () { name = "access-ntimes", default_value = (uint64) 0 }
         };
     }
 
@@ -58,7 +58,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         warn_if_fail (group.has_prefix ("display"));
         this.group = group;
 
-        sync_properties (this, access_properties);
+        save_properties (this, access_properties);
     }
 
     public void delete () {
@@ -143,7 +143,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         object.set_property (property_name, value);
     }
 
-    public void sync_properties (Object object, SyncProperty[] properties) {
+    public void save_properties (Object object, SavedProperty[] properties) {
         foreach (var prop in properties)
             load_property (object, prop.name, prop.default_value);
 

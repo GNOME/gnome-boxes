@@ -15,8 +15,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private unowned Spice.Audio audio;
     private ulong channel_new_id;
     private ulong channel_destroy_id;
-    private BoxConfig.SyncProperty[] display_sync_properties;
-    private BoxConfig.SyncProperty[] gtk_session_sync_properties;
+    private BoxConfig.SavedProperty[] display_saved_properties;
+    private BoxConfig.SavedProperty[] gtk_session_saved_properties;
     private bool closed;
 
     private GLib.HashTable<Spice.Channel,SpiceChannelHandler> channel_handlers;
@@ -37,8 +37,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     construct {
-        gtk_session_sync_properties = {
-            BoxConfig.SyncProperty () { name = "auto-clipboard", default_value = true },
+        gtk_session_saved_properties = {
+            BoxConfig.SavedProperty () { name = "auto-clipboard", default_value = true },
         };
 
         need_password = false;
@@ -58,7 +58,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
 
         this.notify["config"].connect (() => {
-            config.sync_properties (gtk_session, gtk_session_sync_properties);
+            config.save_properties (gtk_session, gtk_session_saved_properties);
         });
     }
 
@@ -145,7 +145,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             display.keyboard_grab.connect((status) => {
                 keyboard_grabbed = status != 0;
             });
-            config.sync_properties (this, display_sync_properties);
+            config.save_properties (this, display_saved_properties);
             display.scaling = true;
 
             displays.replace (n, display);
