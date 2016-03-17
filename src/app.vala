@@ -510,8 +510,8 @@ private class Boxes.App: Gtk.Application {
      * Deletes specified items, while allowing user to undo it.
      *
      * @param items the list of machines
-     * @param message optional message to be shown together with the undo button. If not provided, an appropriate messsage
-     *                is created.
+     * @param message optional message to be shown together with the undo button. If not provided, an appropriate
+     *                messsage is created.
      * @param callback optional function that, if provided, is called after the undo operation
      *
      * @attention the ownership for items is required since GLib.List is a compact class.
