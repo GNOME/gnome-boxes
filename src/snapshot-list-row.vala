@@ -179,7 +179,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
             row = null;
         };
 
-        Notification.CancelFunc really_remove = () => {
+        Notification.DismissFunc really_remove = () => {
             this.snapshot.delete_async.begin (0, null, (obj, res) =>{
                 try {
                     this.snapshot.delete_async.end (res);

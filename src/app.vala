@@ -542,7 +542,7 @@ private class Boxes.App: Gtk.Application {
                 undo_notify_callback ();
         };
 
-        Notification.CancelFunc really_remove = () => {
+        Notification.DismissFunc really_remove = () => {
             debug ("User did not cancel deletion. Deleting now...");
             foreach (var item in items) {
                 if (!(item is Machine))

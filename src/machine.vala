@@ -634,7 +634,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             auth_notification = null;
             try_connect_display.begin ();
         };
-        Notification.CancelFunc cancel_func = () => {
+        Notification.DismissFunc dismiss_func = () => {
             auth_notification = null;
             window.set_state (UIState.COLLECTION);
         };
@@ -643,7 +643,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         var auth_string = _("'%s' requires authentication").printf (name);
         auth_notification = window.notificationbar.display_for_auth (auth_string,
                                                                          (owned) auth_func,
-                                                                         (owned) cancel_func,
+                                                                         (owned) dismiss_func,
                                                                          need_username);
     }
 
