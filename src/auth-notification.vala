@@ -21,17 +21,17 @@ private class Boxes.AuthNotification: Gd.Notification {
 
     private Searchbar searchbar;
 
-    public AuthNotification (string                         auth_string,
-                             owned AuthFunc?                auth_func,
-                             owned Notification.CancelFunc? cancel_func,
-                             bool                           need_username,
-                             Searchbar                      searchbar) {
+    public AuthNotification (string                          auth_string,
+                             owned AuthFunc?                 auth_func,
+                             owned Notification.DismissFunc? dismiss_func,
+                             bool                            need_username,
+                             Searchbar                       searchbar) {
         show_close_button = false; // FIXME: Seems setting this from .UI file doesn't work
         title_label.label = auth_string;
 
         dismissed.connect (() => {
-            if (!auth_pressed && cancel_func != null)
-                cancel_func ();
+            if (!auth_pressed && dismiss_func != null)
+                dismiss_func ();
         });
 
         username_label.visible = need_username;

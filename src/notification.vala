@@ -6,7 +6,7 @@ private class Boxes.Notification: Gd.Notification {
     public const int DEFAULT_TIMEOUT = 6;
 
     public delegate void OKFunc ();
-    public delegate void CancelFunc ();
+    public delegate void DismissFunc ();
 
     [GtkChild]
     private Gtk.Label message_label;
@@ -15,18 +15,18 @@ private class Boxes.Notification: Gd.Notification {
     [GtkChild]
     private Gtk.Button ok_button;
 
-    public Notification (string            message,
-                         MessageType       message_type,
-                         string?           ok_label,
-                         owned OKFunc?     ok_func,
-                         owned CancelFunc? cancel_func,
-                         int               timeout) {
+    public Notification (string             message,
+                         MessageType        message_type,
+                         string?            ok_label,
+                         owned OKFunc?      ok_func,
+                         owned DismissFunc? dismiss_func,
+                         int                timeout) {
         this.timeout = timeout;
 
         bool ok_pressed = false;
         dismissed.connect ( () => {
-            if (!ok_pressed && cancel_func != null)
-                cancel_func ();
+            if (!ok_pressed && dismiss_func != null)
+                dismiss_func ();
         });
 
         message_label.label = message;
