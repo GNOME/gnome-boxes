@@ -279,7 +279,7 @@ private class Boxes.App: Gtk.Application {
         base.shutdown ();
 
         foreach (var window in windows) {
-            window.notificationbar.cancel ();
+            window.notificationbar.dismiss_all ();
             window.wizard_window.wizard.cleanup ();
         }
         suspend_machines ();
