@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-23 12:57+0200\n"
-"PO-Revision-Date: 2016-02-23 13:01+0300\n"
+"POT-Creation-Date: 2016-03-22 22:07+0200\n"
+"PO-Revision-Date: 2016-03-22 22:07+0300\n"
 "Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Language-Team: linux.org.ua\n"
 "Language: uk\n"
@@ -249,11 +249,6 @@ msgstr "Назад до огляду"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:13
 msgctxt "shortcut window"
-msgid "Close window/Quit Boxes"
-msgstr "Закрити вікно/вийти з програми"
-
-#: ../data/ui/kbd-shortcuts-window.ui.h:14
-msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Перемкнути повноекранний режим"
 
@@ -493,50 +488,50 @@ msgstr "Про програму"
 msgid "Quit"
 msgstr "Вийти"
 
-#: ../src/app.vala:182 ../src/main.vala:9
+#: ../src/app.vala:176 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Показати номер версії"
 
-#: ../src/app.vala:184
+#: ../src/app.vala:178
 msgid "Open in full screen"
 msgstr "Відкрити на весь екран"
 
-#: ../src/app.vala:185 ../src/main.vala:10
+#: ../src/app.vala:179 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Перевірити можливості віртуалізації"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:180
 msgid "Open box with UUID"
 msgstr "Відкрити коробку з UUID"
 
-#: ../src/app.vala:187
+#: ../src/app.vala:181
 msgid "Search term"
 msgstr "Ключове слово"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:189
+#: ../src/app.vala:183
 msgid "URI to display, broker or installer media"
 msgstr "URI для показу, носій шкідника або встановлювача"
 
-#: ../src/app.vala:200
+#: ../src/app.vala:194
 msgid "- A simple application to access remote or virtual machines"
 msgstr "— проста програма для доступу до віддалених або віртуальних машин"
 
-#: ../src/app.vala:222
+#: ../src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Вказано надто багато аргументів командного рядка.\n"
 
-#: ../src/app.vala:435
+#: ../src/app.vala:440
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "Коробку «%s» встановлено і неї можна користуватись"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:528
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Коробку «%s» вилучено"
 
-#: ../src/app.vala:524
+#: ../src/app.vala:529
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -544,7 +539,7 @@ msgstr[0] "%u коробку вилучено"
 msgstr[1] "%u коробки вилучено"
 msgstr[2] "%u коробок вилучено"
 
-#: ../src/app.vala:551 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:556 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Пов_ернути"
 
@@ -865,16 +860,16 @@ msgstr "Вимкнено"
 msgid "Connecting to %s"
 msgstr "З'єднання з %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:613
+#: ../src/machine.vala:218 ../src/machine.vala:614
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Не вдалося з'єднатися з «%s»"
 
-#: ../src/machine.vala:412
+#: ../src/machine.vala:413
 msgid "Saving…"
 msgstr "Зберігання…"
 
-#: ../src/machine.vala:599
+#: ../src/machine.vala:600
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -883,17 +878,17 @@ msgstr ""
 "«%s» неможливо відновити з диску\n"
 "Спробувати без збереженого стану?"
 
-#: ../src/machine.vala:600
+#: ../src/machine.vala:601
 msgid "Restart"
 msgstr "Перезапустити"
 
-#: ../src/machine.vala:609
+#: ../src/machine.vala:610
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Не вдалося запустити «%s»"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:642
+#: ../src/machine.vala:643
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "«%s» потребує засвідчення"
@@ -984,7 +979,12 @@ msgid "_URI"
 msgstr "_Адреса"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:152
+msgctxt "0 items selected"
+msgid "_Open in new window"
+msgstr "_Відкрити у новому вікні"
+
+#: ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1132,11 +1132,11 @@ msgstr ""
 "%s відомий для libvirt як набір пам'яті коробок GNOME, проте до каталогу "
 "немає доступу"
 
-#: ../src/util.vala:341
+#: ../src/util.vala:349
 msgid "yes"
 msgstr "так"
 
-#: ../src/util.vala:341
+#: ../src/util.vala:349
 msgid "no"
 msgstr "ні"
 
@@ -1279,6 +1279,10 @@ msgstr "Не вдалося звантажити."
 #: ../src/wizard.vala:716
 msgid "C_ustomize…"
 msgstr "_Налаштувати…"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Close window/Quit Boxes"
+#~ msgstr "Закрити вікно/вийти з програми"
 
 #~ msgid "_Properties"
 #~ msgstr "В_ластивості"
