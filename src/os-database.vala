@@ -37,12 +37,12 @@ private class Boxes.OSDatabase : GLib.Object {
         db_loading = true;
         var loader = new Loader ();
         try {
-            yield run_in_thread (() => { loader.process_default_path (); });
+            yield App.app.async_launcher.launch (() => { loader.process_default_path (); });
         } catch (GLib.Error e) {
             warning ("Error loading default libosinfo database: %s", e.message);
         }
         try {
-            yield run_in_thread (() => { loader.process_path (get_logos_db ()); }); // Load our custom database
+            yield App.app.async_launcher.launch (() => { loader.process_path (get_logos_db ()); }); // Load our custom database
         } catch (GLib.Error e) {
             warning ("Error loading GNOME Boxes libosinfo database: %s", e.message);
         }

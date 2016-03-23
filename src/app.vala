@@ -39,12 +39,14 @@ private class Boxes.App: Gtk.Application {
     private HashTable<string,CollectionSource> sources;
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
     public CollectionSource default_source { get { return sources.get (DEFAULT_SOURCE_NAME); } }
+    public AsyncLauncher async_launcher;
 
     public App () {
         application_id = "org.gnome.Boxes";
         flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
 
         app = this;
+        async_launcher = AsyncLauncher.get_default ();
         windows = new List<Boxes.AppWindow> ();
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
@@ -282,6 +284,7 @@ private class Boxes.App: Gtk.Application {
             window.notificationbar.dismiss_all ();
             window.wizard_window.wizard.cleanup ();
         }
+        async_launcher.await_all ();
         suspend_machines ();
     }
 

@@ -252,7 +252,7 @@ namespace Boxes {
         // make sure vala makes a copy of argv that will be kept alive until run_in_thread finishes
         string[] argv_copy = argv;
 
-        yield run_in_thread (() => {
+        yield AsyncLauncher.get_default ().launch (() => {
            exec_sync (argv_copy, out std_output, out std_error);
         });
 

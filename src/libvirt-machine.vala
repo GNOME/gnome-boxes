@@ -277,7 +277,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (disk == null)
                 return;
 
-            yield run_in_thread ( () => {
+            yield App.app.async_launcher.launch ( () => {
                     stat.disk = disk.get_stats ();
                 } );
             var prev = stats[STATS_SIZE - 1];
@@ -299,7 +299,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (net == null)
                 return;
 
-            yield run_in_thread ( () => {
+            yield App.app.async_launcher.launch ( () => {
                     stat.net = net.get_stats ();
                 } );
             var prev = stats[STATS_SIZE - 1];
@@ -435,7 +435,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return null;
 
         var stream = connection.get_stream (0);
-        yield run_in_thread (()=> {
+        yield App.app.async_launcher.launch (()=> {
             domain.screenshot (stream, 0, 0);
         });
 
@@ -467,7 +467,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             /* Run all the slow operations in a separate thread
                to avoid blocking the UI */
-            run_in_thread.begin ( () => {
+            App.app.async_launcher.launch.begin ( () => {
                 try {
                     // This undefines the domain, causing it to be transient if it was running
                     domain.delete (DomainDeleteFlags.SAVED_STATE |

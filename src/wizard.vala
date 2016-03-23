@@ -516,7 +516,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
             try {
                 var config = null as GVirConfig.Domain;
-                yield run_in_thread (() => {
+                yield App.app.async_launcher.launch (() => {
                     config = libvirt_machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
                 });
 
