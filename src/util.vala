@@ -221,28 +221,6 @@ namespace Boxes {
         }
     }
 
-    public delegate void RunInThreadFunc () throws  GLib.Error;
-    public async void run_in_thread (owned RunInThreadFunc func) throws GLib.Error {
-        GLib.Error e = null;
-        GLib.SourceFunc resume = run_in_thread.callback;
-        new GLib.Thread<void*> (null, () => {
-            try {
-                func ();
-            } catch (GLib.Error err) {
-                e = err;
-            }
-
-            Idle.add ((owned) resume);
-
-            return null;
-        });
-
-        yield;
-
-        if (e != null)
-            throw e;
-    }
-
     public async void exec (string[] argv,
                             Cancellable? cancellable,
                             out string? standard_output = null,
