@@ -4,23 +4,31 @@
 #
 #
 # asiersar <asiersar@yahoo.com>, 2013.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015, 2016.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-boxes master\n"
+"Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 11:52+0200\n"
-"PO-Revision-Date: 2015-10-11 12:11+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
-"Language-Team: Basque <Basque <librezale@librezale.org>>\n"
+"POT-Creation-Date: 2016-03-23 13:28+0100\n"
+"PO-Revision-Date: 2016-03-23 13:34+0100\n"
+"Last-Translator: dooteo <dooteo@zundan.com>\n"
+"Language-Team: Basque <librezale@librezale.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
+msgid "GNOME Boxes"
+msgstr "GNOMEren Makinak"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+msgid "Simple remote and virtual machines"
+msgstr "Makina birtual eta urruneko bakunak"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:3
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -35,7 +43,7 @@ msgstr ""
 "ordez, 'Makinak' gauzak hasieratik funtzionatzean sakontzen da, "
 "erabiltzaileak gauza oso gutxi ukituz."
 
-#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:4
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -48,8 +56,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:230
-#: ../src/app-window.vala:232 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Makinak"
 
@@ -117,15 +125,18 @@ msgstr "_Pasahitza"
 msgid "Sign In"
 msgstr "Hasi saioa"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "Denak"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "Lokala"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "Urrunekoa"
 
@@ -155,13 +166,12 @@ msgid "Search"
 msgstr "Bilatu"
 
 #: ../data/ui/display-toolbar.ui.h:2
-#, fuzzy
 msgid "Actions"
-msgstr "Bildumak"
+msgstr "Ekintzak"
 
-#: ../data/ui/display-toolbar.ui.h:3
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:122
 msgid "Keyboard shortcuts"
-msgstr ""
+msgstr "Laster-teklak"
 
 #: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
 msgid "Fullscreen"
@@ -178,6 +188,71 @@ msgstr "'Makinak' birtuala edo urrunekoa izan daiteke."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "Sakatu <b>Berria</b> botoia aurrenekoa sortzeko."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "ikuspegi orokorra"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Laguntza"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+msgctxt "shortcut window"
+msgid "Create a new box"
+msgstr "Sortu makina berria"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:4
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Bilatu"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Laster-teklak"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "Itxi leihoa/Irten 'Makinak'-etik"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "Makinaren sorrera eta propietateak"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "Aldatu hurrengo orrira"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "Aldatu aurreko orrira"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr "Makinaren pantaila"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "Hartu/Askatu teklatua"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "Itzuli ikuspegi orokorrera"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Pantaila osoa/Leheneratu pantaila osotik"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -249,23 +324,24 @@ msgstr ""
 "Aukeratu instalazio azkarra makina ezarpen optimoekin automatikoki aurretiaz "
 "konfiguratzeko."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "Instalazio azkarra"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Erabiltzaile-izena"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Pasahitza"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "_Gehitu pasahitza"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "Produktu-gakoa"
 
@@ -411,66 +487,66 @@ msgstr ""
 msgid "Help"
 msgstr "Laguntza"
 
-#: ../src/app.vala:122
+#: ../src/app.vala:123
 msgid "About"
 msgstr "Honi buruz"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:124
 msgid "Quit"
 msgstr "Irten"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:176 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Bistaratu bertsio-zenbakia"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:178
 msgid "Open in full screen"
 msgstr "Ireki pantaila osoan"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:179 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Egiaztatu birtualizazioaren gaitasunak"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:180
 msgid "Open box with UUID"
 msgstr "Ireki honako UUIDa duen makina:"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:181
 msgid "Search term"
 msgstr "Bilaketa-terminoa"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:183
 msgid "URI to display, broker or installer media"
 msgstr "Bistaratuko den URIa, artekaria edo instalatzaile-euskarria"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:194
 msgid "- A simple application to access remote or virtual machines"
 msgstr ""
 "- Urruneko makinetara edo makina birtualetara sartzeko aplikazio sinplea"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Komando-lerroko argumentu gehiegi zehaztu dira.\n"
 
-#: ../src/app.vala:434
+#: ../src/app.vala:440
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "'%s' makina instalatuta eta erabiltzeko prest"
 
-#: ../src/app.vala:522
+#: ../src/app.vala:528
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' makina ezabatu da"
 
-#: ../src/app.vala:523
+#: ../src/app.vala:529
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Makina %u ezabatu da"
 msgstr[1] "%u makina ezabatu dira"
 
-#: ../src/app.vala:550 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:556 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desegin"
 
@@ -489,9 +565,8 @@ msgid "%dx%d"
 msgstr "%dx%d"
 
 #: ../src/display-toolbar.vala:51
-#, fuzzy
 msgid "Exit fullscreen"
-msgstr "Pantaila osoa"
+msgstr "Irten pantaila osotik"
 
 #: ../src/icon-view.vala:56
 msgid "New and Recent"
@@ -672,18 +747,18 @@ msgstr ""
 msgid "Maximum _Disk Size: "
 msgstr "Gehienezko _disko-tamaina: "
 
-#: ../src/libvirt-machine-properties.vala:698
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "_Exekutatu atzeko planoan"
 
-#: ../src/libvirt-machine-properties.vala:709
-#: ../src/libvirt-machine-properties.vala:712
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "'%s' ez da automatikoki pausatuko."
 
-#: ../src/libvirt-machine-properties.vala:710
-#: ../src/libvirt-machine-properties.vala:713
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "'%s' automatikoki pausaraziko da baliabideak aurrezteko."
@@ -700,30 +775,30 @@ msgstr "%s diskotik leheneratzen"
 msgid "Starting %s"
 msgstr "%s hasieratzen"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "'%s'(r)en hasieratzea luze doa. Behartu ixtera?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Itzali"
 
-#: ../src/libvirt-machine.vala:733
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Instalatzen…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:735 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Zuzenean"
 
-#: ../src/libvirt-machine.vala:737
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "Inportatzen…"
 
-#: ../src/libvirt-machine.vala:746 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "ostalaria: %s"
@@ -789,16 +864,16 @@ msgstr "Itzalita"
 msgid "Connecting to %s"
 msgstr "%s(e)ra konektatzen"
 
-#: ../src/machine.vala:217 ../src/machine.vala:613
+#: ../src/machine.vala:218 ../src/machine.vala:614
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s'(e)rako konexioak huts egin du"
 
-#: ../src/machine.vala:412
+#: ../src/machine.vala:413
 msgid "Saving…"
 msgstr "Gordetzen…"
 
-#: ../src/machine.vala:599
+#: ../src/machine.vala:600
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -807,17 +882,17 @@ msgstr ""
 "Ezin izan da '%s' diskotik leheneratu\n"
 "Saiatu gordetako egoerarik gabe?"
 
-#: ../src/machine.vala:600
+#: ../src/machine.vala:601
 msgid "Restart"
 msgstr "Berrabiarazi"
 
-#: ../src/machine.vala:609
+#: ../src/machine.vala:610
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Huts egin du '%s' abiaraztean"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:642
+#: ../src/machine.vala:643
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s'(e)k autentifikazioa eskatzen du"
@@ -909,7 +984,12 @@ msgid "_URI"
 msgstr "_URIa"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:152
+msgctxt "0 items selected"
+msgid "_Open in new window"
+msgstr "Ireki leiho _berrian"
+
+#: ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1057,21 +1137,21 @@ msgstr ""
 "libvirt-ek %s ezagutzen du GNOME Makinen biltegiratze gisa, baina "
 "erabiltzaileak ezin du irakurri/idatzi"
 
-#: ../src/util.vala:341
+#: ../src/util.vala:349
 msgid "yes"
 msgstr "bai"
 
-#: ../src/util.vala:341
+#: ../src/util.vala:349
 msgid "no"
 msgstr "ez"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "Ostalari-sistema ez da gai"
 
-#: ../src/vm-creator.vala:174
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Zuzeneko '%s' makina automatikoki ezabatu da."
@@ -1234,9 +1314,6 @@ msgstr "_Pertsonalizatu…"
 #~ "Existitzen den makina batekin konektatu ahal izango duzu <b><i>sarearen "
 #~ "bidez</i></b> edo lokalean exekutatzen den <b><i>makina birtual bat</i></"
 #~ "b> sortu."
-
-#~ msgid "Create a box"
-#~ msgstr "Sortu makina"
 
 #~ msgid "Create a box (step %d/4)"
 #~ msgstr "Sortu makina (%d/4 urratsa)"
