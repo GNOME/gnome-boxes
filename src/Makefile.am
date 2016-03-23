@@ -49,6 +49,7 @@ AM_VALAFLAGS =						\
 
 noinst_LIBRARIES = libcommon.a
 libcommon_a_VALASOURCES =			\
+	async-launcher.vala			\
 	box-config.vala                         \
 	collection-source.vala			\
 	util.vala				\
