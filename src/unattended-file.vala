@@ -19,7 +19,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
 
         if (is_libarchive_compatible (disk_file)) {
-            yield run_in_thread(() => {
+            yield App.app.async_launcher.launch(() => {
                 copy_with_libarchive (disk_file, source_file.get_path (), dest_name);
             });
         } else
