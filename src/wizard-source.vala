@@ -209,7 +209,8 @@ private class Boxes.WizardSource: Gtk.Stack {
         install_media = null;
         libvirt_sys_import = false;
         selected = null;
-        uri = "";
+        if(page != SourcePage.URL)
+            uri = "";
     }
 
     [GtkCallback]
