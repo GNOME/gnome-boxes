@@ -580,6 +580,9 @@ private class Boxes.App: Gtk.Application {
     }
 
     public new bool remove_window (AppWindow window) {
+        if (windows.length () == 1)
+            return quit_app ();
+
         var initial_windows_count = windows.length ();
         bool window_was_main = (window == main_window);
 
@@ -587,11 +590,9 @@ private class Boxes.App: Gtk.Application {
             (window.current_item as Machine).window = null;
 
         window.hide ();
+
         windows.remove (window);
         base.remove_window (window);
-
-        if (windows.length () == 0)
-            return quit_app ();
 
         // If the main window have been removed,
         // populate the new main window's collection view.
