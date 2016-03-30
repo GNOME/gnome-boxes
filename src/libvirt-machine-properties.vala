@@ -593,43 +593,46 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
     private void on_storage_changed (Boxes.Property property, uint64 value) {
         // Ensure that we don't end-up changing storage like a 1000 times a second while user moves the slider..
         property.deferred_change = () => {
-            if (machine.storage_volume == null)
-                return false;
-
-            try {
-                if (machine.is_running) {
-                    var disk = machine.get_domain_disk ();
-                    if (disk != null) {
-                        var size = (value + Osinfo.KIBIBYTES - 1) / Osinfo.KIBIBYTES;
-                        disk.resize (size, 0);
-
-                        var pool = get_storage_pool (machine.connection);
-                        pool.refresh_async.begin (null, (obj, res) => {
-                            try {
-                                pool.refresh_async.end (res);
-                                machine.update_domain_config ();
-                                debug ("Storage changed to %llu KiB", size);
-                            } catch (GLib.Error error) {
-                                warning ("Failed to change storage capacity of volume '%s' to %llu KiB: %s",
-                                         machine.storage_volume.get_name (),
-                                         size,
-                                         error.message);
-                            }
-                        });
-                    }
-                } else {
-                    resize_storage_volume (value);
-                    debug ("Storage changed to %llu", value);
-                }
-            } catch (GLib.Error error) {
-                warning ("Failed to change storage capacity of volume '%s' to %llu: %s",
-                         machine.storage_volume.get_name (),
-                         value,
-                         error.message);
-            }
+            change_storage_size.begin (property, value);
 
             return false;
         };
+    }
+
+    private async void change_storage_size (Boxes.Property property, uint64 value) {
+        if (machine.storage_volume == null)
+            return;
+
+        try {
+            if (machine.is_running) {
+                var disk = machine.get_domain_disk ();
+                if (disk == null)
+                    return;
+
+                var size = (value + Osinfo.KIBIBYTES - 1) / Osinfo.KIBIBYTES;
+                disk.resize (size, 0);
+
+                var pool = get_storage_pool (machine.connection);
+                try {
+                  yield pool.refresh_async (null);
+                  machine.update_domain_config ();
+                  debug ("Storage changed to %llu KiB", size);
+                } catch (GLib.Error error) {
+                  warning ("Failed to change storage capacity of volume '%s' to %llu KiB: %s",
+                           machine.storage_volume.get_name (),
+                           size,
+                           error.message);
+                }
+            } else {
+                resize_storage_volume (value);
+                debug ("Storage changed to %llu", value);
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to change storage capacity of volume '%s' to %llu: %s",
+                    machine.storage_volume.get_name (),
+                    value,
+                    error.message);
+        }
     }
 
     private uint64 get_minimum_disk_size () throws GLib.Error {
