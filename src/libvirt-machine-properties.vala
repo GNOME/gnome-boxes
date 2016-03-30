@@ -557,6 +557,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 content.add (label);
 
                 add_property (ref list, null, infobar);
+
                 return null;
             }
 
