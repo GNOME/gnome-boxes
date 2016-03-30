@@ -65,6 +65,7 @@ TRACKER_SPARQL=0.13.1
 UUID_REQUIRED=1.41.3
 LIBSOUP_REQUIRED=2.38
 LIBARCHIVE_MIN_VERSION=3.0.0
+LIBOVF_GLIB_MIN_VERSION=0.1
 
 PKG_CHECK_MODULES(BOXES, [
   glib-2.0 >= $GLIB_MIN_VERSION
@@ -81,6 +82,7 @@ PKG_CHECK_MODULES(BOXES, [
   uuid >= $UUID_REQUIRED
   libsoup-2.4 >= $LIBSOUP_REQUIRED
   libarchive >= $LIBARCHIVE_MIN_VERSION
+  libovf-glib-0.1 >= $LIBOVF_GLIB_MIN_VERSION
 ])
 
 
@@ -140,6 +142,7 @@ VALA_CHECK([0.28.0.16], [
   gudev-1.0
   libarchive
   libosinfo-1.0
+  libovf-glib-0.1
   libsoup-2.4
   libvirt-gconfig-1.0
   libvirt-gobject-1.0

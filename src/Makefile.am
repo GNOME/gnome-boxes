@@ -34,6 +34,7 @@ AM_VALAFLAGS =						\
 	--pkg libarchive				\
 	--pkg libsoup-2.4				\
 	--pkg libosinfo-1.0				\
+	--pkg libovf-glib-0.1				\
 	--pkg libvirt-gconfig-1.0			\
 	--pkg libvirt-gobject-1.0			\
 	--pkg libxml-2.0				\

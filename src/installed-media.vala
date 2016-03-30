@@ -7,6 +7,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
                                                    ".qcow", ".qcow.gz",
                                                    ".img", ".img.gz",
                                                    ".cow", ".cow.gz",
+                                                   ".ova", ".ova.gz",
                                                    ".vdi", ".vdi.gz",
                                                    ".vmdk", ".vmdk.gz",
                                                    ".vpc", ".vpc.gz",
@@ -79,6 +80,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     // Also converts to native format (QCOW2)
     public async void copy (string destination_path) throws GLib.Error {
         var decompressed = yield decompress ();
+        var extracted = yield extract_ovf ();
 
         string[] argv = { "qemu-img", "convert", "-O", "qcow2", device_file, destination_path };
 
@@ -91,7 +93,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         yield exec (argv, null);
         debug ("Finished copying '%s' to '%s'", device_file, destination_path);
 
-        if (decompressed) {
+        if (decompressed || extracted) {
             // We decompressed into a temporary location
             var file = File.new_for_path (device_file);
             delete_file (file);
@@ -153,6 +155,23 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         date.set_day ((GLib.DateDay) int.parse (date_str[6:8]));
 
         return date;
+    }
+
+    private async bool extract_ovf () throws GLib.Error {
+        if (!device_file.has_suffix (".ova"))
+            return false;
+
+        var ovf_package = new Ovf.Package ();
+        ovf_package.load_from_ova_file (device_file);
+        var disks = ovf_package.get_disks ();
+        var extracted_path = "/var/tmp/Fedora_23.vmdk";
+        ovf_package.extract_disk (disks [0], extracted_path);
+
+        debug ("Extracted '%s' from '%s'.", extracted_path, device_file);
+
+        device_file = extracted_path;
+
+        return true;
     }
 
     private async bool decompress () throws GLib.Error {
