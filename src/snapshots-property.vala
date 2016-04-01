@@ -88,8 +88,7 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
 
     private async void fetch_snapshots () {
         try {
-            yield machine.properties.fetch_snapshots (null);
-            var snapshots = machine.properties.get_snapshots ();
+            var snapshots = yield machine.properties.get_snapshots (null);
 
             foreach (var snapshot in snapshots) {
                 var row = new SnapshotListRow (snapshot, machine);

@@ -674,11 +674,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
     }
 
-    public async void fetch_snapshots (GLib.Cancellable? cancellable) throws GLib.Error {
+    public async List<GVir.DomainSnapshot>? get_snapshots (GLib.Cancellable? cancellable) throws GLib.Error {
         yield machine.domain.fetch_snapshots_async (GVir.DomainSnapshotListFlags.ALL, cancellable);
-    }
 
-    public List<GVir.DomainSnapshot>? get_snapshots () {
         return machine.domain.get_snapshots ();
     }
 
