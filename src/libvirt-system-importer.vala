@@ -8,7 +8,10 @@ errordomain Boxes.LibvirtSystemImporterError {
 
 private class Boxes.LibvirtSystemImporter: GLib.Object {
     private GVir.Connection connection;
+
     private GLib.List<GVir.Domain> domains;
+    private string[] disk_paths;
+    private GVirConfig.Domain[] configs;
 
     public string wizard_menu_label {
         owned get {
@@ -41,24 +44,23 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
     public async LibvirtSystemImporter () throws GLib.Error {
         connection = yield get_system_virt_connection ();
 
-        domains = system_virt_connection.get_domains ();
-        debug ("Fetched %u domains from system libvirt.", domains.length ());
-        if (domains.length () == 0)
-            throw new LibvirtSystemImporterError.NO_IMPORTS (_("No boxes to import"));
-    }
-
-    public async void import () {
-        GVirConfig.Domain[] configs = {};
-        string[] disk_paths = {};
+        var domains = system_virt_connection.get_domains ();
 
         foreach (var domain in domains) {
-            GVirConfig.Domain config;
-            string disk_path;
-
             try {
+                string disk_path;
+                var config = new GVirConfig.Domain ();
+
                 get_domain_info (domain, out config, out disk_path);
-                configs += config;
-                disk_paths += disk_path;
+
+                var file = File.new_for_path (disk_path);
+                if (file.query_exists ()) {
+                    this.domains.append (domain);
+                    disk_paths += disk_path;
+                    configs += config;
+                } else {
+                    debug ("Could not find a valid disk image for %s", domain.get_name ());
+                }
             } catch (GLib.Error error) {
                 warning ("%s", error.message);
             }
@@ -72,6 +74,12 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             return;
         }
 
+        debug ("Fetched %u domains from system libvirt.", this.domains.length ());
+        if (this.domains.length () == 0)
+            throw new LibvirtSystemImporterError.NO_IMPORTS (_("No boxes to import"));
+    }
+
+    public async void import () {
         for (var i = 0; i < configs.length; i++)
             import_domain.begin (configs[i], disk_paths[i], null);
     }
