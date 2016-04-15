@@ -4,15 +4,15 @@
 # Yaşar Şentürk <yasarix@gmail.com>, 2014.
 # Necdet Yücel <necdetyucel@gmail.com>, 2015.
 # Osman Karagöz <osmank3@gmail.com>, 2015.
-# Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015.
+# Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-13 06:23+0000\n"
-"PO-Revision-Date: 2015-09-13 12:16+0300\n"
+"POT-Creation-Date: 2016-04-15 19:14+0000\n"
+"PO-Revision-Date: 2016-04-15 23:04+0300\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -24,6 +24,16 @@ msgstr ""
 "X-POOTLE-MTIME: 1433229130.000000\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
+#| msgid "Boxes"
+msgid "GNOME Boxes"
+msgstr "GNOME Boxes"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#| msgid "View and use virtual machines"
+msgid "Simple remote and virtual machines"
+msgstr "Basit uzak ve sanal makineler"
+
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:3
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -37,7 +47,7 @@ msgstr ""
 "seçenekleri ayarlayamaz. Bunu yerine Boxes azıcık kullanıcı girdisiyle "
 "kutunun dışında çalışarak birşeyler almaya odaklanmıştır."
 
-#: ../data/org.gnome.Boxes.appdata.xml.in.h:2
+#: ../data/org.gnome.Boxes.appdata.xml.in.h:4
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -51,8 +61,8 @@ msgstr ""
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:126 ../src/app-window.vala:222
-#: ../src/app-window.vala:224 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:129 ../src/app-window.vala:244
+#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Kutular"
 
@@ -120,15 +130,18 @@ msgstr "_Parola"
 msgid "Sign In"
 msgstr "Giriş yap"
 
-#: ../data/ui/collection-filter-switcher.ui.h:1
+#. Translators: this is a switch to show all boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:2
 msgid "All"
 msgstr "Hepsi"
 
-#: ../data/ui/collection-filter-switcher.ui.h:2
+#. Translators: this is a switch to show only local boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:4
 msgid "Local"
 msgstr "Yerel"
 
-#: ../data/ui/collection-filter-switcher.ui.h:3
+#. Translators: this is a switch to show only remote boxes in main view.
+#: ../data/ui/collection-filter-switcher.ui.h:6
 msgid "Remote"
 msgstr "Uzak"
 
@@ -136,8 +149,8 @@ msgstr "Uzak"
 msgid "_New"
 msgstr "Ye_ni"
 
-#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/properties-toolbar.ui.h:2
-#: ../data/ui/wizard-toolbar.ui.h:7
+#: ../data/ui/collection-toolbar.ui.h:2 ../data/ui/display-toolbar.ui.h:1
+#: ../data/ui/properties-toolbar.ui.h:2 ../data/ui/wizard-toolbar.ui.h:7
 msgid "Back"
 msgstr "Geri"
 
@@ -157,6 +170,20 @@ msgstr "Tablo görünümü"
 msgid "Search"
 msgstr "Arama"
 
+#: ../data/ui/display-toolbar.ui.h:2
+#| msgid "Collections"
+msgid "Actions"
+msgstr "Eylemler"
+
+#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:124
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: ../data/ui/display-toolbar.ui.h:4 ../src/display-toolbar.vala:54
+#| msgid "Open in full screen"
+msgid "Fullscreen"
+msgstr "Tam Ekran"
+
 #: ../data/ui/empty-boxes.ui.h:1
 msgid "State of the art virtualization"
 msgstr "Son teknoloji ürünü sanallaştırma"
@@ -168,6 +195,77 @@ msgstr "Kutular sanal yada uzak makineler olabilir."
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
 msgstr "İlk kutunuzu oluşturmak için <b>Yeni</b> düğmesine basın."
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:1
+#| msgid "Review"
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Genel Görünüm"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:2
+#| msgid "Help"
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Yardım"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:3
+#| msgid "Create a box"
+msgctxt "shortcut window"
+msgid "Create a new box"
+msgstr "Yeni bir kutu oluştur"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:4
+#| msgid "Search"
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Ara"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:5
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Klavye kısayolları"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:6
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "Pencereyi Kapat/Boxes'tan Çık"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:7
+#| msgid "Box creation failed"
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "Kutu Oluşturma ve Özellikler"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:8
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "Sonraki sayfaya geç"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:9
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "Önceki sayfaya geç"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:10
+#| msgid "Display URI"
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr ""
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:11
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "Klavyeyi Yakala/Bırak"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:12
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "Genel görünüme dön"
+
+#: ../data/ui/kbd-shortcuts-window.ui.h:13
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Tam ekran/Tam ekrandan çık"
 
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -238,23 +336,24 @@ msgid ""
 msgstr ""
 "Kutuyu uygun ayarlarla otomatik yapılandırmak için hızlı kurulumu seçin."
 
-#: ../data/ui/unattended-setup-box.ui.h:2
+#. Translators:
+#: ../data/ui/unattended-setup-box.ui.h:3
 msgid "Express Install"
 msgstr "Hızlı Kurulum"
 
-#: ../data/ui/unattended-setup-box.ui.h:3 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Parola"
 
-#: ../data/ui/unattended-setup-box.ui.h:5
+#: ../data/ui/unattended-setup-box.ui.h:6
 msgid "_Add Password"
 msgstr "P_arola Ekle"
 
-#: ../data/ui/unattended-setup-box.ui.h:6
+#: ../data/ui/unattended-setup-box.ui.h:7
 msgid "Product Key"
 msgstr "Ürün Anahtarı"
 
@@ -383,78 +482,78 @@ msgstr "Özellikler"
 msgid "Pausing '%s' failed"
 msgstr "'%s'in duraklatılması başarısız oldu"
 
-#: ../src/app.vala:101
+#: ../src/app.vala:103
 msgid "translator-credits"
 msgstr ""
 "Muhammet Kara <muhammetk@gmail.com>\n"
 "Osman Karagöz <osmank3@gmail.com>"
 
-#: ../src/app.vala:102
+#: ../src/app.vala:104
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Uzak ya da sanal sistemlere erişmek için basit bir GNOME 3 uygulaması"
 
-#: ../src/app.vala:121
+#: ../src/app.vala:123
 msgid "Help"
 msgstr "Yardım"
 
-#: ../src/app.vala:122
+#: ../src/app.vala:125
 msgid "About"
 msgstr "Hakkında"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:126
 msgid "Quit"
 msgstr "Çık"
 
-#: ../src/app.vala:181 ../src/main.vala:9
+#: ../src/app.vala:178 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Sürüm numarasını göster"
 
-#: ../src/app.vala:183
+#: ../src/app.vala:180
 msgid "Open in full screen"
 msgstr "Tam ekran kipinde aç"
 
-#: ../src/app.vala:184 ../src/main.vala:10
+#: ../src/app.vala:181 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Sanallaştırma olanaklarını denetle"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:182
 msgid "Open box with UUID"
 msgstr "Kutuyu UUID ile aç"
 
-#: ../src/app.vala:186
+#: ../src/app.vala:183
 msgid "Search term"
 msgstr "Arama terimi"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:188
+#: ../src/app.vala:185
 msgid "URI to display, broker or installer media"
 msgstr "Ekran, yönetici veya kurulum ortamına ait URI"
 
-#: ../src/app.vala:199
+#: ../src/app.vala:196
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- Uzak veya sanal makinelere erişmek için basit bir uygulama"
 
-#: ../src/app.vala:221
+#: ../src/app.vala:218
 msgid "Too many command line arguments specified.\n"
 msgstr "Çok fazla komut satırı argümanı belirtildi.\n"
 
-#: ../src/app.vala:431
+#: ../src/app.vala:443
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "'%s' kutusu kuruldu ve kullanıma hazır"
 
-#: ../src/app.vala:519
+#: ../src/app.vala:531
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "'%s' kutusu silindi"
 
-#: ../src/app.vala:520
+#: ../src/app.vala:532
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u kutu silindi"
 
-#: ../src/app.vala:547 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:559 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Geri Al"
 
@@ -472,6 +571,11 @@ msgstr "Klavyeyi bırakmak için (sol) Ctrl+Alt tuşlarına basıp çekin."
 msgid "%dx%d"
 msgstr "%dx%d"
 
+#: ../src/display-toolbar.vala:51
+#| msgid "Open in full screen"
+msgid "Exit fullscreen"
+msgstr "Tam ekrandan çık"
+
 #: ../src/icon-view.vala:56
 msgid "New and Recent"
 msgstr "Yeni ve Son"
@@ -480,7 +584,7 @@ msgstr "Yeni ve Son"
 msgid "Unsupported disk image format."
 msgstr "Desteklenmeyen disk kalıbı biçimi."
 
-#: ../src/installed-media.vala:108 ../src/installer-media.vala:109
+#: ../src/installed-media.vala:108 ../src/installer-media.vala:112
 #: ../src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
@@ -538,99 +642,101 @@ msgstr "IP Adresi"
 msgid "Broker"
 msgstr "Yönetici"
 
-#: ../src/libvirt-machine-properties.vala:134
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: ../src/libvirt-machine-properties.vala:135
 msgid "Display Protocol"
 msgstr "İletişim Kuralı Göster"
 
-#: ../src/libvirt-machine-properties.vala:135
+#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:137
 msgid "Display URI"
 msgstr "Kaynak Tanımlayıcı (URI) Göster"
 
 #. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
 #. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:187
-#: ../src/libvirt-machine-properties.vala:205
+#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:207
 msgid "Add support to guest"
 msgstr "Misafir desteği ekle"
 
-#: ../src/libvirt-machine-properties.vala:189
+#: ../src/libvirt-machine-properties.vala:191
 msgid "USB device support"
 msgstr "USB aygıtı desteği"
 
-#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:209
 msgid "Smartcard support"
 msgstr "Akıllı kart desteği"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:259
-#: ../src/libvirt-machine-properties.vala:311
+#: ../src/libvirt-machine-properties.vala:261
+#: ../src/libvirt-machine-properties.vala:313
 msgid "empty"
 msgstr "boş"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:268
-#: ../src/libvirt-machine-properties.vala:320
+#: ../src/libvirt-machine-properties.vala:270
+#: ../src/libvirt-machine-properties.vala:322
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:282
-#: ../src/libvirt-machine-properties.vala:310
+#: ../src/libvirt-machine-properties.vala:284
+#: ../src/libvirt-machine-properties.vala:312
 msgid "_Select"
 msgstr "_Seç"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:293
+#: ../src/libvirt-machine-properties.vala:287
+#: ../src/libvirt-machine-properties.vala:295
 msgid "_Remove"
 msgstr "Kaldı_r"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:300
+#: ../src/libvirt-machine-properties.vala:302
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "'%s' diski '%s' kutusuna CD/DVD olarak takılamadı"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:316
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "'%s' kutusundan CD/DVD çıkarılamadı"
 
-#: ../src/libvirt-machine-properties.vala:384
+#: ../src/libvirt-machine-properties.vala:386
 msgid "CPU"
 msgstr "MİB"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:390
+#: ../src/libvirt-machine-properties.vala:392
 msgid "I/O"
 msgstr "G/Ç"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:396
+#: ../src/libvirt-machine-properties.vala:398
 msgid "Network"
 msgstr "Ağ"
 
-#: ../src/libvirt-machine-properties.vala:425 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "Yeniden Ba_şlat"
 
-#: ../src/libvirt-machine-properties.vala:433
+#: ../src/libvirt-machine-properties.vala:435
 msgid "_Force Shutdown"
 msgstr "Kapanmaya _Zorla"
 
-#: ../src/libvirt-machine-properties.vala:447
+#: ../src/libvirt-machine-properties.vala:449
 msgid "_Troubleshooting Log"
 msgstr "Sorun Giderme G_ünlüğü"
 
-#: ../src/libvirt-machine-properties.vala:468
+#: ../src/libvirt-machine-properties.vala:470
 msgid "_Memory: "
 msgstr "_Bellek: "
 
-#: ../src/libvirt-machine-properties.vala:536
+#: ../src/libvirt-machine-properties.vala:539
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -639,27 +745,27 @@ msgstr ""
 "<span color=\"grey\">Azami Disk Boyutu</span>\t\t %s <span color=\"grey"
 "\">(%s kullanıldı)</span>"
 
-#: ../src/libvirt-machine-properties.vala:552
+#: ../src/libvirt-machine-properties.vala:555
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Azami disk boyununu artırmak için makinenizde yeterli alan yok."
 
-#: ../src/libvirt-machine-properties.vala:561
+#: ../src/libvirt-machine-properties.vala:564
 msgid "Maximum _Disk Size: "
 msgstr "Azami _Disk Boyutu: "
 
-#: ../src/libvirt-machine-properties.vala:694
+#: ../src/libvirt-machine-properties.vala:689
 msgid "_Run in background"
 msgstr "Arka planda çalıştı_r"
 
-#: ../src/libvirt-machine-properties.vala:705
-#: ../src/libvirt-machine-properties.vala:708
+#: ../src/libvirt-machine-properties.vala:700
+#: ../src/libvirt-machine-properties.vala:703
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "'%s' otomatik olarak duraklatılmayacak."
 
-#: ../src/libvirt-machine-properties.vala:706
-#: ../src/libvirt-machine-properties.vala:709
+#: ../src/libvirt-machine-properties.vala:701
+#: ../src/libvirt-machine-properties.vala:704
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "Kaynakları korumak için '%s' otomatik olarak duraklatılacak."
@@ -676,84 +782,84 @@ msgstr "%s diskten geri yükleniyor"
 msgid "Starting %s"
 msgstr "%s başlatılıyor"
 
-#: ../src/libvirt-machine.vala:656
+#: ../src/libvirt-machine.vala:664
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "'%s'in yeniden başlatılması çok zaman alıyor. Zorla kapatılsın mı?"
 
-#: ../src/libvirt-machine.vala:658
+#: ../src/libvirt-machine.vala:666
 msgid "_Shutdown"
 msgstr "_Kapat"
 
-#: ../src/libvirt-machine.vala:730
+#: ../src/libvirt-machine.vala:750
 msgid "Installing…"
 msgstr "Kuruluyor..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:732 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Çalışan"
 
-#: ../src/libvirt-machine.vala:734
+#: ../src/libvirt-machine.vala:754
 msgid "Importing…"
 msgstr "İçe aktarılıyor..."
 
-#: ../src/libvirt-machine.vala:743 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
 #, c-format
 msgid "host: %s"
 msgstr "ana makine: %s"
 
-#: ../src/libvirt-system-importer.vala:18
+#: ../src/libvirt-system-importer.vala:21
 #, c-format
 msgid "_Import '%s' from system broker"
 msgstr "Sistem yöneticisinden '%s' ak_tar"
 
 #. Translators: %u here is the number of boxes available for import
-#: ../src/libvirt-system-importer.vala:21
+#: ../src/libvirt-system-importer.vala:24
 #, c-format
 msgid "_Import %u box from system broker"
 msgid_plural "_Import %u boxes from system broker"
 msgstr[0] "Sistem yöneticisinden %u adet kutu ak_tar"
 
-#: ../src/libvirt-system-importer.vala:32
+#: ../src/libvirt-system-importer.vala:35
 #, c-format
 msgid "Will import '%s' from system broker"
 msgstr "Sistem yöneticisinden '%s' aktarılacak"
 
 #. Translators: %u here is the number of boxes available for import
-#: ../src/libvirt-system-importer.vala:35
+#: ../src/libvirt-system-importer.vala:38
 #, c-format
 msgid "Will import %u box from system broker"
 msgid_plural "Will import %u boxes from system broker"
 msgstr[0] "Sistem yöneticisinden %u adet kutu aktarılacak"
 
-#: ../src/libvirt-system-importer.vala:47
+#: ../src/libvirt-system-importer.vala:79
 msgid "No boxes to import"
 msgstr "Aktarmak için kutu yok"
 
-#: ../src/libvirt-system-importer.vala:121
+#: ../src/libvirt-system-importer.vala:129
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "'%s' kutusu için uygun disk aktarılamadı"
 
-#: ../src/list-view-row.vala:124
+#: ../src/list-view-row.vala:128
 msgid "Connected"
 msgstr "Bağlandı"
 
-#: ../src/list-view-row.vala:124
+#: ../src/list-view-row.vala:128
 msgid "Disconnected"
 msgstr "Bağlantı kesildi"
 
-#: ../src/list-view-row.vala:131
+#: ../src/list-view-row.vala:134
 msgid "Running"
 msgstr "Çalışıyor"
 
-#: ../src/list-view-row.vala:138
+#: ../src/list-view-row.vala:140
 msgid "Paused"
 msgstr "Duraklatıldı"
 
-#: ../src/list-view-row.vala:144
+#: ../src/list-view-row.vala:145
 msgid "Powered Off"
 msgstr "Kapatıldı"
 
@@ -763,16 +869,16 @@ msgstr "Kapatıldı"
 msgid "Connecting to %s"
 msgstr "%s'e bağlanılıyor"
 
-#: ../src/machine.vala:217 ../src/machine.vala:611
+#: ../src/machine.vala:218 ../src/machine.vala:614
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "'%s'e bağlanılamadı"
 
-#: ../src/machine.vala:412
+#: ../src/machine.vala:413
 msgid "Saving…"
 msgstr "Kaydediliyor..."
 
-#: ../src/machine.vala:597
+#: ../src/machine.vala:600
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -781,17 +887,17 @@ msgstr ""
 "'%s' diksten geri yüklenemedi\n"
 "Kaydedilmemiş durumla denensin mi?"
 
-#: ../src/machine.vala:598
+#: ../src/machine.vala:601
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
-#: ../src/machine.vala:607
+#: ../src/machine.vala:610
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "'%s' başlatılamadı"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:640
+#: ../src/machine.vala:643
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' doğrulama gerektiriyor"
@@ -882,7 +988,14 @@ msgid "_URI"
 msgstr "Kaynak Tanımlayıcı (_URI)"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152 ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:152
+#| msgid "_Open in new window"
+#| msgid_plural "_Open in %d new windows"
+msgctxt "0 items selected"
+msgid "_Open in new window"
+msgstr "_Yeni pencerede aç"
+
+#: ../src/selectionbar.vala:154
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1029,21 +1142,21 @@ msgstr ""
 "%s libvirt'e GNOME Kutular'ın depolama havuzu olarak bildirilmiş ama "
 "kullanıcı tarafından okunabilir/yazılabilir değil"
 
-#: ../src/util.vala:341
+#: ../src/util.vala:327
 msgid "yes"
 msgstr "evet"
 
-#: ../src/util.vala:341
+#: ../src/util.vala:327
 msgid "no"
 msgstr "hayır"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:557
+#: ../src/vm-configurator.vala:556
 msgid "Incapable host system"
 msgstr "Yetersiz sunucu sistemi"
 
-#: ../src/vm-creator.vala:170
+#: ../src/vm-creator.vala:175
 #, c-format
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Çalışan '%s' kutusu otomatik olarak silindi."
@@ -1203,9 +1316,6 @@ msgstr "_Özelleştir…"
 #~ "<b><i>Ağ üzerinden</i></b> bir makineye bağlanabilir veya "
 #~ "bilgisayarınızda çalışacak bir <b><i>sanal makine</i></b> "
 #~ "oluşturabilirsiniz."
-
-#~ msgid "Create a box"
-#~ msgstr "Kutu oluştur"
 
 #~ msgid "Create a box (step %d/4)"
 #~ msgstr "Kutu oluştur (adım %d/4)"
