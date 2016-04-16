@@ -53,12 +53,12 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             action.set_enabled (machine.is_running);
         }
 
-        // Pause
-        section.append (_("Pause"), "box.pause");
-        var action = action_group.lookup_action ("pause") as GLib.SimpleAction;
-        action.set_enabled (machine.can_save);
-
         if (window.ui_state != UIState.DISPLAY) {
+            // Pause
+            section.append (_("Pause"), "box.pause");
+            var action = action_group.lookup_action ("pause") as GLib.SimpleAction;
+            action.set_enabled (machine.can_save);
+
             // Delete
             section.append (_("Delete"), "box.delete");
             action = action_group.lookup_action ("delete") as GLib.SimpleAction;
