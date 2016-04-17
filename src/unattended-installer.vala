@@ -123,7 +123,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     public override void prepare_to_continue_installation (string vm_name) {
-        this.hostname = vm_name.replace (" ", "-");
+        /*
+         * A valid hostname format should be provided by libosinfo.
+         * See: https://bugzilla.redhat.com/show_bug.cgi?id=1328236
+         */
+        this.hostname = replace_regex(vm_name, "[{|}~[\\]^':; <=>?@!\"#$%`()+/.,*&]", "");
 
         var path = get_user_unattended ("unattended.img");
         disk_file = File.new_for_path (path);
