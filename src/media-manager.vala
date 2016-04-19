@@ -198,9 +198,9 @@ private class Boxes.MediaManager : Object {
             if (media_b.os == null)
                 return 0;
             else
-                return 1;
+                return -1;
         } else if (media_b.os == null)
-            return -1;
+            return 1;
         else {
             var release_a = media_a.os.get_release_date ();
             var release_b = media_b.os.get_release_date ();
@@ -209,11 +209,11 @@ private class Boxes.MediaManager : Object {
                 if (release_b == null)
                     return 0;
                 else
-                    return 1;
+                    return -1;
             } else if (release_b == null)
-                return -1;
+                return 1;
             else
-                return release_a.compare (release_b);
+                return -release_a.compare (release_b);
         }
     }
 
