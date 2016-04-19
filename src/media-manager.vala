@@ -145,7 +145,7 @@ private class Boxes.MediaManager : Object {
                             continue;
                     }
 
-                    list.insert_sorted (media, compare_media_by_label);
+                    list.insert_sorted (media, compare_media_by_vendor);
                 } catch (GLib.Error error) {
                     warning ("Failed to use ISO '%s': %s", path, error.message);
                 }
@@ -214,6 +214,25 @@ private class Boxes.MediaManager : Object {
                 return 1;
             else
                 return -release_a.compare (release_b);
+        }
+    }
+
+    private static int compare_media_by_vendor (InstallerMedia media_a, InstallerMedia media_b) {
+        if (media_a.os == null) {
+            if (media_b.os == null)
+                return 0;
+            else
+                return 1;
+        } else if (media_b.os == null)
+            return -1;
+        else {
+            var vendor_comparison = strcmp (media_a.os.get_vendor (), media_b.os.get_vendor ());
+
+            if (vendor_comparison == 0)
+                // Within each vendor, list latest release date first
+                return compare_media_by_release_date (media_a, media_b);
+            else
+                return vendor_comparison;
         }
     }
 
