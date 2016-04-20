@@ -3,6 +3,8 @@ using Ovirt;
 using Gtk;
 
 private class Boxes.OvirtMachine: Boxes.Machine {
+    public override bool can_restart { get { return false; } }
+
     private Ovirt.Vm vm;
     private Ovirt.Proxy proxy;
 

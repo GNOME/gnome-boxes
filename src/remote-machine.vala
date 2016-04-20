@@ -2,6 +2,7 @@
 using Gtk;
 
 private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
+    public override bool can_restart { get { return false; } }
 
     public RemoteMachine (CollectionSource source) throws Boxes.Error {
         if (source.source_type != "spice" &&
