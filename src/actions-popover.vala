@@ -7,7 +7,8 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"pause",           pause_activated},
         {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
-        {"properties",      properties_activated}
+        {"properties",      properties_activated},
+        {"restart",         restart_activated}
     };
 
     private AppWindow window;
@@ -63,6 +64,10 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Delete"), "box.delete");
             action = action_group.lookup_action ("delete") as GLib.SimpleAction;
             action.set_enabled (machine.can_delete);
+        } else {
+            section.append (_("Restart"), "box.restart");
+            var action = action_group.lookup_action ("restart") as GLib.SimpleAction;
+            action.set_enabled (machine.can_restart);
         }
 
         menu.append_section (null, section);
@@ -102,6 +107,10 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var machine = window.current_item as LibvirtMachine;
 
         machine.force_shutdown ();
+    }
+
+    private void restart_activated () {
+        (window.current_item as Machine).restart ();
     }
 
     private void delete_activated () {
