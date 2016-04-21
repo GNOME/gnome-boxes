@@ -133,6 +133,15 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         config.save_properties (gtk_session, gtk_session_saved_properties);
     }
 
+    public SpiceDisplay.priv (Machine machine, BoxConfig config) {
+        this.machine = machine;
+        machine.notify["ui-state"].connect (ui_state_changed);
+
+        this.config = config;
+
+        config.save_properties (gtk_session, gtk_session_saved_properties);
+    }
+
     public override Gtk.Widget get_display (int n) {
         var display = displays.lookup (n) as Spice.Display;
 
