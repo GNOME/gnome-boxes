@@ -5,7 +5,7 @@ using LibUSB;
 
 private class Boxes.SpiceDisplay: Boxes.Display {
     public override string protocol { get { return "SPICE"; } }
-    public override string uri { owned get { return session.uri; } }
+    public override string? uri { owned get { return session.uri; } }
     public GLib.ByteArray ca_cert { owned get { return session.ca; } set { session.ca = value; } }
 
     private weak Machine machine; // Weak ref for avoiding cyclic ref

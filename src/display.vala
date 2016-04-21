@@ -3,7 +3,7 @@ using Gtk;
 
 private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public abstract string protocol { get; }
-    public abstract string uri { owned get; }
+    public abstract string? uri { owned get; }
 
     public BoxConfig? config { get; protected set; }
     public bool can_grab_mouse { get; protected set; }
