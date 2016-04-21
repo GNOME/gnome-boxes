@@ -245,9 +245,12 @@ private class Boxes.VMConfigurator {
         // First remove existing network interface device
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
+        DomainGraphicsSpice graphics = null;
         foreach (var device in domain.get_devices ()) {
             if (device is DomainInterface)
                 iface = device as DomainInterface;
+            else if (device is DomainGraphicsSpice)
+                graphics = device as DomainGraphicsSpice;
             else
                 devices.prepend (device);
         }
@@ -261,6 +264,9 @@ private class Boxes.VMConfigurator {
 
             add_network_interface (domain, bridge, virtio);
         }
+
+        if (graphics != null)
+            add_graphics_device (domain);
     }
 
     public static void set_target_media_config (Domain         domain,
