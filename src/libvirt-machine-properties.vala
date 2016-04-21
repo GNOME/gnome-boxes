@@ -133,8 +133,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             if (machine.display != null) {
                 // Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
                 add_string_property (ref list, _("Display Protocol"), machine.display.protocol);
-                // Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
-                add_string_property (ref list, _("Display URI"), machine.display.uri);
+                if (machine.display.uri != null)
+                    // Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
+                    add_string_property (ref list, _("Display URI"), machine.display.uri);
             }
 
             break;
