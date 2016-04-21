@@ -485,7 +485,7 @@ private class Boxes.VMConfigurator {
 
     public static void add_graphics_device (Domain domain) {
         var graphics = new DomainGraphicsSpice ();
-        graphics.set_autoport (true);
+        graphics.set_autoport (false);
         graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
         domain.add_device (graphics);
     }
