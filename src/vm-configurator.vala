@@ -71,10 +71,7 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        var graphics = new DomainGraphicsSpice ();
-        graphics.set_autoport (true);
-        graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
-        domain.add_device (graphics);
+        add_graphics_device (domain);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
         var channel = new DomainChannel ();
@@ -484,6 +481,13 @@ private class Boxes.VMConfigurator {
             iface.set_model ("virtio");
 
         domain.add_device (iface);
+    }
+
+    public static void add_graphics_device (Domain domain) {
+        var graphics = new DomainGraphicsSpice ();
+        graphics.set_autoport (true);
+        graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
+        domain.add_device (graphics);
     }
 
     private static DomainControllerUsb create_usb_controller (DomainControllerUsbModel model,
