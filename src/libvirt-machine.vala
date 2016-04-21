@@ -400,23 +400,27 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     private Display? create_display () throws Boxes.Error {
-        string type, port, socket, host;
+        string type, port_str, socket, host;
 
         var xmldoc = domain_config.to_xml ();
         type = extract_xpath (xmldoc, "string(/domain/devices/graphics/@type)", true);
-        port = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
+        port_str = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@port)");
         socket = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@socket)");
         host = extract_xpath (xmldoc, @"string(/domain/devices/graphics[@type='$type']/@listen)");
+        var port = int.parse (port_str);
 
         if (host == null || host == "")
             host = "localhost";
 
         switch (type) {
         case "spice":
-            return new SpiceDisplay (this, config, host, int.parse (port));
+            if (port > 0)
+                return new SpiceDisplay (this, config, host, port);
+            else
+                return new SpiceDisplay.priv (this, config);
 
         case "vnc":
-            return new VncDisplay (config, host, int.parse (port));
+            return new VncDisplay (config, host, port);
 
         default:
             throw new Boxes.Error.INVALID ("unsupported display of type " + type);
