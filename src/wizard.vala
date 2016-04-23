@@ -110,10 +110,12 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
                 case WizardPage.LAST:
                     create.begin ((obj, result) => {
-                       if (create.end (result))
+                       if (create.end (result)) {
                           window.set_state (UIState.COLLECTION);
-                       else
+                          wizard_source.page = SourcePage.MAIN;
+                       } else {
                           window.notificationbar.display_error (_("Box creation failed"));
+                       }
                     });
                     return;
                 }
