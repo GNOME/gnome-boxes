@@ -321,7 +321,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
 
-        if (uri.scheme == "spice" || uri.scheme.has_prefix("spice+")) {
+        if (uri.scheme.has_prefix ("spice")) {
             spice_validate_uri (uri_as_text);
             source.source_type = "spice";
         } else if (uri.scheme == "vnc") {
