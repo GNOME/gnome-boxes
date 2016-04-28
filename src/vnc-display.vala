@@ -106,10 +106,6 @@ private class Boxes.VncDisplay: Boxes.Display {
     public override void set_enable_audio (bool enable) {
     }
 
-    public override void set_enable_inputs (Gtk.Widget widget, bool enable) {
-        (widget as Vnc.Display).read_only = !enable;
-    }
-
     public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
         return display.get_pixbuf ();
     }

@@ -192,10 +192,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session.enable_audio = enable;
     }
 
-    public override void set_enable_inputs (Gtk.Widget widget, bool enable) {
-        (widget as Spice.Display).disable_inputs = !enable;
-    }
-
     public override Gdk.Pixbuf? get_pixbuf (int n) {
         var display = get_display (n) as Spice.Display;
 
