@@ -153,7 +153,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         case Boxes.UIState.DISPLAY:
             var widget = display.get_display (0);
             widget_remove (widget);
-            display.set_enable_inputs (widget, true);
             window.display_page.show_display (display, widget);
             widget.grab_focus ();
 
@@ -162,7 +161,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         case Boxes.UIState.PROPERTIES:
             var widget = display.get_display (0);
             widget_remove (widget);
-            display.set_enable_inputs (widget, true);
             window.display_page.replace_display (display, widget);
             break;
         }
