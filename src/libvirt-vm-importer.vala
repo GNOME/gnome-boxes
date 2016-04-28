@@ -15,7 +15,7 @@ private class Boxes.LibvirtVMImporter : Boxes.VMImporter {
     }
 
     protected override void create_domain_base_name_and_title (out string base_name, out string base_title) {
-        var media = install_media as LibvirtSystemMedia;
+        var media = install_media as LibvirtMedia;
 
         base_name = media.domain_config.name;
         base_title = media.domain_config.title?? base_name;
@@ -25,7 +25,7 @@ private class Boxes.LibvirtVMImporter : Boxes.VMImporter {
                                                           string          title,
                                                           GVir.StorageVol volume,
                                                           Cancellable?    cancellable) throws GLib.Error {
-        var media = install_media as LibvirtSystemMedia;
+        var media = install_media as LibvirtMedia;
         var config = media.domain_config;
 
         config.name = name;

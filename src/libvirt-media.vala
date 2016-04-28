@@ -2,7 +2,7 @@
 
 using GVirConfig;
 
-private class Boxes.LibvirtSystemMedia : Boxes.InstalledMedia {
+private class Boxes.LibvirtMedia : Boxes.InstalledMedia {
     protected override string? architecture {
         owned get {
             return domain_config.get_os ().get_arch ();
@@ -11,7 +11,7 @@ private class Boxes.LibvirtSystemMedia : Boxes.InstalledMedia {
 
     public Domain domain_config { get; private set; }
 
-    public LibvirtSystemMedia (string path, Domain domain_config) throws GLib.Error {
+    public LibvirtMedia (string path, Domain domain_config) throws GLib.Error {
         base (path);
 
         this.domain_config = domain_config;

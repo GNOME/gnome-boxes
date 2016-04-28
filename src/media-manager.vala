@@ -43,7 +43,7 @@ private class Boxes.MediaManager : Object {
             if (VMConfigurator.is_import_config (config))
                 return yield new InstalledMedia.guess_os (path, this);
             else if (VMConfigurator.is_libvirt_system_import_config (config))
-                return new LibvirtSystemMedia (path, config);
+                return new LibvirtMedia (path, config);
         } catch (GLib.Error error) {
                 debug ("%s", error.message);
 

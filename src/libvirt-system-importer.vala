@@ -99,7 +99,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
         debug ("Importing '%s' from system libvirt..", config.name);
 
         try {
-            var media = new LibvirtSystemMedia (disk_path, config);
+            var media = new LibvirtMedia (disk_path, config);
             var vm_importer = media.get_vm_creator ();
             var machine = yield vm_importer.create_vm (cancellable);
             vm_importer.launch_vm (machine);
