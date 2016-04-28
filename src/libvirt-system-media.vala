@@ -23,6 +23,6 @@ private class Boxes.LibvirtSystemMedia : Boxes.InstalledMedia {
     }
 
     public override VMCreator get_vm_creator () {
-        return new LibvirtSystemVMImporter (this);
+        return new LibvirtVMImporter (this);
     }
 }

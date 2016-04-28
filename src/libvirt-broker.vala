@@ -95,7 +95,7 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
                 new VMImporter.for_import_completion (machine);
             } else if (VMConfigurator.is_libvirt_system_import_config (config)) {
                 debug ("Continuing import of '%s', ..", machine.name);
-                new LibvirtSystemVMImporter.for_import_completion (machine);
+                new LibvirtVMImporter.for_import_completion (machine);
             }
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);

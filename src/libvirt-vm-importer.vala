@@ -3,13 +3,13 @@
 using Osinfo;
 using GVirConfig;
 
-private class Boxes.LibvirtSystemVMImporter : Boxes.VMImporter {
-    public LibvirtSystemVMImporter (InstalledMedia source_media) {
+private class Boxes.LibvirtVMImporter : Boxes.VMImporter {
+    public LibvirtVMImporter (InstalledMedia source_media) {
         base (source_media);
         start_after_import = false;
     }
 
-    public LibvirtSystemVMImporter.for_import_completion (LibvirtMachine machine) {
+    public LibvirtVMImporter.for_import_completion (LibvirtMachine machine) {
         base.for_install_completion (machine);
         start_after_import = false;
     }
