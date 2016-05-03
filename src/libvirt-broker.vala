@@ -71,6 +71,12 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
 
     // New == Added after Boxes launch
     private async void try_add_new_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain) {
+        if (domain.get_name ().has_prefix ("guestfs-")) {
+            debug ("Ignoring guestfs domain '%s'", domain.get_name ());
+
+            return;
+        }
+
         try {
             yield add_domain (source, connection, domain);
         } catch (GLib.Error error) {
