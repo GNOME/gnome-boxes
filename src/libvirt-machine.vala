@@ -31,7 +31,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     }
 
     public override bool suspend_at_exit { get { return connection == App.app.default_connection && !run_in_bg; } }
-    public override bool can_save { get { return !saving && state != MachineState.SAVED; } }
+    public override bool can_save { get { return !saving && state != MachineState.SAVED && !importing; } }
     protected override bool should_autosave {
         get {
             return (base.should_autosave &&
