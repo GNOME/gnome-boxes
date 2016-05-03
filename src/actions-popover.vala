@@ -7,6 +7,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"pause",           pause_activated},
         {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
+        {"clone",           clone_activated},
         {"properties",      properties_activated},
         {"restart",         restart_activated}
     };
@@ -64,6 +65,11 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Pause"), "box.pause");
             var action = action_group.lookup_action ("pause") as GLib.SimpleAction;
             action.set_enabled (machine.can_save);
+
+            // Clone
+            section.append (_("Clone"), "box.clone");
+            action = action_group.lookup_action ("clone") as GLib.SimpleAction;
+            action.set_enabled (machine.can_clone);
 
             // Delete
             section.append (_("Delete"), "box.delete");
@@ -127,6 +133,10 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         items.append (window.current_item);
 
         App.app.delete_machines_undoable ((owned) items);
+    }
+
+    private void clone_activated () {
+        (window.current_item as Machine).clone.begin ();
     }
 
     private void properties_activated () {
