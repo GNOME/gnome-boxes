@@ -30,6 +30,10 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         yield import_vm (machine);
     }
 
+    protected virtual async void post_import_setup (LibvirtMachine machine) {
+        set_post_install_config (machine);
+    }
+
     private async void import_vm (LibvirtMachine machine) {
         try {
             var destination_path = machine.storage_volume.get_path ();
@@ -50,7 +54,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
             return;
         }
 
-        set_post_install_config (machine);
+        yield post_import_setup (machine);
         if (start_after_import) {
             try {
                 machine.domain.start (0);
