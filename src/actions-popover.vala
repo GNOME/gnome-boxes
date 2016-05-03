@@ -81,6 +81,8 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         section = new GLib.Menu ();
         section.append (_("Properties"), "box.properties");
         menu.append_section (null, section);
+        var action = action_group.lookup_action ("properties") as GLib.SimpleAction;
+        action.set_enabled (!importing);
 
         bind_model (menu, null);
         window.current_item = item;
