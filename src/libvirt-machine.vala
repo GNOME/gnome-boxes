@@ -17,6 +17,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             _vm_creator = value;
             can_delete = !importing;
             under_construction = (value != null && !VMConfigurator.is_live_config (domain_config));
+            notify_property ("importing");
         }
     }
     // If this machine is currently being imported
