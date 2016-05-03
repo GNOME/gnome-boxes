@@ -35,10 +35,10 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         }
     }
 
-    public InstalledMedia (string path) throws GLib.Error {
+    public InstalledMedia (string path, bool known_qcow2 = false) throws GLib.Error {
         var supported = false;
 
-        if (path.has_prefix ("/dev/"))
+        if (known_qcow2 || path.has_prefix ("/dev/"))
             supported = true; // Let's assume it's device file in raw format
         else
             foreach (var extension in supported_extensions) {
