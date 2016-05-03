@@ -144,9 +144,30 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     }
 
     private void update_open_btn () {
-        var items = App.app.selected_items.length ();
+        foreach (var item in App.app.collection.items.data) {
+            var importing_id = item.get_data<ulong> ("importing_id");
+            if (importing_id > 0) {
+                item.disconnect (importing_id);
+                item.set_data<ulong> ("importing_id", 0);
+            }
+        }
 
-        open_btn.sensitive = items > 0;
+        var items = App.app.selected_items.length ();
+        var sensitive = items > 0;
+        foreach (var item in App.app.selected_items) {
+            ulong importing_id = 0;
+            importing_id = item.notify["importing"].connect (() => {
+                update_open_btn ();
+            });
+            item.set_data<ulong> ("importing_id", importing_id);
+
+            if (item is LibvirtMachine && (item as LibvirtMachine).importing) {
+                sensitive = false;
+                break;
+            }
+        }
+        open_btn.sensitive = sensitive;
+
         // Translators: This is a button to open box(es) in new window(s)
         if (items == 0)
             open_btn.label = C_("0 items selected", "_Open in new window");
