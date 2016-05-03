@@ -102,6 +102,9 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             } else if (VMConfigurator.is_libvirt_system_import_config (config)) {
                 debug ("Continuing import of '%s', ..", machine.name);
                 new LibvirtVMImporter.for_import_completion (machine);
+            } else if (VMConfigurator.is_libvirt_cloning_config (config)) {
+                debug ("Continuing cloning of '%s', ..", machine.name);
+                new LibvirtVMCloner.for_cloning_completion (machine);
             }
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);

@@ -33,7 +33,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public override bool suspend_at_exit { get { return connection == App.app.default_connection && !run_in_bg; } }
     public override bool can_save { get { return !saving && state != MachineState.SAVED && !importing; } }
     public override bool can_restart { get { return state == MachineState.RUNNING || state == MachineState.SAVED; } }
-    public override bool can_clone { get { return false; } }
+    public override bool can_clone { get { return !importing; } }
     protected override bool should_autosave {
         get {
             return (base.should_autosave &&
@@ -682,7 +682,33 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         try_shutdown ();
     }
 
-    public override async void clone () {}
+    public override async void clone () {
+        debug ("Cloning '%s'..", domain_config.name);
+        can_delete = false;
+
+        try {
+            // Any better way of cloning the config?
+            var xml = domain_config.to_xml ();
+            var config = new GVirConfig.Domain.from_xml (xml);
+            config.set_uuid (null);
+
+            var media = new LibvirtClonedMedia (storage_volume.get_path (), config);
+            var vm_cloner = media.get_vm_creator ();
+            var cloned = yield vm_cloner.create_vm (null);
+            vm_cloner.launch_vm (cloned);
+
+            ulong under_construct_id = 0;
+            under_construct_id = cloned.notify["under-construction"].connect (() => {
+                if (!cloned.under_construction) {
+                    can_delete = true;
+                    cloned.disconnect (under_construct_id);
+                }
+            });
+        } catch (GLib.Error error) {
+            warning ("Failed to clone %s: %s", domain_config.name, error.message);
+            can_delete = true;
+        }
+    }
 
     public string? get_ip_address () {
         if (system_virt_connection == null || !is_on)

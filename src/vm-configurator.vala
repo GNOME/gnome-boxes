@@ -15,11 +15,13 @@ private class Boxes.VMConfigurator {
     private const string INSTALLATION_STATE = "installation";
     private const string IMPORT_STATE = "importing";
     private const string LIBVIRT_SYS_IMPORT_STATE = "libvirt-system-importing";
+    private const string LIBVIRT_CLONING_STATE = "libvirt-cloning";
     private const string INSTALLED_STATE = "installed";
     private const string LIVE_XML = "<os-state>" + LIVE_STATE + "</os-state>";
     private const string INSTALLATION_XML = "<os-state>" + INSTALLATION_STATE + "</os-state>";
     private const string IMPORT_XML = "<os-state>" + IMPORT_STATE + "</os-state>";
     private const string LIBVIRT_SYS_IMPORT_XML = "<os-state>" + LIBVIRT_SYS_IMPORT_STATE + "</os-state>";
+    private const string LIBVIRT_CLONING_XML = "<os-state>" + LIBVIRT_CLONING_STATE + "</os-state>";
     private const string INSTALLED_XML = "<os-state>" + INSTALLED_STATE + "</os-state>";
 
     private const string OS_ID_XML = "<os-id>%s</os-id>";
@@ -136,6 +138,10 @@ private class Boxes.VMConfigurator {
 
     public static bool is_libvirt_system_import_config (Domain domain) {
         return get_os_state (domain) == LIBVIRT_SYS_IMPORT_STATE;
+    }
+
+    public static bool is_libvirt_cloning_config (Domain domain) {
+        return get_os_state (domain) == LIBVIRT_CLONING_STATE;
     }
 
     public static bool is_boxes_installed (Domain domain) {
@@ -420,6 +426,8 @@ private class Boxes.VMConfigurator {
             custom_xml = INSTALLED_XML;
         else if (install_media is LibvirtMedia)
             custom_xml = LIBVIRT_SYS_IMPORT_XML;
+        else if (install_media is LibvirtClonedMedia)
+            custom_xml = LIBVIRT_CLONING_XML;
         else if (install_media is InstalledMedia)
             custom_xml = IMPORT_XML;
         else
