@@ -33,9 +33,14 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var menu = new GLib.Menu ();
         var section = new GLib.Menu ();
 
+        var importing = (machine is LibvirtMachine && (machine as LibvirtMachine).importing);
+
         // Open in new Window
-        if (window.ui_state != UIState.DISPLAY)
+        if (window.ui_state != UIState.DISPLAY) {
             section.append (_("Open in New Window"), "box.open-in-new-win");
+            var action = action_group.lookup_action ("open-in-new-win") as GLib.SimpleAction;
+            action.set_enabled (!importing);
+        }
 
         // Favorite
         if (("favorite" in machine.config.categories))
