@@ -4,6 +4,7 @@ using Gtk;
 
 private class Boxes.OvirtMachine: Boxes.Machine {
     public override bool can_restart { get { return false; } }
+    public override bool can_clone { get { return false; } }
 
     private Ovirt.Vm vm;
     private Ovirt.Proxy proxy;
@@ -79,6 +80,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
     }
 
     public override void restart () {} // See FIXME on RemoteMachine.restart
+    public override async void clone () {}
 
     private void update_info () {
         var uri = Xml.URI.parse (source.uri);

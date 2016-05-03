@@ -16,6 +16,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public virtual bool can_save { get { return false; } }
     public abstract bool can_restart { get; }
+    public abstract bool can_clone { get; }
     public bool can_delete { get; protected set; default = true; }
     public bool under_construction { get; protected set; default = false; }
 
@@ -359,6 +360,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
 
     public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
     public abstract void restart ();
+    public abstract async void clone ();
 
     public virtual void disconnect_display () {
         if (display == null)

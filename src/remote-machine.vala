@@ -3,6 +3,7 @@ using Gtk;
 
 private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     public override bool can_restart { get { return false; } }
+    public override bool can_clone { get { return false; } }
 
     public RemoteMachine (CollectionSource source) throws Boxes.Error {
         if (source.source_type != "spice" &&
@@ -98,6 +99,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     // FIXME: Implement this. We don't currently need it because we don't set any properties here that requires a
     //        restart and this method is currently used for that purpose only.
     public override void restart () {}
+
+    public override async void clone () {}
 
     private void update_info () {
         var uri = Xml.URI.parse (source.uri);
