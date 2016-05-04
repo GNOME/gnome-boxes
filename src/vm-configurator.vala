@@ -424,10 +424,10 @@ private class Boxes.VMConfigurator {
 
         if (installed)
             custom_xml = INSTALLED_XML;
-        else if (install_media is LibvirtMedia)
-            custom_xml = LIBVIRT_SYS_IMPORT_XML;
         else if (install_media is LibvirtClonedMedia)
             custom_xml = LIBVIRT_CLONING_XML;
+        else if (install_media is LibvirtMedia)
+            custom_xml = LIBVIRT_SYS_IMPORT_XML;
         else if (install_media is InstalledMedia)
             custom_xml = IMPORT_XML;
         else

@@ -85,9 +85,9 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
     }
 
     // Existing == Existed before Boxes was launched
-    private async void try_add_existing_domain (CollectionSource source,
-                                                GVir.Connection  connection,
-                                                GVir.Domain      domain) {
+    private async LibvirtMachine? try_add_existing_domain (CollectionSource source,
+                                                           GVir.Connection  connection,
+                                                           GVir.Domain      domain) {
         try {
             var machine = yield add_domain (source, connection, domain);
             var config = machine.domain_config;
@@ -106,8 +106,12 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
                 debug ("Continuing cloning of '%s', ..", machine.name);
                 new LibvirtVMCloner.for_cloning_completion (machine);
             }
+
+            return machine;
         } catch (GLib.Error error) {
             warning ("Failed to create source '%s': %s", source.name, error.message);
+
+            return null;
         }
     }
 
@@ -124,8 +128,46 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
 
         connections.insert (source.name, connection);
 
-        foreach (var domain in connection.get_domains ())
-            yield try_add_existing_domain (source, connection, domain);
+        var clones = new GLib.List<LibvirtMachine> ();
+        foreach (var domain in connection.get_domains ()) {
+            var machine = yield try_add_existing_domain (source, connection, domain);
+
+            if (VMConfigurator.is_libvirt_cloning_config (machine.domain_config))
+                clones.append (machine);
+        }
+
+        foreach (var clone in clones) {
+            var disk_path = (clone.vm_creator as VMImporter).source_media.device_file;
+            LibvirtMachine? cloned = null;
+
+            foreach (var item in App.app.collection.items.data) {
+                if (!(item is LibvirtMachine))
+                    continue;
+
+                var machine = item as LibvirtMachine;
+                var volume = machine.storage_volume;
+                if (volume != null && volume.get_path () == disk_path) {
+                    cloned = machine;
+
+                    break;
+                }
+            }
+
+            if (cloned == null) {
+                warning ("Failed to find source machine of clone %s", clone.name);
+
+                continue;
+            }
+
+            cloned.can_delete = false;
+            ulong under_construct_id = 0;
+            under_construct_id = clone.notify["under-construction"].connect (() => {
+                if (!clone.under_construction) {
+                    cloned.can_delete = true;
+                    clone.disconnect (under_construct_id);
+                }
+            });
+        }
 
         connection.domain_removed.connect ((connection, domain) => {
             var machine = domain.get_data<LibvirtMachine> ("machine");

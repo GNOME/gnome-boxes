@@ -694,14 +694,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             var media = new LibvirtClonedMedia (storage_volume.get_path (), config);
             var vm_cloner = media.get_vm_creator ();
-            var cloned = yield vm_cloner.create_vm (null);
-            vm_cloner.launch_vm (cloned);
+            var clone_machine = yield vm_cloner.create_vm (null);
+            vm_cloner.launch_vm (clone_machine);
 
             ulong under_construct_id = 0;
-            under_construct_id = cloned.notify["under-construction"].connect (() => {
-                if (!cloned.under_construction) {
+            under_construct_id = clone_machine.notify["under-construction"].connect (() => {
+                if (!clone_machine.under_construction) {
                     can_delete = true;
-                    cloned.disconnect (under_construct_id);
+                    clone_machine.disconnect (under_construct_id);
                 }
             });
         } catch (GLib.Error error) {

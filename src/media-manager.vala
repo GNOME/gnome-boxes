@@ -44,6 +44,8 @@ private class Boxes.MediaManager : Object {
                 return yield new InstalledMedia.guess_os (path, this);
             else if (VMConfigurator.is_libvirt_system_import_config (config))
                 return new LibvirtMedia (path, config);
+            else if (VMConfigurator.is_libvirt_cloning_config (config))
+                return new LibvirtClonedMedia (path, config);
         } catch (GLib.Error error) {
                 debug ("%s", error.message);
 
