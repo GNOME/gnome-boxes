@@ -785,6 +785,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             status = _("Installing…");
         else if (VMConfigurator.is_live_config (domain_config))
             status = _("Live");
+        else if (VMConfigurator.is_libvirt_cloning_config (domain_config))
+            status = _("Setting up clone…");
         else if (VMConfigurator.is_import_config (domain_config))
             status = _("Importing…");
         else
