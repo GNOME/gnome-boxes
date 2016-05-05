@@ -18,6 +18,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             can_delete = !importing;
             under_construction = (value != null && !VMConfigurator.is_live_config (domain_config));
             notify_property ("importing");
+            if (value == null)
+                update_domain_config ();
+            update_status ();
         }
     }
     // If this machine is currently being imported
@@ -213,8 +216,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             state = MachineState.SLEEPING;
         });
         notify["state"].connect (() => {
-            update_status ();
-
             if (state == MachineState.RUNNING) {
                 reconnect_display ();
                 set_stats_enable (true);
