@@ -14,7 +14,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         state = MachineState.RUNNING;
 
         source.bind_property ("name", this, "name", BindingFlags.BIDIRECTIONAL);
-        config.access_last_time = get_real_time ();
 
         load_screenshot ();
         update_info ();
@@ -39,6 +38,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     }
 
     public override async void connect_display (Machine.ConnectFlags flags) throws GLib.Error {
+        config.access_last_time = get_real_time ();
         if (display == null) {
             display = create_display ();
             display.connect_it ();
