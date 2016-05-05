@@ -16,9 +16,9 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         base.for_install_completion (machine);
     }
 
-    public override void launch_vm (LibvirtMachine machine) throws GLib.Error {
+    public override void launch_vm (LibvirtMachine machine, int64 access_last_time = -1) throws GLib.Error {
         machine.vm_creator = this;
-        machine.config.access_last_time = get_real_time ();
+        machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
 
         import_vm.begin (machine);
     }

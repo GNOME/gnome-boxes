@@ -62,7 +62,7 @@ private class Boxes.VMCreator {
         return machine;
     }
 
-    public virtual void launch_vm (LibvirtMachine machine) throws GLib.Error {
+    public virtual void launch_vm (LibvirtMachine machine, int64 access_last_time = -1) throws GLib.Error {
         if (!express_install) {
             ulong signal_id = 0;
 
@@ -81,7 +81,7 @@ private class Boxes.VMCreator {
             machine.domain.start (0);
 
         state_changed_id = machine.notify["state"].connect (on_machine_state_changed);
-        machine.config.access_last_time = get_real_time ();
+        machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
     }
 
     protected virtual async void continue_installation (LibvirtMachine machine) {
