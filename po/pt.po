@@ -2,7 +2,7 @@
 # Copyright © 2012, 2013 gnome-boxes
 # This file is distributed under the same license as the gnome-boxes package.
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2012, 2013, 2014.
-# Tiago Santos <tiagofsantos81@sapo.pt>, 2014, 2015, 2016.
+# Tiago Santos <tiagofsantos81@sapo.pt>, 2014 - 2016.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2015.
 # Sérgio Cardeira <cardeira.sergio@gmail.com>, 2016.
 #
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-30 07:19+0000\n"
-"PO-Revision-Date: 2016-04-30 16:20+0100\n"
+"POT-Creation-Date: 2016-05-05 17:14+0000\n"
+"PO-Revision-Date: 2016-05-10 19:28+0100\n"
 "Last-Translator: Tiago Santos <tiagofsantos81@sapo.pt>\n"
 "Language-Team: Português <gnome_pt@yahoogroups.com>\n"
 "Language: pt\n"
@@ -27,7 +27,6 @@ msgid "GNOME Boxes"
 msgstr "Caixas GNOME"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:2
-#| msgid "View and use virtual machines"
 msgid "Simple remote and virtual machines"
 msgstr "Máquinas virtuais simples e remotas"
 
@@ -244,19 +243,16 @@ msgid "Box Display"
 msgstr "Mostrar caixa"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:11
-#| msgid "Grab/Ungrab keyboard"
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Agarrar/Largar teclado"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:12
-#| msgid "Back to overview"
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Voltar à vista geral"
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:13
-#| msgid "Fullscreen/Restore from fullscreen"
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Ecrã completo/Deixar ecrã completo"
@@ -315,7 +311,7 @@ msgid "Rename"
 msgstr "Renomear"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:64
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -336,11 +332,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalação expressa"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:282
 msgid "Username"
 msgstr "Utilizador"
 
-#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:283
 msgid "Password"
 msgstr "Senha"
 
@@ -443,43 +439,48 @@ msgstr ""
 "BIOS para as ativar."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:27
+#: ../src/actions-popover.vala:28
 msgid "Box actions"
 msgstr "Ações da caixa"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:39
+#: ../src/actions-popover.vala:42
 msgid "Open in New Window"
 msgstr "Abrir em nova janela"
 
 #. Favorite
-#: ../src/actions-popover.vala:43
+#: ../src/actions-popover.vala:49
 msgid "Remove from Favorites"
 msgstr "Remover dos favoritos"
 
-#: ../src/actions-popover.vala:45
+#: ../src/actions-popover.vala:51
 msgid "Add to Favorites"
 msgstr "Adicionar aos favoritos"
 
-#: ../src/actions-popover.vala:52
+#: ../src/actions-popover.vala:58
 msgid "Force Shutdown"
 msgstr "Forçar Desligar"
 
 #. Pause
-#: ../src/actions-popover.vala:59
+#: ../src/actions-popover.vala:65
 msgid "Pause"
 msgstr "Pausa"
 
-#: ../src/actions-popover.vala:68 ../src/machine.vala:600
+#. Clone
+#: ../src/actions-popover.vala:70
+msgid "Clone"
+msgstr "Clone"
+
+#: ../src/actions-popover.vala:79 ../src/machine.vala:602
 msgid "Restart"
 msgstr "Reiniciar"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:77
+#: ../src/actions-popover.vala:88
 msgid "Properties"
 msgstr "Propriedades"
 
-#: ../src/actions-popover.vala:101 ../src/selectionbar.vala:60
+#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Falha ao pausar \"%s\""
@@ -634,7 +635,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Enviar combinações de teclas"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:57
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
 msgid "_Name"
 msgstr "_Nome"
 
@@ -642,7 +643,7 @@ msgstr "_Nome"
 msgid "IP Address"
 msgstr "Endereço IP"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:70
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:71
 msgid "Broker"
 msgstr "Gestor"
 
@@ -777,41 +778,45 @@ msgid "'%s' will be paused automatically to save resources."
 msgstr "\"%s\" será pausada automaticamente para poupar recursos."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:593
+#: ../src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "A restaurar %s do disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "A iniciar %s"
 
-#: ../src/libvirt-machine.vala:669
+#: ../src/libvirt-machine.vala:672
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "O reinício de \"%s\" está a demorar demasiado tempo. Forçar Desligar?"
 
-#: ../src/libvirt-machine.vala:671
+#: ../src/libvirt-machine.vala:674
 msgid "_Shutdown"
 msgstr "De_sligar"
 
-#: ../src/libvirt-machine.vala:755
+#: ../src/libvirt-machine.vala:786
 msgid "Installing…"
 msgstr "A instalar…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:757 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:788 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Ao vivo"
 
-#: ../src/libvirt-machine.vala:759
+#: ../src/libvirt-machine.vala:790
+msgid "Setting up clone…"
+msgstr "A configurar o clone…"
+
+#: ../src/libvirt-machine.vala:792
 msgid "Importing…"
 msgstr "A importar…"
 
-#: ../src/libvirt-machine.vala:768 ../src/ovirt-machine.vala:86
+#: ../src/libvirt-machine.vala:801 ../src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "máquina: %s"
@@ -872,21 +877,21 @@ msgid "Powered Off"
 msgstr "Desligado"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:194
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "A ligar a %s"
 
-#: ../src/machine.vala:217 ../src/machine.vala:613
+#: ../src/machine.vala:218 ../src/machine.vala:615
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Falha ao estabelecer ligação a \"%s\""
 
-#: ../src/machine.vala:412
+#: ../src/machine.vala:414
 msgid "Saving…"
 msgstr "A gravar…"
 
-#: ../src/machine.vala:599
+#: ../src/machine.vala:601
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -895,13 +900,13 @@ msgstr ""
 "\"%s\" não pode ser restaurada do disco\n"
 "Tentar sem estado gravado?"
 
-#: ../src/machine.vala:609
+#: ../src/machine.vala:611
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Falha ao iniciar \"%s\""
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:642
+#: ../src/machine.vala:644
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "\"%s\" requer autenticação"
@@ -942,7 +947,7 @@ msgstr "Relatar erros para <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Página web de %s: <%s>.\n"
 
-#: ../src/media-manager.vala:246
+#: ../src/media-manager.vala:248
 #, c-format
 msgid "No such file %s"
 msgstr "Não existe o ficheiro %s"
@@ -961,11 +966,11 @@ msgstr "Desligado de %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Falha na ligação ao gestor oVirt"
 
-#: ../src/ovirt-machine.vala:71 ../src/remote-machine.vala:67
+#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:69
+#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:70
 #: ../src/wizard.vala:489
 msgid "URI"
 msgstr "URI"
@@ -987,19 +992,17 @@ msgstr "Dispositivos"
 msgid "Snapshots"
 msgstr "Imagens (Snapshots)"
 
-#: ../src/remote-machine.vala:71
+#: ../src/remote-machine.vala:72
 msgid "_URI"
 msgstr "_URI"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152
-#| msgid "_Open in new window"
-#| msgid_plural "_Open in %d new windows"
+#: ../src/selectionbar.vala:173
 msgctxt "0 items selected"
 msgid "_Open in new window"
 msgstr "Abrir em n_ova janela"
 
-#: ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:175
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1074,7 +1077,6 @@ msgid "The port must be specified once"
 msgstr "A porta tem de ser especificada uma vez"
 
 #: ../src/spice-display.vala:555
-#| msgid "Invalid URI"
 msgid "Invalid Spice UNIX URI"
 msgstr "Spice UNIX URI inválido"
 
@@ -1085,14 +1087,14 @@ msgstr "Falta a porta no URI Spice"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:192
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Ocorreu um erro durante a preparação da instalação. Instalação expressa "
 "desativada."
 
-#: ../src/unattended-installer.vala:465
+#: ../src/unattended-installer.vala:469
 msgid "Downloading device drivers…"
 msgstr "A transferir controladores de dispositivos…"
 
@@ -1163,7 +1165,7 @@ msgstr "não"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:566
+#: ../src/vm-configurator.vala:574
 msgid "Incapable host system"
 msgstr "Sistema anfitrião incompatível"
 
@@ -1172,7 +1174,7 @@ msgstr "Sistema anfitrião incompatível"
 msgid "Live box '%s' has been deleted automatically."
 msgstr "A caixa ao vivo \"%s\" foi eliminada automaticamente."
 
-#: ../src/vm-importer.vala:46
+#: ../src/vm-importer.vala:50
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "A importação da caixa do ficheiro \"%s\" falhou."
