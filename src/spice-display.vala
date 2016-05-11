@@ -52,6 +52,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session = new Session ();
         audio = Spice.Audio.get (session, null);
         gtk_session = GtkSession.get (session);
+
+        Spice.set_session_option (session);
         try {
             var manager = UsbDeviceManager.get (session);
 

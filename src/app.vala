@@ -196,7 +196,10 @@ private class Boxes.App: Gtk.Application {
         var parameter_string = _("— A simple application to access remote or virtual machines");
         var opt_context = new OptionContext (parameter_string);
         opt_context.add_main_entries (options, null);
-        opt_context.set_help_enabled (false);
+        opt_context.add_group (Spice.get_option_group ());
+        opt_context.add_group (Vnc.Display.get_option_group ());
+        opt_context.add_group (Gtk.get_option_group (true));
+        opt_context.set_help_enabled (true);
 
         try {
             string[] args1 = cmdline.get_arguments();
