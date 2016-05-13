@@ -70,7 +70,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         case PropertiesPage.GENERAL:
             add_string_property (ref list, _("Broker"), source.name);
             add_string_property (ref list, _("Protocol"), display.protocol);
-            add_string_property (ref list, _("URI"), display.uri);
+            add_string_property (ref list, _("URL"), display.uri);
             break;
         }
 

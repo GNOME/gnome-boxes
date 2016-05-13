@@ -67,9 +67,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
             add_string_property (ref list, _("Protocol"), source.source_type.up ());
             if (is_connected) {
-                add_string_property (ref list, _("URI"), source.uri);
+                add_string_property (ref list, _("URL"), source.uri);
             } else {
-                property = add_editable_string_property (ref list, _("_URI"), source.uri);
+                property = add_editable_string_property (ref list, _("_URL"), source.uri);
                 property.changed.connect ((property, uri) => {
                     source.uri = uri;
                });

@@ -86,10 +86,10 @@ private class Boxes.VncDisplay: Boxes.Display {
         var uri = Xml.URI.parse (_uri);
 
         if (uri.scheme != "vnc")
-            throw new Boxes.Error.INVALID ("the URI is not vnc://");
+            throw new Boxes.Error.INVALID ("the URL is not vnc://");
 
         if (uri.server == null)
-            throw new Boxes.Error.INVALID ("the URI is missing a server");
+            throw new Boxes.Error.INVALID ("the URL is missing a server");
 
         this.host = uri.server;
         this.port = uri.port <= 0 ? 5900 : uri.port;

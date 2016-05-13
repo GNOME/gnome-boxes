@@ -202,7 +202,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     public override void collect_logs (StringBuilder builder) {
-        builder.append_printf ("URI: %s\n", uri);
+        builder.append_printf ("URL: %s\n", uri);
         if (gtk_session != null) {
             builder.append_printf ("Auto clipboard sync: %s\n", gtk_session.auto_clipboard ? "yes" : "no");
         }
@@ -531,7 +531,7 @@ static void spice_validate_uri (string uri_as_text,
     var uri = Xml.URI.parse (uri_as_text);
 
     if (uri == null)
-        throw new Boxes.Error.INVALID (_("Invalid URI"));
+        throw new Boxes.Error.INVALID (_("Invalid URL"));
 
     tls_port = 0;
     port = uri.port;
@@ -552,11 +552,11 @@ static void spice_validate_uri (string uri_as_text,
     if (uri.scheme == "spice+unix") {
         if (port > 0 ||
             (uri.query_raw ?? uri.query) != null)
-            throw new Boxes.Error.INVALID (_("Invalid Spice UNIX URI"));
+            throw new Boxes.Error.INVALID (_("Invalid Spice UNIX URL"));
     } else if (uri.scheme.has_prefix("spice+")) {
         throw new Boxes.Error.INVALID (_("Invalid URI"));
     } else {
         if (port <= 0 && tls_port <= 0)
-            throw new Boxes.Error.INVALID (_("Missing port in Spice URI"));
+            throw new Boxes.Error.INVALID (_("Missing port in Spice URL"));
     }
 }

@@ -182,7 +182,7 @@ private class Boxes.App: Gtk.Application {
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
         { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
         // A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-        { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URI to display, broker or installer media"), null },
+        { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URL to display, broker or installer media"), null },
         { null }
     };
 
