@@ -61,8 +61,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     public WizardPage page {
         get { return _page; }
         set {
-            back_button.sensitive = (value != WizardPage.SOURCE);
-
             var forwards = value > page;
 
             switch (value) {
@@ -134,6 +132,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
+            back_button.sensitive = (value != WizardPage.SOURCE);
             wizard_window.topbar.set_title_for_page (value);
             visible_child_name = page_names[value];
 
