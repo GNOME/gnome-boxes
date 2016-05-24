@@ -3,6 +3,7 @@ using Gtk;
 
 private class Boxes.Notificationbar: Gtk.Grid {
     public const int DEFAULT_TIMEOUT = 6;
+    private const int MAX_NOTIFICATIONS = 5;
 
     GLib.List<Widget> active_notifications;
 
@@ -97,6 +98,15 @@ private class Boxes.Notificationbar: Gtk.Grid {
                                                    (owned) ok_func,
                                                    (owned) dismiss_func,
                                                    timeout);
+
+        var excess_notifications = (int) active_notifications.length () - MAX_NOTIFICATIONS + 1;
+
+        for (var i = excess_notifications; i > 0; i--) {
+            var last_notification = active_notifications.nth_data (active_notifications.length () - i)
+                                    as Gd.Notification;
+
+            last_notification.dismiss ();
+        }
 
         active_notifications.prepend (notification);
 
