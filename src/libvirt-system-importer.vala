@@ -66,6 +66,12 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             }
         }
 
+        debug ("Fetched %u domains from system libvirt.", this.domains.length ());
+        if (this.domains.length () == 0)
+            throw new LibvirtSystemImporterError.NO_IMPORTS (_("No boxes to import"));
+    }
+
+    public async void import () {
         try {
             yield ensure_disks_readable (disk_paths);
         } catch (GLib.Error error) {
@@ -74,12 +80,6 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             return;
         }
 
-        debug ("Fetched %u domains from system libvirt.", this.domains.length ());
-        if (this.domains.length () == 0)
-            throw new LibvirtSystemImporterError.NO_IMPORTS (_("No boxes to import"));
-    }
-
-    public async void import () {
         for (var i = 0; i < configs.length; i++)
             import_domain.begin (configs[i], disk_paths[i], null);
     }
