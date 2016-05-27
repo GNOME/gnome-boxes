@@ -85,9 +85,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (channel);
 
         add_usb_support (domain);
-
-        if (Config.HAVE_SMARTCARD)
-            add_smartcard_support (domain);
+        add_smartcard_support (domain);
 
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);

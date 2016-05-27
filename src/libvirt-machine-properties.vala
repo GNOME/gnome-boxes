@@ -31,15 +31,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
     }
 
-    private void try_enable_smartcard () throws GLib.Error {
-        var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-
-        VMConfigurator.add_smartcard_support (config);
-
-        // This will take effect only after next reboot
-        machine.domain.set_config (config);
-    }
-
     private string collect_logs () {
         var builder = new StringBuilder ();
 
@@ -146,39 +137,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 var disk_type = disk_config.get_guest_device_type ();
                 if (disk_type == GVirConfig.DomainDiskGuestDeviceType.CDROM)
                     add_cdrom_property (disk_config, ref list);
-            }
-
-            bool has_smartcard = false;
-            try {
-                var inactive_config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-                foreach (var device in inactive_config.get_devices ()) {
-                    if (device is GVirConfig.DomainSmartcard) {
-                        has_smartcard = true;
-                    }
-                }
-            } catch (GLib.Error error) {
-                warning ("Failed to fetch configuration for domain '%s': %s",
-                         machine.domain.get_name (),
-                         error.message);
-            }
-
-
-            // Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
-            // without smartcard support will not start vms with it.
-            if (!has_smartcard && Config.HAVE_SMARTCARD) {
-                var button = new Gtk.Button.with_label (_("Add support to guest"));
-                button.halign = Gtk.Align.START;
-                var property = add_property (ref list, _("Smartcard support"), button);
-                button.clicked.connect (() => {
-                    try {
-                        try_enable_smartcard ();
-                        machine.update_domain_config ();
-                        property.refresh_properties ();
-                        property.reboot_required = true;
-                    } catch (GLib.Error error) {
-                        warning ("Failed to enable smartcard");
-                    }
-                });
             }
 
             break;
