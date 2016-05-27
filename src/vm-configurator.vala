@@ -84,9 +84,7 @@ private class Boxes.VMConfigurator {
         channel.set_source (vmc);
         domain.add_device (channel);
 
-        // Only add usb support if we'er 100% sure it works, as it breaks migration (i.e. save) on older qemu
-        if (Config.HAVE_USBREDIR)
-            add_usb_support (domain);
+        add_usb_support (domain);
 
         if (Config.HAVE_SMARTCARD)
             add_smartcard_support (domain);
@@ -529,18 +527,6 @@ private class Boxes.VMConfigurator {
             controller.set_master (master, start_port);
 
         return controller;
-    }
-
-    // Remove all existing usb controllers. This is used when upgrading from the old usb1 controllers to usb2
-    public static void remove_usb_controllers (Domain domain) throws Boxes.Error {
-        GLib.List<GVirConfig.DomainDevice> devices = null;
-        foreach (var device in domain.get_devices ()) {
-            if (!(device is DomainControllerUsb)) {
-                devices.prepend (device);
-            }
-        }
-        devices.reverse ();
-        domain.set_devices (devices);
     }
 
     private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)

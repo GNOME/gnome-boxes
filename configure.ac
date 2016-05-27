@@ -162,14 +162,6 @@ LIBGD_INIT([
   vapi
 ])
 
-AC_MSG_CHECKING([whether USB redirection was enabled with --enable-usbredir])
-AC_ARG_ENABLE(usbredir,
-	AS_HELP_STRING([--enable-usbredir],[Enable usb redirection (requires qemu 1.3)]),,
-        enable_usbredir=yes)
-AS_IF([test "x$enable_usbredir" = "xyes"],
-      [AC_DEFINE([HAVE_USBREDIR], [1], [Qemu supports usbredir]) AC_MSG_RESULT([yes])],
-      [AC_DEFINE([HAVE_USBREDIR], [0], [Qemu supports usbredir]) AC_MSG_RESULT([no])])
-
 AC_MSG_CHECKING([whether smartcard support was enabled with --enable-smartcard])
 AC_ARG_ENABLE(smartcard,
 	AS_HELP_STRING([--enable-smartcard],[Enable smartcard support]),,
@@ -223,7 +215,6 @@ AC_MSG_NOTICE([
         prefix:                   ${prefix}
         c compiler:               ${CC} ${CFLAGS}
         build from vala sources:  $enable_vala
-        USB redirection support:  $enable_usbredir
         Smartcard support:        $enable_smartcard
         oVirt support:            $have_govirt
         Installed tests:          $enable_installed_tests

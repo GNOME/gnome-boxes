@@ -31,19 +31,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
     }
 
-    private void try_enable_usb_redir () throws GLib.Error {
-        var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
-
-        // Remove any old usb configuration from old config
-        VMConfigurator.remove_usb_controllers (config);
-
-        // Add usb redirection channel and usb2 controllers
-        VMConfigurator.add_usb_support (config);
-
-        // This will take effect only after next reboot
-        machine.domain.set_config (config);
-    }
-
     private void try_enable_smartcard () throws GLib.Error {
         var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
 
@@ -161,16 +148,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     add_cdrom_property (disk_config, ref list);
             }
 
-            bool has_usb_redir = false;
             bool has_smartcard = false;
-            // We look at the INACTIVE config here, because we want to show the usb
-            // widgetry if usb has been added already but we have not rebooted
             try {
                 var inactive_config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
                 foreach (var device in inactive_config.get_devices ()) {
-                    if (device is GVirConfig.DomainRedirdev) {
-                        has_usb_redir = true;
-                    }
                     if (device is GVirConfig.DomainSmartcard) {
                         has_smartcard = true;
                     }
@@ -181,26 +162,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                          error.message);
             }
 
-            if (!has_usb_redir)
-                flags |= PropertyCreationFlag.NO_USB;
-
-            /* Only add usb support to guests if HAVE_USBREDIR, as older
-             * qemu versions break migration with it. */
-            if (!has_usb_redir && Config.HAVE_USBREDIR) {
-                var button = new Gtk.Button.with_label (_("Add support to guest"));
-                button.halign = Gtk.Align.START;
-                var property = add_property (ref list, _("USB device support"), button);
-                button.clicked.connect (() => {
-                    try {
-                        try_enable_usb_redir ();
-                        machine.update_domain_config ();
-                        property.refresh_properties ();
-                        property.reboot_required = true;
-                    } catch (GLib.Error error) {
-                        warning ("Failed to enable usb");
-                    }
-                });
-            }
 
             // Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
             // without smartcard support will not start vms with it.

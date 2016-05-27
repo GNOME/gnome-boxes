@@ -333,7 +333,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case PropertiesPage.DEVICES:
-            if (PropertyCreationFlag.NO_USB in flags || !Config.HAVE_USBREDIR|| !connected)
+            if (PropertyCreationFlag.NO_USB in flags || !connected)
                 break;
 
             try {

@@ -9,7 +9,6 @@ namespace Config {
         public const string CACHEDIR;
         public const string PACKAGE_BUGREPORT;
         public const string PACKAGE_URL;
-        public const bool HAVE_USBREDIR;
         public const bool HAVE_SMARTCARD;
         public const bool HAVE_OVIRT;
 }
