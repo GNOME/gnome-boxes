@@ -37,7 +37,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     }
     public abstract void send_keys (uint[] keyvals);
 
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
 
     protected HashTable<int, Gtk.Widget?> displays;
 

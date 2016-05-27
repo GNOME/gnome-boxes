@@ -192,14 +192,8 @@ private class Boxes.EditableStringProperty : Boxes.Property {
     }
 }
 
-[Flags]
-public enum PropertyCreationFlag {
-    NONE,
-    NO_USB,
-}
-
 private interface Boxes.IPropertiesProvider: GLib.Object {
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags);
+    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
 
     protected Boxes.Property add_property (ref List<Boxes.Property> list,
                                            string? name,

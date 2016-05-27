@@ -63,7 +63,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
         }
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
@@ -74,7 +74,7 @@ private class Boxes.OvirtMachine: Boxes.Machine {
             break;
         }
 
-        list.concat (display.get_properties (page, ref flags));
+        list.concat (display.get_properties (page));
 
         return list;
     }

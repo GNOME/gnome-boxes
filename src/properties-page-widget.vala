@@ -41,8 +41,7 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
         scrolled_win.add (grid);
         pack_end (scrolled_win, true, true);
 
-        PropertyCreationFlag flags = PropertyCreationFlag.NONE;
-        properties = machine.get_properties (page, ref flags);
+        properties = machine.get_properties (page);
         empty = properties.length () == 0;
         if (!empty) {
             int current_row = 1;

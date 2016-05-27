@@ -384,12 +384,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {
-        var list = properties.get_properties (page, ref flags);
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
+        var list = properties.get_properties (page);
 
         if (display != null)
-            list.concat (display.get_properties (page,
-                                                 ref flags));
+            list.concat (display.get_properties (page));
 
         return list;
     }

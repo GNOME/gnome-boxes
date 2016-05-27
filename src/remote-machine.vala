@@ -53,7 +53,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         }
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
@@ -85,7 +85,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             if (display == null)
                 display = create_display ();
 
-            list.concat (display.get_properties (page, ref flags));
+            list.concat (display.get_properties (page));
         } catch (Boxes.Error error) {
             warning (error.message);
         }

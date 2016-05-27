@@ -306,7 +306,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page, ref PropertyCreationFlag flags) {
+    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
         var list = new List<Boxes.Property> ();
 
         switch (page) {
@@ -333,7 +333,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case PropertiesPage.DEVICES:
-            if (PropertyCreationFlag.NO_USB in flags || !connected)
+            if (!connected)
                 break;
 
             try {
