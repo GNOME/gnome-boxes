@@ -174,7 +174,7 @@ namespace Boxes {
                 file.load_contents (null, out contents, null);
             }
 
-            libvirt_bridge_net_available = (Regex.match_simple ("^allow.*virbr0", (string) contents));
+            libvirt_bridge_net_available = (Regex.match_simple ("(?m)^allow.*virbr0", (string) contents));
         } catch (GLib.Error error) {
             debug ("%s", error.message);
 
