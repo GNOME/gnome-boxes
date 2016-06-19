@@ -7,11 +7,11 @@
 # Dirgita <dirgitadevina@yahoo.co.id>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-boxes gnome-3-20\n"
+"Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-05-09 17:12+0000\n"
-"PO-Revision-Date: 2016-06-19 16:43+0700\n"
+"POT-Creation-Date: 2016-06-19 09:44+0000\n"
+"PO-Revision-Date: 2016-06-19 16:45+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -310,7 +310,7 @@ msgid "Rename"
 msgstr "Ubah Nama"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:68
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
 msgid "Delete"
 msgstr "Hapus"
 
@@ -435,39 +435,48 @@ msgstr ""
 "Periksalah pengaturan BIOS Anda untuk memfungsikannya."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:26
+#: ../src/actions-popover.vala:28
 msgid "Box actions"
 msgstr "Tindakan Box"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:40
+#: ../src/actions-popover.vala:42
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
 #. Favorite
-#: ../src/actions-popover.vala:47
+#: ../src/actions-popover.vala:49
 msgid "Remove from Favorites"
 msgstr "Buang dari Favorit"
 
-#: ../src/actions-popover.vala:49
+#: ../src/actions-popover.vala:51
 msgid "Add to Favorites"
 msgstr "Tambah ke Favorit"
 
-#: ../src/actions-popover.vala:56
+#: ../src/actions-popover.vala:58
 msgid "Force Shutdown"
 msgstr "Paksa Mati"
 
 #. Pause
-#: ../src/actions-popover.vala:62
+#: ../src/actions-popover.vala:65
 msgid "Pause"
 msgstr "Jeda"
 
+#. Clone
+#: ../src/actions-popover.vala:70
+msgid "Clone"
+msgstr "Klon"
+
+#: ../src/actions-popover.vala:79 ../src/machine.vala:602
+msgid "Restart"
+msgstr "Mulai ulang"
+
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:77
+#: ../src/actions-popover.vala:88
 msgid "Properties"
 msgstr "Properti"
 
-#: ../src/actions-popover.vala:101 ../src/selectionbar.vala:60
+#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "Mengistirahatkan '%s' gagal"
@@ -623,7 +632,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Kirim kombinasi tombol"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
+#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
 msgid "_Name"
 msgstr "_Nama"
 
@@ -631,7 +640,7 @@ msgstr "_Nama"
 msgid "IP Address"
 msgstr "Alamat IP"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
+#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:71
 msgid "Broker"
 msgstr "Broker"
 
@@ -745,62 +754,66 @@ msgstr ""
 "Tidak ada cukup ruang pada mesin Anda untuk meningkatkan ukuran maksimum "
 "diska."
 
-#: ../src/libvirt-machine-properties.vala:565
+#: ../src/libvirt-machine-properties.vala:566
 msgid "Maximum _Disk Size: "
 msgstr "Ukuran Maksimum _Diska:"
 
-#: ../src/libvirt-machine-properties.vala:690
+#: ../src/libvirt-machine-properties.vala:692
 msgid "_Run in background"
 msgstr "Jalankan di lata_r belakang"
 
-#: ../src/libvirt-machine-properties.vala:701
-#: ../src/libvirt-machine-properties.vala:704
+#: ../src/libvirt-machine-properties.vala:703
+#: ../src/libvirt-machine-properties.vala:706
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "'%s' tidak akan diistirahatkan secara otomatis."
 
-#: ../src/libvirt-machine-properties.vala:702
-#: ../src/libvirt-machine-properties.vala:705
+#: ../src/libvirt-machine-properties.vala:704
+#: ../src/libvirt-machine-properties.vala:707
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "'%s' akan diistirahatkan secara otomatis untuk menghemat sumber daya."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:594
+#: ../src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Mengembalikan %s dari diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:597
+#: ../src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "Memulai %s"
 
-#: ../src/libvirt-machine.vala:670
+#: ../src/libvirt-machine.vala:672
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "Memulai ulang '%s' memakan waktu terlalu lama. Paksa mematikan?"
 
-#: ../src/libvirt-machine.vala:672
+#: ../src/libvirt-machine.vala:674
 msgid "_Shutdown"
 msgstr "_Matikan"
 
-#: ../src/libvirt-machine.vala:756
+#: ../src/libvirt-machine.vala:786
 msgid "Installing…"
 msgstr "Memasang..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:758 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:788 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:760
+#: ../src/libvirt-machine.vala:790
+msgid "Setting up clone…"
+msgstr "Menyiapkan klon..."
+
+#: ../src/libvirt-machine.vala:792
 msgid "Importing…"
 msgstr "Mengimpor..."
 
-#: ../src/libvirt-machine.vala:769 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:801 ../src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
@@ -829,7 +842,7 @@ msgid "Will import %u box from system broker"
 msgid_plural "Will import %u boxes from system broker"
 msgstr[0] "Akan mengimpor %u box dari broker sistem"
 
-#: ../src/libvirt-system-importer.vala:79
+#: ../src/libvirt-system-importer.vala:71
 msgid "No boxes to import"
 msgstr "Tidak ada box untuk diimpor"
 
@@ -859,21 +872,21 @@ msgid "Powered Off"
 msgstr "Dimatikan"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:193
+#: ../src/machine.vala:195
 #, c-format
 msgid "Connecting to %s"
 msgstr "Menyambung ke %s"
 
-#: ../src/machine.vala:216 ../src/machine.vala:612
+#: ../src/machine.vala:218 ../src/machine.vala:615
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Sambungan ke '%s' gagal"
 
-#: ../src/machine.vala:411
+#: ../src/machine.vala:414
 msgid "Saving…"
 msgstr "Menyimpan…"
 
-#: ../src/machine.vala:598
+#: ../src/machine.vala:601
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -882,17 +895,13 @@ msgstr ""
 "'%s' tak dapat dipulihkan dari diska\n"
 "Coba tanpa keadaan tersimpan?"
 
-#: ../src/machine.vala:599
-msgid "Restart"
-msgstr "Mulai ulang"
-
-#: ../src/machine.vala:608
+#: ../src/machine.vala:611
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Gagal memulai '%s'"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:641
+#: ../src/machine.vala:644
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "'%s' memerlukan otentikasi"
@@ -933,7 +942,7 @@ msgstr "Laporkan kutu ke <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "laman beranda %s: <%s>.\n"
 
-#: ../src/media-manager.vala:227
+#: ../src/media-manager.vala:248
 #, c-format
 msgid "No such file %s"
 msgstr "Tidak ada berkas %s"
@@ -952,11 +961,11 @@ msgstr "Tidak tersambung ke %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Sambungan ke broker oVirt gagal"
 
-#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
+#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:68
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:70
 #: ../src/wizard.vala:488
 msgid "URI"
 msgstr "URI"
@@ -978,7 +987,7 @@ msgstr "Perangkat"
 msgid "Snapshots"
 msgstr "Snapshot"
 
-#: ../src/remote-machine.vala:70
+#: ../src/remote-machine.vala:72
 msgid "_URI"
 msgstr "_URI"
 
@@ -1024,11 +1033,11 @@ msgstr "Snapshot \"%s\" dihapus."
 msgid "No snapshots created yet. Create one using the button below."
 msgstr "Belum ada snapshot yang dibuat. Buat satu menggunakan tombol di bawah."
 
-#: ../src/snapshots-property.vala:122
+#: ../src/snapshots-property.vala:121
 msgid "Creating new snapshot…"
 msgstr "Sedang membuat snapshot baru..."
 
-#: ../src/snapshots-property.vala:130
+#: ../src/snapshots-property.vala:129
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Gagal membuat snapshot dari %s"
@@ -1051,7 +1060,8 @@ msgstr "Berbagi papan klip"
 msgid "USB devices"
 msgstr "Perangkat USB"
 
-#: ../src/spice-display.vala:534 ../src/wizard.vala:311 ../src/wizard.vala:318
+#: ../src/spice-display.vala:534 ../src/spice-display.vala:557
+#: ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URI"
 msgstr "URI tidak valid"
 
@@ -1059,7 +1069,11 @@ msgstr "URI tidak valid"
 msgid "The port must be specified once"
 msgstr "Porta mesti dinyatakan sekali"
 
-#: ../src/spice-display.vala:553
+#: ../src/spice-display.vala:555
+msgid "Invalid Spice UNIX URI"
+msgstr "URI UNIX Spice tidak valid"
+
+#: ../src/spice-display.vala:560
 msgid "Missing port in Spice URI"
 msgstr "Kurang porta dalam URI Spice"
 
@@ -1143,7 +1157,7 @@ msgstr "tidak"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:566
+#: ../src/vm-configurator.vala:574
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
 
@@ -1152,7 +1166,7 @@ msgstr "Sistem host tidak kapabel"
 msgid "Live box '%s' has been deleted automatically."
 msgstr "Box live '%s' telah dihapus secara otomatis."
 
-#: ../src/vm-importer.vala:46
+#: ../src/vm-importer.vala:50
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Impor Box dari berkas '%s' gagal."
@@ -1191,19 +1205,19 @@ msgstr "Penataan Box"
 msgid "Review"
 msgstr "Ulasan"
 
-#: ../src/wizard.vala:117
+#: ../src/wizard.vala:115
 msgid "Box creation failed"
 msgstr "Gagal membuat Box"
 
-#: ../src/wizard.vala:270
+#: ../src/wizard.vala:269
 msgid "Empty location"
 msgstr "Lokasi kosong"
 
-#: ../src/wizard.vala:293
+#: ../src/wizard.vala:292
 msgid "Unsupported file"
 msgstr "Berkas tak didukung"
 
-#: ../src/wizard.vala:299
+#: ../src/wizard.vala:298
 msgid "Invalid file"
 msgstr "Berkas tak valid"
 
