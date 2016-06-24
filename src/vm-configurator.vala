@@ -10,6 +10,7 @@ private errordomain Boxes.VMConfiguratorError {
 private class Boxes.VMConfigurator {
     private const string BOXES_NS = "boxes";
     private const string BOXES_NS_URI = Config.PACKAGE_URL;
+    private const string BOXES_OLD_NS_URI = "http://live.gnome.org/Boxes/";
     private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
     private const string LIVE_STATE = "live";
     private const string INSTALLATION_STATE = "installation";
@@ -386,11 +387,17 @@ private class Boxes.VMConfigurator {
     }
 
     private static string? get_custom_xml_node (Domain domain, string node_name) {
-        var xml = domain.get_custom_xml (BOXES_NS_URI);
+        var ns_uri = BOXES_NS_URI;
+        var xml = domain.get_custom_xml (ns_uri);
+        if (xml == null) {
+            ns_uri = BOXES_OLD_NS_URI;
+            xml = domain.get_custom_xml (ns_uri);
+        }
+
         if (xml != null) {
             var reader = new Xml.TextReader.for_memory ((char []) xml.data,
                                                         xml.length,
-                                                        BOXES_NS_URI,
+                                                        ns_uri,
                                                         null,
                                                         Xml.ParserOption.COMPACT);
             reader.next (); // Go to first node
