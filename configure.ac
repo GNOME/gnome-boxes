@@ -5,6 +5,8 @@ AC_INIT([gnome-boxes],
         [https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes],
         [gnome-boxes],
         [https://wiki.gnome.org/Apps/Boxes])
+        # Each time the above URL changes, you gotta modify
+        # vm-configurator:update_existing_domain() to keep handling old URLs
 
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
