@@ -236,6 +236,9 @@ private class Boxes.VMConfigurator {
 
     public static async void update_existing_domain (Domain          domain,
                                                      GVir.Connection connection) {
+        if (!boxes_created_domain (domain))
+            return;
+
         try {
             var cpu = domain.get_cpu ();
             if (cpu != null &&
@@ -420,6 +423,14 @@ private class Boxes.VMConfigurator {
         debug ("No XML node %s' for domain '%s'.", node_name, domain.get_name ());
 
         return null;
+    }
+
+    private static bool boxes_created_domain (Domain domain) {
+        var xml = domain.get_custom_xml (BOXES_NS_URI);
+        if (xml == null)
+            xml = domain.get_custom_xml (BOXES_OLD_NS_URI);
+
+        return (xml != null);
     }
 
     private static void update_custom_xml (Domain domain,
