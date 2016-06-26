@@ -170,22 +170,15 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         return display;
     }
 
-    private bool has_usb_device_connected () {
+    public override bool should_keep_alive () {
         try {
             var manager = UsbDeviceManager.get (session);
-            var devs = manager.get_devices ();
-            for (int i = 0; i < devs.length; i++) {
-                var dev = devs[i];
-                if (manager.is_device_connected (dev))
-                    return true;
-            }
-        } catch (GLib.Error error) {
-        }
-        return false;
-    }
+            var devs = get_usb_devices (manager);
 
-    public override bool should_keep_alive () {
-        return !closed && has_usb_device_connected ();
+            return (!closed && (devs.length > 0));
+        } catch (GLib.Error error) {
+            return false;
+        }
     }
 
     public override void set_enable_audio (bool enable) {
