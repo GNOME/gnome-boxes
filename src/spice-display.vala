@@ -323,6 +323,20 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                        BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             toggle.halign = Gtk.Align.START;
             add_property (ref list, _("Share Clipboard"), toggle);
+
+            if (!connected || !main_channel.agent_connected)
+                break;
+
+            var message = _("SPICE guest tools are not installed. These tools improve user experience and enable host and box interactions, such as copy&amp;paste. Please visit <a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a> to download and install these tools from within the box.");
+            var label = new Gtk.Label (message);
+            label.vexpand = true;
+            label.valign = Gtk.Align.END;
+            label.wrap = true;
+            label.max_width_chars = 80;
+            label.use_markup = true;
+            label.get_style_context ().add_class ("boxes-spice-tools-notice-label");
+
+            add_property (ref list, null, label);
             break;
 
         case PropertiesPage.DEVICES:
