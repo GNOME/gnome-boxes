@@ -219,6 +219,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 }
 
                 load_screenshot ();
+
+                disconnect_display ();
             });
 
             need_password_id = _display.notify["need-password"].connect (handle_auth);
