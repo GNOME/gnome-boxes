@@ -45,6 +45,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             display = create_display ();
             display.connect_it ();
         } else {
+            if (!display.connected)
+                display.connect_it ();
+
             show_display ();
             display.set_enable_audio (true);
         }
