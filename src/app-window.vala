@@ -24,6 +24,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         set {
             if (_current_item != null) {
                 _current_item.disconnect (machine_state_notify_id);
+                _current_item.disconnect (machine_deleted_notify_id);
                 machine_state_notify_id = 0;
                 machine_deleted_notify_id = 0;
             }
