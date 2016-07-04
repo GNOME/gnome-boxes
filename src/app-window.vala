@@ -435,6 +435,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
             machine.window = null;
             machine.schedule_autosave ();
+
+            machine.disconnect (machine_state_notify_id);
+            machine_state_notify_id = 0;
+            machine.disconnect (machine_deleted_notify_id);
+            machine_deleted_notify_id = 0;
         }
 
         return App.app.remove_window (this);
