@@ -335,11 +335,7 @@ private class Boxes.VMConfigurator {
 
     private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
-        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_CLASS, "video");
-        var model = (device != null)? get_enum_value (device.get_name (), typeof (DomainVideoModel)) :
-                                      DomainVideoModel.QXL;
-        return_if_fail (model != -1);
-        video.set_model ((DomainVideoModel) model);
+        video.set_model (DomainVideoModel.QXL);
 
         domain.add_device (video);
     }
