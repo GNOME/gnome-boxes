@@ -75,8 +75,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private ulong ui_state_id;
     private ulong got_error_id;
     private uint screenshot_id;
-    public static const int SCREENSHOT_WIDTH = 180;
-    public static const int SCREENSHOT_HEIGHT = 134;
+    public const int SCREENSHOT_WIDTH = 180;
+    public const int SCREENSHOT_HEIGHT = 134;
     public const int CENTERED_EMBLEM_SIZE = 32;
     public const int EMBLEM_SIZE = 16;
     public const Gdk.RGBA FRAME_BORDER_COLOR = { 0x3b / 255.0, 0x3c / 255.0, 0x38 / 255.0, 1.0 };

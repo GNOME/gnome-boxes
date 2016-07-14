@@ -174,7 +174,7 @@ private class Boxes.App: Gtk.Application {
     static string opt_open_uuid;
     static string[] opt_uris;
     static string[] opt_search;
-    static const OptionEntry[] options = {
+    const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
         { "help", 'h', OptionFlags.HIDDEN, OptionArg.NONE, ref opt_help, null, null },
         { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },

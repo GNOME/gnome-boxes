@@ -122,7 +122,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private uint stats_update_timeout;
     private Cancellable stats_cancellable;
 
-    static const int STATS_SIZE = 20;
+    const int STATS_SIZE = 20;
     private MachineStat[] stats;
 
     private bool force_stopped;

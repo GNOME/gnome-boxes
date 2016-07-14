@@ -2,7 +2,7 @@
 
 public class Boxes.ArchiveReader : GLib.Object {
     // This is the block size used by example code on the libarchive website
-    private static const int BLOCK_SIZE = 10240;
+    private const int BLOCK_SIZE = 10240;
 
     public Archive.Read archive;
 

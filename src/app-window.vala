@@ -120,7 +120,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private Notificationbar _notificationbar;
 
     private uint configure_id;
-    public static const uint configure_id_timeout = 100;  // 100ms
+    public const uint configure_id_timeout = 100;  // 100ms
 
     private Gtk.WindowGroup group;
 
