@@ -317,7 +317,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             toggle.halign = Gtk.Align.START;
             add_property (ref list, _("Share Clipboard"), toggle);
 
-            if (!connected || !main_channel.agent_connected)
+            if (!connected || main_channel.agent_connected)
                 break;
 
             var message = _("SPICE guest tools are not installed. These tools improve user experience and enable host and box interactions, such as copy&amp;paste. Please visit <a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a> to download and install these tools from within the box.");
