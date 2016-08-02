@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Mario Blättermann <mario.blaettermann@gmail.com>, 2011-2012, 2016.
 # Viktor Nyberg <greenscandic@googlemail.com>, 2012
-# Wolfgang Stöggl <c72578@yahoo.de>, 2012, 2014-2015.
+# Wolfgang Stöggl <c72578@yahoo.de>, 2012, 2014-2016.
 # Tobias Endrigkeit <tobiasendrigkeit@googlemail.com>, 2012.
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2012, 2013.
 # Bernd Homuth <dev@hmt.im>, 2014, 2015.
@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-06-02 05:01+0000\n"
-"PO-Revision-Date: 2016-06-02 11:46-0400\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2016-07-17 18:31+0000\n"
+"PO-Revision-Date: 2016-07-25 16:12+0200\n"
+"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid "GNOME Boxes"
@@ -127,7 +127,7 @@ msgstr "_Benutzername"
 msgid "_Password"
 msgstr "_Passwort"
 
-#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
+#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:48
 msgid "Sign In"
 msgstr "Anmelden"
 
@@ -477,7 +477,7 @@ msgstr "Anhalten"
 msgid "Clone"
 msgstr "Klon"
 
-#: ../src/actions-popover.vala:79 ../src/machine.vala:602
+#: ../src/actions-popover.vala:79 ../src/machine.vala:604
 msgid "Restart"
 msgstr "Neu starten"
 
@@ -541,7 +541,7 @@ msgstr "Suchtext"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
 #: ../src/app.vala:185
-msgid "URI to display, broker or installer media"
+msgid "URL to display, broker or installer media"
 msgstr "Anzuzeigende Adresse, System-Vermittler oder Installationsmedium"
 
 #: ../src/app.vala:196
@@ -648,115 +648,98 @@ msgstr "Strg + Alt + F7"
 msgid "Send key combinations"
 msgstr "Tastenkombinationen weiterleiten"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
+#: ../src/libvirt-machine-properties.vala:96 ../src/remote-machine.vala:61
 msgid "_Name"
 msgstr "_Name"
 
-#: ../src/libvirt-machine-properties.vala:130
+#: ../src/libvirt-machine-properties.vala:108
 msgid "IP Address"
 msgstr "IP-Adresse"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:71
+#: ../src/libvirt-machine-properties.vala:110 ../src/ovirt-machine.vala:71
 msgid "Broker"
 msgstr "System-Vermittler"
 
 #. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
-#: ../src/libvirt-machine-properties.vala:135
+#: ../src/libvirt-machine-properties.vala:113
 msgid "Display Protocol"
 msgstr "Protokoll anzeigen"
 
-#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
-#: ../src/libvirt-machine-properties.vala:138
-msgid "Display URI"
+#. Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:116
+msgid "Display URL"
 msgstr "Adresse anzeigen"
 
-#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
-#. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:190
-#: ../src/libvirt-machine-properties.vala:208
-msgid "Add support to guest"
-msgstr "Unterstützung für den Gast hinzufügen"
-
-#: ../src/libvirt-machine-properties.vala:192
-msgid "USB device support"
-msgstr "Unterstützung für USB-Geräte"
-
-# Smartcard ist keine SD-Karte
-# Chipkarten, oft auch als Smartcard oder Integrated Circuit Card (ICC) bezeichnet, sind spezielle Plastikkarten mit eingebautem integriertem Schaltkreis (Chip), der eine Hardware-Logik, Speicher oder auch einen Mikroprozessor enthält. Chipkarten werden durch spezielle Kartenlesegeräte angesteuert.
-#: ../src/libvirt-machine-properties.vala:210
-msgid "Smartcard support"
-msgstr "Unterstützung für Smartcard"
-
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:262
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:181
+#: ../src/libvirt-machine-properties.vala:233
 msgid "empty"
 msgstr "leer"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:271
-#: ../src/libvirt-machine-properties.vala:323
+#: ../src/libvirt-machine-properties.vala:190
+#: ../src/libvirt-machine-properties.vala:242
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:204
+#: ../src/libvirt-machine-properties.vala:232
 msgid "_Select"
 msgstr "_Auswählen"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:288
-#: ../src/libvirt-machine-properties.vala:296
+#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:215
 msgid "_Remove"
 msgstr "_Entfernen"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:303
+#: ../src/libvirt-machine-properties.vala:222
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Einfügen von »%s« als CD/DVD in »%s« ist fehlgeschlagen"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:317
+#: ../src/libvirt-machine-properties.vala:236
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Entfernen der CD/DVD von »%s« ist fehlgeschlagen"
 
-#: ../src/libvirt-machine-properties.vala:387
+#: ../src/libvirt-machine-properties.vala:306
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:393
+#: ../src/libvirt-machine-properties.vala:312
 msgid "I/O"
 msgstr "E/A"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:399
+#: ../src/libvirt-machine-properties.vala:318
 msgid "Network"
 msgstr "Netzwerk"
 
-#: ../src/libvirt-machine-properties.vala:428 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:347 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "_Neu starten"
 
-#: ../src/libvirt-machine-properties.vala:436
+#: ../src/libvirt-machine-properties.vala:355
 msgid "_Force Shutdown"
 msgstr "Herunterfahren er_zwingen"
 
-#: ../src/libvirt-machine-properties.vala:450
+#: ../src/libvirt-machine-properties.vala:369
 msgid "_Troubleshooting Log"
 msgstr "_Fehlerdiagnose-Protokoll"
 
-#: ../src/libvirt-machine-properties.vala:471
+#: ../src/libvirt-machine-properties.vala:390
 msgid "_Memory: "
 msgstr "S_peicher: "
 
-#: ../src/libvirt-machine-properties.vala:540
+#: ../src/libvirt-machine-properties.vala:459
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -765,75 +748,75 @@ msgstr ""
 "<span color=\"grey\">Maximale Laufwerksgröße</span>\t\t %s <span color=\"grey"
 "\">(%s belegt)</span>"
 
-#: ../src/libvirt-machine-properties.vala:556
+#: ../src/libvirt-machine-properties.vala:475
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Es ist nicht genug Speicherplatz auf Ihrem System, um die maximale "
 "Laufwerksgröße zu erhöhen."
 
-#: ../src/libvirt-machine-properties.vala:566
+#: ../src/libvirt-machine-properties.vala:485
 msgid "Maximum _Disk Size: "
 msgstr "_Maximale Laufwerksgröße: "
 
-#: ../src/libvirt-machine-properties.vala:692
+#: ../src/libvirt-machine-properties.vala:611
 msgid "_Run in background"
 msgstr "Im _Hintergrund laufen lassen"
 
-#: ../src/libvirt-machine-properties.vala:703
-#: ../src/libvirt-machine-properties.vala:706
+#: ../src/libvirt-machine-properties.vala:622
+#: ../src/libvirt-machine-properties.vala:625
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "»%s« wird nicht automatisch angehalten."
 
-#: ../src/libvirt-machine-properties.vala:704
-#: ../src/libvirt-machine-properties.vala:707
+#: ../src/libvirt-machine-properties.vala:623
+#: ../src/libvirt-machine-properties.vala:626
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "»%s« wird automatisch angehalten, um Ressourcen zu sparen."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:595
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s wird vom Laufwerk wiederhergestellt"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:599
+#: ../src/libvirt-machine.vala:598
 #, c-format
 msgid "Starting %s"
 msgstr "%s wird gestartet"
 
-#: ../src/libvirt-machine.vala:672
+#: ../src/libvirt-machine.vala:671
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Der Neustart von »%s« dauert zu lange. Soll das Herunterfahren erzwungen "
 "werden?"
 
-#: ../src/libvirt-machine.vala:674
+#: ../src/libvirt-machine.vala:673
 msgid "_Shutdown"
 msgstr "_Herunterfahren"
 
-#: ../src/libvirt-machine.vala:786
+#: ../src/libvirt-machine.vala:785
 msgid "Installing…"
 msgstr "Installieren …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:788 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:787 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:790
+#: ../src/libvirt-machine.vala:789
 msgid "Setting up clone…"
 msgstr "Abbild erstellen …"
 
-#: ../src/libvirt-machine.vala:792
+#: ../src/libvirt-machine.vala:791
 msgid "Importing…"
 msgstr "Importieren …"
 
-#: ../src/libvirt-machine.vala:801 ../src/ovirt-machine.vala:88
+#: ../src/libvirt-machine.vala:800 ../src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "Wirt: %s"
@@ -902,16 +885,16 @@ msgstr "Ausgeschaltet"
 msgid "Connecting to %s"
 msgstr "Verbinden mit %s"
 
-#: ../src/machine.vala:218 ../src/machine.vala:615
+#: ../src/machine.vala:218 ../src/machine.vala:617
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Verbindung mit »%s« ist gescheitert"
 
-#: ../src/machine.vala:414
+#: ../src/machine.vala:416
 msgid "Saving…"
 msgstr "Speichern …"
 
-#: ../src/machine.vala:601
+#: ../src/machine.vala:603
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -920,13 +903,13 @@ msgstr ""
 "»%s« konnte nicht vom Datenträger wiederhergestellt werden\n"
 "Soll ohne den gespeicherten Zustand versucht werden?"
 
-#: ../src/machine.vala:611
+#: ../src/machine.vala:613
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Starten von »%s« schlug fehl"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:644
+#: ../src/machine.vala:646
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "»%s« benötigt Legitimation"
@@ -972,12 +955,12 @@ msgstr "%s Homepage: <%s>.\n"
 msgid "No such file %s"
 msgstr "Keine solche Datei %s"
 
-#: ../src/notificationbar.vala:43
+#: ../src/notificationbar.vala:44
 #, c-format
 msgid "Sign In to %s"
 msgstr "Bei %s anmelden"
 
-#: ../src/notificationbar.vala:46
+#: ../src/notificationbar.vala:47
 #, c-format
 msgid "Not connected to %s"
 msgstr "Nicht verbunden mit %s"
@@ -986,13 +969,13 @@ msgstr "Nicht verbunden mit %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Verbindung mit »oVirt« System-Vermittler ist gescheitert"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:73
 #: ../src/wizard.vala:488
-msgid "URI"
+msgid "URL"
 msgstr "Adresse"
 
 #: ../src/properties.vala:83
@@ -1012,8 +995,8 @@ msgstr "Geräte"
 msgid "Snapshots"
 msgstr "Schnappschüsse"
 
-#: ../src/remote-machine.vala:72
-msgid "_URI"
+#: ../src/remote-machine.vala:75
+msgid "_URL"
 msgstr "_Adresse"
 
 #. Translators: This is a button to open box(es) in new window(s)
@@ -1076,34 +1059,44 @@ msgstr "Erstellen eines Schnappschusses von %s schlug fehl"
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../src/spice-display.vala:61 ../src/spice-display.vala:378
+#: ../src/spice-display.vala:61 ../src/spice-display.vala:385
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Umleitung des USB-Geräts »%s« für »%s« ist fehlgeschlagen"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:318
 msgid "Share Clipboard"
 msgstr "Zwischenablage freigeben"
 
-#: ../src/spice-display.vala:391
+#: ../src/spice-display.vala:323
+msgid ""
+"SPICE guest tools are not installed. These tools improve user experience and "
+"enable host and box interactions, such as copy&amp;paste. Please visit <a "
+"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
+"download.html</a> to download and install these tools from within the box."
+msgstr ""
+"SPICE-Gasterweiterungen sind nicht installiert. Diese Erweiterungen "
+"verbessern das Nutzererlebnis und ermöglichen Interaktion zwischen Host und "
+"Gast, wie beispielsweise Kopieren und Einfügen. Bitte besuchen Sie <a href="
+"\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
+"download.html</a>, um die Erweiterung herunterzuladen und installieren Sie "
+"diese innerhalb des Gast-Betriebssystems."
+
+#: ../src/spice-display.vala:398
 msgid "USB devices"
 msgstr "USB-Geräte"
 
-#: ../src/spice-display.vala:534 ../src/spice-display.vala:557
-#: ../src/wizard.vala:310 ../src/wizard.vala:317
-msgid "Invalid URI"
+#: ../src/spice-display.vala:541 ../src/spice-display.vala:566
+#: ../src/spice-display.vala:569 ../src/wizard.vala:310 ../src/wizard.vala:317
+msgid "Invalid URL"
 msgstr "Ungültige Adresse"
 
-#: ../src/spice-display.vala:544
+#: ../src/spice-display.vala:551
 msgid "The port must be specified once"
 msgstr "Der Port muss einmalig angegeben werden"
 
-#: ../src/spice-display.vala:555
-msgid "Invalid Spice UNIX URI"
-msgstr "Ungültige Spice-UNIX-Adresse"
-
-#: ../src/spice-display.vala:560
-msgid "Missing port in Spice URI"
+#: ../src/spice-display.vala:562
+msgid "Missing port in Spice URL"
 msgstr "Fehlender Port in der Spice-Adresse"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
@@ -1187,7 +1180,7 @@ msgstr "Nein"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:574
+#: ../src/vm-configurator.vala:572
 msgid "Incapable host system"
 msgstr "Unzulängliches Wirtssystem"
 
@@ -1326,6 +1319,23 @@ msgstr "Das Herunterladen ist fehlgeschlagen."
 #: ../src/wizard.vala:718
 msgid "C_ustomize…"
 msgstr "_Anpassen …"
+
+#~ msgid "Add support to guest"
+#~ msgstr "Unterstützung für den Gast hinzufügen"
+
+#~ msgid "USB device support"
+#~ msgstr "Unterstützung für USB-Geräte"
+
+# Smartcard ist keine SD-Karte
+# Chipkarten, oft auch als Smartcard oder Integrated Circuit Card (ICC) bezeichnet, sind spezielle Plastikkarten mit eingebautem integriertem Schaltkreis (Chip), der eine Hardware-Logik, Speicher oder auch einen Mikroprozessor enthält. Chipkarten werden durch spezielle Kartenlesegeräte angesteuert.
+#~ msgid "Smartcard support"
+#~ msgstr "Unterstützung für Smartcard"
+
+#~ msgid "_URI"
+#~ msgstr "_Adresse"
+
+#~ msgid "Invalid Spice UNIX URI"
+#~ msgstr "Ungültige Spice-UNIX-Adresse"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Close window/Quit Boxes"
