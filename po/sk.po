@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-06-29 19:12+0000\n"
-"PO-Revision-Date: 2016-07-12 16:44+0200\n"
+"POT-Creation-Date: 2016-08-17 16:49+0000\n"
+"PO-Revision-Date: 2016-08-17 19:11+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid "GNOME Boxes"
@@ -171,7 +171,7 @@ msgstr "Vyhľadať"
 msgid "Actions"
 msgstr "Akcie"
 
-#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:124
+#: ../data/ui/display-toolbar.ui.h:3
 msgid "Keyboard shortcuts"
 msgstr "Klávesové skratky"
 
@@ -477,7 +477,7 @@ msgstr "Pozastaviť"
 msgid "Clone"
 msgstr "Klonovať"
 
-#: ../src/actions-popover.vala:79 ../src/machine.vala:602
+#: ../src/actions-popover.vala:79 ../src/machine.vala:604
 msgid "Restart"
 msgstr "Reštartovať"
 
@@ -502,6 +502,10 @@ msgstr ""
 "systémom"
 
 #: ../src/app.vala:123
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové skratky"
+
+#: ../src/app.vala:124
 msgid "Help"
 msgstr "Pomocník"
 
@@ -652,66 +656,50 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Odoslať kombináciu klávesov"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:58
+#: ../src/libvirt-machine-properties.vala:96 ../src/remote-machine.vala:61
 msgid "_Name"
 msgstr "_Názov"
 
-#: ../src/libvirt-machine-properties.vala:130
+#: ../src/libvirt-machine-properties.vala:108
 msgid "IP Address"
 msgstr "Adresa IP"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:71
+#: ../src/libvirt-machine-properties.vala:110 ../src/ovirt-machine.vala:71
 msgid "Broker"
 msgstr "Správca virtualizácie"
 
 #. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
-#: ../src/libvirt-machine-properties.vala:135
+#: ../src/libvirt-machine-properties.vala:113
 msgid "Display Protocol"
 msgstr "Protokol displeja"
 
 #. Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
-#: ../src/libvirt-machine-properties.vala:138
+#: ../src/libvirt-machine-properties.vala:116
 msgid "Display URL"
 msgstr "URL displeja"
 
-# button label
-#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
-#. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:190
-#: ../src/libvirt-machine-properties.vala:208
-msgid "Add support to guest"
-msgstr "Pridať podporu hosťovi"
-
-#: ../src/libvirt-machine-properties.vala:192
-msgid "USB device support"
-msgstr "Podpora zariadení USB"
-
-#: ../src/libvirt-machine-properties.vala:210
-msgid "Smartcard support"
-msgstr "Podpora kariet Smart"
-
 # DK: nahradza nazov suboru ked neni pripojeny obraz disku
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:262
-#: ../src/libvirt-machine-properties.vala:314
+#: ../src/libvirt-machine-properties.vala:181
+#: ../src/libvirt-machine-properties.vala:233
 msgid "empty"
 msgstr "prázdne"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:271
-#: ../src/libvirt-machine-properties.vala:323
+#: ../src/libvirt-machine-properties.vala:190
+#: ../src/libvirt-machine-properties.vala:242
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:285
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:204
+#: ../src/libvirt-machine-properties.vala:232
 msgid "_Select"
 msgstr "Vy_brať"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:288
-#: ../src/libvirt-machine-properties.vala:296
+#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:215
 msgid "_Remove"
 msgstr "O_dstrániť"
 
@@ -719,18 +707,18 @@ msgstr "O_dstrániť"
 # DK:https://bugzilla.gnome.org/show_bug.cgi?id=695548
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:303
+#: ../src/libvirt-machine-properties.vala:222
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "Vloženie súboru „%s“ ako CD/DVD do virtuálneho stroja „%s“ zlyhalo"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:317
+#: ../src/libvirt-machine-properties.vala:236
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "Odstránenie CD/DVD z virtuálneho stroja „%s“ zlyhalo"
 
-#: ../src/libvirt-machine-properties.vala:387
+#: ../src/libvirt-machine-properties.vala:306
 msgid "CPU"
 msgstr "Procesor"
 
@@ -738,34 +726,34 @@ msgstr "Procesor"
 # PK: V/V
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:393
+#: ../src/libvirt-machine-properties.vala:312
 msgid "I/O"
 msgstr "V/V"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:399
+#: ../src/libvirt-machine-properties.vala:318
 msgid "Network"
 msgstr "Sieť"
 
-#: ../src/libvirt-machine-properties.vala:428 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:347 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "_Reštartovať"
 
-#: ../src/libvirt-machine-properties.vala:436
+#: ../src/libvirt-machine-properties.vala:355
 msgid "_Force Shutdown"
 msgstr "Vynútiť vypn_utie"
 
 # dalog
-#: ../src/libvirt-machine-properties.vala:450
+#: ../src/libvirt-machine-properties.vala:369
 msgid "_Troubleshooting Log"
 msgstr "_Záznam pre riešenie problémov"
 
-#: ../src/libvirt-machine-properties.vala:471
+#: ../src/libvirt-machine-properties.vala:390
 msgid "_Memory: "
 msgstr "_Pamäť: "
 
-#: ../src/libvirt-machine-properties.vala:540
+#: ../src/libvirt-machine-properties.vala:459
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -774,76 +762,76 @@ msgstr ""
 "<span color=\"grey\">Maximálna veľkosť disku</span>\t\t %s <span color=\"grey"
 "\">(%s využitých)</span>"
 
-#: ../src/libvirt-machine-properties.vala:556
+#: ../src/libvirt-machine-properties.vala:475
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Na zvýšenie maximálnej veľkosti disku nie je dostatok miesta vo vašom "
 "počítači."
 
-#: ../src/libvirt-machine-properties.vala:566
+#: ../src/libvirt-machine-properties.vala:485
 msgid "Maximum _Disk Size: "
 msgstr "Maximálna veľkosť _disku: "
 
-#: ../src/libvirt-machine-properties.vala:692
+#: ../src/libvirt-machine-properties.vala:611
 msgid "_Run in background"
 msgstr "_Spustiť na pozadí"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: ../src/libvirt-machine-properties.vala:703
-#: ../src/libvirt-machine-properties.vala:706
+#: ../src/libvirt-machine-properties.vala:622
+#: ../src/libvirt-machine-properties.vala:625
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "Box „%s“ nebude automaticky pozastavený."
 
-#: ../src/libvirt-machine-properties.vala:704
-#: ../src/libvirt-machine-properties.vala:707
+#: ../src/libvirt-machine-properties.vala:623
+#: ../src/libvirt-machine-properties.vala:626
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "Box „%s“ bude automaticky pozastavený, aby ušetril prostriedky."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:596
+#: ../src/libvirt-machine.vala:595
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje sa %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:599
+#: ../src/libvirt-machine.vala:598
 #, c-format
 msgid "Starting %s"
 msgstr "Spúšťa sa %s"
 
-#: ../src/libvirt-machine.vala:672
+#: ../src/libvirt-machine.vala:671
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr ""
 "Reštartovanie boxu „%s“ trvá príliš dlho. Chcete vynútiť jeho vypnutie?"
 
-#: ../src/libvirt-machine.vala:674
+#: ../src/libvirt-machine.vala:673
 msgid "_Shutdown"
 msgstr "_Vypnúť"
 
-#: ../src/libvirt-machine.vala:786
+#: ../src/libvirt-machine.vala:785
 msgid "Installing…"
 msgstr "Inštaluje sa…"
 
 # DK: ide o Live distribuciu. pravdepodobne neprekladame
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:788 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:787 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "Live"
 
-#: ../src/libvirt-machine.vala:790
+#: ../src/libvirt-machine.vala:789
 msgid "Setting up clone…"
 msgstr "Nastavuje sa klonovanie…"
 
-#: ../src/libvirt-machine.vala:792
+#: ../src/libvirt-machine.vala:791
 msgid "Importing…"
 msgstr "Importuje sa…"
 
-#: ../src/libvirt-machine.vala:801 ../src/ovirt-machine.vala:88
+#: ../src/libvirt-machine.vala:800 ../src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "hostiteľ: %s"
@@ -911,16 +899,16 @@ msgstr "Vypnutý"
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
-#: ../src/machine.vala:218 ../src/machine.vala:615
+#: ../src/machine.vala:218 ../src/machine.vala:617
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
 
-#: ../src/machine.vala:414
+#: ../src/machine.vala:416
 msgid "Saving…"
 msgstr "Ukladá sa…"
 
-#: ../src/machine.vala:601
+#: ../src/machine.vala:603
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -929,13 +917,13 @@ msgstr ""
 "Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
-#: ../src/machine.vala:611
+#: ../src/machine.vala:613
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "Zlyhalo spustenie boxu „%s“"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:644
+#: ../src/machine.vala:646
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "Virtuálny stroj „%s“ vyžaduje overenie totožnosti"
@@ -997,13 +985,12 @@ msgstr "Nepripojené k %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Pripojenie k správcovi virtualizácie oVirt zlyhalo"
 
-#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:68
+#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "Protokol"
 
-#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:70
+#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:73
 #: ../src/wizard.vala:488
-#| msgid "URI"
 msgid "URL"
 msgstr "URL"
 
@@ -1024,7 +1011,7 @@ msgstr "Zariadenia"
 msgid "Snapshots"
 msgstr "Snímky"
 
-#: ../src/remote-machine.vala:72
+#: ../src/remote-machine.vala:75
 msgid "_URL"
 msgstr "_URL"
 
@@ -1090,16 +1077,16 @@ msgstr "Zlyhalo vytvorenie snímky boxu %s"
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: ../src/spice-display.vala:61 ../src/spice-display.vala:392
+#: ../src/spice-display.vala:61 ../src/spice-display.vala:385
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "Presmerovanie zariadenia „%s“ typu USB pre „%s“ zlyhalo"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:318
 msgid "Share Clipboard"
 msgstr "Zdieľať schránku"
 
-#: ../src/spice-display.vala:330
+#: ../src/spice-display.vala:323
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1112,20 +1099,20 @@ msgstr ""
 "space.org/download.html\">http://www.spice-space.org/download.html</a>, kde "
 "prevezmete a následne nainštalujete tieto nástroje priamo v boxe."
 
-#: ../src/spice-display.vala:405
+#: ../src/spice-display.vala:398
 msgid "USB devices"
 msgstr "Zariadenia USB"
 
-#: ../src/spice-display.vala:548 ../src/spice-display.vala:573
-#: ../src/spice-display.vala:576 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:541 ../src/spice-display.vala:566
+#: ../src/spice-display.vala:569 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "Neplatná URL"
 
-#: ../src/spice-display.vala:558
+#: ../src/spice-display.vala:551
 msgid "The port must be specified once"
 msgstr "Port musí byť zadaný raz"
 
-#: ../src/spice-display.vala:569
+#: ../src/spice-display.vala:562
 msgid "Missing port in Spice URL"
 msgstr "V URL systému Spice chýba port"
 
@@ -1212,7 +1199,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:592
+#: ../src/vm-configurator.vala:572
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
@@ -1349,6 +1336,16 @@ msgstr "Preberanie zlyhalo."
 #: ../src/wizard.vala:718
 msgid "C_ustomize…"
 msgstr "_Prispôsobiť…"
+
+# button label
+#~ msgid "Add support to guest"
+#~ msgstr "Pridať podporu hosťovi"
+
+#~ msgid "USB device support"
+#~ msgstr "Podpora zariadení USB"
+
+#~ msgid "Smartcard support"
+#~ msgstr "Podpora kariet Smart"
 
 #~ msgid "_URI"
 #~ msgstr "_URI"
