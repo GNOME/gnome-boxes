@@ -120,8 +120,8 @@ private class Boxes.App: Gtk.Application {
         Gtk.init (ref args2);
 
         var menu = new GLib.Menu ();
+        menu.append (_("Keyboard Shortcuts"), "win.kbd-shortcuts");
         menu.append (_("Help"), "app.help");
-        menu.append (_("Keyboard shortcuts"), "win.kbd-shortcuts");
         menu.append (_("About"), "app.about");
         menu.append (_("Quit"), "app.quit");
 
