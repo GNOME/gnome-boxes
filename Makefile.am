@@ -18,6 +18,7 @@ DISTCLEANFILES =				\
 
 EXTRA_DIST =					\
 	CodingStyle.txt				\
+	README.logos				\
 	THANKS					\
 	HACKING					\
 	build-aux/git-version-gen		\
