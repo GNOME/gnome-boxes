@@ -40,6 +40,9 @@ private class Boxes.VncDisplay: Boxes.Display {
 
         display.vnc_auth_failure.connect (() => {
             debug ("auth failure");
+
+            need_password = (password != null);
+            need_username = (username != null);
         });
         display.vnc_auth_unsupported.connect (() => {
             debug ("auth unsupported");
