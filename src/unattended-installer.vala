@@ -275,7 +275,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         setup_box.show ();
     }
 
-    public override GLib.List<Pair> get_vm_properties () {
+    public override GLib.List<Pair<string,string>> get_vm_properties () {
         var properties = base.get_vm_properties ();
 
         if (setup_box.express_install) {
