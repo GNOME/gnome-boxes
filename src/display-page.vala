@@ -254,6 +254,17 @@ private class Boxes.DisplayPage: Gtk.Box {
 
         // Translators: Showing size of widget as WIDTHxHEIGHT here.
         size_label.label = _("%dx%d").printf (allocation.width, allocation.height);
+
+        Idle.add (() => {
+            // Reason to do this in Idle is that Gtk+ doesn't like us showing
+            // widgets from this signal handler.
+            show_size_allocation ();
+
+            return false;
+        });
+    }
+
+    private void show_size_allocation () {
         size_label.visible = true;
 
         if (size_label_timeout != 0) {
