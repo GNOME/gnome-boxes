@@ -42,7 +42,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             return (base.should_autosave &&
                     connection == App.app.default_connection &&
                     !run_in_bg &&
-                    (vm_creator == null || !vm_creator.express_install));
+                    vm_creator == null);
         }
     }
 
