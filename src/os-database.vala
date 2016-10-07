@@ -42,7 +42,7 @@ private class Boxes.OSDatabase : GLib.Object {
             warning ("Error loading default libosinfo database: %s", e.message);
         }
         try {
-            yield App.app.async_launcher.launch (() => { loader.process_path (get_logos_db ()); }); // Load our custom database
+            yield App.app.async_launcher.launch (() => { loader.process_path (get_custom_osinfo_db ()); }); // Load our custom database
         } catch (GLib.Error e) {
             warning ("Error loading GNOME Boxes libosinfo database: %s", e.message);
         }

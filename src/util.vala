@@ -29,8 +29,8 @@ namespace Boxes {
         return Path.build_filename (get_pkgdata (), "sources", file_name);
     }
 
-    public string get_logos_db () {
-        return get_pkgdata ("gnome-boxes-logos-db.xml");
+    public string get_custom_osinfo_db () {
+        return get_pkgdata ("osinfo");
     }
 
     public string get_user_unattended (string? file_name = null) {

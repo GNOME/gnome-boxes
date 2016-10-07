@@ -1,5 +1,5 @@
 NULL=
-SUBDIRS = icons
+SUBDIRS = icons osinfo
 
 desktopdir       = $(datadir)/applications
 desktop_in_files = org.gnome.Boxes.desktop.in
@@ -35,9 +35,6 @@ unattendeddir = $(datadir)/gnome-boxes/unattended
 unattended_DATA = disk.img			\
 		  $(NULL)
 
-logosdbdir= $(datadir)/gnome-boxes
-logosdb_DATA= gnome-boxes-logos-db.xml
-
 disk.img:
 	rm -f disk.img && qemu-img create -f raw disk.img 1440k && mkfs.msdos -s 1 disk.img
 
@@ -63,7 +60,6 @@ EXTRA_DIST =					\
 	$(source_DATA)				\
 	$(unattended_DATA)			\
 	$(searchprovider_DATA)			\
-	$(logosdb_DATA)				\
 	$(service_in_files)			\
 	$(appdata_in_file)			\
 	$(NULL)
