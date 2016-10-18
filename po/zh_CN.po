@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-17 08:03+0000\n"
-"PO-Revision-Date: 2016-03-17 22:20+0800\n"
+"POT-Creation-Date: 2016-09-22 08:05+0000\n"
+"PO-Revision-Date: 2016-10-18 19:17+0800\n"
 "Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid "GNOME Boxes"
@@ -121,7 +121,7 @@ msgstr "用户名(_U)"
 msgid "_Password"
 msgstr "密码(_P)"
 
-#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:47
+#: ../data/ui/auth-notification.ui.h:3 ../src/notificationbar.vala:48
 msgid "Sign In"
 msgstr "登录"
 
@@ -169,7 +169,7 @@ msgstr "搜索"
 msgid "Actions"
 msgstr "动作"
 
-#: ../data/ui/display-toolbar.ui.h:3 ../src/app.vala:122
+#: ../data/ui/display-toolbar.ui.h:3
 msgid "Keyboard shortcuts"
 msgstr "快捷键"
 
@@ -308,7 +308,7 @@ msgid "Rename"
 msgstr "重命名"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:63
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
 msgid "Delete"
 msgstr "删除"
 
@@ -327,11 +327,11 @@ msgstr "选择快速安装可自动预设 Box 为最佳设置。"
 msgid "Express Install"
 msgstr "快速安装"
 
-#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:278
+#: ../data/ui/unattended-setup-box.ui.h:4 ../src/unattended-installer.vala:282
 msgid "Username"
 msgstr "用户名"
 
-#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:279
+#: ../data/ui/unattended-setup-box.ui.h:5 ../src/unattended-installer.vala:283
 msgid "Password"
 msgstr "密码"
 
@@ -426,44 +426,53 @@ msgstr ""
 "请检查 BIOS 设置以将其启用。"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:26
+#: ../src/actions-popover.vala:28
 msgid "Box actions"
 msgstr "Box 操作"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:38
+#: ../src/actions-popover.vala:42
 msgid "Open in New Window"
 msgstr "在新窗口中打开"
 
 #. Favorite
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:49
 msgid "Remove from Favorites"
 msgstr "从收藏里移除"
 
-#: ../src/actions-popover.vala:44
+#: ../src/actions-popover.vala:51
 msgid "Add to Favorites"
 msgstr "添加到收藏"
 
-#: ../src/actions-popover.vala:51
+#: ../src/actions-popover.vala:58
 msgid "Force Shutdown"
 msgstr "强制关机"
 
 #. Pause
-#: ../src/actions-popover.vala:57
+#: ../src/actions-popover.vala:65
 msgid "Pause"
 msgstr "暂停"
 
+#. Clone
+#: ../src/actions-popover.vala:70
+msgid "Clone"
+msgstr "克隆"
+
+#: ../src/actions-popover.vala:79 ../src/machine.vala:604
+msgid "Restart"
+msgstr "重启"
+
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:72
+#: ../src/actions-popover.vala:88
 msgid "Properties"
 msgstr "属性"
 
-#: ../src/actions-popover.vala:96 ../src/selectionbar.vala:60
+#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing '%s' failed"
 msgstr "无法暂停“%s”"
 
-#: ../src/app.vala:101
+#: ../src/app.vala:103
 msgid "translator-credits"
 msgstr ""
 "tuhaihe <wangdianjin@linuxdeepin.com>, 2012.\n"
@@ -474,72 +483,76 @@ msgstr ""
 "lumingzh <lumingzh@qq.com>, 2016.\n"
 "Dingzhong Chen <wsxy162@gmail.com>, 2016."
 
-#: ../src/app.vala:102
+#: ../src/app.vala:104
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "一个简单的可访问远程或虚拟系统的 GNOME 3 应用程序"
 
-#: ../src/app.vala:121
+#: ../src/app.vala:123
+msgid "Keyboard Shortcuts"
+msgstr "键盘快捷键"
+
+#: ../src/app.vala:124
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/app.vala:123
+#: ../src/app.vala:125
 msgid "About"
 msgstr "关于"
 
-#: ../src/app.vala:124
+#: ../src/app.vala:126
 msgid "Quit"
 msgstr "退出"
 
-#: ../src/app.vala:176 ../src/main.vala:9
+#: ../src/app.vala:178 ../src/main.vala:9
 msgid "Display version number"
 msgstr "显示版本号"
 
-#: ../src/app.vala:178
+#: ../src/app.vala:180
 msgid "Open in full screen"
 msgstr "以全屏模式打开"
 
-#: ../src/app.vala:179 ../src/main.vala:10
+#: ../src/app.vala:181 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "检查虚拟化功能"
 
-#: ../src/app.vala:180
+#: ../src/app.vala:182
 msgid "Open box with UUID"
 msgstr "根据 UUID 打开 Box"
 
-#: ../src/app.vala:181
+#: ../src/app.vala:183
 msgid "Search term"
 msgstr "搜索条目"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:183
-msgid "URI to display, broker or installer media"
-msgstr "显示器，虚拟机管理器或安装介质的 URI"
+#: ../src/app.vala:185
+msgid "URL to display, broker or installer media"
+msgstr "显示，虚拟机管理器或安装介质的 URL"
 
-#: ../src/app.vala:194
+#: ../src/app.vala:196
 msgid "- A simple application to access remote or virtual machines"
 msgstr "- 一个简单的可访问远程系统或虚拟机的应用程序"
 
-#: ../src/app.vala:216
+#: ../src/app.vala:218
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了过多的命令行参数。\n"
 
-#: ../src/app.vala:440
+#: ../src/app.vala:443
 #, c-format
 msgid "Box '%s' installed and ready to use"
 msgstr "虚拟机“%s”已安装并已可用"
 
-#: ../src/app.vala:528
+#: ../src/app.vala:531
 #, c-format
 msgid "Box '%s' has been deleted"
 msgstr "Box“%s”已被删除"
 
-#: ../src/app.vala:529
+#: ../src/app.vala:532
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 个 Box 已经被删除"
 
-#: ../src/app.vala:556 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:559 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "撤消(_U)"
 
@@ -615,113 +628,98 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "发送组合键"
 
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:56
+#: ../src/libvirt-machine-properties.vala:96 ../src/remote-machine.vala:61
 msgid "_Name"
 msgstr "名称(_N)"
 
-#: ../src/libvirt-machine-properties.vala:130
+#: ../src/libvirt-machine-properties.vala:108
 msgid "IP Address"
 msgstr "IP 地址"
 
-#: ../src/libvirt-machine-properties.vala:132 ../src/ovirt-machine.vala:68
+#: ../src/libvirt-machine-properties.vala:110 ../src/ovirt-machine.vala:71
 msgid "Broker"
 msgstr "代理"
 
 #. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
-#: ../src/libvirt-machine-properties.vala:135
+#: ../src/libvirt-machine-properties.vala:113
 msgid "Display Protocol"
 msgstr "显示协议"
 
-#. Translators: This is the URI to connect to the display/desktop. e.g spice://somehost:5051.
-#: ../src/libvirt-machine-properties.vala:137
-msgid "Display URI"
-msgstr "显示 URI"
-
-#. Only add smartcart support to guests if HAVE_SMARTCARD, as qemu built
-#. without smartcard support will not start vms with it.
-#: ../src/libvirt-machine-properties.vala:189
-#: ../src/libvirt-machine-properties.vala:207
-msgid "Add support to guest"
-msgstr "增加访客帐号支持"
-
-#: ../src/libvirt-machine-properties.vala:191
-msgid "USB device support"
-msgstr "USB 设备支持"
-
-#: ../src/libvirt-machine-properties.vala:209
-msgid "Smartcard support"
-msgstr "智能卡支持"
+#. Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
+#: ../src/libvirt-machine-properties.vala:116
+msgid "Display URL"
+msgstr "显示 URL"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:261
-#: ../src/libvirt-machine-properties.vala:313
+#: ../src/libvirt-machine-properties.vala:181
+#: ../src/libvirt-machine-properties.vala:233
 msgid "empty"
 msgstr "空"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: ../src/libvirt-machine-properties.vala:270
-#: ../src/libvirt-machine-properties.vala:322
+#: ../src/libvirt-machine-properties.vala:190
+#: ../src/libvirt-machine-properties.vala:242
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:284
-#: ../src/libvirt-machine-properties.vala:312
+#: ../src/libvirt-machine-properties.vala:204
+#: ../src/libvirt-machine-properties.vala:232
 msgid "_Select"
 msgstr "选择(_S)"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:287
-#: ../src/libvirt-machine-properties.vala:295
+#: ../src/libvirt-machine-properties.vala:207
+#: ../src/libvirt-machine-properties.vala:215
 msgid "_Remove"
 msgstr "移除(_R)"
 
 #. Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
 #. Second '%s' is name of the box.
-#: ../src/libvirt-machine-properties.vala:302
+#: ../src/libvirt-machine-properties.vala:222
 #, c-format
 msgid "Insertion of '%s' as a CD/DVD into '%s' failed"
 msgstr "无法将 CD/DVD “%s”插入“%s”"
 
 #. Translators: '%s' here is name of the box.
-#: ../src/libvirt-machine-properties.vala:316
+#: ../src/libvirt-machine-properties.vala:236
 #, c-format
 msgid "Removal of CD/DVD from '%s' failed"
 msgstr "无法从“%s”移除 CD/DVD"
 
-#: ../src/libvirt-machine-properties.vala:386
+#: ../src/libvirt-machine-properties.vala:306
 msgid "CPU"
 msgstr "处理器"
 
 #. I/O
 #. 100 MiB/s
-#: ../src/libvirt-machine-properties.vala:392
+#: ../src/libvirt-machine-properties.vala:312
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: ../src/libvirt-machine-properties.vala:398
+#: ../src/libvirt-machine-properties.vala:318
 msgid "Network"
 msgstr "网络"
 
-#: ../src/libvirt-machine-properties.vala:427 ../src/properties.vala:84
+#: ../src/libvirt-machine-properties.vala:347 ../src/properties.vala:84
 msgid "_Restart"
 msgstr "重启(_R)"
 
-#: ../src/libvirt-machine-properties.vala:435
+#: ../src/libvirt-machine-properties.vala:355
 msgid "_Force Shutdown"
 msgstr "强制关机(_F)"
 
-#: ../src/libvirt-machine-properties.vala:449
+#: ../src/libvirt-machine-properties.vala:369
 msgid "_Troubleshooting Log"
 msgstr "故障诊断日志(_T)"
 
-#: ../src/libvirt-machine-properties.vala:470
+#: ../src/libvirt-machine-properties.vala:390
 msgid "_Memory: "
 msgstr "内存(_M)："
 
-#: ../src/libvirt-machine-properties.vala:539
+#: ../src/libvirt-machine-properties.vala:459
 #, c-format
 msgid ""
 "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
@@ -730,100 +728,104 @@ msgstr ""
 "<span color=\"grey\">最大磁盘大小</span>\t\t %s <span color=\"grey\">（%s 已"
 "用）</span>"
 
-#: ../src/libvirt-machine-properties.vala:555
+#: ../src/libvirt-machine-properties.vala:475
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "没有足够的空间来增加你虚拟机上的最大磁盘大小。"
 
-#: ../src/libvirt-machine-properties.vala:564
+#: ../src/libvirt-machine-properties.vala:485
 msgid "Maximum _Disk Size: "
 msgstr "最大磁盘容量(_D)："
 
-#: ../src/libvirt-machine-properties.vala:689
+#: ../src/libvirt-machine-properties.vala:611
 msgid "_Run in background"
 msgstr "后台运行(_R)"
 
-#: ../src/libvirt-machine-properties.vala:700
-#: ../src/libvirt-machine-properties.vala:703
+#: ../src/libvirt-machine-properties.vala:622
+#: ../src/libvirt-machine-properties.vala:625
 #, c-format
 msgid "'%s' will not be paused automatically."
 msgstr "“%s”将不会自动暂停。"
 
-#: ../src/libvirt-machine-properties.vala:701
-#: ../src/libvirt-machine-properties.vala:704
+#: ../src/libvirt-machine-properties.vala:623
+#: ../src/libvirt-machine-properties.vala:626
 #, c-format
 msgid "'%s' will be paused automatically to save resources."
 msgstr "“%s”将会自动暂停以节省资源。"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:588
+#: ../src/libvirt-machine.vala:595
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正在从磁盘恢复 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:591
+#: ../src/libvirt-machine.vala:598
 #, c-format
 msgid "Starting %s"
 msgstr "正在启动 %s"
 
-#: ../src/libvirt-machine.vala:664
+#: ../src/libvirt-machine.vala:671
 #, c-format
 msgid "Restart of '%s' is taking too long. Force it to shutdown?"
 msgstr "“%s”重启时间过长。将其强制关机吗？"
 
-#: ../src/libvirt-machine.vala:666
+#: ../src/libvirt-machine.vala:673
 msgid "_Shutdown"
 msgstr "关机(_S)"
 
-#: ../src/libvirt-machine.vala:750
+#: ../src/libvirt-machine.vala:785
 msgid "Installing…"
 msgstr "正在安装…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/libvirt-machine.vala:752 ../src/wizard-source.vala:82
+#: ../src/libvirt-machine.vala:787 ../src/wizard-source.vala:82
 msgid "Live"
 msgstr "体验"
 
-#: ../src/libvirt-machine.vala:754
+#: ../src/libvirt-machine.vala:789
+msgid "Setting up clone…"
+msgstr "正在设置克隆..."
+
+#: ../src/libvirt-machine.vala:791
 msgid "Importing…"
 msgstr "正在导入..."
 
-#: ../src/libvirt-machine.vala:763 ../src/ovirt-machine.vala:84
+#: ../src/libvirt-machine.vala:800 ../src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "主机：%s"
 
-#: ../src/libvirt-system-importer.vala:18
+#: ../src/libvirt-system-importer.vala:21
 #, c-format
 msgid "_Import '%s' from system broker"
 msgstr "从系统代理器导入“%s”(_I)"
 
 #. Translators: %u here is the number of boxes available for import
-#: ../src/libvirt-system-importer.vala:21
+#: ../src/libvirt-system-importer.vala:24
 #, c-format
 msgid "_Import %u box from system broker"
 msgid_plural "_Import %u boxes from system broker"
 msgstr[0] "从系统代理器导入 %u 个虚拟机(_I)"
 
-#: ../src/libvirt-system-importer.vala:32
+#: ../src/libvirt-system-importer.vala:35
 #, c-format
 msgid "Will import '%s' from system broker"
 msgstr "将从系统代理器 (broker) 导入“%s”"
 
 #. Translators: %u here is the number of boxes available for import
-#: ../src/libvirt-system-importer.vala:35
+#: ../src/libvirt-system-importer.vala:38
 #, c-format
 msgid "Will import %u box from system broker"
 msgid_plural "Will import %u boxes from system broker"
 msgstr[0] "将从系统代理器 (broker) 导入 %u 台机器"
 
-#: ../src/libvirt-system-importer.vala:47
+#: ../src/libvirt-system-importer.vala:71
 msgid "No boxes to import"
 msgstr "没有要导入的机器"
 
-#: ../src/libvirt-system-importer.vala:121
+#: ../src/libvirt-system-importer.vala:129
 #, c-format
 msgid "Failed to find suitable disk to import for box '%s'"
 msgstr "找不到合适的磁盘来导入机器“%s” "
@@ -854,16 +856,16 @@ msgstr "已关闭"
 msgid "Connecting to %s"
 msgstr "正在连接到 %s"
 
-#: ../src/machine.vala:218 ../src/machine.vala:614
+#: ../src/machine.vala:218 ../src/machine.vala:617
 #, c-format
 msgid "Connection to '%s' failed"
 msgstr "到“%s”的连接失败"
 
-#: ../src/machine.vala:413
+#: ../src/machine.vala:416
 msgid "Saving…"
 msgstr "正在保存…"
 
-#: ../src/machine.vala:600
+#: ../src/machine.vala:603
 #, c-format
 msgid ""
 "'%s' could not be restored from disk\n"
@@ -872,17 +874,13 @@ msgstr ""
 "无法从磁盘恢复“%s”\n"
 "忽略保存的状态来尝试吗？"
 
-#: ../src/machine.vala:601
-msgid "Restart"
-msgstr "重启"
-
-#: ../src/machine.vala:610
+#: ../src/machine.vala:613
 #, c-format
 msgid "Failed to start '%s'"
 msgstr "启动“%s”失败"
 
 #. Translators: %s => name of launched box
-#: ../src/machine.vala:643
+#: ../src/machine.vala:646
 #, c-format
 msgid "'%s' requires authentication"
 msgstr "“%s”需要认证"
@@ -923,17 +921,17 @@ msgstr "报告问题至 <%s>。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s 主页：<%s>。\n"
 
-#: ../src/media-manager.vala:227
+#: ../src/media-manager.vala:248
 #, c-format
 msgid "No such file %s"
 msgstr "没有文件 %s"
 
-#: ../src/notificationbar.vala:43
+#: ../src/notificationbar.vala:44
 #, c-format
 msgid "Sign In to %s"
 msgstr "登录到 %s"
 
-#: ../src/notificationbar.vala:46
+#: ../src/notificationbar.vala:47
 #, c-format
 msgid "Not connected to %s"
 msgstr "未连接到 %s"
@@ -942,14 +940,14 @@ msgstr "未连接到 %s"
 msgid "Connection to oVirt broker failed"
 msgstr "连接 oVirt 代理器 (broker) 失败"
 
-#: ../src/ovirt-machine.vala:69 ../src/remote-machine.vala:66
+#: ../src/ovirt-machine.vala:72 ../src/remote-machine.vala:71
 msgid "Protocol"
 msgstr "协议"
 
-#: ../src/ovirt-machine.vala:70 ../src/remote-machine.vala:68
-#: ../src/wizard.vala:486
-msgid "URI"
-msgstr "URI"
+#: ../src/ovirt-machine.vala:73 ../src/remote-machine.vala:73
+#: ../src/wizard.vala:488
+msgid "URL"
+msgstr "URL"
 
 #: ../src/properties.vala:83
 #, c-format
@@ -968,17 +966,17 @@ msgstr "设备"
 msgid "Snapshots"
 msgstr "快照"
 
-#: ../src/remote-machine.vala:70
-msgid "_URI"
-msgstr "_URI"
+#: ../src/remote-machine.vala:75
+msgid "_URL"
+msgstr "_URL"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: ../src/selectionbar.vala:152
+#: ../src/selectionbar.vala:173
 msgctxt "0 items selected"
 msgid "_Open in new window"
 msgstr "在新窗口中打开(_O)"
 
-#: ../src/selectionbar.vala:154
+#: ../src/selectionbar.vala:175
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %d new windows"
@@ -1014,54 +1012,67 @@ msgstr "已删除快照“%s”"
 msgid "No snapshots created yet. Create one using the button below."
 msgstr "还没有创建快照。使用下面的按钮来创建一个。"
 
-#: ../src/snapshots-property.vala:122
+#: ../src/snapshots-property.vala:121
 msgid "Creating new snapshot…"
 msgstr "正在创建建快照..."
 
-#: ../src/snapshots-property.vala:130
+#: ../src/snapshots-property.vala:129
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "为 %s 创建快照失败"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:36
+#: ../src/spice-display.vala:43
 msgid "Unknown"
 msgstr "未知"
 
-#: ../src/spice-display.vala:54 ../src/spice-display.vala:363
+#: ../src/spice-display.vala:61 ../src/spice-display.vala:385
 #, c-format
 msgid "Redirection of USB device '%s' for '%s' failed"
 msgstr "“%2$s”的 USB 设备“%1$s”无法重定向"
 
-#: ../src/spice-display.vala:310
+#: ../src/spice-display.vala:318
 msgid "Share Clipboard"
 msgstr "分享剪贴板"
 
-#: ../src/spice-display.vala:376
+#: ../src/spice-display.vala:323
+msgid ""
+"SPICE guest tools are not installed. These tools improve user experience and "
+"enable host and box interactions, such as copy&amp;paste. Please visit <a "
+"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
+"download.html</a> to download and install these tools from within the box."
+msgstr ""
+"SPICE 客户机工具未安装，此工具可以增强用户体验并且启用宿主机和客户机交互，比"
+"如复制粘贴。请访问 <a href=\"http://www.spice-space.org/download.html"
+"\">http://www.spice-space.org/download.html</a> 在客户机中下载并安装这些工"
+"具。"
+
+#: ../src/spice-display.vala:398
 msgid "USB devices"
 msgstr "USB 设备"
 
-#: ../src/spice-display.vala:519 ../src/wizard.vala:309 ../src/wizard.vala:316
-msgid "Invalid URI"
-msgstr "无效的 URI"
+#: ../src/spice-display.vala:541 ../src/spice-display.vala:566
+#: ../src/spice-display.vala:569 ../src/wizard.vala:310 ../src/wizard.vala:317
+msgid "Invalid URL"
+msgstr "无效的 URL"
 
-#: ../src/spice-display.vala:529
+#: ../src/spice-display.vala:551
 msgid "The port must be specified once"
 msgstr "必须指定一次端口"
 
-#: ../src/spice-display.vala:538
-msgid "Missing port in Spice URI"
-msgstr "Spice URI 缺少端口"
+#: ../src/spice-display.vala:562
+msgid "Missing port in Spice URL"
+msgstr "Spice URL 缺少端口"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: ../src/unattended-installer.vala:188
+#: ../src/unattended-installer.vala:192
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "安装准备过程发生错误。快速安装已禁用。"
 
-#: ../src/unattended-installer.vala:465
+#: ../src/unattended-installer.vala:469
 msgid "Downloading device drivers…"
 msgstr "正在下载设备驱动..."
 
@@ -1115,17 +1126,17 @@ msgid ""
 "readable/writable"
 msgstr "libvirt 知道 %s 是 GNOME Boxes 的存储池但用户不能进行读/写操作"
 
-#: ../src/util.vala:349
+#: ../src/util.vala:327
 msgid "yes"
 msgstr "是"
 
-#: ../src/util.vala:349
+#: ../src/util.vala:327
 msgid "no"
 msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:556
+#: ../src/vm-configurator.vala:572
 msgid "Incapable host system"
 msgstr "主机系统性能不足"
 
@@ -1134,12 +1145,12 @@ msgstr "主机系统性能不足"
 msgid "Live box '%s' has been deleted automatically."
 msgstr "体验机“%s”已自动删除。"
 
-#: ../src/vm-importer.vala:46
+#: ../src/vm-importer.vala:50
 #, c-format
 msgid "Box import from file '%s' failed."
 msgstr "Box 从文件“%s”导入时失败。"
 
-#: ../src/vnc-display.vala:149
+#: ../src/vnc-display.vala:145
 msgid "Read-only"
 msgstr "只读"
 
@@ -1173,93 +1184,105 @@ msgstr "Box 设置"
 msgid "Review"
 msgstr "配置回顾"
 
-#: ../src/wizard.vala:116
+#: ../src/wizard.vala:115
 msgid "Box creation failed"
 msgstr "Box 创建失败"
 
-#: ../src/wizard.vala:268
+#: ../src/wizard.vala:269
 msgid "Empty location"
 msgstr "路径名为空"
 
-#: ../src/wizard.vala:291
+#: ../src/wizard.vala:292
 msgid "Unsupported file"
 msgstr "不支持的文件"
 
-#: ../src/wizard.vala:297
+#: ../src/wizard.vala:298
 msgid "Invalid file"
 msgstr "无效的文件"
 
-#: ../src/wizard.vala:333
+#: ../src/wizard.vala:335
 #, c-format
 msgid "Unsupported protocol '%s'"
 msgstr "不支持协议“%s”"
 
-#: ../src/wizard.vala:339 ../src/wizard.vala:408
+#: ../src/wizard.vala:341 ../src/wizard.vala:410
 msgid "Unknown installer media"
 msgstr "未知的安装器介质"
 
-#: ../src/wizard.vala:340 ../src/wizard.vala:409
+#: ../src/wizard.vala:342 ../src/wizard.vala:411
 msgid "Analyzing…"
 msgstr "正在分析..."
 
-#: ../src/wizard.vala:354
+#: ../src/wizard.vala:356
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "无法分析安装器介质。已损坏或不完整的介质？"
 
 #. We did this, so ignore!
-#: ../src/wizard.vala:462
+#: ../src/wizard.vala:464
 msgid "Box setup failed"
 msgstr "Box 设置失败"
 
-#: ../src/wizard.vala:476
+#: ../src/wizard.vala:478
 msgid "Boxes will create a new box with the following properties:"
 msgstr "将创建一个新 Box，属性如下："
 
-#: ../src/wizard.vala:481
+#: ../src/wizard.vala:483
 msgid "Type"
 msgstr "类型"
 
-#: ../src/wizard.vala:484
+#: ../src/wizard.vala:486
 msgid "Host"
 msgstr "主机"
 
-#: ../src/wizard.vala:495 ../src/wizard.vala:506
+#: ../src/wizard.vala:497 ../src/wizard.vala:508
 msgid "Port"
 msgstr "端口"
 
-#: ../src/wizard.vala:497
+#: ../src/wizard.vala:499
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: ../src/wizard.vala:511
+#: ../src/wizard.vala:513
 msgid "Will add boxes for all systems available from this account:"
 msgstr "将添加所有该帐户可访问系统的 box："
 
-#: ../src/wizard.vala:524
+#: ../src/wizard.vala:526
 msgid "Memory"
 msgstr "内存"
 
-#: ../src/wizard.vala:533
+#: ../src/wizard.vala:535
 msgid "Disk"
 msgstr "磁盘"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: ../src/wizard.vala:535
+#: ../src/wizard.vala:537
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大值"
 
-#: ../src/wizard.vala:598
+#: ../src/wizard.vala:600
 msgid "Downloading media…"
 msgstr "正在下载媒体..."
 
-#: ../src/wizard.vala:608
+#: ../src/wizard.vala:610
 msgid "Download failed."
 msgstr "下载失败。"
 
-#: ../src/wizard.vala:716
+#: ../src/wizard.vala:718
 msgid "C_ustomize…"
 msgstr "自定义(_U)..."
+
+#~ msgid "Add support to guest"
+#~ msgstr "增加访客帐号支持"
+
+#~ msgid "USB device support"
+#~ msgstr "USB 设备支持"
+
+#~ msgid "Smartcard support"
+#~ msgstr "智能卡支持"
+
+#~ msgid "_URI"
+#~ msgstr "_URI"
 
 #~ msgctxt "shortcut window"
 #~ msgid "Close window/Quit Boxes"
