@@ -71,7 +71,8 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        add_graphics_device (domain);
+        var graphics = create_graphics_device ();
+        domain.add_device (graphics);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
         var channel = new DomainChannel ();
@@ -107,7 +108,10 @@ private class Boxes.VMConfigurator {
         console.set_source (new DomainChardevSourcePty ());
         domain.add_device (console);
 
-        add_network_interface (domain, is_libvirt_bridge_net_available (), install_media.supports_virtio_net);
+        var iface = create_network_interface (domain,
+                                              is_libvirt_bridge_net_available (),
+                                              install_media.supports_virtio_net);
+        domain.add_device (iface);
 
         return domain;
     }
@@ -254,19 +258,20 @@ private class Boxes.VMConfigurator {
             else
                 devices.prepend (device);
         }
-        devices.reverse ();
-        domain.set_devices (devices);
 
         // If user interface device was found and removed, let's add bridge device now.
         if (iface != null) {
             var bridge = is_libvirt_bridge_net_available ();
             var virtio = iface.get_model () == "virtio";
 
-            add_network_interface (domain, bridge, virtio);
+            devices.prepend (create_network_interface (domain, bridge, virtio));
         }
 
         if (graphics != null)
-            add_graphics_device (domain);
+            devices.prepend (create_graphics_device ());
+
+        devices.reverse ();
+        domain.set_devices (devices);
     }
 
     public static void set_target_media_config (Domain         domain,
@@ -470,30 +475,31 @@ private class Boxes.VMConfigurator {
         domain.add_device (controller);
     }
 
-    public static void add_network_interface (Domain domain, bool bridge, bool virtio) {
+    public static DomainInterface create_network_interface (Domain domain, bool bridge, bool virtio) {
         DomainInterface iface;
 
         if (bridge) {
-            debug ("Adding bridge network to %s", domain.get_name ());
+            debug ("Creating bridge network device for %", domain.get_name ());
             var bridge_iface = new DomainInterfaceBridge ();
             bridge_iface.set_source ("virbr0");
             iface = bridge_iface;
         } else {
-            debug ("Adding user network to %s", domain.get_name ());
+            debug ("Creating user network device for %", domain.get_name ());
             iface = new DomainInterfaceUser ();
         }
 
         if (virtio)
             iface.set_model ("virtio");
 
-        domain.add_device (iface);
+        return iface;
     }
 
-    public static void add_graphics_device (Domain domain) {
+    public static DomainGraphicsSpice create_graphics_device () {
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (false);
         graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
-        domain.add_device (graphics);
+
+        return graphics;
     }
 
     private static DomainControllerUsb create_usb_controller (DomainControllerUsbModel model,
