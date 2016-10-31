@@ -422,6 +422,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         GLib.GenericArray<UsbDevice> ret = new GLib.GenericArray<UsbDevice> ();
         var devs = manager.get_devices ();
 
+        if (Environment.get_variable ("BOXES_USB_REDIR_ALL") != null)
+            return devs;
+
         for (int i = 0; i < devs.length; i++) {
             var dev = devs[i];
             var libusb_dev = (LibUSB.Device) dev.get_libusb_device ();
