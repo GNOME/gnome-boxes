@@ -172,6 +172,6 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         if (items == 0)
             open_btn.label = C_("0 items selected", "_Open in new window");
         else
-            open_btn.label = ngettext ("_Open in new window", "_Open in %d new windows", items).printf (items);
+            open_btn.label = ngettext ("_Open in new window", "_Open in %u new windows", items).printf (items);
     }
 }
