@@ -43,7 +43,7 @@ private class Boxes.SelectionToolbar: HeaderBar {
         if (items > 0) {
             // This goes with the "Click on items to select them" string and is about selection of items (boxes)
             // when the main collection view is in selection mode.
-            menu_button_label.label = ngettext ("%d selected", "%d selected", items).printf (items);
+            menu_button_label.label = ngettext ("%u selected", "%u selected", items).printf (items);
         } else {
             menu_button_label.label = _("(Click on items to select them)");
         }
