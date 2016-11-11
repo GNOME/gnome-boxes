@@ -58,7 +58,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             manager.device_error.connect ( (dev, err) => {
                 var device_description = dev.get_description ("%1$s %2$s");
                 var box_name = get_box_name ();
-                got_error (_("Redirection of USB device '%s' for '%s' failed").printf (device_description, box_name));
+                got_error (_("Redirection of USB device “%s” for “%s” failed").printf (device_description, box_name));
                 debug ("Error connecting %s to %s: %s", device_description, box_name, err.message);
             });
         } catch (GLib.Error error) {
@@ -382,7 +382,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                                     dev_toggle.active = false;
                                     var device_desc = dev.get_description ("%1$s %2$s");
                                     var box_name = get_box_name ();
-                                    var msg = _("Redirection of USB device '%s' for '%s' failed");
+                                    var msg = _("Redirection of USB device “%s” for “%s” failed");
                                     got_error (msg.printf (device_desc, box_name));
                                     debug ("Error connecting %s to %s: %s",
                                            device_desc,

@@ -111,7 +111,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             try {
                 machine.save.end (result);
             } catch (GLib.Error e) {
-                window.notificationbar.display_error (_("Pausing '%s' failed").printf (machine.name));
+                window.notificationbar.display_error (_("Pausing “%s” failed").printf (machine.name));
             }
         });
     }

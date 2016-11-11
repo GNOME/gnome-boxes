@@ -18,7 +18,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             var num_domains = domains.length ();
 
             if (num_domains == 1)
-                return _("_Import '%s' from system broker").printf (domains.data.get_name ());
+                return _("_Import “%s” from system broker").printf (domains.data.get_name ());
             else
                 // Translators: %u here is the number of boxes available for import
                 return ngettext ("_Import %u box from system broker",
@@ -32,7 +32,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
             var num_domains = domains.length ();
 
             if (num_domains == 1)
-                return _("Will import '%s' from system broker").printf (domains.data.get_name ());
+                return _("Will import “%s” from system broker").printf (domains.data.get_name ());
             else
                 // Translators: %u here is the number of boxes available for import
                 return ngettext ("Will import %u box from system broker",
@@ -126,7 +126,7 @@ private class Boxes.LibvirtSystemImporter: GLib.Object {
 
         if (disk_path == null)
             throw new LibvirtSystemImporterError.NO_SUITABLE_DISK
-                                    (_("Failed to find suitable disk to import for box '%s'"), config.name);
+                                    (_("Failed to find suitable disk to import for box “%s”"), config.name);
 
         return disk_path;
     }

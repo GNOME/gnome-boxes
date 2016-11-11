@@ -169,7 +169,7 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
                       snapshot.get_name (),
                       e.message);
         }
-        var message = _("Snapshot \"%s\" deleted.").printf (snapshot_identifier);
+        var message = _("Snapshot “%s” deleted.").printf (snapshot_identifier);
         parent_container = (Gtk.Container) this.get_parent ();
         var row = this;
         parent_container.remove (this);

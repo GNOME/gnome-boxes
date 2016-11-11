@@ -332,7 +332,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         } else if (App.app.has_broker_for_source_type (uri.scheme)) {
             source.source_type = uri.scheme;
         } else
-            throw new Boxes.Error.INVALID (_("Unsupported protocol '%s'").printf (uri.scheme));
+            throw new Boxes.Error.INVALID (_("Unsupported protocol “%s”").printf (uri.scheme));
     }
 
     private void prepare_for_installer (string path, ActivityProgress progress) throws GLib.Error {

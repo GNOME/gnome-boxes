@@ -217,9 +217,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                         empty = false;
                     } catch (GLib.Error e) {
                         var path_basename = get_utf8_basename (path);
-                        // Translators: First '%s' is filename of ISO or CD/DVD device that user selected and
-                        //              Second '%s' is name of the box.
-                        var msg = _("Insertion of '%s' as a CD/DVD into '%s' failed");
+                        // Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
+                        //              Second “%s” is name of the box.
+                        var msg = _("Insertion of “%s” as a CD/DVD into “%s” failed");
                         machine.got_error (msg.printf (path_basename, machine.name));
                         debug ("Error inserting '%s' as CD into '%s': %s", path_basename, machine.name, e.message);
                     }
@@ -232,8 +232,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     button_label.set_text_with_mnemonic (_("_Select"));
                     label.set_markup (Markup.printf_escaped ("<i>%s</i>", _("empty")));
                 } catch (GLib.Error e) {
-                    // Translators: '%s' here is name of the box.
-                    machine.got_error (_("Removal of CD/DVD from '%s' failed").printf (machine.name));
+                    // Translators: “%s” here is name of the box.
+                    machine.got_error (_("Removal of CD/DVD from “%s” failed").printf (machine.name));
                     debug ("Error ejecting CD from '%s': %s", machine.name, e.message);
                 }
             }
@@ -619,11 +619,11 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         label.mnemonic_widget = toggle;
 
         var name = machine.name;
-        box.tooltip_text = toggle.active? _("'%s' will not be paused automatically.").printf (name) :
-                                          _("'%s' will be paused automatically to save resources.").printf (name);
+        box.tooltip_text = toggle.active? _("“%s” will not be paused automatically.").printf (name) :
+                                          _("“%s” will be paused automatically to save resources.").printf (name);
         toggle.notify["active"].connect ((tooltip) => {
-            box.tooltip_text = toggle.active? _("'%s' will not be paused automatically.").printf (name) :
-                                              _("'%s' will be paused automatically to save resources.").printf (name);
+            box.tooltip_text = toggle.active? _("“%s” will not be paused automatically.").printf (name) :
+                                              _("“%s” will be paused automatically to save resources.").printf (name);
         });
 
         add_property (ref list, null, box, null);

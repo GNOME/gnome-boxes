@@ -47,7 +47,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
                      machine.name,
                      source_media.device_file,
                      error.message);
-            var ui_message = _("Box import from file '%s' failed.").printf (source_media.device_file);
+            var ui_message = _("Box import from file “%s” failed.").printf (source_media.device_file);
             App.app.main_window.notificationbar.display_error (ui_message);
             machine.delete ();
 

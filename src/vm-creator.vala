@@ -172,7 +172,7 @@ private class Boxes.VMCreator {
                     set_post_install_config (machine);
                 };
 
-                var msg = _("Live box '%s' has been deleted automatically.").printf (machine.name);
+                var msg = _("Live box “%s” has been deleted automatically.").printf (machine.name);
                 App.app.delete_machines_undoable ((owned) items, msg, (owned) undo_notify_callback);
             } else
                 try {

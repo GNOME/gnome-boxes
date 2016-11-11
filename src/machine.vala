@@ -215,7 +215,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                         window.set_state (Boxes.UIState.COLLECTION);
 
                     if (failed)
-                        window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+                        window.notificationbar.display_error (_("Connection to “%s” failed").printf (name));
                 }
 
                 load_screenshot ();
@@ -600,7 +600,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         try {
             yield connect_display (flags);
         } catch (Boxes.Error.RESTORE_FAILED e) {
-            var message = _("'%s' could not be restored from disk\nTry without saved state?").printf (name);
+            var message = _("“%s” could not be restored from disk\nTry without saved state?").printf (name);
             var notification = window.notificationbar.display_for_action (message, _("Restart"), () => {
                 try_connect_display.begin (flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
             });
@@ -610,11 +610,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         } catch (Boxes.Error.START_FAILED e) {
             warning ("Failed to start %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
-            window.notificationbar.display_error (_("Failed to start '%s'").printf (name));
+            window.notificationbar.display_error (_("Failed to start “%s”").printf (name));
         } catch (GLib.Error e) {
             warning ("Failed to connect to %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
-            window.notificationbar.display_error (_("Connection to '%s' failed").printf (name));
+            window.notificationbar.display_error (_("Connection to “%s” failed").printf (name));
         }
     }
 
@@ -643,7 +643,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         };
 
         // Translators: %s => name of launched box
-        var auth_string = _("'%s' requires authentication").printf (name);
+        var auth_string = _("“%s” requires authentication").printf (name);
         auth_notification = window.notificationbar.display_for_auth (auth_string,
                                                                          (owned) auth_func,
                                                                          (owned) dismiss_func,

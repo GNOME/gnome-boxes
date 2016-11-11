@@ -668,7 +668,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 force_shutdown ();
             };
 
-            var message = _("Restart of '%s' is taking too long. Force it to shutdown?").printf (name);
+            var message = _("Restart of “%s” is taking too long. Force it to shutdown?").printf (name);
             notification = window.notificationbar.display_for_action (message,
                                                                        _("_Shutdown"),
                                                                        (owned) really_force_shutdown,

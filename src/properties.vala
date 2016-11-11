@@ -80,7 +80,7 @@ private class Boxes.Properties: Gtk.Notebook, Boxes.UI {
 
             var machine = window.current_item as Machine;
             if (reboot_required && (machine.is_on || machine.state == Machine.MachineState.SAVED)) {
-                var message = _("Changes require restart of '%s'.").printf (machine.name);
+                var message = _("Changes require restart of “%s”.").printf (machine.name);
                 window.notificationbar.display_for_action (message, _("_Restart"), () => {
                     machine.restart ();
                 });

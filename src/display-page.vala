@@ -252,8 +252,8 @@ private class Boxes.DisplayPage: Gtk.Box {
         width = allocation.width;
         height = allocation.height;
 
-        // Translators: Showing size of widget as WIDTHxHEIGHT here.
-        size_label.label = _("%dx%d").printf (allocation.width, allocation.height);
+        // Translators: Showing size of widget as WIDTH×HEIGHT here.
+        size_label.label = _("%d×%d").printf (allocation.width, allocation.height);
 
         Idle.add (() => {
             // Reason to do this in Idle is that Gtk+ doesn't like us showing

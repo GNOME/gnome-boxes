@@ -193,7 +193,7 @@ private class Boxes.App: Gtk.Application {
         opt_uris = null;
         opt_search = null;
 
-        var parameter_string = _("- A simple application to access remote or virtual machines");
+        var parameter_string = _("— A simple application to access remote or virtual machines");
         var opt_context = new OptionContext (parameter_string);
         opt_context.add_main_entries (options, null);
         opt_context.set_help_enabled (false);
@@ -440,7 +440,7 @@ private class Boxes.App: Gtk.Application {
             return;
         }
 
-        var msg = _("Box '%s' installed and ready to use").printf (machine.name);
+        var msg = _("Box “%s” installed and ready to use").printf (machine.name);
         var notification = new GLib.Notification (msg);
         notification.add_button ("Launch", "app.launch-box::" + machine.name);
 
@@ -528,7 +528,7 @@ private class Boxes.App: Gtk.Application {
 
         var msg = message;
         if (msg == null)
-            msg = (num_items == 1) ? _("Box '%s' has been deleted").printf (items.data.name) :
+            msg = (num_items == 1) ? _("Box “%s” has been deleted").printf (items.data.name) :
                                      ngettext ("%u box has been deleted",
                                                "%u boxes have been deleted",
                                                num_items).printf (num_items);
