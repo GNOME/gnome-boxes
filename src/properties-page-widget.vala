@@ -20,7 +20,7 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
             break;
 
         case PropertiesPage.DEVICES:
-            name = _("Devices");
+            name = _("Devices & Shares");
             break;
 
         case PropertiesPage.SNAPSHOTS:
