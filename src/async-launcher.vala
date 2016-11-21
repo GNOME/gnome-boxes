@@ -37,6 +37,7 @@ public class Boxes.AsyncLauncher {
 
         yield;
 
+        thread.join();
         all_threads.remove (thread);
 
         if (e != null)
