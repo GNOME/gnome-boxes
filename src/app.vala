@@ -21,6 +21,7 @@ private class Boxes.App: Gtk.Application {
     public const string DEFAULT_SOURCE_NAME = "QEMU Session";
 
     private List<Boxes.AppWindow> windows;
+    private List<string> system_notifications;
 
     public unowned AppWindow main_window {
         get { return (windows.length () > 0) ? windows.data : null; }
@@ -48,6 +49,7 @@ private class Boxes.App: Gtk.Application {
         app = this;
         async_launcher = AsyncLauncher.get_default ();
         windows = new List<Boxes.AppWindow> ();
+        system_notifications = new List<string> ();
         sources = new HashTable<string,CollectionSource> (str_hash, str_equal);
         brokers = new HashTable<string,Broker> (str_hash, str_equal);
         var action = new GLib.SimpleAction ("quit", null);
@@ -289,6 +291,10 @@ private class Boxes.App: Gtk.Application {
         }
         async_launcher.await_all ();
         suspend_machines ();
+
+        // Withdraw all the existing notifications
+        foreach (var notification in system_notifications)
+            withdraw_notification (notification);
     }
 
     public void open_name (string name) {
@@ -436,6 +442,12 @@ private class Boxes.App: Gtk.Application {
         assert (default_connection != null);
     }
 
+    private new void send_notification (string notification_id, GLib.Notification notification) {
+        base.send_notification (notification_id, notification);
+
+        system_notifications.append (notification_id);
+    }
+
     public void notify_machine_installed (Machine machine) {
         if (machine.window.is_active) {
             debug ("Window is focused, no need for system notification");
@@ -447,7 +459,7 @@ private class Boxes.App: Gtk.Application {
         var notification = new GLib.Notification (msg);
         notification.add_button ("Launch", "app.launch-box::" + machine.name);
 
-        send_notification (null, notification);
+        send_notification ("installed-" + machine.name, notification);
     }
 
     private async void setup_sources () {
