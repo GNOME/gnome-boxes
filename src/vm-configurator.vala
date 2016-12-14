@@ -497,12 +497,12 @@ private class Boxes.VMConfigurator {
         DomainInterface iface;
 
         if (bridge) {
-            debug ("Creating bridge network device for %", domain.get_name ());
+            debug ("Creating bridge network device for %s", domain.get_name ());
             var bridge_iface = new DomainInterfaceBridge ();
             bridge_iface.set_source ("virbr0");
             iface = bridge_iface;
         } else {
-            debug ("Creating user network device for %", domain.get_name ());
+            debug ("Creating user network device for %s", domain.get_name ());
             iface = new DomainInterfaceUser ();
         }
 
