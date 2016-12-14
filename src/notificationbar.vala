@@ -29,17 +29,17 @@ private class Boxes.Notificationbar: Gtk.Grid {
         });
     }
 
-    public Gd.Notification display_for_action (string                          message,
-                                               string                          action_label,
-                                               owned Notification.OKFunc       action_func,
-                                               owned Notification.DismissFunc? ignore_func = null,
-                                               int                             timeout = DEFAULT_TIMEOUT) {
+    public Boxes.Notification display_for_action (string                          message,
+                                                  string                          action_label,
+                                                  owned Notification.OKFunc       action_func,
+                                                  owned Notification.DismissFunc? ignore_func = null,
+                                                  int                             timeout = DEFAULT_TIMEOUT) {
         return display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
     }
 
-    public Gd.Notification display_for_optional_auth (string                           broker_name,
-                                                      owned AuthNotification.AuthFunc? auth_func,
-                                                      owned Notification.DismissFunc?  dismiss_func) {
+    public Boxes.Notification display_for_optional_auth (string                           broker_name,
+                                                         owned AuthNotification.AuthFunc? auth_func,
+                                                         owned Notification.DismissFunc?  dismiss_func) {
         Notification.OKFunc next_auth_step = () => {
             var auth_string = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(broker_name) + "</span>";
             display_for_auth (auth_string, (owned) auth_func, (owned) dismiss_func);
@@ -50,10 +50,10 @@ private class Boxes.Notificationbar: Gtk.Grid {
                                    (owned) dismiss_func, -1);
     }
 
-    public Gd.Notification display_for_auth (string                           auth_string,
-                                             owned AuthNotification.AuthFunc? auth_func,
-                                             owned Notification.DismissFunc?  dismiss_func,
-                                             bool                             need_username = true) {
+    public Boxes.AuthNotification display_for_auth (string                           auth_string,
+                                                    owned AuthNotification.AuthFunc? auth_func,
+                                                    owned Notification.DismissFunc?  dismiss_func,
+                                                    bool                             need_username = true) {
         var notification = new Boxes.AuthNotification (auth_string,
                                                        (owned) auth_func,
                                                        (owned) dismiss_func,
@@ -71,7 +71,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
         return notification;
     }
 
-    public Gd.Notification display_error (string message, int timeout = DEFAULT_TIMEOUT) {
+    public Boxes.Notification display_error (string message, int timeout = DEFAULT_TIMEOUT) {
         return display (message, MessageType.ERROR, null, null, null, timeout);
     }
 
@@ -86,12 +86,12 @@ private class Boxes.Notificationbar: Gtk.Grid {
         add (w);
     }
 
-    private Gd.Notification display (string                          message,
-                                     MessageType                     message_type,
-                                     string?                         ok_label,
-                                     owned Notification.OKFunc?      ok_func,
-                                     owned Notification.DismissFunc? dismiss_func,
-                                     int                             timeout) {
+    private Boxes.Notification display (string                          message,
+                                        MessageType                     message_type,
+                                        string?                         ok_label,
+                                        owned Notification.OKFunc?      ok_func,
+                                        owned Notification.DismissFunc? dismiss_func,
+                                        int                             timeout) {
         var notification = new Boxes.Notification (message,
                                                    message_type,
                                                    ok_label,
@@ -103,7 +103,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
 
         for (var i = excess_notifications; i > 0; i--) {
             var last_notification = active_notifications.nth_data (active_notifications.length () - i)
-                                    as Gd.Notification;
+                                    as Boxes.Notification;
 
             last_notification.dismiss ();
         }

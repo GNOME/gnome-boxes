@@ -634,7 +634,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         stay_on_display = true;
         ulong state_id = 0;
-        Gd.Notification notification = null;
+        Boxes.Notification notification = null;
         debug ("Rebooting '%s'..", name);
 
         state_id = notify["state"].connect (() => {

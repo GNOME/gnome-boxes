@@ -618,7 +618,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         }
     }
 
-    private Gd.Notification auth_notification;
+    private Boxes.AuthNotification auth_notification;
 
     private void handle_auth () {
         if (auth_notification != null)
