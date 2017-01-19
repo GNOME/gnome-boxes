@@ -2,8 +2,11 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/notification.ui")]
-private class Boxes.Notification: Gd.Notification {
+private class Boxes.Notification: Gtk.Revealer {
+    public signal void dismissed ();
+
     public const int DEFAULT_TIMEOUT = 6;
+    private int timeout = DEFAULT_TIMEOUT;
 
     public delegate void OKFunc ();
     public delegate void DismissFunc ();
@@ -14,6 +17,8 @@ private class Boxes.Notification: Gd.Notification {
     private Gtk.Label ok_button_label;
     [GtkChild]
     private Gtk.Button ok_button;
+    [GtkChild]
+    private Gtk.Button close_button;
 
     public Notification (string             message,
                          MessageType        message_type,
@@ -21,7 +26,18 @@ private class Boxes.Notification: Gd.Notification {
                          owned OKFunc?      ok_func,
                          owned DismissFunc? dismiss_func,
                          int                timeout) {
+        /*
+         * Templates cannot set construct properties, so
+         * lets use the respective property setter method.
+         */
+        set_reveal_child (true);
+
         this.timeout = timeout;
+        Timeout.add_seconds (this.timeout, () => {
+            dismiss ();
+
+            return true;
+        });
 
         bool ok_pressed = false;
         dismissed.connect ( () => {
@@ -43,5 +59,12 @@ private class Boxes.Notification: Gd.Notification {
 
             ok_button.show_all ();
         }
+
+        close_button.clicked.connect (dismiss);
+    }
+
+    public void dismiss () {
+        set_reveal_child (false);
+        dismissed ();
     }
 }
