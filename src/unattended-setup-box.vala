@@ -114,7 +114,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
             set_entry_text_from_key (username_entry, USERNAME_KEY, Environment.get_user_name ());
             set_entry_text_from_key (password_entry, PASSWORD_KEY);
-            set_entry_text_from_key (password_entry, PASSWORD_KEY);
             if (password != "")
                 password_notebook.next_page ();
             set_entry_text_from_key (product_key_entry, PRODUCTKEY_KEY);
