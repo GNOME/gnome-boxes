@@ -339,7 +339,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         next_button.sensitive = false;
 
         prep_media_label.label = _("Unknown installer media");
-        prep_status_label.label = _("Analyzing…"); // Translators: Analyzing installer media
+        // Translators: Analyzing installer media
+        prep_status_label.label = _("Analyzing…");
 
         media_manager.create_installer_media_for_path.begin (path, null, (obj, res) => {
             on_installer_media_instantiated (res, progress);

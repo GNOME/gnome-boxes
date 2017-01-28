@@ -168,8 +168,8 @@ private class Boxes.Selectionbar: Gtk.Revealer {
         }
         open_btn.sensitive = sensitive;
 
-        // Translators: This is a button to open box(es) in new window(s)
         if (items == 0)
+            // Translators: This is a button to open box(es) in new window(s)
             open_btn.label = C_("0 items selected", "_Open in new window");
         else
             open_btn.label = ngettext ("_Open in new window", "_Open in %u new windows", items).printf (items);
