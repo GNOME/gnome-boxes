@@ -73,6 +73,7 @@ PKG_CHECK_MODULES(BOXES, [
   gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
   gtk+-3.0 >= $GTK_MIN_VERSION
   gtk-vnc-2.0 >= $GTK_VNC_MIN_VERSION
+  libsecret-1
   libvirt-gobject-1.0 >= $LIBVIRT_GLIB_MIN_VERSION
   libvirt-gconfig-1.0 >= $LIBVIRT_GCONFIG_MIN_VERSION
   libxml-2.0 >= $LIBXML2_MIN_VERSION
