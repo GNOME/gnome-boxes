@@ -209,7 +209,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             var credentials_variant = variant_builder.end ();
             var credentials_str = credentials_variant.print (true);
 
-            var label = _("GNOME Boxes credentials for '%s'").printf (media_path);
+            var label = _("GNOME Boxes credentials for “%s”").printf (media_path);
             Secret.password_store.begin (secret_password_schema,
                                          Secret.COLLECTION_DEFAULT,
                                          label,
