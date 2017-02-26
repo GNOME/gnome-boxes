@@ -218,7 +218,11 @@ private class Boxes.IconView: Gd.MainView, Boxes.ICollectionView, Boxes.UI {
             return;
         }
 
+#if VALA_0_36
+        store.remove (ref iter);
+#else
         store.remove (iter);
+#endif
         item.set_data<Gtk.TreeIter?> ("iter", null);
 
         var name_id = item.get_data<ulong> ("name_id");
