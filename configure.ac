@@ -158,7 +158,6 @@ LIBGD_INIT([
   gtk-hacks
   main-view
   main-icon-view
-  notification
   static
   vapi
 ])
