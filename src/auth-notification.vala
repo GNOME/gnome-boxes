@@ -2,7 +2,9 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/auth-notification.ui")]
-private class Boxes.AuthNotification: Gd.Notification {
+private class Boxes.AuthNotification: Gtk.Revealer {
+    public signal void dismissed ();
+
     public delegate void AuthFunc (string username, string password);
 
     [GtkChild]
@@ -26,7 +28,12 @@ private class Boxes.AuthNotification: Gd.Notification {
                              owned Notification.DismissFunc? dismiss_func,
                              bool                            need_username,
                              Searchbar                       searchbar) {
-        show_close_button = false; // FIXME: Seems setting this from .UI file doesn't work
+        /*
+         * Templates cannot set construct properties, so
+         * lets use the respective property setter method.
+         */
+        set_reveal_child (true);
+
         title_label.label = auth_string;
 
         dismissed.connect (() => {
@@ -78,5 +85,10 @@ private class Boxes.AuthNotification: Gd.Notification {
         auth_pressed = true;
 
         dismiss ();
+    }
+
+    public void dismiss () {
+        set_reveal_child (false);
+        dismissed ();
     }
 }
