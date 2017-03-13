@@ -69,6 +69,8 @@ private class Boxes.VncDisplay: Boxes.Display {
 
             display.close ();
         });
+
+        display.size_allocate.connect (scale);
     }
 
     public VncDisplay (BoxConfig config, string host, int port) {
@@ -141,5 +143,27 @@ private class Boxes.VncDisplay: Boxes.Display {
 
     public override void send_keys (uint[] keyvals) {
         display.send_keys (keyvals);
+    }
+
+    public void scale () {
+        if (!display.is_open ())
+            return;
+
+        // Get the allocated size of the parent container
+        Gtk.Allocation alloc;
+        display.get_parent ().get_allocation (out alloc);
+
+        double parent_aspect = (double) alloc.width / (double) alloc.height;
+        double display_aspect = (double) display.get_width () / (double) display.get_height ();
+        Gtk.Allocation scaled = alloc;
+        if (parent_aspect > display_aspect) {
+            scaled.width = (int) (alloc.height * display_aspect);
+            scaled.x += (alloc.width - scaled.width) / 2;
+        } else {
+            scaled.height = (int) (alloc.width / display_aspect);
+            scaled.y += (alloc.height - scaled.height) / 2;
+        }
+
+        display.size_allocate (scaled);
     }
 }
