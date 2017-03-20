@@ -4,6 +4,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     private const GLib.ActionEntry[] action_entries = {
         {"open-in-new-win", open_in_new_win_activated},
         {"favorite",        favorite_activated},
+        {"take_screenshot", take_screenshot_activated},
         {"pause",           pause_activated},
         {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
@@ -50,6 +51,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         else
             section.append (_("Add to Favorites"), "box.favorite");
         menu.append_section (null, section);
+
+        // Take Screenshot
+        section.append (_("Take Screenshot"), "box.take_screenshot");
 
         // New section for force shutdown, pause and delete
         section = new GLib.Menu ();
@@ -102,6 +106,27 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var machine = window.current_item as Machine;
         var enabled = !("favorite" in machine.config.categories);
         machine.config.set_category ("favorite", enabled);
+    }
+
+    private string get_screenshot_filename () {
+        var now = new GLib.DateTime.now_local ();
+        var timestamp = now.format ("%Y-%m-%d %H-%M-%S");
+
+        // Translators: %s => the timestamp of when the screenshot was taken.
+        var filename =_("Screenshot from %s").printf (timestamp);
+
+        return Path.build_filename (GLib.Environment.get_user_special_dir (GLib.UserDirectory.PICTURES),
+                                    filename);
+    }
+
+    private void take_screenshot_activated () {
+        var machine = window.current_item as Machine;
+        try {
+            Gdk.Pixbuf pixbuf = machine.display.get_pixbuf (0);
+            pixbuf.save (get_screenshot_filename (), "png");
+        } catch (GLib.Error error) {
+            warning (error.message);
+        }
     }
 
     private void pause_activated () {
