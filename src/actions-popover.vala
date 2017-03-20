@@ -127,6 +127,14 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         } catch (GLib.Error error) {
             warning (error.message);
         }
+
+        var ctx = window.below_bin.get_style_context ();
+        ctx.add_class ("flash");
+        Timeout.add (200, () => {
+            ctx.remove_class ("flash");
+
+            return false;
+        });
     }
 
     private void pause_activated () {

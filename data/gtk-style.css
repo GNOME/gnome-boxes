@@ -122,3 +122,18 @@
 
 /* Adds a border to the ISOs lists top undershoot */
 .boxes-menu-scrolled.undershoot.top { border-top: 1px solid @borders; }
+
+/* Screenshot flash */
+@keyframes flash_animation {
+    50% {
+        border: 100px solid #FFF;
+        opacity: 0.2;
+    }
+}
+
+.flash {
+    border: 1px solid transparent;
+    animation: flash_animation;
+    animation-duration: 150ms;
+    animation-iteration-count: 1;
+}
