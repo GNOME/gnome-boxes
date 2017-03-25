@@ -10,22 +10,22 @@
 # Wouter Bolsterlee <wbolster@gnome.org, 2012.
 # Erwin Poeze <donnut@outlook.com>, 2014.
 # Nathan Follens <nthn@unseen.is>, 2015-2016.
-# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2014, 2015, 2016.
+# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2014, 2015, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-09-06 08:59+0000\n"
-"PO-Revision-Date: 2016-09-06 17:45+0100\n"
-"Last-Translator: Justin van Steijn <justin50@live.nl>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-b"
+"oxes&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-03-10 08:26+0000\n"
+"PO-Revision-Date: 2017-03-25 12:40+0100\n"
+"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Lokalize 2.0\n"
 "X-DamnedLies-Scope: partial\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
@@ -58,15 +58,15 @@ msgid ""
 "favorite operating system(s), or need to connect to a remote machine (for "
 "example, in your office)."
 msgstr ""
-"Boxes is iets voor u als u nieuwe besturingssystemen veilig en eenvoudig "
+"Boxes is iets voor u als u veilig en eenvoudig nieuwe besturingssystemen "
 "wilt uitproberen, nieuwe (mogelijk onstabiele) versies van uw favoriete "
 "besturingssysteem wilt onderzoeken of een verbinding nodig heeft met een "
 "externe machine, bijvoorbeeld op kantoor."
 
 #: ../data/org.gnome.Boxes.desktop.in.in.h:1
 #: ../data/gnome-boxes-search-provider.ini.in.h:1 ../data/ui/app-window.ui.h:1
-#: ../src/app-window.vala:129 ../src/app-window.vala:244
-#: ../src/app-window.vala:246 ../src/main.vala:72 ../src/topbar.vala:94
+#: ../src/app-window.vala:130 ../src/app-window.vala:245
+#: ../src/app-window.vala:247 ../src/main.vala:72 ../src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -196,7 +196,7 @@ msgstr "Machines kunnen virtueel of systemen op afstand zijn."
 
 #: ../data/ui/empty-boxes.ui.h:3
 msgid "Just hit the <b>New</b> button to create your first one."
-msgstr "Klik gewoon op de <b>Nieuw</b>-knop om je eerste machine te maken."
+msgstr "Klik gewoon op de <b>Nieuw</b>-knop om uw eerste machine te maken."
 
 #: ../data/ui/kbd-shortcuts-window.ui.h:1
 msgctxt "shortcut window"
@@ -1006,19 +1006,23 @@ msgstr "In nieuw venster _openen"
 
 #: ../src/selectionbar.vala:175
 #, c-format
+#| msgid "_Open in new window"
+#| msgid_plural "_Open in %d new windows"
 msgid "_Open in new window"
-msgid_plural "_Open in %d new windows"
+msgid_plural "_Open in %u new windows"
 msgstr[0] "In nieuw venster _openen"
-msgstr[1] "In %d nieuwe vensters _openen"
+msgstr[1] "In %u nieuwe vensters _openen"
 
 #. This goes with the "Click on items to select them" string and is about selection of items (boxes)
 #. when the main collection view is in selection mode.
 #: ../src/selection-toolbar.vala:46
 #, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "%d geselecteerd"
-msgstr[1] "%d geselecteerd"
+#| msgid "%d selected"
+#| msgid_plural "%d selected"
+msgid "%u selected"
+msgid_plural "%u selected"
+msgstr[0] "%u geselecteerd"
+msgstr[1] "%u geselecteerd"
 
 #: ../src/selection-toolbar.vala:48
 msgid "(Click on items to select them)"
@@ -1076,7 +1080,7 @@ msgstr ""
 "de gebruikerservaring en schakelen interacties tussen gast en machine in, "
 "zoals kopiëren&amp;plakken. Bezoek <a href=\"http://www.spice-space.org/"
 "download.html\">http://www.spice-space.org/download.html</a> binnen de "
-"machine om deze hulpmiddelen te downloaden en installeren."
+"machine om deze hulpmiddelen te downloaden en te installeren."
 
 #: ../src/spice-display.vala:398
 msgid "USB devices"
@@ -1112,10 +1116,15 @@ msgstr "Apparaat-stuurprogramma's downloaden…"
 msgid "no password"
 msgstr "geen wachtwoord"
 
-#: ../src/unattended-setup-box.vala:105
+#: ../src/unattended-setup-box.vala:110
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Snelle installatie van %s vereist een internetverbinding."
+
+#: ../src/unattended-setup-box.vala:212
+#, c-format
+msgid "GNOME Boxes credentials for '%s'"
+msgstr "Gnome Boxes aanmeldgegevens voor ‘%s’"
 
 #: ../src/util-app.vala:242
 #, c-format
@@ -1176,7 +1185,7 @@ msgstr "nee"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:572
+#: ../src/vm-configurator.vala:578
 msgid "Incapable host system"
 msgstr "Ongeschikt hostsysteem"
 
