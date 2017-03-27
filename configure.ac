@@ -135,7 +135,7 @@ else
 fi
 AM_CONDITIONAL([HAVE_OVIRT], [test "x$have_govirt" = "xyes"])
 
-VALA_CHECK([0.28.0.16], [
+VALA_CHECK([0.36.0], [
   gdk-pixbuf-2.0
   glib-2.0
   gtk+-3.0
