@@ -3,6 +3,7 @@
 private class Boxes.KeysInputPopover: Gtk.Popover {
     private const GLib.ActionEntry[] action_entries = {
         {"ctrl+alt+backspace", ctrl_alt_backspace_activated},
+        {"ctrl+alt+del", ctrl_alt_del_activated},
 
         {"ctrl+alt+f1", ctrl_alt_fn_activated},
         {"ctrl+alt+f2", ctrl_alt_fn_activated},
@@ -23,6 +24,7 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         var menu = new GLib.Menu ();
 
         menu.append (_("Ctrl + Alt + Backspace"), "key.ctrl+alt+backspace");
+        menu.append (_("Ctrl + Alt + Del"), "key.ctrl+alt+del");
 
         // New section
         var section = new GLib.Menu ();
@@ -43,6 +45,12 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
 
     private void ctrl_alt_backspace_activated () {
         uint[] keyvals = { Gdk.Key.Control_L, Gdk.Key.Alt_L, Gdk.Key.BackSpace };
+
+        send_keys (keyvals);
+    }
+
+    private void ctrl_alt_del_activated () {
+        uint[] keyvals = { Gdk.Key.Control_L, Gdk.Key.Alt_L, Gdk.Key.Delete };
 
         send_keys (keyvals);
     }
