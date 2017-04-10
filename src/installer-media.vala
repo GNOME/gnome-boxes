@@ -39,6 +39,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     }
 
     public virtual bool live { get { return os_media == null || os_media.live; } }
+    public virtual bool eject_after_install { get { return os_media == null || os_media.eject_after_install; } }
 
     protected virtual string? architecture {
         owned get {
@@ -265,7 +266,7 @@ private class Boxes.InstallerMedia : GLib.Object {
             if (disk_type == DomainDiskGuestDeviceType.CDROM) {
                 // Make source (installer/live media) optional
                 disk.set_startup_policy (DomainDiskStartupPolicy.OPTIONAL);
-                if (!live) {
+                if (eject_after_install && !live) {
                     // eject CDROM contain in the CD drive as it will not be useful after installation
                     disk.set_source ("");
                 }
