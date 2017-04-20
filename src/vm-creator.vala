@@ -58,6 +58,7 @@ private class Boxes.VMCreator {
                                                                      App.app.default_connection,
                                                                      domain);
         machine.vm_creator = this;
+        machine.run_in_bg = true;
 
         return machine;
     }
@@ -197,6 +198,7 @@ private class Boxes.VMCreator {
             var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
             VMConfigurator.post_install_setup (config, install_media);
             machine.domain.set_config (config);
+            machine.run_in_bg = false;
         } catch (GLib.Error error) {
             warning ("Failed to set post-install configuration on '%s': %s", machine.name, error.message);
         }
