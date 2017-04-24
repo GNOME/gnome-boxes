@@ -236,7 +236,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             channel_destroy_id = session.channel_destroy.connect (on_channel_destroy);
 
         session.password = password;
-        if (open_fd != null)
+        if (this.open_fd != null)
             session.open_fd (-1);
         else
             session.connect ();
@@ -259,7 +259,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     private void on_channel_new (Spice.Session session, Spice.Channel channel) {
-        var handler = new SpiceChannelHandler (this, channel, (owned) open_fd);
+        var handler = new SpiceChannelHandler (this, channel, open_fd);
         channel_handlers.set (channel, handler);
 
         if (channel is Spice.DisplayChannel) {
@@ -499,10 +499,10 @@ private class Boxes.SpiceChannelHandler : GLib.Object {
     private Spice.Channel channel;
     private Display.OpenFDFunc? open_fd;
 
-    public SpiceChannelHandler (SpiceDisplay display, Spice.Channel channel, owned Display.OpenFDFunc? open_fd = null) {
+    public SpiceChannelHandler (SpiceDisplay display, Spice.Channel channel, Display.OpenFDFunc? open_fd = null) {
         this.display = display;
         this.channel = channel;
-        this.open_fd = (owned) open_fd;
+        this.open_fd = open_fd;
         var id = channel.channel_id;
 
         if (open_fd != null)
