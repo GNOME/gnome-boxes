@@ -45,6 +45,7 @@ private class Boxes.App: Gtk.Application {
     public App () {
         application_id = "org.gnome.Boxes";
         flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
+        resource_base_path = "/org/gnome/Boxes";
 
         app = this;
         async_launcher = AsyncLauncher.get_default ();
@@ -120,14 +121,6 @@ private class Boxes.App: Gtk.Application {
         string [] args = {};
         unowned string [] args2 = args;
         Gtk.init (ref args2);
-
-        var menu = new GLib.Menu ();
-        menu.append (_("Keyboard Shortcuts"), "win.kbd-shortcuts");
-        menu.append (_("Help"), "app.help");
-        menu.append (_("About"), "app.about");
-        menu.append (_("Quit"), "app.quit");
-
-        set_app_menu (menu);
 
         collection = new Collection ();
 
