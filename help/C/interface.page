@@ -1,9 +1,11 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
       id="interface">
   <info>
     <revision pkgversion="3.8.0" date="2013-03-23" status="candidate"/>
     <revision pkgversion="3.14" date="2014-09-13" status="review"/>
+    <revision pkgversion="3.24.0" date="2017-05-02" status="review"/>
     <link type="guide" xref="index#use" group="#first" />
 
     <credit type="author copyright">
@@ -33,8 +35,12 @@
     <link xref="create">create</link> a box.</p></item>
     <item><p>Click a box to launch a virtual machine session.</p></item>
     <item><p><link xref="search">Search</link> for a box.</p></item>
-    <item><p>Click the checkmark button or select a box to enter selection
+    <item><p>Click the checkmark button in the header bar to enter selection
     mode.</p></item>
+    <item><p>Right click on a box to choose <gui>Open in New Window</gui>,
+    <gui>Add to Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Pause</gui>,
+    <gui>Clone</gui>, <gui>Delete</gui>, or to open the <gui>Properties</gui>
+    view for the box.</p></item>
   </list>
 
   </section>
@@ -59,8 +65,6 @@
     <item><p>Mark a box or boxes as favorites.</p></item>
     <item><p>Pause a box.</p></item>
     <item><p>Open a box in a new window.</p></item>
-    <item><p>Click the <gui style="button">Properties</gui> button to enter the
-    properties view of a box.</p></item>
   </list>
 
   </section>
@@ -68,36 +72,39 @@
   <section id="properties">
   <title>Properties view</title>
 
-  <p>Clicking the <gui style="button">Properties</gui> button in selection mode
-  opens the <em>properties view</em>, where some of the details of a box can be
-  configured. The main window displays the name of the box, the virtualizer
-  being used, and the URI that can be used to access the box from outside of
-  <app>Boxes</app>. In addition, the sidebar displays:</p>
+  <p>Right clicking a box and selecting <gui style="button">Properties</gui>
+  in the collection view opens the <em>properties view</em>, where some of the
+  details of a box can be configured. The properties view allows you to display
+  or change settings depending on which of the following tabs is selected:</p>
 
   <list>
-    <item><p>A screenshot of the box.</p></item>
-    <item><p>Running graphs of CPU, disk I/O and network activity.</p></item>
-    <item><p>The <gui style="button">Force Shutdown</gui> button, which enables
-    you to <link xref="shutdown">force a box to shut down</link>.</p></item>
-  </list>
-
-  <p>The properties view main window allows you to display or change settings
-  depending on which of the following categories is selected in the sidebar:</p>
-
-  <list>
-    <item><p><gui>System</gui> settings: memory, maximum allowed disk space,
-    and the <gui>Trouble Log</gui>.</p></item>
-    <item><p><gui>Display</gui> settings: display protocol, clipboard sharing,
-    resizing of the display.</p></item>
-    <item><p><gui>Device</gui> settings: access to system USB or CD/DVD
-    devices.</p></item>
-    <item><p><gui>Snapshots</gui>: <link xref="snapshot-create">creating</link>
-    and managing snapshots of the box.</p></item>
+    <item><p><gui>General</gui>: displays the box <gui>Name</gui> and
+    <gui>Broker</gui> or virtualizer being used (such as <em>QEMU</em>). For a
+    remote box, this tab also displays the <gui>Protocol</gui> (such as
+    <em>VNC</em>), the <gui>URL</gui> to be used for remote access, and a
+    switch to make the connection <gui>Read-only</gui>. When the box is
+    running, the <gui>Share Clipboard</gui> switch appears here.</p></item>
+    <item><p><gui>System</gui> settings: shows running graphs of CPU, disk I/O
+    and network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui>
+    sliders can be adjusted, and the <gui>Troubleshooting Log</gui> can be
+    viewed. The <gui style="button">Force Shutdown</gui> button, which enables
+    you to <link xref="shutdown">force a box to shut down</link>, the
+    <gui style="button">Restart</gui> button, and the
+    <gui>Run in background</gui> switch are on this tab.</p></item>
+    <item><p><gui>Devices</gui>: the <gui style="button">Select</gui> button
+    allows you to specify the path to a CD/DVD device or ISO. The
+    <gui style="button">Remove</gui> button disconnects it. When the box is
+    running, the USB devices connected to the host system are listed, and each
+    can be controlled with an <gui>ON | OFF</gui> switch.</p></item>
+    <item><p><gui>Snapshots</gui>: allows you to
+    <link xref="snapshot-create">create</link> and manage snapshots of the
+    box.</p></item>
   </list>
 
   <p>The properties view can also be accessed using the wizard's
-  <gui style="button">Customize</gui> button during box setup, and by clicking
-  the tool button in the header bar of a running session.</p>
+  <gui style="button">Customize</gui> button during local box setup. If the box
+  is running, click the menu (<media its:translate="no" type="image" src="figures/open-menu-symbolic.svg"><span its:translate="yes">settings</span></media>)
+  button in the header bar and select <gui>Properties</gui>.</p>
 
   </section>
 

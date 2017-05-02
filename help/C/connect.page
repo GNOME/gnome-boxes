@@ -3,6 +3,7 @@
       id="connect">
   <info>
     <revision pkgversion="3.8.0" version="0.1" date="2013-03-23" status="candidate"/>
+    <revision pkgversion="3.24.0" date="2017-05-02" status="review"/>
     <link type="guide" xref="index#start"/>
 
     <credit type="author copyright">
@@ -22,20 +23,19 @@
   <p><app>Boxes</app> can be used to view and access a remote physical or virtual machine.</p>
 
   <note style="important">
-    <p>The remote machine should already be configured.</p>
+    <p>The remote machine should already be configured, and needs to be running
+    the <em>X Windows</em> display protocol.</p>
   </note>
 
   <steps>
     <item><p>Click <gui style="button">New</gui> in the top left corner to launch
     the box creation wizard.</p></item>
-    <item><p>An introductory message is displayed. Click
-    <gui style="button">Continue</gui>.</p></item>
     <item><p>At the wizard's <gui>Source Selection</gui> screen, click
     <gui style="button">Enter URL</gui>.</p></item>
 
     <item><p>Enter a URL containing the protocol, IP address and port number of
     the remote device or service. For example:</p>
-      <code>spice://192.168.122.1?port=5906;</code>
+      <code>vnc://192.168.122.1:5900;</code>
       <p>The protocol will be:</p>
       <list>
         <item><p>spice:// to connect to a local or remote <app>Xspice</app>
@@ -54,8 +54,6 @@
     </item>
     <item><p>Click <gui style="button">Continue</gui> in the top right
     corner.</p></item>
-    <item><p>Click <gui style="button">Customize</gui> if you wish to rename the
-    box.</p></item>
     <item><p>Click <gui style="button">Create</gui>.</p></item>
   </steps>
 

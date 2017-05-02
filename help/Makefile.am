@@ -2,7 +2,9 @@
 
 HELP_ID = gnome-boxes
 
-HELP_MEDIA = figures/boxes_icon.png
+HELP_MEDIA = figures/boxes_icon.png     \
+	figures/input-keyboard-symbolic.svg	\
+	figures/open-menu-symbolic.svg
 
 HELP_FILES = index.page			\
 	clipboard.page			\
@@ -12,6 +14,7 @@ HELP_FILES = index.page			\
 	delete.page			\
 	disk-images.page		\
 	interface.page			\
+	keystrokes.page			\
 	legal.xml			\
 	prop-system.page		\
 	prop-trouble.page		\
