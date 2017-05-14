@@ -11,6 +11,7 @@ private class Boxes.VMConfigurator {
     private const string BOXES_NS = "boxes";
     private const string BOXES_NS_URI = Config.PACKAGE_URL;
     private const string BOXES_OLD_NS_URI = "http://live.gnome.org/Boxes/";
+    private const string WEBDAV_CHANNEL_URI = "org.spice-space.webdav.0";
     private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
     private const string LIVE_STATE = "live";
     private const string INSTALLATION_STATE = "installation";
@@ -84,6 +85,10 @@ private class Boxes.VMConfigurator {
         var vmc = new DomainChardevSourceSpiceVmc ();
         channel.set_source (vmc);
         domain.add_device (channel);
+
+        // Webdav channel. This is needed for the shared folder feature to work.
+        var webdav_channel = create_webdav_channel ();
+        domain.add_device (webdav_channel);
 
         add_usb_support (domain);
         add_smartcard_support (domain);
@@ -256,11 +261,18 @@ private class Boxes.VMConfigurator {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
         DomainGraphicsSpice graphics = null;
+        DomainChannel channel_webdav = null;
         foreach (var device in domain.get_devices ()) {
             if (device is DomainInterface)
                 iface = device as DomainInterface;
             else if (device is DomainGraphicsSpice)
                 graphics = device as DomainGraphicsSpice;
+            else if (device is DomainChannel) {
+                var device_channel = device as DomainChannel;
+                if (device_channel.get_target_name () == WEBDAV_CHANNEL_URI)
+                    channel_webdav = device_channel;
+                devices.prepend (device);
+            }
             else
                 devices.prepend (device);
         }
@@ -275,6 +287,8 @@ private class Boxes.VMConfigurator {
 
         if (graphics != null)
             devices.prepend (create_graphics_device ());
+        if (channel_webdav == null)
+            devices.prepend (create_webdav_channel ());
 
         devices.reverse ();
         domain.set_devices (devices);
@@ -518,6 +532,18 @@ private class Boxes.VMConfigurator {
         graphics.set_image_compression (DomainGraphicsSpiceImageCompression.OFF);
 
         return graphics;
+    }
+
+    public static DomainChannel create_webdav_channel () {
+        var channel_webdav = new DomainChannel ();
+        channel_webdav.set_target_type (DomainChannelTargetType.VIRTIO);
+        channel_webdav.set_target_name (WEBDAV_CHANNEL_URI);
+
+        var spice_port = new DomainChardevSourceSpicePort ();
+        spice_port.set_channel (WEBDAV_CHANNEL_URI);
+        channel_webdav.set_source (spice_port);
+
+        return channel_webdav;
     }
 
     private static DomainControllerUsb create_usb_controller (DomainControllerUsbModel model,
