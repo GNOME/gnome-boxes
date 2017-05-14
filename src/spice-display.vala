@@ -335,78 +335,32 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case PropertiesPage.DEVICES:
-            if (!connected)
-                break;
-
             try {
                 var manager = UsbDeviceManager.get (session);
                 var devs = get_usb_devices (manager);
 
-                if (devs.length <= 0)
-                    return list;
+                if (connected && devs.length > 0) {
+                    devs.sort ( (a, b) => {
+                        string str_a = a.get_description ("    %1$s %2$s");
+                        string str_b = b.get_description ("    %1$s %2$s");
 
-                devs.sort ( (a, b) => {
-                    string str_a = a.get_description ("    %1$s %2$s");
-                    string str_b = b.get_description ("    %1$s %2$s");
+                        return strcmp (str_a, str_b);
+                    });
 
-                    return strcmp (str_a, str_b);
-                });
+                    var frame = create_usb_frame (manager, devs);
 
-                var frame = new Gtk.Frame (null);
-                var listbox = new Gtk.ListBox ();
-                listbox.hexpand = true;
-                frame.add (listbox);
+                    var usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""), frame);
 
-                for (int i = 0; i < devs.length; i++) {
-                    var dev = devs[i];
-
-                    var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-                    hbox.margin_start = 12;
-                    hbox.margin_end = 12;
-                    hbox.margin_top = 6;
-                    hbox.margin_bottom = 6;
-                    var label = new Gtk.Label (dev.get_description ("%1$s %2$s"));
-                    label.halign = Gtk.Align.START;
-                    hbox.pack_start (label, true, true, 0);
-                    var dev_toggle = new Gtk.Switch ();
-                    dev_toggle.halign = Gtk.Align.END;
-                    hbox.pack_start (dev_toggle, true, true, 0);
-                    listbox.prepend (hbox);
-
-                    dev_toggle.active = manager.is_device_connected (dev);
-
-                    dev_toggle.notify["active"].connect ( () => {
-                        if (dev_toggle.active) {
-                            manager.connect_device_async.begin (dev, null, (obj, res) => {
-                                try {
-                                    manager.connect_device_async.end (res);
-                                } catch (GLib.Error err) {
-                                    dev_toggle.active = false;
-                                    var device_desc = dev.get_description ("%1$s %2$s");
-                                    var box_name = get_box_name ();
-                                    var msg = _("Redirection of USB device “%s” for “%s” failed");
-                                    got_error (msg.printf (device_desc, box_name));
-                                    debug ("Error connecting %s to %s: %s",
-                                           device_desc,
-                                           box_name, err.message);
-                                }
-                            });
-                        } else {
-                            manager.disconnect_device (dev);
-                        }
+                    manager.device_added.connect ((manager, dev) => {
+                        usb_property.refresh_properties ();
+                    });
+                    manager.device_removed.connect ((manager, dev) => {
+                        usb_property.refresh_properties ();
                     });
                 }
-
-                var usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""), frame);
-
-                manager.device_added.connect ((manager, dev) => {
-                    usb_property.refresh_properties ();
-                });
-                manager.device_removed.connect ((manager, dev) => {
-                    usb_property.refresh_properties ();
-                });
             } catch (GLib.Error error) {
             }
+
             break;
         }
 
@@ -464,6 +418,55 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
 
         return ret;
+    }
+
+    private Gtk.Frame create_usb_frame (UsbDeviceManager manager, GLib.GenericArray<UsbDevice> devs) {
+        var frame = new Gtk.Frame (null);
+        var listbox = new Gtk.ListBox ();
+        listbox.hexpand = true;
+        frame.add (listbox);
+
+        for (int i = 0; i < devs.length; i++) {
+            var dev = devs[i];
+
+            var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            hbox.margin_start = 12;
+            hbox.margin_end = 12;
+            hbox.margin_top = 6;
+            hbox.margin_bottom = 6;
+            var label = new Gtk.Label (dev.get_description ("%1$s %2$s"));
+            label.halign = Gtk.Align.START;
+            hbox.pack_start (label, true, true, 0);
+            var dev_toggle = new Gtk.Switch ();
+            dev_toggle.halign = Gtk.Align.END;
+            hbox.pack_start (dev_toggle, true, true, 0);
+            listbox.prepend (hbox);
+
+            dev_toggle.active = manager.is_device_connected (dev);
+
+            dev_toggle.notify["active"].connect ( () => {
+                if (dev_toggle.active) {
+                    manager.connect_device_async.begin (dev, null, (obj, res) => {
+                        try {
+                            manager.connect_device_async.end (res);
+                        } catch (GLib.Error err) {
+                            dev_toggle.active = false;
+                            var device_desc = dev.get_description ("%1$s %2$s");
+                            var box_name = get_box_name ();
+                              var msg = _("Redirection of USB device “%s” for “%s” failed");
+                            got_error (msg.printf (device_desc, box_name));
+                            debug ("Error connecting %s to %s: %s",
+                                   device_desc,
+                                   box_name, err.message);
+                        }
+                    });
+                } else {
+                    manager.disconnect_device (dev);
+                }
+            });
+        }
+
+        return frame;
     }
 
     private bool is_usb_kbd_or_mouse (uint8 class, uint8 subclass, uint8 protocol) {
