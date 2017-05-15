@@ -26,6 +26,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private BoxConfig.SavedProperty[] gtk_session_saved_properties;
     private bool closed;
 
+    private PortChannel webdav_channel;
+    private string shared_folder;
+
     private GLib.HashTable<Spice.Channel,SpiceChannelHandler> channel_handlers;
     private Display.OpenFDFunc? open_fd;
 
@@ -129,6 +132,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
+
+        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
     }
 
     public SpiceDisplay.with_uri (Machine machine, BoxConfig config, string uri) {
@@ -140,6 +145,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session.uri = uri;
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
+
+        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
     }
 
     public SpiceDisplay.priv (Machine machine, BoxConfig config) {
@@ -149,6 +156,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         this.config = config;
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
+
+        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
     }
 
     public override Gtk.Widget get_display (int n) {
@@ -268,6 +277,9 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
             access_start ();
         }
+
+        if (channel is Spice.WebdavChannel)
+            webdav_channel = channel as Spice.PortChannel;
     }
 
     private void on_channel_destroy (Spice.Session session, Spice.Channel channel) {
@@ -277,6 +289,64 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         var display = channel as DisplayChannel;
         hide (display.channel_id);
         access_finish ();
+    }
+
+    private bool add_shared_folder (string path, string name) {
+        if (!FileUtils.test (shared_folder, FileTest.IS_DIR))
+            Posix.unlink (shared_folder);
+
+        if (!FileUtils.test (shared_folder, FileTest.EXISTS)) {
+            var ret = Posix.mkdir (shared_folder, 0755);
+
+            if (ret == -1) {
+                warning (strerror (errno));
+
+                return false;
+            }
+        }
+
+        var link_path = GLib.Path.build_filename (shared_folder, name);
+
+        var ret = GLib.FileUtils.symlink (path, link_path);
+        if (ret == -1) {
+            warning (strerror (errno));
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private void remove_shared_folder (string name) {
+        if (!FileUtils.test (shared_folder, FileTest.EXISTS) || !FileUtils.test (shared_folder, FileTest.IS_DIR))
+            return;
+
+        var to_remove = GLib.Path.build_filename (shared_folder, name);
+        Posix.unlink (to_remove);
+    }
+
+    private HashTable<string, string>? get_shared_folders () {
+        if (!FileUtils.test (shared_folder, FileTest.EXISTS) || !FileUtils.test (shared_folder, FileTest.IS_DIR))
+            return null;
+
+        var hash = new HashTable <string, string> (str_hash, str_equal);
+        try {
+            Dir dir = Dir.open (shared_folder, 0);
+            string? name = null;
+
+            while ((name = dir.read_name ()) != null) {
+                var path = Path.build_filename (shared_folder, name);
+                if (FileUtils.test (path, FileTest.IS_SYMLINK)) {
+                    var folder = GLib.FileUtils.read_link (path);
+
+                    hash[name] = folder;
+                }
+            }
+        } catch (GLib.FileError err) {
+            warning (err.message);
+        }
+
+        return hash;
     }
 
     private void main_event (ChannelEvent event) {
@@ -361,8 +431,12 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             } catch (GLib.Error error) {
             }
 
-            var frame = create_shared_folders_frame ();
+            if (webdav_channel == null || !webdav_channel.port_opened)
+                break;
 
+            session.shared_dir = shared_folder;
+
+            var frame = create_shared_folders_frame ();
             add_property (ref list, _("Folder Shares"), new Gtk.Label (""), frame);
 
             break;
@@ -505,8 +579,23 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             popover.popup ();
         });
 
+        var hash = get_shared_folders ();
+        if (hash != null) {
+            var keys = hash.get_keys ();
+            foreach (var key in keys) {
+                add_listbox_row (listbox, hash[key], key, -1);
+            }
+        }
+
         popover.saved.connect ((path, name, target_position) => {
-            add_listbox_row (listbox, path, name, target_position);
+            // Update previous entry
+            if (target_position != - 1) {
+                var row = listbox.get_row_at_index (target_position) as Boxes.SharedFolderRow;
+                remove_shared_folder (row.folder_name);
+            }
+
+            if (add_shared_folder (path, name))
+                add_listbox_row (listbox, path, name, target_position);
         });
 
         return frame;
@@ -522,6 +611,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         listboxrow.removed.connect (() => {
             listbox.remove (listboxrow);
+            remove_shared_folder (name);
         });
     }
 
@@ -576,6 +666,13 @@ private class Boxes.SpiceChannelHandler : GLib.Object {
 
             var spice_display = display.get_display (id) as Spice.Display;
             spice_display.notify["ready"].connect (on_display_ready);
+        }
+
+        if (channel is Spice.WebdavChannel) {
+            if (open_fd != null)
+                on_open_fd (channel, 0);
+            else
+                channel.connect ();
         }
     }
 
