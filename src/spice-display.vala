@@ -361,6 +361,10 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             } catch (GLib.Error error) {
             }
 
+            var frame = create_shared_folders_frame ();
+
+            add_property (ref list, _("Folder Shares"), new Gtk.Label (""), frame);
+
             break;
         }
 
@@ -469,6 +473,58 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         return frame;
     }
 
+    private Gtk.Frame create_shared_folders_frame () {
+        var frame = new Gtk.Frame (null);
+        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+        var listbox = new Gtk.ListBox ();
+        var button_plus = new Gtk.Button.from_icon_name ("list-add-symbolic", IconSize.BUTTON);
+        button_plus.halign = Gtk.Align.CENTER;
+        button_plus.get_style_context ().add_class ("flat");
+
+        box.pack_start (listbox, true, true, 0);
+        box.pack_end (button_plus, false, false, 6);
+        frame.add (box);
+
+        var popover = new SharedFolderPopover ();
+
+        button_plus.clicked.connect (() => {
+            popover.relative_to = button_plus;
+            popover.target_position = -1;
+
+            popover.popup ();
+        });
+
+        listbox.row_activated.connect ((row) => {
+            popover.relative_to = row;
+            popover.target_position = row.get_index ();
+
+            var folder_row = row as SharedFolderRow;
+            popover.file_chooser_button.set_uri ("file://" + folder_row.folder_path);
+            popover.name_entry.set_text (folder_row.folder_name);
+
+            popover.popup ();
+        });
+
+        popover.saved.connect ((path, name, target_position) => {
+            add_listbox_row (listbox, path, name, target_position);
+        });
+
+        return frame;
+    }
+
+    private void add_listbox_row (Gtk.ListBox listbox, string path, string name, int target_position) {
+        var listboxrow = new SharedFolderRow (path, name);
+
+        if (target_position != -1)
+            listbox.remove (listbox.get_row_at_index (target_position));
+
+        listbox.insert (listboxrow, target_position);
+
+        listboxrow.removed.connect (() => {
+            listbox.remove (listboxrow);
+        });
+    }
+
     private bool is_usb_kbd_or_mouse (uint8 class, uint8 subclass, uint8 protocol) {
         var ret = false;
 
@@ -575,5 +631,30 @@ static void spice_validate_uri (string uri_as_text,
         break;
     default:
         throw new Boxes.Error.INVALID (_("Invalid URL"));
+    }
+}
+
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-shared-folder-row.ui")]
+private class Boxes.SharedFolderRow : Gtk.ListBoxRow {
+    public string folder_path { set; get; }
+    public string folder_name { set; get; }
+
+    public signal void removed ();
+    [GtkChild]
+    private Gtk.Label folder_path_label;
+    [GtkChild]
+    private Gtk.Label folder_name_label;
+
+    public SharedFolderRow (string path, string name) {
+        this.folder_path = path;
+        this.folder_name = name;
+
+        bind_property ("folder_path", folder_path_label, "label", BindingFlags.SYNC_CREATE);
+        bind_property ("folder_name", folder_name_label, "label", BindingFlags.SYNC_CREATE);
+    }
+
+    [GtkCallback]
+    private void on_delete_button_clicked () {
+        removed ();
     }
 }
