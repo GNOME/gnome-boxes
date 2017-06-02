@@ -28,6 +28,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
     private PortChannel webdav_channel;
     private string shared_folder;
+    private GLib.Settings shared_folder_settings;
 
     private GLib.HashTable<Spice.Channel,SpiceChannelHandler> channel_handlers;
     private Display.OpenFDFunc? open_fd;
@@ -133,7 +134,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
 
-        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
+        init_shared_folders ();
     }
 
     public SpiceDisplay.with_uri (Machine machine, BoxConfig config, string uri) {
@@ -146,7 +147,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
 
-        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
+        init_shared_folders ();
     }
 
     public SpiceDisplay.priv (Machine machine, BoxConfig config) {
@@ -157,7 +158,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
 
-        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
+        init_shared_folders ();
     }
 
     public override Gtk.Widget get_display (int n) {
@@ -313,6 +314,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
             return false;
         }
+        add_gsetting_shared_folder (path, name);
 
         return true;
     }
@@ -323,6 +325,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         var to_remove = GLib.Path.build_filename (shared_folder, name);
         Posix.unlink (to_remove);
+
+        remove_gsetting_shared_folder (name);
     }
 
     private HashTable<string, string>? get_shared_folders () {
@@ -347,6 +351,112 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
 
         return hash;
+    }
+
+    private void init_shared_folders () {
+        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
+
+        shared_folder_settings = new GLib.Settings ("org.gnome.boxes");
+        var hash = parse_shared_folders ();
+        var names = hash.get_keys ();
+        foreach (var name in names) {
+            add_shared_folder (hash[name], name);
+        }
+    }
+
+    private HashTable<string, string> parse_shared_folders () {
+        var hash = new HashTable <string, string> (str_hash, str_equal);
+
+        string shared_folders = shared_folder_settings.get_string("shared-folders");
+        if (shared_folders == "")
+            return hash;
+
+        try {
+            GLib.Variant? entry = null;
+            string uuid_str;
+            string path_str;
+            string name_str;
+
+            var variant = Variant.parse (new GLib.VariantType.array (GLib.VariantType.VARIANT), shared_folders);
+            VariantIter iter = variant.iterator ();
+            while (iter.next ("v",  &entry)) {
+                entry.lookup ("uuid", "s", out uuid_str);
+                entry.lookup ("path", "s", out path_str);
+                entry.lookup ("name", "s", out name_str);
+
+                if (machine.config.uuid == uuid_str)
+                    hash[name_str] = path_str;
+            }
+        } catch (VariantParseError err) {
+            warning (err.message);
+        }
+
+        return hash;
+    }
+
+    private void add_gsetting_shared_folder (string path, string name) {
+        var variant_builder = new GLib.VariantBuilder (new GLib.VariantType.array (VariantType.VARIANT));
+
+        string shared_folders = shared_folder_settings.get_string ("shared-folders");
+        if (shared_folders != "") {
+            try {
+                GLib.Variant? entry = null;
+
+                var variant = Variant.parse (new GLib.VariantType.array (GLib.VariantType.VARIANT), shared_folders);
+                VariantIter iter = variant.iterator ();
+                while (iter.next ("v",  &entry)) {
+                    variant_builder.add ("v",  entry);
+                }
+            } catch (VariantParseError err) {
+                warning (err.message);
+            }
+        }
+
+        var entry_variant_builder = new GLib.VariantBuilder (GLib.VariantType.VARDICT);
+
+        var uuid_variant = new GLib.Variant ("s", machine.config.uuid);
+        var path_variant = new GLib.Variant ("s", path);
+        var name_variant = new GLib.Variant ("s", name);
+        entry_variant_builder.add ("{sv}", "uuid", uuid_variant);
+        entry_variant_builder.add ("{sv}", "path", path_variant);
+        entry_variant_builder.add ("{sv}", "name", name_variant);
+        var entry_variant = entry_variant_builder.end ();
+
+        variant_builder.add ("v",  entry_variant);
+        var variant = variant_builder.end ();
+
+        shared_folder_settings.set_string ("shared-folders", variant.print (true));
+    }
+
+    private void remove_gsetting_shared_folder (string name) {
+        var variant_builder = new GLib.VariantBuilder (new GLib.VariantType.array (VariantType.VARIANT));
+
+        string shared_folders = shared_folder_settings.get_string ("shared-folders");
+        if (shared_folders == "")
+            return;
+
+        try {
+            GLib.Variant? entry = null;
+            string name_str;
+            string uuid_str;
+
+            var variant = Variant.parse (new GLib.VariantType.array (GLib.VariantType.VARIANT), shared_folders);
+            VariantIter iter = variant.iterator ();
+            while (iter.next ("v",  &entry)) {
+                entry.lookup ("uuid", "s", out uuid_str);
+                entry.lookup ("name", "s", out name_str);
+
+                if (uuid_str == machine.config.uuid && name_str == name)
+                    continue;
+
+                variant_builder.add ("v", entry);
+            }
+            variant = variant_builder.end ();
+
+            shared_folder_settings.set_string ("shared-folders", variant.print (true));
+        } catch (VariantParseError err) {
+            warning (err.message);
+        }
     }
 
     private void main_event (ChannelEvent event) {
