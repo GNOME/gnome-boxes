@@ -43,6 +43,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Open in New Window"), "box.open-in-new-win");
             var action = action_group.lookup_action ("open-in-new-win") as GLib.SimpleAction;
             action.set_enabled (!importing);
+        } else {
+            // Take Screenshot
+            section.append (_("Take Screenshot"), "box.take_screenshot");
         }
 
         // Favorite
@@ -51,9 +54,6 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         else
             section.append (_("Add to Favorites"), "box.favorite");
         menu.append_section (null, section);
-
-        // Take Screenshot
-        section.append (_("Take Screenshot"), "box.take_screenshot");
 
         // New section for force shutdown, pause and delete
         section = new GLib.Menu ();
