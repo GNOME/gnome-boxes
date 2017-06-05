@@ -44,11 +44,8 @@ resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --generate-dependencies $(gre
 dbusservicedir = $(datadir)/dbus-1/services
 dbusservice_DATA = org.gnome.Boxes.service
 
-org.gnome.Boxes.service: Makefile
-		$(AM_V_GEN) (echo '[D-BUS Service]'; \
-		echo 'Name=org.gnome.Boxes'; \
-		echo 'Exec=${bindir}/gnome-boxes --gapplication-service') > $@.tmp && \
-		mv $@.tmp $@
+org.gnome.Boxes.service: org.gnome.Boxes.service.in Makefile
+		$(AM_V_GEN)$(SED) -e "s|[@]bindir[@]|$(bindir)|" $< > $@
 
 EXTRA_DIST =					\
 	org.gnome.Boxes.desktop.in		\
