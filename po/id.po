@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-18 13:35+0000\n"
-"PO-Revision-Date: 2017-04-23 13:57+0700\n"
+"POT-Creation-Date: 2017-06-05 08:14+0000\n"
+"PO-Revision-Date: 2017-06-06 12:03+0700\n"
 "Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -256,6 +256,22 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Layar penuh/kembali normal dari layar penuh"
 
+#: ../data/ui/menus.ui.h:1
+msgid "Keyboard Shortcuts"
+msgstr "Pintasan Papan Tik"
+
+#: ../data/ui/menus.ui.h:2
+msgid "Help"
+msgstr "Bantuan"
+
+#: ../data/ui/menus.ui.h:3
+msgid "About"
+msgstr "Tentang"
+
+#: ../data/ui/menus.ui.h:4
+msgid "Quit"
+msgstr "Keluar"
+
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
 msgstr "Log penelusuran masalah"
@@ -310,7 +326,7 @@ msgid "Rename"
 msgstr "Ubah Nama"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:79
 msgid "Delete"
 msgstr "Hapus"
 
@@ -435,53 +451,64 @@ msgstr ""
 "Periksalah pengaturan BIOS Anda untuk memfungsikannya."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:28
+#: ../src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Tindakan Box"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:43
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
 #. Favorite
-#: ../src/actions-popover.vala:49
+#: ../src/actions-popover.vala:50
 msgid "Remove from Favorites"
 msgstr "Buang dari Favorit"
 
-#: ../src/actions-popover.vala:51
+#: ../src/actions-popover.vala:52
 msgid "Add to Favorites"
 msgstr "Tambah ke Favorit"
 
-#: ../src/actions-popover.vala:58
+#. Take Screenshot
+#: ../src/actions-popover.vala:56
+msgid "Take Screenshot"
+msgstr "Ambil Cuplikan Layar"
+
+#: ../src/actions-popover.vala:62
 msgid "Force Shutdown"
 msgstr "Paksa Mati"
 
 #. Pause
-#: ../src/actions-popover.vala:65
+#: ../src/actions-popover.vala:69
 msgid "Pause"
 msgstr "Jeda"
 
 #. Clone
-#: ../src/actions-popover.vala:70
+#: ../src/actions-popover.vala:74
 msgid "Clone"
 msgstr "Klon"
 
-#: ../src/actions-popover.vala:79 ../src/machine.vala:604
+#: ../src/actions-popover.vala:83 ../src/machine.vala:604
 msgid "Restart"
 msgstr "Mulai ulang"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:88
+#: ../src/actions-popover.vala:92
 msgid "Properties"
 msgstr "Properti"
 
-#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
+#. Translators: %s => the timestamp of when the screenshot was taken.
+#: ../src/actions-popover.vala:116
+#, c-format
+msgid "Screenshot from %s"
+msgstr "Cuplikan layar dari %s"
+
+#: ../src/actions-popover.vala:147 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing “%s” failed"
 msgstr "Mengistirahatkan “%s” gagal"
 
-#: ../src/app.vala:105
+#: ../src/app.vala:106
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2012, 2013, 2014, 2015.\n"
@@ -489,79 +516,63 @@ msgstr ""
 "Dirgita <dirgitadevina@yahoo.co.id>, 2012.\n"
 "Kukuh Syafaat <syafaatkukuh@gmail.com>, 2017."
 
-#: ../src/app.vala:106
+#: ../src/app.vala:107
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Sebuah aplikasi GNOME 3 sederhana untuk mengakses sistem jarak jauh atau "
 "virtual"
 
-#: ../src/app.vala:125
-msgid "Keyboard Shortcuts"
-msgstr "Pintasan Papan Tik"
-
-#: ../src/app.vala:126
-msgid "Help"
-msgstr "Bantuan"
-
-#: ../src/app.vala:127
-msgid "About"
-msgstr "Tentang"
-
-#: ../src/app.vala:128
-msgid "Quit"
-msgstr "Keluar"
-
-#: ../src/app.vala:180 ../src/main.vala:9
+#: ../src/app.vala:173 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Tampilkan nomor versi"
 
-#: ../src/app.vala:182
+#: ../src/app.vala:175
 msgid "Open in full screen"
 msgstr "Buka di layar penuh"
 
-#: ../src/app.vala:183 ../src/main.vala:10
+#: ../src/app.vala:176 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Periksa kapabilitas virtualisasi"
 
-#: ../src/app.vala:184
+#: ../src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Buka box dengan UUID"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:178
 msgid "Search term"
 msgstr "Istilah pencarian"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:187
+#: ../src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URI untuk ditampilkan, broker, atau media pemasangan"
 
-#: ../src/app.vala:198
+#: ../src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "— Sebuah aplikasi sederhana untuk mengakses sistem jarak jauh atau virtual"
 
-#: ../src/app.vala:223
+#: ../src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Terlalu banyak argumen baris perintah yang dinyatakan.\n"
 
-#: ../src/app.vala:458
+#: ../src/app.vala:451
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box '%s' telah terpasang dan siap dipakai"
 
-#: ../src/app.vala:546
+#: ../src/app.vala:539
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box '%s' telah dihapus"
 
-#: ../src/app.vala:547
+#: ../src/app.vala:540
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box telah dihapus"
 
-#: ../src/app.vala:574 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:567 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Urung"
 
@@ -962,11 +973,6 @@ msgstr "Protokol"
 msgid "URL"
 msgstr "URL"
 
-#: ../src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Perubahan memerlukan “%s” dimulai ulang."
-
 #: ../src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Umum"
@@ -978,6 +984,11 @@ msgstr "Perangkat"
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
 msgstr "Snapshot"
+
+#: ../src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Perubahan memerlukan “%s” dimulai ulang."
 
 #: ../src/remote-machine.vala:75
 msgid "_URL"
@@ -1168,7 +1179,7 @@ msgstr "tidak"
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
 
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:176
 #, c-format
 msgid "Live box “%s” has been deleted automatically."
 msgstr "Box live “%s” telah dihapus secara otomatis."
