@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-05 08:14+0000\n"
-"PO-Revision-Date: 2017-06-09 22:43+0500\n"
+"POT-Creation-Date: 2017-06-16 14:15+0000\n"
+"PO-Revision-Date: 2017-06-17 13:22+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk@li.org>\n"
 "Language: kk\n"
@@ -82,36 +82,48 @@ msgid "The list of boxes collections"
 msgstr "Бокстар жинақтарының тізімі"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
+msgid "[ 'Work', 'Research', 'Gaming' ]"
+msgstr "[ 'Жұмыс', 'Зерттеу', 'Ойындар' ]"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "Screenshot interval"
 msgstr "Скриншот аралығы"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "The interval in seconds between screenshot updates"
 msgstr "Скриншоттарды жаңарту арасындағы уақыт, секундпен"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size"
 msgstr "Терезе өлшемі"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size (width and height)"
 msgstr "Терезе өлшемі (ені мен биіктігі)."
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position"
 msgstr "Терезе орны"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position (x and y)"
 msgstr "Терезе орны (x және y)."
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized"
 msgstr "Терезе максималды етілген"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized state"
 msgstr "Терезе максималды күйі"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+msgid "Shared folders"
+msgstr "Ортақ бумалар"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:13
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr "Ортақ бумалар және тіркеу жолдарының өзгермелі массиві"
 
 #: ../data/ui/auth-notification.ui.h:1
 msgid "_Username"
@@ -314,6 +326,26 @@ msgstr "Орындалып тұрғанды таңдау"
 #: ../data/ui/selection-toolbar.ui.h:5
 msgid "Select None"
 msgstr "Ештеңе таңдамау"
+
+#: ../data/ui/shared-folder-popover.ui.h:1
+msgid "Local Folder"
+msgstr "Жергілікті бума"
+
+#: ../data/ui/shared-folder-popover.ui.h:2
+msgid "Name"
+msgstr "Аты"
+
+#: ../data/ui/shared-folder-popover.ui.h:3
+msgid "Select Shared Folder"
+msgstr "Ортақ буманы таңдау"
+
+#: ../data/ui/shared-folder-popover.ui.h:4
+msgid "Cancel"
+msgstr "Бас тарту"
+
+#: ../data/ui/shared-folder-popover.ui.h:5
+msgid "Save"
+msgstr "Сақтау"
 
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
@@ -619,7 +651,6 @@ msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
 #: ../src/keys-input-popover.vala:27
-#| msgid "Ctrl + Alt + F1"
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
@@ -974,8 +1005,8 @@ msgid "General"
 msgstr "Жалпы"
 
 #: ../src/properties-page-widget.vala:23
-msgid "Devices"
-msgstr "Құрылғылар"
+msgid "Devices & Shares"
+msgstr "Құрылғылар және ортақ бумалар"
 
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
@@ -1043,20 +1074,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "%s снашотын жасау сәтсіз"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:43
+#: ../src/spice-display.vala:47
 msgid "Unknown"
 msgstr "Белгісіз"
 
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:387
+#: ../src/spice-display.vala:67 ../src/spice-display.vala:644
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "\"%s\" USB құрылғысын \"%s\" боксына қайта бағдарлау сәтсіз аяқталды"
 
-#: ../src/spice-display.vala:320
+#: ../src/spice-display.vala:500
 msgid "Share Clipboard"
 msgstr "Алмасу буферімен бөлісу"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:505
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1069,20 +1100,24 @@ msgstr ""
 "орнату үшін <a href=\"http://www.spice-space.org/download.html\">http://www."
 "spice-space.org/download.html</a> шолыңыз."
 
-#: ../src/spice-display.vala:400
+#: ../src/spice-display.vala:532
 msgid "USB devices"
 msgstr "USB"
 
-#: ../src/spice-display.vala:546 ../src/spice-display.vala:571
-#: ../src/spice-display.vala:574 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:550
+msgid "Folder Shares"
+msgstr "Бумалармен бөлісу"
+
+#: ../src/spice-display.vala:812 ../src/spice-display.vala:837
+#: ../src/spice-display.vala:840 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "Сілтеме қате"
 
-#: ../src/spice-display.vala:556
+#: ../src/spice-display.vala:822
 msgid "The port must be specified once"
 msgstr "Порт бір рет көрсетілуі керек"
 
-#: ../src/spice-display.vala:567
+#: ../src/spice-display.vala:833
 msgid "Missing port in Spice URL"
 msgstr "Spice сілтемесі ішініде порт көрсетілмеген"
 
@@ -1173,7 +1208,7 @@ msgstr "жоқ"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:578
+#: ../src/vm-configurator.vala:604
 msgid "Incapable host system"
 msgstr "Жүйе керек функцияларды қолдамайды"
 
@@ -1371,9 +1406,6 @@ msgstr "Б_аптау"
 
 #~ msgid "Virtualizer"
 #~ msgstr "Виртуализатор"
-
-#~ msgid "_Save"
-#~ msgstr "_Сақтау"
 
 #~ msgid "_Close"
 #~ msgstr "Жа_бу"
