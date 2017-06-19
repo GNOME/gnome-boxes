@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-05 08:14+0000\n"
-"PO-Revision-Date: 2017-06-05 16:25+0200\n"
+"POT-Creation-Date: 2017-06-16 14:15+0000\n"
+"PO-Revision-Date: 2017-06-19 11:54+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -83,37 +83,49 @@ msgid "The list of boxes collections"
 msgstr "La lista de colecciones de cajas"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
+msgid "[ 'Work', 'Research', 'Gaming' ]"
+msgstr "[ 'Trabajo', 'Investigación', 'Juegos' ]"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "Screenshot interval"
 msgstr "Intervalo de la captura de pantalla"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "The interval in seconds between screenshot updates"
 msgstr ""
 "El intervalo en segundo entre actualizaciones de las capturas de pantalla"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size"
 msgstr "Tamaño de la ventana"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size (width and height)"
 msgstr "Tamaño de la ventana (anchura y altura)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position"
 msgstr "Posición de la ventana"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position (x and y)"
 msgstr "Posición de la ventana (x e y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized"
 msgstr "Ventana maximizada"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized state"
 msgstr "Estado maximizado de la ventana"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+msgid "Shared folders"
+msgstr "Carpetas compartidas"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:13
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr "Vector de nombres carpetas compartidas y mapeo de rutas"
 
 #: ../data/ui/auth-notification.ui.h:1
 msgid "_Username"
@@ -317,6 +329,30 @@ msgstr "Seleccionar las que están en ejecución"
 msgid "Select None"
 msgstr "No seleccionar ninguna"
 
+#: ../data/ui/shared-folder-popover.ui.h:1
+msgid "Local Folder"
+msgstr "Carpeta local"
+
+#: ../data/ui/shared-folder-popover.ui.h:2
+#| msgid "_Name"
+msgid "Name"
+msgstr "Nombre"
+
+#: ../data/ui/shared-folder-popover.ui.h:3
+#| msgid "_Select a file"
+msgid "Select Shared Folder"
+msgstr "Seleccionar carpeta compartida"
+
+#: ../data/ui/shared-folder-popover.ui.h:4
+#| msgid "_Cancel"
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../data/ui/shared-folder-popover.ui.h:5
+#| msgid "_Save"
+msgid "Save"
+msgstr "Guardar"
+
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
 msgstr "Revertir a este estado"
@@ -502,7 +538,6 @@ msgstr "Propiedades"
 #. Translators: %s => the timestamp of when the screenshot was taken.
 #: ../src/actions-popover.vala:116
 #, c-format
-#| msgid "Screenshot interval"
 msgid "Screenshot from %s"
 msgstr "Captura de pantalla de %s"
 
@@ -624,7 +659,6 @@ msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Retroceso"
 
 #: ../src/keys-input-popover.vala:27
-#| msgid "Ctrl + Alt + F1"
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Supr"
 
@@ -980,8 +1014,9 @@ msgid "General"
 msgstr "General"
 
 #: ../src/properties-page-widget.vala:23
-msgid "Devices"
-msgstr "Dispositivos"
+#| msgid "Devices"
+msgid "Devices & Shares"
+msgstr "Dispositivos y comparticiones"
 
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
@@ -1051,20 +1086,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Falló al crear la instantánea de %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:43
+#: ../src/spice-display.vala:47
 msgid "Unknown"
 msgstr "Desconocida"
 
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:387
+#: ../src/spice-display.vala:67 ../src/spice-display.vala:644
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Falló al redireccionar el dispositivo USB «%s» para «%s»"
 
-#: ../src/spice-display.vala:320
+#: ../src/spice-display.vala:500
 msgid "Share Clipboard"
 msgstr "Compartir portapapeles"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:505
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1077,20 +1112,24 @@ msgstr ""
 "space.org/download.html\">http://www.spice-space.org/download.html</a> para "
 "descargar e instalar estas herramientas en la caja."
 
-#: ../src/spice-display.vala:400
+#: ../src/spice-display.vala:532
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: ../src/spice-display.vala:546 ../src/spice-display.vala:571
-#: ../src/spice-display.vala:574 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:550
+msgid "Folder Shares"
+msgstr "Compartición de carpetas"
+
+#: ../src/spice-display.vala:812 ../src/spice-display.vala:837
+#: ../src/spice-display.vala:840 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "URL no válido"
 
-#: ../src/spice-display.vala:556
+#: ../src/spice-display.vala:822
 msgid "The port must be specified once"
 msgstr "El puedo se debe especificar una vez"
 
-#: ../src/spice-display.vala:567
+#: ../src/spice-display.vala:833
 msgid "Missing port in Spice URL"
 msgstr "Falta el puerto en el URL de Spice"
 
@@ -1180,7 +1219,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:578
+#: ../src/vm-configurator.vala:604
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
@@ -1395,9 +1434,6 @@ msgstr "_Personalizar…"
 
 #~ msgid "Create one using the button on the top left."
 #~ msgstr "Cree una usando en botón de la parte superior izquierda."
-
-#~ msgid "_Save"
-#~ msgstr "_Guardar"
 
 #~ msgid "_Close"
 #~ msgstr "_Cerrar"
