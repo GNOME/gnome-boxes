@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-05 08:14+0000\n"
-"PO-Revision-Date: 2017-06-06 12:10+0200\n"
+"POT-Creation-Date: 2017-06-16 14:15+0000\n"
+"PO-Revision-Date: 2017-06-20 09:21+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -82,36 +82,48 @@ msgid "The list of boxes collections"
 msgstr "La liste des colezions di scjatulis"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
+msgid "[ 'Work', 'Research', 'Gaming' ]"
+msgstr "[ 'Lavôr', 'Ricercje', 'Ziuâ' ]"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "Screenshot interval"
 msgstr "Interval di cature de schermade"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "The interval in seconds between screenshot updates"
 msgstr "L'interval in seconts tra i inzornaments des caturis de schermade"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size"
 msgstr "Dimension barcon"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size (width and height)"
 msgstr "Dimension barcon (largjece e altece)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position"
 msgstr "Posizion barcon"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position (x and y)"
 msgstr "Posizion barcon (x e y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized"
 msgstr "Barcon slargjât"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized state"
 msgstr "Il stât slargjât dal barcon"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+msgid "Shared folders"
+msgstr "Cartelis condividudis"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:13
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr ""
 
 #: ../data/ui/auth-notification.ui.h:1
 msgid "_Username"
@@ -314,6 +326,26 @@ msgstr "Selezione in esecuzion"
 #: ../data/ui/selection-toolbar.ui.h:5
 msgid "Select None"
 msgstr "Selezione nissune"
+
+#: ../data/ui/shared-folder-popover.ui.h:1
+msgid "Local Folder"
+msgstr "Cartele locâl"
+
+#: ../data/ui/shared-folder-popover.ui.h:2
+msgid "Name"
+msgstr "Non"
+
+#: ../data/ui/shared-folder-popover.ui.h:3
+msgid "Select Shared Folder"
+msgstr "Selezionâ cartele condividude"
+
+#: ../data/ui/shared-folder-popover.ui.h:4
+msgid "Cancel"
+msgstr "Anule"
+
+#: ../data/ui/shared-folder-popover.ui.h:5
+msgid "Save"
+msgstr "Salve"
 
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
@@ -974,8 +1006,8 @@ msgid "General"
 msgstr "Gjenerâl"
 
 #: ../src/properties-page-widget.vala:23
-msgid "Devices"
-msgstr "Dispositîfs"
+msgid "Devices & Shares"
+msgstr "Dispositîfs & condivisions"
 
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
@@ -1044,20 +1076,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Impussibil creâ istantanie par %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:43
+#: ../src/spice-display.vala:47
 msgid "Unknown"
 msgstr "No cognossût"
 
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:387
+#: ../src/spice-display.vala:67 ../src/spice-display.vala:644
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Indreçament direzion dal dispositîf USB “%s” par “%s” falît"
 
-#: ../src/spice-display.vala:320
+#: ../src/spice-display.vala:500
 msgid "Share Clipboard"
 msgstr "Condivît notis"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:505
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1070,20 +1102,24 @@ msgstr ""
 "download.html\">http://www.spice-space.org/download.html</a> par discjariâ e "
 "instalâ chescj struments dal didentri de scjatule."
 
-#: ../src/spice-display.vala:400
+#: ../src/spice-display.vala:532
 msgid "USB devices"
 msgstr "Dispositîfs USB"
 
-#: ../src/spice-display.vala:546 ../src/spice-display.vala:571
-#: ../src/spice-display.vala:574 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:550
+msgid "Folder Shares"
+msgstr "Condivisions cartele"
+
+#: ../src/spice-display.vala:812 ../src/spice-display.vala:837
+#: ../src/spice-display.vala:840 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "URL no valit"
 
-#: ../src/spice-display.vala:556
+#: ../src/spice-display.vala:822
 msgid "The port must be specified once"
 msgstr "Si à di specificâ la puarte une volte"
 
-#: ../src/spice-display.vala:567
+#: ../src/spice-display.vala:833
 msgid "Missing port in Spice URL"
 msgstr "A mancje la puarte intal URL Spice"
 
@@ -1174,7 +1210,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:578
+#: ../src/vm-configurator.vala:604
 msgid "Incapable host system"
 msgstr "Sisteme host incapaç"
 
