@@ -6,7 +6,7 @@ MAINTAINERCLEANFILES = *.stamp
 cachedir=/var/cache/
 AM_CPPFLAGS =						\
 	-include config.h				\
-	-DGNOMELOCALEDIR=\""$(datadir)/locale"\"	\
+	-DLOCALEDIR=\""$(localedir)"\"	\
 	-DDATADIR=\""$(datadir)"\"			\
 	-DCACHEDIR=\""$(cachedir)"\"			\
 	$(DISABLE_DEPRECATED)				\

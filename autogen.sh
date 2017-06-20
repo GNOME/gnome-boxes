@@ -10,7 +10,6 @@ olddir=`pwd`
 cd "$srcdir"
 git submodule update --init --recursive
 autoreconf -v --force --install
-intltoolize -f
 
 cd "$olddir"
 if [ -z "$NOCONFIGURE" ]; then

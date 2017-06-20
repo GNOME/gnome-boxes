@@ -4,19 +4,24 @@ SUBDIRS = icons osinfo
 desktopdir       = $(datadir)/applications
 desktop_in_files = org.gnome.Boxes.desktop.in
 desktop_DATA     = $(desktop_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
+
+$(desktop_DATA): %.desktop: %.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 all-local: $(desktop_DATA)
 	@$(DESKTOP_FILE_VALIDATE) $(desktop_DATA)
 
 gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
-@INTLTOOL_XML_NOMERGE_RULE@
-@GSETTINGS_RULES@
+
+$(gsettings_SCHEMAS): org.gnome.boxes.gschemal.xml.in
+	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 appdatadir = $(datadir)/appdata
 appdata_in_file = org.gnome.Boxes.appdata.xml.in
 appdata_DATA = $(appdata_in_file:.xml.in=.xml)
-@INTLTOOL_XML_RULE@
+
+$(appdata_DATA): $(appdata_in_file)
+	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 sourcedir         = $(datadir)/gnome-boxes/sources
 source_DATA       = QEMU_Session
@@ -79,7 +84,7 @@ MAINTAINERCLEANFILES =				\
 	$(NULL)
 
 gnome-boxes-search-provider.ini: gnome-boxes-search-provider.ini.in
-	LC_ALL=C $(INTLTOOL_MERGE) -d -u -c $(top_builddir)/po/.intltool-merge-cache $(top_srcdir)/po $< $@
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 org.gnome.Boxes.SearchProvider.service: org.gnome.Boxes.SearchProvider.service.in Makefile
 	$(AM_V_GEN) [ -d $(@D) ] || $(mkdir_p) $(@D) ; \

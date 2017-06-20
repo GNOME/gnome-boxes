@@ -3,17 +3,7 @@ NULL =
 
 SUBDIRS = data help libgd src po vapi
 
-INTLTOOL_FILES =				\
-	intltool-extract.in			\
-	intltool-merge.in			\
-	intltool-update.in			\
-	$(NULL)
-
 DISTCLEANFILES =				\
-	intltool-extract			\
-	intltool-merge				\
-	intltool-update				\
-	po/.intltool-merge-cache		\
 	$(NULL)
 
 EXTRA_DIST =					\
@@ -24,7 +14,6 @@ EXTRA_DIST =					\
 	build-aux/git-version-gen		\
 	m4/boxes.m4				\
 	.version				\
-	$(INTLTOOL_FILES)			\
 	$(NULL)
 
 MAINTAINERCLEANFILES =				\
@@ -41,7 +30,6 @@ MAINTAINERCLEANFILES =				\
 	build-aux/ltmain.sh			\
 	build-aux/missing			\
 	build-aux/mkinstalldirs			\
-	m4/intltool.m4				\
 	m4/libtool.m4				\
 	m4/ltoptions.m4				\
 	m4/ltsugar.m4				\
