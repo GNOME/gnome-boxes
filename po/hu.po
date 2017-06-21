@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-18 13:35+0000\n"
-"PO-Revision-Date: 2017-05-14 23:16+0200\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2017-06-16 14:15+0000\n"
+"PO-Revision-Date: 2017-06-21 20:41+0200\n"
+"Last-Translator: Meskó Balázs <meskobalazs@fedoraproject.org>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Poedit 2.0.1\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid "GNOME Boxes"
@@ -83,36 +83,49 @@ msgid "The list of boxes collections"
 msgstr "A Gépek gyűjteményének listája"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
+msgid "[ 'Work', 'Research', 'Gaming' ]"
+msgstr "[ 'Munka', 'Kutatás', 'Játék' ]"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "Screenshot interval"
 msgstr "Képernyőképek időköze"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "The interval in seconds between screenshot updates"
 msgstr "Képernyőképek frissítései közti idő másodpercben"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size"
 msgstr "Ablakméret"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size (width and height)"
 msgstr "Ablak mérete (szélesség és magasság)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position"
 msgstr "Ablakpozíció"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position (x and y)"
 msgstr "Ablakpozíció (x és y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized"
 msgstr "Ablak teljes méretű"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized state"
 msgstr "Az ablak maximalizált állapota"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+msgid "Shared folders"
+msgstr "Megosztott mappák"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:13
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr ""
+"Megosztott mappák nevének és útvonal-leképezésének változó hosszúságú tömbje"
 
 #: ../data/ui/auth-notification.ui.h:1
 msgid "_Username"
@@ -255,6 +268,22 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Váltás teljes képernyős módba"
 
+#: ../data/ui/menus.ui.h:1
+msgid "Keyboard Shortcuts"
+msgstr "Gyorsbillentyűk"
+
+#: ../data/ui/menus.ui.h:2
+msgid "Help"
+msgstr "Súgó"
+
+#: ../data/ui/menus.ui.h:3
+msgid "About"
+msgstr "Névjegy"
+
+#: ../data/ui/menus.ui.h:4
+msgid "Quit"
+msgstr "Kilépés"
+
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
 msgstr "Hibaelhárítási napló"
@@ -300,6 +329,26 @@ msgstr "Futó kijelölése"
 msgid "Select None"
 msgstr "Kijelölés megszüntetése"
 
+#: ../data/ui/shared-folder-popover.ui.h:1
+msgid "Local Folder"
+msgstr "Helyi mappa"
+
+#: ../data/ui/shared-folder-popover.ui.h:2
+msgid "Name"
+msgstr "Név"
+
+#: ../data/ui/shared-folder-popover.ui.h:3
+msgid "Select Shared Folder"
+msgstr "Válasszon egy megosztott mappát"
+
+#: ../data/ui/shared-folder-popover.ui.h:4
+msgid "Cancel"
+msgstr "Mégse"
+
+#: ../data/ui/shared-folder-popover.ui.h:5
+msgid "Save"
+msgstr "Mentés"
+
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
 msgstr "Visszaállítás erre az állapotra"
@@ -309,7 +358,7 @@ msgid "Rename"
 msgstr "Átnevezés"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:79
 msgid "Delete"
 msgstr "Törlés"
 
@@ -434,131 +483,126 @@ msgstr ""
 "Ellenőrizze a BIOS beállításait azok engedélyezéséhez."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:28
+#: ../src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Gép műveletek"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:43
 msgid "Open in New Window"
 msgstr "Megnyitás új ablakban"
 
 #. Favorite
-#: ../src/actions-popover.vala:49
+#: ../src/actions-popover.vala:50
 msgid "Remove from Favorites"
 msgstr "Eltávolítás a kedvencek közül"
 
-#: ../src/actions-popover.vala:51
+#: ../src/actions-popover.vala:52
 msgid "Add to Favorites"
 msgstr "Hozzáadás a kedvencekhez"
 
-#: ../src/actions-popover.vala:58
+#. Take Screenshot
+#: ../src/actions-popover.vala:56
+msgid "Take Screenshot"
+msgstr "Képernyőkép készítése"
+
+#: ../src/actions-popover.vala:62
 msgid "Force Shutdown"
 msgstr "Erőltetett leállítás"
 
 #. Pause
-#: ../src/actions-popover.vala:65
+#: ../src/actions-popover.vala:69
 msgid "Pause"
 msgstr "Szünet"
 
 #. Clone
-#: ../src/actions-popover.vala:70
+#: ../src/actions-popover.vala:74
 msgid "Clone"
 msgstr "Klónozás"
 
-#: ../src/actions-popover.vala:79 ../src/machine.vala:604
+#: ../src/actions-popover.vala:83 ../src/machine.vala:604
 msgid "Restart"
 msgstr "Újraindítás"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:88
+#: ../src/actions-popover.vala:92
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
+#. Translators: %s => the timestamp of when the screenshot was taken.
+#: ../src/actions-popover.vala:116
+#, c-format
+msgid "Screenshot from %s"
+msgstr "Képernyőkép ekkor: %s"
+
+#: ../src/actions-popover.vala:147 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing “%s” failed"
 msgstr "„%s” szüneteltetése meghiúsult"
 
-#: ../src/app.vala:105
+#: ../src/app.vala:106
 msgid "translator-credits"
 msgstr ""
 "Kelemen Gábor <kelemeng at gnome dot hu> \n"
 "Lukács Bence <lukacs.bence1 at gmail dot com>\n"
-"Meskó Balázs <meskobalazs at gmail dot com>"
+"Meskó Balázs <meskobalazs at fedoraproject dot org>"
 
-#: ../src/app.vala:106
+#: ../src/app.vala:107
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Egyszerű GNOME 3 alkalmazás távoli vagy virtuális rendszerek eléréséhez"
 
-#: ../src/app.vala:125
-msgid "Keyboard Shortcuts"
-msgstr "Gyorsbillentyűk"
-
-#: ../src/app.vala:126
-msgid "Help"
-msgstr "Súgó"
-
-#: ../src/app.vala:127
-msgid "About"
-msgstr "Névjegy"
-
-#: ../src/app.vala:128
-msgid "Quit"
-msgstr "Kilépés"
-
-#: ../src/app.vala:180 ../src/main.vala:9
+#: ../src/app.vala:173 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Verziószám kiírása"
 
-#: ../src/app.vala:182
+#: ../src/app.vala:175
 msgid "Open in full screen"
 msgstr "Megnyitás teljes képernyős módban"
 
-#: ../src/app.vala:183 ../src/main.vala:10
+#: ../src/app.vala:176 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Virtualizációs képességek tesztelése"
 
-#: ../src/app.vala:184
+#: ../src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Gép megnyitása UUID-vel"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:178
 msgid "Search term"
 msgstr "Keresett kifejezés"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:187
+#: ../src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "Megjelenítendő URL, közvetítő vagy telepítőmédia"
 
-#: ../src/app.vala:198
+#: ../src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Egyszerű alkalmazás távoli vagy virtuális gépek eléréséhez"
 
-#: ../src/app.vala:223
+#: ../src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Túl sok parancssori argumentum lett megadva.\n"
 
-#: ../src/app.vala:458
+#: ../src/app.vala:451
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "A(z) „%s” gép telepítve és használatra kész"
 
-#: ../src/app.vala:546
+#: ../src/app.vala:539
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "A(z) „%s” gép törlésre került"
 
-#: ../src/app.vala:547
+#: ../src/app.vala:540
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u gép törlésre került"
 msgstr[1] "%u gép törlésre került"
 
-#: ../src/app.vala:574 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:567 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Visszavonás"
 
@@ -612,7 +656,6 @@ msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
 #: ../src/keys-input-popover.vala:27
-#| msgid "Ctrl + Alt + F1"
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
@@ -963,22 +1006,22 @@ msgstr "Protokoll"
 msgid "URL"
 msgstr "URL"
 
-#: ../src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "A módosítások a(z) „%s” újraindítását igénylik."
-
 #: ../src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Általános"
 
 #: ../src/properties-page-widget.vala:23
-msgid "Devices"
-msgstr "Eszközök"
+msgid "Devices & Shares"
+msgstr "Eszközök és megosztások"
 
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
 msgstr "Pillanatképek"
+
+#: ../src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "A módosítások a(z) „%s” újraindítását igénylik."
 
 #: ../src/remote-machine.vala:75
 msgid "_URL"
@@ -1040,20 +1083,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Nem sikerült a(z) %s pillanatképének létrehozása"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:43
+#: ../src/spice-display.vala:47
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:387
+#: ../src/spice-display.vala:67 ../src/spice-display.vala:644
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "„%s” USB-eszköz átirányítása meghiúsult ehhez: „%s”"
 
-#: ../src/spice-display.vala:320
+#: ../src/spice-display.vala:500
 msgid "Share Clipboard"
 msgstr "Vágólap megosztása"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:505
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1066,20 +1109,24 @@ msgstr ""
 "href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
 "download.html</a> oldalt ezen eszközök letöltéséhez és telepítéséhez."
 
-#: ../src/spice-display.vala:400
+#: ../src/spice-display.vala:532
 msgid "USB devices"
 msgstr "USB eszközök"
 
-#: ../src/spice-display.vala:546 ../src/spice-display.vala:571
-#: ../src/spice-display.vala:574 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:550
+msgid "Folder Shares"
+msgstr "Mappamegosztások"
+
+#: ../src/spice-display.vala:812 ../src/spice-display.vala:837
+#: ../src/spice-display.vala:840 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "Érvénytelen URL"
 
-#: ../src/spice-display.vala:556
+#: ../src/spice-display.vala:822
 msgid "The port must be specified once"
 msgstr "A portot csak egyszer lehet megadni"
 
-#: ../src/spice-display.vala:567
+#: ../src/spice-display.vala:833
 msgid "Missing port in Spice URL"
 msgstr "Hiányzó port a Spice URL-ben"
 
@@ -1169,11 +1216,11 @@ msgstr "nem"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:578
+#: ../src/vm-configurator.vala:604
 msgid "Incapable host system"
 msgstr "A gazda rendszer képességei hiányoznak"
 
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:176
 #, c-format
 msgid "Live box “%s” has been deleted automatically."
 msgstr "A(z) „%s” futó gép automatikusan törlésre került."
@@ -1302,4 +1349,3 @@ msgstr "A letöltés meghiúsult."
 #: ../src/wizard.vala:719
 msgid "C_ustomize…"
 msgstr "_Testreszabás…"
-
