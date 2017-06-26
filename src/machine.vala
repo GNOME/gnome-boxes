@@ -406,7 +406,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             config.uuid = uuid;
 
         if (config.uuid == null)
-            config.uuid = uuid_generate ();
+            config.uuid = Uuid.string_random ();
 
         config.save ();
     }
