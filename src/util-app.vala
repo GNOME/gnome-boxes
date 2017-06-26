@@ -563,24 +563,6 @@ namespace Boxes {
         }
     }
 
-    namespace UUID {
-        [CCode (cname = "uuid_generate", cheader_filename = "uuid/uuid.h")]
-        internal extern static void generate ([CCode (array_length = false)] uchar[] uuid);
-        [CCode (cname = "uuid_unparse", cheader_filename = "uuid/uuid.h")]
-        internal extern static void unparse ([CCode (array_length = false)] uchar[] uuid,
-                                             [CCode (array_length = false)] uchar[] output);
-    }
-
-    string uuid_generate () {
-        var udn = new uchar[50];
-        var id = new uchar[16];
-
-        UUID.generate (id);
-        UUID.unparse (id, udn);
-
-        return (string) udn;
-    }
-
     // shamelessly copied from gnome-documents
     public GLib.Icon create_symbolic_emblem (string name) {
         var pix = Gd.create_symbolic_icon (name, 128);
