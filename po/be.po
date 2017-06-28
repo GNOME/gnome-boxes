@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-18 13:35+0000\n"
-"PO-Revision-Date: 2017-04-23 15:44+0300\n"
+"POT-Creation-Date: 2017-06-16 14:15+0000\n"
+"PO-Revision-Date: 2017-06-28 16:40+0300\n"
 "Last-Translator: Yuras Shumovich <shumovichy@gmail.com>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
@@ -81,36 +81,48 @@ msgid "The list of boxes collections"
 msgstr "Спіс калекцый машын"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
+msgid "[ 'Work', 'Research', 'Gaming' ]"
+msgstr "[ 'Праца', 'Даследаванне', 'Гульні' ]"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "Screenshot interval"
 msgstr "Затрымка для экранных здымкаў"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "The interval in seconds between screenshot updates"
 msgstr "Затрымка ў секундах паміж абнаўленнямі экранных здымкаў"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size"
 msgstr "Памер акна"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size (width and height)"
 msgstr "Памер акна (шырыня і вышыня)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position"
 msgstr "Размяшчэнне акна"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position (x and y)"
 msgstr "Размяшчэнне акна (x,y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized"
 msgstr "Акно максімалізавана"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized state"
 msgstr "Максімалізаванасць акна"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+msgid "Shared folders"
+msgstr "Супольныя папкі"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:13
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr "Варыянтны масіў імён супольных папак і адпаведных сцежак"
 
 #: ../data/ui/auth-notification.ui.h:1
 msgid "_Username"
@@ -253,6 +265,22 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "На ўвесь экран"
 
+#: ../data/ui/menus.ui.h:1
+msgid "Keyboard Shortcuts"
+msgstr "Клавіятурныя скароты"
+
+#: ../data/ui/menus.ui.h:2
+msgid "Help"
+msgstr "Дапамога"
+
+#: ../data/ui/menus.ui.h:3
+msgid "About"
+msgstr "Аб праграме"
+
+#: ../data/ui/menus.ui.h:4
+msgid "Quit"
+msgstr "Выйсці"
+
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
 msgstr "Аварыйны журнал"
@@ -298,6 +326,26 @@ msgstr "Вылучыць працуючыя машыны"
 msgid "Select None"
 msgstr "Ануляваць выбар"
 
+#: ../data/ui/shared-folder-popover.ui.h:1
+msgid "Local Folder"
+msgstr "Мясцовая папка"
+
+#: ../data/ui/shared-folder-popover.ui.h:2
+msgid "Name"
+msgstr "Назва"
+
+#: ../data/ui/shared-folder-popover.ui.h:3
+msgid "Select Shared Folder"
+msgstr "Выберыце супольную папку"
+
+#: ../data/ui/shared-folder-popover.ui.h:4
+msgid "Cancel"
+msgstr "Скасаваць"
+
+#: ../data/ui/shared-folder-popover.ui.h:5
+msgid "Save"
+msgstr "Захаваць"
+
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
 msgstr "Вярнуць гэты стан"
@@ -307,7 +355,7 @@ msgid "Rename"
 msgstr "Пераназваць"
 
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:79
 msgid "Delete"
 msgstr "Выдаліць"
 
@@ -434,124 +482,119 @@ msgstr ""
 "настройках BIOS."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:28
+#: ../src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Дзеянні над машынай"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:43
 msgid "Open in New Window"
 msgstr "Адкрыць у новым акне"
 
 #. Favorite
-#: ../src/actions-popover.vala:49
+#: ../src/actions-popover.vala:50
 msgid "Remove from Favorites"
 msgstr "Выдаліць са спіса ўпадабанага"
 
-#: ../src/actions-popover.vala:51
+#: ../src/actions-popover.vala:52
 msgid "Add to Favorites"
 msgstr "Дадаць у спіс упадабанага"
 
-#: ../src/actions-popover.vala:58
+#. Take Screenshot
+#: ../src/actions-popover.vala:56
+msgid "Take Screenshot"
+msgstr "Зрабіць экранны здымак"
+
+#: ../src/actions-popover.vala:62
 msgid "Force Shutdown"
 msgstr "Прымусова выключыць"
 
 #. Pause
-#: ../src/actions-popover.vala:65
+#: ../src/actions-popover.vala:69
 msgid "Pause"
 msgstr "Прыпыніць"
 
 #. Clone
-#: ../src/actions-popover.vala:70
+#: ../src/actions-popover.vala:74
 msgid "Clone"
 msgstr "Копія"
 
-#: ../src/actions-popover.vala:79 ../src/machine.vala:604
+#: ../src/actions-popover.vala:83 ../src/machine.vala:604
 msgid "Restart"
 msgstr "Перазапусціць"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:88
+#: ../src/actions-popover.vala:92
 msgid "Properties"
 msgstr "Уласцівасці"
 
-#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
+#. Translators: %s => the timestamp of when the screenshot was taken.
+#: ../src/actions-popover.vala:116
+#, c-format
+msgid "Screenshot from %s"
+msgstr "Экранны здымак з %s"
+
+#: ../src/actions-popover.vala:147 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing “%s” failed"
 msgstr "Не ўдалося прыпыніць \"%s\""
 
-#: ../src/app.vala:105
+#: ../src/app.vala:106
 msgid "translator-credits"
 msgstr ""
 "Ігар Грачышка <ihar.hrachyshka@gmail.com>\n"
 "Юрась Шумовіч <shumovichy@gmail.com>"
 
-#: ../src/app.vala:106
+#: ../src/app.vala:107
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Простая праграма для GNOME 3 для доступу да аддаленых і віртуальных сістэм"
 
-#: ../src/app.vala:125
-msgid "Keyboard Shortcuts"
-msgstr "Клавіятурныя скароты"
-
-#: ../src/app.vala:126
-msgid "Help"
-msgstr "Дапамога"
-
-#: ../src/app.vala:127
-msgid "About"
-msgstr "Аб праграме"
-
-#: ../src/app.vala:128
-msgid "Quit"
-msgstr "Выйсці"
-
-#: ../src/app.vala:180 ../src/main.vala:9
+#: ../src/app.vala:173 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Паказаць нумар версіі праграмы"
 
-#: ../src/app.vala:182
+#: ../src/app.vala:175
 msgid "Open in full screen"
 msgstr "Адкрыць на ўвесь экран"
 
-#: ../src/app.vala:183 ../src/main.vala:10
+#: ../src/app.vala:176 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Праверыць магчымасць віртуалізацыі"
 
-#: ../src/app.vala:184
+#: ../src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Адкрыць машыну з пэўным UUID"
 
-#: ../src/app.vala:185
+#: ../src/app.vala:178
 msgid "Search term"
 msgstr "Пошук тэксту"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:187
+#: ../src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr ""
 "URI-адрас для прагляду, носьбіт для ўсталявання ці кіраўнік віртуалізацыі"
 
-#: ../src/app.vala:198
+#: ../src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— простая праграма для для доступу да аддаленых і віртуальных сістэм"
 
-#: ../src/app.vala:223
+#: ../src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Пададзена надта шмат аргументаў загаднага радка.\n"
 
-#: ../src/app.vala:458
+#: ../src/app.vala:451
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Машына \"%s\" усталявана і гатовы да выкарыстання"
 
-#: ../src/app.vala:546
+#: ../src/app.vala:539
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Машына \"%s\" была выдалена"
 
-#: ../src/app.vala:547
+#: ../src/app.vala:540
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -559,7 +602,7 @@ msgstr[0] "%u машына была выдалена"
 msgstr[1] "%u машыны былі выдалены"
 msgstr[2] "%u машын былі выдалены"
 
-#: ../src/app.vala:574 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:567 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Адрабіць назад"
 
@@ -611,7 +654,6 @@ msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
 #: ../src/keys-input-popover.vala:27
-#| msgid "Ctrl + Alt + F1"
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
@@ -964,22 +1006,22 @@ msgstr "Пратакол"
 msgid "URL"
 msgstr "URL-адрас"
 
-#: ../src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Змены патрабуюць перазапуску \"%s\"."
-
 #: ../src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Агульнае"
 
 #: ../src/properties-page-widget.vala:23
-msgid "Devices"
-msgstr "Прыстасаванні"
+msgid "Devices & Shares"
+msgstr "Прыстасаванні і супольны доступ"
 
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
 msgstr "Здымак"
+
+#: ../src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Змены патрабуюць перазапуску \"%s\"."
 
 #: ../src/remote-machine.vala:75
 msgid "_URL"
@@ -1043,20 +1085,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Не ўдалося стварыць здымак %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:43
+#: ../src/spice-display.vala:47
 msgid "Unknown"
 msgstr "Невядома"
 
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:387
+#: ../src/spice-display.vala:67 ../src/spice-display.vala:644
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Не ўдалося перанакіраваць USB-прыстасаванне \"%s\" для \"%s\""
 
-#: ../src/spice-display.vala:320
+#: ../src/spice-display.vala:500
 msgid "Share Clipboard"
 msgstr "Дзяліцца буферам абмену"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:505
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1069,20 +1111,24 @@ msgstr ""
 "download.html\">http://www.spice-space.org/download.html</a> каб сцягнуць і "
 "ўсталяваць іх на віртуальную машыну."
 
-#: ../src/spice-display.vala:400
+#: ../src/spice-display.vala:532
 msgid "USB devices"
 msgstr "USB-прыстасаванні"
 
-#: ../src/spice-display.vala:546 ../src/spice-display.vala:571
-#: ../src/spice-display.vala:574 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:550
+msgid "Folder Shares"
+msgstr "Супольны доступ да папак"
+
+#: ../src/spice-display.vala:812 ../src/spice-display.vala:837
+#: ../src/spice-display.vala:840 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "Хібны URL-адрас"
 
-#: ../src/spice-display.vala:556
+#: ../src/spice-display.vala:822
 msgid "The port must be specified once"
 msgstr "Порт можа быць указаны толькі аднойчы"
 
-#: ../src/spice-display.vala:567
+#: ../src/spice-display.vala:833
 msgid "Missing port in Spice URL"
 msgstr "У URL-адрасе Spice не хапае порта"
 
@@ -1173,11 +1219,11 @@ msgstr "не"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:578
+#: ../src/vm-configurator.vala:604
 msgid "Incapable host system"
 msgstr "Няздольная да віртуалізацыі хост-сістэма"
 
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:176
 #, c-format
 msgid "Live box “%s” has been deleted automatically."
 msgstr "Live-машына \"%s\" была аўтаматычна выдалена."
@@ -1346,9 +1392,6 @@ msgstr "_Прыстасаваць..."
 
 #~ msgid "Virtualizer"
 #~ msgstr "Віртуалізатар"
-
-#~ msgid "_Save"
-#~ msgstr "За_хаваць"
 
 #~ msgid "_Close"
 #~ msgstr "_Закрыць"
