@@ -32,6 +32,6 @@ HELP_FILES = index.page			\
 	what-is-a-virtual-machine.page	\
 	why-do-i-need-virtual-machine.page
 
-HELP_LINGUAS = cs de el es fr hu it ko pt_BR sv
+HELP_LINGUAS = cs de el es fr hu it ko pl pt_BR sv
 
 -include $(top_srcdir)/git.mk
