@@ -6,7 +6,8 @@ private enum Boxes.UIState {
     CREDS,
     DISPLAY,
     WIZARD,
-    PROPERTIES
+    PROPERTIES,
+    TROUBLESHOOT
 }
 
 private interface Boxes.UI: GLib.Object {

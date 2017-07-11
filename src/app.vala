@@ -428,7 +428,10 @@ private class Boxes.App: Gtk.Application {
             yield add_collection_source (source);
         } catch (GLib.Error error) {
             printerr ("Error setting up default broker: %s\n", error.message);
-            release (); // will end application
+
+            main_window.set_state (UIState.TROUBLESHOOT);
+
+            return;
         }
     }
 
