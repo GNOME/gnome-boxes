@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesTroubleshootView" parent="GtkStack">
+    <property name="visible">True</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">True</property>
+    <property name="halign">fill</property>
+    <property name="valign">fill</property>
+    <property name="transition-type">crossfade</property>
+    <property name="transition-duration">400</property>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+
+        <child>
+          <object class="GtkGrid">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">computer-fail-symbolic</property>
+                <property name="pixel-size">128</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
+                <property name="margin-bottom">24</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="use-markup">True</property>
+                <property name="halign">center</property>
+                <property name="vexpand">True</property>
+                <property name="margin-bottom">6</property>
+                <property name="label" translatable="yes">Oops, something went wrong</property>
+                <attributes>
+                  <attribute name="scale" value="1.2"/> <!-- PANGO_SCALE_LARGE -->
+                  <attribute name="weight" value="PANGO_WEIGHT_BOLD"/>
+                </attributes>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="use-markup">True</property>
+                <property name="halign">center</property>
+                <property name="vexpand">True</property>
+                <property name="label" translatable="yes">Boxes cannot access the virtualization backend.</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

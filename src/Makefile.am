@@ -161,6 +161,7 @@ gnome_boxes_SOURCES =				\
 	empty-boxes.vala			\
 	tracker-iso-query.vala			\
 	troubleshoot-log.vala			\
+	troubleshoot-view.vala			\
 	shared-folder-popover.vala		\
 	snapshot-list-row.vala 			\
 	snapshots-property.vala 		\

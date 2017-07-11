@@ -93,6 +93,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public EmptyBoxes empty_boxes;
     [GtkChild]
+    public TroubleshootView troubleshoot_view;
+    [GtkChild]
     public Gtk.Stack below_bin;
     [GtkChild]
     private IconView icon_view;
@@ -188,6 +190,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
         empty_boxes.setup_ui (this);
+        troubleshoot_view.setup_ui (this);
         notificationbar.searchbar = searchbar;
 
         group = new Gtk.WindowGroup ();
@@ -264,6 +267,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         case UIState.PROPERTIES:
             if (current_item != null)
                 (current_item as Machine).unschedule_autosave ();
+
+            break;
+
+        case UIState.TROUBLESHOOT:
+            below_bin.visible_child = troubleshoot_view;
 
             break;
 
