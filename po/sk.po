@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-03-11 02:07+0000\n"
-"PO-Revision-Date: 2017-03-12 19:13+0100\n"
+"POT-Creation-Date: 2017-06-16 14:15+0000\n"
+"PO-Revision-Date: 2017-07-13 12:30+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.2\n"
 
 #: ../data/org.gnome.Boxes.appdata.xml.in.h:1
 msgid "GNOME Boxes"
@@ -82,36 +82,48 @@ msgid "The list of boxes collections"
 msgstr "Zoznam zbierok boxov"
 
 #: ../data/org.gnome.boxes.gschema.xml.in.h:3
+msgid "[ 'Work', 'Research', 'Gaming' ]"
+msgstr "[ „Práca“, „Výskum“, „Hry“ ]"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:4
 msgid "Screenshot interval"
 msgstr "Interval snímania obrazovky"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: ../data/org.gnome.boxes.gschema.xml.in.h:5
 msgid "The interval in seconds between screenshot updates"
 msgstr "Interval v sekundách medzi aktualizáciami snímky obrazovky"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
+#: ../data/org.gnome.boxes.gschema.xml.in.h:6
 msgid "Window size"
 msgstr "Veľkosť okna"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
+#: ../data/org.gnome.boxes.gschema.xml.in.h:7
 msgid "Window size (width and height)"
 msgstr "Veľkosť okna (šírka a výška)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: ../data/org.gnome.boxes.gschema.xml.in.h:8
 msgid "Window position"
 msgstr "Umiestnenie okna"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: ../data/org.gnome.boxes.gschema.xml.in.h:9
 msgid "Window position (x and y)"
 msgstr "Umiestnenie okna (x a y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: ../data/org.gnome.boxes.gschema.xml.in.h:10
 msgid "Window maximized"
 msgstr "Maximalizované okno"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: ../data/org.gnome.boxes.gschema.xml.in.h:11
 msgid "Window maximized state"
 msgstr "Maximalizovaný stav okna"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+msgid "Shared folders"
+msgstr "Zdieľané priečinky"
+
+#: ../data/org.gnome.boxes.gschema.xml.in.h:13
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr "Pole variantov názvov zdieľaných priečinkov a mapovaní ciest"
 
 #: ../data/ui/auth-notification.ui.h:1
 msgid "_Username"
@@ -258,6 +270,22 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Režim na celú obrazovku / obnova z režimu na celú obrazovku"
 
+#: ../data/ui/menus.ui.h:1
+msgid "Keyboard Shortcuts"
+msgstr "Klávesové skratky"
+
+#: ../data/ui/menus.ui.h:2
+msgid "Help"
+msgstr "Pomocník"
+
+#: ../data/ui/menus.ui.h:3
+msgid "About"
+msgstr "O programe"
+
+#: ../data/ui/menus.ui.h:4
+msgid "Quit"
+msgstr "Ukončiť"
+
 # dalog
 #: ../data/ui/properties-toolbar.ui.h:1
 msgid "Troubleshooting Log"
@@ -304,6 +332,27 @@ msgstr "Vybrať spustené"
 msgid "Select None"
 msgstr "Nevybrať nič"
 
+#: ../data/ui/shared-folder-popover.ui.h:1
+msgid "Local Folder"
+msgstr "Miestny priečinok"
+
+#: ../data/ui/shared-folder-popover.ui.h:2
+msgid "Name"
+msgstr "Názov"
+
+# DK: jedna z moznosti v prvom kroku vytvarania boxu
+#: ../data/ui/shared-folder-popover.ui.h:3
+msgid "Select Shared Folder"
+msgstr "Výber zdieľaného priečinku"
+
+#: ../data/ui/shared-folder-popover.ui.h:4
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: ../data/ui/shared-folder-popover.ui.h:5
+msgid "Save"
+msgstr "Uložiť"
+
 #: ../data/ui/snapshot-list-row.ui.h:1
 msgid "Revert to this state"
 msgstr "Vrátiť na tento stav"
@@ -315,7 +364,7 @@ msgstr "Premenovať"
 
 # menu item
 #. Delete
-#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:75
+#: ../data/ui/snapshot-list-row.ui.h:3 ../src/actions-popover.vala:79
 msgid "Delete"
 msgstr "Odstrániť"
 
@@ -445,131 +494,126 @@ msgstr ""
 "Skontrolujte nastavenia vášho systému BIOS a povoľte ich."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: ../src/actions-popover.vala:28
+#: ../src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Akcie boxu"
 
 #. Open in new Window
-#: ../src/actions-popover.vala:42
+#: ../src/actions-popover.vala:43
 msgid "Open in New Window"
 msgstr "Otvoriť v novom okne"
 
 #. Favorite
-#: ../src/actions-popover.vala:49
+#: ../src/actions-popover.vala:50
 msgid "Remove from Favorites"
 msgstr "Odstrániť z obľúbených"
 
-#: ../src/actions-popover.vala:51
+#: ../src/actions-popover.vala:52
 msgid "Add to Favorites"
 msgstr "Pridať do obľúbených"
 
-#: ../src/actions-popover.vala:58
+#. Take Screenshot
+#: ../src/actions-popover.vala:56
+msgid "Take Screenshot"
+msgstr "Zachytiť snímku obrazovky"
+
+#: ../src/actions-popover.vala:62
 msgid "Force Shutdown"
 msgstr "Vynútiť vypnutie"
 
 #. Pause
-#: ../src/actions-popover.vala:65
+#: ../src/actions-popover.vala:69
 msgid "Pause"
 msgstr "Pozastaviť"
 
 #. Clone
-#: ../src/actions-popover.vala:70
+#: ../src/actions-popover.vala:74
 msgid "Clone"
 msgstr "Klonovať"
 
-#: ../src/actions-popover.vala:79 ../src/machine.vala:604
+#: ../src/actions-popover.vala:83 ../src/machine.vala:604
 msgid "Restart"
 msgstr "Reštartovať"
 
 #. Properties (in separate section)
-#: ../src/actions-popover.vala:88
+#: ../src/actions-popover.vala:92
 msgid "Properties"
 msgstr "Vlastnosti"
 
-#: ../src/actions-popover.vala:114 ../src/selectionbar.vala:60
+#. Translators: %s => the timestamp of when the screenshot was taken.
+#: ../src/actions-popover.vala:116
+#, c-format
+msgid "Screenshot from %s"
+msgstr "Snímka obrazovky z %s"
+
+#: ../src/actions-popover.vala:147 ../src/selectionbar.vala:60
 #, c-format
 msgid "Pausing “%s” failed"
 msgstr "Pozastavenie boxu „%s“ zlyhalo"
 
-#: ../src/app.vala:105
+#: ../src/app.vala:106
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
-#: ../src/app.vala:106
+#: ../src/app.vala:107
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikácia pre GNOME 3 na prístup k vzdialeným alebo virtuálnym "
 "systémom"
 
-#: ../src/app.vala:125
-msgid "Keyboard Shortcuts"
-msgstr "Klávesové skratky"
-
-#: ../src/app.vala:126
-msgid "Help"
-msgstr "Pomocník"
-
-#: ../src/app.vala:127
-msgid "About"
-msgstr "O programe"
-
-#: ../src/app.vala:128
-msgid "Quit"
-msgstr "Ukončiť"
-
 # PK: tuto pockame na ML, ja by som dal Zobrazi cislo verzie
-#: ../src/app.vala:180 ../src/main.vala:9
+#: ../src/app.vala:173 ../src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazí číslo verzie"
 
 # cmd tooltip
-#: ../src/app.vala:182
+#: ../src/app.vala:175
 msgid "Open in full screen"
 msgstr "Otvorí v režime celej obrazovky"
 
 # cmd tooltip
-#: ../src/app.vala:183 ../src/main.vala:10
+#: ../src/app.vala:176 ../src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Skontroluje virtualizačné schopnosti"
 
 # cmd tooltip
-#: ../src/app.vala:184
+#: ../src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Otvorí box s UUID"
 
 # cmd tooltip
-#: ../src/app.vala:185
+#: ../src/app.vala:178
 msgid "Search term"
 msgstr "Vyhľadá výraz"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=695547
 # cmd tooltip
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: ../src/app.vala:187
+#: ../src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URL k displeju, správcovi virtualizácie alebo inštalačnému nosiču"
 
-#: ../src/app.vala:198
+#: ../src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "- Jednoduchá aplikácia na prístup k vzdialeným alebo virtuálnym strojom"
 
-#: ../src/app.vala:223
+#: ../src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
-#: ../src/app.vala:458
+#: ../src/app.vala:451
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainštalovaný a pripravený na použitie"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: ../src/app.vala:546
+#: ../src/app.vala:539
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: ../src/app.vala:547
+#: ../src/app.vala:540
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -577,7 +621,7 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: ../src/app.vala:574 ../src/snapshot-list-row.vala:194
+#: ../src/app.vala:567 ../src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "V_rátiť"
 
@@ -626,37 +670,35 @@ msgstr "%s <span color=\"grey\">(%s využitých)</span>"
 msgid "%s (recommended)"
 msgstr "%s (odporúčaná)"
 
-# DK: jedna sa o kapacitu disku
-#. Translators: This is memory or disk size. E.g. "1 GB (maximum)".
-#: ../src/i-properties-provider.vala:131
-#, c-format
-msgid "%s (maximum)"
-msgstr "%s (maximálne)"
-
-#: ../src/keys-input-popover.vala:25
+#: ../src/keys-input-popover.vala:26
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
+#: ../src/keys-input-popover.vala:27
+#| msgid "Ctrl + Alt + F1"
+msgid "Ctrl + Alt + Del"
+msgstr "Ctrl + Alt + Del"
+
 #. New section
-#: ../src/keys-input-popover.vala:29
+#: ../src/keys-input-popover.vala:31
 msgid "Ctrl + Alt + F1"
 msgstr "Ctrl + Alt + F1"
 
-#: ../src/keys-input-popover.vala:30
+#: ../src/keys-input-popover.vala:32
 msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
-#: ../src/keys-input-popover.vala:31
+#: ../src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
-#: ../src/keys-input-popover.vala:32
+#: ../src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F7"
 msgstr "Ctrl + Alt + F7"
 
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: ../src/keys-input-popover.vala:41
+#: ../src/keys-input-popover.vala:43
 msgid "Send key combinations"
 msgstr "Odoslať kombináciu klávesov"
 
@@ -997,22 +1039,22 @@ msgstr "Protokol"
 msgid "URL"
 msgstr "URL"
 
-#: ../src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Zmeny vyžadujú reštart virtuálneho stroja „%s“. "
-
 #: ../src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Všeobecné"
 
 #: ../src/properties-page-widget.vala:23
-msgid "Devices"
-msgstr "Zariadenia"
+msgid "Devices & Shares"
+msgstr "Zariadenia a zdieľania"
 
 #: ../src/properties-page-widget.vala:27
 msgid "Snapshots"
 msgstr "Snímky"
+
+#: ../src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Zmeny vyžadujú reštart virtuálneho stroja „%s“. "
 
 #: ../src/remote-machine.vala:75
 msgid "_URL"
@@ -1076,20 +1118,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Zlyhalo vytvorenie snímky boxu %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: ../src/spice-display.vala:43
+#: ../src/spice-display.vala:47
 msgid "Unknown"
 msgstr "Neznámy"
 
-#: ../src/spice-display.vala:63 ../src/spice-display.vala:387
+#: ../src/spice-display.vala:67 ../src/spice-display.vala:644
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Presmerovanie zariadenia „%s“ typu USB pre „%s“ zlyhalo"
 
-#: ../src/spice-display.vala:320
+#: ../src/spice-display.vala:500
 msgid "Share Clipboard"
 msgstr "Zdieľať schránku"
 
-#: ../src/spice-display.vala:325
+#: ../src/spice-display.vala:505
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1102,20 +1144,24 @@ msgstr ""
 "space.org/download.html\">http://www.spice-space.org/download.html</a>, kde "
 "prevezmete a následne nainštalujete tieto nástroje priamo v boxe."
 
-#: ../src/spice-display.vala:400
+#: ../src/spice-display.vala:532
 msgid "USB devices"
 msgstr "Zariadenia USB"
 
-#: ../src/spice-display.vala:546 ../src/spice-display.vala:571
-#: ../src/spice-display.vala:574 ../src/wizard.vala:310 ../src/wizard.vala:317
+#: ../src/spice-display.vala:550
+msgid "Folder Shares"
+msgstr "Zdieľanie priečinkov"
+
+#: ../src/spice-display.vala:812 ../src/spice-display.vala:837
+#: ../src/spice-display.vala:840 ../src/wizard.vala:310 ../src/wizard.vala:317
 msgid "Invalid URL"
 msgstr "Neplatná URL"
 
-#: ../src/spice-display.vala:556
+#: ../src/spice-display.vala:822
 msgid "The port must be specified once"
 msgstr "Port musí byť zadaný raz"
 
-#: ../src/spice-display.vala:567
+#: ../src/spice-display.vala:833
 msgid "Missing port in Spice URL"
 msgstr "V URL systému Spice chýba port"
 
@@ -1207,11 +1253,11 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:578
+#: ../src/vm-configurator.vala:604
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
-#: ../src/vm-creator.vala:175
+#: ../src/vm-creator.vala:176
 #, c-format
 msgid "Live box “%s” has been deleted automatically."
 msgstr "Live box „%s“ bol automaticky odstránený."
@@ -1220,10 +1266,6 @@ msgstr "Live box „%s“ bol automaticky odstránený."
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Import boxu zo súboru „%s“ zlyhal."
-
-#: ../src/vnc-display.vala:145
-msgid "Read-only"
-msgstr "Iba na čítanie"
 
 #: ../src/wizard-source.vala:86
 msgid "32-bit x86 system"
@@ -1345,6 +1387,13 @@ msgstr "Preberanie zlyhalo."
 msgid "C_ustomize…"
 msgstr "_Prispôsobiť…"
 
+# DK: jedna sa o kapacitu disku
+#~ msgid "%s (maximum)"
+#~ msgstr "%s (maximálne)"
+
+#~ msgid "Read-only"
+#~ msgstr "Iba na čítanie"
+
 #~ msgid "%dx%d"
 #~ msgstr "%dx%d"
 
@@ -1430,9 +1479,6 @@ msgstr "_Prispôsobiť…"
 
 #~ msgid "Virtualizer"
 #~ msgstr "Virtualizér"
-
-#~ msgid "_Save"
-#~ msgstr "_Uložiť"
 
 #~ msgid "_Close"
 #~ msgstr "_Zavrieť"
