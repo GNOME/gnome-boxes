@@ -51,6 +51,7 @@ EXTRA_DIST =					\
 	org.gnome.Boxes.desktop.in		\
 	gnome-boxes-search-provider.ini.in      \
 	org.gnome.boxes.gschema.xml.in		\
+	org.gnome.Boxes.service.in	\
 	$(gresource_file)			\
 	$(resource_files)			\
 	$(desktop_in_files)			\
