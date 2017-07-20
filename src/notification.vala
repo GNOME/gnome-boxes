@@ -31,18 +31,19 @@ private class Boxes.Notification: Gtk.Revealer {
          * lets use the respective property setter method.
          */
         set_reveal_child (true);
+        uint notification_timeout_id = 0;
 
         this.timeout = timeout;
-        Timeout.add_seconds (this.timeout, () => {
-            dismiss ();
-
-            return true;
+        notification_timeout_id = Timeout.add_seconds (this.timeout, () => {
+            dismissed ();
+            return Source.REMOVE;
         });
 
-        bool ok_pressed = false;
         dismissed.connect ( () => {
-            if (!ok_pressed && dismiss_func != null)
+            if (dismiss_func != null)
                 dismiss_func ();
+            set_reveal_child(false);
+            Source.remove(notification_timeout_id);
         });
 
         message_label.label = message;
@@ -51,20 +52,21 @@ private class Boxes.Notification: Gtk.Revealer {
             ok_button_label.label = ok_label;
 
             ok_button.clicked.connect ( () => {
-                ok_pressed = true;
                 if (ok_func != null)
                     ok_func ();
-                dismiss ();
+                set_reveal_child(false);
+                Source.remove(notification_timeout_id);
             });
 
             ok_button.show_all ();
         }
 
-        close_button.clicked.connect (dismiss);
+        close_button.clicked.connect ( () => {
+            dismissed();
+        });
     }
 
-    public void dismiss () {
-        set_reveal_child (false);
-        dismissed ();
+    public void dismiss() {
+        dismissed();
     }
 }
