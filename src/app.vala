@@ -29,6 +29,7 @@ private class Boxes.App: Gtk.Application {
 
     public string? uri { get; set; }
     public Collection collection;
+    public Collection deleted;
 
     private bool is_ready;
     public signal void ready ();
@@ -123,6 +124,7 @@ private class Boxes.App: Gtk.Application {
         Gtk.init (ref args2);
 
         collection = new Collection ();
+        deleted = new Collection ();
 
         collection.item_added.connect ((item) => {
             main_window.foreach_view ((view) => { view.add_item (item); });
@@ -265,6 +267,11 @@ private class Boxes.App: Gtk.Application {
         // Ensure windows are hidden before returning from this function
         var display = Gdk.Display.get_default ();
         display.flush ();
+        foreach (var domain in deleted.items.data) {
+            debug("Running delete for domain: %s", domain.name);
+            (domain as Machine).delete (true);
+            deleted.remove_item(domain);
+        }
 
         Idle.add (() => {
             quit ();
@@ -277,7 +284,6 @@ private class Boxes.App: Gtk.Application {
 
     public override void shutdown () {
         base.shutdown ();
-
         foreach (var window in windows) {
             window.notificationbar.dismiss_all ();
             window.wizard_window.wizard.cleanup ();
@@ -540,14 +546,17 @@ private class Boxes.App: Gtk.Application {
                                      ngettext ("%u box has been deleted",
                                                "%u boxes have been deleted",
                                                num_items).printf (num_items);
-        foreach (var item in items)
+        foreach (var item in items) {
             collection.remove_item (item);
+            deleted.add_item(item);
+        }
 
         Notification.OKFunc undo = () => {
             debug ("Box deletion cancelled by user. Re-adding to view");
             foreach (var item in items) {
                 var machine = item as Machine;
                 collection.add_item (machine);
+                deleted.remove_item(item);
             }
             if (undo_notify_callback != null)
                 undo_notify_callback ();
