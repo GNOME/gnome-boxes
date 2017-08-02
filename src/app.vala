@@ -169,6 +169,7 @@ private class Boxes.App: Gtk.Application {
     static string opt_open_uuid;
     static string[] opt_uris;
     static string[] opt_search;
+    static string opt_open_vmname;
     const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
         { "help", 'h', OptionFlags.HIDDEN, OptionArg.NONE, ref opt_help, null, null },
@@ -176,6 +177,7 @@ private class Boxes.App: Gtk.Application {
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
         { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
+        { "open-name", 0, 0, OptionArg.STRING, ref opt_open_vmname, N_("Open box with name"), null },
         // A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
         { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URL to display, broker or installer media"), null },
         { null }
@@ -187,6 +189,7 @@ private class Boxes.App: Gtk.Application {
         opt_open_uuid = null;
         opt_uris = null;
         opt_search = null;
+        opt_open_vmname = null;
 
         var parameter_string = _("— A simple application to access remote or virtual machines");
         var opt_context = new OptionContext (parameter_string);
@@ -212,7 +215,7 @@ private class Boxes.App: Gtk.Application {
         }
 
         if (opt_uris.length > 1 ||
-            (opt_open_uuid != null && opt_uris != null)) {
+            (opt_open_uuid != null && opt_uris != null && opt_open_vmname != null)) {
             cmdline.printerr (_("Too many command line arguments specified.\n"));
             cmdline.printerr (opt_context.get_help (true, null));
             return 1;
@@ -243,6 +246,14 @@ private class Boxes.App: Gtk.Application {
                 else
                     open_name (arg);
             });
+        } else if (opt_open_vmname != null) {
+            var name = opt_open_vmname;
+            call_when_ready (() => {
+            if (!open_name(name)) {
+                    cmdline.printerr(_("\nCan't find the virtual machine: '%s'\n"),name);
+                    list_vms();
+                }
+           });
         }
 
         if (opt_search != null) {
@@ -290,17 +301,27 @@ private class Boxes.App: Gtk.Application {
             withdraw_notification (notification);
     }
 
-    public void open_name (string name) {
+    public void list_vms() {
+        main_window.set_state (UIState.COLLECTION);
+        printerr(_("List of virtual machines to run:\n\n"));
+        foreach (var item in collection.items.data) {
+            printerr("-> %s\n", item.name); 
+        }
+    }
+
+    public bool open_name (string name) {
+        bool found = false;
         main_window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
         foreach (var item in collection.items.data) {
             if (item.name == name) {
                 main_window.select_item (item);
-
+                found = true;
                 break;
             }
         }
+        return found;
     }
 
     public bool open_uuid (string uuid) {
