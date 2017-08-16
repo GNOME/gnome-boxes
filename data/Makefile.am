@@ -12,9 +12,7 @@ all-local: $(desktop_DATA)
 	@$(DESKTOP_FILE_VALIDATE) $(desktop_DATA)
 
 gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
-
-$(gsettings_SCHEMAS): org.gnome.boxes.gschemal.xml.in
-	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
+@GSETTINGS_RULES@
 
 appdatadir = $(datadir)/appdata
 appdata_in_file = org.gnome.Boxes.appdata.xml.in
@@ -55,9 +53,9 @@ org.gnome.Boxes.service: org.gnome.Boxes.service.in Makefile
 EXTRA_DIST =					\
 	org.gnome.Boxes.desktop.in		\
 	gnome-boxes-search-provider.ini.in      \
-	org.gnome.boxes.gschema.xml.in		\
 	org.gnome.Boxes.service.in	\
 	$(gresource_file)			\
+	$(gsettings_SCHEMAS)			\
 	$(resource_files)			\
 	$(desktop_in_files)			\
 	$(source_DATA)				\
@@ -72,7 +70,6 @@ CLEANFILES =					\
 	$(NULL)
 
 DISTCLEANFILES =				\
-	$(gsettings_SCHEMAS)			\
 	$(service_DATA)				\
 	$(desktop_DATA)				\
 	$(appdata_DATA)				\
