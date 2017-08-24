@@ -62,8 +62,8 @@ private class Boxes.Downloader : GLib.Object {
      * Downloads the given file.
      *
      * @param remote_file The remote file to download.
-     * @param cached_paths Array of cache directories. The file will be saved in the directory the
-     *                     first element points to.
+     * @param cached_paths Array of possible cache locations. If not found, the file will be saved
+     *                     to the location specified by the first element.
      * @param progress The ActivityProgress object to report progress to.
      * @param cancellable The Cancellable object for cancellation.
      *
