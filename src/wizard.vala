@@ -119,6 +119,13 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                     return;
                 }
             } else {
+                switch (value) {
+                case WizardPage.SOURCE:
+                    if (wizard_source.page == SourcePage.RHEL_WEB_VIEW)
+                        wizard_source.page = SourcePage.MAIN;
+                    break;
+                }
+
                 switch (page) {
                 case WizardPage.REVIEW:
                     create_button.visible = false;
@@ -133,7 +140,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             _page = value;
-            back_button.sensitive = (value != WizardPage.SOURCE);
+            update_back_button_sensitivity ();
             wizard_window.topbar.set_title_for_page (value);
             visible_child_name = page_names[value];
 
@@ -154,6 +161,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private void wizard_source_update_buttons () {
+        update_back_button_sensitivity ();
         if (page != WizardPage.SOURCE)
             return;
 
@@ -163,6 +171,10 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         case Boxes.SourcePage.MAIN:
             next_button.sensitive = wizard_source.selected != null;
             source = null;
+            break;
+
+        case Boxes.SourcePage.RHEL_WEB_VIEW:
+            next_button.sensitive = false;
             break;
 
         case Boxes.SourcePage.URL:
@@ -184,6 +196,12 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             warn_if_reached ();
             break;
         }
+    }
+
+    private void update_back_button_sensitivity () {
+        var disable_back_button = page == WizardPage.SOURCE &&
+                                  (wizard_source.page == SourcePage.MAIN || wizard_source.page == SourcePage.URL);
+        back_button.sensitive = !disable_back_button;
     }
 
     construct {
@@ -397,7 +415,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         try {
             // Validate URI
-            prepare_for_location (wizard_source.uri, null, true);
+            prepare_for_location (wizard_source.uri, wizard_source.filename, true);
         } catch (GLib.Error error) {
             window.notificationbar.display_error (error.message);
 
@@ -408,7 +426,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         if (wizard_source.download_required) {
             continue_button.sensitive = false;
-            download_media.begin (wizard_source.uri, null, progress);
+            download_media.begin (wizard_source.uri, wizard_source.filename, progress);
 
             var os = wizard_source.get_os_from_uri (wizard_source.uri);
             if (os == null)
@@ -641,9 +659,14 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         cancel_button.clicked.connect (cancel);
         back_button = wizard_window.topbar.back_btn;
         back_button.clicked.connect (() => {
-            prepare_cancellable.cancel ();
-
-            page = page - 1;
+            if (page == WizardPage.SOURCE) {
+                return_if_fail (wizard_source.page == SourcePage.RHEL_WEB_VIEW);
+                wizard_source.page = SourcePage.MAIN;
+                wizard_source.cleanup ();
+            } else {
+                prepare_cancellable.cancel ();
+                page = page - 1;
+            }
         });
         continue_button = wizard_window.topbar.continue_btn;
         continue_button.clicked.connect (() => {

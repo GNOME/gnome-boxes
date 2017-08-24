@@ -119,6 +119,78 @@
         </child>
 
         <child>
+          <object class="GtkButton" id="install_rhel_button">
+            <property name="visible">True</property>
+            <signal name="clicked" handler="on_install_rhel_button_clicked"/>
+            <style>
+              <class name="boxes-menu-row"/>
+            </style>
+            <child>
+              <object class="GtkBox" id="install_rhel_hbox">
+                <property name="visible">True</property>
+                <property name="margin-start">15</property>
+                <property name="margin-end">15</property>
+                <property name="spacing">20</property>
+                <property name="orientation">horizontal</property>
+                <child>
+                  <object class="GtkImage" id="install_rhel_image">
+                    <property name="icon-size">0</property>
+                    <property name="no-show-all">True</property>
+                    <property name="pixel-size">64</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox" id="install_rhel_vbox">
+                    <property name="visible">True</property>
+                    <property name="homogeneous">True</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkLabel" id="install_rhel_label">
+                        <property name="visible">True</property>
+                        <property name="ellipsize">end</property>
+                        <property name="halign">start</property>
+                        <property name="valign">end</property>
+                        <property name="use-underline">True</property>
+                        <property name="label" translatable="yes">Red Hat Enterprise Linux</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="install_rhel_details_label">
+                        <property name="visible">True</property>
+                        <property name="ellipsize">end</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
+                        <property name="label" translatable="yes">Available with a free Red Hat developer account</property>
+                        <style>
+                          <class name="boxes-step-label"/>
+                          <class name="dim-label"/>
+                        </style>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
           <object class="GtkButton" id="enter_url_button">
             <property name="visible">True</property>
             <signal name="clicked" handler="on_enter_url_button_clicked"/>
@@ -224,6 +296,39 @@
 
       <packing>
         <property name="name">main-page</property>
+      </packing>
+    </child>
+
+    <!-- RHEL web view page -->
+    <child>
+      <object class="GtkStack" id="rhel_web_view_stack">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkSpinner" id="rhel_web_view_spinner">
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="visible">True</property>
+            <property name="width-request">32</property>
+            <property name="height-request">32</property>
+          </object>
+          <packing>
+            <property name="name">spinner</property>
+          </packing>
+        </child>
+        <child>
+          <object class="BoxesWizardWebView" id="rhel_web_view">
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="name">web-view</property>
+          </packing>
+        </child>
+      </object>
+
+      <packing>
+        <property name="name">rhel-web-view-page</property>
       </packing>
     </child>
 
