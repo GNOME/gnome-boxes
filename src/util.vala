@@ -117,7 +117,7 @@ namespace Boxes {
     }
 
     public string get_cache (string cache_name, string? file_name = null) {
-        var dir = Path.build_filename (get_user_pkgcache (), cache_name);
+        var dir = get_user_pkgcache (cache_name);
 
         ensure_directory (dir);
 
