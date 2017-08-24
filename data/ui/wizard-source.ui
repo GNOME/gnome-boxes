@@ -26,12 +26,25 @@
             <property name="label" translatable="yes">Insert operating system installation media or select a source below</property>
             <property name="wrap">True</property>
             <property name="halign">start</property>
-            <property name="margin-bottom">20</property>
+            <property name="margin-bottom">30</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
           </packing>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="downloaded_label">
+            <property name="visible">True</property>
+            <property name="halign">start</property>
+            <property name="margin-bottom">20</property>
+            <property name="use-markup">True</property>
+            <property name="label" translatable="yes">Downloaded</property>
+            <attributes>
+              <attribute name="weight" value="PANGO_WEIGHT_BOLD"/>
+            </attributes>
+          </object>
         </child>
 
         <child>
@@ -78,6 +91,20 @@
                 </child>
               </object>
             </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkLabel" id="available_to_download_label">
+            <property name="visible">True</property>
+            <property name="halign">start</property>
+            <property name="margin-top">30</property>
+            <property name="margin-bottom">20</property>
+            <property name="use-markup">True</property>
+            <property name="label" translatable="yes">Available to Download</property>
+            <attributes>
+              <attribute name="weight" value="PANGO_WEIGHT_BOLD"/>
+            </attributes>
           </object>
         </child>
 
