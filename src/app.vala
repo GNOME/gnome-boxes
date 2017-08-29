@@ -399,7 +399,7 @@ private class Boxes.App: Gtk.Application {
         setup_sources.begin ();
     }
 
-    private async void setup_default_source () {
+    private async void setup_default_source () ensures (default_connection != null) {
         var path = get_user_pkgconfig_source (DEFAULT_SOURCE_NAME);
         var create_session_source = true;
         try {
@@ -430,8 +430,6 @@ private class Boxes.App: Gtk.Application {
             printerr ("Error setting up default broker: %s\n", error.message);
             release (); // will end application
         }
-
-        assert (default_connection != null);
     }
 
     private new void send_notification (string notification_id, GLib.Notification notification) {
