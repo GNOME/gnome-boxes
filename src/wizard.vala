@@ -305,14 +305,20 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         prepare_for_uri (file.get_uri ());
     }
 
-    private void prepare_for_uri (string uri_as_text) throws Boxes.Error {
+    private void prepare_for_uri (string uri_as_text, string? filename = null) throws Boxes.Error {
         var uri = Xml.URI.parse (uri_as_text);
         if (uri == null || uri.scheme == null)
             throw new Boxes.Error.INVALID (_("Invalid URL"));
 
         if (wizard_source.download_required) {
-            var file = File.new_for_uri (uri_as_text);
-            var basename = file.get_basename ();
+            string? basename = null;
+
+            if (filename == null) {
+                var file = File.new_for_uri (uri_as_text);
+                basename = file.get_basename ();
+            } else {
+                basename = filename;
+            }
 
             if (basename == null || basename == "" || basename == "/")
                 throw new Boxes.Error.INVALID (_("Invalid URL"));
