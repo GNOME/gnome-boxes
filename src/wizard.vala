@@ -606,7 +606,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         prep_status_label.label = _("Downloading media…");
 
         try {
-            var cache_path = yield Downloader.fetch_media (uri, download_progress, prepare_cancellable);
+            var cache_path = yield Downloader.fetch_media (uri, null, download_progress, prepare_cancellable);
             prepare_downloaded_media (cache_path, progress);
         } catch (GLib.IOError.CANCELLED e) {
             debug ("Cancelled downloading media '%s'!", uri);

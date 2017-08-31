@@ -205,10 +205,18 @@ private class Boxes.Downloader : GLib.Object {
     }
 
     public static async string fetch_media (string           uri,
+                                            string?          filename = null,
                                             ActivityProgress progress = new ActivityProgress (),
                                             Cancellable?     cancellable = null) throws GLib.Error {
         var file = File.new_for_uri (uri);
-        var basename = file.get_basename ();
+        string? basename = null;
+
+        if (filename == null) {
+            basename = file.get_basename ();
+        } else {
+            basename = filename;
+        }
+
         return_val_if_fail (basename != null && basename != "" && basename != "/", null);
 
         var downloader = Downloader.get_instance ();
