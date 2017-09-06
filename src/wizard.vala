@@ -171,7 +171,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 return;
 
             try {
-                prepare_for_location (wizard_source.uri, true);
+                prepare_for_location (wizard_source.uri, null, true);
 
                 next_button.sensitive = true;
             } catch (GLib.Error error) {
@@ -262,6 +262,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private void prepare_for_location (string            location,
+                                       string?           filename,
                                        bool              probing,
                                        ActivityProgress? progress = null)
                                        throws GLib.Error
@@ -302,7 +303,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             return;
         }
 
-        prepare_for_uri (file.get_uri ());
+        prepare_for_uri (file.get_uri (), filename);
     }
 
     private void prepare_for_uri (string uri_as_text, string? filename = null) throws Boxes.Error {
@@ -396,7 +397,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         try {
             // Validate URI
-            prepare_for_location (wizard_source.uri, true);
+            prepare_for_location (wizard_source.uri, null, true);
         } catch (GLib.Error error) {
             window.notificationbar.display_error (error.message);
 
@@ -427,7 +428,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         }
 
         try {
-            prepare_for_location (wizard_source.uri, false, progress);
+            prepare_for_location (wizard_source.uri, null, false, progress);
         } catch (GLib.Error error) {
             window.notificationbar.display_error (error.message);
 
