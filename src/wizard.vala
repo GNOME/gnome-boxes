@@ -408,7 +408,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         if (wizard_source.download_required) {
             continue_button.sensitive = false;
-            download_media.begin (wizard_source.uri, progress);
+            download_media.begin (wizard_source.uri, null, progress);
 
             var os = wizard_source.get_os_from_uri (wizard_source.uri);
             if (os == null)
@@ -608,12 +608,12 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         return false;
     }
 
-    private async void download_media (string uri, ActivityProgress progress) {
+    private async void download_media (string uri, string? filename, ActivityProgress progress) {
         var download_progress = progress.add_child_activity (DOWNLOAD_PROGRESS_SCALE);
         prep_status_label.label = _("Downloading media…");
 
         try {
-            var cache_path = yield Downloader.fetch_media (uri, null, download_progress, prepare_cancellable);
+            var cache_path = yield Downloader.fetch_media (uri, filename, download_progress, prepare_cancellable);
             prepare_downloaded_media (cache_path, progress);
         } catch (GLib.IOError.CANCELLED e) {
             debug ("Cancelled downloading media '%s'!", uri);
