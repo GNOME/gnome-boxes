@@ -135,7 +135,7 @@ private class Boxes.OSDatabase : GLib.Object {
         if (!yield ensure_db_loaded ())
             throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
 
-        var store = new Gtk.ListStore (1, typeof (string));
+        var store = new Gtk.ListStore (2, typeof (string), typeof (Osinfo.Os));
         foreach (var entity in db.get_os_list ().get_elements ()) {
             var os = entity as Os;
 
@@ -146,7 +146,7 @@ private class Boxes.OSDatabase : GLib.Object {
                     Gtk.TreeIter iter;
 
                     store.append (out iter);
-                    store.set (iter, 0, media.url);
+                    store.set (iter, 0, media.url, 1, os);
                 }
             }
         }
