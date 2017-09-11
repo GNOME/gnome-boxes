@@ -128,6 +128,8 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     private Gtk.Box media_vbox;
 
+    private Gtk.ListStore? media_urls_store;
+
     public MediaManager media_manager;
 
     public bool download_required {
@@ -137,6 +139,18 @@ private class Boxes.WizardSource: Gtk.Stack {
 
             return (scheme != null && scheme in supported_schemes);
         }
+    }
+
+    public Osinfo.Os? get_os_from_uri (string uri) {
+        Osinfo.Os? os = null;
+
+        media_urls_store.foreach ((store, path, iter) => {
+            string? os_uri;
+            media_urls_store.get (iter, 0, out os_uri, 1, out os);
+            return os_uri == uri;
+        });
+
+        return os;
     }
 
     private SourcePage _page;
@@ -185,16 +199,16 @@ private class Boxes.WizardSource: Gtk.Stack {
         var os_db = media_manager.os_db;
         os_db.get_all_media_urls_as_store.begin ((db, result) => {
             try {
-                var url_store = os_db.get_all_media_urls_as_store.end (result);
+                media_urls_store = os_db.get_all_media_urls_as_store.end (result);
                 var completion = new Gtk.EntryCompletion ();
                 completion.text_column = 0;
-                completion.model = url_store;
+                completion.model = media_urls_store;
                 weak Gtk.CellRendererText cell = completion.get_cells ().nth_data (0) as Gtk.CellRendererText;
                 cell.ellipsize = Pango.EllipsizeMode.MIDDLE;
                 completion.set_match_func ((store, key, iter) => {
                     string url;
 
-                    url_store.get (iter, 0, out url);
+                    media_urls_store.get (iter, 0, out url);
 
                     return url.contains (key);
                 });

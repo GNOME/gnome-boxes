@@ -403,6 +403,12 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             continue_button.sensitive = false;
             download_media.begin (wizard_source.uri, progress);
 
+            var os = wizard_source.get_os_from_uri (wizard_source.uri);
+            if (os == null)
+                debug ("Failed to find Osinfo.Os for %s", wizard_source.uri);
+            else
+                Downloader.fetch_os_logo.begin (installer_image, os, 128);
+
             return true;
         }
 
