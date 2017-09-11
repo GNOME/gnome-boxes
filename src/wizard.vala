@@ -83,6 +83,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                     break;
 
                 case WizardPage.PREPARATION:
+                    installer_image.set_from_icon_name ("media-optical", 0); // Reset
                     if (!prepare (create_preparation_progress ()))
                         return;
                     break;
@@ -404,8 +405,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
             return true;
         }
-
-        installer_image.set_from_icon_name ("media-optical", 0); // Reset
 
         if (this.wizard_source.install_media != null) {
             prep_media_label.label = _("Unknown installer media");
