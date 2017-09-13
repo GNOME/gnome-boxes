@@ -146,7 +146,9 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         media_urls_store.foreach ((store, path, iter) => {
             string? os_uri;
-            media_urls_store.get (iter, 0, out os_uri, 1, out os);
+            media_urls_store.get (iter,
+                                  OSDatabase.MediaURLsColumns.URL, out os_uri,
+                                  OSDatabase.MediaURLsColumns.OS, out os);
             return os_uri == uri;
         });
 
@@ -201,14 +203,14 @@ private class Boxes.WizardSource: Gtk.Stack {
             try {
                 media_urls_store = os_db.get_all_media_urls_as_store.end (result);
                 var completion = new Gtk.EntryCompletion ();
-                completion.text_column = 0;
+                completion.text_column = OSDatabase.MediaURLsColumns.URL;
                 completion.model = media_urls_store;
                 weak Gtk.CellRendererText cell = completion.get_cells ().nth_data (0) as Gtk.CellRendererText;
                 cell.ellipsize = Pango.EllipsizeMode.MIDDLE;
                 completion.set_match_func ((store, key, iter) => {
                     string url;
 
-                    media_urls_store.get (iter, 0, out url);
+                    media_urls_store.get (iter, OSDatabase.MediaURLsColumns.URL, out url);
 
                     return url.contains (key);
                 });
