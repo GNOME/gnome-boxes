@@ -94,6 +94,112 @@ private class Boxes.WizardMediaEntry : Gtk.Button {
     }
 }
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-web-view.ui")]
+private class Boxes.WizardWebView : Gtk.Bin {
+    [GtkChild]
+    private Gtk.ProgressBar progress_bar;
+    [GtkChild]
+    private WebKit.WebView web_view;
+
+    private uint hide_progress_bar_id;
+    private const uint progress_bar_id_timeout = 500;  // 500ms
+
+    construct {
+        var context = web_view.get_context ();
+        var language_names = GLib.Intl.get_language_names ();
+        context.set_preferred_languages (language_names);
+    }
+
+    public WebKit.WebView view {
+        get { return web_view; }
+    }
+
+    public override void dispose () {
+        if (hide_progress_bar_id != 0) {
+            GLib.Source.remove (hide_progress_bar_id);
+            hide_progress_bar_id = 0;
+        }
+
+        base.dispose ();
+    }
+
+    [GtkCallback]
+    private bool on_context_menu (WebKit.WebView web_view,
+                                  WebKit.ContextMenu context_menu,
+                                  Gdk.Event event,
+                                  WebKit.HitTestResult hit_test_result) {
+        var items_to_remove = new GLib.List<WebKit.ContextMenuItem> ();
+
+        foreach (var item in context_menu.get_items ()) {
+            var action = item.get_stock_action ();
+            if (action == WebKit.ContextMenuAction.GO_BACK ||
+                action == WebKit.ContextMenuAction.GO_FORWARD ||
+                action == WebKit.ContextMenuAction.DOWNLOAD_AUDIO_TO_DISK ||
+                action == WebKit.ContextMenuAction.DOWNLOAD_IMAGE_TO_DISK ||
+                action == WebKit.ContextMenuAction.DOWNLOAD_LINK_TO_DISK ||
+                action == WebKit.ContextMenuAction.DOWNLOAD_VIDEO_TO_DISK ||
+                action == WebKit.ContextMenuAction.OPEN_AUDIO_IN_NEW_WINDOW ||
+                action == WebKit.ContextMenuAction.OPEN_FRAME_IN_NEW_WINDOW ||
+                action == WebKit.ContextMenuAction.OPEN_IMAGE_IN_NEW_WINDOW ||
+                action == WebKit.ContextMenuAction.OPEN_LINK_IN_NEW_WINDOW ||
+                action == WebKit.ContextMenuAction.OPEN_VIDEO_IN_NEW_WINDOW ||
+                action == WebKit.ContextMenuAction.RELOAD ||
+                action == WebKit.ContextMenuAction.STOP) {
+                items_to_remove.prepend (item);
+            }
+        }
+
+        foreach (var item in items_to_remove) {
+            context_menu.remove (item);
+        }
+
+        var separators_to_remove = new GLib.List<WebKit.ContextMenuItem> ();
+        WebKit.ContextMenuAction previous_action = WebKit.ContextMenuAction.NO_ACTION; // same as a separator
+
+        foreach (var item in context_menu.get_items ()) {
+            var action = item.get_stock_action ();
+            if (action == WebKit.ContextMenuAction.NO_ACTION && action == previous_action)
+                separators_to_remove.prepend (item);
+
+            previous_action = action;
+        }
+
+        foreach (var item in separators_to_remove) {
+            context_menu.remove (item);
+        }
+
+        var n_items = context_menu.get_n_items ();
+        return n_items == 0;
+    }
+
+    [GtkCallback]
+    private void on_notify_estimated_load_progress () {
+        if (hide_progress_bar_id != 0) {
+            GLib.Source.remove (hide_progress_bar_id);
+            hide_progress_bar_id = 0;
+        }
+
+        string? uri = web_view.get_uri ();
+        if (uri == null || uri == "about:blank")
+            return;
+
+        var progress = web_view.get_estimated_load_progress ();
+        bool loading = web_view.is_loading;
+
+        if (progress == 1.0 || !loading) {
+            hide_progress_bar_id = GLib.Timeout.add (progress_bar_id_timeout, () => {
+                progress_bar.hide ();
+                hide_progress_bar_id = 0;
+                return GLib.Source.REMOVE;
+            });
+        } else {
+            progress_bar.show ();
+        }
+
+        progress_bar.set_fraction (loading || progress == 1.0 ? progress : 0.0);
+    }
+}
+
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-source.ui")]
 private class Boxes.WizardSource: Gtk.Stack {
     private const string[] page_names = { "main-page", "url-page" };
