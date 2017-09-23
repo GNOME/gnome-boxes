@@ -24,7 +24,7 @@ libvirt_glib = dependency ('libvirt-gobject-1.0', version: '>= 0.2.0')
 libvirt_gconfig = dependency ('libvirt-gconfig-1.0', version: '>= 0.2.0')
 libxml = dependency ('libxml-2.0', version: '>= 2.7.8')
 spice_client_gtk = dependency ('spice-client-gtk-3.0', version: '>= 0.32')
-tracker = dependency ('tracker-sparql-1.0')
+tracker = dependency ('tracker-sparql-2.0')
 
 cc = meson.get_compiler ('c')
 
