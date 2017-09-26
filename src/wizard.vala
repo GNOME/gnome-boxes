@@ -138,7 +138,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             visible_child_name = page_names[value];
 
             if (value == WizardPage.SOURCE)
-                wizard_source_update_next ();
+                wizard_source_update_buttons ();
         }
     }
 
@@ -153,7 +153,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         return progress;
     }
 
-    private void wizard_source_update_next () {
+    private void wizard_source_update_buttons () {
         if (page != WizardPage.SOURCE)
             return;
 
@@ -188,9 +188,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     construct {
         media_manager = MediaManager.get_instance ();
-        wizard_source.notify["page"].connect(wizard_source_update_next);
-        wizard_source.notify["selected"].connect(wizard_source_update_next);
-        wizard_source.url_entry.changed.connect (wizard_source_update_next);
+        wizard_source.notify["page"].connect(wizard_source_update_buttons);
+        wizard_source.notify["selected"].connect(wizard_source_update_buttons);
+        wizard_source.url_entry.changed.connect (wizard_source_update_buttons);
         notify["ui-state"].connect (ui_state_changed);
 
         wizard_source.activated.connect(() => {
