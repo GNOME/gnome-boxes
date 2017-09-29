@@ -355,7 +355,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_source (disk_file.get_path ());
 
         if (injection_method == InstallScriptInjectionMethod.FLOPPY) {
-            disk.set_target_dev ((path_format == PathFormat.DOS)? "A" : "fd0");
+            disk.set_target_dev ((path_format == PathFormat.DOS)? "A" : "fda");
             disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
             disk.set_target_bus (DomainDiskBus.FDC);
         } else {
