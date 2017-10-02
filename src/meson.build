@@ -158,6 +158,5 @@ executable ('gnome-boxes', boxes_sources,
             vala_args: vala_args,
             c_args : c_args,
             dependencies: dependencies,
-            install: true,
-            install_dir: pkglibdir
+            install: true
 )
