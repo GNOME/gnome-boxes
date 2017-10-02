@@ -116,6 +116,7 @@ dependencies = [
   gobject,
   gtk,
   gtk_vnc,
+  json_glib,
   libgd_dep,
   libgd_vapi_dep,
   libsecret,
@@ -129,6 +130,7 @@ dependencies = [
   libsoup,
   libarchive,
   tracker,
+  webkitgtk,
 ]
 
 if govirt.found()

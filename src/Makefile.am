@@ -31,6 +31,7 @@ AM_VALAFLAGS =						\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
 	--pkg gudev-1.0					\
+	--pkg json-glib-1.0				\
 	--pkg libarchive				\
 	--pkg libsecret-1				\
 	--pkg libsoup-2.4				\
@@ -44,6 +45,7 @@ AM_VALAFLAGS =						\
 	--pkg spice-client-gtk-3.0			\
 	--pkg tracker-sparql-$(TRACKER_VERSION)		\
 	--pkg gmodule-2.0				\
+	--pkg webkit2gtk-4.0				\
 	--gresources $(gresource_file)			\
 	$(VALA_DEBUG_FLAGS)			        \
 	$(NULL)
