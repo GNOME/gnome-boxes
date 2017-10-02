@@ -523,36 +523,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         if (machine.storage_volume == null)
             return;
 
-        List<GVir.DomainSnapshot> snapshots;
-        try {
-            snapshots = yield get_snapshots (null);
-        } catch (GLib.Error e) {
-            warning ("Error fetching snapshots for %s: %s", machine.name, e.message);
-            snapshots = new List<GVir.DomainSnapshot> ();
-        }
-
-        var num_snapshots = snapshots.length ();
-        if (num_snapshots != 0) {
-            // qemu-img doesn't support resizing disk image with snapshots:
-            // https://bugs.launchpad.net/qemu/+bug/1563931
-            var msg = ngettext ("Storage resize requires deleting associated snapshot.",
-                                "Storage resize requires deleting %llu associated snapshots.",
-                                num_snapshots).printf (num_snapshots);
-
-            Notification.OKFunc undo = () => {
-                debug ("Storage resize of '%s' cancelled by user.", machine.name);
-            };
-
-            Notification.DismissFunc really_resize = () => {
-                debug ("User did not cancel storage resize of '%s'. Deleting all snapshots..", machine.name);
-                force_change_storage_size.begin (property, value);
-            };
-
-            machine.window.notificationbar.display_for_action (msg, _("_Undo"), (owned) undo, (owned) really_resize);
-
-            return;
-        }
-
         try {
             if (machine.is_running) {
                 var disk = machine.get_domain_disk ();
@@ -582,20 +552,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     machine.storage_volume.get_name (),
                     value,
                     error.message);
-        }
-    }
-
-    private async void force_change_storage_size (Boxes.Property property, uint64 value) {
-        try {
-            var snapshots = yield get_snapshots (null);
-
-            foreach (var snapshot in snapshots) {
-                yield snapshot.delete_async (0, null);
-            }
-
-            change_storage_size.begin (property, value);
-        } catch (GLib.Error e) {
-            warning ("Error while deleting snapshots: %s", e.message);
         }
     }
 
