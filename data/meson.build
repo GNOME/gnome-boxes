@@ -49,3 +49,5 @@ configure_file (
   install: true,
   install_dir: join_paths(data_dir, 'glib-2.0', 'schemas'),
 )
+
+subdir ('osinfo')
