@@ -16,7 +16,8 @@ gnomedir= $(datadir)/gnome-boxes/osinfo/os/gnome.org
 gnome_DATA= gnome-3.6.xml
 
 redhatdir= $(datadir)/gnome-boxes/osinfo/os/redhat.com
-redhat_DATA= rhel-5.0.xml \
+redhat_DATA= rhel-4.0.xml \
+			 rhel-5.0.xml \
 			 rhel-6.0.xml \
 			 rhel-7.0.xml \
 			 $(NULL)
