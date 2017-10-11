@@ -50,4 +50,7 @@ configure_file (
   install_dir: join_paths(data_dir, 'glib-2.0', 'schemas'),
 )
 
+install_data ('QEMU_Session', install_dir : join_paths (data_dir, 'gnome-boxes/sources'))
+install_data ('disk.img', install_dir : join_paths (data_dir, 'gnome-boxes/unattended'))
+
 subdir ('osinfo')
