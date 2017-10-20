@@ -123,7 +123,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var machine = window.current_item as Machine;
         try {
             Gdk.Pixbuf pixbuf = machine.display.get_pixbuf (0);
-            pixbuf.save (get_screenshot_filename (), "png");
+            pixbuf.save (get_screenshot_filename () + ".png", "png");
         } catch (GLib.Error error) {
             warning (error.message);
         }
