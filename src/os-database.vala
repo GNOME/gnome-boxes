@@ -17,6 +17,8 @@ private class Boxes.OSDatabase : GLib.Object {
         LAST
     }
 
+    private const int64 MINIMAL_STORAGE = 10 * (int64) GIBIBYTES;
+
     private const int DEFAULT_VCPUS = 1;
     private const int64 DEFAULT_RAM = 2 * (int64) GIBIBYTES;
 
@@ -36,6 +38,16 @@ private class Boxes.OSDatabase : GLib.Object {
         resources.n_cpus = DEFAULT_VCPUS;
         resources.ram = DEFAULT_RAM;
         resources.storage = DEFAULT_STORAGE;
+
+        return resources;
+    }
+
+    public static Resources get_minimum_resources () {
+        var resources = new Resources ("whatever", "x86_64");
+
+        resources.n_cpus = DEFAULT_VCPUS;
+        resources.ram = DEFAULT_RAM;
+        resources.storage = MINIMAL_STORAGE;
 
         return resources;
     }

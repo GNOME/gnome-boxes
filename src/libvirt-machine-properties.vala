@@ -618,8 +618,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         if (minimum_resources != null && minimum_resources.storage != -1) {
             return minimum_resources.storage;
         } else {
-            var default_resources = OSDatabase.get_default_resources ();
-            return uint64.min (volume_info.capacity, default_resources.storage);
+            minimum_resources = OSDatabase.get_minimum_resources ();
+            return uint64.min (volume_info.capacity, minimum_resources.storage);
         }
     }
 
