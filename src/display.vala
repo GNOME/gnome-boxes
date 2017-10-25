@@ -4,6 +4,7 @@ using Gtk;
 private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public abstract string protocol { get; }
     public abstract string? uri { owned get; }
+    public virtual bool can_transfer_files { get { return false; } }
 
     public BoxConfig? config { get; protected set; }
     public bool can_grab_mouse { get; protected set; }
@@ -34,6 +35,8 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public abstract void disconnect_it ();
 
     public virtual void collect_logs (StringBuilder builder) {
+    }
+    public virtual void transfer_files (GLib.List<string> uris) {
     }
     public abstract void send_keys (uint[] keyvals);
 
