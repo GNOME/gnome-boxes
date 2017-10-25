@@ -15,7 +15,7 @@ public delegate bool ClickedFunc ();
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-scrolled.ui")]
 private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
     [GtkChild]
-    public Gtk.Box vbox;
+    public Gtk.ListBox vbox;
 
     private int num_visible { get; set; }
 
@@ -39,12 +39,10 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 
     public override void get_preferred_height (out int minimum_height, out int natural_height) {
         base.get_preferred_height (out minimum_height, out natural_height);
-        var viewport = get_child () as Gtk.Viewport;
-        var box = viewport.get_child () as Gtk.Box;
 
         int height = 0;
         int i = 0;
-        foreach (var w in box.get_children ()) {
+        foreach (var w in vbox.get_children ()) {
             if (!w.get_visible ())
                 continue;
             int child_height;
@@ -60,7 +58,7 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-media-entry.ui")]
-private class Boxes.WizardMediaEntry : Gtk.Button {
+private class Boxes.WizardMediaEntry : Gtk.ListBoxRow {
     public InstallerMedia media;
 
     [GtkChild]
@@ -239,7 +237,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     private AppWindow window;
 
-    private Gtk.Box media_vbox;
+    private Gtk.ListBox media_vbox;
 
     private Gtk.ListStore? media_urls_store;
 
@@ -312,6 +310,12 @@ private class Boxes.WizardSource: Gtk.Stack {
         var num_visible = (Gdk.Screen.height () > 800)? 3 : 2;
         media_scrolled.setup (num_visible);
         media_vbox = media_scrolled.vbox;
+        media_vbox.row_activated.connect((row) => {
+            var entry = (row as WizardMediaEntry);
+            on_media_selected (entry.media);
+
+            selected = entry;
+        });
         draw_as_css_box (url_entry_vbox);
 
         update_libvirt_sytem_entry_visibility.begin ();
@@ -458,11 +462,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     private void add_media_entry (InstallerMedia media) {
         var entry = new WizardMediaEntry (media);
         media_vbox.add (entry);
-        entry.clicked.connect (() => {
-            on_media_selected (media);
-
-            selected = entry;
-        });
 
         media_scrolled.show ();
     }
