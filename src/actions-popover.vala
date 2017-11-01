@@ -9,7 +9,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"delete",          delete_activated},
         {"clone",           clone_activated},
         {"properties",      properties_activated},
-        {"restart",         restart_activated}
+        {"restart",         restart_activated},
+        {"send_file",       send_file_activated}
+
     };
 
     private AppWindow window;
@@ -43,6 +45,11 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             var action = action_group.lookup_action ("open-in-new-win") as GLib.SimpleAction;
             action.set_enabled (!importing);
         } else {
+            // Send files
+            section.append (_("Send File…"), "box.send_file");
+            var action = action_group.lookup_action ("send_file") as GLib.SimpleAction;
+            action.set_enabled (machine.display.can_transfer_files);
+
             // Take Screenshot
             section.append (_("Take Screenshot"), "box.take_screenshot");
         }
@@ -153,6 +160,10 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     private void clone_activated () {
         (window.current_item as Machine).clone.begin ();
     }
+
+    private void send_file_activated () {
+    }
+
 
     private void properties_activated () {
         window.show_properties ();
