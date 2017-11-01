@@ -162,6 +162,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     }
 
     private void send_file_activated () {
+        window.show_send_file ();
     }
 
 

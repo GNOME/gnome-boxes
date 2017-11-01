@@ -311,6 +311,29 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
     }
 
+    public void show_send_file () {
+        var dialog = new Gtk.FileChooserDialog (
+                "Select files to transfer", this, Gtk.FileChooserAction.OPEN,
+                _("_Cancel"),
+                Gtk.ResponseType.CANCEL,
+                _("_Open"),
+                Gtk.ResponseType.ACCEPT);
+        dialog.select_multiple = true;
+
+        if (dialog.run () == Gtk.ResponseType.ACCEPT) {
+            SList<string> uris = dialog.get_uris ();
+
+            GLib.List<string> uris_param = null;
+            foreach (var uri in uris) {
+                uris_param.append (uri);
+            }
+
+            (current_item as Machine).display.transfer_files (uris_param);
+        }
+
+        dialog.destroy ();
+    }
+
     public void connect_to (Machine machine) {
         current_item = machine;
         machine.window = this;
