@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-07-31 21:50+0200\n"
-"PO-Revision-Date: 2017-07-31 21:53+0200\n"
+"POT-Creation-Date: 2017-10-31 11:02+0000\n"
+"PO-Revision-Date: 2017-11-02 19:41+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.4\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -80,55 +80,55 @@ msgstr "virtualni sistem;navidezni sistem;vm;"
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
-#: data/org.gnome.boxes.gschema.xml.in:11
+#: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
 msgstr "Zbirke"
 
-#: data/org.gnome.boxes.gschema.xml.in:12
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The list of boxes collections"
 msgstr "Seznam zbirk škatel"
 
-#: data/org.gnome.boxes.gschema.xml.in:15
+#: data/org.gnome.boxes.gschema.xml:15
 msgid "[ 'Work', 'Research', 'Gaming' ]"
 msgstr "[ »Delo«, »Raziskave«, »Igre« ]"
 
-#: data/org.gnome.boxes.gschema.xml.in:19
+#: data/org.gnome.boxes.gschema.xml:19
 msgid "Screenshot interval"
 msgstr "Razmik zajema zaslona"
 
-#: data/org.gnome.boxes.gschema.xml.in:20
+#: data/org.gnome.boxes.gschema.xml:20
 msgid "The interval in seconds between screenshot updates"
 msgstr "Sekundni časovni razmik med posodobitvami zajema zaslona"
 
-#: data/org.gnome.boxes.gschema.xml.in:32
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window size"
 msgstr "Veikost okna"
 
-#: data/org.gnome.boxes.gschema.xml.in:33
+#: data/org.gnome.boxes.gschema.xml:33
 msgid "Window size (width and height)"
 msgstr "Velikost okna (širina in višina)"
 
-#: data/org.gnome.boxes.gschema.xml.in:39
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window position"
 msgstr "Položaj okna"
 
-#: data/org.gnome.boxes.gschema.xml.in:40
+#: data/org.gnome.boxes.gschema.xml:40
 msgid "Window position (x and y)"
 msgstr "Položaj okna (x in y)"
 
-#: data/org.gnome.boxes.gschema.xml.in:46
+#: data/org.gnome.boxes.gschema.xml:46
 msgid "Window maximized"
 msgstr "Razpeto okno"
 
-#: data/org.gnome.boxes.gschema.xml.in:47
+#: data/org.gnome.boxes.gschema.xml:47
 msgid "Window maximized state"
 msgstr "Stanje razpetega glavnega okna"
 
-#: data/org.gnome.boxes.gschema.xml.in:54
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Shared folders"
 msgstr "Mape v souporabi"
 
-#: data/org.gnome.boxes.gschema.xml.in:55
+#: data/org.gnome.boxes.gschema.xml:55
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vpis imen map v souporabi in poti"
 
@@ -607,7 +607,8 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: src/app.vala:567 src/snapshot-list-row.vala:194
+#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Razveljavi"
 
@@ -795,18 +796,33 @@ msgstr ""
 msgid "Maximum _Disk Size: "
 msgstr "Največja velikost _diska:"
 
-#: src/libvirt-machine-properties.vala:611
+#. qemu-img doesn't support resizing disk image with snapshots:
+#. https://bugs.launchpad.net/qemu/+bug/1563931
+#: src/libvirt-machine-properties.vala:538
+#, c-format
+msgid "Storage resize requires deleting associated snapshot."
+msgid_plural "Storage resize requires deleting %llu associated snapshots."
+msgstr[0] ""
+"Spreminjanje velikosti shrambe zahteva izbris %llu povezanih arhivov."
+msgstr[1] ""
+"Spreminjanje velikosti shrambe zahteva izbris %llu povezanega arhiva."
+msgstr[2] ""
+"Spreminjanje velikosti shrambe zahteva izbris %llu povezanih arhivov."
+msgstr[3] ""
+"Spreminjanje velikosti shrambe zahteva izbris %llu povezanih arhivov."
+
+#: src/libvirt-machine-properties.vala:655
 msgid "_Run in background"
 msgstr "_Zaženi v ozadju:"
 
-#: src/libvirt-machine-properties.vala:622
-#: src/libvirt-machine-properties.vala:625
+#: src/libvirt-machine-properties.vala:666
+#: src/libvirt-machine-properties.vala:669
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "»%s« ni mogoče samodejno začasno ustaviti."
 
-#: src/libvirt-machine-properties.vala:623
-#: src/libvirt-machine-properties.vala:626
+#: src/libvirt-machine-properties.vala:667
+#: src/libvirt-machine-properties.vala:670
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "»%s« bo začasno zaustavljen za varčevanje z viri."
@@ -1008,7 +1024,7 @@ msgstr "Povezava z posrednikom oVirt je spodletela"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:489
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:488
 msgid "URL"
 msgstr "Naslov URL"
 
@@ -1128,7 +1144,7 @@ msgid "Folder Shares"
 msgstr "Mape za souporabo"
 
 #: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:310 src/wizard.vala:317
+#: src/spice-display.vala:840 src/wizard.vala:311 src/wizard.vala:318
 msgid "Invalid URL"
 msgstr "Neveljaven naslov URL"
 
@@ -1269,94 +1285,94 @@ msgstr "Nastavitev škatle"
 msgid "Review"
 msgstr "Pregled"
 
-#: src/wizard.vala:115
+#: src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Ustvarjanje škatle je spodletelo"
 
-#: src/wizard.vala:269
+#: src/wizard.vala:270
 msgid "Empty location"
 msgstr "Prazno mesto"
 
-#: src/wizard.vala:292
+#: src/wizard.vala:293
 msgid "Unsupported file"
 msgstr "Nepodprta vrsta datoteke"
 
-#: src/wizard.vala:298
+#: src/wizard.vala:299
 msgid "Invalid file"
 msgstr "Neveljavna datoteka"
 
-#: src/wizard.vala:335
+#: src/wizard.vala:336
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nepodprt protokol »%s«"
 
-#: src/wizard.vala:341 src/wizard.vala:411
+#: src/wizard.vala:342 src/wizard.vala:410
 msgid "Unknown installer media"
 msgstr "Neznan nosilec nemstilnika"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:343 src/wizard.vala:412
+#: src/wizard.vala:344 src/wizard.vala:411
 msgid "Analyzing…"
 msgstr "Preučevanje ..."
 
-#: src/wizard.vala:357
+#: src/wizard.vala:358
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Preučevanje nosilca namestilnika je spodletelo. Morda je nosilec poškodovan "
 "ali pa namestilnik ni popoln."
 
 #. We did this, so ignore!
-#: src/wizard.vala:465
+#: src/wizard.vala:464
 msgid "Box setup failed"
 msgstr "Nastavitev škatle je spodletela"
 
-#: src/wizard.vala:479
+#: src/wizard.vala:478
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Program bo ustvaril novo polje z naslednjimi lastnosti:"
 
-#: src/wizard.vala:484
+#: src/wizard.vala:483
 msgid "Type"
 msgstr "Vrsta"
 
-#: src/wizard.vala:487
+#: src/wizard.vala:486
 msgid "Host"
 msgstr "Gostitelj"
 
-#: src/wizard.vala:498 src/wizard.vala:509
+#: src/wizard.vala:497 src/wizard.vala:508
 msgid "Port"
 msgstr "Vrata"
 
-#: src/wizard.vala:500
+#: src/wizard.vala:499
 msgid "TLS Port"
 msgstr "Vrata TLS"
 
-#: src/wizard.vala:514
+#: src/wizard.vala:513
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Doda škatle za vse sisteme, na voljo z računa:"
 
-#: src/wizard.vala:527
+#: src/wizard.vala:526
 msgid "Memory"
 msgstr "Pomnilnik"
 
-#: src/wizard.vala:536
+#: src/wizard.vala:535
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:538
+#: src/wizard.vala:537
 #, c-format
 msgid "%s maximum"
 msgstr "Največ %s"
 
-#: src/wizard.vala:601
+#: src/wizard.vala:600
 msgid "Downloading media…"
 msgstr "Prejemanje prestavne vsebine"
 
-#: src/wizard.vala:611
+#: src/wizard.vala:610
 msgid "Download failed."
 msgstr "Prejemanje je spodletelo."
 
-#: src/wizard.vala:719
+#: src/wizard.vala:718
 msgid "C_ustomize…"
 msgstr "Prila_godi ..."
 
