@@ -20,6 +20,7 @@ private class Boxes.DisplayPage: Gtk.Box {
     private DisplayToolbar overlay_toolbar;
     [GtkChild]
     private EventBox overlay_toolbar_box;
+    public Boxes.TransferPopover transfer_popover;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
     private ulong cursor_id;
@@ -78,6 +79,14 @@ private class Boxes.DisplayPage: Gtk.Box {
         target_list += urilist_entry;
 
         drag_dest_set (transfer_message_box, Gtk.DestDefaults.DROP, target_list, DragAction.ASK);
+        transfer_popover = new Boxes.TransferPopover (window.topbar.display_toolbar);
+        transfer_popover.bind_property ("progress", window.topbar.display_toolbar, "progress", BindingFlags.DEFAULT);
+        transfer_popover.relative_to = window.topbar.display_toolbar.transfers_button;
+
+        transfer_popover.all_finished.connect (() => {
+            transfer_popover.clean_up ();
+            transfer_popover.popdown ();
+        });
     }
 
      private void update_toolbar_visible() {
@@ -87,6 +96,11 @@ private class Boxes.DisplayPage: Gtk.Box {
              toolbar.visible = false;
 
          set_overlay_toolbar_visible (false);
+     }
+
+     public void add_transfer (Object transfer_task) {
+        transfer_popover.add_transfer (transfer_task);
+        transfer_popover.popup ();
      }
 
      private void set_overlay_toolbar_visible(bool visible) {
