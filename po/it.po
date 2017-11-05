@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
 "boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-07-17 15:36+0000\n"
-"PO-Revision-Date: 2017-08-24 09:00+0200\n"
+"POT-Creation-Date: 2017-10-31 11:02+0000\n"
+"PO-Revision-Date: 2017-11-05 14:24+0100\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italiano <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.1\n"
 
 # singolare? Plurale??
 #: data/org.gnome.Boxes.appdata.xml.in:5
@@ -81,56 +81,56 @@ msgstr "macchina virtuale;vm;"
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
-#: data/org.gnome.boxes.gschema.xml.in:11
+#: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
 msgstr "Raccolte "
 
-#: data/org.gnome.boxes.gschema.xml.in:12
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The list of boxes collections"
 msgstr "L'elenco delle raccolte di box"
 
-#: data/org.gnome.boxes.gschema.xml.in:15
+#: data/org.gnome.boxes.gschema.xml:15
 msgid "[ 'Work', 'Research', 'Gaming' ]"
 msgstr "[ \"Lavoro\", \"Ricerca\", \"Giochi\" ]"
 
 # nel senso di schermate di anteprima?
-#: data/org.gnome.boxes.gschema.xml.in:19
+#: data/org.gnome.boxes.gschema.xml:19
 msgid "Screenshot interval"
 msgstr "Intervallo screenshot"
 
-#: data/org.gnome.boxes.gschema.xml.in:20
+#: data/org.gnome.boxes.gschema.xml:20
 msgid "The interval in seconds between screenshot updates"
 msgstr "L'intervallo in secondi tra gli aggiornamenti di screenshot"
 
-#: data/org.gnome.boxes.gschema.xml.in:32
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window size"
 msgstr "Dimensione finestra"
 
-#: data/org.gnome.boxes.gschema.xml.in:33
+#: data/org.gnome.boxes.gschema.xml:33
 msgid "Window size (width and height)"
 msgstr "Dimensione della finestra (larghezza e altezza)"
 
-#: data/org.gnome.boxes.gschema.xml.in:39
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window position"
 msgstr "Posizione finestra"
 
-#: data/org.gnome.boxes.gschema.xml.in:40
+#: data/org.gnome.boxes.gschema.xml:40
 msgid "Window position (x and y)"
 msgstr "Posizione della finestra (x e y)"
 
-#: data/org.gnome.boxes.gschema.xml.in:46
+#: data/org.gnome.boxes.gschema.xml:46
 msgid "Window maximized"
 msgstr "Finestra massimizzata"
 
-#: data/org.gnome.boxes.gschema.xml.in:47
+#: data/org.gnome.boxes.gschema.xml:47
 msgid "Window maximized state"
 msgstr "Stato massimizzato della finestra"
 
-#: data/org.gnome.boxes.gschema.xml.in:54
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Shared folders"
 msgstr "Cartelle condivise"
 
-#: data/org.gnome.boxes.gschema.xml.in:55
+#: data/org.gnome.boxes.gschema.xml:55
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Elenco di nomi di cartelle e percorsi"
 
@@ -608,7 +608,8 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box è stata eliminata"
 msgstr[1] "%u box sono state eliminate"
 
-#: src/app.vala:567 src/snapshot-list-row.vala:194
+#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "A_nnulla"
 
@@ -799,18 +800,31 @@ msgstr ""
 msgid "Maximum _Disk Size: "
 msgstr "Dimensione massima _disco: "
 
-#: src/libvirt-machine-properties.vala:611
+#. qemu-img doesn't support resizing disk image with snapshots:
+#. https://bugs.launchpad.net/qemu/+bug/1563931
+#: src/libvirt-machine-properties.vala:538
+#, c-format
+msgid "Storage resize requires deleting associated snapshot."
+msgid_plural "Storage resize requires deleting %llu associated snapshots."
+msgstr[0] ""
+"Il ridimensionamento dell'archivio richiede l'eliminazione dello snapshot "
+"associato."
+msgstr[1] ""
+"Il ridimensionamento dell'archivio richiede l'eliminazione di %llu snapshot "
+"associati."
+
+#: src/libvirt-machine-properties.vala:655
 msgid "_Run in background"
 msgstr "_Esegui in background"
 
-#: src/libvirt-machine-properties.vala:622
-#: src/libvirt-machine-properties.vala:625
+#: src/libvirt-machine-properties.vala:666
+#: src/libvirt-machine-properties.vala:669
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "«%s» non verrà messa in pausa automaticamente."
 
-#: src/libvirt-machine-properties.vala:623
-#: src/libvirt-machine-properties.vala:626
+#: src/libvirt-machine-properties.vala:667
+#: src/libvirt-machine-properties.vala:670
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "«%s» verrà messa in pausa automaticamente per risparmiare risorse."
@@ -1008,7 +1022,7 @@ msgstr "Connessione al broker oVirt non riuscita"
 msgid "Protocol"
 msgstr "Protocollo"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:489
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:488
 msgid "URL"
 msgstr "URL"
 
@@ -1122,7 +1136,7 @@ msgid "Folder Shares"
 msgstr "Condivisioni cartelle"
 
 #: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:310 src/wizard.vala:317
+#: src/spice-display.vala:840 src/wizard.vala:311 src/wizard.vala:318
 msgid "Invalid URL"
 msgstr "URL non valido"
 
@@ -1265,94 +1279,94 @@ msgstr "Impostazione box"
 msgid "Review"
 msgstr "Riepilogo"
 
-#: src/wizard.vala:115
+#: src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Creazione box non riuscita"
 
-#: src/wizard.vala:269
+#: src/wizard.vala:270
 msgid "Empty location"
 msgstr "Posizione vuota"
 
-#: src/wizard.vala:292
+#: src/wizard.vala:293
 msgid "Unsupported file"
 msgstr "File non supportato"
 
-#: src/wizard.vala:298
+#: src/wizard.vala:299
 msgid "Invalid file"
 msgstr "File non valido"
 
-#: src/wizard.vala:335
+#: src/wizard.vala:336
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protocollo «%s» non supportato"
 
-#: src/wizard.vala:341 src/wizard.vala:411
+#: src/wizard.vala:342 src/wizard.vala:410
 msgid "Unknown installer media"
 msgstr "Supporto d'installazione sconosciuto"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:343 src/wizard.vala:412
+#: src/wizard.vala:344 src/wizard.vala:411
 msgid "Analyzing…"
 msgstr "Analisi…"
 
-#: src/wizard.vala:357
+#: src/wizard.vala:358
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Analisi del supporto di installazione non riuscita. Il supporto è corrotto o "
 "incompleto?c"
 
 #. We did this, so ignore!
-#: src/wizard.vala:465
+#: src/wizard.vala:464
 msgid "Box setup failed"
 msgstr "Impostazione box non riuscita"
 
-#: src/wizard.vala:479
+#: src/wizard.vala:478
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxes creerà una nuova box con le seguenti proprietà:"
 
-#: src/wizard.vala:484
+#: src/wizard.vala:483
 msgid "Type"
 msgstr "Tipo"
 
-#: src/wizard.vala:487
+#: src/wizard.vala:486
 msgid "Host"
 msgstr "Host"
 
-#: src/wizard.vala:498 src/wizard.vala:509
+#: src/wizard.vala:497 src/wizard.vala:508
 msgid "Port"
 msgstr "Porta"
 
-#: src/wizard.vala:500
+#: src/wizard.vala:499
 msgid "TLS Port"
 msgstr "Porta TLS"
 
-#: src/wizard.vala:514
+#: src/wizard.vala:513
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Aggiunge le box per tutti i sistemi disponibili da questo account:"
 
-#: src/wizard.vala:527
+#: src/wizard.vala:526
 msgid "Memory"
 msgstr "Memoria"
 
-#: src/wizard.vala:536
+#: src/wizard.vala:535
 msgid "Disk"
 msgstr "Disco"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:538
+#: src/wizard.vala:537
 #, c-format
 msgid "%s maximum"
 msgstr "massimo %s"
 
-#: src/wizard.vala:601
+#: src/wizard.vala:600
 msgid "Downloading media…"
 msgstr "Scaricamento supporti…"
 
-#: src/wizard.vala:611
+#: src/wizard.vala:610
 msgid "Download failed."
 msgstr "Scaricamento non riuscito."
 
-#: src/wizard.vala:719
+#: src/wizard.vala:718
 msgid "C_ustomize…"
 msgstr "P_ersonalizza…"
 
