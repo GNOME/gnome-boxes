@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes 3.26.x\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-07-17 15:36+0000\n"
-"PO-Revision-Date: 2017-07-31 10:32+0200\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
+"boxes&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-10-31 11:02+0000\n"
+"PO-Revision-Date: 2017-11-05 12:55+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -75,57 +76,57 @@ msgstr "virtuell maskin;vm;"
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
-#: data/org.gnome.boxes.gschema.xml.in:11
+#: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
 msgstr "Samlinger"
 
-#: data/org.gnome.boxes.gschema.xml.in:12
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The list of boxes collections"
 msgstr "Liste med samlinger av bokser"
 
-#: data/org.gnome.boxes.gschema.xml.in:15
+#: data/org.gnome.boxes.gschema.xml:15
 msgid "[ 'Work', 'Research', 'Gaming' ]"
 msgstr "[ 'Arbeid', 'Forskning', 'Spill' ]"
 
-#: data/org.gnome.boxes.gschema.xml.in:19
+#: data/org.gnome.boxes.gschema.xml:19
 msgid "Screenshot interval"
 msgstr "Skjermbilde-intervall"
 
-#: data/org.gnome.boxes.gschema.xml.in:20
+#: data/org.gnome.boxes.gschema.xml:20
 msgid "The interval in seconds between screenshot updates"
 msgstr "Intervall i sekunder mellom oppdatering av skjermbilder"
 
-#: data/org.gnome.boxes.gschema.xml.in:32
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window size"
 msgstr "Vindustørrelse"
 
-#: data/org.gnome.boxes.gschema.xml.in:33
+#: data/org.gnome.boxes.gschema.xml:33
 msgid "Window size (width and height)"
 msgstr "Vindustørrelse (bredde og høyde)"
 
-#: data/org.gnome.boxes.gschema.xml.in:39
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window position"
 msgstr "Vindusposisjon"
 
-#: data/org.gnome.boxes.gschema.xml.in:40
+#: data/org.gnome.boxes.gschema.xml:40
 msgid "Window position (x and y)"
 msgstr "Vindusposisjon (x og y)"
 
-#: data/org.gnome.boxes.gschema.xml.in:46
+#: data/org.gnome.boxes.gschema.xml:46
 msgid "Window maximized"
 msgstr "Vindu maksimert"
 
-#: data/org.gnome.boxes.gschema.xml.in:47
+#: data/org.gnome.boxes.gschema.xml:47
 msgid "Window maximized state"
 msgstr "Maksimert tilstand for vindu"
 
-#: data/org.gnome.boxes.gschema.xml.in:54
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Shared folders"
 msgstr "Delte mapper"
 
-#: data/org.gnome.boxes.gschema.xml.in:55
+#: data/org.gnome.boxes.gschema.xml:55
 msgid "Variant array of shared folders’ names and path mapping"
-msgstr ""
+msgstr "Variantmatrise av delte mappers navn og stikobling"
 
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
@@ -603,7 +604,8 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: src/app.vala:567 src/snapshot-list-row.vala:194
+#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "A_ngre"
 
@@ -792,18 +794,27 @@ msgstr ""
 msgid "Maximum _Disk Size: "
 msgstr "Maksimal _diskstørrelse: "
 
-#: src/libvirt-machine-properties.vala:611
+#. qemu-img doesn't support resizing disk image with snapshots:
+#. https://bugs.launchpad.net/qemu/+bug/1563931
+#: src/libvirt-machine-properties.vala:538
+#, c-format
+msgid "Storage resize requires deleting associated snapshot."
+msgid_plural "Storage resize requires deleting %llu associated snapshots."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/libvirt-machine-properties.vala:655
 msgid "_Run in background"
 msgstr "Kjø_r i bakgrunnen"
 
-#: src/libvirt-machine-properties.vala:622
-#: src/libvirt-machine-properties.vala:625
+#: src/libvirt-machine-properties.vala:666
+#: src/libvirt-machine-properties.vala:669
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "«%s» vil ikke bli satt på pause automatisk."
 
-#: src/libvirt-machine-properties.vala:623
-#: src/libvirt-machine-properties.vala:626
+#: src/libvirt-machine-properties.vala:667
+#: src/libvirt-machine-properties.vala:670
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "«%s» vil bli satt på pause automatisk for å spare ressurser."
@@ -1001,7 +1012,7 @@ msgstr "Tilkobling til oVirt-forhandler mislyktes"
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:489
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:488
 msgid "URL"
 msgstr "Adresse"
 
@@ -1115,7 +1126,7 @@ msgid "Folder Shares"
 msgstr "Delte mapper"
 
 #: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:310 src/wizard.vala:317
+#: src/spice-display.vala:840 src/wizard.vala:311 src/wizard.vala:318
 msgid "Invalid URL"
 msgstr "Ugyldig adresse"
 
@@ -1258,94 +1269,94 @@ msgstr "Oppsett av boks"
 msgid "Review"
 msgstr "Se gjennom"
 
-#: src/wizard.vala:115
+#: src/wizard.vala:116
 msgid "Box creation failed"
 msgstr "Oppretting av boks mislyktes"
 
-#: src/wizard.vala:269
+#: src/wizard.vala:270
 msgid "Empty location"
 msgstr "Tom plassering"
 
-#: src/wizard.vala:292
+#: src/wizard.vala:293
 msgid "Unsupported file"
 msgstr "Filen støttes ikke"
 
-#: src/wizard.vala:298
+#: src/wizard.vala:299
 msgid "Invalid file"
 msgstr "Ugyldig fil"
 
-#: src/wizard.vala:335
+#: src/wizard.vala:336
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protokollen «%s» støttes ikke"
 
-#: src/wizard.vala:341 src/wizard.vala:411
+#: src/wizard.vala:342 src/wizard.vala:410
 msgid "Unknown installer media"
 msgstr "Ukjent installasjonsmedium"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:343 src/wizard.vala:412
+#: src/wizard.vala:344 src/wizard.vala:411
 msgid "Analyzing…"
 msgstr "Analyserer …"
 
-#: src/wizard.vala:357
+#: src/wizard.vala:358
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Klarte ikke å analysere installasjonsmedium. Er mediet ødelagt eller "
 "ufullstendig?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:465
+#: src/wizard.vala:464
 msgid "Box setup failed"
 msgstr "Oppsett av boks mislyktes"
 
-#: src/wizard.vala:479
+#: src/wizard.vala:478
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Bokser lager en ny boks med følgende egenskaper:"
 
-#: src/wizard.vala:484
+#: src/wizard.vala:483
 msgid "Type"
 msgstr "Type"
 
-#: src/wizard.vala:487
+#: src/wizard.vala:486
 msgid "Host"
 msgstr "Vert"
 
-#: src/wizard.vala:498 src/wizard.vala:509
+#: src/wizard.vala:497 src/wizard.vala:508
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:500
+#: src/wizard.vala:499
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: src/wizard.vala:514
+#: src/wizard.vala:513
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Legger til bokser for alle systemer som er tilgjengelig fra denne kontoen:"
 
-#: src/wizard.vala:527
+#: src/wizard.vala:526
 msgid "Memory"
 msgstr "Minne"
 
-#: src/wizard.vala:536
+#: src/wizard.vala:535
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:538
+#: src/wizard.vala:537
 #, c-format
 msgid "%s maximum"
 msgstr "%s maksimum"
 
-#: src/wizard.vala:601
+#: src/wizard.vala:600
 msgid "Downloading media…"
 msgstr "Laster ned medium …"
 
-#: src/wizard.vala:611
+#: src/wizard.vala:610
 msgid "Download failed."
 msgstr "Nedlasting mislyktes."
 
-#: src/wizard.vala:719
+#: src/wizard.vala:718
 msgid "C_ustomize…"
 msgstr "T_ilpass …"
