@@ -19,7 +19,7 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     [GtkChild]
     private SelectionToolbar selection_toolbar;
     [GtkChild]
-    private DisplayToolbar display_toolbar;
+    public DisplayToolbar display_toolbar;
 
     private AppWindow window;
 
