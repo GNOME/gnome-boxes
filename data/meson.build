@@ -29,7 +29,7 @@ custom_target ('appdata-file',
   input: 'org.gnome.Boxes.appdata.xml.in',
   output: 'org.gnome.Boxes.appdata.xml',
   install: true,
-  install_dir: join_paths (data_dir, 'appdata'),
+  install_dir: join_paths (data_dir, 'metainfo'),
   command: [ msgfmt, '--xml', '--template', '@INPUT@', '-d', po_dir, '-o', '@OUTPUT@' ],
 )
 
