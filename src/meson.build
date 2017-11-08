@@ -148,7 +148,7 @@ c_args = [
 ]
 
 if get_option ('enable-debug')
-  c_args += ['-00 -ggdb3']
+  c_args += ['-O0', '-ggdb3']
 endif
 
 if get_option ('enable-strict-cc')
