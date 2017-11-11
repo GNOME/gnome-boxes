@@ -13,6 +13,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             return session.uri;
         }
     }
+    public override bool can_transfer_files { get { return main_channel.agent_connected; } }
     public GLib.ByteArray ca_cert { owned get { return session.ca; } set { session.ca = value; } }
 
     private weak Machine machine; // Weak ref for avoiding cyclic ref
@@ -486,6 +487,17 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             debug ("unhandled main SPICE channel event: %d", event);
             break;
         }
+    }
+
+    public override void transfer_files (GLib.List<string> uris) {
+        GLib.File[] files = {};
+        foreach (string uri in uris) {
+            var file = GLib.File.new_for_uri (uri);
+            files += file;
+        }
+        files += null;
+
+        main_file_copy_async.begin (main_channel, files, FileCopyFlags.NONE, null, null);
     }
 
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
