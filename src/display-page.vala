@@ -13,6 +13,8 @@ private class Boxes.DisplayPage: Gtk.Box {
     public Gtk.Label size_label;
 
     [GtkChild]
+    public Gtk.Box transfer_message_box;
+    [GtkChild]
     private EventBox event_box;
     [GtkChild]
     private DisplayToolbar overlay_toolbar;
@@ -21,6 +23,9 @@ private class Boxes.DisplayPage: Gtk.Box {
     private uint toolbar_hide_id;
     private uint toolbar_show_id;
     private ulong cursor_id;
+    private ulong widget_drag_motion_id = 0;
+    private ulong transfer_message_box_drag_leave_id = 0;
+    private ulong transfer_message_box_drag_motion_id = 0;
 
     private uint overlay_toolbar_invisible_timeout;
     private uint size_label_timeout;
@@ -67,6 +72,12 @@ private class Boxes.DisplayPage: Gtk.Box {
 
         toolbar.setup_ui (window);
         overlay_toolbar.setup_ui (window);
+
+        Gtk.TargetEntry[] target_list = {};
+        Gtk.TargetEntry urilist_entry = { "text/uri-list", 0, 0 };
+        target_list += urilist_entry;
+
+        drag_dest_set (transfer_message_box, Gtk.DestDefaults.DROP, target_list, DragAction.ASK);
     }
 
      private void update_toolbar_visible() {
@@ -126,6 +137,20 @@ private class Boxes.DisplayPage: Gtk.Box {
             return;
 
         remove_display ();
+
+        if (display.can_transfer_files) {
+            widget_drag_motion_id = widget.drag_motion.connect (() => {
+                transfer_message_box.visible = true;
+
+                return true;
+            });
+            transfer_message_box_drag_motion_id = transfer_message_box.drag_motion.connect (() => {
+                return true;
+            });
+            transfer_message_box_drag_leave_id = transfer_message_box.drag_leave.connect (() => {
+                transfer_message_box.hide ();
+            });
+        }
 
         this.display = display;
         mouse_grabbed_id = display.notify["mouse-grabbed"].connect(() => {
@@ -197,8 +222,23 @@ private class Boxes.DisplayPage: Gtk.Box {
             cursor_id = 0;
         }
 
-        if (widget != null)
+        if (transfer_message_box_drag_leave_id != 0) {
+            transfer_message_box.disconnect (transfer_message_box_drag_leave_id);
+            transfer_message_box_drag_leave_id = 0;
+        }
+        if (transfer_message_box_drag_motion_id != 0) {
+            transfer_message_box.disconnect (transfer_message_box_drag_motion_id);
+            transfer_message_box_drag_motion_id = 0;
+        }
+
+        if (widget != null) {
+            if (widget_drag_motion_id != 0) {
+                widget.disconnect (widget_drag_motion_id);
+                widget_drag_motion_id = 0;
+            }
+
             event_box.remove (widget);
+        }
 
         return widget;
     }
