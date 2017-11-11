@@ -89,10 +89,12 @@ private class Boxes.SpiceDisplay: Boxes.Display {
                 });
 
                 can_grab_mouse = main_channel.mouse_mode != 2;
+                new_file_transfer_id = main_channel.new_file_transfer.connect (on_new_file_transfer);
             }
     }
     ulong main_event_id;
     ulong main_mouse_mode_id;
+    ulong new_file_transfer_id;
 
     private void main_cleanup () {
         if (main_channel == null)
@@ -103,6 +105,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         main_event_id = 0;
         o.disconnect (main_mouse_mode_id);
         main_mouse_mode_id = 0;
+        o.disconnect (new_file_transfer_id);
+        new_file_transfer_id = 0;
         main_channel = null;
     }
 
@@ -498,6 +502,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         files += null;
 
         main_file_copy_async.begin (main_channel, files, FileCopyFlags.NONE, null, null);
+    }
+
+    private void on_new_file_transfer (Spice.MainChannel main_channel, Object transfer_task) {
+        DisplayPage page = machine.window.display_page;
+        page.add_transfer (transfer_task);
     }
 
     public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
