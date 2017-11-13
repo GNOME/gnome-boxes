@@ -31,7 +31,6 @@ AM_VALAFLAGS =						\
 	--pkg glib-2.0					\
 	--pkg gtk-vnc-2.0				\
 	--pkg gudev-1.0					\
-	--pkg json-glib-1.0				\
 	--pkg libarchive				\
 	--pkg libsecret-1				\
 	--pkg libsoup-2.4				\

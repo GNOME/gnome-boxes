@@ -236,10 +236,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.Image install_rhel_image;
     [GtkChild]
     private Boxes.WizardWebView rhel_web_view;
-    [GtkChild]
-    private Gtk.Spinner rhel_web_view_spinner;
-    [GtkChild]
-    private Gtk.Stack rhel_web_view_stack;
 
     private AppWindow window;
 
@@ -284,7 +280,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         set {
             _page = value;
 
-            rhel_web_view_spinner.stop ();
             if (rhel_cancellable != null) {
                 rhel_cancellable.cancel ();
                 rhel_cancellable = null;
@@ -301,7 +296,6 @@ private class Boxes.WizardSource: Gtk.Stack {
                 main_vbox.grab_focus ();
                 break;
             case SourcePage.RHEL_WEB_VIEW:
-                rhel_web_view_stack.set_visible_child_name ("spinner");
                 break;
             case SourcePage.URL:
                 url_entry.changed ();
@@ -516,230 +510,23 @@ private class Boxes.WizardSource: Gtk.Stack {
         }
     }
 
-    private string rhel_get_authentication_uri_from_json (string contents) throws GLib.Error
-        requires (contents.length > 0) {
-
-        var parser = new Json.Parser ();
-        parser.load_from_data (contents, -1);
-
-        Json.NodeType node_type = Json.NodeType.NULL;
-
-        var root_node = parser.get_root ();
-        node_type = root_node.get_node_type ();
-        if (node_type != Json.NodeType.ARRAY)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: couldn’t find root array");
-
-        var root_array = root_node.get_array ();
-        if (root_array == null)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: couldn’t find root array");
-        if (root_array.get_length () == 0)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: root array is empty");
-
-        var root_array_node_0 = root_array.get_element (0);
-        node_type = root_array_node_0.get_node_type ();
-        if (node_type != Json.NodeType.OBJECT)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: root array doesn’t have an object");
-
-        var root_array_object_0 = root_array_node_0.get_object ();
-
-        var product_code_node = root_array_object_0.get_member ("productCode");
-        if (product_code_node == null)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: couldn’t find productCode");
-        node_type = product_code_node.get_node_type ();
-        if (node_type != Json.NodeType.VALUE)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: productCode is not a VALUE");
-
-        var product_code = product_code_node.get_string ();
-        if (product_code != "rhel")
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: productCode is not rhel");
-
-        var featured_artifact_node = root_array_object_0.get_member ("featuredArtifact");
-        if (featured_artifact_node == null)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: couldn’t find featuredArtifact");
-        node_type = featured_artifact_node.get_node_type ();
-        if (node_type != Json.NodeType.OBJECT)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: featuredArtifact is not an OBJECT");
-
-        var featured_artifact_object = featured_artifact_node.get_object ();
-
-        var url_node = featured_artifact_object.get_member ("url");
-        if (url_node == null)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: couldn’t find featuredArtifact.url");
-        node_type = url_node.get_node_type ();
-        if (node_type != Json.NodeType.VALUE)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: featuredArtifact.url is not a VALUE");
-
-        var url = url_node.get_string ();
-        if (url == null || url.length == 0)
-            throw new Boxes.Error.INVALID ("Failed to parse JSON: featuredArtifact.url is empty");
-
-        return url;
-    }
-
-    private string rhel_get_authentication_uri_from_xml (string contents) throws GLib.Error
-        requires (contents.length > 0) {
-
-        var product_code = extract_xpath (contents, "string(/products/product/productCode)", true);
-        if (product_code != "rhel")
-            throw new Boxes.Error.INVALID ("Failed to parse XML: productCode is not rhel");
-
-        var url = extract_xpath (contents, "string(/products/product/featuredArtifact/url)", true);
-        if (url.length == 0)
-            throw new Boxes.Error.INVALID ("Failed to parse XML: featuredArtifact.url is empty");
-
-        return url;
-    }
-
-    private void rhel_show_web_view (string cached_path, bool use_cache) {
-        if (!use_cache) {
-            GLib.FileUtils.unlink (cached_path);
-            rhel_web_view_spinner.start ();
-        }
-
-        var downloader = Downloader.get_instance ();
-        var file = GLib.File.new_for_uri ("https://developers.redhat.com/download-manager/rest/available/rhel");
-        string[] cached_paths = { cached_path };
-        var progress = new ActivityProgress ();
-        downloader.download.begin (file, cached_paths, progress, rhel_cancellable, (obj, res) => {
-            try {
-                file = downloader.download.end (res);
-            } catch (GLib.IOError.CANCELLED error) {
-                return;
-            } catch (GLib.Error error) {
-                page = SourcePage.MAIN;
-                window.notificationbar.display_error (_("Failed to get authentication URI"));
-                warning (error.message);
-                return;
-            }
-
-            file.load_contents_async.begin (rhel_cancellable, (obj, res) => {
-                uint8[] contents;
-                try {
-                    file.load_contents_async.end (res, out contents, null);
-                } catch (GLib.IOError.CANCELLED error) {
-                    return;
-                } catch (GLib.Error error) {
-                    page = SourcePage.MAIN;
-                    window.notificationbar.display_error (_("Failed to parse response from redhat.com"));
-                    warning (error.message);
-                    return;
-                }
-
-                if (contents.length <= 0) {
-                    if (use_cache) {
-                        rhel_show_web_view (cached_path, false);
-                    } else {
-                        page = SourcePage.MAIN;
-                        window.notificationbar.display_error (_("Failed to parse response from redhat.com"));
-                        warning ("Empty response from redhat.com");
-                    }
-                    return;
-                }
-
-                string? authentication_uri;
-                try {
-                    authentication_uri = rhel_get_authentication_uri_from_json ((string) contents);
-                } catch (Boxes.Error error) {
-                    if (use_cache) {
-                        rhel_show_web_view (cached_path, false);
-                    } else {
-                        page = SourcePage.MAIN;
-                        window.notificationbar.display_error (_("Failed to parse response from redhat.com"));
-                        warning (error.message);
-                    }
-                    return;
-                } catch (GLib.Error json_error) {
-                    debug ("Failed to parse as JSON, could be XML: %s", json_error.message);
-                    try {
-                        authentication_uri = rhel_get_authentication_uri_from_xml ((string) contents);
-                    } catch (GLib.Error xml_error) {
-                        if (use_cache) {
-                            rhel_show_web_view (cached_path, false);
-                        } else {
-                            page = SourcePage.MAIN;
-                            window.notificationbar.display_error (_("Failed to parse response from redhat.com"));
-                            warning (xml_error.message);
-                        }
-                        return;
-                    }
-                }
-
-                debug ("RHEL ISO authentication URI: %s", authentication_uri);
-
-                rhel_cancellable = new GLib.Cancellable ();
-                rhel_cancellable.connect(() => {
-                    rhel_web_view.view.stop_loading ();
-                    rhel_web_view.view.load_uri ("about:blank");
-
-                    var data_manager = rhel_web_view.view.get_website_data_manager ();
-                    data_manager.clear.begin (WebKit.WebsiteDataTypes.COOKIES, 0, null);
-                });
-
-                if (rhel_web_view_spinner.active) {
-                    rhel_web_view_stack.set_visible_child_full ("web-view", Gtk.StackTransitionType.CROSSFADE);
-                    rhel_web_view_spinner.stop ();
-                } else {
-                    rhel_web_view_stack.set_visible_child_name ("web-view");
-                }
-
-                rhel_web_view.view.load_uri (authentication_uri);
-                filename = GLib.Path.get_basename (authentication_uri);
-            });
-        });
-    }
-
     [GtkCallback]
     private void on_install_rhel_button_clicked () {
         page = SourcePage.RHEL_WEB_VIEW;
+
         rhel_cancellable = new GLib.Cancellable ();
+        rhel_cancellable.connect(() => {
+            rhel_web_view.view.stop_loading ();
+            rhel_web_view.view.load_uri ("about:blank");
 
-        var cached_path = get_cache ("developers.redhat.com", "rhel");
-        var cached_file = GLib.File.new_for_path (cached_path);
-        cached_file.query_info_async.begin (GLib.FileAttribute.TIME_MODIFIED,
-                                            GLib.FileQueryInfoFlags.NONE,
-                                            GLib.Priority.DEFAULT,
-                                            rhel_cancellable,
-                                            (obj, res) => {
-            GLib.FileInfo? info;
-            try {
-                info = cached_file.query_info_async.end (res);
-            } catch (GLib.IOError.CANCELLED error) {
-                return;
-            } catch (GLib.IOError.NOT_FOUND error) {
-                debug ("No cached response from redhat.com");
-                rhel_show_web_view (cached_path, false);
-                return;
-            } catch (GLib.Error error) {
-                warning ("Failed to find cached response from redhat.com: %s", error.message);
-                rhel_show_web_view (cached_path, false);
-                return;
-            }
-
-            var mtime_timeval = info.get_modification_time ();
-            GLib.DateTime? mtime = new GLib.DateTime.from_timeval_utc (mtime_timeval);
-            if (mtime == null) {
-                warning ("Cached response from redhat.com has invalid modification time");
-                rhel_show_web_view (cached_path, false);
-                return;
-            }
-
-            GLib.DateTime? now = new GLib.DateTime.now_utc ();
-            if (now == null) {
-                warning ("Failed to read current time");
-                rhel_show_web_view (cached_path, false);
-                return;
-            }
-
-            var time_difference = now.difference (mtime);
-            if (time_difference > GLib.TimeSpan.DAY) {
-                debug ("Cached response from redhat.com is more than a day old");
-                rhel_show_web_view (cached_path, false);
-                return;
-            }
-
-            debug ("Cached response from redhat.com is less than a day old");
-            rhel_show_web_view (cached_path, true);
+            var data_manager = rhel_web_view.view.get_website_data_manager ();
+            data_manager.clear.begin (WebKit.WebsiteDataTypes.COOKIES, 0, null);
         });
+
+        var authentication_uri = "https://developers.redhat.com/download-manager/rest/featured/file/rhel";
+        debug ("RHEL ISO authentication URI: %s", authentication_uri);
+
+        rhel_web_view.view.load_uri (authentication_uri);
     }
 
     private bool on_rhel_web_view_decide_policy (WebKit.WebView web_view,
@@ -788,6 +575,19 @@ private class Boxes.WizardSource: Gtk.Stack {
                                       OSDatabase.MediaURLsColumns.OS, rhel_os);
             }
         }
+
+        var soup_download_uri = new Soup.URI (download_uri);
+        var download_path = soup_download_uri.get_path ();
+
+        // Libsoup is supposed to ensure that the path is at least "/".
+        return_val_if_fail (download_path != null, false);
+        return_val_if_fail (download_path.length > 0, false);
+
+        if (!download_path.has_suffix (".iso")) {
+            download_path = "/rhel.iso";
+        }
+
+        filename = GLib.Path.get_basename (download_path);
 
         uri = download_uri;
         activated ();

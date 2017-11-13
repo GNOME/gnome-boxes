@@ -79,7 +79,6 @@ PKG_CHECK_MODULES(BOXES, [
   libusb-1.0 >= $LIBUSB_MIN_VERSION
   spice-client-gtk-3.0 >= $SPICE_GTK_MIN_VERSION
   gudev-1.0 >= $GUDEV_MIN_VERSION
-  json-glib-1.0
   libosinfo-1.0 >= $OSINFO_MIN_VERSION
   libsoup-2.4 >= $LIBSOUP_REQUIRED
   libarchive >= $LIBARCHIVE_MIN_VERSION

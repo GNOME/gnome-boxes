@@ -301,30 +301,10 @@
 
     <!-- RHEL web view page -->
     <child>
-      <object class="GtkStack" id="rhel_web_view_stack">
+      <object class="BoxesWizardWebView" id="rhel_web_view">
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
         <property name="visible">True</property>
-        <child>
-          <object class="GtkSpinner" id="rhel_web_view_spinner">
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="visible">True</property>
-            <property name="width-request">32</property>
-            <property name="height-request">32</property>
-          </object>
-          <packing>
-            <property name="name">spinner</property>
-          </packing>
-        </child>
-        <child>
-          <object class="BoxesWizardWebView" id="rhel_web_view">
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="visible">True</property>
-          </object>
-          <packing>
-            <property name="name">web-view</property>
-          </packing>
-        </child>
       </object>
 
       <packing>
