@@ -754,8 +754,8 @@ private class Boxes.WizardSource: Gtk.Stack {
         if (!request_uri.has_prefix ("https://developers.redhat.com/products/rhel"))
             return false;
 
-        var soup_uri = new Soup.URI (request_uri);
-        var query = soup_uri.get_query ();
+        var soup_request_uri = new Soup.URI (request_uri);
+        var query = soup_request_uri.get_query ();
         if (query == null)
             return false;
 
