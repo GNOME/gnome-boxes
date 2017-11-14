@@ -23,7 +23,7 @@ private static void parse_local_args (ref unowned string[] args) {
     }
 
     if (version) {
-        GLib.stdout.printf ("%s\n", Config.VERSION);
+        GLib.stdout.printf ("%s\n", Config.PACKAGE_VERSION);
         exit (0);
     }
 

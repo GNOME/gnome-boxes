@@ -48,11 +48,11 @@ MAINTAINERCLEANFILES =				\
 
 # see git-version-gen
 dist-hook:
-	echo $(VERSION) > $(distdir)/.tarball-version
+	echo $(PACKAGE_VERSION) > $(distdir)/.tarball-version
 
 BUILT_SOURCES = $(top_srcdir)/.version
 $(top_srcdir)/.version:
-	echo $(VERSION) > $@-t && mv $@-t $@
+	echo $(PACKAGE_VERSION) > $@-t && mv $@-t $@
 
 all:
 

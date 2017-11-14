@@ -202,7 +202,7 @@ AC_OUTPUT
 dnl ==========================================================================
 AC_MSG_NOTICE([
 
-        GNOME Boxes $VERSION
+        GNOME Boxes $PACKAGE_VERSION
         =================
 
         prefix:                   ${prefix}

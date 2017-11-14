@@ -108,7 +108,7 @@ private class Boxes.App: Gtk.Application {
                                    "copyright", "Copyright 2011 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "logo-icon-name", "gnome-boxes",
-                                   "version", Config.VERSION,
+                                   "version", Config.PACKAGE_VERSION,
                                    "website", Config.PACKAGE_URL,
                                    "wrap-license", true);
         });
