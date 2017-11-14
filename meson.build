@@ -50,6 +50,8 @@ data_dir = join_paths (get_option ('prefix'), get_option ('datadir'))
 locale_dir = join_paths (data_dir, '/locale')
 
 conf = configuration_data ()
+conf.set_quoted ('DISTRIBUTOR_NAME', get_option ('distributor-name'))
+conf.set_quoted ('DISTRIBUTOR_VERSION', get_option ('distributor-version'))
 conf.set_quoted ('PACKAGE_NAME', meson.project_name ())
 conf.set_quoted ('PACKAGE_TARNAME', meson.project_name ())
 conf.set_quoted ('PACKAGE_VERSION', meson.project_version ())

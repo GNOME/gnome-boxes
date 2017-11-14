@@ -108,6 +108,20 @@ VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
 VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
 
+AC_ARG_WITH([distributor-name],
+            AS_HELP_STRING([--with-distributor-name], [Distributor name used in HTTP user agent]))
+
+AS_IF([test "x$with_distributor_name" = "x"], [with_distributor_name="GNOME"])
+AC_DEFINE_UNQUOTED([DISTRIBUTOR_NAME], ["$with_distributor_name"], [Distributor name used in HTTP user agent])
+
+AC_ARG_WITH([distributor-version],
+            AS_HELP_STRING([--with-distributor-version], [Distributor version used in HTTP user agent]))
+
+AS_IF([test "x$with_distributor_version" = "x"], [with_distributor_version="3"])
+AC_DEFINE_UNQUOTED([DISTRIBUTOR_VERSION],
+                   ["$with_distributor_version"],
+                   [Distributor version used in HTTP user agent])
+
 AC_ARG_ENABLE(ovirt,
               AS_HELP_STRING([--enable-ovirt=yes|no|auto], [Enable support for OVirt]),
               [enable_ovirt=$enableval],
@@ -208,6 +222,8 @@ AC_MSG_NOTICE([
         prefix:                   ${prefix}
         c compiler:               ${CC} ${CFLAGS}
         build from vala sources:  $enable_vala
+        Distributor name:         $with_distributor_name
+        Distributor version:      $with_distributor_version
         oVirt support:            $have_govirt
         Installed tests:          $enable_installed_tests
 ])

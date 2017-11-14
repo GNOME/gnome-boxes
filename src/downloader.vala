@@ -55,6 +55,9 @@ private class Boxes.Downloader : GLib.Object {
         session = new Soup.Session ();
         if (Environment.get_variable ("SOUP_DEBUG") != null)
             session.add_feature (new Soup.Logger (Soup.LoggerLogLevel.HEADERS, -1));
+
+        var user_agent = get_user_agent ();
+        session.user_agent = user_agent;
     }
 
     /**

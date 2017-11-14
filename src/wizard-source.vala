@@ -522,7 +522,11 @@ private class Boxes.WizardSource: Gtk.Stack {
             data_manager.clear.begin (WebKit.WebsiteDataTypes.COOKIES, 0, null);
         });
 
-        var authentication_uri = "https://developers.redhat.com/download-manager/rest/featured/file/rhel";
+        var user_agent = get_user_agent ();
+        var user_agent_escaped = GLib.Uri.escape_string (user_agent, null, false);
+        var authentication_uri = "https://developers.redhat.com/download-manager/rest/featured/file/rhel" +
+                                 "?tag=" + user_agent_escaped;
+
         debug ("RHEL ISO authentication URI: %s", authentication_uri);
 
         rhel_web_view.view.load_uri (authentication_uri);

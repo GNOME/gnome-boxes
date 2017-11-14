@@ -33,6 +33,13 @@ namespace Boxes {
         return get_pkgdata ("osinfo");
     }
 
+    public string get_user_agent () {
+        var user_agent = Config.DISTRIBUTOR_NAME + "/" + Config.DISTRIBUTOR_VERSION + " " +
+                         Config.PACKAGE_TARNAME + "/" + Config.PACKAGE_VERSION;
+
+        return user_agent;
+    }
+
     public string get_user_unattended (string? file_name = null) {
         var dir = Path.build_filename (get_user_pkgconfig (), "unattended");
 
