@@ -75,50 +75,15 @@
     border-style: none;
 }
 
-/* Corner rounding */
-.boxes-menu >.boxes-menu-row:nth-last-child(2) {
-    border-radius: 15px 15px 0 0;
-    -gtk-outline-radius: 0 0 13px 13px;
-}
-
-.boxes-menu > .boxes-menu-row:last-child {
-    border-radius: 0 0 15px 15px;
-}
-
-.label + .boxes-menu-row,
-.boxes-menu-row.button:first-child {
-    border-radius: 15px 15px 0 0;
-    border-top-style: none;
-    -gtk-outline-radius: 13px 13px 0 0;
-}
-
-/* Row styling */
 .boxes-menu-row {
-    border-style: solid none none none;
-    border-width: 1px;
-    border-radius: 0;
-    border-color: transparent;
-    background-color: @boxes_bg2_color;
-    background-clip: padding-box;
-}
-
-.boxes-menu-row.button {
-    background-image: none;
-    font-weight: bold;
-    text-shadow: none;
-    -gtk-icon-shadow: none;
-    box-shadow: none;
-    outline-color: alpha(currentColor, 0.15);
+    background: none;
+    border: 1px solid @borders;
 }
 
 .boxes-menu-row:hover {
     background-color: @theme_bg_color;
 }
 
-.boxes-menu-row:active {
-    color: @theme_selected_fg_color;
-    background-color: @theme_selected_bg_color;
-}
 
 /* Adds a border to the ISOs lists top undershoot */
 .boxes-menu-scrolled.undershoot.top { border-top: 1px solid @borders; }
