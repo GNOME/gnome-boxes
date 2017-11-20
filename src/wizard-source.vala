@@ -57,6 +57,62 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
     }
 }
 
+private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
+    public Osinfo.Media media;
+
+    public WizardDownloadableMediaEntry (Osinfo.Media media) {
+        this.media = media;
+
+        var file = GLib.File.new_for_uri (media.url);
+        var label = new Gtk.Label (file.get_basename ());
+        label.halign = Gtk.Align.START;
+
+        add (label);
+    }
+}
+
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
+private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
+    [GtkChild]
+    private Gtk.Image media_image;
+    [GtkChild]
+    private Gtk.Label title_label;
+    [GtkChild]
+    private Gtk.Label details_label;
+    [GtkChild]
+    private Gtk.Revealer revealer;
+    [GtkChild]
+    private Gtk.ListBox medias_listbox;
+
+    public signal void activated (Osinfo.Media media);
+
+    public WizardDownloadableEntry (Osinfo.Os os) {
+        Downloader.fetch_os_logo.begin (media_image, os, 64);
+
+        title_label.label = os.name;
+        details_label.label = os.vendor;
+
+        foreach (var media_entity in os.get_media_list ().get_elements()) {
+            var media = (media_entity as Osinfo.Media);
+
+            medias_listbox.insert (new WizardDownloadableMediaEntry (media), -1);
+        }
+
+        medias_listbox.show_all ();
+    }
+
+    [GtkCallback]
+    private void on_media_listbox_activated (Gtk.ListBoxRow row) {
+        var entry = row as WizardDownloadableMediaEntry;
+
+        activated (entry.media);
+    }
+
+    public void toggle () {
+        revealer.set_reveal_child (!revealer.child_revealed);
+    }
+}
+
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-media-entry.ui")]
 private class Boxes.WizardMediaEntry : Gtk.ListBoxRow {
     public InstallerMedia media;
@@ -229,6 +285,8 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Gtk.Label libvirt_sys_import_label;
     [GtkChild]
+    private Gtk.ListBox available_downloads_listbox;
+    [GtkChild]
     private Gtk.Button install_rhel_button;
     [GtkChild]
     private Gtk.Image install_rhel_image;
@@ -340,6 +398,38 @@ private class Boxes.WizardSource: Gtk.Stack {
         this.window = window;
 
         var os_db = media_manager.os_db;
+
+        var available_downloads_model = new GLib.ListStore (typeof (Osinfo.Os));
+        available_downloads_listbox.bind_model (available_downloads_model, (obj) => {
+            var os = obj as Osinfo.Os;
+
+            var entry = new WizardDownloadableEntry (os);
+            entry.activated.connect ((media) => {
+                this.uri = media.url;
+
+                activated ();
+            });
+
+            return entry;
+        });
+
+        available_downloads_listbox.row_activated.connect ((row) => {
+            var entry = (row as WizardDownloadableEntry);
+
+            entry.toggle();
+
+            selected = entry;
+        });
+
+        os_db.list_latest_downloadable_oses.begin ((db, result) => {
+            try {
+                var table = os_db.list_latest_downloadable_oses.end (result);
+
+                table.get_values ().foreach (available_downloads_model.append);
+            } catch (OSDatabaseError error) {
+                debug ("Failed to populate the list of downloadable OSes: %s", error.message);
+            }
+        });
 
         os_db.get_all_media_urls_as_store.begin ((db, result) => {
             try {

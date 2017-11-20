@@ -195,6 +195,12 @@
         </child>
 
         <child>
+          <object class="GtkListBox" id="available_downloads_listbox">
+            <property name="visible">True</property>
+          </object>
+         </child>
+
+        <child>
           <object class="GtkButton" id="enter_url_button">
             <property name="visible">True</property>
             <signal name="clicked" handler="on_enter_url_button_clicked"/>
@@ -298,13 +304,14 @@
         </child>
       </object>
 
+    </child>
+  </object>
+
       <packing>
         <property name="name">main-page</property>
       </packing>
     </child>
 
-  </object>
-</child>
 
     <!-- RHEL web view page -->
     <child>
