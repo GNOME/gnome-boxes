@@ -84,6 +84,8 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
     [GtkChild]
     private Gtk.ListBox medias_listbox;
 
+    public Osinfo.Media single_media;
+
     public signal void activated (Osinfo.Media media);
 
     public WizardDownloadableEntry (Osinfo.Os os) {
@@ -92,7 +94,15 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
         title_label.label = os.name;
         details_label.label = os.vendor;
 
-        foreach (var media_entity in os.get_media_list ().get_elements()) {
+        var media_list = os.get_media_list () as Osinfo.List;
+        if (media_list.get_length () == 1)
+            single_media = media_list.get_nth (0) as Osinfo.Media;
+        else
+            populate_media_listbox (media_list);
+    }
+
+    private void populate_media_listbox (Osinfo.List media_list) {
+        foreach (var media_entity in media_list.get_elements()) {
             var media = (media_entity as Osinfo.Media);
 
             medias_listbox.insert (new WizardDownloadableMediaEntry (media), -1);
@@ -416,9 +426,14 @@ private class Boxes.WizardSource: Gtk.Stack {
         available_downloads_listbox.row_activated.connect ((row) => {
             var entry = (row as WizardDownloadableEntry);
 
-            entry.toggle();
-
             selected = entry;
+            if (entry.single_media != null) {
+                this.uri = entry.single_media.url;
+
+                activated ();
+            } else {
+                entry.toggle();
+            }
         });
 
         os_db.list_latest_downloadable_oses.begin ((db, result) => {
