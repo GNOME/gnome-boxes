@@ -319,10 +319,9 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     public bool download_required {
         get {
-            const string[] supported_schemes = { "http", "https" };
             string scheme = Uri.parse_scheme (uri);
 
-            return (scheme != null && scheme in supported_schemes);
+            return (scheme != null && scheme in Downloader.supported_schemes);
         }
     }
 

@@ -23,6 +23,11 @@ private class Boxes.Downloader : GLib.Object {
     public signal void downloaded (Download download);
     public signal void download_failed (Download download, GLib.Error error);
 
+    public static string[] supported_schemes = {
+        "http",
+        "https",
+    };
+
     public static Downloader get_instance () {
         if (downloader == null)
             downloader = new Downloader ();
@@ -94,7 +99,7 @@ private class Boxes.Downloader : GLib.Object {
         downloads.set (uri, download);
 
         try {
-            if (remote_file.has_uri_scheme ("http") || remote_file.has_uri_scheme ("https"))
+            if (remote_file.get_uri_scheme () in supported_schemes)
                 yield download_from_http (download, cancellable);
             else
                 yield download_from_filesystem (download, cancellable);
