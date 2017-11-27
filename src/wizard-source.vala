@@ -68,6 +68,9 @@ private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
         label.halign = Gtk.Align.START;
 
         add (label);
+
+        this.get_style_context ().add_class ("boxes-menu-row");
+        this.get_style_context ().add_class ("boxes-menu-subrow");
     }
 }
 
