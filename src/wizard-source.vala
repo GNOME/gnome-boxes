@@ -67,6 +67,9 @@ private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
         var label = new Gtk.Label (file.get_basename ());
         label.halign = Gtk.Align.START;
 
+        if (media.live)
+            label.label += " (" + _("Live") + ")";
+
         add (label);
 
         this.get_style_context ().add_class ("boxes-menu-row");
