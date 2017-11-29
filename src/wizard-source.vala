@@ -445,7 +445,20 @@ private class Boxes.WizardSource: Gtk.Stack {
             try {
                 var table = os_db.list_latest_downloadable_oses.end (result);
 
-                table.get_values ().foreach (available_downloads_model.append);
+                foreach (var os in table.get_values ()) {
+                    available_downloads_model.insert_sorted (os, (a, b) => {
+                        var os1 = a as Osinfo.Os;
+                        var os2 = b as Osinfo.Os;
+
+                        if (Downloader.fetch_os_logo_url (os1) != null)
+                            return -1;
+
+                        if (Downloader.fetch_os_logo_url (os2) != null)
+                            return 1;
+
+                        return 0;
+                    });
+                }
             } catch (OSDatabaseError error) {
                 debug ("Failed to populate the list of downloadable OSes: %s", error.message);
             }

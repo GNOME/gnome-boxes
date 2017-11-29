@@ -35,7 +35,7 @@ private class Boxes.Downloader : GLib.Object {
         return downloader;
     }
 
-    private static string fetch_os_logo_url (Osinfo.Os os) {
+    public static string fetch_os_logo_url (Osinfo.Os os) {
         if (os.logo != null)
             return os.logo;
 
