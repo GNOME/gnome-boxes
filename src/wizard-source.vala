@@ -60,20 +60,54 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
     public Osinfo.Media media;
 
+    private Gtk.Label label;
+
     public WizardDownloadableMediaEntry (Osinfo.Media media) {
         this.media = media;
 
-        var file = GLib.File.new_for_uri (media.url);
-        var label = new Gtk.Label (file.get_basename ());
-        label.halign = Gtk.Align.START;
-
-        if (media.live)
-            label.label += " (" + _("Live") + ")";
-
+        setup_label ();
         add (label);
 
         this.get_style_context ().add_class ("boxes-menu-row");
         this.get_style_context ().add_class ("boxes-menu-subrow");
+    }
+
+    private void setup_label () {
+        /* Libosinfo lacks some OS variant names, so we do some
+           parsing here to compose a unique human-readable media
+           identifier. */
+        label = new Gtk.Label ("");
+
+        var variant = "";
+        var variants = media.get_os_variants ();
+        if (variants.get_length () > 0)
+            variant = (variants.get_nth (0) as Osinfo.OsVariant).get_name ();
+        else if ((media.os as Osinfo.Product).name != null) {
+            variant = (media.os as Osinfo.Product).name;
+            if (media.url.contains ("server"))
+                variant += " Server";
+        } else {
+            var file = File.new_for_uri (media.url);
+
+            label.label = file.get_basename ().replace ("_", "");
+        }
+
+        var subvariant = "";
+        if (media.url.contains ("netinst"))
+            subvariant = "(netinst)";
+        else if (media.url.contains ("minimal"))
+            subvariant = "(minimal)";
+        else if (media.url.contains ("dvd"))
+            subvariant = "(DVD)";
+
+        var is_live = media.live ? " (" + _("Live") + ")" : "";
+
+        label.label = @"$variant $(media.architecture) $subvariant $is_live";
+
+        /* Strip consequent whitespaces */
+        label.label = label.label.replace ("  ", "");
+
+        label.halign = Gtk.Align.START;
     }
 }
 
