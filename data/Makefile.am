@@ -14,7 +14,7 @@ all-local: $(desktop_DATA)
 gsettings_SCHEMAS = org.gnome.boxes.gschema.xml
 @GSETTINGS_RULES@
 
-appdatadir = $(datadir)/appdata
+appdatadir = $(datadir)/metainfo
 appdata_in_file = org.gnome.Boxes.appdata.xml.in
 appdata_DATA = $(appdata_in_file:.xml.in=.xml)
 
