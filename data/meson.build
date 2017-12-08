@@ -1,7 +1,4 @@
-icons_dir = join_paths (data_dir, 'icons', 'hicolor')
-foreach size: ['16x16', '22x22', '32x32', '48x48', '256x256', 'symbolic']
-  install_subdir('icons/hicolor/' + size, install_dir: icons_dir)
-endforeach
+install_subdir('icons/hicolor/', install_dir: join_paths (data_dir, 'icons'))
 
 resource_files = files ('gnome-boxes.gresource.xml')
 resources = gnome.compile_resources ('org.gnome.Boxes',

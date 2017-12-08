@@ -4,22 +4,39 @@ public_icons_themes =				\
 	hicolor					\
 	$(NULL)
 
-public_icons =						\
-	hicolor_apps_16x16_gnome-boxes.png		\
-	hicolor_apps_22x22_gnome-boxes.png		\
-	hicolor_apps_24x24_gnome-boxes.png		\
-	hicolor_apps_32x32_gnome-boxes.png		\
-	hicolor_apps_48x48_gnome-boxes.png		\
-	hicolor_apps_256x256_gnome-boxes.png		\
-	hicolor_apps_symbolic_gnome-boxes-symbolic.svg	\
-	$(NULL)
+public_16x16_iconsdir = $(datadir)/icons/hicolor/16x16/apps
+public_16x16_icons_DATA = hicolor/16x16/apps/gnome-boxes.png
+
+public_22x22_iconsdir = $(datadir)/icons/hicolor/22x22/apps
+public_22x22_icons_DATA = hicolor/22x22/apps/gnome-boxes.png
+
+public_24x24_iconsdir = $(datadir)/icons/hicolor/24x24/apps
+public_24x24_icons_DATA = hicolor/24x24/apps/gnome-boxes.png
+
+public_32x32_iconsdir = $(datadir)/icons/hicolor/32x32/apps
+public_32x32_icons_DATA = hicolor/32x32/apps/gnome-boxes.png
+
+public_48x48_iconsdir = $(datadir)/icons/hicolor/48x48/apps
+public_48x48_icons_DATA = hicolor/48x48/apps/gnome-boxes.png
+
+public_256x256_iconsdir = $(datadir)/icons/hicolor/256x256/apps
+public_256x256_icons_DATA = hicolor/256x256/apps/gnome-boxes.png
+
+public_symbolic_iconsdir = $(datadir)/icons/hicolor/symbolic/apps
+public_symbolic_icons_DATA = hicolor/symbolic/apps/gnome-boxes-symbolic.svg
 
 noinst_DATA =					\
 	gnome-boxes.svg				\
 	$(NULL)
 
 EXTRA_DIST =					\
-	$(public_icons)				\
+	$(public_16x16_icons_DATA)		\
+	$(public_22x22_icons_DATA)		\
+	$(public_24x24_icons_DATA)		\
+	$(public_32x32_icons_DATA)		\
+	$(public_48x48_icons_DATA)		\
+	$(public_256x256_icons_DATA)		\
+	$(public_symbolic_icons_DATA)		\
 	$(noinst_DATA)				\
 	$(NULL)
 
@@ -40,29 +57,8 @@ update-icon-cache:
 		done; \
 	fi
 
-install-icons:
-	for icon in $(public_icons); do \
-		THEME=`echo $$icon | cut -d_ -f1`; \
-		CONTEXT=`echo $$icon | cut -d_ -f2`; \
-		SIZE=`echo $$icon | cut -d_ -f3`; \
-		ICONFILE=`echo $$icon | cut -d_ -f4`; \
-		mkdir -p $(DESTDIR)$(datadir)/icons/$$THEME/$$SIZE/$$CONTEXT; \
-		$(INSTALL_DATA) $(srcdir)/$$icon $(DESTDIR)$(datadir)/icons/$$THEME/$$SIZE/$$CONTEXT/$$ICONFILE; \
-	done
-
-uninstall-icons:
-	-for icon in $(public_icons); do \
-		THEME=`echo $$icon | cut -d_ -f1`; \
-		CONTEXT=`echo $$icon | cut -d_ -f2`; \
-		SIZE=`echo $$icon | cut -d_ -f3`; \
-		ICONFILE=`echo $$icon | cut -d_ -f4`; \
-		rm -f $(DESTDIR)$(datadir)/icons/$$THEME/$$SIZE/$$CONTEXT/$$ICONFILE; \
-	done
-
-install-data-local: install-icons
 install-data-hook: update-icon-cache
 
-uninstall-local: uninstall-icons
 uninstall-hook: update-icon-cache
 
 -include $(top_srcdir)/git.mk
