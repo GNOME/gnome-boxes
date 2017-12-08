@@ -14,9 +14,18 @@ custom_target ('desktop-file',
 
 dbus_conf = configuration_data ()
 dbus_conf.set ('bindir', join_paths (get_option ('prefix'), get_option ('bindir')))
+dbus_conf.set ('libexecdir', join_paths (get_option ('prefix'), get_option ('libexecdir')))
 configure_file (
   input: 'org.gnome.Boxes.service.in',
   output: 'org.gnome.Boxes.service',
+  configuration: dbus_conf,
+  install: true,
+  install_dir: join_paths (data_dir, 'dbus-1', 'services')
+)
+
+configure_file (
+  input: 'org.gnome.Boxes.SearchProvider.service.in',
+  output: 'org.gnome.Boxes.SearchProvider.service',
   configuration: dbus_conf,
   install: true,
   install_dir: join_paths (data_dir, 'dbus-1', 'services')

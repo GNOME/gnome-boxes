@@ -166,3 +166,13 @@ executable ('gnome-boxes', boxes_sources,
             link_with: libcommon,
             install: true
 )
+
+executable ('gnome-boxes-search-provider', 'gnome-boxes-search-provider.vala',
+            include_directories: config_h_dir,
+            vala_args: vala_args,
+            c_args: c_args,
+            dependencies: common_dependencies,
+            link_with: libcommon,
+            install: true,
+            install_dir: get_option ('libexecdir')
+)
