@@ -8,6 +8,9 @@ project ('gnome-boxes',
 gnome = import ('gnome')
 i18n = import ('i18n')
 
+cc = meson.get_compiler ('c')
+valac = meson.get_compiler ('vala')
+
 glib = dependency ('glib-2.0', version: '>= 2.38.0')
 gio = dependency ('gio-2.0', version: '>= 2.38.0')
 gobject = dependency ('gobject-2.0', version: '>= 2.44')
@@ -27,7 +30,14 @@ spice_client_gtk = dependency ('spice-client-gtk-3.0', version: '>= 0.32')
 tracker = dependency ('tracker-sparql-2.0')
 webkitgtk = dependency ('webkit2gtk-4.0')
 
-cc = meson.get_compiler ('c')
+src_dir = join_paths (meson.source_root (), 'src')
+vapi_dir = join_paths (meson.source_root (), 'vapi')
+
+config = valac.find_library ('config', dirs: src_dir)
+gio_workaround = valac.find_library ('gio-2.0-workaround', dirs: vapi_dir)
+linux = valac.find_library ('linux')
+posix = valac.find_library ('posix')
+rest = valac.find_library ('rest-0.7')
 
 pkglibdir = join_paths (get_option ('libdir'), meson.project_name ())
 libgd = subproject (

@@ -5,6 +5,43 @@ common_sources = [
   'util.vala',
 ]
 
+vala_args = [
+  '--enable-experimental',
+  '--target-glib', '2.44',
+  '--vapidir', vapi_dir,
+  '--vapidir', join_paths (vapi_dir, 'upstream'),
+  '--vapidir', join_paths (meson.build_root (), 'subprojects', 'libgd', 'libgd'),
+  '--gresources', resource_files,
+]
+
+common_dependencies = [
+  config,
+  glib,
+  gio,
+  libarchive,
+]
+
+c_args = [
+  '-DDATADIR="' + data_dir + '"',
+  '-DGNOMELOCALEDIR="' + locale_dir + '"',
+  '-DGETTEXT_PACKAGE="gnome-boxes"',
+  '-DCACHEDIR="/var/cache/"',
+  '-DG_LOG_DOMAIN="Boxes"',
+]
+
+if get_option ('buildtype').contains ('debug')
+  c_args += ['-O0', '-ggdb3']
+endif
+
+libcommon = static_library(
+  'common',
+  sources: common_sources,
+  include_directories: config_h_dir,
+  dependencies: common_dependencies,
+  vala_args: vala_args,
+  c_args: c_args
+)
+
 vala_sources = [
   'app.vala',
   'app-window.vala',
@@ -86,29 +123,13 @@ if govirt.found ()
 endif
 
 boxes_sources = [
-  common_sources,
   vala_sources,
   resources
 ]
 
-vala_args = [
-  '--enable-experimental',
-  '--target-glib', '2.44',
-  '--vapidir', meson.current_source_dir (),
-  '--vapidir', join_paths (meson.source_root (), 'vapi'),
-  '--vapidir', join_paths (meson.source_root (), 'vapi', 'upstream'),
-  '--vapidir', join_paths (meson.build_root (), 'subprojects', 'libgd', 'libgd'),
-  '--pkg', 'config',
-  '--pkg', 'gio-2.0-workaround',
-  '--pkg', 'posix',
-  '--pkg', 'linux',
-  '--pkg', 'rest-0.7',
-  '--gresources', resource_files,
-]
-
 dependencies = [
-  glib,
-  gio,
+  config,
+  gio_workaround,
   gobject,
   gtk,
   gtk_vnc,
@@ -119,12 +140,15 @@ dependencies = [
   libvirt_gconfig,
   libxml,
   libusb,
+  linux,
   spice_client_gtk,
   gudev,
   libosinfo,
   libsoup,
   libarchive,
+  rest,
   tracker,
+  posix,
   webkitgtk,
 ]
 
@@ -134,22 +158,11 @@ if govirt.found()
   endif
 endif
 
-c_args = [
-  '-DDATADIR="' + data_dir + '"',
-  '-DGNOMELOCALEDIR="' + locale_dir + '"',
-  '-DGETTEXT_PACKAGE="gnome-boxes"',
-  '-DCACHEDIR="/var/cache/"',
-  '-DG_LOG_DOMAIN="Boxes"',
-]
-
-if get_option ('buildtype').contains ('debug')
-  c_args += ['-O0', '-ggdb3']
-endif
-
 executable ('gnome-boxes', boxes_sources,
             include_directories: config_h_dir,
             vala_args: vala_args,
             c_args : c_args,
             dependencies: dependencies,
+            link_with: libcommon,
             install: true
 )
