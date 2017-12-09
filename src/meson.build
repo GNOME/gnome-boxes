@@ -77,7 +77,7 @@ vala_sources = [
 ]
 
 if govirt.found ()
-  if get_option ('enable-ovirt')
+  if get_option ('ovirt')
     vala_sources += [
       'ovirt-broker.vala',
       'ovirt-machine.vala',
@@ -106,10 +106,6 @@ vala_args = [
   '--gresources', resource_files,
 ]
 
-if get_option ('enable-debug')
-  vala_args += '-g'
-endif
-
 dependencies = [
   glib,
   gio,
@@ -133,7 +129,7 @@ dependencies = [
 ]
 
 if govirt.found()
-  if get_option ('enable-ovirt')
+  if get_option ('ovirt')
     dependencies += govirt
   endif
 endif
@@ -146,12 +142,8 @@ c_args = [
   '-DG_LOG_DOMAIN="Boxes"',
 ]
 
-if get_option ('enable-debug')
+if get_option ('buildtype').contains ('debug')
   c_args += ['-O0', '-ggdb3']
-endif
-
-if get_option ('enable-strict-cc')
-  c_args += ['-Wall', '-Werror']
 endif
 
 executable ('gnome-boxes', boxes_sources,
