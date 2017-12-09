@@ -32,23 +32,8 @@ help_media = [
   'figures/open-menu-symbolic.svg'
 ]
 
-help_linguas = [
-  'cs',
-  'de',
-  'el',
-  'es',
-  'fr',
-  'hu',
-  'it',
-  'ko',
-  'pl',
-  'pt_BR',
-  'sv'
-]
-
 gnome.yelp (meson.project_name (),
             sources: help_files,
             media: help_media,
-            languages: help_linguas,
             symlink_media: true,
 )
