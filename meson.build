@@ -69,7 +69,7 @@ endif
 configure_file (output: 'config.h', configuration: conf)
 config_h_dir = include_directories ('.')
 
-meson.add_install_script (join_paths ('build-aux', 'post_install.py'))
+meson.add_install_script (join_paths ('build-aux', 'post_install.py'), data_dir)
 
 subdir ('data')
 subdir ('help')

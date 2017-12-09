@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 
 import os
-import pathlib
 import subprocess
+import sys
 
-prefix = pathlib.Path(os.environ.get('MESON_INSTALL_PREFIX', '/usr/local'))
-datadir = prefix / 'share'
 destdir = os.environ.get('DESTDIR', '')
 
-if not destdir:
+if not destdir and len(sys.argv) > 1:
+    datadir = sys.argv[1]
+
     print('Compiling gsettings schemas...')
-    subprocess.call(['glib-compile-schemas', str(datadir / 'glib-2.0' / 'schemas')])
+    subprocess.call(['glib-compile-schemas', os.path.join(datadir, 'glib-2.0', 'schemas')])
 
     print('Updating icon cache...')
-    subprocess.call(['gtk-update-icon-cache', '-qtf', str(datadir / 'icons' / 'hicolor')])
+    subprocess.call(['gtk-update-icon-cache', '-qtf', os.path.join(datadir, 'icons', 'hicolor')])
 
     print('Updating desktop database...')
-    subprocess.call(['update-desktop-database', '-q', str(datadir / 'applications')])
+    subprocess.call(['update-desktop-database', '-q', os.path.join(datadir, 'icons', 'applications')])
