@@ -21,8 +21,6 @@ config_dep = valac.find_library ('config', dirs: src_dir)
 
 pkglibdir = join_paths (get_option ('libdir'), meson.project_name ())
 
-msgfmt = find_program ('msgfmt')
-
 po_dir = join_paths (meson.source_root (), 'po')
 data_dir = join_paths (get_option ('prefix'), get_option ('datadir'))
 locale_dir = join_paths (get_option ('prefix'), get_option ('localedir'))

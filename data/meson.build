@@ -5,12 +5,14 @@ resources = gnome.compile_resources ('org.gnome.Boxes',
                                      resource_files,
                                      c_name: 'resources')
 
-custom_target ('desktop-file',
-              input: 'org.gnome.Boxes.desktop.in',
-              output: 'org.gnome.Boxes.desktop',
-              install: true,
-              install_dir: join_paths (data_dir, 'applications'),
-              command: [msgfmt, '--desktop', '-d', '../po', '--template', '@INPUT@', '-o', '@OUTPUT@'])
+i18n.merge_file ('desktop-file',
+  type: 'desktop',
+  input: 'org.gnome.Boxes.desktop.in',
+  output: 'org.gnome.Boxes.desktop',
+  po_dir: po_dir,
+  install: true,
+  install_dir: join_paths (data_dir, 'applications')
+)
 
 dbus_conf = configuration_data ()
 dbus_conf.set ('bindir', join_paths (get_option ('prefix'), get_option ('bindir')))
@@ -31,12 +33,12 @@ configure_file (
   install_dir: join_paths (data_dir, 'dbus-1', 'services')
 )
 
-custom_target ('appdata-file',
+i18n.merge_file ('appdata-file',
   input: 'org.gnome.Boxes.appdata.xml.in',
   output: 'org.gnome.Boxes.appdata.xml',
+  po_dir: po_dir,
   install: true,
-  install_dir: join_paths (data_dir, 'metainfo'),
-  command: [ msgfmt, '--xml', '--template', '@INPUT@', '-d', po_dir, '-o', '@OUTPUT@' ],
+  install_dir: join_paths (data_dir, 'metainfo')
 )
 
 gsettings_conf = configuration_data ()
