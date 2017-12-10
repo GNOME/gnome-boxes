@@ -57,7 +57,7 @@ msgfmt = find_program ('msgfmt')
 
 po_dir = join_paths (meson.source_root (), 'po')
 data_dir = join_paths (get_option ('prefix'), get_option ('datadir'))
-locale_dir = join_paths (data_dir, '/locale')
+locale_dir = join_paths (get_option ('prefix'), get_option ('localedir'))
 
 conf = configuration_data ()
 conf.set_quoted ('DISTRIBUTOR_NAME', get_option ('distributor_name'))
