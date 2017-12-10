@@ -10,8 +10,7 @@ vala_args = [
   '--target-glib', '2.44',
   '--vapidir', vapi_dir,
   '--vapidir', join_paths (vapi_dir, 'upstream'),
-  '--vapidir', join_paths (meson.build_root (), 'subprojects', 'libgd', 'libgd'),
-  '--gresources', resource_files,
+  '--vapidir', join_paths (meson.build_root (), 'subprojects', 'libgd', 'libgd')
 ]
 
 common_dependencies = [
