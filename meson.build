@@ -85,3 +85,7 @@ subdir ('data')
 subdir ('help')
 subdir ('po')
 subdir ('src')
+
+if get_option ('installed_tests')
+  subdir ('tests')
+endif
