@@ -6,7 +6,7 @@ resources = gnome.compile_resources ('org.gnome.Boxes',
                                      c_name: 'resources')
 
 custom_target ('desktop-file',
-              input: files ('org.gnome.Boxes.desktop.in.in'),
+              input: 'org.gnome.Boxes.desktop.in',
               output: 'org.gnome.Boxes.desktop',
               install: true,
               install_dir: join_paths (data_dir, 'applications'),

@@ -189,7 +189,6 @@ BEHAVE_INSTALLED_TESTS
 AC_CONFIG_FILES([
   Makefile
   data/Makefile
-  data/org.gnome.Boxes.desktop.in
   data/icons/Makefile
   data/osinfo/Makefile
   help/Makefile
