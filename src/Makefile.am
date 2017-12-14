@@ -161,6 +161,7 @@ gnome_boxes_SOURCES =				\
 	empty-boxes.vala			\
 	tracker-iso-query.vala			\
 	transfer-info-row.vala          \
+	transfer-popover.vala         	\
 	troubleshoot-log.vala			\
 	troubleshoot-view.vala			\
 	shared-folder-popover.vala		\
