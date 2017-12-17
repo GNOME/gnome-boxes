@@ -9,6 +9,11 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     [GtkChild]
     private Gtk.Image fullscreen_image;
     [GtkChild]
+    private Gtk.DrawingArea transfers_drawing_area;
+    [GtkChild]
+    public Gtk.Button transfers_button;
+    [GtkChild]
+
     private Gtk.Button back;
     [GtkChild]
     private Gtk.Button fullscreen;
@@ -18,6 +23,21 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
     private Gtk.MenuButton keys_menu_button;
 
     private AppWindow window;
+
+    private double _progress = 0;
+    public double progress {
+        get {
+            return _progress;
+        }
+        set {
+            if (!transfers_button.get_visible ())
+                transfers_button.set_visible (true);
+
+            _progress =  value;
+
+            transfers_drawing_area.queue_draw ();
+        }
+    }
 
     public DisplayToolbar (bool overlay, bool handle_drag) {
         Object (overlay: overlay,
@@ -68,6 +88,33 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
                 (menu_button.popover as ActionsPopover).update_for_item (window.current_item);
         });
         keys_menu_button.popover = new KeysInputPopover (window);
+        transfers_drawing_area.draw.connect (on_draw);
+    }
+
+    private bool on_draw (Widget da, Cairo.Context ctx) {
+
+        var width = transfers_drawing_area.get_allocated_width ();
+        var height = transfers_drawing_area.get_allocated_height ();
+
+        ctx.set_line_join (Cairo.LineJoin.ROUND);
+
+        var style_context = transfers_button.get_style_context ();
+        var foreground = style_context.get_color (transfers_button.get_state_flags ());
+        var background = foreground;
+
+        background.alpha *= 0.3;
+        ctx.set_source_rgba (background.red, background.green, background.blue, background.alpha);
+        ctx.arc (width / 2, height / 2, height / 3, -Math.PI / 2, 3*Math.PI/2);
+        ctx.fill ();
+
+        ctx.move_to (width / 2, height / 2);
+        ctx.set_source_rgba (foreground.red, foreground.green, foreground.blue, foreground.alpha);
+
+        double radians = -Math.PI/2 + 2*Math.PI * _progress;
+        ctx.arc (width / 2, height / 2, height / 3, -Math.PI / 2, radians);
+        ctx.fill ();
+
+        return true;
     }
 
     private bool button_down;
