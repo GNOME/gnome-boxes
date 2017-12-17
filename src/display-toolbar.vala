@@ -89,6 +89,13 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
         });
         keys_menu_button.popover = new KeysInputPopover (window);
         transfers_drawing_area.draw.connect (on_draw);
+        transfers_button.clicked.connect ( () => {
+            var popover = window.display_page.transfer_popover;
+            if (popover.visible)
+                popover.popdown ();
+            else
+                popover.popup ();
+        });
     }
 
     private bool on_draw (Widget da, Cairo.Context ctx) {
