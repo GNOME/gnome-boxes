@@ -50,6 +50,6 @@ private class Boxes.SelectionToolbar: HeaderBar {
     }
 
     private void update_search_btn () {
-        search_btn.sensitive = App.app.collection.items.length != 0;
+        search_btn.sensitive = App.app.collection.length != 0;
     }
 }

@@ -231,7 +231,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         switch (ui_state) {
         case UIState.COLLECTION:
-            if (App.app.collection.items.length != 0)
+            if (App.app.collection.length != 0)
                 below_bin.visible_child = view;
             else
                 below_bin.visible_child = empty_boxes;

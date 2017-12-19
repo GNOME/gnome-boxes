@@ -26,7 +26,7 @@ private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
     }
 
     private void update_visibility () {
-        var visible = App.app.collection.items.length == 0;
+        var visible = App.app.collection.length == 0;
         if (visible && visible_child != grid_box)
             visible_child = grid_box;
 

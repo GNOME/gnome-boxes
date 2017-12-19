@@ -50,7 +50,7 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
     }
 
     private void update_sensitivity () {
-        sensitive = (App.app.collection.items.length != 0);
+        sensitive = (App.app.collection.length != 0);
     }
 
     [GtkCallback]

@@ -118,13 +118,13 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     }
 
     private void update_delete_btn () {
-        foreach (var item in App.app.collection.items.data) {
+        App.app.collection.foreach_item ((item) => {
             var can_delete_id = item.get_data<ulong> ("can_delete_id");
             if (can_delete_id > 0) {
                     item.disconnect (can_delete_id);
                     item.set_data<ulong> ("can_delete_id", 0);
             }
-        }
+        });
 
         var sensitive = App.app.selected_items.length () > 0;
         foreach (var item in App.app.selected_items) {
@@ -144,13 +144,13 @@ private class Boxes.Selectionbar: Gtk.Revealer {
     }
 
     private void update_open_btn () {
-        foreach (var item in App.app.collection.items.data) {
+        App.app.collection.foreach_item ((item) => {
             var importing_id = item.get_data<ulong> ("importing_id");
             if (importing_id > 0) {
                 item.disconnect (importing_id);
                 item.set_data<ulong> ("importing_id", 0);
             }
-        }
+        });
 
         var items = App.app.selected_items.length ();
         var sensitive = items > 0;

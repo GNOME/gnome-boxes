@@ -80,11 +80,11 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     private void update_search_btn () {
-        search_btn.sensitive = App.app.collection.items.length != 0;
+        search_btn.sensitive = App.app.collection.length != 0;
     }
 
     private void update_select_btn () {
-        select_btn.sensitive = App.app.collection.items.length != 0;
+        select_btn.sensitive = App.app.collection.length != 0;
     }
 
     private void update_view_type (AppWindow.ViewType view_type) {

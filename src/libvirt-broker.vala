@@ -140,7 +140,9 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             var disk_path = (clone.vm_creator as VMImporter).source_media.device_file;
             LibvirtMachine? cloned = null;
 
-            foreach (var item in App.app.collection.items.data) {
+            for (int i = 0 ; i < App.app.collection.length ; i++) {
+                var item = App.app.collection.get_item (i);
+
                 if (!(item is LibvirtMachine))
                     continue;
 

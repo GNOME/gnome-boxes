@@ -30,28 +30,49 @@ private class Boxes.Collection: GLib.Object {
     public signal void item_added (CollectionItem item);
     public signal void item_removed (CollectionItem item);
 
-    public GenericArray<CollectionItem> items;
+    public GLib.ListStore items;
+
+    public uint length {
+        get { return items.get_n_items (); }
+    }
+
+    public delegate void CollectionForeachFunc (CollectionItem item);
 
     construct {
-        items = new GenericArray<CollectionItem> ();
+        items = new GLib.ListStore (typeof (CollectionItem));
     }
 
     public Collection () {
     }
 
+    public CollectionItem get_item (int position) {
+        return items.get_item (position) as CollectionItem;
+    }
+
     public void add_item (CollectionItem item) {
-        items.add (item);
+        items.append (item);
         item_added (item);
     }
 
     public void remove_item (CollectionItem item) {
-        items.remove (item);
-        item_removed (item);
+        for (int i = 0 ; i < length ; i++) {
+           if (get_item (i) == item) {
+                items.remove (i);
+                item_removed (item);
+
+                break;
+            }
+        }
     }
 
     public void populate (ICollectionView view) {
-        for (uint i = 0 ; i < items.length ; i++)
-            view.add_item (items[i]);
+        for (int i = 0 ; i < length ; i++)
+            view.add_item (get_item (i));
+    }
+
+    public void foreach_item (CollectionForeachFunc foreach_func) {
+        for (int i = 0 ; i < length ; i++)
+            foreach_func (get_item (i));
     }
 }
 

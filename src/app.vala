@@ -4,7 +4,9 @@ private abstract class Boxes.Broker : GLib.Object {
     // Overriding subclass should chain-up at the end of its implementation
     public virtual async void add_source (CollectionSource source) throws GLib.Error {
         var used_configs = new GLib.List<BoxConfig> ();
-        foreach (var item in App.app.collection.items.data) {
+        for (int i = 0; i < App.app.collection.length; i++) {
+            var item = App.app.collection.get_item (i);
+
             if (!(item is Machine))
                 continue;
 
@@ -294,7 +296,9 @@ private class Boxes.App: Gtk.Application {
         main_window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
-        foreach (var item in collection.items.data) {
+        for (int i = 0 ; i < collection.length ; i++) {
+            var item = collection.get_item (i);
+
             if (item.name == name) {
                 main_window.select_item (item);
 
@@ -307,7 +311,9 @@ private class Boxes.App: Gtk.Application {
         main_window.set_state (UIState.COLLECTION);
 
         // after "ready" all items should be listed
-        foreach (var item in collection.items.data) {
+        for (int i = 0 ; i < collection.length ; i++) {
+            var item = collection.get_item (i);
+
             if (!(item is Boxes.Machine))
                 continue;
             var machine = item as Boxes.Machine;
@@ -491,7 +497,7 @@ private class Boxes.App: Gtk.Application {
         var context = new MainContext ();
 
         context.push_thread_default ();
-        foreach (var item in collection.items.data) {
+        collection.foreach_item ((item) => {
             if (item is LibvirtMachine) {
                 var machine = item as LibvirtMachine;
 
@@ -503,7 +509,7 @@ private class Boxes.App: Gtk.Application {
                     });
                 }
             }
-        }
+        });
         context.pop_thread_default ();
 
         // wait for async methods to complete
