@@ -95,7 +95,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Gtk.Stack below_bin;
     [GtkChild]
-    public IconView icon_view;
+    private IconView icon_view;
     [GtkChild]
     private ListView list_view;
 

@@ -114,6 +114,7 @@ gnome_boxes_SOURCES =				\
 	i-properties-provider.vala		\
 	i-collection-view.vala			\
 	icon-view.vala				\
+	icon-view-child.vala			\
 	installer-media.vala 			\
 	installed-media.vala 			\
 	keys-input-popover.vala			\

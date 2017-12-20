@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesIconViewChild" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="orientation">vertical</property>
+
+    <child>
+      <object class="GtkOverlay" id="overlay">
+        <property name="visible">True</property>
+
+        <child type="overlay">
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="valign">end</property>
+            <property name="margin">10</property>
+            <property name="margin-start">20</property>
+            <property name="margin-end">20</property>
+
+            <child>
+              <object class="GtkImage" id="favorite">
+                <property name="visible">True</property>
+                <property name="width-request">16</property>
+                <property name="height-request">16</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkCheckButton" id="selection_button">
+                <property name="visible">False</property>
+                <property name="can-focus">False</property>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkStack" id="stack">
+            <property name="visible">True</property>
+            <child>
+              <object class="GtkImage" id="thumbnail">
+                <property name="visible">True</property>
+              </object>
+
+              <packing>
+                <property name="name">thumbnail</property>
+              </packing>
+            </child>
+
+            <child>
+              <object class="GtkSpinner" id="spinner">
+                <property name="visible">True</property>
+                <property name="height-request">8</property>
+                <property name="width-request">8</property>
+                <property name="halign">0.5</property>
+                <property name="valign">0.5</property>
+                <style>
+                  <class name="slow-spinner"/>
+                </style>
+              </object>
+
+              <packing>
+                <property name="name">spinner</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkLabel" id="machine_name">
+        <property name="visible">True</property>
+        <property name="width-request">192</property>
+        <property name="max-width-chars">128</property>
+        <property name="justify">left</property>
+        <property name="halign">start</property>
+        <property name="hexpand">True</property>
+        <property name="valign">center</property>
+        <property name="ellipsize">end</property>
+        <property name="margin-top">10</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+      </packing>
+    </child>
+
+  </template>
+</interface>
