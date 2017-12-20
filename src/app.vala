@@ -127,10 +127,10 @@ private class Boxes.App: Gtk.Application {
         collection = new Collection ();
 
         collection.item_added.connect ((item) => {
-            main_window.foreach_view ((view) => { view.add_item (item); });
+            main_window.icon_view.add_item (item);
         });
         collection.item_removed.connect ((item) => {
-            main_window.foreach_view ((view) => { view.remove_item (item); });
+            main_window.icon_view.remove_item (item);
         });
 
         brokers.insert ("libvirt", LibvirtBroker.get_default ());

@@ -113,26 +113,9 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             return;
         }
 
-        add_row (item);
         items_connections[item] = new ItemConnections (this, machine);
 
         item.set_state (window.ui_state);
-    }
-
-    private void add_row (CollectionItem item) {
-        var box_row = new Gtk.ListBoxRow ();
-        size_group.add_widget (box_row);
-        var view_row = new ListViewRow (item);
-
-        view_row.notify["selected"].connect (() => {
-            propagate_view_row_selection (view_row);
-        });
-
-        box_row.visible = true;
-        view_row.visible = true;
-
-        box_row.add (view_row);
-        list_box.add (box_row);
     }
 
     public void remove_item (CollectionItem item) {
@@ -148,7 +131,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
                 return;
 
             if (view_row.item == item) {
-                list_box.remove (box_row);
                 size_group.remove_widget (box_row);
             }
         });
@@ -205,8 +187,22 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     }
 
     private void setup_list_box () {
+        list_box.bind_model (App.app.collection.items, (item) => {
+            var box_row = new Gtk.ListBoxRow ();
+            size_group.add_widget (box_row);
+            var view_row = new ListViewRow (item as CollectionItem);
+            box_row.add (view_row);
+
+            view_row.notify["selected"].connect (() => {
+                propagate_view_row_selection (view_row);
+            });
+
+            box_row.visible = true;
+            view_row.visible = true;
+
+            return box_row;
+        });
         list_box.selection_mode = Gtk.SelectionMode.NONE;
-        list_box.set_sort_func (model_sort);
         list_box.set_filter_func (model_filter);
 
         list_box.row_activated.connect ((box_row) => {
@@ -239,18 +235,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
             func (box_row);
         });
-    }
-
-    private int model_sort (Gtk.ListBoxRow box_row1, Gtk.ListBoxRow box_row2) {
-        var view_row1 = box_row1.get_child () as ListViewRow;
-        var view_row2 = box_row2.get_child () as ListViewRow;
-        var item1 = view_row1.item;
-        var item2 = view_row2.item;
-
-        if (item1 == null || item2 == null)
-            return 0;
-
-        return item1.compare (item2);
     }
 
     private bool model_filter (Gtk.ListBoxRow box_row) {
