@@ -50,7 +50,13 @@ private class Boxes.Collection: GLib.Object {
     }
 
     public void add_item (CollectionItem item) {
-        items.append (item);
+        items.insert_sorted (item, (item1, item2) => {
+            if (item1 == null || item2 == null)
+                return 0;
+
+            return (item1 as CollectionItem).compare (item2 as CollectionItem);
+        });
+
         item_added (item);
     }
 
