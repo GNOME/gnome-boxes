@@ -32,6 +32,8 @@ private class Boxes.Collection: GLib.Object {
 
     public GLib.ListStore items;
 
+    private GLib.List<CollectionItem> hidden_items;
+
     public uint length {
         get { return items.get_n_items (); }
     }
@@ -40,6 +42,7 @@ private class Boxes.Collection: GLib.Object {
 
     construct {
         items = new GLib.ListStore (typeof (CollectionItem));
+        hidden_items = new GLib.List<CollectionItem> ();
     }
 
     public Collection () {
@@ -50,6 +53,36 @@ private class Boxes.Collection: GLib.Object {
     }
 
     public void add_item (CollectionItem item) {
+        var machine = item as Machine;
+
+        if (machine == null) {
+            warning ("Cannot add item %p".printf (&item));
+
+            return;
+        }
+
+        var window = machine.window;
+        if (window.ui_state == UIState.WIZARD) {
+            // Don't show newly created items until user is out of wizard
+            hidden_items.append (item);
+
+            ulong ui_state_id = 0;
+            ui_state_id = window.notify["ui-state"].connect (() => {
+                if (window.ui_state == UIState.WIZARD)
+                    return;
+
+                if (hidden_items.find (item) != null) {
+                    add_item (item);
+                    hidden_items.remove (item);
+                }
+                window.disconnect (ui_state_id);
+            });
+
+            return;
+        }
+
+        item.set_state (window.ui_state);
+
         items.insert_sorted (item, (item1, item2) => {
             if (item1 == null || item2 == null)
                 return 0;
@@ -61,6 +94,7 @@ private class Boxes.Collection: GLib.Object {
     }
 
     public void remove_item (CollectionItem item) {
+        hidden_items.remove (item);
         for (int i = 0 ; i < length ; i++) {
            if (get_item (i) == item) {
                 items.remove (i);

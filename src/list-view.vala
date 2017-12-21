@@ -12,7 +12,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
     private Gtk.SizeGroup size_group;
 
-    private GLib.List<CollectionItem> hidden_items;
     private HashTable<CollectionItem, ItemConnections> items_connections;
 
     private AppWindow window;
@@ -53,7 +52,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     }
 
     construct {
-        hidden_items = new GLib.List<CollectionItem> ();
         items_connections = new HashTable<CollectionItem, ItemConnections> (direct_hash, direct_equal);
 
         setup_list_box ();
@@ -86,40 +84,10 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     public void add_item (CollectionItem item) {
         var machine = item as Machine;
 
-        if (machine == null) {
-            warning ("Cannot add item %p".printf (&item));
-
-            return;
-        }
-
-        var window = machine.window;
-        if (window.ui_state == UIState.WIZARD) {
-            // Don't show newly created items until user is out of wizard
-            hidden_items.append (item);
-
-            ulong ui_state_id = 0;
-
-            ui_state_id = window.notify["ui-state"].connect (() => {
-                if (window.ui_state == UIState.WIZARD)
-                    return;
-
-                if (hidden_items.find (item) != null) {
-                    add_item (item);
-                    hidden_items.remove (item);
-                }
-                window.disconnect (ui_state_id);
-            });
-
-            return;
-        }
-
         items_connections[item] = new ItemConnections (this, machine);
-
-        item.set_state (window.ui_state);
     }
 
     public void remove_item (CollectionItem item) {
-        hidden_items.remove (item);
         items_connections.remove (item);
         remove_row (item);
     }

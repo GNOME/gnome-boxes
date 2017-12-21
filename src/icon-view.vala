@@ -16,8 +16,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     [GtkChild]
     private Gtk.FlowBox flowbox;
 
-    private GLib.List<CollectionItem> hidden_items;
-
     private AppWindow window;
     private Boxes.ActionsPopover context_popover;
 
@@ -32,7 +30,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
-        hidden_items = new GLib.List<CollectionItem> ();
 
         setup_flowbox ();
 
@@ -60,37 +57,9 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     }
 
     public void add_item (CollectionItem item) {
-        var machine = item as Machine;
-
-        if (machine == null) {
-            warning ("Cannot add item %p".printf (&item));
-            return;
-        }
-
-        var window = machine.window;
-        if (window.ui_state == UIState.WIZARD) {
-            // Don't show newly created items until user is out of wizard
-            hidden_items.append (item);
-
-            ulong ui_state_id = 0;
-
-            ui_state_id = window.notify["ui-state"].connect (() => {
-                if (window.ui_state == UIState.WIZARD)
-                    return;
-
-                if (hidden_items.find (item) != null) {
-                    add_item (item);
-                    hidden_items.remove (item);
-                }
-                window.disconnect (ui_state_id);
-            });
-
-            return;
-        }
     }
 
     public void remove_item (CollectionItem item) {
-        hidden_items.remove (item);
     }
 
     public void select_by_criteria (SelectionCriteria criteria) {
