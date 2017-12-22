@@ -7,7 +7,6 @@ common_sources = [
 
 vala_args = [
   '--enable-experimental',
-  '--target-glib', '2.44',
   '--vapidir', vapi_dir,
   '--vapidir', join_paths (vapi_dir, 'upstream'),
   '--vapidir', join_paths (meson.build_root (), 'subprojects', 'libgd', 'libgd')
@@ -16,8 +15,8 @@ vala_args = [
 common_dependencies = [
   config_dep,
   libarchive_dep,
-  dependency ('gio-2.0', version: '>= 2.38.0'),
-  dependency ('glib-2.0', version: '>= 2.38.0')
+  dependency ('gio-2.0', version: '>= 2.44.0'),
+  dependency ('glib-2.0', version: '>= 2.44.0')
 ]
 
 c_args = [
