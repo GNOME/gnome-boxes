@@ -14,10 +14,10 @@ vala_args = [
 ]
 
 common_dependencies = [
-  config,
-  glib,
-  gio,
-  libarchive,
+  config_dep,
+  libarchive_dep,
+  dependency ('gio-2.0', version: '>= 2.38.0'),
+  dependency ('glib-2.0', version: '>= 2.38.0')
 ]
 
 c_args = [
@@ -112,7 +112,7 @@ vala_sources = [
   'snapshots-property.vala',
 ]
 
-if govirt.found ()
+if govirt_dep.found ()
   if get_option ('ovirt')
     vala_sources += [
       'ovirt-broker.vala',
@@ -127,33 +127,33 @@ boxes_sources = [
 ]
 
 dependencies = [
-  config,
-  gio_workaround,
-  gobject,
-  gtk,
-  gtk_vnc,
+  config_dep,
+  libarchive_dep,
   libgd_dep,
   libgd_vapi_dep,
-  libsecret,
-  libvirt_glib,
-  libvirt_gconfig,
-  libxml,
-  libusb,
-  linux,
-  spice_client_gtk,
-  gudev,
-  libosinfo,
-  libsoup,
-  libarchive,
-  rest,
-  tracker,
-  posix,
-  webkitgtk,
+  dependency ('gobject-2.0', version: '>= 2.44'),
+  dependency ('gtk+-3.0', version: '>= 3.19.8'),
+  dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
+  dependency ('gudev-1.0', version: '>= 165'),
+  dependency ('libosinfo-1.0', version: '>= 1.1.0'),
+  dependency ('libsecret-1'),
+  dependency ('libsoup-2.4', version: '>= 2.38'),
+  dependency ('libusb-1.0', version: '>= 1.0.9'),
+  dependency ('libvirt-gconfig-1.0', version: '>= 0.2.0'),
+  dependency ('libvirt-gobject-1.0', version: '>= 0.2.0'),
+  dependency ('libxml-2.0', version: '>= 2.7.8'),
+  dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
+  dependency ('tracker-sparql-2.0'),
+  dependency ('webkit2gtk-4.0'),
+  valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
+  valac.find_library ('linux'),
+  valac.find_library ('posix'),
+  valac.find_library ('rest-0.7')
 ]
 
-if govirt.found()
+if govirt_dep.found()
   if get_option ('ovirt')
-    dependencies += govirt
+    dependencies += govirt_dep
   endif
 endif
 
