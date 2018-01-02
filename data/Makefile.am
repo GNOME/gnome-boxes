@@ -52,7 +52,7 @@ org.gnome.Boxes.service: org.gnome.Boxes.service.in Makefile
 
 EXTRA_DIST =					\
 	org.gnome.Boxes.desktop.in		\
-	gnome-boxes-search-provider.ini.in      \
+	gnome-boxes-search-provider.ini		\
 	org.gnome.Boxes.service.in	\
 	$(gresource_file)			\
 	$(gsettings_SCHEMAS)			\
@@ -76,12 +76,8 @@ DISTCLEANFILES =				\
 	$(NULL)
 
 MAINTAINERCLEANFILES =				\
-	gnome-boxes-search-provider.ini		\
 	org.gnome.boxes.gschema.valid		\
 	$(NULL)
-
-gnome-boxes-search-provider.ini: gnome-boxes-search-provider.ini.in
-	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 org.gnome.Boxes.SearchProvider.service: org.gnome.Boxes.SearchProvider.service.in Makefile
 	$(AM_V_GEN) [ -d $(@D) ] || $(mkdir_p) $(@D) ; \

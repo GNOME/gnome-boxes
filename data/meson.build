@@ -39,13 +39,6 @@ custom_target ('appdata-file',
   command: [ msgfmt, '--xml', '--template', '@INPUT@', '-d', po_dir, '-o', '@OUTPUT@' ],
 )
 
-configure_file (
-  input: 'gnome-boxes-search-provider.ini.in',
-  output: 'gnome-boxes-search-provider.ini',
-  configuration: configuration_data (),
-  install_dir: join_paths (data_dir, 'gnome-shell', 'search-providers'),
-)
-
 gsettings_conf = configuration_data ()
 gsettings_conf.set ('GETTEXT_PACKAGE', meson.project_name ())
 configure_file (
@@ -56,6 +49,7 @@ configure_file (
   install_dir: join_paths(data_dir, 'glib-2.0', 'schemas'),
 )
 
+install_data ('gnome-boxes-search-provider.ini', install_dir : join_paths (data_dir, 'gnome-shell', 'search-providers'))
 install_data ('QEMU_Session', install_dir : join_paths (data_dir, 'gnome-boxes/sources'))
 install_data ('disk.img', install_dir : join_paths (data_dir, 'gnome-boxes/unattended'))
 
