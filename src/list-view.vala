@@ -88,20 +88,13 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     }
 
     public void remove_item (CollectionItem item) {
-        items_connections.remove (item);
-        remove_row (item);
     }
 
-    private void remove_row (CollectionItem item) {
-        foreach_row ((box_row) => {
-            var view_row = box_row.get_child () as ListViewRow;
-            if (view_row == null)
-                return;
+    private void remove_row (Gtk.Widget row) {
+        var item = row as CollectionItem;
+        items_connections.remove (item);
 
-            if (view_row.item == item) {
-                size_group.remove_widget (box_row);
-            }
-        });
+        size_group.remove_widget (row);
     }
 
     public void select_by_criteria (SelectionCriteria criteria) {
@@ -183,6 +176,8 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
             window.select_item (item);
         });
+
+        (list_box as Gtk.Container).remove.connect (remove_row);
 
         update_selection_mode ();
     }
