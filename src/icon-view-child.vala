@@ -35,7 +35,7 @@ private class Boxes.IconViewChild : Gtk.Box {
     [GtkChild]
     private Gtk.Stack stack;
     [GtkChild]
-    private Gtk.Image thumbnail;
+    public Gtk.Image thumbnail;
     [GtkChild]
     private Gtk.Spinner spinner;
     [GtkChild]

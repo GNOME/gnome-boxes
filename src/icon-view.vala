@@ -201,8 +201,10 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         if (item == null)
             return false;
 
+        var thumbnail = (child.get_child () as IconViewChild).thumbnail;
+
         context_popover.update_for_item (item);
-        context_popover.set_relative_to (child);
+        context_popover.set_relative_to (thumbnail);
         context_popover.show ();
 
         return true;
