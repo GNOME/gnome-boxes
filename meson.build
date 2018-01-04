@@ -20,18 +20,6 @@ vapi_dir = join_paths (meson.source_root (), 'vapi')
 config_dep = valac.find_library ('config', dirs: src_dir)
 
 pkglibdir = join_paths (get_option ('libdir'), meson.project_name ())
-libgd = subproject (
-  'libgd',
-  default_options: [
-    'pkglibdir=' + pkglibdir,
-    'with-gtk-hacks=true',
-    'with-main-view=true',
-    'with-vapi=true',
-  ],
-)
-
-libgd_vapi_dep = libgd.get_variable ('libgd_vapi_dep')
-libgd_dep = libgd.get_variable('libgd_dep')
 
 msgfmt = find_program ('msgfmt')
 

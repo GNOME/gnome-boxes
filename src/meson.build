@@ -9,7 +9,6 @@ vala_args = [
   '--enable-experimental',
   '--vapidir', vapi_dir,
   '--vapidir', join_paths (vapi_dir, 'upstream'),
-  '--vapidir', join_paths (meson.build_root (), 'subprojects', 'libgd', 'libgd')
 ]
 
 common_dependencies = [
@@ -129,8 +128,6 @@ boxes_sources = [
 dependencies = [
   config_dep,
   libarchive_dep,
-  libgd_dep,
-  libgd_vapi_dep,
   dependency ('gobject-2.0', version: '>= 2.44'),
   dependency ('gtk+-3.0', version: '>= 3.19.8'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
