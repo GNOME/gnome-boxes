@@ -105,11 +105,6 @@ private class Boxes.Collection: GLib.Object {
         }
     }
 
-    public void populate (ICollectionView view) {
-        for (int i = 0 ; i < length ; i++)
-            view.add_item (get_item (i));
-    }
-
     public void foreach_item (CollectionForeachFunc foreach_func) {
         for (int i = 0 ; i < length ; i++)
             foreach_func (get_item (i));

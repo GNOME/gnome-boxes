@@ -591,7 +591,6 @@ private class Boxes.App: Gtk.Application {
             return quit_app ();
 
         var initial_windows_count = windows.length ();
-        bool window_was_main = (window == main_window);
 
         if (window.current_item != null)
             (window.current_item as Machine).window = null;
@@ -600,11 +599,6 @@ private class Boxes.App: Gtk.Application {
 
         windows.remove (window);
         base.remove_window (window);
-
-        // If the main window have been removed,
-        // populate the new main window's collection view.
-        if (window_was_main)
-            main_window.foreach_view ((view) => { collection.populate (view); });
 
         notify_property ("main-window");
 
