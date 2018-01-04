@@ -81,12 +81,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         context_popover = new Boxes.ActionsPopover (window);
     }
 
-    public void add_item (CollectionItem item) {
-    }
-
-    public void remove_item (CollectionItem item) {
-    }
-
     private void add_row (Gtk.Widget row) {
         var item = row as CollectionItem;
         var machine = item as Machine;

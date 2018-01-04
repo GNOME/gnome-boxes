@@ -56,12 +56,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         context_popover = new Boxes.ActionsPopover (window);
     }
 
-    public void add_item (CollectionItem item) {
-    }
-
-    public void remove_item (CollectionItem item) {
-    }
-
     public void select_by_criteria (SelectionCriteria criteria) {
         window.selection_mode = true;
 
