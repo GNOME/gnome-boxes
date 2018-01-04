@@ -82,12 +82,16 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     }
 
     public void add_item (CollectionItem item) {
-        var machine = item as Machine;
-
-        items_connections[item] = new ItemConnections (this, machine);
     }
 
     public void remove_item (CollectionItem item) {
+    }
+
+    private void add_row (Gtk.Widget row) {
+        var item = row as CollectionItem;
+        var machine = item as Machine;
+
+        items_connections[item] = new ItemConnections (this, machine);
     }
 
     private void remove_row (Gtk.Widget row) {
@@ -177,6 +181,7 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             window.select_item (item);
         });
 
+        (list_box as Gtk.Container).add.connect (add_row);
         (list_box as Gtk.Container).remove.connect (remove_row);
 
         update_selection_mode ();
