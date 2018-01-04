@@ -563,16 +563,6 @@ namespace Boxes {
         }
     }
 
-    // shamelessly copied from gnome-documents
-    public GLib.Icon create_symbolic_emblem (string name) {
-        var pix = Gd.create_symbolic_icon (name, 128);
-
-        if (pix == null)
-            pix = new GLib.ThemedIcon (name);
-
-        return pix;
-    }
-
     public Gdk.Pixbuf? paint_empty_frame (int width, int height, double radius, Gdk.RGBA border_color, Gdk.RGBA? bg_color) {
         var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
         var cr = new Cairo.Context (surface);
