@@ -147,7 +147,8 @@ dependencies = [
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
   valac.find_library ('linux'),
   valac.find_library ('posix'),
-  valac.find_library ('rest-0.7')
+  valac.find_library ('rest-0.7'),
+  valac.find_library ('spice-client-gtk-3.0'),
 ]
 
 if govirt_dep.found()
