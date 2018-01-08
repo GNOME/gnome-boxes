@@ -1,7 +1,7 @@
-ACLOCAL_AMFLAGS = -I m4 -I libgd ${ACLOCAL_FLAGS}
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 NULL =
 
-SUBDIRS = data help libgd src po vapi
+SUBDIRS = data help src po vapi
 
 DISTCLEANFILES =				\
 	$(NULL)

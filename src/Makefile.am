@@ -11,7 +11,6 @@ AM_CPPFLAGS =						\
 	-DCACHEDIR=\""$(cachedir)"\"			\
 	$(DISABLE_DEPRECATED)				\
 	-DG_LOG_DOMAIN=\""Boxes"\"			\
-	-I$(top_srcdir)/libgd                           \
 	$(NULL)
 
 gresource_file = $(top_srcdir)/data/gnome-boxes.gresource.xml
@@ -20,12 +19,10 @@ AM_VALAFLAGS =						\
 	--enable-experimental				\
 	--target-glib=@GLIB_MIN_VERSION@		\
 	--vapidir=$(srcdir)/				\
-	--vapidir=$(top_srcdir)/libgd                   \
 	--vapidir=$(top_srcdir)/vapi                    \
 	--vapidir=$(top_srcdir)/vapi/upstream           \
 	--pkg config					\
 	--pkg common					\
-	--pkg gd-1.0					\
 	--pkg gdk-pixbuf-2.0				\
 	--pkg gio-2.0-workaround			\
 	--pkg glib-2.0					\
@@ -172,7 +169,6 @@ gnome_boxes_SOURCES =				\
 gnome_boxes_LDADD =				\
 	$(BOXES_LIBS)				\
 	$(TRACKER_LIBS)				\
-	$(top_builddir)/libgd/libgd.la		\
 	libcommon.a				\
 	$(NULL)
 

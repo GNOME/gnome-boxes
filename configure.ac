@@ -106,8 +106,6 @@ PKG_CHECK_MODULES(BOXES_COMMON, [
 VALA_ADD_CHECKFILE([src/libcommon_vala.stamp])
 VALA_ADD_CHECKFILE([src/gnome_boxes_search_provider_vala.stamp])
 
-VALA_ADD_CHECKFILE([libgd/gd-1.0.vapi])
-
 AC_ARG_WITH([distributor-name],
             AS_HELP_STRING([--with-distributor-name], [Distributor name used in HTTP user agent]))
 
@@ -167,15 +165,6 @@ VALA_CHECK([0.36.0], [
   spice-client-gtk-3.0
 ])
 
-dnl libgd
-LIBGD_INIT([
-  gtk-hacks
-  main-view
-  main-icon-view
-  static
-  vapi
-])
-
 dnl Strict compiler
 AC_ARG_ENABLE([strict-cc],
   AS_HELP_STRING([--enable-strict-cc],[Enable strict C compiler]))
@@ -204,7 +193,6 @@ AC_CONFIG_FILES([
   data/icons/Makefile
   data/osinfo/Makefile
   help/Makefile
-  libgd/Makefile
   po/Makefile.in
   src/Makefile
   vapi/Makefile
