@@ -7,11 +7,15 @@ DISTCLEANFILES =				\
 	$(NULL)
 
 EXTRA_DIST =					\
+	meson.build				\
+	meson_options.txt			\
+	po/meson.build				\
 	CodingStyle.txt				\
 	README.logos				\
 	THANKS					\
 	HACKING					\
 	build-aux/git-version-gen		\
+	build-aux/post_install.py		\
 	m4/boxes.m4				\
 	.version				\
 	$(NULL)

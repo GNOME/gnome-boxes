@@ -54,6 +54,7 @@ EXTRA_DIST =					\
 	org.gnome.Boxes.desktop.in		\
 	gnome-boxes-search-provider.ini		\
 	org.gnome.Boxes.service.in	\
+	meson.build				\
 	$(gresource_file)			\
 	$(gsettings_SCHEMAS)			\
 	$(resource_files)			\

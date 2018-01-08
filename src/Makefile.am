@@ -196,6 +196,7 @@ $(srcdir)/gnome_boxes_search_provider_vala.stamp: $(libcommon_a_DEPENDENCIES)
 
 MAINTAINERCLEANFILES += $(gnome_boxes_search_provider_SOURCES:.vala=.c)
 
-EXTRA_DIST += config.vapi
+EXTRA_DIST += config.vapi	\
+	       meson.build
 
 -include $(top_srcdir)/git.mk

@@ -28,4 +28,5 @@ EXTRA_DIST = $(debian_DATA)	 \
 			 $(ubuntu_DATA)	 \
 			 $(gnome_DATA)	 \
 			 $(redhat_DATA)	 \
+			 meson.build	\
 			 $(NULL)
