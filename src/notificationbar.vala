@@ -76,10 +76,8 @@ private class Boxes.Notificationbar: Gtk.Grid {
     }
 
     public void dismiss_all () {
-        // We destroy all active notifications, which will cause them to be dismissed
-        while (active_notifications != null) {
-            active_notifications.data.destroy ();
-        }
+        foreach (var notification in active_notifications)
+            (notification as Notification).dismiss ();
     }
 
     private void add_notification (Widget w) {
