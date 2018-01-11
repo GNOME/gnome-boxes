@@ -214,9 +214,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         wizard_source.activated.connect(() => {
             page = WizardPage.PREPARATION;
         });
-
-        // FIXME: Why this won't work from .ui file?
-        transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
     }
 
     public void cleanup () {
