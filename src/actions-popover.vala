@@ -5,7 +5,6 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"open-in-new-win", open_in_new_win_activated},
         {"favorite",        favorite_activated},
         {"take_screenshot", take_screenshot_activated},
-        {"pause",           pause_activated},
         {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
         {"clone",           clone_activated},
@@ -55,7 +54,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Add to Favorites"), "box.favorite");
         menu.append_section (null, section);
 
-        // New section for force shutdown, pause and delete
+        // New section for force shutdown and delete
         section = new GLib.Menu ();
 
         if (machine is LibvirtMachine) {
@@ -65,14 +64,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         }
 
         if (window.ui_state != UIState.DISPLAY) {
-            // Pause
-            section.append (_("Pause"), "box.pause");
-            var action = action_group.lookup_action ("pause") as GLib.SimpleAction;
-            action.set_enabled (machine.can_save);
-
             // Clone
             section.append (_("Clone"), "box.clone");
-            action = action_group.lookup_action ("clone") as GLib.SimpleAction;
+            var action = action_group.lookup_action ("clone") as GLib.SimpleAction;
             action.set_enabled (machine.can_clone);
 
             // Delete
@@ -134,18 +128,6 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             ctx.remove_class ("flash");
 
             return false;
-        });
-    }
-
-    private void pause_activated () {
-        var machine = window.current_item as Machine;
-
-        machine.save.begin ((obj, result) => {
-            try {
-                machine.save.end (result);
-            } catch (GLib.Error e) {
-                window.notificationbar.display_error (_("Pausing “%s” failed").printf (machine.name));
-            }
         });
     }
 
