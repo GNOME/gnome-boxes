@@ -427,7 +427,6 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
-        transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT; // FIXME: Why this won't work from .ui file?
 
         rhel_web_view.view.decide_policy.connect (on_rhel_web_view_decide_policy);
     }
