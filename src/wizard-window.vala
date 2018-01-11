@@ -55,9 +55,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         wizard.setup_ui (app_window, this);
         topbar.setup_ui (this);
 
-        // FIXME: Can we do this from UI file somehow? Would be nice, if so
-        file_chooser.filter = new Gtk.FileFilter ();
-        file_chooser.filter.add_mime_type ("application/x-cd-image");
         foreach (var extension in InstalledMedia.supported_extensions)
             file_chooser.filter.add_pattern ("*" + extension);
 
