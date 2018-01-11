@@ -48,10 +48,6 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         properties.setup_ui (app_window, this);
         topbar.setup_ui (app_window, this);
 
-        // FIXME: Can we do this from UI file somehow? Would be nice, if so
-        file_chooser.filter = new Gtk.FileFilter ();
-        file_chooser.filter.add_mime_type ("application/x-cd-image");
-
         set_transient_for (app_window);
 
         notify["ui-state"].connect (ui_state_changed);

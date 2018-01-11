@@ -75,6 +75,7 @@
                 <property name="visible">True</property>
                 <property name="show-hidden">False</property>
                 <property name="local-only">True</property>
+                <property name="filter">supported_files_filter</property>
               </object>
 
               <packing>
@@ -94,4 +95,10 @@
       </object>
     </child>
   </template>
+
+  <object class="GtkFileFilter" id="supported_files_filter">
+    <mime-types>
+      <mime-type>application/x-cd-image</mime-type>
+    </mime-types>
+  </object>
 </interface>
