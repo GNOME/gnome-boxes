@@ -359,7 +359,7 @@ private class Boxes.VMConfigurator {
         var sound = new DomainSound ();
         var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_CLASS, "audio");
         var model = (device != null)? get_enum_value (device.get_name (), typeof (DomainSoundModel)) :
-                                      DomainSoundModel.AC97;
+                                      DomainSoundModel.ICH6;
         return_if_fail (model != -1);
         sound.set_model ((DomainSoundModel) model);
 
