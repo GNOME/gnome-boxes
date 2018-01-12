@@ -117,6 +117,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
 
     [GtkCallback]
     private bool on_delete_event () {
+        notificationbar.dismiss_all ();
         revert_state ();
 
         return true;
