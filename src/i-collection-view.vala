@@ -6,4 +6,5 @@ private interface Boxes.ICollectionView: Gtk.Widget {
     public abstract List<CollectionItem> get_selected_items ();
     public abstract void activate_first_item ();
     public abstract void select_by_criteria (SelectionCriteria criteria);
+    public abstract void select_all ();
 }
