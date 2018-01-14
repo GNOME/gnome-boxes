@@ -123,23 +123,7 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             return child;
         });
 
-        flowbox.button_release_event.connect (on_button_press_event);
-        flowbox.key_press_event.connect (on_key_press_event);
-
         flowbox.set_filter_func (model_filter);
-
-        flowbox.child_activated.connect ((child) => {
-            if (window.selection_mode)
-                return;
-
-            var item = get_item_for_child (child);
-            if (item is LibvirtMachine && (item as LibvirtMachine).importing)
-                return;
-
-            window.select_item (item);
-        });
-
-        update_selection_mode ();
     }
 
     private CollectionItem? get_item_for_child (Gtk.FlowBoxChild child) {
@@ -176,6 +160,21 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             flowbox.unselect_all ();
     }
 
+    [GtkCallback]
+    private void on_child_activated (Gtk.FlowBoxChild child) {
+        if (window.selection_mode)
+            return;
+
+        var item = get_item_for_child (child);
+        if (item is LibvirtMachine && (item as LibvirtMachine).importing)
+            return;
+
+        window.select_item (item);
+
+        update_selection_mode ();
+    }
+
+    [GtkCallback]
     private bool on_button_press_event (Gdk.EventButton event) {
         if (event.type != Gdk.EventType.BUTTON_RELEASE || event.button != 3)
             return false;
@@ -185,6 +184,7 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         return launch_context_popover_for_child (child);
     }
 
+    [GtkCallback]
     private bool on_key_press_event (Gdk.EventKey event) {
         if (event.keyval != Gdk.Key.Menu)
             return false;
