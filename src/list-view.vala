@@ -336,4 +336,12 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
         App.app.notify_property ("selected-items");
     }
+
+    public void unselect_all () {
+        list_box.unselect_all ();
+
+        foreach_row (unselect_row);
+
+        App.app.notify_property ("selected-items");
+    }
 }
