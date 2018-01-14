@@ -389,6 +389,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             foreach_view ((view) => { view.select_all (); });
 
             return true;
+        } else if (event.keyval == Gdk.Key.A &&
+                   (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK) {
+            foreach_view ((view) => { view.unselect_all (); });
+
+            return true;
         } else if (((direction == Gtk.TextDirection.LTR && // LTR
                      event.keyval == Gdk.Key.Left) ||      // ALT + Left -> back
                     (direction == Gtk.TextDirection.RTL && // RTL

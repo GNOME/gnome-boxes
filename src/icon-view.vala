@@ -250,6 +250,14 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         App.app.notify_property ("selected-items");
     }
 
+    public void unselect_all () {
+        flowbox.unselect_all ();
+
+        foreach_child (unselect_child);
+
+        App.app.notify_property ("selected-items");
+    }
+
     public void select_all () {
         flowbox.select_all ();
 
