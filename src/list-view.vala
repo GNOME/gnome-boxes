@@ -328,4 +328,12 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
         App.app.notify_property ("selected-items");
     }
+
+    public void select_all () {
+        list_box.select_all ();
+
+        foreach_row (select_row);
+
+        App.app.notify_property ("selected-items");
+    }
 }
