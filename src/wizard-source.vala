@@ -325,6 +325,8 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Boxes.WizardScrolled media_scrolled;
     [GtkChild]
+    private Gtk.Label downloaded_label;
+    [GtkChild]
     private Gtk.Box url_entry_vbox;
     [GtkChild]
     public Gtk.Entry url_entry;
@@ -416,6 +418,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         var num_visible = (Gdk.Screen.height () > 800)? 3 : 2;
         media_scrolled.setup (num_visible);
+        media_scrolled.bind_property ("visible", downloaded_label, "visible", BindingFlags.BIDIRECTIONAL);
         media_vbox = media_scrolled.vbox;
         media_vbox.row_activated.connect((row) => {
             var entry = (row as WizardMediaEntry);
