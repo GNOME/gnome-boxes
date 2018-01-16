@@ -92,6 +92,12 @@
         </child>
 
         <child>
+          <object class="GtkListBox" id="available_downloads_listbox">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
           <object class="GtkButton" id="install_rhel_button">
             <property name="visible">True</property>
             <signal name="clicked" handler="on_install_rhel_button_clicked"/>
@@ -164,90 +170,91 @@
         </child>
 
         <child>
-          <object class="GtkListBox" id="available_downloads_listbox">
+          <object class="GtkBox">
             <property name="visible">True</property>
-          </object>
-         </child>
+            <property name="orientation">vertical</property>
 
-        <child>
-          <object class="GtkButton" id="enter_url_button">
-            <property name="visible">True</property>
-            <signal name="clicked" handler="on_enter_url_button_clicked"/>
-            <style>
-              <class name="boxes-menu-row"/>
-            </style>
             <child>
-              <object class="GtkBox" id="enter_url_box">
+              <object class="GtkButton" id="enter_url_button">
                 <property name="visible">True</property>
-                <property name="margin-top">10</property>
-                <property name="margin-bottom">10</property>
-                <property name="margin-start">20</property>
-                <property name="margin-end">20</property>
-                <property name="spacing">20</property>
-                <property name="orientation">horizontal</property>
+                <signal name="clicked" handler="on_enter_url_button_clicked"/>
+                <style>
+                  <class name="boxes-menu-row"/>
+                </style>
                 <child>
-                  <object class="GtkLabel" id="enter_url_label">
+                  <object class="GtkBox" id="enter_url_box">
                     <property name="visible">True</property>
-                    <property name="halign">start</property>
-                    <property name="use-underline">True</property>
-                    <property name="label" translatable="yes">_Enter URL</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="spacing">20</property>
+                    <property name="orientation">horizontal</property>
+                    <child>
+                      <object class="GtkLabel" id="enter_url_label">
+                        <property name="visible">True</property>
+                        <property name="halign">start</property>
+                        <property name="use-underline">True</property>
+                        <property name="label" translatable="yes">_Enter URL</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="enter_url_next_label">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">▶</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="enter_url_next_label">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">▶</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                  </packing>
                 </child>
               </object>
             </child>
-          </object>
-        </child>
 
-        <child>
-          <object class="GtkButton" id="libvirt_sys_import_button">
-            <property name="visible">False</property>
-            <signal name="clicked" handler="on_libvirt_sys_import_button_clicked"/>
-            <style>
-              <class name="boxes-menu-row"/>
-            </style>
             <child>
-              <object class="GtkBox" id="libvirt_sys_import_box">
-                <property name="visible">True</property>
-                <property name="margin-top">10</property>
-                <property name="margin-bottom">10</property>
-                <property name="margin-start">20</property>
-                <property name="margin-end">20</property>
-                <property name="spacing">20</property>
-                <property name="orientation">horizontal</property>
+              <object class="GtkButton" id="libvirt_sys_import_button">
+                <property name="visible">False</property>
+                <signal name="clicked" handler="on_libvirt_sys_import_button_clicked"/>
+                <style>
+                  <class name="boxes-menu-row"/>
+                </style>
                 <child>
-                  <object class="GtkLabel" id="libvirt_sys_import_label">
+                  <object class="GtkBox" id="libvirt_sys_import_box">
                     <property name="visible">True</property>
-                    <property name="halign">start</property>
-                    <property name="use-underline">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="spacing">20</property>
+                    <property name="orientation">horizontal</property>
+                    <child>
+                      <object class="GtkLabel" id="libvirt_sys_import_label">
+                        <property name="visible">True</property>
+                        <property name="halign">start</property>
+                        <property name="use-underline">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="libvirt_sys_import_next_label">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">▶</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="libvirt_sys_import_next_label">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">▶</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                  </packing>
                 </child>
               </object>
             </child>
