@@ -326,6 +326,8 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Boxes.WizardScrolled media_scrolled;
     [GtkChild]
+    private Boxes.WizardScrolled downloads_scrolled;
+    [GtkChild]
     private Gtk.Box url_entry_vbox;
     [GtkChild]
     public Gtk.Entry url_entry;
@@ -335,8 +337,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.Button libvirt_sys_import_button;
     [GtkChild]
     private Gtk.Label libvirt_sys_import_label;
-    [GtkChild]
-    private Gtk.ListBox available_downloads_listbox;
     [GtkChild]
     private Gtk.Button install_rhel_button;
     [GtkChild]
@@ -349,6 +349,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     private AppWindow window;
 
     private Gtk.ListBox media_vbox;
+    private Gtk.ListBox downloads_vbox;
 
     private Gtk.ListStore? media_urls_store;
 
@@ -429,6 +430,11 @@ private class Boxes.WizardSource: Gtk.Stack {
         });
         draw_as_css_box (url_entry_vbox);
 
+        downloads_scrolled.setup (num_visible);
+        downloads_vbox = downloads_scrolled.vbox;
+
+        media_scrolled.bind_property ("visible", downloads_scrolled, "visible", BindingFlags.INVERT_BOOLEAN);
+
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
 
@@ -452,8 +458,8 @@ private class Boxes.WizardSource: Gtk.Stack {
         var os_db = media_manager.os_db;
 
         var available_downloads_model = new GLib.ListStore (typeof (Osinfo.Os));
-        available_downloads_listbox.bind_model (available_downloads_model, create_downloadable_entry);
-        available_downloads_listbox.row_activated.connect (on_downloadable_entry_clicked);
+        downloads_vbox.bind_model (available_downloads_model, create_downloadable_entry);
+        downloads_vbox.row_activated.connect (on_downloadable_entry_clicked);
 
         downloads_list.bind_model (available_downloads_model, create_downloadable_entry);
         downloads_list.row_activated.connect (on_downloadable_entry_clicked);
