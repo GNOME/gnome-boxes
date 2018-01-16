@@ -41,53 +41,6 @@
         </child>
 
         <child>
-          <object class="GtkBox" id="downloaded_and_select_file_hbox">
-            <property name="visible">True</property>
-            <property name="margin-bottom">20</property>
-            <property name="spacing">50</property>
-            <property name="orientation">horizontal</property>
-            <child>
-              <object class="GtkButton" id="select_file_button">
-                <property name="visible">True</property>
-                <property name="vexpand">False</property>
-                <signal name="clicked" handler="on_select_file_button_clicked"/>
-                <child>
-                  <object class="GtkBox" id="select_file_box">
-                    <property name="visible">True</property>
-                    <property name="margin-start">10</property>
-                    <property name="margin-end">10</property>
-                    <property name="spacing">50</property>
-                    <property name="orientation">horizontal</property>
-                    <child>
-                      <object class="GtkLabel" id="select_file_label">
-                        <property name="visible">True</property>
-                        <property name="halign">start</property>
-                        <property name="use-underline">True</property>
-                        <property name="label" translatable="yes">_Select a file</property>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="select_file_next_label">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">▶</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
           <object class="BoxesWizardScrolled" id="media_scrolled">
             <property name="visible">True</property>
           </object>
@@ -303,6 +256,50 @@
                 </child>
               </object>
             </child>
+
+            <child>
+              <object class="GtkButton" id="select_file_button">
+                <property name="visible">True</property>
+                <signal name="clicked" handler="on_select_file_button_clicked"/>
+                <style>
+                  <class name="boxes-menu-row"/>
+                </style>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="spacing">20</property>
+                    <property name="orientation">horizontal</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="halign">start</property>
+                        <property name="use-underline">True</property>
+                        <property name="label" translatable="yes">_Select a file</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">▶</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
           </object>
         </child>
 
