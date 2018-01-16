@@ -470,16 +470,10 @@ private class Boxes.WizardSource: Gtk.Stack {
 
                 foreach (var os in table.get_values ()) {
                     available_downloads_model.insert_sorted (os, (a, b) => {
-                        var os1 = a as Osinfo.Os;
-                        var os2 = b as Osinfo.Os;
+                        var os1 = a as Osinfo.Product;
+                        var os2 = b as Osinfo.Product;
 
-                        if (Downloader.fetch_os_logo_url (os1) != null)
-                            return -1;
-
-                        if (Downloader.fetch_os_logo_url (os2) != null)
-                            return 1;
-
-                        return 0;
+                        return os2.get_release_date ().compare (os1.get_release_date ());
                     });
                 }
             } catch (OSDatabaseError error) {
