@@ -4,6 +4,7 @@ private enum Boxes.SourcePage {
     MAIN,
     RHEL_WEB_VIEW,
     URL,
+    DOWNLOADS,
 
     LAST,
 }
@@ -307,7 +308,7 @@ private class Boxes.WizardWebView : Gtk.Bin {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-source.ui")]
 private class Boxes.WizardSource: Gtk.Stack {
-    private const string[] page_names = { "main-page", "rhel-web-view-page", "url-page" };
+    private const string[] page_names = { "main-page", "rhel-web-view-page", "url-page", "download-an-os-page" };
 
     public Gtk.Widget? selected { get; set; }
     public string uri {
@@ -342,6 +343,8 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.Image install_rhel_image;
     [GtkChild]
     private Boxes.WizardWebView rhel_web_view;
+    [GtkChild]
+    private Gtk.ListBox downloads_list;
 
     private AppWindow window;
 
@@ -401,6 +404,7 @@ private class Boxes.WizardSource: Gtk.Stack {
                 main_vbox.grab_focus ();
                 break;
             case SourcePage.RHEL_WEB_VIEW:
+            case SourcePage.DOWNLOADS:
                 break;
             case SourcePage.URL:
                 url_entry.changed ();
@@ -448,31 +452,11 @@ private class Boxes.WizardSource: Gtk.Stack {
         var os_db = media_manager.os_db;
 
         var available_downloads_model = new GLib.ListStore (typeof (Osinfo.Os));
-        available_downloads_listbox.bind_model (available_downloads_model, (obj) => {
-            var os = obj as Osinfo.Os;
+        available_downloads_listbox.bind_model (available_downloads_model, create_downloadable_entry);
+        available_downloads_listbox.row_activated.connect (on_downloadable_entry_clicked);
 
-            var entry = new WizardDownloadableEntry (os);
-            entry.activated.connect ((media) => {
-                this.uri = media.url;
-
-                activated ();
-            });
-
-            return entry;
-        });
-
-        available_downloads_listbox.row_activated.connect ((row) => {
-            var entry = (row as WizardDownloadableEntry);
-
-            selected = entry;
-            if (entry.single_media != null) {
-                this.uri = entry.single_media.url;
-
-                activated ();
-            } else {
-                entry.toggle();
-            }
-        });
+        downloads_list.bind_model (available_downloads_model, create_downloadable_entry);
+        downloads_list.row_activated.connect (on_downloadable_entry_clicked);
 
         os_db.list_latest_downloadable_oses.begin ((db, result) => {
             try {
@@ -545,6 +529,31 @@ private class Boxes.WizardSource: Gtk.Stack {
                 install_rhel_image.visible = pixbuf != null;
             });
         });
+    }
+
+    private Gtk.Widget create_downloadable_entry (Object item) {
+        var os = item as Osinfo.Os;
+
+        var entry = new WizardDownloadableEntry (os);
+        entry.activated.connect ((media) => {
+            this.uri = media.url;
+        activated ();
+        });
+
+        return entry;
+    }
+
+    private void on_downloadable_entry_clicked (Gtk.ListBoxRow row) {
+        var entry = (row as WizardDownloadableEntry);
+
+        selected = entry;
+        if (entry.single_media != null) {
+           this.uri = entry.single_media.url;
+
+           activated ();
+        } else {
+            entry.toggle();
+        }
     }
 
     public void cleanup () {
@@ -663,6 +672,11 @@ private class Boxes.WizardSource: Gtk.Stack {
             // This is unlikely to happen since media we use as template should have already done most async work
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);
         }
+    }
+
+    [GtkCallback]
+    private void on_download_an_os_button_clicked () {
+        page = SourcePage.DOWNLOADS;
     }
 
     [GtkCallback]

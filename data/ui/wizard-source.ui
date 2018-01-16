@@ -175,6 +175,49 @@
             <property name="orientation">vertical</property>
 
             <child>
+              <object class="GtkButton" id="download_an_os_button">
+                <property name="visible">True</property>
+                <signal name="clicked" handler="on_download_an_os_button_clicked"/>
+                <style>
+                  <class name="boxes-menu-row"/>
+                </style>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
+                    <property name="spacing">20</property>
+                    <property name="orientation">horizontal</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="halign">start</property>
+                        <property name="use-underline">True</property>
+                        <property name="label" translatable="yes">Download an OS</property>
+                      </object>
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">▶</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                      </packing>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+
+            <child>
               <object class="GtkButton" id="enter_url_button">
                 <property name="visible">True</property>
                 <signal name="clicked" handler="on_enter_url_button_clicked"/>
@@ -288,6 +331,35 @@
       </packing>
     </child>
 
+    <!-- Download an OS page -->
+    <child>
+      <object class="GtkBox" id="download_an_os_page">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="visible">True</property>
+            <property name="expand">True</property>
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="border-width">20</property>
+                <property name="margin-start">20</property>
+                <property name="margin-end">20</property>
+                <child>
+                  <object class="GtkListBox" id="downloads_list">
+                    <property name="visible">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">download-an-os-page</property>
+      </packing>
+    </child>
 
     <!-- RHEL web view page -->
     <child>

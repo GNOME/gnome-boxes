@@ -121,7 +121,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             } else {
                 switch (value) {
                 case WizardPage.SOURCE:
-                    if (wizard_source.page == SourcePage.RHEL_WEB_VIEW)
+                    if (wizard_source.page == SourcePage.RHEL_WEB_VIEW ||
+                        wizard_source.page == SourcePage.DOWNLOADS)
                         wizard_source.page = SourcePage.MAIN;
                     break;
                 }
@@ -174,6 +175,10 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             break;
 
         case Boxes.SourcePage.RHEL_WEB_VIEW:
+            next_button.sensitive = false;
+            break;
+
+        case Boxes.SourcePage.DOWNLOADS:
             next_button.sensitive = false;
             break;
 
@@ -657,7 +662,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         back_button = wizard_window.topbar.back_btn;
         back_button.clicked.connect (() => {
             if (page == WizardPage.SOURCE) {
-                return_if_fail (wizard_source.page == SourcePage.RHEL_WEB_VIEW);
+                return_if_fail (wizard_source.page == SourcePage.RHEL_WEB_VIEW ||
+                                wizard_source.page == SourcePage.DOWNLOADS);
                 wizard_source.page = SourcePage.MAIN;
                 wizard_source.cleanup ();
             } else {
