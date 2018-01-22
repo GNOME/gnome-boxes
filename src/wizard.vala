@@ -112,6 +112,11 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                        if (create.end (result)) {
                           window.set_state (UIState.COLLECTION);
                           wizard_source.page = SourcePage.MAIN;
+
+                          if (machine != null && machine is RemoteMachine) {
+                            window.connect_to (machine);
+                            machine = null;
+                          }
                        } else {
                           window.notificationbar.display_error (_("Box creation failed"));
                        }
@@ -271,6 +276,10 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         } else if (source != null) {
             source.save ();
             App.app.add_collection_source.begin (source);
+
+            if (machine is RemoteMachine) {
+                return true;
+            }
         } else if (wizard_source.libvirt_sys_import) {
             wizard_source.libvirt_sys_importer.import.begin ();
         } else {
