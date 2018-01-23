@@ -115,7 +115,7 @@ private class Boxes.OSDatabase : GLib.Object {
             foreach (var media_entity in os.get_media_list ().get_elements ()) {
                 var media = media_entity as Media;
 
-                if (media.url != null && os.get_release_date () != null)
+                if (media.url != null)
                     after_list.append (media);
             }
         }
