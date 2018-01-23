@@ -101,46 +101,23 @@ private class Boxes.OSDatabase : GLib.Object {
         return os;
     }
 
-    public async HashTable<string,Os> list_latest_downloadable_oses () throws OSDatabaseError {
+    public async GLib.List<Osinfo.Media> list_downloadable_oses () throws OSDatabaseError {
         if (!yield ensure_db_loaded ())
             throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
 
-        var os_list = db.get_os_list ();
-        var table = new HashTable<string,Os> (str_hash, str_equal);
-        foreach (var entity in os_list.get_elements ()) {
+        var after_list = new GLib.List<Osinfo.Media> ();
+        foreach (var entity in db.get_os_list ().get_elements ()) {
             var os = entity as Os;
 
-            var has_url = false;
             foreach (var media_entity in os.get_media_list ().get_elements ()) {
                 var media = media_entity as Media;
 
-                has_url = (media.url != null);
+                if (media.url != null && os.get_release_date () != null)
+                    after_list.append (media);
             }
-
-            if (!has_url)
-                continue;
-
-            if (os.get_media_list ().get_length () == 0)
-                continue;
-
-            string os_distro = os.get_distro();
-            var distro = table.lookup (os_distro);
-            if (distro == null) {
-                table.insert (os_distro, os);
-                continue;
-            }
-
-            var release_a = os.get_release_date ();
-            var release_b = distro.get_release_date ();
-
-            if ((release_a == null) || (release_b == null))
-                continue;
-
-            if (release_a.compare (release_b) > 0)
-                table.replace (os_distro, os);
         }
 
-        return table;
+        return after_list;
     }
 
     // Returned list is in ascending order by release dates. If release date is
