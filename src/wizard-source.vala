@@ -58,27 +58,30 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
     }
 }
 
-private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
-    public Osinfo.Media media;
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
+private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
+    [GtkChild]
+    private Gtk.Image media_image;
+    [GtkChild]
+    private Gtk.Label title_label;
+    [GtkChild]
+    private Gtk.Label details_label;
 
-    private Gtk.Label label;
+    public string url;
 
-    public WizardDownloadableMediaEntry (Osinfo.Media media) {
-        this.media = media;
+    public WizardDownloadableEntry (Osinfo.Media media) {
+        Downloader.fetch_os_logo.begin (media_image, media.os, 64);
 
-        setup_label ();
-        add (label);
+        setup_label (media);
+        details_label.label = media.os.vendor;
 
-        this.get_style_context ().add_class ("boxes-menu-row");
-        this.get_style_context ().add_class ("boxes-menu-subrow");
+        url = media.url;
     }
 
-    private void setup_label () {
+    private void setup_label (Osinfo.Media media) {
         /* Libosinfo lacks some OS variant names, so we do some
            parsing here to compose a unique human-readable media
            identifier. */
-        label = new Gtk.Label ("");
-
         var variant = "";
         var variants = media.get_os_variants ();
         if (variants.get_length () > 0)
@@ -90,7 +93,7 @@ private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
         } else {
             var file = File.new_for_uri (media.url);
 
-            label.label = file.get_basename ().replace ("_", "");
+            title_label.label = file.get_basename ().replace ("_", "");
         }
 
         var subvariant = "";
@@ -103,64 +106,12 @@ private class Boxes.WizardDownloadableMediaEntry : Gtk.ListBoxRow {
 
         var is_live = media.live ? " (" + _("Live") + ")" : "";
 
-        label.label = @"$variant $(media.architecture) $subvariant $is_live";
+        title_label.label = @"$variant $(media.architecture) $subvariant $is_live";
 
         /* Strip consequent whitespaces */
-        label.label = label.label.replace ("  ", "");
+        title_label.label = title_label.label.replace ("  ", "");
 
-        label.halign = Gtk.Align.START;
-    }
-}
-
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
-private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
-    [GtkChild]
-    private Gtk.Image media_image;
-    [GtkChild]
-    private Gtk.Label title_label;
-    [GtkChild]
-    private Gtk.Label details_label;
-    [GtkChild]
-    private Gtk.Revealer revealer;
-    [GtkChild]
-    private Gtk.ListBox medias_listbox;
-
-    public Osinfo.Media single_media;
-
-    public signal void activated (Osinfo.Media media);
-
-    public WizardDownloadableEntry (Osinfo.Os os) {
-        Downloader.fetch_os_logo.begin (media_image, os, 64);
-
-        title_label.label = os.name;
-        details_label.label = os.vendor;
-
-        var media_list = os.get_media_list () as Osinfo.List;
-        if (media_list.get_length () == 1)
-            single_media = media_list.get_nth (0) as Osinfo.Media;
-        else
-            populate_media_listbox (media_list);
-    }
-
-    private void populate_media_listbox (Osinfo.List media_list) {
-        foreach (var media_entity in media_list.get_elements()) {
-            var media = (media_entity as Osinfo.Media);
-
-            medias_listbox.insert (new WizardDownloadableMediaEntry (media), -1);
-        }
-
-        medias_listbox.show_all ();
-    }
-
-    [GtkCallback]
-    private void on_media_listbox_activated (Gtk.ListBoxRow row) {
-        var entry = row as WizardDownloadableMediaEntry;
-
-        activated (entry.media);
-    }
-
-    public void toggle () {
-        revealer.set_reveal_child (!revealer.child_revealed);
+        title_label.halign = Gtk.Align.START;
     }
 }
 
@@ -457,23 +408,23 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         var os_db = media_manager.os_db;
 
-        var available_downloads_model = new GLib.ListStore (typeof (Osinfo.Os));
+        var available_downloads_model = new GLib.ListStore (typeof (Osinfo.Media));
         downloads_vbox.bind_model (available_downloads_model, create_downloadable_entry);
         downloads_vbox.row_activated.connect (on_downloadable_entry_clicked);
 
         downloads_list.bind_model (available_downloads_model, create_downloadable_entry);
         downloads_list.row_activated.connect (on_downloadable_entry_clicked);
 
-        os_db.list_latest_downloadable_oses.begin ((db, result) => {
+        os_db.list_downloadable_oses.begin ((db, result) => {
             try {
-                var table = os_db.list_latest_downloadable_oses.end (result);
+                var media_list = os_db.list_downloadable_oses.end (result);
 
-                foreach (var os in table.get_values ()) {
-                    available_downloads_model.insert_sorted (os, (a, b) => {
-                        var os1 = a as Osinfo.Product;
-                        var os2 = b as Osinfo.Product;
+                foreach (var media in media_list) {
+                    available_downloads_model.insert_sorted (media, (a, b) => {
+                        var os1 = a as Osinfo.Media;
+                        var os2 = b as Osinfo.Media;
 
-                        return os2.get_release_date ().compare (os1.get_release_date ());
+                        return os2.os.get_release_date ().compare (os1.os.get_release_date ());
                     });
                 }
             } catch (OSDatabaseError error) {
@@ -511,13 +462,9 @@ private class Boxes.WizardSource: Gtk.Stack {
     }
 
     private Gtk.Widget create_downloadable_entry (Object item) {
-        var os = item as Osinfo.Os;
+        var media = item as Osinfo.Media;
 
-        var entry = new WizardDownloadableEntry (os);
-        entry.activated.connect ((media) => {
-            this.uri = media.url;
-        activated ();
-        });
+        var entry = new WizardDownloadableEntry (media);
 
         return entry;
     }
@@ -526,13 +473,9 @@ private class Boxes.WizardSource: Gtk.Stack {
         var entry = (row as WizardDownloadableEntry);
 
         selected = entry;
-        if (entry.single_media != null) {
-           this.uri = entry.single_media.url;
+        this.uri = entry.url;
 
-           activated ();
-        } else {
-            entry.toggle();
-        }
+        activated ();
     }
 
     public void cleanup () {
