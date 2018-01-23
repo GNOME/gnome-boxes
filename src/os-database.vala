@@ -109,6 +109,9 @@ private class Boxes.OSDatabase : GLib.Object {
         foreach (var entity in db.get_os_list ().get_elements ()) {
             var os = entity as Os;
 
+            if (os.get_release_status () != ReleaseStatus.RELEASED)
+                continue;
+
             foreach (var media_entity in os.get_media_list ().get_elements ()) {
                 var media = media_entity as Media;
 
