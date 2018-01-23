@@ -117,6 +117,19 @@ private class Boxes.OSDatabase : GLib.Object {
             }
         }
 
+        // Sort list in desceding order by release date.
+        after_list.sort ((media_a, media_b) => {
+            var release_a = media_a.os.get_release_date ();
+            var release_b = media_b.os.get_release_date ();
+
+            if (release_a == null)
+                return -1;
+            else if (release_b == null)
+                return 1;
+
+            return release_b.compare (release_a);
+        });
+
         return after_list;
     }
 
