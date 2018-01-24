@@ -274,81 +274,11 @@
                 <property name="border-width">20</property>
                 <property name="margin-start">20</property>
                 <property name="margin-end">20</property>
-                <child>
-                  <object class="GtkButton" id="install_rhel_button">
-                    <property name="visible">True</property>
-                    <signal name="clicked" handler="on_install_rhel_button_clicked"/>
-                    <style>
-                      <class name="boxes-menu-row"/>
-                    </style>
-                    <child>
-                      <object class="GtkBox" id="install_rhel_hbox">
-                        <property name="visible">True</property>
-                        <property name="margin-start">15</property>
-                        <property name="margin-end">15</property>
-                        <property name="spacing">20</property>
-                        <property name="orientation">horizontal</property>
-                        <child>
-                          <object class="GtkImage" id="install_rhel_image">
-                            <property name="icon-size">0</property>
-                            <property name="no-show-all">True</property>
-                            <property name="pixel-size">64</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkBox" id="install_rhel_vbox">
-                            <property name="visible">True</property>
-                            <property name="homogeneous">True</property>
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkLabel" id="install_rhel_label">
-                                <property name="visible">True</property>
-                                <property name="ellipsize">end</property>
-                                <property name="halign">start</property>
-                                <property name="valign">end</property>
-                                <property name="use-underline">True</property>
-                                <property name="label" translatable="yes">Red Hat Enterprise Linux</property>
-                              </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                              </packing>
-                            </child>
-                            <child>
-                              <object class="GtkLabel" id="install_rhel_details_label">
-                                <property name="visible">True</property>
-                                <property name="ellipsize">end</property>
-                                <property name="halign">start</property>
-                                <property name="valign">start</property>
-                                <property name="label" translatable="yes">Available with a free Red Hat developer account</property>
-                                <style>
-                                  <class name="boxes-step-label"/>
-                                  <class name="dim-label"/>
-                                </style>
-                              </object>
-                              <packing>
-                                <property name="expand">True</property>
-                                <property name="fill">True</property>
-                              </packing>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                  </object>
-                </child>
 
                 <child>
                   <object class="GtkListBox" id="downloads_list">
                     <property name="visible">True</property>
+                    <signal name="row-activated" handler="on_downloadable_entry_clicked"/>
                   </object>
                 </child>
               </object>
@@ -496,4 +426,83 @@
       </packing>
     </child>
   </template>
+
+  <object class="GtkListBoxRow" id="install_rhel_button">
+    <property name="visible">True</property>
+    <property name="activatable">False</property>
+    <style>
+      <class name="boxes-menu-row"/>
+    </style>
+    <child>
+      <object class="GtkButton">
+      <property name="visible">True</property>
+      <signal name="clicked" handler="on_install_rhel_button_clicked"/>
+      <style>
+        <class name="flat"/>
+      </style>
+      <child>
+        <object class="GtkBox" id="install_rhel_hbox">
+          <property name="visible">True</property>
+          <property name="margin-start">15</property>
+          <property name="margin-end">15</property>
+          <property name="spacing">20</property>
+          <property name="orientation">horizontal</property>
+          <child>
+            <object class="GtkImage" id="install_rhel_image">
+              <property name="icon-size">0</property>
+              <property name="no-show-all">True</property>
+              <property name="pixel-size">64</property>
+            </object>
+            <packing>
+              <property name="expand">False</property>
+              <property name="fill">False</property>
+            </packing>
+          </child>
+          <child>
+            <object class="GtkBox" id="install_rhel_vbox">
+              <property name="visible">True</property>
+              <property name="homogeneous">True</property>
+              <property name="orientation">vertical</property>
+              <child>
+                <object class="GtkLabel" id="install_rhel_label">
+                  <property name="visible">True</property>
+                  <property name="ellipsize">end</property>
+                  <property name="halign">start</property>
+                  <property name="valign">end</property>
+                  <property name="use-underline">True</property>
+                  <property name="label" translatable="yes">Red Hat Enterprise Linux</property>
+                </object>
+                <packing>
+                  <property name="expand">True</property>
+                  <property name="fill">True</property>
+                </packing>
+              </child>
+              <child>
+                  <object class="GtkLabel" id="install_rhel_details_label">
+                    <property name="visible">True</property>
+                    <property name="ellipsize">end</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="label" translatable="yes">Available with a free Red Hat developer account</property>
+                    <style>
+                      <class name="boxes-step-label"/>
+                      <class name="dim-label"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">True</property>
+                <property name="fill">True</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>
