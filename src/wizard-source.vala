@@ -312,6 +312,12 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     public string filename { get; set; }
 
+    private string[] recommended_downloads = {
+        "http://ubuntu.com/ubuntu/16.04",
+        "http://opensuse.org/opensuse/42.2",
+        "http://fedoraproject.org/fedora/27",
+    };
+
     public bool download_required {
         get {
             string scheme = Uri.parse_scheme (uri);
@@ -383,6 +389,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         downloads_scrolled.setup (num_visible);
         downloads_vbox = downloads_scrolled.vbox;
+        downloads_vbox.row_activated.connect (on_downloadable_entry_clicked);
 
         media_scrolled.bind_property ("visible", downloads_scrolled, "visible", BindingFlags.INVERT_BOOLEAN);
 
@@ -407,11 +414,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         this.window = window;
 
         var os_db = media_manager.os_db;
-
-        var available_downloads_model = new GLib.ListStore (typeof (Osinfo.Media));
-        downloads_vbox.bind_model (available_downloads_model, create_downloadable_entry);
-        downloads_vbox.row_activated.connect (on_downloadable_entry_clicked);
-
         os_db.get_all_media_urls_as_store.begin ((db, result) => {
             try {
                 media_urls_store = os_db.get_all_media_urls_as_store.end (result);
@@ -460,6 +462,27 @@ private class Boxes.WizardSource: Gtk.Stack {
                 install_rhel_image.visible = pixbuf != null;
             });
         });
+    }
+
+    [GtkCallback]
+    private void on_downloads_scrolled_shown () {
+        var os_db = media_manager.os_db;
+        foreach (var os_id in recommended_downloads) {
+            os_db.get_os_by_id.begin (os_id, (obj, res) => {
+                try {
+                    var os = os_db.get_os_by_id.end (res);
+
+                    // TODO: Select the desktop/workstation variant.
+                    var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
+                    var entry = create_downloadable_entry (media);
+
+                    downloads_vbox.insert (entry, -1);
+                } catch (OSDatabaseError error) {
+                    warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
+                    return;
+                }
+            });
+        }
     }
 
     private Gtk.Widget create_downloadable_entry (Object item) {
