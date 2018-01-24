@@ -30,6 +30,8 @@ private class Boxes.WizardToolbar: Gtk.Stack {
     public Button continue_btn;
     [GtkChild]
     public Button create_btn;
+    [GtkChild]
+    public SearchEntry downloads_search;
 
     [GtkChild]
     private Button file_chooser_open_button;
@@ -68,6 +70,11 @@ private class Boxes.WizardToolbar: Gtk.Stack {
 
     [GtkCallback]
     private void on_file_chooser_cancel_clicked () requires (page == WizardWindowPage.FILE_CHOOSER) {
+        wizard_window.page = WizardWindowPage.MAIN;
+    }
+
+    [GtkCallback]
+    private void on_downloads_search_back_clicked () requires (page == WizardWindowPage.DOWNLOADS) {
         wizard_window.page = WizardWindowPage.MAIN;
     }
 
