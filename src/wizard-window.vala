@@ -5,13 +5,16 @@ private enum Boxes.WizardWindowPage {
     MAIN,
     CUSTOMIZATION,
     FILE_CHOOSER,
+    DOWNLOADS,
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-window.ui")]
 private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
-    public const string[] page_names = { "main", "customization", "file_chooser" };
+    public const string[] page_names = { "main", "customization", "file_chooser", "downloads" };
 
     public delegate void FileChosenFunc (string uri);
+    public delegate void DownloadChosenFunc (string uri);
+    public delegate void CustomDownloadChosenFunc ();
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -48,6 +51,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public WizardToolbar topbar;
     [GtkChild]
     public Notificationbar notificationbar;
+    [GtkChild]
+    private Gtk.ListBox downloads_list;
 
     private GLib.List<Boxes.Property> resource_properties;
 
@@ -61,6 +66,11 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         set_transient_for (app_window);
 
         notify["ui-state"].connect (ui_state_changed);
+
+        downloads_list.set_filter_func (downloads_filter_func);
+        topbar.downloads_search.search_changed.connect (() => {
+            downloads_list.invalidate_filter ();
+        });
     }
 
     public void show_customization_page (LibvirtMachine machine) {
@@ -103,6 +113,69 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
             page = WizardWindowPage.MAIN;
         });
         page = WizardWindowPage.FILE_CHOOSER;
+    }
+
+    public void add_custom_download (Gtk.ListBoxRow row, owned CustomDownloadChosenFunc custom_download_chosen_func) {
+        return_if_fail (row.get_parent () == null);
+
+        // TODO: insert sorted based on release date.
+        downloads_list.insert (row, -1);
+
+        var button = row.get_child () as Gtk.Button;
+
+        ulong activated_id = 0;
+        activated_id = button.clicked.connect (() => {
+            custom_download_chosen_func ();
+            button.disconnect (activated_id);
+
+            page = WizardWindowPage.MAIN;
+        });
+    }
+
+    public void show_downloads_page (OSDatabase os_db, owned DownloadChosenFunc download_chosen_func) {
+        page = WizardWindowPage.DOWNLOADS;
+
+        ulong activated_id = 0;
+        activated_id = downloads_list.row_activated.connect ((row) => {
+            var entry = row as WizardDownloadableEntry;
+
+            download_chosen_func (entry.url);
+            downloads_list.disconnect (activated_id);
+
+            page = WizardWindowPage.MAIN;
+        });
+        page = WizardWindowPage.DOWNLOADS;
+        topbar.downloads_search.grab_focus ();
+
+        return_if_fail (downloads_list.get_children ().length () == 0);
+
+        os_db.list_downloadable_oses.begin ((db, result) => {
+            try {
+                var media_list = os_db.list_downloadable_oses.end (result);
+
+                foreach (var media in media_list) {
+                    var entry = new WizardDownloadableEntry (media);
+
+                    downloads_list.insert (entry, -1);
+                }
+            } catch (OSDatabaseError error) {
+                debug ("Failed to populate the list of downloadable OSes: %s", error.message);
+            }
+        });
+    }
+
+    private bool downloads_filter_func (Gtk.ListBoxRow row) {
+        if (topbar.downloads_search.get_text_length () == 0)
+            return true;
+
+        // FIXME: custom items should also be searchable.
+        if (!(row is WizardDownloadableEntry))
+            return false;
+
+        var entry = row as WizardDownloadableEntry;
+        var text = canonicalize_for_search (topbar.downloads_search.get_text ());
+
+        return text in canonicalize_for_search (entry.title);
     }
 
     private void ui_state_changed () {
