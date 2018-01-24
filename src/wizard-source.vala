@@ -289,7 +289,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Gtk.Label libvirt_sys_import_label;
     [GtkChild]
-    private Gtk.Button install_rhel_button;
+    private Gtk.ListBoxRow install_rhel_button;
     [GtkChild]
     private Gtk.Image install_rhel_image;
     [GtkChild]
@@ -412,21 +412,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         downloads_vbox.bind_model (available_downloads_model, create_downloadable_entry);
         downloads_vbox.row_activated.connect (on_downloadable_entry_clicked);
 
-        downloads_list.bind_model (available_downloads_model, create_downloadable_entry);
-        downloads_list.row_activated.connect (on_downloadable_entry_clicked);
-
-        os_db.list_downloadable_oses.begin ((db, result) => {
-            try {
-                var media_list = os_db.list_downloadable_oses.end (result);
-
-                foreach (var media in media_list) {
-                    available_downloads_model.append (media);
-                }
-            } catch (OSDatabaseError error) {
-                debug ("Failed to populate the list of downloadable OSes: %s", error.message);
-            }
-        });
-
         // We need a Shadowman logo and libosinfo mandates that we specify an
         // OsinfoOs to get a logo. However, we don't have an OsinfoOs to begin
         // with, and by the time we get one from the Red Hat developer portal
@@ -464,6 +449,7 @@ private class Boxes.WizardSource: Gtk.Stack {
         return entry;
     }
 
+    [GtkCallback]
     private void on_downloadable_entry_clicked (Gtk.ListBoxRow row) {
         var entry = (row as WizardDownloadableEntry);
 
@@ -594,6 +580,30 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkCallback]
     private void on_download_an_os_button_clicked () {
         page = SourcePage.DOWNLOADS;
+
+        if (downloads_list.get_children ().length () != 0)
+            return;
+
+        var os_db = media_manager.os_db;
+        os_db.list_downloadable_oses.begin ((db, result) => {
+            try {
+                var media_list = os_db.list_downloadable_oses.end (result);
+
+                foreach (var media in media_list) {
+                    var entry = new WizardDownloadableEntry (media);
+
+                    downloads_list.insert (entry, -1);
+                }
+            } catch (OSDatabaseError error) {
+                debug ("Failed to populate the list of downloadable OSes: %s", error.message);
+            }
+        });
+
+        /* We manually add the custom download entries.
+         * custom download entries are items which require
+         * special handling such as an authentication page
+         * before we obtain a direct image URL. */
+        downloads_list.insert (install_rhel_button, 0);
     }
 
     [GtkCallback]
