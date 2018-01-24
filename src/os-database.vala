@@ -192,29 +192,6 @@ private class Boxes.OSDatabase : GLib.Object {
         return after_list;
     }
 
-    public async Gtk.ListStore get_all_media_urls_as_store () throws OSDatabaseError {
-        if (!yield ensure_db_loaded ())
-            throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
-
-        var store = new Gtk.ListStore (MediaURLsColumns.LAST, typeof (string), typeof (Osinfo.Os));
-        foreach (var entity in db.get_os_list ().get_elements ()) {
-            var os = entity as Os;
-
-            foreach (var media_entity in os.get_media_list ().get_elements ()) {
-                var media = media_entity as Media;
-
-                if (media.url != null && (media.installer || media.live)) {
-                    Gtk.TreeIter iter;
-
-                    store.append (out iter);
-                    store.set (iter, MediaURLsColumns.URL, media.url, MediaURLsColumns.OS, os);
-                }
-            }
-        }
-
-        return store;
-    }
-
     public Media get_media_by_id (Os os, string id) throws OSDatabaseError {
         var medias = os.get_media_list ();
 

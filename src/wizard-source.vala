@@ -481,27 +481,6 @@ private class Boxes.WizardSource: Gtk.Stack {
             }
         });
 
-        os_db.get_all_media_urls_as_store.begin ((db, result) => {
-            try {
-                media_urls_store = os_db.get_all_media_urls_as_store.end (result);
-                var completion = new Gtk.EntryCompletion ();
-                completion.text_column = OSDatabase.MediaURLsColumns.URL;
-                completion.model = media_urls_store;
-                weak Gtk.CellRendererText cell = completion.get_cells ().nth_data (0) as Gtk.CellRendererText;
-                cell.ellipsize = Pango.EllipsizeMode.MIDDLE;
-                completion.set_match_func ((store, key, iter) => {
-                    string url;
-
-                    media_urls_store.get (iter, OSDatabase.MediaURLsColumns.URL, out url);
-
-                    return url.contains (key);
-                });
-                url_entry.completion = completion;
-            } catch (OSDatabaseError error) {
-                debug ("Failed to get all known media URLs: %s", error.message);
-            }
-        });
-
         // We need a Shadowman logo and libosinfo mandates that we specify an
         // OsinfoOs to get a logo. However, we don't have an OsinfoOs to begin
         // with, and by the time we get one from the Red Hat developer portal
