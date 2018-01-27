@@ -20,13 +20,13 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
     }
 
     public GVir.Connection get_connection (string name) {
-        return_if_fail (broker != null);
+        return_val_if_fail (broker != null, null);
         return broker.connections.get (name);
     }
 
     public async LibvirtMachine add_domain (CollectionSource source, GVir.Connection connection, GVir.Domain domain)
                                             throws GLib.Error {
-        return_if_fail (broker != null);
+        return_val_if_fail (broker != null, null);
 
         if (pending_domains.find (domain) != null) {
             // Already being added asychronously
