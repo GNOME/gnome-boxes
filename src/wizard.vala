@@ -755,7 +755,9 @@ private class Boxes.WizardSummary: Gtk.Grid {
             return;
 
         var button = new Gtk.Button.with_mnemonic (_("C_ustomize…"));
-        attach (button, 2, current_row - 1, 1, 1);
+        button.hexpand = true;
+        button.margin_top = 20;
+        attach (button, 0, current_row, 2, 1);
         button.show ();
 
         button.clicked.connect (() => { customize_func (); });
