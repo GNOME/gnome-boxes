@@ -31,7 +31,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         }
     }
 
-    private string collect_logs () {
+    public string collect_logs () {
         var builder = new StringBuilder ();
 
         builder.append_printf ("Broker URL: %s\n", machine.source.uri);
