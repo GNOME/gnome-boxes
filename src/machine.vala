@@ -619,7 +619,21 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         } catch (Boxes.Error.START_FAILED e) {
             warning ("Failed to start %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
-            window.notificationbar.display_error (_("Failed to start “%s”").printf (name));
+
+            var msg = _("Failed to start “%s”").printf (name);
+            if (this is LibvirtMachine) {
+                Notification.OKFunc troubleshoot = () => {
+                    window.current_item = this;
+                    window.show_properties ();
+
+                    var logs = (this as LibvirtMachine).properties.collect_logs ();
+                    window.props_window.show_troubleshoot_log (logs);
+                };
+
+                window.notificationbar.display_for_action (msg, _("Troubleshooting Log"), (owned) troubleshoot, null);
+            } else {
+                window.notificationbar.display_error (msg);
+            }
         } catch (GLib.Error e) {
             warning ("Failed to connect to %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
