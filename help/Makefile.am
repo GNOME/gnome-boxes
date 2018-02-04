@@ -19,6 +19,7 @@ HELP_FILES = index.page			\
 	prop-system.page		\
 	prop-trouble.page		\
 	search.page			\
+	shared-folders.page		\
 	shortcuts.page			\
 	shutdown.page			\
 	snapshot-create.page		\
