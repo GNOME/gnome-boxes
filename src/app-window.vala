@@ -313,7 +313,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void show_send_file () {
         var dialog = new Gtk.FileChooserDialog (
-                "Select files to transfer", this, Gtk.FileChooserAction.OPEN,
+                _("Select files to transfer"), this, Gtk.FileChooserAction.OPEN,
                 _("_Cancel"),
                 Gtk.ResponseType.CANCEL,
                 _("_Open"),
