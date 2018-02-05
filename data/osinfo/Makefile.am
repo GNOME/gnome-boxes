@@ -1,7 +1,7 @@
 NULL=
 
 debiandir= $(datadir)/gnome-boxes/osinfo/os/debian.org
-debian_DATA= debian-1.0.xml
+debian_DATA= debian-4.xml
 
 fedoradir= $(datadir)/gnome-boxes/osinfo/os/fedoraproject.org
 fedora_DATA= fedora-1.xml
