@@ -105,6 +105,12 @@ private class Boxes.OSDatabase : GLib.Object {
         if (!yield ensure_db_loaded ())
             throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
 
+        int year, month, day;
+        var date_time = new DateTime.now_local ();
+        date_time.get_ymd (out year, out month, out day);
+        var now = Date ();
+        now.set_dmy ((DateDay) day, month, (DateYear) year);
+
         var after_list = new GLib.List<Osinfo.Media> ();
         foreach (var entity in db.get_os_list ().get_elements ()) {
             var os = entity as Os;
@@ -115,7 +121,11 @@ private class Boxes.OSDatabase : GLib.Object {
             foreach (var media_entity in os.get_media_list ().get_elements ()) {
                 var media = media_entity as Media;
 
-                if (media.url != null)
+                if (media.url == null)
+                    continue;
+
+                var eol = (os as Product).get_eol_date ();
+                if (eol == null || now.compare (eol) > 1)
                     after_list.append (media);
             }
         }
