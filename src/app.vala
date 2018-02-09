@@ -46,7 +46,7 @@ private class Boxes.App: Gtk.Application {
 
     public App () {
         application_id = "org.gnome.Boxes";
-        flags |= ApplicationFlags.HANDLES_COMMAND_LINE;
+        flags |= ApplicationFlags.HANDLES_COMMAND_LINE | ApplicationFlags.HANDLES_OPEN;
         resource_base_path = "/org/gnome/Boxes";
 
         app = this;
@@ -252,6 +252,17 @@ private class Boxes.App: Gtk.Application {
             main_window.fullscreened = true;
 
         return 0;
+    }
+
+    public override void open (File[] _files, string hint) {
+        activate ();
+
+        File[] files = _files;
+        call_when_ready (() => {
+            foreach (File file in files) {
+                main_window.wizard_window.wizard.open_with_uri (uri);
+            }
+        });
     }
 
     public bool quit_app () {
