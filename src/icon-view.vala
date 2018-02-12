@@ -31,8 +31,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     construct {
         category = new Category (_("New and Recent"), Category.Kind.NEW);
 
-        setup_flowbox ();
-
         filter = new CollectionFilter ();
         filter.notify["text"].connect (() => {
             flowbox.invalidate_filter ();
@@ -40,6 +38,8 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         filter.filter_func_changed.connect (() => {
             flowbox.invalidate_filter ();
         });
+
+        setup_flowbox ();
 
         notify["ui-state"].connect (ui_state_changed);
     }
