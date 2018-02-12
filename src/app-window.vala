@@ -194,6 +194,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         notificationbar.searchbar = searchbar;
 
         group = new Gtk.WindowGroup ();
+        group.add_window (this);
         wizard_window = new WizardWindow (this);
         group.add_window (wizard_window);
         props_window = new PropertiesWindow (this);
