@@ -114,20 +114,6 @@ vala_sources = [
   'snapshots-property.vala',
 ]
 
-if govirt_dep.found ()
-  if get_option ('ovirt')
-    vala_sources += [
-      'ovirt-broker.vala',
-      'ovirt-machine.vala',
-    ]
-  endif
-endif
-
-boxes_sources = [
-  vala_sources,
-  resources
-]
-
 dependencies = [
   config_dep,
   libarchive_dep,
@@ -148,17 +134,24 @@ dependencies = [
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
   valac.find_library ('linux'),
   valac.find_library ('posix'),
-  valac.find_library ('rest-0.7'),
   valac.find_library ('spice-client-gtk-3.0'),
 ]
 
-if govirt_dep.found()
-  if get_option ('ovirt')
-    dependencies += govirt_dep
-  endif
+if get_option('ovirt')
+  vala_sources += [
+    'ovirt-broker.vala',
+    'ovirt-machine.vala'
+  ]
+
+  vala_args += '--define=HAVE_OVIRT'
+
+  dependencies += [
+    dependency ('govirt-1.0', version: '>= 0.3.4'),
+    valac.find_library ('rest-0.7')
+  ]
 endif
 
-executable ('gnome-boxes', boxes_sources,
+executable ('gnome-boxes', vala_sources + resources,
             include_directories: config_h_dir,
             vala_args: vala_args,
             c_args : c_args,

@@ -11,7 +11,6 @@ i18n = import ('i18n')
 cc = meson.get_compiler ('c')
 valac = meson.get_compiler ('vala')
 
-govirt_dep = dependency ('govirt-1.0', version: '>= 0.3.4')
 libarchive_dep = dependency ('libarchive', version: '>= 3.0.0')
 
 src_dir = join_paths (meson.source_root (), 'src')
@@ -37,10 +36,6 @@ conf.set_quoted ('DATADIR', data_dir)
 conf.set_quoted ('CACHEDIR', '/var/cache')
 conf.set_quoted ('LOCALEDIR', locale_dir)
 conf.set('PACKAGE_BUGREPORT', '"https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes"')
-
-if govirt_dep.found()
-  conf.set10 ('HAVE_OVIRT', get_option ('ovirt'))
-endif
 
 configure_file (output: 'config.h', configuration: conf)
 config_h_dir = include_directories ('.')
