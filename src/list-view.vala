@@ -54,7 +54,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     construct {
         items_connections = new HashTable<CollectionItem, ItemConnections> (direct_hash, direct_equal);
 
-        setup_list_box ();
 
         size_group = new Gtk.SizeGroup (Gtk.SizeGroupMode.VERTICAL);
         filter = new CollectionFilter ();
@@ -64,6 +63,7 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         filter.filter_func_changed.connect (() => {
             list_box.invalidate_filter ();
         });
+        setup_list_box ();
 
         notify["ui-state"].connect (ui_state_changed);
     }
@@ -177,8 +177,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
         (list_box as Gtk.Container).add.connect (add_row);
         (list_box as Gtk.Container).remove.connect (remove_row);
-
-        update_selection_mode ();
     }
 
     private CollectionItem? get_item_for_row (Gtk.ListBoxRow box_row) {
