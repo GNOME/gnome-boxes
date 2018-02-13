@@ -257,7 +257,6 @@ private class Boxes.VMConfigurator {
             warning ("Failed to update CPU config for '%s': %s", domain.name, e.message);
         }
 
-        // First remove existing network interface device
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
         DomainGraphicsSpice graphics = null;
@@ -277,12 +276,16 @@ private class Boxes.VMConfigurator {
                 devices.prepend (device);
         }
 
-        // If user interface device was found and removed, let's add bridge device now.
+        // If user interface device was found and it needs to be bridged
         if (iface != null) {
             var bridge = is_libvirt_bridge_net_available ();
-            var virtio = iface.get_model () == "virtio";
+            if (bridge && (iface is DomainInterfaceUser)) {
+                var virtio = iface.get_model () == "virtio";
 
-            devices.prepend (create_network_interface (domain, bridge, virtio));
+                devices.prepend (create_network_interface (domain, bridge, virtio));
+            } else {
+                devices.prepend (iface);
+            }
         }
 
         if (graphics != null)
