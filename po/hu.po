@@ -1,24 +1,24 @@
 # Hungarian translation for gnome-boxes.
-# Copyright (C) 2012-2017 Free Software Foundation, Inc.
+# Copyright (C) 2012, 2013, 2014, 2015, 2016, 2017, 2018 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Lukács Bence <lukacs.bence1 at gmail dot com>, 2012.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2012, 2013, 2014, 2015, 2016.
-# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015, 2016, 2017.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-01-22 10:25+0000\n"
-"PO-Revision-Date: 2018-01-24 13:15+0100\n"
-"Last-Translator: Meskó Balázs <meskobalazs@fedoraproject.org>\n"
+"POT-Creation-Date: 2018-02-09 21:05+0000\n"
+"PO-Revision-Date: 2018-02-23 23:32+0100\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <openscope at googlegroups dot com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -55,7 +55,7 @@ msgstr ""
 "kapcsolódnia (például az irodában)."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:130 src/app-window.vala:245 src/app-window.vala:247
+#: src/app-window.vala:132 src/app-window.vala:248 src/app-window.vala:250
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Gépek"
@@ -164,6 +164,7 @@ msgstr "Ú_j"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
+#: data/ui/wizard-toolbar.ui:205
 msgid "Back"
 msgstr "Vissza"
 
@@ -183,6 +184,14 @@ msgstr "Rács"
 msgid "Search"
 msgstr "Keresés"
 
+#: data/ui/display-page.ui:85
+msgid "Ready to Receive File"
+msgstr "Készen áll fájl fogadására"
+
+#: data/ui/display-page.ui:105
+msgid "You will find your file in the Downloads directory."
+msgstr "A fájlt a Letöltések könyvtárban fogja megtalálni."
+
 #: data/ui/display-toolbar.ui:63
 msgid "Actions"
 msgstr "Műveletek"
@@ -191,7 +200,7 @@ msgstr "Műveletek"
 msgid "Keyboard shortcuts"
 msgstr "Gyorsbillentyűk"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:54
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
 msgid "Fullscreen"
 msgstr "Teljes képernyő"
 
@@ -288,7 +297,7 @@ msgstr "Névjegy"
 msgid "Quit"
 msgstr "Kilépés"
 
-#: data/ui/properties-toolbar.ui:43
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Hibaelhárítási napló"
 
@@ -302,10 +311,12 @@ msgstr "Válasszon egy eszközt vagy ISO fájlt"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
+#: src/app-window.vala:317
 msgid "_Cancel"
 msgstr "Mé_gse"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
+#: src/app-window.vala:319
 msgid "_Open"
 msgstr "_Megnyitás"
 
@@ -362,13 +373,21 @@ msgid "Rename"
 msgstr "Átnevezés"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:73
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Törlés"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Kész"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Hoppá, valami elromlott"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "A Gépek nem tud hozzáférni a virtualizációs háttérprogramhoz."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -409,24 +428,24 @@ msgstr ""
 "Helyezze be egy operációs rendszer telepítőmédiáját, vagy válasszon alább "
 "egy forrást"
 
-#: data/ui/wizard-source.ui:82
+#: data/ui/wizard-source.ui:83
 msgid "Download an OS"
 msgstr "OS letöltése"
 
-#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
-#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
+#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:125
+#: data/ui/wizard-source.ui:126
 msgid "_Enter URL"
 msgstr "Adja meg az URL-_címet"
 
-#: data/ui/wizard-source.ui:210
+#: data/ui/wizard-source.ui:211
 msgid "_Select a file"
 msgstr "_Válasszon egy fájlt"
 
-#: data/ui/wizard-source.ui:238
+#: data/ui/wizard-source.ui:239
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -435,23 +454,15 @@ msgstr ""
 "A fent megjelenő védjegyek csak az Ön által már beszerzett szoftvertermékek "
 "azonosítására szolgálnak, és a megfelelő tulajdonosaik tulajdonát képezik."
 
-#: data/ui/wizard-source.ui:314
-msgid "Red Hat Enterprise Linux"
-msgstr "Red Hat Enterprise Linux"
-
-#: data/ui/wizard-source.ui:327
-msgid "Available with a free Red Hat developer account"
-msgstr "Egy ingyenes Red Hat fejlesztői fiókkal érhető el"
-
-#: data/ui/wizard-source.ui:411
+#: data/ui/wizard-source.ui:310
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:422
+#: data/ui/wizard-source.ui:321
 msgid "Enter URL"
 msgstr "Adja meg az URL-címet"
 
-#: data/ui/wizard-source.ui:452
+#: data/ui/wizard-source.ui:351
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -459,13 +470,21 @@ msgstr ""
 "Adja meg a hozzáadni kívánt gép címét. A címek lehetnek telepítési "
 "lemezképek, SPICE és VNC kiszolgálók, vagy oVirt, illetve Libvirt közvetítők."
 
-#: data/ui/wizard-source.ui:470
+#: data/ui/wizard-source.ui:369
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
 msgstr ""
 "Példák: http://download.com/image.iso, spice://valamigép:5051, ovirt://gép/"
 "útvonal"
+
+#: data/ui/wizard-source.ui:442
+msgid "Red Hat Enterprise Linux"
+msgstr "Red Hat Enterprise Linux"
+
+#: data/ui/wizard-source.ui:455
+msgid "Available with a free Red Hat developer account"
+msgstr "Egy ingyenes Red Hat fejlesztői fiókkal érhető el"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 msgid "Create a Box"
@@ -500,49 +519,54 @@ msgstr ""
 "Ellenőrizze a BIOS beállításait azok engedélyezéséhez."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:28
+#: src/actions-popover.vala:30
 msgid "Box actions"
 msgstr "Gép műveletek"
 
 #. Open in new Window
-#: src/actions-popover.vala:42
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Megnyitás új ablakban"
 
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "Fájl küldése…"
+
 #. Take Screenshot
-#: src/actions-popover.vala:47
+#: src/actions-popover.vala:54
 msgid "Take Screenshot"
 msgstr "Képernyőkép készítése"
 
 #. Favorite
-#: src/actions-popover.vala:52
+#: src/actions-popover.vala:59
 msgid "Remove from Favorites"
 msgstr "Eltávolítás a kedvencek közül"
 
-#: src/actions-popover.vala:54
+#: src/actions-popover.vala:61
 msgid "Add to Favorites"
 msgstr "Hozzáadás a kedvencekhez"
 
-#: src/actions-popover.vala:61
+#: src/actions-popover.vala:68
 msgid "Force Shutdown"
 msgstr "Erőltetett leállítás"
 
 #. Clone
-#: src/actions-popover.vala:68
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Klónozás"
 
-#: src/actions-popover.vala:77 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Újraindítás"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:86
+#: src/actions-popover.vala:93
 msgid "Properties"
 msgstr "Tulajdonságok"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:110
+#: src/actions-popover.vala:117
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Képernyőkép ekkor: %s"
@@ -592,45 +616,49 @@ msgstr "– Egyszerű alkalmazás távoli vagy virtuális gépek eléréséhez"
 msgid "Too many command line arguments specified.\n"
 msgstr "Túl sok parancssori argumentum lett megadva.\n"
 
-#: src/app.vala:450
+#: src/app.vala:451
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "A(z) „%s” gép telepítve és használatra kész"
 
-#: src/app.vala:538
+#: src/app.vala:539
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "A(z) „%s” gép törlésre került"
 
-#: src/app.vala:539
+#: src/app.vala:540
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u gép törlésre került"
 msgstr[1] "%u gép törlésre került"
 
-#: src/app.vala:566 src/libvirt-machine-properties.vala:551
+#: src/app.vala:567 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Visszavonás"
 
-#: src/display-page.vala:110
+#: src/app-window.vala:316
+msgid "Select files to transfer"
+msgstr "Fájlok kijelölése az átvitelhez"
+
+#: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Nyomja le a (bal) Ctrl+Alt billentyűket az eleresztéshez"
 
-#: src/display-page.vala:112
+#: src/display-page.vala:137
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "Nyomja le és engedje el a (bal) Ctrl+Alt billentyűket a billentyűzet "
 "eleresztéshez."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:256
+#: src/display-page.vala:310
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:51
+#: src/display-toolbar.vala:71
 msgid "Exit fullscreen"
 msgstr "Kilépés a teljes képernyős módból"
 
@@ -854,8 +882,8 @@ msgstr "Telepítés…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:104
-#: src/wizard-source.vala:188
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:113
+#: src/wizard-source.vala:145
 msgid "Live"
 msgstr "Élő"
 
@@ -933,7 +961,7 @@ msgstr "Kikapcsolva"
 msgid "Connecting to %s"
 msgstr "Kapcsolódás: %s"
 
-#: src/machine.vala:224 src/machine.vala:626
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "A kapcsolódás meghiúsult a következőhöz: „%s”"
@@ -951,13 +979,13 @@ msgstr ""
 "„%s” nem állítható helyre a lemezről\n"
 "Megpróbálja a mentett állapot nélkül?"
 
-#: src/machine.vala:622
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nem sikerült elindítani: „%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:713
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s” hitelesítést igényel"
@@ -1021,7 +1049,7 @@ msgstr "A kapcsolódás meghiúsult az oVirt közvetítőhöz"
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:521
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
 msgid "URL"
 msgstr "URL"
 
@@ -1107,20 +1135,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Nem sikerült a(z) %s pillanatképének létrehozása"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:47
+#: src/spice-display.vala:48
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: src/spice-display.vala:67 src/spice-display.vala:644
+#: src/spice-display.vala:68 src/spice-display.vala:665
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "„%s” USB-eszköz átirányítása meghiúsult ehhez: „%s”"
 
-#: src/spice-display.vala:500
+#: src/spice-display.vala:521
 msgid "Share Clipboard"
 msgstr "Vágólap megosztása"
 
-#: src/spice-display.vala:505
+#: src/spice-display.vala:526
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1133,26 +1161,32 @@ msgstr ""
 "href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
 "download.html</a> oldalt ezen eszközök letöltéséhez és telepítéséhez."
 
-#: src/spice-display.vala:532
+#: src/spice-display.vala:553
 msgid "USB devices"
 msgstr "USB eszközök"
 
-#: src/spice-display.vala:550
+#: src/spice-display.vala:571
 msgid "Folder Shares"
 msgstr "Mappamegosztások"
 
-#: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:332 src/wizard.vala:345
+#: src/spice-display.vala:833 src/spice-display.vala:858
+#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
 msgid "Invalid URL"
 msgstr "Érvénytelen URL"
 
-#: src/spice-display.vala:822
+#: src/spice-display.vala:843
 msgid "The port must be specified once"
 msgstr "A portot csak egyszer lehet megadni"
 
-#: src/spice-display.vala:833
+#: src/spice-display.vala:854
 msgid "Missing port in Spice URL"
 msgstr "Hiányzó port a Spice URL-ben"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "„%s” másolása a „Letöltésekbe”"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
@@ -1254,16 +1288,16 @@ msgstr "A(z) „%s” futó gép automatikusan törlésre került."
 msgid "Box import from file “%s” failed."
 msgstr "Nem sikerült a gép importálása a(z) „%s” fájlból."
 
-#: src/wizard-source.vala:192
+#: src/wizard-source.vala:149
 msgid "32-bit x86 system"
 msgstr "32 bites x86 rendszer"
 
-#: src/wizard-source.vala:193
+#: src/wizard-source.vala:150
 msgid "64-bit x86 system"
 msgstr "64 bites x86 rendszer"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:198
+#: src/wizard-source.vala:155
 #, c-format
 msgid " from %s"
 msgstr " gyártó: %s"
@@ -1284,101 +1318,93 @@ msgstr "Gép beállítás"
 msgid "Review"
 msgstr "Áttekintés"
 
-#: src/wizard.vala:116
+#: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "A gép létrehozása meghiúsult"
 
-#: src/wizard.vala:291
+#: src/wizard.vala:300
 msgid "Empty location"
 msgstr "Üres hely"
 
-#: src/wizard.vala:314
+#: src/wizard.vala:323
 msgid "Unsupported file"
 msgstr "Nem támogatott fájl"
 
-#: src/wizard.vala:320
+#: src/wizard.vala:329
 msgid "Invalid file"
 msgstr "Érvénytelen fájl"
 
-#: src/wizard.vala:363
+#: src/wizard.vala:372
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nem támogatott protokoll: „%s”"
 
-#: src/wizard.vala:369 src/wizard.vala:443
+#: src/wizard.vala:378 src/wizard.vala:452
 msgid "Unknown installer media"
 msgstr "Ismeretlen telepítő média"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:371 src/wizard.vala:444
+#: src/wizard.vala:380 src/wizard.vala:453
 msgid "Analyzing…"
 msgstr "Elemzés…"
 
-#: src/wizard.vala:385
+#: src/wizard.vala:394
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Nem sikerült a telepítő média elemzése. A média sérült vagy befejezetlen?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:497
+#: src/wizard.vala:506
 msgid "Box setup failed"
 msgstr "A gép beállítása meghiúsult"
 
-#: src/wizard.vala:511
+#: src/wizard.vala:520
 msgid "Boxes will create a new box with the following properties:"
 msgstr "A Gépek létrehoz egy új gépet a következő tulajdonságokkal:"
 
-#: src/wizard.vala:516
+#: src/wizard.vala:525
 msgid "Type"
 msgstr "Típus"
 
-#: src/wizard.vala:519
+#: src/wizard.vala:528
 msgid "Host"
 msgstr "Kiszolgáló"
 
-#: src/wizard.vala:530 src/wizard.vala:541
+#: src/wizard.vala:539 src/wizard.vala:550
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:532
+#: src/wizard.vala:541
 msgid "TLS Port"
 msgstr "TLS port"
 
-#: src/wizard.vala:546
+#: src/wizard.vala:555
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Gépek felvétele az erről a fiókról elérhető összes rendszerhez:"
 
-#: src/wizard.vala:559
+#: src/wizard.vala:568
 msgid "Memory"
 msgstr "Memória"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:577
 msgid "Disk"
 msgstr "Lemez"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:570
+#: src/wizard.vala:579
 #, c-format
 msgid "%s maximum"
 msgstr "%s maximum"
 
-#: src/wizard.vala:633
+#: src/wizard.vala:642
 msgid "Downloading media…"
 msgstr "Média letöltése…"
 
-#: src/wizard.vala:643
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "A letöltés meghiúsult."
 
-#: src/wizard.vala:757
+#: src/wizard.vala:766
 msgid "C_ustomize…"
 msgstr "_Testreszabás…"
 
-#~ msgid "Downloaded"
-#~ msgstr "Letöltve"
-
-#~ msgid "Available to Download"
-#~ msgstr "Letölthető"
-
-#~ msgid "Pause"
-#~ msgstr "Szünet"
