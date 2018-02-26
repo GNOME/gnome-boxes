@@ -1,6 +1,7 @@
 osinfo_db = [
   ['debian-4.xml', 'gnome-boxes/osinfo/os/debian.org'],
   ['fedora-1.xml', 'gnome-boxes/osinfo/os/fedoraproject.org'],
+  ['freedos-1.2.xml', 'gnome-boxes/osinfo/os/freedos.org'],
   ['opensuse-10.2.xml', 'gnome-boxes/osinfo/os/opensuse.org'],
   ['ubuntu-4.10.xml', 'gnome-boxes/osinfo/os/ubuntu.com'],
   ['gnome-3.6.xml', 'gnome-boxes/osinfo/os/gnome.org'],
