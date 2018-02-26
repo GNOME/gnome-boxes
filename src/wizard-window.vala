@@ -16,6 +16,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public delegate void DownloadChosenFunc (string uri);
     public delegate void CustomDownloadChosenFunc ();
 
+    private HashTable<string,Osinfo.Os> logos_table;
+
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
@@ -71,6 +73,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         topbar.downloads_search.search_changed.connect (() => {
             downloads_list.invalidate_filter ();
         });
+
+        logos_table = new HashTable<string, Osinfo.Os> (str_hash, str_equal);
     }
 
     public void show_customization_page (LibvirtMachine machine) {
@@ -158,11 +162,16 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
                     var entry = new WizardDownloadableEntry (media);
 
                     downloads_list.insert (entry, -1);
+                    logos_table.insert (media.url, media.os);
                 }
             } catch (OSDatabaseError error) {
                 debug ("Failed to populate the list of downloadable OSes: %s", error.message);
             }
         });
+    }
+
+    public Osinfo.Os? get_os_from_uri (string uri) {
+       return logos_table.lookup (uri);
     }
 
     private bool downloads_filter_func (Gtk.ListBoxRow row) {

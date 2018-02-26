@@ -306,10 +306,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.ListBox media_vbox;
     private Gtk.ListBox downloads_vbox;
 
-    private Gtk.ListStore? media_urls_store;
-
     private Cancellable? rhel_cancellable;
-    private Gtk.TreeRowReference? rhel_os_row_reference;
     private Osinfo.Os? rhel_os;
 
     public MediaManager media_manager;
@@ -328,20 +325,6 @@ private class Boxes.WizardSource: Gtk.Stack {
 
             return (scheme != null && scheme in Downloader.supported_schemes);
         }
-    }
-
-    public Osinfo.Os? get_os_from_uri (string uri) {
-        Osinfo.Os? os = null;
-
-        media_urls_store.foreach ((store, path, iter) => {
-            string? os_uri;
-            media_urls_store.get (iter,
-                                  OSDatabase.MediaURLsColumns.URL, out os_uri,
-                                  OSDatabase.MediaURLsColumns.OS, out os);
-            return os_uri == uri;
-        });
-
-        return os;
     }
 
     private SourcePage _page;
@@ -666,29 +649,6 @@ private class Boxes.WizardSource: Gtk.Stack {
             return false;
 
         debug ("RHEL ISO download URI: %s", download_uri);
-
-        if (rhel_os != null) {
-            Gtk.TreeIter iter;
-            Gtk.TreePath? path;
-            bool iter_is_valid = false;
-
-            if (rhel_os_row_reference == null) {
-                media_urls_store.append (out iter);
-                iter_is_valid = true;
-
-                path = media_urls_store.get_path (iter);
-                rhel_os_row_reference = new Gtk.TreeRowReference (media_urls_store, path);
-            } else {
-                path = rhel_os_row_reference.get_path ();
-                iter_is_valid = media_urls_store.get_iter (out iter, path);
-            }
-
-            if (iter_is_valid) {
-                media_urls_store.set (iter,
-                                      OSDatabase.MediaURLsColumns.URL, download_uri,
-                                      OSDatabase.MediaURLsColumns.OS, rhel_os);
-            }
-        }
 
         var soup_download_uri = new Soup.URI (download_uri);
         var download_path = soup_download_uri.get_path ();
