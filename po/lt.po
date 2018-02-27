@@ -1,15 +1,14 @@
 # Lithuanian translation for gnome-boxes.
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Aurimas Černius <aurisc4@gmail.com>, 2012, 2013, 2014, 2015, 2016, 2017.
+# Aurimas Černius <aurisc4@gmail.com>, 2012, 2013, 2014, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-31 11:02+0000\n"
-"PO-Revision-Date: 2017-11-25 21:40+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2018-02-09 21:05+0000\n"
+"PO-Revision-Date: 2018-02-27 23:05+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -54,27 +53,27 @@ msgstr ""
 "mėgiamų operacinių sistemų versijas arba norite prisijungti prie nutolusio "
 "kompiuterio (pvz. darbo)."
 
-#: data/org.gnome.Boxes.desktop.in.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:130 src/app-window.vala:245 src/app-window.vala:247
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: src/app-window.vala:132 src/app-window.vala:248 src/app-window.vala:250
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Dėžės"
 
-#: data/org.gnome.Boxes.desktop.in.in:4
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
 msgstr "Virtualių mašinų žiūryklė/tvarkytuvė"
 
-#: data/org.gnome.Boxes.desktop.in.in:5
+#: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
 msgstr "Rodyti ir naudoti virtualias mašinas"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Boxes.desktop.in.in:7
+#: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
 msgstr "virtuali mašina;vm;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in.in:10
+#: data/org.gnome.Boxes.desktop.in:10
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
@@ -164,6 +163,7 @@ msgstr "_Nauja"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
+#: data/ui/wizard-toolbar.ui:205
 msgid "Back"
 msgstr "Atgal"
 
@@ -183,6 +183,14 @@ msgstr "Tinklelio vaizdas"
 msgid "Search"
 msgstr "Ieškoti"
 
+#: data/ui/display-page.ui:85
+msgid "Ready to Receive File"
+msgstr "Pasiruošęs priimti failą"
+
+#: data/ui/display-page.ui:105
+msgid "You will find your file in the Downloads directory."
+msgstr "Failą rasite Parsiuntimų aplanke."
+
 #: data/ui/display-toolbar.ui:63
 msgid "Actions"
 msgstr "Veiksmai"
@@ -191,7 +199,7 @@ msgstr "Veiksmai"
 msgid "Keyboard shortcuts"
 msgstr "Klaviatūros trumpiniai"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:54
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
 msgid "Fullscreen"
 msgstr "Visas ekranas"
 
@@ -288,7 +296,7 @@ msgstr "Apie"
 msgid "Quit"
 msgstr "Išeiti"
 
-#: data/ui/properties-toolbar.ui:43
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Problemų žurnalas"
 
@@ -302,10 +310,12 @@ msgstr "Pasirinkite įrenginį arba ISO failą"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
+#: src/app-window.vala:317
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
+#: src/app-window.vala:319
 msgid "_Open"
 msgstr "_Atverti"
 
@@ -362,13 +372,21 @@ msgid "Rename"
 msgstr "Pervadinti"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:79
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Ištrinti"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Atlikta"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Oi, atsitiko kažkas negero"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Dėžės negali pasiekti virtualizacijos realizacijos."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -399,29 +417,34 @@ msgstr "Pridėti sl_aptažodį"
 msgid "Product Key"
 msgstr "Produkto raktas"
 
-#: data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:58 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Nežinoma laikmena"
 
-#: data/ui/wizard-source.ui:26
+#: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Įdėkite operacinės sistemos diegimo laikmeną arba pasirinkite šaltinį žemiau"
 
-#: data/ui/wizard-source.ui:62
-msgid "_Enter URL"
-msgstr "Į_veskite URL"
+#: data/ui/wizard-source.ui:83
+#| msgid "Download failed."
+msgid "Download an OS"
+msgstr "Parsiunčiamas OS"
 
-#: data/ui/wizard-source.ui:72 data/ui/wizard-source.ui:115
-#: data/ui/wizard-source.ui:157
+#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
+#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:105
+#: data/ui/wizard-source.ui:126
+msgid "_Enter URL"
+msgstr "Į_veskite URL"
+
+#: data/ui/wizard-source.ui:211
 msgid "_Select a file"
 msgstr "Pa_sirinkite failą"
 
-#: data/ui/wizard-source.ui:172
+#: data/ui/wizard-source.ui:239
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -430,15 +453,15 @@ msgstr ""
 "Bet kokie prekių ženklai rodomi aukščiau yra tik jūsų įsigyto programinės "
 "įrangos produktų identifikavimui ir yra atitinkamų savininkų nuosavybė."
 
-#: data/ui/wizard-source.ui:223
+#: data/ui/wizard-source.ui:310
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:234
+#: data/ui/wizard-source.ui:321
 msgid "Enter URL"
 msgstr "Įveskite URL"
 
-#: data/ui/wizard-source.ui:264
+#: data/ui/wizard-source.ui:351
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -446,13 +469,21 @@ msgstr ""
 "Įveskite pridedamos dėžės adresą. Adresai gali būti diegimo atvaizdžiai, "
 "SPICE ar VNC serveriai, oVirt arba Libvirt brokeriai."
 
-#: data/ui/wizard-source.ui:282
+#: data/ui/wizard-source.ui:369
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
 msgstr ""
 "Pavyzdžiai: http://download.com/image.iso, spice://somehost:5051, ovirt://"
 "host/path"
+
+#: data/ui/wizard-source.ui:442
+msgid "Red Hat Enterprise Linux"
+msgstr "Red Hat Enterprise Linux"
+
+#: data/ui/wizard-source.ui:455
+msgid "Available with a free Red Hat developer account"
+msgstr "Prieinama su nemokama Red Hat kūrėjo paskyra"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 msgid "Create a Box"
@@ -474,11 +505,11 @@ msgstr "_Atgal"
 msgid "Customize Resources"
 msgstr "Tinkinti išteklius"
 
-#: data/ui/wizard.ui:59
+#: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
 msgstr "Ruošiamasi kurti naują dėžę"
 
-#: data/ui/wizard.ui:223
+#: data/ui/wizard.ui:220
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -487,104 +518,99 @@ msgstr ""
 "Patikrinkite BIOS nustatymus jiems įjungti."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:29
+#: src/actions-popover.vala:30
 msgid "Box actions"
 msgstr "Dėžės veiksmai"
 
 #. Open in new Window
-#: src/actions-popover.vala:43
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Atverti naujame lange"
 
-#. Favorite
-#: src/actions-popover.vala:50
-msgid "Remove from Favorites"
-msgstr "Pašalinti iš mėgiamų"
-
-#: src/actions-popover.vala:52
-msgid "Add to Favorites"
-msgstr "Pridėti prie mėgiamų"
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "Siųsti failą…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:56
+#: src/actions-popover.vala:54
 msgid "Take Screenshot"
 msgstr "Padaryti ekrano nuotrauką"
 
-#: src/actions-popover.vala:62
+#. Favorite
+#: src/actions-popover.vala:59
+msgid "Remove from Favorites"
+msgstr "Pašalinti iš mėgiamų"
+
+#: src/actions-popover.vala:61
+msgid "Add to Favorites"
+msgstr "Pridėti prie mėgiamų"
+
+#: src/actions-popover.vala:68
 msgid "Force Shutdown"
 msgstr "Priverstinai išjungti"
 
-#. Pause
-#: src/actions-popover.vala:69
-msgid "Pause"
-msgstr "Pristabdyti"
-
 #. Clone
-#: src/actions-popover.vala:74
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Klonuoti"
 
-#: src/actions-popover.vala:83 src/machine.vala:604
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:92
+#: src/actions-popover.vala:93
 msgid "Properties"
 msgstr "Savybės"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:116
+#: src/actions-popover.vala:117
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Ekranvaizdžis iš %s"
 
-#: src/actions-popover.vala:147 src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Nepavyko sustabdyti „%s“"
-
-#: src/app.vala:106
+#: src/app.vala:108
 msgid "translator-credits"
 msgstr ""
 "išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: src/app.vala:107
+#: src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:168 src/main.vala:9
 msgid "Display version number"
 msgstr "Vaizduoklio versijos numeris"
 
-#: src/app.vala:175
+#: src/app.vala:170
 msgid "Open in full screen"
 msgstr "Atverti visame ekrane"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:171 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Patikrinti virtualizacijos galimybes"
 
-#: src/app.vala:177
+#: src/app.vala:172
 msgid "Open box with UUID"
 msgstr "Atverti dėžę su UUID"
 
-#: src/app.vala:178
+#: src/app.vala:173
 msgid "Search term"
 msgstr "Paieškos terminas"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#: src/app.vala:175
 msgid "URL to display, broker or installer media"
 msgstr "URL iki vaizduoklio, brokerio arba diegimo laikmenos"
 
-#: src/app.vala:191
+#: src/app.vala:186
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 
-#: src/app.vala:216
+#: src/app.vala:211
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
@@ -611,27 +637,31 @@ msgstr[2] "%u dėžių buvo ištrintos"
 msgid "_Undo"
 msgstr "_Atšaukti"
 
-#: src/display-page.vala:110
+#: src/app-window.vala:316
+msgid "Select files to transfer"
+msgstr "Pasirinkite failus perdavimui"
+
+#: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Spauskite (kairiuosius) Vald+Alt klavišus paleidimui"
 
-#: src/display-page.vala:112
+#: src/display-page.vala:137
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "Paspauskite ir atleiskite [kairiuosius] Vald+Alt klavišus klaviatūros "
 "paleidimui."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:256
+#: src/display-page.vala:310
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:51
+#: src/display-toolbar.vala:71
 msgid "Exit fullscreen"
 msgstr "Išeiti iš viso ekrano"
 
-#: src/icon-view.vala:56
+#: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "Naujos ir neseniai naudotos"
 
@@ -639,7 +669,7 @@ msgstr "Naujos ir neseniai naudotos"
 msgid "Unsupported disk image format."
 msgstr "Nepalaikomas disko atvaizdžio formatas."
 
-#: src/installed-media.vala:108 src/installer-media.vala:112
+#: src/installed-media.vala:108 src/installer-media.vala:113
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistema"
@@ -853,7 +883,8 @@ msgstr "Diegiama…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:82
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:113
+#: src/wizard-source.vala:145
 msgid "Live"
 msgstr "Veikia"
 
@@ -928,21 +959,21 @@ msgid "Powered Off"
 msgstr "Išjungta"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:195
+#: src/machine.vala:201
 #, c-format
 msgid "Connecting to %s"
 msgstr "Jungiamasi prie %s"
 
-#: src/machine.vala:218 src/machine.vala:617
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Nepavyko prisijungti prie „%s“"
 
-#: src/machine.vala:416
+#: src/machine.vala:422
 msgid "Saving…"
 msgstr "Įrašoma…"
 
-#: src/machine.vala:603
+#: src/machine.vala:612
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -951,13 +982,13 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: src/machine.vala:613
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nepavyko paleisti „%s“"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:646
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s“ reikalauja patvirtinti tapatybę"
@@ -1021,7 +1052,7 @@ msgstr "Nepavyko prisijungti prie oVirt brokerio"
 msgid "Protocol"
 msgstr "Protokolas"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:488
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
 msgid "URL"
 msgstr "URL"
 
@@ -1045,6 +1076,11 @@ msgstr "Pakeitimai reikalauja „%s“ įkėlimo iš naujo."
 #: src/remote-machine.vala:75
 msgid "_URL"
 msgstr "_URL"
+
+#: src/selectionbar.vala:60
+#, c-format
+msgid "Pausing “%s” failed"
+msgstr "Nepavyko sustabdyti „%s“"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: src/selectionbar.vala:173
@@ -1103,20 +1139,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Nepavyko sukurti %s momentinės kopijos"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:47
+#: src/spice-display.vala:48
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: src/spice-display.vala:67 src/spice-display.vala:644
+#: src/spice-display.vala:68 src/spice-display.vala:665
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Nepavyko nukreipti USB įrenginio „%s“ į „%s“"
 
-#: src/spice-display.vala:500
+#: src/spice-display.vala:521
 msgid "Share Clipboard"
 msgstr "Bendrinti iškarpinę"
 
-#: src/spice-display.vala:505
+#: src/spice-display.vala:526
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1129,26 +1165,32 @@ msgstr ""
 "www.spice-space.org/download.html\">http://www.spice-space.org/download."
 "html</a>."
 
-#: src/spice-display.vala:532
+#: src/spice-display.vala:553
 msgid "USB devices"
 msgstr "USB įrenginiai"
 
-#: src/spice-display.vala:550
+#: src/spice-display.vala:571
 msgid "Folder Shares"
 msgstr "Bendrinami aplankai"
 
-#: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:311 src/wizard.vala:318
+#: src/spice-display.vala:833 src/spice-display.vala:858
+#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
 msgid "Invalid URL"
 msgstr "Netinkamas URL"
 
-#: src/spice-display.vala:822
+#: src/spice-display.vala:843
 msgid "The port must be specified once"
 msgstr "Prievadas turi būti nurodytas vieną kartą"
 
-#: src/spice-display.vala:833
+#: src/spice-display.vala:854
 msgid "Missing port in Spice URL"
 msgstr "Spice URL trūksta prievado"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "Kopijuojamas „%s“ į „Parsiuntimus“"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
@@ -1224,11 +1266,11 @@ msgstr ""
 "%s yra žinoma libvirt kaip GNOME Dėžių saugyklos vieta, bet nėra naudotojui "
 "skaitoma/rašoma"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "yes"
 msgstr "taip"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "no"
 msgstr "ne"
 
@@ -1248,16 +1290,16 @@ msgstr "Tiesioginė dėžė „%s“ buvo automatiškai ištrinta."
 msgid "Box import from file “%s” failed."
 msgstr "Nepavyko importuoti dėžės iš failo „%s“."
 
-#: src/wizard-source.vala:86
+#: src/wizard-source.vala:149
 msgid "32-bit x86 system"
 msgstr "32-bit x86 sistema"
 
-#: src/wizard-source.vala:87
+#: src/wizard-source.vala:150
 msgid "64-bit x86 system"
 msgstr "64-bit x86 sistema"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:92
+#: src/wizard-source.vala:155
 #, c-format
 msgid " from %s"
 msgstr " iš %s"
@@ -1278,95 +1320,98 @@ msgstr "Dėžės nustatymas"
 msgid "Review"
 msgstr "Peržiūra"
 
-#: src/wizard.vala:116
+#: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Dėžės sukurti nepavyko"
 
-#: src/wizard.vala:270
+#: src/wizard.vala:300
 msgid "Empty location"
 msgstr "Tuščia vieta"
 
-#: src/wizard.vala:293
+#: src/wizard.vala:323
 msgid "Unsupported file"
 msgstr "Nepalaikomas failas"
 
-#: src/wizard.vala:299
+#: src/wizard.vala:329
 msgid "Invalid file"
 msgstr "Netinkamas failas"
 
-#: src/wizard.vala:336
+#: src/wizard.vala:372
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nepalaikomas protokolas „%s“"
 
-#: src/wizard.vala:342 src/wizard.vala:410
+#: src/wizard.vala:378 src/wizard.vala:452
 msgid "Unknown installer media"
 msgstr "Nežinoma diegimo laikmena"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:344 src/wizard.vala:411
+#: src/wizard.vala:380 src/wizard.vala:453
 msgid "Analyzing…"
 msgstr "Analizuojama…"
 
-#: src/wizard.vala:358
+#: src/wizard.vala:394
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Nepavyko analizuoti diegyklės laikmenos. Sugadinta ar nepilna laikmena?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:464
+#: src/wizard.vala:506
 msgid "Box setup failed"
 msgstr "Dėžės nustatymas nepavyko"
 
-#: src/wizard.vala:478
+#: src/wizard.vala:520
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Dėžės sukurs naują dėžę su šiomis savybėmis:"
 
-#: src/wizard.vala:483
+#: src/wizard.vala:525
 msgid "Type"
 msgstr "Tipas"
 
-#: src/wizard.vala:486
+#: src/wizard.vala:528
 msgid "Host"
 msgstr "Serveris"
 
-#: src/wizard.vala:497 src/wizard.vala:508
+#: src/wizard.vala:539 src/wizard.vala:550
 msgid "Port"
 msgstr "Prievadas"
 
-#: src/wizard.vala:499
+#: src/wizard.vala:541
 msgid "TLS Port"
 msgstr "TLS prievadas"
 
-#: src/wizard.vala:513
+#: src/wizard.vala:555
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Pridės dėžes visoms šios paskyros prieinamoms sistemoms:"
 
-#: src/wizard.vala:526
+#: src/wizard.vala:568
 msgid "Memory"
 msgstr "Atmintis"
 
-#: src/wizard.vala:535
+#: src/wizard.vala:577
 msgid "Disk"
 msgstr "Diskas"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:537
+#: src/wizard.vala:579
 #, c-format
 msgid "%s maximum"
 msgstr "daugiausia %s"
 
-#: src/wizard.vala:600
+#: src/wizard.vala:642
 msgid "Downloading media…"
 msgstr "Parsiunčiamos laikmenos…"
 
-#: src/wizard.vala:610
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "Parsiųsti nepavyko."
 
-#: src/wizard.vala:718
+#: src/wizard.vala:766
 msgid "C_ustomize…"
 msgstr "_Tinkinti…"
+
+#~ msgid "Pause"
+#~ msgstr "Pristabdyti"
 
 #~ msgid "%s (maximum)"
 #~ msgstr "%s (daugiausia)"
