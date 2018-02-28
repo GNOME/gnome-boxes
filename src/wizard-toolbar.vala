@@ -75,6 +75,8 @@ private class Boxes.WizardToolbar: Gtk.Stack {
 
     [GtkCallback]
     private void on_downloads_search_back_clicked () requires (page == WizardWindowPage.DOWNLOADS) {
+        downloads_search.set_text ("");
+
         wizard_window.page = WizardWindowPage.MAIN;
     }
 
