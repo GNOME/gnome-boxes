@@ -152,7 +152,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         page = WizardWindowPage.DOWNLOADS;
         topbar.downloads_search.grab_focus ();
 
-        return_if_fail (downloads_list.get_children ().length () == 0);
+        if (downloads_list.get_children ().length () > 0)
+            return;
 
         os_db.list_downloadable_oses.begin ((db, result) => {
             try {
