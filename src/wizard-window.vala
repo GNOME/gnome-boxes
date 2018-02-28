@@ -127,11 +127,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         downloads_list.insert (row, -1);
 
         var button = row.get_child () as Gtk.Button;
-
-        ulong activated_id = 0;
-        activated_id = button.clicked.connect (() => {
+        button.clicked.connect (() => {
             custom_download_chosen_func ();
-            button.disconnect (activated_id);
 
             page = WizardWindowPage.MAIN;
         });
