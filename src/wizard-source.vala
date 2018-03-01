@@ -60,6 +60,8 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
 private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
+    public Osinfo.Os? os;
+
     [GtkChild]
     private Gtk.Image media_image;
     [GtkChild]
@@ -68,20 +70,29 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
     private Gtk.Label details_label;
 
     public string title {
-        get {
-            return title_label.get_text ();
-        }
+        get { return title_label.get_text (); }
+        set { title_label.label = value; }
     }
 
+    public string details {
+        get { return details_label.get_text (); }
+        set { details_label.label = value; }
+    }
     public string url;
 
     public WizardDownloadableEntry (Osinfo.Media media) {
-        Downloader.fetch_os_logo.begin (media_image, media.os, 64);
+        this.from_os (media.os);
 
         setup_label (media);
         details_label.label = media.os.vendor;
 
         url = media.url;
+    }
+
+    public WizardDownloadableEntry.from_os (Osinfo.Os os) {
+        Downloader.fetch_os_logo.begin (media_image, os, 64);
+
+        this.os = os;
     }
 
     private void setup_label (Osinfo.Media media) {
@@ -295,10 +306,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     [GtkChild]
     private Gtk.Label libvirt_sys_import_label;
     [GtkChild]
-    private Gtk.ListBoxRow install_rhel_button;
-    [GtkChild]
-    private Gtk.Image install_rhel_image;
-    [GtkChild]
     private Boxes.WizardWebView rhel_web_view;
 
     private AppWindow window;
@@ -307,7 +314,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.ListBox downloads_vbox;
 
     private Cancellable? rhel_cancellable;
-    private Osinfo.Os? rhel_os;
 
     public MediaManager media_manager;
 
@@ -383,6 +389,27 @@ private class Boxes.WizardSource: Gtk.Stack {
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
 
+        // We manually add the custom download entries. Custom download entries
+        // are items which require special handling such as an authentication
+        // page before we obtain a direct image URL.
+        var os_db = media_manager.os_db;
+        var rhel_id = "http://redhat.com/rhel/7.4";
+        os_db.get_os_by_id.begin (rhel_id, (obj, res) => {
+            try {
+                var os = os_db.get_os_by_id.end (res);
+
+                var rhel_row = new WizardDownloadableEntry.from_os (os);
+                rhel_row.title = "Red Hat Enterprise Linux";
+                rhel_row.details = _("Available with a free Red Hat developer account");
+
+                // TODO: Sort by release date
+                window.wizard_window.downloads_list.insert (rhel_row, 0);
+            } catch (OSDatabaseError error) {
+                warning ("Failed to find OS with ID '%s': %s", rhel_id, error.message);
+                return;
+            }
+        });
+
         rhel_web_view.view.decide_policy.connect (on_rhel_web_view_decide_policy);
     }
 
@@ -399,36 +426,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         assert (window != null);
 
         this.window = window;
-
-        var os_db = media_manager.os_db;
-
-        // We need a Shadowman logo and libosinfo mandates that we specify an
-        // OsinfoOs to get a logo. However, we don't have an OsinfoOs to begin
-        // with, and by the time we get one from the Red Hat developer portal
-        // it will be too late.
-        //
-        // To work around this, we specify the ID of a RHEL release and use it
-        // to get an OsinfoOs. Since all RHEL releases have the same Shadowman,
-        // the exact version of the RHEL release doesn't matter.
-        //
-        // Ideally, distributions would be a first-class object in libosinfo, so
-        // that we could query for RHEL instead of a specific version of it.
-        var rhel_id = "http://redhat.com/rhel/7.4";
-
-        os_db.get_os_by_id.begin (rhel_id, (obj, res) => {
-            try {
-                rhel_os = os_db.get_os_by_id.end (res);
-            } catch (OSDatabaseError error) {
-                warning ("Failed to find OS with ID '%s': %s", rhel_id, error.message);
-                return;
-            }
-
-            Downloader.fetch_os_logo.begin (install_rhel_image, rhel_os, 64, (obj, res) => {
-                Downloader.fetch_os_logo.end (res);
-                var pixbuf = install_rhel_image.pixbuf;
-                install_rhel_image.visible = pixbuf != null;
-            });
-        });
     }
 
     [GtkCallback]
@@ -589,21 +586,20 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     [GtkCallback]
     private void on_download_an_os_button_clicked () {
-        window.wizard_window.show_downloads_page (media_manager.os_db, (uri) => {
-            this.uri = uri;
+        window.wizard_window.show_downloads_page (media_manager.os_db, (entry) => {
+            // Handle custom downloads
+            if (entry.os.id == "http://redhat.com/rhel/7.4") {
+                on_install_rhel_button_clicked ();
+
+                return;
+            }
+
+            this.uri = entry.url;
 
             activated ();
         });
-
-        // We manually add the custom download entries. Custom download entries
-        // are items which require special handling such as an authentication
-        // page before we obtain a direct image URL.
-        window.wizard_window.add_custom_download (install_rhel_button, () => {
-            on_install_rhel_button_clicked ();
-        });
     }
 
-    [GtkCallback]
     private void on_install_rhel_button_clicked () {
         page = SourcePage.RHEL_WEB_VIEW;
 
@@ -665,8 +661,6 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         uri = download_uri;
         activated ();
-
-        selected = install_rhel_button;
 
         decision.ignore ();
         return true;

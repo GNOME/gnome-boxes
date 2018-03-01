@@ -13,8 +13,7 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public const string[] page_names = { "main", "customization", "file_chooser", "downloads" };
 
     public delegate void FileChosenFunc (string uri);
-    public delegate void DownloadChosenFunc (string uri);
-    public delegate void CustomDownloadChosenFunc ();
+    public delegate void DownloadChosenFunc (WizardDownloadableEntry entry);
 
     private HashTable<string,Osinfo.Os> logos_table;
 
@@ -54,7 +53,7 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     [GtkChild]
     public Notificationbar notificationbar;
     [GtkChild]
-    private Gtk.ListBox downloads_list;
+    public Gtk.ListBox downloads_list;
 
     private GLib.List<Boxes.Property> resource_properties;
 
@@ -119,21 +118,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         page = WizardWindowPage.FILE_CHOOSER;
     }
 
-    public void add_custom_download (Gtk.ListBoxRow row, owned CustomDownloadChosenFunc custom_download_chosen_func) {
-        if (row.get_parent () != null)
-            return;
-
-        // TODO: insert sorted based on release date.
-        downloads_list.insert (row, -1);
-
-        var button = row.get_child () as Gtk.Button;
-        button.clicked.connect (() => {
-            custom_download_chosen_func ();
-
-            page = WizardWindowPage.MAIN;
-        });
-    }
-
     public void show_downloads_page (OSDatabase os_db, owned DownloadChosenFunc download_chosen_func) {
         page = WizardWindowPage.DOWNLOADS;
 
@@ -141,16 +125,13 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         activated_id = downloads_list.row_activated.connect ((row) => {
             var entry = row as WizardDownloadableEntry;
 
-            download_chosen_func (entry.url);
+            download_chosen_func (entry);
             downloads_list.disconnect (activated_id);
 
             page = WizardWindowPage.MAIN;
         });
         page = WizardWindowPage.DOWNLOADS;
         topbar.downloads_search.grab_focus ();
-
-        if (downloads_list.get_children ().length () > 0)
-            return;
 
         os_db.list_downloadable_oses.begin ((db, result) => {
             try {
