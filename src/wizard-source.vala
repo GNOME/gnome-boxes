@@ -84,7 +84,7 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
         this.from_os (media.os);
 
         setup_label (media);
-        details_label.label = media.os.vendor;
+        details = media.os.vendor;
 
         url = media.url;
     }
@@ -110,7 +110,7 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
         } else {
             var file = File.new_for_uri (media.url);
 
-            title_label.label = file.get_basename ().replace ("_", "");
+            title = file.get_basename ().replace ("_", "");
         }
 
         var subvariant = "";
@@ -123,12 +123,10 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
 
         var is_live = media.live ? " (" + _("Live") + ")" : "";
 
-        title_label.label = @"$variant $(media.architecture) $subvariant $is_live";
+        title = @"$variant $(media.architecture) $subvariant $is_live";
 
         /* Strip consequent whitespaces */
-        title_label.label = title_label.label.replace ("  ", "");
-
-        title_label.halign = Gtk.Align.START;
+        title = title.replace ("  ", "");
     }
 }
 
