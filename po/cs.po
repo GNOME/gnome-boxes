@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Adam Matoušek <adydas95@gmail.com>, 2012.
-# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2016, 2017.
+# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-12 15:26+0000\n"
-"PO-Revision-Date: 2017-10-29 21:15+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2018-02-09 21:05+0000\n"
+"PO-Revision-Date: 2018-03-01 08:14+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -56,27 +55,27 @@ msgstr ""
 "nestabilní) verzi svého oblíbeného operačního systému, a nebo když se chcete "
 "připojit ke vzdálenému stroji (například ve své kanceláři)."
 
-#: data/org.gnome.Boxes.desktop.in.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:130 src/app-window.vala:245 src/app-window.vala:247
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: src/app-window.vala:132 src/app-window.vala:248 src/app-window.vala:250
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
 
-#: data/org.gnome.Boxes.desktop.in.in:4
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
 msgstr "Prohlížení a správa virtuálních strojů"
 
-#: data/org.gnome.Boxes.desktop.in.in:5
+#: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
 msgstr "Zobrazte si a používejte virtuální stroje"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Boxes.desktop.in.in:7
+#: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
 msgstr "virtuální stroj;vm;virtualizace;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in.in:10
+#: data/org.gnome.Boxes.desktop.in:10
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
@@ -165,6 +164,7 @@ msgstr "_Nový"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
+#: data/ui/wizard-toolbar.ui:205
 msgid "Back"
 msgstr "Zpět"
 
@@ -184,6 +184,14 @@ msgstr "Zobrazení v mřížce"
 msgid "Search"
 msgstr "Hledat"
 
+#: data/ui/display-page.ui:85
+msgid "Ready to Receive File"
+msgstr "Připraveno k přijetí souboru"
+
+#: data/ui/display-page.ui:105
+msgid "You will find your file in the Downloads directory."
+msgstr "Svůj soubor najdete ve složce Stažené."
+
 #: data/ui/display-toolbar.ui:63
 msgid "Actions"
 msgstr "Činnosti"
@@ -192,7 +200,7 @@ msgstr "Činnosti"
 msgid "Keyboard shortcuts"
 msgstr "Klávesové zkratky"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:54
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
@@ -290,7 +298,7 @@ msgstr "O aplikaci"
 msgid "Quit"
 msgstr "Ukončit"
 
-#: data/ui/properties-toolbar.ui:43
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Zaznamenané problémy"
 
@@ -304,10 +312,12 @@ msgstr "Vyberte zařízení nebo soubor ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
+#: src/app-window.vala:317
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
+#: src/app-window.vala:319
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -364,13 +374,21 @@ msgid "Rename"
 msgstr "Přejmenovat"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:79
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Smazat"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Hotovo"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Něco neproběhlo správně"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Boxům se nezdařil přístup k výkonné části pro virtualizaci."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -401,44 +419,32 @@ msgstr "Přidat _heslo"
 msgid "Product Key"
 msgstr "Produktový klíč"
 
-#: data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:58 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Neznámé médium"
 
-#: data/ui/wizard-source.ui:28
+#: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr "Vložte instalační médium operačního systému nebo níže zvolte zdroj"
 
-#: data/ui/wizard-source.ui:52
-msgid "Downloaded"
-msgstr "Staženo"
+#: data/ui/wizard-source.ui:83
+msgid "Download an OS"
+msgstr "Stáhnout OS"
 
-#: data/ui/wizard-source.ui:79
-msgid "_Select a file"
-msgstr "Vybrat _soubor"
-
-#: data/ui/wizard-source.ui:89 data/ui/wizard-source.ui:224
-#: data/ui/wizard-source.ui:266
+#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
+#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:114
-msgid "Available to Download"
-msgstr "Dostupné ke stažení"
-
-#: data/ui/wizard-source.ui:158
-msgid "Red Hat Enterprise Linux"
-msgstr "Red Hat Enterprise Linux"
-
-#: data/ui/wizard-source.ui:171
-msgid "Available with a free Red Hat developer account"
-msgstr "Dostupné s bezplatným vývojářským účtem Red Hat"
-
-#: data/ui/wizard-source.ui:214
+#: data/ui/wizard-source.ui:126
 msgid "_Enter URL"
 msgstr "_Zadejte adresu URL"
 
-#: data/ui/wizard-source.ui:281
+#: data/ui/wizard-source.ui:211
+msgid "_Select a file"
+msgstr "Vybrat _soubor"
+
+#: data/ui/wizard-source.ui:239
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -447,15 +453,15 @@ msgstr ""
 "Jakékoli obchodní známky uvedené výše jsou použity toliko k označení "
 "softwaru, který jste získali, a jsou majetkem jejich vlastníků."
 
-#: data/ui/wizard-source.ui:369
+#: data/ui/wizard-source.ui:310
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:380
+#: data/ui/wizard-source.ui:321
 msgid "Enter URL"
 msgstr "Zadejte adresu URL"
 
-#: data/ui/wizard-source.ui:410
+#: data/ui/wizard-source.ui:351
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -463,13 +469,21 @@ msgstr ""
 "Zadejte adresu pro box, který chcete přidat. Adresa může vést k instalačnímu "
 "obrazu, k serveru SPICE nebo VNC a nebo ke správci oVirt nebo Libvirt."
 
-#: data/ui/wizard-source.ui:428
+#: data/ui/wizard-source.ui:369
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
 msgstr ""
 "Příklady: http://kestazeni.cz/obraz.iso, spice://pocitac:5051, ovirt://"
 "pocitac/cesta"
+
+#: data/ui/wizard-source.ui:442
+msgid "Red Hat Enterprise Linux"
+msgstr "Red Hat Enterprise Linux"
+
+#: data/ui/wizard-source.ui:455
+msgid "Available with a free Red Hat developer account"
+msgstr "Dostupné s bezplatným vývojářským účtem Red Hat"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 msgid "Create a Box"
@@ -504,104 +518,99 @@ msgstr ""
 "Podívejte se na nastavení BIOS, tam by měla jít povolit."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:29
+#: src/actions-popover.vala:30
 msgid "Box actions"
 msgstr "Činnosti boxu"
 
 #. Open in new Window
-#: src/actions-popover.vala:43
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Otevřít v novém okně"
 
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "Odeslat soubor…"
+
 #. Take Screenshot
-#: src/actions-popover.vala:48
+#: src/actions-popover.vala:54
 msgid "Take Screenshot"
 msgstr "Pořídit snímek obrazovky"
 
 #. Favorite
-#: src/actions-popover.vala:53
+#: src/actions-popover.vala:59
 msgid "Remove from Favorites"
 msgstr "Odebrat z oblíbených"
 
-#: src/actions-popover.vala:55
+#: src/actions-popover.vala:61
 msgid "Add to Favorites"
 msgstr "Přidat do oblíbených"
 
-#: src/actions-popover.vala:62
+#: src/actions-popover.vala:68
 msgid "Force Shutdown"
 msgstr "Vynutit vypnutí"
 
-#. Pause
-#: src/actions-popover.vala:69
-msgid "Pause"
-msgstr "Pozastavit"
-
 #. Clone
-#: src/actions-popover.vala:74
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Klonovat"
 
-#: src/actions-popover.vala:83 src/machine.vala:604
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Restartovat"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:92
+#: src/actions-popover.vala:93
 msgid "Properties"
 msgstr "Vlastnosti"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:116
+#: src/actions-popover.vala:117
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Snímek obrazovky pořízený %s"
 
-#: src/actions-popover.vala:147 src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Pozastavení „%s“ selhalo"
-
-#: src/app.vala:106
+#: src/app.vala:108
 msgid "translator-credits"
 msgstr ""
 "Adam Matoušek <adydas95@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#: src/app.vala:107
+#: src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:168 src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: src/app.vala:175
+#: src/app.vala:170
 msgid "Open in full screen"
 msgstr "Otevřít přes celou obrazovku"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:171 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Zkontrolovat vybavenost pro virtualizaci"
 
-#: src/app.vala:177
+#: src/app.vala:172
 msgid "Open box with UUID"
 msgstr "Otevřít box s UUID"
 
-#: src/app.vala:178
+#: src/app.vala:173
 msgid "Search term"
 msgstr "Hledat výraz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#: src/app.vala:175
 msgid "URL to display, broker or installer media"
 msgstr "Adresa URL k zobrazení, zprostředkovatel nebo instalačnímu médium"
 
-#: src/app.vala:191
+#: src/app.vala:186
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným nebo virtuálním strojům"
 
-#: src/app.vala:216
+#: src/app.vala:211
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
@@ -628,25 +637,29 @@ msgstr[2] "%u boxů bylo odstraněno"
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: src/display-page.vala:110
+#: src/app-window.vala:316
+msgid "Select files to transfer"
+msgstr "Výběr souboru k přenesení"
+
+#: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Pro ukončení zachytávání zmáčkněte levý Ctrl+Alt"
 
-#: src/display-page.vala:112
+#: src/display-page.vala:137
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Pro ukončení zachytávání klávesnice zmáčkněte a uvolněte levý Ctrl+Alt"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:256
+#: src/display-page.vala:310
 #, c-format
 msgid "%d×%d"
 msgstr "%d × %d"
 
-#: src/display-toolbar.vala:51
+#: src/display-toolbar.vala:71
 msgid "Exit fullscreen"
 msgstr "Opustit celou obrazovku"
 
-#: src/icon-view.vala:56
+#: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "Nové a nedávné"
 
@@ -868,7 +881,8 @@ msgstr "Instaluje se…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:83
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:113
+#: src/wizard-source.vala:145
 msgid "Live"
 msgstr "Živé médium"
 
@@ -943,21 +957,21 @@ msgid "Powered Off"
 msgstr "Vypnutý"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:195
+#: src/machine.vala:201
 #, c-format
 msgid "Connecting to %s"
 msgstr "Připojuje se k %s"
 
-#: src/machine.vala:218 src/machine.vala:617
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Připojení k „%s“ selhalo"
 
-#: src/machine.vala:416
+#: src/machine.vala:422
 msgid "Saving…"
 msgstr "Ukládá se…"
 
-#: src/machine.vala:603
+#: src/machine.vala:612
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -966,13 +980,13 @@ msgstr ""
 "Stroj „%s“ nelze z disku obnovit\n"
 "Zkusit to bez uloženého stavu?"
 
-#: src/machine.vala:613
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Selhalo spuštění „%s“"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:646
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s“ vyžaduje ověření"
@@ -1036,7 +1050,7 @@ msgstr "Připojení ke zprostředkovateli oVirt selhalo"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:519
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
 msgid "URL"
 msgstr "Adresa URL"
 
@@ -1060,6 +1074,11 @@ msgstr "Změny vyžadují restartování boxu „%s“."
 #: src/remote-machine.vala:75
 msgid "_URL"
 msgstr "Adresa _URL"
+
+#: src/selectionbar.vala:60
+#, c-format
+msgid "Pausing “%s” failed"
+msgstr "Pozastavení „%s“ selhalo"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: src/selectionbar.vala:173
@@ -1117,20 +1136,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Selhalo vytvoření snímku pro %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:47
+#: src/spice-display.vala:48
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: src/spice-display.vala:67 src/spice-display.vala:644
+#: src/spice-display.vala:68 src/spice-display.vala:665
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Přesměrování zařízení USB „%s“ pro „%s“ selhalo"
 
-#: src/spice-display.vala:500
+#: src/spice-display.vala:521
 msgid "Share Clipboard"
 msgstr "Sdílet schránku"
 
-#: src/spice-display.vala:505
+#: src/spice-display.vala:526
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1143,26 +1162,32 @@ msgstr ""
 "href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
 "download.html</a>, ze které si můžete tyto nástroje stáhnout a nainstalovat."
 
-#: src/spice-display.vala:532
+#: src/spice-display.vala:553
 msgid "USB devices"
 msgstr "Zařízení USB"
 
-#: src/spice-display.vala:550
+#: src/spice-display.vala:571
 msgid "Folder Shares"
 msgstr "Sdílení složek"
 
-#: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:330 src/wizard.vala:343
+#: src/spice-display.vala:833 src/spice-display.vala:858
+#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
 msgid "Invalid URL"
 msgstr "Neplatná adresa URL"
 
-#: src/spice-display.vala:822
+#: src/spice-display.vala:843
 msgid "The port must be specified once"
 msgstr "Port musí být zadán jednou"
 
-#: src/spice-display.vala:833
+#: src/spice-display.vala:854
 msgid "Missing port in Spice URL"
 msgstr "Schází port v adrese Spice URL"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "Kopíruje se „%s“ do „Stažené“"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
@@ -1240,11 +1265,11 @@ msgstr ""
 "%s je v libvirt známé jako sdružené úložiště aplikace GNOME Boxy, ale není "
 "uživatel nemá právo ke čtení/zápisu"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "yes"
 msgstr "ano"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "no"
 msgstr "ne"
 
@@ -1264,28 +1289,19 @@ msgstr "Živý box „%s“ byl automaticky odstraněn."
 msgid "Box import from file “%s” failed."
 msgstr "Import boxu ze souboru „%s“ selhal."
 
-#: src/wizard-source.vala:87
+#: src/wizard-source.vala:149
 msgid "32-bit x86 system"
 msgstr "32bitový systém x86"
 
-#: src/wizard-source.vala:88
+#: src/wizard-source.vala:150
 msgid "64-bit x86 system"
 msgstr "64bitový systém x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:93
+#: src/wizard-source.vala:155
 #, c-format
 msgid " from %s"
 msgstr " od %s"
-
-#: src/wizard-source.vala:610
-msgid "Failed to get authentication URI"
-msgstr "Selhalo získání adresy URI pro přihlášení"
-
-#: src/wizard-source.vala:623 src/wizard-source.vala:633
-#: src/wizard-source.vala:647 src/wizard-source.vala:660
-msgid "Failed to parse response from redhat.com"
-msgstr "Selhalo zpracování odpovědi z redhat.com"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1303,91 +1319,91 @@ msgstr "Nastavení boxu"
 msgid "Review"
 msgstr "Přehled"
 
-#: src/wizard.vala:116
+#: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Vytváření boxu selhalo"
 
-#: src/wizard.vala:289
+#: src/wizard.vala:300
 msgid "Empty location"
 msgstr "Prázdné umístění"
 
-#: src/wizard.vala:312
+#: src/wizard.vala:323
 msgid "Unsupported file"
 msgstr "Nepodporovaný soubor"
 
-#: src/wizard.vala:318
+#: src/wizard.vala:329
 msgid "Invalid file"
 msgstr "Neplatný soubor"
 
-#: src/wizard.vala:361
+#: src/wizard.vala:372
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nepodporovaný protol „%s“"
 
-#: src/wizard.vala:367 src/wizard.vala:441
+#: src/wizard.vala:378 src/wizard.vala:452
 msgid "Unknown installer media"
 msgstr "Neznámé instalační médium"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:369 src/wizard.vala:442
+#: src/wizard.vala:380 src/wizard.vala:453
 msgid "Analyzing…"
 msgstr "Analyzuje se…"
 
-#: src/wizard.vala:383
+#: src/wizard.vala:394
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:495
+#: src/wizard.vala:506
 msgid "Box setup failed"
 msgstr "Nastavení boxu selhalo"
 
-#: src/wizard.vala:509
+#: src/wizard.vala:520
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxy vytvoří nový box s následujícími vlastnostmi:"
 
-#: src/wizard.vala:514
+#: src/wizard.vala:525
 msgid "Type"
 msgstr "Typ"
 
-#: src/wizard.vala:517
+#: src/wizard.vala:528
 msgid "Host"
 msgstr "Počítač"
 
-#: src/wizard.vala:528 src/wizard.vala:539
+#: src/wizard.vala:539 src/wizard.vala:550
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:530
+#: src/wizard.vala:541
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: src/wizard.vala:544
+#: src/wizard.vala:555
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Přidá boxy pro všechny systémy dostupné z tohoto účtu:"
 
-#: src/wizard.vala:557
+#: src/wizard.vala:568
 msgid "Memory"
 msgstr "Paměť"
 
-#: src/wizard.vala:566
+#: src/wizard.vala:577
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:568
+#: src/wizard.vala:579
 #, c-format
 msgid "%s maximum"
 msgstr "nejvýše %s"
 
-#: src/wizard.vala:631
+#: src/wizard.vala:642
 msgid "Downloading media…"
 msgstr "Stahuje se médium…"
 
-#: src/wizard.vala:641
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "Stažení selhalo."
 
-#: src/wizard.vala:754
+#: src/wizard.vala:766
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
