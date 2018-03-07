@@ -157,10 +157,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         if (topbar.downloads_search.get_text_length () == 0)
             return true;
 
-        // FIXME: custom items should also be searchable.
-        if (!(row is WizardDownloadableEntry))
-            return false;
-
         var entry = row as WizardDownloadableEntry;
         var text = canonicalize_for_search (topbar.downloads_search.get_text ());
 
