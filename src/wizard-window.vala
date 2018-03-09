@@ -45,6 +45,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     [GtkChild]
     public Wizard wizard;
     [GtkChild]
+    public WizardDownloadsPage downloads_page;
+    [GtkChild]
     public Gtk.Grid customization_grid;
     [GtkChild]
     public Gtk.FileChooserWidget file_chooser;
@@ -52,8 +54,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public WizardToolbar topbar;
     [GtkChild]
     public Notificationbar notificationbar;
-    [GtkChild]
-    public Gtk.ListBox downloads_list;
 
     private GLib.List<Boxes.Property> resource_properties;
 
@@ -68,22 +68,11 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
         notify["ui-state"].connect (ui_state_changed);
 
-        var downloads_search = new DownloadsSearch ();
         topbar.downloads_search.search_changed.connect (() => {
-            downloads_search.set_text (topbar.downloads_search.get_text ());
-            downloads_list.bind_model (downloads_search.model, create_downloadable_entry);
+            downloads_page.search.text = topbar.downloads_search.get_text ();
         });
 
         logos_table = new HashTable<string, Osinfo.Os> (str_hash, str_equal);
-    }
-
-    private Gtk.Widget create_downloadable_entry (Object item) {
-        var media = item as Osinfo.Media;
-
-        var entry = new WizardDownloadableEntry (media);
-        entry.visible = true;
-
-        return entry;
     }
 
     public void show_customization_page (LibvirtMachine machine) {
@@ -130,39 +119,9 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
     public void show_downloads_page (OSDatabase os_db, GLib.ListStore recommended_downloads, owned DownloadChosenFunc download_chosen_func) {
         page = WizardWindowPage.DOWNLOADS;
-
-        ulong activated_id = 0;
-        activated_id = downloads_list.row_activated.connect ((row) => {
-            var entry = row as WizardDownloadableEntry;
-
-            download_chosen_func (entry);
-            downloads_list.disconnect (activated_id);
-
-            page = WizardWindowPage.MAIN;
-        });
-        page = WizardWindowPage.DOWNLOADS;
         topbar.downloads_search.grab_focus ();
 
-        downloads_list.bind_model (recommended_downloads, create_downloadable_entry);
-
-        // We manually add the custom download entries. Custom download entries
-        // are items which require special handling such as an authentication
-        // page before we obtain a direct image URL.
-        var rhel_id = "http://redhat.com/rhel/7.4";
-        os_db.get_os_by_id.begin (rhel_id, (obj, res) => {
-            try {
-                var os = os_db.get_os_by_id.end (res);
-
-                var rhel_row = new WizardDownloadableEntry.from_os (os);
-                rhel_row.title = "Red Hat Enterprise Linux";
-                rhel_row.details = _("Available with a free Red Hat developer account");
-
-                downloads_list.insert (rhel_row, 0);
-            } catch (OSDatabaseError error) {
-                warning ("Failed to find OS with ID '%s': %s", rhel_id, error.message);
-                return;
-            }
-        });
+        downloads_page.download_chosen_func = download_chosen_func;
 
         os_db.list_downloadable_oses.begin ((db, result) => {
             try {
