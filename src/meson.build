@@ -81,6 +81,7 @@ vala_sources = [
   'properties-page-widget.vala',
   'properties-toolbar.vala',
   'remote-machine.vala',
+  'search.vala',
   'searchbar.vala',
   'selectionbar.vala',
   'selection-toolbar.vala',
