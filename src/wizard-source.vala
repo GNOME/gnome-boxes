@@ -310,6 +310,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     private Gtk.ListBox media_vbox;
     private Gtk.ListBox downloads_vbox;
+    private GLib.ListStore downloads_model;
 
     private Cancellable? rhel_cancellable;
 
@@ -387,26 +388,7 @@ private class Boxes.WizardSource: Gtk.Stack {
         update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
 
-        // We manually add the custom download entries. Custom download entries
-        // are items which require special handling such as an authentication
-        // page before we obtain a direct image URL.
-        var os_db = media_manager.os_db;
-        var rhel_id = "http://redhat.com/rhel/7.4";
-        os_db.get_os_by_id.begin (rhel_id, (obj, res) => {
-            try {
-                var os = os_db.get_os_by_id.end (res);
-
-                var rhel_row = new WizardDownloadableEntry.from_os (os);
-                rhel_row.title = "Red Hat Enterprise Linux";
-                rhel_row.details = _("Available with a free Red Hat developer account");
-
-                // TODO: Sort by release date
-                window.wizard_window.downloads_list.insert (rhel_row, 0);
-            } catch (OSDatabaseError error) {
-                warning ("Failed to find OS with ID '%s': %s", rhel_id, error.message);
-                return;
-            }
-        });
+        downloads_model = new GLib.ListStore (typeof (Osinfo.Media));
 
         rhel_web_view.view.decide_policy.connect (on_rhel_web_view_decide_policy);
     }
@@ -424,10 +406,13 @@ private class Boxes.WizardSource: Gtk.Stack {
         assert (window != null);
 
         this.window = window;
+
+        downloads_vbox.bind_model (downloads_model, create_downloadable_entry);
+
+        populate_recommended_downloads ();
     }
 
-    [GtkCallback]
-    private void on_downloads_scrolled_shown () {
+    private void populate_recommended_downloads () {
         var os_db = media_manager.os_db;
         foreach (var os_id in recommended_downloads) {
             os_db.get_os_by_id.begin (os_id, (obj, res) => {
@@ -436,9 +421,8 @@ private class Boxes.WizardSource: Gtk.Stack {
 
                     // TODO: Select the desktop/workstation variant.
                     var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
-                    var entry = create_downloadable_entry (media);
 
-                    downloads_vbox.insert (entry, -1);
+                    downloads_model.append (media);
                 } catch (OSDatabaseError error) {
                     warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
                     return;
@@ -584,7 +568,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     [GtkCallback]
     private void on_download_an_os_button_clicked () {
-        window.wizard_window.show_downloads_page (media_manager.os_db, (entry) => {
+        window.wizard_window.show_downloads_page (media_manager.os_db, downloads_model, (entry) => {
             // Handle custom downloads
             if (entry.os.id == "http://redhat.com/rhel/7.4") {
                 on_install_rhel_button_clicked ();
