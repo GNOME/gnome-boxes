@@ -7,6 +7,31 @@ public class Boxes.DownloadsSearch : GLib.Object {
 
     private GLib.List<Osinfo.Media> media_list;
 
+    public signal void search_changed ();
+
+    private string _text;
+    public string text {
+        set {
+            _text = value;
+
+            model.remove_all ();
+            search_changed ();
+
+            if (text.length == 0)
+                return;
+
+            var query = canonicalize_for_search (text);
+            foreach (var media in media_list) {
+                var name = canonicalize_for_search ((media.os as Osinfo.Product).name);
+                if (query in name)
+                    model.append (media);
+            }
+        }
+        get {
+            return _text;
+        }
+    }
+
     construct {
         os_db = new OSDatabase ();
         os_db.load.begin ();
@@ -20,19 +45,4 @@ public class Boxes.DownloadsSearch : GLib.Object {
             }
         });
     }
-
-    public void set_text (string search_text) {
-        model.remove_all ();
-
-        if (search_text.length == 0)
-            return;
-
-        var text = canonicalize_for_search (search_text);
-        foreach (var media in media_list) {
-            var name = canonicalize_for_search ((media.os as Osinfo.Product).name);
-            if (text in name)
-                model.append (media);
-        }
-    }
-
 }

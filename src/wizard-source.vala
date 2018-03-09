@@ -59,7 +59,7 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
-private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
+public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
     public Osinfo.Os? os;
 
     [GtkChild]
@@ -579,6 +579,8 @@ private class Boxes.WizardSource: Gtk.Stack {
             this.uri = entry.url;
 
             activated ();
+
+            window.wizard_window.page = WizardWindowPage.MAIN;
         });
     }
 

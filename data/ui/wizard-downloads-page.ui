@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesWizardDownloadsPage" parent="GtkStack">
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="border-width">20</property>
+        <property name="margin-start">20</property>
+        <property name="margin-end">20</property>
+
+        <child>
+          <object class="GtkListBox" id="recommended_listbox">
+            <property name="visible">True</property>
+            <signal name="row-activated" handler="on_listbox_row_activated"/>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">recommended</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="visible">True</property>
+        <property name="expand">True</property>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="orientation">vertical</property>
+            <property name="border-width">20</property>
+            <property name="margin-start">20</property>
+            <property name="margin-end">20</property>
+
+            <child>
+              <object class="GtkListBox" id="listbox">
+                <property name="visible">True</property>
+                <signal name="row-activated" handler="on_listbox_row_activated"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">search-results</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">No Results</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="name">no-results</property>
+      </packing>
+    </child>
+
+  </template>
+</interface>
