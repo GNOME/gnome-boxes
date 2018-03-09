@@ -117,7 +117,7 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         page = WizardWindowPage.FILE_CHOOSER;
     }
 
-    public void show_downloads_page (OSDatabase os_db, GLib.ListStore recommended_downloads, owned DownloadChosenFunc download_chosen_func) {
+    public void show_downloads_page (OSDatabase os_db, owned DownloadChosenFunc download_chosen_func) {
         page = WizardWindowPage.DOWNLOADS;
         topbar.downloads_search.grab_focus ();
 
