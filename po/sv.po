@@ -1,18 +1,17 @@
 # Swedish translation for gnome-boxes.
-# Copyright © 2011-2017 Free Software Foundation, Inc.
+# Copyright © 2011-2018 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-boxes package.
 # Daniel Nylander <po@danielnylander.se>, 2011, 2012.
 # Mattias Eriksson <snaggen@gmail.com>, 2014.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2017.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2017, 2018.
 # Sebastian Rasmussen <sebras@gmail.com>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-10-30 13:12+0000\n"
-"PO-Revision-Date: 2017-10-30 18:22+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2018-03-03 10:45+0000\n"
+"PO-Revision-Date: 2018-02-22 13:18+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -20,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -57,27 +56,27 @@ msgstr ""
 "ditt/dina favoritoperativsystem, eller behöver ansluta till en fjärrdator "
 "(till exempel i ditt kontor)."
 
-#: data/org.gnome.Boxes.desktop.in.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:130 src/app-window.vala:245 src/app-window.vala:247
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
 
-#: data/org.gnome.Boxes.desktop.in.in:4
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
 msgstr "Visare/hanterare för virtuella maskiner"
 
-#: data/org.gnome.Boxes.desktop.in.in:5
+#: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
 msgstr "Visa och använd virtuella maskiner"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Boxes.desktop.in.in:7
+#: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
 msgstr "virtuell maskin;vm;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in.in:10
+#: data/org.gnome.Boxes.desktop.in:10
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
@@ -166,6 +165,7 @@ msgstr "_Ny"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
+#: data/ui/wizard-toolbar.ui:205
 msgid "Back"
 msgstr "Bakåt"
 
@@ -185,6 +185,14 @@ msgstr "Rutnätsvy"
 msgid "Search"
 msgstr "Sök"
 
+#: data/ui/display-page.ui:85
+msgid "Ready to Receive File"
+msgstr "Redo att ta emot fil"
+
+#: data/ui/display-page.ui:105
+msgid "You will find your file in the Downloads directory."
+msgstr "Du kommer att hitta din fil i katalogen Hämtningar."
+
 #: data/ui/display-toolbar.ui:63
 msgid "Actions"
 msgstr "Åtgärder"
@@ -193,7 +201,7 @@ msgstr "Åtgärder"
 msgid "Keyboard shortcuts"
 msgstr "Tangentbordsgenvägar"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:54
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
 msgid "Fullscreen"
 msgstr "Helskärm"
 
@@ -290,7 +298,7 @@ msgstr "Om"
 msgid "Quit"
 msgstr "Avsluta"
 
-#: data/ui/properties-toolbar.ui:43
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Felsökningslogg"
 
@@ -304,10 +312,12 @@ msgstr "Välj en enhet eller ISO-fil"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
+#: src/app-window.vala:318
 msgid "_Cancel"
 msgstr "_Avbryt"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
+#: src/app-window.vala:320
 msgid "_Open"
 msgstr "_Öppna"
 
@@ -364,13 +374,21 @@ msgid "Rename"
 msgstr "Byt namn"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:79
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Ta bort"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Färdig"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Hoppsan, något gick fel"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Boxes kan inte komma åt virtualiseringsgränssnittet."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -401,29 +419,33 @@ msgstr "_Lägg till lösenord"
 msgid "Product Key"
 msgstr "Produktnyckel"
 
-#: data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Okänt media"
 
-#: data/ui/wizard-source.ui:26
+#: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Mata in installationsmedia för operativsystemet eller välj en källa nedan"
 
-#: data/ui/wizard-source.ui:62
-msgid "_Enter URL"
-msgstr "_Ange URL"
+#: data/ui/wizard-source.ui:83
+msgid "Download an OS"
+msgstr "Hämta ett operativsystem"
 
-#: data/ui/wizard-source.ui:72 data/ui/wizard-source.ui:115
-#: data/ui/wizard-source.ui:157
+#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
+#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:105
+#: data/ui/wizard-source.ui:126
+msgid "_Enter URL"
+msgstr "_Ange URL"
+
+#: data/ui/wizard-source.ui:211
 msgid "_Select a file"
 msgstr "_Välj en fil"
 
-#: data/ui/wizard-source.ui:172
+#: data/ui/wizard-source.ui:239
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -432,15 +454,15 @@ msgstr ""
 "Alla registrerade varumärken som visas ovan används endast för identifiering "
 "av programprodukter som du redan har köpt och tillhör respektive ägare."
 
-#: data/ui/wizard-source.ui:223
+#: data/ui/wizard-source.ui:310
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:234
+#: data/ui/wizard-source.ui:321
 msgid "Enter URL"
 msgstr "Ange URL"
 
-#: data/ui/wizard-source.ui:264
+#: data/ui/wizard-source.ui:351
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -449,7 +471,7 @@ msgstr ""
 "installationsavbilder, SPICE- och VNC-servrar, eller oVirt- eller Libvirt-"
 "agenter."
 
-#: data/ui/wizard-source.ui:282
+#: data/ui/wizard-source.ui:369
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
@@ -477,11 +499,11 @@ msgstr "_Bakåt"
 msgid "Customize Resources"
 msgstr "Anpassa resurser"
 
-#: data/ui/wizard.ui:59
+#: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
 msgstr "Förbereder att skapa ny box"
 
-#: data/ui/wizard.ui:223
+#: data/ui/wizard.ui:220
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -490,64 +512,59 @@ msgstr ""
 "Kontrollera dina BIOS-inställningar för att slå på dem."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:29
+#: src/actions-popover.vala:30
 msgid "Box actions"
 msgstr "Boxåtgärder"
 
 #. Open in new Window
-#: src/actions-popover.vala:43
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Öppna i nytt fönster"
 
-#. Favorite
-#: src/actions-popover.vala:50
-msgid "Remove from Favorites"
-msgstr "Ta bort från favoriter"
-
-#: src/actions-popover.vala:52
-msgid "Add to Favorites"
-msgstr "Lägg till i favoriter"
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "Skicka fil…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:56
+#: src/actions-popover.vala:54
 msgid "Take Screenshot"
 msgstr "Ta en skärmbild"
 
-#: src/actions-popover.vala:62
+#. Favorite
+#: src/actions-popover.vala:59
+msgid "Remove from Favorites"
+msgstr "Ta bort från favoriter"
+
+#: src/actions-popover.vala:61
+msgid "Add to Favorites"
+msgstr "Lägg till i favoriter"
+
+#: src/actions-popover.vala:68
 msgid "Force Shutdown"
 msgstr "Tvinga nedstängning"
 
-#. Pause
-#: src/actions-popover.vala:69
-msgid "Pause"
-msgstr "Paus"
-
 #. Clone
-#: src/actions-popover.vala:74
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Klona"
 
-#: src/actions-popover.vala:83 src/machine.vala:604
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Starta om"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:92
+#: src/actions-popover.vala:93
 msgid "Properties"
 msgstr "Egenskaper"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:116
+#: src/actions-popover.vala:117
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Skärmbild från %s"
 
-#: src/actions-popover.vala:147 src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Misslyckades med att pausa ”%s”"
-
-#: src/app.vala:106
+#: src/app.vala:108
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -557,87 +574,91 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/app.vala:107
+#: src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Ett enkelt GNOME 3-program för att komma åt fjärrdatorer eller virtuella "
 "maskiner"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:169 src/main.vala:9
 msgid "Display version number"
 msgstr "Visa versionsnummer"
 
-#: src/app.vala:175
+#: src/app.vala:171
 msgid "Open in full screen"
 msgstr "Öppna i helskärm"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:172 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Kontrollera virtualiseringsförmågor"
 
-#: src/app.vala:177
+#: src/app.vala:173
 msgid "Open box with UUID"
 msgstr "Öppna box med UUID"
 
-#: src/app.vala:178
+#: src/app.vala:174
 msgid "Search term"
 msgstr "Sökterm"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#: src/app.vala:176
 msgid "URL to display, broker or installer media"
 msgstr "URL till display, agent eller installationsmedia"
 
-#: src/app.vala:191
+#: src/app.vala:187
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "— Ett enkelt program för att komma åt fjärrdatorer eller virtuella maskiner"
 
-#: src/app.vala:216
+#: src/app.vala:212
 msgid "Too many command line arguments specified.\n"
 msgstr "För många kommandoradsargument angivna.\n"
 
-#: src/app.vala:451
+#: src/app.vala:463
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Boxen ”%s” installerad och redo för användning"
 
-#: src/app.vala:539
+#: src/app.vala:551
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Boxen ”%s” har tagits bort"
 
-#: src/app.vala:540
+#: src/app.vala:552
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box har tagits bort"
 msgstr[1] "%u boxar har tagits bort"
 
-#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/app.vala:579 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Ångra"
 
-#: src/display-page.vala:110
+#: src/app-window.vala:317
+msgid "Select files to transfer"
+msgstr "Välj filer att överföra"
+
+#: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Tryck (vänster) Ctrl+Alt för att släppa"
 
-#: src/display-page.vala:112
+#: src/display-page.vala:137
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Tryck och släpp (vänster) Ctrl+Alt för att släppa tangentbord."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:256
+#: src/display-page.vala:310
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:51
+#: src/display-toolbar.vala:71
 msgid "Exit fullscreen"
 msgstr "Stäng helskärm"
 
-#: src/icon-view.vala:56
+#: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "Nya och tidigare"
 
@@ -645,7 +666,7 @@ msgstr "Nya och tidigare"
 msgid "Unsupported disk image format."
 msgstr "Icke stött diskavbildsformat."
 
-#: src/installed-media.vala:108 src/installer-media.vala:112
+#: src/installed-media.vala:108 src/installer-media.vala:113
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "System"
@@ -860,7 +881,8 @@ msgstr "Installerar…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:82
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
+#: src/wizard-source.vala:154
 msgid "Live"
 msgstr "Live"
 
@@ -933,21 +955,21 @@ msgid "Powered Off"
 msgstr "Avslagen"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:195
+#: src/machine.vala:201
 #, c-format
 msgid "Connecting to %s"
 msgstr "Ansluter till %s"
 
-#: src/machine.vala:218 src/machine.vala:617
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Anslutning till ”%s” misslyckades"
 
-#: src/machine.vala:416
+#: src/machine.vala:422
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: src/machine.vala:603
+#: src/machine.vala:612
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -956,13 +978,13 @@ msgstr ""
 "”%s” kunde inte återställas från disk\n"
 "Försök utan sparat tillstånd?"
 
-#: src/machine.vala:613
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Misslyckades med att starta ”%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:646
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "”%s” kräver autentisering"
@@ -1026,7 +1048,7 @@ msgstr "Anslutning till oVirt-agent misslyckades"
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:488
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
 msgid "URL"
 msgstr "URL"
 
@@ -1050,6 +1072,11 @@ msgstr "Ändringar kräver omstart av ”%s”."
 #: src/remote-machine.vala:75
 msgid "_URL"
 msgstr "_URL"
+
+#: src/selectionbar.vala:60
+#, c-format
+msgid "Pausing “%s” failed"
+msgstr "Misslyckades med att pausa ”%s”"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: src/selectionbar.vala:173
@@ -1106,20 +1133,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Misslyckades med att skapa en ögonblicksavbild av %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:47
+#: src/spice-display.vala:48
 msgid "Unknown"
 msgstr "Okänd"
 
-#: src/spice-display.vala:67 src/spice-display.vala:644
+#: src/spice-display.vala:68 src/spice-display.vala:665
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Omdirigering av USB-enhet ”%s” för ”%s” misslyckades"
 
-#: src/spice-display.vala:500
+#: src/spice-display.vala:521
 msgid "Share Clipboard"
 msgstr "Dela urklipp"
 
-#: src/spice-display.vala:505
+#: src/spice-display.vala:526
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1132,26 +1159,32 @@ msgstr ""
 "download.html\">http://www.spice-space.org/download.html</a> för att hämta "
 "och installera dessa verktyg inifrån boxen."
 
-#: src/spice-display.vala:532
+#: src/spice-display.vala:553
 msgid "USB devices"
 msgstr "USB-enheter"
 
-#: src/spice-display.vala:550
+#: src/spice-display.vala:571
 msgid "Folder Shares"
 msgstr "Mappdelningar"
 
-#: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:311 src/wizard.vala:318
+#: src/spice-display.vala:833 src/spice-display.vala:858
+#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
 msgid "Invalid URL"
 msgstr "Ogiltig URL"
 
-#: src/spice-display.vala:822
+#: src/spice-display.vala:843
 msgid "The port must be specified once"
 msgstr "Porten måste specificeras en gång"
 
-#: src/spice-display.vala:833
+#: src/spice-display.vala:854
 msgid "Missing port in Spice URL"
 msgstr "Saknar port i Spice-URL"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "Kopierar ”%s” till ”Hämtningar”"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
@@ -1229,11 +1262,11 @@ msgstr ""
 "%s är känt för libvirt som lagringspool för GNOME Boxes, men är inte läs-/"
 "skrivbar för användare"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "yes"
 msgstr "ja"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "no"
 msgstr "nej"
 
@@ -1253,19 +1286,23 @@ msgstr "Live box ”%s” har tagits bort automatiskt."
 msgid "Box import from file “%s” failed."
 msgstr "Box-import från fil ”%s” misslyckades."
 
-#: src/wizard-source.vala:86
+#: src/wizard-source.vala:158
 msgid "32-bit x86 system"
 msgstr "32-bitars x86-system"
 
-#: src/wizard-source.vala:87
+#: src/wizard-source.vala:159
 msgid "64-bit x86 system"
 msgstr "64-bitars x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:92
+#: src/wizard-source.vala:164
 #, c-format
 msgid " from %s"
 msgstr " från %s"
+
+#: src/wizard-source.vala:401
+msgid "Available with a free Red Hat developer account"
+msgstr "Tillgängligt med ett gratis Red Hat-utvecklarkonto"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1283,97 +1320,103 @@ msgstr "Konfiguration av box"
 msgid "Review"
 msgstr "Granskning"
 
-#: src/wizard.vala:116
+#: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Skapandet av box misslyckades"
 
-#: src/wizard.vala:270
+#: src/wizard.vala:300
 msgid "Empty location"
 msgstr "Tom plats"
 
-#: src/wizard.vala:293
+#: src/wizard.vala:323
 msgid "Unsupported file"
 msgstr "Ej stödd fil"
 
-#: src/wizard.vala:299
+#: src/wizard.vala:329
 msgid "Invalid file"
 msgstr "Ogiltig fil"
 
-#: src/wizard.vala:336
+#: src/wizard.vala:372
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protokollet ”%s” stöds inte"
 
-#: src/wizard.vala:342 src/wizard.vala:410
+#: src/wizard.vala:378 src/wizard.vala:452
 msgid "Unknown installer media"
 msgstr "Okänt installationsmedia"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:344 src/wizard.vala:411
+#: src/wizard.vala:380 src/wizard.vala:453
 msgid "Analyzing…"
 msgstr "Analyserar…"
 
-#: src/wizard.vala:358
+#: src/wizard.vala:394
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Misslyckades med att analysera installationsmedia. Skadat eller inkomplett "
 "media?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:464
+#: src/wizard.vala:506
 msgid "Box setup failed"
 msgstr "Konfiguration av box misslyckades"
 
-#: src/wizard.vala:478
+#: src/wizard.vala:520
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxes kommer att skapa en ny box med följande egenskaper:"
 
-#: src/wizard.vala:483
+#: src/wizard.vala:525
 msgid "Type"
 msgstr "Typ"
 
-#: src/wizard.vala:486
+#: src/wizard.vala:528
 msgid "Host"
 msgstr "Värd"
 
-#: src/wizard.vala:497 src/wizard.vala:508
+#: src/wizard.vala:539 src/wizard.vala:550
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:499
+#: src/wizard.vala:541
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: src/wizard.vala:513
+#: src/wizard.vala:555
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Kommer att lägga till boxar för alla system tillgängliga från detta konto:"
 
-#: src/wizard.vala:526
+#: src/wizard.vala:568
 msgid "Memory"
 msgstr "Minne"
 
-#: src/wizard.vala:535
+#: src/wizard.vala:577
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:537
+#: src/wizard.vala:579
 #, c-format
 msgid "%s maximum"
 msgstr "%s maximalt"
 
-#: src/wizard.vala:600
+#: src/wizard.vala:642
 msgid "Downloading media…"
 msgstr "Hämtar media…"
 
-#: src/wizard.vala:610
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "Hämtning misslyckades."
 
-#: src/wizard.vala:718
+#: src/wizard.vala:766
 msgid "C_ustomize…"
 msgstr "A_npassa…"
+
+#~ msgid "Red Hat Enterprise Linux"
+#~ msgstr "Red Hat Enterprise Linux"
+
+#~ msgid "Pause"
+#~ msgstr "Paus"
 
 #~ msgid "%s (maximum)"
 #~ msgstr "%s (maximalt)"
