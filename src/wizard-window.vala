@@ -15,7 +15,7 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public delegate void FileChosenFunc (string uri);
     public delegate void DownloadChosenFunc (WizardDownloadableEntry entry);
 
-    private HashTable<string,Osinfo.Os> logos_table;
+    public HashTable<string,Osinfo.Os> logos_table;
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
