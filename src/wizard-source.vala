@@ -310,6 +310,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     private Gtk.ListBox media_vbox;
     private Gtk.ListBox downloads_vbox;
+    private Osinfo.Os rhel_os;
 
     private Cancellable? rhel_cancellable;
 
@@ -394,9 +395,9 @@ private class Boxes.WizardSource: Gtk.Stack {
         var rhel_id = "http://redhat.com/rhel/7.4";
         os_db.get_os_by_id.begin (rhel_id, (obj, res) => {
             try {
-                var os = os_db.get_os_by_id.end (res);
+                rhel_os = os_db.get_os_by_id.end (res);
 
-                var rhel_row = new WizardDownloadableEntry.from_os (os);
+                var rhel_row = new WizardDownloadableEntry.from_os (rhel_os);
                 rhel_row.title = "Red Hat Enterprise Linux";
                 rhel_row.details = _("Available with a free Red Hat developer account");
 
@@ -643,6 +644,8 @@ private class Boxes.WizardSource: Gtk.Stack {
             return false;
 
         debug ("RHEL ISO download URI: %s", download_uri);
+
+        window.wizard_window.logos_table.insert (download_uri, rhel_os);
 
         var soup_download_uri = new Soup.URI (download_uri);
         var download_path = soup_download_uri.get_path ();
