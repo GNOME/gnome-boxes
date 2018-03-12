@@ -5,6 +5,7 @@ osinfo_db = [
   ['opensuse-10.2.xml', 'gnome-boxes/osinfo/os/opensuse.org'],
   ['ubuntu-4.10.xml', 'gnome-boxes/osinfo/os/ubuntu.com'],
   ['gnome-3.6.xml', 'gnome-boxes/osinfo/os/gnome.org'],
+  ['popos-17.10.xml', 'gnome-boxes/osinfo/os/system76.com'],
   ['rhel-4.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rhel-5.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rhel-6.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
