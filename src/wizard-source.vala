@@ -319,7 +319,7 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     private string[] recommended_downloads = {
         "http://ubuntu.com/ubuntu/16.04",
-        "http://opensuse.org/opensuse/42.2",
+        "http://opensuse.org/opensuse/42.3",
         "http://fedoraproject.org/fedora/27",
     };
 
