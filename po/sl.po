@@ -3,15 +3,14 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Martin Srebotnjak  <miles@filmsi.net>, 2012–2014.
-# Matej Urbančič <mateju@svn.gnome.org>, 2013–2017.
+# Matej Urbančič <mateju@svn.gnome.org>, 2013–2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-12-25 22:43+0000\n"
-"PO-Revision-Date: 2017-12-31 11:15+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2018-03-26 11:46+0000\n"
+"PO-Revision-Date: 2018-03-27 20:36+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -21,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -56,27 +55,27 @@ msgstr ""
 "za dostop do oddaljenih sistemov ali upravljanje in uporabo navideznih "
 "namizij."
 
-#: data/org.gnome.Boxes.desktop.in.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:130 src/app-window.vala:245 src/app-window.vala:247
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Škatle"
 
-#: data/org.gnome.Boxes.desktop.in.in:4
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
 msgstr "Upravljalnik in pregledovalnik navideznih sistemov"
 
-#: data/org.gnome.Boxes.desktop.in.in:5
+#: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
 msgstr "Pogled in uporaba navideznih sistemov"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Boxes.desktop.in.in:7
+#: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
 msgstr "virtualni sistem;navidezni sistem;vm;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in.in:10
+#: data/org.gnome.Boxes.desktop.in:10
 msgid "gnome-boxes"
 msgstr "gnome-boxes"
 
@@ -165,6 +164,7 @@ msgstr "_Nova"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
+#: data/ui/wizard-toolbar.ui:205
 msgid "Back"
 msgstr "Nazaj"
 
@@ -184,6 +184,14 @@ msgstr "Mrežni prikaz"
 msgid "Search"
 msgstr "Iskanje"
 
+#: data/ui/display-page.ui:85
+msgid "Ready to Receive File"
+msgstr "Naprava je pripravljena za prejem datoteke"
+
+#: data/ui/display-page.ui:105
+msgid "You will find your file in the Downloads directory."
+msgstr "Datoteke so shranjene v mapi prejetih datotek."
+
 #: data/ui/display-toolbar.ui:63
 msgid "Actions"
 msgstr "Dejanja"
@@ -192,7 +200,7 @@ msgstr "Dejanja"
 msgid "Keyboard shortcuts"
 msgstr "Tipkovne bližnjice"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:54
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
 msgid "Fullscreen"
 msgstr "Celozaslonski način"
 
@@ -289,7 +297,7 @@ msgstr "O programu"
 msgid "Quit"
 msgstr "Končaj"
 
-#: data/ui/properties-toolbar.ui:43
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Dnevniško sporočilo"
 
@@ -303,10 +311,12 @@ msgstr "Izberite napravo ali datoteko ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
+#: src/app-window.vala:318
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
+#: src/app-window.vala:320
 msgid "_Open"
 msgstr "_Odpri"
 
@@ -363,13 +373,21 @@ msgid "Rename"
 msgstr "Preimenuj"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:79
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Izbriši"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Končano"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Ojoj, prišlo je do napake!"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Program ne more dostopiti do navideznega ozadnjega programa."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -400,7 +418,7 @@ msgstr "_Dodaj geslo"
 msgid "Product Key"
 msgstr "Ključ izdelka"
 
-#: data/ui/wizard-downloadable-entry.ui:58 data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Neznani nosilec"
 
@@ -409,36 +427,24 @@ msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Vnesite nosilec namestitve operacijskega sistema ali izberite vir spodaj"
 
-#: data/ui/wizard-source.ui:56
-msgid "Downloaded"
-msgstr "Prejeto"
-
 #: data/ui/wizard-source.ui:83
-msgid "_Select a file"
-msgstr "_Izbor datoteke"
+msgid "Download an OS"
+msgstr "Prejemi operacijski sistem"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:234
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
+#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:118
-msgid "Available to Download"
-msgstr "Na voljo za prejem"
-
-#: data/ui/wizard-source.ui:162
-msgid "Red Hat Enterprise Linux"
-msgstr "Red Hat Enterprise Linux"
-
-#: data/ui/wizard-source.ui:175
-msgid "Available with a free Red Hat developer account"
-msgstr "Na voljo prek brezplačnega razvijalskega računa Red Hat"
-
-#: data/ui/wizard-source.ui:224
+#: data/ui/wizard-source.ui:126
 msgid "_Enter URL"
 msgstr "Vnos _naslova URL"
 
-#: data/ui/wizard-source.ui:291
+#: data/ui/wizard-source.ui:211
+msgid "_Select a file"
+msgstr "_Izbor datoteke"
+
+#: data/ui/wizard-source.ui:239
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -447,15 +453,15 @@ msgstr ""
 "Vse zgoraj prikazane zaščitene znamke so uporabljene zgolj za določevanje "
 "programskih izdelkov, ki jih že posedujete in so last njihovih lastnikov."
 
-#: data/ui/wizard-source.ui:363
+#: data/ui/wizard-source.ui:310
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:374
+#: data/ui/wizard-source.ui:321
 msgid "Enter URL"
 msgstr "Vnesite URL"
 
-#: data/ui/wizard-source.ui:404
+#: data/ui/wizard-source.ui:351
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -464,7 +470,7 @@ msgstr ""
 "namestitvenih odtisov, strežnikov SPICE in VNC, ali pa posredniki oVirt "
 "oziroma Libvirt."
 
-#: data/ui/wizard-source.ui:422
+#: data/ui/wizard-source.ui:369
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
@@ -505,116 +511,111 @@ msgstr ""
 "Če je sistem mlajši od 2008, preverite nastavitve BIOS."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:29
+#: src/actions-popover.vala:30
 msgid "Box actions"
 msgstr "Arhiviraj dejanja"
 
 #. Open in new Window
-#: src/actions-popover.vala:43
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Odpri v novem oknu"
 
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "Pošlji datoteko ..."
+
 #. Take Screenshot
-#: src/actions-popover.vala:48
+#: src/actions-popover.vala:54
 msgid "Take Screenshot"
 msgstr "Zajemi zaslonsko sliko"
 
 #. Favorite
-#: src/actions-popover.vala:53
+#: src/actions-popover.vala:59
 msgid "Remove from Favorites"
 msgstr "Odstrani iz priljubljenih"
 
-#: src/actions-popover.vala:55
+#: src/actions-popover.vala:61
 msgid "Add to Favorites"
 msgstr "Dodaj med priljubljene"
 
-#: src/actions-popover.vala:62
+#: src/actions-popover.vala:68
 msgid "Force Shutdown"
 msgstr "Vsili izklop"
 
-#. Pause
-#: src/actions-popover.vala:69
-msgid "Pause"
-msgstr "Premor"
-
 #. Clone
-#: src/actions-popover.vala:74
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Kloniraj"
 
-#: src/actions-popover.vala:83 src/machine.vala:604
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Ponovno zaženi"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:92
+#: src/actions-popover.vala:93
 msgid "Properties"
 msgstr "Lastnosti"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:116
+#: src/actions-popover.vala:117
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Zaslonska slika %s"
 
-#: src/actions-popover.vala:147 src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Ustavljanje »%s« je spodletelo"
-
-#: src/app.vala:106
+#: src/app.vala:108
 msgid "translator-credits"
 msgstr "Martin Srebotnjak"
 
-#: src/app.vala:107
+#: src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Enostaven program GNOME 3 za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:169 src/main.vala:9
 msgid "Display version number"
 msgstr "Pokaži številko različice"
 
-#: src/app.vala:175
+#: src/app.vala:171
 msgid "Open in full screen"
 msgstr "Odpri v celozaslonskem načinu"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:172 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Preveri zmožnosti virtualizacije"
 
-#: src/app.vala:177
+#: src/app.vala:173
 msgid "Open box with UUID"
 msgstr "Odpri škatlo z UUID"
 
-#: src/app.vala:178
+#: src/app.vala:174
 msgid "Search term"
 msgstr "Iskalni niz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#: src/app.vala:176
 msgid "URL to display, broker or installer media"
 msgstr "Naslov URI do sistemskega posrednika oziroma upravljalnika"
 
-#: src/app.vala:191
+#: src/app.vala:187
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:216
+#: src/app.vala:212
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: src/app.vala:451
+#: src/app.vala:463
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Škatla »%s« je nameščena in pripravljena za uporabo"
 
-#: src/app.vala:539
+#: src/app.vala:551
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Škatla »%s« je bila izbrisana"
 
-#: src/app.vala:540
+#: src/app.vala:552
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -623,30 +624,34 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/app.vala:579 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Razveljavi"
 
-#: src/display-page.vala:110
+#: src/app-window.vala:317
+msgid "Select files to transfer"
+msgstr "Izbor datotek za prenos"
+
+#: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Pritisk tipke Ctrl+Alt sprosti predmet"
 
-#: src/display-page.vala:112
+#: src/display-page.vala:137
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Pritisk in sprostitev CTRL+ALT sprosti tipkovnico"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:256
+#: src/display-page.vala:310
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:51
+#: src/display-toolbar.vala:71
 msgid "Exit fullscreen"
 msgstr "Končaj celozaslonski način"
 
-#: src/icon-view.vala:56
+#: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "Novo in nedavno"
 
@@ -870,8 +875,8 @@ msgstr "Nameščanje ..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:103
-#: src/wizard-source.vala:187
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
+#: src/wizard-source.vala:154
 msgid "Live"
 msgstr "Živi sistem"
 
@@ -948,21 +953,21 @@ msgid "Powered Off"
 msgstr "Izklopljeno"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:195
+#: src/machine.vala:201
 #, c-format
 msgid "Connecting to %s"
 msgstr "Povezovanje s/z %s"
 
-#: src/machine.vala:218 src/machine.vala:617
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Povezava z »%s« je spodletela"
 
-#: src/machine.vala:416
+#: src/machine.vala:422
 msgid "Saving…"
 msgstr "Shranjevanje ..."
 
-#: src/machine.vala:603
+#: src/machine.vala:612
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -971,13 +976,13 @@ msgstr ""
 "»%s« ni mogoče obnoviti iz diska.\n"
 "Ali naj se izvede brez shranjenega stanja?"
 
-#: src/machine.vala:613
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Zaganjanje »%s« je spodletelo"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:646
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "»%s« zahteva overitev"
@@ -1041,7 +1046,7 @@ msgstr "Povezava z posrednikom oVirt je spodletela"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:519
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
 msgid "URL"
 msgstr "Naslov URL"
 
@@ -1065,6 +1070,11 @@ msgstr "Spremembe zahtevajo ponovni zagon »%s«."
 #: src/remote-machine.vala:75
 msgid "_URL"
 msgstr "Naslov _URL"
+
+#: src/selectionbar.vala:60
+#, c-format
+msgid "Pausing “%s” failed"
+msgstr "Ustavljanje »%s« je spodletelo"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: src/selectionbar.vala:173
@@ -1126,20 +1136,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Ustvarjanje arhiva %s je spodletelo"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:47
+#: src/spice-display.vala:48
 msgid "Unknown"
 msgstr "Neznano"
 
-#: src/spice-display.vala:67 src/spice-display.vala:644
+#: src/spice-display.vala:68 src/spice-display.vala:665
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Preusmeritev naprave USB »%s« za »%s« je spodletela."
 
-#: src/spice-display.vala:500
+#: src/spice-display.vala:521
 msgid "Share Clipboard"
 msgstr "Souporaba odložišča"
 
-#: src/spice-display.vala:505
+#: src/spice-display.vala:526
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1152,26 +1162,32 @@ msgstr ""
 "obiščite spletno mesto <a href=\"http://www.spice-space.org/download.html"
 "\">http://www.spice-space.org/download.html</a>."
 
-#: src/spice-display.vala:532
+#: src/spice-display.vala:553
 msgid "USB devices"
 msgstr "Naprave USB"
 
-#: src/spice-display.vala:550
+#: src/spice-display.vala:571
 msgid "Folder Shares"
 msgstr "Mape za souporabo"
 
-#: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:330 src/wizard.vala:343
+#: src/spice-display.vala:833 src/spice-display.vala:858
+#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
 msgid "Invalid URL"
 msgstr "Neveljaven naslov URL"
 
-#: src/spice-display.vala:822
+#: src/spice-display.vala:843
 msgid "The port must be specified once"
 msgstr "Vrata morajo biti določena"
 
-#: src/spice-display.vala:833
+#: src/spice-display.vala:854
 msgid "Missing port in Spice URL"
 msgstr "V naslovu Spice manjka določilo vrat"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "Poteka kopiranje »%s« v mape »Prejeto«"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
@@ -1272,19 +1288,23 @@ msgstr "Škatla »%s« je bila samodejno izbrisana."
 msgid "Box import from file “%s” failed."
 msgstr "Uvoz škatle iz datoteke »%s« je spodletel."
 
-#: src/wizard-source.vala:191
+#: src/wizard-source.vala:158
 msgid "32-bit x86 system"
 msgstr "32-bitni sistem x86"
 
-#: src/wizard-source.vala:192
+#: src/wizard-source.vala:159
 msgid "64-bit x86 system"
 msgstr "64-bitni sistem x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:197
+#: src/wizard-source.vala:164
 #, c-format
 msgid " from %s"
 msgstr " - %s"
+
+#: src/wizard-source.vala:402
+msgid "Available with a free Red Hat developer account"
+msgstr "Na voljo prek brezplačnega razvijalskega računa Red Hat"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1302,96 +1322,108 @@ msgstr "Nastavitev škatle"
 msgid "Review"
 msgstr "Pregled"
 
-#: src/wizard.vala:116
+#: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Ustvarjanje škatle je spodletelo"
 
-#: src/wizard.vala:289
+#: src/wizard.vala:300
 msgid "Empty location"
 msgstr "Prazno mesto"
 
-#: src/wizard.vala:312
+#: src/wizard.vala:323
 msgid "Unsupported file"
 msgstr "Nepodprta vrsta datoteke"
 
-#: src/wizard.vala:318
+#: src/wizard.vala:329
 msgid "Invalid file"
 msgstr "Neveljavna datoteka"
 
-#: src/wizard.vala:361
+#: src/wizard.vala:372
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nepodprt protokol »%s«"
 
-#: src/wizard.vala:367 src/wizard.vala:441
+#: src/wizard.vala:378 src/wizard.vala:452
 msgid "Unknown installer media"
 msgstr "Neznan nosilec nemstilnika"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:369 src/wizard.vala:442
+#: src/wizard.vala:380 src/wizard.vala:453
 msgid "Analyzing…"
 msgstr "Preučevanje ..."
 
-#: src/wizard.vala:383
+#: src/wizard.vala:394
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Preučevanje nosilca namestilnika je spodletelo. Morda je nosilec poškodovan "
 "ali pa namestilnik ni popoln."
 
 #. We did this, so ignore!
-#: src/wizard.vala:495
+#: src/wizard.vala:506
 msgid "Box setup failed"
 msgstr "Nastavitev škatle je spodletela"
 
-#: src/wizard.vala:509
+#: src/wizard.vala:520
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Program bo ustvaril novo polje z naslednjimi lastnosti:"
 
-#: src/wizard.vala:514
+#: src/wizard.vala:525
 msgid "Type"
 msgstr "Vrsta"
 
-#: src/wizard.vala:517
+#: src/wizard.vala:528
 msgid "Host"
 msgstr "Gostitelj"
 
-#: src/wizard.vala:528 src/wizard.vala:539
+#: src/wizard.vala:539 src/wizard.vala:550
 msgid "Port"
 msgstr "Vrata"
 
-#: src/wizard.vala:530
+#: src/wizard.vala:541
 msgid "TLS Port"
 msgstr "Vrata TLS"
 
-#: src/wizard.vala:544
+#: src/wizard.vala:555
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Doda škatle za vse sisteme, na voljo z računa:"
 
-#: src/wizard.vala:557
+#: src/wizard.vala:568
 msgid "Memory"
 msgstr "Pomnilnik"
 
-#: src/wizard.vala:566
+#: src/wizard.vala:577
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:568
+#: src/wizard.vala:579
 #, c-format
 msgid "%s maximum"
 msgstr "Največ %s"
 
-#: src/wizard.vala:631
+#: src/wizard.vala:642
 msgid "Downloading media…"
 msgstr "Prejemanje prestavne vsebine"
 
-#: src/wizard.vala:641
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "Prejemanje je spodletelo."
 
-#: src/wizard.vala:754
+#: src/wizard.vala:766
 msgid "C_ustomize…"
 msgstr "Prila_godi ..."
+
+#~ msgid "Downloaded"
+#~ msgstr "Prejeto"
+
+#~ msgid "Available to Download"
+#~ msgstr "Na voljo za prejem"
+
+#~ msgid "Red Hat Enterprise Linux"
+#~ msgstr "Red Hat Enterprise Linux"
+
+#~ msgid "Pause"
+#~ msgstr "Premor"
 
 #~ msgid "%s (maximum)"
 #~ msgstr "%s (največja vrednost)"
