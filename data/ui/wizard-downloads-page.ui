@@ -14,7 +14,16 @@
         <child>
           <object class="GtkListBox" id="recommended_listbox">
             <property name="visible">True</property>
+            <property name="vexpand">True</property>
             <signal name="row-activated" handler="on_listbox_row_activated"/>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="show_more_button">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Show more…</property>
+            <signal name="clicked" handler="on_show_more_button_clicked"/>
           </object>
         </child>
       </object>
