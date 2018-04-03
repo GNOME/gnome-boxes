@@ -45,6 +45,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     private ulong machine_state_notify_id;
     private ulong machine_deleted_notify_id;
 
+    private uint inhibit_cookie;
+
     [CCode (notify = false)]
     public bool fullscreened {
         get { return WindowState.FULLSCREEN in get_window ().get_state (); }
@@ -380,6 +382,19 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void filter (string text) {
         foreach_view ((view) => { view.filter.text = text; });
+    }
+
+    public void inhibit (Gtk.ApplicationInhibitFlags flags, string reason) {
+        Gtk.ApplicationInhibitFlags new_flags = (flags);
+
+        inhibit_cookie = App.app.inhibit (this, new_flags, reason);
+        if (inhibit_cookie != 0)
+            App.app.uninhibit (inhibit_cookie);
+    }
+
+    public void unhibit () {
+        if (inhibit_cookie != 0)
+            App.app.uninhibit (inhibit_cookie);
     }
 
     [GtkCallback]
