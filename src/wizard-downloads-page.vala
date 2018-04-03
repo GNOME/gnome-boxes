@@ -63,4 +63,9 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
 
         download_chosen_func (entry);
     }
+
+    [GtkCallback]
+    private void on_show_more_button_clicked () {
+        search.text = " ";
+    }
 }
