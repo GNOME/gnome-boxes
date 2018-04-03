@@ -105,7 +105,7 @@ public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
             variant = (variants.get_nth (0) as Osinfo.OsVariant).get_name ();
         else if ((media.os as Osinfo.Product).name != null) {
             variant = (media.os as Osinfo.Product).name;
-            if (media.url.contains ("server"))
+            if (url != null && media.url.contains ("server"))
                 variant += " Server";
         } else {
             var file = File.new_for_uri (media.url);
@@ -114,12 +114,15 @@ public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
         }
 
         var subvariant = "";
-        if (media.url.contains ("netinst"))
-            subvariant = "(netinst)";
-        else if (media.url.contains ("minimal"))
-            subvariant = "(minimal)";
-        else if (media.url.contains ("dvd"))
-            subvariant = "(DVD)";
+
+        if (url != null) {
+            if (media.url.contains ("netinst"))
+                subvariant = "(netinst)";
+            else if (media.url.contains ("minimal"))
+                subvariant = "(minimal)";
+            else if (media.url.contains ("dvd"))
+                subvariant = "(DVD)";
+        }
 
         var is_live = media.live ? " (" + _("Live") + ")" : "";
 
