@@ -642,6 +642,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         prep_status_label.label = _("Downloading media…");
 
         try {
+            var inhibit_reason = _("Downloading media");
+            App.app.inhibit (wizard_window, null, inhibit_reason);
+
             var cache_path = yield Downloader.fetch_media (uri, filename, download_progress, prepare_cancellable);
             prepare_downloaded_media (cache_path, progress);
         } catch (GLib.IOError.CANCELLED e) {
@@ -652,6 +655,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             window.notificationbar.display_error (_("Download failed."));
             page = WizardPage.SOURCE;
         }
+
+        App.app.uninhibit ();
     }
 
     private void prepare_downloaded_media (string cache_path, ActivityProgress progress) {
