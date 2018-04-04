@@ -271,6 +271,15 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                                               SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT,
                                               CENTERED_EMBLEM_SIZE, EMBLEM_SIZE,
                                               FRAME_BORDER_COLOR, FRAME_BACKGROUND_COLOR);
+
+        notify["under-construction"].connect (() => {
+            if (under_construction) {
+                var inhibit_reason = _("Machine is under construction");
+                App.app.inhibit (null, null, inhibit_reason);
+            } else {
+                App.app.uninhibit ();
+            }
+        });
     }
 
     protected void load_screenshot () {
