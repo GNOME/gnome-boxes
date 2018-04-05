@@ -11,6 +11,9 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
                                                    ".vmdk", ".vmdk.gz",
                                                    ".vpc", ".vpc.gz",
                                                    ".cloop", ".cloop.gz" };
+    public const string[] supported_architectures = {
+        "i686", "i586", "i486", "i386"
+    };
     private static Regex date_regex = /20[0-9]{6,6}/;
 
     public override bool need_user_input_for_vm_creation { get { return false; } }
@@ -23,8 +26,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
             if (device_file.contains ("amd64") || device_file.contains ("x86_64"))
                 return "x86_64";
             else {
-                string[] arch_list = { "i686", "i586", "i486", "i386" };
-                foreach (var arch in arch_list) {
+                foreach (var arch in supported_architectures) {
                     if (device_file.contains (arch))
                         return arch;
                 }
