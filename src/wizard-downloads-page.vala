@@ -1,5 +1,10 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+public enum WizardDownloadsPageView {
+    RECOMMENDED,
+    SEARCH_RESULTS,
+}
+
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloads-page.ui")]
 public class Boxes.WizardDownloadsPage : Gtk.Stack {
     private OSDatabase os_db = new OSDatabase ();
@@ -20,6 +25,24 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
         "http://opensuse.org/opensuse/42.3",
         "http://fedoraproject.org/fedora/27",
     };
+
+    private WizardDownloadsPageView _page;
+    public WizardDownloadsPageView page {
+        get { return _page; }
+        set {
+            _page = value;
+
+            switch (_page) {
+                case WizardDownloadsPageView.SEARCH_RESULTS:
+                    visible_child_name = "search-results";
+                    break;
+                case WizardDownloadsPageView.RECOMMENDED:
+                default:
+                    visible_child_name = "recommended";
+                    break;
+            }
+        }
+    }
 
     construct {
         os_db.load.begin ();
