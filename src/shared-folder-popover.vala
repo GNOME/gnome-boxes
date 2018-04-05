@@ -12,6 +12,11 @@ private class Boxes.SharedFolderPopover: Gtk.Popover {
 
     public int target_position;
 
+    construct {
+        var default_path = Environment.get_user_special_dir (UserDirectory.PUBLIC_SHARE);
+        file_chooser_button.set_current_folder (default_path);
+    }
+
     [GtkCallback]
     public void on_cancel (Gtk.Button cancel_button) {
         popdown ();
