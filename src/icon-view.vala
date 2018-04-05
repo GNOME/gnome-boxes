@@ -162,8 +162,15 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
     [GtkCallback]
     private void on_child_activated (Gtk.FlowBoxChild child) {
-        if (window.selection_mode)
+        if (window.selection_mode) {
+            var view_child = child.get_child () as IconViewChild;
+            if (view_child.selected)
+                unselect_child (child);
+            else
+                select_child (child);
+
             return;
+        }
 
         var item = get_item_for_child (child);
         if (item is LibvirtMachine && (item as LibvirtMachine).importing)
