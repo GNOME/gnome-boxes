@@ -125,8 +125,10 @@ private class Boxes.OSDatabase : GLib.Object {
                     continue;
 
                 var eol = (os as Product).get_eol_date ();
-                if (eol == null || now.compare (eol) > 1)
+                if ((eol == null || now.compare (eol) > 1) &&
+                    (media.architecture in InstalledMedia.supported_architectures)) {
                     after_list.append (media);
+                }
             }
         }
 
