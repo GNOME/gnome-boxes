@@ -686,7 +686,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         debug ("Cloning '%s'..", domain_config.name);
         can_delete = false;
 
-        var inhibit_reason = _("Cloning '%s'..").printf (domain_config.name);
+        var inhibit_reason = _("Cloning “%s”…").printf (domain_config.name);
         App.app.inhibit (null, null, inhibit_reason);
 
         try {
