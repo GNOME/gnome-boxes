@@ -44,8 +44,6 @@ private class Boxes.App: Gtk.Application {
     public CollectionSource default_source { get { return sources.get (DEFAULT_SOURCE_NAME); } }
     public AsyncLauncher async_launcher;
 
-    private uint inhibit_cookie = 0;
-
     public App () {
         application_id = "org.gnome.Boxes";
         flags |= ApplicationFlags.HANDLES_COMMAND_LINE | ApplicationFlags.HANDLES_OPEN;
@@ -618,29 +616,6 @@ private class Boxes.App: Gtk.Application {
         notify_property ("main-window");
 
         return initial_windows_count != windows.length ();
-    }
-
-    public new void inhibit (Gtk.Window? window = main_window, Gtk.ApplicationInhibitFlags? flags = null, string? reason = null) {
-        if (reason == null) {
-            reason = _("Boxes is doing something");
-        }
-
-        if (flags == null) {
-            flags = Gtk.ApplicationInhibitFlags.IDLE | Gtk.ApplicationInhibitFlags.SUSPEND;
-        }
-
-        uint new_cookie = base.inhibit (window, flags, reason);
-        if (inhibit_cookie != 0) {
-            base.uninhibit (inhibit_cookie);
-        }
-
-        inhibit_cookie = new_cookie;
-    }
-
-    public new void uninhibit () {
-        if (inhibit_cookie != 0) {
-            base.uninhibit (inhibit_cookie);
-        }
     }
 }
 

@@ -686,9 +686,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         debug ("Cloning '%s'..", domain_config.name);
         can_delete = false;
 
-        var inhibit_reason = _("Cloning '%s'..").printf (domain_config.name);
-        App.app.inhibit (null, null, inhibit_reason);
-
         try {
             // Any better way of cloning the config?
             var xml = domain_config.to_xml ();
@@ -705,8 +702,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 if (!clone_machine.under_construction) {
                     can_delete = true;
                     clone_machine.disconnect (under_construct_id);
-
-                    App.app.uninhibit ();
                 }
             });
         } catch (GLib.Error error) {
