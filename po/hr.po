@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-03-07 17:05+0000\n"
-"PO-Revision-Date: 2018-03-15 23:42+0100\n"
+"POT-Creation-Date: 2018-04-09 18:19+0000\n"
+"PO-Revision-Date: 2018-04-16 13:29+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -297,7 +297,7 @@ msgstr "O programu"
 msgid "Quit"
 msgstr "Zatvori"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
 msgid "Troubleshooting Log"
 msgstr "Zapis otkrivanja grešaka"
 
@@ -387,7 +387,7 @@ msgstr "Ups, nešto je pošlo po krivu"
 
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
-msgstr "Boksevi ne može pristupiti pozadinskom programu virtualizacije"
+msgstr "Boksevi ne može pristupiti pozadinskom programu virtualizacije."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -547,7 +547,7 @@ msgstr "Prisilno isključivanje"
 msgid "Clone"
 msgstr "Kloniraj"
 
-#: src/actions-popover.vala:84 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:622
 msgid "Restart"
 msgstr "Ponovno pokreni"
 
@@ -562,61 +562,61 @@ msgstr "Svojstva"
 msgid "Screenshot from %s"
 msgstr "Slika zaslona s %s"
 
-#: src/app.vala:108
+#: src/app.vala:110
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  gogo https://launchpad.net/~trebelnik-stefina"
 
-#: src/app.vala:109
+#: src/app.vala:111
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
-"Jednostavna GNOME 3 aplikacija za pristup udaljenim i virtualnim sustavima."
+"Jednostavna GNOME 3 aplikacija za pristup udaljenim i virtualnim sustavima"
 
-#: src/app.vala:169 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "Prikaži broj inačice"
 
-#: src/app.vala:171
+#: src/app.vala:173
 msgid "Open in full screen"
 msgstr "Otvori u cijelom zaslonu"
 
-#: src/app.vala:172 src/main.vala:10
+#: src/app.vala:174 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Provjeri mogućnosti virtualizacije"
 
-#: src/app.vala:173
+#: src/app.vala:175
 msgid "Open box with UUID"
 msgstr "Otvori boks sa UUID-om"
 
-#: src/app.vala:174
+#: src/app.vala:176
 msgid "Search term"
 msgstr "Izraz pretrage"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:176
+#: src/app.vala:178
 msgid "URL to display, broker or installer media"
 msgstr "URL za prikaz, posrednik ili medij instalacije"
 
-#: src/app.vala:187
+#: src/app.vala:189
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— Jednostavna aplikacija za pristup udaljenim i virtualnim sustavima"
 
-#: src/app.vala:212
+#: src/app.vala:214
 msgid "Too many command line arguments specified.\n"
 msgstr "Previše argumenata naredbenog redka je određeno.\n"
 
-#: src/app.vala:463
+#: src/app.vala:465
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Boks “%s” je instaliran i spreman za korištenje"
 
-#: src/app.vala:551
+#: src/app.vala:553
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Boks “%s” je obrisan"
 
-#: src/app.vala:552
+#: src/app.vala:554
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -624,10 +624,14 @@ msgstr[0] "%u boks je obrisan"
 msgstr[1] "%u boksa su obrisana"
 msgstr[2] "%u bokseva je obrisano"
 
-#: src/app.vala:579 src/libvirt-machine-properties.vala:551
+#: src/app.vala:581 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Poništi"
+
+#: src/app.vala:625
+msgid "Boxes is doing something"
+msgstr "Boksevi nešto izvode"
 
 #: src/app-window.vala:317
 msgid "Select files to transfer"
@@ -655,11 +659,11 @@ msgstr "Napusti cjelozaslonski prikaz"
 msgid "New and Recent"
 msgstr "Novo i nedavno"
 
-#: src/installed-media.vala:51
+#: src/installed-media.vala:53
 msgid "Unsupported disk image format."
 msgstr "Nepodržani format slike diska."
 
-#: src/installed-media.vala:108 src/installer-media.vala:113
+#: src/installed-media.vala:110 src/installer-media.vala:113
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sustav"
@@ -866,26 +870,31 @@ msgstr "Ponovno pokretanje “%s” traje predugo. Prisilno isključi?"
 msgid "_Shutdown"
 msgstr "_Isključi"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "Kloniram “%s”…"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "Instalacija…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:124
 #: src/wizard-source.vala:154
 msgid "Live"
 msgstr ""
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "Postavljanje klona…"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "Uvažanje…"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "poslužitelj: %s"
@@ -953,16 +962,20 @@ msgstr "Isključeno"
 msgid "Connecting to %s"
 msgstr "Povezivanje s %s"
 
-#: src/machine.vala:224 src/machine.vala:640
+#: src/machine.vala:224 src/machine.vala:649
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Povezivanje s “%s” neuspjelo"
 
-#: src/machine.vala:422
+#: src/machine.vala:277
+msgid "Machine is under construction"
+msgstr "Stroj je pod konstrukcijom"
+
+#: src/machine.vala:431
 msgid "Saving…"
 msgstr "Spremanje…"
 
-#: src/machine.vala:612
+#: src/machine.vala:621
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -971,13 +984,13 @@ msgstr ""
 "“%s” se ne može obnoviti sa diska\n"
 "Pokušaj bez spremljenog stanja?"
 
-#: src/machine.vala:623
+#: src/machine.vala:632
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Neuspjelo pokretanje “%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:727
+#: src/machine.vala:736
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” zahtjeva ovjeru"
@@ -1120,7 +1133,7 @@ msgstr ""
 
 #: src/snapshots-property.vala:121
 msgid "Creating new snapshot…"
-msgstr "Stvaranje nove snimke sustava..."
+msgstr "Stvaranje nove snimke sustava…"
 
 #: src/snapshots-property.vala:129
 #, c-format
@@ -1294,7 +1307,7 @@ msgstr "64-bitni x86 sustav"
 msgid " from %s"
 msgstr " iz %s"
 
-#: src/wizard-source.vala:401
+#: src/wizard-source.vala:402
 msgid "Available with a free Red Hat developer account"
 msgstr "Dostupan s besplatnim računom za Red Hat razvijatelje"
 
@@ -1395,11 +1408,15 @@ msgstr "%s najviše"
 msgid "Downloading media…"
 msgstr "Preuzimanje medija…"
 
-#: src/wizard.vala:652
-msgid "Download failed."
-msgstr "Neuspjelo preuzimanje"
+#: src/wizard.vala:645
+msgid "Downloading media"
+msgstr "Preuzimanje medija"
 
-#: src/wizard.vala:766
+#: src/wizard.vala:655
+msgid "Download failed."
+msgstr "Neuspjelo preuzimanje."
+
+#: src/wizard.vala:771
 msgid "C_ustomize…"
 msgstr "P_rilagodi…"
 
