@@ -361,8 +361,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         if (uri.scheme.has_prefix ("spice")) {
             spice_validate_uri (uri_as_text);
             source.source_type = "spice";
-        } else if (uri.scheme == "vnc") {
-            // accept any vnc:// uri
+        } else if (uri.scheme == "vnc" || uri.scheme == "rdp") {
+            // accept any vnc:// or rdp:// uri
         } else if (uri.scheme.has_prefix ("qemu")) {
             // accept any qemu..:// uri
             source.source_type = "libvirt";
@@ -546,9 +546,11 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 break;
 
             case "vnc":
+            case "rdp":
                 if (uri.port > 0)
                     summary.add_property (_("Port"), uri.port.to_string ());
                 break;
+
             }
 
             if (App.app.has_broker_for_source_type (source.source_type)) {

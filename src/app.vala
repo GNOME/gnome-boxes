@@ -377,6 +377,7 @@ private class Boxes.App: Gtk.Application {
 
         switch (source.source_type) {
         case "vnc":
+        case "rdp":
         case "spice":
             try {
                 var machine = new RemoteMachine (source);
