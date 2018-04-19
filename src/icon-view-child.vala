@@ -4,7 +4,7 @@ using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/icon-view-child.ui")]
 private class Boxes.IconViewChild : Gtk.Box {
-    public bool _selection_mode;
+    public bool _selection_mode = false;
     public bool selection_mode {
         get { return _selection_mode; }
         set {
@@ -15,14 +15,12 @@ private class Boxes.IconViewChild : Gtk.Box {
             if (!_selection_mode)
                 selected = false;
         }
-        default = false ;
     }
 
-    public bool _selected;
+    public bool _selected = false;
     public bool selected {
         get { return _selected; }
         set { _selected = selection_mode && value; }
-        default = false;
     }
 
     public CollectionItem item { get; private set; }
