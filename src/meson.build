@@ -102,6 +102,7 @@ vala_sources = [
   'libvirt-vm-cloner.vala',
   'libvirt-vm-importer.vala',
   'vnc-display.vala',
+  'rdp-display.vala',
   'wizard-window.vala',
   'wizard-source.vala',
   'wizard-toolbar.vala',
