@@ -7,7 +7,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
     public RemoteMachine (CollectionSource source) throws Boxes.Error {
         if (source.source_type != "spice" &&
-            source.source_type != "vnc")
+            source.source_type != "vnc" &&
+            source.source_type != "rdp")
             throw new Boxes.Error.INVALID ("source is not remote machine: %s", source.uri);
 
         base (source, source.name);
@@ -33,6 +34,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         case "vnc":
             return new VncDisplay.with_uri (config, source.uri);
+
+        case "rdp":
+            return new RdpDisplay.with_uri (config, source.uri);
 
         default:
             throw new Boxes.Error.INVALID ("unsupported display of type " + type);
