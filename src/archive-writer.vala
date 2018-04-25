@@ -72,7 +72,11 @@ public class Boxes.ArchiveWriter : GLib.Object {
             execute_libarchive_function (archive, () => { return archive.write_header (iterator); });
             if (len > 0) {
                 var buf = new uint8[len];
+#if VALA_0_42
+                insert_data (buf, archive_reader.archive.read_data (buf));
+#else
                 insert_data (buf, archive_reader.archive.read_data (buf, (size_t) len));
+#endif
             }
         }
 
@@ -104,7 +108,7 @@ public class Boxes.ArchiveWriter : GLib.Object {
         var filestream = GLib.FileStream.open (src, "r");
         filestream.read ((uint8[]) buf, (size_t) len);
         execute_libarchive_function (archive, () => { return archive.write_header(entry); });
-        insert_data ((uint8[]) buf, len);
+        insert_data (buf, len);
     }
 
     private void prepare_archive () throws GLib.IOError {
@@ -122,8 +126,12 @@ public class Boxes.ArchiveWriter : GLib.Object {
             filters.append (read_archive.filter_code (i - 1));
     }
 
-    private void insert_data (void* data, int64 len) throws GLib.IOError {
-        if (archive.write_data (data, (size_t) len) != len)
+    private void insert_data (uint8[] data, int64 len) throws GLib.IOError {
+#if VALA_0_42
+        if (archive.write_data (data) != len)
+#else
+        if (archive.write_data (data, (size_t) data.length) != len)
+#endif
             throw new GLib.IOError.FAILED ("Failed writing data to archive. Message: '%s'.",
                                            archive.error_string ());
     }
