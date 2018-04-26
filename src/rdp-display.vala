@@ -2,10 +2,20 @@
 using Gtk;
 using Frdp;
 
+private class Boxes.FrdpDisplay: Frdp.Display {
+    public override bool authenticate (out string username, out string password, out string domain) {
+        username = this.username;
+        password = this.password;
+        domain = null;
+
+        return false;
+    }
+}
+
 private class Boxes.RdpDisplay: Boxes.Display {
     public override string protocol { get { return "RDP"; } }
     public override string? uri { owned get { return @"rdp://$host:$port"; } }
-    private Frdp.Display display;
+    private FrdpDisplay display;
     private string host;
     private int port;
     private BoxConfig.SavedProperty[] saved_properties;
@@ -14,9 +24,7 @@ private class Boxes.RdpDisplay: Boxes.Display {
         saved_properties = {
             BoxConfig.SavedProperty () { name = "read-only", default_value = false }
         };
-        need_password = false;
-
-        display = new Frdp.Display ();
+        display = new FrdpDisplay ();
 
         display.rdp_connected.connect (() => {
             show (0);
@@ -25,6 +33,13 @@ private class Boxes.RdpDisplay: Boxes.Display {
         display.rdp_disconnected.connect (() => {
             hide (0);
             access_finish ();
+        });
+        display.rdp_needs_authentication.connect (() => {
+            need_username = true;
+            need_password = true;
+
+            display.username = username;
+            display.password = password;
         });
     }
 
