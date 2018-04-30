@@ -1,12 +1,12 @@
 image: fedora:rawhide
 
 before_script:
-    - dnf install -y meson vala gtk3-devel libgovirt-devel
+    - dnf install -y meson git vala gtk3-devel libgovirt-devel
                      gtk-vnc2-devel libosinfo-devel libsecret-devel
                      libvirt-gconfig-devel libvirt-gobject-devel
                      spice-gtk3-vala libarchive-devel gettext
                      libgudev-devel webkitgtk4-devel libusbx-devel
-                     tracker-devel libosinfo-vala
+                     tracker-devel libosinfo-vala freerdp-devel
 
 build:
     stage: build
