@@ -35,9 +35,10 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         case "vnc":
             return new VncDisplay.with_uri (config, source.uri);
 
+#if HAVE_RDP
         case "rdp":
             return new RdpDisplay.with_uri (config, source.uri);
-
+#endif
         default:
             throw new Boxes.Error.INVALID ("unsupported display of type " + type);
         }
