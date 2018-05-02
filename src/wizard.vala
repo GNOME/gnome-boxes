@@ -363,9 +363,10 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             source.source_type = "spice";
         } else if (uri.scheme == "vnc") {
             // accept any vnc:// uri
-        #if HAVE_RDP
         } else if (uri.scheme == "rdp") {
             // accept any rdp:// uri
+        #if !HAVE_RDP
+          throw new Boxes.Error.INVALID (_("Boxes was compiled without RDP support"));
         #endif
         } else if (uri.scheme.has_prefix ("qemu")) {
             // accept any qemu..:// uri
