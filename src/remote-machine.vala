@@ -96,6 +96,8 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
     public override void delete (bool by_user = true) {
         return_if_fail (by_user);
 
+        base.delete ();
+
         source.delete ();
     }
 

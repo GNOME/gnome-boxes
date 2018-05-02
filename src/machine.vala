@@ -570,6 +570,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             ui_state_id = 0;
         }
 
+        delete_auth_credentials ();
+
         config.delete ();
         try {
             FileUtils.unlink (get_screenshot_filename ());
@@ -740,6 +742,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                                                                              need_username);
             }
         }, "gnome-boxes-machine-uuid", config.uuid);
+    }
+
+    private async void delete_auth_credentials () {
+        yield Secret.password_clear (secret_auth_schema, null,
+                                    "gnome-boxes-machine-uuid", config.uuid);
     }
 
     public override int compare (CollectionItem other) {
