@@ -102,7 +102,6 @@ vala_sources = [
   'libvirt-vm-cloner.vala',
   'libvirt-vm-importer.vala',
   'vnc-display.vala',
-  'rdp-display.vala',
   'wizard-window.vala',
   'wizard-source.vala',
   'wizard-toolbar.vala',
@@ -152,17 +151,22 @@ if get_option('ovirt')
   ]
 endif
 
-# Gtk-fRDP
-pkgdatadir = join_paths (data_dir, meson.project_name ())
-gtk_frdp = subproject(
-  'gtk-frdp',
-  default_options: [
-    'pkgdatadir=' + pkgdatadir,
-    'pkglibdir=' + pkglibdir
-  ]
-)
+if get_option('rdp')
+  vala_sources += 'rdp-display.vala'
 
-dependencies += gtk_frdp.get_variable('gtk_frdp_vapi')
+  pkgdatadir = join_paths (data_dir, meson.project_name ())
+  gtk_frdp = subproject(
+    'gtk-frdp',
+    default_options: [
+      'pkgdatadir=' + pkgdatadir,
+      'pkglibdir=' + pkglibdir
+    ]
+  )
+
+  vala_args += '--define=HAVE_RDP'
+
+  dependencies += gtk_frdp.get_variable('gtk_frdp_vapi')
+endif
 
 executable ('gnome-boxes', vala_sources + resources,
             include_directories: config_h_dir,
