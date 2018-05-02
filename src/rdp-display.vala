@@ -1,6 +1,5 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
-using Frdp;
 
 private class Boxes.FrdpDisplay: Frdp.Display {
     public override bool authenticate (out string username, out string password, out string domain) {
