@@ -78,7 +78,7 @@ private class Boxes.RdpDisplay: Boxes.Display {
     }
 
     public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
-        return null;
+        return display.get_pixbuf ();
     }
 
     public override void connect_it (owned Display.OpenFDFunc? open_fd = null) throws GLib.Error {
