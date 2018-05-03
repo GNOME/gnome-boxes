@@ -80,6 +80,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private ulong need_username_id;
     private ulong ui_state_id;
     private ulong got_error_id;
+    private ulong auth_failed_id;
     private uint screenshot_id;
     public const int SCREENSHOT_WIDTH = 180;
     public const int SCREENSHOT_HEIGHT = 134;
@@ -191,6 +192,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 need_username_id = 0;
                 _display.disconnect (got_error_id);
                 got_error_id = 0;
+                _display.disconnect (auth_failed_id);
+                auth_failed_id = 0;
             }
 
             _display = value;
@@ -210,6 +213,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             got_error_id = _display.got_error.connect ((message) => {
                     got_error (message);
             });
+
+            auth_failed_id = _display.auth_failed.connect (() => { delete_auth_credentials (); });
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
