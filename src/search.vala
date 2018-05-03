@@ -45,4 +45,10 @@ public class Boxes.DownloadsSearch : GLib.Object {
             }
         });
     }
+
+    public void show_all () {
+        foreach (var media in media_list) {
+            model.append (media);
+        }
+    }
 }

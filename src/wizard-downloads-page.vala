@@ -90,6 +90,8 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
 
     [GtkCallback]
     private void on_show_more_button_clicked () {
-        search.text = " ";
+        search.show_all ();
+
+        page = WizardDownloadsPageView.SEARCH_RESULTS;
     }
 }
