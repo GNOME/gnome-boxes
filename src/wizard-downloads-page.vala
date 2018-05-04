@@ -3,6 +3,7 @@
 public enum WizardDownloadsPageView {
     RECOMMENDED,
     SEARCH_RESULTS,
+    NO_RESULTS,
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloads-page.ui")]
@@ -36,6 +37,9 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
                 case WizardDownloadsPageView.SEARCH_RESULTS:
                     visible_child_name = "search-results";
                     break;
+                case WizardDownloadsPageView.NO_RESULTS:
+                    visible_child_name = "no-results";
+                    break;
                 case WizardDownloadsPageView.RECOMMENDED:
                 default:
                     visible_child_name = "recommended";
@@ -59,7 +63,13 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
     }
 
     private void set_visible_view () {
-        visible_child_name = search.text.length == 0 ? "recommended" : "search-results";
+        if (search.text.length == 0) {
+            page = WizardDownloadsPageView.RECOMMENDED;
+        } else if (search.model.get_n_items () == 0) {
+            page = WizardDownloadsPageView.NO_RESULTS;
+        } else {
+            page = WizardDownloadsPageView.SEARCH_RESULTS;
+        }
     }
 
     private async void populate_recommended_list () {
