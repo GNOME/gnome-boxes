@@ -172,7 +172,6 @@ else
   endif
 
   if get_option('rdp')
-    pkgdatadir = join_paths (data_dir, meson.project_name ())
     gtk_frdp = subproject(
       'gtk-frdp',
       default_options: [
@@ -184,6 +183,16 @@ else
     dependencies += gtk_frdp.get_variable('gtk_frdp_vapi')
   endif
 endif
+
+libovf = subproject(
+  'libovf-glib',
+  default_options: [
+    'pkgdatadir=' + pkgdatadir,
+    'pkglibdir=' + pkglibdir
+  ]
+)
+
+dependencies += libovf.get_variable('govf_vapi')
 
 executable ('gnome-boxes', vala_sources + resources,
             include_directories: config_h_dir,
