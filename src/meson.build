@@ -153,6 +153,17 @@ if get_option('ovirt')
   ]
 endif
 
+pkgdatadir = join_paths(data_dir, meson.project_name())
+libovf = subproject(
+  'libovf-glib',
+  default_options: [
+    'pkgdatadir=' + pkgdatadir,
+    'pkglibdir=' + pkglibdir
+  ]
+)
+
+dependencies += libovf.get_variable('govf_vapi')
+
 executable ('gnome-boxes', vala_sources + resources,
             include_directories: config_h_dir,
             vala_args: vala_args,
