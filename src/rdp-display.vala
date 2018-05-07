@@ -39,6 +39,8 @@ private class Boxes.RdpDisplay: Boxes.Display {
             need_username = true;
             need_password = true;
 
+            auth_failed ();
+
             display.close ();
         });
     }
