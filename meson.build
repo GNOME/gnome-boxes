@@ -23,6 +23,7 @@ pkglibdir = join_paths (get_option ('libdir'), meson.project_name ())
 po_dir = join_paths (meson.source_root (), 'po')
 data_dir = join_paths (get_option ('prefix'), get_option ('datadir'))
 locale_dir = join_paths (get_option ('prefix'), get_option ('localedir'))
+pkgdatadir = join_paths (data_dir, meson.project_name ())
 
 conf = configuration_data ()
 conf.set_quoted ('DISTRIBUTOR_NAME', get_option ('distributor_name'))
