@@ -35,7 +35,7 @@ conf.set('PACKAGE_URL', '"https://wiki.gnome.org/Apps/Boxes"')
 conf.set_quoted ('DATADIR', data_dir)
 conf.set_quoted ('CACHEDIR', '/var/cache')
 conf.set_quoted ('LOCALEDIR', locale_dir)
-conf.set('PACKAGE_BUGREPORT', '"https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-boxes"')
+conf.set('PACKAGE_BUGREPORT', '"http://gitlab.gnome.org/gnome/gnome-boxes/issues"')
 
 configure_file (output: 'config.h', configuration: conf)
 config_h_dir = include_directories ('.')
