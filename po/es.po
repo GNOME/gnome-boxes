@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-04-09 18:19+0000\n"
-"PO-Revision-Date: 2018-04-25 12:47+0200\n"
+"POT-Creation-Date: 2018-05-04 18:30+0000\n"
+"PO-Revision-Date: 2018-05-08 13:01+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -422,30 +422,43 @@ msgstr "Clave del producto"
 msgid "Unknown media"
 msgstr "Medio desconocido"
 
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "Mostrar más…"
+
+#: data/ui/wizard-downloads-page.ui:87
+#| msgid "No boxes found"
+msgid "No operating systems found"
+msgstr "No se han encontrado sistemas operativos"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "Pruebe a hacer una búsqueda diferente"
+
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Inserte el medio de instalación del sistema operativo o seleccione una "
 "fuente a continuación"
 
-#: data/ui/wizard-source.ui:83
+#: data/ui/wizard-source.ui:82
 msgid "Download an OS"
 msgstr "Descargar un SO"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
+#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:126
+#: data/ui/wizard-source.ui:125
 msgid "_Enter URL"
 msgstr "_Introducir URL"
 
-#: data/ui/wizard-source.ui:211
+#: data/ui/wizard-source.ui:210
 msgid "_Select a file"
 msgstr "_Seleccionar un archivo"
 
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:238
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -455,15 +468,15 @@ msgstr ""
 "identificación de productos de software que haya obtenido y pertenecen a sus "
 "respectivos propietarios."
 
-#: data/ui/wizard-source.ui:310
+#: data/ui/wizard-source.ui:309
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:321
+#: data/ui/wizard-source.ui:320
 msgid "Enter URL"
 msgstr "Introducir URL"
 
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:350
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -472,7 +485,7 @@ msgstr ""
 "ser imágenes de instalación, servidores SPICE y VNC, o «brokers» de oVirt o "
 "Libvirt."
 
-#: data/ui/wizard-source.ui:369
+#: data/ui/wizard-source.ui:368
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
@@ -882,8 +895,8 @@ msgstr "Instalando…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:792 src/wizard-source.vala:124
-#: src/wizard-source.vala:154
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "«Live»"
 
@@ -935,23 +948,23 @@ msgstr "No hay cajas que importar"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Falló al buscar un disco adecuado para importar para la caja «%s»"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "Conectada"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "Desconectada"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "En ejecución"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "Pausada"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "Apagada"
 
@@ -1277,7 +1290,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:607
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
@@ -1291,23 +1304,19 @@ msgstr "Se ha eliminado la caja «%s» automáticamente."
 msgid "Box import from file “%s” failed."
 msgstr "Falló al importar la caja del archivo «%s»."
 
-#: src/wizard-source.vala:158
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "sistema x86 de 32 bits"
 
-#: src/wizard-source.vala:159
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:164
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr " de %s"
-
-#: src/wizard-source.vala:402
-msgid "Available with a free Red Hat developer account"
-msgstr "Disponible con una cuenta de desarrollador de Red Hat"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1408,7 +1417,6 @@ msgid "Downloading media…"
 msgstr "Descargando medios…"
 
 #: src/wizard.vala:645
-#| msgid "Downloading media…"
 msgid "Downloading media"
 msgstr "Descargando medios"
 
@@ -1419,6 +1427,9 @@ msgstr "Falló la descarga."
 #: src/wizard.vala:771
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
+
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "Disponible con una cuenta de desarrollador de Red Hat"
 
 #~ msgid "Red Hat Enterprise Linux"
 #~ msgstr "Red Hat Enterprise Linux"
@@ -1568,9 +1579,6 @@ msgstr "_Personalizar…"
 
 #~ msgid "Enter password for %s"
 #~ msgstr "Introducir la contraseña para %s"
-
-#~ msgid "No boxes found"
-#~ msgstr "No se han encontrado cajas"
 
 #~ msgid "Fastest"
 #~ msgstr "Más rápido"
