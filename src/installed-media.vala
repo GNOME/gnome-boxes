@@ -166,11 +166,11 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
         var ova_file = File.new_for_path (device_file);
         var ovf_package = new Govf.Package ();
-        ovf_package.load_from_ova_file (device_file);
+        yield ovf_package.load_from_ova_file (device_file, null);
 
         var disks = ovf_package.get_disks ();
         var extracted_path = get_user_pkgcache (ova_file.get_basename () + ".vmkd");
-        ovf_package.extract_disk (disks [0], extracted_path);
+        yield ovf_package.extract_disk (disks [0], extracted_path, null);
 
         debug ("Extracted '%s' from '%s'.", extracted_path, device_file);
 
