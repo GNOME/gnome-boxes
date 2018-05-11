@@ -1,0 +1,255 @@
+{
+    "app-id" : "org.gnome.Boxes",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "master",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "gnome-boxes",
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--share=network",
+        "--talk-name=org.freedesktop.Tracker1",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--filesystem=home",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "build-options" : {
+        "cflags" : "-O2 -g",
+        "cxxflags" : "-O2 -g",
+        "env" : {
+        }
+    },
+    "modules" : [
+        {
+            "name" : "check",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/libcheck/check/releases/download/0.11.0/check-0.11.0.tar.gz",
+                    "sha256" : "24f7a48aae6b74755bcbe964ce8bc7240f6ced2141f8d9cf480bc3b3de0d5616"
+                }
+            ]
+        },
+        {
+            "name" : "gtk-vnc",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://git.gnome.org/browse/gtk-vnc"
+                }
+            ]
+        },
+        {
+            "name" : "libnl",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.infradead.org/~tgr/libnl/files/libnl-1.1.4.tar.gz",
+                    "sha256" : "4f80c21fe5bbcdde6e72b59b4f98306063a41421f909887c34e58d93e746d063"
+                }
+            ]
+        },
+        {
+            "name": "osinfo-db-tools",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.com/libosinfo/osinfo-db-tools"
+                }
+            ]
+        },
+        {
+            "name": "osinfo-db",
+            "buildsystem": "simple",
+            "build-commands": [
+                "sh ./prepare-release.sh",
+                "osinfo-db-import *.tar.xz"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://gitlab.com/libosinfo/osinfo-db"
+                }
+            ]
+        },
+        {
+            "name" : "libosinfo",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.com/libosinfo/libosinfo/"
+                },
+                {
+                    "type" : "file",
+                    "url" : "http://pciids.sourceforge.net/v2.2/pci.ids",
+                    "sha256" : "e8e353957a2fa028046e10d829519a75004aadc9bb74fc5d7ea75119e6728c32"
+                },
+                {
+                    "type" : "file",
+                    "url" : "http://www.linux-usb.org/usb.ids",
+                    "sha256" : "970b720d56beec35b7ef8bda02e8b85ab853b436f3cae4fed13b808e1a79fdd8"
+                }
+            ]
+        },
+        {
+            "name" : "libusb",
+            "config-opts" : [
+                "--disable-udev"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/libusb/libusb.git",
+                    "branch" : "v1.0.21"
+                }
+            ]
+        },
+        {
+            "name" : "libvirt",
+            "config-opts" : [
+                "--without-storage-mpath"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "git://libvirt.org/libvirt.git",
+                    "branch" : "v3.4.0"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "libvirt-bootstrap-gettext.patch"
+                }
+            ]
+        },
+        {
+            "name" : "libvirt-glib",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://libvirt.org/sources/glib/libvirt-glib-1.0.0.tar.gz",
+                    "sha256" : "ca9158d01cc4d9e0218f94f8c9ee04ae367d8c3b4396daaebca2c4b89a2e8a47"
+                }
+            ]
+        },
+        {
+            "name" : "spice-protocol",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "git://anongit.freedesktop.org/spice/spice-protocol",
+                    "branch" : "v0.12.13"
+                }
+            ]
+        },
+        {
+            "name" : "python-pyparsing",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "pip3 install --prefix=/app pyparsing-2.2.0-py2.py3-none-any.whl"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://pypi.python.org/packages/6a/8a/718fd7d3458f9fab8e67186b00abdd345b639976bc7fb3ae722e1b026a50/pyparsing-2.2.0-py2.py3-none-any.whl#md5=7247e7896688eff4bc8c7fc5d0cdd2b0",
+                    "sha256" : "fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010"
+                }
+            ]
+        },
+        {
+            "name" : "python-six",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "pip3 install --prefix=/app six-1.10.0-py2.py3-none-any.whl"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://pypi.python.org/packages/c8/0a/b6723e1bc4c516cb687841499455a8505b44607ab535be01091c0f24f079/six-1.10.0-py2.py3-none-any.whl#md5=3ab558cf5d4f7a72611d59a81a315dc8",
+                    "sha256" : "0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1"
+                }
+            ]
+        },
+        {
+            "name" : "spice-gtk",
+            "build-options" : {
+                "env" : {
+                    "PYTHONPATH" : "/app"
+                }
+            },
+            "config-opts" : [
+                "--disable-controller",
+                "--enable-vala",
+                "--disable-gtk-doc",
+                "--enable-python-checks"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "git://anongit.freedesktop.org/spice/spice-gtk"
+                }
+            ]
+        },
+        {
+            "name" : "tracker",
+            "cleanup" : [
+                "/bin",
+                "/etc",
+                "/libexec"
+            ],
+            "config-opts" : [
+                "--disable-miner-apps",
+                "--disable-static",
+                "--disable-tracker-extract",
+                "--disable-tracker-needle",
+                "--disable-tracker-preferences",
+                "--disable-artwork",
+                "--disable-tracker-writeback",
+                "--disable-miner-user-guides",
+                "--with-bash-completion-dir=no"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://git.gnome.org/browse/tracker"
+                }
+            ]
+        },
+        {
+            "name" : "qemu",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.qemu.org/qemu-2.12.0.tar.xz",
+                    "sha256" : "e69301f361ff65bf5dabd8a19196aeaa5613c1b5ae1678f0823bdf50e7d5c6fc"
+                }
+            ]
+        },
+        {
+            "name": "libsecret",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://git.gnome.org/browse/libsecret"
+                }
+            ]
+        },
+        {
+            "name" : "gnome-boxes",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/gnome/gnome-boxes",
+                    "branch": "wip/feborges/flatpak"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "gnome-boxes-disable-spice-usb.patch"
+                }
+            ]
+        }
+    ]
+}
