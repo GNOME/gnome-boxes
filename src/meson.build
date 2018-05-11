@@ -9,6 +9,7 @@ vala_args = [
   '--enable-experimental',
   '--vapidir', vapi_dir,
   '--vapidir', join_paths (vapi_dir, 'upstream'),
+  '--target-glib=2.38',
 ]
 
 common_dependencies = [
@@ -122,7 +123,7 @@ dependencies = [
   dependency ('gobject-2.0', version: '>= 2.44'),
   dependency ('gtk+-3.0', version: '>= 3.22.20'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
-  dependency ('gudev-1.0', version: '>= 165'),
+  #dependency ('gudev-1.0', version: '>= 165'),
   dependency ('libosinfo-1.0', version: '>= 1.1.0'),
   dependency ('libsecret-1'),
   dependency ('libsoup-2.4', version: '>= 2.38'),
@@ -130,7 +131,7 @@ dependencies = [
   dependency ('libvirt-gconfig-1.0', version: '>= 0.2.0'),
   dependency ('libvirt-gobject-1.0', version: '>= 0.2.0'),
   dependency ('libxml-2.0', version: '>= 2.7.8'),
-  dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
+  dependency ('spice-client-gtk-3.0'),
   dependency ('tracker-sparql-2.0'),
   dependency ('webkit2gtk-4.0'),
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),

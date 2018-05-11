@@ -91,7 +91,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (webdav_channel);
 
         add_usb_support (domain);
-        add_smartcard_support (domain);
+        //add_smartcard_support (domain);
 
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
@@ -353,7 +353,7 @@ private class Boxes.VMConfigurator {
 
     private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
-        video.set_model (DomainVideoModel.QXL);
+        video.set_model (DomainVideoModel.VIRTIO);
 
         domain.add_device (video);
     }
