@@ -64,15 +64,10 @@ private class Boxes.InstallerMedia : GLib.Object {
                                           MediaManager media_manager,
                                           Cancellable? cancellable) throws GLib.Error {
         yield get_device_from_path (path, cancellable);
-
-        //if (device != null)
-        yield get_media_info_from_device (media_manager.os_db);
-        //else {
-            from_image = true;
-            os_media = yield media_manager.os_db.guess_os_from_install_media_path (device_file, cancellable);
-            if (os_media != null)
-                os = os_media.os;
-        //}
+        from_image = true;
+        os_media = yield media_manager.os_db.guess_os_from_install_media_path (device_file, cancellable);
+        if (os_media != null)
+            os = os_media.os;
 
         label_setup ();
 
