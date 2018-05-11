@@ -1,7 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 using Osinfo;
-using GUdev;
 using GVirConfig;
 
 private class Boxes.InstallerMedia : GLib.Object {
@@ -64,16 +63,16 @@ private class Boxes.InstallerMedia : GLib.Object {
     public async InstallerMedia.for_path (string       path,
                                           MediaManager media_manager,
                                           Cancellable? cancellable) throws GLib.Error {
-        var device = yield get_device_from_path (path, media_manager.client, cancellable);
+        yield get_device_from_path (path, cancellable);
 
-        if (device != null)
-            yield get_media_info_from_device (device, media_manager.os_db);
-        else {
+        //if (device != null)
+        yield get_media_info_from_device (media_manager.os_db);
+        //else {
             from_image = true;
             os_media = yield media_manager.os_db.guess_os_from_install_media_path (device_file, cancellable);
             if (os_media != null)
                 os = os_media.os;
-        }
+        //}
 
         label_setup ();
 
@@ -172,7 +171,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
-    private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
+    private async void get_device_from_path (string path, Cancellable? cancellable) {
         try {
             var mount_dir = File.new_for_path (path);
             var mount = yield mount_dir.find_enclosing_mount_async (Priority.DEFAULT, cancellable);
@@ -188,11 +187,10 @@ private class Boxes.InstallerMedia : GLib.Object {
             // Assume direct path to device node/image
             device_file = path;
         }
-
-        return client.query_by_device_file (device_file);
     }
 
-    private async void get_media_info_from_device (GUdev.Device device, OSDatabase os_db) throws GLib.Error {
+    private async void get_media_info_from_device (OSDatabase os_db) throws GLib.Error {
+#if 0
         if (device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
             !device.get_property_as_boolean ("OSINFO_BOOTABLE"))
             throw new OSDatabaseError.NON_BOOTABLE ("Media %s is not bootable.", device_file);
@@ -209,20 +207,23 @@ private class Boxes.InstallerMedia : GLib.Object {
             if (media_id != null)
                 os_media = os_db.get_media_by_id (os, media_id);
         } else {
+#endif
             var media = new Osinfo.Media (device_file, ARCHITECTURE_ALL);
             media.volume_id = label;
+#if 0
             get_decoded_udev_properties_for_media
                                 (device,
                                  { "ID_FS_SYSTEM_ID", "ID_FS_PUBLISHER_ID", "ID_FS_APPLICATION_ID", },
                                  { MEDIA_PROP_SYSTEM_ID, MEDIA_PROP_PUBLISHER_ID, MEDIA_PROP_APPLICATION_ID },
                                  media);
-
+#endif
             os_media = yield os_db.guess_os_from_install_media (media);
             if (os_media != null)
                 os = os_media.os;
-        }
+        //}
     }
 
+#if 0
     private void get_decoded_udev_properties_for_media (GUdev.Device device,
                                                         string[]     udev_props,
                                                         string[]     media_props,
@@ -254,6 +255,7 @@ private class Boxes.InstallerMedia : GLib.Object {
 
         return decoded;
     }
+#endif
 
     private void eject_cdrom_media (Domain domain) {
         var devices = domain.get_devices ();

@@ -1,14 +1,14 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 using Osinfo;
-using GUdev;
+//using GUdev;
 using Tracker;
 
 private class Boxes.MediaManager : Object {
     private static MediaManager media_manager;
 
     public OSDatabase os_db { get; private set; }
-    public Client client { get; private set; }
+    //public Client client { get; private set; }
 
     public delegate void InstallerRecognized (Osinfo.Media os_media, Osinfo.Os os);
 
@@ -89,7 +89,7 @@ private class Boxes.MediaManager : Object {
         var list = new GLib.List<InstallerMedia> ();
 
         // First HW media
-        var enumerator = new GUdev.Enumerator (client);
+        /*var enumerator = new GUdev.Enumerator (client);
         // We don't want to deal with partitions to avoid duplicate medias
         enumerator.add_match_property ("DEVTYPE", "disk");
 
@@ -116,7 +116,7 @@ private class Boxes.MediaManager : Object {
             } catch (GLib.Error error) {
                 warning ("Failed to get information on device '%s': %s. Ignoring..", path, error.message);
             }
-        }
+        }*/
 
         if (connection == null)
             return list;
@@ -181,7 +181,7 @@ private class Boxes.MediaManager : Object {
     }
 
     private MediaManager () {
-        client = new GUdev.Client ({"block"});
+        //client = new GUdev.Client ({"block"});
         os_db = new OSDatabase ();
         os_db.load.begin ();
         try {
