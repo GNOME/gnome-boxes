@@ -128,14 +128,13 @@ private class Boxes.CollectionFilter: GLib.Object {
         }
     }
 
-    private unowned Boxes.CollectionFilterFunc _filter_func;
+    private unowned Boxes.CollectionFilterFunc _filter_func = null;
     public unowned Boxes.CollectionFilterFunc filter_func {
         get { return _filter_func; }
         set {
             _filter_func = value;
             filter_func_changed ();
         }
-        default = null;
     }
 
     public bool filter (CollectionItem item) {

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-04-09 18:19+0000\n"
-"PO-Revision-Date: 2018-04-17 20:13+0200\n"
+"POT-Creation-Date: 2018-05-04 18:30+0000\n"
+"PO-Revision-Date: 2018-05-06 16:43+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -420,30 +420,42 @@ msgstr "Clâf dal prodot"
 msgid "Unknown media"
 msgstr "Supuart no cognossût"
 
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "Mostre di plui…"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "Nissun sisteme operatîf cjatât"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "Prove une ricercje diferente"
+
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Inserî il supuart di instalazion dal sisteme operatîf o selezionâ une "
 "sorzint chi sot"
 
-#: data/ui/wizard-source.ui:83
+#: data/ui/wizard-source.ui:82
 msgid "Download an OS"
 msgstr "Discjarie un SO"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
+#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:126
+#: data/ui/wizard-source.ui:125
 msgid "_Enter URL"
 msgstr "Ins_erî URL"
 
-#: data/ui/wizard-source.ui:211
+#: data/ui/wizard-source.ui:210
 msgid "_Select a file"
 msgstr "_Selezionâ un file"
 
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:238
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -452,15 +464,15 @@ msgstr ""
 "Cualsisei marcje mostrade parsore e je doprade nome par identificâ un prodot "
 "software che tu âs za otignût e la proprietât e je dai relatîfs proprietaris."
 
-#: data/ui/wizard-source.ui:310
+#: data/ui/wizard-source.ui:309
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:321
+#: data/ui/wizard-source.ui:320
 msgid "Enter URL"
 msgstr "Inserî URL"
 
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:350
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -469,7 +481,7 @@ msgstr ""
 "puedin jessi di imagjinis di instalazion, SPICE e servidôrs VNC, o broker "
 "oVirt o Libvirt."
 
-#: data/ui/wizard-source.ui:369
+#: data/ui/wizard-source.ui:368
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
@@ -879,8 +891,8 @@ msgstr "Instalazion..."
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:792 src/wizard-source.vala:124
-#: src/wizard-source.vala:154
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "Live"
 
@@ -932,23 +944,23 @@ msgstr "Nissune scjatule di impuartâ"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "No si è rivâts a cjatâ un disc adat di impuartâ pe scjatule “%s”"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "Conetude"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "Disconetude"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "In esecuzion"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "In pause"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "Distudade"
 
@@ -1274,7 +1286,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:607
 msgid "Incapable host system"
 msgstr "Sisteme host incapaç"
 
@@ -1288,24 +1300,19 @@ msgstr "La scjatule Live “%s” e je stade eliminade in automatic."
 msgid "Box import from file “%s” failed."
 msgstr "Importazion scjatule dal file “%s” falide."
 
-#: src/wizard-source.vala:158
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "Sisteme x86 di 32-bit"
 
-#: src/wizard-source.vala:159
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "Sisteme x86 di 64-bit"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:164
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr "di %s"
-
-# Maschîl o feminin
-#: src/wizard-source.vala:402
-msgid "Available with a free Red Hat developer account"
-msgstr "Disponibil cuntun accout gratuit di svilup di Red Hat"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1416,6 +1423,10 @@ msgstr "Scjariament falît."
 #: src/wizard.vala:771
 msgid "C_ustomize…"
 msgstr "P_ersonalize..."
+
+# Maschîl o feminin
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "Disponibil cuntun accout gratuit di svilup di Red Hat"
 
 #~ msgid "Red Hat Enterprise Linux"
 #~ msgstr "Red Hat Enterprise Linux"

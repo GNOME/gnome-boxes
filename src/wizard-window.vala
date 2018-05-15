@@ -45,6 +45,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     [GtkChild]
     public Wizard wizard;
     [GtkChild]
+    public WizardDownloadsPage downloads_page;
+    [GtkChild]
     public Gtk.Grid customization_grid;
     [GtkChild]
     public Gtk.FileChooserWidget file_chooser;
@@ -52,8 +54,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public WizardToolbar topbar;
     [GtkChild]
     public Notificationbar notificationbar;
-    [GtkChild]
-    public Gtk.ListBox downloads_list;
 
     private GLib.List<Boxes.Property> resource_properties;
 
@@ -68,9 +68,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
         notify["ui-state"].connect (ui_state_changed);
 
-        downloads_list.set_filter_func (downloads_filter_func);
         topbar.downloads_search.search_changed.connect (() => {
-            downloads_list.invalidate_filter ();
+            downloads_page.search.text = topbar.downloads_search.get_text ();
         });
 
         logos_table = new HashTable<string, Osinfo.Os> (str_hash, str_equal);
@@ -120,27 +119,16 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
     public void show_downloads_page (OSDatabase os_db, owned DownloadChosenFunc download_chosen_func) {
         page = WizardWindowPage.DOWNLOADS;
-
-        ulong activated_id = 0;
-        activated_id = downloads_list.row_activated.connect ((row) => {
-            var entry = row as WizardDownloadableEntry;
-
-            download_chosen_func (entry);
-            downloads_list.disconnect (activated_id);
-
-            page = WizardWindowPage.MAIN;
-        });
-        page = WizardWindowPage.DOWNLOADS;
         topbar.downloads_search.grab_focus ();
+
+        downloads_page.download_chosen_func = download_chosen_func;
+        downloads_page.page = WizardDownloadsPageView.RECOMMENDED;
 
         os_db.list_downloadable_oses.begin ((db, result) => {
             try {
                 var media_list = os_db.list_downloadable_oses.end (result);
 
                 foreach (var media in media_list) {
-                    var entry = new WizardDownloadableEntry (media);
-
-                    downloads_list.insert (entry, -1);
                     logos_table.insert (media.url, media.os);
                 }
             } catch (OSDatabaseError error) {
@@ -151,20 +139,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
     public Osinfo.Os? get_os_from_uri (string uri) {
        return logos_table.lookup (uri);
-    }
-
-    private bool downloads_filter_func (Gtk.ListBoxRow row) {
-        if (topbar.downloads_search.get_text_length () == 0)
-            return true;
-
-        // FIXME: custom items should also be searchable.
-        if (!(row is WizardDownloadableEntry))
-            return false;
-
-        var entry = row as WizardDownloadableEntry;
-        var text = canonicalize_for_search (topbar.downloads_search.get_text ());
-
-        return text in canonicalize_for_search (entry.title);
     }
 
     private void ui_state_changed () {

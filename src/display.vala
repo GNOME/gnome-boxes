@@ -20,6 +20,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public signal void hide (int display_id);
     public signal void disconnected (bool connection_failed);
     public signal void got_error (string message);
+    public signal void auth_failed ();
 
     public delegate int OpenFDFunc ();
 

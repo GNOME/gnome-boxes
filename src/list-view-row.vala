@@ -10,7 +10,7 @@ private class Boxes.ListViewRow: Gtk.Box {
     public const Gdk.RGBA FRAME_BORDER_COLOR = { 0x81 / 255.0, 0x85 / 255.0, 0x84 / 255.0, 1.0 };
     public const Gdk.RGBA FRAME_BACKGROUND_COLOR = { 0x4b / 255.0, 0x50 / 255.0, 0x50 / 255.0, 1.0 };
 
-    public bool _selection_mode;
+    public bool _selection_mode = false;
     public bool selection_mode {
         get { return _selection_mode; }
         set {
@@ -21,14 +21,12 @@ private class Boxes.ListViewRow: Gtk.Box {
             if (!_selection_mode)
                 selected = false;
         }
-        default = false ;
     }
 
-    public bool _selected;
+    public bool _selected = false;
     public bool selected {
         get { return _selected; }
         set { _selected = selection_mode && value; }
-        default = false;
     }
 
     public CollectionItem item { get; private set; }

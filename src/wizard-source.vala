@@ -59,7 +59,7 @@ private class Boxes.WizardScrolled : Gtk.ScrolledWindow {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
-private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
+public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
     public Osinfo.Os? os;
 
     [GtkChild]
@@ -105,7 +105,7 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
             variant = (variants.get_nth (0) as Osinfo.OsVariant).get_name ();
         else if ((media.os as Osinfo.Product).name != null) {
             variant = (media.os as Osinfo.Product).name;
-            if (media.url.contains ("server"))
+            if (url != null && media.url.contains ("server"))
                 variant += " Server";
         } else {
             var file = File.new_for_uri (media.url);
@@ -114,12 +114,15 @@ private class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
         }
 
         var subvariant = "";
-        if (media.url.contains ("netinst"))
-            subvariant = "(netinst)";
-        else if (media.url.contains ("minimal"))
-            subvariant = "(minimal)";
-        else if (media.url.contains ("dvd"))
-            subvariant = "(DVD)";
+
+        if (media.url != null) {
+            if (media.url.contains ("netinst"))
+                subvariant = "(netinst)";
+            else if (media.url.contains ("minimal"))
+                subvariant = "(minimal)";
+            else if (media.url.contains ("dvd"))
+                subvariant = "(DVD)";
+        }
 
         var is_live = media.live ? " (" + _("Live") + ")" : "";
 
@@ -311,6 +314,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.ListBox media_vbox;
     private Gtk.ListBox downloads_vbox;
     private Osinfo.Os rhel_os;
+    private GLib.ListStore downloads_model;
 
     private Cancellable? rhel_cancellable;
 
@@ -396,18 +400,13 @@ private class Boxes.WizardSource: Gtk.Stack {
         os_db.get_os_by_id.begin (rhel_id, (obj, res) => {
             try {
                 rhel_os = os_db.get_os_by_id.end (res);
-
-                var rhel_row = new WizardDownloadableEntry.from_os (rhel_os);
-                rhel_row.title = "Red Hat Enterprise Linux";
-                rhel_row.details = _("Available with a free Red Hat developer account");
-
-                // TODO: Sort by release date
-                window.wizard_window.downloads_list.insert (rhel_row, 0);
             } catch (OSDatabaseError error) {
                 warning ("Failed to find OS with ID '%s': %s", rhel_id, error.message);
                 return;
             }
         });
+
+        downloads_model = new GLib.ListStore (typeof (Osinfo.Media));
 
         rhel_web_view.view.decide_policy.connect (on_rhel_web_view_decide_policy);
     }
@@ -425,10 +424,13 @@ private class Boxes.WizardSource: Gtk.Stack {
         assert (window != null);
 
         this.window = window;
+
+        downloads_vbox.bind_model (downloads_model, create_downloadable_entry);
+
+        populate_recommended_downloads ();
     }
 
-    [GtkCallback]
-    private void on_downloads_scrolled_shown () {
+    private void populate_recommended_downloads () {
         var os_db = media_manager.os_db;
         foreach (var os_id in recommended_downloads) {
             os_db.get_os_by_id.begin (os_id, (obj, res) => {
@@ -437,9 +439,8 @@ private class Boxes.WizardSource: Gtk.Stack {
 
                     // TODO: Select the desktop/workstation variant.
                     var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
-                    var entry = create_downloadable_entry (media);
 
-                    downloads_vbox.insert (entry, -1);
+                    downloads_model.append (media);
                 } catch (OSDatabaseError error) {
                     warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
                     return;
@@ -596,10 +597,13 @@ private class Boxes.WizardSource: Gtk.Stack {
             this.uri = entry.url;
 
             activated ();
+
+            window.wizard_window.page = WizardWindowPage.MAIN;
         });
     }
 
     private void on_install_rhel_button_clicked () {
+        window.wizard_window.page = WizardWindowPage.MAIN;
         page = SourcePage.RHEL_WEB_VIEW;
 
         rhel_cancellable = new GLib.Cancellable ();
