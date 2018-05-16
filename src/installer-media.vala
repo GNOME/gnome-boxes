@@ -1,7 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 using Osinfo;
-using GUdev;
 using GVirConfig;
 
 private class Boxes.InstallerMedia : GLib.Object {
@@ -64,16 +63,21 @@ private class Boxes.InstallerMedia : GLib.Object {
     public async InstallerMedia.for_path (string       path,
                                           MediaManager media_manager,
                                           Cancellable? cancellable) throws GLib.Error {
-        var device = yield get_device_from_path (path, media_manager.client, cancellable);
+        var device_file = yield get_device_file_from_path (path, cancellable);
+#if !FLATPAK
+        var device = yield get_device_from_device_file (device_file, media_manager.client);
 
         if (device != null)
             yield get_media_info_from_device (device, media_manager.os_db);
         else {
+#endif
             from_image = true;
             os_media = yield media_manager.os_db.guess_os_from_install_media_path (device_file, cancellable);
             if (os_media != null)
                 os = os_media.os;
+#if !FLATPAK
         }
+#endif
 
         label_setup ();
 
@@ -172,7 +176,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
-    private async GUdev.Device? get_device_from_path (string path, Client client, Cancellable? cancellable) {
+    private async string get_device_file_from_path (string path, Cancellable? cancellable) {
         try {
             var mount_dir = File.new_for_path (path);
             var mount = yield mount_dir.find_enclosing_mount_async (Priority.DEFAULT, cancellable);
@@ -189,6 +193,11 @@ private class Boxes.InstallerMedia : GLib.Object {
             device_file = path;
         }
 
+        return device_file;
+    }
+
+#if !FLATPAK
+    private async GUdev.Device? get_device_from_device_file (string device_file, GUdev.Client client) {
         return client.query_by_device_file (device_file);
     }
 
@@ -211,6 +220,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         } else {
             var media = new Osinfo.Media (device_file, ARCHITECTURE_ALL);
             media.volume_id = label;
+
             get_decoded_udev_properties_for_media
                                 (device,
                                  { "ID_FS_SYSTEM_ID", "ID_FS_PUBLISHER_ID", "ID_FS_APPLICATION_ID", },
@@ -254,6 +264,7 @@ private class Boxes.InstallerMedia : GLib.Object {
 
         return decoded;
     }
+#endif
 
     private void eject_cdrom_media (Domain domain) {
         var devices = domain.get_devices ();
