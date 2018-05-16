@@ -121,7 +121,9 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         page = WizardWindowPage.DOWNLOADS;
         topbar.downloads_search.grab_focus ();
 
-        downloads_page.download_chosen_func = download_chosen_func;
+        downloads_page.download_chosen_func = (entry) => {
+            download_chosen_func (entry);
+        };
         downloads_page.page = WizardDownloadsPageView.RECOMMENDED;
 
         os_db.list_downloadable_oses.begin ((db, result) => {
