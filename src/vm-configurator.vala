@@ -350,7 +350,7 @@ private class Boxes.VMConfigurator {
 
     private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
-        video.set_model (DomainVideoModel.QXL);
+        video.set_model (DomainVideoModel.VIRTIO);
 
         domain.add_device (video);
     }
