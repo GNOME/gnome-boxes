@@ -121,7 +121,6 @@ dependencies = [
   dependency ('gobject-2.0', version: '>= 2.44'),
   dependency ('gtk+-3.0', version: '>= 3.22.20'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
-  dependency ('gudev-1.0', version: '>= 165'),
   dependency ('libosinfo-1.0', version: '>= 1.1.0'),
   dependency ('libsecret-1'),
   dependency ('libsoup-2.4', version: '>= 2.38'),
@@ -138,18 +137,26 @@ dependencies = [
   valac.find_library ('spice-client-gtk-3.0'),
 ]
 
-if get_option('ovirt')
-  vala_sources += [
-    'ovirt-broker.vala',
-    'ovirt-machine.vala'
-  ]
-
-  vala_args += '--define=HAVE_OVIRT'
-
+if get_option('flatpak')
+  vala_args += '--define=FLATPAK'
+else
   dependencies += [
-    dependency ('govirt-1.0', version: '>= 0.3.4'),
-    valac.find_library ('rest-0.7')
+    dependency ('gudev-1.0', version: '>= 165'),
   ]
+
+  if get_option('ovirt')
+    vala_sources += [
+      'ovirt-broker.vala',
+      'ovirt-machine.vala'
+    ]
+
+    vala_args += '--define=HAVE_OVIRT'
+
+    dependencies += [
+      dependency ('govirt-1.0', version: '>= 0.3.4'),
+      valac.find_library ('rest-0.7')
+    ]
+  endif
 endif
 
 executable ('gnome-boxes', vala_sources + resources,

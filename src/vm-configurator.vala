@@ -91,7 +91,9 @@ private class Boxes.VMConfigurator {
         domain.add_device (webdav_channel);
 
         add_usb_support (domain);
+#if !FLATPAK
         add_smartcard_support (domain);
+#endif
 
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
