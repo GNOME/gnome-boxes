@@ -9,6 +9,7 @@ vala_args = [
   '--enable-experimental',
   '--vapidir', vapi_dir,
   '--vapidir', join_paths (vapi_dir, 'upstream'),
+  '--target-glib=2.38',
 ]
 
 common_dependencies = [
