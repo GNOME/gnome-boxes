@@ -1,8 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-#if HAVE_RDP
-
 private class Boxes.FrdpDisplay: Frdp.Display {
     public override bool authenticate (out string username, out string password, out string domain) {
         username = this.username;
@@ -107,5 +105,3 @@ private class Boxes.RdpDisplay: Boxes.Display {
     public override void send_keys (uint[] keyvals) {
     }
 }
-
-#endif

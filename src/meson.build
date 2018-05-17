@@ -103,7 +103,6 @@ vala_sources = [
   'libvirt-vm-cloner.vala',
   'libvirt-vm-importer.vala',
   'vnc-display.vala',
-  'rdp-display.vala',
   'wizard-downloads-page.vala',
   'wizard-window.vala',
   'wizard-source.vala',
@@ -155,7 +154,7 @@ if get_option('ovirt')
 endif
 
 if get_option('rdp')
-  vala_sources += 'rdp-display.vala'
+  vala_sources += ['rdp-display.vala']
 
   pkgdatadir = join_paths (data_dir, meson.project_name ())
   gtk_frdp = subproject(
