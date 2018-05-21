@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-03-18 14:59+0000\n"
-"PO-Revision-Date: 2018-03-25 01:34+0800\n"
-"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
+"POT-Creation-Date: 2018-05-04 18:30+0000\n"
+"PO-Revision-Date: 2018-05-10 12:23-0500\n"
+"Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -295,7 +295,7 @@ msgstr "关于"
 msgid "Quit"
 msgstr "退出"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
 msgid "Troubleshooting Log"
 msgstr "故障诊断日志"
 
@@ -418,43 +418,55 @@ msgstr "序列号"
 msgid "Unknown media"
 msgstr "未知介质"
 
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "显示更多…"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "未找到操作系统"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "请尝试搜索其他关键字"
+
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr "请插入操作系统安装介质或从下面选择一个源文件"
 
-#: data/ui/wizard-source.ui:83
+#: data/ui/wizard-source.ui:82
 msgid "Download an OS"
 msgstr "下载操作系统"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
+#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:126
+#: data/ui/wizard-source.ui:125
 msgid "_Enter URL"
 msgstr "输入 URL (_E)"
 
-#: data/ui/wizard-source.ui:211
+#: data/ui/wizard-source.ui:210
 msgid "_Select a file"
 msgstr "选择文件(_S)"
 
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:238
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr "任何上面显示的商标仅用作您已拥有的软件产品标识，版权归原所有者。"
 
-#: data/ui/wizard-source.ui:310
+#: data/ui/wizard-source.ui:309
 msgid "◀"
 msgstr "◀"
 
-#: data/ui/wizard-source.ui:321
+#: data/ui/wizard-source.ui:320
 msgid "Enter URL"
 msgstr "输入 URL"
 
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:350
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
@@ -462,7 +474,7 @@ msgstr ""
 "输入您想添加的 box 地址。地址可以为要安装的镜像，SPICE 和 VNC 服务器，或者 "
 "oVirt 亦或是 Libvirt 代理。"
 
-#: data/ui/wizard-source.ui:369
+#: data/ui/wizard-source.ui:368
 msgid ""
 "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
 "path"
@@ -539,7 +551,7 @@ msgstr "强制关机"
 msgid "Clone"
 msgstr "克隆"
 
-#: src/actions-popover.vala:84 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:622
 msgid "Restart"
 msgstr "重启"
 
@@ -554,7 +566,7 @@ msgstr "属性"
 msgid "Screenshot from %s"
 msgstr "来自 %s 的截图"
 
-#: src/app.vala:108
+#: src/app.vala:110
 msgid "translator-credits"
 msgstr ""
 "tuhaihe <wangdianjin@linuxdeepin.com>, 2012.\n"
@@ -565,63 +577,67 @@ msgstr ""
 "lumingzh <lumingzh@qq.com>, 2016.\n"
 "Dingzhong Chen <wsxy162@gmail.com>, 2016."
 
-#: src/app.vala:109
+#: src/app.vala:111
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "一个简单的可访问远程或虚拟系统的 GNOME 3 应用程序"
 
-#: src/app.vala:169 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "显示版本号"
 
-#: src/app.vala:171
+#: src/app.vala:173
 msgid "Open in full screen"
 msgstr "以全屏模式打开"
 
-#: src/app.vala:172 src/main.vala:10
+#: src/app.vala:174 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "检查虚拟化功能"
 
-#: src/app.vala:173
+#: src/app.vala:175
 msgid "Open box with UUID"
 msgstr "根据 UUID 打开 Box"
 
-#: src/app.vala:174
+#: src/app.vala:176
 msgid "Search term"
 msgstr "搜索条目"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:176
+#: src/app.vala:178
 msgid "URL to display, broker or installer media"
 msgstr "显示，虚拟机管理器或安装介质的 URL"
 
-#: src/app.vala:187
+#: src/app.vala:189
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— 一个简明的，用于访问远程系统或虚拟机的应用程序"
 
-#: src/app.vala:212
+#: src/app.vala:214
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了过多的命令行参数。\n"
 
-#: src/app.vala:463
+#: src/app.vala:465
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "虚拟机“%s”已安装并准备就绪"
 
-#: src/app.vala:551
+#: src/app.vala:553
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "虚拟机“%s”已被删除"
 
-#: src/app.vala:552
+#: src/app.vala:554
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "已删除 %u 个虚拟机"
 
-#: src/app.vala:579 src/libvirt-machine-properties.vala:551
+#: src/app.vala:581 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "撤消(_U)"
+
+#: src/app.vala:625
+msgid "Boxes is doing something"
+msgstr "Boxes 正在进行一些操作"
 
 #: src/app-window.vala:317
 msgid "Select files to transfer"
@@ -649,11 +665,11 @@ msgstr "退出全屏"
 msgid "New and Recent"
 msgstr "新建和最近的"
 
-#: src/installed-media.vala:51
+#: src/installed-media.vala:53
 msgid "Unsupported disk image format."
 msgstr "不支持的磁盘映像格式。"
 
-#: src/installed-media.vala:108 src/installer-media.vala:113
+#: src/installed-media.vala:110 src/installer-media.vala:113
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "系统"
@@ -855,26 +871,31 @@ msgstr "“%s”重启耗时过长。要强制关机吗？"
 msgid "_Shutdown"
 msgstr "关机(_S)"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "正在克隆“%s”…"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "正在安装…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
-#: src/wizard-source.vala:154
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "体验"
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "正在设置克隆…"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "正在导入…"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "主机：%s"
@@ -912,23 +933,23 @@ msgstr "没有要导入的机器"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "找不到合适的磁盘来导入机器“%s”"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "已连接"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "已断开"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "运行中"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "已暂停"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "已关闭"
 
@@ -938,16 +959,20 @@ msgstr "已关闭"
 msgid "Connecting to %s"
 msgstr "正在连接到 %s"
 
-#: src/machine.vala:224 src/machine.vala:640
+#: src/machine.vala:224 src/machine.vala:649
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "无法连接到“%s”"
 
-#: src/machine.vala:422
+#: src/machine.vala:277
+msgid "Machine is under construction"
+msgstr "正在准备虚拟机"
+
+#: src/machine.vala:431
 msgid "Saving…"
 msgstr "正在保存…"
 
-#: src/machine.vala:612
+#: src/machine.vala:621
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -956,13 +981,13 @@ msgstr ""
 "无法从磁盘恢复“%s”\n"
 "要忽略保存的状态并重试吗？"
 
-#: src/machine.vala:623
+#: src/machine.vala:632
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "无法启动“%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:727
+#: src/machine.vala:736
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s”需要认证"
@@ -1237,7 +1262,7 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:607
 msgid "Incapable host system"
 msgstr "主机系统性能不足"
 
@@ -1251,23 +1276,19 @@ msgstr "已自动删除体验机“%s”。"
 msgid "Box import from file “%s” failed."
 msgstr "无法从文件“%s”导入虚拟机。"
 
-#: src/wizard-source.vala:158
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "32位 x86 系统"
 
-#: src/wizard-source.vala:159
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "64位 x86 系统"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:164
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr "，来自 %s"
-
-#: src/wizard-source.vala:402
-msgid "Available with a free Red Hat developer account"
-msgstr "包含免费的红帽开发者帐号"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1364,15 +1385,22 @@ msgstr "%s 最大值"
 
 #: src/wizard.vala:642
 msgid "Downloading media…"
-msgstr "正在下载媒体…"
+msgstr "正在下载介质…"
 
-#: src/wizard.vala:652
+#: src/wizard.vala:645
+msgid "Downloading media"
+msgstr "正在下载介质"
+
+#: src/wizard.vala:655
 msgid "Download failed."
 msgstr "下载失败。"
 
-#: src/wizard.vala:766
+#: src/wizard.vala:771
 msgid "C_ustomize…"
 msgstr "自定义(_U)…"
+
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "包含免费的红帽开发者帐号"
 
 #~ msgid "Pause"
 #~ msgstr "暂停"
@@ -1483,9 +1511,6 @@ msgstr "自定义(_U)…"
 
 #~ msgid "The time it takes for transitions and animation, in ms."
 #~ msgstr "转换和动画的时长(毫秒)。"
-
-#~ msgid "No boxes found"
-#~ msgstr "未找到 Box"
 
 #~ msgid "_Yes"
 #~ msgstr "是(_Y)"
