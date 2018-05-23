@@ -111,7 +111,7 @@ private class Boxes.App: Gtk.Application {
                                    "comments", _("A simple GNOME 3 application to access remote or virtual systems"),
                                    "copyright", "Copyright 2011 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
-                                   "logo-icon-name", "gnome-boxes",
+                                   "logo-icon-name", "org.gnome.Boxes",
                                    "version", Config.PACKAGE_VERSION,
                                    "website", Config.PACKAGE_URL,
                                    "wrap-license", true);
