@@ -214,7 +214,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     got_error (message);
             });
 
-            auth_failed_id = _display.auth_failed.connect (() => { delete_auth_credentials (); });
+            auth_failed_id = _display.auth_failed.connect (() => { delete_auth_credentials.begin (); });
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
@@ -575,7 +575,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             ui_state_id = 0;
         }
 
-        delete_auth_credentials ();
+        delete_auth_credentials.begin ();
 
         config.delete ();
         try {

@@ -56,7 +56,7 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
 
         recommended_model = new GLib.ListStore (typeof (Osinfo.Media));
         recommended_listbox.bind_model (recommended_model, create_downloads_entry);
-        populate_recommended_list ();
+        populate_recommended_list.begin ();
 
         listbox.bind_model (search.model, create_downloads_entry);
 
