@@ -777,7 +777,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 private class Boxes.SpiceChannelHandler : GLib.Object {
     private unowned SpiceDisplay display;
     private Spice.Channel channel;
-    private Display.OpenFDFunc? open_fd;
+    private unowned Display.OpenFDFunc? open_fd;
 
     public SpiceChannelHandler (SpiceDisplay display, Spice.Channel channel, Display.OpenFDFunc? open_fd = null) {
         this.display = display;
