@@ -12,9 +12,6 @@ private enum Boxes.WizardWindowPage {
 private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public const string[] page_names = { "main", "customization", "file_chooser", "downloads" };
 
-    public delegate void FileChosenFunc (string uri);
-    public delegate void DownloadChosenFunc (WizardDownloadableEntry entry);
-
     public HashTable<string,Osinfo.Os> logos_table;
 
     public UIState previous_ui_state { get; protected set; }
