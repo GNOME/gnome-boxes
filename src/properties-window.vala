@@ -7,11 +7,11 @@ private enum Boxes.PropsWindowPage {
     FILE_CHOOSER,
 }
 
+public delegate void Boxes.FileChosenFunc (string path);
+
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-window.ui")]
 private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     public const string[] page_names = { "main", "troubleshoot_log", "file_chooser" };
-
-    public delegate void FileChosenFunc (string path);
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }

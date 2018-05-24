@@ -6,12 +6,13 @@ public enum WizardDownloadsPageView {
     NO_RESULTS,
 }
 
+public delegate void Boxes.DownloadChosenFunc (Boxes.WizardDownloadableEntry entry);
+
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloads-page.ui")]
 public class Boxes.WizardDownloadsPage : Gtk.Stack {
     private OSDatabase os_db = new OSDatabase ();
     public DownloadsSearch search { private set; get; }
 
-    public delegate void DownloadChosenFunc (WizardDownloadableEntry entry);
     public DownloadChosenFunc download_chosen_func;
 
     [GtkChild]
