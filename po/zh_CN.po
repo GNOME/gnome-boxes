@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-04 18:30+0000\n"
-"PO-Revision-Date: 2018-05-10 12:23-0500\n"
+"POT-Creation-Date: 2018-05-23 14:01+0000\n"
+"PO-Revision-Date: 2018-05-24 15:07+0800\n"
 "Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -295,7 +295,7 @@ msgstr "关于"
 msgid "Quit"
 msgstr "退出"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "故障诊断日志"
 
@@ -469,10 +469,10 @@ msgstr "输入 URL"
 #: data/ui/wizard-source.ui:350
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers."
 msgstr ""
-"输入您想添加的 box 地址。地址可以为要安装的镜像，SPICE 和 VNC 服务器，或者 "
-"oVirt 亦或是 Libvirt 代理。"
+"输入您想添加的 box 地址。地址可以为要安装的镜像、SPICE、RDP 和 VNC 服务器，或"
+"者 oVirt 亦或是 Libvirt 代理。"
 
 #: data/ui/wizard-source.ui:368
 msgid ""
@@ -551,7 +551,7 @@ msgstr "强制关机"
 msgid "Clone"
 msgstr "克隆"
 
-#: src/actions-popover.vala:84 src/machine.vala:622
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "重启"
 
@@ -614,28 +614,28 @@ msgstr "— 一个简明的，用于访问远程系统或虚拟机的应用程�
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了过多的命令行参数。\n"
 
-#: src/app.vala:465
+#: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "虚拟机“%s”已安装并准备就绪"
 
-#: src/app.vala:553
+#: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "虚拟机“%s”已被删除"
 
-#: src/app.vala:554
+#: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "已删除 %u 个虚拟机"
 
-#: src/app.vala:581 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "撤消(_U)"
 
-#: src/app.vala:625
+#: src/app.vala:626
 msgid "Boxes is doing something"
 msgstr "Boxes 正在进行一些操作"
 
@@ -717,7 +717,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "发送组合键"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "名称(_N)"
 
@@ -954,25 +954,25 @@ msgid "Powered Off"
 msgstr "已关闭"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "正在连接到 %s"
 
-#: src/machine.vala:224 src/machine.vala:649
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "无法连接到“%s”"
 
-#: src/machine.vala:277
+#: src/machine.vala:282
 msgid "Machine is under construction"
 msgstr "正在准备虚拟机"
 
-#: src/machine.vala:431
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "正在保存…"
 
-#: src/machine.vala:621
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -981,13 +981,13 @@ msgstr ""
 "无法从磁盘恢复“%s”\n"
 "要忽略保存的状态并重试吗？"
 
-#: src/machine.vala:632
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "无法启动“%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:736
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s”需要认证"
@@ -1047,11 +1047,11 @@ msgstr "未连接到 %s"
 msgid "Connection to oVirt broker failed"
 msgstr "连接 oVirt 代理器 (broker) 失败"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "协议"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:535
 msgid "URL"
 msgstr "URL"
 
@@ -1072,7 +1072,7 @@ msgstr "快照"
 msgid "Changes require restart of “%s”."
 msgstr "更改需要重启“%s”以生效。"
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_URL"
 
@@ -1322,80 +1322,86 @@ msgstr "不支持的文件"
 msgid "Invalid file"
 msgstr "无效的文件"
 
-#: src/wizard.vala:372
+#. accept any vnc:// uri
+#. accept any rdp:// uri
+#: src/wizard.vala:369
+msgid "Boxes was compiled without RDP support"
+msgstr "Boxes 编译时未打开 RDP 支持"
+
+#: src/wizard.vala:377
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "不支持的协议“%s”"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:383 src/wizard.vala:457
 msgid "Unknown installer media"
 msgstr "未知的安装器介质"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:385 src/wizard.vala:458
 msgid "Analyzing…"
 msgstr "正在分析…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:399
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "无法分析安装器介质。已损坏或不完整的介质？"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:511
 msgid "Box setup failed"
 msgstr "Box 设置失败"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:525
 msgid "Boxes will create a new box with the following properties:"
 msgstr "将创建一个新 Box，属性如下："
 
-#: src/wizard.vala:525
+#: src/wizard.vala:530
 msgid "Type"
 msgstr "类型"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:533
 msgid "Host"
 msgstr "主机"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:544 src/wizard.vala:556
 msgid "Port"
 msgstr "端口"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:546
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:561
 msgid "Will add boxes for all systems available from this account:"
 msgstr "将添加所有该帐户可访问系统的 box："
 
-#: src/wizard.vala:568
+#: src/wizard.vala:574
 msgid "Memory"
 msgstr "内存"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:583
 msgid "Disk"
 msgstr "磁盘"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:585
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大值"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:648
 msgid "Downloading media…"
 msgstr "正在下载介质…"
 
-#: src/wizard.vala:645
+#: src/wizard.vala:651
 msgid "Downloading media"
 msgstr "正在下载介质"
 
-#: src/wizard.vala:655
+#: src/wizard.vala:661
 msgid "Download failed."
 msgstr "下载失败。"
 
-#: src/wizard.vala:771
+#: src/wizard.vala:777
 msgid "C_ustomize…"
 msgstr "自定义(_U)…"
 
