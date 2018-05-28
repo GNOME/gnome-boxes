@@ -139,8 +139,18 @@ dependencies = [
   valac.find_library ('spice-client-gtk-3.0'),
 ]
 
+if get_option('rdp')
+  vala_sources += ['rdp-display.vala']
+
+  vala_args += '--define=HAVE_RDP'
+endif
+
 if get_option('flatpak')
   vala_args += '--define=FLATPAK'
+
+  if get_option('rdp')
+    dependencies += dependency ('gtk-frdp-0.1')
+  endif
 else
   dependencies += [
     dependency ('gudev-1.0', version: '>= 165'),
@@ -159,23 +169,19 @@ else
       valac.find_library ('rest-0.7')
     ]
   endif
-endif
 
-if get_option('rdp')
-  vala_sources += ['rdp-display.vala']
+  if get_option('rdp')
+    pkgdatadir = join_paths (data_dir, meson.project_name ())
+    gtk_frdp = subproject(
+      'gtk-frdp',
+      default_options: [
+        'pkgdatadir=' + pkgdatadir,
+        'pkglibdir=' + pkglibdir
+      ]
+    )
 
-  pkgdatadir = join_paths (data_dir, meson.project_name ())
-  gtk_frdp = subproject(
-    'gtk-frdp',
-    default_options: [
-      'pkgdatadir=' + pkgdatadir,
-      'pkglibdir=' + pkglibdir
-    ]
-  )
-
-  vala_args += '--define=HAVE_RDP'
-
-  dependencies += gtk_frdp.get_variable('gtk_frdp_vapi')
+    dependencies += gtk_frdp.get_variable('gtk_frdp_vapi')
+  endif
 endif
 
 executable ('gnome-boxes', vala_sources + resources,
