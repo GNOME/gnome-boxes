@@ -1,6 +1,69 @@
-image: fedora:rawhide
+stages:
+- test
+- review
+- cross_distro
 
-before_script:
+variables:
+    BUNDLE: "gnome-boxes.flatpak"
+
+flatpak:
+    image: registry.gitlab.gnome.org/gnome/gnome-runtime-images/gnome:3.28 
+    stage: test
+    variables:
+        MANIFEST_PATH: "build-aux/flatpak/org.gnome.Boxes.json"
+        MESON_ARGS: "-Dflatpak=true -Dprofile=development"
+        FLATPAK_MODULE: "gnome-boxes"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
+        DBUS_ID: "org.gnome.BoxesDevel"
+
+    script:
+        - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
+        # Make sure to keep this in sync with the Flatpak manifest, all arguments
+        # are passed except the config-args because we build it ourselves
+        - flatpak build app meson --prefix=/app ${MESON_ARGS} _build
+        - flatpak build app ninja -C _build install
+        - flatpak-builder --finish-only --repo=repo app ${MANIFEST_PATH}
+        # Generate a Flatpak bundle
+        - flatpak build-bundle repo ${BUNDLE} --runtime-repo=${RUNTIME_REPO} ${DBUS_ID}
+    artifacts:
+        paths:
+            - ${BUNDLE}
+            - _build/meson-logs/meson-log.txt
+            - _build/meson-logs/testlog.txt
+        expire_in: 30 days
+    cache:
+        paths:
+             - .flatpak-builder/cache
+
+review:
+    stage: review
+    dependencies:
+        - flatpak
+    script:
+        - echo "Generating flatpak deployment"
+    artifacts:
+        paths:
+            - ${BUNDLE}
+        expire_in: 30 days
+    environment:
+        name: review/$CI_COMMIT_REF_NAME
+        url: https://gitlab.gnome.org/$CI_PROJECT_PATH/-/jobs/$CI_JOB_ID/artifacts/raw/${BUNDLE}
+        on_stop: stop_review
+
+stop_review:
+    stage: review
+    script:
+        - echo "Stopping flatpak deployment"
+    when: manual
+    environment:
+        name: review/$CI_COMMIT_REF_NAME
+        action: stop
+
+
+fedora:rawhide:
+    image: fedora:rawhide
+    stage: cross_distro
+    before_script:
     - dnf install -y meson git vala gtk3-devel libgovirt-devel
                      gtk-vnc2-devel libosinfo-devel libsecret-devel
                      libvirt-gconfig-devel libvirt-gobject-devel
@@ -8,9 +71,6 @@ before_script:
                      libgudev-devel webkitgtk4-devel libusbx-devel
                      tracker-devel libosinfo-vala freerdp-devel
                      python3-devel
-
-build:
-    stage: build
     script:
         - meson _build .
         - ninja -C _build
