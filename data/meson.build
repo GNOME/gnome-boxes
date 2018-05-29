@@ -21,13 +21,20 @@ resources = gnome.compile_resources ('org.gnome.Boxes',
                                      resource_files,
                                      c_name: 'resources')
 
-i18n.merge_file ('desktop-file',
-  type: 'desktop',
-  input: 'org.gnome.Boxes.desktop.in',
-  output: 'org.gnome.Boxes.desktop',
-  po_dir: po_dir,
+desktop_conf = configuration_data ()
+desktop_conf.set ('icon', application_id)
+desktop = i18n.merge_file (
+  'desktop',
+  input: configure_file (
+    input: files ('org.gnome.Boxes.desktop.in'),
+    output: 'org.gnome.Boxes.desktop.in',
+    configuration: desktop_conf
+  ),
+  output: '@0@.desktop'.format(application_id),
   install: true,
-  install_dir: join_paths (data_dir, 'applications')
+  install_dir: join_paths (data_dir, 'applications'),
+  po_dir: po_dir,
+  type: 'desktop'
 )
 
 dbus_conf = configuration_data ()
