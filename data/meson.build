@@ -1,9 +1,9 @@
-foreach icon_size: ['16x16', '22x22', '24x24', '32x32', '48x48', '512x512']
+foreach icon_size: ['16x16', '22x22', '24x24', '32x32', '48x48', '256x256']
   icondir = join_paths('icons', 'hicolor', icon_size, 'apps')
 
   install_data(
     join_paths(icondir, 'org.gnome.Boxes.png'),
-    install_dir: join_paths(datadir, icondir),
+    install_dir: join_paths(data_dir, icondir),
     rename: '@0@.png'.format(application_id)
   )
 endforeach
@@ -12,7 +12,7 @@ icondir = join_paths('icons', 'hicolor', 'symbolic', 'apps')
 
 install_data(
   join_paths(icondir, 'org.gnome.Boxes-symbolic.svg'),
-  install_dir: join_paths(datadir, icondir),
+  install_dir: join_paths(data_dir, icondir),
   rename: '@0@-symbolic.svg'.format(application_id)
 )
 
