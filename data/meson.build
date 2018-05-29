@@ -40,9 +40,10 @@ desktop = i18n.merge_file (
 dbus_conf = configuration_data ()
 dbus_conf.set ('bindir', join_paths (get_option ('prefix'), get_option ('bindir')))
 dbus_conf.set ('libexecdir', join_paths (get_option ('prefix'), get_option ('libexecdir')))
+dbus_conf.set ('appid', application_id)
 configure_file (
   input: 'org.gnome.Boxes.service.in',
-  output: 'org.gnome.Boxes.service',
+  output: '@0@.service'.format (application_id),
   configuration: dbus_conf,
   install: true,
   install_dir: join_paths (data_dir, 'dbus-1', 'services')
@@ -80,7 +81,16 @@ configure_file (
   install_dir: join_paths(data_dir, 'glib-2.0', 'schemas'),
 )
 
-install_data ('gnome-boxes-search-provider.ini', install_dir : join_paths (data_dir, 'gnome-shell', 'search-providers'))
+search_provider_conf = configuration_data()
+search_provider_conf.set ('appid', application_id)
+search_provider_conf.set ('profile', profile)
+configure_file (
+  configuration: search_provider_conf,
+  input: files ('gnome-boxes-search-provider.ini'),
+  install_dir: join_paths (data_dir, 'gnome-shell', 'search-providers'),
+  output: 'gnome-boxes-search-provider.ini'.format (application_id)
+)
+
 install_data ('QEMU_Session', install_dir : join_paths (data_dir, 'gnome-boxes/sources'))
 install_data ('disk.img', install_dir : join_paths (data_dir, 'gnome-boxes/unattended'))
 
