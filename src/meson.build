@@ -118,6 +118,7 @@ vala_sources = [
 ]
 
 dependencies = [
+  config_h,
   config_dep,
   libarchive_dep,
   dependency ('gobject-2.0', version: '>= 2.44'),

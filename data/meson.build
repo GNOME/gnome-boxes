@@ -1,28 +1,20 @@
-icondir = join_paths(data_dir, 'icons')
+foreach icon_size: ['16x16', '22x22', '24x24', '32x32', '48x48', '512x512']
+  icondir = join_paths('icons', 'hicolor', icon_size, 'apps')
 
-install_data('icons/hicolor/16x16/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
+  install_data(
+    join_paths(icondir, 'org.gnome.Boxes.png'),
+    install_dir: join_paths(datadir, icondir),
+    rename: '@0@.png'.format(application_id)
+  )
+endforeach
 
-install_data('icons/hicolor/24x24/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
+icondir = join_paths('icons', 'hicolor', 'symbolic', 'apps')
 
-install_data('icons/hicolor/symbolic/apps/org.gnome.Boxes-symbolic.svg',
-  install_dir: icondir,
+install_data(
+  join_paths(icondir, 'org.gnome.Boxes-symbolic.svg'),
+  install_dir: join_paths(datadir, icondir),
+  rename: '@0@-symbolic.svg'.format(application_id)
 )
-install_data('icons/hicolor/32x32/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
-install_data('icons/hicolor/48x48/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
-install_data('icons/hicolor/256x256/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
 
 resource_files = files ('gnome-boxes.gresource.xml')
 resources = gnome.compile_resources ('org.gnome.Boxes',
