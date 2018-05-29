@@ -37,6 +37,30 @@ conf.set_quoted ('CACHEDIR', '/var/cache')
 conf.set_quoted ('LOCALEDIR', locale_dir)
 conf.set('PACKAGE_BUGREPORT', '"http://gitlab.gnome.org/gnome/gnome-boxes/issues"')
 
+if get_option ('profile') == 'development'
+  profile = 'Devel'
+  name_suffix = ' (Development Snapshot)'
+else
+  profile = ''
+  name_suffix = ''
+endif
+
+application_id = 'org.gnome.Boxes@0@'.format (profile)
+conf.set_quoted ('PROFILE', profile)
+
+config_h = declare_dependency (
+  sources: vcs_tag (
+    command: ['git', 'rev-parse', '--short', 'HEAD'],
+    fallback: get_option('profile') != 'default'? 'devel' : 'stable',
+    input: configure_file (
+      output: 'config.h.in',
+      configuration: conf
+    ),
+    output: 'config.h'
+
+  )
+)
+
 configure_file (output: 'config.h', configuration: conf)
 config_h_dir = include_directories ('.')
 
