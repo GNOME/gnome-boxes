@@ -137,7 +137,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         notify["ui-state"].connect (ui_state_changed);
 
-        Gtk.Window.set_default_icon_name ("gnome-boxes");
+        Gtk.Window.set_default_icon_name (Config.APPLICATION_ID);
         Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
 
         var provider = Boxes.load_css ("gtk-style.css");

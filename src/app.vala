@@ -1,4 +1,5 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
+using Config;
 
 private abstract class Boxes.Broker : GLib.Object {
     // Overriding subclass should chain-up at the end of its implementation
@@ -47,7 +48,7 @@ private class Boxes.App: Gtk.Application {
     private uint inhibit_cookie = 0;
 
     public App () {
-        application_id = "org.gnome.Boxes";
+        application_id = Config.APPLICATION_ID;
         flags |= ApplicationFlags.HANDLES_COMMAND_LINE | ApplicationFlags.HANDLES_OPEN;
         resource_base_path = "/org/gnome/Boxes";
 
@@ -111,7 +112,8 @@ private class Boxes.App: Gtk.Application {
                                    "comments", _("A simple GNOME 3 application to access remote or virtual systems"),
                                    "copyright", "Copyright 2011 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
-                                   "logo-icon-name", "org.gnome.Boxes",
+                                   "program-name", _("Boxes") + Config.NAME_SUFFIX,
+                                   "logo-icon-name", Config.APPLICATION_ID,
                                    "version", Config.PACKAGE_VERSION,
                                    "website", Config.PACKAGE_URL,
                                    "wrap-license", true);
