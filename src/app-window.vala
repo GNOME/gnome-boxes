@@ -180,6 +180,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             window.show ();
         });
         add_action (action);
+
+        if (app.application_id == "org.gnome.BoxesDevel") {
+            get_style_context ().add_class ("devel");
+        }
     }
 
     public void setup_ui () {
