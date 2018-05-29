@@ -13,4 +13,5 @@ namespace Config {
         public const string PACKAGE_URL;
         public const string APPLICATION_ID;
         public const string NAME_SUFFIX;
+        public const string VERSION;
 }

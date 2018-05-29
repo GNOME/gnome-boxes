@@ -114,7 +114,7 @@ private class Boxes.App: Gtk.Application {
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "program-name", _("Boxes") + Config.NAME_SUFFIX,
                                    "logo-icon-name", Config.APPLICATION_ID,
-                                   "version", Config.PACKAGE_VERSION,
+                                   "version", Config.VERSION,
                                    "website", Config.PACKAGE_URL,
                                    "wrap-license", true);
         });

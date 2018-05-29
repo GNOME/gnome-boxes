@@ -49,6 +49,7 @@ application_id = 'org.gnome.Boxes@0@'.format (profile)
 conf.set_quoted ('PROFILE', profile)
 conf.set_quoted ('APPLICATION_ID', application_id)
 conf.set_quoted ('NAME_SUFFIX', name_suffix)
+conf.set_quoted ('VERSION', '@0@-@VCS_TAG@'.format (meson.project_version()))
 
 config_h = declare_dependency (
   sources: vcs_tag (
@@ -63,7 +64,7 @@ config_h = declare_dependency (
   )
 )
 
-configure_file (output: 'config.h', configuration: conf)
+#configure_file (output: 'config.h', configuration: conf)
 config_h_dir = include_directories ('.')
 
 meson.add_install_script (join_paths ('build-aux', 'post_install.py'), data_dir)
