@@ -56,9 +56,15 @@ configure_file (
   install_dir: join_paths (data_dir, 'dbus-1', 'services')
 )
 
+appdata_conf = configuration_data()
+appdata_conf.set('appid', application_id)
 i18n.merge_file ('appdata-file',
-  input: 'org.gnome.Boxes.appdata.xml.in',
-  output: 'org.gnome.Boxes.appdata.xml',
+  input: configure_file (
+    input: files ('org.gnome.Boxes.appdata.xml.in'),
+    output: 'org.gnome.Boxes.appdata.xml.in',
+    configuration: appdata_conf
+  ),
+  output: '@0@.appdata.xml'.format (application_id),
   po_dir: po_dir,
   install: true,
   install_dir: join_paths (data_dir, 'metainfo')
