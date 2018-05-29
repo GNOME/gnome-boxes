@@ -47,6 +47,8 @@ endif
 
 application_id = 'org.gnome.Boxes@0@'.format (profile)
 conf.set_quoted ('PROFILE', profile)
+conf.set_quoted ('APPLICATION_ID', application_id)
+conf.set_quoted ('NAME_SUFFIX', name_suffix)
 
 config_h = declare_dependency (
   sources: vcs_tag (
