@@ -11,10 +11,10 @@ flatpak:
     stage: test
     variables:
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.Boxes.json"
-        MESON_ARGS: "-Dflatpak=true"
+        MESON_ARGS: "-Dflatpak=true -Dprofile=development"
         FLATPAK_MODULE: "gnome-boxes"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        DBUS_ID: "org.gnome.Boxes"
+        RUNTIME_REPO: "https://sdk.gnome.org/gnome.flatpakrepo"
+        DBUS_ID: "org.gnome.BoxesDevel"
 
     script:
         - flatpak-builder --stop-at=${FLATPAK_MODULE} app ${MANIFEST_PATH}
