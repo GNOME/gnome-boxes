@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-16 09:15+0000\n"
-"PO-Revision-Date: 2018-05-17 11:01+0200\n"
+"POT-Creation-Date: 2018-06-05 12:23+0000\n"
+"PO-Revision-Date: 2018-06-05 22:12+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -55,8 +55,8 @@ msgstr ""
 "nestabilní) verzi svého oblíbeného operačního systému, a nebo když se chcete "
 "připojit ke vzdálenému stroji (například ve své kanceláři)."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
@@ -76,8 +76,8 @@ msgstr "virtuální stroj;vm;virtualizace;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -312,12 +312,12 @@ msgstr "Vyberte zařízení nebo soubor ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:318
+#: src/app-window.vala:322
 msgid "_Cancel"
 msgstr "_Zrušit"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:320
+#: src/app-window.vala:324
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -574,61 +574,61 @@ msgstr "Vlastnosti"
 msgid "Screenshot from %s"
 msgstr "Snímek obrazovky pořízený %s"
 
-#: src/app.vala:110
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr ""
 "Adam Matoušek <adydas95@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: src/app.vala:173
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Otevřít přes celou obrazovku"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Zkontrolovat vybavenost pro virtualizaci"
 
-#: src/app.vala:175
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Otevřít box s UUID"
 
-#: src/app.vala:176
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Hledat výraz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "Adresa URL k zobrazení, zprostředkovatel nebo instalačnímu médium"
 
-#: src/app.vala:189
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným nebo virtuálním strojům"
 
-#: src/app.vala:214
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: src/app.vala:466
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainstalován a připraven k použití"
 
-#: src/app.vala:554
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: src/app.vala:555
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -636,16 +636,16 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: src/app.vala:626
+#: src/app.vala:628
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí…"
 
-#: src/app-window.vala:317
+#: src/app-window.vala:321
 msgid "Select files to transfer"
 msgstr "Výběr souboru k přenesení"
 
@@ -675,7 +675,7 @@ msgstr "Nové a nedávné"
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:110 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systém"
@@ -1044,7 +1044,7 @@ msgstr "Chyby hlaste na <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka %s: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "Soubor „%s“ neexistuje"
@@ -1292,7 +1292,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:607
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
@@ -1434,6 +1434,9 @@ msgstr "Stažení selhalo."
 #: src/wizard.vala:777
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
 
 #~ msgid "Available with a free Red Hat developer account"
 #~ msgstr "Dostupné s bezplatným vývojářským účtem Red Hat"
