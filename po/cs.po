@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3.28\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-04-09 12:17+0000\n"
-"PO-Revision-Date: 2018-04-09 16:49+0200\n"
+"POT-Creation-Date: 2018-06-04 21:01+0000\n"
+"PO-Revision-Date: 2018-06-05 22:13+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -76,8 +76,9 @@ msgstr "virtuální stroj;vm;virtualizace;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+#| msgid "gnome-boxes"
+msgid "org.gnome.Boxes"
+msgstr "org.gnome.Boxes"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -298,7 +299,7 @@ msgstr "O aplikaci"
 msgid "Quit"
 msgstr "Ukončit"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Zaznamenané problémy"
 
@@ -547,7 +548,7 @@ msgstr "Vynutit vypnutí"
 msgid "Clone"
 msgstr "Klonovat"
 
-#: src/actions-popover.vala:84 src/machine.vala:622
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Restartovat"
 
@@ -562,61 +563,61 @@ msgstr "Vlastnosti"
 msgid "Screenshot from %s"
 msgstr "Snímek obrazovky pořízený %s"
 
-#: src/app.vala:110
+#: src/app.vala:108
 msgid "translator-credits"
 msgstr ""
 "Adam Matoušek <adydas95@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#: src/app.vala:111
+#: src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:169 src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: src/app.vala:173
+#: src/app.vala:171
 msgid "Open in full screen"
 msgstr "Otevřít přes celou obrazovku"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:172 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Zkontrolovat vybavenost pro virtualizaci"
 
-#: src/app.vala:175
+#: src/app.vala:173
 msgid "Open box with UUID"
 msgstr "Otevřít box s UUID"
 
-#: src/app.vala:176
+#: src/app.vala:174
 msgid "Search term"
 msgstr "Hledat výraz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#: src/app.vala:176
 msgid "URL to display, broker or installer media"
 msgstr "Adresa URL k zobrazení, zprostředkovatel nebo instalačnímu médium"
 
-#: src/app.vala:189
+#: src/app.vala:187
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným nebo virtuálním strojům"
 
-#: src/app.vala:214
+#: src/app.vala:212
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: src/app.vala:465
+#: src/app.vala:463
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainstalován a připraven k použití"
 
-#: src/app.vala:553
+#: src/app.vala:551
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: src/app.vala:554
+#: src/app.vala:552
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -624,14 +625,10 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: src/app.vala:581 src/libvirt-machine-properties.vala:551
+#: src/app.vala:579 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Zpět"
-
-#: src/app.vala:625
-msgid "Boxes is doing something"
-msgstr "Boxy něco provádí…"
 
 #: src/app-window.vala:317
 msgid "Select files to transfer"
@@ -663,7 +660,7 @@ msgstr "Nové a nedávné"
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:110 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systém"
@@ -871,31 +868,26 @@ msgstr ""
 msgid "_Shutdown"
 msgstr "_Vypnout"
 
-#: src/libvirt-machine.vala:689
-#, c-format
-msgid "Cloning '%s'.."
-msgstr "Klonuje se „%s“…"
-
-#: src/libvirt-machine.vala:790
+#: src/libvirt-machine.vala:785
 msgid "Installing…"
 msgstr "Instaluje se…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:792 src/wizard-source.vala:124
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
 #: src/wizard-source.vala:154
 msgid "Live"
 msgstr "Živé médium"
 
-#: src/libvirt-machine.vala:794
+#: src/libvirt-machine.vala:789
 msgid "Setting up clone…"
 msgstr "Nastavuje se klon…"
 
-#: src/libvirt-machine.vala:796
+#: src/libvirt-machine.vala:791
 msgid "Importing…"
 msgstr "Importuje se…"
 
-#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "počítač: %s"
@@ -963,20 +955,16 @@ msgstr "Vypnutý"
 msgid "Connecting to %s"
 msgstr "Připojuje se k %s"
 
-#: src/machine.vala:224 src/machine.vala:649
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Připojení k „%s“ selhalo"
 
-#: src/machine.vala:277
-msgid "Machine is under construction"
-msgstr "Stroj se připravuje"
-
-#: src/machine.vala:431
+#: src/machine.vala:422
 msgid "Saving…"
 msgstr "Ukládá se…"
 
-#: src/machine.vala:621
+#: src/machine.vala:612
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -985,13 +973,13 @@ msgstr ""
 "Stroj „%s“ nelze z disku obnovit\n"
 "Zkusit to bez uloženého stavu?"
 
-#: src/machine.vala:632
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Selhalo spuštění „%s“"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:736
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s“ vyžaduje ověření"
@@ -1032,7 +1020,7 @@ msgstr "Chyby hlaste na <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka %s: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "Soubor „%s“ neexistuje"
@@ -1280,7 +1268,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:606
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
@@ -1409,17 +1397,25 @@ msgstr "nejvýše %s"
 msgid "Downloading media…"
 msgstr "Stahuje se médium…"
 
-#: src/wizard.vala:645
-msgid "Downloading media"
-msgstr "Stahování média"
-
-#: src/wizard.vala:655
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "Stažení selhalo."
 
-#: src/wizard.vala:771
+#: src/wizard.vala:766
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
+
+#~ msgid "Boxes is doing something"
+#~ msgstr "Boxy něco provádí…"
+
+#~ msgid "Cloning '%s'.."
+#~ msgstr "Klonuje se „%s“…"
+
+#~ msgid "Machine is under construction"
+#~ msgstr "Stroj se připravuje"
+
+#~ msgid "Downloading media"
+#~ msgstr "Stahování média"
 
 #~ msgid "Red Hat Enterprise Linux"
 #~ msgstr "Red Hat Enterprise Linux"
