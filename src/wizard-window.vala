@@ -66,7 +66,25 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         notify["ui-state"].connect (ui_state_changed);
 
         topbar.downloads_search.search_changed.connect (() => {
-            downloads_page.search.text = topbar.downloads_search.get_text ();
+            var text = topbar.downloads_search.get_text ();
+
+            if (text == null)
+                return;
+
+            downloads_page.search.text = text;
+        });
+
+        topbar.downloads_search.activate.connect (() => {
+            var text = topbar.downloads_search.get_text ();
+
+            if (text == null)
+                return;
+
+            var scheme = Uri.parse_scheme (text);
+            if (scheme != null && scheme in Downloader.supported_schemes) {
+                wizard.open_with_uri (text);
+                page = WizardWindowPage.MAIN;
+            }
         });
 
         logos_table = new HashTable<string, Osinfo.Os> (str_hash, str_equal);
