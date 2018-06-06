@@ -134,7 +134,6 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
 
     public void show_downloads_page (OSDatabase os_db, owned DownloadChosenFunc download_chosen_func) {
         page = WizardWindowPage.DOWNLOADS;
-        topbar.downloads_search.grab_focus ();
 
         downloads_page.download_chosen_func = (owned) download_chosen_func;
         downloads_page.page = WizardDownloadsPageView.RECOMMENDED;
@@ -186,7 +185,12 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
                 topbar.cancel_btn.clicked ();
             else
                 page = WizardWindowPage.MAIN;
+        }
 
+        if (page == WizardWindowPage.DOWNLOADS) {
+            topbar.downloads_search.grab_focus ();
+
+            return topbar.downloads_search.key_press_event (event);
         }
 
         return false;
