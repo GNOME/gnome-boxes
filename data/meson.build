@@ -1,28 +1,4 @@
-icondir = join_paths(data_dir, 'icons')
-
-install_data('icons/hicolor/16x16/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
-install_data('icons/hicolor/24x24/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
-install_data('icons/hicolor/symbolic/apps/org.gnome.Boxes-symbolic.svg',
-  install_dir: icondir,
-)
-install_data('icons/hicolor/32x32/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
-install_data('icons/hicolor/48x48/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
-install_data('icons/hicolor/256x256/apps/org.gnome.Boxes.png',
-  install_dir: icondir,
-)
-
+install_subdir('icons/hicolor/', install_dir: join_paths (data_dir, 'icons'))
 
 resource_files = files ('gnome-boxes.gresource.xml')
 resources = gnome.compile_resources ('org.gnome.Boxes',
