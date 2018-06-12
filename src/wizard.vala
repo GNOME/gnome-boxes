@@ -210,7 +210,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     private void update_back_button_sensitivity () {
         var disable_back_button = page == WizardPage.SOURCE &&
-                                  (wizard_source.page == SourcePage.MAIN || wizard_source.page == SourcePage.URL);
+                                  (wizard_source.page == SourcePage.MAIN);
         back_button.sensitive = !disable_back_button;
     }
 
@@ -682,8 +682,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         back_button = wizard_window.topbar.back_btn;
         back_button.clicked.connect (() => {
             if (page == WizardPage.SOURCE) {
-                return_if_fail (wizard_source.page == SourcePage.RHEL_WEB_VIEW ||
-                                wizard_source.page == SourcePage.DOWNLOADS);
                 wizard_source.page = SourcePage.MAIN;
                 wizard_source.cleanup ();
             } else {
