@@ -175,6 +175,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         switch (wizard_source.page) {
         case Boxes.SourcePage.MAIN:
+            wizard_window.topbar.title = _("Create a Box");
             next_button.sensitive = wizard_source.selected != null;
             source = null;
             break;
@@ -188,6 +189,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             break;
 
         case Boxes.SourcePage.URL:
+            wizard_window.topbar.title = _("Connect to a Box");
             next_button.sensitive = false;
             if (wizard_source.uri.length == 0)
                 return;
