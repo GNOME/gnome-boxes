@@ -66,16 +66,28 @@
         <child>
           <object class="GtkButton" id="back_btn">
             <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="use-underline">True</property>
-            <property name="label" translatable="yes">_Back</property>
+            <signal name="clicked" handler="on_back_button_clicked"/>
             <style>
-              <class name="text-button"/>
+              <class name="image-button"/>
             </style>
+
+             <child internal-child="accessible">
+               <object class="AtkObject">
+                <property name="accessible-name" translatable="yes">Back</property>
+               </object>
+             </child>
+
+             <child>
+               <object class="GtkImage">
+                 <property name="visible">True</property>
+                 <property name="icon-name">go-previous-symbolic</property>
+               </object>
+             </child>
           </object>
 
           <packing>
             <property name="pack-type">start</property>
+            <property name="position">0</property>
           </packing>
         </child>
 
@@ -97,26 +109,25 @@
         </style>
 
         <child>
-          <object class="GtkButton" id="customization_back_btn">
+          <object class="GtkButton">
             <property name="visible">True</property>
-            <property name="valign">center</property>
-            <signal name="clicked" handler="on_customization_back_clicked"/>
+            <signal name="clicked" handler="on_back_button_clicked"/>
             <style>
               <class name="image-button"/>
             </style>
 
-            <child internal-child="accessible">
-              <object class="AtkObject" id="a11y-button">
+             <child internal-child="accessible">
+               <object class="AtkObject">
                 <property name="accessible-name" translatable="yes">Back</property>
-              </object>
-            </child>
+               </object>
+             </child>
 
-            <child>
-              <object class="GtkImage" id="back_image">
-                <property name="visible">True</property>
-                <property name="icon-name">go-previous-symbolic</property>
-              </object>
-            </child>
+             <child>
+               <object class="GtkImage">
+                 <property name="visible">True</property>
+                 <property name="icon-name">go-previous-symbolic</property>
+               </object>
+             </child>
           </object>
 
           <packing>
@@ -142,16 +153,25 @@
         </style>
 
         <child>
-          <object class="GtkButton" id="file_chooser_cancel_button">
+          <object class="GtkButton">
             <property name="visible">True</property>
-            <property name="valign">center</property>
-            <property name="use-underline">True</property>
-            <property name="label" translatable="yes">_Cancel</property>
-            <signal name="clicked" handler="on_file_chooser_cancel_clicked"/>
+            <signal name="clicked" handler="on_back_button_clicked"/>
             <style>
-              <class name="text-button"/>
+              <class name="image-button"/>
             </style>
 
+             <child internal-child="accessible">
+               <object class="AtkObject">
+                <property name="accessible-name" translatable="yes">Back</property>
+               </object>
+             </child>
+
+             <child>
+               <object class="GtkImage">
+                 <property name="visible">True</property>
+                 <property name="icon-name">go-previous-symbolic</property>
+               </object>
+             </child>
           </object>
 
           <packing>
@@ -195,7 +215,7 @@
         <child>
           <object class="GtkButton">
             <property name="visible">True</property>
-            <signal name="clicked" handler="on_downloads_search_back_clicked"/>
+            <signal name="clicked" handler="on_back_button_clicked"/>
             <style>
               <class name="image-button"/>
             </style>
