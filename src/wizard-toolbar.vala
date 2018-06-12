@@ -38,6 +38,11 @@ private class Boxes.WizardToolbar: Gtk.Stack {
 
     private unowned WizardWindow wizard_window;
 
+    public string title {
+        get { return main.title; }
+        set { main.title = value; }
+    }
+
     public void setup_ui (WizardWindow wizard_window) {
         this.wizard_window = wizard_window;
 
