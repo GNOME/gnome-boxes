@@ -289,9 +289,7 @@
           <object class="GtkBox" id="url_entry_vbox">
             <property name="visible">True</property>
             <property name="orientation">vertical</property>
-            <style>
-              <class name="boxes-menu-row"/>
-            </style>
+            <property name="spacing">20</property>
 
             <child>
               <object class="GtkLabel" id="url_description_label">
@@ -303,28 +301,7 @@
                 <property name="max-width-chars">64</property>
                 <property name="halign">start</property>
                 <property name="xalign">0.0</property>
-                <property name="label" translatable="yes">Enter an address for the box you want to add. Addresses can be of installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers.</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkLabel" id="url_examples_label">
-                <property name="visible">True</property>
-                <property name="margin-start">24</property>
-                <property name="margin-end">24</property>
-                <property name="margin-top">12</property>
-                <property name="margin-bottom">18</property>
-                <property name="use-markup">True</property>
-                <property name="wrap">True</property>
-                <property name="halign">start</property>
-                <property name="label" translatable="yes">Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/path</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
+                <property name="label" translatable="yes">Enter an address to connect to. Addresses can begin with spice://, rdp:// or vnc://.</property>
               </object>
               <packing>
                 <property name="expand">True</property>
