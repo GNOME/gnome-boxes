@@ -211,7 +211,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     private void update_back_button_sensitivity () {
         var disable_back_button = page == WizardPage.SOURCE &&
                                   (wizard_source.page == SourcePage.MAIN);
-        back_button.sensitive = !disable_back_button;
+        back_button.visible = !disable_back_button;
+        cancel_button.visible = !back_button.visible;
     }
 
     construct {
