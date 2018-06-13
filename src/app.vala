@@ -119,6 +119,10 @@ private class Boxes.App: Gtk.Application {
                                    "wrap-license", true);
         });
         add_action (action);
+
+        var app_info = new DesktopAppInfo ("org.gnome.Boxes");
+        if (AppInfo.get_default_for_uri_scheme ("vnc") == null)
+            app_info.set_as_default_for_type ("x-scheme-handler/vnc");
     }
 
     public override void startup () {
