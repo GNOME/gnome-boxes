@@ -121,6 +121,7 @@ dependencies = [
   config_h,
   config_dep,
   libarchive_dep,
+  dependency ('gio-unix-2.0'),
   dependency ('gobject-2.0', version: '>= 2.44'),
   dependency ('gtk+-3.0', version: '>= 3.22.20'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
