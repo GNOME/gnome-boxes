@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-04 18:30+0000\n"
-"PO-Revision-Date: 2018-05-13 15:02+0300\n"
+"POT-Creation-Date: 2018-06-14 09:36+0000\n"
+"PO-Revision-Date: 2018-06-17 22:13+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
 "Language-Team: dansk <>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.8\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -56,8 +56,8 @@ msgstr ""
 "a sistemului/sistemelor de operare favorite, sau dacă trebuie să vă "
 "conectați la o mașină la distanță (de exemplu, la birou)."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cutii"
@@ -72,13 +72,13 @@ msgstr "Vizualizează și utilizează mașini virtuale"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "mașină virtuală;vm;virtual machine;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "virtual machine;vm;vnc;rdp;mașină virtuală;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -298,7 +298,7 @@ msgstr "Despre"
 msgid "Quit"
 msgstr "Ieșire"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "Jurnal depanare"
 
@@ -312,12 +312,12 @@ msgstr "Alegeți un dispozitiv sau un fișier ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:318
+#: src/app-window.vala:322
 msgid "_Cancel"
 msgstr "_Anulează"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:320
+#: src/app-window.vala:324
 msgid "_Open"
 msgstr "_Deschide"
 
@@ -479,11 +479,11 @@ msgstr "Introduceți un URL"
 #: data/ui/wizard-source.ui:350
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers."
 msgstr ""
 "Introduceți o adresă pentru cutia pe care doriți să o adăugați. Adresele pot "
-"să aparțină unor imagini de instalare, servere VNC sau SPICE, sau a unor "
-"brokere oVirt sau Libvirt."
+"să aparțină unor imagini de instalare, servere SPICE, RDP sau VNC, sau a "
+"unor brokere oVirt sau Libvirt."
 
 #: data/ui/wizard-source.ui:368
 msgid ""
@@ -563,7 +563,7 @@ msgstr "Forțează oprirea"
 msgid "Clone"
 msgstr "Clonează"
 
-#: src/actions-popover.vala:84 src/machine.vala:622
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "Repornire"
 
@@ -578,61 +578,61 @@ msgstr "Proprietăți"
 msgid "Screenshot from %s"
 msgstr "Instantaneu de la %s"
 
-#: src/app.vala:110
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr ""
 "Adrian Gabor <raziel_theripper [at] yahoo [dot] com>\n"
 "Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2018"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "O aplicație simplă GNOME 3 pentru a accesa mașini la distanță sau virtuale"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Afișează numărul versiunii"
 
-#: src/app.vala:173
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Deschide pe tot ecranul"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Verifică competențele de virtualizare"
 
-#: src/app.vala:175
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Deschide cutia cu UUID"
 
-#: src/app.vala:176
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Caută termen"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URL-ul de afișat, broker sau mediu de instalare"
 
-#: src/app.vala:189
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— O aplicație simplă pentru a accesa mașini la distanță sau virtuale"
 
-#: src/app.vala:214
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Prea multe argumente specificate pentru linia de comandă.\n"
 
-#: src/app.vala:465
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Cutia „%s” a fost instalată și este pregătită pentru utilizare"
 
-#: src/app.vala:553
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Cutia „%s” a fost ștearsă"
 
-#: src/app.vala:554
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -640,16 +640,16 @@ msgstr[0] "%u cutie a fost ștearsă"
 msgstr[1] "%u cutii au fost șterse"
 msgstr[2] "%u de cutii au fost șterse"
 
-#: src/app.vala:581 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "An_ulează"
 
-#: src/app.vala:625
+#: src/app.vala:628
 msgid "Boxes is doing something"
 msgstr "Cutii lucrează la ceva"
 
-#: src/app-window.vala:317
+#: src/app-window.vala:321
 msgid "Select files to transfer"
 msgstr "Selectați fișierele de transferat"
 
@@ -675,11 +675,11 @@ msgstr "Ieșire din ecran complet"
 msgid "New and Recent"
 msgstr "Noi și recente"
 
-#: src/installed-media.vala:53
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Format de imagine disc nesuportat."
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
@@ -727,7 +727,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Trimite combinații de taste"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "_Nume"
 
@@ -975,25 +975,25 @@ msgid "Powered Off"
 msgstr "Oprit"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "Se conectează la %s"
 
-#: src/machine.vala:224 src/machine.vala:649
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Conexiunea la „%s” a eșuat"
 
-#: src/machine.vala:277
+#: src/machine.vala:282
 msgid "Machine is under construction"
 msgstr "Mașina este în construcție"
 
-#: src/machine.vala:431
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "Se salvează…"
 
-#: src/machine.vala:621
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1002,13 +1002,13 @@ msgstr ""
 "„%s” nu a putut fi restaurată de pe disc\n"
 "Încercați fără o stare salvată?"
 
-#: src/machine.vala:632
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nu s-a putut porni „%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:736
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s” necesită autentificare"
@@ -1049,7 +1049,7 @@ msgstr "Raportează defecte la <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s pagină proprie: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "Niciun fișier %s"
@@ -1068,11 +1068,11 @@ msgstr "Neconectat la %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Conectarea la brokerul oVirt a eșuat"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "Protocol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:535
 msgid "URL"
 msgstr "URL"
 
@@ -1093,7 +1093,7 @@ msgstr "Instantanee"
 msgid "Changes require restart of “%s”."
 msgstr "Modificările necesită repornirea lui „%s”."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_URL"
 
@@ -1300,7 +1300,7 @@ msgstr "nu"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:607
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Sistem gazdă nepotrivit"
 
@@ -1360,82 +1360,91 @@ msgstr "Fișier nesuportat"
 msgid "Invalid file"
 msgstr "Fișier nevalid"
 
-#: src/wizard.vala:372
+#. accept any vnc:// uri
+#. accept any rdp:// uri
+#: src/wizard.vala:369
+msgid "Boxes was compiled without RDP support"
+msgstr "Cutii a fost compilat fără suport RDP"
+
+#: src/wizard.vala:377
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protocol nesuportat „%s”"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:383 src/wizard.vala:457
 msgid "Unknown installer media"
 msgstr "Mediu de instalare necunoscut"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:385 src/wizard.vala:458
 msgid "Analyzing…"
 msgstr "Se analizează…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:399
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Eșec la analiza mediului de instalare. Mediu corupt sau incomplet?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:511
 msgid "Box setup failed"
 msgstr "Configurarea cutiei a eșuat"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:525
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Cutii va crea o nouă cutie cu următoarele proprietăți:"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:530
 msgid "Type"
 msgstr "Tip"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:533
 msgid "Host"
 msgstr "Gazdă"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:544 src/wizard.vala:556
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:546
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:561
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Va adăuga cutii pentru toate sistemele disponibile de pe acest cont:"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:574
 msgid "Memory"
 msgstr "Memorie"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:583
 msgid "Disk"
 msgstr "Disc"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:585
 #, c-format
 msgid "%s maximum"
 msgstr "%s maxim"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:648
 msgid "Downloading media…"
 msgstr "Se descarcă…"
 
-#: src/wizard.vala:645
+#: src/wizard.vala:651
 msgid "Downloading media"
 msgstr "Se descarcă media"
 
-#: src/wizard.vala:655
+#: src/wizard.vala:661
 msgid "Download failed."
 msgstr "Descărcarea a eșuat."
 
-#: src/wizard.vala:771
+#: src/wizard.vala:777
 msgid "C_ustomize…"
 msgstr "Personali_zează…"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
 
 #~ msgid "Available with a free Red Hat developer account"
 #~ msgstr "Disponibil cu un cont gratuit de dezvoltator Red Hat"
