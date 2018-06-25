@@ -176,7 +176,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         switch (wizard_source.page) {
         case Boxes.SourcePage.MAIN:
             wizard_window.topbar.title = _("Create a Box");
-            next_button.sensitive = wizard_source.selected != null;
+            next_button.sensitive = window.first_run || wizard_source.selected != null;
             source = null;
             break;
 
@@ -694,7 +694,13 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         });
         continue_button = wizard_window.topbar.continue_btn;
         continue_button.clicked.connect (() => {
-            page = page + 1;
+            if (window.first_run) {
+                continue_button.sensitive = window.first_run = false;
+
+                wizard_window.page = WizardWindowPage.MAIN;
+            } else {
+                page = page + 1;
+            }
         });
         next_button = continue_button;
         create_button = wizard_window.topbar.create_btn;

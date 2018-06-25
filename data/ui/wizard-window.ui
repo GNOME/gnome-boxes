@@ -50,6 +50,49 @@
             </style>
 
             <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="spacing">20</property>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="resource">/org/gnome/Boxes/icons/boxes-create.png</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Create a Box</property>
+                    <attributes>
+                      <attribute name="scale" value="2.4"/>
+                    </attributes>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="justify">center</property>
+                    <property name="halign">center</property>
+                    <property name="wrap">True</property>
+                    <property name="max-width-chars">60</property>
+                    <property name="label" translatable="yes">Each box can be a virtual machine that runs on this computer, or a connection to an existing remote machine</property>
+                    <attributes>
+                      <attribute name="scale" value="1.2"/>
+                    </attributes>
+                  </object>
+                </child>
+              </object>
+
+              <packing>
+                <property name="name">first-run</property>
+              </packing>
+            </child>
+
+            <child>
               <object class="BoxesWizard" id="wizard">
                 <property name="visible">True</property>
               </object>

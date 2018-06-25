@@ -2,6 +2,7 @@
 using Gtk;
 
 private enum Boxes.WizardWindowPage {
+    FIRT_RUN,
     MAIN,
     CUSTOMIZATION,
     FILE_CHOOSER,
@@ -10,7 +11,7 @@ private enum Boxes.WizardWindowPage {
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-window.ui")]
 private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
-    public const string[] page_names = { "main", "customization", "file_chooser", "downloads" };
+    public const string[] page_names = { "first-run", "main", "customization", "file_chooser", "downloads" };
 
     public HashTable<string,Osinfo.Os> logos_table;
 
@@ -57,6 +58,11 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public WizardWindow (AppWindow app_window) {
         wizard.setup_ui (app_window, this);
         topbar.setup_ui (this);
+
+        // We show an Introduction page the first time Boxes runs
+        if (!app_window.first_run) {
+            page = WizardWindowPage.MAIN;
+        }
 
         foreach (var extension in InstalledMedia.supported_extensions)
             file_chooser.filter.add_pattern ("*" + extension);
