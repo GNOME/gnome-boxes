@@ -119,6 +119,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public GLib.Settings settings;
 
+    public bool first_run {
+        get { return settings.get_boolean ("first-run"); }
+        set { settings.set_boolean ("first-run", value); }
+    }
+
     [GtkChild]
     private Notificationbar _notificationbar;
 
