@@ -175,6 +175,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
         switch (wizard_source.page) {
         case Boxes.SourcePage.MAIN:
+            wizard_window.topbar.title = _("Create a Box");
             next_button.sensitive = wizard_source.selected != null;
             source = null;
             break;
@@ -188,6 +189,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             break;
 
         case Boxes.SourcePage.URL:
+            wizard_window.topbar.title = _("Connect to a Box");
             next_button.sensitive = false;
             if (wizard_source.uri.length == 0)
                 return;
@@ -210,8 +212,9 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     private void update_back_button_sensitivity () {
         var disable_back_button = page == WizardPage.SOURCE &&
-                                  (wizard_source.page == SourcePage.MAIN || wizard_source.page == SourcePage.URL);
-        back_button.sensitive = !disable_back_button;
+                                  (wizard_source.page == SourcePage.MAIN);
+        back_button.visible = !disable_back_button;
+        cancel_button.visible = !back_button.visible;
     }
 
     construct {
@@ -682,8 +685,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         back_button = wizard_window.topbar.back_btn;
         back_button.clicked.connect (() => {
             if (page == WizardPage.SOURCE) {
-                return_if_fail (wizard_source.page == SourcePage.RHEL_WEB_VIEW ||
-                                wizard_source.page == SourcePage.DOWNLOADS);
                 wizard_source.page = SourcePage.MAIN;
                 wizard_source.cleanup ();
             } else {

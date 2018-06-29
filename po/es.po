@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-16 09:15+0000\n"
-"PO-Revision-Date: 2018-05-22 10:06+0200\n"
+"POT-Creation-Date: 2018-06-14 09:36+0000\n"
+"PO-Revision-Date: 2018-06-21 09:28+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -54,8 +54,8 @@ msgstr ""
 "sus sistemas operativos favoritos, o necesita conectarse a una máquina "
 "remota (por ejemplo, en su oficina)."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cajas"
@@ -70,13 +70,14 @@ msgstr "Ver y usar máquinas virtuales"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "máquina virtual;vm;"
+#| msgid "virtual machine;vm;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "máquina virtual;vm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -311,12 +312,12 @@ msgstr "Seleccionar un dispositivo o una imagen ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
 #: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:318
+#: src/app-window.vala:322
 msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:320
+#: src/app-window.vala:324
 msgid "_Open"
 msgstr "_Abrir"
 
@@ -476,9 +477,6 @@ msgid "Enter URL"
 msgstr "Introducir URL"
 
 #: data/ui/wizard-source.ui:350
-#| msgid ""
-#| "Enter an address for the box you want to add. Addresses can be of "
-#| "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
 msgid ""
 "Enter an address for the box you want to add. Addresses can be of "
 "installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers."
@@ -580,76 +578,76 @@ msgstr "Propiedades"
 msgid "Screenshot from %s"
 msgstr "Captura de pantalla de %s"
 
-#: src/app.vala:110
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012 - 2014"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
 
-#: src/app.vala:173
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Abrir en pantalla completa"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprobar la capacidad de virtualización"
 
-#: src/app.vala:175
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Abrir caja con UUID"
 
-#: src/app.vala:176
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Buscar término"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URL que mostrar, agente o medio de instalación"
 
-#: src/app.vala:189
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 
-#: src/app.vala:214
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: src/app.vala:466
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caja «%s» instalada y lista para usarse"
 
-#: src/app.vala:554
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: src/app.vala:555
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: src/app.vala:626
+#: src/app.vala:628
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
-#: src/app-window.vala:317
+#: src/app-window.vala:321
 msgid "Select files to transfer"
 msgstr "Seleccione los archivos que quiere enviar"
 
@@ -676,11 +674,11 @@ msgstr "Salir del modo a pantalla completa"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: src/installed-media.vala:53
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Formato de archivo de disco no soportado."
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistema"
@@ -1045,7 +1043,7 @@ msgstr "Informar de errores a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s página de inicio: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "No existe el archivo %s"
@@ -1292,7 +1290,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:607
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
@@ -1435,6 +1433,9 @@ msgstr "Falló la descarga."
 #: src/wizard.vala:777
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
 
 #~ msgid "Available with a free Red Hat developer account"
 #~ msgstr "Disponible con una cuenta de desarrollador de Red Hat"

@@ -75,17 +75,38 @@
                     <property name="spacing">20</property>
                     <property name="orientation">horizontal</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="halign">start</property>
-                        <property name="use-underline">True</property>
-                        <property name="label" translatable="yes">Download an OS</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">2</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="use-underline">True</property>
+                            <property name="label" translatable="yes">Download an OS</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Operating system will be downloaded and installed in a virtual machine.</property>
+                            <property name="xalign">0</property>
+                            <property name="wrap">True</property>
+                            <property name="max-width-chars">50</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
                       </packing>
                     </child>
+
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
@@ -109,7 +130,7 @@
                   <class name="boxes-menu-row"/>
                 </style>
                 <child>
-                  <object class="GtkBox" id="enter_url_box">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -118,11 +139,31 @@
                     <property name="spacing">20</property>
                     <property name="orientation">horizontal</property>
                     <child>
-                      <object class="GtkLabel" id="enter_url_label">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="halign">start</property>
-                        <property name="use-underline">True</property>
-                        <property name="label" translatable="yes">_Enter URL</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">2</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="use-underline">True</property>
+                            <property name="label" translatable="yes">Connect to a remote box</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Connect using RDP, SPICE or VNC.</property>
+                            <property name="xalign">0</property>
+                            <property name="wrap">True</property>
+                            <property name="max-width-chars">50</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -152,7 +193,7 @@
                   <class name="boxes-menu-row"/>
                 </style>
                 <child>
-                  <object class="GtkBox" id="libvirt_sys_import_box">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="margin-top">10</property>
                     <property name="margin-bottom">10</property>
@@ -161,10 +202,30 @@
                     <property name="spacing">20</property>
                     <property name="orientation">horizontal</property>
                     <child>
-                      <object class="GtkLabel" id="libvirt_sys_import_label">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="halign">start</property>
-                        <property name="use-underline">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">2</property>
+                        <child>
+                          <object class="GtkLabel" id="libvirt_sys_import_label">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="use-underline">True</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Connect to oVirt or Libvirt brokers.</property>
+                            <property name="xalign">0</property>
+                            <property name="wrap">True</property>
+                            <property name="max-width-chars">50</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -203,11 +264,31 @@
                     <property name="spacing">20</property>
                     <property name="orientation">horizontal</property>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
-                        <property name="halign">start</property>
-                        <property name="use-underline">True</property>
-                        <property name="label" translatable="yes">_Select a file</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">2</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="use-underline">True</property>
+                            <property name="label" translatable="yes">Select a file</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Select a bootable image file to install in a virtual machine.</property>
+                            <property name="xalign">0</property>
+                            <property name="wrap">True</property>
+                            <property name="max-width-chars">50</property>
+                            <style>
+                              <class name="dim-label"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -284,58 +365,12 @@
         <property name="margin-end">10</property>
         <property name="margin-top">30</property>
         <property name="margin-bottom">15</property>
-        <style>
-          <class name="boxes-menu"/>
-        </style>
-        <child>
-          <object class="GtkButton" id="url_back_button">
-          <property name="visible">True</property>
-            <signal name="clicked" handler="on_url_back_button_clicked"/>
-            <style>
-              <class name="boxes-menu-row"/>
-            </style>
-            <child>
-              <object class="GtkBox" id="url_back_box">
-                <property name="visible">True</property>
-                <property name="margin-top">10</property>
-                <property name="margin-bottom">10</property>
-                <property name="margin-start">20</property>
-                <property name="margin-end">20</property>
-                <property name="spacing">20</property>
-                <property name="orientation">horizontal</property>
-                <child>
-                  <object class="GtkLabel" id="enter_url_back_label">
-                    <property name="visible">True</property>
-                    <property name="label" translatable="yes">◀</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="enter_url_label2">
-                    <property name="visible">True</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">Enter URL</property>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                  </packing>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
 
         <child>
           <object class="GtkBox" id="url_entry_vbox">
             <property name="visible">True</property>
             <property name="orientation">vertical</property>
-            <style>
-              <class name="boxes-menu-row"/>
-            </style>
+            <property name="spacing">20</property>
 
             <child>
               <object class="GtkLabel" id="url_description_label">
@@ -347,28 +382,7 @@
                 <property name="max-width-chars">64</property>
                 <property name="halign">start</property>
                 <property name="xalign">0.0</property>
-                <property name="label" translatable="yes">Enter an address for the box you want to add. Addresses can be of installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers.</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkLabel" id="url_examples_label">
-                <property name="visible">True</property>
-                <property name="margin-start">24</property>
-                <property name="margin-end">24</property>
-                <property name="margin-top">12</property>
-                <property name="margin-bottom">18</property>
-                <property name="use-markup">True</property>
-                <property name="wrap">True</property>
-                <property name="halign">start</property>
-                <property name="label" translatable="yes">Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/path</property>
-                <style>
-                  <class name="dim-label"/>
-                </style>
+                <property name="label" translatable="yes">Enter an address to connect to. Addresses can begin with spice://, rdp:// or vnc://.</property>
               </object>
               <packing>
                 <property name="expand">True</property>

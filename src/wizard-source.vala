@@ -490,12 +490,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         activated ();
     }
 
-    [GtkCallback]
-    private void on_url_back_button_clicked () {
-        selected = null;
-        page = SourcePage.MAIN;
-    }
-
     private async void add_media_entries () {
         var medias = yield media_manager.list_installer_medias ();
 
