@@ -38,6 +38,11 @@ private class Boxes.WizardToolbar: Gtk.Stack {
 
     private unowned WizardWindow wizard_window;
 
+    public string title {
+        get { return main.title; }
+        set { main.title = value; }
+    }
+
     public void setup_ui (WizardWindow wizard_window) {
         this.wizard_window = wizard_window;
 
@@ -64,17 +69,7 @@ private class Boxes.WizardToolbar: Gtk.Stack {
     }
 
     [GtkCallback]
-    private void on_customization_back_clicked () requires (page == WizardWindowPage.CUSTOMIZATION) {
-        wizard_window.page = WizardWindowPage.MAIN;
-    }
-
-    [GtkCallback]
-    private void on_file_chooser_cancel_clicked () requires (page == WizardWindowPage.FILE_CHOOSER) {
-        wizard_window.page = WizardWindowPage.MAIN;
-    }
-
-    [GtkCallback]
-    private void on_downloads_search_back_clicked () requires (page == WizardWindowPage.DOWNLOADS) {
+    private void on_back_button_clicked () {
         downloads_search.set_text ("");
 
         wizard_window.page = WizardWindowPage.MAIN;

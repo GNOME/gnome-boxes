@@ -177,8 +177,7 @@ else
     gtk_frdp = subproject(
       'gtk-frdp',
       default_options: [
-        'pkgdatadir=' + pkgdatadir,
-        'pkglibdir=' + pkglibdir
+        'package_subdir=' + meson.project_name()
       ]
     )
 
@@ -188,8 +187,7 @@ else
   libovf = subproject(
     'libovf-glib',
     default_options: [
-      'pkgdatadir=' + pkgdatadir,
-      'pkglibdir=' + pkglibdir
+      'package_subdir=' + meson.project_name()
     ]
   )
 
