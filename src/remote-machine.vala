@@ -9,6 +9,7 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         if (source.source_type != "spice" &&
             source.source_type != "vnc" &&
             source.source_type != "ssh" &&
+            source.source_type != "docker" &&
             source.source_type != "rdp")
             throw new Boxes.Error.INVALID ("source is not remote machine: %s", source.uri);
 
@@ -43,6 +44,9 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
 
         case "ssh":
             return new SshDisplay.with_uri (config, source.uri);
+
+        case "docker":
+            return new DockerDisplay.with_uri (config, source.uri);
 
         default:
             throw new Boxes.Error.INVALID ("unsupported display of type " + type);

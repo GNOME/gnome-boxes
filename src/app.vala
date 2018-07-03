@@ -378,6 +378,7 @@ private class Boxes.App: Gtk.Application {
         case "vnc":
         case "spice":
         case "ssh":
+        case "docker":
         case "rdp":
             try {
                 var machine = new RemoteMachine (source);
