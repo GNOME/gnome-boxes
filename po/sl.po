@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-04-09 14:51+0000\n"
-"PO-Revision-Date: 2018-04-09 20:06+0200\n"
+"POT-Creation-Date: 2018-05-26 13:43+0000\n"
+"PO-Revision-Date: 2018-05-30 18:31+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -76,8 +76,9 @@ msgstr "virtualni sistem;navidezni sistem;vm;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+#| msgid "gnome-boxes"
+msgid "org.gnome.Boxes"
+msgstr "org.gnome.Boxes"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -297,7 +298,7 @@ msgstr "O programu"
 msgid "Quit"
 msgstr "Končaj"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
 msgid "Troubleshooting Log"
 msgstr "Dnevniško sporočilo"
 
@@ -523,7 +524,7 @@ msgstr "Odpri v novem oknu"
 #. Send files
 #: src/actions-popover.vala:49
 msgid "Send File…"
-msgstr "Pošlji datoteko ..."
+msgstr "Pošlji datoteko …"
 
 #. Take Screenshot
 #: src/actions-popover.vala:54
@@ -548,7 +549,7 @@ msgstr "Vsili izklop"
 msgid "Clone"
 msgstr "Kloniraj"
 
-#: src/actions-popover.vala:84 src/machine.vala:622
+#: src/actions-popover.vala:84 src/machine.vala:613
 msgid "Restart"
 msgstr "Ponovno zaženi"
 
@@ -563,59 +564,61 @@ msgstr "Lastnosti"
 msgid "Screenshot from %s"
 msgstr "Zaslonska slika %s"
 
-#: src/app.vala:110
+#: src/app.vala:108
 msgid "translator-credits"
-msgstr "Martin Srebotnjak"
+msgstr ""
+"Matej Urbančič <mateju@svn@gnome.org>\n"
+"Martin Srebotnjak"
 
-#: src/app.vala:111
+#: src/app.vala:109
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Enostaven program GNOME 3 za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:169 src/main.vala:9
 msgid "Display version number"
 msgstr "Pokaži številko različice"
 
-#: src/app.vala:173
+#: src/app.vala:171
 msgid "Open in full screen"
 msgstr "Odpri v celozaslonskem načinu"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:172 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Preveri zmožnosti virtualizacije"
 
-#: src/app.vala:175
+#: src/app.vala:173
 msgid "Open box with UUID"
 msgstr "Odpri škatlo z UUID"
 
-#: src/app.vala:176
+#: src/app.vala:174
 msgid "Search term"
 msgstr "Iskalni niz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#: src/app.vala:176
 msgid "URL to display, broker or installer media"
 msgstr "Naslov URI do sistemskega posrednika oziroma upravljalnika"
 
-#: src/app.vala:189
+#: src/app.vala:187
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:214
+#: src/app.vala:212
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: src/app.vala:465
+#: src/app.vala:463
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Škatla »%s« je nameščena in pripravljena za uporabo"
 
-#: src/app.vala:553
+#: src/app.vala:551
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Škatla »%s« je bila izbrisana"
 
-#: src/app.vala:554
+#: src/app.vala:552
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -624,14 +627,10 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: src/app.vala:581 src/libvirt-machine-properties.vala:551
+#: src/app.vala:579 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Razveljavi"
-
-#: src/app.vala:625
-msgid "Boxes is doing something"
-msgstr "Program je zaposlen z opravilom"
 
 #: src/app-window.vala:317
 msgid "Select files to transfer"
@@ -663,7 +662,7 @@ msgstr "Novo in nedavno"
 msgid "Unsupported disk image format."
 msgstr "Napodprt zapis odtisa diska."
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:110 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
@@ -778,7 +777,7 @@ msgstr "CPE"
 #. 100 MiB/s
 #: src/libvirt-machine-properties.vala:312
 msgid "I/O"
-msgstr "V/I:"
+msgstr "V/I"
 
 #. Network
 #. 1 MiB/s
@@ -800,7 +799,7 @@ msgstr "_Dnevniško sporočilo razhroščevanja"
 
 #: src/libvirt-machine-properties.vala:390
 msgid "_Memory: "
-msgstr "_Pomnilnik:"
+msgstr "_Pomnilnik: "
 
 #: src/libvirt-machine-properties.vala:459
 #, c-format
@@ -819,7 +818,7 @@ msgstr ""
 
 #: src/libvirt-machine-properties.vala:485
 msgid "Maximum _Disk Size: "
-msgstr "Največja velikost _diska:"
+msgstr "Največja velikost _diska: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
@@ -838,7 +837,7 @@ msgstr[3] ""
 
 #: src/libvirt-machine-properties.vala:655
 msgid "_Run in background"
-msgstr "_Zaženi v ozadju:"
+msgstr "_Zaženi v ozadju"
 
 #: src/libvirt-machine-properties.vala:666
 #: src/libvirt-machine-properties.vala:669
@@ -873,31 +872,26 @@ msgstr "Ponovni zagon »%s« traja predolgo. Ali naj se izklop vsili?"
 msgid "_Shutdown"
 msgstr "_Izklopi"
 
-#: src/libvirt-machine.vala:689
-#, c-format
-msgid "Cloning '%s'.."
-msgstr "Poteka kloniranje »%s« ..."
-
-#: src/libvirt-machine.vala:790
+#: src/libvirt-machine.vala:785
 msgid "Installing…"
-msgstr "Nameščanje ..."
+msgstr "Poteka nameščanje …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:792 src/wizard-source.vala:124
+#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
 #: src/wizard-source.vala:154
 msgid "Live"
 msgstr "Živi sistem"
 
-#: src/libvirt-machine.vala:794
+#: src/libvirt-machine.vala:789
 msgid "Setting up clone…"
-msgstr "Poteka nastavljanje klona ..."
+msgstr "Poteka nastavljanje klona …"
 
-#: src/libvirt-machine.vala:796
+#: src/libvirt-machine.vala:791
 msgid "Importing…"
-msgstr "Uvažanje ..."
+msgstr "Poteka uvažanje …"
 
-#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "gostitelj: %s"
@@ -967,20 +961,16 @@ msgstr "Izklopljeno"
 msgid "Connecting to %s"
 msgstr "Povezovanje s/z %s"
 
-#: src/machine.vala:224 src/machine.vala:649
+#: src/machine.vala:224 src/machine.vala:640
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Povezava z »%s« je spodletela"
 
-#: src/machine.vala:277
-msgid "Machine is under construction"
-msgstr "Škatla je v izgradnji"
-
-#: src/machine.vala:431
+#: src/machine.vala:422
 msgid "Saving…"
-msgstr "Shranjevanje ..."
+msgstr "Poteka shranjevanje …"
 
-#: src/machine.vala:621
+#: src/machine.vala:612
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -989,13 +979,13 @@ msgstr ""
 "»%s« ni mogoče obnoviti iz diska.\n"
 "Ali naj se izvede brez shranjenega stanja?"
 
-#: src/machine.vala:632
+#: src/machine.vala:623
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Zaganjanje »%s« je spodletelo"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:736
+#: src/machine.vala:727
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "»%s« zahteva overitev"
@@ -1036,7 +1026,7 @@ msgstr "O hroščih poročajte <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domača stran %s: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "Datoteka %s ne obstaja"
@@ -1122,7 +1112,7 @@ msgstr "(S klikom se predmeti izberejo.)"
 #: src/snapshot-list-row.vala:137
 #, c-format
 msgid "Reverting to %s…"
-msgstr "Poteka povrnitev na %s ..."
+msgstr "Poteka povrnitev na %s …"
 
 #: src/snapshot-list-row.vala:155
 msgid "Failed to apply snapshot"
@@ -1141,7 +1131,7 @@ msgstr ""
 
 #: src/snapshots-property.vala:121
 msgid "Creating new snapshot…"
-msgstr "Ustvarjanje novega arhiva ..."
+msgstr "Poteka ustvarjanje novega arhiva …"
 
 #: src/snapshots-property.vala:129
 #, c-format
@@ -1214,7 +1204,7 @@ msgstr ""
 
 #: src/unattended-installer.vala:469
 msgid "Downloading device drivers…"
-msgstr "Prejemanje gonilnikov naprave"
+msgstr "Poteka prejemanje gonilnikov naprave …"
 
 #: src/unattended-setup-box.vala:52
 msgid "no password"
@@ -1287,7 +1277,7 @@ msgstr "Ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:606
 msgid "Incapable host system"
 msgstr "Gostiteljski sistem brez podpore"
 
@@ -1363,7 +1353,7 @@ msgstr "Neznan nosilec nemstilnika"
 #. Translators: Analyzing installer media
 #: src/wizard.vala:380 src/wizard.vala:453
 msgid "Analyzing…"
-msgstr "Preučevanje ..."
+msgstr "Poteka preučevanje ..."
 
 #: src/wizard.vala:394
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
@@ -1416,19 +1406,36 @@ msgstr "Največ %s"
 
 #: src/wizard.vala:642
 msgid "Downloading media…"
-msgstr "Prejemanje prestavne vsebine"
+msgstr "Poteka prejemanje prestavne vsebine ..."
 
-#: src/wizard.vala:645
-msgid "Downloading media"
-msgstr "Poteka prejemanje prestavne vsebine"
-
-#: src/wizard.vala:655
+#: src/wizard.vala:652
 msgid "Download failed."
 msgstr "Prejemanje je spodletelo."
 
-#: src/wizard.vala:771
+#: src/wizard.vala:766
 msgid "C_ustomize…"
-msgstr "Prila_godi ..."
+msgstr "Prila_godi …"
+
+#~ msgid "Show more…"
+#~ msgstr "Pokaži več ..."
+
+#~ msgid "No operating systems found"
+#~ msgstr "Ni najdenega nobenega operacijskega sistema"
+
+#~ msgid "Try a different search"
+#~ msgstr "Poskusite drugačen iskalni niz"
+
+#~ msgid "Boxes is doing something"
+#~ msgstr "Program je zaposlen z opravilom"
+
+#~ msgid "Cloning “%s”…"
+#~ msgstr "Poteka kloniranje »%s« ..."
+
+#~ msgid "Machine is under construction"
+#~ msgstr "Škatla je v izgradnji"
+
+#~ msgid "Downloading media"
+#~ msgstr "Poteka prejemanje prestavne vsebine"
 
 #~ msgid "Downloaded"
 #~ msgstr "Prejeto"
