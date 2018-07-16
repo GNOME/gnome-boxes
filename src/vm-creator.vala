@@ -96,7 +96,7 @@ private class Boxes.VMCreator {
             return;
         }
 
-        if (!FileUtils.test (install_media.device_file, FileTest.EXISTS)) {
+        if (!guest_installed_os (machine) && !FileUtils.test (install_media.device_file, FileTest.EXISTS)) {
             warning ("Source installer media '%s' no longer exists. Deleting machine '%s'..",
                      install_media.device_file,
                      machine.name);
