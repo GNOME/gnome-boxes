@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-06-28 23:10+0000\n"
-"PO-Revision-Date: 2018-07-01 23:32+0300\n"
+"POT-Creation-Date: 2018-07-16 11:09+0000\n"
+"PO-Revision-Date: 2018-07-17 21:10+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
 "Language-Team: dansk <>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.0.9\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -57,7 +57,7 @@ msgstr ""
 "conectați la o mașină la distanță (de exemplu, la birou)."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cutii"
@@ -124,11 +124,19 @@ msgstr "Fereastră maximizată"
 msgid "Window maximized state"
 msgstr "Starea ferestrei maximizate"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Prima rulare"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Dacă Cutii rulează sau nu pentru prima dată"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Dosare partajate"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vector variantă al numelor de dosare partajate și al mapării de cale"
 
@@ -312,12 +320,12 @@ msgid "Select a device or ISO file"
 msgstr "Alegeți un dispozitiv sau un fișier ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "_Anulează"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:324
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Deschide"
 
@@ -494,7 +502,8 @@ msgstr ""
 "Introduceți o adresă la care se va conecta. Adresele pot începe cu spice://, "
 "rdp:// sau vnc://."
 
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23 src/wizard.vala:178
+#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Creează o cutie"
 
@@ -525,6 +534,14 @@ msgid ""
 msgstr ""
 "Extensiile de virtualizare sunt indisponibile pe sistemul dumneavoastră.\n"
 "Verificați configurările dumneavoastră de BIOS pentru a le activa."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Fiecare cutie poate fi o mașină virtuală care rulează pe acest calculator, "
+"sau o conexiune la o mașină la distanță existentă"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -650,7 +667,7 @@ msgstr "An_ulează"
 msgid "Boxes is doing something"
 msgstr "Cutii lucrează la ceva"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Selectați fișierele de transferat"
 
@@ -1444,7 +1461,7 @@ msgstr "Se descarcă media"
 msgid "Download failed."
 msgstr "Descărcarea a eșuat."
 
-#: src/wizard.vala:778
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "Personali_zează…"
 
