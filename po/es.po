@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-06-28 23:10+0000\n"
-"PO-Revision-Date: 2018-07-06 09:36+0200\n"
+"POT-Creation-Date: 2018-07-20 12:17+0000\n"
+"PO-Revision-Date: 2018-07-23 12:15+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -55,7 +55,7 @@ msgstr ""
 "remota (por ejemplo, en su oficina)."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Cajas"
@@ -123,11 +123,19 @@ msgstr "Ventana maximizada"
 msgid "Window maximized state"
 msgstr "Estado maximizado de la ventana"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Primera ejecución"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Indica si Cajas se está ejecutando por primera vez"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Carpetas compartidas"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vector de nombres carpetas compartidas y mapeo de rutas"
 
@@ -311,12 +319,12 @@ msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "_Cancelar"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:324
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Abrir"
 
@@ -462,12 +470,10 @@ msgid "Connect using RDP, SPICE or VNC."
 msgstr "Conectar usando RDP, SPICE o VNC."
 
 #: data/ui/wizard-source.ui:220
-#| msgid "Connection to oVirt broker failed"
 msgid "Connect to oVirt or Libvirt brokers."
 msgstr "Conectar a brokers oVirt o Libvirt"
 
 #: data/ui/wizard-source.ui:276
-#| msgid "_Select a file"
 msgid "Select a file"
 msgstr "Seleccionar un archivo"
 
@@ -496,7 +502,7 @@ msgstr ""
 "por spice://, rdp:// o vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: src/wizard.vala:178
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Crear una caja"
 
@@ -527,6 +533,14 @@ msgid ""
 msgstr ""
 "La extensiones de virtualización no están disponibles en su sistema.\n"
 "Compruebe la configuración de su BIOS para activarlas."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Cada caja puede ser una máquina virtual que se ejecuta en este equipo o una "
+"conexión a una máquina remota existente"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -650,7 +664,7 @@ msgstr "_Deshacer"
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Seleccione los archivos que quiere enviar"
 
@@ -1342,7 +1356,6 @@ msgid "Box creation failed"
 msgstr "Falló la creación de la caja"
 
 #: src/wizard.vala:192
-#| msgid "Connecting to %s"
 msgid "Connect to a Box"
 msgstr "Conectar a una caja"
 
@@ -1438,7 +1451,7 @@ msgstr "Descargando medios"
 msgid "Download failed."
 msgstr "Falló la descarga."
 
-#: src/wizard.vala:778
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
 
