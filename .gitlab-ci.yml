@@ -49,6 +49,9 @@ review:
         name: review/$CI_COMMIT_REF_NAME
         url: https://gitlab.gnome.org/$CI_PROJECT_PATH/-/jobs/$CI_JOB_ID/artifacts/raw/${BUNDLE}
         on_stop: stop_review
+    except:
+        - master@GNOME/gnome-boxes
+        - tags
 
 stop_review:
     stage: review
@@ -58,7 +61,9 @@ stop_review:
     environment:
         name: review/$CI_COMMIT_REF_NAME
         action: stop
-
+    except:
+        - master@GNOME/gnome-boxes
+        - tags
 
 fedora:rawhide:
     image: fedora:rawhide
