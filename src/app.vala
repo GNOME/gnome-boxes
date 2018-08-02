@@ -110,7 +110,7 @@ private class Boxes.App: Gtk.Application {
                                    "authors", authors,
                                    "translator-credits", _("translator-credits"),
                                    "comments", _("A simple GNOME 3 application to access remote or virtual systems"),
-                                   "copyright", "Copyright 2011 Red Hat, Inc.",
+                                   "copyright", "\xc2\xa9 2011-2018 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "program-name", _("Boxes") + Config.NAME_SUFFIX,
                                    "logo-icon-name", Config.APPLICATION_ID,
