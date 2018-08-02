@@ -4,7 +4,11 @@
     "runtime-version" : "3.28",
     "sdk" : "org.gnome.Sdk",
     "command" : "gnome-boxes",
-    "tags" : ["devel", "development", "nightly"],
+    "tags" : [
+        "devel",
+        "development",
+        "nightly"
+    ],
     "desktop-file-name-prefix" : "(Development) ",
     "finish-args" : [
         "--share=ipc",
@@ -32,7 +36,7 @@
         {
             "name" : "meson",
             "buildsystem" : "simple",
-             "build-commands" : [
+            "build-commands" : [
                 "python3 setup.py install --prefix=/app"
             ],
             "sources" : [
@@ -46,7 +50,9 @@
         {
             "name" : "mtools",
             "buildsystem" : "autotools",
-            "config-opts" : ["--disable-static"],
+            "config-opts" : [
+                "--disable-static"
+            ],
             "rm-configure" : true,
             "sources" : [
                 {
@@ -109,16 +115,16 @@
         },
         {
             "name" : "yajl",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
+            "buildsystem" : "cmake-ninja",
+            "builddir" : true,
+            "config-opts" : [
                 "-DCMAKE_BUILD_TYPE=Release"
             ],
             "sources" : [
                 {
                     "type" : "archive",
                     "url" : "https://github.com/lloyd/yajl/archive/2.1.0.tar.gz",
-                    "sha256": "3fb73364a5a30efe615046d07e6db9d09fd2b41c763c5f7d3bfb121cd5c5ac5a"
+                    "sha256" : "3fb73364a5a30efe615046d07e6db9d09fd2b41c763c5f7d3bfb121cd5c5ac5a"
                 }
             ]
         },
@@ -158,8 +164,10 @@
         },
         {
             "name" : "celt051",
-             "config-opts": ["--disable-static"],
-            "rm-configure": true,
+            "config-opts" : [
+                "--disable-static"
+            ],
+            "rm-configure" : true,
             "sources" : [
                 {
                     "type" : "archive",
@@ -167,9 +175,9 @@
                     "sha256" : "fc2e5b68382eb436a38c3104684a6c494df9bde133c139fbba3ddb5d7eaa6a2e"
                 },
                 {
-                    "type": "script",
-                    "dest-filename": "autogen.sh",
-                    "commands": [
+                    "type" : "script",
+                    "dest-filename" : "autogen.sh",
+                    "commands" : [
                         "AUTOMAKE=\"automake --foreign\" autoreconf -vfi"
                     ]
                 }
@@ -256,7 +264,7 @@
                 {
                     "type" : "archive",
                     "url" : "https://download.gnome.org/sources/tracker/2.0/tracker-2.0.3.tar.xz",
-                    "sha256": "5a2fb274c128ec67a920944937b5147ceaf5db16fef6691ea22c4cb841e20580"
+                    "sha256" : "5a2fb274c128ec67a920944937b5147ceaf5db16fef6691ea22c4cb841e20580"
                 }
             ]
         },
@@ -277,7 +285,7 @@
                 {
                     "type" : "archive",
                     "url" : "https://www.spice-space.org/download/libcacard/libcacard-2.5.3.tar.xz",
-                    "sha256": "243ff03c563a95faed497db7f524fcb34ccd6f388d1175ecf31c371a3188963b"
+                    "sha256" : "243ff03c563a95faed497db7f524fcb34ccd6f388d1175ecf31c371a3188963b"
                 }
             ]
         },
@@ -299,9 +307,9 @@
         },
         {
             "name" : "freerdp",
-            "buildsystem": "cmake-ninja",
-            "builddir": true,
-            "config-opts": [
+            "buildsystem" : "cmake-ninja",
+            "builddir" : true,
+            "config-opts" : [
                 "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
             ],
             "sources" : [
@@ -318,7 +326,7 @@
                 {
                     "type" : "archive",
                     "url" : "https://releases.pagure.org/libosinfo/osinfo-db-tools-1.1.0.tar.gz",
-                    "sha256": "a141cd2fc07c30d84801b5dbf6b11f2c2e708b0e81216277d052ac0b57fe546b"
+                    "sha256" : "a141cd2fc07c30d84801b5dbf6b11f2c2e708b0e81216277d052ac0b57fe546b"
                 }
             ]
         },
@@ -328,7 +336,7 @@
                 {
                     "type" : "archive",
                     "url" : "https://releases.pagure.org/libosinfo/libosinfo-1.1.0.tar.gz",
-                    "sha256": "600f43a4a8dae5086a01a3d44bcac2092b5fa1695121289806d544fb287d3136"
+                    "sha256" : "600f43a4a8dae5086a01a3d44bcac2092b5fa1695121289806d544fb287d3136"
                 },
                 {
                     "type" : "file",
@@ -343,7 +351,7 @@
         {
             "name" : "osinfo-db",
             "buildsystem" : "simple",
-            "builddir": true,
+            "builddir" : true,
             "build-commands" : [
                 "make",
                 "osinfo-db-import --dir /app/share/osinfo/ osinfo-db-*.tar.xz"
