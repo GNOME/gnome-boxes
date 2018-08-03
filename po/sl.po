@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-07-11 19:22+0000\n"
-"PO-Revision-Date: 2018-07-11 21:51+0200\n"
+"POT-Creation-Date: 2018-07-28 10:04+0000\n"
+"PO-Revision-Date: 2018-07-30 21:59+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -56,7 +56,7 @@ msgstr ""
 "namizij."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Škatle"
@@ -123,11 +123,19 @@ msgstr "Razpeto okno"
 msgid "Window maximized state"
 msgstr "Stanje razpetega glavnega okna"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Prvi zagon"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Ali je program Gnome Škatle zagnan prvič\t"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Mape v souporabi"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vpis imen map v souporabi in poti"
 
@@ -311,12 +319,12 @@ msgid "Select a device or ISO file"
 msgstr "Izberite napravo ali datoteko ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:324
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Odpri"
 
@@ -470,7 +478,7 @@ msgstr "Izbor datoteke"
 
 #: data/ui/wizard-source.ui:283
 msgid "Select a bootable image file to install in a virtual machine."
-msgstr ""
+msgstr "Izbor zagonljive datoteke odtisa za namestitev na virtualno napravo."
 
 #: data/ui/wizard-source.ui:319
 msgid ""
@@ -486,8 +494,11 @@ msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
 "vnc://."
 msgstr ""
+"Vpis naslova za povezavo. Naslov se lahko začne z spice://, rdp:// ali "
+"vnc://."
 
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23 src/wizard.vala:178
+#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Ustvari škatlo"
 
@@ -505,7 +516,7 @@ msgstr "Prilagodi vire"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
-msgstr ""
+msgstr "Iskanje operacijskega sistema oziroma vpis povezave za prejem ..."
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -518,6 +529,14 @@ msgid ""
 msgstr ""
 "Razširitve predočenja na sistemu niso na voljo.\n"
 "Če je sistem mlajši od 2008, preverite nastavitve BIOS."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Vsaka škatla je lahko tudi virtualna naprava, ki je zagnana na računalniku "
+"oziroma povezava do obstoječe oddaljene naprave."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -644,7 +663,7 @@ msgstr "_Razveljavi"
 msgid "Boxes is doing something"
 msgstr "Program je zaposlen z opravilom"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Izbor datotek za prenos"
 
@@ -1443,7 +1462,7 @@ msgstr "Poteka prejemanje prestavne vsebine"
 msgid "Download failed."
 msgstr "Prejemanje je spodletelo."
 
-#: src/wizard.vala:778
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "Prila_godi …"
 
