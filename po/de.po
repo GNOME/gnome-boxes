@@ -13,16 +13,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-07-06 07:44+0000\n"
-"PO-Revision-Date: 2018-07-07 21:57+0200\n"
-"Last-Translator: Vinzenz Vietzke <vinz@vinzv.de>\n"
+"POT-Creation-Date: 2018-07-28 10:04+0000\n"
+"PO-Revision-Date: 2018-08-04 19:13+0200\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.0.9\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -60,7 +60,7 @@ msgstr ""
 "mit einer entfernen Maschine (zum Beispiel im Büro) verbinden wollen."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxen"
@@ -128,11 +128,19 @@ msgstr "Fenster maximiert"
 msgid "Window maximized state"
 msgstr "Maximierungszustand des Fensters"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Erste Ausführung"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Gibt an, ob es die erste Ausführung von Boxen ist"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Freigegebene Ordner"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variablenfeld aus den Namen freigegebener Ordner und deren Pfaden"
 
@@ -318,12 +326,12 @@ msgid "Select a device or ISO file"
 msgstr "Ein Gerät oder eine ISO-Datei wählen"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:324
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Öffnen"
 
@@ -505,7 +513,8 @@ msgstr ""
 "Geben Sie eine Adresse für die Verbindung ein. Adressen können mit spice://, "
 "rdp:// oder vnc:// beginnen."
 
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23 src/wizard.vala:178
+#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Eine Box erstellen"
 
@@ -537,6 +546,14 @@ msgid ""
 msgstr ""
 "Die Virtualisierungs-Erweiterungen sind auf Ihrem System nicht verfügbar. "
 "Prüfen Sie bitte Ihre BIOS-Einstellungen und aktivieren Sie diese."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Jede Box kann eine virtuelle Maschine auf diesem Rechner sein, oder eine "
+"Verbindung zu einem vorhandenen entfernten Rechner"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -667,7 +684,7 @@ msgstr "_Rückgängig"
 msgid "Boxes is doing something"
 msgstr "Boxen führt einen Vorgang aus"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Dateien zur Übertragung auswählen"
 
@@ -1469,6 +1486,6 @@ msgstr "Medien werden heruntergeladen"
 msgid "Download failed."
 msgstr "Das Herunterladen ist fehlgeschlagen."
 
-#: src/wizard.vala:778
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "_Anpassen …"
