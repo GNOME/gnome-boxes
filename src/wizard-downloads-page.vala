@@ -21,11 +21,23 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
     private Gtk.ListBox recommended_listbox;
 
     private GLib.ListStore recommended_model;
+
+    /* These are OSes listed in the recommended section of the
+     * "Download an OS" page.
+     *
+     * This list is powered by libosinfo, therefore the URLs are
+     * unique identifiers for each OS in osinfo-db.
+     *
+     * Downstreams are encouraged to tweak the list as they wish.
+     * Sorting is also available.
+     */
     private string[] recommended_downloads = {
-        "http://redhat.com/rhel/7.4",
-        "http://ubuntu.com/ubuntu/17.10",
+        "http://redhat.com/rhel/7.5",
+        "http://fedoraproject.org/fedora/28",
+        "http://fedoraproject.org/silverblue/28",
+        "http://ubuntu.com/ubuntu/18.04",
         "http://opensuse.org/opensuse/42.3",
-        "http://fedoraproject.org/fedora/27",
+        "http://debian.org/debian/9",
     };
 
     private WizardDownloadsPageView _page;
