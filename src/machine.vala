@@ -750,8 +750,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     private async void delete_auth_credentials () {
-        yield Secret.password_clear (secret_auth_schema, null,
-                                    "gnome-boxes-machine-uuid", config.uuid);
+        try {
+            yield Secret.password_clear (secret_auth_schema, null,
+                                         "gnome-boxes-machine-uuid", config.uuid);
+        } catch (GLib.Error error) {
+            debug ("Failed to delete credentials for machine %s: %s", config.uuid, error.message);
+        }
     }
 
     public override int compare (CollectionItem other) {
