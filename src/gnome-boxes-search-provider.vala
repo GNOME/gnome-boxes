@@ -76,16 +76,16 @@ public class Boxes.SearchProvider: Object {
         return results;
     }
 
-    public async string[] GetInitialResultSet (string[] terms) {
+    public async string[] GetInitialResultSet (string[] terms) throws GLib.Error {
         return yield search (terms);
     }
 
     public async string[] GetSubsearchResultSet (string[] previous_results,
-                                           string[] new_terms) {
+                                           string[] new_terms) throws GLib.Error {
         return yield search (new_terms);
     }
 
-    public async HashTable<string, Variant>[] get_metas (owned string[] ids) {
+    public async HashTable<string, Variant>[] get_metas (owned string[] ids) throws GLib.Error {
         var metas = new HashTable<string, Variant>[ids.length];
         app.hold ();
 
@@ -123,11 +123,11 @@ public class Boxes.SearchProvider: Object {
 
     /* We have to put this in a separate method because vala does not seem to honor "owned"
        in the dbus method handler. I.e. it doesn't copy the ids array. */
-    public async HashTable<string, Variant>[] GetResultMetas (string[] ids) {
+    public async HashTable<string, Variant>[] GetResultMetas (string[] ids) throws GLib.Error {
         return yield get_metas (ids);
     }
 
-    public void ActivateResult (string search_id, string[] terms, uint32 timestamp) {
+    public void ActivateResult (string search_id, string[] terms, uint32 timestamp) throws GLib.Error {
         app.hold ();
 
         debug ("ActivateResult (%s)", search_id);
@@ -152,7 +152,7 @@ public class Boxes.SearchProvider: Object {
         app.release ();
     }
 
-    public void LaunchSearch (string[] terms, uint32 timestamp) {
+    public void LaunchSearch (string[] terms, uint32 timestamp) throws GLib.Error {
         app.hold ();
 
         debug ("LaunchSearch (%s)", string.joinv (", ", terms));
