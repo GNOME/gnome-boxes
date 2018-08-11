@@ -319,7 +319,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
         files += null;
 
-        main_file_copy_async.begin (main_channel, files, FileCopyFlags.NONE, null, null);
+        main_channel.file_copy_async.begin (files, FileCopyFlags.NONE, null, null);
     }
 
     private void on_new_file_transfer (Spice.MainChannel main_channel, Object transfer_task) {
