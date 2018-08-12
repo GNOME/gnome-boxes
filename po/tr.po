@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-02-10 08:10+0000\n"
-"PO-Revision-Date: 2018-02-25 16:06+0300\n"
+"POT-Creation-Date: 2018-07-25 15:48+0000\n"
+"PO-Revision-Date: 2018-08-08 09:51+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -59,10 +59,10 @@ msgstr ""
 "Eğer çok güvenli ve kolay bir şekilde yeni işletim sistemlerini veya "
 "beğendiğiniz işletim sistemlerinin yeni (kararsız) sürümlerini denemek "
 "istiyorsanız ya da uzaktaki bir bilgisayara (örneğin çalışma yerinizdekine) "
-"bağlanmanız gerekiyorsa Kutular'ı kurmak isteyebilirsiniz."
+"bağlanmanız gerekiyorsa Kutularʼı kurmak isteyebilirsiniz."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:248 src/app-window.vala:250
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Kutular"
@@ -77,13 +77,14 @@ msgstr "Sanal makineleri görüntüle ve kullan"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "sanal makine;vm;sm;"
+#| msgid "virtual machine;vm;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "sanal makine;vm;sm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -129,11 +130,19 @@ msgstr "Pencere büyültüldüğünde"
 msgid "Window maximized state"
 msgstr "Pencerenin büyütülmüş durumu"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "İlk çalışma"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Kutularʼın ilk kez çalışıp çalışmadığı"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Paylaşılan klasörler"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Paylaşılan klasörlerin adlarının ve veri yollarının eşleşmelerinin değişke "
@@ -171,8 +180,9 @@ msgid "_New"
 msgstr "Ye_ni"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Geri"
 
@@ -252,7 +262,7 @@ msgstr "Klavye kısayolları"
 #: data/ui/kbd-shortcuts-window.ui:57 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
-msgstr "Pencereyi Kapat/Boxes'tan Çık"
+msgstr "Pencereyi Kapat/Kutularʼdan Çık"
 
 #: data/ui/kbd-shortcuts-window.ui:67
 msgctxt "shortcut window"
@@ -305,7 +315,7 @@ msgstr "Hakkında"
 msgid "Quit"
 msgstr "Çık"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "Sorun Giderme Günlüğü"
 
@@ -313,18 +323,17 @@ msgstr "Sorun Giderme Günlüğü"
 msgid "_Copy to Clipboard"
 msgstr "Panoya _Kopyala"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Aygıt ya da ISO dosyası seç"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:317
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "_İptal"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:319
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "A_ç"
 
@@ -425,33 +434,62 @@ msgstr "P_arola Ekle"
 msgid "Product Key"
 msgstr "Ürün Anahtarı"
 
-#: data/ui/wizard-downloadable-entry.ui:58 data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Bilinmeyen ortam"
+
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "Daha çok göster…"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "İşletim sistemi bulunamadı"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "Başka bir arama deneyin"
 
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr "İşletim sistemi kurulum ortamı yerleştir veya aşağıdan kaynak seç"
 
-#: data/ui/wizard-source.ui:83
-#| msgid "Download failed."
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "İS İndir"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "İşletim sistemi indirilecek ve sanal makineye kurulacak."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:126
-msgid "_Enter URL"
-msgstr "Adr_es (URL) Gir"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Uzak kutuya bağlan"
 
-#: data/ui/wizard-source.ui:211
-msgid "_Select a file"
-msgstr "Dosya _seç"
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "RDP, SPICE veya VNC kullanarak bağlan."
 
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:220
+#| msgid "Connection to oVirt broker failed"
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "oVirt veya Libvirt aracısına bağlan."
+
+#: data/ui/wizard-source.ui:276
+#| msgid "_Select a file"
+msgid "Select a file"
+msgstr "Dosya seç"
+
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr "Sanal makineye kurulacak önyüklenebilir disk kalıbı dosyası seç."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -461,39 +499,16 @@ msgstr ""
 "ürünlerini belirleme amacıyla kullanılmıştır ve hakları kendi sahiplerine "
 "aittir."
 
-#: data/ui/wizard-source.ui:310
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:321
-msgid "Enter URL"
-msgstr "Adres (URL) Gir"
-
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Eklemek istediğiniz kutunun adresini girin. Adresler kurulum disk kalıpları, "
-"SPICE ve VNC sunucuları ya da oVirt veya Libvirt aracıları olabilir."
-
-#: data/ui/wizard-source.ui:369
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Örnekler: http://indir.com/diskkalibi.iso, spice://biranamakine:5051, "
-"ovirt://anamakine/dosyayolu"
-
-#: data/ui/wizard-source.ui:442
-msgid "Red Hat Enterprise Linux"
-msgstr "Red Hat Enterprise Linux"
-
-#: data/ui/wizard-source.ui:455
-msgid "Available with a free Red Hat developer account"
-msgstr "Ücretsiz Red Hat geliştirici hesabıyla elde edilebilir"
+"Bağlanılacak adresi girin. Adresler spice://, rdp:// veya vnc:// ile "
+"başlayabilir."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Kutu Oluştur"
 
@@ -505,13 +520,13 @@ msgstr "Oluştu_r"
 msgid "C_ontinue"
 msgstr "D_evam"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "_Geri"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Kaynakları Özelleştir"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "İşletim sistemi ara veya indirme bağlantısı gir…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -524,6 +539,14 @@ msgid ""
 msgstr ""
 "Sanallaştırma eklentileri sisteminizde bulunmuyor.\n"
 "BIOS ayarlarını denetleyip etkinleştirebilirsiniz."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Her bir kutu bu bilgisayarda çalışan birer sanal makine veya var olan uzak "
+"makineye birer bağlantı olabilir"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -563,7 +586,7 @@ msgstr "Kapanmaya Zorla"
 msgid "Clone"
 msgstr "Klonla"
 
-#: src/actions-popover.vala:84 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
@@ -578,72 +601,76 @@ msgstr "Özellikler"
 msgid "Screenshot from %s"
 msgstr "%s ekran görüntüsü"
 
-#: src/app.vala:108
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr ""
 "Muhammet Kara <muhammetk@gmail.com>\n"
 "Osman Karagöz <osmank3@gmail.com>\n"
 "Emin Tufan Çetin <etcetin@gmail.com>"
 
-#: src/app.vala:109
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "Uzak ya da sanal sistemlere erişmek için basit bir GNOME 3 uygulaması"
 
-#: src/app.vala:168 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Sürüm numarasını göster"
 
-#: src/app.vala:170
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Tam ekran kipinde aç"
 
-#: src/app.vala:171 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Sanallaştırma olanaklarını denetle"
 
-#: src/app.vala:172
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Kutuyu UUID ile aç"
 
-#: src/app.vala:173
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Arama terimi"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:175
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "Ekran, aracı veya kurulum ortamına ait URL"
 
-#: src/app.vala:186
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— Uzak veya sanal makinelere erişmek için basit bir uygulama"
 
-#: src/app.vala:211
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Çok fazla komut satırı argümanı belirtildi.\n"
 
-#: src/app.vala:451
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "“%s” kutusu kuruldu ve kullanıma hazır"
 
-#: src/app.vala:539
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "“%s” kutusu silindi"
 
-#: src/app.vala:540
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u kutu silindi"
 
-#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Geri Al"
 
-#: src/app-window.vala:316
+#: src/app.vala:628
+msgid "Boxes is doing something"
+msgstr "Kutular bir şey yapıyor"
+
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Aktarılacak dosyaları seçin"
 
@@ -669,11 +696,11 @@ msgstr "Tam ekrandan çık"
 msgid "New and Recent"
 msgstr "Yeni ve Son"
 
-#: src/installed-media.vala:51
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Desteklenmeyen disk kalıbı biçimi."
 
-#: src/installed-media.vala:108 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
@@ -721,7 +748,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Tuş birleştirmelerini gönder"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "_Ad"
 
@@ -877,26 +904,31 @@ msgstr "“%s”in yeniden başlatılması çok zaman alıyor. Zorla kapatılsı
 msgid "_Shutdown"
 msgstr "_Kapat"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "“%s” klonlanıyor…"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "Kuruluyor…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:113
-#: src/wizard-source.vala:145
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "Canlı"
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "Klon kuruluyor…"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "İçe aktarılıyor…"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "ana makine: %s"
@@ -934,42 +966,46 @@ msgstr "Aktarmak için kutu yok"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "“%s” kutusu için içe aktarılacak uygun disk bulunamadı"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "Bağlandı"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "Bağlantı kesildi"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "Çalışıyor"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "Duraklatıldı"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "Kapatıldı"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s’e bağlanılıyor"
 
-#: src/machine.vala:224 src/machine.vala:640
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s”e bağlanılamadı"
 
-#: src/machine.vala:422
+#: src/machine.vala:282
+msgid "Machine is under construction"
+msgstr "Makine yapım aşamasında"
+
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "Kaydediliyor…"
 
-#: src/machine.vala:612
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -978,13 +1014,13 @@ msgstr ""
 "“%s” diksten geri yüklenemedi\n"
 "Kaydedilmemiş durumla denensin mi?"
 
-#: src/machine.vala:623
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s” başlatılamadı"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:727
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” yetkilendirme gerektiriyor"
@@ -1025,7 +1061,7 @@ msgstr "Hata bildir <%s>. \n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s ana sayfa: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "%s adlı dosya yok"
@@ -1042,13 +1078,13 @@ msgstr "%s’e bağlanılamadı"
 
 #: src/ovirt-broker.vala:59
 msgid "Connection to oVirt broker failed"
-msgstr "oVirt aracısına bağlatı başarısız"
+msgstr "oVirt aracısına bağlantı başarısız"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "İletişim Kuralı"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "URL"
 
@@ -1069,7 +1105,7 @@ msgstr "Anlık Görüntüler"
 msgid "Changes require restart of “%s”."
 msgstr "“%s” için değişiklikler yeniden başlatma gerektiriyor."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_URL"
 
@@ -1167,7 +1203,7 @@ msgid "Folder Shares"
 msgstr "Klasör Paylaşımları"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Geçersiz URL"
 
@@ -1269,7 +1305,7 @@ msgstr "hayır"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Yetersiz sunucu sistemi"
 
@@ -1283,16 +1319,16 @@ msgstr "“%s” canlı kutusu kendiliğinden silindi."
 msgid "Box import from file “%s” failed."
 msgstr "“%s” dosyasından kutu aktarılamadı."
 
-#: src/wizard-source.vala:149
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "32-bit x86 sistemi"
 
-#: src/wizard-source.vala:150
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "64-bit x86 sistemi"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:155
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr " %s tarafından"
@@ -1317,90 +1353,142 @@ msgstr "Gözden Geçirme"
 msgid "Box creation failed"
 msgstr "Sanal makine oluşturulamadı"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+#| msgid "Connecting to %s"
+msgid "Connect to a Box"
+msgstr "Kutuya Bağlan"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Boş konum"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "Desteklenmeyen dosya"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "Geçersiz dosya"
 
+#. accept any vnc:// uri
+#. accept any rdp:// uri
 #: src/wizard.vala:372
+msgid "Boxes was compiled without RDP support"
+msgstr "Kutular, RDP desteği olmadan derlenmiş"
+
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Desteklenmeyen iletişim kuralı “%s”"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Bilinmeyen kurulum ortamı"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Çözümleniyor…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Kurulum ortamı çözümlenemedi. Bozuk ya da eksik ortam olabilir mi?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Kutu kurulamadı"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Kutular, aşağıdaki özelliklere sahip yeni kutu oluşturacak:"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Tür"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Ana Makine"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Bağlantı Noktası"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "TLS Bağlantı Noktası"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Bu hesaptan elde edilebilir tüm sistemler için kutuları ekler:"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Bellek"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "En çok %s"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Ortam indiriliyor…"
 
-#: src/wizard.vala:652
+#: src/wizard.vala:654
+#| msgid "Downloading media…"
+msgid "Downloading media"
+msgstr "Ortam indiriliyor"
+
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "İndirme başarısız."
 
-#: src/wizard.vala:766
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "_Özelleştir…"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
+
+#~ msgid "_Enter URL"
+#~ msgstr "Adr_es (URL) Gir"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+#~ msgid "Enter URL"
+#~ msgstr "Adres (URL) Gir"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+#~ msgstr ""
+#~ "Eklemek istediğiniz kutunun adresini girin. Adresler kurulum disk "
+#~ "kalıpları, SPICE ve VNC sunucuları ya da oVirt veya Libvirt aracıları "
+#~ "olabilir."
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "Örnekler: http://indir.com/diskkalibi.iso, spice://biranamakine:5051, "
+#~ "ovirt://anamakine/dosyayolu"
+
+#~ msgid "Red Hat Enterprise Linux"
+#~ msgstr "Red Hat Enterprise Linux"
+
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "Ücretsiz Red Hat geliştirici hesabıyla elde edilebilir"
+
+#~ msgid "_Back"
+#~ msgstr "_Geri"
 
 #~ msgid "Downloaded"
 #~ msgstr "İndirilen"
