@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-06-25 12:30+0000\n"
-"PO-Revision-Date: 2018-06-28 21:28+0800\n"
-"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
+"POT-Creation-Date: 2018-07-28 10:04+0000\n"
+"PO-Revision-Date: 2018-08-12 16:58+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <chinese-l10n@googlegroups.com>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -51,7 +51,7 @@ msgstr ""
 "要安裝《機櫃》。"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "機櫃"
@@ -118,11 +118,19 @@ msgstr "視窗最大化"
 msgid "Window maximized state"
 msgstr "視窗最大化狀態"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "第一次執行"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "是否為第一次執行《機櫃》"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "共享資料夾"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "共享資料夾的名稱與路徑映射之變數陣列"
 
@@ -306,12 +314,12 @@ msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "取消(_C)"
 
 #: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:324
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "開啟(_O)"
 
@@ -479,7 +487,8 @@ msgid ""
 "vnc://."
 msgstr "輸入要連線的位址。連結可以以 spice://、rdp:// 或 vnc:// 起頭。"
 
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23 src/wizard.vala:178
+#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "建立機臺"
 
@@ -510,6 +519,12 @@ msgid ""
 msgstr ""
 "您的系統沒有虛擬化延伸功能。\n"
 "請檢查您的 BIOS 設定值以啟用它們。"
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr "每個機器可為執行在此電腦上的虛擬主機，或者是連線到存在遠端機器的連結"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -630,7 +645,7 @@ msgstr "取消動作(_U)"
 msgid "Boxes is doing something"
 msgstr "機櫃忙碌中"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "選取要傳輸的檔案"
 
@@ -1396,7 +1411,7 @@ msgstr "正在下載媒體"
 msgid "Download failed."
 msgstr "下載失敗。"
 
-#: src/wizard.vala:778
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "自訂(_U)…"
 
