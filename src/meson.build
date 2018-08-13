@@ -13,6 +13,7 @@ vala_args = [
 ]
 
 common_dependencies = [
+  config_h,
   config_dep,
   libarchive_dep,
   dependency ('gio-2.0', version: '>= 2.44.0'),
