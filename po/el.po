@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-06-06 16:17+0000\n"
-"PO-Revision-Date: 2018-06-19 00:59+0300\n"
+"POT-Creation-Date: 2018-07-28 10:04+0000\n"
+"PO-Revision-Date: 2018-08-19 16:32+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
@@ -60,7 +60,7 @@ msgstr ""
 "να συνδεθείτε απομακρυσμένα με ένα μηχάνημα (για παράδειγμα στο γραφείο σας)."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Πλαίσια"
@@ -127,11 +127,19 @@ msgstr "Μεγιστοποιημένο παράθυρο"
 msgid "Window maximized state"
 msgstr "Κατάσταση μεγιστοποίησης παραθύρου"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Πρώτη εκτέλεση"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Εάν η εφαρμογή Πλαίσια εκτελείται για πρώτη φορά"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Διαμοιρασμένοι φάκελοι"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Πολλαπλές συστοιχίες ονομάτων κοινόχρηστων φακέλων και χαρτογράφησης "
@@ -143,7 +151,7 @@ msgstr "Ό_νομα χρήστη"
 
 #: data/ui/auth-notification.ui:73
 msgid "_Password"
-msgstr "_Κωδικός πρόσβασης"
+msgstr "_Συνθηματικό"
 
 #: data/ui/auth-notification.ui:111 src/notificationbar.vala:48
 msgid "Sign In"
@@ -169,8 +177,9 @@ msgid "_New"
 msgstr "_Νέο"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Πίσω"
 
@@ -311,18 +320,17 @@ msgstr "Καταγραφή αντιμετώπισης προβλημάτων"
 msgid "_Copy to Clipboard"
 msgstr "Αντιγρα_φή στο πρόχειρο"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "Ακύ_ρωση"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:324
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
@@ -447,24 +455,43 @@ msgstr ""
 "Τοποθετήστε το μέσο εγκατάστασης του λειτουργικού συστήματος ή επιλέξτε μια "
 "πηγή από κάτω"
 
-#: data/ui/wizard-source.ui:82
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "Λήψη ενός Λειτουργικού Συστήματος"
 
-#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
-#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr ""
+"Το λειτουργικό σύστημα θα ληφθεί και θα εγκατασταθεί σε μια εικονική μηχανή."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:125
-msgid "_Enter URL"
-msgstr "_Εισαγωγή URL"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Σύνδεση στο απομακρυσμένο πλαίσιο"
 
-#: data/ui/wizard-source.ui:210
-msgid "_Select a file"
-msgstr "Ε_πιλέξτε ένα αρχείο"
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "Σύνδεση με την χρήση RDP, SPICE ή VNC."
 
-#: data/ui/wizard-source.ui:238
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "Σύνδεση με oVirt ή με Libvirt brokers."
+
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "Επιλογή αρχείου"
+
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr ""
+"Επιλέξτε ένα εκκινήσιμο αρχείο εικόνας για εγκατάσταση σε μια εικονική "
+"μηχανή."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -474,32 +501,16 @@ msgstr ""
 "χρησιμοποιούνται απλώς για την ταυτοποίηση προγραμμάτων που έχετε ήδη, και "
 "τα οποία ανήκουν στους αντίστοιχους ιδιοκτήτες τους."
 
-#: data/ui/wizard-source.ui:309
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:320
-msgid "Enter URL"
-msgstr "Εισάγετε τη διεύθυνση"
-
-#: data/ui/wizard-source.ui:350
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Εισάγετε μια διεύθυνση για το πλαίσιο που θέλετε να προσθέσετε. Οι "
-"διευθύνσεις μπορεί να είναι εικόνες εγκατάστασης, διακομιστές SPICE, RDP και "
-"VNC, ή μεσολαβητές oVirt ή Libvirt."
-
-#: data/ui/wizard-source.ui:368
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Παραδείγματα: http://download.com/image.iso, spice://somehost:5051, ovirt://"
-"host/path"
+"Εισαγάγετε μια διεύθυνση για σύνδεση. Οι διευθύνσεις μπορούν να ξεκινήσουν "
+"με  spice://, rdp:// ή vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Δημιουργία πλαισίου"
 
@@ -511,13 +522,13 @@ msgstr "Δ_ημιουργία"
 msgid "C_ontinue"
 msgstr "Σ_υνέχεια"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "Πίσ_ω"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Προσαρμογή πόρων"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "Αναζήτηση για λειτουργικό σύστημα ή εισαγωγή συνδέσμου λήψης…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -530,6 +541,14 @@ msgid ""
 msgstr ""
 "Δεν είναι διαθέσιμες οι επεκτάσεις εικονικοποίησης για το σύστημά σας.\n"
 "Ελέγξτε τις ρυθμίσεις του BIOS ώστε να τις ενεργοποιήσετε."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Κάθε πλαίσιο μπορεί να είναι μια εικονική μηχανή που εκτελείται σε αυτόν τον "
+"υπολογιστή ή μια σύνδεση με ένα υπάρχον απομακρυσμένο μηχάνημα"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -663,7 +682,7 @@ msgstr "Α_ναίρεση"
 msgid "Boxes is doing something"
 msgstr "Η εφαρμογή πλαίσια εκτελεί κάτι"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Επιλογή αρχείων προς μεταφορά"
 
@@ -691,11 +710,11 @@ msgstr "Έξοδος από πλήρη οθόνη"
 msgid "New and Recent"
 msgstr "Νέα και πρόσφατα"
 
-#: src/installed-media.vala:53
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Μη υποστηριζόμενη μορφή στιγμιοτύπου."
 
-#: src/installed-media.vala:110 src/installer-media.vala:117
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Σύστημα"
@@ -1087,7 +1106,7 @@ msgstr "Απέτυχε η σύνδεση με τον μεσολαβητή oVirt"
 msgid "Protocol"
 msgstr "Πρωτόκολλο"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:535
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "Διεύθυνση"
 
@@ -1209,7 +1228,7 @@ msgid "Folder Shares"
 msgstr "Κοινόχρηστοι φάκελοι"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Άκυρη διεύθυνση"
 
@@ -1362,104 +1381,136 @@ msgstr "Επισκόπηση"
 msgid "Box creation failed"
 msgstr "Απέτυχε η δημιουργία του πλαισίου"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Σύνδεση στο Πλαίσιο"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Κενή τοποθεσία"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "Μη υποστηριζόμενο αρχείο"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "Άκυρο αρχείο"
 
 #. accept any vnc:// uri
 #. accept any rdp:// uri
-#: src/wizard.vala:369
+#: src/wizard.vala:372
 msgid "Boxes was compiled without RDP support"
 msgstr "Η εφαρμογή πλαίσια έχει μεταγλωττιστεί χωρίς υποστήριξη RDP"
 
-#: src/wizard.vala:377
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Μη υποστηριζόμενο πρωτόκολλο «%s»"
 
-#: src/wizard.vala:383 src/wizard.vala:457
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Άγνωστα μέσα εγκατάστασης"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:385 src/wizard.vala:458
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Ανάλυση…"
 
-#: src/wizard.vala:399
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Αποτυχία ανάλυσης των μέσων εγκατάστασης. Κατεστραμμένα ή ατελή μέσα;"
 
 #. We did this, so ignore!
-#: src/wizard.vala:511
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Απέτυχε η ρύθμιση του πλαισίου"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr ""
 "Τα Πλαισία θα δημιουργήσουν μια νέα εικονική μηχανή με τις ακόλουθες "
 "ιδιότητες:"
 
-#: src/wizard.vala:530
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Τύπος"
 
-#: src/wizard.vala:533
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Κεντρικός υπολογιστής"
 
-#: src/wizard.vala:544 src/wizard.vala:556
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Θύρα"
 
-#: src/wizard.vala:546
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "Θύρα TLS"
 
-#: src/wizard.vala:561
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Θα προστεθούν πλαίσια για όλα τα συστήματα που διατίθενται από αυτόν το "
 "λογαριασμό:"
 
-#: src/wizard.vala:574
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Μνήμη"
 
-#: src/wizard.vala:583
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Δίσκος"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:585
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "%s μέγιστο"
 
-#: src/wizard.vala:648
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Λήψη μέσου…"
 
-#: src/wizard.vala:651
+#: src/wizard.vala:654
 msgid "Downloading media"
 msgstr "Λήψη μέσου"
 
-#: src/wizard.vala:661
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "Αποτυχία λήψης."
 
-#: src/wizard.vala:777
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "Π_ροσαρμογή…"
+
+#~ msgid "_Enter URL"
+#~ msgstr "_Εισαγωγή URL"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+#~ msgid "Enter URL"
+#~ msgstr "Εισάγετε τη διεύθυνση"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt "
+#~ "brokers."
+#~ msgstr ""
+#~ "Εισάγετε μια διεύθυνση για το πλαίσιο που θέλετε να προσθέσετε. Οι "
+#~ "διευθύνσεις μπορεί να είναι εικόνες εγκατάστασης, διακομιστές SPICE, RDP "
+#~ "και VNC, ή μεσολαβητές oVirt ή Libvirt."
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "Παραδείγματα: http://download.com/image.iso, spice://somehost:5051, "
+#~ "ovirt://host/path"
+
+#~ msgid "_Back"
+#~ msgstr "Πίσ_ω"
 
 #~ msgid "gnome-boxes"
 #~ msgstr "gnome-boxes"
