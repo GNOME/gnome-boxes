@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-02-09 21:05+0000\n"
-"PO-Revision-Date: 2018-02-24 15:25+0900\n"
+"POT-Creation-Date: 2018-07-25 15:48+0000\n"
+"PO-Revision-Date: 2018-08-21 21:45+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: 한국어 <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -63,8 +63,8 @@ msgstr ""
 "안전하고 쉬운 방법으로 사용해본다거나 원격 머신(예를 들어 사무실에서)으로 연"
 "결한다면 박스 설치가 필요합니다."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:248 src/app-window.vala:250
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "박스"
@@ -79,13 +79,13 @@ msgstr "가상 머신 보고 사용하기"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "virtual machine;가상 머신;vm;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "virtual machine;가상 머신;vm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -131,11 +131,19 @@ msgstr "창 최대화"
 msgid "Window maximized state"
 msgstr "창 최대화 상태"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "첫 실행"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "박스를 처음으로 실행하는 지 여부"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "공유 폴더"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "공유 폴더 이름과 경로 매핑 배열입니다"
 
@@ -171,8 +179,9 @@ msgid "_New"
 msgstr "새로 만들기(_N)"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "뒤로"
 
@@ -306,7 +315,7 @@ msgstr "정보"
 msgid "Quit"
 msgstr "끝내기"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "문제 해결 로그"
 
@@ -314,18 +323,17 @@ msgstr "문제 해결 로그"
 msgid "_Copy to Clipboard"
 msgstr "클립보드에 복사(_C)"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "장치 또는 ISO 파일을 선택하십시오"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:317
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "취소(_C)"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:319
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "열기(_O)"
 
@@ -426,32 +434,60 @@ msgstr "암호 추가(_A)"
 msgid "Product Key"
 msgstr "제품 키"
 
-#: data/ui/wizard-downloadable-entry.ui:58 data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "알 수 없는 미디어"
+
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "더 보기…"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "운영 체제 없음"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "다른 단어로 검색해보십시오"
 
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr "운영체제 설치 미디어를 넣거나 아래의 소스를 선택합니다"
 
-#: data/ui/wizard-source.ui:83
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "운영체제 다운로드"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "가상 머신에 운영체제를 다운로드하고 설치합니다."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:126
-msgid "_Enter URL"
-msgstr "URL 입력(_E)"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "원격 박스에 연결"
 
-#: data/ui/wizard-source.ui:211
-msgid "_Select a file"
-msgstr "파일 선택(_S)"
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "RDP, SPICE, VNC로 연결합니다."
 
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "oVirt 또는 Libvirt 브로커에 연결합니다."
+
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "파일을 선택 하십시오"
+
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr "가상 머신에 설치하려면 부팅 가능한 이미지 파일을 선택하십시오."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -460,38 +496,14 @@ msgstr ""
 "위에 보이는 일부 등록상표는 여러분이 이미 보유한 프로그램 제품의 식별 목적으"
 "로 드물게 사용하며, 각 소유자의 자산입니다."
 
-#: data/ui/wizard-source.ui:310
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:321
-msgid "Enter URL"
-msgstr "URL 입력"
-
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
-msgstr ""
-"추가할 박스의 주소를 입력하십시오. 설치 이미지, SPICE, VNC 서버 주소, oVirt "
-"또는 Libvirt 브로커가 될 수 있습니다."
-
-#: data/ui/wizard-source.ui:369
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"예: http://download.com/image.iso, spice://somehost:5051, ovirt://host/path"
-
-#: data/ui/wizard-source.ui:442
-msgid "Red Hat Enterprise Linux"
-msgstr "레드햇 엔터프라이즈 리눅스"
-
-#: data/ui/wizard-source.ui:455
-msgid "Available with a free Red Hat developer account"
-msgstr "무료 레드햇 개발자 계정에서 찾을 수 있습니다"
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr "spice://, rdp://, vnc:// 로 시작하는 연결 주소를 입력하십시오."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "박스 만들기"
 
@@ -503,13 +515,13 @@ msgstr "만들기(_R)"
 msgid "C_ontinue"
 msgstr "계속(_O)"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "뒤로(_B)"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "자원 개별 설정"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "운영체제를 검색하거나 다운로드 링크를 입력하십시오…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -522,6 +534,14 @@ msgid ""
 msgstr ""
 "시스템에서 가상화 확장을 사용할 수 없습니다.\n"
 "BIOS 설정에서 가상화 확장을 활성화했는지 확인하십시오."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"각 박스는 이 컴퓨터에서 실행하는 가상 머신이거나 연결할 원격 머신일 수 있습니"
+"다"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -561,7 +581,7 @@ msgstr "강제로 끄기"
 msgid "Clone"
 msgstr "복제"
 
-#: src/actions-popover.vala:84 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "다시 시작"
 
@@ -576,69 +596,73 @@ msgstr "속성"
 msgid "Screenshot from %s"
 msgstr "%s의 스크린샷"
 
-#: src/app.vala:108
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr "조성호 <darkcircle.0426@gmail.com>"
 
-#: src/app.vala:109
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "원격 또는 가상 시스템에 접근하기 위한 간단한 그놈 3 프로그램입니다"
 
-#: src/app.vala:168 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "버전 번호 표시"
 
-#: src/app.vala:170
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "최대 화면으로 열기"
 
-#: src/app.vala:171 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "가상화 사용 가능여부 확인"
 
-#: src/app.vala:172
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "UUID가 부여된 박스 열기"
 
-#: src/app.vala:173
+#: src/app.vala:178
 msgid "Search term"
 msgstr "단어 검색"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:175
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "표시, 중개, 설치할 매체의 URL"
 
-#: src/app.vala:186
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— 원격 머신 또는 가상 머신에 접근하는 간단한 프로그램"
 
-#: src/app.vala:211
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "너무 많은 명령줄 인자를 지정했습니다.\n"
 
-#: src/app.vala:451
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "“%s” 박스를 설치했으며 사용할 수 있습니다"
 
-#: src/app.vala:539
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "“%s” 박스를 삭제했습니다"
 
-#: src/app.vala:540
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "박스 %u개를 삭제했습니다"
 
-#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "되돌리기(_U)"
 
-#: src/app-window.vala:316
+#: src/app.vala:628
+msgid "Boxes is doing something"
+msgstr "박스에서 어떤 동작을 진행하는 중입니다"
+
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "보낼 파일을 선택하십시오"
 
@@ -664,11 +688,11 @@ msgstr "최대 화면에서 나가기"
 msgid "New and Recent"
 msgstr "최신"
 
-#: src/installed-media.vala:51
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "지원하지 않는 디스크 이미지 형식입니다."
 
-#: src/installed-media.vala:108 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "시스템"
@@ -716,7 +740,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "키 조합 보내기"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "이름(_N)"
 
@@ -870,26 +894,31 @@ msgstr "“%s” 다시 시작이 상당히 오래걸립니다. 강제로 끄시
 msgid "_Shutdown"
 msgstr "강제로 끄기(_S)"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "“%s” 복제 중…"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "설치 중…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:113
-#: src/wizard-source.vala:145
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "라이브"
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "복제 설치 중…"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "가져오는 중…"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "호스트: %s"
@@ -927,42 +956,46 @@ msgstr "가져올 박스가 없습니다"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "“%s” 박스를 가져올 적당한 디스크 찾기에 실패했습니다"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "연결함"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "연결 끊음"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "실행 중"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "잠시 멈춤"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "전원 끔"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s(으)로 연결중"
 
-#: src/machine.vala:224 src/machine.vala:640
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s” 연결에 실패했습니다"
 
-#: src/machine.vala:422
+#: src/machine.vala:282
+msgid "Machine is under construction"
+msgstr "머신을 만드는 중입니다"
+
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "저장 중…"
 
-#: src/machine.vala:612
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -971,13 +1004,13 @@ msgstr ""
 "“%s”을(를) 디스크에서 복원할 수 없습니다\n"
 "상태를 저장하지 않고 시도하시겠습니까?"
 
-#: src/machine.vala:623
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s” 시작에 실패했습니다"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:727
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” 박스는 인증이 필요합니다"
@@ -1018,7 +1051,7 @@ msgstr "<%s>에게 버그를 알려주십시오.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s의 홈페이지: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "%s 파일이 없습니다"
@@ -1037,11 +1070,11 @@ msgstr "%s(으)로 연결하지 않았습니다"
 msgid "Connection to oVirt broker failed"
 msgstr "oVirt의 연결이 끊어져 실패했습니다"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "프로토콜"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "URL"
 
@@ -1062,7 +1095,7 @@ msgstr "스냅샷"
 msgid "Changes require restart of “%s”."
 msgstr "바뀐 설정을 적용하려면 “%s” 박스를 다시 시작해야합니다."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "URL 주소(_U)"
 
@@ -1157,7 +1190,7 @@ msgid "Folder Shares"
 msgstr "폴더 공유"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "잘못된 URL"
 
@@ -1258,7 +1291,7 @@ msgstr "아니요"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "사용할 수 없는 호스트 시스템"
 
@@ -1272,16 +1305,16 @@ msgstr "“%s” 라이브 박스를 자동으로 삭제했습니다."
 msgid "Box import from file “%s” failed."
 msgstr "“%s” 파일에서 박스 가져오기에 실패했습니다."
 
-#: src/wizard-source.vala:149
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "32비트 x86 시스템"
 
-#: src/wizard-source.vala:150
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "64비트 x86 시스템"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:155
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr " %s에서"
@@ -1306,90 +1339,139 @@ msgstr "검토"
 msgid "Box creation failed"
 msgstr "박스 만들기에 실패했습니다"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "박스에 연결"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "빈 위치"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "지원하지 않는 파일"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "잘못된 파일"
 
+#. accept any vnc:// uri
+#. accept any rdp:// uri
 #: src/wizard.vala:372
+msgid "Boxes was compiled without RDP support"
+msgstr "RDP 지원을 뺀 채로 박스를 컴파일했습니다"
+
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "지원하지 않는 “%s” 프로토콜"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "알 수 없는 설치 미디어 입니다"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "분석 중…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "설치 미디어 분석에 실패했습니다. 깨졌거나 호환성 없는 미디어입니까?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "박스 설치에 실패했습니다"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "다음 속성에 따라 새 박스를 만듭니다:"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "유형"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "호스트"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "포트"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "TLS 포트"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr "이 계정에 존재하는 모든 시스템에 박스를 추가합니다:"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "메모리"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "디스크"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "최대 %s"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "미디어 다운로드 중…"
 
-#: src/wizard.vala:652
+#: src/wizard.vala:654
+msgid "Downloading media"
+msgstr "미디어 다운로드 중"
+
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "다운로드에 실패했습니다."
 
-#: src/wizard.vala:766
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "사용자 정의(_U)…"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
+
+#~ msgid "_Enter URL"
+#~ msgstr "URL 입력(_E)"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+#~ msgid "Enter URL"
+#~ msgstr "URL 입력"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+#~ msgstr ""
+#~ "추가할 박스의 주소를 입력하십시오. 설치 이미지, SPICE, VNC 서버 주소, "
+#~ "oVirt 또는 Libvirt 브로커가 될 수 있습니다."
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "예: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+#~ "path"
+
+#~ msgid "Red Hat Enterprise Linux"
+#~ msgstr "레드햇 엔터프라이즈 리눅스"
+
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "무료 레드햇 개발자 계정에서 찾을 수 있습니다"
+
+#~ msgid "_Back"
+#~ msgstr "뒤로(_B)"
 
 #~ msgid "Pause"
 #~ msgstr "일시정지"
