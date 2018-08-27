@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-23 14:00+0000\n"
-"PO-Revision-Date: 2018-07-19 08:34+0200\n"
+"POT-Creation-Date: 2018-07-25 15:48+0000\n"
+"PO-Revision-Date: 2018-08-08 16:12+0200\n"
 "Last-Translator: Milo Casagrande <milo@milo.name>\n"
 "Language-Team: Italiano <gnome-it-list@gnome.org>\n"
 "Language: it\n"
@@ -56,8 +56,8 @@ msgstr ""
 "ufficio)."
 
 # singolare? Plurale??
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
@@ -72,14 +72,13 @@ msgstr "Visualizza e usa macchine virtuali"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "macchina virtuale;vm;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "macchina virtuale;vm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-#| msgid "gnome-boxes"
-msgid "org.gnome.Boxes"
-msgstr "org.gnome.Boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -126,11 +125,19 @@ msgstr "Finestra massimizzata"
 msgid "Window maximized state"
 msgstr "Stato massimizzato della finestra"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Prima esecuzione"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Indica se l'applicazione è eseguita per la prima volta"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Cartelle condivise"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Elenco di nomi di cartelle e percorsi"
 
@@ -166,8 +173,9 @@ msgid "_New"
 msgstr "_Nuova"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Indietro"
 
@@ -300,7 +308,7 @@ msgstr "Informazioni"
 msgid "Quit"
 msgstr "Esci"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "Registro di soluzione problemi"
 
@@ -308,18 +316,17 @@ msgstr "Registro di soluzione problemi"
 msgid "_Copy to Clipboard"
 msgstr "Copi_a negli appunti"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Selezionare un dispositivo o un file ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:318
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "A_nnulla"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:320
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Apri"
 
@@ -425,31 +432,61 @@ msgstr "Chiave prodotto"
 msgid "Unknown media"
 msgstr "Supporto sconosciuto"
 
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "Maggiori dettagli…"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "Nessun sistema operativo trovato"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "Provare con una ricerca diversa"
+
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Inserire il supporto di installazione del sistema operativo oppure "
 "selezionare una sorgente qui sotto"
 
-#: data/ui/wizard-source.ui:83
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "Scarica un SO"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr ""
+"Il sistema operativo verrà scaricato e installato su una macchina virtuale."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:126
-msgid "_Enter URL"
-msgstr "Ins_erire URL"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Collegati a una box remota"
 
-#: data/ui/wizard-source.ui:211
-msgid "_Select a file"
-msgstr "_Selezionare un file"
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "Connessione tramite RDP, SPICE o VNC"
+
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "Connessione a broker oVirt o Libvirt"
+
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "Seleziona un file"
+
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr ""
+"Seleziona un file immagine avviabile da installare su una macchina virtuale"
 
 # ho tagliato la parte relativa al "to obtain"
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -458,31 +495,16 @@ msgstr ""
 "Ogni trademark mostrato sopra è usato solo per identificare un prodotto "
 "software, la proprietà è dei rispettivi proprietari."
 
-#: data/ui/wizard-source.ui:310
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:321
-msgid "Enter URL"
-msgstr "Inserire URL"
-
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Inserire un indirizzo per la box da aggiungere. Gli indirizzi possono essere "
-"immagini d'installazione, server SPICE o VNC oppure broker oVirt o Libvirt."
-
-#: data/ui/wizard-source.ui:369
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Esempi: http://example.org/immagine.iso, spice://nomehost:5051, ovirt://host/"
-"percorso"
+"Inserire un indirizzo a cui connettersi. Gli indirizzi possono iniziare con "
+"spice://, rdp:// oppure vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Crea una box"
 
@@ -494,13 +516,13 @@ msgstr "C_rea"
 msgid "C_ontinue"
 msgstr "C_ontinua"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "_Indietro"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Personalizza risorse"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "Cerca un SO o inserire un collegamento da scaricare…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -513,6 +535,14 @@ msgid ""
 msgstr ""
 "Le estensioni di virtualizzazione non sono disponibili su questo sistema.\n"
 "Verificare le impostazioni BIOS per abilitarle."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Ogni box può essere una macchina virtuale che viene eseguita su questo "
+"computer o una connessione a una macchina remota"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -552,7 +582,7 @@ msgstr "Forza arresto"
 msgid "Clone"
 msgstr "Clona"
 
-#: src/actions-popover.vala:84 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "Riavvia"
 
@@ -567,73 +597,77 @@ msgstr "Proprietà"
 msgid "Screenshot from %s"
 msgstr "Schermata da %s"
 
-#: src/app.vala:108
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr ""
 "Milo Casagrande, <milo@milo.name>\n"
 "Luca Ferretti, <lferrett@gnome.org>"
 
-#: src/app.vala:109
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Una semplice applicazione GNOME 3 per accedere a sistemi remoti o virtuali"
 
-#: src/app.vala:169 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostra il numero di versione"
 
-#: src/app.vala:171
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Apri a schermo intero"
 
-#: src/app.vala:172 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Controlla capacità virtualizzazione"
 
-#: src/app.vala:173
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Apri box con UUID"
 
-#: src/app.vala:174
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Termine di ricerca"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:176
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URL da mostrare, broker o supporto d'installazione"
 
-#: src/app.vala:187
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— Un'applicazione per accedere a macchine virtuali o remote"
 
-#: src/app.vala:212
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Specificati troppi argomenti da riga di comando.\n"
 
-#: src/app.vala:463
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box «%s» installata e pronta per l'uso"
 
-#: src/app.vala:551
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "La box «%s» è stata eliminata"
 
-#: src/app.vala:552
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box è stata eliminata"
 msgstr[1] "%u box sono state eliminate"
 
-#: src/app.vala:579 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "A_nnulla"
 
-#: src/app-window.vala:317
+#: src/app.vala:628
+msgid "Boxes is doing something"
+msgstr "Boxes sta facendo qualche cosa"
+
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Seleziona file da inviare"
 
@@ -661,11 +695,11 @@ msgstr "Esci da schermo intero"
 msgid "New and Recent"
 msgstr "Nuove e recenti"
 
-#: src/installed-media.vala:53
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Formato immagine disco non supportato."
 
-#: src/installed-media.vala:110 src/installer-media.vala:117
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistema"
@@ -713,7 +747,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Invia combinazioni di tasti"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "_Nome"
 
@@ -874,26 +908,31 @@ msgstr "Il riavvio di «%s» sta impiegando troppo tempo. Forzarne l'arresto?"
 msgid "_Shutdown"
 msgstr "_Arresta"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "Clonazione di «%s»…"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "Installazione…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:124
-#: src/wizard-source.vala:154
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "Impostazione clone…"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "Importazione…"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
@@ -933,42 +972,46 @@ msgstr "Nessuna box da importare"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Ricerca di un disco adatto da importare per la box «%s» non riuscita"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "Connessa"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "Disconnessa"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "In esecuzione"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "In pausa"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "Spenta"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "Connessione a %s"
 
-#: src/machine.vala:224 src/machine.vala:640
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Connessione a «%s» non riuscita"
 
-#: src/machine.vala:422
+#: src/machine.vala:282
+msgid "Machine is under construction"
+msgstr "La macchina è in costruzione"
+
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "Salvataggio…"
 
-#: src/machine.vala:612
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -977,13 +1020,13 @@ msgstr ""
 "Impossibile ripristinare «%s» dal disco\n"
 "Provare senza lo stato salvato?"
 
-#: src/machine.vala:623
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Avvio di «%s» non riuscito"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:727
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "«%s» richiede autenticazione"
@@ -1043,11 +1086,11 @@ msgstr "Non connesso a %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Connessione al broker oVirt non riuscita"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "Protocollo"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "URL"
 
@@ -1068,7 +1111,7 @@ msgstr "Snapshot"
 msgid "Changes require restart of “%s”."
 msgstr "Le modifiche richiedono il riavvio di «%s»."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_URL"
 
@@ -1166,7 +1209,7 @@ msgid "Folder Shares"
 msgstr "Condivisioni cartelle"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "URL non valido"
 
@@ -1271,7 +1314,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:606
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Sistema host incapace"
 
@@ -1285,23 +1328,19 @@ msgstr "La box live «%s» è stata eliminata automaticamente."
 msgid "Box import from file “%s” failed."
 msgstr "Importazione box dal file «%s» non riuscita."
 
-#: src/wizard-source.vala:158
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "sistema x86 32 bit"
 
-#: src/wizard-source.vala:159
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "sistema x86 64 bit"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:164
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr " da %s"
-
-#: src/wizard-source.vala:402
-msgid "Available with a free Red Hat developer account"
-msgstr "Disponibile con un account sviluppatore Red Hat"
 
 #: src/wizard-toolbar.vala:6
 msgid "Source Selection"
@@ -1323,92 +1362,140 @@ msgstr "Riepilogo"
 msgid "Box creation failed"
 msgstr "Creazione box non riuscita"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Collegati a una box"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Posizione vuota"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "File non supportato"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "File non valido"
 
+#. accept any vnc:// uri
+#. accept any rdp:// uri
 #: src/wizard.vala:372
+msgid "Boxes was compiled without RDP support"
+msgstr "Boxes è stato compilato senza il supporto RDP"
+
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protocollo «%s» non supportato"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Supporto d'installazione sconosciuto"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Analisi…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Analisi del supporto di installazione non riuscita. Il supporto è "
 "danneggiato o incompleto?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Impostazione box non riuscita"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxes creerà una nuova box con le seguenti proprietà:"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Tipo"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Host"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Porta"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "Porta TLS"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Aggiunge le box per tutti i sistemi disponibili da questo account:"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Memoria"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Disco"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "massimo %s"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Scaricamento supporti…"
 
-#: src/wizard.vala:652
+#: src/wizard.vala:654
+msgid "Downloading media"
+msgstr "Scaricamento supporti"
+
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "Scaricamento non riuscito."
 
-#: src/wizard.vala:766
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "P_ersonalizza…"
+
+#~| msgid "gnome-boxes"
+#~ msgid "org.gnome.Boxes"
+#~ msgstr "org.gnome.Boxes"
+
+#~ msgid "_Enter URL"
+#~ msgstr "Ins_erire URL"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+#~ msgid "Enter URL"
+#~ msgstr "Inserire URL"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+#~ msgstr ""
+#~ "Inserire un indirizzo per la box da aggiungere. Gli indirizzi possono "
+#~ "essere immagini d'installazione, server SPICE o VNC oppure broker oVirt o "
+#~ "Libvirt."
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "Esempi: http://example.org/immagine.iso, spice://nomehost:5051, ovirt://"
+#~ "host/percorso"
+
+#~ msgid "_Back"
+#~ msgstr "_Indietro"
+
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "Disponibile con un account sviluppatore Red Hat"
 
 #~ msgid "Red Hat Enterprise Linux"
 #~ msgstr "Red Hat Enterprise Linux"
