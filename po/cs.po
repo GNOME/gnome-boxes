@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-06-14 09:36+0000\n"
-"PO-Revision-Date: 2018-06-18 11:00+0200\n"
+"POT-Creation-Date: 2018-07-28 10:04+0000\n"
+"PO-Revision-Date: 2018-08-29 07:08+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -56,7 +56,7 @@ msgstr ""
 "připojit ke vzdálenému stroji (například ve své kanceláři)."
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
-#: src/app-window.vala:132 src/app-window.vala:253 src/app-window.vala:255
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
@@ -123,11 +123,19 @@ msgstr "Okno maximalizováno"
 msgid "Window maximized state"
 msgstr "Okno je v maximalizovaném stavu"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "První spuštění"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Zda Boxy běží poprvé."
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Sdílené složky"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Proměnné pole s názvy sdílených složek a mapováním cest"
 
@@ -163,8 +171,9 @@ msgid "_New"
 msgstr "_Nový"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Zpět"
 
@@ -306,18 +315,17 @@ msgstr "Zaznamenané problémy"
 msgid "_Copy to Clipboard"
 msgstr "_Kopírovat do schránky"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Vyberte zařízení nebo soubor ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:322
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "_Zrušit"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:324
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -439,24 +447,41 @@ msgstr "Zkuste hledat něco jiného"
 msgid "Insert operating system installation media or select a source below"
 msgstr "Vložte instalační médium operačního systému nebo níže zvolte zdroj"
 
-#: data/ui/wizard-source.ui:82
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "Stáhnout OS"
 
-#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
-#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "Stáhnout operační systém a nainstalovat jej do virtuálního stroje."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:125
-msgid "_Enter URL"
-msgstr "_Zadejte adresu URL"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Připojit ke vzdálenému boxu"
 
-#: data/ui/wizard-source.ui:210
-msgid "_Select a file"
-msgstr "Vybrat _soubor"
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "Připojit se pomocí RDP, SPICE nebo VNC."
 
-#: data/ui/wizard-source.ui:238
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "Připojit se ke zprostředkovatelům oVirt nebo Libvirt."
+
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "Vybrat soubor"
+
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr ""
+"Vybrat soubor se zaveditelným obrazem pro instalaci do virtuálního stroje."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -465,31 +490,16 @@ msgstr ""
 "Jakékoli obchodní známky uvedené výše jsou použity toliko k označení "
 "softwaru, který jste získali, a jsou majetkem jejich vlastníků."
 
-#: data/ui/wizard-source.ui:309
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:320
-msgid "Enter URL"
-msgstr "Zadejte adresu URL"
-
-#: data/ui/wizard-source.ui:350
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Zadejte adresu pro box, který chcete přidat. Adresa může vést k instalačnímu "
-"obrazu, k serveru SPICE, RDP nebo VNC a nebo ke správci oVirt nebo Libvirt."
-
-#: data/ui/wizard-source.ui:368
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Příklady: http://kestazeni.cz/obraz.iso, spice://pocitac:5051, ovirt://"
-"pocitac/cesta"
+"Zadejte adresu, ke které se má připojit. Adresa může začínat pomocí spice://, "
+"rdp:// nebo vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Vytvořit box"
 
@@ -501,13 +511,13 @@ msgstr "_Vytvořit"
 msgid "C_ontinue"
 msgstr "_Pokračovat"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "Z_pět"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Přizpůsobit prostředky"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "vyhledat OS nebo zadat odkaz pro stažení…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -520,6 +530,14 @@ msgid ""
 msgstr ""
 "Rozšíření pro virtualizaci nejsou na vašem systému k dispozici.\n"
 "Podívejte se na nastavení BIOS, tam by měla jít povolit."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Jednotlivé boxy mohou být virtuální stroje běžící na tomto počítači, nebo "
+"připojení k již existujícím vzdáleným strojům."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -645,7 +663,7 @@ msgstr "_Zpět"
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí…"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Výběr souboru k přenesení"
 
@@ -1067,7 +1085,7 @@ msgstr "Připojení ke zprostředkovateli oVirt selhalo"
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:535
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "Adresa URL"
 
@@ -1188,7 +1206,7 @@ msgid "Folder Shares"
 msgstr "Sdílení složek"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Neplatná adresa URL"
 
@@ -1340,97 +1358,101 @@ msgstr "Přehled"
 msgid "Box creation failed"
 msgstr "Vytváření boxu selhalo"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Připojit se k Boxu"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Prázdné umístění"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "Nepodporovaný soubor"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "Neplatný soubor"
 
 #. accept any vnc:// uri
 #. accept any rdp:// uri
-#: src/wizard.vala:369
+#: src/wizard.vala:372
 msgid "Boxes was compiled without RDP support"
 msgstr "Boxy byly sestaveny bez podpory RDP"
 
-#: src/wizard.vala:377
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nepodporovaný protol „%s“"
 
-#: src/wizard.vala:383 src/wizard.vala:457
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Neznámé instalační médium"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:385 src/wizard.vala:458
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Analyzuje se…"
 
-#: src/wizard.vala:399
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:511
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Nastavení boxu selhalo"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxy vytvoří nový box s následujícími vlastnostmi:"
 
-#: src/wizard.vala:530
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Typ"
 
-#: src/wizard.vala:533
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Počítač"
 
-#: src/wizard.vala:544 src/wizard.vala:556
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:546
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: src/wizard.vala:561
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Přidá boxy pro všechny systémy dostupné z tohoto účtu:"
 
-#: src/wizard.vala:574
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Paměť"
 
-#: src/wizard.vala:583
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:585
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "nejvýše %s"
 
-#: src/wizard.vala:648
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Stahuje se médium…"
 
-#: src/wizard.vala:651
+#: src/wizard.vala:654
 msgid "Downloading media"
 msgstr "Stahování média"
 
-#: src/wizard.vala:661
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "Stažení selhalo."
 
-#: src/wizard.vala:777
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
