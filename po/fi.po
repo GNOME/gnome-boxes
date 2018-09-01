@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-07-25 15:48+0000\n"
-"PO-Revision-Date: 2018-08-17 12:12+0300\n"
+"POT-Creation-Date: 2018-08-17 09:17+0000\n"
+"PO-Revision-Date: 2018-09-01 19:04+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-03-05 14:49:53+0000\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -71,7 +71,6 @@ msgstr "Näytä ja käytä virtuaalikoneita"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-#| msgid "virtual machine;vm;"
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;vnc;rdp;virtuaalikone;virtualisointi;"
 
@@ -902,7 +901,6 @@ msgstr "_Sammuta"
 
 #: src/libvirt-machine.vala:689
 #, c-format
-#| msgid "Cloning '%s'.."
 msgid "Cloning “%s”…"
 msgstr "Kloonataan “%s”…"
 
@@ -1043,7 +1041,7 @@ msgstr "• Libvirt KVM -asiakas käytettävissä: %s\n"
 #: src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
-msgstr ""
+msgstr "• Boksien tallennustilavaranto saatavilla: %s\n"
 
 #: src/main.vala:60
 #, c-format
@@ -1270,6 +1268,8 @@ msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 msgstr ""
+"Libvirt ei antanut “gnome-boxes”-tallennustilavarannon tietoja. Varmista "
+"että “virsh -c qemu:///session pool-dumpxml gnome-boxes” toimii."
 
 #: src/util-app.vala:333
 #, c-format
@@ -1277,12 +1277,16 @@ msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr ""
+"%s on libvirtin tiedossa Boksien tallennustilavarantona, mutta kyseistä "
+"hakemistoa ei ole olemassa"
 
 #: src/util-app.vala:337
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
+"%s on libvirtin tiedossa Boksien tallennustilavarantona, mutta se ei ole "
+"hakemisto"
 
 #: src/util-app.vala:341
 #, c-format
@@ -1290,6 +1294,8 @@ msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
 "readable/writable"
 msgstr ""
+"%s on libvirtin tiedossa Boksien tallennustilavarantona, mutta se ei ole "
+"käyttäjän luettavissa/kirjoitettavissa"
 
 #: src/util.vala:334
 msgid "yes"
