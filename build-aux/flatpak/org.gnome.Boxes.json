@@ -30,6 +30,20 @@
     },
     "modules" : [
         {
+            "name" : "meson",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "python3 setup.py install --prefix=/app"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/mesonbuild/meson.git",
+                    "tag" : "0.47.2"
+                }
+            ]
+        },
+        {
             "name" : "mtools",
             "buildsystem" : "autotools",
             "config-opts" : ["--disable-static"],
