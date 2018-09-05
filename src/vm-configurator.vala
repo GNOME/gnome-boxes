@@ -9,7 +9,9 @@ private errordomain Boxes.VMConfiguratorError {
 
 private class Boxes.VMConfigurator {
     private const string BOXES_NS = "boxes";
-    private const string BOXES_NS_URI = Config.PACKAGE_URL;
+    /* This should not reference PACKAGE_URL, which could change in the
+       future, but this is effectively part of boxes XML API */
+    private const string BOXES_NS_URI = "https://wiki.gnome.org/Apps/Boxes";
     private const string BOXES_OLD_NS_URI = "http://live.gnome.org/Boxes/";
     private const string WEBDAV_CHANNEL_URI = "org.spice-space.webdav.0";
     private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
