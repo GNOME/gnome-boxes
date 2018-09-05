@@ -69,7 +69,7 @@ fedora:rawhide:
     image: fedora:rawhide
     stage: cross_distro
     before_script:
-    - dnf update -y
+    - dnf update -y --nogpgcheck
     - dnf install -y meson git vala gtk3-devel libgovirt-devel
                      gtk-vnc2-devel libosinfo-devel libsecret-devel
                      libvirt-gconfig-devel libvirt-gobject-devel
