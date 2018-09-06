@@ -1,4 +1,6 @@
 osinfo_db = [
+  ['centos-6.0.xml', 'gnome-boxes/osinfo/os/centos.org'],
+  ['centos-7.0.xml', 'gnome-boxes/osinfo/os/centos.org'],
   ['debian-4.xml', 'gnome-boxes/osinfo/os/debian.org'],
   ['eos-3.3.xml', 'gnome-boxes/osinfo/os/endlessos.com'],
   ['fedora-1.xml', 'gnome-boxes/osinfo/os/fedoraproject.org'],
