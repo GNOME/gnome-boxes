@@ -55,6 +55,8 @@ private async void run_checks () {
     GLib.stdout.printf (_("• The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
     GLib.stdout.printf (_("• Libvirt KVM guest available: %s\n").printf (Boxes.yes_no (libvirt_kvm)));
     GLib.stdout.printf (_("• User is a member of KVM group: %s\n").printf (Boxes.yes_no (kvm_group)));
+    if (!kvm_group)
+        GLib.stdout.printf (Boxes.indent ("    ", "Please add your user to this group by running: \nsudo adduser $user kvm\n\n…and restart your system\n"));
     GLib.stdout.printf (_("• Boxes storage pool available: %s\n").printf (Boxes.yes_no (storage_pool)));
     if (storage_pool_diagnosis.length != 0)
         GLib.stdout.printf (Boxes.indent ("    ", storage_pool_diagnosis) + "\n");
