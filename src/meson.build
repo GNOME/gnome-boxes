@@ -202,7 +202,8 @@ executable ('gnome-boxes', vala_sources + resources,
             c_args : c_args,
             dependencies: dependencies,
             link_with: libcommon,
-            install: true
+            install: true,
+            install_rpath: join_paths (get_option ('prefix'), get_option ('libdir'))
 )
 
 executable ('gnome-boxes-search-provider', 'gnome-boxes-search-provider.vala',
