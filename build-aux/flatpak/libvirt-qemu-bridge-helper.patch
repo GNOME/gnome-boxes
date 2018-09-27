@@ -1,0 +1,27 @@
+From ba6a9395a703229ae628a49797700135aed325fc Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Thu, 27 Sep 2018 16:07:39 +0200
+Subject: [PATCH] m4: Find qemu-bridge-helper in a flatpak
+
+---
+ m4/virt-driver-qemu.m4 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/m4/virt-driver-qemu.m4 b/m4/virt-driver-qemu.m4
+index 80e1d3ad46..67fb704aec 100644
+--- a/m4/virt-driver-qemu.m4
++++ b/m4/virt-driver-qemu.m4
+@@ -53,8 +53,8 @@ AC_DEFUN([LIBVIRT_DRIVER_CHECK_QEMU], [
+   AC_DEFINE_UNQUOTED([QEMU_GROUP], ["$QEMU_GROUP"], [QEMU group account])
+ 
+   AC_PATH_PROG([QEMU_BRIDGE_HELPER], [qemu-bridge-helper],
+-               [/usr/libexec/qemu-bridge-helper],
+-               [/usr/libexec:/usr/lib/qemu:/usr/lib])
++               [/app/libexec/qemu-bridge-helper],
++               [/app/libexec:/app/lib/qemu:/app/lib])
+   AC_DEFINE_UNQUOTED([QEMU_BRIDGE_HELPER], ["$QEMU_BRIDGE_HELPER"],
+                      [QEMU bridge helper])
+   AC_PATH_PROG([QEMU_PR_HELPER], [qemu-pr-helper],
+-- 
+2.17.1
+

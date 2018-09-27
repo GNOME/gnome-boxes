@@ -153,6 +153,7 @@
         },
         {
             "name" : "libvirt",
+            "rm-configure" : true,
             "config-opts" : [
                 "--without-html-subdir",
                 "--without-storage-mpath"
@@ -165,6 +166,17 @@
                     "type" : "archive",
                     "url" : "https://libvirt.org/sources/libvirt-5.1.0.tar.xz",
                     "sha256" : "26f97a53d3172f07f8b63884d845ed71307c4675dc4e1b281c59d253e1e323ab"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "libvirt-qemu-bridge-helper.patch"
+                },
+                {
+                    "type": "script",
+                    "dest-filename": "autogen.sh",
+                    "commands": [
+                        "AUTOMAKE=\"automake --foreign\" autoreconf -vfi"
+                    ]
                 }
             ]
         },
