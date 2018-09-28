@@ -1,10 +1,8 @@
-Introduction
-============
+# Introduction
 
 A simple GNOME 3 application to access remote or virtual systems.
 
-Goals
-=====
+# Goals
 
 * View, access, and use:
   * remote machines
@@ -18,32 +16,28 @@ Goals
 * Select favorites
 * Search for connections
 
-Non-Goals
-=========
+# Non-Goals
 
 * Enterprise system management / administration
 * Asset management
 * Software distribution
 * Automation
 
-Use Cases
-=========
+# Use Cases
 
 * Connect to a local virtual machine for testing.
 * Connecting to a work machine from home.
 * Connect to a work machine over a low quality cellular network.
 
-Runtime Dependencies
-====================
+# Runtime Dependencies
 
 * mcopy (usually provided by mtools package)
 
-Reporting Bugs
-==============
+# Reporting Bugs
 
 If you want to report bugs, please check if there isn't already one on:
 
- https://gitlab.gnome.org/GNOME/gnome-boxes/issues
+ [Gnome Boxes Issues](https://gitlab.gnome.org/GNOME/gnome-boxes/issues)
 
 If one does not exist already, please file a new one.
 
@@ -60,48 +54,61 @@ include
 The determination of what is useful is your task. If you forget about
 something important, someone will probably ask.
 
-Appendix
-========
+# Appendix
 
-1. Backtracing
---------------
+## Backtracing
+
 just run
 
- jhbuild run gdb gnome-boxes
+```
+jhbuild run gdb gnome-boxes
+```
 
 Type
 
- run
+```
+run
+```
 
 Let the program crash.
+
 Type:
 
- backtrace
+```
+backtrace
+```
 
 And copy the output to pastebin.com or a similar webpage and link it in the
 bugtracker with a hint.
 
-2. Activating debug messages
-----------------------------
+## Activating debug messages
+
 To run Boxes with debug message output on the console, just run:
 
- G_MESSAGES_DEBUG=Boxes gnome-boxes
+```
+G_MESSAGES_DEBUG=Boxes gnome-boxes
+```
 
 If you want to run your jhbuild version, execute:
 
- G_MESSAGES_DEBUG=Boxes jhbuild run gnome-boxes
+```
+G_MESSAGES_DEBUG=Boxes jhbuild run gnome-boxes
+```
 
 or start a shell under jhbuild environment:
 
- G_MESSAGES_DEBUG=Boxes jhbuild shell
+```
+G_MESSAGES_DEBUG=Boxes jhbuild shell
+```
 
 to be able to use simpler commands from there:
 
- gnome-boxes
+```
+gnome-boxes
+```
 
-3. References
--------------
+## References
 
-* https://wiki.gnome.org/ThreePointThree/Features/Boxes
-* https://wiki.gnome.org/Design/Apps/Boxes
+* [Gnome Boxes](https://wiki.gnome.org/ThreePointThree/Features/Boxes)
+* [Gnome Boxes Wiki](https://wiki.gnome.org/Design/Apps/Boxes)
 
