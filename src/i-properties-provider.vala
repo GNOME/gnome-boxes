@@ -103,7 +103,7 @@ private class Boxes.SizeProperty : Boxes.Property {
         }
     }
 
-    public SizeProperty (string          name,
+    public SizeProperty (string          title,
                          uint64          size,
                          uint64          min,
                          uint64          max,
@@ -111,17 +111,19 @@ private class Boxes.SizeProperty : Boxes.Property {
                          uint64          step,
                          FormatSizeFlags format_flags) {
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        var name_label = new Gtk.Label.with_mnemonic (name);
-        name_label.halign = Gtk.Align.START;
-        name_label.get_style_context ().add_class ("dim-label");
-        box.add (name_label);
+        var header_in_bold = "<b>" + title + "</b>";
+        var header = new Gtk.Label.with_mnemonic (header_in_bold);
+        header.set_use_markup(true);
+        header.halign = Gtk.Align.START;
+        header.get_style_context ().add_class ("dim-label");
+        box.add (header);
         var value_label = new Gtk.Label ("");
         set_size_value_label_msg (value_label, size, allocation, format_flags);
         value_label.halign = Gtk.Align.START;
         box.add (value_label);
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
-        name_label.mnemonic_widget = scale;
+        header.mnemonic_widget = scale;
 
         var size_str = format_size (min, format_flags);
         size_str = "<small>" + size_str + "</small>";
