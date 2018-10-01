@@ -165,12 +165,22 @@ namespace Boxes {
             }
 
             // Now check if unprivileged qemu is allowed to access it
-            var file = File.new_for_path ("/etc/qemu/bridge.conf");
+#if FLATPAK
+            var qemu_bridge = "/app/etc/qemu/bridge.conf";
+#else
+            var qemu_bridge = "/etc/qemu/bridge.conf";
+#endif
+            var file = File.new_for_path (qemu_bridge);
             uint8[] contents;
             try {
                 file.load_contents (null, out contents, null);
             } catch (IOError.NOT_FOUND error) {
-                file = File.new_for_path ("/etc/qemu-kvm/bridge.conf");
+#if FLATPAK
+                var qemu_kvm_bridge = "/app/etc/qemu-kvm/bridge.conf";
+#else
+                var qemu_kvm_bridge = "/etc/qemu-kvm/bridge.conf"
+#endif
+                file = File.new_for_path (qemu_kvm_bridge);
                 file.load_contents (null, out contents, null);
             }
 
