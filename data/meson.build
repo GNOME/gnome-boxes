@@ -109,4 +109,8 @@ configure_file (
 install_data ('QEMU_Session', install_dir : join_paths (data_dir, 'gnome-boxes/sources'))
 install_data ('disk.img', install_dir : join_paths (data_dir, 'gnome-boxes/unattended'))
 
+if get_option ('flatpak')
+  install_data ('bridge.conf', install_dir : '/app/etc/qemu')
+endif
+
 subdir ('osinfo')
