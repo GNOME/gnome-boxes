@@ -1,15 +1,14 @@
 # Norwegian bokmål translation of gnome-boxes.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2011-2017.
+# Kjartan Maraas <kmaraas@gnome.org>, 2011-2018.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-boxes 3.27.x\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-11-14 16:05+0000\n"
-"PO-Revision-Date: 2017-11-20 12:15+0100\n"
+"Project-Id-Version: gnome-boxes 3.30.x\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2018-07-25 15:48+0000\n"
+"PO-Revision-Date: 2018-10-07 13:20+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -52,29 +51,29 @@ msgstr ""
 "på en enkel og trygg måte, eller hvis du trenger å koble til en ekstern "
 "maskin (for eksempel på kontoret)."
 
-#: data/org.gnome.Boxes.desktop.in.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:130 src/app-window.vala:245 src/app-window.vala:247
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Bokser"
 
-#: data/org.gnome.Boxes.desktop.in.in:4
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
 msgstr "Visning/håndtering av virtuelle maskiner"
 
-#: data/org.gnome.Boxes.desktop.in.in:5
+#: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
 msgstr "Vis og bruk virtuelle maskiner"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.Boxes.desktop.in.in:7
-msgid "virtual machine;vm;"
-msgstr "virtuell maskin;vm;"
+#: data/org.gnome.Boxes.desktop.in:7
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "virtuell maskin;vm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+#: data/org.gnome.Boxes.desktop.in:10
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -120,11 +119,19 @@ msgstr "Vindu maksimert"
 msgid "Window maximized state"
 msgstr "Maksimert tilstand for vindu"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Første kjøring"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Hvorvidt Bokser kjører for første gang"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Delte mapper"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variantmatrise av delte mappers navn og stikobling"
 
@@ -160,7 +167,9 @@ msgid "_New"
 msgstr "_Ny"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Tilbake"
 
@@ -180,6 +189,14 @@ msgstr "Rutenettvisning"
 msgid "Search"
 msgstr "Søk"
 
+#: data/ui/display-page.ui:85
+msgid "Ready to Receive File"
+msgstr "Klar til å motta fil"
+
+#: data/ui/display-page.ui:105
+msgid "You will find your file in the Downloads directory."
+msgstr "Du finner filen i Nedlastinger-katalogen."
+
 #: data/ui/display-toolbar.ui:63
 msgid "Actions"
 msgstr "Handlinger"
@@ -188,7 +205,7 @@ msgstr "Handlinger"
 msgid "Keyboard shortcuts"
 msgstr "Tastatursnarveier"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:54
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
 msgid "Fullscreen"
 msgstr "Full skjerm"
 
@@ -285,7 +302,7 @@ msgstr "Om"
 msgid "Quit"
 msgstr "Avslutt"
 
-#: data/ui/properties-toolbar.ui:43
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "Feilsøkingslogg"
 
@@ -293,16 +310,17 @@ msgstr "Feilsøkingslogg"
 msgid "_Copy to Clipboard"
 msgstr "_Kopier til utklippstavle"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Velg en enhet eller ISO-fil"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "A_vbryt"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Åpne"
 
@@ -359,13 +377,21 @@ msgid "Rename"
 msgstr "Endre navn"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:79
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Slett"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Ferdig"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Oops, noe gikk galt"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Bokser kan ikke aksessere virtualiseringsmotoren."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -394,45 +420,61 @@ msgstr "_Legg til passord"
 msgid "Product Key"
 msgstr "Produktnøkkel"
 
-#: data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Ukjent medium"
 
-#: data/ui/wizard-source.ui:28
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "Vis mer …"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "Fant ingen operativsystemer"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "Prøv et annet søk"
+
+#: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr ""
 "Sett inn installasjonsmedium for operativsystemet eller velg en kilde under"
 
-#: data/ui/wizard-source.ui:52
-msgid "Downloaded"
-msgstr "Nedlastet"
+#: data/ui/wizard-source.ui:87
+msgid "Download an OS"
+msgstr "Last ned et OS"
 
-#: data/ui/wizard-source.ui:79
-msgid "_Select a file"
-msgstr "_Velg en fil"
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "Operativsystemet vil bli lastet ned og installert i en virtuell maskin."
 
-#: data/ui/wizard-source.ui:89 data/ui/wizard-source.ui:224
-#: data/ui/wizard-source.ui:266
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:114
-msgid "Available to Download"
-msgstr "Tilgjengelig for nedlasting"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Koble til en ekstern boks"
 
 #: data/ui/wizard-source.ui:158
-msgid "Red Hat Enterprise Linux"
-msgstr "Red Hat Enterprise Linux"
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "Koble til med RDP, SPICE eller VNC."
 
-#: data/ui/wizard-source.ui:171
-msgid "Available with a free Red Hat developer account"
-msgstr "Tilgjengelig med en gratis Red Hat utviklerkonto"
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "Koble til oVirt eller Libvirt-forhandlere."
 
-#: data/ui/wizard-source.ui:214
-msgid "_Enter URL"
-msgstr "Skr_iv inn nettadresse"
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "Velg en fil"
 
-#: data/ui/wizard-source.ui:281
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr "Velg en oppstartbar bildefil som skal installeres i en virtuell maskin."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -442,32 +484,14 @@ msgstr ""
 "programvareprodukter du allerede har skaffet som og eies av sine respektive "
 "eiere."
 
-#: data/ui/wizard-source.ui:349
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:360
-msgid "Enter URL"
-msgstr "Skriv inn nettadresse"
-
-#: data/ui/wizard-source.ui:390
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Oppgi en adresse for boksen du vil legge til. Adresser kan være til "
-"installasjonsbilder, SPICE- og VNC-tjenere eller oVirt- eller Libvirt-"
-"meglere."
-
-#: data/ui/wizard-source.ui:408
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Eksempler: http://download.com/image.iso, spice://tjener:5051, ovirt://vert/"
-"sti/"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Lag en boks"
 
@@ -479,13 +503,13 @@ msgstr "_Lag"
 msgid "C_ontinue"
 msgstr "F_ortsett"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "Til_bake"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Tilpass ressurser"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "Søk etter et OS eller en nedlastingslenke …"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -499,71 +523,72 @@ msgstr ""
 "Utvidelser for virtualisering er ikke tilgjengelig på dette systemet.\n"
 "Kontroller BIOS-oppsett og slå dem på der."
 
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:29
+#: src/actions-popover.vala:30
 msgid "Box actions"
 msgstr "Handlinger for boks"
 
 #. Open in new Window
-#: src/actions-popover.vala:43
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Åpne i nytt vindu"
 
+#. Send files
+#: src/actions-popover.vala:49
+msgid "Send File…"
+msgstr "Send fil …"
+
 #. Take Screenshot
-#: src/actions-popover.vala:48
+#: src/actions-popover.vala:54
 msgid "Take Screenshot"
 msgstr "Ta skjermbilde"
 
 #. Favorite
-#: src/actions-popover.vala:53
+#: src/actions-popover.vala:59
 msgid "Remove from Favorites"
 msgstr "Fjern fra favoritter"
 
-#: src/actions-popover.vala:55
+#: src/actions-popover.vala:61
 msgid "Add to Favorites"
 msgstr "Legg til i favoritter"
 
-#: src/actions-popover.vala:62
+#: src/actions-popover.vala:68
 msgid "Force Shutdown"
 msgstr "Tving avslutning"
 
-#. Pause
-#: src/actions-popover.vala:69
-msgid "Pause"
-msgstr "Pause"
-
 #. Clone
-#: src/actions-popover.vala:74
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Klone"
 
-#: src/actions-popover.vala:83 src/machine.vala:604
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "Start på nytt"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:92
+#: src/actions-popover.vala:93
 msgid "Properties"
 msgstr "Egenskaper"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:116
+#: src/actions-popover.vala:117
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Skjermbilde fra %s"
 
-#: src/actions-popover.vala:147 src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Pause av «%s» mislyktes"
-
-#: src/app.vala:106
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr ""
 "Kjartan Maraas <kmaraas@gnome.org>\n"
 "Åka Sikrom <a4NOSPAMPLEASETHANKYOU@hush.com>"
 
-#: src/app.vala:107
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Et enkelt GNOME 3-program som gir tilgang til eksterne eller virtuelle "
@@ -603,56 +628,64 @@ msgstr ""
 msgid "Too many command line arguments specified.\n"
 msgstr "Du har brukt for mange argumenter på kommandolinjen.\n"
 
-#: src/app.vala:451
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Boks «%s» er installert og klar for bruk"
 
-#: src/app.vala:539
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Boks «%s» er slettet"
 
-#: src/app.vala:540
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er slettet"
 msgstr[1] "%u bokser er slettet"
 
-#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "A_ngre"
 
-#: src/display-page.vala:110
+#: src/app.vala:628
+msgid "Boxes is doing something"
+msgstr "Bokser holder på med noe"
+
+#: src/app-window.vala:326
+msgid "Select files to transfer"
+msgstr "Velg filer som skal overføres"
+
+#: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Trykk ned (venstre) Ctrl+Alt-tastene for å slippe"
 
-#: src/display-page.vala:112
+#: src/display-page.vala:137
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "Trykk ned og slipp (venstre) Ctrl+Alt-tastene for å frigjøre tastaturet."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:256
+#: src/display-page.vala:310
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:51
+#: src/display-toolbar.vala:71
 msgid "Exit fullscreen"
 msgstr "Avslutt full skjerm"
 
-#: src/icon-view.vala:56
+#: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "Nye og nylige"
 
-#: src/installed-media.vala:51
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Diskavtrykk-formatet støttes ikke."
 
-#: src/installed-media.vala:108 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "System"
@@ -700,7 +733,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Send knappekombinasjoner"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "_Navn"
 
@@ -856,25 +889,31 @@ msgstr "Omstart av «%s» tar for lang tid. Vil du tvinge den til å slå seg av
 msgid "_Shutdown"
 msgstr "_Slå av"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "Kloner «%s» …"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "Installerer …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:83
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "Setter opp klone …"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "Importerer …"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "vert: %s"
@@ -914,42 +953,46 @@ msgstr "Ingen bokser å importere"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Klarte ikke å finne en passende disk å importere for boks «%s»"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "Koblet til"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "Koblet fra"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "Kjørende"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "Pauset"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "Slått av"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:195
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "Kobler til %s"
 
-#: src/machine.vala:218 src/machine.vala:617
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Tilkobling til «%s» mislyktes"
 
-#: src/machine.vala:416
+#: src/machine.vala:282
+msgid "Machine is under construction"
+msgstr "Maskinen er under oppbygging"
+
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "Lagrer …"
 
-#: src/machine.vala:603
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -958,13 +1001,13 @@ msgstr ""
 "Klarte ikke å gjenopprette «%s» fra disk\n"
 "Vil du prøve uten lagret tilstand?"
 
-#: src/machine.vala:613
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Klarte ikke å starte «%s»"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:646
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "«%s» krever autentisering"
@@ -1005,7 +1048,7 @@ msgstr "Rapporter programfeil til <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Nettside for %s: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "Filen %s finnes ikke"
@@ -1024,11 +1067,11 @@ msgstr "Ikke koblet til %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Tilkobling til oVirt-forhandler mislyktes"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "Protokoll"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:519
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "Adresse"
 
@@ -1049,9 +1092,14 @@ msgstr "Øyeblikksbilder"
 msgid "Changes require restart of “%s”."
 msgstr "«%s» må startes på nytt for å ta endringer i bruk."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_Adresse"
+
+#: src/selectionbar.vala:60
+#, c-format
+msgid "Pausing “%s” failed"
+msgstr "Pause av «%s» mislyktes"
 
 #. Translators: This is a button to open box(es) in new window(s)
 #: src/selectionbar.vala:173
@@ -1107,20 +1155,20 @@ msgid "Failed to create snapshot of %s"
 msgstr "Klarte ikke å lage øyeblikksbilde av %s"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:47
+#: src/spice-display.vala:48
 msgid "Unknown"
 msgstr "Ukjent"
 
-#: src/spice-display.vala:67 src/spice-display.vala:644
+#: src/spice-display.vala:68 src/spice-display.vala:665
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Omdirigering av USB-enhet «%s» for «%s» mislyktes"
 
-#: src/spice-display.vala:500
+#: src/spice-display.vala:521
 msgid "Share Clipboard"
 msgstr "Del utklippstavle"
 
-#: src/spice-display.vala:505
+#: src/spice-display.vala:526
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
@@ -1133,26 +1181,32 @@ msgstr ""
 "download.html\">http://spice-space.org/download.html</a> for å laste ned og "
 "installere disse verktøyene inne fra boksen."
 
-#: src/spice-display.vala:532
+#: src/spice-display.vala:553
 msgid "USB devices"
 msgstr "USB-enheter"
 
-#: src/spice-display.vala:550
+#: src/spice-display.vala:571
 msgid "Folder Shares"
 msgstr "Delte mapper"
 
-#: src/spice-display.vala:812 src/spice-display.vala:837
-#: src/spice-display.vala:840 src/wizard.vala:330 src/wizard.vala:343
+#: src/spice-display.vala:833 src/spice-display.vala:858
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Ugyldig adresse"
 
-#: src/spice-display.vala:822
+#: src/spice-display.vala:843
 msgid "The port must be specified once"
 msgstr "Porten må oppgis én gang"
 
-#: src/spice-display.vala:833
+#: src/spice-display.vala:854
 msgid "Missing port in Spice URL"
 msgstr "Mangler port i Spice-adresse"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "Kopierer «%s» til «Nedlastinger»"
 
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
@@ -1231,17 +1285,17 @@ msgstr ""
 "%s er kjent for libvirt som GNOME Bokser sitt lager for lagringskapasitet, "
 "men den er ikke les-/skrivbar"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "yes"
 msgstr "ja"
 
-#: src/util.vala:327
+#: src/util.vala:334
 msgid "no"
 msgstr "nei"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Vertssystemet kan ikke brukes"
 
@@ -1255,16 +1309,16 @@ msgstr "Live-boks «%s» ble slettet automatisk."
 msgid "Box import from file “%s” failed."
 msgstr "Importering av boks fra fil «%s» mislyktes."
 
-#: src/wizard-source.vala:87
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "32-bit x86-system"
 
-#: src/wizard-source.vala:88
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "64-bit x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:93
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr " fra %s"
@@ -1285,94 +1339,108 @@ msgstr "Oppsett av boks"
 msgid "Review"
 msgstr "Se gjennom"
 
-#: src/wizard.vala:116
+#: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Oppretting av boks mislyktes"
 
-#: src/wizard.vala:289
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Koble til en boks"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Tom plassering"
 
-#: src/wizard.vala:312
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "Filen støttes ikke"
 
-#: src/wizard.vala:318
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "Ugyldig fil"
 
-#: src/wizard.vala:361
+#. accept any vnc:// uri
+#. accept any rdp:// uri
+#: src/wizard.vala:372
+msgid "Boxes was compiled without RDP support"
+msgstr "Bokser er kompilert uten støtte for RDP"
+
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protokollen «%s» støttes ikke"
 
-#: src/wizard.vala:367 src/wizard.vala:441
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Ukjent installasjonsmedium"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:369 src/wizard.vala:442
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Analyserer …"
 
-#: src/wizard.vala:383
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Klarte ikke å analysere installasjonsmedium. Er mediet ødelagt eller "
 "ufullstendig?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:495
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Oppsett av boks mislyktes"
 
-#: src/wizard.vala:509
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Bokser lager en ny boks med følgende egenskaper:"
 
-#: src/wizard.vala:514
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Type"
 
-#: src/wizard.vala:517
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Vert"
 
-#: src/wizard.vala:528 src/wizard.vala:539
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:530
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: src/wizard.vala:544
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr ""
 "Legger til bokser for alle systemer som er tilgjengelig fra denne kontoen:"
 
-#: src/wizard.vala:557
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Minne"
 
-#: src/wizard.vala:566
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Disk"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:568
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "%s maksimum"
 
-#: src/wizard.vala:631
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Laster ned medium …"
 
-#: src/wizard.vala:641
+#: src/wizard.vala:654
+msgid "Downloading media"
+msgstr "Laster ned medie"
+
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "Nedlasting mislyktes."
 
-#: src/wizard.vala:754
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "T_ilpass …"
