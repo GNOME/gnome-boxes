@@ -164,6 +164,7 @@ private class Boxes.VMConfigurator {
         volume.set_capacity (storage);
         var target = new StorageVolTarget ();
         target.set_format ("qcow2");
+        target.set_compat ("1.1");
         var permissions = get_default_permissions ();
         target.set_permissions (permissions);
         volume.set_target (target);
