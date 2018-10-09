@@ -16,6 +16,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     private Button new_btn;
     [GtkChild]
+    private MenuButton hamburger_btn;
+    [GtkChild]
     private CollectionFilterSwitcher filter_switcher;
 
     private AppWindow window;
@@ -40,6 +42,10 @@ private class Boxes.CollectionToolbar: HeaderBar {
         App.app.notify["main-window"].connect (ui_state_changed);
 
         filter_switcher.setup_ui (window);
+
+        var builder = new Builder.from_resource ("/org/gnome/Boxes/gtk/menus.ui");
+        MenuModel menu = (MenuModel) builder.get_object ("app-menu");
+        hamburger_btn.popover = new Popover.from_model (hamburger_btn, menu);
     }
 
     public void click_back_button () {
