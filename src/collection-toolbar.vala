@@ -43,7 +43,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
         filter_switcher.setup_ui (window);
 
-        var builder = new Builder.from_resource ("/org/gnome/Boxes/gtk/menus.ui");
+        var builder = new Builder.from_resource ("/org/gnome/Boxes/ui/menus.ui");
         MenuModel menu = (MenuModel) builder.get_object ("app-menu");
         hamburger_btn.popover = new Popover.from_model (hamburger_btn, menu);
     }
