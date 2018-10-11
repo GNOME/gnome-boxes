@@ -51,7 +51,17 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public bool prefers_q35 {
         get {
-            return false;
+            if (os == null)
+                return true;
+
+            var device = find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "qemu-x86-q35");
+            if (device == null)
+                return false;
+
+            if (supports_virtio_net && !supports_virtio1_net)
+                return false;
+
+            return true;
         }
     }
 
