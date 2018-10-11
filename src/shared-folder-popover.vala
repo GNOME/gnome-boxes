@@ -24,15 +24,15 @@ private class Boxes.SharedFolderPopover: Gtk.Popover {
 
     [GtkCallback]
     public void on_save (Gtk.Button save_button) {
-        var path = file_chooser_button.get_uri ();
+        var uri = file_chooser_button.get_uri ();
+        File file = File.new_for_uri (uri);
         var name = name_entry.get_text ();
 
-        if (path != null) {
-            path.scanf ("file://%s", path);
+        if (uri != null) {
             if (name == "")
-                name = Path.get_basename (path);
+                name = file.get_basename ();
 
-            saved (path, name, target_position);
+            saved (file.get_path (), name, target_position);
         }
 
         popdown ();
