@@ -57,7 +57,14 @@ private class Boxes.InstallerMedia : GLib.Object {
 
     public bool prefers_ich9 {
         get {
-            return false;
+            if (!prefers_q35)
+                return false;
+
+            var device = find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "ich9-hda");
+            if (device == null)
+                return false;
+
+            return true;
         }
     }
 
