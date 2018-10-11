@@ -25,9 +25,21 @@ private class Boxes.InstallerMedia : GLib.Object {
     public virtual bool need_user_input_for_vm_creation { get { return false; } }
     public virtual bool ready_to_create { get { return true; } }
 
+    public bool supports_virtio1_disk {
+        get {
+            return (find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "virtio1.0-block") != null);
+        }
+    }
+
     public bool supports_virtio_disk {
         get {
             return (find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "virtio-block") != null);
+        }
+    }
+
+    public bool supports_virtio1_net {
+        get {
+            return (find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "virtio1.0-net") != null);
         }
     }
 
