@@ -343,6 +343,7 @@ private class Boxes.VMConfigurator {
         os.set_boot_devices (boot_devices);
 
         os.set_arch (old_os.get_arch ());
+        os.set_machine (old_os.get_machine ());
 
         domain.set_os (os);
     }
