@@ -379,7 +379,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_source (secondary_disk_file.get_path ());
         disk.set_target_dev ((path_format == PathFormat.DOS)? "E" : "hdd");
         disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
-        disk.set_target_bus (DomainDiskBus.IDE);
+        disk.set_target_bus (prefers_q35? DomainDiskBus.SATA : DomainDiskBus.IDE);
 
         return disk;
     }
