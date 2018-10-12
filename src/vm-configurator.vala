@@ -116,9 +116,10 @@ private class Boxes.VMConfigurator {
         console.set_source (new DomainChardevSourcePty ());
         domain.add_device (console);
 
+        var supports_virtio_net = install_media.supports_virtio_net || install_media.supports_virtio1_net;
         var iface = create_network_interface (domain,
                                               is_libvirt_bridge_net_available (),
-                                              install_media.supports_virtio_net);
+                                              supports_virtio_net);
         domain.add_device (iface);
 
         return domain;
@@ -314,7 +315,7 @@ private class Boxes.VMConfigurator {
         disk.set_driver_cache (DomainDiskCacheType.WRITEBACK);
 
         var dev_letter_str = ((char) (dev_index + 97)).to_string ();
-        if (install_media.supports_virtio_disk) {
+        if (install_media.supports_virtio_disk || install_media.supports_virtio1_disk) {
             debug ("Using virtio controller for the main disk");
             disk.set_target_bus (DomainDiskBus.VIRTIO);
             disk.set_target_dev ("vd" + dev_letter_str);
