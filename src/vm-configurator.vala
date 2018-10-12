@@ -320,8 +320,13 @@ private class Boxes.VMConfigurator {
             disk.set_target_bus (DomainDiskBus.VIRTIO);
             disk.set_target_dev ("vd" + dev_letter_str);
         } else {
-            debug ("Using IDE controller for the main disk");
-            disk.set_target_bus (DomainDiskBus.IDE);
+            if (install_media.prefers_q35) {
+                debug ("Using SATA controller for the main disk");
+                disk.set_target_bus (DomainDiskBus.SATA);
+            } else {
+                debug ("Using IDE controller for the main disk");
+                disk.set_target_bus (DomainDiskBus.IDE);
+            }
             disk.set_target_dev ("hd" + dev_letter_str);
         }
 
