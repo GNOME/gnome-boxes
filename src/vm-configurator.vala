@@ -352,6 +352,8 @@ private class Boxes.VMConfigurator {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
         os.set_arch (guest_caps.get_arch ().get_name ());
+        if (install_media.prefers_q35)
+            os.set_machine ("q35");
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
         install_media.set_direct_boot_params (os);
