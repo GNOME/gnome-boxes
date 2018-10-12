@@ -232,7 +232,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         if (os.distro == "win")
             config.set_target_disk ("C");
         else
-            config.set_target_disk (supports_virtio_disk? "/dev/vda" : "/dev/sda");
+            config.set_target_disk (supports_virtio_disk || supports_virtio1_disk? "/dev/vda" : "/dev/sda");
 
         var disk_config = get_unattended_disk_config (script.path_format);
         var device_path = device_name_to_path (script.path_format, disk_config.get_target_dev ());
@@ -360,7 +360,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             disk.set_target_bus (DomainDiskBus.FDC);
         } else {
             // Path format checks below are most probably practically redundant but a small price for future safety
-            if (supports_virtio_disk)
+            if (supports_virtio_disk || supports_virtio1_disk)
                 disk.set_target_dev ((path_format == PathFormat.UNIX)? "sda" : "E");
             else
                 disk.set_target_dev ((path_format == PathFormat.UNIX)? "sdb" : "E");
