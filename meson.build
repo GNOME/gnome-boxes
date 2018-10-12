@@ -12,6 +12,7 @@ cc = meson.get_compiler ('c')
 valac = meson.get_compiler ('vala')
 
 libarchive_dep = dependency ('libarchive', version: '>= 3.0.0')
+libvirt_glib_dep = dependency ('libvirt-glib', version: '>= 2.0.0')
 
 src_dir = join_paths (meson.source_root (), 'src')
 vapi_dir = join_paths (meson.source_root (), 'vapi')
