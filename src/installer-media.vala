@@ -55,6 +55,12 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
+    public bool prefers_ich9 {
+        get {
+            return false;
+        }
+    }
+
     public virtual bool live { get { return os_media == null || os_media.live; } }
     public virtual bool eject_after_install { get { return os_media == null || os_media.eject_after_install; } }
 
