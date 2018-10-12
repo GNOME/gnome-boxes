@@ -173,7 +173,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         disk.set_target_dev (device_name);
         if (iso_path != null)
             disk.set_source (iso_path);
-        disk.set_target_bus (DomainDiskBus.IDE);
+        disk.set_target_bus (prefers_q35? DomainDiskBus.SATA : DomainDiskBus.IDE);
         if (mandatory)
             disk.set_startup_policy (DomainDiskStartupPolicy.MANDATORY);
 
