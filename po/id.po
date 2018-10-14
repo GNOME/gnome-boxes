@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-04 18:30+0000\n"
-"PO-Revision-Date: 2018-05-05 16:05+0700\n"
+"POT-Creation-Date: 2018-07-16 11:09+0000\n"
+"PO-Revision-Date: 2018-07-25 15:38+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
@@ -55,8 +55,8 @@ msgstr ""
 "berpotensi tidak stabil) dari sistem operasi favorit Anda, atau ingin "
 "menyambung ke mesin jarak jauh (sebagai contoh, di kantor Anda)."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
@@ -71,13 +71,13 @@ msgstr "Tilik dan pakai mesin virtual"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "mesin virtual;vm;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "mesin virtual;vm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -123,11 +123,19 @@ msgstr "Jendela dimaksimalkan"
 msgid "Window maximized state"
 msgstr "Jendela dalam keadaan termaksimalkan"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Jalankan pertama kali"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Apakah Boxes sedang berjalan untuk pertama kalinya"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Folder bersama"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Kumpulan varian nama folder bersama dan pemetaan path"
 
@@ -163,8 +171,9 @@ msgid "_New"
 msgstr "_Baru"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Kembali"
 
@@ -297,7 +306,7 @@ msgstr "Tentang"
 msgid "Quit"
 msgstr "Keluar"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:642
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "Log penelusuran masalah"
 
@@ -305,18 +314,17 @@ msgstr "Log penelusuran masalah"
 msgid "_Copy to Clipboard"
 msgstr "Salin ke Papan _Klip"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Pilih perangkat atau berkas ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:318
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "Ba_tal"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:320
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Buka"
 
@@ -438,24 +446,41 @@ msgstr "Coba pencarian lain"
 msgid "Insert operating system installation media or select a source below"
 msgstr "Sisipkan media pemasangan sistem operasi atau pilih sumber di bawah"
 
-#: data/ui/wizard-source.ui:82
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "Unduh sebuah SO (Sistem Operasi)"
 
-#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
-#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "Sistem operasi akan diunduh dan dipasang pada mesin virtual."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:125
-msgid "_Enter URL"
-msgstr "_Masukkan URL"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Sambungan ke Box jauh"
 
-#: data/ui/wizard-source.ui:210
-msgid "_Select a file"
-msgstr "Pilih _sebuah berkas"
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "Sambung menggunakan RDP, SPICE atau VNC."
 
-#: data/ui/wizard-source.ui:238
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "Sambungan ke oVirt atau broker Libvirt."
+
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "Pilih sebuah berkas"
+
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr ""
+"Pilih berkas citra yang dapat di-boot untuk dipasang pada mesin virtual."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -465,31 +490,16 @@ msgstr ""
 "produk perangkat lunak yang telah Anda peroleh dan merupakan properti dari "
 "masing-masing pemiliknya."
 
-#: data/ui/wizard-source.ui:309
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:320
-msgid "Enter URL"
-msgstr "Masukkan URL"
-
-#: data/ui/wizard-source.ui:350
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Masukkan alamat box yang ingin anda tambahkan. Alamat bisa .. pemasangan, "
-"SPICE dan server VNC, atau oVirt atau Libvirt broker."
-
-#: data/ui/wizard-source.ui:368
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Contoh: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
+"Masukkan alamat untuk tersambung. Alamat dapat dimulai dengan spice://, "
+"rdp:// atau vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Buat Sebuah Box"
 
@@ -501,14 +511,13 @@ msgstr "_Buat"
 msgid "C_ontinue"
 msgstr "_Lanjut"
 
-# `_` diubah ke depan `K` karena konfilk dengan C_reate/_Buat di atas.
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "_Kembali"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Sesuaikan Sumber Daya"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "Cari SO (Sistem Operasi) atau masukkan tautan unduhan…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -521,6 +530,14 @@ msgid ""
 msgstr ""
 "Ekstensi viritualisasi tak tersedia pada sistem Anda.\n"
 "Periksalah pengaturan BIOS Anda untuk memfungsikannya."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Setiap box bisa menjadi mesin virtual yang berjalan pada komputer ini, atau "
+"koneksi ke mesin jauh yang ada"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -560,7 +577,7 @@ msgstr "Paksa Mati"
 msgid "Clone"
 msgstr "Klon"
 
-#: src/actions-popover.vala:84 src/machine.vala:622
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "Mulai ulang"
 
@@ -575,7 +592,7 @@ msgstr "Properti"
 msgid "Screenshot from %s"
 msgstr "Cuplikan layar dari %s"
 
-#: src/app.vala:110
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2012, 2013, 2014, 2015.\n"
@@ -583,72 +600,72 @@ msgstr ""
 "Dirgita <dirgitadevina@yahoo.co.id>, 2012.\n"
 "Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018."
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Sebuah aplikasi GNOME 3 sederhana untuk mengakses sistem jarak jauh atau "
 "virtual"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Tampilkan nomor versi"
 
-#: src/app.vala:173
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Buka di layar penuh"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Periksa kapabilitas virtualisasi"
 
-#: src/app.vala:175
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Buka box dengan UUID"
 
-#: src/app.vala:176
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Istilah pencarian"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URI untuk ditampilkan, broker, atau media pemasangan"
 
-#: src/app.vala:189
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "— Sebuah aplikasi sederhana untuk mengakses sistem jarak jauh atau virtual"
 
-#: src/app.vala:214
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Terlalu banyak argumen baris perintah yang dinyatakan.\n"
 
-#: src/app.vala:465
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box '%s' telah terpasang dan siap dipakai"
 
-#: src/app.vala:553
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box '%s' telah dihapus"
 
-#: src/app.vala:554
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box telah dihapus"
 
-#: src/app.vala:581 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Urung"
 
-#: src/app.vala:625
+#: src/app.vala:628
 msgid "Boxes is doing something"
 msgstr "Boxes sedang melakukan sesuatu"
 
-#: src/app-window.vala:317
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Pilih berkas yang akan ditransfer"
 
@@ -674,11 +691,11 @@ msgstr "Keluar layar penuh"
 msgid "New and Recent"
 msgstr "Baru dan Terkini"
 
-#: src/installed-media.vala:53
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Format image diska yang tidak didukung."
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
@@ -726,7 +743,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Kirim kombinasi tombol"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "_Nama"
 
@@ -966,25 +983,25 @@ msgid "Powered Off"
 msgstr "Dimatikan"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "Menyambung ke %s"
 
-#: src/machine.vala:224 src/machine.vala:649
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Sambungan ke “%s” gagal"
 
-#: src/machine.vala:277
+#: src/machine.vala:282
 msgid "Machine is under construction"
 msgstr "Mesin sedang dalam perbaikan"
 
-#: src/machine.vala:431
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "Menyimpan…"
 
-#: src/machine.vala:621
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -993,13 +1010,13 @@ msgstr ""
 "“%s” tak dapat dipulihkan dari diska\n"
 "Coba tanpa keadaan tersimpan?"
 
-#: src/machine.vala:632
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Gagal memulai “%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:736
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” memerlukan autentikasi"
@@ -1040,7 +1057,7 @@ msgstr "Laporkan kutu ke <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "laman beranda %s: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "Tidak ada berkas %s"
@@ -1059,11 +1076,11 @@ msgstr "Tidak tersambung ke %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Sambungan ke broker oVirt gagal"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "URL"
 
@@ -1084,7 +1101,7 @@ msgstr "Snapshot"
 msgid "Changes require restart of “%s”."
 msgstr "Perubahan memerlukan “%s” dimulai ulang."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_URL"
 
@@ -1180,7 +1197,7 @@ msgid "Folder Shares"
 msgstr "Berbagi Folder"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "URL tidak valid"
 
@@ -1284,7 +1301,7 @@ msgstr "tidak"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:607
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
 
@@ -1332,95 +1349,136 @@ msgstr "Ulasan"
 msgid "Box creation failed"
 msgstr "Gagal membuat Box"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Sambungan ke Box"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Lokasi kosong"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "Berkas tak didukung"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "Berkas tak valid"
 
+#. accept any vnc:// uri
+#. accept any rdp:// uri
 #: src/wizard.vala:372
+msgid "Boxes was compiled without RDP support"
+msgstr "Boxes dikompilasi tanpa dukungan RDP"
+
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Protokol tidak didukung “%s”"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Media pemasang tidak dikenal"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Menganalisis…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Gagal menganalisis media pemasang. Media terkorupsi atau tidak lengkap?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Penataan Box gagal"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxes akan membuat sebuah box baru dengan properti berikut:"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Tipe"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Host"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Akan menambahkan box bagi semua sistem yang tersedia dari akun ini:"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Memori"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Diska"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "maksimum %s"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Mengunduh media..."
 
-#: src/wizard.vala:645
+#: src/wizard.vala:654
 msgid "Downloading media"
 msgstr "Mengunduh media"
 
-#: src/wizard.vala:655
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "Pengunduhan gagal."
 
-#: src/wizard.vala:771
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "Ses_uaikan..."
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
+
+#~ msgid "_Enter URL"
+#~ msgstr "_Masukkan URL"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+#~ msgid "Enter URL"
+#~ msgstr "Masukkan URL"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt "
+#~ "brokers."
+#~ msgstr ""
+#~ "Masukkan alamat box yang ingin anda tambahkan. Alamat dapat berupa citra "
+#~ "instalasi, SPICE, RDP dan server VNC, atau oVirt atau Libvirt broker."
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "Contoh: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+
+# `_` diubah ke depan `K` karena konfilk dengan C_reate/_Buat di atas.
+#~ msgid "_Back"
+#~ msgstr "_Kembali"
 
 #~ msgid "Available with a free Red Hat developer account"
 #~ msgstr "Tersedia gratis dengan akun pengembang Red Hat"
