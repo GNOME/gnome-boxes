@@ -388,7 +388,23 @@ private class Boxes.VMConfigurator {
         if (device == null)
             return (DomainSoundModel) DomainSoundModel.ICH6;
 
-        var model = get_enum_value (device.get_name (), typeof (DomainSoundModel));
+        var osinfo_name = device.get_name ();
+        var libvirt_name = null;
+
+        if (osinfo_name == "ich9-hda")
+            libvirt_name = "ich9";
+        else if (osinfo_name == "ich6")
+            libvirt_name = "ich6";
+        else if (osinfo_name == "ac97")
+            libvirt_name = "ac97";
+        else if (osinfo_name == "pcspk")
+            libvirt_name = "pcspk";
+        else if (osinfo_name == "es1370")
+            libvirt_name = "es1370";
+        else if (osinfo_name == "sb16")
+            libvirt_name = "sb16";
+
+        var model = get_enum_value (libvirt_name, typeof (DomainSoundModel));
         return_if_fail (model != -1);
         return (DomainSoundModel) model;
     }
