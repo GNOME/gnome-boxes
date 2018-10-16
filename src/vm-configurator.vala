@@ -33,6 +33,11 @@ private class Boxes.VMConfigurator {
     private const string MEDIA_XML = "<media>%s</media>";
     private const string NUM_REBOOTS_XML = "<num-reboots>%u</num-reboots>";
 
+    private const string LIBOSINFO_NS = "libosinfo";
+    private const string LIBOSINFO_NS_URI = "http://libosinfo.org/xmlns/libvirt/domain/1.0";
+    private const string LIBOSINFO_XML = "<libosinfo>%s</libosinfo>";
+    private const string LIBOSINFO_OS_ID_XML = "<os id=\"%s\"/>";
+
     public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
@@ -193,7 +198,11 @@ private class Boxes.VMConfigurator {
     }
 
     public static string? get_os_id (Domain domain) {
-        return get_custom_xml_node (domain, "os-id");
+        var str = get_libosinfo_os_id (domain);
+        if (str == null)
+            str = get_custom_xml_node (domain, "os-id");
+
+        return str;
     }
 
     public static string? get_os_media_id (Domain domain) {
@@ -441,6 +450,36 @@ private class Boxes.VMConfigurator {
         return get_custom_xml_node (domain, "os-state");
     }
 
+    private static string? get_libosinfo_os_id (Domain domain) {
+        var ns_uri = LIBOSINFO_NS_URI;
+        var xml = domain.get_custom_xml (ns_uri);
+        if (xml == null)
+            return null;
+
+        var reader = new Xml.TextReader.for_memory ((char []) xml.data,
+                                                    xml.length,
+                                                    ns_uri,
+                                                    null,
+                                                    Xml.ParserOption.COMPACT);
+
+        reader.next (); // Go to first node
+
+        var node = reader.expand ();
+        if (node != null) {
+            if (node->name == "libosinfo")
+                node = node->children;
+
+            while (node != null) {
+                if (node->name == "os")
+                    return node->get_prop ("id");
+
+                node = node->next;
+            }
+        }
+
+        return null;
+    }
+
     private static string? get_custom_xml_node (Domain domain, string node_name) {
         var ns_uri = BOXES_NS_URI;
         var xml = domain.get_custom_xml (ns_uri);
@@ -491,6 +530,7 @@ private class Boxes.VMConfigurator {
                                            bool installed = false) {
         return_if_fail (install_media != null || installed);
         string custom_xml;
+        string custom_libosinfo_xml = null;
 
         if (installed)
             custom_xml = INSTALLED_XML;
@@ -505,9 +545,10 @@ private class Boxes.VMConfigurator {
 
         if (install_media != null) {
             if (install_media.os != null)
-                custom_xml += Markup.printf_escaped (OS_ID_XML, install_media.os.id);
+                custom_libosinfo_xml = Markup.printf_escaped (LIBOSINFO_OS_ID_XML, install_media.os.id);
             if (install_media.os_media != null)
                 custom_xml += Markup.printf_escaped (MEDIA_ID_XML, install_media.os_media.id);
+
             custom_xml += Markup.printf_escaped (MEDIA_XML, install_media.device_file);
         }
 
@@ -518,6 +559,13 @@ private class Boxes.VMConfigurator {
         try {
             domain.set_custom_xml (custom_xml, BOXES_NS, BOXES_NS_URI);
         } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+
+        if (custom_libosinfo_xml != null) {
+            custom_libosinfo_xml = LIBOSINFO_XML.printf (custom_libosinfo_xml);
+            try {
+                domain.set_custom_xml_ns_children (custom_libosinfo_xml, LIBOSINFO_NS, LIBOSINFO_NS_URI);
+            } catch (GLib.Error error) { assert_not_reached (); /* We are so screwed if this happens */ }
+        }
     }
 
     public static void add_smartcard_support (Domain domain) {
