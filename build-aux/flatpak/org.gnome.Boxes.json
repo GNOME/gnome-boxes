@@ -1,7 +1,7 @@
 {
     "app-id" : "org.gnome.BoxesDevel",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "3.28",
+    "runtime-version" : "3.30",
     "sdk" : "org.gnome.Sdk",
     "command" : "gnome-boxes",
     "tags" : ["devel", "development", "nightly"],
@@ -22,32 +22,11 @@
         "--talk-name=ca.desrt.dconf",
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
-    "build-options" : {
-        "cflags" : "-O2 -g",
-        "cxxflags" : "-O2 -g",
-        "env" : {
-        }
-    },
     "modules" : [
-        {
-            "name" : "meson",
-            "buildsystem" : "simple",
-             "build-commands" : [
-                "python3 setup.py install --prefix=/app"
-            ],
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://github.com/mesonbuild/meson/archive/0.46.1.tar.gz",
-                    "sha256" : "2d917692d2cc194e12295f00469fbdf3c045e85d0295e5e59ced69115920ffa0"
-                }
-            ]
-        },
         {
             "name" : "mtools",
             "buildsystem" : "autotools",
             "config-opts" : ["--disable-static"],
-            "rm-configure" : true,
             "sources" : [
                 {
                     "type" : "archive",
@@ -55,15 +34,15 @@
                     "sha256" : "59e9cf80885399c4f229e5d87e49c0c2bfeec044e1386d59fcd0b0aead6b2f85"
                 },
                 {
-                    "type" : "script",
-                    "dest-filename" : "autogen.sh",
-                    "commands" : [
-                        "AUTOMAKE=\"automake --foreign\" autoreconf -vfi"
+                    "type": "shell",
+                    "commands": [
+                        "cp -f /usr/share/gnu-config/config.sub .",
+                        "cp -f /usr/share/gnu-config/config.guess ."
                     ]
                 }
             ]
         },
-        {
+{
             "name" : "check",
             "sources" : [
                 {
@@ -78,9 +57,10 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://git.gnome.org//browse/gtk-vnc",
-                    "tag" : "v0.7.2",
-                    "commit" : "0e8b3c545ad109051501b4ff4ed548689df6e7d4"
+                    "url" : "https://gitlab.gnome.org/GNOME/gtk-vnc.git",
+                    "tag" : "v0.9.0",
+                    "commit" : "8afbc55407c2625f9b1e64c53a0c0efd9939f6a8",
+                    "disable-fsckobjects" : true
                 }
             ]
         },
@@ -200,16 +180,12 @@
             ]
         },
         {
-            "name" : "python-six",
-            "buildsystem" : "simple",
-            "build-commands" : [
-                "pip3 install --prefix=/app six-1.10.0-py2.py3-none-any.whl"
-            ],
+            "name" : "phodav",
             "sources" : [
                 {
-                    "type" : "file",
-                    "url" : "https://pypi.python.org/packages/c8/0a/b6723e1bc4c516cb687841499455a8505b44607ab535be01091c0f24f079/six-1.10.0-py2.py3-none-any.whl#md5=3ab558cf5d4f7a72611d59a81a315dc8",
-                    "sha256" : "0ff78c403d9bccf5a425a6d31a12aa6b47f1c21ca4dc2573a7e2f32a97335eb1"
+                    "type" : "archive",
+                    "url" : "http://ftp.gnome.org/pub/GNOME/sources/phodav/2.2/phodav-2.2.tar.xz",
+                    "sha256" : "080305dc9e804562f200ffc8c7d345c76754fce9cb01489dddb1b2c52c0557c1"
                 }
             ]
         },
@@ -224,7 +200,8 @@
                 "--disable-controller",
                 "--enable-vala",
                 "--disable-gtk-doc",
-                "--enable-python-checks"
+                "--enable-python-checks",
+                "--enable-webdav"
             ],
             "sources" : [
                 {
@@ -292,8 +269,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://download.qemu.org/qemu-2.11.1.tar.xz",
-                    "sha256" : "8a5145d1f8bd2eadc6776f3e13c68cd28d01349e30639bdbcb26ac588d668686"
+                    "url" : "https://download.qemu.org/qemu-2.11.2.tar.xz",
+                    "sha256" : "02d2b2cf5526b642b174596d9b3a8716184f9e79710bc68bf6d9fec175b3821b"
                 }
             ]
         },
@@ -302,7 +279,9 @@
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_PREFIX=/app",
+                "-DCMAKE_INSTALL_LIBDIR=lib"
             ],
             "sources" : [
                 {
@@ -345,15 +324,13 @@
             "buildsystem" : "simple",
             "builddir": true,
             "build-commands" : [
-                "make",
                 "osinfo-db-import --dir /app/share/osinfo/ osinfo-db-*.tar.xz"
             ],
             "sources" : [
                 {
-                    "type" : "git",
-                    "url" : "https://gitlab.com/libosinfo/osinfo-db",
-                    "tag" : "v20180514",
-                    "commit" : "0d38ef0f1a6c7e86d94fdca4ca39db256b538e84"
+                    "type" : "file",
+                    "url" : "https://releases.pagure.org/libosinfo/osinfo-db-20180920.tar.xz",
+                    "sha256" : "4cc5670f44a9a31fe5272b96350800dbad0783c0838048279b6b88f282fb4ba6"
                 }
             ]
         },
@@ -366,7 +343,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/gnome/gtk-frdp.git"
+                    "url" : "https://gitlab.gnome.org/GNOME/gtk-frdp.git",
+                    "branch" : "cb96c2512888350b262a69e9f6bfe005e3830456"
                 }
             ]
         },
@@ -379,7 +357,8 @@
             "sources" : [
                 {
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/felipeborges/libovf-glib.git"
+                    "url" : "https://gitlab.gnome.org/felipeborges/libovf-glib.git",
+                    "branch" : "4bef85e97c636ac4747cb815cf12a0591271b218"
                 }
             ]
         },
@@ -387,13 +366,14 @@
             "name" : "gnome-boxes",
             "buildsystem" : "meson",
             "config-opts" : [
-                "-Dflatpak=true",
-                "-Dprofile=development"
+                "-Dflatpak=true"
             ],
             "sources" : [
                 {
+                    "disable-shallow-clone" : true,
                     "type" : "git",
-                    "url" : "https://gitlab.gnome.org/gnome/gnome-boxes.git"
+                    "url" : "https://gitlab.gnome.org/gnome/gnome-boxes.git",
+                    "branch" : "gnome-3-30"
                 }
             ]
         }
