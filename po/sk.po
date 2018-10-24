@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-02-09 21:05+0000\n"
-"PO-Revision-Date: 2018-02-26 11:39+0100\n"
+"POT-Creation-Date: 2018-07-25 15:48+0000\n"
+"PO-Revision-Date: 2018-10-24 20:12+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -53,8 +53,8 @@ msgstr ""
 "obľúbených operačných systémov, alebo keď sa potrebujete pripojiť k "
 "vzdialenému stroju (napríklad vo vašej kancelárii)."
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:248 src/app-window.vala:250
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxy"
@@ -69,13 +69,13 @@ msgstr "Zobraziť a použiť virtuálne stroje"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "virtuálny stroj;vm;"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "virtuálny stroj;vm;vnc;rdp;"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 #: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "@icon@"
+msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -121,11 +121,19 @@ msgstr "Maximalizované okno"
 msgid "Window maximized state"
 msgstr "Maximalizovaný stav okna"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "Prvé spustenie"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Určuje, či je aplikácia Boxy spustená po prvýkrát"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "Zdieľané priečinky"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Pole variantov názvov zdieľaných priečinkov a mapovaní ciest"
 
@@ -161,8 +169,9 @@ msgid "_New"
 msgstr "_Nový"
 
 #: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Späť"
 
@@ -300,7 +309,7 @@ msgid "Quit"
 msgstr "Ukončiť"
 
 # dalog
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:633
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
 msgstr "Záznam pre riešenie problémov"
 
@@ -308,18 +317,17 @@ msgstr "Záznam pre riešenie problémov"
 msgid "_Copy to Clipboard"
 msgstr "_Skopírovať do schránky"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
 msgid "Select a device or ISO file"
 msgstr "Vyberte zariadenie alebo súbor ISO"
 
 #: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:317
+#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:319
+#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
+#: src/app-window.vala:329
 msgid "_Open"
 msgstr "_Otvoriť"
 
@@ -426,34 +434,61 @@ msgstr "Prid_ať heslo"
 msgid "Product Key"
 msgstr "Kód Product Key"
 
-#: data/ui/wizard-downloadable-entry.ui:58 data/ui/wizard-media-entry.ui:52
+#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
 msgid "Unknown media"
 msgstr "Neznámy nosič"
+
+#: data/ui/wizard-downloads-page.ui:25
+msgid "Show more…"
+msgstr "Zobraziť viac…"
+
+#: data/ui/wizard-downloads-page.ui:87
+msgid "No operating systems found"
+msgstr "Nenašiel sa žiadne operačné systémy"
+
+#: data/ui/wizard-downloads-page.ui:98
+msgid "Try a different search"
+msgstr "Skúste vyhľadať iný"
 
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
 msgstr "Vložte inštalačný nosič operačného systému alebo nižšie vyberte zdroj"
 
-#: data/ui/wizard-source.ui:83
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
-msgstr "Prevzatie OS"
+msgstr "Prevziať OS"
 
-#: data/ui/wizard-source.ui:93 data/ui/wizard-source.ui:136
-#: data/ui/wizard-source.ui:178 data/ui/wizard-source.ui:221
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "Operačný systém bude prevzatý a nainštalovaný vo virtuálnom stroji."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
 msgid "▶"
 msgstr "▶"
 
-# DK: jedna z moznosti v prvom kroku vytvarania boxu
-#: data/ui/wizard-source.ui:126
-msgid "_Enter URL"
-msgstr "_Zadať URL"
+#: data/ui/wizard-source.ui:151
+msgid "Connect to a remote box"
+msgstr "Pripojiť k vzdialenému boxu"
+
+#: data/ui/wizard-source.ui:158
+msgid "Connect using RDP, SPICE or VNC."
+msgstr "Pripojenie pomocou RDP, SPICE alebo VNC."
+
+#: data/ui/wizard-source.ui:220
+msgid "Connect to oVirt or Libvirt brokers."
+msgstr "Pripojenie k správcovi virtualizácie oVirt alebo Libvirt."
 
 # DK: jedna z moznosti v prvom kroku vytvarania boxu
-#: data/ui/wizard-source.ui:211
-msgid "_Select a file"
-msgstr "_Vybrať súbor"
+#: data/ui/wizard-source.ui:276
+msgid "Select a file"
+msgstr "Vybrať súbor"
 
-#: data/ui/wizard-source.ui:239
+#: data/ui/wizard-source.ui:283
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr "Výber súboru so spúšťacím obrazom na inštaláciu vo virtuálnom stroji."
+
+#: data/ui/wizard-source.ui:319
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -463,42 +498,17 @@ msgstr ""
 "rozlíšenie softvérových produktov, ktoré ste si už zadovážili a sú "
 "vlastníctvom ich príslušných majiteľov."
 
-#: data/ui/wizard-source.ui:310
-msgid "◀"
-msgstr "◀"
-
-# DK: jedna z moznosti v prvom kroku vytvarania boxu
-#: data/ui/wizard-source.ui:321
-msgid "Enter URL"
-msgstr "Zadať URL"
-
-#: data/ui/wizard-source.ui:351
+#: data/ui/wizard-source.ui:385
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
 msgstr ""
-"Zadajte adresu boxu, ktorý chcete pridať. Adresy sa môžu týkať inštalačných "
-"obrazov, serverov SPICE a VNC, alebo správcov virtualizácie oVirt alebo "
-"Libvirt."
-
-#: data/ui/wizard-source.ui:369
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"Príklady: http://download.com/obraz.iso, spice://hostiteľ:5051, ovirt://"
-"hostiteľ/cesta"
-
-#: data/ui/wizard-source.ui:442
-msgid "Red Hat Enterprise Linux"
-msgstr "Red Hat Enterprise Linux"
-
-#: data/ui/wizard-source.ui:455
-msgid "Available with a free Red Hat developer account"
-msgstr "Dostupný s bezplatným vývojárskym účtom spoločnosti Red Hat"
+"Zadajte adresu, ku ktorej sa má pripojiť. Adresa môže začínať s spice://, "
+"rdp:// alebo vnc://."
 
 # dialog title
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
 msgstr "Vytvorenie boxu"
 
@@ -510,13 +520,13 @@ msgstr "Vytvo_riť"
 msgid "C_ontinue"
 msgstr "P_okračovať"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "_Späť"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Prispôsobenie prostriedkov"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "Vyhľadajte OS, alebo zadajte odkaz na prevzatie…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -529,6 +539,14 @@ msgid ""
 msgstr ""
 "Vo vašom systéme nie sú dostupné virtualizačné rozšírenia.\n"
 "Skontrolujte nastavenia vášho systému BIOS a povoľte ich."
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Každý box môže byť virtuálnym strojom, ktorý je spustený na tomto počítači, "
+"alebo pripojením k existujúcemu vzdialenému stroju"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -568,7 +586,7 @@ msgstr "Vynútiť vypnutie"
 msgid "Clone"
 msgstr "Klonovať"
 
-#: src/actions-popover.vala:84 src/machine.vala:613
+#: src/actions-popover.vala:84 src/machine.vala:629
 msgid "Restart"
 msgstr "Reštartovať"
 
@@ -583,69 +601,69 @@ msgstr "Vlastnosti"
 msgid "Screenshot from %s"
 msgstr "Snímka obrazovky z %s"
 
-#: src/app.vala:108
+#: src/app.vala:111
 msgid "translator-credits"
 msgstr "Dušan Kazik <prescott66@gmail.com>"
 
-#: src/app.vala:109
+#: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikácia pre GNOME 3 na prístup k vzdialeným alebo virtuálnym "
 "systémom"
 
 # PK: tuto pockame na ML, ja by som dal Zobrazi cislo verzie
-#: src/app.vala:168 src/main.vala:9
+#: src/app.vala:173 src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazí číslo verzie"
 
 # cmd tooltip
-#: src/app.vala:170
+#: src/app.vala:175
 msgid "Open in full screen"
 msgstr "Otvorí v režime celej obrazovky"
 
 # cmd tooltip
-#: src/app.vala:171 src/main.vala:10
+#: src/app.vala:176 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Skontroluje virtualizačné schopnosti"
 
 # cmd tooltip
-#: src/app.vala:172
+#: src/app.vala:177
 msgid "Open box with UUID"
 msgstr "Otvorí box s UUID"
 
 # cmd tooltip
-#: src/app.vala:173
+#: src/app.vala:178
 msgid "Search term"
 msgstr "Vyhľadá výraz"
 
 # https://bugzilla.gnome.org/show_bug.cgi?id=695547
 # cmd tooltip
 #. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:175
+#: src/app.vala:180
 msgid "URL to display, broker or installer media"
 msgstr "URL k displeju, správcovi virtualizácie alebo inštalačnému nosiču"
 
-#: src/app.vala:186
+#: src/app.vala:191
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "- Jednoduchá aplikácia na prístup k vzdialeným alebo virtuálnym strojom"
 
-#: src/app.vala:211
+#: src/app.vala:216
 msgid "Too many command line arguments specified.\n"
 msgstr "Bolo zadaných príliš veľa parametrov v príkazovom riadku.\n"
 
-#: src/app.vala:451
+#: src/app.vala:468
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainštalovaný a pripravený na použitie"
 
 #  PK: uvodzovky, ja to nechcem po tebe furt opravovat
-#: src/app.vala:539
+#: src/app.vala:556
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ bol odstránený"
 
-#: src/app.vala:540
+#: src/app.vala:557
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -653,13 +671,17 @@ msgstr[0] "%u boxov bolo odstránených"
 msgstr[1] "%u box bol odstránený"
 msgstr[2] "%u boxy boli odstránené"
 
-#: src/app.vala:567 src/libvirt-machine-properties.vala:551
+#: src/app.vala:584 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "V_rátiť"
 
+#: src/app.vala:628
+msgid "Boxes is doing something"
+msgstr "Boxy niečo vykonávajú"
+
 # dialog title
-#: src/app-window.vala:316
+#: src/app-window.vala:326
 msgid "Select files to transfer"
 msgstr "Výber súborov na prenos"
 
@@ -687,11 +709,11 @@ msgstr "Ukončí režim na celú obrazovku"
 msgid "New and Recent"
 msgstr "Nové a nedávne"
 
-#: src/installed-media.vala:51
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: src/installed-media.vala:108 src/installer-media.vala:113
+#: src/installed-media.vala:113 src/installer-media.vala:117
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systém"
@@ -739,7 +761,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Odoslať kombináciu klávesov"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:61
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
 msgid "_Name"
 msgstr "_Názov"
 
@@ -906,27 +928,32 @@ msgstr "Reštart boxu „%s“ trvá príliš dlho. Chcete vynútiť jeho vypnut
 msgid "_Shutdown"
 msgstr "_Vypnúť"
 
-#: src/libvirt-machine.vala:785
+#: src/libvirt-machine.vala:689
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "Klonuje sa „%s“…"
+
+#: src/libvirt-machine.vala:790
 msgid "Installing…"
 msgstr "Inštaluje sa…"
 
 # DK: ide o Live distribuciu. pravdepodobne neprekladame
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:787 src/wizard-source.vala:113
-#: src/wizard-source.vala:145
+#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/wizard-source.vala:157
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:789
+#: src/libvirt-machine.vala:794
 msgid "Setting up clone…"
 msgstr "Nastavuje sa klonovanie…"
 
-#: src/libvirt-machine.vala:791
+#: src/libvirt-machine.vala:796
 msgid "Importing…"
 msgstr "Importuje sa…"
 
-#: src/libvirt-machine.vala:800 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "hostiteľ: %s"
@@ -968,42 +995,46 @@ msgstr "Žiadne boxy na importovanie"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Zlyhalo nájdenie vhodného disku na importovanie pre box „%s“"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Connected"
 msgstr "Pripojený"
 
-#: src/list-view-row.vala:128
+#: src/list-view-row.vala:126
 msgid "Disconnected"
 msgstr "Odpojený"
 
-#: src/list-view-row.vala:134
+#: src/list-view-row.vala:132
 msgid "Running"
 msgstr "Spustený"
 
-#: src/list-view-row.vala:140
+#: src/list-view-row.vala:138
 msgid "Paused"
 msgstr "Pozastavený"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:143
 msgid "Powered Off"
 msgstr "Vypnutý"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:201
+#: src/machine.vala:204
 #, c-format
 msgid "Connecting to %s"
 msgstr "Pripája sa k %s"
 
-#: src/machine.vala:224 src/machine.vala:640
+#: src/machine.vala:229 src/machine.vala:656
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
 
-#: src/machine.vala:422
+#: src/machine.vala:282
+msgid "Machine is under construction"
+msgstr "Stroj je vo výstavbe"
+
+#: src/machine.vala:436
 msgid "Saving…"
 msgstr "Ukladá sa…"
 
-#: src/machine.vala:612
+#: src/machine.vala:628
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1012,13 +1043,13 @@ msgstr ""
 "Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
-#: src/machine.vala:623
+#: src/machine.vala:639
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Zlyhalo spustenie boxu „%s“"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:727
+#: src/machine.vala:743
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "Virtuálny stroj „%s“ vyžaduje overenie totožnosti"
@@ -1061,7 +1092,7 @@ msgstr "Chyby nahláste na <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka programu %s: <%s>.\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:253
 #, c-format
 msgid "No such file %s"
 msgstr "%s nie je súborom"
@@ -1080,11 +1111,11 @@ msgstr "Nepripojené k %s"
 msgid "Connection to oVirt broker failed"
 msgstr "Pripojenie k správcovi virtualizácie oVirt zlyhalo"
 
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:71
+#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:73 src/wizard.vala:530
+#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:538
 msgid "URL"
 msgstr "URL"
 
@@ -1103,9 +1134,9 @@ msgstr "Snímky"
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
-msgstr "Zmeny vyžadujú reštart virtuálneho stroja „%s“. "
+msgstr "Zmeny vyžadujú reštart virtuálneho stroja „%s“."
 
-#: src/remote-machine.vala:75
+#: src/remote-machine.vala:80
 msgid "_URL"
 msgstr "_URL"
 
@@ -1207,7 +1238,7 @@ msgid "Folder Shares"
 msgstr "Zdieľanie priečinkov"
 
 #: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:861 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Neplatná URL"
 
@@ -1313,7 +1344,7 @@ msgstr "nie"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:604
+#: src/vm-configurator.vala:609
 msgid "Incapable host system"
 msgstr "Nevyhovujúci hostiteľský systém"
 
@@ -1327,16 +1358,16 @@ msgstr "Live box „%s“ bol automaticky odstránený."
 msgid "Box import from file “%s” failed."
 msgstr "Import boxu zo súboru „%s“ zlyhal."
 
-#: src/wizard-source.vala:149
+#: src/wizard-source.vala:161
 msgid "32-bit x86 system"
 msgstr "32-bitový x86 systém"
 
-#: src/wizard-source.vala:150
+#: src/wizard-source.vala:162
 msgid "64-bit x86 system"
 msgstr "64-bitový x86 systém"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:155
+#: src/wizard-source.vala:167
 #, c-format
 msgid " from %s"
 msgstr " od spoločnosti %s"
@@ -1361,91 +1392,143 @@ msgstr "Prehľad"
 msgid "Box creation failed"
 msgstr "Vytváranie boxu zlyhalo"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Pripojenie k boxu"
+
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Prázdne umiestnenie"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "Nepodporovaný súbor"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "Neplatný súbor"
 
+#. accept any vnc:// uri
+#. accept any rdp:// uri
 #: src/wizard.vala:372
+msgid "Boxes was compiled without RDP support"
+msgstr "Aplikácia Boxy bola skompilovaná bez podpory RDP"
+
+#: src/wizard.vala:380
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Nepodporovaný protokol „%s“"
 
-#: src/wizard.vala:378 src/wizard.vala:452
+#: src/wizard.vala:386 src/wizard.vala:460
 msgid "Unknown installer media"
 msgstr "Neznámy inštalačný nosič"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:380 src/wizard.vala:453
+#: src/wizard.vala:388 src/wizard.vala:461
 msgid "Analyzing…"
 msgstr "Analyzuje sa…"
 
-#: src/wizard.vala:394
+#: src/wizard.vala:402
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Zlyhala analýza inštalačného média. Nosič je poškodený alebo neúplný?"
 
 #. We did this, so ignore!
-#: src/wizard.vala:506
+#: src/wizard.vala:514
 msgid "Box setup failed"
 msgstr "Nastavovanie boxu zlyhalo"
 
-#: src/wizard.vala:520
+#: src/wizard.vala:528
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Program Boxy vytvorí nový box s nasledovnými vlastnosťami:"
 
-#: src/wizard.vala:525
+#: src/wizard.vala:533
 msgid "Type"
 msgstr "Typ"
 
-#: src/wizard.vala:528
+#: src/wizard.vala:536
 msgid "Host"
 msgstr "Hostiteľ"
 
-#: src/wizard.vala:539 src/wizard.vala:550
+#: src/wizard.vala:547 src/wizard.vala:559
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:541
+#: src/wizard.vala:549
 msgid "TLS Port"
 msgstr "Port TLS"
 
-#: src/wizard.vala:555
+#: src/wizard.vala:564
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Pridá boxy pre všetky systémy dostupné z tohto účtu:"
 
-#: src/wizard.vala:568
+#: src/wizard.vala:577
 msgid "Memory"
 msgstr "Pamäť"
 
-#: src/wizard.vala:577
+#: src/wizard.vala:586
 msgid "Disk"
 msgstr "Disk"
 
 # DK: jedna sa o kapacitu disku
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:579
+#: src/wizard.vala:588
 #, c-format
 msgid "%s maximum"
 msgstr "maximálne %s"
 
-#: src/wizard.vala:642
+#: src/wizard.vala:651
 msgid "Downloading media…"
 msgstr "Preberajú sa multimédiá…"
 
-#: src/wizard.vala:652
+#: src/wizard.vala:654
+msgid "Downloading media"
+msgstr "Preberajú sa multimédiá"
+
+#: src/wizard.vala:664
 msgid "Download failed."
 msgstr "Preberanie zlyhalo."
 
-#: src/wizard.vala:766
+#: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "_Prispôsobiť…"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
+
+# DK: jedna z moznosti v prvom kroku vytvarania boxu
+#~ msgid "_Enter URL"
+#~ msgstr "_Zadať URL"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+# DK: jedna z moznosti v prvom kroku vytvarania boxu
+#~ msgid "Enter URL"
+#~ msgstr "Zadať URL"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
+#~ msgstr ""
+#~ "Zadajte adresu boxu, ktorý chcete pridať. Adresy sa môžu týkať "
+#~ "inštalačných obrazov, serverov SPICE a VNC, alebo správcov virtualizácie "
+#~ "oVirt alebo Libvirt."
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "Príklady: http://download.com/obraz.iso, spice://hostiteľ:5051, ovirt://"
+#~ "hostiteľ/cesta"
+
+#~ msgid "Red Hat Enterprise Linux"
+#~ msgstr "Red Hat Enterprise Linux"
+
+#~ msgid "Available with a free Red Hat developer account"
+#~ msgstr "Dostupný s bezplatným vývojárskym účtom spoločnosti Red Hat"
+
+#~ msgid "_Back"
+#~ msgstr "_Späť"
 
 #~ msgid "Pause"
 #~ msgstr "Pozastaviť"
@@ -1579,9 +1662,6 @@ msgstr "_Prispôsobiť…"
 
 #~ msgid "The time it takes for transitions and animation, in ms."
 #~ msgstr "Čas zabraný prechodmi a animáciami v milisekundách."
-
-#~ msgid "No boxes found"
-#~ msgstr "Nenašli sa žiadne boxy"
 
 #~ msgid "_Yes"
 #~ msgstr "Á_no"
