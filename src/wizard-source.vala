@@ -582,7 +582,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     private void on_download_an_os_button_clicked () {
         window.wizard_window.show_downloads_page (media_manager.os_db, (entry) => {
             // Handle custom downloads
-            if (entry.os.id == "http://redhat.com/rhel/7.4") {
+            if (entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
                 on_install_rhel_button_clicked ();
 
                 return;
