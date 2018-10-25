@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-07-28 10:04+0000\n"
-"PO-Revision-Date: 2018-07-30 21:59+0200\n"
+"POT-Creation-Date: 2018-10-24 18:13+0000\n"
+"PO-Revision-Date: 2018-10-25 18:30+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:5
 msgid "GNOME Boxes"
@@ -101,7 +101,7 @@ msgstr "Sekundni časovni razmik med posodobitvami zajema zaslona"
 
 #: data/org.gnome.boxes.gschema.xml:32
 msgid "Window size"
-msgstr "Veikost okna"
+msgstr "Velikost okna"
 
 #: data/org.gnome.boxes.gschema.xml:33
 msgid "Window size (width and height)"
@@ -177,19 +177,23 @@ msgstr "_Nova"
 msgid "Back"
 msgstr "Nazaj"
 
-#: data/ui/collection-toolbar.ui:65
+#: data/ui/collection-toolbar.ui:64
+msgid "Application Menu"
+msgstr "Meni programa"
+
+#: data/ui/collection-toolbar.ui:92
 msgid "Select Items"
 msgstr "Izbor predmetov"
 
-#: data/ui/collection-toolbar.ui:93
+#: data/ui/collection-toolbar.ui:120
 msgid "List view"
 msgstr "Seznamski pikaz"
 
-#: data/ui/collection-toolbar.ui:121
+#: data/ui/collection-toolbar.ui:148
 msgid "Grid view"
 msgstr "Mrežni prikaz"
 
-#: data/ui/collection-toolbar.ui:148 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Iskanje"
 
@@ -299,12 +303,8 @@ msgid "Help"
 msgstr "Pomoč"
 
 #: data/ui/menus.ui:15
-msgid "About"
+msgid "About Boxes"
 msgstr "O programu"
-
-#: data/ui/menus.ui:19
-msgid "Quit"
-msgstr "Končaj"
 
 #: data/ui/properties-toolbar.ui:43 src/machine.vala:649
 msgid "Troubleshooting Log"
@@ -395,7 +395,7 @@ msgstr "Ojoj, prišlo je do napake!"
 
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
-msgstr "Program ne more dostopiti do navideznega ozadnjega programa."
+msgstr "Program ne more vzpostaviti povezave z navideznim ozadnjim programom."
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -693,7 +693,7 @@ msgstr "Novo in nedavno"
 msgid "Unsupported disk image format."
 msgstr "Napodprt zapis odtisa diska."
 
-#: src/installed-media.vala:113 src/installer-media.vala:117
+#: src/installed-media.vala:113 src/installer-media.vala:158
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
@@ -908,26 +908,26 @@ msgstr "_Izklopi"
 msgid "Cloning “%s”…"
 msgstr "Poteka kloniranje »%s« ..."
 
-#: src/libvirt-machine.vala:790
+#: src/libvirt-machine.vala:797
 msgid "Installing…"
 msgstr "Poteka nameščanje …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
+#: src/libvirt-machine.vala:799 src/wizard-source.vala:127
 #: src/wizard-source.vala:157
 msgid "Live"
 msgstr "Živi sistem"
 
-#: src/libvirt-machine.vala:794
+#: src/libvirt-machine.vala:801
 msgid "Setting up clone…"
 msgstr "Poteka nastavljanje klona …"
 
-#: src/libvirt-machine.vala:796
+#: src/libvirt-machine.vala:803
 msgid "Importing…"
 msgstr "Poteka uvažanje …"
 
-#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "gostitelj: %s"
@@ -1317,7 +1317,7 @@ msgstr "Ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:609
+#: src/vm-configurator.vala:693
 msgid "Incapable host system"
 msgstr "Gostiteljski sistem brez podpore"
 
@@ -1465,6 +1465,12 @@ msgstr "Prejemanje je spodletelo."
 #: src/wizard.vala:784
 msgid "C_ustomize…"
 msgstr "Prila_godi …"
+
+#~ msgid "About"
+#~ msgstr "O programu"
+
+#~ msgid "Quit"
+#~ msgstr "Končaj"
 
 #~| msgid "org.gnome.Boxes"
 #~ msgid "gnome-boxes"
