@@ -46,8 +46,8 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     public WizardDownloadsPage downloads_page;
     [GtkChild]
     public Gtk.Grid customization_grid;
-    [GtkChild]
-    public Gtk.FileChooserWidget file_chooser;
+
+    public Gtk.FileChooserNative file_chooser;
     [GtkChild]
     public WizardToolbar topbar;
     [GtkChild]
@@ -64,8 +64,11 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
             page = WizardWindowPage.MAIN;
         }
 
-        foreach (var extension in InstalledMedia.supported_extensions)
-            file_chooser.filter.add_pattern ("*" + extension);
+        file_chooser = new Gtk.FileChooserNative (_("Select a device or ISO file"),
+                                                  app_window,
+                                                  Gtk.FileChooserAction.OPEN,
+                                                  _("Open"), _("Cancel"));
+        file_chooser.bind_property ("visible", this, "visible", BindingFlags.INVERT_BOOLEAN);
 
         set_transient_for (app_window);
 
@@ -127,15 +130,12 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
     }
 
     public void show_file_chooser (owned FileChosenFunc file_chosen_func) {
-        ulong activated_id = 0;
-        activated_id = file_chooser.file_activated.connect (() => {
-            var uri = file_chooser.get_uri ();
-            file_chosen_func (uri);
-            file_chooser.disconnect (activated_id);
-
-            page = WizardWindowPage.MAIN;
-        });
         page = WizardWindowPage.FILE_CHOOSER;
+        var res = file_chooser.run ();
+        if (res == Gtk.ResponseType.ACCEPT) {
+            file_chosen_func (file_chooser.get_uri ());
+        }
+        page = WizardWindowPage.MAIN;
     }
 
     public void show_downloads_page (OSDatabase os_db, owned DownloadChosenFunc download_chosen_func) {
