@@ -118,12 +118,10 @@
               </packing>
             </child>
 
-            <child>
-              <object class="GtkFileChooserWidget" id="file_chooser">
+            <!-- Let's show an empty page when the GtkFileChooserNative is showing -->
+             <child>
+              <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="show-hidden">False</property>
-                <property name="local-only">False</property>
-                <property name="filter">supported_files_filter</property>
               </object>
 
               <packing>
@@ -154,9 +152,4 @@
     </child>
   </template>
 
-  <object class="GtkFileFilter" id="supported_files_filter">
-    <mime-types>
-      <mime-type>application/x-cd-image</mime-type>
-    </mime-types>
-  </object>
 </interface>

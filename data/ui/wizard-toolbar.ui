@@ -151,53 +151,6 @@
         <style>
           <class name="titlebar"/>
         </style>
-
-        <child>
-          <object class="GtkButton">
-            <property name="visible">True</property>
-            <signal name="clicked" handler="on_back_button_clicked"/>
-            <style>
-              <class name="image-button"/>
-            </style>
-
-             <child internal-child="accessible">
-               <object class="AtkObject">
-                <property name="accessible-name" translatable="yes">Back</property>
-               </object>
-             </child>
-
-             <child>
-               <object class="GtkImage">
-                 <property name="visible">True</property>
-                 <property name="icon-name">go-previous-symbolic</property>
-               </object>
-             </child>
-          </object>
-
-          <packing>
-            <property name="pack-type">start</property>
-          </packing>
-        </child>
-
-        <child>
-          <object class="GtkButton" id="file_chooser_open_button">
-            <property name="visible">True</property>
-            <property name="sensitive">False</property>
-            <property name="valign">center</property>
-            <property name="use-underline">True</property>
-            <property name="label" translatable="yes">_Open</property>
-            <signal name="clicked" handler="on_file_chooser_open_clicked"/>
-            <style>
-              <class name="text-button"/>
-            </style>
-
-          </object>
-
-          <packing>
-            <property name="pack-type">end</property>
-          </packing>
-        </child>
-
       </object>
 
       <packing>
