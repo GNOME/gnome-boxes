@@ -16,7 +16,7 @@
         |         |
         |         |-> troubleshoot_log = new Boxes.TroubleshootLog ();
         |         |
-        |         |-> file_chooser = new Gtk.FileChooserWidget ();
+        |         |-> file_chooser = new Gtk.FileChooserNative ();
         |
         |-> topbar = new Boxes.PropertiesToolbar (); // as titlebar
   -->
@@ -71,11 +71,8 @@
             </child>
 
             <child>
-              <object class="GtkFileChooserWidget" id="file_chooser">
+              <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="show-hidden">False</property>
-                <property name="local-only">True</property>
-                <property name="filter">supported_files_filter</property>
               </object>
 
               <packing>

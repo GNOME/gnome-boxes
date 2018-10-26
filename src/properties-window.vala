@@ -33,8 +33,8 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     public Properties properties;
     [GtkChild]
     public TroubleshootLog troubleshoot_log;
-    [GtkChild]
-    public Gtk.FileChooserWidget file_chooser;
+
+    public Gtk.FileChooserNative file_chooser;
     [GtkChild]
     public PropertiesToolbar topbar;
     [GtkChild]
@@ -51,6 +51,13 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         set_transient_for (app_window);
 
         notify["ui-state"].connect (ui_state_changed);
+
+        file_chooser = new Gtk.FileChooserNative (_("Select a device or ISO file"),
+                                                  app_window,
+                                                  Gtk.FileChooserAction.OPEN,
+                                                  _("Open"), _("Cancel"));
+        file_chooser.bind_property ("visible", this, "visible", BindingFlags.INVERT_BOOLEAN);
+
     }
 
     public void show_troubleshoot_log (string log) {
@@ -59,15 +66,13 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     }
 
     public void show_file_chooser (owned FileChosenFunc file_chosen_func) {
-        ulong activated_id = 0;
-        activated_id = file_chooser.file_activated.connect (() => {
-            var path = file_chooser.get_filename ();
-            file_chosen_func (path);
-            file_chooser.disconnect (activated_id);
-
-            page = PropsWindowPage.MAIN;
-        });
         page = PropsWindowPage.FILE_CHOOSER;
+        var res = file_chooser.run ();
+        if (res == Gtk.ResponseType.ACCEPT) {
+            file_chosen_func (file_chooser.get_filename ());
+        }
+
+        page = PropsWindowPage.MAIN;
     }
 
     public void copy_troubleshoot_log_to_clipboard () {
