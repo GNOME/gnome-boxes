@@ -105,6 +105,7 @@ vala_sources = [
   'libvirt-vm-cloner.vala',
   'libvirt-vm-importer.vala',
   'vnc-display.vala',
+  'ssh-display.vala',
   'wizard-downloads-page.vala',
   'wizard-window.vala',
   'wizard-source.vala',

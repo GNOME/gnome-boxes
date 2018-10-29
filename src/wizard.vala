@@ -366,6 +366,8 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             source.source_type = "spice";
         } else if (uri.scheme == "vnc") {
             // accept any vnc:// uri
+        } else if (uri.scheme == "ssh") {
+           // accept any ssh:// uri
         } else if (uri.scheme == "rdp") {
             // accept any rdp:// uri
         #if !HAVE_RDP
@@ -555,6 +557,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
             case "vnc":
             case "rdp":
+            case "ssh":
                 if (uri.port > 0)
                     summary.add_property (_("Port"), uri.port.to_string ());
                 break;
