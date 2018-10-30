@@ -5,16 +5,22 @@ using Gtk;
 private class Boxes.SharedFolderPopover: Gtk.Popover {
     public signal void saved (string local_folder, string name, int target_position);
 
-    [GtkChild]
-    public Gtk.FileChooserButton file_chooser_button;
+    public Gtk.FileChooserNative file_chooser;
+
     [GtkChild]
     public Gtk.Entry name_entry;
+    [GtkChild]
+    public Gtk.Entry path_entry;
 
     public int target_position;
 
     construct {
-        var default_path = Environment.get_user_special_dir (UserDirectory.PUBLIC_SHARE);
-        file_chooser_button.set_current_folder (default_path);
+        file_chooser = new Gtk.FileChooserNative (
+            _("Select Shared Folder"),
+            App.app.main_window,
+            Gtk.FileChooserAction.SELECT_FOLDER,
+            _("Select"), _("Cancel")
+        );
     }
 
     [GtkCallback]
@@ -24,7 +30,7 @@ private class Boxes.SharedFolderPopover: Gtk.Popover {
 
     [GtkCallback]
     public void on_save (Gtk.Button save_button) {
-        var uri = file_chooser_button.get_uri ();
+        var uri = path_entry.get_text ();
         File file = File.new_for_uri (uri);
         var name = name_entry.get_text ();
 
@@ -36,5 +42,13 @@ private class Boxes.SharedFolderPopover: Gtk.Popover {
         }
 
         popdown ();
+    }
+
+    [GtkCallback]
+    public void on_browse_button_clicked () {
+        if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
+            var uri = file_chooser.get_uri ();
+            path_entry.set_text (uri);
+        }
     }
 }

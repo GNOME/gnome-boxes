@@ -704,7 +704,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             popover.target_position = row.get_index ();
 
             var folder_row = row as SharedFolderRow;
-            popover.file_chooser_button.set_uri ("file://" + folder_row.folder_path);
+            popover.path_entry.set_text (folder_row.folder_path);
             popover.name_entry.set_text (folder_row.folder_name);
 
             popover.popup ();
