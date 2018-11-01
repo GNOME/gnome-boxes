@@ -32,10 +32,10 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
      * Sorting is also available.
      */
     private string[] recommended_downloads = {
-        "http://redhat.com/rhel/7.5",
-        "http://fedoraproject.org/fedora/28",
-        "http://fedoraproject.org/silverblue/28",
-        "http://ubuntu.com/ubuntu/18.04",
+        "http://redhat.com/rhel/7.6",
+        "http://fedoraproject.org/fedora/29",
+        "http://fedoraproject.org/silverblue/29",
+        "http://ubuntu.com/ubuntu/18.10",
         "http://opensuse.org/opensuse/42.3",
         "http://debian.org/debian/9",
     };
