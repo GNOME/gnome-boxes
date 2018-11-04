@@ -13,7 +13,7 @@ public class Boxes.ArchiveWriter : GLib.Object {
                           throws GLib.IOError {
         archive = new Archive.Write ();
         this.format  = format;
-        this.filters = filters.copy ();
+        this.filters = filters.copy_deep((CopyFunc) Object.ref);
 
         prepare_archive ();
         execute_libarchive_function (archive, () => { return archive.open_filename (filename); });
