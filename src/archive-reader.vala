@@ -17,7 +17,7 @@ public class Boxes.ArchiveReader : GLib.Object {
         this.filename = filename;
         this.format = format;
         if (filters != null)
-            this.filters = filters.copy ();
+            this.filters = filters.copy_deep((CopyFunc) Object.ref);
 
         open_archive ();
     }
