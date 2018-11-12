@@ -123,7 +123,7 @@ dependencies = [
   config_dep,
   libarchive_dep,
   dependency ('gobject-2.0', version: '>= 2.44'),
-  dependency ('gtk+-3.0', version: '>= 3.22.20'),
+  dependency ('gtk+-3.0', version: '>= 3.24.1'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
   dependency ('libosinfo-1.0', version: '>= 1.1.0'),
   dependency ('libsecret-1'),
