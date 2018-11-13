@@ -102,6 +102,45 @@ namespace Boxes {
         }
     }
 
+    public string serialize_os_title (Osinfo.Media media) {
+        var title = "unknown";
+
+        /* Libosinfo lacks some OS variant names, so we do some
+           parsing here to compose a unique human-readable media
+           identifier. */
+        var variant = "";
+        var variants = media.get_os_variants ();
+        if (variants.get_length () > 0)
+            variant = (variants.get_nth (0) as Osinfo.OsVariant).get_name ();
+        else if ((media.os as Osinfo.Product).name != null) {
+            variant = (media.os as Osinfo.Product).name;
+            if (media.url != null && media.url.contains ("server"))
+                variant += " Server";
+        } else {
+            var file = File.new_for_uri (media.url);
+
+            title = file.get_basename ().replace ("_", "");
+        }
+
+        var subvariant = "";
+
+        if (media.url != null) {
+            if (media.url.contains ("netinst"))
+                subvariant = "(netinst)";
+            else if (media.url.contains ("minimal"))
+                subvariant = "(minimal)";
+            else if (media.url.contains ("dvd"))
+                subvariant = "(DVD)";
+        }
+
+        var is_live = media.live ? " (" + _("Live") + ")" : "";
+
+        title = @"$variant $(media.architecture) $subvariant $is_live";
+
+        /* Strip consequent whitespaces */
+        return title.replace ("  ", "");
+    }
+
     public async GVir.StoragePool ensure_storage_pool (GVir.Connection connection) throws GLib.Error {
         var pool = get_storage_pool (connection);
         if (pool == null) {
