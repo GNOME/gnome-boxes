@@ -141,6 +141,47 @@ namespace Boxes {
         return title.replace ("  ", "");
     }
 
+    public async GLib.List<Osinfo.Media>? get_recommended_downloads () {
+        uint8[] contents;
+
+        try {
+            File file = File.new_for_uri ("resource:///org/gnome/Boxes/recommended-downloads.xml");
+
+            file.load_contents (null, out contents, null);
+        } catch (GLib.Error e) {
+            warning ("Failed to load recommended downloads file: %s", e.message);
+
+            return null;
+        }
+
+        Xml.Doc* doc = Xml.Parser.parse_doc ((string)contents);
+        if (doc == null)
+            return null;
+
+        Xml.Node* root = doc->get_root_element ();
+        if (root == null || root->name != "list") {
+            warning ("Failed to parse recommended downloads");
+
+            return null;
+        }
+
+        GLib.List<Osinfo.Media> list = new GLib.List<Osinfo.Media> ();
+        var os_db = MediaManager.get_instance ().os_db;
+        for (Xml.Node* iter = root->children; iter != null; iter = iter->next) {
+            var os_id = iter->get_content ();
+            try {
+                var os = yield os_db.get_os_by_id (os_id);
+                var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
+
+                list.append (media);
+            } catch (OSDatabaseError error) {
+                warning ("Failed to find OS with id: '%s': %s", os_id, error.message);
+            }
+        }
+
+        return list;
+    }
+
     public async GVir.StoragePool ensure_storage_pool (GVir.Connection connection) throws GLib.Error {
         var pool = get_storage_pool (connection);
         if (pool == null) {
