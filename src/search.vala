@@ -19,7 +19,7 @@ public class Boxes.DownloadsSearch : GLib.Object {
             if (text.length > 0) {
                 var query = canonicalize_for_search (text);
                 foreach (var media in media_list) {
-                    var name = canonicalize_for_search ((media.os as Osinfo.Product).name);
+                    var name = canonicalize_for_search (serialize_os_title (media));
                     if (query in name)
                         model.append (media);
                 }
