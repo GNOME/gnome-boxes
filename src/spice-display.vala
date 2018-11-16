@@ -28,8 +28,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     private bool closed;
 
     private PortChannel webdav_channel;
-    private string shared_folder;
-    private GLib.Settings shared_folder_settings;
 
     private GLib.HashTable<Spice.Channel,SpiceChannelHandler> channel_handlers;
     private Display.OpenFDFunc? open_fd;
@@ -138,8 +136,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             session.cert_subject = GLib.Environment.get_variable ("BOXES_SPICE_HOST_SUBJECT");
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
-
-        init_shared_folders ();
     }
 
     public SpiceDisplay.with_uri (Machine machine, BoxConfig config, string uri) {
@@ -151,8 +147,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         session.uri = uri;
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
-
-        init_shared_folders ();
     }
 
     public SpiceDisplay.priv (Machine machine, BoxConfig config) {
@@ -162,8 +156,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         this.config = config;
 
         config.save_properties (gtk_session, gtk_session_saved_properties);
-
-        init_shared_folders ();
     }
 
     public override Gtk.Widget get_display (int n) {
@@ -297,173 +289,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         access_finish ();
     }
 
-    private bool add_shared_folder (string path, string name) {
-        if (!FileUtils.test (shared_folder, FileTest.IS_DIR))
-            Posix.unlink (shared_folder);
-
-        if (!FileUtils.test (shared_folder, FileTest.EXISTS)) {
-            var ret = Posix.mkdir (shared_folder, 0755);
-
-            if (ret == -1) {
-                warning (strerror (errno));
-
-                return false;
-            }
-        }
-
-        var link_path = GLib.Path.build_filename (shared_folder, name);
-
-        var ret = GLib.FileUtils.symlink (path, link_path);
-        if (ret == -1) {
-            warning (strerror (errno));
-
-            return false;
-        }
-        add_gsetting_shared_folder (path, name);
-
-        return true;
-    }
-
-    private void remove_shared_folder (string name) {
-        if (!FileUtils.test (shared_folder, FileTest.EXISTS) || !FileUtils.test (shared_folder, FileTest.IS_DIR))
-            return;
-
-        var to_remove = GLib.Path.build_filename (shared_folder, name);
-        Posix.unlink (to_remove);
-
-        remove_gsetting_shared_folder (name);
-    }
-
-    private HashTable<string, string>? get_shared_folders () {
-        if (!FileUtils.test (shared_folder, FileTest.EXISTS) || !FileUtils.test (shared_folder, FileTest.IS_DIR))
-            return null;
-
-        var hash = new HashTable <string, string> (str_hash, str_equal);
-        try {
-            Dir dir = Dir.open (shared_folder, 0);
-            string? name = null;
-
-            while ((name = dir.read_name ()) != null) {
-                var path = Path.build_filename (shared_folder, name);
-                if (FileUtils.test (path, FileTest.IS_SYMLINK)) {
-                    var folder = GLib.FileUtils.read_link (path);
-
-                    hash[name] = folder;
-                }
-            }
-        } catch (GLib.FileError err) {
-            warning (err.message);
-        }
-
-        return hash;
-    }
-
-    private void init_shared_folders () {
-        shared_folder = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (), "gnome-boxes", machine.config.uuid);
-
-        shared_folder_settings = new GLib.Settings ("org.gnome.boxes");
-        var hash = parse_shared_folders ();
-        var names = hash.get_keys ();
-        foreach (var name in names) {
-            add_shared_folder (hash[name], name);
-        }
-    }
-
-    private HashTable<string, string> parse_shared_folders () {
-        var hash = new HashTable <string, string> (str_hash, str_equal);
-
-        string shared_folders = shared_folder_settings.get_string("shared-folders");
-        if (shared_folders == "")
-            return hash;
-
-        try {
-            GLib.Variant? entry = null;
-            string uuid_str;
-            string path_str;
-            string name_str;
-
-            var variant = Variant.parse (new GLib.VariantType.array (GLib.VariantType.VARIANT), shared_folders);
-            VariantIter iter = variant.iterator ();
-            while (iter.next ("v",  &entry)) {
-                entry.lookup ("uuid", "s", out uuid_str);
-                entry.lookup ("path", "s", out path_str);
-                entry.lookup ("name", "s", out name_str);
-
-                if (machine.config.uuid == uuid_str)
-                    hash[name_str] = path_str;
-            }
-        } catch (VariantParseError err) {
-            warning (err.message);
-        }
-
-        return hash;
-    }
-
-    private void add_gsetting_shared_folder (string path, string name) {
-        var variant_builder = new GLib.VariantBuilder (new GLib.VariantType.array (VariantType.VARIANT));
-
-        string shared_folders = shared_folder_settings.get_string ("shared-folders");
-        if (shared_folders != "") {
-            try {
-                GLib.Variant? entry = null;
-
-                var variant = Variant.parse (new GLib.VariantType.array (GLib.VariantType.VARIANT), shared_folders);
-                VariantIter iter = variant.iterator ();
-                while (iter.next ("v",  &entry)) {
-                    variant_builder.add ("v",  entry);
-                }
-            } catch (VariantParseError err) {
-                warning (err.message);
-            }
-        }
-
-        var entry_variant_builder = new GLib.VariantBuilder (GLib.VariantType.VARDICT);
-
-        var uuid_variant = new GLib.Variant ("s", machine.config.uuid);
-        var path_variant = new GLib.Variant ("s", path);
-        var name_variant = new GLib.Variant ("s", name);
-        entry_variant_builder.add ("{sv}", "uuid", uuid_variant);
-        entry_variant_builder.add ("{sv}", "path", path_variant);
-        entry_variant_builder.add ("{sv}", "name", name_variant);
-        var entry_variant = entry_variant_builder.end ();
-
-        variant_builder.add ("v",  entry_variant);
-        var variant = variant_builder.end ();
-
-        shared_folder_settings.set_string ("shared-folders", variant.print (true));
-    }
-
-    private void remove_gsetting_shared_folder (string name) {
-        var variant_builder = new GLib.VariantBuilder (new GLib.VariantType.array (VariantType.VARIANT));
-
-        string shared_folders = shared_folder_settings.get_string ("shared-folders");
-        if (shared_folders == "")
-            return;
-
-        try {
-            GLib.Variant? entry = null;
-            string name_str;
-            string uuid_str;
-
-            var variant = Variant.parse (new GLib.VariantType.array (GLib.VariantType.VARIANT), shared_folders);
-            VariantIter iter = variant.iterator ();
-            while (iter.next ("v",  &entry)) {
-                entry.lookup ("uuid", "s", out uuid_str);
-                entry.lookup ("name", "s", out name_str);
-
-                if (uuid_str == machine.config.uuid && name_str == name)
-                    continue;
-
-                variant_builder.add ("v", entry);
-            }
-            variant = variant_builder.end ();
-
-            shared_folder_settings.set_string ("shared-folders", variant.print (true));
-        } catch (VariantParseError err) {
-            warning (err.message);
-        }
-    }
-
     private void main_event (ChannelEvent event) {
         switch (event) {
         case ChannelEvent.CLOSED:
@@ -565,7 +390,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             if (webdav_channel == null || !webdav_channel.port_opened)
                 break;
 
-            session.shared_dir = shared_folder;
+            session.shared_dir = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (),
+                                                           "gnome-boxes", machine.config.uuid);;
 
             var frame = create_shared_folders_frame ();
             add_property (ref list, _("Folder Shares"), new Gtk.Label (""), frame);
@@ -679,71 +505,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     private Gtk.Frame create_shared_folders_frame () {
-        var frame = new Gtk.Frame (null);
-        var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-        var listbox = new Gtk.ListBox ();
-        var button_plus = new Gtk.Button.from_icon_name ("list-add-symbolic", IconSize.BUTTON);
-        button_plus.halign = Gtk.Align.CENTER;
-        button_plus.get_style_context ().add_class ("flat");
-
-        box.pack_start (listbox, true, true, 0);
-        box.pack_end (button_plus, false, false, 6);
-        frame.add (box);
-
-        var popover = new SharedFolderPopover ();
-
-        button_plus.clicked.connect (() => {
-            popover.relative_to = button_plus;
-            popover.target_position = -1;
-
-            popover.popup ();
-        });
-
-        listbox.row_activated.connect ((row) => {
-            popover.relative_to = row;
-            popover.target_position = row.get_index ();
-
-            var folder_row = row as SharedFolderRow;
-            popover.file_chooser_button.set_uri ("file://" + folder_row.folder_path);
-            popover.name_entry.set_text (folder_row.folder_name);
-
-            popover.popup ();
-        });
-
-        var hash = get_shared_folders ();
-        if (hash != null) {
-            var keys = hash.get_keys ();
-            foreach (var key in keys) {
-                add_listbox_row (listbox, hash[key], key, -1);
-            }
-        }
-
-        popover.saved.connect ((path, name, target_position) => {
-            // Update previous entry
-            if (target_position != - 1) {
-                var row = listbox.get_row_at_index (target_position) as Boxes.SharedFolderRow;
-                remove_shared_folder (row.folder_name);
-            }
-
-            if (add_shared_folder (path, name))
-                add_listbox_row (listbox, path, name, target_position);
-        });
-
-        return frame;
-    }
-
-    private void add_listbox_row (Gtk.ListBox listbox, string path, string name, int target_position) {
-        var listboxrow = new SharedFolderRow (path, name);
-
-        if (target_position != -1)
-            listbox.remove (listbox.get_row_at_index (target_position));
-
-        listbox.insert (listboxrow, target_position);
-
-        listboxrow.removed.connect (() => {
-            listbox.remove (listboxrow);
-            remove_shared_folder (name);
-        });
+        return new SharedFoldersWidget (machine.config.uuid);
     }
 
     private bool is_usb_kbd_or_mouse (uint8 class, uint8 subclass, uint8 protocol) {
@@ -859,30 +621,5 @@ static void spice_validate_uri (string uri_as_text,
         break;
     default:
         throw new Boxes.Error.INVALID (_("Invalid URL"));
-    }
-}
-
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-shared-folder-row.ui")]
-private class Boxes.SharedFolderRow : Gtk.ListBoxRow {
-    public string folder_path { set; get; }
-    public string folder_name { set; get; }
-
-    public signal void removed ();
-    [GtkChild]
-    private Gtk.Label folder_path_label;
-    [GtkChild]
-    private Gtk.Label folder_name_label;
-
-    public SharedFolderRow (string path, string name) {
-        this.folder_path = path;
-        this.folder_name = name;
-
-        bind_property ("folder_path", folder_path_label, "label", BindingFlags.SYNC_CREATE);
-        bind_property ("folder_name", folder_name_label, "label", BindingFlags.SYNC_CREATE);
-    }
-
-    [GtkCallback]
-    private void on_delete_button_clicked () {
-        removed ();
     }
 }
