@@ -33,6 +33,7 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
      */
     private string[] recommended_downloads = {
         "http://redhat.com/rhel/7.6",
+        "http://redhat.com/rhel/8.0",
         "http://fedoraproject.org/fedora/29",
         "http://fedoraproject.org/silverblue/29",
         "http://ubuntu.com/ubuntu/18.10",

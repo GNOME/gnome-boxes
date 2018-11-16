@@ -11,6 +11,7 @@ osinfo_db = [
   ['rhel-5.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rhel-6.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rhel-7.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
+  ['rhel-8.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['silverblue-28.xml', 'gnome-boxes/osinfo/os/fedoraproject.org']
 ]
 

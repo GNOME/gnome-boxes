@@ -329,8 +329,9 @@
             "sources" : [
                 {
                     "type" : "file",
-                    "url" : "https://releases.pagure.org/libosinfo/osinfo-db-20181101.tar.xz",
-                    "sha256" : "a7ede6ea8419290d2e53b4f1d598a1bdd88298be7e08e8226efab9ab6dc13dd9"
+                    "url" : "https://releases.pagure.org/libosinfo/osinfo-db-20181116.tar.xz",
+                    "sha256" : "e7e7623a621493e94bb13e6ebd456f1e278c77bebf390d3bf8f3dcadb3142d7c"
+
                 }
             ]
         },
@@ -366,7 +367,10 @@
             "name" : "gnome-boxes",
             "buildsystem" : "meson",
             "config-opts" : [
-                "-Dflatpak=true"
+                "-Dflatpak=true",
+                "-Ddistributor_name=gnome-boxes-flathub",
+                "-Ddistributor_version=3.32"
+
             ],
             "sources" : [
                 {

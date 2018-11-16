@@ -314,6 +314,7 @@ private class Boxes.WizardSource: Gtk.Stack {
     private Gtk.ListBox media_vbox;
     private Gtk.ListBox downloads_vbox;
     private Osinfo.Os rhel_os;
+    private bool is_rhel8 = false;
     private GLib.ListStore downloads_model;
 
     private Cancellable? rhel_cancellable;
@@ -323,9 +324,13 @@ private class Boxes.WizardSource: Gtk.Stack {
     public string filename { get; set; }
 
     private string[] recommended_downloads = {
-        "http://ubuntu.com/ubuntu/16.04",
+        "http://redhat.com/rhel/7.6",
+        "http://redhat.com/rhel/8.0",
+        "http://fedoraproject.org/fedora/29",
+        "http://fedoraproject.org/silverblue/29",
+        "http://ubuntu.com/ubuntu/18.10",
         "http://opensuse.org/opensuse/42.3",
-        "http://fedoraproject.org/fedora/27",
+        "http://debian.org/debian/9",
     };
 
     public bool download_required {
@@ -583,6 +588,8 @@ private class Boxes.WizardSource: Gtk.Stack {
         window.wizard_window.show_downloads_page (media_manager.os_db, (entry) => {
             // Handle custom downloads
             if (entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
+                is_rhel8 = (entry.os.id == "http://redhat.com/rhel/8.0");
+
                 on_install_rhel_button_clicked ();
 
                 return;
@@ -611,8 +618,17 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         var user_agent = get_user_agent ();
         var user_agent_escaped = GLib.Uri.escape_string (user_agent, null, false);
+
+        string rhel_version = "";
+        string rhel_variant = "";
+        if (is_rhel8) {
+            rhel_version = "8";
+            rhel_variant = "&description=DVD+iso";
+        }
+
         var authentication_uri = "https://developers.redhat.com/download-manager/rest/featured/file/rhel" +
-                                 "?tag=" + user_agent_escaped;
+                                 rhel_version +
+                                 "?tag=" + user_agent_escaped + rhel_variant;
 
         debug ("RHEL ISO authentication URI: %s", authentication_uri);
 
@@ -628,7 +644,9 @@ private class Boxes.WizardSource: Gtk.Stack {
         var action = (decision as WebKit.NavigationPolicyDecision).get_navigation_action ();
         var request = action.get_request ();
         var request_uri = request.get_uri ();
-        if (!request_uri.has_prefix ("https://developers.redhat.com/products/rhel"))
+
+        if (!request_uri.has_prefix ("https://developers.redhat.com/products/rhel") &&
+            !request_uri.has_prefix ("https://access.cdn.redhat.com"))
             return false;
 
         var soup_request_uri = new Soup.URI (request_uri);
@@ -637,7 +655,8 @@ private class Boxes.WizardSource: Gtk.Stack {
             return false;
 
         var key_value_pairs = Soup.Form.decode (query);
-        var download_uri = key_value_pairs.lookup ("tcDownloadURL");
+
+        var download_uri = is_rhel8 ? request_uri : key_value_pairs.lookup ("tcDownloadURL");
         if (download_uri == null)
             return false;
 
@@ -653,7 +672,7 @@ private class Boxes.WizardSource: Gtk.Stack {
         return_val_if_fail (download_path.length > 0, false);
 
         if (!download_path.has_suffix (".iso")) {
-            download_path = "/rhel.iso";
+            download_path = is_rhel8 ? "/rhel8.iso" : "/rhel.iso";
         }
 
         filename = GLib.Path.get_basename (download_path);
