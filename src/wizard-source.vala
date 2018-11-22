@@ -285,12 +285,6 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     public string filename { get; set; }
 
-    private string[] recommended_downloads = {
-        "http://ubuntu.com/ubuntu/16.04",
-        "http://opensuse.org/opensuse/42.3",
-        "http://fedoraproject.org/fedora/27",
-    };
-
     public bool download_required {
         get {
             string scheme = Uri.parse_scheme (uri);
@@ -390,25 +384,13 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         downloads_vbox.bind_model (downloads_model, create_downloadable_entry);
 
-        populate_recommended_downloads ();
+        populate_recommended_downloads.begin ();
     }
 
-    private void populate_recommended_downloads () {
+    private async void populate_recommended_downloads () {
         var os_db = media_manager.os_db;
-        foreach (var os_id in recommended_downloads) {
-            os_db.get_os_by_id.begin (os_id, (obj, res) => {
-                try {
-                    var os = os_db.get_os_by_id.end (res);
-
-                    // TODO: Select the desktop/workstation variant.
-                    var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
-
-                    downloads_model.append (media);
-                } catch (OSDatabaseError error) {
-                    warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
-                    return;
-                }
-            });
+        foreach (var media in yield get_recommended_downloads ()) {
+            downloads_model.append (media);
         }
     }
 
