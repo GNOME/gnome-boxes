@@ -335,11 +335,11 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             return;
         }
 
-        prepare_for_uri (file.get_uri (), filename);
+        prepare_for_uri (file.get_uri (), filename, location);
     }
 
-    private void prepare_for_uri (string uri_as_text, string? filename = null) throws Boxes.Error {
-        var uri = Xml.URI.parse (uri_as_text);
+    private void prepare_for_uri (string uri_as_text, string? filename = null, string? location = null) throws Boxes.Error {
+        var uri = Xml.URI.parse (location);
         if (uri == null || uri.scheme == null)
             throw new Boxes.Error.INVALID (_("Invalid URL"));
 
@@ -359,7 +359,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             return;
         }
 
-        source = new CollectionSource (uri.server ?? uri_as_text, uri.scheme, uri_as_text);
+        source = new CollectionSource (uri.server ?? location, uri.scheme, location);
 
         if (uri.scheme.has_prefix ("spice")) {
             spice_validate_uri (uri_as_text);
