@@ -91,8 +91,8 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
             try {
                 var os = yield os_db.get_os_by_id (os_id);
                 var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
-
-                recommended_model.append (media);
+                if (media != null)
+                    recommended_model.append (media);
             } catch (OSDatabaseError error) {
                 warning ("Failed to find OS with id: '%s': %s", os_id, error.message);
             }

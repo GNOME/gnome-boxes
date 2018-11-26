@@ -444,8 +444,8 @@ private class Boxes.WizardSource: Gtk.Stack {
 
                     // TODO: Select the desktop/workstation variant.
                     var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
-
-                    downloads_model.append (media);
+                    if (media != null)
+                        downloads_model.append (media);
                 } catch (OSDatabaseError error) {
                     warning ("Failed to find OS with ID '%s': %s", os_id, error.message);
                     return;
