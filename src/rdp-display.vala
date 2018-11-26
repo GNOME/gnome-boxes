@@ -34,6 +34,8 @@ private class Boxes.RdpDisplay: Boxes.Display {
         display.rdp_disconnected.connect (() => {
             hide (0);
             access_finish ();
+
+            disconnected (true);
         });
         display.rdp_needs_authentication.connect (() => {
             need_username = true;

@@ -36,6 +36,8 @@ private class Boxes.VncDisplay: Boxes.Display {
         display.vnc_disconnected.connect (() => {
             hide (0);
             access_finish ();
+
+            disconnected (true);
         });
 
         display.vnc_auth_failure.connect (() => {
