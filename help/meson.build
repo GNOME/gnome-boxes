@@ -1,7 +1,6 @@
 help_files = [
   'clipboard.page',
   'connect.page',
-  'continuous.page',
   'create.page',
   'delete.page',
   'disk-images.page',
