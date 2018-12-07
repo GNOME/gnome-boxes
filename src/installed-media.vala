@@ -16,7 +16,6 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     public const string[] supported_architectures = {
         "i686", "i586", "i486", "i386"
     };
-    private static Regex date_regex = /20[0-9]{6,6}/;
 
     public override bool need_user_input_for_vm_creation { get { return false; } }
     public override bool ready_to_create { get { return true; } }
@@ -63,19 +62,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     public async InstalledMedia.guess_os (string path, MediaManager media_manager) throws GLib.Error {
         this (path);
 
-        if (path.contains ("gnome-continuous") || path.contains ("gnome-ostree")) {
-            try {
-                os = yield media_manager.os_db.get_os_by_id ("http://gnome.org/continuous/3.10");
-            } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
-                debug ("gnome-continuous definition not found in libosinfo db");
-            } catch (OSDatabaseError error) {
-                throw error;
-            }
-        }
-
-        os = yield guess_os_from_filename (media_manager.os_db);
-        resources = (os != null)? media_manager.os_db.get_resources_for_os (os, architecture) :
-                                  OSDatabase.get_default_resources ();
+        resources = OSDatabase.get_default_resources ();
 
         label_setup ();
     }
@@ -118,46 +105,6 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
     public override VMCreator get_vm_creator () {
         return new VMImporter (this);
-    }
-
-    private async Osinfo.Os? guess_os_from_filename (OSDatabase os_db) throws OSDatabaseError {
-        if (!device_file.contains ("gnome-continuous") && !device_file.contains ("gnome-ostree"))
-            return null;
-
-        var date = get_date_from_filename ();
-        if (date == null) {
-            try {
-                // No date on filename means older gnome-continuous images and
-                // hence more close to 3.10 than anything newer.
-                return yield os_db.get_os_by_id ("http://gnome.org/continuous/3.10");
-            } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
-                debug ("gnome-continuous definition not found in libosinfo db");
-
-                return null;
-            }
-        }
-
-        var os_list = yield os_db.list_os_by_distro ("gnome", date);
-        if (os_list.length () > 0)
-            return os_list.data;
-        else
-            return null;
-    }
-
-    private GLib.Date? get_date_from_filename () {
-        GLib.MatchInfo match_info;
-
-        date_regex.match (device_file, 0, out match_info);
-        if (!match_info.matches ())
-            return null;
-
-        var date_str = match_info.fetch (0);
-        var date = GLib.Date ();
-        date.set_year ((GLib.DateYear) int.parse (date_str[0:4]));
-        date.set_month ((GLib.DateMonth) int.parse (date_str[4:6]));
-        date.set_day ((GLib.DateDay) int.parse (date_str[6:8]));
-
-        return date;
     }
 
     private async bool extract_ovf () throws GLib.Error {
