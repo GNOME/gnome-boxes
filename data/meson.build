@@ -32,6 +32,16 @@ desktop = i18n.merge_file (
   po_dir: po_dir,
   type: 'desktop'
 )
+desktop_file_validate = find_program ('desktop-file-validate', required: false)
+if desktop_file_validate.found()
+  test(
+    'validate-desktop',
+    desktop_file_validate,
+    args: [
+      desktop.full_path()
+    ]
+  )
+endif
 
 dbus_conf = configuration_data ()
 dbus_conf.set ('bindir', join_paths (get_option ('prefix'), get_option ('bindir')))
@@ -55,7 +65,7 @@ configure_file (
 
 appdata_conf = configuration_data()
 appdata_conf.set('appid', application_id)
-i18n.merge_file ('appdata-file',
+appdata_file = i18n.merge_file ('appdata-file',
   input: configure_file (
     input: files ('org.gnome.Boxes.appdata.xml.in'),
     output: 'org.gnome.Boxes.appdata.xml.in',
@@ -66,6 +76,15 @@ i18n.merge_file ('appdata-file',
   install: true,
   install_dir: join_paths (data_dir, 'metainfo')
 )
+appstream_util = find_program('appstream-util', required: false)
+if appstream_util.found()
+  test(
+    'validate-appdata', appstream_util,
+    args: [
+      'validate-relax', appdata_file.full_path()
+    ]
+  )
+endif
 
 gsettings_conf = configuration_data ()
 gsettings_conf.set ('GETTEXT_PACKAGE', meson.project_name ())
