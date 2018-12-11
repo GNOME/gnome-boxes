@@ -342,4 +342,19 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
 
         App.app.notify_property ("selected-items");
     }
+
+    [GtkCallback]
+    private void on_size_allocate (Gtk.Allocation allocation) {
+        // Work around for https://gitlab.gnome.org/GNOME/gnome-boxes/issues/76
+        bool small_screen = (allocation.width < max_content_width);
+
+        if (small_screen) {
+            list_box.halign = Gtk.Align.FILL;
+            list_box.set_size_request (-1, -1);
+        } else {
+            list_box.halign = Gtk.Align.CENTER;
+            // 100 here should cover margins, padding, and theme specifics.
+            list_box.set_size_request (max_content_width - 100, -1);
+        }
+    }
 }

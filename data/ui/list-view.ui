@@ -5,6 +5,8 @@
     <property name="visible">True</property>
     <property name="hscrollbar-policy">never</property>
     <property name="vscrollbar-policy">automatic</property>
+    <property name="max-content-width">948</property>
+    <signal name="size-allocate" handler="on_size_allocate"/>
 
     <child>
       <object class="GtkBox">
@@ -21,7 +23,6 @@
             <property name="margin-end">24</property>
             <property name="margin-top">12</property>
             <property name="margin-bottom">12</property>
-            <property name="halign">center</property>
             <property name="valign">start</property>
             <signal name="button-release-event" handler="on_button_press_event"/>
             <signal name="key-press-event" handler="on_key_press_event"/>
