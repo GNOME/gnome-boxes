@@ -1,7 +1,7 @@
 help_files = [
+  'backup.page',
   'clipboard.page',
   'connect.page',
-  'continuous.page',
   'create.page',
   'delete.page',
   'disk-images.page',

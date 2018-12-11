@@ -1,0 +1,74 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic" style="task"
+      id="backup">
+  <info>
+    <link type="guide" xref="index#advanced"/>
+    <revision pkgversion="3.30" date="2018-12-01" status="review"/>
+
+    <credit type="author copyright">
+      <name>Michael Hill</name>
+      <email>mdhillca@gmail.com</email>
+      <years>2018</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Write the configuration of a box to a file to back it up or move it.</desc>
+  </info>
+
+  <title>Back up or move a box</title>
+
+  <p>Two components are required to back up or move a box: the image file, and
+  the configuration of the box saved as an XML file. Saving the configuration
+  requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or
+  <app>libvirt-client</app> package.</p>
+
+  <steps>
+    <item>
+      <p>In a terminal window, type</p>
+      <code>virsh dumpxml Name > Name.xml</code>
+      <p>where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>,
+      of your box. To list the domains seen by <app>Boxes</app>, type</p>
+      <code>virsh -c qemu:///session list --all</code>
+    </item>
+    <item>
+      <p>Copy the <cmd>.xml</cmd> file you just created to your backup or
+      temporary storage location.</p>
+    </item>
+    <item>
+      <p>Copy the image file to your backup or temporary storage location. It
+      will be a file with the domain name of your box and ending in
+      <cmd>.qcow2</cmd>, located in
+      <file>~/.local/share/gnome-boxes/images/</file>.</p>
+    </item>
+  </steps>
+
+  <section id="restore">
+  <title>Restore a box</title>
+
+    <p>The saved box can be installed into <app>Boxes</app> on a new host
+    machine, or on the original machine as part of a disaster recovery
+    scenario.</p>
+
+    <steps>
+      <item>
+        <p>Exit <app>Boxes</app>.</p>
+      </item>
+      <item>
+        <p>Copy the <cmd>.qcow2</cmd> image file from your backup or temporary
+        storage location into the <file>~/.local/share/gnome-boxes/images/</file>
+        directory in the new location.</p>
+      </item>
+      <item>
+        <p>In a terminal window, navigate to the directory or device containing
+        the <cmd>.xml</cmd> file you stored. Type</p>
+        <code>virsh define Name.xml</code>
+        <p>where <cmd>Name</cmd> is the domain of your box.</p>
+      </item>
+      <item>
+        <p>Launch <app>Boxes</app>.</p>
+      </item>
+    </steps>
+  </section>
+</page>
