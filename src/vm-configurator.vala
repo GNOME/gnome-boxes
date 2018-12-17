@@ -432,9 +432,14 @@ private class Boxes.VMConfigurator {
 
     private static void set_tablet_config (Domain domain, InstallerMedia install_media) {
         var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "tablet");
-        if (device != null) {
-            set_input_config (domain, DomainInputDeviceType.TABLET);
-        }
+        if (device == null)
+            return;
+
+        var input = new DomainInput ();
+        input.set_device_type (DomainInputDeviceType.TABLET);
+        input.set_bus (DomainInputBus.USB);
+
+        domain.add_device (input);
     }
 
     private static void set_mouse_config (Domain domain, InstallerMedia install_media) {
@@ -448,7 +453,7 @@ private class Boxes.VMConfigurator {
     private static void set_input_config (Domain domain, DomainInputDeviceType device_type) {
         var input = new DomainInput ();
         input.set_device_type (device_type);
-        input.set_bus (DomainInputBus.USB);
+        input.set_bus (DomainInputBus.PS2);
 
         domain.add_device (input);
     }
