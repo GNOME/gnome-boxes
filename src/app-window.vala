@@ -411,6 +411,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             return true;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
+            if (ui_state == UIState.DISPLAY)
+                return false;
+
             App.app.quit_app ();
 
             return true;
