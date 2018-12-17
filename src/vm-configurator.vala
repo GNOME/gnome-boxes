@@ -431,7 +431,7 @@ private class Boxes.VMConfigurator {
     }
 
     private static void set_tablet_config (Domain domain, InstallerMedia install_media) {
-        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_CLASS, "tablet");
+        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "tablet");
         if (device != null) {
             set_input_config (domain, DomainInputDeviceType.TABLET);
         }
