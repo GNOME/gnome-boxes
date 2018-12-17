@@ -433,24 +433,34 @@ private class Boxes.VMConfigurator {
     private static void set_tablet_config (Domain domain, InstallerMedia install_media) {
         var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "tablet");
         if (device != null) {
-            set_input_config (domain, DomainInputDeviceType.TABLET);
+            set_input_config (domain, DomainInputDeviceType.TABLET, install_media);
         }
     }
 
     private static void set_mouse_config (Domain domain, InstallerMedia install_media) {
-        set_input_config (domain, DomainInputDeviceType.MOUSE);
+        set_input_config (domain, DomainInputDeviceType.MOUSE, install_media);
     }
 
     private static void set_keyboard_config (Domain domain, InstallerMedia install_media) {
-        set_input_config (domain, DomainInputDeviceType.KEYBOARD);
+        set_input_config (domain, DomainInputDeviceType.KEYBOARD, install_media);
     }
 
-    private static void set_input_config (Domain domain, DomainInputDeviceType device_type) {
+    private static void set_input_config (Domain domain, DomainInputDeviceType device_type,
+                                          InstallerMedia install_media) {
         var input = new DomainInput ();
         input.set_device_type (device_type);
-        input.set_bus (DomainInputBus.USB);
+
+        var default_bus = get_default_input_bus (install_media);
+        input.set_bus (default_bus);
 
         domain.add_device (input);
+    }
+
+    private static DomainInputBus get_default_input_bus (InstallerMedia install_media) {
+        if (find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "tablet") != null)
+            return DomainInputBus.USB;
+
+        return DomainInputBus.PS2;
     }
 
     private static StoragePermissions get_default_permissions () {
