@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2018-03-11 09:22+0000\n"
-"PO-Revision-Date: 2018-03-11 15:51+0100\n"
+"POT-Creation-Date: 2018-12-11 10:31+0000\n"
+"PO-Revision-Date: 2018-12-23 22:45+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -29,7 +29,7 @@ msgstr ""
 "<tp-sv@listor.tp-sv.se>."
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -42,10 +42,144 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Skriv konfigurationen för en box till en fil för att säkerhetskopiera eller "
+"flytta den."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Säkerhetskopiera eller flytta en box"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"Två komponenter krävs för att säkerhetskopiera eller flytta en box: "
+"avbildsfilen, och boxens konfiguration sparad som en XML-fil. Att spara "
+"konfigurationen kräver kommandot <cmd>virsh</cmd> från paketet <app>libvirt</"
+"app> eller <app>libvirt-client</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "I ett terminalfönster, skriv"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Namn &gt; Namn.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"där <cmd>Namn</cmd> är <app>Boxes</app>-namnet, eller <em>domänen</em> för "
+"din box. För att lista domänerna som <app>Boxes</app> ser, skriv"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Kopiera <cmd>.xml</cmd>-filen du just skapat till din säkerhetskopia eller "
+"temporära lagringsplats."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Kopiera avbildsfilen till din säkerhetskopia eller temporära lagringsplats. "
+"Det kommer att vara en fil med domännamnet för din box och avslutas med "
+"<cmd>.qcow2</cmd>, placerad i <file>~/.local/share/gnome-boxes/images/</"
+"file>."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Återställ en box"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"Den sparade boxen kan installeras till <app>Boxes</app> på en ny värdmaskin, "
+"eller på den ursprungliga maskinen som en del i återhämtningen från ett "
+"katastrofscenario."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "Avsluta <app>Boxes</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Kopiera <cmd>.qcow2</cmd>-avbildsfilen från din säkerhetskopia eller "
+"temporära lagringsplats till katalogen <file>~/.local/share/gnome-boxes/"
+"images/</file> på den nya platsen."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"I ett terminalfönster, navigera till katalogen eller enheten som innehåller "
+"<cmd>.xml</cmd>-filen du just lagrat. Skriv"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Namn.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "där <cmd>Namn</cmd> är domänen för din box."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "Starta <app>Boxes</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -237,111 +371,6 @@ msgstr "Klicka på <gui style=\"button\">Skapa</gui>."
 #: C/connect.page:59
 msgid "The remote box will open in the collection view."
 msgstr "Fjärrboxen kommer att öppnas i samlingsvyn."
-
-#. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr "Skapa en box från en Continuous-diskavbild."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "Använda Boxes med Continuous"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> är GNOME:s kontinuerliga byggsystem. Boxes kan skapa en box från en "
-"Continuous-<em>qcow2</em>-avbild."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"Den senaste avbilden hittas på länken som tillhandahålls under avsnittet "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
-"\">Installation</link> på wikisidan."
-
-# sebras: how do I translate headers?
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"Avbilder finns tillgängliga i <em>runtime</em>- och <em>devel-debug</em>-"
-"varianter. <em>devel-debug</em>-avbilden resulterar i en virtuell maskin som "
-"innehåller utvecklarverktyg och inkluderingsfiler."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"I <app>Boxes</app>, klicka på <gui style=\"button\">Ny</gui> för att starta "
-"guiden för att skapa boxar."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"Klicka på <gui style=\"button\">Ange URL</gui> och ange URL:en inklusive det "
-"fullständiga filnamnet för den gzippade runtime- eller devel-debug-qcow2-"
-"avbilden. Boxes kommer att hämta och installera avbilden."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"Om du redan har sparat en avbild på disk, klicka på <gui style=\"button"
-"\">Välj en fil</gui> och navigera till Continuous-qcow2-avbilden. Markera "
-"filen och klicka på <gui style=\"button\">Öppna</gui>."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"Sidan <gui>Granskning</gui> öppnas. Klicka på <gui style=\"button\">Anpassa</"
-"gui> för att justera minnes- eller diskstorlek, eller för att byta namn på "
-"boxen."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"Klicka på <gui style=\"button\">Skapa</gui>. Samlingsvyn visas åter och "
-"installationen av boxen påbörjas."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"Informationen som är nödvändig för att uppgradera en Continuous-vm kan "
-"hittas på <link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
-"\">wikisidan</link>."
 
 #. (itstool) path: info/desc
 #: C/create.page:18
@@ -573,12 +602,6 @@ msgstr "Avancerade ämnen"
 #: C/snapshot-revert.page:17 C/usb-redirection.page:24
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
-
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
 
 #. (itstool) path: info/desc
 #: C/interface.page:25
@@ -1683,6 +1706,89 @@ msgstr ""
 "kommer att köra under andra operativsystem, till exempel under Microsoft "
 "Windows™. En virtuell maskin kan också användas under programutveckling för "
 "att testa i en nyinstallerad miljö."
+
+#~ msgid "Create a box using a Continuous disk image."
+#~ msgstr "Skapa en box från en Continuous-diskavbild."
+
+#~ msgid "Using Boxes with Continuous"
+#~ msgstr "Använda Boxes med Continuous"
+
+#~ msgid ""
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
+#~ "\">Continuous</link> is GNOME's continuous build system. Boxes is able to "
+#~ "create a box from a Continuous <em>qcow2</em> image."
+#~ msgstr ""
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
+#~ "\">Continuous</link> är GNOME:s kontinuerliga byggsystem. Boxes kan skapa "
+#~ "en box från en Continuous-<em>qcow2</em>-avbild."
+
+#~ msgid ""
+#~ "The latest images are found at the link provided in the <link href="
+#~ "\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
+#~ "\">Installation</link> section of the wiki page."
+#~ msgstr ""
+#~ "Den senaste avbilden hittas på länken som tillhandahålls under avsnittet "
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
+#~ "\">Installation</link> på wikisidan."
+
+# sebras: how do I translate headers?
+#~ msgid ""
+#~ "Images are available in <em>runtime</em> and <em>devel-debug</em> "
+#~ "flavors. The <em>devel-debug</em> image results in a virtual machine "
+#~ "containing developer tools and headers."
+#~ msgstr ""
+#~ "Avbilder finns tillgängliga i <em>runtime</em>- och <em>devel-debug</em>-"
+#~ "varianter. <em>devel-debug</em>-avbilden resulterar i en virtuell maskin "
+#~ "som innehåller utvecklarverktyg och inkluderingsfiler."
+
+#~ msgid ""
+#~ "In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the "
+#~ "box creation wizard."
+#~ msgstr ""
+#~ "I <app>Boxes</app>, klicka på <gui style=\"button\">Ny</gui> för att "
+#~ "starta guiden för att skapa boxar."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Enter URL</gui> and type the URL including "
+#~ "the full filename of the gzipped runtime or devel-debug qcow2 image. "
+#~ "Boxes will download and install the image."
+#~ msgstr ""
+#~ "Klicka på <gui style=\"button\">Ange URL</gui> och ange URL:en inklusive "
+#~ "det fullständiga filnamnet för den gzippade runtime- eller devel-debug-"
+#~ "qcow2-avbilden. Boxes kommer att hämta och installera avbilden."
+
+#~ msgid ""
+#~ "If you have already saved an image to disk, click <gui style=\"button"
+#~ "\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
+#~ "the file and click <gui style=\"button\">Open</gui>."
+#~ msgstr ""
+#~ "Om du redan har sparat en avbild på disk, klicka på <gui style=\"button"
+#~ "\">Välj en fil</gui> och navigera till Continuous-qcow2-avbilden. Markera "
+#~ "filen och klicka på <gui style=\"button\">Öppna</gui>."
+
+#~ msgid ""
+#~ "The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
+#~ "gui> to adjust memory or disk size, or to rename the box."
+#~ msgstr ""
+#~ "Sidan <gui>Granskning</gui> öppnas. Klicka på <gui style=\"button"
+#~ "\">Anpassa</gui> för att justera minnes- eller diskstorlek, eller för att "
+#~ "byta namn på boxen."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Create</gui>. The collection view returns, "
+#~ "and the installation of the box begins."
+#~ msgstr ""
+#~ "Klicka på <gui style=\"button\">Skapa</gui>. Samlingsvyn visas åter och "
+#~ "installationen av boxen påbörjas."
+
+#~ msgid ""
+#~ "The information necessary to upgrade a Continuous vm can be found on the "
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
+#~ "link>."
+#~ msgstr ""
+#~ "Informationen som är nödvändig för att uppgradera en Continuous-vm kan "
+#~ "hittas på <link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
+#~ "\">wikisidan</link>."
 
 #~ msgid ""
 #~ "<em>Reverting</em> to a snapshot restores the state of the virtual "
