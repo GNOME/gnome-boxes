@@ -20,18 +20,42 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         machine.vm_creator = this;
         machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
 
-        import_vm.begin (machine);
+        first_start.begin (machine);
+    }
+
+    protected override async GVirConfig.Domain create_domain_config (string       name,
+                                                                     string       title,
+                                                                     StorageVol   volume,
+                                                                     Cancellable? cancellable) throws GLib.Error {
+        var caps = yield connection.get_capabilities_async (cancellable);
+        var config = VMConfigurator.create_domain_config (install_media, install_media.device_file, caps);
+        config.name = name;
+        config.title = title;
+
+        return config;
     }
 
     protected override async void continue_installation (LibvirtMachine machine) {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
         machine.vm_creator = this;
 
-        yield import_vm (machine);
+        yield first_start (machine);
     }
 
     protected virtual async void post_import_setup (LibvirtMachine machine) {
         set_post_install_config (machine);
+    }
+
+    private async void first_start (LibvirtMachine machine) {
+        yield post_import_setup (machine);
+        if (start_after_import) {
+            try {
+                machine.domain.start (0);
+            } catch (GLib.Error error) {
+                warning ("Failed to start domain '%s': %s", machine.domain.get_name (), error.message);
+            }
+        }
+        machine.vm_creator = null;
     }
 
     private async void import_vm (LibvirtMachine machine) {
@@ -54,14 +78,6 @@ private class Boxes.VMImporter : Boxes.VMCreator {
             return;
         }
 
-        yield post_import_setup (machine);
-        if (start_after_import) {
-            try {
-                machine.domain.start (0);
-            } catch (GLib.Error error) {
-                warning ("Failed to start domain '%s': %s", machine.domain.get_name (), error.message);
-            }
-        }
-        machine.vm_creator = null;
+        yield first_start (machine);
     }
 }
