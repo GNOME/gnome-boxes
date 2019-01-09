@@ -254,10 +254,7 @@ private class Boxes.VMConfigurator {
 
         try {
             var cpu = domain.get_cpu ();
-            if (cpu != null &&
-                (cpu.get_mode () == DomainCpuMode.HOST_PASSTHROUGH ||
-                 cpu.get_mode() == DomainCpuMode.HOST_MODEL) &&
-                is_boxes_installed (domain)) {
+            if (cpu != null && is_boxes_installed (domain)) {
                 var capabilities = yield connection.get_capabilities_async (null);
                 set_cpu_config (domain, capabilities);
             }
