@@ -108,7 +108,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         timezone = get_timezone ();
         lang = get_preferred_language ();
-        kbd = lang;
+        kbd = get_preferred_keyboard (lang);
 
         var product_key_format = get_product_key_format ();
         setup_box = new UnattendedSetupBox (this, product_key_format, needs_internet);
@@ -665,6 +665,26 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return scripts;
     }
 
+    private string get_preferred_keyboard (string lang) {
+        var input_settings = new GLib.Settings ("org.gnome.desktop.input-sources");
+        var sources = input_settings.get_value ("sources");
+
+        string kbd_layout = null;
+        if (sources != null)
+            kbd_layout = sources.get_child_value (0).get_child_value (1).get_string ();
+
+        var os_db = MediaManager.get_instance ().os_db;
+        var datamap = os_db.get_datamap ("http://x.org/x11-keyboard");
+
+        if (datamap.reverse_lookup (kbd_layout) != null)
+            return kbd_layout;
+
+        kbd_layout = datamap.lookup (lang);
+        if (kbd_layout != null)
+            return kbd_layout;
+
+        return lang;
+    }
 
     private string get_preferred_language () {
         var system_langs = Intl.get_language_names ();
