@@ -199,6 +199,10 @@ private class Boxes.OSDatabase : GLib.Object {
         return get_prefered_resources (list, prefs);
     }
 
+    public Datamap? get_datamap (string id) {
+        return db.get_datamap (id);
+    }
+
     private Resources get_resources_from_os_resources (Resources? minimum, Resources? recommended) {
         var resources = get_default_resources ();
 
