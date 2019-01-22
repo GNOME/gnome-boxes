@@ -643,44 +643,9 @@ namespace Boxes {
         }
     }
 
-    public Gdk.Pixbuf? paint_empty_frame (int width, int height, double radius, Gdk.RGBA border_color, Gdk.RGBA? bg_color) {
+    public Gdk.Pixbuf? paint_empty_frame (int width, int height) {
         var surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, width, height);
-        var cr = new Cairo.Context (surface);
-
-        if (bg_color != null) {
-            cr.set_source_rgba (bg_color.red, bg_color.green, bg_color.blue, bg_color.alpha);
-            paint_frame_background (cr, width, height, radius);
-        }
-
-        cr.set_source_rgba (border_color.red, border_color.green, border_color.blue, border_color.alpha);
-        paint_frame_border (cr, width, height, radius);
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
-    }
-
-    private void paint_frame_background (Cairo.Context cr, int width, int height, double radius) {
-        rounded_rectangle (cr, 0.5, 0.5, width - 1, height - 1, radius);
-        cr.fill ();
-    }
-
-    private void paint_frame_border (Cairo.Context cr, int width, int height, double radius) {
-        cr.set_line_width (1.0);
-        // The rectangle is reduced by 0.5px on each side to allow drawing a sharp 1px line and not between two pixels.
-        rounded_rectangle (cr, 0.5, 0.5, width - 1, height - 1, radius);
-        cr.stroke ();
-    }
-
-    private void rounded_rectangle (Cairo.Context cr, double x, double y, double width, double height, double radius) {
-        const double ARC_0 = 0;
-        const double ARC_1 = Math.PI * 0.5;
-        const double ARC_2 = Math.PI;
-        const double ARC_3 = Math.PI * 1.5;
-
-        cr.new_sub_path ();
-        cr.arc (x + width - radius, y + radius,          radius, ARC_3, ARC_0);
-        cr.arc (x + width - radius, y + height - radius, radius, ARC_0, ARC_1);
-        cr.arc (x + radius,         y + height - radius, radius, ARC_1, ARC_2);
-        cr.arc (x + radius,         y + radius,          radius, ARC_2, ARC_3);
-        cr.close_path ();
     }
 }

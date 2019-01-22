@@ -60,8 +60,7 @@ private class Boxes.ListViewRow: Gtk.Box {
 
         thumbnailer = new Boxes.MachineThumbnailer (machine,
                                                     SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT,
-                                                    CENTERED_EMBLEM_SIZE, EMBLEM_SIZE,
-                                                    FRAME_BORDER_COLOR, FRAME_BACKGROUND_COLOR);
+                                                    CENTERED_EMBLEM_SIZE, EMBLEM_SIZE);
         thumbnailer.favorite_emblem_enabled = false;
         thumbnailer.notify["thumbnail"].connect (() => {
             thumbnail.set_from_pixbuf (thumbnailer.thumbnail);

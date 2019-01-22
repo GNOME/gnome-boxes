@@ -23,8 +23,7 @@ private class Boxes.MachineThumbnailer: Object {
 
     public MachineThumbnailer (Machine machine,
                                int width, int height,
-                               int centred_emblem_size, int emblem_size,
-                               Gdk.RGBA border_color, Gdk.RGBA background_color) {
+                               int centred_emblem_size, int emblem_size) {
         this.machine = machine;
         this.width = width;
         this.height = height;
@@ -78,7 +77,7 @@ private class Boxes.MachineThumbnailer: Object {
         if (empty_thumbnail != null)
             return empty_thumbnail;
 
-        empty_thumbnail = paint_empty_frame (width, height, FRAME_RADIUS, border_color, background_color);
+        empty_thumbnail = paint_empty_frame (width, height);
 
         return empty_thumbnail;
     }
