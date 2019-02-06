@@ -1,33 +1,34 @@
 # Hungarian translation for gnome-boxes help.
-# Copyright (C) 2014. Free Software Foundation, Inc.
+# Copyright (C) 2014, 2015, 2016, 2017, 2018, 2019. Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Tibor Attila Anca <anca.tibor at posteo dot de>, 2014.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2014, 2015, 2016, 2017, 2018.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2014, 2015, 2016, 2017, 2018, 2019.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2018-02-09 21:05+0000\n"
-"PO-Revision-Date: 2018-03-05 00:29+0100\n"
+"POT-Creation-Date: 2019-02-06 19:46+0000\n"
+"PO-Revision-Date: 2019-02-06 22:44+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
-"Language-Team: Hungarian <openscope at googlegroups dot com>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
-"X-Poedit-Bookmarks: 25,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Generator: Lokalize 2.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "Anca Tibor Attila <anca dot tibor at posteo dot de>, 2014.\n"
-"Kelemen Gábor <kelemeng at gnome dot hu>, 2014, 2017."
+"Kelemen Gábor <kelemeng at gnome dot hu>, 2014, 2017.\n"
+"Úr Balázs <ur.balazs at fsf dot hu>, 2019."
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -40,10 +41,145 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Egy gép beállításainak fájlba írása a biztonsági mentéséhez vagy "
+"áthelyezéséhez."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Egy gép biztonsági mentése vagy áthelyezése"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"Két összetevő szükséges egy gép biztonsági mentéséhez vagy áthelyezéséhez: a "
+"képfájl és a gép beállítása XML-fájlként elmentve. A beállítás mentéséhez a "
+"<cmd>virsh</cmd> parancs szükséges a <app>libvirt</app> vagy a <app>libvirt-"
+"client</app> csomagból."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "Egy terminálablakba gépelje be a következőt:"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Név &gt; Név.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"ahol a <cmd>Név</cmd> a gépe <app>Gépek</app> alkalmazásbeli neve vagy <em"
+">tartománya</"
+"em>. A <app>Gépek</app> által látott tartományok listájához gépelje be a "
+"következőt:"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Másolja át a most létrehozott <cmd>.xml</cmd> fájlt a biztonsági mentés vagy "
+"az átmeneti tároló helyére."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Másolja át a képfájlt a biztonsági mentés vagy az átmeneti tároló helyére. A "
+"gép tartománynevével megegyező fájl lesz <cmd>.qcow2</cmd> végződéssel, "
+"amely a <file>~/.local/share/gnome-boxes/images/</file> mappában található."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Gép visszaállítása"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"Az elmentett gép telepíthető egy új kiszolgálógépen futó <app>Gépek</app> "
+"alkalmazásba, vagy az eredeti gépen egy katasztrófa-helyreállítási "
+"forgatókönyv részeként."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "Lépjen ki a <app>Gépek</app> alkalmazásból."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Másolja át a <cmd>.qcow2</cmd> képfájlt a biztonsági mentés vagy az átmeneti "
+"tároló helyéről az új helyen levő <file>~/.local/share/gnome-boxes/images/</"
+"file> könyvtárba."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"Egy terminálablakban navigáljon az eltárolt <cmd>.xml</cmd> fájlt tartalmazó "
+"könyvtárba vagy eszközre. Gépelje be a következőt:"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Név.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "ahol a <cmd>Név</cmd> a gép tartománya."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "Indítsa el a <app>Gépek</app> alkalmazást."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -243,112 +379,6 @@ msgid "The remote box will open in the collection view."
 msgstr "A távoli gép a gyűjtemény nézetben jelenik meg."
 
 #. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr "Gép létrehozása Continuous lemezkép használatával."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "A Gépek használata a Continuous-szal"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"A <link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> a GNOME folyamatos build rendszere. A Gépek képes létrehozni egy "
-"virtuális gépet a Continuous <em>qcow2</em> lemezképéből."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"A legfrissebb lemezképek a wiki oldal <link href=\"https://wiki.gnome.org/"
-"Projects/GnomeContinuous#Installation\">Installation</link> szakaszából "
-"érhetők el."
-
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"A lemezképek <em>runtime</em> és <em>devel-debug</em> változatokban érhetők "
-"el. A <em>devel-debug</em> lemezkép egy fejlesztői eszközöket és fejléceket "
-"tartalmazó virtuális gépet eredményez."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"Az új gépet létrehozó varázsló indításához kattintson a <app>Gépek</app> "
-"<gui style=\"button\">Új</gui> gombjára."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"Kattintson az <gui style=\"button\">Adja meg az URL-címet</gui> gombra, és "
-"írja be az URL-t, a gzip-pel tömörített runtime vagy devel-debug qcow2 "
-"lemezkép teljes fájlnevét is beleértve. A Gépek letölti és telepíti a "
-"lemezképet."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"Ha már lemezre mentette a lemezképet, akkor kattintson a <gui style=\"button"
-"\">Válasszon egy fájlt</gui> gombra, és keresse ki a Continuous qcow2 "
-"lemezképet. Válassza ki a fájlt, és nyomja meg a <gui style=\"button"
-"\">Megnyitás</gui> gombot."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"Megnyílik az <gui>Áttekintés</gui> oldal. A memória vagy tárhely méretének "
-"megváltoztatásához, vagy a gép átnevezéséhez kattintson a <gui style=\"button"
-"\">Testreszabás</gui> gombra."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"Kattintson a <gui style=\"button\">Létrehozás</gui> gombra. A gyűjtemény "
-"nézet visszatér, és a gép telepítése elindul."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"A Continous virtuális gép frissítéséhez szükséges információk a <link href="
-"\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki oldalon</link> "
-"találhatók."
-
-#. (itstool) path: info/desc
 #: C/create.page:18
 msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
 msgstr ""
@@ -479,7 +509,7 @@ msgstr "Kattintson a <gui style=\"button\">Törlés</gui> gombra."
 #. (itstool) path: item/p
 #: C/delete.page:29
 msgid "Click the <key>X</key> to confirm."
-msgstr "Kattintson az <gui>X</gui> gombra a megerősítéshez."
+msgstr "Kattintson az <key>X</key> gombra a megerősítéshez."
 
 #. (itstool) path: page/title
 #: C/disk-images.page:19
@@ -580,12 +610,6 @@ msgstr "Speciális témák"
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
 
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
-
 #. (itstool) path: info/desc
 #: C/interface.page:25
 msgid "Get around the application."
@@ -643,20 +667,15 @@ msgstr "Kattintson a fejléc sávban a pipa gombra a kijelölési módba lépés
 
 #. (itstool) path: item/p
 #: C/interface.page:46
-#| msgid ""
-#| "Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
-#| "Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Pause</gui>, <gui>Clone</"
-#| "gui>, <gui>Delete</gui>, or to open the <gui>Properties</gui> view for "
-#| "the box."
 msgid ""
 "Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
 "Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
 "gui>, or to open the <gui>Properties</gui> view for the box."
 msgstr ""
 "Kattintson a jobb egérgombbal egy gépre a <gui>Megnyitás új ablakban</gui>, "
-"<gui>Hozzáadás a kedvencekhez</gui>, <gui>Erőltetett leállítás</gui>, <gui>"
-"Klónozás</gui>, <gui>Törlés</gui> műveletek "
-"kiválasztásához, vagy a gép <gui>Tulajdonságok</gui> nézetének megnyitásához."
+"<gui>Hozzáadás a kedvencekhez</gui>, <gui>Erőltetett leállítás</gui>, "
+"<gui>Klónozás</gui>, <gui>Törlés</gui> műveletek kiválasztásához, vagy a gép "
+"<gui>Tulajdonságok</gui> nézetének megnyitásához."
 
 #. (itstool) path: section/title
 #: C/interface.page:55
@@ -766,12 +785,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/interface.page:100
-#| msgid ""
-#| "<gui>Devices</gui>: the <gui style=\"button\">Select</gui> button allows "
-#| "you to specify the path to a CD/DVD device or ISO. The <gui style=\"button"
-#| "\">Remove</gui> button disconnects it. When the box is running, the USB "
-#| "devices connected to the host system are listed, and each can be "
-#| "controlled with an <gui>ON | OFF</gui> switch."
 msgid ""
 "<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
 "button allows you to specify the path to a CD/DVD device or ISO. The <gui "
@@ -782,13 +795,12 @@ msgid ""
 "running machines which support spice-webdavd."
 msgstr ""
 "<gui>Eszközök és megosztások</gui>: a <gui style=\"button\">Kijelölés</gui> "
-"gomb lehetővé "
-"teszi egy CD/DVD eszköz vagy ISO útvonalának megadását. Az <gui style="
-"\"button\">Eltávolítás</gui> gomb leválasztja ezt. Amikor a gép fut, a gazda "
-"rendszerre csatlakoztatott USB eszközök is megjelennek, és mindegyik egy "
-"<gui>BE | KI</gui> kapcsolóval vezérelhető. A gazda és a vendég közti <link "
-"xref=\"shared-folders\">megosztott mappák</link> beállíthatók a "
-"spice-webdavd-t támogató futó gépeken."
+"gomb lehetővé teszi egy CD/DVD eszköz vagy ISO útvonalának megadását. Az "
+"<gui style=\"button\">Eltávolítás</gui> gomb leválasztja ezt. Amikor a gép "
+"fut, a gazda rendszerre csatlakoztatott USB eszközök is megjelennek, és "
+"mindegyik egy <gui>BE | KI</gui> kapcsolóval vezérelhető. A gazda és a "
+"vendég közti <link xref=\"shared-folders\">megosztott mappák</link> "
+"beállíthatók a spice-webdavd-t támogató futó gépeken."
 
 #. (itstool) path: item/p
 #: C/interface.page:107
@@ -1018,28 +1030,22 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:27
-#| msgid "Get started with virtual machines"
 msgid "Make sure your virtual machine is running."
 msgstr "Győződjön meg róla, hogy a virtuális gép fut."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:28 C/usb-redirection.page:46
-#| msgid ""
-#| "Right-click on the box in the collection view and select <gui>Properties</"
-#| "gui>, or if the box is running, click the menu (<_:media-1/>) button in "
-#| "the header bar and select <gui>Properties</gui>."
 msgid ""
 "Right-click on the box in the collection view and select <gui>Properties</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
 "<gui>Properties</gui>."
 msgstr ""
-"Kattintson a jobb egérgombbal a gépre a gyűjtemény nézetben és válassza a <"
-"gui>Tulajdonságok</gui> menüpontot, vagy kattintson a menü (<_:media-1/>) "
+"Kattintson a jobb egérgombbal a gépre a gyűjtemény nézetben és válassza a "
+"<gui>Tulajdonságok</gui> menüpontot, vagy kattintson a menü (<_:media-1/>) "
 "gombra a fejléc sávon, és válassza a <gui>Tulajdonságok</gui> lehetőséget."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:32
-#| msgid "Click the <gui>Devices</gui> tab."
 msgid "Click the <gui>Devices &amp; Shares</gui> tab."
 msgstr "Kattintson az <gui>Eszközök és megosztások</gui> lapra."
 
@@ -1350,8 +1356,8 @@ msgid ""
 msgstr ""
 "Egy pillanatképre való <em>visszaállás</em> visszaállítja a virtuális gépnek "
 "a pillanatképben tárolt állapotát. A memória állapota is visszaállításra "
-"kerül, visszahozva a futó programokat és beállításokat pontosan a pillanatkép "
-"készítésének pillanatából."
+"kerül, visszahozva a futó programokat és beállításokat pontosan a "
+"pillanatkép készítésének pillanatából."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:39
@@ -1720,116 +1726,3 @@ msgstr ""
 "Windows™-on. A virtuális gép használható szoftverfejlesztésre is, például "
 "eredeti környezetben való teszteléshez."
 
-#~ msgid ""
-#~ "<em>Reverting</em> to a snapshot restores the state of the virtual "
-#~ "machine saved in that snapshot."
-#~ msgstr ""
-#~ "Egy pillanatképre való <em>visszaállítás</em> visszaállítja a virtuális "
-#~ "gép az adott pillanatképben mentett állapotát."
-
-#~ msgid ""
-#~ "An introductory message is displayed. Click <gui style=\"button"
-#~ "\">Continue</gui>."
-#~ msgstr ""
-#~ "Egy bevezető üzenet jelenik meg. Kattintson a <gui style=\"button"
-#~ "\">Folytatás</gui> gombra."
-
-#~ msgid ""
-#~ "Click <gui style=\"button\">Customize</gui> if you wish to rename the box."
-#~ msgstr ""
-#~ "A gép átnevezéséhez kattintson a <gui style=\"button\">Testreszabás</gui> "
-#~ "gombra."
-
-#~ msgid ""
-#~ "A URL to a remote machine (physical or virtual) through a <link xref="
-#~ "\"connect\">remote connection</link>."
-#~ msgstr ""
-#~ "Távoli gép (fizikai vagy virtuális) URL-jéből egy <link xref=\"connect"
-#~ "\">távoli kapcsolaton</link> keresztül."
-
-#~ msgid ""
-#~ "Click the <gui style=\"button\">Properties</gui> button to enter the "
-#~ "properties view of a box."
-#~ msgstr ""
-#~ "A <gui style=\"button\">Tulajdonságok</gui> gombra kattintással "
-#~ "megnyitható egy gép tulajdonságok nézete."
-
-#~ msgid "A screenshot of the box."
-#~ msgstr "A gép képernyőképe."
-
-#~ msgid "Running graphs of CPU, disk I/O and network activity."
-#~ msgstr "Frissülő grafikonok a CPU-, lemez I/O és hálózati aktivitásról."
-
-#~ msgid ""
-#~ "The <gui style=\"button\">Force Shutdown</gui> button, which enables you "
-#~ "to <link xref=\"shutdown\">force a box to shut down</link>."
-#~ msgstr ""
-#~ "A <gui style=\"button\">Erőltetett leállítás</gui> gomb, amellyel <link "
-#~ "xref=\"shutdown\">kikényszeríthető a gép leállítása</link>."
-
-#~ msgid ""
-#~ "The properties view main window allows you to display or change settings "
-#~ "depending on which of the following categories is selected in the sidebar:"
-#~ msgstr ""
-#~ "A fő ablak tulajdonságok nézete lehetővé teszi beállítások megjelenítését "
-#~ "vagy módosítását attól függően, hogy a következő kategóriák közül melyik "
-#~ "van kiválasztva az oldalsávban:"
-
-#~ msgid ""
-#~ "<gui>System</gui> settings: memory, maximum allowed disk space, and the "
-#~ "<gui>Trouble Log</gui>."
-#~ msgstr ""
-#~ "<gui>Rendszer</gui> beállításai: memória, maximálisan engedélyezett "
-#~ "lemezterület, és a <gui>Hibaelhárítási napló</gui>."
-
-#~ msgid ""
-#~ "<gui>Display</gui> settings: display protocol, clipboard sharing, "
-#~ "resizing of the display."
-#~ msgstr ""
-#~ "<gui>Kijelző</gui> beállításai: kijelzőprotokoll, vágólap-megosztás, "
-#~ "képernyő átméretezése."
-
-#~ msgid "<gui>Device</gui> settings: access to system USB or CD/DVD devices."
-#~ msgstr ""
-#~ "<gui>Eszköz</gui> beállításai: a rendszer USB vagy CD/DVD eszközeinek "
-#~ "elérése."
-
-#~ msgid ""
-#~ "Click <gui style=\"button\">Force Shutdown</gui> in the lower left corner."
-#~ msgstr ""
-#~ "Kattintson a bal alsó sarokban az <gui style=\"button\">Erőltetett "
-#~ "leállítás</gui> gombra."
-
-#~ msgid "Click <gui style=\"button\">Shutdown</gui> to confirm."
-#~ msgstr ""
-#~ "Kattintson a <gui style=\"button\">Leállítás</gui> gombra a "
-#~ "megerősítéshez."
-
-#~ msgid "Confirm to permanently delete the snapshot."
-#~ msgstr "Erősítse meg a pillanatkép végleges törlését."
-
-#~ msgid "Click <gui style=\"menuitem\">Devices</gui> in the sidebar."
-#~ msgstr ""
-#~ "Kattintson az <gui style=\"menuitem\">Eszközök</gui> elemre az "
-#~ "oldalsávban."
-
-#~ msgid ""
-#~ "Ensure <gui>Redirect new USB devices</gui> is switched to <gui style="
-#~ "\"switch\">ON</gui>. <gui>USB devices</gui> connected to the host machine "
-#~ "are shown in a list."
-#~ msgstr ""
-#~ "Győződjön meg róla, hogy az <gui>Új USB eszközök átirányítása</gui> "
-#~ "lehetőség <gui style=\"switch\">BE</gui> van kapcsolva. A gazda géphez "
-#~ "csatlakoztatott <gui>USB eszközök</gui> egy listában jelennek meg."
-
-#~ msgid "Source selection"
-#~ msgstr "Forrás kiválasztása"
-
-#~ msgid "Create a local virtual machine using one of the following:"
-#~ msgstr "Helyi virtuális gép létrehozása a következők segítségével:"
-
-#~ msgid "provide a filename or location for an iso file."
-#~ msgstr "adjon meg egy fájlnevet vagy egy *.iso fájl helyét."
-
-#~ msgid "Spice"
-#~ msgstr "SPICE"
