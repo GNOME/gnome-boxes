@@ -162,16 +162,35 @@ private class Boxes.MediaManager : Object {
         return list;
     }
 
-    public InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
-        if (media.os == null)
-            return media;
+    private static InstallerMedia create_unattended_installer (InstallerMedia media) throws GLib.Error {
+        InstallerMedia install_media = media;
 
-        var install_scripts = media.os.get_install_script_list ();
         var filter = new Filter ();
         filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
-        install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
 
-        InstallerMedia install_media = media;
+        // In case scripts are set as part of the media, let's use them as this
+        // info is more accurate than having the scripts set as part of the OS.
+        var install_scripts = media.os_media.get_install_script_list ();
+        if (install_scripts.get_length () > 0) {
+
+            // Find out whether the media supports a script for DESKTOP profile
+            install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+
+            if (install_scripts.get_length () > 0) {
+                try {
+                    install_media = new UnattendedInstaller.from_media (media, install_scripts);
+                } catch (GLib.IOError.NOT_SUPPORTED e) {
+                    debug ("Unattended installer setup failed: %s", e.message);
+                }
+            }
+
+            return install_media;
+        }
+
+        // In case scripts are not set as part of the media, let's use the ones
+        // set as part of the OS.
+        install_scripts = media.os.get_install_script_list ();
+        install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
         if (install_scripts.get_length () > 0) {
             try {
                 install_media = new UnattendedInstaller.from_media (media, install_scripts);
@@ -181,6 +200,16 @@ private class Boxes.MediaManager : Object {
         }
 
         return install_media;
+    }
+
+    public InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
+        if (media.os == null)
+            return media;
+
+        if (!media.os_media.supports_installer_script ())
+            return media;
+
+        return create_unattended_installer (media);
     }
 
     private MediaManager () {
