@@ -6,7 +6,30 @@ using Osinfo;
 private class Boxes.UnattendedInstaller: InstallerMedia {
     public override bool need_user_input_for_vm_creation {
         get {
-            return !live; // No setup required by live media (and unknown medias are not UnattendedInstaller instances)
+            // Whether the Express Install option should be displayed or not
+
+            if (live || !os_media.supports_installer_script ())
+                return false;
+
+            var filter = new Filter ();
+            filter.add_constraint (INSTALL_SCRIPT_PROP_PROFILE, INSTALL_SCRIPT_PROFILE_DESKTOP);
+
+            var install_scripts = os_media.get_install_script_list ();
+            if (install_scripts.get_length () > 0) {
+
+                install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+                if (install_scripts.get_length () > 0)
+                    return true;
+
+                return false;
+            }
+
+            install_scripts = os.get_install_script_list ();
+            install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+            if (install_scripts.get_length () > 0)
+                return true;
+
+            return false;
         }
     }
 
