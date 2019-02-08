@@ -8,7 +8,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         get {
             // Whether the Express Install option should be displayed or not
 
-            if (live || !os_media.supports_installer_script ())
+            if (!os_media.supports_installer_script ())
                 return false;
 
             var filter = new Filter ();
