@@ -19,6 +19,18 @@ public class Boxes.ArchiveWriter : GLib.Object {
         execute_libarchive_function (archive, () => { return archive.open_filename (filename); });
     }
 
+    public ArchiveWriter.from_fd (int fd,
+                                  Archive.Format             format,
+                                  GLib.List<Archive.Filter>? filters = null)
+                                  throws GLib.IOError {
+        archive = new Archive.Write ();
+        this.format  = format;
+        this.filters = filters.copy ();
+
+        prepare_archive ();
+        execute_libarchive_function (archive, () => { return archive.open_fd (fd); });
+    }
+
     public ArchiveWriter.from_archive_reader (ArchiveReader archive_reader,
                                               string        filename,
                                               bool          import_contents = true)

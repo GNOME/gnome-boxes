@@ -13,24 +13,31 @@ private interface Boxes.UnattendedFile : GLib.Object {
     }
     protected abstract UnattendedInstaller installer { get; set; }
 
-    public async void copy (Cancellable? cancellable) throws GLib.Error {
+    public async virtual void copy (Cancellable? cancellable) throws GLib.Error {
         var source_file = yield get_source_file (cancellable);
+        yield default_copy(disk_file, source_file.get_path (), dest_name);
+    }
 
+    protected static async void default_copy (string       disk_file,
+                                              string       source_file,
+                                              string       dest_name,
+                                              Cancellable? cancellable = null)
+                                              throws GLib.Error {
         debug ("Copying unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
 
         if (is_libarchive_compatible (disk_file)) {
             yield App.app.async_launcher.launch(() => {
-                copy_with_libarchive (disk_file, source_file.get_path (), dest_name);
+                copy_with_libarchive (disk_file, source_file, dest_name);
             });
         } else
-            yield copy_with_mcopy (disk_file, source_file.get_path (), dest_name, cancellable);
+            yield copy_with_mcopy (disk_file, source_file, dest_name, cancellable);
 
         debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
     }
 
     protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
 
-    private void copy_with_libarchive (string disk_file, string source_file, string dest_name) throws GLib.Error {
+    private static void copy_with_libarchive (string disk_file, string source_file, string dest_name) throws GLib.Error {
         var reader = new ArchiveReader (disk_file);
         // write into file~ since we can't write into the file we read from
         var writer = new ArchiveWriter.from_archive_reader (reader, disk_file + "~", false);
@@ -48,11 +55,11 @@ private interface Boxes.UnattendedFile : GLib.Object {
         src.move (dst, FileCopyFlags.OVERWRITE);
     }
 
-    private async void copy_with_mcopy (string       disk_file,
-                                        string       source_file,
-                                        string       dest_name,
-                                        Cancellable? cancellable = null)
-                                        throws GLib.Error {
+    private static async void copy_with_mcopy (string       disk_file,
+                                               string       source_file,
+                                               string       dest_name,
+                                               Cancellable? cancellable = null)
+                                               throws GLib.Error {
         string[] argv = {"mcopy",
                              "-n",
                              "-o",
@@ -134,6 +141,26 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
             injection_method = InstallScriptInjectionMethod.INITRD;
         else
             throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
+    }
+
+    public async void copy (Cancellable? cancellable) throws GLib.Error {
+        var source_file = yield get_source_file (cancellable);
+        if (injection_method == InstallScriptInjectionMethod.INITRD) {
+            initrd_append (installer.initrd_file.get_path (), source_file.get_path (), dest_name);
+        } else
+            yield Boxes.UnattendedFile.default_copy(disk_file, source_file.get_path (), dest_name);
+    }
+
+    private static void initrd_append (string disk_file, string source_file, string dest_name) throws GLib.Error {
+        debug ("Appending unattended file '%s' to initrd '%s'", dest_name, disk_file);
+        var gzip_filter = new GLib.List<Archive.Filter> ();
+        gzip_filter.append (Archive.Filter.GZIP);
+        var file = FileStream.open (disk_file, "a");
+        if (file == null)
+            throw GLib.IOError.from_errno (errno);
+        var writer = new ArchiveWriter.from_fd (file.fileno (), Archive.Format.CPIO_SVR4_NOCRC, gzip_filter);
+        writer.insert_file (source_file, dest_name);
+        debug ("Appended unattended file '%s' to initrd '%s'", dest_name, disk_file);
     }
 
     ~UnattendedScriptFile () {
