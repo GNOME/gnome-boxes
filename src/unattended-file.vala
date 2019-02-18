@@ -6,7 +6,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
     public abstract string src_path { get; set; }
     public abstract string dest_name { get; set; }
 
-    protected virtual string disk_file {
+    protected string disk_file {
         owned get {
             return installer.disk_file.get_path ();
         }
@@ -104,20 +104,6 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
     public string dest_name { get; set; }
     public string src_path { get; set; }
     public InstallScriptInjectionMethod injection_method { get; set; }
-
-    protected string disk_file {
-        owned get {
-            switch (injection_method) {
-            case InstallScriptInjectionMethod.DISK:
-            case InstallScriptInjectionMethod.FLOPPY:
-                return installer.disk_file.get_path ();
-            case InstallScriptInjectionMethod.INITRD:
-                return installer.initrd_file.get_path ();
-            default:
-                assert_not_reached ();
-            }
-        }
-    }
 
     protected UnattendedInstaller installer { get; set; }
     protected InstallScript script { get; set; }
