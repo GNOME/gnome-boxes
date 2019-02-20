@@ -11,6 +11,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     public bool ready_for_express {
         get {
             return username != "" &&
+                   !needs_password &&
                    (product_key_format == null ||
                     product_key_entry.text_length == product_key_format.length);
         }
@@ -72,6 +73,25 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
     public signal void user_wants_to_create (); // User wants to already create the VM
 
+    private bool _needs_password;
+    private bool needs_password {
+        get {
+            if (password != "")
+                return false;
+
+            if (_needs_password) {
+                password_notebook.next_page ();
+                password_entry.grab_focus ();
+            }
+
+            return _needs_password;
+        }
+
+        set {
+            _needs_password = value;
+        }
+    }
+
     [GtkChild]
     private Gtk.InfoBar needs_internet_bar;
     [GtkChild]
@@ -110,6 +130,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         var msg = _("Express installation of %s requires an internet connection.").printf (media.label);
         needs_internet_label.label = msg;
         needs_internet_bar.visible = needs_internet;
+        needs_password = (media as UnattendedInstaller).needs_password;
         media_path = media.device_file;
         keyfile = new GLib.KeyFile ();
 
