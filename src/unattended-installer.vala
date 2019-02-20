@@ -27,6 +27,20 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
+    public bool needs_password {
+        get {
+            foreach (var s in scripts.get_elements ()) {
+                var script = s as InstallScript;
+
+                var param = script.get_config_param (INSTALL_CONFIG_PROP_USER_PASSWORD);
+                if (param == null || param.is_optional ())
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
     public UnattendedSetupBox setup_box;
 
     public File? disk_file;           // Used for installer scripts, user avatar and pre-installation drivers
