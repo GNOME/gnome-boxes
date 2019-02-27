@@ -1,13 +1,13 @@
 # Korean translation for gnome-boxes.
 # Copyright (C) 2014 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2014, 2016-2018.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2014-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2018-07-25 15:48+0000\n"
-"PO-Revision-Date: 2018-08-26 12:44+0900\n"
+"POT-Creation-Date: 2019-01-20 19:37+0000\n"
+"PO-Revision-Date: 2019-02-25 16:30+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: Korean <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -15,15 +15,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "조성호 <shcho@gnome.org>, 2014-2018."
+msgstr "조성호 <shcho@gnome.org>, 2014-2019."
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -36,10 +36,139 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr "백업하거나 이동할 박스 설정을 파일에 기록합니다."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "박스 백업 또는 이동"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"박스를 백업하거나 이동할 때 두가지 요소를 옮겨야 합니다. 하나는 이미지 파일, "
+"다른 하나는 XML 파일로 저장한 박스 설정 파일입니다. 설정 저장시에는 "
+"<app>libvirt</app> 꾸러미 또는 <app>libvirt-client</app> 꾸러미에 있는 "
+"<cmd>virsh</cmd> 명령이 필요합니다."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "터미널 창에서 다음 명령을 입력하십시오"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Name &gt; Name.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"<cmd>Name</cmd>에는 <app>박스</app> 이름 또는 박스의 <em>domain</em>이 들어갑"
+"니다. <app>박스</app>에서 보이는 도메인을 확인하려면 다음 명령을 입력하십시오"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"위 과정을 통해 만든 <cmd>.xml</cmd> 파일을 백업 위치 또는 임시 저장 위치로 복"
+"사하십시오."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"이미지 파일을 백업 위치 또는 임시 저장 위치로 복사하십시오. <file>~/.local/"
+"share/gnome-boxes/images/</file> 위치에서 <cmd>.qcow2</cmd>로 끝나는 박스 도"
+"메인 이름이 붙은 파일입니다."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "박스 복구"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"저장한 박스는 새 호스트 머신의 <app>박스</app>에 설치하거나 긴급 복구 절차의 "
+"일환으로서 원래 머신에 설치할 수 있습니다."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "<app>박스</app>에서 빠져나갑니다."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"백업 위치 또는 임시 저장위치에 있는 <cmd>.qcow2</cmd> 이미지 파일을 새 위치"
+"의 <file>~/.local/share/gnome-boxes/images/</file> 디렉터리에 복사하십시오."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"터미널 창에서 디렉터리를 탐색하거나 <cmd>.xml</cmd> 파일을 저장한 장치를 탐색"
+"하겠습니다. 다음 명령을 입력하십시오"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Name.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "<cmd>Name</cmd> 대신 박스의 도메인이 들어갑니다."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "<app>박스</app>를 실행합니다."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -227,106 +356,6 @@ msgstr "<gui style=\"button\">만들기</gui>를 누르십시오."
 #: C/connect.page:59
 msgid "The remote box will open in the collection view."
 msgstr "모음 보기에 원격 박스가 나타납니다."
-
-#. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr "연속 디스크 이미지로 박스를 만듭니다."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "연속성 수단으로 박스 사용하기"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">연속성 수단</"
-"link>은 그놈의 연속성 빌드 시스템입니다. 박스는 연속성 <em>qcow2</em> 이미지"
-"에서 박스를 만들 수 있습니다."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"최신 이미지는 위키페이지의 <link href=\"https://wiki.gnome.org/Projects/"
-"GnomeContinuous#Installation\">설치</link> 장에서 제공한 링크에 있습니다."
-
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"이미지는 <em>런타임</em>과 <em>개발-디버깅</em> 취향에 따라 존재합니다. <em>"
-"개발-디버깅</em> 이미지는 개발자 도구와 헤더가 들어있는 가상머신입니다."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"<app>박스</app>에서, <gui style=\"button\">새 박스</gui>를 눌러 박스 만들기 "
-"마법사를 실행하십시오."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"<gui style=\"button\">URL 입력</gui>을 누르신 후 gzip으로 압축한 런타임 또는 "
-"devel-debug qcow2 이미지의 완전한 파일 이름이 들어있는 URL을 입력하십시오. 박"
-"스에서 이미지를 다운로드하고 설치합니다."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"디스크에 이미지를 저장했다면 <gui style=\"button\">파일 선택</gui>을 누르시"
-"고 연속성 qcow2 이미지를 찾아보십시오. 파일을 선택하시고 <gui style=\"button"
-"\">열기</gui>를 누르십시오."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"<gui>검토</gui> 페이지를 여십시오. <gui style=\"button\">사용자 정의</gui>를 "
-"눌러 메모리 또는 디스크 크기를 조절하거나 박스 이름을 바꾸십시오."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"<gui style=\"button\">만들기</gui>를 누르십시오. 모음 보기로 돌아가서 박스 설"
-"치를 시작합니다."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"연속성 가상머신 업그레이드에 필요한 정보는 <link href=\"https://wiki.gnome."
-"org/Projects/GnomeContinuous\">위키 페이지</link>에 있습니다."
 
 #. (itstool) path: info/desc
 #: C/create.page:18
@@ -552,12 +581,6 @@ msgstr "고급 주제"
 #: C/snapshot-revert.page:17 C/usb-redirection.page:24
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
-
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
 
 #. (itstool) path: info/desc
 #: C/interface.page:25
@@ -1630,6 +1653,85 @@ msgstr ""
 "마이크로소프트 윈도우™와 같은 다른 운영체제에서만 실행할 수 있는 프로그램을 "
 "실행해야 할 경우 가상머신은 상당히 쓸모가 있습니다. 가상 머신은 프로그램을 개"
 "발하는 동안에도 완전 깨끗한 환경에서 프로그램을 시험할 때 사용할 수 있습니다."
+
+#~ msgid "Create a box using a Continuous disk image."
+#~ msgstr "연속 디스크 이미지로 박스를 만듭니다."
+
+#~ msgid "Using Boxes with Continuous"
+#~ msgstr "연속성 수단으로 박스 사용하기"
+
+#~ msgid ""
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
+#~ "\">Continuous</link> is GNOME's continuous build system. Boxes is able to "
+#~ "create a box from a Continuous <em>qcow2</em> image."
+#~ msgstr ""
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">연속성 수단"
+#~ "</link>은 그놈의 연속성 빌드 시스템입니다. 박스는 연속성 <em>qcow2</em> 이"
+#~ "미지에서 박스를 만들 수 있습니다."
+
+#~ msgid ""
+#~ "The latest images are found at the link provided in the <link href="
+#~ "\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
+#~ "\">Installation</link> section of the wiki page."
+#~ msgstr ""
+#~ "최신 이미지는 위키페이지의 <link href=\"https://wiki.gnome.org/Projects/"
+#~ "GnomeContinuous#Installation\">설치</link> 장에서 제공한 링크에 있습니다."
+
+#~ msgid ""
+#~ "Images are available in <em>runtime</em> and <em>devel-debug</em> "
+#~ "flavors. The <em>devel-debug</em> image results in a virtual machine "
+#~ "containing developer tools and headers."
+#~ msgstr ""
+#~ "이미지는 <em>런타임</em>과 <em>개발-디버깅</em> 취향에 따라 존재합니다. "
+#~ "<em>개발-디버깅</em> 이미지는 개발자 도구와 헤더가 들어있는 가상머신입니"
+#~ "다."
+
+#~ msgid ""
+#~ "In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the "
+#~ "box creation wizard."
+#~ msgstr ""
+#~ "<app>박스</app>에서, <gui style=\"button\">새 박스</gui>를 눌러 박스 만들"
+#~ "기 마법사를 실행하십시오."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Enter URL</gui> and type the URL including "
+#~ "the full filename of the gzipped runtime or devel-debug qcow2 image. "
+#~ "Boxes will download and install the image."
+#~ msgstr ""
+#~ "<gui style=\"button\">URL 입력</gui>을 누르신 후 gzip으로 압축한 런타임 또"
+#~ "는 devel-debug qcow2 이미지의 완전한 파일 이름이 들어있는 URL을 입력하십시"
+#~ "오. 박스에서 이미지를 다운로드하고 설치합니다."
+
+#~ msgid ""
+#~ "If you have already saved an image to disk, click <gui style=\"button"
+#~ "\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
+#~ "the file and click <gui style=\"button\">Open</gui>."
+#~ msgstr ""
+#~ "디스크에 이미지를 저장했다면 <gui style=\"button\">파일 선택</gui>을 누르"
+#~ "시고 연속성 qcow2 이미지를 찾아보십시오. 파일을 선택하시고 <gui style="
+#~ "\"button\">열기</gui>를 누르십시오."
+
+#~ msgid ""
+#~ "The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
+#~ "gui> to adjust memory or disk size, or to rename the box."
+#~ msgstr ""
+#~ "<gui>검토</gui> 페이지를 여십시오. <gui style=\"button\">사용자 정의</gui>"
+#~ "를 눌러 메모리 또는 디스크 크기를 조절하거나 박스 이름을 바꾸십시오."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Create</gui>. The collection view returns, "
+#~ "and the installation of the box begins."
+#~ msgstr ""
+#~ "<gui style=\"button\">만들기</gui>를 누르십시오. 모음 보기로 돌아가서 박"
+#~ "스 설치를 시작합니다."
+
+#~ msgid ""
+#~ "The information necessary to upgrade a Continuous vm can be found on the "
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
+#~ "link>."
+#~ msgstr ""
+#~ "연속성 가상머신 업그레이드에 필요한 정보는 <link href=\"https://wiki."
+#~ "gnome.org/Projects/GnomeContinuous\">위키 페이지</link>에 있습니다."
 
 #~ msgid ""
 #~ "<em>Reverting</em> to a snapshot restores the state of the virtual "
