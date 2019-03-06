@@ -664,7 +664,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             page = WizardPage.SOURCE;
         } catch (GLib.Error e) {
             warning ("Failed downloading media '%s'! %s", uri, e.message);
-            window.notificationbar.display_error (_("Download failed."));
+            window.notificationbar.display_error (_("Download failed: ") + e.message);
             page = WizardPage.SOURCE;
         }
 
