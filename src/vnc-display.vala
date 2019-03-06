@@ -22,6 +22,7 @@ private class Boxes.VncDisplay: Boxes.Display {
         display.set_pointer_grab (true);
         display.set_force_size (false);
         display.set_scaling (true);
+        display.set_depth (DisplayDepthColor.FULL);
 
         // the VNC widget doesn't like not to have a realized window,
         // so we put it into a window temporarily
