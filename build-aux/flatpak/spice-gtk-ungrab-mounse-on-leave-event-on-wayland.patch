@@ -1,0 +1,53 @@
+From e1bf254f60d78d6a4e7b0664d344b6bfcb70f2ae Mon Sep 17 00:00:00 2001
+From: Olivier Fourdan <ofourdan@redhat.com>
+Date: Fri, 1 Feb 2019 14:35:39 +0100
+Subject: [PATCH] spice-widget: Ungrab mouse on leave event on Wayland
+
+The Spice Gtk widget relies on pointer grabs to receive all pointer
+events even after the pointer has left the window.
+
+While that works on X11, on Wayland there is no active pointer grab,
+so once the pointer has left the SPICE widget on Wayland, the events
+are routed to the window with the pointer focus instead of ours.
+
+To avoid the problem, on Wayland, we simply ungrab the pointer once it
+leaves the window.
+
+Thanks-to: Peter Hutterer <peter.hutterer@who-t.net>
+Signed-off-by: Olivier Fourdan <ofourdan@redhat.com>
+https://gitlab.freedesktop.org/spice/spice-gtk/issues/83
+Acked-by: Victor Toso <victortoso@redhat.com>
+---
+ src/spice-widget.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/src/spice-widget.c b/src/spice-widget.c
+index fd0c935..d924731 100644
+--- a/src/spice-widget.c
++++ b/src/spice-widget.c
+@@ -1854,8 +1854,21 @@ static gboolean leave_event(GtkWidget *widget, GdkEventCrossing *crossing G_GNUC
+ 
+     DISPLAY_DEBUG(display, "%s", __FUNCTION__);
+ 
+-    if (d->mouse_grab_active)
++    if (d->mouse_grab_active) {
++#ifdef GDK_WINDOWING_WAYLAND
++        /* On Wayland, there is no active pointer grab, so once the pointer
++         * has left the window, the events are routed to the window with
++         * pointer focus instead of ours, in which case we should just
++         * ungrab to avoid nasty side effects. */
++        if (GDK_IS_WAYLAND_DISPLAY(gdk_display_get_default())) {
++            GdkWindow *window = gtk_widget_get_window(widget);
++
++            if (window == crossing->window)
++                try_mouse_ungrab(display);
++        }
++#endif
+         return true;
++    }
+ 
+     d->mouse_have_pointer = false;
+     spice_gtk_session_set_mouse_has_pointer(d->gtk_session, false);
+-- 
+2.20.1
+
