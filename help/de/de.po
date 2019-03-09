@@ -3,21 +3,21 @@
 # This file is distributed under the same license as the gnome-boxes package.
 # Christian Kirbach <Christian.Kirbach@gmail.com>, 2014.
 # Benjamin Steinwender <b@stbe.at>, 2014.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2016-2018.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2016-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2018-02-09 21:05+0000\n"
-"PO-Revision-Date: 2018-02-18 14:35+0100\n"
-"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
+"POT-Creation-Date: 2019-03-06 12:30+0000\n"
+"PO-Revision-Date: 2019-03-09 12:35+0100\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -25,10 +25,10 @@ msgid "translator-credits"
 msgstr ""
 "Christian Kirbach <christian.kirbach@gmail.com>, 2014\n"
 "Benjamin Steinwender <b@stbe.at>, 2014-2015\n"
-"Mario Blättermann <mario.blaettermann@gmail.com>, 2016-2018"
+"Mario Blättermann <mario.blaettermann@gmail.com>, 2016-2019"
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -41,10 +41,147 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Die Konfiguration einer Box in eine Datei schreiben, um diese zu sichern "
+"oder zu verschieben"
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Eine Box sichern oder verschieben"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"Um eine Box zu sichern oder zu verschieben, sind zwei Komponenten "
+"erforderlich: die Abbilddatei und die Konfiguration der Box, die als XML-"
+"Datei gespeichert ist. Um die Konfiguration zu speichern, benötigen Sie den "
+"Befehl <cmd>virsh</cmd> aus dem Paket <app>libvirt</app> oder <app>libvirt-"
+"client</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "Geben Sie in einem Terminalfenster Folgendes ein:"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Name &gt; Name.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"wobei der <cmd>Name</cmd> der Name von <app>Boxen</app> oder die <em>Domain</"
+"em> Ihrer Box ist. Um die für <app>Boxen</app> sichtbaren Domains "
+"aufzulisten, geben Sie Folgendes ein:"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Kopieren Sie die gerade erstellte <cmd>.xml</cmd>-Datei in Ihre Sicherung "
+"oder an Ihren temporären Speicherort."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Kopieren Sie die Abbilddatei in Ihre Sicherung oder an Ihren temporären "
+"Speicherort. Es wird eine Datei mit dem Domainnamen Ihrer Box mit der Endung "
+"<cmd>.qcow2</cmd> sein und sich in <file>~/.local/share/gnome-boxes/images/</"
+"file> befinden."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Eine Box wiederherstellen"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"Die gesicherte Box kann in <app>Boxen</app> auf einem neuen Wirtssystem oder "
+"auf dem Originalsystem als Teil eines Systemwiederherstellung-Szenarios "
+"installiert werden."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "<app>Boxen</app> wiederherstellen."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Kopieren Sie die <cmd>.qcow2</cmd>-Abbilddatei aus Ihrer Sicherung oder "
+"Ihrem temporären Speicherort in den Ordner <file>~/.local/share/gnome-boxes/"
+"images/</file> am neuen Ort."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"Navigieren Sie in einem Terminalfenster zu dem Ordner oder Gerät, in dem "
+"sich die von Ihnen gespeicherte <cmd>.xml</cmd>-Datei befindet. Geben Sie "
+"Folgendes ein:"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Name.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "wobei <cmd>Name</cmd> die Domain Ihrer Box ist."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "<app>Boxen</app> starten."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -244,114 +381,6 @@ msgstr "Klicken Sie auf <gui style=\"button\">Anlegen</gui>."
 #: C/connect.page:59
 msgid "The remote box will open in the collection view."
 msgstr "Die entfernte Box wird in der Sammlungsansicht geöffnet."
-
-#. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr ""
-"So erstellen Sie eine Box mit Hilfe eines »Continuous«-Laufwerkabbilds."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "Boxen mit einem »Continuous«-Laufwerksabbild verwenden"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> ist das fortlaufende Erstellungssytem von GNOME. Boxen kann eine Box "
-"von einem <em>qcow2</em>-Abbild von Continuous erstellen."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"Die neuesten Abbilder finden sich unter dem Verweis im Abschnitt <link href="
-"\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
-"\">Installation</link> auf der Wiki-Seite."
-
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"Die Abbilder sind in einer <em>Laufzeit-</em> und einer <em>Entwickler-"
-"Diagnose-</em>-Version vorhanden. Das <em>Entwickler-Diagnose</em>-Abbild "
-"enthält eine virtuelle Maschine, die Entwicklerwerkzeuge und Header-Dateien "
-"enthält."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"Klicken Sie in <app>Boxen</app> auf <gui style=\"button\">Neu</gui>, um den "
-"Assistenten zum Erstellen einer Box aufzurufen."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"Klicken Sie auf <gui style=\"button\">Geben Sie die Adresse ein</gui> und "
-"geben Sie die Adresse einschließlich eines vollständigen Dateinamens des mit "
-"gzip komprimierten Laufzeit- oder Entwickler-Diagnose-Abbilds im qcow2-"
-"Format ein. Boxen lädt daraufhin das Abbild herunter und installiert es."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"Wenn Sie bereits ein Abbild auf einem Datenträger gespeichert haben, so "
-"klicken Sie auf <gui style=\"button\">Eine Datei wählen</gui> und suchen Sie "
-"das Continuous qcow2-Abbild. Wählen Sie die Datei und klicken Sie auf <gui "
-"style=\"button\">Öffnen</gui>."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"Die Seite <gui>Durchsicht</gui> öffnet sich daraufhin. Klicken Sie auf <gui "
-"style=\"button\">Anpassen</gui>, um Arbeitsspeicher und Laufwerksgröße "
-"anzupassen oder um die Box umzubenennen."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"Klicken Sie auf <gui style=\"button\">Anlegen</gui>. Die Sammlungsanzeige "
-"wird wieder dargestellt und die Installation der Box beginnt."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"Eine Anleitung zum Aktualisieren einer virtuellen Continuous-Maschine finden "
-"sich auf der <link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
-"\">Wiki-Seite</link>."
 
 #. (itstool) path: info/desc
 #: C/create.page:18
@@ -590,12 +619,6 @@ msgstr "Fortgeschrittene Themen"
 #: C/snapshot-revert.page:17 C/usb-redirection.page:24
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
-
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
 
 #. (itstool) path: info/desc
 #: C/interface.page:25
