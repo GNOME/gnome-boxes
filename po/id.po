@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
 "PO-Revision-Date: 2019-02-03 15:53+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
@@ -310,7 +310,7 @@ msgstr "Bantuan"
 msgid "About Boxes"
 msgstr "Tentang Boxes"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Log penelusuran masalah"
 
@@ -414,11 +414,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Pemasangan Kilat"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nama Pengguna"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Sandi"
 
@@ -426,7 +426,7 @@ msgstr "Sandi"
 msgid "_Add Password"
 msgstr "T_ambah Sandi"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Kunci Produk"
 
@@ -581,7 +581,7 @@ msgstr "Paksa Mati"
 msgid "Clone"
 msgstr "Klon"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Mulai ulang"
 
@@ -648,6 +648,10 @@ msgstr "Terlalu banyak argumen baris perintah yang dinyatakan.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box '%s' telah terpasang dan siap dipakai"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Luncurkan"
 
 #: src/app.vala:557
 #, c-format
@@ -971,46 +975,46 @@ msgstr "Tidak ada box untuk diimpor"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Gagal menemukan diska yang cocok untuk diimpor bagi box “%s”"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Tersambung"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Terputus"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Berjalan"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Diistirahatkan"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Dimatikan"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Menyambung ke %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Sambungan ke “%s” gagal"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Mesin sedang dalam perbaikan"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Menyimpan…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1019,13 +1023,13 @@ msgstr ""
 "“%s” tak dapat dipulihkan dari diska\n"
 "Coba tanpa keadaan tersimpan?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Gagal memulai “%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” memerlukan autentikasi"
@@ -1066,7 +1070,7 @@ msgstr "Laporkan kutu ke <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "laman beranda %s: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Tidak ada berkas %s"
@@ -1229,26 +1233,26 @@ msgstr "Menyalin “%s” ke “Unduhan”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Terjadi galat sewaktu persiapan pemasangan. Pemasangan Kilat dinonaktifkan."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Mengunduh penggerak perangkat…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "tanpa sandi"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Pemasangan Kilat dari %s memerlukan koneksi internet."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Kredensial GNOME Boxes untuk “%s”"
