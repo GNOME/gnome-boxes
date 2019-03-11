@@ -6,20 +6,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-boxes gnome-3-18\n"
+"Project-Id-Version: gnome-boxes gnome-3-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
-"PO-Revision-Date: 2019-01-27 01:54+0200\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-11 21:44+0100\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
-"Language-Team: dansk <>\n"
+"Language-Team: Gnome Romanian Translation Team <gnomero-list@lists."
+"sourceforge.net>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
+"%100<=19) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -311,7 +313,7 @@ msgstr "Ajutor"
 msgid "About Boxes"
 msgstr "Despre Cutii"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Jurnal depanare"
 
@@ -415,11 +417,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalare în mod expres"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nume de utilizator"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Parolă"
 
@@ -427,7 +429,7 @@ msgstr "Parolă"
 msgid "_Add Password"
 msgstr "_Adaugă o parolă"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Cheia produsului"
 
@@ -585,7 +587,7 @@ msgstr "Forțează oprirea"
 msgid "Clone"
 msgstr "Clonează"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Repornire"
 
@@ -648,6 +650,10 @@ msgstr "Prea multe argumente specificate pentru linia de comandă.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Cutia „%s” a fost instalată și este pregătită pentru utilizare"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Lansează"
 
 #: src/app.vala:557
 #, c-format
@@ -976,46 +982,46 @@ msgstr "Nu sunt cutii de importat"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Nu s-a putut găsi un disc potrivit de importat pentru cutia „%s”"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Conectat"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Deconectat"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Rulează"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Suspendat"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Oprit"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Se conectează la %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Conexiunea la „%s” a eșuat"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Mașina este în construcție"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Se salvează…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1024,13 +1030,13 @@ msgstr ""
 "„%s” nu a putut fi restaurată de pe disc\n"
 "Încercați fără o stare salvată?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nu s-a putut porni „%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s” necesită autentificare"
@@ -1071,7 +1077,7 @@ msgstr "Raportează defecte la <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s pagină proprie: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Niciun fișier %s"
@@ -1238,27 +1244,27 @@ msgstr "Se copiază „%s” la „Descărcări”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "S-a produs o eroare in timpul pregătirii instalării. Instalarea în mod "
 "expres a fost dezactivată."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Se descarcă driverele dispozitivului…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "nicio parolă"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Instalarea în mod expres a %s necesită o conexiune la internet."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Certificări Cutii GNOME pentru „%s”"
