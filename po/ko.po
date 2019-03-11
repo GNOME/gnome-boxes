@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
-"PO-Revision-Date: 2019-02-22 16:28+0900\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-11 21:06+0900\n"
 "Last-Translator: Seong-ho Cho <shcho@gnome.org>\n"
 "Language-Team: 한국어 <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -319,7 +319,7 @@ msgstr "도움말"
 msgid "About Boxes"
 msgstr "박스 정보"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "문제 해결 로그"
 
@@ -422,11 +422,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "빠른 설치"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "사용자 이름"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "암호"
 
@@ -434,7 +434,7 @@ msgstr "암호"
 msgid "_Add Password"
 msgstr "암호 추가(_A)"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "제품 키"
 
@@ -587,7 +587,7 @@ msgstr "강제로 끄기"
 msgid "Clone"
 msgstr "복제"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "다시 시작"
 
@@ -647,6 +647,10 @@ msgstr "너무 많은 명령줄 인자를 지정했습니다.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "“%s” 박스를 설치했으며 사용할 수 있습니다"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "실행"
 
 #: src/app.vala:557
 #, c-format
@@ -962,46 +966,46 @@ msgstr "가져올 박스가 없습니다"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "“%s” 박스를 가져올 적당한 디스크 찾기에 실패했습니다"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "연결함"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "연결 끊음"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "실행 중"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "잠시 멈춤"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "전원 끔"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s(으)로 연결중"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s” 연결에 실패했습니다"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "머신을 만드는 중입니다"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "저장 중…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1010,13 +1014,13 @@ msgstr ""
 "“%s”을(를) 디스크에서 복원할 수 없습니다\n"
 "상태를 저장하지 않고 시도하시겠습니까?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s” 시작에 실패했습니다"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” 박스는 인증이 필요합니다"
@@ -1057,7 +1061,7 @@ msgstr "<%s>에게 버그를 알려주십시오.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s의 홈페이지: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "%s 파일이 없습니다"
@@ -1217,25 +1221,25 @@ msgstr "“%s” 파일을 “다운로드”폴더로 복사중"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "설치 준비중 오류가 발생했습니다. 빠른 설치를 비활성화했습니다."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "장치 드라이버 다운로드 중…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "암호 없음"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s 고속 설치는 인터넷 연결이 필요합니다."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s” 그놈 박스 자격 정보"
