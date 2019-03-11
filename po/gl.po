@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-17 17:04+0000\n"
-"PO-Revision-Date: 2019-01-28 23:47+0100\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-11 23:13+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.30.0\n"
+"X-Generator: Gtranslator 3.30.1\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
@@ -77,7 +77,6 @@ msgstr "Ver e usar máquinas virtuais"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-#| msgid "virtual machine;vm;"
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "máquina virtual;vm;vcn;rdp;"
 
@@ -311,11 +310,10 @@ msgid "Help"
 msgstr "Axuda"
 
 #: data/ui/menus.ui:15
-#| msgid "Boxes"
 msgid "About Boxes"
 msgstr "Sobre Caixas"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Rexistro de resolución de problemas"
 
@@ -419,11 +417,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalación rápida"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nome de usuario"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Contrasinal"
 
@@ -431,7 +429,7 @@ msgstr "Contrasinal"
 msgid "_Add Password"
 msgstr "_Engadir contrasinal"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Chave de produto"
 
@@ -444,7 +442,6 @@ msgid "Show more…"
 msgstr "Mostrar máis…"
 
 #: data/ui/wizard-downloads-page.ui:89
-#| msgid "No boxes found"
 msgid "No operating systems found"
 msgstr "Non se atoparon sistemas operativos"
 
@@ -480,12 +477,10 @@ msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Conectarse usando RDP, SPICE, SSH ou VNC."
 
 #: data/ui/wizard-source.ui:220
-#| msgid "Connection to oVirt broker failed"
 msgid "Connect to oVirt or Libvirt brokers."
 msgstr "Conectarse a brokers de oVirt ou Libvirt."
 
 #: data/ui/wizard-source.ui:276
-#| msgid "_Select a file"
 msgid "Select a file"
 msgstr "Seleccionar un ficheiro"
 
@@ -592,7 +587,7 @@ msgstr "Forzar apagado"
 msgid "Clone"
 msgstr "Clonar"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Reiniciar"
 
@@ -653,6 +648,10 @@ msgstr "Especifiou demasiados argumentos na liña de ordes\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "A caixa «%s» está instalada e lista para o seu uso"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Iniciar"
 
 #: src/app.vala:557
 #, c-format
@@ -980,46 +979,46 @@ msgid "Failed to find suitable disk to import for box “%s”"
 msgstr ""
 "Produciuse un fallo ao atopar o disco axeitado a importar para a caixa «%s»"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Conectado"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Desconectado"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Executándose"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Pausado"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Apagado"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conectándose a %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Fallou a conexión «%s»"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "A máquina está construíndose"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Gardando…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1028,13 +1027,13 @@ msgstr ""
 "«%s» non pode restaurarse desde o disco\n"
 "Desexa tentalo sen o estado gardado?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Produciuse un fallo ao iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "«%s» require autenticación"
@@ -1075,7 +1074,7 @@ msgstr "Informe de fallos a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Páxina web de %s: <%s>\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Non existe o ficheiro «%s»"
@@ -1239,27 +1238,27 @@ msgstr "Copiando «%s» a «Descargas»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Produciuse un erro durante a preparación da instalación. A instalación "
 "rápida está desactivada."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Descargando controladores de dispositivo…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "sen contrasinal"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "A instalación rápida de %s require unha conexión a internet."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Credenciais de Caixas de GNOME para «%s»"
@@ -1372,7 +1371,6 @@ msgid "Box creation failed"
 msgstr "Produciuse un erro ao crear a caixa"
 
 #: src/wizard.vala:192
-#| msgid "Connecting to %s"
 msgid "Connect to a Box"
 msgstr "Conectarse a unha Caixa"
 
@@ -1463,7 +1461,6 @@ msgid "Downloading media…"
 msgstr "Descargando multimedia…"
 
 #: src/wizard.vala:657
-#| msgid "Downloading media…"
 msgid "Downloading media"
 msgstr "Descargando soporte"
 
