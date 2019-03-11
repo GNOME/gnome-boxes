@@ -468,7 +468,7 @@ private class Boxes.App: Gtk.Application {
 
         var msg = _("Box “%s” installed and ready to use").printf (machine.name);
         var notification = new GLib.Notification (msg);
-        notification.add_button ("Launch", "app.launch-box::" + machine.name);
+        notification.add_button (_("Launch"), "app.launch-box::" + machine.name);
 
         send_notification ("installed-" + machine.name, notification);
     }
