@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
-"PO-Revision-Date: 2019-02-13 14:00-0200\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-11 11:55-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese - Brazil <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -316,11 +316,10 @@ msgid "Help"
 msgstr "Ajuda"
 
 #: data/ui/menus.ui:15
-#| msgid "Boxes"
 msgid "About Boxes"
 msgstr "Sobre o Boxes"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Log de resolução de problemas"
 
@@ -424,11 +423,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalação expressa"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Senha"
 
@@ -436,7 +435,7 @@ msgstr "Senha"
 msgid "_Add Password"
 msgstr "_Adicionar senha"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Chave do produto"
 
@@ -480,7 +479,6 @@ msgid "Connect to a remote box"
 msgstr "Conectar a uma máquina remota"
 
 #: data/ui/wizard-source.ui:158
-#| msgid "Connect using RDP, SPICE or VNC."
 msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Conectar usando RDP, SPICE, SSH ou VNC."
 
@@ -509,9 +507,6 @@ msgstr ""
 "proprietários."
 
 #: data/ui/wizard-source.ui:385
-#| msgid ""
-#| "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
-#| "or vnc://."
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh:// or vnc://."
@@ -598,7 +593,7 @@ msgstr "Forçar desligamento"
 msgid "Clone"
 msgstr "Clonar"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Reiniciar"
 
@@ -664,6 +659,10 @@ msgstr "Especificado muitos argumentos de linha de comando.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Máquina “%s” instalada e pronta para o uso"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Iniciar"
 
 #: src/app.vala:557
 #, c-format
@@ -989,46 +988,46 @@ msgid "Failed to find suitable disk to import for box “%s”"
 msgstr ""
 "Ocorreu falha ao localizar disco apropriado para importar para a máquina “%s”"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Conectada"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Desconectada"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Em execução"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Pausada"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Desligada"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conectando-se a %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Conexão ao “%s” falhou"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Máquina em construção"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Salvando…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1037,13 +1036,13 @@ msgstr ""
 "“%s” não pode ser restaurado a partir do disco\n"
 "Tentar sem usar estado salvo?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Falha ao iniciar “%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” requer autenticação"
@@ -1084,7 +1083,7 @@ msgstr "Relatar erros para <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Página inicial do %s: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Arquivo %s inexistente"
@@ -1248,29 +1247,29 @@ msgstr "Copiando “%s” para “Downloads”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Ocorreu um erro durante a preparação da instalação. Instalação expressa "
 "desabilitada."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Baixando os drivers de dispositivos…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "sem senha"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr ""
 "É necessária uma conexão com a internet para efetuar a instalação expressa "
 "de %s."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Credenciais do GNOME Boxes para “%s”"
