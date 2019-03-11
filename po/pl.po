@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
-"PO-Revision-Date: 2019-02-08 21:45+0100\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-11 11:55+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -313,7 +313,7 @@ msgstr "Pomoc"
 msgid "About Boxes"
 msgstr "O programie"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Dziennik rozwiązywania problemów"
 
@@ -417,11 +417,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalacja ekspresowa"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Hasło"
 
@@ -429,7 +429,7 @@ msgstr "Hasło"
 msgid "_Add Password"
 msgstr "_Dodaj hasło"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Klucz produktu"
 
@@ -587,7 +587,7 @@ msgstr "Wymuś wyłączenie"
 msgid "Clone"
 msgstr "Sklonuj"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Uruchom ponownie"
 
@@ -652,6 +652,10 @@ msgstr "Podano za dużo parametrów wiersza poleceń.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Maszyna „%s” została zainstalowana i jest gotowa do użycia"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Uruchom"
 
 #: src/app.vala:557
 #, c-format
@@ -986,46 +990,46 @@ msgstr ""
 "Odnalezienie odpowiedniego dysku do zaimportowania maszyny „%s” się nie "
 "powiodło"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Połączono"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Rozłączono"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Działanie"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Wstrzymano"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Wyłączono"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Łączenie z maszyną „%s”"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Połączenie z maszyną „%s” się nie powiodło"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Maszyna jest w trakcie tworzenia"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Zapisywanie…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1034,13 +1038,13 @@ msgstr ""
 "Nie można przywrócić maszyny „%s” z dysku\n"
 "Proszę spróbować bez zapisanego stanu."
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Uruchomienie maszyny „%s” się nie powiodło"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "Maszyna „%s” wymaga uwierzytelnienia"
@@ -1081,7 +1085,7 @@ msgstr "Prosimy zgłaszać błędy do <%s> (w języku angielskim).\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Witryna programu %s: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Brak pliku %s"
@@ -1248,27 +1252,27 @@ msgstr "Kopiowanie pliku „%s” do katalogu „Pobrane”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Wystąpił błąd podczas przygotowywania instalacji. Instalacja ekspresowa "
 "została wyłączona."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Pobieranie sterowników urządzeń…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "brak hasła"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Instalacja ekspresowa systemu %s wymaga połączenia internetowego."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Dane uwierzytelniające programu GNOME Boxes dla „%s”"
