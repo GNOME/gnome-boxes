@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-17 17:04+0000\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
 "PO-Revision-Date: 2019-01-19 17:18+0900\n"
 "Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
 "Language-Team: français <gnomefr@traduc.org>\n"
@@ -323,7 +323,7 @@ msgstr "Aide"
 msgid "About Boxes"
 msgstr "À propos de Machines"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Journal de dépannage"
 
@@ -427,11 +427,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Installation rapide"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nom d’utilisateur"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Mot de passe"
 
@@ -439,7 +439,7 @@ msgstr "Mot de passe"
 msgid "_Add Password"
 msgstr "_Ajouter un mot de passe"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "N° de licence du produit"
 
@@ -600,7 +600,7 @@ msgstr "Forcer l’arrêt"
 msgid "Clone"
 msgstr "Cloner"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Redémarrer"
 
@@ -674,6 +674,10 @@ msgstr "Trop d’arguments spécifiés dans la commande.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Machine « %s » installée et prête à l’emploi"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Démarrer"
 
 #: src/app.vala:557
 #, c-format
@@ -1005,46 +1009,46 @@ msgid "Failed to find suitable disk to import for box “%s”"
 msgstr ""
 "Impossible de trouver un disque approprié pour importer la machine « %s »"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Connectée"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Déconnectée"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "En cours d’exécution"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Suspendue"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Éteinte"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Connexion à %s en cours"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "La connexion à « %s » a échoué"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "La machine est en cours de construction"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Enregistrement en cours…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1053,13 +1057,13 @@ msgstr ""
 "Impossible de restaurer « %s » depuis le disque\n"
 "Réessayer sans l’état sauvegardé ?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Impossible de démarrer « %s »"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "« %s » requiert l’authentification"
@@ -1100,7 +1104,7 @@ msgstr "Rapporter les bugs à <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Page d’accueil %s : <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Aucun fichier nommé « %s »"
@@ -1266,27 +1270,27 @@ msgstr "Copie de « %s » vers « Téléchargements »"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Une erreur s’est produite pendant la préparation de l’installation. "
 "L’installation rapide est désactivée."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Téléchargement des pilotes en cours…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "aucun mot de passe"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "L’installation expresse de %s nécessite une connexion à Internet."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Informations d’authentification de Machines pour « %s »"
