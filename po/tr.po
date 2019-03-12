@@ -15,16 +15,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-12-11 16:26+0000\n"
-"PO-Revision-Date: 2018-12-29 14:45+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-11 20:39+0200\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 3.30.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-POOTLE-MTIME: 1433229130.000000\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
@@ -315,11 +315,10 @@ msgid "Help"
 msgstr "Yardım"
 
 #: data/ui/menus.ui:15
-#| msgid "Boxes"
 msgid "About Boxes"
 msgstr "Kutular Hakkında"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Sorun Giderme Günlüğü"
 
@@ -422,11 +421,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Hızlı Kurulum"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Kullanıcı Adı"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Parola"
 
@@ -434,7 +433,7 @@ msgstr "Parola"
 msgid "_Add Password"
 msgstr "P_arola Ekle"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Ürün Anahtarı"
 
@@ -476,7 +475,6 @@ msgid "Connect to a remote box"
 msgstr "Uzak kutuya bağlan"
 
 #: data/ui/wizard-source.ui:158
-#| msgid "Connect using RDP, SPICE or VNC."
 msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "RDP, SPICE, SSH, veya VNC kullanarak bağlan."
 
@@ -503,9 +501,6 @@ msgstr ""
 "aittir."
 
 #: data/ui/wizard-source.ui:385
-#| msgid ""
-#| "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
-#| "or vnc://."
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh:// or vnc://."
@@ -592,7 +587,7 @@ msgstr "Kapanmaya Zorla"
 msgid "Clone"
 msgstr "Klonla"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Yeniden Başlat"
 
@@ -655,6 +650,10 @@ msgstr "Çok fazla komut satırı argümanı belirtildi.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "“%s” kutusu kuruldu ve kullanıma hazır"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Başlat"
 
 #: src/app.vala:557
 #, c-format
@@ -972,46 +971,46 @@ msgstr "Aktarmak için kutu yok"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "“%s” kutusu için içe aktarılacak uygun disk bulunamadı"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Bağlandı"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Bağlantı kesildi"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Çalışıyor"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Duraklatıldı"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Kapatıldı"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s’e bağlanılıyor"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s”e bağlanılamadı"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Makine yapım aşamasında"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Kaydediliyor…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1020,13 +1019,13 @@ msgstr ""
 "“%s” diskten geri yüklenemedi\n"
 "Kaydedilmemiş durumla denensin mi?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s” başlatılamadı"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” yetkilendirme gerektiriyor"
@@ -1067,7 +1066,7 @@ msgstr "Hataları <%s> adresine bildir. \n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s ana sayfa: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "%s adlı dosya yok"
@@ -1230,25 +1229,25 @@ msgstr "“%s”, “İndirilenler”e kopyalanıyor"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Kuruluma hazırlanırken bir hata ortaya çıktı. Hızlı kurulum kapatıldı."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Aygıt sürücüleri indiriliyor…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "parola yok"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s’in hızlı kurulumu internet bağlantısı gerektiriyor."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s” için GNOME Kutular kimlik bilgileri"
@@ -1311,7 +1310,7 @@ msgstr "hayır"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:693
+#: src/vm-configurator.vala:706
 msgid "Incapable host system"
 msgstr "Yetersiz sunucu sistemi"
 
