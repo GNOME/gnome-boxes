@@ -54,6 +54,20 @@ include
 The determination of what is useful is your task. If you forget about
 something important, someone will probably ask.
 
+# Contributing
+
+## Finding Bugs
+
+Bugs labelled as "Newcomers" for the project can be found here:
+
+[Newcomers Bugs](https://gitlab.gnome.org/GNOME/gnome-boxes/issues?label_name%5B%5D=4.+Newcomers)
+
+## Building the Project
+
+Instructions for building the project can be found here:
+
+[Build the Project](https://wiki.gnome.org/Newcomers/BuildProject)
+
 # Appendix
 
 ## Backtracing
