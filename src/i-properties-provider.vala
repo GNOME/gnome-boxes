@@ -87,9 +87,8 @@ private class Boxes.SizeProperty : Boxes.Property {
 
             // Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
             var label_text = _("%s used").printf (allocation_str);
-            var markup = ("%s %s").printf (capacity, label_text);
+            var markup = ("%s <span color=\"grey\">%s</span>").printf (capacity, label_text);
             label.set_markup (markup);
-
         }
     }
 
