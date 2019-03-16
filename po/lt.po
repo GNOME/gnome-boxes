@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
-"PO-Revision-Date: 2019-02-09 17:18+0200\n"
+"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"PO-Revision-Date: 2019-03-16 12:48+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
+"%100<10 || n%100>=20) ? 1 : 2)\n"
 "X-Generator: Gtranslator 3.30.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
@@ -306,11 +306,10 @@ msgid "Help"
 msgstr "Žinynas"
 
 #: data/ui/menus.ui:15
-#| msgid "Boxes"
 msgid "About Boxes"
 msgstr "Apie dėžes"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Problemų žurnalas"
 
@@ -414,11 +413,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Greitasis diegimas"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Naudotojo vardas"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Slaptažodis"
 
@@ -426,7 +425,7 @@ msgstr "Slaptažodis"
 msgid "_Add Password"
 msgstr "Pridėti sl_aptažodį"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Produkto raktas"
 
@@ -469,7 +468,6 @@ msgid "Connect to a remote box"
 msgstr "Prisijungti prie nuotolinės dėžės"
 
 #: data/ui/wizard-source.ui:158
-#| msgid "Connect using RDP, SPICE or VNC."
 msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Prisijungti naudojant RDP, SPICE SSH arba VNC."
 
@@ -495,9 +493,6 @@ msgstr ""
 "įrangos produktų identifikavimui ir yra atitinkamų savininkų nuosavybė."
 
 #: data/ui/wizard-source.ui:385
-#| msgid ""
-#| "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
-#| "or vnc://."
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh:// or vnc://."
@@ -584,7 +579,7 @@ msgstr "Priverstinai išjungti"
 msgid "Clone"
 msgstr "Klonuoti"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
@@ -647,6 +642,10 @@ msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Dėžė „%s“ įdiegta ir paruošta naudojimui"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Paleisti"
 
 #: src/app.vala:557
 #, c-format
@@ -976,46 +975,46 @@ msgstr "Nėra importuojamų dėžių"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Nepavyko rasti tinkamo disko dėžės „%s“ importavimui"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Prisijungta"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Atsijungta"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Veikia"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Pristabdyta"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Išjungta"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Jungiamasi prie %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Nepavyko prisijungti prie „%s“"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Mašina yra kuriama"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Įrašoma…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1024,13 +1023,13 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nepavyko paleisti „%s“"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s“ reikalauja patvirtinti tapatybę"
@@ -1071,7 +1070,7 @@ msgstr "Praneškite apie klaidas adresu <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s namų puslapis: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Nėra failo %s"
@@ -1237,25 +1236,25 @@ msgstr "Kopijuojamas „%s“ į „Parsiuntimus“"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Kilo klaida ruošiant diegimą. Greitasis diegimas išjungtas."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Parsiunčiamos įrenginio tvarkyklės…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "nėra slaptažodžio"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Greitasis %s diegimas reikalauja interneto ryšio."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Dėžių įgaliojimai „%s“"
