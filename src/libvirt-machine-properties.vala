@@ -457,8 +457,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 var capacity = format_size (volume_info.capacity, FormatSizeFlags.DEFAULT);
                 var allocation = format_size (volume_info.allocation, FormatSizeFlags.DEFAULT);
                 var label_text = _("Maximum Disk Space");
-                var allocation_text = (_("(%s used)"))).printf (allocation);
-                var markup = ("<span color=\"grey\">%s</span>\t\t %s <span color=\"grey\">%s</span>").printf (label_text, capacity, allocation_text);
+                var allocation_text = _("%s used").printf (allocation);
+                var markup = ("<span color=\"grey\">%s</span>\t\t %s <span color=\"grey\">(%s)</span>").printf (label_text, capacity, allocation_text);
                 label.set_markup (markup);
                 label.halign = Gtk.Align.START;
 
