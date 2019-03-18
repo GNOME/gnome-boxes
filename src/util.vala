@@ -164,6 +164,9 @@ namespace Boxes {
 
             return FileUtils.set_contents(file_name, key_file.to_data (null));
         } catch (GLib.Error error) {
+            if ((error.message).contains("No space left on device")) {
+            error.message = "No space left on device";
+            }
             warning (error.message);
             return false;
         }
