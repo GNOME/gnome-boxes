@@ -254,7 +254,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         cr.fill ();
     }
 
-    public Machine (Boxes.CollectionSource source, string name, string? uuid = null) {
+    protected Machine (Boxes.CollectionSource source, string name, string? uuid = null) {
         this.name = name;
         this.source = source;
         this.connecting_cancellable = new Cancellable ();
