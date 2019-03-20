@@ -347,8 +347,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
             if (!connected || main_channel.agent_connected)
                 break;
+            
+            var link_address = "<a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a>";
 
-            var message = _("SPICE guest tools are not installed. These tools improve user experience and enable host and box interactions, such as copy&amp;paste. Please visit <a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a> to download and install these tools from within the box.");
+            // Translators: %s => a link to the website where users can download the guest tools.
+            var message = _("SPICE guest tools are not installed. These tools improve user experience and enable host and box interactions, such as copy&amp;paste. Please visit %s to download and install these tools from within the box.").printf (link_address);
             var label = new Gtk.Label (message);
             label.vexpand = true;
             label.valign = Gtk.Align.END;
