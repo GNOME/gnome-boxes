@@ -460,7 +460,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 label_text.get_style_context ().add_class ("dim-label");
                 var allocation_text = _("%s used").printf (allocation);
                 allocation_text.get_style_context ().add_class ("dim-label");
-                var markup = (%s\t\t %s (%s)).printf (label_text, capacity, allocation_text);
+                var markup = ("%s\t\t %s (%s)").printf (label_text, capacity, allocation_text);
                 label.set_markup (markup);
                 label.halign = Gtk.Align.START;
 
