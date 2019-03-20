@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-20 19:37+0000\n"
-"PO-Revision-Date: 2019-02-27 22:34+0300\n"
+"POT-Creation-Date: 2019-03-18 09:20+0000\n"
+"PO-Revision-Date: 2019-03-20 22:06+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -56,7 +56,7 @@ msgstr ""
 "версии ваших любимых операционных систем, либо если необходимо подключиться "
 "к удалённой машине (например, в вашем офисе)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:97
 msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
@@ -311,7 +311,7 @@ msgstr "Справка"
 msgid "About Boxes"
 msgstr "О приложении"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Журнал проблем"
 
@@ -415,11 +415,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Быстрая установка"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Пароль"
 
@@ -427,7 +427,7 @@ msgstr "Пароль"
 msgid "_Add Password"
 msgstr "_Добавить пароль"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Ключ продукта"
 
@@ -583,7 +583,7 @@ msgstr "Принудительное выключение"
 msgid "Clone"
 msgstr "Клонировать"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Перезапустить"
 
@@ -647,6 +647,10 @@ msgstr "Указано слишком много аргументов коман
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Бокс «%s» установлен и готов к использованию"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Запустить"
 
 #: src/app.vala:557
 #, c-format
@@ -891,51 +895,59 @@ msgid "“%s” will be paused automatically to save resources."
 msgstr "Бокс «%s» будет автоматически приостановлен для экономии ресурсов."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Восстановление %s с диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:665
+msgid "Experiencing graphics problems?"
+msgstr "Испытываете проблемы с графикой?"
+
+#: src/libvirt-machine.vala:667
+msgid "Disable 3D acceleration"
+msgstr "Отключить 3D-ускорение"
+
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» слишком долго перезапускается. Выключить принудительно?"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Выключить"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонирование «%s»…"
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Установка…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:877 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Настройка клона…"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Импортирование…"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "хост: %s"
@@ -977,46 +989,46 @@ msgstr "Нет боксов для импортирования"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Не удалось найти подходящий диск для импортирования в бокс «%s»"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Подключено"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Отключено"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Запущено"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Приостановлено"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Выключено"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Подключение к %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Сбой подключения к «%s»"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Машина находится в разработке"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Сохранение…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1025,13 +1037,13 @@ msgstr ""
 "Невозможно восстановить «%s» с диска\n"
 "Загрузить игнорируя сохранённое состояние?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Не удалось запустить «%s»"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "«%s» требуется проверка подлинности"
@@ -1072,7 +1084,7 @@ msgstr "Об ошибках сообщайте на <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Домашняя страница %s: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Файл %s не найден"
@@ -1237,25 +1249,25 @@ msgstr "Копирование «%s» в «Загрузки»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Во время установки произошла ошибка. Быстрая установка отключена."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Загрузка драйверов устройств…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "без пароля"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Для быстрой установки %s требуется подключение к Интернету."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Учётные данные Боксов GNOME для «%s»"
