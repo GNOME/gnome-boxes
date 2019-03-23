@@ -74,22 +74,31 @@ private class Boxes.SizeProperty : Boxes.Property {
     private Gtk.Scale scale;
     private FormatSizeFlags format_flags;
 
-    private static void set_size_value_label_msg (Gtk.Label       label,
-                                                  uint64          size,
-                                                  uint64          allocation,
-                                                  FormatSizeFlags format_flags) {
+    private static void set_value_box_msg (Gtk.Box         size_box,
+                                           uint64          size,
+                                           uint64          allocation,
+                                           FormatSizeFlags format_flags) {
         var capacity = format_size (size, format_flags);
+        var allocation_label = new Gtk.Label ("");
+        var value_label = new Gtk.Label ("");
+        
 
         if (allocation == 0) {
-            label.set_text (capacity);
+            allocation_label.set_text (capacity);
         } else {
             var allocation_str = format_size (allocation, format_flags);
+            allocation_label.set_text (capacity);
 
             // Translators: This is memory or disk size. E.g. "1 GB used".
             var label_text = _("%s used").printf (allocation_str);
-            var markup = ("%s <span color=\"grey\">(%s)</span>").printf (capacity, label_text);
-            label.set_markup (markup);
+            value_label.set_text (" (" + label_text + ")");
+            value_label.get_style_context ().add_class ("dim-label");
         }
+        
+        allocation_label.halign = Gtk.Align.START;
+        size_box.add (allocation_label);
+        value_label.halign = Gtk.Align.START;
+        size_box.add (value_label);
     }
 
     public uint64 recommended  {
@@ -117,10 +126,10 @@ private class Boxes.SizeProperty : Boxes.Property {
         name_label.halign = Gtk.Align.START;
         name_label.get_style_context ().add_class ("dim-label");
         box.add (name_label);
-        var value_label = new Gtk.Label ("");
-        set_size_value_label_msg (value_label, size, allocation, format_flags);
-        value_label.halign = Gtk.Align.START;
-        box.add (value_label);
+        var value_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        set_value_box_msg (value_box, size, allocation, format_flags);
+        value_box.halign = Gtk.Align.START;
+        box.add (value_box);
 
         var scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, min, max, step);
         name_label.mnemonic_widget = scale;
@@ -147,7 +156,7 @@ private class Boxes.SizeProperty : Boxes.Property {
 
         scale.value_changed.connect (() => {
             uint64 v = (uint64) scale.get_value ();
-            set_size_value_label_msg (value_label, v, allocation, format_flags);
+            set_value_box_msg (value_box, v, allocation, format_flags);
             scale.set_fill_level (v);
 
             changed ((uint64) scale.get_value ());
