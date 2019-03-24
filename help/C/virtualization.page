@@ -11,6 +11,12 @@
       <years>2014</years>
     </credit>
 
+    <credit type="author copyright">
+      <name>Priya Pandya</name>
+      <email>priyapandya274@gmail.com</email>
+      <years>2019</years>
+    </credit>
+
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
     <desc>Check the resources available to <app>Boxes</app>.</desc>
@@ -22,6 +28,19 @@
   hardware extensions, and that they have been enabled in the system BIOS, run
   the following in a terminal window:</p>
   <p><cmd>gnome-boxes --checks</cmd></p>
-  <p>If necessary, switch on the extensions <link href="http://docs.fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html">in the BIOS setup</link></p>
+
+
+  <p>To enable Virtualization on your system:</p>
+  <steps>
+	  <item><p>Reboot the system and open the <gui>BIOS</gui> menu</p></item>
+	  <item><p>Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui></p></item>
+	  <item><p>Reboot and again open <gui>BIOS</gui></p></item>
+	  <item><p>Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU Configuration</gui> or <gui>Northbridge</gui></p></item>
+	  <item><p>Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) or <gui>AMD-V</gui> depending on the brand of the processor. The virtualization extensions may be labeled <gui>Virtualization Extensions, Vanderpool</gui> or various other names depending on the OEM and system BIOS</p></item>
+	  <item><p><gui>Save and Exit</gui></p></item>
+	  <item><p>Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd></p></item>
+
+  </steps>
+  <p>If there is some output then the virtualization extensions are now enabled. If there is no output your system may not have the virtualization extensions or the correct BIOS setting enabled</p>
 
 </page>
