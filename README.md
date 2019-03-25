@@ -128,53 +128,6 @@ to be able to use simpler commands from there:
 GNOME-boxes
 ```
 
-# **To check whether your system has Virtualization enabled or not:**
-
-For **Linux**: Run: 
-```
-egrep vmx|svm /proc/cpuinf
-```  
-vmx : Intel  
-svm : AMD
-		
-If you get something like:  
-```
-flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx
-
- fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl 
-
-xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg
-
- fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm 
-
-abm 3dnowprefetch cpuid_fault invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid 
-
-fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec 
-
-xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp flush_l1d 
-```
-then your system supports VT.
-
-For **Windows**:
-You can check in **Task Manager** -> **Performance** -> **CPU**
-
-# **To enable Virtualization on your system:**
-
-1. Reboot the system and open the **BIOS** menu
-2. Select **Restore Defaults** option and then **Save & Exit**.
-3. Reboot and again open **BIOS**
-4. Open the **Processor** submenu in the **Chipset**, **Advanced CPU Configuration** or **Northbridge**.
-5. Enable **Intel Virtualization Technology** (also known as **Intel VT**) or **AMD-V** depending on the brand of the processor. The virtualization extensions may be labeled **Virtualization Extensions**, **Vanderpool** or 
-various other names depending on the OEM and system BIOS.
-6. **Save & Exit**.
-7. Reboot and run 
-```
-cat /proc/cpuinfo | grep vmx svm
-```
-If there is some output then the virtualization extensions are now enabled. If there is no output your system may not have the virtualization extensions or the correct BIOS setting enabled.
-
-
-
 ## References
 
 * [GNOME Boxes](https://wiki.GNOME.org/ThreePointThree/Features/Boxes)
