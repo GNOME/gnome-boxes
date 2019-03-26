@@ -453,16 +453,31 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             var max_storage = volume_info.allocation + pool_info.available;
 
             if (min_storage >= max_storage) {
+                var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+                var label_text = _("Maximum Disk Space: ");
+                var bold_label_text = "<span font-weight=\"bold\">" + label_text + "</span>";
                 var label = new Gtk.Label ("");
-                var capacity = format_size (volume_info.capacity, FormatSizeFlags.DEFAULT);
-                var allocation = format_size (volume_info.allocation, FormatSizeFlags.DEFAULT);
-                var label_text = _("Maximum Disk Space");
-                var allocation_text = _("%s used").printf (allocation);
-                var markup = ("<span color=\"grey\">%s</span>\t\t %s <span color=\"grey\">(%s)</span>").printf (label_text, capacity, allocation_text);
-                label.set_markup (markup);
+                label.set_text (bold_label_text);
+                label.set_use_markup(true);
                 label.halign = Gtk.Align.START;
+                label.get_style_context ().add_class ("dim-label");
+                box.add (label);
+                var value_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+                var capacity = format_size (volume_info.capacity, FormatSizeFlags.DEFAULT);
+                var allocation_label = new Gtk.Label.with_mnemonic (capacity);
+                allocation_label.halign = Gtk.Align.START;
+                value_box.add (allocation_label);
+                var allocation = format_size (volume_info.allocation, FormatSizeFlags.DEFAULT);
+                var allocation_text = _("%s used").printf (allocation);
+                var value_label = new Gtk.Label ("");
+                value_label.set_text (" (" + allocation_text + ")");
+                value_label.get_style_context ().add_class ("dim-label");
+                value_label.halign = Gtk.Align.START;
+                value_box.add (value_label);
+                value_box.halign = Gtk.Align.START;
+                box.add (value_box);
 
-                add_property (ref list, null, label);
+                add_property (ref list, null, box);
 
                 var infobar = new Gtk.InfoBar ();
                 infobar.message_type = Gtk.MessageType.WARNING;
@@ -475,8 +490,8 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 content.add (image);
 
                 var msg = _("There is not enough space on your machine to increase the maximum disk size.");
-                label = new Gtk.Label (msg);
-                content.add (label);
+                var warning_label = new Gtk.Label (msg);
+                content.add (warning_label);
 
                 add_property (ref list, null, infobar);
 
