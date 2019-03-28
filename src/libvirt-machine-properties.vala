@@ -144,9 +144,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         case PropertiesPage.SNAPSHOTS:
             try {
                 var config = machine.domain.get_config (0);
-                // Snapshots currently don't work with host-passthrough
-                if (config.get_cpu ().get_mode () != GVirConfig.DomainCpuMode.HOST_PASSTHROUGH &&
-                    !VMConfigurator.is_install_config (config))
+                if (!VMConfigurator.is_install_config (config))
                     add_snapshots_property (ref list);
             } catch (GLib.Error e) {
                 warning (e.message);
