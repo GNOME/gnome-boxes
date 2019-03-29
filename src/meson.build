@@ -162,20 +162,6 @@ else
     dependency ('gudev-1.0', version: '>= 165'),
   ]
 
-  if get_option('ovirt')
-    vala_sources += [
-      'ovirt-broker.vala',
-      'ovirt-machine.vala'
-    ]
-
-    vala_args += '--define=HAVE_OVIRT'
-
-    dependencies += [
-      dependency ('govirt-1.0', version: '>= 0.3.4'),
-      valac.find_library ('rest-0.7')
-    ]
-  endif
-
   if get_option('rdp')
     gtk_frdp = subproject(
       'gtk-frdp',
