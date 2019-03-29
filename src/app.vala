@@ -131,9 +131,6 @@ private class Boxes.App: Gtk.Application {
         collection = new Collection ();
 
         brokers.insert ("libvirt", LibvirtBroker.get_default ());
-#if HAVE_OVIRT
-        brokers.insert ("ovirt", OvirtBroker.get_default ());
-#endif
 
         check_cpu_vt_capability.begin ();
         check_module_kvm_loaded.begin ();
@@ -176,7 +173,7 @@ private class Boxes.App: Gtk.Application {
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
         { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
-        // A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
+        // A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
         { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URL to display, broker or installer media"), null },
         { null }
     };
