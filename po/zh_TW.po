@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-17 17:04+0000\n"
-"PO-Revision-Date: 2019-01-20 19:22+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"POT-Creation-Date: 2019-03-22 20:29+0000\n"
+"PO-Revision-Date: 2019-03-31 22:44+0800\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese <kde-i18n-doc@kde.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 18.12.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -51,7 +51,7 @@ msgstr ""
 "新版本 (可能還不穩定)，或是需要連線到遠端機器 (例如，您的辦公室電腦)，您會想"
 "要安裝《機櫃》。"
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:104
 msgid "The GNOME Project"
 msgstr "GNOME 專案"
 
@@ -73,11 +73,6 @@ msgstr "檢視與使用虛擬機"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;vnc;rdp;虛擬機;虛擬機器;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -306,7 +301,7 @@ msgstr "求助"
 msgid "About Boxes"
 msgstr "關於機櫃"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "疑難排解紀錄"
 
@@ -408,11 +403,11 @@ msgstr "選擇快速安裝會以最佳化的設定值自動將機臺預先設定
 msgid "Express Install"
 msgstr "快速安裝"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "使用者名稱"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "密碼"
 
@@ -420,7 +415,7 @@ msgstr "密碼"
 msgid "_Add Password"
 msgstr "加入密碼(_A)"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "產品金鑰"
 
@@ -569,7 +564,7 @@ msgstr "強迫關機"
 msgid "Clone"
 msgstr "拓製"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "重新啟動"
 
@@ -586,7 +581,7 @@ msgstr "%s 的畫面快照"
 
 #: src/app.vala:111
 msgid "translator-credits"
-msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2012-15."
+msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2012-19."
 
 #: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
@@ -629,6 +624,10 @@ msgstr "指定了太多命令列引數。\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "機臺「%s」已安裝並準備好可以使用"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "啟動"
 
 #: src/app.vala:557
 #, c-format
@@ -862,51 +861,59 @@ msgid "“%s” will be paused automatically to save resources."
 msgstr "「%s」會自動暫停以節省資源。"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正從磁碟還原 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "正在啟動 %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:665
+msgid "Experiencing graphics problems?"
+msgstr "遇到圖形畫面相關問題？"
+
+#: src/libvirt-machine.vala:667
+msgid "Disable 3D acceleration"
+msgstr "停用 3D 加速"
+
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "「%s」的重新啟動時間過長。是否要強迫關機？"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "關閉(_S)"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
-msgstr "正在複製「%s」..."
+msgstr "正在拓製「%s」..."
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "正在安裝…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:877 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "正在設置拓製品…"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "正在匯入…"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "主機：%s"
@@ -944,46 +951,46 @@ msgstr "沒有機臺會匯入"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "找不到適當磁碟來匯入「%s」機臺"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "已連線"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "已斷線"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "正在執行"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "已暫停"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "已關閉"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "正在連接到 %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "「%s」的連線失敗"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "正在建立機器"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "正在儲存…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -992,13 +999,13 @@ msgstr ""
 "無法從磁碟還原「%s」\n"
 "要嘗試不使用儲存的狀態嗎？"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "無法啟動「%s」"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "「%s」要求核對身份"
@@ -1039,7 +1046,7 @@ msgstr "報告錯誤給 <%s>。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s首頁：<%s>。\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "沒有這個檔案 %s"
@@ -1199,25 +1206,25 @@ msgstr "正在將「%s」複製到「下載」"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "在安裝準備期間遇到錯誤。快速安裝已停用。"
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "正在下載裝置驅動程式..."
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "無密碼"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s 的快速安裝需要有網際網路連線。"
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "「%s」的 GNOME 機櫃憑證"
@@ -1420,3 +1427,6 @@ msgstr "下載失敗。"
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "自訂(_U)…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
