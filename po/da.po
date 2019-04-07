@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-11 10:44+0000\n"
+"POT-Creation-Date: 2019-03-22 20:29+0000\n"
 "PO-Revision-Date: 2019-03-12 01:43+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -61,7 +61,7 @@ msgstr ""
 "af dine yndlingsoperativsystemer, eller hvis du har brug for at forbinde til "
 "en fjernmaskine (f.eks. på dit kontor)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:104
 msgid "The GNOME Project"
 msgstr "GNOME-projektet"
 
@@ -83,11 +83,6 @@ msgstr "Vis og brug virtuelle maskiner"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtuel maskine;vm;vnc;rdp;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -463,7 +458,8 @@ msgid "Download an OS"
 msgstr "Hent et styresystem"
 
 #: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
+msgid ""
+"Operating system will be downloaded and installed in a virtual machine."
 msgstr "Styresystem vil blive hentet og installeret på en virtuel maskine."
 
 #: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
@@ -609,8 +605,9 @@ msgstr ""
 "Ask Hjorth Larsen\n"
 "Alan Mortensen\n"
 "\n"
-"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Mere info: http://www.dansk-gruppen.dk"
+"Dansk-gruppen\n"
+"Websted <http://dansk-gruppen.dk>\n"
+"E-mail <dansk@dansk-gruppen.dk>"
 
 #: src/app.vala:112
 msgid "A simple GNOME 3 application to access remote or virtual systems"
@@ -855,11 +852,11 @@ msgstr "_Hukommelse: "
 #: src/libvirt-machine-properties.vala:459
 #, c-format
 msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
+"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span "
+"color=\"grey\">(%s used)</span>"
 msgstr ""
-"<span color=\"grey\">Maksimal diskstørrelse</span>\t\t %s <span color=\"grey"
-"\">(%s brugt)</span>"
+"<span color=\"grey\">Maksimal diskstørrelse</span>\t\t %s <span "
+"color=\"grey\">(%s brugt)</span>"
 
 #: src/libvirt-machine-properties.vala:475
 msgid ""
@@ -901,51 +898,59 @@ msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” vil automatisk blive sat på pause for at spare ressourcer."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Gendanner %s fra disken"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:665
+msgid "Experiencing graphics problems?"
+msgstr ""
+
+#: src/libvirt-machine.vala:667
+msgid "Disable 3D acceleration"
+msgstr ""
+
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Genstart af “%s” varer for længe. Tving den til at lukke?"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Sluk"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Kloner “%s” …"
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Installerer …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:877 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Indstiller klon …"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Importerer …"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "vært: %s"
@@ -1206,14 +1211,14 @@ msgstr "Del udklipsholder"
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a> "
+"to download and install these tools from within the box."
 msgstr ""
 "SPICE-gæsteværktøjerne er ikke installeret. Disse værktøjer vil forbedre din "
 "brugeroplevelse og tillade interaktion mellem vært og boks såsom kopiér og "
-"indsæt. Se venligst <a href=\"http://www.spice-space.org/download.html"
-"\">http://www.spice-space.org/download.html</a> om at hente og installere "
-"disse værktøjer inde fra boksen."
+"indsæt. Se venligst <a "
+"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a> "
+"om at hente og installere disse værktøjer inde fra boksen."
 
 #: src/spice-display.vala:378
 msgid "USB devices"
@@ -1310,11 +1315,11 @@ msgstr ""
 #: src/util-app.vala:421
 #, c-format
 msgid ""
-"%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
-"readable/writable"
+"%s is known to libvirt as GNOME Boxes’s storage pool but is not "
+"user-readable/writable"
 msgstr ""
-"%s kendes hos libvirt som GNOME Boxes' lagerpulje, men kan ikke læses/"
-"skrives af brugeren"
+"%s kendes hos libvirt som GNOME Boxes' lagerpulje, men kan ikke "
+"læses/skrives af brugeren"
 
 #: src/util.vala:334
 msgid "yes"
@@ -1475,6 +1480,9 @@ msgstr "Nedhentning mislykkedes."
 msgid "C_ustomize…"
 msgstr "_Tilpas …"
 
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
 #~ msgid "About"
 #~ msgstr "Om"
 
@@ -1498,15 +1506,15 @@ msgstr "_Tilpas …"
 #~ "installation images, SPICE and VNC servers, or oVirt or Libvirt brokers."
 #~ msgstr ""
 #~ "Indtast en adresse for boksen, du vil tilføje. Adresser kan referere til "
-#~ "installationsaftryk, SPICE- og VNC-servere, eller oVirt- eller Libvirt-"
-#~ "mæglere."
+#~ "installationsaftryk, SPICE- og VNC-servere, eller oVirt- eller "
+#~ "Libvirt-mæglere."
 
 #~ msgid ""
-#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
-#~ "host/path"
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, "
+#~ "ovirt://host/path"
 #~ msgstr ""
-#~ "Eksempler: http://download.com/image.iso, spice://somehost:5051, ovirt://"
-#~ "host/path"
+#~ "Eksempler: http://download.com/image.iso, spice://somehost:5051, "
+#~ "ovirt://host/path"
 
 #~ msgid "_Back"
 #~ msgstr "_Tilbage"
@@ -1559,18 +1567,17 @@ msgstr "_Tilpas …"
 #~ msgstr "Introduktion"
 
 #~ msgid ""
-#~ "Creating a Box will allow you to use another operating system directly "
-#~ "from your existing login.\n"
+#~ "Creating a Box will allow you to use another operating system directly from "
+#~ "your existing login.\n"
 #~ "\n"
 #~ "You may connect to an existing machine <b><i>over the network</i></b> or "
 #~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
 #~ msgstr ""
-#~ "Oprettelse af en boks vil give dig mulighed for at bruge et andet "
-#~ "operativ system direkte fra dit eksisterende logind.\n"
+#~ "Oprettelse af en boks vil give dig mulighed for at bruge et andet operativ "
+#~ "system direkte fra dit eksisterende logind.\n"
 #~ "\n"
 #~ "Du kan forbinde til en eksisterende maskine <b><i>over netværket</i></b> "
-#~ "eller oprette en <b><i>virtuel maskine</i></b> som kører lokalt på din "
-#~ "egen."
+#~ "eller oprette en <b><i>virtuel maskine</i></b> som kører lokalt på din egen."
 
 #~ msgid "Virtualizer"
 #~ msgstr "Virtualisering"
@@ -1645,15 +1652,15 @@ msgstr "_Tilpas …"
 #~ msgstr "_Færdig"
 
 #~ msgid ""
-#~ "Virtualization extensions are unavailable on your system. Expect this box "
-#~ "to be extremely slow. If your system is recent enough (made in or after "
-#~ "2008), these extensions are probably available on your system and you may "
-#~ "need to enable them in your system's BIOS setup."
+#~ "Virtualization extensions are unavailable on your system. Expect this box to "
+#~ "be extremely slow. If your system is recent enough (made in or after 2008), "
+#~ "these extensions are probably available on your system and you may need to "
+#~ "enable them in your system's BIOS setup."
 #~ msgstr ""
-#~ "Virtualiseringsudvidelserne er ikke tilgængelige på dit system. Denne "
-#~ "boks vil nok være ekstremt langsom. Hvis dit system er nyt nok (lavet i "
-#~ "eller efter 2008), er disse udvidelser sandsynligvis tilgængelige på dit "
-#~ "system, og du skal måske aktivere dem i systemets BIOS-opsætning."
+#~ "Virtualiseringsudvidelserne er ikke tilgængelige på dit system. Denne boks "
+#~ "vil nok være ekstremt langsom. Hvis dit system er nyt nok (lavet i eller "
+#~ "efter 2008), er disse udvidelser sandsynligvis tilgængelige på dit system, "
+#~ "og du skal måske aktivere dem i systemets BIOS-opsætning."
 
 #~ msgid "USB redirection"
 #~ msgstr "USB-viderestilling"
@@ -1678,3 +1685,4 @@ msgstr "_Tilpas …"
 
 #~ msgid "_Add Product Key"
 #~ msgstr "_Tilføj produktnøgle"
+
