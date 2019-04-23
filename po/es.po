@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-01-30 08:42+0000\n"
-"PO-Revision-Date: 2019-01-30 15:18+0100\n"
+"POT-Creation-Date: 2019-04-15 09:52+0000\n"
+"PO-Revision-Date: 2019-04-23 10:10+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: es <gnome-es-list@gnome.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.31.0\n"
+"X-Generator: Gtranslator 3.32.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -54,7 +54,7 @@ msgstr ""
 "sus sistemas operativos favoritos, o necesita conectarse a una máquina "
 "remota (por ejemplo, en su oficina)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:97
 msgid "The GNOME Project"
 msgstr "El Proyecto GNOME"
 
@@ -76,11 +76,6 @@ msgstr "Ver y usar máquinas virtuales"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "máquina virtual;vm;vnc;rdp;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -414,11 +409,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalación rápida"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Contraseña"
 
@@ -426,7 +421,7 @@ msgstr "Contraseña"
 msgid "_Add Password"
 msgstr "_Añadir contraseña"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Clave del producto"
 
@@ -474,8 +469,9 @@ msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Conectar usando RDP, SPICE, SSH, o VNC."
 
 #: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
-msgstr "Conectar a brokers oVirt o Libvirt"
+#| msgid "Connect to oVirt or Libvirt brokers."
+msgid "Connect to Libvirt brokers."
+msgstr "Conectar a brokers Libvirt."
 
 #: data/ui/wizard-source.ui:276
 msgid "Select a file"
@@ -609,62 +605,66 @@ msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:170 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
 
-#: src/app.vala:175
+#: src/app.vala:172
 msgid "Open in full screen"
 msgstr "Abrir en pantalla completa"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:173 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprobar la capacidad de virtualización"
 
-#: src/app.vala:177
+#: src/app.vala:174
 msgid "Open box with UUID"
 msgstr "Abrir caja con UUID"
 
-#: src/app.vala:178
+#: src/app.vala:175
 msgid "Search term"
 msgstr "Buscar término"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:177
 msgid "URL to display, broker or installer media"
 msgstr "URL que mostrar, agente o medio de instalación"
 
-#: src/app.vala:191
+#: src/app.vala:188
 msgid "— A simple application to access remote or virtual machines"
 msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 
-#: src/app.vala:216
+#: src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: src/app.vala:469
+#: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caja «%s» instalada y lista para usarse"
 
-#: src/app.vala:557
+#: src/app.vala:468
+msgid "Launch"
+msgstr "Lanzar"
+
+#: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: src/app.vala:558
+#: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: src/app.vala:629
+#: src/app.vala:626
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
@@ -704,14 +704,15 @@ msgstr "Formato de archivo de disco no soportado."
 msgid "System"
 msgstr "Sistema"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:89 src/libvirt-machine-properties.vala:458
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s usado)</span>"
+#| msgid "Paused"
+msgid "%s used"
+msgstr "%s usado"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:103
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (recomendado)"
@@ -755,7 +756,7 @@ msgstr "_Nombre"
 msgid "IP Address"
 msgstr "Dirección IP"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Agente"
 
@@ -770,82 +771,78 @@ msgid "Display URL"
 msgstr "Mostrar URL"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:179
+#: src/libvirt-machine-properties.vala:231
 msgid "empty"
 msgstr "vacío"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:242
+#: src/libvirt-machine-properties.vala:188
+#: src/libvirt-machine-properties.vala:240
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:202
+#: src/libvirt-machine-properties.vala:230
 msgid "_Select"
 msgstr "_Seleccionar"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:205
+#: src/libvirt-machine-properties.vala:213
 msgid "_Remove"
 msgstr "_Quitar"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:220
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Falló la inserción de «%s» como CD/DVD en «%s»"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:234
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Falló al quitar el CD/DVD de «%s»"
 
-#: src/libvirt-machine-properties.vala:306
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:312
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "E/S"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:318
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "Red"
 
-#: src/libvirt-machine-properties.vala:347 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:345 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Reiniciar"
 
-#: src/libvirt-machine-properties.vala:355
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "_Forzar apagado"
 
-#: src/libvirt-machine-properties.vala:369
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "_Registro de resolución de problemas"
 
-#: src/libvirt-machine-properties.vala:390
+#: src/libvirt-machine-properties.vala:388
 msgid "_Memory: "
 msgstr "_Memoria:"
 
-#: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">Tamaño máximo del disco</span>\t\t %s <span color=\"grey"
-"\">(%s usado)</span>"
+#: src/libvirt-machine-properties.vala:457
+#| msgid "Maximum _Disk Size: "
+msgid "Maximum Disk Space"
+msgstr "Espacio máximo del disco"
 
 #: src/libvirt-machine-properties.vala:475
 msgid ""
@@ -885,51 +882,59 @@ msgid "“%s” will be paused automatically to save resources."
 msgstr "«%s» se pausará automáticamente para ahorrar recursos."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde el disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:665
+msgid "Experiencing graphics problems?"
+msgstr "¿Tiene problemas con los gráficos?"
+
+#: src/libvirt-machine.vala:667
+msgid "Disable 3D acceleration"
+msgstr "Desactivar la aceleración 3D"
+
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Apagar"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Clonando «%s»…"
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Instalando…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:877 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "«Live»"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Configurando clon…"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Importando…"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "equipo: %s"
@@ -1064,7 +1069,7 @@ msgstr "Informar de errores a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s página de inicio: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "No existe el archivo %s"
@@ -1078,18 +1083,6 @@ msgstr "Iniciar sesión en %s"
 #, c-format
 msgid "Not connected to %s"
 msgstr "No conectado a %s"
-
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "Falló la conexión a oVirt broker"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Protocolo"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "URL"
 
 #: src/properties-page-widget.vala:15
 msgid "General"
@@ -1107,6 +1100,14 @@ msgstr "Instantáneas"
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Los cambios requieren que se reinicie «%s»."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Protocolo"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "URL"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1176,46 +1177,52 @@ msgstr "Falló al crear la instantánea de %s"
 msgid "Unknown"
 msgstr "Desconocida"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:66 src/spice-display.vala:486
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Falló al redireccionar el dispositivo USB «%s» para «%s»"
 
-#: src/spice-display.vala:346
+#: src/spice-display.vala:339
 msgid "Share Clipboard"
 msgstr "Compartir portapapeles"
 
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:346
+#, c-format
+#| msgid ""
+#| "SPICE guest tools are not installed. These tools improve user experience "
+#| "and enable host and box interactions, such as copy&amp;paste. Please "
+#| "visit <a href=\"http://www.spice-space.org/download.html\">http://www."
+#| "spice-space.org/download.html</a> to download and install these tools "
+#| "from within the box."
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
 "Las herramientas de anfitrión SPICE no están instaladas. Estas herramientas "
-"mejora la experiencia del usuario y permiten la interacción entre el equipo "
-"anfitrión y la caja, como puede ser copiar y pegar. Visite <a href=\"http://"
-"www.spice-space.org/download.html\">http://www.spice-space.org/download."
-"html</a> para descargar e instalar estas herramientas en la caja."
+"mejoran la experiencia del usuario y permiten la interacción entre el equipo "
+"anfitrión y la caja, como puede ser copiar y pegar. Visite %s para descargar "
+"e instalar estas herramientas en la caja."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:373
 msgid "USB devices"
 msgstr "Dispositivos USB"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:392
 msgid "Folder Shares"
 msgstr "Compartición de carpetas"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:590 src/spice-display.vala:615
+#: src/spice-display.vala:618 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "URL no válido"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:600
 msgid "The port must be specified once"
 msgstr "El puedo se debe especificar una vez"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:611
 msgid "Missing port in Spice URL"
 msgstr "Falta el puerto en el URL de Spice"
 
@@ -1228,27 +1235,27 @@ msgstr "Copiando «%s» a «Descargas»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Ocurrió un error durante la preparación de la instalación. Se ha desactivado "
 "la instalación rápida."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Descargando controladores de dispositivos…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "sin contraseña"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "La instalación rápida de %s necesita una conexión a Internet."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Credenciales de GNOME Cajas para «%s»"
@@ -1459,6 +1466,22 @@ msgstr "Falló la descarga."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "_Personalizar…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s usado)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">Tamaño máximo del disco</span>\t\t %s <span color="
+#~ "\"grey\">(%s usado)</span>"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "Falló la conexión a oVirt broker"
 
 #~ msgid "About"
 #~ msgstr "Acerca de"
