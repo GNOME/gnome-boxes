@@ -425,6 +425,40 @@ namespace Boxes {
         return true;
     }
 
+    private async void ensure_disk_is_readable (string disk_path) throws GLib.Error {
+        string[] argv = {};
+
+        argv += "pkexec";
+        argv += "chmod";
+        argv += "a+r";
+
+        var file = File.new_for_path (disk_path);
+        var info = yield file.query_info_async (FileAttribute.ACCESS_CAN_READ,
+                                                FileQueryInfoFlags.NONE,
+                                                Priority.DEFAULT,
+                                                null);
+        if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+            debug ("'%s' not readable, gotta make it readable..", disk_path);
+            argv += disk_path;
+        }
+
+        if (argv.length == 3)
+            return;
+
+        debug ("Making broker's disks readable..");
+        yield exec (argv, null);
+        debug ("Made all broker's disks readable.");
+    }
+
+    public async void import_storage_volume (string source, string destination) throws GLib.Error {
+        /* This might launch polkit for files we don't have permissions to read. */
+        yield ensure_disk_is_readable (source);
+
+        /* Copy and convert source to 'destination' (our internal storage volume location). */
+        string[] argv = { "qemu-img", "convert", "-O", "qcow2", source, destination };
+        debug ("Copying from '%s' to '%s'", source, destination);
+        yield exec (argv, null);
+    }
 
     // FIXME: Better ways to remove alpha more than welcome
     private Gdk.Pixbuf remove_alpha (Gdk.Pixbuf pixbuf) {
