@@ -20,41 +20,19 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         machine.vm_creator = this;
         machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
 
-        import_vm.begin (machine);
+        post_import_setup.begin (machine);
     }
 
     protected override async void continue_installation (LibvirtMachine machine) {
         install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
         machine.vm_creator = this;
 
-        yield import_vm (machine);
+        yield post_import_setup (machine);
     }
 
     protected virtual async void post_import_setup (LibvirtMachine machine) {
         set_post_install_config (machine);
-    }
 
-    private async void import_vm (LibvirtMachine machine) {
-        try {
-            var destination_path = machine.storage_volume.get_path ();
-
-            yield source_media.copy (destination_path);
-
-            // Without refreshing the pool, libvirt will not know of changes to volume we just made
-            yield Boxes.ensure_storage_pool (connection);
-        } catch (GLib.Error error) {
-            warning ("Failed to import box '%s' from file '%s': %s",
-                     machine.name,
-                     source_media.device_file,
-                     error.message);
-            var ui_message = _("Box import from file “%s” failed.").printf (source_media.device_file);
-            App.app.main_window.notificationbar.display_error (ui_message);
-            machine.delete ();
-
-            return;
-        }
-
-        yield post_import_setup (machine);
         if (start_after_import) {
             try {
                 machine.domain.start (0);
