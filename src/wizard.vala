@@ -275,7 +275,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             vm_creator.install_media.clean_up_preparation_cache ();
             vm_creator = null;
             wizard_source.uri = "";
-            wizard_source.libvirt_sys_import = false;
         } else if (source != null) {
             source.save ();
             App.app.add_collection_source.begin (source);
@@ -283,8 +282,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             if (machine is RemoteMachine) {
                 return true;
             }
-        } else if (wizard_source.libvirt_sys_import) {
-            wizard_source.libvirt_sys_importer.import.begin ();
         } else {
             return_val_if_reached (false); // Shouldn't arrive here with no source
         }
@@ -428,12 +425,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
     }
 
     private bool prepare (ActivityProgress progress) {
-        if (wizard_source.libvirt_sys_import) {
-            prepare_cancellable.reset ();
-
-            return true;
-        }
-
         try {
             // Validate URI
             prepare_for_location (wizard_source.uri, wizard_source.filename, true);
@@ -479,7 +470,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
 
     private bool setup () {
         // there is no setup yet for direct source nor libvirt system imports
-        if (source != null || wizard_source.libvirt_sys_import)
+        if (source != null)
             return true;
 
         return_val_if_fail (vm_creator != null, false);
@@ -597,8 +588,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             }
 
             nokvm_infobar.visible = (libvirt_machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
-        } else if (wizard_source.libvirt_sys_import) {
-            review_label.set_text (wizard_source.libvirt_sys_importer.wizard_review_label);
         }
 
         if (libvirt_machine != null)
@@ -634,11 +623,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
                 && vm_creator.install_media.live
                 && skip_review_for_live)
                     skip_to += 1;
-        } else if (wizard_source.libvirt_sys_import) {
-            if (page == Boxes.WizardPage.PREPARATION)
-                skip_to = forwards ? page + 2 : page - 1;
-            else if (page == Boxes.WizardPage.SETUP)
-                skip_to = forwards ? page + 1 : page - 2;
         }
 
         if (skip_to != page) {
@@ -735,7 +719,6 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
             return;
 
         wizard_source.uri = "";
-        wizard_source.libvirt_sys_import = false;
         page = WizardPage.SOURCE;
     }
 
