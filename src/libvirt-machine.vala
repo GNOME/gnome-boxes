@@ -87,8 +87,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public override bool is_local {
         get {
-            // If the URI is prefixed by "qemu" or "qemu+unix" and the domain is "system" of "session" then it is local.
-            if (/^qemu(\+unix)?:\/\/\/(system|session)/i.match (source.uri))
+            /* get_domain_disk () will return NULL for volumes that aren't managed by Boxes. */
+            if (get_domain_disk () != null)
                 return true;
 
             return base.is_local;
