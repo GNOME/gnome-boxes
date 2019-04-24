@@ -51,9 +51,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public override bool is_local {
         get {
-            /* get_domain_disk () will return NULL for volumes that aren't managed by Boxes. */
-            if (get_domain_disk () != null)
-                return true;
+            try {
+                /* get_domain_disk () will return NULL for volumes that aren't managed by Boxes. */
+                if (get_domain_disk () != null)
+                    return true;
+            } catch (GLib.Error error) {
+                warning ("Failed to obtain domain disk: %s", error.message);
+            }
 
             return base.is_local;
         }
@@ -749,7 +753,24 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             var config = new GVirConfig.Domain.from_xml (xml);
             config.set_uuid (null);
 
-            var media = new LibvirtClonedMedia (storage_volume.get_path (), config);
+            string? device_file = storage_volume.get_path ();
+            var storage_volume_path = is_local ? device_file : get_user_pkgdata (Path.build_filename ("images", name));
+            var media = new LibvirtClonedMedia (storage_volume_path, config);
+
+            if (!is_local) {
+                var devices = config.get_devices ();
+                foreach (var device in devices) {
+                    if (!(device is GVirConfig.DomainDisk))
+                        continue;
+
+                    device_file = (device as GVirConfig.DomainDisk).get_source ();
+                    devices.remove (device);
+
+                    break;
+                }
+
+                config.set_devices (devices);
+            }
 
             // Recreate network interface so clones won't have the same mac address
             var iface= VMConfigurator.create_network_interface (config,
@@ -759,6 +780,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             var vm_cloner = media.get_vm_creator ();
             var clone_machine = yield vm_cloner.create_vm (null);
+            (vm_cloner as VMImporter).import_vm (clone_machine, device_file);
             vm_cloner.launch_vm (clone_machine, this.config.access_last_time);
 
             ulong under_construct_id = 0;
@@ -771,7 +793,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 }
             });
         } catch (GLib.Error error) {
-            warning ("Failed to clone %s: %s", domain_config.name, error.message);
+            var action = is_local ? "clone" : "import";
+            warning ("Failed to %s %s: %s", action, domain_config.name, error.message);
             can_delete = true;
         }
     }

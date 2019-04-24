@@ -43,9 +43,15 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         machine.vm_creator = null;
     }
 
-    private async void import_vm (LibvirtMachine machine) {
+    public async void import_vm (LibvirtMachine machine, string? custom_source = null) {
         try {
             var destination_path = machine.storage_volume.get_path ();
+
+            if (custom_source != null) {
+                yield ensure_disk_is_readable (custom_source);
+
+                source_media.device_file = custom_source;
+            }
 
             yield source_media.copy (destination_path);
 

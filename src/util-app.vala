@@ -425,6 +425,30 @@ namespace Boxes {
         return true;
     }
 
+    public async void ensure_disk_is_readable (string disk_path) throws GLib.Error {
+        string[] argv = {};
+
+        argv += "pkexec";
+        argv += "chmod";
+        argv += "a+r";
+
+        var file = File.new_for_path (disk_path);
+        var info = yield file.query_info_async (FileAttribute.ACCESS_CAN_READ,
+                                                FileQueryInfoFlags.NONE,
+                                                Priority.DEFAULT,
+                                                null);
+        if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+            debug ("'%s' not readable, gotta make it readable..", disk_path);
+            argv += disk_path;
+        }
+
+        if (argv.length == 3)
+            return;
+
+        debug ("Making broker's disks readable..");
+        yield exec (argv, null);
+        debug ("Made all broker's disks readable.");
+    }
 
     // FIXME: Better ways to remove alpha more than welcome
     private Gdk.Pixbuf remove_alpha (Gdk.Pixbuf pixbuf) {

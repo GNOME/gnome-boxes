@@ -71,8 +71,12 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         }
 
         if (window.ui_state != UIState.DISPLAY) {
-            // Clone
-            section.append (_("Clone"), "box.clone");
+            var clone_or_import_label = _("Clone");
+            if (machine is LibvirtMachine && !machine.is_local)
+                clone_or_import_label = _("Import");
+
+            // Clone or Import
+            section.append (clone_or_import_label, "box.clone");
             var action = action_group.lookup_action ("clone") as GLib.SimpleAction;
             action.set_enabled (machine.can_clone);
 
