@@ -248,8 +248,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         set { url_entry.set_text (value); }
     }
     public InstallerMedia? install_media { get; private set; }
-    public LibvirtSystemImporter libvirt_sys_importer { get; private set; }
-    public bool libvirt_sys_import;
 
     public signal void activated (); // Emitted on user activating a source
 
@@ -265,10 +263,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     public Gtk.Entry url_entry;
     [GtkChild]
     private Gtk.Button select_file_button;
-    [GtkChild]
-    private Gtk.Button libvirt_sys_import_button;
-    [GtkChild]
-    private Gtk.Label libvirt_sys_import_label;
     [GtkChild]
     private Boxes.WizardWebView rhel_web_view;
 
@@ -347,7 +341,6 @@ private class Boxes.WizardSource: Gtk.Stack {
 
         media_scrolled.bind_property ("visible", downloads_scrolled, "visible", BindingFlags.INVERT_BOOLEAN);
 
-        update_libvirt_sytem_entry_visibility.begin ();
         add_media_entries.begin ();
 
         // We manually add the custom download entries. Custom download entries
@@ -414,7 +407,6 @@ private class Boxes.WizardSource: Gtk.Stack {
     public void cleanup () {
         filename = null;
         install_media = null;
-        libvirt_sys_import = false;
         selected = null;
         if(page != SourcePage.URL)
             uri = "";
@@ -480,18 +472,6 @@ private class Boxes.WizardSource: Gtk.Stack {
         media_scrolled.show ();
     }
 
-    private async void update_libvirt_sytem_entry_visibility () {
-        try {
-            libvirt_sys_importer = yield new LibvirtSystemImporter ();
-        } catch (GLib.Error error) {
-            debug ("%s", error.message);
-
-            return;
-        }
-        libvirt_sys_import_label.label = libvirt_sys_importer.wizard_menu_label;
-        libvirt_sys_import_button.show_all ();
-    }
-
     [GtkCallback]
     private void on_select_file_button_clicked () {
         window.wizard_window.show_file_chooser ((uri) => {
@@ -502,14 +482,6 @@ private class Boxes.WizardSource: Gtk.Stack {
 
             selected = select_file_button;
         });
-    }
-
-    [GtkCallback]
-    private void on_libvirt_sys_import_button_clicked () {
-        libvirt_sys_import = true;
-        activated ();
-
-        selected = libvirt_sys_import_button;
     }
 
     private void on_media_selected (InstallerMedia media) {
