@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-12-11 16:26+0000\n"
-"PO-Revision-Date: 2018-12-26 16:54+0100\n"
+"POT-Creation-Date: 2019-03-22 20:29+0000\n"
+"PO-Revision-Date: 2019-04-26 16:05+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -53,7 +53,7 @@ msgstr ""
 "version dal to sisteme operatîf preferît o tu scugnis tacâti a une machine "
 "rimote (par esempli intal to ufici)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:104
 msgid "The GNOME Project"
 msgstr "Il progjet GNOME"
 
@@ -75,11 +75,6 @@ msgstr "Viôt e dopre machinis virtuâi"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "machine virtuâl;vm;vnc;rdp;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -308,7 +303,7 @@ msgstr "Jutori"
 msgid "About Boxes"
 msgstr "Informazions su Scjatulis"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Regjistri di soluzion problemis"
 
@@ -412,11 +407,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Instalazion rapide"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Non utent"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Password"
 
@@ -424,7 +419,7 @@ msgstr "Password"
 msgid "_Add Password"
 msgstr "_Zonte password"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Clâf dal prodot"
 
@@ -581,7 +576,7 @@ msgstr "Sfuarce distudament"
 msgid "Clone"
 msgstr "Clone"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Torne invie"
 
@@ -642,6 +637,10 @@ msgstr "Specificâts masse argoments a linie di comant.\n"
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Scjatule “%s” instalade e pronte par jessi doprade"
+
+#: src/app.vala:471
+msgid "Launch"
+msgstr "Invie"
 
 #: src/app.vala:557
 #, c-format
@@ -882,51 +881,59 @@ msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” al vignarà metût in pause in automatic par salvâ risorsis."
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:596
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Daûr a ripristinâ %s  dal disc"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:599
 #, c-format
 msgid "Starting %s"
 msgstr "Inviament di %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:665
+msgid "Experiencing graphics problems?"
+msgstr "Si à problemis grafics?"
+
+#: src/libvirt-machine.vala:667
+msgid "Disable 3D acceleration"
+msgstr "Disabilite la acelerazion 3D"
+
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s” al sta masse par tornâ a inviâsi. Sfuarçâ tal distudâlu?"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Distude"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Daûr a clonâ “%s”…"
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Instalazion…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:877 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Daûr a configurâ la clonazion…"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Daûr a impuartâ…"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
@@ -966,46 +973,46 @@ msgstr "Nissune scjatule di impuartâ"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "No si è rivâts a cjatâ un disc adat di impuartâ pe scjatule “%s”"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Conetude"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Disconetude"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "In esecuzion"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "In pause"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Distudade"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Conetint a %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Conession a “%s” falide"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "La machine e je in costruzion"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Daûr a salvâ…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1014,13 +1021,13 @@ msgstr ""
 "Nol è stât pussibil ripristinâ “%s” dal disc\n"
 "Provâ cence il stât salvât?"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Inviament di “%s” falît"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” al à bisugne di autenticazion"
@@ -1061,7 +1068,7 @@ msgstr "Segnale erôrs a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Pagjine iniziâl di %s: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Nol esist il file %s"
@@ -1224,27 +1231,27 @@ msgstr "Daûr a copiâ “%s” su “Discjariâts”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Un erôr al è vignût fûr dilunc la preparazion pe instalazion. Instalazion "
 "rapide disabilitade."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Discjariament driver dal dispositîf…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "nissune password"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:130
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Instalazion rapide di %s a domande une conession internet."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:233
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Credenziâls GNOME Scjatulis par “%s”"
@@ -1308,7 +1315,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:693
+#: src/vm-configurator.vala:706
 msgid "Incapable host system"
 msgstr "Sisteme host incapaç"
 
@@ -1456,6 +1463,9 @@ msgstr "Scjariament falît."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "P_ersonalize…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
 
 #~ msgid "About"
 #~ msgstr "Informazions"
