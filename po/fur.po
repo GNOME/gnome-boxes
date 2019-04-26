@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-22 20:29+0000\n"
-"PO-Revision-Date: 2019-04-26 16:05+0200\n"
+"POT-Creation-Date: 2019-04-26 14:06+0000\n"
+"PO-Revision-Date: 2019-04-26 16:29+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -53,7 +53,7 @@ msgstr ""
 "version dal to sisteme operatîf preferît o tu scugnis tacâti a une machine "
 "rimote (par esempli intal to ufici)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:104
+#: data/org.gnome.Boxes.appdata.xml.in:97
 msgid "The GNOME Project"
 msgstr "Il progjet GNOME"
 
@@ -468,7 +468,9 @@ msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Conet doprant RDP, SPICE, SSH o VNC."
 
 #: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
+#, fuzzy
+#| msgid "Connect to oVirt or Libvirt brokers."
+msgid "Connect to Libvirt brokers."
 msgstr "Conet ai broker oVirt o Libvirt."
 
 #: data/ui/wizard-source.ui:276
@@ -600,66 +602,66 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Une semplice aplicazion GNOME 3 par jentrâ tai sistemis rimots o virtuâi"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:170 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostre il numar di version"
 
-#: src/app.vala:175
+#: src/app.vala:172
 msgid "Open in full screen"
 msgstr "Vierç a plen visôr"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:173 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Controle capacitâts di virtualizazion"
 
-#: src/app.vala:177
+#: src/app.vala:174
 msgid "Open box with UUID"
 msgstr "Vierç scjatule cun UUID"
 
-#: src/app.vala:178
+#: src/app.vala:175
 msgid "Search term"
 msgstr "Cîr tiermin"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:177
 msgid "URL to display, broker or installer media"
 msgstr "URL di mostrâ, broker o supuart di instalazion"
 
-#: src/app.vala:191
+#: src/app.vala:188
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— Une semplice aplicazion par jentrâ intes machinis rimotis o virtuâi"
 
-#: src/app.vala:216
+#: src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "Specificâts masse argoments a linie di comant.\n"
 
-#: src/app.vala:469
+#: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Scjatule “%s” instalade e pronte par jessi doprade"
 
-#: src/app.vala:471
+#: src/app.vala:468
 msgid "Launch"
 msgstr "Invie"
 
-#: src/app.vala:557
+#: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "La scjatule “%s” e je stade eliminade"
 
-#: src/app.vala:558
+#: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u scjatule e je stade eliminade"
 msgstr[1] "%u scjatulis a son stadis eliminadis"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:551
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Disfe"
 
-#: src/app.vala:629
+#: src/app.vala:626
 msgid "Boxes is doing something"
 msgstr "Scjatulis al sta fasint alc"
 
@@ -698,14 +700,15 @@ msgstr "Formât imagjin disc no supuartât."
 msgid "System"
 msgstr "Sisteme"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:89 src/libvirt-machine-properties.vala:458
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s doprâts)</span>"
+#| msgid "Paused"
+msgid "%s used"
+msgstr "%s doprât"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:103
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (conseâts)"
@@ -749,7 +752,7 @@ msgstr "_Non"
 msgid "IP Address"
 msgstr "Direzion IP"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Broker"
 
@@ -764,82 +767,77 @@ msgid "Display URL"
 msgstr "URL display"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:179
+#: src/libvirt-machine-properties.vala:231
 msgid "empty"
 msgstr "vueit"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:242
+#: src/libvirt-machine-properties.vala:188
+#: src/libvirt-machine-properties.vala:240
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:202
+#: src/libvirt-machine-properties.vala:230
 msgid "_Select"
 msgstr "_Selezione"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:205
+#: src/libvirt-machine-properties.vala:213
 msgid "_Remove"
 msgstr "_Gjave"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:220
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Inseriment di “%s” come CD/DVD in “%s” falît"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:234
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "No si è rivâts a gjavâ il CD/DVD di “%s”"
 
-#: src/libvirt-machine-properties.vala:306
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:312
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:318
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "Rêt"
 
-#: src/libvirt-machine-properties.vala:347 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:345 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Torne invie"
 
-#: src/libvirt-machine-properties.vala:355
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "_Sfuarce distudament"
 
-#: src/libvirt-machine-properties.vala:369
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "_Regjistri di soluzion problemis"
 
-#: src/libvirt-machine-properties.vala:390
+#: src/libvirt-machine-properties.vala:388
 msgid "_Memory: "
 msgstr "_Memorie:"
 
-#: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">Dimension disc massime</span>\t\t %s <span color=\"grey"
-"\">(%s doprâts)</span>"
+#: src/libvirt-machine-properties.vala:457
+msgid "Maximum Disk Space"
+msgstr "Massim spazi su disc"
 
 #: src/libvirt-machine-properties.vala:475
 msgid ""
@@ -933,7 +931,7 @@ msgstr "Daûr a configurâ la clonazion…"
 msgid "Importing…"
 msgstr "Daûr a impuartâ…"
 
-#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
@@ -1083,18 +1081,6 @@ msgstr "Jentre in %s"
 msgid "Not connected to %s"
 msgstr "No conetût a %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "Conession al broker oVirt falide"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Protocol"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "URL"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Gjenerâl"
@@ -1111,6 +1097,14 @@ msgstr "Istantaniis"
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Pes modifichis al è necessari tornâ a inviâ “%s”."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Protocol"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "URL"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1179,46 +1173,46 @@ msgstr "Impussibil creâ istantanie par %s"
 msgid "Unknown"
 msgstr "No cognossût"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:66 src/spice-display.vala:486
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Indreçament direzion dal dispositîf USB “%s” par “%s” falît"
 
-#: src/spice-display.vala:346
+#: src/spice-display.vala:339
 msgid "Share Clipboard"
 msgstr "Condivît notis"
 
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:346
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
-"I struments SPiCE dal host no son instalâts. Chescj struments a miorin la "
+"I struments SPICE dal host no son instalâts. Chescj struments a miorin la "
 "esperience utent e a permetin interazions tra il host e la scjatule, come "
-"par esempli il copiâ e tacâ. Va viôt <a href=\"http://www.spice-space.org/"
-"download.html\">http://www.spice-space.org/download.html</a> par discjariâ e "
-"instalâ chescj struments dal didentri de scjatule."
+"par esempli il copiâ e tacâ. Va viôt %s par discjariâ e instalâ chescj "
+"struments dal didentri de scjatule."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:373
 msgid "USB devices"
 msgstr "Dispositîfs USB"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:392
 msgid "Folder Shares"
 msgstr "Condivisions cartele"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:590 src/spice-display.vala:615
+#: src/spice-display.vala:618 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "URL no valit"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:600
 msgid "The port must be specified once"
 msgstr "Si à di specificâ la puarte une volte"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:611
 msgid "Missing port in Spice URL"
 msgstr "A mancje la puarte intal URL Spice"
 
@@ -1463,6 +1457,19 @@ msgstr "Scjariament falît."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "P_ersonalize…"
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s doprâts)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">Dimension disc massime</span>\t\t %s <span color="
+#~ "\"grey\">(%s doprâts)</span>"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "Conession al broker oVirt falide"
 
 #~ msgid "@icon@"
 #~ msgstr "@icon@"
