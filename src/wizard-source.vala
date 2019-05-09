@@ -559,16 +559,8 @@ private class Boxes.WizardSource: Gtk.Stack {
         var user_agent = get_user_agent ();
         var user_agent_escaped = GLib.Uri.escape_string (user_agent, null, false);
 
-        string rhel_version = "";
-        string rhel_variant = "";
-        if (is_rhel8) {
-            rhel_version = "8";
-            rhel_variant = "&description=DVD+iso";
-        }
-
         var authentication_uri = "https://developers.redhat.com/download-manager/rest/featured/file/rhel" +
-                                 rhel_version +
-                                 "?tag=" + user_agent_escaped + rhel_variant;
+                                 "?tag=" + user_agent_escaped;
 
         debug ("RHEL ISO authentication URI: %s", authentication_uri);
 
@@ -612,7 +604,7 @@ private class Boxes.WizardSource: Gtk.Stack {
         return_val_if_fail (download_path.length > 0, false);
 
         if (!download_path.has_suffix (".iso")) {
-            download_path = is_rhel8 ? "/rhel8.iso" : "/rhel.iso";
+            download_path = is_rhel8 ? "/rhel-8.0-x86_64-dvd.iso" : "/rhel.iso";
         }
 
         filename = GLib.Path.get_basename (download_path);
