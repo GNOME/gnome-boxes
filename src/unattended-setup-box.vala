@@ -79,11 +79,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             if (password != "")
                 return false;
 
-            if (_needs_password) {
-                password_notebook.next_page ();
-                password_entry.grab_focus ();
-            }
-
             return _needs_password;
         }
 
