@@ -194,10 +194,12 @@ private class Boxes.WizardWindow : Gtk.Window, Boxes.UI {
         }
 
         if (page == WizardWindowPage.DOWNLOADS) {
-            topbar.downloads_search.grab_focus ();
+            if (!topbar.downloads_search.has_focus)
+                topbar.downloads_search.grab_focus ();
 
             return topbar.downloads_search.key_press_event (event);
         }
+
 
         return false;
     }
