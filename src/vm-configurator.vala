@@ -82,9 +82,8 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        bool accel3d;
-        set_video_config (domain, install_media, out accel3d);
-        var graphics = create_graphics_device (accel3d);
+        set_video_config (domain, install_media);
+        var graphics = create_graphics_device (install_media.supports_virtio_gpu);
         domain.add_device (graphics);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
@@ -370,15 +369,13 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private static void set_video_config (Domain domain, InstallerMedia install_media, out bool accel3d) {
+    private static void set_video_config (Domain domain, InstallerMedia install_media) {
         var video = new DomainVideo ();
         video.set_model (DomainVideoModel.QXL);
 
-        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "virtio1.0-gpu");
-        accel3d = (device != null);
-        if (accel3d) {
+        if (install_media.supports_virtio_gpu) {
             video.set_model (DomainVideoModel.VIRTIO);
-            video.set_accel3d (accel3d);
+            video.set_accel3d (true);
         }
 
         domain.add_device (video);
