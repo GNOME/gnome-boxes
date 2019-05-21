@@ -37,11 +37,6 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         set { keyfile.set_string_list (group, "categories", value); }
     }
 
-    public bool tweaked_accel3d {
-        get { return get_boolean (group, "tweaked-accel3d", false); }
-        set { keyfile.set_boolean (group, "tweaked-accel3d", value); }
-    }
-
     public int64 access_last_time { set; get; }
     public int64 access_first_time { set; get; }
     public int64 access_total_time { set; get; } // in seconds
