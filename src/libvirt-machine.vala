@@ -49,6 +49,42 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public bool run_in_bg { get; set; } // If true, machine will never be paused automatically by Boxes.
 
+    private bool _acceleration_3d;
+    public bool acceleration_3d {
+        get {
+            return _acceleration_3d;
+        }
+
+        set {
+            _acceleration_3d = value;
+
+            GLib.List<GVirConfig.DomainDevice> devices = null;
+            foreach (var device in domain_config.get_devices ()) {
+                if (device is GVirConfig.DomainGraphicsSpice) {
+                    var graphics_device = VMConfigurator.create_graphics_device (_acceleration_3d);
+
+                    devices.prepend (graphics_device);
+                } else if (device is GVirConfig.DomainVideo) {
+                    var video_device = device as GVirConfig.DomainVideo;
+                    video_device.set_accel3d (_acceleration_3d);
+
+                    devices.prepend (video_device);
+                } else {
+                    devices.prepend (device);
+                }
+            }
+
+            devices.reverse ();
+            domain_config.set_devices (devices);
+
+            try {
+                domain.set_config (domain_config);
+            } catch (GLib.Error error) {
+                warning ("Failed to disable 3D Acceleration");
+            }
+        }
+    }
+
     public override bool is_local {
         get {
             // If the URI is prefixed by "qemu" or "qemu+unix" and the domain is "system" of "session" then it is local.
@@ -245,6 +281,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         saved_properties = {
             BoxConfig.SavedProperty () { name = "run-in-bg", default_value = false },
+            BoxConfig.SavedProperty () { name = "acceleration-3d", default_value = false },
         };
 
         this.config.save_properties (this, saved_properties);
@@ -616,59 +653,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 }
             }
         }
-
-        /* Some users might have issues with 3D acceleration due to various setups
-         * with different video drivers in the host. So we should offer an option
-         * to run these VMs without 3D acceleration.
-         */
-        if (!config.tweaked_accel3d && yield supports_accel3d ()) {
-            Boxes.Notification notification = null;
-
-            Notification.OKFunc disable_accel3d = () => {
-                notification = null;
-
-                GLib.List<GVirConfig.DomainDevice> devices = null;
-                foreach (var device in domain_config.get_devices ()) {
-                    if (device is GVirConfig.DomainGraphicsSpice) {
-                        var graphics_device = VMConfigurator.create_graphics_device (false);
-
-                        devices.prepend (graphics_device);
-                    } else if (device is GVirConfig.DomainVideo) {
-                        var video_device = device as GVirConfig.DomainVideo;
-
-                        video_device.set_accel3d (false);
-                        devices.prepend (device);
-                    } else {
-                        devices.prepend (device);
-                    }
-                }
-
-                devices.reverse ();
-                domain_config.set_devices (devices);
-
-                try {
-                    domain.set_config (domain_config);
-                    config.tweaked_accel3d = true;
-                } catch (GLib.Error error) {
-                    debug ("Failed to disable 3d acceleration!\n");
-                }
-
-                force_shutdown ();
-            };
-
-            Notification.DismissFunc dismiss_notification = () => {
-                notification = null;
-
-                config.tweaked_accel3d = true;
-            };
-
-            var message = _("Experiencing graphics problems?");
-            notification = window.notificationbar.display_for_action (message,
-                                                                      _("Disable 3D acceleration"),
-                                                                      (owned) disable_accel3d,
-                                                                      (owned) dismiss_notification,
-                                                                      -1);
-        }
     }
 
     public override void restart () {
@@ -776,7 +760,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
-    private async bool supports_accel3d () {
+    public async bool supports_accel3d () {
         var os = yield get_os ();
         if (os == null)
             return false;
