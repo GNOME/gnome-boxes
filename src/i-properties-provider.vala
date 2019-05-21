@@ -3,6 +3,7 @@ using Gtk;
 
 private class Boxes.Property: GLib.Object {
     public string? description { get; construct set; }
+    public Gtk.Label? label;
     public Gtk.Widget widget { get; construct set; }
     public Gtk.Widget? extra_widget { get; construct set; }
     public bool reboot_required { get; set; }
@@ -50,6 +51,17 @@ private class Boxes.Property: GLib.Object {
 
     public Property (string? description, Gtk.Widget widget, Gtk.Widget? extra_widget) {
         base (description: description, widget: widget, extra_widget: extra_widget);
+
+        label = new Gtk.Label.with_mnemonic (description);
+        label.get_style_context ().add_class ("dim-label");
+        label.halign = description_alignment;
+        label.hexpand = false;
+
+        widget.hexpand = true;
+
+        if (description != null) {
+            label.mnemonic_widget = widget;
+        }
     }
 
     public void flush () {
