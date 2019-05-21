@@ -49,6 +49,12 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
+    public bool supports_virtio_gpu {
+        get {
+            return (find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "virtio1.0-gpu") != null);
+        }
+    }
+
     public bool prefers_q35 {
         get {
             if (os == null)
