@@ -193,6 +193,12 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         if (!display.ready)
             return null;
 
+        /* FIXME: This is a temporary workaround for a mesa issue that causes
+         * Boxes to crash when calling spice_display_get_pixbuf ();
+         * See https://bugs.freedesktop.org/106811 */
+        if ((machine as LibvirtMachine).acceleration_3d)
+            return null;
+
         return display.get_pixbuf ();
     }
 
