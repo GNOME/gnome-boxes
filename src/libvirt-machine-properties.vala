@@ -686,7 +686,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         var toggle = new Gtk.Switch ();
         toggle.halign = Gtk.Align.START;
         var property = add_property (ref list, _("3D Acceleration"), toggle);
-        property.reboot_required = true;
 
         machine.bind_property ("acceleration-3d", toggle, "active",
                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
@@ -701,5 +700,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 warning (error.message);
             }
         });
+
+        toggle.notify["active"].connect (() => {
+            property.reboot_required = machine.is_on;
+        });
+
     }
 }
