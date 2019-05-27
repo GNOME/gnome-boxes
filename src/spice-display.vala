@@ -196,10 +196,23 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         /* FIXME: This is a temporary workaround for a mesa issue that causes
          * Boxes to crash when calling spice_display_get_pixbuf ();
          * See https://bugs.freedesktop.org/106811 */
-        if ((machine as LibvirtMachine).acceleration_3d)
-            return null;
+        if ((machine as LibvirtMachine).acceleration_3d) {
+            return draw_pixbuf_client_side (display);
+        }
 
         return display.get_pixbuf ();
+    }
+
+    private Gdk.Pixbuf draw_pixbuf_client_side (Spice.Display display) {
+        Gtk.Allocation alloc;
+        var widget = display as Gtk.Widget;
+        widget.get_allocation (out alloc);
+
+        var surface = new Cairo.ImageSurface (ARGB32, alloc.width, alloc.height);
+        var context = new Cairo.Context (surface);
+        widget.draw (context);
+
+        return Gdk.pixbuf_get_from_surface (surface, 0, 0, alloc.width, alloc.height);
     }
 
     public override void collect_logs (StringBuilder builder) {
