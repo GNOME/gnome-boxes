@@ -83,7 +83,7 @@ private class Boxes.VMConfigurator {
         install_media.setup_domain_config (domain);
 
         set_video_config (domain, install_media);
-        var graphics = create_graphics_device (install_media.supports_virtio_gpu);
+        var graphics = create_graphics_device ();
         domain.add_device (graphics);
 
         // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
@@ -103,6 +103,7 @@ private class Boxes.VMConfigurator {
         add_smartcard_support (domain);
 #endif
 
+        set_video_config (domain, install_media);
         set_sound_config (domain, install_media);
         set_tablet_config (domain, install_media);
         set_mouse_config (domain, install_media);
@@ -264,18 +265,12 @@ private class Boxes.VMConfigurator {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
         DomainGraphicsSpice graphics = null;
-        bool accel3d = false;
         DomainChannel channel_webdav = null;
         foreach (var device in domain.get_devices ()) {
             if (device is DomainInterface)
                 iface = device as DomainInterface;
             else if (device is DomainGraphicsSpice)
                 graphics = device as DomainGraphicsSpice;
-            else if (device is DomainVideo) {
-                var model = (device as DomainVideo).get_model ();
-                accel3d = (model == DomainVideoModel.VIRTIO);
-                devices.prepend (device);
-            }
             else if (device is DomainChannel) {
                 var device_channel = device as DomainChannel;
                 if (device_channel.get_target_name () == WEBDAV_CHANNEL_URI)
@@ -299,7 +294,7 @@ private class Boxes.VMConfigurator {
         }
 
         if (graphics != null)
-            devices.prepend (create_graphics_device (accel3d));
+            devices.prepend (create_graphics_device ());
         if (channel_webdav == null)
             devices.prepend (create_webdav_channel ());
 
@@ -375,7 +370,6 @@ private class Boxes.VMConfigurator {
 
         if (install_media.supports_virtio_gpu) {
             video.set_model (DomainVideoModel.VIRTIO);
-            video.set_accel3d (true);
         }
 
         domain.add_device (video);
