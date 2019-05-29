@@ -82,7 +82,6 @@ private class Boxes.VMConfigurator {
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
-        set_video_config (domain, install_media);
         var graphics = create_graphics_device ();
         domain.add_device (graphics);
 
