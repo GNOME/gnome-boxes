@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-22 20:29+0000\n"
-"PO-Revision-Date: 2019-03-29 21:53+0100\n"
-"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
+"POT-Creation-Date: 2019-05-23 09:32+0000\n"
+"PO-Revision-Date: 2019-05-25 00:06+0200\n"
+"Last-Translator: Meskó Balázs <mesko.balazs@fsf.hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -54,7 +54,7 @@ msgstr ""
 "(esetleg instabil) verzióinak kipróbálására, vagy távoli géphez kell "
 "kapcsolódnia (például az irodában)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:104
+#: data/org.gnome.Boxes.appdata.xml.in:97
 msgid "The GNOME Project"
 msgstr "A GNOME projekt"
 
@@ -314,18 +314,9 @@ msgid "_Copy to Clipboard"
 msgstr "_Másolás a vágólapra"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Válasszon egy eszközt vagy ISO fájlt"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
-msgid "_Cancel"
-msgstr "Mé_gse"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:329
-msgid "_Open"
-msgstr "_Megnyitás"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -338,6 +329,11 @@ msgstr "_Szünet"
 #: data/ui/selectionbar.ui:72
 msgid "_Delete"
 msgstr "_Törlés"
+
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:327
+msgid "_Cancel"
+msgstr "Mé_gse"
 
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
@@ -363,7 +359,7 @@ msgstr "Név"
 msgid "Select Shared Folder"
 msgstr "Válasszon egy megosztott mappát"
 
-#: data/ui/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Mégse"
 
@@ -470,8 +466,8 @@ msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Kapcsolódás RDP, SPICE, SSH vagy VNC használatával."
 
 #: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
-msgstr "Kapcsolódás az oVirt vagy Libvirt közvetítőhöz."
+msgid "Connect to Libvirt brokers."
+msgstr "Kapcsolódás a Libvirt közvetítőkhöz."
 
 #: data/ui/wizard-source.ui:276
 msgid "Select a file"
@@ -493,7 +489,7 @@ msgstr ""
 #: data/ui/wizard-source.ui:385
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
+"ssh://, or vnc://."
 msgstr ""
 "Adjon meg egy címet a kapcsolódáshoz. A címek ezekkel kezdődhetnek: "
 "spice://, rdp://, ssh:// vagy vnc://."
@@ -514,6 +510,10 @@ msgstr "_Folytatás"
 #: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Erőforrások testreszabása"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+msgid "_Open"
+msgstr "_Megnyitás"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
@@ -604,66 +604,66 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Egyszerű GNOME 3 alkalmazás távoli vagy virtuális rendszerek eléréséhez"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:170 src/main.vala:9
 msgid "Display version number"
 msgstr "Verziószám kiírása"
 
-#: src/app.vala:175
+#: src/app.vala:172
 msgid "Open in full screen"
 msgstr "Megnyitás teljes képernyős módban"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:173 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Virtualizációs képességek tesztelése"
 
-#: src/app.vala:177
+#: src/app.vala:174
 msgid "Open box with UUID"
 msgstr "Gép megnyitása UUID-vel"
 
-#: src/app.vala:178
+#: src/app.vala:175
 msgid "Search term"
 msgstr "Keresett kifejezés"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:177
 msgid "URL to display, broker or installer media"
 msgstr "Megjelenítendő URL, közvetítő vagy telepítőmédia"
 
-#: src/app.vala:191
+#: src/app.vala:188
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Egyszerű alkalmazás távoli vagy virtuális gépek eléréséhez"
 
-#: src/app.vala:216
+#: src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "Túl sok parancssori argumentum lett megadva.\n"
 
-#: src/app.vala:469
+#: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "A(z) „%s” gép telepítve és használatra kész"
 
-#: src/app.vala:471
+#: src/app.vala:468
 msgid "Launch"
 msgstr "Indítás"
 
-#: src/app.vala:557
+#: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "A(z) „%s” gép törlésre került"
 
-#: src/app.vala:558
+#: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u gép törlésre került"
 msgstr[1] "%u gép törlésre került"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:553
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Visszavonás"
 
-#: src/app.vala:629
+#: src/app.vala:626
 msgid "Boxes is doing something"
 msgstr "A Gépek valamit csinál"
 
@@ -699,19 +699,19 @@ msgstr "Új és legutóbbi"
 msgid "Unsupported disk image format."
 msgstr "Nem támogatott lemezképformátum."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Rendszer"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:460
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s használatban)</span>"
+msgid "%s used"
+msgstr "%s használatban"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (ajánlott)"
@@ -755,7 +755,7 @@ msgstr "_Név"
 msgid "IP Address"
 msgstr "IP-cím"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Közvetítő"
 
@@ -839,26 +839,21 @@ msgid "_Memory: "
 msgstr "_Memória: "
 
 #: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">Legnagyobb lemezméret</span>\t\t %s <span color=\"grey"
-"\">(%s használatban)</span>"
+msgid "Maximum Disk Space"
+msgstr "Legnagyobb lemezméret"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:477
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Nincs elég hely a számítógépén a legnagyobb lemezméret növeléséhez."
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:487
 msgid "Maximum _Disk Size: "
 msgstr "Legnagyobb _lemezméret: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:540
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -867,77 +862,73 @@ msgstr[0] ""
 msgstr[1] ""
 "A tároló átméretezéséhez %llu kapcsolódó pillanatkép törlése szükséges."
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:657
 msgid "_Run in background"
 msgstr "_Futtatás a háttérben"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:668
+#: src/libvirt-machine-properties.vala:671
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "a(z) „%s” nem lesz automatikusan szüneteltetve."
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr ""
 "a(z) „%s” automatikusan szüneteltetve lesz az erőforrások megtakarításához."
 
+#: src/libvirt-machine-properties.vala:688
+msgid "3D Acceleration"
+msgstr "3D gyorsítás"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:596
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s visszaállítása lemezről"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:599
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "%s indítása"
 
-#: src/libvirt-machine.vala:665
-msgid "Experiencing graphics problems?"
-msgstr "Grafikai problémákat tapasztal?"
-
-#: src/libvirt-machine.vala:667
-msgid "Disable 3D acceleration"
-msgstr "3D gyorsítás letiltása"
-
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "A(z) „%s” újraindítása túl sokáig tart. Erőlteti a leállítást?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Leállítás"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "„%s” klónozása…"
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Telepítés…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:877 src/util-app.vala:136
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Élő"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Klón beállítása…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Importálás…"
 
-#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "gazdagép: %s"
@@ -1087,18 +1078,6 @@ msgstr "Bejelentkezés ide: %s"
 msgid "Not connected to %s"
 msgstr "Nincs kapcsolódva ehhez: %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "A kapcsolódás meghiúsult az oVirt közvetítőhöz"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Protokoll"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "URL"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Általános"
@@ -1111,10 +1090,22 @@ msgstr "Eszközök és megosztások"
 msgid "Snapshots"
 msgstr "Pillanatképek"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "Megnyitás"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "A módosítások a(z) „%s” újraindítását igénylik."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Protokoll"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "URL"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1185,46 +1176,46 @@ msgstr "Nem sikerült a(z) %s pillanatképének létrehozása"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:66 src/spice-display.vala:486
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "„%s” USB-eszköz átirányítása meghiúsult ehhez: „%s”"
 
-#: src/spice-display.vala:346
+#: src/spice-display.vala:339
 msgid "Share Clipboard"
 msgstr "Vágólap megosztása"
 
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:346
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
 "A SPICE vendég eszközök nincsenek telepítve. Ezek az eszközök javítják a "
 "felhasználói élményt, és engedélyezik a gazdagép és a gép együttműködését, "
-"mint például a másolás és beillesztés. Látogassa meg a gépen belülről a <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> oldalt ezen eszközök letöltéséhez és telepítéséhez."
+"mint például a másolás és beillesztés. Látogassa meg a gépen belülről a %s "
+"oldalt ezen eszközök letöltéséhez és telepítéséhez."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:373
 msgid "USB devices"
 msgstr "USB eszközök"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:392
 msgid "Folder Shares"
 msgstr "Mappamegosztások"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:590 src/spice-display.vala:615
+#: src/spice-display.vala:618 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Érvénytelen URL"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:600
 msgid "The port must be specified once"
 msgstr "A portot csak egyszer lehet megadni"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:611
 msgid "Missing port in Spice URL"
 msgstr "Hiányzó port a Spice URL-ben"
 
@@ -1252,12 +1243,12 @@ msgstr "Eszközmeghajtók letöltése…"
 msgid "no password"
 msgstr "nincs jelszó"
 
-#: src/unattended-setup-box.vala:130
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "A(z) %s gyors telepítése internet-kapcsolatot igényel."
 
-#: src/unattended-setup-box.vala:233
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Gépek hitelesítő adatok ehhez: „%s”"
@@ -1320,7 +1311,7 @@ msgstr "nem"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:706
+#: src/vm-configurator.vala:703
 msgid "Incapable host system"
 msgstr "A gazda rendszer képességei hiányoznak"
 
@@ -1468,3 +1459,19 @@ msgstr "A letöltés meghiúsult."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "_Testreszabás…"
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s használatban)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">Legnagyobb lemezméret</span>\t\t %s <span color="
+#~ "\"grey\">(%s használatban)</span>"
+
+#~ msgid "Experiencing graphics problems?"
+#~ msgstr "Grafikai problémákat tapasztal?"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "A kapcsolódás meghiúsult az oVirt közvetítőhöz"
