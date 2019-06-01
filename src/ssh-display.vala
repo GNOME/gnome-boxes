@@ -74,7 +74,7 @@ private class Boxes.SshDisplay: Boxes.Display {
 
         display.show_all ();
 
-        var prefix = this.user == "" ? this.user + "@" : "";
+        var prefix = this.user != "" ? this.user + "@" : "";
         string[] ssh_connect_cmd = {
             "ssh", prefix + this.host,
         };
