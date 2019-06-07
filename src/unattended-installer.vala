@@ -166,9 +166,14 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
          */
         this.hostname = replace_regex(vm_name, "[{|}~[\\]^':; <=>?@!\"#$%`()+/.,*&]", "");
 
-        var path = get_user_unattended ("unattended.img");
+        var unattended = "unattended.img";
+        if (injection_method == InstallScriptInjectionMethod.CDROM)
+            unattended = "unattended.iso";
+
+        var path = get_user_unattended (unattended);
         disk_file = File.new_for_path (path);
-        if (secondary_unattended_files.length () > 0) {
+        if (secondary_unattended_files.length () > 0 &&
+            injection_method == InstallScriptInjectionMethod.FLOPPY) {
             path = get_user_unattended ("unattended.iso");
             secondary_disk_file = File.new_for_path (path);
         }
@@ -193,7 +198,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         prepare_to_continue_installation (vm_name);
 
         try {
-            yield create_disk_image (cancellable);
+            if (injection_method == InstallScriptInjectionMethod.CDROM)
+                yield create_iso (cancellable);
+            else
+                yield create_disk_image (cancellable);
 
             //FIXME: Linux-specific. Any generic way to achieve this?
             if (os_media.kernel_path != null && os_media.initrd_path != null) {
@@ -202,8 +210,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 yield extract_boot_files (extractor, cancellable);
             }
 
-            foreach (var unattended_file in unattended_files)
-                yield unattended_file.copy (cancellable);
+           if (injection_method != InstallScriptInjectionMethod.CDROM)
+                foreach (var unattended_file in unattended_files)
+                    yield unattended_file.copy (cancellable);
 
             if (secondary_disk_file != null) {
                 var secondary_disk_path = secondary_disk_file.get_path ();
@@ -385,9 +394,17 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
             disk.set_target_bus (DomainDiskBus.FDC);
         } else {
-            disk.set_target_dev ((supports_virtio_disk || supports_virtio1_disk)? "sda":  "sdb");
-            disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
-            disk.set_target_bus (DomainDiskBus.USB);
+            if (injection_method == InstallScriptInjectionMethod.CDROM) {
+                // Explicitly set "hdd" as the target device as the installer media is *always* set
+                // as "hdc".
+                disk.set_target_dev ("hdd");
+                disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
+                disk.set_target_bus (prefers_q35? DomainDiskBus.SATA : DomainDiskBus.IDE);
+            } else {
+                disk.set_target_dev ((supports_virtio_disk || supports_virtio1_disk)? "sda":  "sdb");
+                disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
+                disk.set_target_bus (DomainDiskBus.USB);
+            }
         }
 
         return disk;
@@ -425,6 +442,31 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         debug ("Creating disk image for unattended installation at '%s'..", disk_file.get_path ());
         yield template_file.copy_async (disk_file, FileCopyFlags.OVERWRITE, Priority.DEFAULT, cancellable);
         debug ("Floppy image for unattended installation created at '%s'", disk_file.get_path ());
+    }
+
+    private async void create_iso (Cancellable? cancellable) throws GLib.Error {
+        var disk_file_path = disk_file.get_path ();
+
+        debug ("Creating cdrom iso '%s'...", disk_file_path);
+        string[] argv = { "genisoimage", "-graft-points", "-J", "-rock", "-o", disk_file_path };
+
+        foreach (var unattended_file in unattended_files) {
+            var source_file = yield unattended_file.get_source_file (cancellable);
+            var dest_path = escape_genisoimage_path (unattended_file.dest_name);
+            var src_path = escape_genisoimage_path (source_file.get_path());
+
+            argv += dest_path + "=" + src_path;
+        }
+
+        foreach (var unattended_file in secondary_unattended_files) {
+            var source_file = yield unattended_file.get_source_file (cancellable);
+            var dest_path = escape_genisoimage_path (unattended_file.dest_name);
+            var src_path = escape_genisoimage_path (source_file.get_path());
+
+            argv += dest_path + "=" + src_path;
+        }
+
+        yield exec (argv, cancellable);
     }
 
     private async void fetch_user_avatar () {
