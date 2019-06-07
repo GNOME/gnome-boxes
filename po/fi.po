@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-18 09:20+0000\n"
-"PO-Revision-Date: 2019-03-18 14:08+0200\n"
+"POT-Creation-Date: 2019-06-06 13:41+0000\n"
+"PO-Revision-Date: 2019-06-07 19:33+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-03-05 14:49:53+0000\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -55,7 +55,7 @@ msgstr ""
 "ja turvallisella tavalla muita käyttöjärjestelmiä, tai haluat ottaa yhteyden "
 "esimerkiksi työpaikallasi olevaan etätietokoneeseen."
 
-#: data/org.gnome.Boxes.appdata.xml.in:97
+#: data/org.gnome.Boxes.appdata.xml.in:98
 msgid "The GNOME Project"
 msgstr "Gnome-projekti"
 
@@ -77,11 +77,6 @@ msgstr "Näytä ja käytä virtuaalikoneita"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;vnc;rdp;virtuaalikone;virtualisointi;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -698,19 +693,19 @@ msgstr "Uudet ja viimeisimmät"
 msgid "Unsupported disk image format."
 msgstr "Tukematon levykuvan muoto."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Järjestelmä"
 
 #. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#: src/i-properties-provider.vala:101
 #, c-format
 msgid "%s <span color=\"grey\">(%s used)</span>"
 msgstr "%s <span color=\"grey\">(%s käytetty)</span>"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:113
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (suositeltu)"
@@ -884,62 +879,58 @@ msgstr "Boksia “%s” ei keskeytetä automaattisesti."
 msgid "“%s” will be paused automatically to save resources."
 msgstr "Boksi “%s” keskeytetään automaattisesti resurssien säästämiseksi."
 
+#: src/libvirt-machine-properties.vala:686
+msgid "3D Acceleration"
+msgstr "3D-kiihdytys"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:596
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Palautetaan %s levyltä"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:599
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "Käynnistetään %s"
 
-#: src/libvirt-machine.vala:665
-msgid "Experiencing graphics problems?"
-msgstr "Grafiikkaongelmia?"
-
-#: src/libvirt-machine.vala:667
-msgid "Disable 3D acceleration"
-msgstr "Poista 3D-kiihdytys käytöstä"
-
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Kohteen “%s” käynnistäminen uudelleen kestää liian kauan. Pakotetaanko sen "
 "sammutus?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Sammuta"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Kloonataan “%s”…"
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Asennetaan…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:877 src/util-app.vala:136
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Asetetaan kloonia…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Tuodaan…"
 
-#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874 src/ovirt-machine.vala:88
 #, c-format
 msgid "host: %s"
 msgstr "isäntä: %s"
@@ -1255,12 +1246,12 @@ msgstr "Ladataan laiteajureita…"
 msgid "no password"
 msgstr "ei salasanaa"
 
-#: src/unattended-setup-box.vala:130
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Kohteen %s pika-asennus vaatii internetyhteyden."
 
-#: src/unattended-setup-box.vala:233
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Gnomen boksien tilitiedot käyttäjälle “%s”"
@@ -1315,7 +1306,7 @@ msgstr "ei"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:706
+#: src/vm-configurator.vala:696
 msgid "Incapable host system"
 msgstr "Kykenemätön isäntäjärjestelmä"
 
@@ -1465,6 +1456,12 @@ msgstr "Lataus epäonnistui."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "_Muokkaa…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "Experiencing graphics problems?"
+#~ msgstr "Grafiikkaongelmia?"
 
 #~ msgid "About"
 #~ msgstr "Tietoja"
