@@ -125,6 +125,8 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
             injection_method = InstallScriptInjectionMethod.DISK;
         else if (InstallScriptInjectionMethod.FLOPPY in injection_methods)
             injection_method = InstallScriptInjectionMethod.FLOPPY;
+        else if (InstallScriptInjectionMethod.CDROM in injection_methods)
+            injection_method = InstallScriptInjectionMethod.CDROM;
         else
             throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
     }
