@@ -119,12 +119,12 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
         this.dest_name = dest_name;
 
         var injection_methods = script.get_injection_methods ();
-        if (InstallScriptInjectionMethod.DISK in injection_methods)
+        if (InstallScriptInjectionMethod.INITRD in injection_methods)
+            injection_method = InstallScriptInjectionMethod.INITRD;
+        else if (InstallScriptInjectionMethod.DISK in injection_methods)
             injection_method = InstallScriptInjectionMethod.DISK;
         else if (InstallScriptInjectionMethod.FLOPPY in injection_methods)
             injection_method = InstallScriptInjectionMethod.FLOPPY;
-        else if (InstallScriptInjectionMethod.INITRD in injection_methods)
-            injection_method = InstallScriptInjectionMethod.INITRD;
         else
             throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
     }

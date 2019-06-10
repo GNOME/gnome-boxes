@@ -265,6 +265,12 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         config.set_hostname (hostname);
         config.set_hardware_arch (os_media.architecture);
 
+        // The default preferred injection method, due to historical reasons,
+        // is "disk". That's the reason we have to explicitly set the preferred
+        // injection method to INITRD.
+        if (injection_method == InstallScriptInjectionMethod.INITRD)
+            script.set_preferred_injection_method(injection_method);
+
         if (avatar_file != null) {
             var location = ((script.path_format == PathFormat.UNIX)? "/" : "\\") + avatar_file.dest_name;
             config.set_avatar_location (location);
