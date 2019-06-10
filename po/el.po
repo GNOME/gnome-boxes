@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-12-11 16:26+0000\n"
-"PO-Revision-Date: 2018-12-25 12:27+0200\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"POT-Creation-Date: 2019-05-23 09:32+0000\n"
+"PO-Revision-Date: 2019-06-10 23:54+0300\n"
+"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Ελληνικά <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
@@ -59,7 +59,7 @@ msgstr ""
 "ασταθείς) εκδόσεις του αγαπημένου σας λειτουργικού συστήματος, ή χρειάζεστε "
 "να συνδεθείτε απομακρυσμένα με ένα μηχάνημα (για παράδειγμα στο γραφείο σας)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:97
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
@@ -81,11 +81,6 @@ msgstr "Δείτε και χρησιμοποιήστε εικονικές μηχ
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "εικονική μηχανή;vm;vnc;rdp;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -316,7 +311,7 @@ msgstr "Βοήθεια"
 msgid "About Boxes"
 msgstr "Περί του Πλαίσια"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "Καταγραφή αντιμετώπισης προβλημάτων"
 
@@ -325,18 +320,9 @@ msgid "_Copy to Clipboard"
 msgstr "Αντιγρα_φή στο πρόχειρο"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
-msgid "_Cancel"
-msgstr "Ακύ_ρωση"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:329
-msgid "_Open"
-msgstr "Ά_νοιγμα"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -349,6 +335,11 @@ msgstr "Παύ_ση"
 #: data/ui/selectionbar.ui:72
 msgid "_Delete"
 msgstr "_Διαγραφή"
+
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:327
+msgid "_Cancel"
+msgstr "Ακύ_ρωση"
 
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
@@ -374,7 +365,7 @@ msgstr "Όνομα"
 msgid "Select Shared Folder"
 msgstr "Επιλέξτε διαμοιρασμένο φάκελο"
 
-#: data/ui/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -421,11 +412,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Γρήγορη εγκατάσταση"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
 msgid "Password"
 msgstr "Συνθηματικό"
 
@@ -433,7 +424,7 @@ msgstr "Συνθηματικό"
 msgid "_Add Password"
 msgstr "_Προσθήκη συνθηματικού"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "Κλειδί προιόντος"
 
@@ -482,8 +473,8 @@ msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Σύνδεση με την χρήση RDP, SPICE, SSH ή VNC."
 
 #: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
-msgstr "Σύνδεση με oVirt ή με Libvirt brokers."
+msgid "Connect to Libvirt brokers."
+msgstr "Σύνδεση με Libvirt brokers."
 
 #: data/ui/wizard-source.ui:276
 msgid "Select a file"
@@ -508,10 +499,10 @@ msgstr ""
 #: data/ui/wizard-source.ui:385
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
+"ssh://, or vnc://."
 msgstr ""
 "Εισαγάγετε μια διεύθυνση για σύνδεση. Οι διευθύνσεις μπορούν να ξεκινήσουν "
-"με  spice://, rdp://, ssh:// ή vnc://."
+"με spice://, rdp://, ssh://,  ή vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 #: data/ui/wizard-window.ui:69 src/wizard.vala:178
@@ -529,6 +520,10 @@ msgstr "Σ_υνέχεια"
 #: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Προσαρμογή πόρων"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+msgid "_Open"
+msgstr "Ά_νοιγμα"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
@@ -592,7 +587,7 @@ msgstr "Εξαναγκασμός τερματισμού"
 msgid "Clone"
 msgstr "Κλωνοποίηση"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "Επανεκκίνηση"
 
@@ -625,64 +620,68 @@ msgstr ""
 "Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε απομακρυσμένα ή "
 "εικονικά συστήματα"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:170 src/main.vala:9
 msgid "Display version number"
 msgstr "Εμφάνιση αριθμού έκδοσης"
 
-#: src/app.vala:175
+#: src/app.vala:172
 msgid "Open in full screen"
 msgstr "Άνοιγμα σε πλήρη οθόνη"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:173 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Έλεγχος δυνατοτήτων εικονικοποίησης"
 
-#: src/app.vala:177
+#: src/app.vala:174
 msgid "Open box with UUID"
 msgstr "Άνοιγμα πλαισίου με UUID"
 
-#: src/app.vala:178
+#: src/app.vala:175
 msgid "Search term"
 msgstr "Όρος αναζήτησης"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:177
 msgid "URL to display, broker or installer media"
 msgstr "Διεύθυνση που θα εμφανιστεί, μεσολαβητής ή πολυμέσο εγκατάστασης"
 
-#: src/app.vala:191
+#: src/app.vala:188
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "- Μια απλή εφαρμογή για να έχετε πρόσβαση σε απομακρυσμένα ή εικονικά "
 "συστήματα"
 
-#: src/app.vala:216
+#: src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "Καθορίστηκαν πάρα πολλά ορίσματα τερματικού.\n"
 
-#: src/app.vala:469
+#: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Το πλαίσιο «%s» εγκαταστάθηκε και είναι έτοιμο προς χρήση"
 
-#: src/app.vala:557
+#: src/app.vala:468
+msgid "Launch"
+msgstr "Εκκίνηση"
+
+#: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Έχει διαγραφεί το πλαίσιο «%s»"
 
-#: src/app.vala:558
+#: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Έχει διαγραφεί %u πλαίσιο"
 msgstr[1] "Έχουν διαγραφεί %u πλαίσια"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:553
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Α_ναίρεση"
 
-#: src/app.vala:629
+#: src/app.vala:626
 msgid "Boxes is doing something"
 msgstr "Η εφαρμογή πλαίσια εκτελεί κάτι"
 
@@ -718,19 +717,20 @@ msgstr "Νέα και πρόσφατα"
 msgid "Unsupported disk image format."
 msgstr "Μη υποστηριζόμενη μορφή στιγμιοτύπου."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Σύστημα"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:460
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s χρησιμοποιείται)</span>"
+#| msgid "Paused"
+msgid "%s used"
+msgstr "%s σε χρήση"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (συνιστάται)"
@@ -774,7 +774,7 @@ msgstr "Ό_νομα"
 msgid "IP Address"
 msgstr "Διεύθυνση IP"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Μεσολαβητής"
 
@@ -858,28 +858,23 @@ msgid "_Memory: "
 msgstr "_Μνήμη: "
 
 #: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">Μέγιστο μέγεθος δίσκου</span>\t\t %s <span color=\"grey"
-"\">(%s χρησιμοποιείται)</span>"
+msgid "Maximum Disk Space"
+msgstr "Μέγιστο μέγεθος δίσκου"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:477
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Δεν υπάρχει αρκετός χώρος στο μηχάνημα σας για να αυξηθεί το μέγιστο μέγεθος "
 "του δίσκου."
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:487
 msgid "Maximum _Disk Size: "
 msgstr "Μέγιστο μέγεθος _δίσκου: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:540
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -890,69 +885,73 @@ msgstr[1] ""
 "Η αλλαγή μεγέθους αποθήκευσης απαιτεί τη διαγραφή των συσχετισμένων "
 "στιγμιότυπων %llu."
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:657
 msgid "_Run in background"
 msgstr "Εκ_τέλεση στο παρασκήνιο"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:668
+#: src/libvirt-machine-properties.vala:671
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "Το «%s» δεν θα διακοπεί αυτόματα."
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "Το «%s» θα διακοπεί αυτόματα για να εξοικονομηθούν πόροι."
 
+#: src/libvirt-machine-properties.vala:688
+msgid "3D Acceleration"
+msgstr "Επιτάχυνση 3D"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Επαναφορά %s από το δίσκο"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "Εκκίνηση του %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Η επανεκκίνηση του «%s» παίρνει υπερβολικό χρόνο. Εξαναγκασμός σε τερματισμό;"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Τερματισμός"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Γίνεται κλωνοποίηση του «%s»…"
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Εγκατάσταση…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Ζωντανό"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Ρύθμιση του κλώνου…"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Γίνεται εισαγωγή…"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "κεντρικός υπολογιστής: %s"
@@ -992,46 +991,46 @@ msgstr "Χωρίς πλαίσια για εισαγωγή"
 msgid "Failed to find suitable disk to import for box “%s”"
 msgstr "Αποτυχία εύρεσης κατάλληλου δίσκου για να εισάγει το πλαίσιο «%s»"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "Συνδεδεμένο"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "Αποσυνδεδεμένο"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "Εκτελείται"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "Σε παύση"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "Τερματίστηκε"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "Σύνδεση στο %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Απέτυχε η σύνδεση στο «%s»"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "Η μηχανή είναι υπό κατασκευή"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "Γίνεται αποθήκευση…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1040,13 +1039,13 @@ msgstr ""
 "«%s» αδύνατη η επαναφορά από τον δίσκο\n"
 "Δοκιμάστε χωρίς αποθηκευμένη κατάσταση;"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Αποτυχία εκκίνησης του «%s»"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "Το «%s» απαιτεί πιστοποίηση"
@@ -1087,7 +1086,7 @@ msgstr "Αναφορά σφαλμάτων μηνύματος στο <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s αρχική σελίδα: <%s>.\n"
 
-#: src/media-manager.vala:253
+#: src/media-manager.vala:282
 #, c-format
 msgid "No such file %s"
 msgstr "Δεν υπάρχει αρχείο %s"
@@ -1102,18 +1101,6 @@ msgstr "Σύνδεση στο %s"
 msgid "Not connected to %s"
 msgstr "Δεν είναι συνδεδεμένο στο %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "Απέτυχε η σύνδεση με τον μεσολαβητή oVirt"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Πρωτόκολλο"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "Διεύθυνση"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Γενικά"
@@ -1126,10 +1113,22 @@ msgstr "Συσκευές & Κοινόχρηστα"
 msgid "Snapshots"
 msgstr "Στιγμιότυπα"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "Άνοιγμα"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Οι αλλαγές απαιτούν επανεκκίνηση του “%s”."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Πρωτόκολλο"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "Διεύθυνση"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1200,47 +1199,47 @@ msgstr "Αποτυχία δημιουργίας στιγμιότυπου του 
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:66 src/spice-display.vala:486
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Απέτυχε η ανακατεύθυνση της συσκευής USB «%s» για το «%s»"
 
-#: src/spice-display.vala:346
+#: src/spice-display.vala:339
 msgid "Share Clipboard"
 msgstr "Κοινή χρήση του πρόχειρου"
 
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:346
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
 "Δεν είναι εγκατεστημένα τα εργαλεία SPICE. Αυτά τα εργαλεία βελτιώνουν την "
 "εμπειρία χρήσης και ενεργοποιούν την αλληλεπίδραση του οικοδεσπότη με το "
 "πλαίσιο, όπως για παράδειγμα αντιγραφή&amp;επικόλληση. Παρακαλούμε "
-"επισκεφθείτε το <a href=\"http://www.spice-space.org/download.html\">http://"
-"www.spice-space.org/download.html</a> για να κατεβάσετε και εγκαταστήσετε "
-"αυτά τα εργαλεία μέσα από το πλαίσιο."
+"επισκεφθείτε το %s για να κατεβάσετε και εγκαταστήσετε αυτά τα εργαλεία μέσα "
+"από το πλαίσιο."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:373
 msgid "USB devices"
 msgstr "Συσκευές USB"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:392
 msgid "Folder Shares"
 msgstr "Κοινόχρηστοι φάκελοι"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:590 src/spice-display.vala:615
+#: src/spice-display.vala:618 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Άκυρη διεύθυνση"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:600
 msgid "The port must be specified once"
 msgstr "Η θύρα πρέπει να καθοριστεί μια φορά"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:611
 msgid "Missing port in Spice URL"
 msgstr "Λείπει η θύρα στη διεύθυνση Spice"
 
@@ -1253,27 +1252,27 @@ msgstr "Αντιγραφή του «%s» στις «Λήψεις»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:229
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Προέκυψε ένα σφάλμα κατά τη προετοιμασία της εγκατάστασης. Απενεργοποιήθηκε "
 "η γρήγορη εγκατάσταση."
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:506
 msgid "Downloading device drivers…"
 msgstr "Λήψη οδηγών συσκευής…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "χωρίς κωδικό πρόσβασης"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Η γρήγορη εγκατάσταση του %s απαιτεί σύνδεση στο διαδίκτυο."
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Διαπιστευτήρια του Πλαίσια GNOME για «%s»"
@@ -1337,7 +1336,7 @@ msgstr "όχι"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:693
+#: src/vm-configurator.vala:703
 msgid "Incapable host system"
 msgstr "Ανίκανος κεντρικός υπολογιστής"
 
@@ -1488,6 +1487,22 @@ msgstr "Αποτυχία λήψης."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "Π_ροσαρμογή…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s χρησιμοποιείται)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">Μέγιστο μέγεθος δίσκου</span>\t\t %s <span color="
+#~ "\"grey\">(%s χρησιμοποιείται)</span>"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "Απέτυχε η σύνδεση με τον μεσολαβητή oVirt"
 
 #~ msgid "About"
 #~ msgstr "Περί"
