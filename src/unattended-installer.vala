@@ -66,8 +66,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     public UnattendedSetupBox setup_box;
 
-    public File? disk_file;           // Used for installer scripts, user avatar and pre-installation drivers
-    public File? secondary_disk_file; // Used for post-installation drivers that won't fit on 1.44M primary disk
+    public File? disk_file;           // Used for installer scripts, user avatar, pre & post installation drivers
     public File? kernel_file;
     public File? initrd_file;
     public InstallConfig config;
@@ -172,11 +171,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         var path = get_user_unattended (unattended);
         disk_file = File.new_for_path (path);
-        if (secondary_unattended_files.length () > 0 &&
-            injection_method == InstallScriptInjectionMethod.FLOPPY) {
-            path = get_user_unattended ("unattended.iso");
-            secondary_disk_file = File.new_for_path (path);
-        }
 
         if (os_media.kernel_path != null && os_media.initrd_path != null) {
             path = get_user_unattended ("kernel");
@@ -213,22 +207,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
            if (injection_method != InstallScriptInjectionMethod.CDROM)
                 foreach (var unattended_file in unattended_files)
                     yield unattended_file.copy (cancellable);
-
-            if (secondary_disk_file != null) {
-                var secondary_disk_path = secondary_disk_file.get_path ();
-
-                debug ("Creating secondary disk image '%s'...", secondary_disk_path);
-                string[] argv = { "genisoimage", "-graft-points", "-J", "-rock", "-o", secondary_disk_path };
-                foreach (var unattended_file in secondary_unattended_files) {
-                    var dest_path = escape_genisoimage_path (unattended_file.dest_name);
-                    var src_path = escape_genisoimage_path (unattended_file.src_path);
-
-                    argv += dest_path + "=" + src_path;
-                }
-
-                yield exec (argv, cancellable);
-                debug ("Created secondary disk image '%s'...", secondary_disk_path);
-            }
         } catch (GLib.Error error) {
             clean_up ();
             // An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
@@ -250,10 +228,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return_if_fail (disk_file != null);
         var disk = get_unattended_disk_config ();
         domain.add_device (disk);
-        if (secondary_disk_file != null) {
-            disk = get_secondary_unattended_disk_config ();
-            domain.add_device (disk);
-        }
     }
 
     public void configure_install_script (InstallScript script) {
@@ -291,10 +265,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     public override void setup_post_install_domain_config (Domain domain) {
         if (disk_file != null) {
             var path = disk_file.get_path ();
-            remove_disk_from_domain_config (domain, path);
-        }
-        if (secondary_disk_file != null) {
-            var path = secondary_disk_file.get_path ();
             remove_disk_from_domain_config (domain, path);
         }
 
@@ -342,11 +312,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 disk_file = null;
             }
 
-            if (secondary_disk_file != null) {
-                delete_file (secondary_disk_file);
-                secondary_disk_file = null;
-            }
-
             if (kernel_file != null) {
                 delete_file (kernel_file);
                 kernel_file = null;
@@ -388,36 +353,17 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_driver_format (DomainDiskFormat.RAW);
         disk.set_source (disk_file.get_path ());
 
-        if (injection_method == InstallScriptInjectionMethod.FLOPPY) {
-            disk.set_target_dev ("fda");
-            disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
-            disk.set_target_bus (DomainDiskBus.FDC);
+        if (injection_method == InstallScriptInjectionMethod.CDROM) {
+            // Explicitly set "hdd" as the target device as the installer media is *always* set
+            // as "hdc".
+            disk.set_target_dev ("hdd");
+            disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
+            disk.set_target_bus (prefers_q35? DomainDiskBus.SATA : DomainDiskBus.IDE);
         } else {
-            if (injection_method == InstallScriptInjectionMethod.CDROM) {
-                // Explicitly set "hdd" as the target device as the installer media is *always* set
-                // as "hdc".
-                disk.set_target_dev ("hdd");
-                disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
-                disk.set_target_bus (prefers_q35? DomainDiskBus.SATA : DomainDiskBus.IDE);
-            } else {
-                disk.set_target_dev ((supports_virtio_disk || supports_virtio1_disk)? "sda":  "sdb");
-                disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
-                disk.set_target_bus (DomainDiskBus.USB);
-            }
+            disk.set_target_dev ((supports_virtio_disk || supports_virtio1_disk)? "sda":  "sdb");
+            disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
+            disk.set_target_bus (DomainDiskBus.USB);
         }
-
-        return disk;
-    }
-
-    private DomainDisk? get_secondary_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
-        var disk = new DomainDisk ();
-        disk.set_type (DomainDiskType.FILE);
-        disk.set_driver_name ("qemu");
-        disk.set_driver_format (DomainDiskFormat.RAW);
-        disk.set_source (secondary_disk_file.get_path ());
-        disk.set_target_dev ((path_format == PathFormat.DOS)? "E" : "hdd");
-        disk.set_guest_device_type (DomainDiskGuestDeviceType.CDROM);
-        disk.set_target_bus (prefers_q35? DomainDiskBus.SATA : DomainDiskBus.IDE);
 
         return disk;
     }
