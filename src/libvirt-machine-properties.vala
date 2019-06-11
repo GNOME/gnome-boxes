@@ -116,8 +116,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     add_string_property (ref list, _("Display URL"), machine.display.uri);
             }
 
-            add_3d_acceleration_property (ref list);
-
             break;
 
         case PropertiesPage.SYSTEM:
@@ -678,30 +676,5 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         list.append (property);
 
         return property;
-    }
-
-    private void add_3d_acceleration_property (ref List<Boxes.Property> list) {
-        var toggle = new Gtk.Switch ();
-        toggle.halign = Gtk.Align.START;
-        var property = add_property (ref list, _("3D Acceleration"), toggle);
-
-        machine.bind_property ("acceleration-3d", toggle, "active",
-                               BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-
-        machine.supports_accel3d.begin ((source, result) => {
-            try {
-                if (!machine.supports_accel3d.end (result)) {
-                    property.label.destroy ();
-                    property.widget.destroy ();
-                }
-            } catch (GLib.Error error) {
-                warning (error.message);
-            }
-        });
-
-        toggle.notify["active"].connect (() => {
-            property.reboot_required = machine.is_on;
-        });
-
     }
 }
