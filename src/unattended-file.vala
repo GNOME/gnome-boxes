@@ -29,8 +29,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
             yield App.app.async_launcher.launch(() => {
                 copy_with_libarchive (disk_file, source_file, dest_name);
             });
-        } else
-            yield copy_with_mcopy (disk_file, source_file, dest_name, cancellable);
+        }
 
         debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
     }
@@ -53,21 +52,6 @@ private interface Boxes.UnattendedFile : GLib.Object {
         var dst = GLib.File.new_for_path (disk_file);
         // and copy the new file to overwrite the old one
         src.move (dst, FileCopyFlags.OVERWRITE);
-    }
-
-    private static async void copy_with_mcopy (string       disk_file,
-                                               string       source_file,
-                                               string       dest_name,
-                                               Cancellable? cancellable = null)
-                                               throws GLib.Error {
-        string[] argv = {"mcopy",
-                             "-n",
-                             "-o",
-                             "-i",
-                                 disk_file,
-                             source_file,
-                             "::" + dest_name };
-        yield exec (argv, cancellable);
     }
 
     private static bool is_libarchive_compatible (string filename) {
@@ -125,8 +109,6 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
             injection_method = InstallScriptInjectionMethod.DISK;
         else if (InstallScriptInjectionMethod.CDROM in injection_methods)
             injection_method = InstallScriptInjectionMethod.CDROM;
-        else if (InstallScriptInjectionMethod.FLOPPY in injection_methods)
-            injection_method = InstallScriptInjectionMethod.FLOPPY;
         else
             throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
     }
