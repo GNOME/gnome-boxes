@@ -32,7 +32,6 @@ A simple GNOME 3 application to access remote or virtual systems.
 # Runtime Dependencies
 
 * genisoimage (usually provided by genisoimage package)
-* mcopy (usually provided by mtools package)
 
 # Reporting Bugs
 
