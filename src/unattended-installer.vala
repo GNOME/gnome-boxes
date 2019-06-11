@@ -99,7 +99,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
     }
 
-    private static string escape_mkisofs_path (string path) {
+    private static string escape_genisoimage_path (string path) {
         var str = path.replace ("\\", "\\\\");
 
         return str.replace ("=", "\\=");
@@ -209,10 +209,10 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 var secondary_disk_path = secondary_disk_file.get_path ();
 
                 debug ("Creating secondary disk image '%s'...", secondary_disk_path);
-                string[] argv = { "mkisofs", "-graft-points", "-J", "-rock", "-o", secondary_disk_path };
+                string[] argv = { "genisoimage", "-graft-points", "-J", "-rock", "-o", secondary_disk_path };
                 foreach (var unattended_file in secondary_unattended_files) {
-                    var dest_path = escape_mkisofs_path (unattended_file.dest_name);
-                    var src_path = escape_mkisofs_path (unattended_file.src_path);
+                    var dest_path = escape_genisoimage_path (unattended_file.dest_name);
+                    var src_path = escape_genisoimage_path (unattended_file.src_path);
 
                     argv += dest_path + "=" + src_path;
                 }
