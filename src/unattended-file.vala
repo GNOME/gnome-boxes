@@ -35,7 +35,7 @@ private interface Boxes.UnattendedFile : GLib.Object {
         debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
     }
 
-    protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
+    public abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
 
     private static void copy_with_libarchive (string disk_file, string source_file, string dest_name) throws GLib.Error {
         var reader = new ArchiveReader (disk_file);
