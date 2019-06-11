@@ -366,7 +366,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return yield setup_drivers (progress, cancellable);
     }
 
-    private DomainDisk? get_unattended_disk_config (PathFormat path_format = PathFormat.UNIX) {
+    private DomainDisk? get_unattended_disk_config () {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_driver_name ("qemu");
@@ -374,15 +374,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         disk.set_source (disk_file.get_path ());
 
         if (injection_method == InstallScriptInjectionMethod.FLOPPY) {
-            disk.set_target_dev ((path_format == PathFormat.DOS)? "A" : "fda");
+            disk.set_target_dev ("fda");
             disk.set_guest_device_type (DomainDiskGuestDeviceType.FLOPPY);
             disk.set_target_bus (DomainDiskBus.FDC);
         } else {
-            // Path format checks below are most probably practically redundant but a small price for future safety
-            if (supports_virtio_disk || supports_virtio1_disk)
-                disk.set_target_dev ((path_format == PathFormat.UNIX)? "sda" : "E");
-            else
-                disk.set_target_dev ((path_format == PathFormat.UNIX)? "sdb" : "E");
+            disk.set_target_dev ((supports_virtio_disk || supports_virtio1_disk)? "sda":  "sdb");
             disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
             disk.set_target_bus (DomainDiskBus.USB);
         }
