@@ -196,8 +196,20 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         var button_label = new Gtk.Label ("");
         var button = new Gtk.Button ();
         button.add (button_label);
-
         grid.add (button);
+
+        var can_boot_button = new Gtk.ToggleButton ();
+        can_boot_button.active = VMConfigurator.get_boot_device (machine.domain_config) == GVirConfig.DomainOsBootDevice.CDROM;
+        can_boot_button.label = can_boot_button.active ? _("Remove from boot") : _("Make it bootable");
+        can_boot_button.clicked.connect (() => {
+            var boot_device = can_boot_button.active ? GVirConfig.DomainOsBootDevice.CDROM : GVirConfig.DomainOsBootDevice.HD;
+            can_boot_button.label = can_boot_button.active ? _("Remove from boot") : _("Make it bootable");
+
+            VMConfigurator.set_boot_device (machine.domain_config, boot_device);
+            machine.domain.set_config (machine.domain_config);
+        });
+        grid.add (can_boot_button);
+
 
         if (empty)
             // Translators: This is the text on the button to select an iso for the cd

@@ -332,6 +332,28 @@ private class Boxes.VMConfigurator {
         domain.add_device (disk);
     }
 
+    public static DomainOsBootDevice get_boot_device (Domain domain) {
+        var devices = domain.get_os ().get_boot_devices ();
+
+        return devices.first ().data;
+    }
+
+    public static void set_boot_device (Domain domain, DomainOsBootDevice boot_device) {
+        var os = new DomainOs ();
+        os.set_os_type (DomainOsType.HVM);
+
+        var old_os = domain.get_os ();
+        os.set_arch (old_os.get_arch ());
+        os.set_machine (old_os.get_machine ());
+
+        var boot_devices = new GLib.List<DomainOsBootDevice> ();
+        boot_devices.append (boot_device);
+
+        os.set_boot_devices (boot_devices);
+
+        domain.set_os (os);
+    }
+
     private static void set_post_install_os_config (Domain domain) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
