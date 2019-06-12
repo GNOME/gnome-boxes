@@ -265,27 +265,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         config.set_hostname (hostname);
         config.set_hardware_arch (os_media.architecture);
 
-        // FIXME: Ideally, we shouldn't need to check for distro
-        if (os.distro == "win")
-            config.set_target_disk ("C");
-        else
-            config.set_target_disk (supports_virtio_disk || supports_virtio1_disk? "/dev/vda" : "/dev/sda");
-
-        var disk_config = get_unattended_disk_config (script.path_format);
-        var device_path = device_name_to_path (script.path_format, disk_config.get_target_dev ());
-        config.set_script_disk (device_path);
-
         if (avatar_file != null) {
             var location = ((script.path_format == PathFormat.UNIX)? "/" : "\\") + avatar_file.dest_name;
             config.set_avatar_location (location);
-            config.set_avatar_disk (config.get_script_disk ());
-        }
-
-        config.set_pre_install_drivers_disk (config.get_script_disk ());
-        if (secondary_disk_file != null) {
-            disk_config = get_secondary_unattended_disk_config (script.path_format);
-            device_path = device_name_to_path (script.path_format, disk_config.get_target_dev ());
-            config.set_post_install_drivers_disk (device_path);
         }
 
         config.set_driver_signing (driver_signing);
