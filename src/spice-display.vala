@@ -288,8 +288,13 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             access_start ();
         }
 
-        if (channel is Spice.WebdavChannel)
+        if (channel is Spice.WebdavChannel) {
             webdav_channel = channel as Spice.PortChannel;
+
+            App.app.shared_folders_manager.get_folders (machine.config.uuid);
+            session.shared_dir = get_user_pkgconfig (machine.config.uuid);
+
+        }
     }
 
     private void on_channel_destroy (Spice.Session session, Spice.Channel channel) {
@@ -403,9 +408,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
             if (webdav_channel == null || !webdav_channel.port_opened)
                 break;
-
-            session.shared_dir = GLib.Path.build_filename (GLib.Environment.get_user_config_dir (),
-                                                           "gnome-boxes", machine.config.uuid);;
 
             var frame = create_shared_folders_frame ();
             add_property (ref list, _("Folder Shares"), new Gtk.Label (""), frame);

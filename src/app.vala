@@ -44,6 +44,7 @@ private class Boxes.App: Gtk.Application {
     public GVir.Connection default_connection { owned get { return LibvirtBroker.get_default ().get_connection ("QEMU Session"); } }
     public CollectionSource default_source { get { return sources.get (DEFAULT_SOURCE_NAME); } }
     public AsyncLauncher async_launcher;
+    public SharedFoldersManager shared_folders_manager = SharedFoldersManager.get_default ();
 
     private uint inhibit_cookie = 0;
 
