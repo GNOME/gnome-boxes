@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-11 10:44+0000\n"
-"PO-Revision-Date: 2019-03-12 10:37+0100\n"
+"POT-Creation-Date: 2019-06-15 10:31+0000\n"
+"PO-Revision-Date: 2019-06-18 11:19+0200\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-DamnedLies-Scope: partial\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
@@ -63,11 +63,11 @@ msgstr ""
 "besturingssysteem wilt onderzoeken of een verbinding nodig heeft met een "
 "externe machine, bijvoorbeeld op kantoor."
 
-#: data/org.gnome.Boxes.appdata.xml.in:53
+#: data/org.gnome.Boxes.appdata.xml.in:97
 msgid "The GNOME Project"
 msgstr "Het Gnome-project"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
 #: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
@@ -85,11 +85,6 @@ msgstr "Virtuele machines weergeven en gebruiken"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;virtuele machine;vnc;rdp;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -164,17 +159,17 @@ msgid "Sign In"
 msgstr "Aanmelden"
 
 #. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:13
+#: data/ui/collection-filter-switcher.ui:14
 msgid "All"
 msgstr "Alle"
 
 #. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:26
+#: data/ui/collection-filter-switcher.ui:29
 msgid "Local"
 msgstr "Lokaal"
 
 #. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:39
+#: data/ui/collection-filter-switcher.ui:44
 msgid "Remote"
 msgstr "Op afstand"
 
@@ -327,18 +322,9 @@ msgid "_Copy to Clipboard"
 msgstr "Naar _klembord kopiëren"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Een apparaat of ISO-bestand selecteren"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
-msgid "_Cancel"
-msgstr "_Annuleren"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:329
-msgid "_Open"
-msgstr "_Openen"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -351,6 +337,11 @@ msgstr "_Pauze"
 #: data/ui/selectionbar.ui:72
 msgid "_Delete"
 msgstr "_Verwijderen"
+
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:327
+msgid "_Cancel"
+msgstr "_Annuleren"
 
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
@@ -376,7 +367,7 @@ msgstr "Naam"
 msgid "Select Shared Folder"
 msgstr "Gedeelde map selecteren"
 
-#: data/ui/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -484,8 +475,8 @@ msgid "Connect using RDP, SPICE, SSH, or VNC."
 msgstr "Verbinden met gebruikmaking van RDP, SPICE, SSH of VNC."
 
 #: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
-msgstr "Verbinding met oVirt- of Libvirtbemiddelaar."
+msgid "Connect to Libvirt brokers."
+msgstr "Verbinding met Libvirtbemiddelaar."
 
 #: data/ui/wizard-source.ui:276
 msgid "Select a file"
@@ -510,9 +501,9 @@ msgstr ""
 #: data/ui/wizard-source.ui:385
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
+"ssh://, or vnc://."
 msgstr ""
-"Een adres waarmee verbinding gemaakt moet worden invoeren. Adressen kunnen "
+"Voer een adres waarmee verbinding gemaakt moet worden in. Adressen kunnen "
 "beginnen met spice://, rdp://, ssh:// of vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
@@ -531,6 +522,10 @@ msgstr "_Doorgaan"
 #: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Bronnen aanpassen"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+msgid "_Open"
+msgstr "_Openen"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
@@ -609,7 +604,7 @@ msgstr "Eigenschappen"
 msgid "Screenshot from %s"
 msgstr "Schermafdruk van %s"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "translator-credits"
 msgstr ""
 "Rachid BM <rachidbm@ubuntu.com>\n"
@@ -621,74 +616,74 @@ msgstr ""
 "\n"
 "Meer info over Gnome-NL http://nl.gnome.org"
 
-#: src/app.vala:112
+#: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Een eenvoudige Gnome 3-toepassing om toegang te krijgen tot virtuele "
 "machines of systemen op afstand"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "Versienummer weergeven"
 
-#: src/app.vala:175
+#: src/app.vala:173
 msgid "Open in full screen"
 msgstr "In volledig scherm openen"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:174 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Virtualisatiemogelijkheden controleren"
 
-#: src/app.vala:177
+#: src/app.vala:175
 msgid "Open box with UUID"
 msgstr "Machine openen met UUID"
 
-#: src/app.vala:178
+#: src/app.vala:176
 msgid "Search term"
 msgstr "Zoekterm"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:178
 msgid "URL to display, broker or installer media"
 msgstr "Weer te geven URL, tussen- of installatiemedium"
 
-#: src/app.vala:191
+#: src/app.vala:189
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "— Een eenvoudige toepassing om toegang te krijgen tot virtuele machines of "
 "systemen op afstand"
 
-#: src/app.vala:216
+#: src/app.vala:214
 msgid "Too many command line arguments specified.\n"
 msgstr "Te veel argumenten opgegeven voor de opdracht.\n"
 
-#: src/app.vala:469
+#: src/app.vala:467
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Machine ‘%s’ geïnstalleerd en klaar voor gebruik"
 
-#: src/app.vala:471
+#: src/app.vala:469
 msgid "Launch"
 msgstr "Starten"
 
-#: src/app.vala:557
+#: src/app.vala:555
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Machine ‘%s’ is verwijderd"
 
-#: src/app.vala:558
+#: src/app.vala:556
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u machine is verwijderd"
 msgstr[1] "%u machines zijn verwijderd"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:583 src/libvirt-machine-properties.vala:553
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Ongedaan maken"
 
-#: src/app.vala:629
+#: src/app.vala:627
 msgid "Boxes is doing something"
 msgstr "Boxes doet iets"
 
@@ -722,19 +717,19 @@ msgstr "Nieuw en recent"
 msgid "Unsupported disk image format."
 msgstr "Niet-ondersteund type schijfimage."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systeem"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:460
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s gebruikt)</span>"
+msgid "%s used"
+msgstr "%s gebruikt"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (aanbevolen)"
@@ -778,7 +773,7 @@ msgstr "_Naam"
 msgid "IP Address"
 msgstr "IP-adres"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Tussenmedium"
 
@@ -862,28 +857,23 @@ msgid "_Memory: "
 msgstr "_Geheugen: "
 
 #: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">Maximale schijfgrootte</span>\t\t %s <span color=\"grey"
-"\">(%s gebruikt)</span>"
+msgid "Maximum Disk Space"
+msgstr "Maximale schijfruimte"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:477
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Er is onvoldoende ruimte op uw machine om de maximale schijfgrootte te "
 "verhogen."
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:487
 msgid "Maximum _Disk Size: "
 msgstr "_Maximale grootte schijf: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:540
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -894,68 +884,72 @@ msgstr[1] ""
 "Opslaggrootte wijzigen vereist het verwijderen van %llu bijbehorende "
 "momentopnames."
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:657
 msgid "_Run in background"
 msgstr "Op de achtergrond _draaien"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:668
+#: src/libvirt-machine-properties.vala:671
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "‘%s’ wordt niet automatisch gepauzeerd."
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "‘%s’ wordt automatisch gepauzeerd om bronnen te sparen."
 
+#: src/libvirt-machine-properties.vala:688
+msgid "3D Acceleration"
+msgstr "3D-acceleratie"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s herstellen vanaf schijf"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "%s starten"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Opnieuw starten van ‘%s’ duurt te lang. Afsluiten forceren?"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Afsluiten"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "‘%s’ klonen…"
 
-#: src/libvirt-machine.vala:797
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Installeren…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:799 src/util-app.vala:136
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
 #: src/wizard-source.vala:120
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:801
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Kloon instellen…"
 
-#: src/libvirt-machine.vala:803
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Importeren…"
 
-#: src/libvirt-machine.vala:812 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
@@ -1106,18 +1100,6 @@ msgstr "Aanmelden op %s"
 msgid "Not connected to %s"
 msgstr "Niet verbonden met %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "Verbinding met oVirt-bemiddelaar is mislukt"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Protocol"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "URL"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Algemeen"
@@ -1130,10 +1112,22 @@ msgstr "Apparaten & gedeelde mappen"
 msgid "Snapshots"
 msgstr "Momentopnamen"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "Openen"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "‘%s’ moet na de wijzigingen opnieuw opgestart worden."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Protocol"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "URL"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1202,46 +1196,46 @@ msgstr "Aanmaken momentopname van %s is mislukt"
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:66 src/spice-display.vala:507
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Omleiding van USB-apparaat ‘%s’ voor ‘%s’ is mislukt"
 
-#: src/spice-display.vala:346
+#: src/spice-display.vala:363
 msgid "Share Clipboard"
 msgstr "Klembord delen"
 
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:370
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
 "SPICE-gasthulpmiddelen zijn niet geïnstalleerd. Deze hulpmiddelen verbeteren "
-"de gebruikerservaring en schakelen interacties tussen gast en machine in, "
-"zoals kopiëren&amp;plakken. Bezoek <a href=\"http://www.spice-space.org/"
-"download.html\">http://www.spice-space.org/download.html</a> binnen de "
-"machine om deze hulpmiddelen te downloaden en installeren."
+"de gebruikservaring en schakelen interacties tussen gast en machine in, "
+"zoals kopiëren&amp;plakken. Bezoek %s binnen de machine om deze hulpmiddelen "
+"te downloaden en installeren."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:397
 msgid "USB devices"
 msgstr "USB-apparaten"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:413
 msgid "Folder Shares"
 msgstr "Gedeelde mappen"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:611 src/spice-display.vala:636
+#: src/spice-display.vala:639 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Ongeldige URL"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:621
 msgid "The port must be specified once"
 msgstr "De poort moet eenmalig gespecificeerd worden"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:632
 msgid "Missing port in Spice URL"
 msgstr "Poort ontbreekt in Spice-URL"
 
@@ -1268,12 +1262,12 @@ msgstr "Apparaatstuurprogramma’s downloaden…"
 msgid "no password"
 msgstr "geen wachtwoord"
 
-#: src/unattended-setup-box.vala:130
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Snelle installatie van %s vereist een internetverbinding."
 
-#: src/unattended-setup-box.vala:233
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Gnome Boxes aanmeldgegevens voor ‘%s’"
@@ -1337,7 +1331,7 @@ msgstr "nee"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:706
+#: src/vm-configurator.vala:696
 msgid "Incapable host system"
 msgstr "Ongeschikt hostsysteem"
 
@@ -1487,6 +1481,22 @@ msgstr "Downloaden is mislukt."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "_Aanpassen…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s gebruikt)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">Maximale schijfgrootte</span>\t\t %s <span color="
+#~ "\"grey\">(%s gebruikt)</span>"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "Verbinding met oVirt-bemiddelaar is mislukt"
 
 #~ msgid "About"
 #~ msgstr "Info"
