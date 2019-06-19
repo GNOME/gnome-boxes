@@ -41,16 +41,17 @@ public class Boxes.DownloadsSearch : GLib.Object {
             try {
                 media_list = os_db.list_downloadable_oses.end (result);
 
-                load_recommended_downloads.begin ();
+                load_custom_downloads.begin ();
             } catch (OSDatabaseError error) {
                 debug ("Failed to populate the list of downloadable OSes: %s", error.message);
             }
         });
     }
 
-    private async void load_recommended_downloads () {
+    private async void load_custom_downloads () {
         foreach (var media in yield get_recommended_downloads ()) {
-            media_list.append (media);
+            if (media.url == null)
+                media_list.append (media);
         }
     }
 
