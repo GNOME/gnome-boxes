@@ -47,10 +47,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     construct {
-        gtk_session_saved_properties = {
-            BoxConfig.SavedProperty () { name = "auto-clipboard", default_value = true },
-        };
-
         need_password = false;
         session = new Session ();
         audio = Spice.Audio.get (session, null);
@@ -356,12 +352,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
         switch (page) {
         case PropertiesPage.GENERAL:
-            var toggle = new Gtk.Switch ();
-            gtk_session.bind_property ("auto-clipboard", toggle, "active",
-                                       BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            toggle.halign = Gtk.Align.START;
-            add_property (ref list, _("Share Clipboard"), toggle);
-
             if (!connected || main_channel.agent_connected)
                 break;
             var link_address = "<a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a>";
