@@ -18,12 +18,22 @@
       <object class="GtkMenuButton" id="new_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>
-        <property name="use-underline">True</property>
-        <property name="label" translatable="yes">_New</property>
         <property name="popover">assistant_menu</property>
         <style>
-          <class name="text-button"/>
+          <class name="image-button"/>
         </style>
+        <child internal-child="accessible">
+          <object class="AtkObject" id="a11y-new-button">
+            <property name="accessible-name" translatable="yes">New</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="icon-name">list-add-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
       </object>
     </child>
 
