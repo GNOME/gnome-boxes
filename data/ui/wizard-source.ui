@@ -123,69 +123,6 @@
             </child>
 
             <child>
-              <object class="GtkButton" id="enter_url_button">
-                <property name="visible">True</property>
-                <signal name="clicked" handler="on_enter_url_button_clicked"/>
-                <style>
-                  <class name="boxes-menu-row"/>
-                </style>
-                <child>
-                  <object class="GtkBox">
-                    <property name="visible">True</property>
-                    <property name="margin-top">10</property>
-                    <property name="margin-bottom">10</property>
-                    <property name="margin-start">20</property>
-                    <property name="margin-end">20</property>
-                    <property name="spacing">20</property>
-                    <property name="orientation">horizontal</property>
-                    <child>
-                      <object class="GtkBox">
-                        <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
-                        <property name="spacing">2</property>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="halign">start</property>
-                            <property name="use-underline">True</property>
-                            <property name="label" translatable="yes">Connect to a remote box</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkLabel">
-                            <property name="visible">True</property>
-                            <property name="halign">start</property>
-                            <property name="label" translatable="yes">Connect using RDP, SPICE, SSH, or VNC.</property>
-                            <property name="xalign">0</property>
-                            <property name="wrap">True</property>
-                            <property name="max-width-chars">50</property>
-                            <style>
-                              <class name="dim-label"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="enter_url_next_label">
-                        <property name="visible">True</property>
-                        <property name="label" translatable="yes">▶</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
-              </object>
-            </child>
-
-            <child>
               <object class="GtkButton" id="libvirt_sys_import_button">
                 <property name="visible">False</property>
                 <signal name="clicked" handler="on_libvirt_sys_import_button_clicked"/>
