@@ -66,6 +66,11 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     [GtkCallback]
+    private void on_connect_to_remote_btn_clicked () {
+        window.show_remote_connection_assistant ();
+    }
+
+    [GtkCallback]
     private void on_back_btn_clicked () {
         window.set_state (UIState.COLLECTION);
     }
