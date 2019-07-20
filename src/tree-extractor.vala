@@ -11,10 +11,9 @@ private class Boxes.TreeExtractor: Boxes.Extractor {
         var downloader = Downloader.get_instance ();
         var location = source_path + "/" + file_path;
         var remote_file = File.new_for_uri (location);
-        var cached_path = get_cache (remote_file.get_basename ());
-		string[] cached_paths = { cached_path };
+        string[] output_paths = { output_path };
 		// TODO: Check if a file with similar name exists
-        var cached_file = yield downloader.download (remote_file, cached_paths);
+        var output_file = yield downloader.download (remote_file, output_paths);
 
         debug ("Extracted '%s' from '%s' at path '%s'.", file_path, source_path, output_path);
  	}
