@@ -92,6 +92,7 @@ vala_sources = [
   'spice-display.vala',
   'transfer-info-row.vala',
   'transfer-popover.vala',
+  'tree-extractor.vala',
   'troubleshoot-view.vala',
   'topbar.vala',
   'ui.vala',
