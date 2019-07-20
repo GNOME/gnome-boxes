@@ -63,7 +63,7 @@ vala_sources = [
   'keys-input-popover.vala',
   'libvirt-cloned-media.vala',
   'libvirt-media.vala',
-  'iso-extractor.vala',
+  'extractor.vala',
   'icon-view-child.vala',
   'libvirt-broker.vala',
   'libvirt-machine.vala',
