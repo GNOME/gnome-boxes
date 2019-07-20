@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 // Helper class to extract files from an ISO image
-private class Boxes.ISOExtractor: GLib.Object {
+private class Boxes.Extractor: GLib.Object {
     private string device_file;
 
     public ISOExtractor (string iso_path) {
