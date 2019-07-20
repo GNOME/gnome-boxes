@@ -2,6 +2,6 @@
 
 // Helper class to extract files from an ISO image
 private class Boxes.Extractor: GLib.Object {
-    public string device_file;
-
+    //Here source_path is iso path for media and url for installer trees
+    public string source_path;
 }
