@@ -71,7 +71,10 @@ public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
 
     public string title {
         get { return title_label.get_text (); }
-        set { title_label.label = value; }
+        set {
+            title_label.label = value;
+            set_tooltip_text(value);
+        }
     }
 
     public string details {
