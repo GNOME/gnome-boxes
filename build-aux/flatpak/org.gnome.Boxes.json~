@@ -1,0 +1,435 @@
+{
+    "app-id" : "org.gnome.BoxesDevel",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "3.32",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "gnome-boxes",
+    "tags" : [
+        "devel",
+        "development",
+        "nightly"
+    ],
+    "desktop-file-name-prefix" : "(Development) ",
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--socket=x11",
+        "--socket=wayland",
+        "--socket=pulseaudio",
+        "--share=network",
+        "--device=all",
+        "--talk-name=org.freedesktop.Tracker1",
+        "--talk-name=org.freedesktop.timedate1",
+        "--talk-name=org.freedesktop.Accounts",
+        "--filesystem=xdg-run/dconf",
+        "--filesystem=~/.config/dconf:ro",
+        "--filesystem=home",
+        "--talk-name=ca.desrt.dconf",
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+    ],
+    "build-options" : {
+        "cflags" : "-O2 -g",
+        "cxxflags" : "-O2 -g",
+        "env" : {
+        }
+    },
+    "modules" : [
+        {
+            "name" : "libarchive",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.libarchive.org/downloads/libarchive-3.3.3.tar.gz",
+                    "sha256" : "ba7eb1781c9fbbae178c4c6bad1c6eb08edab9a1496c64833d1715d022b30e2e"
+                }
+            ]
+        },
+        {
+            "name" : "mtools",
+            "buildsystem" : "autotools",
+            "config-opts" : [
+                "--disable-static"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://ftp.gnu.org/gnu/mtools/mtools-4.0.18.tar.bz2",
+                    "sha256" : "59e9cf80885399c4f229e5d87e49c0c2bfeec044e1386d59fcd0b0aead6b2f85"
+                },
+                {
+                    "type" : "shell",
+                    "commands" : [
+                        "cp -f /usr/share/gnu-config/config.sub .",
+                        "cp -f /usr/share/gnu-config/config.guess ."
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "check",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/libcheck/check/releases/download/0.11.0/check-0.11.0.tar.gz",
+                    "sha256" : "24f7a48aae6b74755bcbe964ce8bc7240f6ced2141f8d9cf480bc3b3de0d5616"
+                }
+            ]
+        },
+        {
+            "name" : "gtk-vnc",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/gtk-vnc/0.9/gtk-vnc-0.9.0.tar.xz",
+                    "sha256" : "3a9a88426809a5df2c14353cd9839b8c8163438cb708b31d8048c79d180fcab7"
+                }
+            ]
+        },
+        {
+            "name" : "libnl",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.infradead.org/~tgr/libnl/files/libnl-1.1.4.tar.gz",
+                    "sha256" : "4f80c21fe5bbcdde6e72b59b4f98306063a41421f909887c34e58d93e746d063"
+                }
+            ]
+        },
+        {
+            "name" : "libusb",
+            "config-opts" : [
+                "--disable-udev"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/libusb/libusb/releases/download/v1.0.22/libusb-1.0.22.tar.bz2",
+                    "sha256" : "75aeb9d59a4fdb800d329a545c2e6799f732362193b465ea198f2aa275518157"
+                }
+            ]
+        },
+        {
+            "name" : "yajl",
+            "buildsystem" : "cmake-ninja",
+            "builddir" : true,
+            "config-opts" : [
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/lloyd/yajl/archive/2.1.0.tar.gz",
+                    "sha256" : "3fb73364a5a30efe615046d07e6db9d09fd2b41c763c5f7d3bfb121cd5c5ac5a"
+                }
+            ]
+        },
+        {
+            "name" : "libvirt",
+            "config-opts" : [
+                "--without-html-subdir",
+                "--without-storage-mpath"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://libvirt.org/sources/libvirt-5.1.0.tar.xz",
+                    "sha256" : "26f97a53d3172f07f8b63884d845ed71307c4675dc4e1b281c59d253e1e323ab"
+                }
+            ]
+        },
+        {
+            "name" : "libvirt-glib",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://libvirt.org/sources/glib/libvirt-glib-2.0.0.tar.gz",
+                    "sha256" : "94e8c410c67501303d3b32ca8ce2c36edf898511ec4de9b7f29cd35d274b3d6a"
+                }
+            ]
+        },
+        {
+            "name" : "spice-protocol",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.spice-space.org/download/releases/spice-protocol-0.12.15.tar.bz2",
+                    "sha256" : "8b4db23baa4b1337a50d049d9bf43f932331dd95f204836c0ce46c4962306419"
+                }
+            ]
+        },
+        {
+            "name" : "celt051",
+            "config-opts" : [
+                "--disable-static"
+            ],
+            "rm-configure" : true,
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://downloads.xiph.org/releases/celt/celt-0.5.1.3.tar.gz",
+                    "sha256" : "fc2e5b68382eb436a38c3104684a6c494df9bde133c139fbba3ddb5d7eaa6a2e"
+                },
+                {
+                    "type" : "script",
+                    "dest-filename" : "autogen.sh",
+                    "commands" : [
+                        "AUTOMAKE=\"automake --foreign\" autoreconf -vfi"
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "phodav",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://ftp.gnome.org/pub/GNOME/sources/phodav/2.2/phodav-2.2.tar.xz",
+                    "sha256" : "080305dc9e804562f200ffc8c7d345c76754fce9cb01489dddb1b2c52c0557c1"
+                }
+            ]
+        },
+        {
+            "name" : "spice",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://spice-space.org/download/releases/spice-0.14.0.tar.bz2",
+                    "sha256" : "3adb9495b51650e5eab53c74dd6a74919af4b339ff21721d9ab2a45b2e3bb848"
+                }
+            ]
+        },
+        {
+            "name" : "python-pyparsing",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "pip3 install --prefix=/app pyparsing-2.2.0-py2.py3-none-any.whl"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://pypi.python.org/packages/6a/8a/718fd7d3458f9fab8e67186b00abdd345b639976bc7fb3ae722e1b026a50/pyparsing-2.2.0-py2.py3-none-any.whl#md5=7247e7896688eff4bc8c7fc5d0cdd2b0",
+                    "sha256" : "fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010"
+                }
+            ]
+        },
+        {
+            "name" : "spice-gtk",
+            "build-options" : {
+                "env" : {
+                    "PYTHONPATH" : "/app"
+                }
+            },
+            "config-opts" : [
+                "--disable-controller",
+                "--enable-vala",
+                "--disable-gtk-doc",
+                "--enable-python-checks",
+                "--enable-webdav",
+                "--enable-celt051"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.spice-space.org/download/gtk/spice-gtk-0.36.tar.bz2",
+                    "sha256" : "7126c3584df12d40dcf4970f5f46fafd65b757620f911687e549f7da5c8fd7cd"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "spice-gtk-use-gdkseat-api-on-wayland.patch"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "spice-gtk-ungrab-mounse-on-leave-event-on-wayland.patch"
+                }
+            ]
+        },
+        {
+            "name" : "tracker",
+            "cleanup" : [
+                "/bin",
+                "/etc",
+                "/libexec"
+            ],
+            "config-opts" : [
+                "--disable-miner-apps",
+                "--disable-static",
+                "--disable-tracker-extract",
+                "--disable-tracker-needle",
+                "--disable-tracker-preferences",
+                "--disable-artwork",
+                "--disable-tracker-writeback",
+                "--disable-miner-user-guides",
+                "--with-bash-completion-dir=no"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/tracker/2.0/tracker-2.0.3.tar.xz",
+                    "sha256" : "5a2fb274c128ec67a920944937b5147ceaf5db16fef6691ea22c4cb841e20580"
+                }
+            ]
+        },
+        {
+            "name" : "usbredir",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.freedesktop.org/spice/usbredir.git",
+                    "tag" : "usbredir-0.7.1",
+                    "commit" : "e1a7e3dbbe091bfdc568372ff5ab18ed7eae972e"
+                }
+            ]
+        },
+        {
+            "name" : "libcacard",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.spice-space.org/download/libcacard/libcacard-2.5.3.tar.xz",
+                    "sha256" : "243ff03c563a95faed497db7f524fcb34ccd6f388d1175ecf31c371a3188963b"
+                }
+            ]
+        },
+        {
+            "name" : "virglrenderer",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/freedesktop/virglrenderer/archive/virglrenderer-0.7.0.tar.gz",
+                    "sha256" : "e6cf19db769d44a7bc9cf5028d12e0b169c73444714badbd480c97d0386b2a98"
+                }
+            ]
+        },
+        {
+            "name" : "qemu",
+            "config-opts" : [
+                "--enable-kvm",
+                "--enable-spice",
+                "--enable-opengl",
+                "--enable-virglrenderer",
+                "--enable-usb-redir",
+                "--enable-smartcard"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.qemu.org/qemu-3.1.0.tar.xz",
+                    "sha256" : "6a0508df079a0a33c2487ca936a56c12122f105b8a96a44374704bef6c69abfc"
+                }
+            ]
+        },
+        {
+            "name" : "freerdp",
+            "buildsystem" : "cmake-ninja",
+            "builddir" : true,
+            "config-opts" : [
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+                "-DCMAKE_INSTALL_PREFIX=/app",
+                "-DCMAKE_INSTALL_LIBDIR=lib"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://pub.freerdp.com/releases/freerdp-2.0.0-rc2.tar.gz",
+                    "sha256" : "bf080f71655a4996942436d5aacd5ce4afe57e546d4282fc0dc42fb80bd9da0c"
+                }
+            ]
+        },
+        {
+            "name" : "openssh",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.9p1.tar.gz",
+                    "sha256" : "6b4b3ba2253d84ed3771c8050728d597c91cfce898713beb7b64a305b6f11aad"
+                }
+            ]
+        },
+        {
+            "name" : "osinfo-db-tools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://releases.pagure.org/libosinfo/osinfo-db-tools-1.4.0.tar.gz",
+                    "sha256" : "7ee0125c6b99b5b9e10d9bf5951ecc8a170278499a778e6be5c61ef10296f723"
+                }
+            ]
+        },
+        {
+            "name" : "libosinfo",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://releases.pagure.org/libosinfo/libosinfo-1.4.0.tar.gz",
+                    "sha256" : "a29e61a82b1a5727b145403914812273dfa033a0c07a15500078726bb3b84165"
+                },
+                {
+                    "type" : "file",
+                    "path" : "pci.ids"
+                },
+                {
+                    "type" : "file",
+                    "path" : "usb.ids"
+                }
+            ]
+        },
+        {
+            "name" : "osinfo-db",
+            "buildsystem" : "simple",
+            "builddir" : true,
+            "build-commands" : [
+                "make",
+                "osinfo-db-import --dir /app/share/osinfo/ osinfo-db-*.tar.xz"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.com/libosinfo/osinfo-db.git"
+                }
+            ]
+        },
+        {
+            "name" : "gtk-frdp",
+            "config-opts" : [
+                "--libdir=/app/lib"
+            ],
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/gnome/gtk-frdp.git"
+                }
+            ]
+        },
+        {
+            "name" : "govf",
+            "config-opts" : [
+                "--libdir=/app/lib"
+            ],
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/felipeborges/libovf-glib.git"
+                }
+            ]
+        },
+        {
+            "name" : "gnome-boxes",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dflatpak=true",
+                "-Dprofile=development",
+                "-Ddistributor_name=gnome-boxes-nightly",
+                "-Ddistributor_version=master"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/gnome/gnome-boxes.git"
+                }
+            ]
+        }
+    ]
+}

@@ -71,7 +71,10 @@ public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
 
     public string title {
         get { return title_label.get_text (); }
-        set { title_label.label = value; }
+        set {
+            title_label.label = value;
+            set_tooltip_text (value);
+        }
     }
 
     public string details {
@@ -118,6 +121,7 @@ private class Boxes.WizardMediaEntry : Gtk.ListBoxRow {
             // Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
             //              http://en.wikipedia.org/wiki/Live_CD
             title_label.label += " (" +  _("Live") + ")";
+        set_tooltip_text (title_label.label);
 
         if (media.os_media != null) {
             var architecture = (media.os_media.architecture == "i386" || media.os_media.architecture == "i686") ?
