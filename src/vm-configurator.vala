@@ -38,7 +38,7 @@ private class Boxes.VMConfigurator {
     private const string LIBOSINFO_XML = "<libosinfo>%s</libosinfo>";
     private const string LIBOSINFO_OS_ID_XML = "<os id=\"%s\"/>";
 
-    public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
+    public static Domain create_domain_config (Installer install_media, string target_path, Capabilities caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
@@ -130,7 +130,7 @@ private class Boxes.VMConfigurator {
         return domain;
     }
 
-    public static void post_install_setup (Domain domain, InstallerMedia? install_media) {
+    public static void post_install_setup (Domain domain, Installer? install_media) {
         set_post_install_os_config (domain);
         domain.set_lifecycle (DomainLifecycleEvent.ON_REBOOT, DomainLifecycleAction.RESTART);
 
@@ -218,15 +218,15 @@ private class Boxes.VMConfigurator {
         return (str != null)? int.parse (str) : 0;
     }
 
-    public static void set_num_reboots (Domain domain, InstallerMedia install_media, uint num_reboots) {
+    public static void set_num_reboots (Domain domain, Installer install_media, uint num_reboots) {
         update_custom_xml (domain, install_media, num_reboots);
     }
 
-    public static void setup_custom_xml (Domain domain, InstallerMedia install_media) {
+    public static void setup_custom_xml (Domain domain, Installer install_media) {
         update_custom_xml (domain, install_media);
     }
 
-    private static void mark_as_installed (Domain domain, InstallerMedia? install_media) {
+    private static void mark_as_installed (Domain domain, Installer? install_media) {
         update_custom_xml (domain, install_media, 0, true);
     }
 
@@ -303,7 +303,7 @@ private class Boxes.VMConfigurator {
 
     public static void set_target_media_config (Domain         domain,
                                                 string         target_path,
-                                                InstallerMedia install_media,
+                                                Installer install_media,
                                                 uint8          dev_index = 0) {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
@@ -347,7 +347,7 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps) {
+    private static void set_os_config (Domain domain, Installer install_media, CapabilitiesGuest guest_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
         os.set_arch (guest_caps.get_arch ().get_name ());
@@ -363,7 +363,7 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private static void set_video_config (Domain domain, InstallerMedia install_media) {
+    private static void set_video_config (Domain domain, Installer install_media) {
         var video = new DomainVideo ();
         video.set_model (DomainVideoModel.QXL);
 
@@ -374,7 +374,7 @@ private class Boxes.VMConfigurator {
         domain.add_device (video);
     }
 
-    private static DomainSoundModel get_sound_model (InstallerMedia install_media) {
+    private static DomainSoundModel get_sound_model (Installer install_media) {
         if (install_media.prefers_ich9)
             return (DomainSoundModel) DomainSoundModel.ICH9;
 
@@ -403,14 +403,14 @@ private class Boxes.VMConfigurator {
         return (DomainSoundModel) model;
     }
 
-    private static void set_sound_config (Domain domain, InstallerMedia install_media) {
+    private static void set_sound_config (Domain domain, Installer install_media) {
         var sound = new DomainSound ();
         sound.set_model (get_sound_model (install_media));
 
         domain.add_device (sound);
     }
 
-    private static void set_tablet_config (Domain domain, InstallerMedia install_media) {
+    private static void set_tablet_config (Domain domain, Installer install_media) {
         var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "tablet");
         if (device == null)
             return;
@@ -422,11 +422,11 @@ private class Boxes.VMConfigurator {
         domain.add_device (input);
     }
 
-    private static void set_mouse_config (Domain domain, InstallerMedia install_media) {
+    private static void set_mouse_config (Domain domain, Installer install_media) {
         set_input_config (domain, DomainInputDeviceType.MOUSE);
     }
 
-    private static void set_keyboard_config (Domain domain, InstallerMedia install_media) {
+    private static void set_keyboard_config (Domain domain, Installer install_media) {
         set_input_config (domain, DomainInputDeviceType.KEYBOARD);
     }
 
@@ -527,7 +527,7 @@ private class Boxes.VMConfigurator {
     }
 
     private static void update_custom_xml (Domain domain,
-                                           InstallerMedia? install_media,
+                                           Installer? install_media,
                                            uint num_reboots = 0,
                                            bool installed = false) {
         return_if_fail (install_media != null || installed);
@@ -651,7 +651,7 @@ private class Boxes.VMConfigurator {
         return controller;
     }
 
-    private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, InstallerMedia install_media)
+    private static CapabilitiesGuest get_best_guest_caps (Capabilities caps, Installer install_media)
                                                           throws VMConfiguratorError {
         var guests_caps = caps.get_guests ();
         // Ensure we have the best caps on the top

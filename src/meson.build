@@ -58,6 +58,7 @@ vala_sources = [
   'i-properties-provider.vala',
   'i-collection-view.vala',
   'icon-view.vala',
+  'installer.vala',
   'installer-media.vala',
   'installed-media.vala',
   'keys-input-popover.vala',

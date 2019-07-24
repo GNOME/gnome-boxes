@@ -225,11 +225,11 @@ private class Boxes.MediaManager : Object {
         }
     }
 
-    private static int compare_media_by_label (InstallerMedia media_a, InstallerMedia media_b) {
+    private static int compare_media_by_label (Installer media_a, Installer media_b) {
         return strcmp (media_a.label, media_b.label);
     }
 
-    private static int compare_media_by_release_date (InstallerMedia media_a, InstallerMedia media_b) {
+    private static int compare_media_by_release_date (Installer media_a, Installer media_b) {
         if (media_a.os == null) {
             if (media_b.os == null)
                 return 0;
@@ -253,7 +253,7 @@ private class Boxes.MediaManager : Object {
         }
     }
 
-    private static int compare_media_by_vendor (InstallerMedia media_a, InstallerMedia media_b) {
+    private static int compare_media_by_vendor (Installer media_a, Installer media_b) {
         if (media_a.os == null) {
             if (media_b.os == null)
                 return 0;
