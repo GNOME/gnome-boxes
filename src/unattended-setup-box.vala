@@ -119,7 +119,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
                                  Secret.SchemaFlags.NONE,
                                  "gnome-boxes-media-path", Secret.SchemaAttributeType.STRING);
 
-    public UnattendedSetupBox (InstallerMedia media, string? product_key_format, bool needs_internet) {
+    public UnattendedSetupBox (Installer media, string? product_key_format, bool needs_internet) {
         this.product_key_format = product_key_format;
 
         var msg = _("Express installation of %s requires an internet connection.").printf (media.label);

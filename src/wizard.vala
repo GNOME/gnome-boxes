@@ -407,7 +407,7 @@ private class Boxes.Wizard: Gtk.Stack, Boxes.UI {
         }
     }
 
-    private async void prepare_media (InstallerMedia install_media, ActivityProgress progress) {
+    private async void prepare_media (Installer install_media, ActivityProgress progress) {
         if (install_media.os != null) {
             prep_media_label.label = install_media.os.name;
             Downloader.fetch_os_logo.begin (installer_image, install_media.os, 128);
