@@ -15,15 +15,25 @@
     </child>
 
     <child>
-      <object class="GtkButton" id="new_btn">
+      <object class="GtkMenuButton" id="new_btn">
         <property name="visible">True</property>
         <property name="valign">center</property>
-        <property name="use-underline">True</property>
-        <property name="label" translatable="yes">_New</property>
-        <signal name="clicked" handler="on_new_btn_clicked"/>
+        <property name="popover">assistant_menu</property>
         <style>
-          <class name="text-button"/>
+          <class name="image-button"/>
         </style>
+        <child internal-child="accessible">
+          <object class="AtkObject" id="a11y-new-button">
+            <property name="accessible-name" translatable="yes">New</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="icon-name">list-add-symbolic</property>
+            <property name="icon-size">1</property>
+          </object>
+        </child>
       </object>
     </child>
 
@@ -161,7 +171,6 @@
         <property name="pack-type">end</property>
       </packing>
     </child>
-
     <child>
       <object class="GtkToggleButton" id="search_btn">
         <property name="visible">True</property>
@@ -189,4 +198,29 @@
       </packing>
     </child>
   </template>
+
+  <!-- Assistant Popover -->
+  <object class="GtkPopoverMenu" id="assistant_menu">
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+        <property name="margin">10</property>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Create a Virtual Machine…</property>
+            <signal name="clicked" handler="on_new_vm_btn_clicked"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="text" translatable="yes">Connect to a Remote Computer…</property>
+            <signal name="clicked" handler="on_connect_to_remote_btn_clicked"/>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
 </interface>
