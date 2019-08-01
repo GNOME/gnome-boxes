@@ -237,6 +237,10 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     debug ("Error ejecting CD from '%s': %s", machine.name, e.message);
                 }
             }
+
+            /* Enable/disable boot menu */
+            VMConfigurator.enable_boot_menu (machine.domain_config, !empty);
+            machine.domain.set_config (machine.domain_config);
         });
 
         var property = add_property (ref list, _("CD/DVD"), grid);

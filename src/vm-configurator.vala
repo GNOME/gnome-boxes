@@ -265,6 +265,7 @@ private class Boxes.VMConfigurator {
         DomainInterface iface = null;
         DomainGraphicsSpice graphics = null;
         DomainChannel channel_webdav = null;
+        bool supports_alternative_boot_device = false;
         foreach (var device in domain.get_devices ()) {
             if (device is DomainInterface)
                 iface = device as DomainInterface;
@@ -274,6 +275,16 @@ private class Boxes.VMConfigurator {
                 var device_channel = device as DomainChannel;
                 if (device_channel.get_target_name () == WEBDAV_CHANNEL_URI)
                     channel_webdav = device_channel;
+                devices.prepend (device);
+            }
+            else if (device is DomainDisk) {
+                var domain_disk = device as DomainDisk;
+                var device_type = domain_disk.get_guest_device_type ();
+                if (device_type == DomainDiskGuestDeviceType.CDROM) {
+                    if (domain_disk.get_source () != null)
+                        supports_alternative_boot_device = true;
+                }
+
                 devices.prepend (device);
             }
             else
@@ -292,6 +303,8 @@ private class Boxes.VMConfigurator {
             }
         }
 
+        enable_boot_menu (domain, supports_alternative_boot_device);
+
         if (graphics != null)
             devices.prepend (create_graphics_device ());
         if (channel_webdav == null)
@@ -299,6 +312,17 @@ private class Boxes.VMConfigurator {
 
         devices.reverse ();
         domain.set_devices (devices);
+    }
+
+    public static void enable_boot_menu (Domain domain, bool enable) {
+        try {
+            var os = new DomainOs.from_xml (domain.get_os ().to_xml ());
+            os.enable_boot_menu (enable);
+
+            domain.set_os (os);
+        } catch (GLib.Error error) {
+            warning ("Failed to enable boot menu\n");
+        }
     }
 
     public static void set_target_media_config (Domain         domain,
