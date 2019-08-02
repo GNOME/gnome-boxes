@@ -1,0 +1,68 @@
+From 9b91cc380fdd5bf993f64a9cd452dbc4c98872fa Mon Sep 17 00:00:00 2001
+From: Dave Airlie <airlied@redhat.com>
+Date: Wed, 19 Sep 2018 10:36:17 +1000
+Subject: [PATCH] update u_format_parse from mesa to handle python3
+
+---
+ src/gallium/auxiliary/util/u_format_parse.py | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/src/gallium/auxiliary/util/u_format_parse.py b/src/gallium/auxiliary/util/u_format_parse.py
+index 929017a..48cc012 100755
+--- a/src/gallium/auxiliary/util/u_format_parse.py
++++ b/src/gallium/auxiliary/util/u_format_parse.py
+@@ -1,4 +1,3 @@
+-#!/usr/bin/env python
+ 
+ '''
+ /**************************************************************************
+@@ -30,6 +29,9 @@
+ '''
+ 
+ 
++from __future__ import division
++
++
+ VOID, UNSIGNED, SIGNED, FIXED, FLOAT = range(5)
+ 
+ SWIZZLE_X, SWIZZLE_Y, SWIZZLE_Z, SWIZZLE_W, SWIZZLE_0, SWIZZLE_1, SWIZZLE_NONE, = range(7)
+@@ -70,14 +72,20 @@ def __str__(self):
+         return s
+ 
+     def __eq__(self, other):
++        if other is None:
++            return False
++
+         return self.type == other.type and self.norm == other.norm and self.pure == other.pure and self.size == other.size
+ 
++    def __ne__(self, other):
++        return not self == other
++
+     def max(self):
+         '''Maximum representable number.'''
+         if self.type == FLOAT:
+             return VERY_LARGE
+         if self.type == FIXED:
+-            return (1 << (self.size/2)) - 1
++            return (1 << (self.size // 2)) - 1
+         if self.norm:
+             return 1
+         if self.type == UNSIGNED:
+@@ -91,7 +99,7 @@ def min(self):
+         if self.type == FLOAT:
+             return -VERY_LARGE
+         if self.type == FIXED:
+-            return -(1 << (self.size/2))
++            return -(1 << (self.size // 2))
+         if self.type == UNSIGNED:
+             return 0
+         if self.norm:
+@@ -313,7 +321,7 @@ def _parse_channels(fields, layout, colorspace, swizzles):
+     return channels
+ 
+ def parse(filename):
+-    '''Parse the format descrition in CSV format in terms of the 
++    '''Parse the format description in CSV format in terms of the
+     Channel and Format classes above.'''
+ 
+     stream = open(filename)
