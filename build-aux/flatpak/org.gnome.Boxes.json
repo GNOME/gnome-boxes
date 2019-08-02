@@ -139,11 +139,39 @@
             ]
         },
         {
+            "name" : "libtirpc",
+            "config-opts" : [
+                "--disable-gssapi",
+                "--libdir=/app/lib"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "http://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.1.4.tar.bz2",
+                    "sha256" : "2ca529f02292e10c158562295a1ffd95d2ce8af97820e3534fe1b0e3aec7561d"
+                }
+            ]
+        },
+        {
+            "name" : "rpcsvc-proto",
+            "buildsystem" : "autotools",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.tar.gz",
+                    "sha256" : "eaa227686b84e8ae20181d2119c0ccac29d82371441844008019a134dafe3613"
+                }
+            ]
+        },
+        {
             "name" : "libvirt",
             "config-opts" : [
                 "--without-html-subdir",
                 "--without-storage-mpath"
             ],
+            "build-options" : {
+                "cflags" : "-I/app/include/tirpc -ltirpc"
+            },
             "sources" : [
                 {
                     "type" : "archive",
