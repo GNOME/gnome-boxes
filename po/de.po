@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-07-27 09:26+0000\n"
-"PO-Revision-Date: 2019-07-27 15:07+0200\n"
-"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
+"POT-Creation-Date: 2019-07-29 16:17+0000\n"
+"PO-Revision-Date: 2019-08-03 20:56+0200\n"
+"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -144,6 +144,27 @@ msgstr "Freigegebene Ordner"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variablenfeld aus den Namen freigegebener Ordner und deren Pfaden"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Mit einer Box verbinden"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr ""
+"Geben Sie eine Adresse für die Verbindung ein. Adressen können mit spice://, "
+"rdp:// oder vnc:// beginnen."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "Verbinden"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "_Benutzername"
@@ -171,37 +192,45 @@ msgstr "Lokal"
 msgid "Remote"
 msgstr "Entfernt"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Neu"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Neu"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Zurück"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Anwendungsmenü"
 
 # Gemeint sind vermutlich die virtuellen Maschinen
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Objekte auswählen"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Listenansicht"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Tabellenansicht"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Suchen"
+
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "Eine virtuelle Maschine erstellen …"
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "Mit einem entfernten Rechner verbinden …"
 
 #: data/ui/display-page.ui:85
 msgid "Ready to Receive File"
@@ -338,7 +367,7 @@ msgid "_Delete"
 msgstr "_Löschen"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:327
+#: src/app-window.vala:331
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
@@ -368,10 +397,6 @@ msgstr "Name"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Freigegebenen Ordner wählen"
-
-#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -463,34 +488,26 @@ msgstr ""
 "Das Betriebssystem wird heruntergeladen und in einer virtuellen Maschine "
 "installiert."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Mit einer entfernten Box verbinden"
-
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Verbindung über RDP, SPICE, SSH oder VNC."
-
-#: data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:157
 msgid "Connect to Libvirt brokers."
 msgstr "Verbinden Sie sich mit Libvirt-Anbietern."
 
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Eine Datei wählen"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr ""
 "Wählen Sie eine bootfähige Abbilddatei aus, die in einer virtuellen Maschine "
 "installiert werden soll."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -500,7 +517,7 @@ msgstr ""
 "von Softwareprodukten, die Sie bereits erworben haben, und gehören ihren "
 "jeweiligen Eigentümern."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
@@ -525,7 +542,7 @@ msgstr "_Weiter"
 msgid "Customize Resources"
 msgstr "Individuelle Anpassung von Ressourcen"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
 msgid "_Open"
 msgstr "_Öffnen"
 
@@ -615,7 +632,8 @@ msgstr ""
 "Christian Kirbach <Christian.Kirbach@googlemail.com>\n"
 "Tobias Endrigkeit <tobiasendrigkeit@googlemail.com>\n"
 "Bernd Homuth <dev@hmt.im>\n"
-"Vinzenz Vietzke <vinz@vinzv.de>"
+"Vinzenz Vietzke <vinz@vinzv.de>\n"
+"Tim Sabsch <tim@sabsch.com>"
 
 #: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
@@ -687,7 +705,7 @@ msgstr "_Rückgängig"
 msgid "Boxes is doing something"
 msgstr "Boxen führt einen Vorgang aus"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Dateien zur Übertragung auswählen"
 
@@ -1386,10 +1404,6 @@ msgstr "Revision"
 msgid "Box creation failed"
 msgstr "Die Erstellung der Box ist fehlgeschlagen"
 
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Mit einer Box verbinden"
-
 #: src/wizard.vala:303
 msgid "Empty location"
 msgstr "Leerer Ort"
@@ -1489,6 +1503,9 @@ msgstr "Das Herunterladen ist fehlgeschlagen."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "_Anpassen …"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "Verbindung über RDP, SPICE, SSH oder VNC."
 
 #~ msgid "@icon@"
 #~ msgstr "@icon@"
