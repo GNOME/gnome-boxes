@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-18 09:20+0000\n"
-"PO-Revision-Date: 2019-03-18 12:48+0100\n"
+"POT-Creation-Date: 2019-07-29 16:17+0000\n"
+"PO-Revision-Date: 2019-08-04 14:37+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
 "com>\n"
 "Language-Team: Gnome Romanian Translation Team <gnomero-list@lists."
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n==0 || (n!=1 && n%100>=1 && n"
 "%100<=19) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
@@ -62,7 +62,7 @@ msgstr ""
 msgid "The GNOME Project"
 msgstr "Proiectul GNOME"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
 #: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
@@ -80,11 +80,6 @@ msgstr "Vizualizează și utilizează mașini virtuale"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;vnc;rdp;mașină virtuală;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -146,6 +141,27 @@ msgstr "Dosare partajate"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vector variantă al numelor de dosare partajate și al mapării de cale"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Conectare la o cutie"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr ""
+"Introduceți o adresă la care să se conecteze. Adresele pot începe cu "
+"spice://, rdp:// sau vnc://."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Anulează"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "Conectează"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "Nume _utilizator"
@@ -159,50 +175,58 @@ msgid "Sign In"
 msgstr "Autentificare"
 
 #. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:13
+#: data/ui/collection-filter-switcher.ui:14
 msgid "All"
 msgstr "Toate"
 
 #. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:26
+#: data/ui/collection-filter-switcher.ui:29
 msgid "Local"
 msgstr "Local"
 
 #. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:39
+#: data/ui/collection-filter-switcher.ui:44
 msgid "Remote"
 msgstr "La distanță"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Nou"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Nou"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Înapoi"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Meniu de aplicație"
 
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Selectați elementele"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Vizualizare listă"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Vizualizare grilă"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Căutare"
+
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "Creează o mașină virtuală…"
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "Conectare la un calculator de la distanță…"
 
 #: data/ui/display-page.ui:85
 msgid "Ready to Receive File"
@@ -322,18 +346,9 @@ msgid "_Copy to Clipboard"
 msgstr "_Copiază în clipboard"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Alegeți un dispozitiv sau un fișier ISO"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
-msgid "_Cancel"
-msgstr "_Anulează"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:329
-msgid "_Open"
-msgstr "_Deschide"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -346,6 +361,11 @@ msgstr "P_auză"
 #: data/ui/selectionbar.ui:72
 msgid "_Delete"
 msgstr "Șter_ge"
+
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:331
+msgid "_Cancel"
+msgstr "_Anulează"
 
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
@@ -370,10 +390,6 @@ msgstr "Nume"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Selectați dosarul partajat"
-
-#: data/ui/shared-folder-popover.ui:97
-msgid "Cancel"
-msgstr "Anulează"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -464,33 +480,25 @@ msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr ""
 "Sistemul de operare va fi descărcat și instalat într-o mașină virtuală."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Conectare la o cutie de la distanță"
+#: data/ui/wizard-source.ui:157
+msgid "Connect to Libvirt brokers."
+msgstr "Conectare la brokere Libvirt."
 
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Conectare utilizând RDP, SPICE, SSH sau VNC."
-
-#: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
-msgstr "Conectare la brokere oVirt sau Libvirt."
-
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Selectați un fișier"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr ""
 "Selectați un fișier de imagine bootabil de instalat într-o mașină virtuală."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -500,13 +508,13 @@ msgstr ""
 "identifica produsele software pe care dumneavoastră le-ați opținut anterior "
 "și care sunt proprietate a posesorilor respectivi."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
+"ssh://, or vnc://."
 msgstr ""
-"Introduceți o adresă la care se va conecta. Adresele pot începe cu spice://, "
-"rdp://, ssh:// sau vnc://."
+"Introduceți o adresă la care să se conecteze. Adresele pot începe cu "
+"spice://, rdp://, ssh:// sau vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 #: data/ui/wizard-window.ui:69 src/wizard.vala:178
@@ -524,6 +532,10 @@ msgstr "C_ontinuă"
 #: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Personalizează resurse"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
+msgid "_Open"
+msgstr "_Deschide"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
@@ -602,65 +614,65 @@ msgstr "Proprietăți"
 msgid "Screenshot from %s"
 msgstr "Instantaneu de la %s"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "translator-credits"
 msgstr ""
 "Adrian Gabor <raziel_theripper [at] yahoo [dot] com>\n"
 "Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2019"
 
-#: src/app.vala:112
+#: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "O aplicație simplă GNOME 3 pentru a accesa mașini la distanță sau virtuale"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "Afișează numărul versiunii"
 
-#: src/app.vala:175
+#: src/app.vala:173
 msgid "Open in full screen"
 msgstr "Deschide pe tot ecranul"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:174 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Verifică competențele de virtualizare"
 
-#: src/app.vala:177
+#: src/app.vala:175
 msgid "Open box with UUID"
 msgstr "Deschide cutia cu UUID"
 
-#: src/app.vala:178
+#: src/app.vala:176
 msgid "Search term"
 msgstr "Caută termen"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:178
 msgid "URL to display, broker or installer media"
 msgstr "URL-ul de afișat, broker sau mediu de instalare"
 
-#: src/app.vala:191
+#: src/app.vala:189
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— O aplicație simplă pentru a accesa mașini la distanță sau virtuale"
 
-#: src/app.vala:216
+#: src/app.vala:214
 msgid "Too many command line arguments specified.\n"
 msgstr "Prea multe argumente specificate pentru linia de comandă.\n"
 
-#: src/app.vala:469
+#: src/app.vala:467
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Cutia „%s” a fost instalată și este pregătită pentru utilizare"
 
-#: src/app.vala:471
+#: src/app.vala:469
 msgid "Launch"
 msgstr "Lansează"
 
-#: src/app.vala:557
+#: src/app.vala:555
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Cutia „%s” a fost ștearsă"
 
-#: src/app.vala:558
+#: src/app.vala:556
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -668,16 +680,16 @@ msgstr[0] "%u cutie a fost ștearsă"
 msgstr[1] "%u cutii au fost șterse"
 msgstr[2] "%u de cutii au fost șterse"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:583 src/libvirt-machine-properties.vala:553
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "An_ulează"
 
-#: src/app.vala:629
+#: src/app.vala:627
 msgid "Boxes is doing something"
 msgstr "Cutii lucrează la ceva"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Selectați fișierele de transferat"
 
@@ -707,19 +719,19 @@ msgstr "Noi și recente"
 msgid "Unsupported disk image format."
 msgstr "Format de imagine disc nesuportat."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:460
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s utilizat)</span>"
+msgid "%s used"
+msgstr "%s utilizat"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (recomandat)"
@@ -763,7 +775,7 @@ msgstr "_Nume"
 msgid "IP Address"
 msgstr "Adresă IP"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Broker"
 
@@ -847,28 +859,23 @@ msgid "_Memory: "
 msgstr "_Memorie: "
 
 #: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\"Spațiu maxim pe disc</span>\t\t %s <span color=\"grey"
-"\">(%s utilizat)</span>"
+msgid "Maximum Disk Space"
+msgstr "Dimensiunea maximă a discului"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:477
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Nu există spațiu suficient pe mașina dumneavoastră pentru a crește mărimea "
 "maximă a discului."
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:487
 msgid "Maximum _Disk Size: "
 msgstr "Dimensiunea maximă a _discului: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:540
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -879,76 +886,72 @@ msgstr[1] ""
 msgstr[2] ""
 "Redimensionarea stocării necesită ștergerea a %llu de instantanee asociate."
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:657
 msgid "_Run in background"
 msgstr "_Rulează în fundal"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:668
+#: src/libvirt-machine-properties.vala:671
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "„%s” nu va fi întrerupt automat."
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "„%s” va fi întrerupt automat pentru a conserva resurse."
 
+#: src/libvirt-machine-properties.vala:688
+msgid "3D Acceleration"
+msgstr "Accelerație 3D"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:596
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Se restaurează %s de pe disc"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:599
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "Se pornește %s"
 
-#: src/libvirt-machine.vala:665
-msgid "Experiencing graphics problems?"
-msgstr "Experimentați probleme cu grafica?"
-
-#: src/libvirt-machine.vala:667
-msgid "Disable 3D acceleration"
-msgstr "Dezactivează accelerația 3D"
-
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Repornirea lui „%s” durează prea mult. Doriți să forțați oprirea?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Oprire"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Se clonează „%s”…"
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Se instalează…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:877 src/util-app.vala:136
-#: src/wizard-source.vala:120
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Se configurează clona…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Se importă…"
 
-#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "gazdă: %s"
@@ -1100,18 +1103,6 @@ msgstr "Autentificare la %s"
 msgid "Not connected to %s"
 msgstr "Neconectat la %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "Conectarea la brokerul oVirt a eșuat"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Protocol"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "URL"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "General"
@@ -1124,10 +1115,22 @@ msgstr "Dispozitive și partajări"
 msgid "Snapshots"
 msgstr "Instantanee"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "Deschide"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Modificările necesită repornirea lui „%s”."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Protocol"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "URL"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1200,46 +1203,42 @@ msgstr "Eșec la crearea unui instantaneu a lui %s"
 msgid "Unknown"
 msgstr "Necunoscut"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:62 src/spice-display.vala:497
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Redirecționarea dispozitivului USB „%s” pentru ”%s” a eșuat"
 
-#: src/spice-display.vala:346
-msgid "Share Clipboard"
-msgstr "Partajează clipboard-ul"
-
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:360
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
 "Uneltele de vizitator SPICE nu sunt instalate. Aceste unelte îmbunătățesc "
 "experiența utilizatorului și activează interacțiunile cu gazda și cutia, "
-"precum copiază și lipește. Vizitați <a href=\"http://www.spice-space.org/"
-"download.html\">http://www.spice-space.org/download.html</a> pentru a "
-"descărca și instala aceste unelte din interiorul cutiei."
+"precum copiază&amp;lipește. Vizitați %s pentru a descărca și instala aceste "
+"unelte din interiorul cutiei."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:387
 msgid "USB devices"
 msgstr "Dispozitive USB"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:403
 msgid "Folder Shares"
 msgstr "Partajări dosar"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:601 src/spice-display.vala:626
+#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "URI nevalid"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:611
 msgid "The port must be specified once"
 msgstr "Portul trebuie să fie specificat o singură dată"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:622
 msgid "Missing port in Spice URL"
 msgstr "Port lipsă în URL-ul Spice"
 
@@ -1267,12 +1266,12 @@ msgstr "Se descarcă driverele dispozitivului…"
 msgid "no password"
 msgstr "nicio parolă"
 
-#: src/unattended-setup-box.vala:130
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Instalarea în mod expres a %s necesită o conexiune la internet."
 
-#: src/unattended-setup-box.vala:233
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Certificări Cutii GNOME pentru „%s”"
@@ -1336,7 +1335,7 @@ msgstr "nu"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:706
+#: src/vm-configurator.vala:696
 msgid "Incapable host system"
 msgstr "Sistem gazdă nepotrivit"
 
@@ -1350,16 +1349,16 @@ msgstr "Cutia „%s” a fost ștearsă automat."
 msgid "Box import from file “%s” failed."
 msgstr "Importarea cutiei din fișierul „%s” a eșuat."
 
-#: src/wizard-source.vala:124
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "Sistem pe 32 de biți (x86)"
 
-#: src/wizard-source.vala:125
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "Sistem pe 64 de biți (x86)"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:130
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr " de la %s"
@@ -1383,10 +1382,6 @@ msgstr "Recenzie"
 #: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Crearea cutiei a eșuat"
-
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Conectare la o cutie"
 
 #: src/wizard.vala:303
 msgid "Empty location"
@@ -1483,6 +1478,31 @@ msgstr "Descărcarea a eșuat."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "Personali_zează…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "Conectare utilizând RDP, SPICE, SSH sau VNC."
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s utilizat)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\"Spațiu maxim pe disc</span>\t\t %s <span color=\"grey"
+#~ "\">(%s utilizat)</span>"
+
+#~ msgid "Experiencing graphics problems?"
+#~ msgstr "Experimentați probleme cu grafica?"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "Conectarea la brokerul oVirt a eșuat"
+
+#~ msgid "Share Clipboard"
+#~ msgstr "Partajează clipboard-ul"
 
 #~ msgid "About"
 #~ msgstr "Despre"
