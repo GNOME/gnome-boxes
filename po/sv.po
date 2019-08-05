@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-06-15 10:31+0000\n"
-"PO-Revision-Date: 2019-06-26 21:14+0200\n"
+"POT-Creation-Date: 2019-07-29 16:17+0000\n"
+"PO-Revision-Date: 2019-08-05 13:41+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:6
 msgid "GNOME Boxes"
@@ -139,6 +139,27 @@ msgstr "Delade mappar"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variantvektor över delade mappars namn och sökvägsmappning"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Anslut till en box"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr ""
+"Mata in en adress att ansluta till. Adresser kan börja med spice://, rdp:// "
+"eller vnc://."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "Anslut"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "_Användarnamn"
@@ -166,36 +187,44 @@ msgstr "Lokala"
 msgid "Remote"
 msgstr "Fjärrar"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Ny"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Ny"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Bakåt"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Programmeny"
 
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Välj objekt"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Listvy"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Rutnätsvy"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Sök"
+
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "Skapa en virtuell maskin…"
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "Anslut till en fjärrdator…"
 
 #: data/ui/display-page.ui:85
 msgid "Ready to Receive File"
@@ -332,7 +361,7 @@ msgid "_Delete"
 msgstr "Ta _bort"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:327
+#: src/app-window.vala:331
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -359,10 +388,6 @@ msgstr "Namn"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Välj delade mappar"
-
-#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
-msgid "Cancel"
-msgstr "Avbryt"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -452,32 +477,24 @@ msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr ""
 "Operativsystemet kommer att hämtas och installeras i en virtuell maskin."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Anslut till en fjärrbox"
-
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Anslut med RDP, SPICE, SSH eller VNC."
-
-#: data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:157
 msgid "Connect to Libvirt brokers."
 msgstr "Anslut till Libvirt-agenter."
 
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Välj en fil"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr "Välj en startbar avbildsfil att installera i en virtuell maskin."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -486,7 +503,7 @@ msgstr ""
 "Alla registrerade varumärken som visas ovan används endast för identifiering "
 "av programprodukter som du redan har köpt och tillhör respektive ägare."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
@@ -511,7 +528,7 @@ msgstr "F_ortsätt"
 msgid "Customize Resources"
 msgstr "Anpassa resurser"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
 msgid "_Open"
 msgstr "_Öppna"
 
@@ -672,7 +689,7 @@ msgstr "_Ångra"
 msgid "Boxes is doing something"
 msgstr "Boxes gör något"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Välj filer att överföra"
 
@@ -922,7 +939,7 @@ msgstr "Installerar…"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/libvirt-machine.vala:861 src/util-app.vala:136
-#: src/wizard-source.vala:120
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Live"
 
@@ -1181,17 +1198,13 @@ msgstr "Misslyckades med att skapa en ögonblicksavbild av %s"
 msgid "Unknown"
 msgstr "Okänd"
 
-#: src/spice-display.vala:66 src/spice-display.vala:507
+#: src/spice-display.vala:62 src/spice-display.vala:497
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Omdirigering av USB-enhet ”%s” för ”%s” misslyckades"
 
-#: src/spice-display.vala:363
-msgid "Share Clipboard"
-msgstr "Dela urklipp"
-
 #. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:370
+#: src/spice-display.vala:360
 #, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
@@ -1203,24 +1216,24 @@ msgstr ""
 "kopiering och inklistring. Besök %s för att hämta och installera dessa "
 "verktyg inifrån boxen."
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:387
 msgid "USB devices"
 msgstr "USB-enheter"
 
-#: src/spice-display.vala:413
+#: src/spice-display.vala:403
 msgid "Folder Shares"
 msgstr "Mappdelningar"
 
-#: src/spice-display.vala:611 src/spice-display.vala:636
-#: src/spice-display.vala:639 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:601 src/spice-display.vala:626
+#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Ogiltig URL"
 
-#: src/spice-display.vala:621
+#: src/spice-display.vala:611
 msgid "The port must be specified once"
 msgstr "Porten måste specificeras en gång"
 
-#: src/spice-display.vala:632
+#: src/spice-display.vala:622
 msgid "Missing port in Spice URL"
 msgstr "Saknar port i Spice-URL"
 
@@ -1330,16 +1343,16 @@ msgstr "Live box ”%s” har tagits bort automatiskt."
 msgid "Box import from file “%s” failed."
 msgstr "Box-import från fil ”%s” misslyckades."
 
-#: src/wizard-source.vala:124
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "32-bitars x86-system"
 
-#: src/wizard-source.vala:125
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "64-bitars x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:130
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr " från %s"
@@ -1363,10 +1376,6 @@ msgstr "Granskning"
 #: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Skapandet av box misslyckades"
-
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Anslut till en box"
 
 #: src/wizard.vala:303
 msgid "Empty location"
@@ -1466,6 +1475,12 @@ msgstr "Hämtning misslyckades."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "A_npassa…"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "Anslut med RDP, SPICE, SSH eller VNC."
+
+#~ msgid "Share Clipboard"
+#~ msgstr "Dela urklipp"
 
 #~ msgid "@icon@"
 #~ msgstr "@icon@"
