@@ -1,0 +1,31 @@
+From dff435479c61b08be58a70ac00ea86f8d2235dd2 Mon Sep 17 00:00:00 2001
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 12 Feb 2019 12:04:52 +0100
+Subject: [PATCH] Makefile.am: explicitly link with libdrm
+
+Otherwise, a failure happens with gold linker:
+
+../src/.libs/libvirglrenderer.so: error: undefined reference to 'drmPrimeHandleToFD'
+
+https://errors.yoctoproject.org/Errors/Details/222046/
+
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+---
+ src/Makefile.am | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 9a0a44e..9b668c8 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -1,5 +1,6 @@
+ SUBDIRS := gallium/auxiliary
+ AM_LDFLAGS = -lm \
++	$(LIBDRM_LIBS) \
+ 	$(GBM_LIBS) \
+ 	$(EPOXY_LIBS) \
+ 	$(X11_LIBS) \
+-- 
+2.21.0
+
