@@ -346,11 +346,12 @@ private class Boxes.VMConfigurator {
             if (install_media.prefers_q35) {
                 debug ("Using SATA controller for the main disk");
                 disk.set_target_bus (DomainDiskBus.SATA);
+                disk.set_target_dev("sd" + dev_letter_str);
             } else {
                 debug ("Using IDE controller for the main disk");
                 disk.set_target_bus (DomainDiskBus.IDE);
+                disk.set_target_dev ("hd" + dev_letter_str);
             }
-            disk.set_target_dev ("hd" + dev_letter_str);
         }
 
         domain.add_device (disk);

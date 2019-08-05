@@ -29,13 +29,12 @@ private interface Boxes.UnattendedFile : GLib.Object {
             yield App.app.async_launcher.launch(() => {
                 copy_with_libarchive (disk_file, source_file, dest_name);
             });
-        } else
-            yield copy_with_mcopy (disk_file, source_file, dest_name, cancellable);
+        }
 
         debug ("Copied unattended file '%s' into disk drive/image '%s'", dest_name, disk_file);
     }
 
-    protected abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
+    public abstract async File get_source_file (Cancellable? cancellable)  throws GLib.Error;
 
     private static void copy_with_libarchive (string disk_file, string source_file, string dest_name) throws GLib.Error {
         var reader = new ArchiveReader (disk_file);
@@ -53,21 +52,6 @@ private interface Boxes.UnattendedFile : GLib.Object {
         var dst = GLib.File.new_for_path (disk_file);
         // and copy the new file to overwrite the old one
         src.move (dst, FileCopyFlags.OVERWRITE);
-    }
-
-    private static async void copy_with_mcopy (string       disk_file,
-                                               string       source_file,
-                                               string       dest_name,
-                                               Cancellable? cancellable = null)
-                                               throws GLib.Error {
-        string[] argv = {"mcopy",
-                             "-n",
-                             "-o",
-                             "-i",
-                                 disk_file,
-                             source_file,
-                             "::" + dest_name };
-        yield exec (argv, cancellable);
     }
 
     private static bool is_libarchive_compatible (string filename) {
@@ -119,12 +103,12 @@ private class Boxes.UnattendedScriptFile : GLib.Object, Boxes.UnattendedFile {
         this.dest_name = dest_name;
 
         var injection_methods = script.get_injection_methods ();
-        if (InstallScriptInjectionMethod.DISK in injection_methods)
-            injection_method = InstallScriptInjectionMethod.DISK;
-        else if (InstallScriptInjectionMethod.FLOPPY in injection_methods)
-            injection_method = InstallScriptInjectionMethod.FLOPPY;
-        else if (InstallScriptInjectionMethod.INITRD in injection_methods)
+        if (InstallScriptInjectionMethod.INITRD in injection_methods)
             injection_method = InstallScriptInjectionMethod.INITRD;
+        else if (InstallScriptInjectionMethod.DISK in injection_methods)
+            injection_method = InstallScriptInjectionMethod.DISK;
+        else if (InstallScriptInjectionMethod.CDROM in injection_methods)
+            injection_method = InstallScriptInjectionMethod.CDROM;
         else
             throw new GLib.IOError.NOT_SUPPORTED ("No supported injection method available.");
     }
