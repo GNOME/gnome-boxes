@@ -8,8 +8,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-07-12 14:40+0000\n"
-"PO-Revision-Date: 2019-07-23 10:00+0100\n"
+"POT-Creation-Date: 2019-07-29 16:17+0000\n"
+"PO-Revision-Date: 2019-08-11 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -127,6 +127,25 @@ msgstr "Partekatutako karpetak"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Matrizea partekatutako karpeten izenak eta bide-izenen mapekin"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Konektatu makina batekin"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr "Sartu helbide bat harekin konektatzeko. Helbidearen hasiera izan daiteke spice://, rdp:// edo vnc://."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Utzi"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "Konektatu"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "_Erabiltzaile-izena:"
@@ -154,36 +173,44 @@ msgstr "Lokala"
 msgid "Remote"
 msgstr "Urrunekoa"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Berria"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Berria"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Atzera"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Aplikazioen menua"
 
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Hautatu elementuak"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Zerrenda-ikuspegia"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Saretaren ikuspegia"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Bilatu"
+
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "Sortu makina birtuala…"
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "Konektatu urruneko ordenagailu batekin…"
 
 #: data/ui/display-page.ui:85
 msgid "Ready to Receive File"
@@ -320,7 +347,7 @@ msgid "_Delete"
 msgstr "Ez_abatu"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:327
+#: src/app-window.vala:331
 msgid "_Cancel"
 msgstr "_Utzi"
 
@@ -334,7 +361,7 @@ msgstr "Hautatu 'Exekutatzen'"
 
 #: data/ui/selection-toolbar.ui:117
 msgid "Select None"
-msgstr "Hautatu bat ere ez"
+msgstr "Ez hautatu ezer"
 
 #: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
@@ -347,10 +374,6 @@ msgstr "Izena"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Hautatu partekatutako karpeta"
-
-#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
-msgid "Cancel"
-msgstr "Utzi"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -414,7 +437,7 @@ msgstr "Euskarri ezezaguna"
 
 #: data/ui/wizard-downloads-page.ui:26
 msgid "Show more…"
-msgstr "Erakutsi gehiago..."
+msgstr "Erakutsi gehiago…"
 
 #: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
@@ -436,39 +459,31 @@ msgstr "Deskargatu SE bat"
 msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr "Sistema eragilea deskargatuko da eta makina birtual batean instalatuko da."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Konektatu urruneko makina batekin"
-
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Konektatu RDP, SPICE, SSH, edo VNC erabilita."
-
-#: data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:157
 msgid "Connect to Libvirt brokers."
 msgstr "Konektatu Libvirt artekariekin."
 
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Hautatu fitxategia"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr "Hautatu irudi-fitxategi abiarazgarri bat, makina birtual batean instalatua izan dadin."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr "Goian erakutsitako edozein markak jadanik eskuratu dituzun eta haien jabeenak diren software-produktuak identifikatzeko soilik balio du."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
@@ -491,13 +506,13 @@ msgstr "_Jarraitu"
 msgid "Customize Resources"
 msgstr "Pertsonalizatu baliabideak"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
 msgid "_Open"
 msgstr "_Ireki"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
-msgstr "Bilatu SE bat edo sartu deskargako esteka bat..."
+msgstr "Bilatu SE bat edo sartu deskargako esteka bat…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -529,7 +544,7 @@ msgstr "Ireki leiho berrian"
 #. Send files
 #: src/actions-popover.vala:49
 msgid "Send File…"
-msgstr "Bidali fitxategia..."
+msgstr "Bidali fitxategia…"
 
 #. Take Screenshot
 #: src/actions-popover.vala:54
@@ -640,7 +655,7 @@ msgstr "_Desegin"
 msgid "Boxes is doing something"
 msgstr "'Makinak' zerbait egiten ari da"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Hautatu transferituko diren fitxategiak"
 
@@ -884,13 +899,13 @@ msgstr "Instalatzen…"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/libvirt-machine.vala:861 src/util-app.vala:136
-#: src/wizard-source.vala:120
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Zuzenean"
 
 #: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
-msgstr "Klona konfiguratzen..."
+msgstr "Klona konfiguratzen…"
 
 #: src/libvirt-machine.vala:865
 msgid "Importing…"
@@ -1271,16 +1286,16 @@ msgstr "Zuzeneko '%s' makina automatikoki ezabatu da."
 msgid "Box import from file “%s” failed."
 msgstr "Huts egin du '%s' fitxategitik makina inportatzean."
 
-#: src/wizard-source.vala:124
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "32-bit x86 sistema"
 
-#: src/wizard-source.vala:125
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "64-bit x86 sistema"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:130
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr " %s(e)tik"
@@ -1304,10 +1319,6 @@ msgstr "Berrikuspena"
 #: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Makinaren sorrerak huts egin du"
-
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Konektatu makina batekin"
 
 #: src/wizard.vala:303
 msgid "Empty location"
@@ -1404,6 +1415,12 @@ msgstr "Huts egin du deskargatzean."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "_Pertsonalizatu…"
+
+#~ msgid "_New"
+#~ msgstr "_Berria"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "Konektatu RDP, SPICE, SSH, edo VNC erabilita."
 
 #~ msgid "@icon@"
 #~ msgstr "@icon@"
@@ -1564,9 +1581,6 @@ msgstr "_Pertsonalizatu…"
 
 #~ msgid "%s - Properties"
 #~ msgstr "%s - Propietateak"
-
-#~ msgid "New"
-#~ msgstr "Berria"
 
 #~ msgid "Animation duration"
 #~ msgstr "Animazioaren iraupena"
