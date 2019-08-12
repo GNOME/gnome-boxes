@@ -169,7 +169,6 @@ private class Boxes.App: Gtk.Application {
     static string[] opt_search;
     const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
-        { "help", 'h', OptionFlags.HIDDEN, OptionArg.NONE, ref opt_help, null, null },
         { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
