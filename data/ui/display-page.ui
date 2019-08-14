@@ -38,18 +38,21 @@
               <object class="GtkLabel" id="size_label">
                 <property name="halign">center</property>
                 <property name="valign">center</property>
+                <style>
+                  <class name="app-notification"/>
+                  <class name="overlay-box"/>
+                </style>
               </object>
             </child>
 
             <child type="overlay">
               <object class="GtkBox" id="transfer_message_box">
                 <property name="can_focus">False</property>
-                <property name="halign">fill</property>
-                <property name="valign">fill</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">True</property>
+                <property name="halign">center</property>
+                <property name="valign">center</property>
                 <style>
                   <class name="app-notification"/>
+                  <class name="overlay-box"/>
                 </style>
                 <child>
                   <object class="GtkImage">
@@ -58,7 +61,7 @@
                     <property name="halign">end</property>
                     <property name="valign">center</property>
                     <property name="margin_right">24</property>
-                    <property name="stock">gtk-save</property>
+                    <property name="icon_name">document-save-symbolic</property>
                     <property name="icon_size">6</property>
                   </object>
                   <packing>
@@ -76,6 +79,7 @@
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
                     <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
@@ -105,9 +109,6 @@
                         <property name="label" translatable="yes">You will find your file in the Downloads directory.</property>
                         <property name="wrap">True</property>
                         <property name="max_width_chars">25</property>
-                        <style>
-                          <class name="dim-label"/>
-                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>
