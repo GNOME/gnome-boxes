@@ -14,7 +14,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
                                                    ".vpc", ".vpc.gz",
                                                    ".cloop", ".cloop.gz" };
     public const string[] supported_architectures = {
-        "i686", "i586", "i486", "i386"
+        "i686", "i586", "i486", "i386", "x86_64", "amd64"
     };
 
     public override bool need_user_input_for_vm_creation { get { return false; } }
