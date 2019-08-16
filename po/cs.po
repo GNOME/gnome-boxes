@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Adam Matoušek <adydas95@gmail.com>, 2012.
-# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2016, 2017, 2018.
+# Marek Černocký <marek@manet.cz>, 2013, 2014, 2015, 2016, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-04-30 10:19+0000\n"
-"PO-Revision-Date: 2019-04-30 13:12+0200\n"
-"Last-Translator: Daniel Rusek <mail@asciiwolf.com>\n"
+"POT-Creation-Date: 2019-08-13 10:11+0000\n"
+"PO-Revision-Date: 2019-08-16 06:38+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
 #: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
@@ -138,6 +138,27 @@ msgstr "Sdílené složky"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Proměnné pole s názvy sdílených složek a mapováním cest"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Připojit se k Boxu"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr ""
+"Zadejte adresu, ke které se má připojit. Adresa může začínat pomocí "
+"spice://, rdp:// nebo vnc://."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "Připojit"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "Jméno _uživatele"
@@ -151,50 +172,58 @@ msgid "Sign In"
 msgstr "Přihlásit"
 
 #. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:13
+#: data/ui/collection-filter-switcher.ui:14
 msgid "All"
 msgstr "Vše"
 
 #. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:26
+#: data/ui/collection-filter-switcher.ui:29
 msgid "Local"
 msgstr "Místní"
 
 #. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:39
+#: data/ui/collection-filter-switcher.ui:44
 msgid "Remote"
 msgstr "Vzdálené"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Nový"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Nový"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Zpět"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Nabídka aplikace"
 
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Vybrat položky"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Zobrazení v seznamu"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Zobrazení v mřížce"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Hledat"
+
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "Vytvořit virtuální stroj…"
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "Připojit ke vzdálenému počítači…"
 
 #: data/ui/display-page.ui:85
 msgid "Ready to Receive File"
@@ -315,18 +344,9 @@ msgid "_Copy to Clipboard"
 msgstr "_Kopírovat do schránky"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Vyberte zařízení nebo soubor ISO"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
-msgid "_Cancel"
-msgstr "_Zrušit"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:329
-msgid "_Open"
-msgstr "_Otevřít"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -339,6 +359,11 @@ msgstr "Poz_astavit"
 #: data/ui/selectionbar.ui:72
 msgid "_Delete"
 msgstr "O_dstranit"
+
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:331
+msgid "_Cancel"
+msgstr "_Zrušit"
 
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
@@ -363,10 +388,6 @@ msgstr "Název"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Výběr sdílené složky"
-
-#: data/ui/shared-folder-popover.ui:97
-msgid "Cancel"
-msgstr "Zrušit"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -410,11 +431,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Rychlá instalace"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
 msgid "Password"
 msgstr "Heslo"
 
@@ -454,33 +475,25 @@ msgstr "Stáhnout OS"
 msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr "Stáhnout operační systém a nainstalovat jej do virtuálního stroje."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Připojit ke vzdálenému boxu"
-
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Připojit se pomocí RDP, SPICE, SSH nebo VNC."
-
-#: data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:157
 msgid "Connect to Libvirt brokers."
 msgstr "Připojit se ke zprostředkovatelům Libvirt."
 
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Vybrat soubor"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr ""
 "Vybrat soubor se zaveditelným obrazem pro instalaci do virtuálního stroje."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -489,7 +502,7 @@ msgstr ""
 "Jakékoli obchodní známky uvedené výše jsou použity toliko k označení "
 "softwaru, který jste získali, a jsou majetkem jejich vlastníků."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
@@ -513,6 +526,10 @@ msgstr "_Pokračovat"
 #: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Přizpůsobit prostředky"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
+msgid "_Open"
+msgstr "_Otevřít"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
@@ -591,18 +608,18 @@ msgstr "Vlastnosti"
 msgid "Screenshot from %s"
 msgstr "Snímek obrazovky pořízený %s"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "translator-credits"
 msgstr ""
 "Adam Matoušek <adydas95@gmail.com>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#: src/app.vala:112
+#: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: src/app.vala:170 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
@@ -657,7 +674,7 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Zpět"
@@ -666,7 +683,7 @@ msgstr "_Zpět"
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí…"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Výběr souboru k přenesení"
 
@@ -696,19 +713,19 @@ msgstr "Nové a nedávné"
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Systém"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:89 src/libvirt-machine-properties.vala:458
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:464
 #, c-format
 msgid "%s used"
 msgstr "%s použito"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:103
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (doporučeno)"
@@ -767,91 +784,91 @@ msgid "Display URL"
 msgstr "Adresa URL zobrazení"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
-#: src/libvirt-machine-properties.vala:179
-#: src/libvirt-machine-properties.vala:231
+#: src/libvirt-machine-properties.vala:181
+#: src/libvirt-machine-properties.vala:233
 msgid "empty"
 msgstr "prázdné"
 
 #. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:188
-#: src/libvirt-machine-properties.vala:240
+#: src/libvirt-machine-properties.vala:190
+#: src/libvirt-machine-properties.vala:246
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:202
-#: src/libvirt-machine-properties.vala:230
+#: src/libvirt-machine-properties.vala:204
+#: src/libvirt-machine-properties.vala:232
 msgid "_Select"
 msgstr "_Vybrat"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:205
-#: src/libvirt-machine-properties.vala:213
+#: src/libvirt-machine-properties.vala:207
+#: src/libvirt-machine-properties.vala:215
 msgid "_Remove"
 msgstr "_Odstranit"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:220
+#: src/libvirt-machine-properties.vala:222
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Vložení „%s“ jako CD/DVD do stroje „%s“ selhalo"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:234
+#: src/libvirt-machine-properties.vala:236
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Odebrání CD/DVD z boxu „%s“ selhalo"
 
-#: src/libvirt-machine-properties.vala:304
+#: src/libvirt-machine-properties.vala:310
 msgid "CPU"
 msgstr "Procesor"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:310
+#: src/libvirt-machine-properties.vala:316
 msgid "I/O"
 msgstr "V/V"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:316
+#: src/libvirt-machine-properties.vala:322
 msgid "Network"
 msgstr "Síť"
 
-#: src/libvirt-machine-properties.vala:345 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Restartovat"
 
-#: src/libvirt-machine-properties.vala:353
+#: src/libvirt-machine-properties.vala:359
 msgid "_Force Shutdown"
 msgstr "_Vynutit vypnutí"
 
-#: src/libvirt-machine-properties.vala:367
+#: src/libvirt-machine-properties.vala:373
 msgid "_Troubleshooting Log"
 msgstr "Zaznamenané prob_lémy"
 
-#: src/libvirt-machine-properties.vala:388
+#: src/libvirt-machine-properties.vala:394
 msgid "_Memory: "
 msgstr "_Paměť: "
 
-#: src/libvirt-machine-properties.vala:457
+#: src/libvirt-machine-properties.vala:463
 msgid "Maximum Disk Space"
 msgstr "Maximální velikost disku"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:481
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Ve vašem počítači není dostatek místa pro zvětšení maximální velikosti disku."
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:491
 msgid "Maximum _Disk Size: "
 msgstr "Maximální velikost _disku: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:544
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -861,77 +878,73 @@ msgstr[1] ""
 msgstr[2] ""
 "Změna velikosti úložiště vyžaduje smazání %llu souvisejících snímků."
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:661
 msgid "_Run in background"
 msgstr "Běžet na _pozadí"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
+#: src/libvirt-machine-properties.vala:675
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "„%s“ nebude automaticky pozastaven."
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:676
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "„%s“ bude automaticky pozastaven, aby se ušetřily prostředky."
 
+#: src/libvirt-machine-properties.vala:692
+msgid "3D Acceleration"
+msgstr "Akcelerace 3D"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:596
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:599
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: src/libvirt-machine.vala:665
-msgid "Experiencing graphics problems?"
-msgstr "Máte problémy s grafikou?"
-
-#: src/libvirt-machine.vala:667
-msgid "Disable 3D acceleration"
-msgstr "Zakázat 3D akceleraci"
-
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Vypnout"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Klonuje se „%s“…"
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Instaluje se…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:877 src/util-app.vala:136
-#: src/wizard-source.vala:120
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Živé médium"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Nastavuje se klon…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Importuje se…"
 
-#: src/libvirt-machine.vala:890
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "počítač: %s"
@@ -1095,6 +1108,10 @@ msgstr "Zařízení a sdílení"
 msgid "Snapshots"
 msgstr "Snímky"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "Otevřít"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
@@ -1177,17 +1194,13 @@ msgstr "Selhalo vytvoření snímku pro %s"
 msgid "Unknown"
 msgstr "Neznámý"
 
-#: src/spice-display.vala:66 src/spice-display.vala:486
+#: src/spice-display.vala:62 src/spice-display.vala:497
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Přesměrování zařízení USB „%s“ pro „%s“ selhalo"
 
-#: src/spice-display.vala:339
-msgid "Share Clipboard"
-msgstr "Sdílet schránku"
-
 #. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:346
+#: src/spice-display.vala:360
 #, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
@@ -1199,24 +1212,24 @@ msgstr ""
 "boxem, například kopírování a vkládání. Navštivte prosím z boxu stránku %s, "
 "ze které si můžete tyto nástroje stáhnout a nainstalovat."
 
-#: src/spice-display.vala:373
+#: src/spice-display.vala:387
 msgid "USB devices"
 msgstr "Zařízení USB"
 
-#: src/spice-display.vala:392
+#: src/spice-display.vala:403
 msgid "Folder Shares"
 msgstr "Sdílení složek"
 
-#: src/spice-display.vala:590 src/spice-display.vala:615
-#: src/spice-display.vala:618 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:601 src/spice-display.vala:626
+#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Neplatná adresa URL"
 
-#: src/spice-display.vala:600
+#: src/spice-display.vala:611
 msgid "The port must be specified once"
 msgstr "Port musí být zadán jednou"
 
-#: src/spice-display.vala:611
+#: src/spice-display.vala:622
 msgid "Missing port in Spice URL"
 msgstr "Schází port v adrese Spice URL"
 
@@ -1229,13 +1242,13 @@ msgstr "Kopíruje se „%s“ do „Stažené“"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:229
+#: src/unattended-installer.vala:216
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Během přípravy instalace se vyskytla chyba. Rychlá instalace byla zakázána."
 
-#: src/unattended-installer.vala:506
+#: src/unattended-installer.vala:479
 msgid "Downloading device drivers…"
 msgstr "Stahují se ovladače zařízení…"
 
@@ -1243,12 +1256,12 @@ msgstr "Stahují se ovladače zařízení…"
 msgid "no password"
 msgstr "žádné heslo"
 
-#: src/unattended-setup-box.vala:130
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Rychlá instalace %s vyžaduje připojení k Internetu."
 
-#: src/unattended-setup-box.vala:233
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Aktivační údaje Boxů GNOME pro „%s“"
@@ -1312,7 +1325,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:706
+#: src/vm-configurator.vala:721
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
@@ -1326,16 +1339,16 @@ msgstr "Živý box „%s“ byl automaticky odstraněn."
 msgid "Box import from file “%s” failed."
 msgstr "Import boxu ze souboru „%s“ selhal."
 
-#: src/wizard-source.vala:124
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "32bitový systém x86"
 
-#: src/wizard-source.vala:125
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "64bitový systém x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:130
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr " od %s"
@@ -1359,10 +1372,6 @@ msgstr "Přehled"
 #: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Vytváření boxu selhalo"
-
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Připojit se k Boxu"
 
 #: src/wizard.vala:303
 msgid "Empty location"
@@ -1459,19 +1468,3 @@ msgstr "Stažení selhalo."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "Přizpůso_bit…"
-
-#~ msgid "@icon@"
-#~ msgstr "@icon@"
-
-#~ msgid "%s <span color=\"grey\">(%s used)</span>"
-#~ msgstr "%s <span color=\"grey\">(použito %s)</span>"
-
-#~ msgid ""
-#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-#~ "\">(%s used)</span>"
-#~ msgstr ""
-#~ "<span color=\"grey\">Maximální velikost disku</span>\t %s <span color="
-#~ "\"grey\">(použito %s)</span>"
-
-#~ msgid "Connection to oVirt broker failed"
-#~ msgstr "Připojení ke zprostředkovateli oVirt selhalo"
