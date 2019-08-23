@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes-help\n"
-"POT-Creation-Date: 2018-12-11 10:31+0000\n"
-"PO-Revision-Date: 2019-02-08 21:55+0100\n"
+"POT-Creation-Date: 2019-06-15 10:31+0000\n"
+"PO-Revision-Date: 2019-08-23 19:05+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -933,6 +933,20 @@ msgstr ""
 "Dostosuj suwaki <gui>Pamięć</gui> i <gui>Maksymalny rozmiar dysku</gui> na "
 "odpowiednie wartości."
 
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+"Nie należy przydzielać całej dostępnej pamięci, ponieważ system gospodarza "
+"także wymaga pamięci do działania i im więcej pamięci jest przydzielonej, "
+"tym dłużej zajmuje uśpienie/wznowienie. Zalecana pamięć będzie "
+"wystarczająca, ponieważ ta informacja pochodzi z dokumentacji danego systemu "
+"operacyjnego."
+
 #. (itstool) path: info/desc
 #: C/prop-trouble.page:16
 msgid "Diagnose problems with your box using the log file."
@@ -1610,18 +1624,28 @@ msgstr ""
 "Na liście wyświetlane są <gui>Urządzenia USB</gui> podłączone do gospodarza. "
 "Ustaw przełącznik obok urządzenia do włączenia na <gui>|</gui> (włączone)."
 
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Priya Pandya"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
 #. (itstool) path: info/desc
-#: C/virtualization.page:16
+#: C/virtualization.page:22
 msgid "Check the resources available to <app>Boxes</app>."
 msgstr "Sprawdzanie zasobów dostępnych dla programu <app>Boxes</app>."
 
 #. (itstool) path: page/title
-#: C/virtualization.page:19
+#: C/virtualization.page:25
 msgid "Using processor hardware virtualization"
 msgstr "Używanie sprzętowej wirtualizacji procesora"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:21
+#: C/virtualization.page:27
 msgid ""
 "To determine whether your computer supports processor virtualization "
 "hardware extensions, and that they have been enabled in the system BIOS, run "
@@ -1632,24 +1656,79 @@ msgstr ""
 "w oknie terminala:"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:24
+#: C/virtualization.page:30
 msgid "<cmd>gnome-boxes --checks</cmd>"
 msgstr "<cmd>gnome-boxes --checks</cmd>"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:25
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr "Aby włączyć wirtualizację na komputerze:"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr "Uruchom komputer ponownie i otwórz menu <gui>BIOS</gui>."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
 msgid ""
-"If necessary, switch on the extensions <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">in the BIOS setup</link>"
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
 msgstr ""
-"Jeśli to potrzebne, włącz rozszerzenia <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">w ustawieniach BIOS-u</link>."
+"Wybierz opcję <gui>Przywróć domyślne</gui>, a następnie <gui>Zapisz i wyjdź</"
+"gui>."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr "Uruchom ponownie i ponownie otwórz <gui>BIOS</gui>."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+"Otwórz podmenu <gui>Procesor</gui> w <gui>Chipset, zaawansowana konfiguracja "
+"procesora</gui> lub <gui>Mostek północny</gui>."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+"Włącz <gui>Technologię wirtualizacji firmy Intel</gui> (znaną także jako "
+"Intel VT) lub <gui>AMD-V</gui> w zależności od marki procesora. Rozszerzenia "
+"wirtualizacji mogą mieć także nazwy <gui>Rozszerzenia wirtualizacji, "
+"Vanderpool</gui> lub różne inne w zależności od producenta i BIOS-u "
+"komputera."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr "Wybierz <gui>Zapisz i wyjdź</gui>."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr ""
+"Uruchom ponownie i wykonaj polecenie: <cmd>cat /proc/cpuinfo | grep vmx svm</"
+"cmd>."
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+"Jeśli zostanie wyświetlony jakiś tekst, to znaczy, że rozszerzenia "
+"wirtualizacji są teraz włączone. Jeśli nic nie zostanie wyświetlone, to "
+"komputer może nie mieć rozszerzeń wirtualizacji lub nie włączono właściwych "
+"ustawień BIOS-u."
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
