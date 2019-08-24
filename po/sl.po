@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Martin Srebotnjak  <miles@filmsi.net>, 2012–2014.
-# Matej Urbančič <mateju@svn.gnome.org>, 2013–2018.
+# Matej Urbančič <mateju@svn.gnome.org>, 2013–2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-03-22 16:54+0000\n"
-"PO-Revision-Date: 2019-03-22 21:21+0100\n"
+"POT-Creation-Date: 2019-08-23 17:06+0000\n"
+"PO-Revision-Date: 2019-08-24 18:40+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -22,15 +22,15 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: data/org.gnome.Boxes.appdata.xml.in:6
+#: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
 msgstr "GNOME Škatle"
 
-#: data/org.gnome.Boxes.appdata.xml.in:7
+#: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Simple remote and virtual machines"
 msgstr "Enostaven program za upravljanje oddaljenih in navideznih računalnikov"
 
-#: data/org.gnome.Boxes.appdata.xml.in:9
+#: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -44,7 +44,7 @@ msgstr ""
 "nabor nabor možnosti, ki so na voljo. Program je zasnovan tako, da zahteva "
 "zelo malo uporabniškega odziva."
 
-#: data/org.gnome.Boxes.appdata.xml.in:16
+#: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -55,11 +55,11 @@ msgstr ""
 "za dostop do oddaljenih sistemov ali upravljanje in uporabo navideznih "
 "namizij."
 
-#: data/org.gnome.Boxes.appdata.xml.in:104
+#: data/org.gnome.Boxes.appdata.xml.in:64
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
 #: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
@@ -77,11 +77,6 @@ msgstr "Pogled in uporaba navideznih sistemov"
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtualni sistem;navidezni računalnik;navidezni sistem;vm;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "@icon@"
-msgstr "@icon@"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -143,6 +138,27 @@ msgstr "Mape v souporabi"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vpis imen map v souporabi in poti"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Povezovanje s škatlo"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr ""
+"Vpis naslova za povezavo. Naslov se lahko začne z spice://, rdp://, ssh:// "
+"ali vnc://."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "Poveži"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "_Uporabniško ime"
@@ -156,56 +172,64 @@ msgid "Sign In"
 msgstr "Prijava"
 
 #. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:13
+#: data/ui/collection-filter-switcher.ui:14
 msgid "All"
 msgstr "Vse"
 
 #. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:26
+#: data/ui/collection-filter-switcher.ui:29
 msgid "Local"
 msgstr "Krajevno"
 
 #. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:39
+#: data/ui/collection-filter-switcher.ui:44
 msgid "Remote"
 msgstr "Oddaljeno"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Nova"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Novo"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Nazaj"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Meni programa"
 
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Izbor predmetov"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Seznamski pikaz"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Mrežni prikaz"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Iskanje"
 
-#: data/ui/display-page.ui:85
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "Ustvari navidezno škatlo ..."
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "Povezovanje z oddaljeno škatlo ..."
+
+#: data/ui/display-page.ui:89
 msgid "Ready to Receive File"
 msgstr "Naprava je pripravljena za prejem datoteke"
 
-#: data/ui/display-page.ui:105
+#: data/ui/display-page.ui:109
 msgid "You will find your file in the Downloads directory."
 msgstr "Datoteke so shranjene v mapi prejetih datotek."
 
@@ -319,18 +343,9 @@ msgid "_Copy to Clipboard"
 msgstr "Kopiraj v _odložišče"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Izberite napravo ali datoteko ISO"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 src/app-window.vala:327
-msgid "_Cancel"
-msgstr "Pre_kliči"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:188
-#: src/app-window.vala:329
-msgid "_Open"
-msgstr "_Odpri"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -343,6 +358,11 @@ msgstr "P_remor"
 #: data/ui/selectionbar.ui:72
 msgid "_Delete"
 msgstr "_Izbriši"
+
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:331
+msgid "_Cancel"
+msgstr "Pre_kliči"
 
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
@@ -367,10 +387,6 @@ msgstr "Ime"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Izbor mape za souporabo"
-
-#: data/ui/shared-folder-popover.ui:97
-msgid "Cancel"
-msgstr "Prekliči"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -414,11 +430,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Hitra namestitev"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
 msgid "Username"
 msgstr "Uporabniško ime"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
 msgid "Password"
 msgstr "Geslo"
 
@@ -459,32 +475,24 @@ msgstr "Prejemi operacijski sistem"
 msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr "Operacijski sistem bo prejet in nameščen na navidezni računalnik."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Povezovanje z oddaljeno škatlo"
+#: data/ui/wizard-source.ui:157
+msgid "Connect to Libvirt brokers."
+msgstr "Povezava z posrednikom Libvirt."
 
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Povezovanje z uporabo RDP, SPICE, SSH ali VNC."
-
-#: data/ui/wizard-source.ui:220
-msgid "Connect to oVirt or Libvirt brokers."
-msgstr "Povezava z posrednikom oVirt ali Libvirt."
-
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Izbor datoteke"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr "Izbor zagonljive datoteke odtisa za namestitev na virtualno napravo."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -493,10 +501,10 @@ msgstr ""
 "Vse zgoraj prikazane zaščitene znamke so uporabljene zgolj za določevanje "
 "programskih izdelkov, ki jih že posedujete in so last njihovih lastnikov."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
+"ssh://, or vnc://."
 msgstr ""
 "Vpis naslova za povezavo. Naslov se lahko začne z spice://, rdp://, ssh:// "
 "ali vnc://."
@@ -517,6 +525,10 @@ msgstr "N_adaljuj"
 #: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "Prilagodi vire"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
+msgid "_Open"
+msgstr "_Odpri"
 
 #: data/ui/wizard-toolbar.ui:243
 msgid "Search for an OS or enter a download link…"
@@ -595,65 +607,65 @@ msgstr "Lastnosti"
 msgid "Screenshot from %s"
 msgstr "Zaslonska slika %s"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "translator-credits"
 msgstr ""
 "Matej Urbančič <mateju@svn@gnome.org>\n"
 "Martin Srebotnjak"
 
-#: src/app.vala:112
+#: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Enostaven program GNOME 3 za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:173 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "Pokaži številko različice"
 
-#: src/app.vala:175
+#: src/app.vala:172
 msgid "Open in full screen"
 msgstr "Odpri v celozaslonskem načinu"
 
-#: src/app.vala:176 src/main.vala:10
+#: src/app.vala:173 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Preveri zmožnosti virtualizacije"
 
-#: src/app.vala:177
+#: src/app.vala:174
 msgid "Open box with UUID"
 msgstr "Odpri škatlo z UUID"
 
-#: src/app.vala:178
+#: src/app.vala:175
 msgid "Search term"
 msgstr "Iskalni niz"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:180
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:177
 msgid "URL to display, broker or installer media"
 msgstr "Naslov URI do sistemskega posrednika oziroma upravljalnika"
 
-#: src/app.vala:191
+#: src/app.vala:188
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:216
+#: src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: src/app.vala:469
+#: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Škatla »%s« je nameščena in pripravljena za uporabo"
 
-#: src/app.vala:471
+#: src/app.vala:468
 msgid "Launch"
 msgstr "Zaženi"
 
-#: src/app.vala:557
+#: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Škatla »%s« je bila izbrisana"
 
-#: src/app.vala:558
+#: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -662,16 +674,16 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: src/app.vala:585 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Razveljavi"
 
-#: src/app.vala:629
+#: src/app.vala:626
 msgid "Boxes is doing something"
 msgstr "Program je zaposlen z opravilom"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Izbor datotek za prenos"
 
@@ -684,7 +696,7 @@ msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Pritisk in sprostitev CTRL+ALT sprosti tipkovnico"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:310
+#: src/display-page.vala:307
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -701,19 +713,19 @@ msgstr "Novo in nedavno"
 msgid "Unsupported disk image format."
 msgstr "Napodprt zapis odtisa diska."
 
-#: src/installed-media.vala:100 src/installer-media.vala:158
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "Sistem"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:464
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">(%s uporabljeno)</span>"
+msgid "%s used"
+msgstr "%s zasedenega prostora"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s (priporočeno)"
@@ -757,7 +769,7 @@ msgstr "_Ime"
 msgid "IP Address"
 msgstr "Naslov IP"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "Sistemski posrednik"
 
@@ -779,7 +791,7 @@ msgstr "prazno"
 
 #. Don't let user eject installer media if it's an express installation or a live media
 #: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:242
+#: src/libvirt-machine-properties.vala:246
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
@@ -808,60 +820,55 @@ msgstr "Vstavljanje »%s« kot nosilca CD/DVD v »%s« je spodletelo"
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Vstavljanje nosilca CD/DVD iz »%s« je spodletelo"
 
-#: src/libvirt-machine-properties.vala:306
+#: src/libvirt-machine-properties.vala:310
 msgid "CPU"
 msgstr "CPE"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:312
+#: src/libvirt-machine-properties.vala:316
 msgid "I/O"
 msgstr "V/I"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:318
+#: src/libvirt-machine-properties.vala:322
 msgid "Network"
 msgstr "Omrežje"
 
-#: src/libvirt-machine-properties.vala:347 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Ponoven zagon"
 
-#: src/libvirt-machine-properties.vala:355
+#: src/libvirt-machine-properties.vala:359
 msgid "_Force Shutdown"
 msgstr "Vsili izklop"
 
-#: src/libvirt-machine-properties.vala:369
+#: src/libvirt-machine-properties.vala:373
 msgid "_Troubleshooting Log"
 msgstr "_Dnevniško sporočilo razhroščevanja"
 
-#: src/libvirt-machine-properties.vala:390
+#: src/libvirt-machine-properties.vala:394
 msgid "_Memory: "
 msgstr "_Pomnilnik: "
 
-#: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">Največja velikost diska</span>\t\t %s <span color=\"grey"
-"\">(%s porabljeno)</span>"
+#: src/libvirt-machine-properties.vala:463
+msgid "Maximum Disk Space"
+msgstr "Največja velikost diska"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:481
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Ni dovolj prostora na disku za povečanje največjega razpoložljivega prostora."
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:491
 msgid "Maximum _Disk Size: "
 msgstr "Največja velikost _diska: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:544
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -874,76 +881,72 @@ msgstr[2] ""
 msgstr[3] ""
 "Spreminjanje velikosti shrambe zahteva brisanje pripadajočih %llu arhivov."
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:661
 msgid "_Run in background"
 msgstr "_Zaženi v ozadju"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
+#: src/libvirt-machine-properties.vala:675
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "»%s« ni mogoče samodejno začasno ustaviti."
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:676
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "»%s« bo začasno zaustavljen za varčevanje z viri."
 
+#: src/libvirt-machine-properties.vala:692
+msgid "3D Acceleration"
+msgstr "3D pospeševanje"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:596
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnavljanje %s z diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:599
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "Zaganjanje %s"
 
-#: src/libvirt-machine.vala:665
-msgid "Experiencing graphics problems?"
-msgstr "Ali imate težave z grafičnim vmesnikom?"
-
-#: src/libvirt-machine.vala:667
-msgid "Disable 3D acceleration"
-msgstr "Onemogoči 3D pospeševanje"
-
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Ponovni zagon »%s« traja predolgo. Ali naj se izklop vsili?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "_Izklopi"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Poteka kloniranje »%s« ..."
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "Poteka nameščanje …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:877 src/util-app.vala:136
-#: src/wizard-source.vala:120
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Živi sistem"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "Poteka nastavljanje klona …"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "Poteka uvažanje …"
 
-#: src/libvirt-machine.vala:890 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "gostitelj: %s"
@@ -1097,18 +1100,6 @@ msgstr "Prijava v %s"
 msgid "Not connected to %s"
 msgstr "Ni povezave s %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "Povezava z posrednikom oVirt je spodletela"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:81
-msgid "Protocol"
-msgstr "Protokol"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:83 src/wizard.vala:540
-msgid "URL"
-msgstr "Naslov URL"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "Splošno"
@@ -1121,10 +1112,22 @@ msgstr "Naprave in souporaba"
 msgid "Snapshots"
 msgstr "Arhivi"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "Odpri"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Spremembe zahtevajo ponovni zagon »%s«."
+
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "Protokol"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "Naslov URL"
 
 #: src/remote-machine.vala:85
 msgid "_URL"
@@ -1199,46 +1202,42 @@ msgstr "Ustvarjanje arhiva %s je spodletelo"
 msgid "Unknown"
 msgstr "Neznano"
 
-#: src/spice-display.vala:66 src/spice-display.vala:491
+#: src/spice-display.vala:62 src/spice-display.vala:497
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Preusmeritev naprave USB »%s« za »%s« je spodletela."
 
-#: src/spice-display.vala:346
-msgid "Share Clipboard"
-msgstr "Souporaba odložišča"
-
-#: src/spice-display.vala:351
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:360
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
-"Program SPICE ni nameščen. Ta orodja izboljšajo uporabniško izkušnjo in "
-"omogočijo ukazno povezovanje škatelj z gostiteljevo napravo, kot je na "
-"primer prenos ukaza kopiraj in prilepi. Za prejem in namestitev orodij "
-"obiščite spletno mesto <a href=\"http://www.spice-space.org/download.html"
-"\">http://www.spice-space.org/download.html</a>."
+"Orodja SPICE niso nameščena. Ta orodja izboljšajo uporabniško izkušnjo in "
+"omogočijo ukazno povezovanje škatel z gostiteljevo napravo, kot je na primer "
+"prenos ukaza kopiraj in prilepi. Za prejem in namestitev orodij obiščite "
+"spletno mesto %s in namestite orodja znotraj škatel."
 
-#: src/spice-display.vala:378
+#: src/spice-display.vala:387
 msgid "USB devices"
 msgstr "Naprave USB"
 
-#: src/spice-display.vala:397
+#: src/spice-display.vala:403
 msgid "Folder Shares"
 msgstr "Mape za souporabo"
 
-#: src/spice-display.vala:595 src/spice-display.vala:620
-#: src/spice-display.vala:623 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:601 src/spice-display.vala:626
+#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Neveljaven naslov URL"
 
-#: src/spice-display.vala:605
+#: src/spice-display.vala:611
 msgid "The port must be specified once"
 msgstr "Vrata morajo biti določena"
 
-#: src/spice-display.vala:616
+#: src/spice-display.vala:622
 msgid "Missing port in Spice URL"
 msgstr "V naslovu Spice manjka določilo vrat"
 
@@ -1251,14 +1250,14 @@ msgstr "Poteka kopiranje »%s« v mape »Prejeto«"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:229
+#: src/unattended-installer.vala:216
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Pri pripravi na namestitev je prišlo do napake. Hitra namestitev je "
 "onemogočena."
 
-#: src/unattended-installer.vala:506
+#: src/unattended-installer.vala:479
 msgid "Downloading device drivers…"
 msgstr "Poteka prejemanje gonilnikov naprave …"
 
@@ -1266,12 +1265,12 @@ msgstr "Poteka prejemanje gonilnikov naprave …"
 msgid "no password"
 msgstr "ni podanega gesla"
 
-#: src/unattended-setup-box.vala:130
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Hitra namestitev %s zahteva internetno povezavo."
 
-#: src/unattended-setup-box.vala:233
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Poverila programa Škatle za »%s«"
@@ -1333,7 +1332,7 @@ msgstr "Ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:706
+#: src/vm-configurator.vala:721
 msgid "Incapable host system"
 msgstr "Gostiteljski sistem brez podpore"
 
@@ -1347,16 +1346,16 @@ msgstr "Škatla »%s« je bila samodejno izbrisana."
 msgid "Box import from file “%s” failed."
 msgstr "Uvoz škatle iz datoteke »%s« je spodletel."
 
-#: src/wizard-source.vala:124
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "32-bitni sistem x86"
 
-#: src/wizard-source.vala:125
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "64-bitni sistem x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:130
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr " - %s"
@@ -1380,10 +1379,6 @@ msgstr "Pregled"
 #: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Ustvarjanje škatle je spodletelo"
-
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Povezovanje s škatlo"
 
 #: src/wizard.vala:303
 msgid "Empty location"
@@ -1482,6 +1477,34 @@ msgstr "Prejemanje je spodletelo."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "Prila_godi …"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "_New"
+#~ msgstr "_Nova"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "Povezovanje z uporabo RDP, SPICE, SSH ali VNC."
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">(%s uporabljeno)</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">Največja velikost diska</span>\t\t %s <span color="
+#~ "\"grey\">(%s porabljeno)</span>"
+
+#~ msgid "Experiencing graphics problems?"
+#~ msgstr "Ali imate težave z grafičnim vmesnikom?"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "Povezava z posrednikom oVirt je spodletela"
+
+#~ msgid "Share Clipboard"
+#~ msgstr "Souporaba odložišča"
 
 #~ msgid "About"
 #~ msgstr "O programu"
@@ -1707,9 +1730,6 @@ msgstr "Prila_godi …"
 #~ msgid "Troubleshooting log"
 #~ msgstr "Dnevnik razreševanja težav"
 
-#~ msgid "Maximum Disk Size"
-#~ msgstr "Največja velikost diska"
-
 #~ msgid "Import '%s' from system broker"
 #~ msgstr "Uvozi '%s' iz sistemskega posrednika"
 
@@ -1792,9 +1812,6 @@ msgstr "Prila_godi …"
 
 #~ msgid "Desktop Access"
 #~ msgstr "Dostop do namizja"
-
-#~ msgid "New"
-#~ msgstr "Novo"
 
 #~ msgid "%s - Properties"
 #~ msgstr "%s - lastnosti"
