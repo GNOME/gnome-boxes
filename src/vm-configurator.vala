@@ -372,6 +372,15 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
+    private static bool domain_caps_supports_efi (DomainCapabilities domain_caps) {
+        foreach (var firmware in domain_caps.get_os ().get_firmwares()) {
+            if (firmware == GVirConfig.DomainOsFirmware.EFI)
+                return true;
+        }
+
+        return false;
+    }
+
     private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps, DomainCapabilities domain_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
