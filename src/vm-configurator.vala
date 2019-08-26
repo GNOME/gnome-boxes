@@ -381,6 +381,16 @@ private class Boxes.VMConfigurator {
         return false;
     }
 
+    private static bool supports_efi (InstallerMedia install_media, DomainCapabilities domain_caps) {
+        if (install_media == null || !install_media.supports_efi)
+            return false;
+
+        if (domain_caps == null || !domain_caps_supports_efi (domain_caps))
+            return false;
+
+        return true;
+    }
+
     private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps, DomainCapabilities domain_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
