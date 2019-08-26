@@ -209,7 +209,7 @@ private class Boxes.VMCreator {
                                                                     StorageVol   volume,
                                                                     Cancellable? cancellable) throws GLib.Error {
         var caps = yield connection.get_capabilities_async (cancellable);
-        var config = VMConfigurator.create_domain_config (install_media, volume.get_path (), caps);
+        var config = VMConfigurator.create_domain_config (install_media, volume.get_path (), caps, null);
         config.name = name;
         config.title = title;
 
