@@ -51,7 +51,7 @@ private class Boxes.VMConfigurator {
         var virt_type = guest_kvm_enabled (best_caps) ? DomainVirtType.KVM : DomainVirtType.QEMU;
         domain.set_virt_type (virt_type);
 
-        set_os_config (domain, install_media, best_caps);
+        set_os_config (domain, install_media, best_caps, domain_caps);
 
         string[] features = {};
         if (guest_supports_feature (best_caps, "acpi"))
@@ -372,7 +372,7 @@ private class Boxes.VMConfigurator {
         domain.set_os (os);
     }
 
-    private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps) {
+    private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps, DomainCapabilities domain_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
         os.set_arch (guest_caps.get_arch ().get_name ());
