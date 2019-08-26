@@ -38,7 +38,7 @@ private class Boxes.VMConfigurator {
     private const string LIBOSINFO_XML = "<libosinfo>%s</libosinfo>";
     private const string LIBOSINFO_OS_ID_XML = "<os id=\"%s\"/>";
 
-    public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
+    public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps, DomainCapabilities domain_caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
