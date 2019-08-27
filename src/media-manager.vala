@@ -114,7 +114,9 @@ private class Boxes.MediaManager : Object {
 
                 var media = yield create_installer_media_for_path (path);
 
-                list.append (media);
+		if (media != null) {
+                    list.append (media);
+		}
             } catch (GLib.Error error) {
                 warning ("Failed to get information on device '%s': %s. Ignoring..", path, error.message);
             }
