@@ -4,34 +4,34 @@
 # Tom Tryfonidis <tomtryf@gmail.com>, 2012.
 # Mel <CyBunnyDragon@gmail.com>, 2012.
 # Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>, 2013, 2014, 2015.
-# Efstathios Iosifidis <iosifidis@opensuse.org>, 2013, 2014, 2015, 2016, 2017.
+# Efstathios Iosifidis <eiosifidis@gnome.org>, 2013, 2014, 2015, 2016, 2017, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-05-23 09:32+0000\n"
-"PO-Revision-Date: 2019-06-10 23:54+0300\n"
+"POT-Creation-Date: 2019-08-25 22:36+0000\n"
+"PO-Revision-Date: 2019-08-30 14:35+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
-"Language-Team: Ελληνικά <opensuse-translation-el@opensuse.org>\n"
+"Language-Team: Ελληνικά <>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-Project-Style: gnome\n"
 
-#: data/org.gnome.Boxes.appdata.xml.in:6
+#: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
 msgstr "Πλαίσια GNOME"
 
-#: data/org.gnome.Boxes.appdata.xml.in:7
+#: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Simple remote and virtual machines"
 msgstr ""
 "Μια απλή εφαρμογή για να έχετε πρόσβαση σε απομακρυσμένα ή εικονικά συστήματα"
 
-#: data/org.gnome.Boxes.appdata.xml.in:9
+#: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -47,7 +47,7 @@ msgstr ""
 "εστιάζει στο να πετύχει να τα κάνει όλα να λειτουργούν ομαλά με την πρώτη, "
 "με ελάχιστες ενέργειες από τον χρήστη."
 
-#: data/org.gnome.Boxes.appdata.xml.in:16
+#: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -59,11 +59,11 @@ msgstr ""
 "ασταθείς) εκδόσεις του αγαπημένου σας λειτουργικού συστήματος, ή χρειάζεστε "
 "να συνδεθείτε απομακρυσμένα με ένα μηχάνημα (για παράδειγμα στο γραφείο σας)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:97
+#: data/org.gnome.Boxes.appdata.xml.in:64
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:115
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
 #: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
@@ -144,6 +144,31 @@ msgstr ""
 "Πολλαπλές συστοιχίες ονομάτων κοινόχρηστων φακέλων και χαρτογράφησης "
 "διαδρομών"
 
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "Σύνδεση στο Πλαίσιο"
+
+#: data/ui/assistant/remote-connection.ui:22
+#| msgid ""
+#| "Enter an address to connect to. Addresses can begin with spice://, "
+#| "rdp://, ssh://, or vnc://."
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr ""
+"Εισαγάγετε μια διεύθυνση για σύνδεση. Οι διευθύνσεις μπορούν να ξεκινούν με "
+"spice://, rdp:// ή vnc://."
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: data/ui/assistant/remote-connection.ui:45
+#| msgid "Connected"
+msgid "Connect"
+msgstr "Σύνδεση"
+
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
 msgstr "Ό_νομα χρήστη"
@@ -157,56 +182,66 @@ msgid "Sign In"
 msgstr "Σύνδεση"
 
 #. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:13
+#: data/ui/collection-filter-switcher.ui:14
 msgid "All"
 msgstr "Όλα"
 
 #. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:26
+#: data/ui/collection-filter-switcher.ui:29
 msgid "Local"
 msgstr "Τοπικά"
 
 #. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:39
+#: data/ui/collection-filter-switcher.ui:44
 msgid "Remote"
 msgstr "Απομακρυσμένα"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "_Νέο"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "Νέο"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
 #: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
 #: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Πίσω"
 
-#: data/ui/collection-toolbar.ui:64
+#: data/ui/collection-toolbar.ui:74
 msgid "Application Menu"
 msgstr "Μενού εφαρμογής"
 
-#: data/ui/collection-toolbar.ui:92
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Επιλογή αντικειμένων"
 
-#: data/ui/collection-toolbar.ui:120
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Προβολή λίστας"
 
-#: data/ui/collection-toolbar.ui:148
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Προβολή πλέγματος"
 
-#: data/ui/collection-toolbar.ui:175 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: data/ui/display-page.ui:85
+#: data/ui/collection-toolbar.ui:212
+#| msgid "Simple remote and virtual machines"
+msgid "Create a Virtual Machine…"
+msgstr "Δημιουργία εικονικής μηχανής…"
+
+#: data/ui/collection-toolbar.ui:219
+#| msgid "Connect to a remote box"
+msgid "Connect to a Remote Computer…"
+msgstr "Σύνδεση στο απομακρυσμένο υπολογιστή…"
+
+#: data/ui/display-page.ui:89
 msgid "Ready to Receive File"
 msgstr "Έτοιμο για λήψη αρχείου"
 
-#: data/ui/display-page.ui:105
+#: data/ui/display-page.ui:109
 msgid "You will find your file in the Downloads directory."
 msgstr "Θα βρείτε το αρχείο σας στον κατάλογο των Λήψεων."
 
@@ -337,7 +372,7 @@ msgid "_Delete"
 msgstr "_Διαγραφή"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:327
+#: src/app-window.vala:331
 msgid "_Cancel"
 msgstr "Ακύ_ρωση"
 
@@ -364,10 +399,6 @@ msgstr "Όνομα"
 #: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "Επιλέξτε διαμοιρασμένο φάκελο"
-
-#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
-msgid "Cancel"
-msgstr "Ακύρωση"
 
 #: data/ui/shared-folder-popover.ui:111
 msgid "Save"
@@ -412,11 +443,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Γρήγορη εγκατάσταση"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:319
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
 msgid "Username"
 msgstr "Όνομα χρήστη"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:320
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
 msgid "Password"
 msgstr "Συνθηματικό"
 
@@ -459,34 +490,26 @@ msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr ""
 "Το λειτουργικό σύστημα θα ληφθεί και θα εγκατασταθεί σε μια εικονική μηχανή."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-#: data/ui/wizard-source.ui:238 data/ui/wizard-source.ui:301
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:151
-msgid "Connect to a remote box"
-msgstr "Σύνδεση στο απομακρυσμένο πλαίσιο"
-
-#: data/ui/wizard-source.ui:158
-msgid "Connect using RDP, SPICE, SSH, or VNC."
-msgstr "Σύνδεση με την χρήση RDP, SPICE, SSH ή VNC."
-
-#: data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:157
 msgid "Connect to Libvirt brokers."
 msgstr "Σύνδεση με Libvirt brokers."
 
-#: data/ui/wizard-source.ui:276
+#: data/ui/wizard-source.ui:213
 msgid "Select a file"
 msgstr "Επιλογή αρχείου"
 
-#: data/ui/wizard-source.ui:283
+#: data/ui/wizard-source.ui:220
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr ""
 "Επιλέξτε ένα εκκινήσιμο αρχείο εικόνας για εγκατάσταση σε μια εικονική "
 "μηχανή."
 
-#: data/ui/wizard-source.ui:319
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -496,7 +519,7 @@ msgstr ""
 "χρησιμοποιούνται απλώς για την ταυτοποίηση προγραμμάτων που έχετε ήδη, και "
 "τα οποία ανήκουν στους αντίστοιχους ιδιοκτήτες τους."
 
-#: data/ui/wizard-source.ui:385
+#: data/ui/wizard-source.ui:322
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
@@ -521,7 +544,7 @@ msgstr "Σ_υνέχεια"
 msgid "Customize Resources"
 msgstr "Προσαρμογή πόρων"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:329
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
 msgid "_Open"
 msgstr "Ά_νοιγμα"
 
@@ -602,7 +625,7 @@ msgstr "Ιδιότητες"
 msgid "Screenshot from %s"
 msgstr "Στιγμιότυπο από το %s"
 
-#: src/app.vala:111
+#: src/app.vala:112
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -614,13 +637,13 @@ msgstr ""
 "\n"
 "http://gnome.gr/"
 
-#: src/app.vala:112
+#: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε απομακρυσμένα ή "
 "εικονικά συστήματα"
 
-#: src/app.vala:170 src/main.vala:9
+#: src/app.vala:171 src/main.vala:9
 msgid "Display version number"
 msgstr "Εμφάνιση αριθμού έκδοσης"
 
@@ -676,7 +699,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "Έχει διαγραφεί %u πλαίσιο"
 msgstr[1] "Έχουν διαγραφεί %u πλαίσια"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:553
+#: src/app.vala:582 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Α_ναίρεση"
@@ -685,7 +708,7 @@ msgstr "Α_ναίρεση"
 msgid "Boxes is doing something"
 msgstr "Η εφαρμογή πλαίσια εκτελεί κάτι"
 
-#: src/app-window.vala:326
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "Επιλογή αρχείων προς μεταφορά"
 
@@ -700,7 +723,7 @@ msgstr ""
 "πληκτρολόγιο."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:310
+#: src/display-page.vala:307
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -723,9 +746,8 @@ msgid "System"
 msgstr "Σύστημα"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:460
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:464
 #, c-format
-#| msgid "Paused"
 msgid "%s used"
 msgstr "%s σε χρήση"
 
@@ -796,7 +818,7 @@ msgstr "κενό"
 
 #. Don't let user eject installer media if it's an express installation or a live media
 #: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:242
+#: src/libvirt-machine-properties.vala:246
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
@@ -825,56 +847,56 @@ msgstr "Απέτυχε η εισαγωγή του «%s» ως CD/DVD στο «%s
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Απέτυχε η αφαίρεση του CD/DVD από το «%s»"
 
-#: src/libvirt-machine-properties.vala:306
+#: src/libvirt-machine-properties.vala:310
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:312
+#: src/libvirt-machine-properties.vala:316
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:318
+#: src/libvirt-machine-properties.vala:322
 msgid "Network"
 msgstr "Δίκτυο"
 
-#: src/libvirt-machine-properties.vala:347 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Επανεκκίνηση"
 
-#: src/libvirt-machine-properties.vala:355
+#: src/libvirt-machine-properties.vala:359
 msgid "_Force Shutdown"
 msgstr "Εξ_αναγκασμός τερματισμού"
 
-#: src/libvirt-machine-properties.vala:369
+#: src/libvirt-machine-properties.vala:373
 msgid "_Troubleshooting Log"
 msgstr "Καταγ_ραφή αντιμετώπισης προβλημάτων"
 
-#: src/libvirt-machine-properties.vala:390
+#: src/libvirt-machine-properties.vala:394
 msgid "_Memory: "
 msgstr "_Μνήμη: "
 
-#: src/libvirt-machine-properties.vala:459
+#: src/libvirt-machine-properties.vala:463
 msgid "Maximum Disk Space"
 msgstr "Μέγιστο μέγεθος δίσκου"
 
-#: src/libvirt-machine-properties.vala:477
+#: src/libvirt-machine-properties.vala:481
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Δεν υπάρχει αρκετός χώρος στο μηχάνημα σας για να αυξηθεί το μέγιστο μέγεθος "
 "του δίσκου."
 
-#: src/libvirt-machine-properties.vala:487
+#: src/libvirt-machine-properties.vala:491
 msgid "Maximum _Disk Size: "
 msgstr "Μέγιστο μέγεθος _δίσκου: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:540
+#: src/libvirt-machine-properties.vala:544
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -885,23 +907,23 @@ msgstr[1] ""
 "Η αλλαγή μεγέθους αποθήκευσης απαιτεί τη διαγραφή των συσχετισμένων "
 "στιγμιότυπων %llu."
 
-#: src/libvirt-machine-properties.vala:657
+#: src/libvirt-machine-properties.vala:661
 msgid "_Run in background"
 msgstr "Εκ_τέλεση στο παρασκήνιο"
 
-#: src/libvirt-machine-properties.vala:668
-#: src/libvirt-machine-properties.vala:671
+#: src/libvirt-machine-properties.vala:672
+#: src/libvirt-machine-properties.vala:675
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "Το «%s» δεν θα διακοπεί αυτόματα."
 
-#: src/libvirt-machine-properties.vala:669
-#: src/libvirt-machine-properties.vala:672
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:676
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "Το «%s» θα διακοπεί αυτόματα για να εξοικονομηθούν πόροι."
 
-#: src/libvirt-machine-properties.vala:688
+#: src/libvirt-machine-properties.vala:692
 msgid "3D Acceleration"
 msgstr "Επιτάχυνση 3D"
 
@@ -939,7 +961,7 @@ msgstr "Εγκατάσταση…"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/libvirt-machine.vala:861 src/util-app.vala:136
-#: src/wizard-source.vala:120
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Ζωντανό"
 
@@ -1199,17 +1221,13 @@ msgstr "Αποτυχία δημιουργίας στιγμιότυπου του 
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: src/spice-display.vala:66 src/spice-display.vala:486
+#: src/spice-display.vala:62 src/spice-display.vala:497
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Απέτυχε η ανακατεύθυνση της συσκευής USB «%s» για το «%s»"
 
-#: src/spice-display.vala:339
-msgid "Share Clipboard"
-msgstr "Κοινή χρήση του πρόχειρου"
-
 #. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:346
+#: src/spice-display.vala:360
 #, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
@@ -1222,24 +1240,24 @@ msgstr ""
 "επισκεφθείτε το %s για να κατεβάσετε και εγκαταστήσετε αυτά τα εργαλεία μέσα "
 "από το πλαίσιο."
 
-#: src/spice-display.vala:373
+#: src/spice-display.vala:387
 msgid "USB devices"
 msgstr "Συσκευές USB"
 
-#: src/spice-display.vala:392
+#: src/spice-display.vala:403
 msgid "Folder Shares"
 msgstr "Κοινόχρηστοι φάκελοι"
 
-#: src/spice-display.vala:590 src/spice-display.vala:615
-#: src/spice-display.vala:618 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:601 src/spice-display.vala:626
+#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "Άκυρη διεύθυνση"
 
-#: src/spice-display.vala:600
+#: src/spice-display.vala:611
 msgid "The port must be specified once"
 msgstr "Η θύρα πρέπει να καθοριστεί μια φορά"
 
-#: src/spice-display.vala:611
+#: src/spice-display.vala:622
 msgid "Missing port in Spice URL"
 msgstr "Λείπει η θύρα στη διεύθυνση Spice"
 
@@ -1252,14 +1270,14 @@ msgstr "Αντιγραφή του «%s» στις «Λήψεις»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:229
+#: src/unattended-installer.vala:216
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Προέκυψε ένα σφάλμα κατά τη προετοιμασία της εγκατάστασης. Απενεργοποιήθηκε "
 "η γρήγορη εγκατάσταση."
 
-#: src/unattended-installer.vala:506
+#: src/unattended-installer.vala:479
 msgid "Downloading device drivers…"
 msgstr "Λήψη οδηγών συσκευής…"
 
@@ -1336,7 +1354,7 @@ msgstr "όχι"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:703
+#: src/vm-configurator.vala:721
 msgid "Incapable host system"
 msgstr "Ανίκανος κεντρικός υπολογιστής"
 
@@ -1350,16 +1368,16 @@ msgstr "Έχει διαγραφεί αυτόματα το πλαίσιο «%s».
 msgid "Box import from file “%s” failed."
 msgstr "Απέτυχε η εισαγωγή του πλαισίου από το αρχείο «%s»."
 
-#: src/wizard-source.vala:124
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "32-bit x86 σύστημα"
 
-#: src/wizard-source.vala:125
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "64-bit x86 σύστημα"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:130
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr " από %s"
@@ -1383,10 +1401,6 @@ msgstr "Επισκόπηση"
 #: src/wizard.vala:121
 msgid "Box creation failed"
 msgstr "Απέτυχε η δημιουργία του πλαισίου"
-
-#: src/wizard.vala:192
-msgid "Connect to a Box"
-msgstr "Σύνδεση στο Πλαίσιο"
 
 #: src/wizard.vala:303
 msgid "Empty location"
@@ -1487,6 +1501,15 @@ msgstr "Αποτυχία λήψης."
 #: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "Π_ροσαρμογή…"
+
+#~ msgid "_New"
+#~ msgstr "_Νέο"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "Σύνδεση με την χρήση RDP, SPICE, SSH ή VNC."
+
+#~ msgid "Share Clipboard"
+#~ msgstr "Κοινή χρήση του πρόχειρου"
 
 #~ msgid "@icon@"
 #~ msgstr "@icon@"
@@ -1663,9 +1686,6 @@ msgstr "Π_ροσαρμογή…"
 
 #~ msgid "%s - Properties"
 #~ msgstr "%s - Ιδιότητες"
-
-#~ msgid "New"
-#~ msgstr "Νέο"
 
 #~ msgid "Animation duration"
 #~ msgstr "Διάρκεια του εφέ κίνησης"
