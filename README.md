@@ -2,6 +2,8 @@
 
 A simple GNOME 3 application to access remote or virtual systems.
 
+[![Download on Flathub](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Flathub-badge-en.svg/240px-Flathub-badge-en.svg.png)](https://flathub.org/apps/details/org.gnome.Boxes)
+
 ## Goals
 
 * View, access, and use:
@@ -130,5 +132,5 @@ GNOME-boxes
 
 ### References
 
-* [GNOME Boxes](https://wiki.GNOME.org/ThreePointThree/Features/Boxes)
+* [GNOME Boxes](https://wiki.gnome.org/Apps/Boxes)
 * [GNOME Boxes Wiki](https://wiki.GNOME.org/Design/Apps/Boxes)
