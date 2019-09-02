@@ -368,7 +368,9 @@ private class Boxes.VMConfigurator {
 
         os.set_arch (old_os.get_arch ());
         os.set_machine (old_os.get_machine ());
+#if USE_UEFI
         os.set_firmware (old_os.get_firmware ());
+#endif
 
         domain.set_os (os);
     }
@@ -399,8 +401,10 @@ private class Boxes.VMConfigurator {
         if (install_media.prefers_q35)
             os.set_machine ("q35");
 
+#if USE_UEFI
         if (supports_efi (install_media, domain_caps))
             os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
+#endif
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
         install_media.set_direct_boot_params (os);
