@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2019-02-06 19:46+0000\n"
-"PO-Revision-Date: 2019-02-06 22:44+0100\n"
+"POT-Creation-Date: 2019-06-15 10:31+0000\n"
+"PO-Revision-Date: 2019-09-03 23:46+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -89,10 +89,9 @@ msgid ""
 "where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
 "your box. To list the domains seen by <app>Boxes</app>, type"
 msgstr ""
-"ahol a <cmd>Név</cmd> a gépe <app>Gépek</app> alkalmazásbeli neve vagy <em"
-">tartománya</"
-"em>. A <app>Gépek</app> által látott tartományok listájához gépelje be a "
-"következőt:"
+"ahol a <cmd>Név</cmd> a gépe <app>Gépek</app> alkalmazásbeli neve vagy "
+"<em>tartománya</em>. A <app>Gépek</app> által látott tartományok listájához "
+"gépelje be a következőt:"
 
 #. (itstool) path: item/code
 #: C/backup.page:33
@@ -947,6 +946,20 @@ msgstr ""
 "Állítsa be a <gui>Memória</gui> és <gui>Legnagyobb lemezméret</gui> "
 "csúszkákat a kívánt értékeknek megfelelően."
 
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+"Ne ossza ki az összes elérhető memóriát, mivel a gazda rendszere is igényel"
+" memóriát a futáshoz, és minél több memóriát oszt ki, annál tovább fog"
+" tartani a felfüggesztés/folytatás. A javasolt memória elegendő lesz, mert"
+" ezt az információt az operációs rendszerek dokumentációi alapján állították"
+" be."
+
 #. (itstool) path: info/desc
 #: C/prop-trouble.page:16
 msgid "Diagnose problems with your box using the log file."
@@ -1640,18 +1653,28 @@ msgstr ""
 "meg. Állítsa a kívánt eszközök melletti kapcsolókat <gui style=\"switch"
 "\">BE</gui> állásba."
 
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Priya Pandya"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
 #. (itstool) path: info/desc
-#: C/virtualization.page:16
+#: C/virtualization.page:22
 msgid "Check the resources available to <app>Boxes</app>."
 msgstr "Ellenőrizze a <app>Gépek</app> számára elérhető erőforrásokat."
 
 #. (itstool) path: page/title
-#: C/virtualization.page:19
+#: C/virtualization.page:25
 msgid "Using processor hardware virtualization"
 msgstr "Processzorhardveres virtualizáció használata"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:21
+#: C/virtualization.page:27
 msgid ""
 "To determine whether your computer supports processor virtualization "
 "hardware extensions, and that they have been enabled in the system BIOS, run "
@@ -1662,24 +1685,78 @@ msgstr ""
 "a rendszer BIOS-ban, futtassa a következőt a terminálban:"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:24
+#: C/virtualization.page:30
 msgid "<cmd>gnome-boxes --checks</cmd>"
 msgstr "<cmd>gnome-boxes --checks</cmd>"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:25
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr "A virtualizáció bekapcsolásához:"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr "Indítsa újra a rendszert, és nyissa meg a <gui>BIOS</gui> menüt"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
 msgid ""
-"If necessary, switch on the extensions <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">in the BIOS setup</link>"
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
 msgstr ""
-"Ha szükséges, kapcsolja be a kiterjesztéseket a <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">BIOS beállításokban</link>."
+"Válassza az <gui>Alapértelmezések visszaállítása</gui>, majd a <gui>Mentés és"
+" kilépés</gui> lehetőséget."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr "Indítsa újra a számítógépet, és nyissa meg újra a <gui>BIOS</gui>-t."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+"Nyissa meg a <gui>Processzor</gui> almenüt a <gui>Lapkakészlet, speciális CPU"
+" beállítások</gui> vagy az <gui>Északi híd</gui> alatt."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+"Kapcsolja be az <gui>Intel virtualizációs technológiát</gui> (más néven Intel"
+" VT) vagy az <gui>AMD-V</gui>-t a processzor típusától függően. A"
+" virtualizációs kiterjesztések neve lehet <gui>Virtualizációs kiterjesztés,"
+" Vanderpool</gui> vagy más név a gyártótól és a rendszer BIOS-tól függően."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr "<gui>Mentsen és zárja be</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr ""
+"Indítsa újra a számítógépet, és adja ki a következő parancsot: <cmd>cat"
+" /proc/cpuinfo | grep vmx svm</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+"Ha a parancsnak van kimenete, akkor a virtualizációs kiterjesztések"
+" engedélyezve vannak. "
+"Ha nincs kimenete, akkor a rendszeren nincsenek virtualizációs"
+" kiterjesztések, vagy a megfelelő BIOS beállítások nincsenek bekapcsolva."
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
@@ -1726,3 +1803,15 @@ msgstr ""
 "Windows™-on. A virtuális gép használható szoftverfejlesztésre is, például "
 "eredeti környezetben való teszteléshez."
 
+#~ msgid ""
+#~ "If necessary, switch on the extensions <link href=\"http://docs."
+#~ "fedoraproject.org/en-US/Fedora/18/html/"
+#~ "Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-"
+#~ "Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS."
+#~ "html\">in the BIOS setup</link>"
+#~ msgstr ""
+#~ "Ha szükséges, kapcsolja be a kiterjesztéseket a <link href=\"http://docs."
+#~ "fedoraproject.org/en-US/Fedora/18/html/"
+#~ "Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-"
+#~ "Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS."
+#~ "html\">BIOS beállításokban</link>."
