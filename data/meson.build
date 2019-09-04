@@ -1,6 +1,6 @@
 icondir = join_paths('icons', 'hicolor', 'scalable', 'apps')
 install_data(
-  join_paths(icondir, 'org.gnome.Boxes.svg'),
+  join_paths(icondir, ('@0@.svg').format(application_id)),
   install_dir: join_paths(data_dir, icondir),
   rename: '@0@.svg'.format(application_id)
 )
