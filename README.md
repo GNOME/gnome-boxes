@@ -1,8 +1,10 @@
-# Introduction
+# GNOME Boxes
 
 A simple GNOME 3 application to access remote or virtual systems.
 
-# Goals
+[![Download on Flathub](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Flathub-badge-en.svg/240px-Flathub-badge-en.svg.png)](https://flathub.org/apps/details/org.gnome.Boxes)
+
+## Goals
 
 * View, access, and use:
   * remote machines
@@ -16,24 +18,24 @@ A simple GNOME 3 application to access remote or virtual systems.
 * Select favorites
 * Search for connections
 
-# Non-Goals
+## Non-Goals
 
 * Enterprise system management / administration
 * Asset management
 * Software distribution
 * Automation
 
-# Use Cases
+## Use Cases
 
 * Connect to a local virtual machine for testing.
 * Connecting to a work machine from home.
 * Connect to a work machine over a low quality cellular network.
 
-# Runtime Dependencies
+## Runtime Dependencies
 
 * genisoimage (usually provided by genisoimage package)
 
-# Reporting Bugs
+## Reporting Bugs
 
 If you want to report bugs, please check if there isn't already one on:
 
@@ -54,40 +56,40 @@ include
 The determination of what is useful is your task. If you forget about
 something important, someone will probably ask.
 
-# Contributing
+## Contributing
 
-## Finding Bugs
+### Finding Bugs
 
 Bugs labelled as "Newcomers" for the project can be found here:
 
 [Newcomers Bugs](https://gitlab.gnome.org/GNOME/gnome-boxes/issues?label_name%5B%5D=4.+Newcomers)
 
-## Building the Project
+### Building the Project
 
 Instructions for building the project can be found here:
 
 [Build the Project](https://wiki.gnome.org/Newcomers/BuildProject)
 
-# Appendix
+## Appendix
 
-## Backtracing
+### Backtracing
 
 * If you are not using the flatpak gnome-boxes package
 
-```
+```bash
 gdb gnome-boxes
 ```
 
 * If you using the flatpak gnome-boxes package
 
-```
+```bash
 flatpak run --command=sh --devel org.gnome.Boxes
 gdb /app/bin/gnome-boxes
 ```
 
 Type
 
-```
+```bash
 run
 ```
 
@@ -95,41 +97,40 @@ Let the program crash.
 
 Type:
 
-```
+```bash
 backtrace
 ```
 
 And copy the output to pastebin.com or a similar webpage and link it in the
 bugtracker with a hint.
 
-## Activating debug messages
+### Activating debug messages
 
 To run Boxes with debug message output on the console, just run:
 
-```
+```bash
 G_MESSAGES_DEBUG=Boxes GNOME-boxes
 ```
 
 If you want to run your jhbuild version, execute:
 
-```
+```bash
 G_MESSAGES_DEBUG=Boxes jhbuild run GNOME-boxes
 ```
 
 or start a shell under jhbuild environment:
 
-```
+```bash
 G_MESSAGES_DEBUG=Boxes jhbuild shell
 ```
 
 to be able to use simpler commands from there:
 
-```
+```bash
 GNOME-boxes
 ```
 
-## References
+### References
 
-* [GNOME Boxes](https://wiki.GNOME.org/ThreePointThree/Features/Boxes)
+* [GNOME Boxes](https://wiki.gnome.org/Apps/Boxes)
 * [GNOME Boxes Wiki](https://wiki.GNOME.org/Design/Apps/Boxes)
-
