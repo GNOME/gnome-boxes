@@ -49,6 +49,42 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     public bool run_in_bg { get; set; } // If true, machine will never be paused automatically by Boxes.
 
+    private bool _acceleration_3d;
+    public bool acceleration_3d {
+        get {
+            return _acceleration_3d;
+        }
+
+        set {
+            _acceleration_3d = value;
+
+            GLib.List<GVirConfig.DomainDevice> devices = null;
+            foreach (var device in domain_config.get_devices ()) {
+                if (device is GVirConfig.DomainGraphicsSpice) {
+                    var graphics_device = VMConfigurator.create_graphics_device (_acceleration_3d);
+
+                    devices.prepend (graphics_device);
+                } else if (device is GVirConfig.DomainVideo) {
+                    var video_device = device as GVirConfig.DomainVideo;
+                    video_device.set_accel3d (_acceleration_3d);
+
+                    devices.prepend (video_device);
+                } else {
+                    devices.prepend (device);
+                }
+            }
+
+            devices.reverse ();
+            domain_config.set_devices (devices);
+
+            try {
+                domain.set_config (domain_config);
+            } catch (GLib.Error error) {
+                warning ("Failed to disable 3D Acceleration");
+            }
+        }
+    }
+
     public override bool is_local {
         get {
             // If the URI is prefixed by "qemu" or "qemu+unix" and the domain is "system" of "session" then it is local.
