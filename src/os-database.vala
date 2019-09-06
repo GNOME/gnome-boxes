@@ -124,6 +124,9 @@ private class Boxes.OSDatabase : GLib.Object {
                 if (media.url == null)
                     continue;
 
+                if (!(media.architecture in InstalledMedia.supported_architectures))
+                    continue;
+
                 var eol = (os as Product).get_eol_date ();
                 if (eol == null || now.compare (eol) < 1)
                     after_list.append (media);
