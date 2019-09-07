@@ -1,14 +1,14 @@
 # Swedish translation for gnome-boxes.
-# Copyright © 2016-2018 gnome-boxes's COPYRIGHT HOLDER
+# Copyright © 2016-2019 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Sebastian Rasmussen <sebras@gmail.com>, 2016, 2017.
+# Sebastian Rasmussen <sebras@gmail.com>, 2016, 2017, 2019.
 # Anders Jonsson <anders.jonsson@norsjovallen.se>, 2016, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2018-12-11 10:31+0000\n"
-"PO-Revision-Date: 2018-12-23 22:45+0100\n"
+"POT-Creation-Date: 2019-09-05 11:51+0000\n"
+"PO-Revision-Date: 2019-09-07 11:56+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -936,6 +936,20 @@ msgstr ""
 "Justera skjutreglagen för <gui>Minne</gui> och <gui>Maximal diskstorlek</"
 "gui> för att återspegla de önskade värdena."
 
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+"Du bör inte allokera allt tillgängligt minne då ditt värdsystem också "
+"behöver minne för att köra och ju mer minne du allokerar, desto längre "
+"kommer det att ta att gå in i vänteläge/återstarta. Det rekommenderade "
+"minnet kommer att vara tillräckligt då denna information kommer från "
+"operativsystemens dokumentationer."
+
 #. (itstool) path: info/desc
 #: C/prop-trouble.page:16
 msgid "Diagnose problems with your box using the log file."
@@ -1621,18 +1635,28 @@ msgstr ""
 "<gui>USB-enheter</gui> anslutna till värdmaskinen visas i en lista. Ställ in "
 "spaken intill varje önskad enhet till <gui style=\"switch\">PÅ</gui>."
 
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Priya Pandya"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
 #. (itstool) path: info/desc
-#: C/virtualization.page:16
+#: C/virtualization.page:22
 msgid "Check the resources available to <app>Boxes</app>."
 msgstr "Kontrollera att resurserna finns tillgängliga för <app>Boxes</app>."
 
 #. (itstool) path: page/title
-#: C/virtualization.page:19
+#: C/virtualization.page:25
 msgid "Using processor hardware virtualization"
 msgstr "Använd hårdvara för processorvirtualisering"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:21
+#: C/virtualization.page:27
 msgid ""
 "To determine whether your computer supports processor virtualization "
 "hardware extensions, and that they have been enabled in the system BIOS, run "
@@ -1643,24 +1667,75 @@ msgstr ""
 "följande i ett terminalfönster:"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:24
+#: C/virtualization.page:30
 msgid "<cmd>gnome-boxes --checks</cmd>"
 msgstr "<cmd>gnome-boxes --checks</cmd>"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:25
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr "För att aktivera virtualisering på ditt system:"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr "Starta om systemet och öppna <gui>BIOS</gui>-menyn"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
 msgid ""
-"If necessary, switch on the extensions <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">in the BIOS setup</link>"
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
 msgstr ""
-"Om nödvändigt, slå på utökningarna <link href=\"http://docs.fedoraproject."
-"org/en-US/Fedora/18/html/Virtualization_Administration_Guide/sect-"
-"Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">bland BIOS-inställningarna</link>"
+"Välj alternativet <gui>Återställ standardvärden</gui> och sedan <gui>Spara "
+"och avsluta</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr "Starta om och öppna <gui>BIOS</gui> igen"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+"Öppna undermenyn <gui>Processor</gui> i <gui>Chipset, Advanced CPU "
+"Configuration</gui> eller <gui>Northbridge</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+"Aktivera <gui>Intel Virtualization Technology</gui> (även kände som Intel "
+"VT) eller <gui>AMD-V</gui> beroende på processortillverkare. "
+"Virtualiseringsutökningarna kan kallas <gui>Virtualization Extensions, "
+"Vanderpool</gui> eller diverse andra namn beroende på OEM och system-BIOS."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr "<gui>Spara och avsluta</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr "Starta om och kör: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+"Om det kommer någon utmatning så är virtualiseringsutökningar aktiverade. Om "
+"det inte kommer någon utmatning kanske ditt system inte har "
+"virtualiseringsutökningarna eller den korrekta BIOS-inställningen aktiverad"
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
@@ -1706,6 +1781,19 @@ msgstr ""
 "kommer att köra under andra operativsystem, till exempel under Microsoft "
 "Windows™. En virtuell maskin kan också användas under programutveckling för "
 "att testa i en nyinstallerad miljö."
+
+#~ msgid ""
+#~ "If necessary, switch on the extensions <link href=\"http://docs."
+#~ "fedoraproject.org/en-US/Fedora/18/html/"
+#~ "Virtualization_Administration_Guide/sect-Virtualization-Troubleshooting-"
+#~ "Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS."
+#~ "html\">in the BIOS setup</link>"
+#~ msgstr ""
+#~ "Om nödvändigt, slå på utökningarna <link href=\"http://docs.fedoraproject."
+#~ "org/en-US/Fedora/18/html/Virtualization_Administration_Guide/sect-"
+#~ "Virtualization-Troubleshooting-"
+#~ "Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS."
+#~ "html\">bland BIOS-inställningarna</link>"
 
 #~ msgid "Create a box using a Continuous disk image."
 #~ msgstr "Skapa en box från en Continuous-diskavbild."
