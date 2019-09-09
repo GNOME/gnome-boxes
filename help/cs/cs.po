@@ -1,13 +1,13 @@
 # Czech translation for gnome-boxes.
 # Copyright (C) 2014 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Marek Černocký <marek@manet.cz>, 2014, 2015, 2017, 2018.
+# Marek Černocký <marek@manet.cz>, 2014, 2015, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-boxes\n"
-"POT-Creation-Date: 2018-02-09 21:05+0000\n"
-"PO-Revision-Date: 2018-03-01 08:20+0100\n"
+"Project-Id-Version: gnome-boxes gnome-3.32\n"
+"POT-Creation-Date: 2019-09-06 07:54+0000\n"
+"PO-Revision-Date: 2019-09-09 18:25+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -23,7 +23,7 @@ msgid "translator-credits"
 msgstr "Marek Černocký <marek@manet.cz>"
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -36,10 +36,141 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Jak zapsat nastavení boxu do souboru pro účely zálohy nebo přesunu boxu."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Zálohování nebo přesun boxu"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"Pro zazálohování nebo přesun boxu je zapotřebí dvou věcí: souboru s obrazem "
+"úložiště boxu a nastavení boxu uloženého v souboru XML. K uložení nastavení "
+"je zapotřebí příkaz <cmd>virsh</cmd> z balíčku <app>libvirt</app> nebo "
+"<app>libvirt-client</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "V okně terminálu napište"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Název &gt; Název.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"kde <cmd>Název</cmd> je název v <app>Boxech</app> nebo <em>doména</em> "
+"vašeho boxu. Pro vypsání domén, které <app>Boxy</app> znají, napište"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Soubor <cmd>.xml</cmd>, který jste právě vytvořili, zkopírujte mezi své "
+"zálohy nebo do dočasného umístění."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Zkopírujte soubor s obrazem mezi své zálohy nebo do dočasného umístění. Bude "
+"to soubor tvořený názvem domény vašeho boxu a příponou <cmd>.qcow2</cmd> a "
+"nacházející se v <file>~/.local/share/gnome-boxes/images/</file>."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Obnovit box"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"Uložený box je možné nainstalovat do <app>Boxů</app> na novém hostitelském "
+"stroji, nebo na původním stroji v rámci scénáře obnovení po havárii."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "Ukončete aplikaci <app>Boxy</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Zkopírujte <cmd>.qcow2</cmd> soubor s obrazem ze své zálohy nebo dočasného "
+"umístění do složky <file>~/.local/share/gnome-boxes/images/</file> v novém "
+"umístění."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"V okně terminálu přejděte do složky nebo zařízení obsahujícího soubor <cmd>."
+"xml</cmd>, který jste uložili. Zadejte"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Název.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "kde <cmd>Název</cmd> je doména vašeho boxu."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "Spusťte aplikaci <app>Boxy</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -123,7 +254,7 @@ msgstr "2013"
 #. (itstool) path: info/desc
 #: C/connect.page:15
 msgid "Access a box or service over the network."
-msgstr "Jak připojit box nebo službu skrz síť."
+msgstr "Jak připojit box nebo službu prostřednictvím sítě."
 
 #. (itstool) path: page/title
 #: C/connect.page:21
@@ -214,7 +345,7 @@ msgid ""
 msgstr ""
 "Adresa a číslo portu by měli jít zjistit v nastavení zařízení nebo služby na "
 "vzdáleném stroji. Například v zobrazení <gui style=\"menu\">Vlastností</gui> "
-"v <app>Boxech</app> uvidíte adesu URL, kterou byste použili k připojení k "
+"v <app>Boxech</app> uvidíte adresu URL, kterou byste použili k připojení k "
 "danému boxu."
 
 #. (itstool) path: item/p
@@ -233,109 +364,6 @@ msgstr "Klikněte na <gui style=\"button\">Vytvořit</gui>."
 #: C/connect.page:59
 msgid "The remote box will open in the collection view."
 msgstr "Vzdálený box se otevře v zobrazení skupin."
-
-#. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr "Jav vytvořit box pomocí obrazu disku Continuous."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "Používání Boxů s Continuous"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> je průběžné sestavení systému GNOME. <app>Boxy</app> dokáží vytvořit "
-"box z obrazu <em>qcow2</em> s Continuous."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"Nejnovější obraz naleznete pod odkazem nabízeným v části <link href="
-"\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation\">Instalace</"
-"link> na stránce wiki."
-
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"Obrazy jsou k dispozici ve variantách <em>runtime</em> a <em>devel-debug</"
-"em>. Výsledkem obrazu <em>devel-debug</em> je virtuální stroj obsahující "
-"vývojářské nástroje a hlavičkové soubory."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"V <app>Boxy</app> klikněte na <gui style=\"button\">Nový</gui> a spustí se "
-"průvodce vytvořením boxu."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"Klikněte na <gui style=\"button\">Zadat adresu URL</gui> a vepište adresu "
-"URL včetně celého názvu souboru s obrazem qcow2 obsahujícím runtime nebo "
-"devel-debug komprimovaný pomocí gzip. Boxy obraz stáhnou a nainstalují."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"V případě, že máte obraz již uložený na svém disku, klikněte na <gui style="
-"\"button\">Vybrat soubor</gui> a vyhledejte obraz qcow2 s Continuous. "
-"Vyberte soubor a klikněte na <gui style=\"button\">Otevřít</gui>."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"Otevře se stránka <gui>Shrnutí</gui>. Kliknutím na <gui style=\"button"
-"\">Přizpůsobit</gui> můžete upravit velikost paměti a disku nebo box "
-"přejmenovat."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"Klikněte na <gui style=\"button\">Vytvořit</gui>. Vrátíte se do zobrazení "
-"skupin a instalace započne."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"Informace potřebné k povýšení virtuálního stroje Continuous najdete na <link "
-"href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">stránce wiki</link>."
 
 #. (itstool) path: info/desc
 #: C/create.page:18
@@ -483,11 +511,11 @@ msgid ""
 "interfaces with libvirt, such as <app>virt-manager</app>, then <app>Boxes</"
 "app> will also read from the folder that software uses to store its images."
 msgstr ""
-"Standardně uchovávají <app>Boxy</app> obrazy disku ve složce <file>~/.local/"
+"Standardně <app>Boxy</app> uchovávají obrazy disků ve složce <file>~/.local/"
 "share/gnome-boxes/images/</file>. Pokud používáte ještě nějaký další "
-"software, který je propojený s libvirt, třeba <app>virt-manager</app>, pak "
-"budou <app>Boxy</app> číst i ze složky, kterou používá k uchování obrazů "
-"tento software."
+"software, který je propojený s libvirt, třeba <app>virt-manager</app>, budou "
+"<app>Boxy</app> číst i ze složky, kterou používá k uchování obrazů tento "
+"software."
 
 #. (itstool) path: media/span
 #: C/index.page:9
@@ -552,7 +580,7 @@ msgstr "Vlastnosti"
 #. (itstool) path: section/title
 #: C/index.page:62
 msgid "Snapshots"
-msgstr "Snímky"
+msgstr "Zachycené stavy"
 
 #. (itstool) path: section/title
 #: C/index.page:66
@@ -569,12 +597,6 @@ msgstr "Pokročilá témata"
 #: C/snapshot-revert.page:17 C/usb-redirection.page:24
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
-
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
 
 #. (itstool) path: info/desc
 #: C/interface.page:25
@@ -614,24 +636,24 @@ msgid ""
 "a box."
 msgstr ""
 "Kliknutím na <gui style=\"button\">Nový</gui> <link xref=\"create"
-"\">vytvořit</link> nový box"
+"\">vytvořit</link> nový box."
 
 #. (itstool) path: item/p
 #: C/interface.page:42
 msgid "Click a box to launch a virtual machine session."
-msgstr "Kliknutím na box spustit sezení virtuálního stroje"
+msgstr "Kliknutím na box spustit sezení virtuálního stroje."
 
 #. (itstool) path: item/p
 #: C/interface.page:43
 msgid "<link xref=\"search\">Search</link> for a box."
-msgstr "<link xref=\"search\">Vyhledat</link> box"
+msgstr "<link xref=\"search\">Vyhledat</link> box."
 
 #. (itstool) path: item/p
 #: C/interface.page:44
 msgid "Click the checkmark button in the header bar to enter selection mode."
 msgstr ""
 "Kliknutím na tlačítko se zaškrtávátkem v hlavičkové liště vstoupit do režimu "
-"výběru"
+"výběru."
 
 #. (itstool) path: item/p
 #: C/interface.page:46
@@ -679,22 +701,22 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/interface.page:70
 msgid "<link xref=\"delete\">Delete</link> a box or boxes."
-msgstr "<link xref=\"delete\">Odstranit</link> box či více boxů"
+msgstr "<link xref=\"delete\">Odstranit</link> box či více boxů."
 
 #. (itstool) path: item/p
 #: C/interface.page:71
 msgid "Mark a box or boxes as favorites."
-msgstr "Označit box či více boxů jako oblíbené"
+msgstr "Označit box či více boxů jako oblíbené."
 
 #. (itstool) path: item/p
 #: C/interface.page:72
 msgid "Pause a box."
-msgstr "Pozastavit běh boxu"
+msgstr "Pozastavit běh boxu."
 
 #. (itstool) path: item/p
 #: C/interface.page:73
 msgid "Open a box in a new window."
-msgstr "Otevřít box v novém okně"
+msgstr "Otevřít box v novém okně."
 
 #. (itstool) path: section/title
 #: C/interface.page:79
@@ -774,8 +796,8 @@ msgid ""
 "<gui>Snapshots</gui>: allows you to <link xref=\"snapshot-create\">create</"
 "link> and manage snapshots of the box."
 msgstr ""
-"<gui>Snímky</gui>: umožňuje <link xref=\"snapshot-create\">vytvářet</link> a "
-"snímky boxů a provádět jejich správu."
+"<gui>Zachycené stavy</gui>: umožňuje <link xref=\"snapshot-create"
+"\">vytvářet</link> zachycené stavy boxů a provádět jejich správu."
 
 #. (itstool) path: section/p
 #: C/interface.page:112
@@ -1062,7 +1084,7 @@ msgstr "Klávesová zkratka"
 #. (itstool) path: td/p
 #: C/shortcuts.page:39
 msgid "Create new virtual machine"
-msgstr "vytvořit nový virtuální stroj"
+msgstr "Vytvořit nový virtuální stroj"
 
 #. (itstool) path: td/p
 #: C/shortcuts.page:42
@@ -1072,7 +1094,7 @@ msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
 #. (itstool) path: td/p
 #: C/shortcuts.page:47
 msgid "Toggle search"
-msgstr "přepnout hledání"
+msgstr "Přepnout hledání"
 
 #. (itstool) path: td/p
 #: C/shortcuts.page:50
@@ -1082,7 +1104,7 @@ msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
 #. (itstool) path: td/p
 #: C/shortcuts.page:55
 msgid "Go back"
-msgstr "jít zpět"
+msgstr "Jít zpět"
 
 #. (itstool) path: td/p
 #: C/shortcuts.page:58
@@ -1092,7 +1114,7 @@ msgstr "<keyseq><key>Alt</key><key>Left</key></keyseq>"
 #. (itstool) path: td/p
 #: C/shortcuts.page:63
 msgid "Go forward"
-msgstr "jít vpřed"
+msgstr "Jít vpřed"
 
 #. (itstool) path: td/p
 #: C/shortcuts.page:66
@@ -1102,7 +1124,7 @@ msgstr "<keyseq><key>Alt</key><key>Right</key></keyseq>"
 #. (itstool) path: td/p
 #: C/shortcuts.page:71
 msgid "Cancel"
-msgstr "zrušit"
+msgstr "Zrušit"
 
 #. (itstool) path: td/p
 #: C/shortcuts.page:74
@@ -1122,7 +1144,7 @@ msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
 #. (itstool) path: td/p
 #: C/shortcuts.page:87
 msgid "Quit Boxes"
-msgstr "ukončit Boxy"
+msgstr "Ukončit Boxy"
 
 #. (itstool) path: td/p
 #: C/shortcuts.page:90
@@ -1137,7 +1159,7 @@ msgstr "Jak vypnout box, který přestal pracovat."
 #. (itstool) path: page/title
 #: C/shutdown.page:21
 msgid "Force a box to shut down"
-msgstr "Násilné vypnutí boxu"
+msgstr "Vynucené vypnutí boxu"
 
 #. (itstool) path: page/p
 #: C/shutdown.page:23
@@ -1172,7 +1194,7 @@ msgstr "Jak uložit stav boxu pro pozdější použití."
 #. (itstool) path: page/title
 #: C/snapshot-create.page:27
 msgid "Create a snapshot"
-msgstr "Vytvoření snímku"
+msgstr "Vytvoření zachyceného stavu"
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:29
@@ -1183,10 +1205,10 @@ msgid ""
 "current state so you can return to it as often as you want."
 msgstr ""
 "V případě, že virtuální stroj v požadovaném nastavení pracuje na výbornou, "
-"může být dobrý nápad si jej v tomto nastavení uložit pro případ, že by se "
+"může být dobrý nápad si ho v tomto nastavení uložit pro případ, že by se "
 "poškodil při nějaké aktualizaci softwaru nebo změně nastavení. Pořízením "
-"snímku uchováte aktuální stav, takže se k němu můžete vrátit, kdykoliv "
-"budete chtít."
+"zachyceného stavu uchováte aktuální stav, takže se k němu můžete vrátit, "
+"kdykoliv budete chtít."
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:34
@@ -1195,19 +1217,19 @@ msgid ""
 "also include the memory data for boxes which are running at the moment of "
 "the snapshot creation."
 msgstr ""
-"Snímky obsahují přesný stav disku virtuálního stroje a mohou také obsahovat "
-"data z paměti u boxů, které ve chvíli vytvoření snímku zrovna běžely."
+"Zachycené stavy obsahují přesný stav disku virtuálního stroje a mohou také "
+"obsahovat data z paměti u boxu, pokud byl ve chvíli zachycení stavu spuštěný."
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:43 C/snapshot-delete.page:30
 #: C/snapshot-rename.page:38 C/snapshot-revert.page:38
 msgid "Click the <gui>Snapshots</gui> tab."
-msgstr "Klikněte na kartu <gui>Snímky</gui>."
+msgstr "Klikněte na kartu <gui>Zachycené stavy</gui>."
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:44
 msgid "Click <key>+</key> below the <gui>Snapshots</gui> list."
-msgstr "Klikněte na <key>+</key> pod seznamem <gui>Snímky</gui>."
+msgstr "Klikněte na <key>+</key> pod seznamem <gui>Zachycené stavy</gui>."
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:47
@@ -1215,27 +1237,29 @@ msgid ""
 "A snapshot is saved reflecting the current state of your box. It appears in "
 "the list."
 msgstr ""
-"Uložený snímek bude odrážet aktuální stav vašeho boxu a objeví se v seznamu."
+"Uložený zachycený stav bude odrážet aktuální stav vašeho boxu a objeví se v "
+"seznamu."
 
 #. (itstool) path: info/desc
 #: C/snapshot-delete.page:16
 msgid "Remove a snapshot that you no longer need."
-msgstr "Jak odstranit snímek, který již nepotřebujete."
+msgstr "Jak odstranit zachycený stav, který už nepotřebujete."
 
 #. (itstool) path: page/title
 #: C/snapshot-delete.page:21
 msgid "Delete a snapshot"
-msgstr "Smazání snímku"
+msgstr "Smazání zachyceného stavu"
 
 #. (itstool) path: page/p
 #: C/snapshot-delete.page:23
 msgid "A snapshot that is no longer needed can be removed from the list."
-msgstr "Snímek, který již nadále nepotřebujete, můžete odstranit ze seznamu."
+msgstr ""
+"Zachycený stav, který už nadále nepotřebujete, můžete odstranit ze seznamu."
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:31
 msgid "Select the snapshot to be deleted from the list."
-msgstr "Vyberte snímek, který chcete ze seznamu odstranit."
+msgstr "Vyberte zachycený stav, který chcete ze seznamu odstranit."
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:32
@@ -1246,20 +1270,20 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/snapshot-rename.page:16
 msgid "Give the snapshot a meaningful name."
-msgstr "Jak dát snímku příhodnější název."
+msgstr "Jak dát zachycenému stavu příhodnější název."
 
 #. (itstool) path: page/title
 #: C/snapshot-rename.page:21
 msgid "Rename a snapshot"
-msgstr "Přejmenování snímku"
+msgstr "Přejmenování zachyceného stavu"
 
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:23
 msgid ""
 "By default, a snapshot is given a generic name based on the timestamp, like:"
 msgstr ""
-"Standardně dostane snímek přidělen obecný název založený na časovém razítku, "
-"jako:"
+"Standardně dostane zachycený stav přidělen obecný název založený na časovém "
+"razítku, jako:"
 
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:26
@@ -1282,7 +1306,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:39
 msgid "From the list, select the snapshot to be renamed."
-msgstr "Vyberte v seznamu snímek, který chcete přejmenovat."
+msgstr "Vyberte ze seznamu zachycený stav, který chcete přejmenovat."
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:40
@@ -1300,7 +1324,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/snapshot-revert.page:22
 msgid "Change back to the state of a saved snapshot."
-msgstr "Jak se vrátit zpět ke stavu, který je uložen ve snímku."
+msgstr "Jak se vrátit zpět ke stavu, který je uložen v zachyceném stavu."
 
 #. (itstool) path: page/title
 #: C/snapshot-revert.page:27
@@ -1315,14 +1339,15 @@ msgid ""
 "running programs and settings at the exact same state of the snapshot "
 "creation."
 msgstr ""
-"<em>Vrácením</em> na snímek se obnoví stav virtuálního stroj, který byl do "
-"snímku uložen. Obnoví se rovněž stav paměti, takže získáte běžící programy a "
-"nastavení v přesně tom stejném stavu, jako byl ve chvíli vytvoření snímku."
+"<em>Vrácením</em> do podoby zachyceného stavu se obnoví stav virtuálního "
+"stroje, který byl do zachyceného stavu uložen. Obnoví se také stav paměti, "
+"takže získáte spuštěné programy a nastavení v přesně tom stejném stavu, jako "
+"byl ve chvíli pořízení zachyceného stavu."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:39
 msgid "From the list, select the snapshot to which you want to revert."
-msgstr "Vyberte v seznamu snímek, ke kterému se chcete vrátit."
+msgstr "Vyberte ze seznamu zachycený stav, ke kterému se chcete vrátit."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:41
@@ -1339,8 +1364,8 @@ msgid ""
 "Changes made to the virtual machine since the snapshot was saved are "
 "discarded."
 msgstr ""
-"Změny provedené ve virtuálním stroji od okamžiku uložení snímku budou "
-"zahozeny."
+"Změny provedené ve virtuálním stroji od okamžiku pořízení zachyceného stavu "
+"budou zahozeny."
 
 #. (itstool) path: page/title
 #: C/supported-protocols.page:26
@@ -1402,7 +1427,7 @@ msgid ""
 msgstr ""
 "<app>libvirt</app> je sada nástrojů pro manipulaci (vytváření, mazání a "
 "úpravy) s virtuálními stroji a jejich sledování na vzdálených hostitelích a "
-"to vše zabezpečeně. "
+"to vše zabezpečeně."
 
 #. (itstool) path: section/p
 #: C/supported-protocols.page:62
@@ -1536,7 +1561,7 @@ msgid ""
 msgstr ""
 "<app>Boxy</app> fungují nejlépe, když procesor ve vašem počítači podporuje "
 "hardwarové <link xref=\"virtualization\">rozšíření pro virtualizaci</link> a "
-"to je povoleno v systému BIOS."
+"to je povoleno v systému UEFI/BIOS."
 
 #. (itstool) path: note/p
 #: C/system-requirements.page:66
@@ -1615,8 +1640,8 @@ msgid ""
 "the following in a terminal window:"
 msgstr ""
 "Když chcete zjistit, jestli váš počítač podporuje v procesoru hardwarové "
-"rozšíření pro virtualizaci, a jestli je povolené v systému BIOS, spusťte v "
-"okně terminálu následující příkaz:"
+"rozšíření pro virtualizaci, a jestli je povolené v systému UEFI/BIOS, "
+"spusťte v okně terminálu následující příkaz:"
 
 #. (itstool) path: page/p
 #: C/virtualization.page:24
@@ -1636,7 +1661,7 @@ msgstr ""
 "org/en-US/Fedora/18/html/Virtualization_Administration_Guide/sect-"
 "Virtualization-Troubleshooting-"
 "Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">v nastavení BIOS</link>."
+"\">v nastavení UEFI/BIOS</link>."
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
@@ -1662,8 +1687,8 @@ msgid ""
 "<em>emulation</em>."
 msgstr ""
 "Díky <em>virtualizaci</em> má host přístup ke skutečnému hardwaru, na kterém "
-"běží hostitel. Pokud host používá falešný hardware, jedná se o <em>emulaci</"
-"em>."
+"běží hostitel. Pokud host používá podstrčený hardware, jedná se o "
+"<em>emulaci</em>."
 
 #. (itstool) path: page/title
 #: C/why-do-i-need-virtual-machine.page:27
