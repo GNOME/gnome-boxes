@@ -163,6 +163,16 @@ private class Boxes.InstallerMedia : GLib.Object {
 
         properties.append (new Pair<string,string> (_("System"), label));
 
+        if (os_media != null) {
+            var variants = (os_media != null)? os_media.get_os_variants () : null;
+            if (variants.get_length () > 0) {
+                // FIXME: Assuming first variant only from multivariant medias.
+                var variant_name = (variants.get_nth (0) as OsVariant).get_name ();
+
+                properties.append (new Pair<string,string> (_("Variant"), variant_name));
+            }
+        }
+
         return properties;
     }
 
@@ -206,13 +216,8 @@ private class Boxes.InstallerMedia : GLib.Object {
     protected void label_setup (string? label = null) {
         if (label != null)
             this.label = label;
-        else if (os != null && os_media != null) {
-            var variants = os_media.get_os_variants ();
-            if (variants.get_length () > 0)
-                // FIXME: Assuming first variant only from multivariant medias.
-                this.label = (variants.get_nth (0) as OsVariant).get_name ();
-            else
-                this.label = os.get_name ();
+        else if (os != null) {
+            this.label = os.get_name ();
         } else {
             // No appropriate label? :( Lets just use filename w/o extensions (if any) then
             var basename = get_utf8_basename (device_file);
