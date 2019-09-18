@@ -9,8 +9,8 @@ flatpak:
         MANIFEST_PATH: "build-aux/flatpak/org.gnome.Boxes.json"
         MESON_ARGS: "-Dflatpak=true -Dprofile=development"
         FLATPAK_MODULE: "gnome-boxes"
-        RUNTIME_REPO: "https://sdk.gnome.org/gnome-nightly.flatpakrepo"
-        DBUS_ID: "org.gnome.BoxesDevel"
+        RUNTIME_REPO: "https://nightly.gnome.org/gnome-nightly.flatpakrepo"
+        APP_ID: "org.gnome.BoxesDevel"
     extends: .flatpak
 
 review:
@@ -26,6 +26,9 @@ stop_review:
     script:
         - echo "Stopping flatpak deployment"
     extends: '.stop_review'
+
+nightly:
+    extends: '.publish_nightly'
 
 fedora:rawhide:
     image: fedora:rawhide
