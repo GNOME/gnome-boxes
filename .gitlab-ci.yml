@@ -1,5 +1,10 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
+stages:
+- test
+- deploy
+- fedora
+
 variables:
     BUNDLE: "gnome-boxes.flatpak"
 
@@ -32,7 +37,7 @@ nightly:
 
 fedora:rawhide:
     image: fedora:rawhide
-    stage: deploy
+    stage: fedora
     before_script:
     - dnf update -y --nogpgcheck
     - dnf install -y meson git vala gtk3-devel
