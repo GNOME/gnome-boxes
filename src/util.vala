@@ -439,6 +439,17 @@ namespace Boxes {
         public abstract async string FindUserByName(string name) throws IOError;
     }
 
+    private async Fdo.Accounts? get_accountsservice_accounts_manager () throws GLib.Error {
+        Fdo.Accounts? accounts = yield Bus.get_proxy (BusType.SYSTEM,
+                                                      "org.freedesktop.Accounts",
+                                                      "/org/freedesktop/Accounts");
+
+        if (accounts == null)
+            throw new Boxes.Error.INVALID ("Failed to connect to AccountsService D-Bus service");
+
+        return accounts;
+    }
+
     [DBus (name = "org.freedesktop.Accounts.User")]
     public interface Fdo.AccountsUser : Object {
         public abstract bool AutomaticLogin { get; }
@@ -455,5 +466,24 @@ namespace Boxes {
         public abstract string Shell { owned get; }
         public abstract string UserName { owned get; }
         public abstract string XSession { owned get; }
+    }
+
+    private async Fdo.AccountsUser? get_accountsservice_accounts_user (string object_path) throws GLib.Error {
+        Fdo.AccountsUser? user = yield Bus.get_proxy (BusType.SYSTEM,
+                                                     "org.freedesktop.Accounts",
+                                                     object_path);
+
+        if (user == null)
+            throw new Boxes.Error.INVALID ("Failed to retrieve information about user");
+
+        return user;
+    }
+
+    public async string? get_user_avatar_from_accountsservice (string username) throws GLib.Error {
+        Fdo.Accounts accounts = yield get_accountsservice_accounts_manager ();
+        var path = yield accounts.FindUserByName (username);
+        Fdo.AccountsUser user = yield get_accountsservice_accounts_user (path);
+
+        return user.IconFile;
     }
 }
