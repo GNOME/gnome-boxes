@@ -85,8 +85,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     // Devices made available by device drivers added through express installation (only).
     private Osinfo.DeviceList additional_devices;
 
-    private static Fdo.Accounts? accounts;
-
     private InstallScriptInjectionMethod injection_method {
         private get {
             foreach (var unattended_file in unattended_files) {
@@ -102,20 +100,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         var str = path.replace ("\\", "\\\\");
 
         return str.replace ("=", "\\=");
-    }
-
-    construct {
-        /* We can't do this in the class constructor as the sync call can
-           cause deadlocks, see bug #676679. */
-        if (accounts == null) {
-            try {
-                accounts = Bus.get_proxy_sync (BusType.SYSTEM,
-                                               "org.freedesktop.Accounts",
-                                               "/org/freedesktop/Accounts");
-            } catch (GLib.Error error) {
-                warning ("Failed to connect to D-Bus service '%s': %s", "org.freedesktop.Accounts", error.message);
-            }
-        }
     }
 
     public UnattendedInstaller.from_media (InstallerMedia media, InstallScriptList scripts) throws GLib.Error {
@@ -416,16 +400,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private async void fetch_user_avatar () {
-        if (accounts == null)
-            return;
-
         var username = Environment.get_user_name ();
         string avatar_path = "/var/lib/AccountsService/icons/" + username;
 
         try {
-            var path = yield accounts.FindUserByName (Environment.get_user_name ());
-            Fdo.AccountsUser user = yield Bus.get_proxy (BusType.SYSTEM, "org.freedesktop.Accounts", path);
-            avatar_path = user.IconFile;
+            avatar_path = yield get_user_avatar_from_accountsservice (username);
         } catch (GLib.IOError error) {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
