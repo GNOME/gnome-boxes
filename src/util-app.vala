@@ -648,4 +648,19 @@ namespace Boxes {
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, width, height);
     }
+
+    public Gdk.Pixbuf? round_image (Gdk.Pixbuf source) {
+        int size = source.width;
+        Cairo.Surface surface = new Cairo.ImageSurface (Cairo.Format.ARGB32, size, size);
+        Cairo.Context cr = new Cairo.Context (surface);
+
+        cr.arc (size / 2, size / 2, size / 2, 0, 2 * GLib.Math.PI);
+        cr.clip ();
+        cr.new_path ();
+
+        Gdk.cairo_set_source_pixbuf (cr, source, 0, 0);
+        cr.paint ();
+
+        return Gdk.pixbuf_get_from_surface (surface, 0, 0, size, size);
+    }
 }

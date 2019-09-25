@@ -64,7 +64,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         set {
             try {
                 var pixbuf = new Gdk.Pixbuf.from_file_at_scale (value, 64, 64, true);
-                user_avatar.pixbuf = pixbuf;
+                user_avatar.pixbuf = round_image (pixbuf);
             } catch (GLib.Error error) {
                 debug ("Failed to load user avatar file '%s': %s", value, error.message);
             }
