@@ -280,30 +280,61 @@
         },
         {
             "name" : "tracker",
+            "buildsystem" : "meson",
             "cleanup" : [
                 "/bin",
                 "/etc",
                 "/libexec"
             ],
             "config-opts" : [
-                "--disable-miner-apps",
-                "--disable-static",
-                "--disable-tracker-extract",
-                "--disable-tracker-needle",
-                "--disable-tracker-preferences",
-                "--disable-artwork",
-                "--disable-tracker-writeback",
-                "--disable-miner-user-guides",
-                "--with-bash-completion-dir=no"
+                "-Dbash_completion=no",
+                "-Dfunctional_tests=false",
+                "-Dman=false",
+                "-Ddocs=false",
+                "-Dsystemd_user_services=no"
             ],
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/tracker/2.0/tracker-2.0.3.tar.xz",
-                    "sha256": "5a2fb274c128ec67a920944937b5147ceaf5db16fef6691ea22c4cb841e20580"
+                    "url" : "https://download.gnome.org/sources/tracker/2.3/tracker-2.3.0.tar.xz",
+                    "sha256": "2c04534da83419b0bc65216e367da51a420f52bb8449f4cc4542c651e5c6bf7b"
                 }
             ]
         },
+        {
+            "name": "tracker-miners",
+            "buildsystem": "meson",
+            "cleanup": [
+                "/etc",
+                "/lib",
+                "/libexec",
+                "/share/dbus-1/services/org.freedesktop.Tracker1.Miner.Extract.service",
+                "/share/dbus-1/services/org.freedesktop.Tracker1.Writeback.service",
+                "/share/tracker/miners/org.freedesktop.Tracker1.Miner.Applications.service",
+                "/share/tracker/miners/org.freedesktop.Tracker1.Miner.Extract.service",
+                "/share/tracker/miners/org.freedesktop.Tracker1.Miner.RSS.service",
+                "/share/tracker-miners",
+                "/share/glib-2.0/schemas/org.freedesktop.Tracker.Extract.gschema.xml",
+                "/share/glib-2.0/schemas/org.freedesktop.Tracker.Writeback.gschema.xml"
+            ],
+            "config-opts": [
+                "-Dextract=false",
+                "-Dgeneric_media_extractor=none",
+                "-Dminer_apps=false",
+                "-Dminer_fs=true",
+                "-Dminer_rss=false",
+                "-Dsystemd_user_services=no",
+                "-Dwriteback=false"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/tracker-miners/2.3/tracker-miners-2.3.0.tar.xz",
+                    "sha256" : "ade7d61d1ee22288a5adcf02652e81fd1d3ade4d98270f14203fe8ba4183c7cf"
+                }
+            ]
+        },
+
         {
             "name" : "usbredir",
             "sources" : [
