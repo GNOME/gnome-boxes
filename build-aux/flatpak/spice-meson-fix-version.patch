@@ -1,0 +1,43 @@
+From b4a6c1abcc71a66c5b3432787ff4131d082e95ef Mon Sep 17 00:00:00 2001
+From: worldofpeace <worldofpeace@protonmail.ch>
+Date: Sat, 18 May 2019 22:40:39 -0400
+Subject: [PATCH] meson: correct some things
+
+We can get source_root from meson, and doing [3]
+can give you an out of bounds error in certain cases.
+
+Acked-by: Frediano Ziglio <fziglio@redhat.com>
+---
+ meson.build        | 2 +-
+ server/meson.build | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 8b8ae8bb..e58c436c 100644
+--- a/meson.build
++++ b/meson.build
+@@ -2,7 +2,7 @@
+ # project definition
+ #
+ project('spice', 'c',
+-        version : run_command('build-aux/git-version-gen', '${MESON_SOURCE_ROOT}/.tarball-version', check : true).stdout().strip(),
++        version : run_command('build-aux/git-version-gen', meson.source_root() + '/.tarball-version', check : true).stdout().strip(),
+         license : 'LGPLv2.1',
+         meson_version : '>= 0.48')
+ 
+diff --git a/server/meson.build b/server/meson.build
+index 2ca43e9c..a7676f7e 100644
+--- a/server/meson.build
++++ b/server/meson.build
+@@ -7,7 +7,7 @@ version_info = meson.project_version().split('.')
+ major = '@0@'.format(version_info[0])
+ minor = '@0@'.format(version_info[1])
+ micro = version_info[2].to_int()
+-if not version_info[3].contains('git')
++if not version_info.contains('git')
+   micro += 1
+ endif
+ micro = '@0@'.format(micro)
+-- 
+2.21.0
+
