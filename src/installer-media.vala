@@ -60,11 +60,12 @@ private class Boxes.InstallerMedia : GLib.Object {
             if (os == null)
                 return false;
 
+            /* Lets stub this for awhile
             foreach (var iter in os.get_firmware_list (null) .get_elements ()) {
                 var firmware = iter as Firmware;
                 if (firmware.get_firmware_type () == "efi")
                     return true;
-            }
+            }*/
             return false;
         }
     }
