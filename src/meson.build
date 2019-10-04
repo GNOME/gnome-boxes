@@ -184,9 +184,6 @@ else
   dependencies += libovf.get_variable('govf_vapi')
 endif
 
-if get_option('uefi')
-    vala_args += '--define=USE_UEFI'
-endif
 
 executable ('gnome-boxes', vala_sources + resources,
             include_directories: config_h_dir,
