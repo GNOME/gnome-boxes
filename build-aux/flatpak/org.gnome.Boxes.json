@@ -351,59 +351,12 @@
             ]
         },
         {
-            "name" : "mesa",
-            "buildsystem" : "meson",
-            "config-opts" : [
-                "-Db_ndebug=true",
-                "-Dvulkan-drivers=",
-                "-Ddri-drivers=",
-                "-Dgallium-drivers=",
-                "-Dplatforms=",
-                "-Ddri3=true",
-                "-Ddri2=false",
-                "-Ddri=false",
-                "-Degl=false",
-                "-Dgbm=true",
-                "-Dgles1=false",
-                "-Dgles2=false",
-                "-Dglx=disabled",
-                "-Dlmsensors=false",
-                "-Dosmesa=none",
-                "-Dselinux=false",
-                "-Dshared-glapi=false",
-                "-Dvalgrind=false"
-            ],
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://mesa.freedesktop.org/archive/mesa-19.1.3.tar.xz",
-                    "sha256" : "845460b2225d15c15d4a9743dec798ff0b7396b533011d43e774e67f7825b7e0"
-                },
-                {
-                    "type" : "patch",
-                    "path" : "mesa-break-build-dep-libdrm-nouveau.patch"
-                },
-                {
-                    "type" : "patch",
-                    "path" : "mesa-disable-gbm-backends.patch"
-                }
-            ]
-        },
-        {
             "name" : "virglrenderer",
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/freedesktop/virglrenderer/archive/virglrenderer-0.7.0.tar.gz",
-                    "sha256" : "e6cf19db769d44a7bc9cf5028d12e0b169c73444714badbd480c97d0386b2a98"
-                },
-                {
-                    "type" : "patch",
-                    "path" : "virglrenderer-gallium-auxiliary-python-fix.patch"
-                },
-                {
-                    "type" : "patch",
-                    "path" : "virglrenderer-explicitly-link-with-libdrm.patch"
+                    "url" : "https://github.com/freedesktop/virglrenderer/archive/virglrenderer-0.8.0.tar.gz",
+                    "sha256" : "d98005a06e08616de61475af845a25cf64d84bc279a172c26927123975e9b316"
                 }
             ]
         },
