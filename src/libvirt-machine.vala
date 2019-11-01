@@ -649,7 +649,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 try {
                     yield domain.set_time_async (null, 0, null);
                 } catch (GLib.Error error) {
-                    debug ("Failed to update clock on %s: %s", name, error.message);
+                    debug ("Failed to update clock using RTC on %s: %s", name, error.message);
+
+                    try {
+                        yield domain.set_time_async (new DateTime.now_utc (), 0, null);
+                    } catch (GLib.Error error) {
+                        debug ("Failed to update clock using host time on %s: %s", name, error.message);
+                    }
                 }
             }
         }
