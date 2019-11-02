@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-08-13 10:11+0000\n"
-"PO-Revision-Date: 2019-08-16 06:38+0200\n"
+"POT-Creation-Date: 2019-10-14 11:28+0000\n"
+"PO-Revision-Date: 2019-11-02 11:56+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -20,15 +20,15 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.1\n"
 
-#: data/org.gnome.Boxes.appdata.xml.in:6
+#: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
 msgstr "Boxy GNOME"
 
-#: data/org.gnome.Boxes.appdata.xml.in:7
+#: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Simple remote and virtual machines"
 msgstr "Vzdálené a virtuální stroje jednoduše"
 
-#: data/org.gnome.Boxes.appdata.xml.in:9
+#: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -43,7 +43,7 @@ msgstr ""
 "stroje. Namísto toho se snaží, aby věci fungovaly hned s minimálním "
 "zatěžováním uživatele."
 
-#: data/org.gnome.Boxes.appdata.xml.in:16
+#: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -55,7 +55,7 @@ msgstr ""
 "nestabilní) verzi svého oblíbeného operačního systému, a nebo když se chcete "
 "připojit ke vzdálenému stroji (například ve své kanceláři)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:97
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
@@ -225,11 +225,11 @@ msgstr "Vytvořit virtuální stroj…"
 msgid "Connect to a Remote Computer…"
 msgstr "Připojit ke vzdálenému počítači…"
 
-#: data/ui/display-page.ui:85
+#: data/ui/display-page.ui:89
 msgid "Ready to Receive File"
 msgstr "Připraveno k přijetí souboru"
 
-#: data/ui/display-page.ui:105
+#: data/ui/display-page.ui:109
 msgid "You will find your file in the Downloads directory."
 msgstr "Svůj soubor najdete ve složce Stažené."
 
@@ -254,9 +254,9 @@ msgid "Boxes can be virtual or remote machines."
 msgstr "Boxem může být virtuální nebo vzdálený stroj."
 
 #: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>New</b> button to create your first one."
+msgid "Just hit the <b>+</b> button to create your first one."
 msgstr ""
-"Pro vytvoření vašeho prvního boxu stačí zmáčknout tlačítko <b>Nový</b>."
+"Pro vytvoření vašeho prvního boxu stačí zmáčknout tlačítko <b>+</b>."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -431,11 +431,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Rychlá instalace"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:271
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:272
 msgid "Password"
 msgstr "Heslo"
 
@@ -696,7 +696,7 @@ msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Pro ukončení zachytávání klávesnice zmáčkněte a uvolněte levý Ctrl+Alt"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:310
+#: src/display-page.vala:307
 #, c-format
 msgid "%d×%d"
 msgstr "%d × %d"
@@ -875,9 +875,11 @@ msgid_plural "Storage resize requires deleting %llu associated snapshots."
 msgstr[0] ""
 "Změna velikosti úložiště vyžaduje smazání souvisejícího zachyceného stavu."
 msgstr[1] ""
-"Změna velikosti úložiště vyžaduje smazání %llu souvisejících zachycených stavů."
+"Změna velikosti úložiště vyžaduje smazání %llu souvisejících zachycených "
+"stavů."
 msgstr[2] ""
-"Změna velikosti úložiště vyžaduje smazání %llu souvisejících zachycených stavů."
+"Změna velikosti úložiště vyžaduje smazání %llu souvisejících zachycených "
+"stavů."
 
 #: src/libvirt-machine-properties.vala:661
 msgid "_Run in background"
@@ -1082,7 +1084,7 @@ msgstr "Chyby hlaste na <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka %s: <%s>.\n"
 
-#: src/media-manager.vala:282
+#: src/media-manager.vala:284
 #, c-format
 msgid "No such file %s"
 msgstr "Soubor „%s“ neexistuje"
@@ -1243,13 +1245,13 @@ msgstr "Kopíruje se „%s“ do „Stažené“"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:216
+#: src/unattended-installer.vala:200
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Během přípravy instalace se vyskytla chyba. Rychlá instalace byla zakázána."
 
-#: src/unattended-installer.vala:479
+#: src/unattended-installer.vala:458
 msgid "Downloading device drivers…"
 msgstr "Stahují se ovladače zařízení…"
 
