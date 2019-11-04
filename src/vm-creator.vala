@@ -3,7 +3,7 @@
 using Osinfo;
 using GVir;
 
-private class Boxes.VMCreator {
+private class Boxes.VMCreator : Object {
     // Seems installers aren't very consistent about exact number of bytes written so we ought to leave some margin
     // of error. It's better to report '100%' done while it's not exactly 100% than reporting '99%' done forever..
     private const int INSTALL_COMPLETE_PERCENT = 99;
