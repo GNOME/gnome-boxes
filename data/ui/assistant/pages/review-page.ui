@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesAssistantReviewPage" parent="BoxesAssistantPage">
+    <property name="visible">True</property>
+    <property name="vexpand">False</property>
+    <property name="valign">start</property>
+    <property name="orientation">vertical</property>
+    <property name="border-width">30</property>
+    <property name="spacing">20</property>
+
+    <child>
+      <object class="GtkLabel" id="review_label">
+        <property name="visible">True</property>
+        <property name="halign">start</property>
+        <property name="wrap">True</property>
+        <property name="width-chars">30</property>
+        <property name="label" translatable="yes">Boxes is ready to set up a new box with the following properties:</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkInfoBar" id="nokvm_infobar">
+        <property name="visible">True</property>
+        <property name="halign">fill</property>
+        <property name="spacing">0</property>
+        <property name="message-type">warning</property>
+
+        <child internal-child="content_area">
+          <object class="GtkContainer" id="nokvm_container">
+            <property name="visible">True</property>
+
+            <child>
+              <object class="GtkImage" id="nokvm_image">
+                <property name="visible">True</property>
+                <property name="icon-name">dialog-warning</property>
+                <property name="icon-size">3</property>
+                <property name="pixel-size">48</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel" id="nokvm_label">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Virtualization extensions are unavailable on your system.
+Check your BIOS settings to enable them.</property>
+                <property name="wrap">True</property>
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">False</property>
+      </packing>
+    </child>
+
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Resource Allocation</property>
+            <style>
+              <class name="bold-label"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkToggleButton" id="customize_button">
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Customize</property>
+            <property name="halign">end</property>
+            <property name="hexpand">True</property>
+            <signal name="toggled" handler="on_customize_button_toggled"/>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkStack" id="customization_stack">
+        <property name="visible">True</property>
+        <child>
+          <object class="BoxesWizardSummary" id="summary"/>
+        </child>
+        <child>
+          <object class="GtkGrid" id="customization_grid">
+            <property name="visible">True</property>
+            <property name="row_spacing">10</property>
+            <property name="column_spacing">20</property>
+          </object>
+        </child>
+      </object>
+
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">False</property>
+      </packing>
+    </child>
+
+  </template>
+</interface>

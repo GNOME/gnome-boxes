@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesVMAssistant" parent="GtkDialog">
+    <property name="modal">True</property>
+    <property name="type-hint">dialog</property>
+    <property name="title" translatable="yes">Create a Virtual Machine</property>
+    <property name="width-request">724</property>
+    <property name="height-request">568</property>
+
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkStack" id="pages">
+            <property name="visible">True</property>
+            <signal name="notify::visible-child" handler="update_titlebar_buttons"/>
+            <child>
+              <object class="BoxesAssistantIndexPage" id="index_page">
+                <signal name="done" handler="do_preparation"/>
+              </object>
+            </child>
+            <child>
+              <object class="BoxesAssistantPreparationPage" id="preparation_page">
+                <signal name="done" handler="do_setup"/>
+              </object>
+            </child>
+            <child>
+              <object class="BoxesAssistantSetupPage" id="setup_page">
+                <signal name="done" handler="do_review"/>
+              </object>
+            </child>
+            <child>
+              <object class="BoxesAssistantReviewPage" id="review_page">
+                <signal name="done" handler="do_create"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child type="action">
+      <object class="GtkButton" id="previous_button">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">Cancel</property>
+        <signal name="clicked" handler="on_previous_button_clicked"/>
+      </object>
+    </child>
+    <child type="action">
+      <object class="GtkButton" id="next_button">
+        <property name="visible">False</property>
+        <property name="label" translatable="yes">Next</property>
+        <signal name="clicked" handler="on_next_button_clicked"/>
+      </object>
+    </child>
+
+    <action-widgets>
+      <action-widget response="cancel">previous_button</action-widget>
+      <action-widget response="ok">next_button</action-widget>
+    </action-widgets>
+
+  </template>
+</interface>
