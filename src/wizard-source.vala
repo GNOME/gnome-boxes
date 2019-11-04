@@ -394,7 +394,9 @@ private class Boxes.WizardSource: Gtk.Stack {
 
     private async void populate_recommended_downloads () {
         foreach (var media in yield get_recommended_downloads ()) {
-            downloads_model.append (media);
+            if (media != null) {
+                downloads_model.append (media);
+            }
         }
     }
 

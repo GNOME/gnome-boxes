@@ -50,14 +50,16 @@ public class Boxes.DownloadsSearch : GLib.Object {
 
     private async void load_custom_downloads () {
         foreach (var media in yield get_recommended_downloads ()) {
-            if (media.url == null)
+            if (media != null && media.url == null)
                 media_list.append (media);
         }
     }
 
     public void show_all () {
         foreach (var media in media_list) {
-            model.append (media);
+            if (media != null) {
+                model.append (media);
+            }
         }
     }
 }
