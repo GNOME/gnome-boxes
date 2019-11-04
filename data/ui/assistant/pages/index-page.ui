@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesAssistantIndexPage" parent="BoxesAssistantPage">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">Create a Virtual Machine</property>
+
+    <child>
+      <object class="GtkStack" id="stack">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="GtkScrolledWindow" id="home_page">
+            <property name="visible">True</property>
+            <property name="expand">True</property>
+            <property name="hscrollbar-policy">never</property>
+
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="orientation">vertical</property>
+                <property name="spacing">30</property>
+                <property name="halign">center</property>
+                <property name="border-width">20</property>
+                <property name="margin-left">30</property>
+                <property name="margin-right">30</property>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="wrap">True</property>
+                    <property name="max-width-chars">60</property>
+                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
+                    <property name="label" translatable="yes">A new virtual machine will be created and an operating system installed into it. Select an operating system source to begin.</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">10</property>
+                    <property name="orientation">vertical</property>
+
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">Detected Sources</property>
+                        <style>
+                          <class name="bold-label"/>
+                        </style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkListBox" id="source_medias">
+                            <property name="visible">True</property>
+                            <signal name="row-activated" handler="on_source_media_selected"/>
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkButton" id="expand_detected_sources_list_button">
+                            <property name="visible">True</property>
+                            <signal name="clicked" handler="on_expand_detected_sources_list"/>
+                            <child>
+                              <object class="GtkImage">
+                                <property name="visible">True</property>
+                                <property name="icon-name">view-more-symbolic</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">10</property>
+                    <property name="orientation">vertical</property>
+
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">Featured Downloads</property>
+                        <style>
+                          <class name="bold-label"/>
+                        </style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">You will be notified when the download has completed.</property>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkListBox" id="featured_medias">
+                        <property name="visible">True</property>
+                        <signal name="row-activated" handler="on_featured_media_selected"/>
+                      </object>
+                    </child>
+                  </object>
+                  </child>
+
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="spacing">10</property>
+                    <property name="orientation">vertical</property>
+
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="xalign">0</property>
+                        <property name="label" translatable="yes">Select an OS Source</property>
+                        <style>
+                          <class name="bold-label"/>
+                        </style>
+                      </object>
+                    </child>
+
+                    <child>
+                      <object class="GtkBox">
+                        <property name="visible">True</property>
+                        <property name="orientation">vertical</property>
+
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <signal name="clicked" handler="on_download_an_os_button_clicked"/>
+                            <style>
+                              <class name="boxes-menu-row"/>
+                            </style>
+
+                            <child>
+                              <object class="GtkGrid">
+                                <property name="visible">True</property>
+                                <property name="border-width">10</property>
+
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Operating System Download</property>
+                                    <style>
+                                      <class name="bold-label"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">0</property>
+                                  </packing>
+                                </child>
+
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Browse and search for operating systems to install.</property>
+                                    <style>
+                                      <class name="dim-label"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">1</property>
+                                  </packing>
+                                </child>
+
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="icon-name">go-next-symbolic</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">1</property>
+                                    <property name="top-attach">0</property>
+                                    <property name="height">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+
+                          </object>
+                        </child>
+
+                        <child>
+                          <object class="GtkButton">
+                            <property name="visible">True</property>
+                            <signal name="clicked" handler="on_select_file_button_clicked"/>
+                            <style>
+                              <class name="boxes-menu-row"/>
+                            </style>
+
+                            <child>
+                              <object class="GtkGrid">
+                                <property name="visible">True</property>
+                                <property name="border-width">10</property>
+
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Operating System Image File</property>
+                                    <style>
+                                      <class name="bold-label"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">0</property>
+                                  </packing>
+                                </child>
+
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="halign">start</property>
+                                    <property name="label" translatable="yes">Select an .iso file to install a virtual machine.</property>
+                                    <style>
+                                      <class name="dim-label"/>
+                                    </style>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">1</property>
+                                  </packing>
+                                </child>
+
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="visible">True</property>
+                                    <property name="icon-name">go-next-symbolic</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left-attach">1</property>
+                                    <property name="top-attach">0</property>
+                                    <property name="height">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                            </child>
+
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="BoxesAssistantDownloadsPage" id="recommended_downloads_page">
+            <property name="visible">True</property>
+            <signal name="media-selected" handler="on_download_selected"/>
+          </object>
+        </child>
+
+      </object>
+    </child>
+
+  </template>
+</interface>

@@ -118,6 +118,13 @@ vala_sources = [
   'snapshot-list-row.vala',
   'snapshots-property.vala',
   'assistant/remote-connection.vala',
+  'assistant/vm-assistant.vala',  
+  'assistant/assistant-page.vala',
+  'assistant/index-page.vala',  
+  'assistant/downloads-page.vala',  
+  'assistant/preparation-page.vala',  
+  'assistant/setup-page.vala',  
+  'assistant/review-page.vala',
 ]
 
 dependencies = [
