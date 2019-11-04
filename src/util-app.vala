@@ -67,6 +67,22 @@ namespace Boxes {
         container.remove (widget);
     }
 
+    public void use_list_box_separator (ListBoxRow row, ListBoxRow? before_row) {
+        if (before_row == null) {
+            row.set_header (null);
+
+            return;
+        }
+
+        var current = row.get_header ();
+        if (current == null) {
+            current = new Separator (Orientation.HORIZONTAL);
+            current.visible = true;
+
+            row.set_header (current);
+        }
+    }
+
     public Osinfo.Device? find_device_by_prop (Osinfo.DeviceList devices, string prop_name, string prop_value) {
         var filter = new Osinfo.Filter ();
         filter.add_constraint (prop_name, prop_value);

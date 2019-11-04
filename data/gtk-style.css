@@ -43,6 +43,10 @@
     border: 1px solid @theme_bg_color;
 }
 
+.bold-label {
+    font-weight: bold;
+}
+
 /******************
  * New Box Wizard *
  ******************/
@@ -81,18 +85,24 @@
 }
 
 .boxes-menu-row {
-    background: none;
-    border: 1px solid @borders;
+    background: @theme_unfocused_base_color;
 }
 
 .boxes-menu-row:hover {
     background-color: @theme_bg_color;
 }
 
-.boxes-menu-subrow {
-    padding: 10px;
+.sources-list {
+    border-radius: 5px;
 }
 
+separator {
+    background-color: @borders;
+}
+
+.list-expand-button {
+    border-top: 1px solid @borders;
+}
 
 /* Adds a border to the ISOs lists top undershoot */
 .boxes-menu-scrolled.undershoot.top { border-top: 1px solid @borders; }
