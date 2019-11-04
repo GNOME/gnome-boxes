@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesRHELDownloadDialog" parent="GtkDialog">
+    <property name="modal">True</property>
+    <property name="type-hint">dialog</property>
+    <property name="height-request">250</property>
+
+    <child internal-child="vbox">
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="orientation">vertical</property>
+
+        <child>
+          <object class="GtkOverlay" id="overlay">
+            <property name="visible">True</property>
+
+            <child type="overlay">
+              <object class="GtkProgressBar" id="progress_bar">
+                <property name="no-show-all">True</property>
+                <property name="valign">start</property>
+                <style>
+                  <class name="osd"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
+              <!-- https://bugzilla.gnome.org/show_bug.cgi?id=786932 -->
+              <!-- https://bugzilla.gnome.org/show_bug.cgi?id=787033 -->
+              <!-- https://bugs.webkit.org/show_bug.cgi?id=175937 -->
+              <object class="WebKitWebView" type-func="webkit_web_view_get_type" id="web_view">
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="visible">True</property>
+                <signal name="context-menu" handler="on_context_menu" />
+                <signal name="notify::estimated-load-progress" handler="on_notify_estimated_load_progress" />
+                <signal name="decide-policy" handler="on_decide_policy"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
