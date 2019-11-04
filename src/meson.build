@@ -54,6 +54,7 @@ vala_sources = [
   'display-page.vala',
   'display-toolbar.vala',
   'display.vala',
+  'downloads-hub.vala',
   'editable-entry.vala',
   'i-properties-provider.vala',
   'i-collection-view.vala',
@@ -117,7 +118,15 @@ vala_sources = [
   'troubleshoot-log.vala',
   'snapshot-list-row.vala',
   'snapshots-property.vala',
+  'assistant/rhel-download-dialog.vala',
   'assistant/remote-connection.vala',
+  'assistant/vm-assistant.vala',  
+  'assistant/assistant-page.vala',
+  'assistant/index-page.vala',  
+  'assistant/downloads-page.vala',  
+  'assistant/preparation-page.vala',  
+  'assistant/setup-page.vala',  
+  'assistant/review-page.vala',
 ]
 
 dependencies = [
