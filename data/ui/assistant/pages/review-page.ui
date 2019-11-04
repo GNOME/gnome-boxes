@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesAssistantReviewPage" parent="BoxesAssistantPage">
+    <property name="visible">True</property>
+    <property name="expand">True</property>
+
+    <child>
+      <object class="GtkInfoBar" id="nokvm_infobar">
+        <property name="visible">True</property>
+        <property name="halign">fill</property>
+        <property name="spacing">0</property>
+        <property name="message-type">warning</property>
+
+        <child internal-child="content_area">
+          <object class="GtkContainer" id="nokvm_container">
+            <property name="visible">True</property>
+
+            <child>
+              <object class="GtkImage" id="nokvm_image">
+                <property name="visible">True</property>
+                <property name="icon-name">dialog-warning</property>
+                <property name="icon-size">3</property>
+                <property name="pixel-size">48</property>
+              </object>
+            </child>
+
+              <child>
+                <object class="GtkLabel" id="nokvm_label">
+                  <property name="visible">True</property>
+                  <property name="label" translatable="yes">Virtualization extensions are unavailable on your system.
+Check your BIOS settings to enable them.</property>
+                  <property name="wrap">True</property>
+                  <property name="halign">start</property>
+                  <property name="hexpand">True</property>
+                </object>
+              </child>
+            </object>
+          </child>
+        </object>
+
+        <packing>
+          <property name="expand">False</property>
+          <property name="fill">False</property>
+        </packing>
+      </child>
+
+      <child>
+        <object class="GtkBox" id="review_vbox">
+          <property name="visible">True</property>
+          <property name="orientation">vertical</property>
+          <property name="spacing">30</property>
+          <property name="valign">center</property>
+          <property name="halign">center</property>
+
+          <child>
+            <object class="GtkLabel" id="review_label">
+              <property name="visible">True</property>
+              <property name="halign">start</property>
+              <property name="wrap">True</property>
+              <property name="width-chars">30</property>
+            </object>
+            <packing>
+            <property name="expand">False</property>
+              <property name="fill">False</property>
+            </packing>
+          </child>
+
+          <child>
+            <object class="BoxesWizardSummary" id="summary"/>
+            <packing>
+              <property name="expand">True</property>
+              <property name="fill">True</property>
+            </packing>
+          </child>
+
+          <!--<child>
+            <object class="GtkButton">
+              <property name="visible">True</property>
+              <property name="label">Create</property>
+              <signal name="clicked" handler="next"/>
+            </object>
+          </child>-->
+        </object>
+
+        <packing>
+          <property name="expand">True</property>
+          <property name="fill">False</property>
+        </packing>
+      </child>
+
+  </template>
+</interface>

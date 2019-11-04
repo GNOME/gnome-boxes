@@ -71,6 +71,11 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     [GtkCallback]
+    private void on_create_vm_btn_clicked () {
+        window.show_vm_assistant ();
+    }
+
+    [GtkCallback]
     private void on_back_btn_clicked () {
         window.set_state (UIState.COLLECTION);
     }

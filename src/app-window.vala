@@ -303,6 +303,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         new Boxes.RemoteConnectionAssistant (this).run ();
     }
 
+    public void show_vm_assistant () {
+        new Boxes.VMAssistant (this).run ();
+    }
+
     public void show_properties () {
         if (current_item != null) {
             if (ui_state == UIState.COLLECTION && selection_mode)
