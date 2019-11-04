@@ -69,7 +69,9 @@ public class Boxes.WizardDownloadsPage : Gtk.Stack {
 
     private async void populate_recommended_list () {
         foreach (var media in yield get_recommended_downloads ()) {
-            recommended_model.append (media);
+            if (media != null) {
+                recommended_model.append (media);
+            }
         }
     }
 
