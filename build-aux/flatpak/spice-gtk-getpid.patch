@@ -1,0 +1,36 @@
+From 405e11eaa913312aa996931ff6128a3273a42605 Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Mon, 4 Nov 2019 15:32:48 +0100
+Subject: [PATCH] pid
+
+---
+ src/spice-client-glib-usb-acl-helper.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/src/spice-client-glib-usb-acl-helper.c b/src/spice-client-glib-usb-acl-helper.c
+index f75e0fc..11a999e 100644
+--- a/src/spice-client-glib-usb-acl-helper.c
++++ b/src/spice-client-glib-usb-acl-helper.c
+@@ -321,6 +321,7 @@ clearenv (void)
+ int main(void)
+ {
+     pid_t parent_pid;
++    GDBusConnection *bus;
+     GInputStream *stdin_unix_stream;
+ 
+   /* Nuke the environment to get a well-known and sanitized
+@@ -340,8 +341,9 @@ int main(void)
+             FATAL_ERROR("Parent process was reaped by init(1)\n");
+             return 1;
+     }
+-    /* Do what pkexec does */
+-    subject = polkit_unix_process_new_for_owner(parent_pid, 0, getuid ());
++
++    bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, NULL);
++    subject = polkit_system_bus_name_new (g_dbus_connection_get_unique_name (bus));
+ 
+     stdin_unix_stream = g_unix_input_stream_new(STDIN_FILENO, 0);
+     stdin_stream = g_data_input_stream_new(stdin_unix_stream);
+-- 
+2.23.0
+

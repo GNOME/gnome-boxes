@@ -13,6 +13,7 @@
         "--socket=pulseaudio",
         "--share=network",
         "--device=all",
+        "--system-talk-name=org.freedesktop.PolicyKit1",
         "--system-talk-name=org.freedesktop.timedate1",
         "--system-talk-name=org.freedesktop.Accounts",
         "--filesystem=/var/lib/AccountsService/icons:ro",
@@ -229,6 +230,17 @@
             ]
         },
         {
+            "name" : "usbredir",
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.freedesktop.org/spice/usbredir.git",
+                    "tag" : "usbredir-0.7.1",
+                    "commit" : "e1a7e3dbbe091bfdc568372ff5ab18ed7eae972e"
+                }
+            ]
+        },
+        {
             "name" : "spice",
             "buildsystem" : "meson",
             "config-opts" : [
@@ -244,27 +256,6 @@
                 {
                     "type" : "patch",
                     "path" : "spice-meson-fix-version.patch"
-                }
-            ]
-        },
-        {
-            "name" : "spice-gtk",
-            "buildsystem": "meson",
-            "build-options" : {
-                "env" : {
-                    "PYTHONPATH" : "/app"
-                }
-            },
-            "config-opts" : [
-                "-Dvapi=enabled",
-                "-Dwebdav=enabled",
-                "-Dgtk_doc=disabled"
-            ],
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://www.spice-space.org/download/gtk/spice-gtk-0.37.tar.bz2",
-                    "sha256" : "1f28b706472ad391cda79a93fd7b4c7a03e84b88fc46ddb35dddbe323c923bb7"
                 }
             ]
         },
@@ -321,18 +312,6 @@
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/tracker-miners/2.3/tracker-miners-2.3.0.tar.xz",
                     "sha256" : "ade7d61d1ee22288a5adcf02652e81fd1d3ade4d98270f14203fe8ba4183c7cf"
-                }
-            ]
-        },
-
-        {
-            "name" : "usbredir",
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.freedesktop.org/spice/usbredir.git",
-                    "tag" : "usbredir-0.7.1",
-                    "commit" : "e1a7e3dbbe091bfdc568372ff5ab18ed7eae972e"
                 }
             ]
         },
@@ -473,6 +452,66 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.gnome.org/felipeborges/libovf-glib.git"
+                }
+            ]
+        },
+        {
+            "name" : "polkit",
+            "config-opts" : [
+                "--disable-polkitd",
+                "--disable-man-pages",
+                "--disable-introspection",
+                "--disable-examples",
+                "--disable-gtk-doc",
+                "--disable-libelogind",
+                "--disable-libsystemd-login",
+                "--with-systemdsystemunitdir=no",
+                "--with-authdb=dummy",
+                "--with-authfw=none"
+            ],
+            "rm-configure" : true,
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.freedesktop.org/software/polkit/releases/polkit-0.116.tar.gz",
+                    "sha256" : "88170c9e711e8db305a12fdb8234fac5706c61969b94e084d0f117d8ec5d34b1"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "polkit-build-Add-option-to-build-without-polkitd.patch"
+                },
+                {
+                    "type" : "file",
+                    "path" : "polkit-autogen",
+                    "dest-filename" : "autogen.sh"
+                }
+            ]
+        },
+        {
+            "name" : "spice-gtk",
+            "buildsystem": "meson",
+            "build-options" : {
+                "env" : {
+                    "PYTHONPATH" : "/app"
+                }
+            },
+            "config-opts" : [
+                "-Dvapi=enabled",
+                "-Dwebdav=enabled",
+                "-Dgtk_doc=disabled",
+                "-Dusbredir=enabled",
+                "-Dpolkit=enabled",
+                "-Dusb-acl-helper-dir=/app/libexec/"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://www.spice-space.org/download/gtk/spice-gtk-0.37.tar.bz2",
+                    "sha256" : "1f28b706472ad391cda79a93fd7b4c7a03e84b88fc46ddb35dddbe323c923bb7"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "spice-gtk-getpid.patch"
                 }
             ]
         },
