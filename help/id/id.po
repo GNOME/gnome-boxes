@@ -1,0 +1,1766 @@
+# Indonesian translation for gnome-boxes.
+# Copyright (C) 2014 gnome-boxes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-boxes package.
+# Andika Triwidada <andika@gmail.com>, 2014, 2016.
+# Lorenz Adam Damara <lorenzrenz@gmail.com>, 2016
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-boxes master\n"
+"POT-Creation-Date: 2019-09-06 11:14+0000\n"
+"PO-Revision-Date: 2019-11-11 22:15+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Andika Triwidada <andika@gmail.com>, 2014, 2016, 2017, 2019\n"
+"Lorenz Adam Damara <lorenzrenz@gmail.com>, 2016"
+
+#. (itstool) path: credit/name
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
+#: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
+#: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
+#: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
+#: C/snapshot-delete.page:11 C/snapshot-rename.page:11
+#: C/snapshot-revert.page:12 C/supported-protocols.page:10
+#: C/system-requirements.page:16 C/usb-redirection.page:19
+#: C/virtualization.page:9 C/what-is-a-virtual-machine.page:15
+#: C/why-do-i-need-virtual-machine.page:16
+msgid "Michael Hill"
+msgstr "Michael Hill"
+
+#. (itstool) path: credit/years
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr ""
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+#, fuzzy
+#| msgid "Create a box"
+msgid "Restore a box"
+msgstr "Membuat suatu box"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+#, fuzzy
+#| msgid "An ISO found by <app>Boxes</app>."
+msgid "Exit <app>Boxes</app>."
+msgstr "Sebuah ISO yang ditemukan oleh <app>Boxes</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+#, fuzzy
+#| msgid "An ISO found by <app>Boxes</app>."
+msgid "Launch <app>Boxes</app>."
+msgstr "Sebuah ISO yang ditemukan oleh <app>Boxes</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/clipboard.page:18
+msgid "Use the clipboard with <app>Boxes</app>."
+msgstr "Memakai papan klip dengan <app>Boxes</app>."
+
+#. (itstool) path: page/title
+#: C/clipboard.page:21
+msgid "Share the clipboard"
+msgstr "Berbagi pakai papan klip"
+
+#. (itstool) path: page/p
+#: C/clipboard.page:23
+msgid ""
+"The clipboard of the host machine can be shared with the guest in "
+"<app>Boxes</app>."
+msgstr ""
+"Papan klip pada kebanyakan mesin host dapat dibagikan dengan guest di "
+"<app>Boxes</app>."
+
+#. (itstool) path: media/span
+#: C/clipboard.page:29 C/interface.page:114 C/keystrokes.page:29
+#: C/prop-system.page:29 C/prop-trouble.page:31 C/shared-folders.page:30
+#: C/shutdown.page:30 C/snapshot-create.page:41 C/snapshot-delete.page:28
+#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
+#: C/usb-redirection.page:48
+msgid "settings"
+msgstr "setelan"
+
+#. (itstool) path: item/p
+#: C/clipboard.page:27 C/prop-system.page:27 C/prop-trouble.page:29
+#: C/snapshot-create.page:39 C/snapshot-delete.page:26
+#: C/snapshot-rename.page:34 C/snapshot-revert.page:34
+msgid ""
+"Right-click on the box in the collection view and select <gui>Properties</"
+"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Properties</gui>."
+msgstr ""
+"Klik kanan pada box dalam tilikan koleksi dan pilih <gui>Properti</gui>, "
+"atau bila box sedang berjalan, klik tombol menu (<_:media-1/>) dalam bilah "
+"kepala dan pilih <gui>Properti</gui>."
+
+#. (itstool) path: item/p
+#: C/clipboard.page:31
+msgid ""
+"On the <gui>General</gui> tab, switch <gui>Share clipboard</gui> to <gui>ON</"
+"gui>."
+msgstr ""
+"Pada tab <gui>Umum</gui>, ubah <gui>Berbagi papan klip</gui> ke <gui>NYALA</"
+"gui>."
+
+#. (itstool) path: note/p
+#: C/clipboard.page:36
+msgid ""
+"While express installation typically takes care of making shared clipboard "
+"available to you, express installation is not available for all operating "
+"systems. In such cases or if you choose manual installation, for shared "
+"clipboard to work the SPICE vdagent needs to be installed in the guest. In "
+"most Linux-based operating systems the package is called <em>spice-vdagent</"
+"em>. If the guest is running a different operating system, check out the "
+"<link href=\"http://www.spice-space.org/download.html\">SPICE download page</"
+"link>."
+msgstr ""
+"Sementara instalasi ekspres biasanya mengurus agar papan klip bersama "
+"tersedia untuk Anda, instalasi ekspres tidak tersedia untuk semua sistem "
+"operasi. Dalam kasus tersebut atau jika Anda memilih instalasi manual, agar "
+"papan klip bersama bekerja SPICE vdagent harus diinstal di guest. Pada "
+"sebagian besar sistem operasi berbasis Linux paketnya bernama <em>spice-"
+"vdagent</em>. Jika guest menjalankan sistem operasi yang berbeda, periksalah "
+"<link href=\"http://www.spice-space.org/download.html\">Halaman unduh SPICE</"
+"link>."
+
+#. (itstool) path: credit/years
+#: C/connect.page:12 C/create.page:13 C/interface.page:15 C/search.page:12
+#: C/system-requirements.page:18 C/system-requirements.page:23
+#: C/system-requirements.page:28 C/usb-redirection.page:21
+#: C/what-is-a-virtual-machine.page:17 C/why-do-i-need-virtual-machine.page:18
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: info/desc
+#: C/connect.page:15
+msgid "Access a box or service over the network."
+msgstr "Mengakses suatu box atau layanan melalui jaringan."
+
+#. (itstool) path: page/title
+#: C/connect.page:21
+msgid "Connect to another computer"
+msgstr "Menyambung ke komputer lain"
+
+#. (itstool) path: page/p
+#: C/connect.page:23
+msgid ""
+"<app>Boxes</app> can be used to view and access a remote physical or virtual "
+"machine."
+msgstr ""
+"<app>Boxes</app> dapat dipakai untuk menilik dan mengakses suatu mesin fisik "
+"atau virtual remote."
+
+#. (itstool) path: note/p
+#: C/connect.page:26
+msgid "The remote machine should already be configured."
+msgstr "Mesin remote mesti sudah terkonfigurasi."
+
+#. (itstool) path: item/p
+#: C/connect.page:30 C/create.page:28
+msgid ""
+"Click <gui style=\"button\">New</gui> in the top left corner to launch the "
+"box creation wizard."
+msgstr ""
+"Klik <gui style=\"button\">Baru</gui> di pojok kiri atas untuk meluncurkan "
+"wisaya penciptaan box."
+
+#. (itstool) path: item/p
+#: C/connect.page:32
+msgid ""
+"At the wizard's <gui>Source Selection</gui> screen, click <gui style=\"button"
+"\">Enter URL</gui>."
+msgstr ""
+"Pada layar wisaya <gui>Pemilihan Sumber</gui>, klik <gui style=\"button"
+"\">Masukkan URL</gui>."
+
+#. (itstool) path: item/p
+#: C/connect.page:35
+msgid ""
+"Enter a URL containing the protocol, IP address and port number of the "
+"remote device or service. For example:"
+msgstr ""
+"Masukkan suatu URL yang memuat protokol, alamat IP, dan nomor porta dari "
+"perangkat atau layanan remote. Sebagai contoh:"
+
+#. (itstool) path: item/code
+#: C/connect.page:37
+#, no-wrap
+msgid "vnc://192.168.122.1:5900"
+msgstr "vnc://192.168.122.1:5900"
+
+#. (itstool) path: item/p
+#: C/connect.page:38
+msgid "The protocol will be:"
+msgstr "Protokolnya adalah:"
+
+#. (itstool) path: item/p
+#: C/connect.page:40
+msgid "spice:// to connect to a local or remote <app>Xspice</app> server."
+msgstr ""
+"spice:// untuk menyambung ke server <app>Xspice</app> lokal atau remote."
+
+#. (itstool) path: item/p
+#: C/connect.page:42
+msgid ""
+"qemu:// to connect to a libvirt instance providing access to all virtual "
+"machines it is hosting."
+msgstr ""
+"qemu:// untuk menyambung ke suatu  instansi libvirt yang menyediakan akses "
+"ke semua mesin virtual yang diwadahinya."
+
+#. (itstool) path: item/p
+#: C/connect.page:44
+msgid "vnc:// to connect to a remote <app>vino</app> or <app>VNC</app> server."
+msgstr ""
+"vnc:// untuk menyambung ke suatu server <app>vino</app> atau <app>VNC</app> "
+"remote."
+
+#. (itstool) path: note/p
+#: C/connect.page:48
+msgid ""
+"The address and port number should be available from the configuration of "
+"the device or service on the remote machine. For example, the <gui style="
+"\"menu\">Properties</gui> view in <app>Boxes</app> provides the URL you "
+"would use to connect to that box."
+msgstr ""
+"Alamat dan nomor porta mestinya tersedia dari konfigurasi perangkat atau "
+"layanan pada mesin remote. Sebagai contoh, tilikan <gui style=\"menu"
+"\">Properti</gui> dalam <app>Boxes</app> menyediakan URL yang dapat Anda "
+"pakai untuk menyambung ke box itu."
+
+#. (itstool) path: item/p
+#: C/connect.page:54
+msgid "Click <gui style=\"button\">Continue</gui> in the top right corner."
+msgstr "Klik <gui style=\"button\">Lanjutkan</gui> di pojok kanan atas."
+
+#. (itstool) path: item/p
+#: C/connect.page:56 C/create.page:52
+msgid "Click <gui style=\"button\">Create</gui>."
+msgstr "Klik <gui style=\"button\">Buat</gui>."
+
+#. (itstool) path: page/p
+#: C/connect.page:59
+msgid "The remote box will open in the collection view."
+msgstr "Box remote akan terbuka dalam tilikan koleksi."
+
+#. (itstool) path: info/desc
+#: C/create.page:18
+#, fuzzy
+#| msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
+msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
+msgstr "Klik <gui style=\"button\">Baru</gui> untuk mulai membuat suatu box."
+
+#. (itstool) path: page/title
+#: C/create.page:21
+msgid "Create a box"
+msgstr "Membuat suatu box"
+
+#. (itstool) path: page/p
+#: C/create.page:23
+msgid ""
+"When <app>Boxes</app> is launched, the collection view opens, displaying "
+"your existing boxes. If you haven't yet created a box, an introductory "
+"message is displayed."
+msgstr ""
+"Ketika <app>Boxes</app> diluncurkan, tilikan koleksi membuka, menampilkan "
+"box Anda yang ada. Bila Anda belum membuat suatu box, suatu pesan perkenalan "
+"ditampilkan."
+
+#. (itstool) path: item/p
+#: C/create.page:30
+msgid ""
+"At the wizard's <gui>Source Selection</gui> screen, choose a source to "
+"determine the type of box you want to create. A local virtual machine can be "
+"created from:"
+msgstr ""
+"Pada layar wisaya <gui>Pemilihan Sumber</gui>, pilih suatu sumber untuk "
+"menentukan tipe box yang ingin Anda buat. Mesin virtual lokal dapat dibuat "
+"melalui:"
+
+#. (itstool) path: item/p
+#: C/create.page:35
+msgid "An ISO found by <app>Boxes</app>."
+msgstr "Sebuah ISO yang ditemukan oleh <app>Boxes</app>."
+
+#. (itstool) path: item/p
+#: C/create.page:36
+msgid "Installation media on a CD/DVD/USB drive."
+msgstr "Media instalasi pada sebuah kandar CD/DVD/USB."
+
+#. (itstool) path: item/p
+#: C/create.page:37
+msgid "A local ISO file (if not found automatically above)."
+msgstr "Berkas ISO lokal (jika tidak ditemukan secara otomatis)."
+
+#. (itstool) path: item/p
+#: C/create.page:38
+msgid "A URL to a <link xref=\"connect\">remote</link> machine."
+msgstr "Suatu URL ke sebuah mesin <link xref=\"connect\">remote</link>."
+
+#. (itstool) path: note/p
+#: C/create.page:42
+msgid ""
+"If your installation media supports <gui>Express Installation</gui>, the "
+"installation will proceed without further input."
+msgstr ""
+"Bila media pemasangan mendukung <gui>Pemasangan Kilat</gui>, pemasangan akan "
+"berlanjut tanpa masukan lebih jauh."
+
+#. (itstool) path: item/p
+#: C/create.page:47
+msgid ""
+"After making your selection, or providing the necessary information, click "
+"<gui style=\"button\">Continue</gui>, which will take you to the "
+"<gui>Review</gui> page."
+msgstr ""
+"Setelah membuat pilihan Anda, atau menyediakan informasi yang diperlukan, "
+"klik <gui style=\"button\">Lanjutkan</gui>, yang akan membawa Anda ke "
+"halaman <gui>Tinjau</gui>."
+
+#. (itstool) path: item/p
+#: C/create.page:50
+msgid ""
+"If the box is local, click <gui style=\"button\">Customize</gui> to adjust "
+"memory or disk size, or to rename the box."
+msgstr ""
+"Bila box lokal, klik <gui style=\"button\">Ubah</gui> untuk menyetel ukuran "
+"memori atau diska, atau untuk mengubah nama box."
+
+#. (itstool) path: page/p
+#: C/create.page:55
+msgid "The collection view returns, and the installation of the box begins."
+msgstr "Tilikan koleksi muncul kembali, dan instalasi box dimulai."
+
+#. (itstool) path: info/desc
+#: C/delete.page:16
+msgid "Remove a box that you no longer need."
+msgstr "Hapus box yang tidak Anda butuhkan."
+
+#. (itstool) path: page/title
+#: C/delete.page:19
+msgid "Delete a box"
+msgstr "Menghapus suatu box"
+
+#. (itstool) path: page/p
+#: C/delete.page:21
+msgid ""
+"When a box is no longer needed, it can be deleted from <app>Boxes</app>."
+msgstr "Ketika box tidak lagi dibutuhkan, dapat dihapus dari <app>Boxes</app>."
+
+#. (itstool) path: item/p
+#: C/delete.page:24
+msgid ""
+"Select one or more boxes. In the collection view, right click a box to be "
+"deleted."
+msgstr ""
+"Pilih satu atau lebih sebuah box. Pada tampilan koleksi, klik kanan pada box "
+"untuk menghapus."
+
+#. (itstool) path: item/p
+#: C/delete.page:26
+msgid ""
+"<link xref=\"interface#selection\">Selection mode</link> opens. Click "
+"additional boxes to select them for deletion."
+msgstr ""
+"<link xref=\"interface#selection\">Mode seleksi</link> terbuka. Klik box "
+"lainnya yang ingin dihapus."
+
+#. (itstool) path: item/p
+#: C/delete.page:28
+msgid "Click the <gui style=\"button\">Delete</gui> button."
+msgstr "Klik tombol <gui style=\"button\">Hapus</gui>."
+
+#. (itstool) path: item/p
+#: C/delete.page:29
+msgid "Click the <key>X</key> to confirm."
+msgstr "Klik <key>X</key> untuk mengkonfirmasi."
+
+#. (itstool) path: page/title
+#: C/disk-images.page:19
+msgid "Where does Boxes store disk images?"
+msgstr "Dimana Boxes menyimpan image diska?"
+
+#. (itstool) path: page/p
+#: C/disk-images.page:21
+msgid ""
+"By default, <app>Boxes</app> stores disk images in the folder <file>~/.local/"
+"share/gnome-boxes/images/</file>. If you are using other software that "
+"interfaces with libvirt, such as <app>virt-manager</app>, then <app>Boxes</"
+"app> will also read from the folder that software uses to store its images."
+msgstr ""
+"Secara bawaan, <app>Boxes</app> menyimpan image diska pada direktori "
+"<file>~/.local/share/gnome-boxes/images/</file>. Jika Anda menggunakan "
+"perangkat lunak yang bekerja dengan libvirt, seperti <app>virt-manager</"
+"app>, maka <app>Boxes</app> juga akan membaca image dari perangkat lunak "
+"tersebut."
+
+#. (itstool) path: media/span
+#: C/index.page:9
+msgid "Boxes"
+msgstr "Boxes"
+
+#. (itstool) path: credit/name
+#: C/index.page:16 C/supported-protocols.page:15 C/system-requirements.page:11
+#: C/usb-redirection.page:14 C/what-is-a-virtual-machine.page:10
+#: C/why-do-i-need-virtual-machine.page:11
+msgid "Baptiste Mille-Mathias"
+msgstr "Baptiste Mille-Mathias"
+
+#. (itstool) path: credit/years
+#: C/index.page:18 C/supported-protocols.page:12 C/supported-protocols.page:17
+#: C/system-requirements.page:13 C/usb-redirection.page:16
+#: C/what-is-a-virtual-machine.page:12 C/why-do-i-need-virtual-machine.page:13
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: info/desc
+#: C/index.page:28
+msgid ""
+"Learn to set up local virtual machines and to connect to remote virtual "
+"machines. You can also use <app>Boxes</app> to connect to remote desktops."
+msgstr ""
+"Belajar menyiapkan mesin virtual lokal dan menyambung ke mesin virtual "
+"remote. Anda juga dapat memakai <app>Boxes</app> untuk menyambung ke desktop "
+"remote."
+
+#. (itstool) path: page/title
+#: C/index.page:33
+msgid "<_:media-1/> Boxes"
+msgstr "<_:media-1/> Boxes"
+
+#. (itstool) path: page/p
+#: C/index.page:38
+msgid ""
+"<app>Boxes</app> is an application that gives you access to <link xref="
+"\"what-is-a-virtual-machine\">virtual machines</link>, running locally or "
+"remotely. It also allows you to connect to the display of a remote computer."
+msgstr ""
+"<app>Boxes</app> adalah aplikasi yang memberi Anda akses ke <link xref="
+"\"what-is-a-virtual-machine\">mesin virtual</link>, yang dijalankan secara "
+"lokal atau remote. Itu juga memungkinkan Anda menyambung ke tampilan "
+"komputer remote."
+
+#. (itstool) path: section/title
+#: C/index.page:44
+msgid "Getting started"
+msgstr "Mulai memakai"
+
+#. (itstool) path: section/title
+#: C/index.page:54
+msgid "Using Boxes"
+msgstr "Memakai Boxes"
+
+#. (itstool) path: section/title
+#: C/index.page:58
+msgid "Properties"
+msgstr "Properti"
+
+#. (itstool) path: section/title
+#: C/index.page:62
+msgid "Snapshots"
+msgstr "Snapshot"
+
+#. (itstool) path: section/title
+#: C/index.page:66
+msgid "Questions"
+msgstr "Pertanyaan"
+
+#. (itstool) path: section/title
+#: C/index.page:70
+msgid "Advanced topics"
+msgstr "Topik lanjut"
+
+#. (itstool) path: credit/name
+#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
+#: C/snapshot-revert.page:17 C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: info/desc
+#: C/interface.page:25
+msgid "Get around the application."
+msgstr "Seputaran aplikasi."
+
+#. (itstool) path: page/title
+#: C/interface.page:28
+msgid "The Boxes interface"
+msgstr "Antar muka Boxes"
+
+#. (itstool) path: section/title
+#: C/interface.page:31
+msgid "Collection view"
+msgstr "Tilikan koleksi"
+
+#. (itstool) path: section/p
+#: C/interface.page:33
+msgid ""
+"When you first launch <app>Boxes</app>, the greeting tells you to click the "
+"<gui style=\"button\">New</gui> button to create your first box. On "
+"subsequent visits, <app>Boxes</app> opens in the <em>collection view</em>, "
+"displaying thumbnails of your boxes in a grid. Favourites or frequently-used "
+"boxes appear at the top of the list. Collection view allows you to:"
+msgstr ""
+"Ketika Anda pertama kali meluncurkan <app>Boxes</app>, sapaan memberitahu "
+"Anda untuk mengklik tombol <gui style=\"button\">Baru</gui>. Pada kunjungan-"
+"kunjungan selanjutnya, <app>Boxes</app> membuka dalam <em>tilikan koleksi</"
+"em>, menampilkan gambar mini dari box-box Anda. Box favorit atau yang sering "
+"dipakai muncul di puncak daftar."
+
+#. (itstool) path: item/p
+#: C/interface.page:40
+msgid ""
+"Click <gui style=\"button\">New</gui> to <link xref=\"create\">create</link> "
+"a box."
+msgstr ""
+"Klik <gui style=\"button\">Baru</gui> untuk mulai <link xref=\"create"
+"\">membuat</link> suatu box."
+
+#. (itstool) path: item/p
+#: C/interface.page:42
+msgid "Click a box to launch a virtual machine session."
+msgstr "Klik sebuah box untuk menjalankan sesi mesin virtual."
+
+#. (itstool) path: item/p
+#: C/interface.page:43
+msgid "<link xref=\"search\">Search</link> for a box."
+msgstr "<link xref=\"search\">Cari</link> sebuah box."
+
+#. (itstool) path: item/p
+#: C/interface.page:44
+msgid "Click the checkmark button in the header bar to enter selection mode."
+msgstr "Klik tombol centang dalam bilah kepala untuk memasuki mode seleksi."
+
+#. (itstool) path: item/p
+#: C/interface.page:46
+#, fuzzy
+#| msgid ""
+#| "Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
+#| "Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Pause</gui>, <gui>Clone</"
+#| "gui>, <gui>Delete</gui>, or to open the <gui>Properties</gui> view for "
+#| "the box."
+msgid ""
+"Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
+"Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
+"gui>, or to open the <gui>Properties</gui> view for the box."
+msgstr ""
+"Klik kanan pada suatu box untuk memilih <gui>Buka dalam Jendela Baru</gui>, "
+"<gui>Tambahkan ke Favorit</gui>, <gui>Paksa Matikan</gui>, "
+"<gui>Istirahatkan</gui>, <gui>Klon</gui>, <gui>Hapus</gui>, atau untuk "
+"membuka tilikan <gui>Properti</gui> untuk box."
+
+#. (itstool) path: section/title
+#: C/interface.page:55
+msgid "The wizard"
+msgstr "Wisaya"
+
+#. (itstool) path: section/p
+#: C/interface.page:57
+msgid ""
+"Clicking <gui style=\"button\">New</gui> launches the <em>wizard</em>, which "
+"guides you through the process of box creation."
+msgstr ""
+"Mengklik <gui style=\"button\">Baru</gui> meluncurkan <em>wisaya</em>, yang "
+"menuntun Anda melalui proses pembuatan box."
+
+#. (itstool) path: section/title
+#: C/interface.page:63
+msgid "Selection mode"
+msgstr "Mode seleksi"
+
+#. (itstool) path: section/p
+#: C/interface.page:65
+msgid ""
+"In collection view, clicking the checkmark button or right-clicking a "
+"thumbnail puts you in <em>selection mode</em>, where various operations can "
+"be performed on boxes, individually or in groups. You can:"
+msgstr ""
+"Dalam tilikan koleksi, mengklik tombol contreng atau klik kanan pada suatu "
+"gambar mini mengalihkan Anda ke dalam <em>mode seleksi</em>, dimana berbagai "
+"operasi dapat dilakukan pada box-box, secara individu atau dalam kelompok. "
+"Anda dapat:"
+
+#. (itstool) path: item/p
+#: C/interface.page:70
+msgid "<link xref=\"delete\">Delete</link> a box or boxes."
+msgstr "<link xref=\"delete\">Hapus</link> satu atau beberapa box."
+
+#. (itstool) path: item/p
+#: C/interface.page:71
+msgid "Mark a box or boxes as favorites."
+msgstr "Tandai box sebagai favorit."
+
+#. (itstool) path: item/p
+#: C/interface.page:72
+msgid "Pause a box."
+msgstr "Mengistirahatkan suatu box."
+
+#. (itstool) path: item/p
+#: C/interface.page:73
+msgid "Open a box in a new window."
+msgstr "Buka box pada jendela baru."
+
+#. (itstool) path: section/title
+#: C/interface.page:79
+msgid "Properties view"
+msgstr "Tilikan properti"
+
+#. (itstool) path: section/p
+#: C/interface.page:81
+msgid ""
+"Right clicking a box and selecting <gui style=\"button\">Properties</gui> in "
+"the collection view opens the <em>properties view</em>, where some of the "
+"details of a box can be configured. The properties view allows you to "
+"display or change settings depending on which of the following tabs is "
+"selected:"
+msgstr ""
+"Mengklik kanan suatu box dan memilih <gui style=\"button\">Properti</gui> "
+"dalam tilikan koleksi membuka <em>tilikan properti</em>, dimana sebagian "
+"rincian dari suatu box dapat dikonfigurasi. Tilikan properti memungkinkan "
+"Anda menampilkan atau mengubah setelan bergantung pada bagian mana dari tab "
+"berikut yang dipilih:"
+
+#. (itstool) path: item/p
+#: C/interface.page:87
+msgid ""
+"<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
+"or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
+"tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), and the "
+"<gui>URL</gui> to be used for remote access. When the box is running, the "
+"<gui>Share Clipboard</gui> switch appears here."
+msgstr ""
+"<gui>Umum</gui>: menampilkan <gui>Nama</gui> dan <gui>Broker</gui> box atau "
+"virtualisasi yang sedang dipakai (seperti misalnya <em>QEMU</em>). Untuk "
+"suatu box remote, tab ini juga menampilkan <gui>Protokol</gui> (seperti "
+"misalnya <em>VNC</em>) dan <gui>URL</gui> yang dipakai untuk akses remote. "
+"Ketika box sedang berjalan, saklar <gui>Berbagi Papan Klip</gui> muncul di "
+"sini."
+
+#. (itstool) path: item/p
+#: C/interface.page:93
+msgid ""
+"<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
+"network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> sliders "
+"can be adjusted, and the <gui>Troubleshooting Log</gui> can be viewed. The "
+"<gui style=\"button\">Force Shutdown</gui> button, which enables you to "
+"<link xref=\"shutdown\">force a box to shut down</link>, the <gui style="
+"\"button\">Restart</gui> button, and the <gui>Run in background</gui> switch "
+"are on this tab."
+msgstr ""
+"Setelan <gui>Sistem</gui>: menampilkan grafik berjalan CPU, I/O disk, dan "
+"aktivitas jaringan. Penggeser <gui>Memori</gui> dan <gui>Ukuran Disk "
+"Maksimum</gui> dapat disetel, dan <gui>Log Pelacakan Masalah</gui> dapat "
+"dilihat. Tombol <gui style=\"button\">Matikan Paksa</gui>, yang memungkinkan "
+"Anda <link xref=\"shutdown\">memaksa suatu box untuk dimatikan</link>, "
+"tombol saklar <gui style=\"button\">Start Ulang</gui> dan <gui>Jalankan di "
+"latar belakang</gui> ada pada tab ini."
+
+#. (itstool) path: item/p
+#: C/interface.page:100
+#, fuzzy
+#| msgid ""
+#| "<gui>Devices</gui>: the <gui style=\"button\">Select</gui> button allows "
+#| "you to specify the path to a CD/DVD device or ISO. The <gui style=\"button"
+#| "\">Remove</gui> button disconnects it. When the box is running, the USB "
+#| "devices connected to the host system are listed, and each can be "
+#| "controlled with an <gui>ON | OFF</gui> switch."
+msgid ""
+"<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
+"button allows you to specify the path to a CD/DVD device or ISO. The <gui "
+"style=\"button\">Remove</gui> button disconnects it. When the box is "
+"running, the USB devices connected to the host system are listed, and each "
+"can be controlled with an <gui>ON | OFF</gui> switch. <link xref=\"shared-"
+"folders\">Shared Folders</link> between host and guest can be set for "
+"running machines which support spice-webdavd."
+msgstr ""
+"<gui>Peranti</gui>: tombol <gui style=\"button\">Pilih</gui> memungkinkan "
+"Anda menyatakan path ke peranti CD/DVD atau ISO. Tombol <gui style=\"button"
+"\">Hapus</gui> memutusnya. Ketika box sedang berjalan, peranti USB yang "
+"tersambung ke sistem host ditampilkan daftarnya, dan masing-masing dapat "
+"dikendalikan dengan saklar <gui>NYALA | MATI</gui>."
+
+#. (itstool) path: item/p
+#: C/interface.page:107
+msgid ""
+"<gui>Snapshots</gui>: allows you to <link xref=\"snapshot-create\">create</"
+"link> and manage snapshots of the box."
+msgstr ""
+"<gui>Snapshot</gui>: memungkinkan Anda <link xref=\"snapshot-create"
+"\">membuat</link> dan mengelola snapshot dari sebuah box."
+
+#. (itstool) path: section/p
+#: C/interface.page:112
+msgid ""
+"The properties view can also be accessed using the wizard's <gui style="
+"\"button\">Customize</gui> button during local box setup. If the box is "
+"running, click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Properties</gui>."
+msgstr ""
+"Tampilan properti dapat juga diakses menggunakan tombol wisaya <gui style="
+"\"button\">Kustomisasi</gui> saat penyiapan box lokal. Bila box sedang "
+"berjalan, klik tombol menu (<_:media-1/>) dalam bilah kepala dan pilih "
+"<gui>Properti</gui>."
+
+#. (itstool) path: credit/years
+#: C/keystrokes.page:12
+msgid "2017"
+msgstr "2017"
+
+#. (itstool) path: info/desc
+#: C/keystrokes.page:15
+msgid "Keystroke combinations can be sent from the menu."
+msgstr "Kombinasi penekanan tombol dapat dikirim dari menu."
+
+#. (itstool) path: page/title
+#: C/keystrokes.page:21
+msgid "Send a keystroke combination to a box"
+msgstr "Kirim suatu kombinasi penekanan tombol ke sebuah box"
+
+#. (itstool) path: page/p
+#: C/keystrokes.page:23
+msgid ""
+"Some combinations of keystrokes are automatically directed to the host "
+"machine. To send a key sequence instead to the running guest:"
+msgstr ""
+"Beberapa kombinasi penekanan tombol secara otomatis diarahkan ke mesin host. "
+"Untuk mengirim suatu urutan tombol ke guest yang sedang berjalan:"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:27
+msgid "Click the keyboard (<_:media-1/>) button in the header bar."
+msgstr "Klik tombol papan ketik (<_:media-1/>) dalam bilah kepala."
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:31
+msgid ""
+"Click the key combination you want to send. The available key combinations "
+"are:"
+msgstr ""
+"Klik kombinasi tombol yang ingin Anda kirim. Kombinasi tombol yang tersedia "
+"adalah:"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:34
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:35
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:36
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:37
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:38
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
+
+#. (itstool) path: note/p
+#: C/keystrokes.page:44
+msgid ""
+"If your guest operating system is Linux, you can often use one of these key "
+"sequences to switch to the first virtual console, and another to switch back "
+"to the graphical console. In a number of Linux distributions, "
+"<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq> will switch to "
+"the virtual console, and <keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></"
+"keyseq> will switch back to the graphical desktop."
+msgstr ""
+"Bila sistem operasi guest Anda adalah Linux, Anda seringkali dapat memakai "
+"satu dari urutan tombol ini untuk berpindah ke konsol virtual pertama, dan "
+"yang lain untuk berpindah kembali ke konsol grafis. Dalam sejumlah "
+"distribusi Linux,  <keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></"
+"keyseq> akan memindah ke konsol virtual, dnd <keyseq><key>Ctrl</"
+"key><key>Alt</key><key>F1</key></keyseq> akan menukar balik ke desktop "
+"grafis."
+
+#. (itstool) path: p/link
+#: C/legal.xml:4
+msgid "Creative Commons Attribution-Share Alike 3.0 Unported License"
+msgstr "Creative Commons Attribution-Share Alike 3.0 Unported License"
+
+#. (itstool) path: license/p
+#: C/legal.xml:3
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Karya ini dilisensikan di bawah <_:link-1/>."
+
+#. (itstool) path: info/desc
+#: C/prop-system.page:16
+msgid "Specify RAM and maximum disk allocation."
+msgstr "Spesifikasikan RAM dan alokasi diska maksimum."
+
+#. (itstool) path: page/title
+#: C/prop-system.page:21
+msgid "Adjust the system requirements of a box"
+msgstr "Atur kebutuhan sistem untuk sebuah box"
+
+#. (itstool) path: page/p
+#: C/prop-system.page:23
+msgid ""
+"In <app>Boxes</app>, each virtual machine has its own settings for RAM and "
+"maximum allocated disk space."
+msgstr ""
+"Di <app>Boxes</app>, setiap mesin virtual memiliki pengaturannya sendiri "
+"untuk RAM dan maksimum alokasi ruang diska."
+
+#. (itstool) path: item/p
+#: C/prop-system.page:31 C/prop-trouble.page:33 C/shutdown.page:32
+msgid "Click the <gui>System</gui> tab."
+msgstr "Klik tab <gui>Sistem</gui>."
+
+#. (itstool) path: item/p
+#: C/prop-system.page:32
+msgid ""
+"Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
+"reflect the desired values."
+msgstr ""
+"Atur slider <gui>Memori</gui> dan <gui>Ukuran diska maksimum</gui> agar "
+"mencerminkan nilai yang diinginkan."
+
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+
+#. (itstool) path: info/desc
+#: C/prop-trouble.page:16
+msgid "Diagnose problems with your box using the log file."
+msgstr "Mendiagnosa masalah yang ada pada box Anda menggunakan berkas log."
+
+#. (itstool) path: page/title
+#: C/prop-trouble.page:21
+msgid "View the troubleshooting log of a box"
+msgstr "Lihat log pelacakan masalah untuk sebuah box"
+
+#. (itstool) path: page/p
+#: C/prop-trouble.page:23
+msgid ""
+"If a box is having a problem starting up or running, clues to help you fix "
+"the problem may be found in the trouble log. The trouble log displays the "
+"virtual machine state, the virtual machine libvirt configuration, and the "
+"QEMU hypervisor log."
+msgstr ""
+"Jika box mengalami masalah pada saat beru dijalankan atau sedang berjalan, "
+"petunjuk untuk membantu Anda mengatasi masalah mungkin dapat ditemukan di "
+"trouble log. Trouble log menampilkan status mesin virtual, konfigurasi "
+"libvirt dari mesin virtual, dan log hypervisor QEMU."
+
+#. (itstool) path: item/p
+#: C/prop-trouble.page:34
+msgid ""
+"Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
+"log."
+msgstr ""
+"Klik tombol <gui style=\"button\">Log Pelacakan Masalah</gui> untuk melihat "
+"log."
+
+#. (itstool) path: info/desc
+#: C/search.page:17
+msgid "Quickly access a box by name."
+msgstr "Secara cepat mengakses sebuah box menurut nama."
+
+#. (itstool) path: page/title
+#: C/search.page:20
+msgid "Search for a box"
+msgstr "Mencari suatu box"
+
+#. (itstool) path: page/p
+#: C/search.page:22
+msgid ""
+"If there is more than one box, you can locate or filter boxes by name in the "
+"<link xref=\"interface#collection\">collection view</link> or <link xref="
+"\"interface#selection\">selection mode</link>. Click the search icon, or "
+"just start typing to initiate a search."
+msgstr ""
+"Bila ada lebih dari satu box, Anda dapat menemukan atau menyaring suatu box "
+"menurut nama dalam <link xref=\"interface#collection\">tilikan koleksi</"
+"link> atau <link xref=\"interface#selection\">mode seleksi</link>. Klik ikon "
+"pencarian, atau mulailah mengetik untuk mengawali pencarian."
+
+#. (itstool) path: page/p
+#: C/search.page:27
+msgid "Press <key>Esc</key> to dismiss the search."
+msgstr "Tekan <key>Esc</key> untuk menutup pencarian."
+
+#. (itstool) path: info/desc
+#: C/shared-folders.page:15
+msgid "Share folders between host and guest."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/shared-folders.page:20
+msgid "Shared Folders"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/shared-folders.page:22
+msgid ""
+"If your virtual machine is running and contains spice-webdavd, you may want "
+"to set folders in your host system which you desire to browse from inside "
+"your virtual machine."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:27
+#, fuzzy
+#| msgid "Get started with virtual machines"
+msgid "Make sure your virtual machine is running."
+msgstr "Mulai memakai mesin virtual"
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:28 C/usb-redirection.page:46
+#, fuzzy
+#| msgid ""
+#| "Right-click on the box in the collection view and select <gui>Properties</"
+#| "gui>, or if the box is running, click the menu (<_:media-1/>) button in "
+#| "the header bar and select <gui>Properties</gui>."
+msgid ""
+"Right-click on the box in the collection view and select <gui>Properties</"
+"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Properties</gui>."
+msgstr ""
+"Klik kanan pada box dalam tilikan koleksi dan pilih <gui>Properti</gui>, "
+"atau bila box sedang berjalan, klik tombol menu (<_:media-1/>) dalam bilah "
+"kepala dan pilih <gui>Properti</gui>."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:32
+#, fuzzy
+#| msgid "Click the <gui>Devices</gui> tab."
+msgid "Click the <gui>Devices &amp; Shares</gui> tab."
+msgstr "Klik tab <gui>Peranti</gui>."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:33
+msgid ""
+"In the <gui>Folder Shares</gui> section you can view, remove, and create new "
+"shared folders."
+msgstr ""
+
+#. (itstool) path: credit/name
+#: C/shortcuts.page:11
+msgid "Lasse Schuirmann"
+msgstr "Lasse Schuirmann"
+
+#. (itstool) path: info/desc
+#: C/shortcuts.page:18
+msgid "Operate <app>Boxes</app> using keyboard shortcuts."
+msgstr "Operasikan <app>Boxes</app> menggunakan jalan pintas papan ketik."
+
+#. (itstool) path: page/title
+#: C/shortcuts.page:21
+msgid "Keyboard shortcuts"
+msgstr "Pintasan papan tik"
+
+#. (itstool) path: page/p
+#: C/shortcuts.page:23
+msgid ""
+"Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
+"following shortcuts are available:"
+msgstr ""
+"Berbagai macam pintasan dapat digunakan untuk mengoperasikan Boxes. Selain "
+"mnemonik, berikut beberapa pintasan yang tersedia:"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:29
+msgid "Action"
+msgstr "Aksi"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:32
+msgid "Shortcut"
+msgstr "Pintasan"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:39
+msgid "Create new virtual machine"
+msgstr "Membuat mesin virtual baru"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:42
+msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:47
+msgid "Toggle search"
+msgstr "Jungkitkan pencarian"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:50
+msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:55
+msgid "Go back"
+msgstr "Mundur"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:58
+msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+msgstr "<keyseq><key>Alt</key><key>Kiri</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:63
+msgid "Go forward"
+msgstr "Maju"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:66
+msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+msgstr "<keyseq><key>Alt</key><key>Kanan</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:71
+msgid "Cancel"
+msgstr "Batal"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:74
+msgid "<keyseq><key>Escape</key></keyseq>"
+msgstr "<keyseq><key>Escape</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:79
+msgid "Release mouse and keyboard grab"
+msgstr "Lepas tangkapan tetikus dan papan ketik"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:82
+msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:87
+msgid "Quit Boxes"
+msgstr "Keluar Boxes"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:90
+msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+
+#. (itstool) path: info/desc
+#: C/shutdown.page:16
+msgid "Shut down a box that has stopped working."
+msgstr "Matikan box yang berhenti bekerja."
+
+#. (itstool) path: page/title
+#: C/shutdown.page:21
+msgid "Force a box to shut down"
+msgstr "Matikan paksa sebuah box"
+
+#. (itstool) path: page/p
+#: C/shutdown.page:23
+msgid ""
+"If a box stops responding, you can force it to shut down. This allows you to "
+"restart the virtual machine in the hope of returning it to its working state."
+msgstr ""
+"Jika box berhenti merespon, Anda dapat mematikannya secara paksa. Anda apat "
+"menyalakan kembali mesin virtual dengan harapan akan dapat kembali berjalan "
+"normal."
+
+#. (itstool) path: item/p
+#: C/shutdown.page:28
+msgid ""
+"Open the <link xref=\"interface#properties\">properties view</link> for the "
+"box. If the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Properties</gui>."
+msgstr ""
+"Buka <link xref=\"interface#properties\">tampilan properti</link> untuk box. "
+"Jika box sedang berjalan, klik tombol menu (<_:media-1/>)  pada bilah header "
+"dan pilih <gui>Properti</gui>."
+
+#. (itstool) path: item/p
+#: C/shutdown.page:33
+msgid "Click the <gui style=\"button\">Force Shutdown</gui> button."
+msgstr "Klik tombol <gui style=\"button\">Paksa Dimatikan</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-create.page:22
+msgid "Save the state of a box for later use."
+msgstr "Simpan keadaan sebuah box untuk digunakan nanti."
+
+#. (itstool) path: page/title
+#: C/snapshot-create.page:27
+msgid "Create a snapshot"
+msgstr "Membuat suatu snapshot"
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:29
+msgid ""
+"If your virtual machine is operating perfectly in a desired configuration, "
+"you may want to save the setup before it breaks because of a software "
+"upgrade or configuration change. Taking a snapshot of the box preserves the "
+"current state so you can return to it as often as you want."
+msgstr ""
+"Jika mesin virtual Anda beroperasi secara sempurna dengan konfigurasi yang "
+"diinginkan, Anda mungkin ingin menyimpan pengaturan sebelum rusak "
+"dikarenakan peningkatan perangkat lunak. Ambil snapshot dari keadaan box "
+"saat itu jadi Anda dapat kembali mengoperasikan kapanpun diinginkan."
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:34
+msgid ""
+"Snapshots include the exact state of your virtual machine disk and they can "
+"also include the memory data for boxes which are running at the moment of "
+"the snapshot creation."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/snapshot-create.page:43 C/snapshot-delete.page:30
+#: C/snapshot-rename.page:38 C/snapshot-revert.page:38
+msgid "Click the <gui>Snapshots</gui> tab."
+msgstr "Klik tab <gui>Snapshot</gui>."
+
+#. (itstool) path: item/p
+#: C/snapshot-create.page:44
+msgid "Click <key>+</key> below the <gui>Snapshots</gui> list."
+msgstr "Klik tombol <key>+</key> di bawah list <gui>Snapshot</gui>."
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:47
+msgid ""
+"A snapshot is saved reflecting the current state of your box. It appears in "
+"the list."
+msgstr ""
+"Snapshot yang disimpan merefleksikan keadaan dari box Anda saat ini. Itu "
+"muncul dalam daftar."
+
+#. (itstool) path: info/desc
+#: C/snapshot-delete.page:16
+msgid "Remove a snapshot that you no longer need."
+msgstr "Hapus snapshot yang sudah tidak Anda butuhkan."
+
+#. (itstool) path: page/title
+#: C/snapshot-delete.page:21
+msgid "Delete a snapshot"
+msgstr "Menghapus sebuah snapshot"
+
+#. (itstool) path: page/p
+#: C/snapshot-delete.page:23
+msgid "A snapshot that is no longer needed can be removed from the list."
+msgstr "Snapshot yang sudah tidak dibutuhkan lagi dapat dihapus dari daftar."
+
+#. (itstool) path: item/p
+#: C/snapshot-delete.page:31
+msgid "Select the snapshot to be deleted from the list."
+msgstr "Pilih snapshot yang ingin dihapus dari daftar."
+
+#. (itstool) path: item/p
+#: C/snapshot-delete.page:32
+msgid "Click the gear button on the right and select <gui>Delete</gui>."
+msgstr "Klik tombol roda gigi di sebelah kanan dan pilih <gui>Hapus</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-rename.page:16
+msgid "Give the snapshot a meaningful name."
+msgstr "Berikan nama yang bermakna untuk snapshot."
+
+#. (itstool) path: page/title
+#: C/snapshot-rename.page:21
+msgid "Rename a snapshot"
+msgstr "Mengubah nama sebuah snapshot"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:23
+msgid ""
+"By default, a snapshot is given a generic name based on the timestamp, like:"
+msgstr ""
+"Secara baku, sebuah snapshot diberi suatu nama generik berbasis tanda waktu, "
+"seperti:"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:26
+msgid "<file>09/14/2014, 11:54:36 AM</file>"
+msgstr "<file>09/14/2014, 11:54:36 AM</file>"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:28
+msgid "You may want to change the name to something more meaningful, such as:"
+msgstr "Anda mungkin ingin mengganti nama yang lebih bermakna, seperti:"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:30
+msgid ""
+"<file>Fedora_22_with_jhbuild</file> or <file>Windows 7 plus GTK+ 3.6.4</"
+"file>."
+msgstr ""
+"<file>Fedora_22_with_jhbuild</file> atau <file>Windows 7 plus GTK+ 3.6.4</"
+"file>."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:39
+msgid "From the list, select the snapshot to be renamed."
+msgstr "Dari daftar, pilih snapshot yang akan diubah nama."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:40
+msgid "Click the gear button on the right and select <gui>Rename</gui>."
+msgstr "Klik tombol roda gigi di sebelah kanan dan pilih <gui>Ubah Nama</gui>."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:42
+msgid "Type the desired name and press <gui style=\"button\">Done</gui>."
+msgstr ""
+"Ketikkan nama yang diinginkan dan tekan <gui style=\"button\">Beres</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-revert.page:22
+msgid "Change back to the state of a saved snapshot."
+msgstr "Kembali ke keadaan saat snapshot disimpan."
+
+#. (itstool) path: page/title
+#: C/snapshot-revert.page:27
+msgid "Revert the state of a box"
+msgstr "Kembalikan keadaan dari sebuah box"
+
+#. (itstool) path: page/p
+#: C/snapshot-revert.page:29
+msgid ""
+"<em>Reverting</em> to a snapshot restores the state of the virtual machine "
+"saved in that snapshot. The memory state also gets restored, bringing back "
+"running programs and settings at the exact same state of the snapshot "
+"creation."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/snapshot-revert.page:39
+msgid "From the list, select the snapshot to which you want to revert."
+msgstr "Dari daftar, pilih ke snapshot mana pembalikan yang Anda inginkan."
+
+#. (itstool) path: item/p
+#: C/snapshot-revert.page:41
+msgid ""
+"Click the gear button on the right and select <gui>Revert to this state</"
+"gui>."
+msgstr ""
+"Klik tombol roda gigi di sebelah kanan dan pilih <gui>Kembali ke keadaan "
+"ini</gui>."
+
+#. (itstool) path: page/p
+#: C/snapshot-revert.page:45
+msgid ""
+"Changes made to the virtual machine since the snapshot was saved are "
+"discarded."
+msgstr ""
+"Perubahan telah dilakukan pada mesin virtual sejak snapshot yang telah "
+"disimpan dihapus."
+
+#. (itstool) path: page/title
+#: C/supported-protocols.page:26
+msgid "What is the technology used by Boxes?"
+msgstr "Apa teknologi yang dipakai oleh Boxes?"
+
+#. (itstool) path: page/p
+#: C/supported-protocols.page:36
+msgid ""
+"Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and <app>spice-gtk</"
+"app> to allow users to easily manage virtual machines and connect to remote "
+"machines."
+msgstr ""
+"Boxes memakai <app>qemu-kvm</app>, <app>libvirt-glib</app>, dan <app>spice-"
+"gtk</app> untuk memungkinkan pengguna mengelola secara mudah mesin virtual "
+"dan menyambung ke mesin remote."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:42
+msgid "QEMU with KVM"
+msgstr "QEMU dengan KVM"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:44
+msgid ""
+"<app>QEMU</app> is a machine emulator and virtualizer. As a machine "
+"emulator, it can run OSes and programs made for one machine (e.g. an ARM "
+"board) on a different machine (e.g. your own PC). As a virtualizer, QEMU "
+"achieves near native performance by executing the guest code directly on the "
+"host CPU using KVM."
+msgstr ""
+"<app>QEMU</app> adalah suatu emulator mesin dan pemvirtualisasi. Sebagai "
+"emulator mesin, itu dapat menjalankan OS dan program yang dibuat bagi satu "
+"mesin (mis. suatu papan ARM) pada mesin lain (mis. PC Anda). Sebagai "
+"pemvirtualisasi, QEMU mencapai kinerja nyaris native dengan menjalankan kode "
+"guest secara langsung pada CPU host memakai KVM."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:50
+msgid ""
+"<app>KVM</app> (Kernel-based Virtual Machine) is a Linux kernel module that "
+"allows a user space program to use the hardware virtualization features of "
+"various processors."
+msgstr ""
+"<app>KVM</app> (Mesin Virtual Berbasis Kernel) adalah suatu modul kernel "
+"Linux yang memungkinkan suatu program di ruang pengguna memakai fitur "
+"virtualisasi perangkat keras dari berbagai prosesor."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:57
+msgid "libvirt"
+msgstr "libvirt"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:59
+msgid ""
+"<app>libvirt</app> is a toolkit for manipulating (creating, deleting and "
+"modifying) and monitoring virtual machines on remote hosts, securely."
+msgstr ""
+"<app>libvirt</app> adalah suatu toolkit untuk memanipulasi (membuat, "
+"menghapus, dan mengubah) serta memantau mesin virtual pada host remote, "
+"secara aman."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:62
+msgid ""
+"<app>libvirt-glib</app> wraps libvirt to provide a high-level object-"
+"oriented API suited for glib-based applications."
+msgstr ""
+"<app>libvirt-glib</app> membungkus libvirt untuk menyediakan API "
+"berorientasi objek aras tinggi yang cocok bagi aplikasi-aplikasi berbasis "
+"glib."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:68
+msgid "SPICE"
+msgstr "SPICE"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:70
+msgid ""
+"<app>SPICE</app>, the Simple Protocol for Independent Computing "
+"Environments, is a system for accessing and controlling remote desktops "
+"across a network."
+msgstr ""
+"<app>SPICE</app>, Simple Protocol for Independent Computing Environments, "
+"adalah suatu sistem untuk mengakses dan mengendalikan desktop remote melalui "
+"jaringan."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:74
+msgid ""
+"The SPICE server is a library that runs inside the QEMU binary. It is mainly "
+"responsible for authentication of client connections, relaying of graphics "
+"output of the guest OS to the client and relaying of user input (mouse and "
+"keyboard) from client to guest."
+msgstr ""
+"Server SPICE adalah suatu pustaka yang berjalan di dalam biner QEMU. Itu "
+"terutama bertanggungjawab untuk otentikasi koneksi klien, mengestafetkan "
+"keluaran grafis dari OS guest ke klien dan mengestafetkan masukan pengguna "
+"(tetikus dan papan tik) dari klien ke guest."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:79
+msgid ""
+"<app>spice-gtk</app> is the SPICE client that provides a view into the guest "
+"OS."
+msgstr ""
+"<app>spice-gtk</app> adalah klien SPICE yang menyediakan suatu tilikan ke "
+"dalam OS guest."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:85
+msgid "VNC"
+msgstr "VNC"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:87
+msgid ""
+"<app>VNC</app>, Virtual Network Computing, used only for remote display, is "
+"a well know protocol but quite limited and slow."
+msgstr ""
+"<app>VNC</app>, Virtual Network Computing, dipakai hanya untuk tampilan "
+"remote, adalah suatu protokol yang dikenal luas tapi cukup terbatas dan "
+"lambat."
+
+#. (itstool) path: credit/name
+#: C/system-requirements.page:21
+msgid "Ekaterina Gerasimova"
+msgstr "Ekaterina Gerasimova"
+
+#. (itstool) path: credit/name
+#: C/system-requirements.page:26
+msgid "Zeeshan Ali (Khattak)"
+msgstr "Zeeshan Ali (Khattak)"
+
+#. (itstool) path: info/desc
+#: C/system-requirements.page:31
+msgid "Hardware required to run a <app>Boxes</app> virtual machine."
+msgstr ""
+"Perangkat keras yang diperlukan untuk menjalankan mesin virtual <app>Boxes</"
+"app>."
+
+#. (itstool) path: page/title
+#: C/system-requirements.page:36
+msgid "Get started with virtual machines"
+msgstr "Mulai memakai mesin virtual"
+
+#. (itstool) path: page/p
+#: C/system-requirements.page:38
+msgid ""
+"Your computer should meet certain criteria for best performance when "
+"creating and running virtual machines in <app>Boxes</app>. These "
+"requirements are specified by the vendors of the operating systems. "
+"<app>Boxes</app> automatically allocates resources to virtual machines based "
+"on vendor recommendations. When such information is unavailable to "
+"<app>Boxes</app>, it allocates the following:"
+msgstr ""
+"Komputer Anda mesti memenuhi kriteria tertentu untuk kinerja terbaik ketika "
+"membuat dan menjalankan mesin virtual dalam <app>Boxes</app>. Persyaratan "
+"ini dinyatakan oleh vendor sistem operasi. <app>Boxes</app> secara otomatis "
+"mengalokasikan sumber daya ke mesin virtual berdasarkan rekomendasi vendor. "
+"Ketika informasi itu tak tersedia bagi <app>Boxes</app>, itu mengalokasikan "
+"yang berikut:"
+
+#. (itstool) path: item/p
+#: C/system-requirements.page:47
+msgid "20 GB of maximum storage space."
+msgstr "Ruang penyimpanan maksimum 20 GB."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:49
+msgid ""
+"This does not mean that <app>Boxes</app> will allocate 20 GB of space when "
+"creating the virtual machine. The actual disk space used by <app>Boxes</app> "
+"will be less than (or in worst case, equal to) the disk space used by the "
+"virtual machine itself."
+msgstr ""
+"Ini tak berarti bahwa <app>Boxes</app> akan mengalokasikan ruang 20 GB "
+"ketika membuat mesin virtual. Ruang diska sebenarnya yang dipakai oleh "
+"<app>Boxes</app> akan kurang dari (atau dalam kasus terburuk, sama dengan) "
+"ruang diska yang dipakai oleh mesin virtual itu sendiri."
+
+#. (itstool) path: item/p
+#: C/system-requirements.page:56
+msgid "500 MB of RAM."
+msgstr "RAM 500 MB."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:61
+msgid ""
+"<app>Boxes</app> performs best if your computer processor supports hardware "
+"<link xref=\"virtualization\">virtualization extensions</link> and these are "
+"enabled in the system BIOS."
+msgstr ""
+"<app>Boxes</app> memiliki peforma terbaik jika pemroses komputer Anda "
+"mendukung perangkat keras <link xref=\"virtualization\">ekstensi "
+"virtualisasi</link> dan ekstensi tersebut diaktifkan pada sistem BIOS."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:66
+msgid ""
+"It is also recommended that you have at least 8GB RAM and 20GB of free disk "
+"space on your computer to efficiently run <app>Boxes</app>."
+msgstr ""
+"Juga disarankan agar Anda punya paling tidak RAM 8 GB dan ruang disk bebas "
+"20GB pada komputer Anda agar secara efisien menjalankan <app>Boxes</app>."
+
+#. (itstool) path: info/desc
+#: C/usb-redirection.page:29
+msgid "Allow your box to access a USB device."
+msgstr "Mengijinkan box Anda mengakses suatu perangkat USB."
+
+#. (itstool) path: page/title
+#: C/usb-redirection.page:35
+msgid "USB Redirection"
+msgstr "Pengalihan USB"
+
+#. (itstool) path: page/p
+#: C/usb-redirection.page:37
+msgid ""
+"<sys>USB</sys> is a universal hardware bus protocol used to plug any kind of "
+"device into your computer. <sys>USB redirection</sys> makes devices plugged "
+"into your local computer available in the machines you are connected to in "
+"<app>Boxes</app>. For instance, a USB flash drive or a webcam will appear as "
+"directly connected to the remote or virtual computer."
+msgstr ""
+"<sys>USB</sys> adalah suatu protokol bus perangkat keras universal untuk "
+"menancapkan sebarang jenis perangkat ke komputer Anda. <sys>Pengalihan USB</"
+"sys> membuat perangkat yang ditancapkan ke komputer lokal Anda tersedia bagi "
+"mesin tempat Anda tersambung dalam <app>Boxes</app>. Sebagai contoh, suatu "
+"kandar flash USB atau suatu webcam akan muncul seperti tersambung langsung "
+"ke komputer virtual atau remote."
+
+#. (itstool) path: steps/title
+#: C/usb-redirection.page:44
+msgid "To enable host USB devices in a box:"
+msgstr "Untuk memfungsikan perangkat USB host dalam suatu box:"
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:45
+msgid "Make sure the box is running."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:50
+msgid "Click the <gui>Devices</gui> tab."
+msgstr "Klik tab <gui>Peranti</gui>."
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:51
+msgid ""
+"<gui>USB devices</gui> connected to the host machine are shown in a list. "
+"Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
+msgstr ""
+"<gui>Peranti USB</gui> yang tersambung ke mesin host ditampilkan dalam suatu "
+"daftar. Tata saklar di sebelah setiap peranti yang diinginkan menjadi <gui "
+"style=\"switch\">NYALA</gui>."
+
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Priya Pandya"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
+#. (itstool) path: info/desc
+#: C/virtualization.page:22
+msgid "Check the resources available to <app>Boxes</app>."
+msgstr "Periksa sumberdaya yang tersedia untuk <app>Boxes</app>."
+
+#. (itstool) path: page/title
+#: C/virtualization.page:25
+msgid "Using processor hardware virtualization"
+msgstr "Menggunakan pemroses virtualisasi perangkat keras"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:27
+msgid ""
+"To determine whether your computer supports processor virtualization "
+"hardware extensions, and that they have been enabled in the system BIOS, run "
+"the following in a terminal window:"
+msgstr ""
+"Untuk mengetahi apakah komputer Anda mendukung pemroses ekstensi "
+"virtualisasi perangkat keras, dan telah diaktifkan pada sistem BIOS, lakukan "
+"hal berikut pada jendela terminal:"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:30
+msgid "<cmd>gnome-boxes --checks</cmd>"
+msgstr "<cmd>gnome-shell --checks</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
+msgid ""
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/what-is-a-virtual-machine.page:26
+msgid "What is a virtual machine?"
+msgstr "Apa itu mesin virtual?"
+
+#. (itstool) path: page/p
+#: C/what-is-a-virtual-machine.page:28
+msgid ""
+"A virtual machine is a simulated computer running inside another computer. "
+"The simulated computer is often called <em>guest</em>, while the real "
+"machine is called <em>host</em>."
+msgstr ""
+"Suatu mesin virtual adalah suatu komputer tersimulasi yang berjalan di dalam "
+"komputer lain. Komputer yang tersimulai sering dipanggil sebagai <em>guest</"
+"em>, sedangkan mesin nyata dipanggil <em>host</em>."
+
+#. (itstool) path: page/p
+#: C/what-is-a-virtual-machine.page:31
+msgid ""
+"With <em>virtualization</em>, the guest has access to the real hardware the "
+"host is running. If the guest can run on fake hardware, it's called "
+"<em>emulation</em>."
+msgstr ""
+"Dengan <em>virtualisasi</em>, guest punya akses ke perangkat keras nyata "
+"yang dijalankan host. Bila guest bisa berjalan pada perangkat keras palsu, "
+"itu dinamai <em>emulasi</em>."
+
+#. (itstool) path: page/title
+#: C/why-do-i-need-virtual-machine.page:27
+msgid "Why do I need a virtual machine?"
+msgstr "Mengapa saya memerlukan suatu mesin virtual?"
+
+#. (itstool) path: page/p
+#: C/why-do-i-need-virtual-machine.page:29
+msgid ""
+"A virtual machine can be useful when you need to run applications that will "
+"only run on another operating system, on Microsoft Windows™ for instance. A "
+"virtual machine can also be used during software development, to test in a "
+"pristine environment."
+msgstr ""
+"Suatu mesin virtual dapat berguna ketika Anda perlu menjalankan aplikasi "
+"yang hanya akan berjalan pada sistem operasi lain, pada Microsoft Windows™ "
+"misalnya. Suatu mesin virtual dapat juga dipakai selama pengembangan "
+"perangkat lunak, untuk menguji dalam suatu lingkungan yang bersih."
