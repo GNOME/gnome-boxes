@@ -36,13 +36,31 @@ private class Boxes.VMAssistant : Gtk.Dialog {
         use_header_bar = 1;
     }
 
-    public VMAssistant (AppWindow app_window) {
+    public VMAssistant (AppWindow app_window, string? path = null) {
         set_transient_for (app_window);
 
         // TODO: Make the Assistant independent from window states
         app_window.set_state (UIState.WIZARD);
 
         index_page.setup (app_window, this);
+
+        // TODO: Rename this to PATH
+        if (path != null)
+            prepare_for_path.begin (path);
+    }
+
+    private async void prepare_for_path (string path) {
+        var media_manager = MediaManager.get_instance ();
+
+        try {
+            var installer_media = yield media_manager.create_installer_media_for_path (path, null);
+            do_preparation (installer_media);
+        } catch (GLib.Error error) {
+            debug("Failed to analyze installer image: %s", error.message);
+
+            var msg = _("Failed to analyze installer media. Corrupted or incomplete media?");
+            App.app.main_window.notificationbar.display_error (msg);
+        }
     }
 
     [GtkCallback]
@@ -114,17 +132,19 @@ private class Boxes.VMAssistant : Gtk.Dialog {
             vm_creator.launch_vm (machine);
         } catch (GLib.Error error) {
             warning ("Failed to create machine: %s", error.message);
+
+            // TODO: launch Notification
         }
 
         vm_creator.install_media.clean_up_preparation_cache ();
 
-        close ();
+        shutdown ();
     }
 
-    public override void close () {
+    public void shutdown () {
         // TODO: Make the Assistant independent from window states
         App.app.main_window.set_state (UIState.COLLECTION);
 
-        base.close ();
+        destroy ();
     }
 }

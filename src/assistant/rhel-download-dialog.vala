@@ -17,6 +17,8 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
 
     private GLib.Cancellable cancellable = new GLib.Cancellable ();
 
+    private WizardDownloadableEntry entry;
+
     construct {
         var context = web_view.get_context ();
         var language_names = GLib.Intl.get_language_names ();
@@ -31,13 +33,15 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         });
     }
 
-    public RHELDownloadDialog (AppWindow app_window, Osinfo.Os os) {
+    public RHELDownloadDialog (AppWindow app_window, WizardDownloadableEntry entry) {
         set_transient_for (app_window);
+        this.entry = entry;
 
         var user_agent = GLib.Uri.escape_string (get_user_agent (), null, false);
         var authentication_uri = "https://developers.redhat.com/download-manager/rest/featured/file/rhel" +
                                  "?tag=" + user_agent;
 
+        var os = entry.os;
         is_rhel8 = os.id.has_prefix ("http://redhat.com/rhel/8");
 
         web_view.load_uri (authentication_uri);
@@ -71,19 +75,8 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
 
         debug ("RHEL ISO download URI: %s", download_uri);
 
-        var soup_download_uri = new Soup.URI (download_uri);
-        var download_path = soup_download_uri.get_path ();
-
-        // Libsoup is supposed to ensure that the path is at least "/".
-        return_val_if_fail (download_path != null, false);
-        return_val_if_fail (download_path.length > 0, false);
-
-        if (!download_path.has_suffix (".iso")) {
-            download_path = is_rhel8 ? "/rhel-8.0-x86_64-dvd.iso" : "/rhel.iso";
-        }
-
-        var filename = GLib.Path.get_basename (download_path);
-        print ("===> %s download_path\n\n", download_path);
+        entry.url = download_uri;
+        DownloadsHub.get_instance ().add_item (entry);
 
         decision.ignore ();
         this.close ();
@@ -180,5 +173,6 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         cancellable.cancel ();
 
         base.close ();
+        destroy ();
     }
 }

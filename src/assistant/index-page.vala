@@ -42,11 +42,13 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     public void go_back () {
         if (stack.visible_child == home_page) {
-            dialog.close ();
+            dialog.shutdown ();
+
+            return;
         }
 
         stack.visible_child = home_page;
-        dialog.previous_button.label = _("Cancel");
+        update_topbar ();
     }
 
     private async void populate_media_lists () {
@@ -83,6 +85,18 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     [GtkCallback]
+    private void update_topbar () {
+        dialog.previous_button.label = _("Cancel");
+
+        var titlebar = dialog.get_titlebar () as Gtk.HeaderBar;
+        if (stack.visible_child == recommended_downloads_page) {
+            titlebar.set_custom_title (recommended_downloads_page.search_entry);
+        } else {
+            titlebar.set_custom_title (null);
+        }
+    }
+
+    [GtkCallback]
     private void on_expand_detected_sources_list () {
         populate_detected_sources_list ();
 
@@ -99,7 +113,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         var entry = row as WizardDownloadableEntry;
 
         if (entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
-            var rhel_dialog = new RHELDownloadDialog (app_window, entry.os);
+            var rhel_dialog = new RHELDownloadDialog (app_window, entry);
             rhel_dialog.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
 
             int width, height;
@@ -108,9 +122,9 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
             rhel_dialog.run ();
         } else
-            on_download_selected (entry.url);
+            DownloadsHub.get_instance ().add_item (entry);
 
-        dialog.close ();
+        dialog.shutdown ();
     }
 
     public override void cleanup () {
@@ -136,10 +150,5 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         stack.set_visible_child (recommended_downloads_page);
 
         dialog.previous_button.label = _("Previous");
-    }
-
-    [GtkCallback]
-    private void on_download_selected (string url) {
-        print (url);
     }
 }

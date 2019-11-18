@@ -91,6 +91,10 @@ private class Boxes.App: Gtk.Application {
         action.activate.connect ((param) => { open_name (param.get_string ()); });
         add_action (action);
 
+        action = new GLib.SimpleAction ("install", GLib.VariantType.STRING);
+        action.activate.connect ((param) => { install (param.get_string ()); });
+        add_action (action);
+
         action = new GLib.SimpleAction ("about", null);
         action.activate.connect (() => {
             string[] authors = {
@@ -313,6 +317,10 @@ private class Boxes.App: Gtk.Application {
         }
     }
 
+    public void install (string path) {
+        main_window.show_vm_assistant (path);
+    }
+
     public bool open_uuid (string uuid) {
         main_window.set_state (UIState.COLLECTION);
 
@@ -450,7 +458,7 @@ private class Boxes.App: Gtk.Application {
         }
     }
 
-    private new void send_notification (string notification_id, GLib.Notification notification) {
+    public new void send_notification (string notification_id, GLib.Notification notification) {
         base.send_notification (notification_id, notification);
 
         system_notifications.append (notification_id);

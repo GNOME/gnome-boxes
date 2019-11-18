@@ -2,6 +2,16 @@
 <interface>
   <!-- interface-requires gtk+ 3.9 -->
   <template class="BoxesAssistantDownloadsPage" parent="GtkStack">
+    <signal name="key-press-event" handler="on_key_pressed"/>
+    <child type="title">
+      <object class="GtkSearchEntry" id="search_entry">
+        <property name="visible">True</property>
+        <property name="width-chars">50</property>
+        <property name="can-focus">True</property>
+        <property name="placeholder-text" translatable="yes">Search for an OS or enter a download link…</property>
+        <signal name="search-changed" handler="on_search_changed"/>
+      </object>
+    </child>
 
     <child>
       <object class="GtkBox">
@@ -108,4 +118,11 @@
     </child>
 
   </template>
+
+       <object class="GtkSearchEntry" id="searchbar">
+            <property name="visible">True</property>
+            <property name="width-chars">50</property>
+            <property name="can-focus">True</property>
+            <property name="placeholder-text" translatable="yes">Search for an OS or enter a download link…</property>
+          </object>
 </interface>

@@ -17,10 +17,12 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     private Gtk.ListBox listbox;
     [GtkChild]
     private Gtk.ListBox recommended_listbox;
+    [GtkChild]
+    public Gtk.SearchEntry search_entry;
 
     private GLib.ListStore recommended_model;
 
-    public signal void media_selected (string url);
+    public signal void media_selected (Gtk.ListBoxRow row);
 
     private AssistantDownloadsPageView _page;
     public AssistantDownloadsPageView page {
@@ -74,17 +76,12 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     }
 
     private Gtk.Widget create_downloads_entry (Object item) {
-        var media = item as Osinfo.Media;
-
-        return new WizardDownloadableEntry (media);
+        return new WizardDownloadableEntry (item as Osinfo.Media);
     }
 
     [GtkCallback]
     private void on_listbox_row_activated (Gtk.ListBoxRow row) {
-        // Start to download Entry
-        var entry = row as WizardDownloadableEntry;
-
-        media_selected (entry.url);
+        media_selected (row);
     }
 
     [GtkCallback]
@@ -92,5 +89,23 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
         search.show_all ();
 
         page = AssistantDownloadsPageView.SEARCH_RESULTS;
+    }
+
+    [GtkCallback]
+    private void on_search_changed () {
+        var text = search_entry.get_text ();
+
+        if (text == null)
+            return;
+
+        search.text = text;
+    }
+
+    [GtkCallback]
+    private bool on_key_pressed (Gtk.Widget widget, Gdk.EventKey event) {
+        if (!search_entry.has_focus)
+            search_entry.grab_focus ();
+
+        return search_entry.key_press_event (event);
     }
 }
