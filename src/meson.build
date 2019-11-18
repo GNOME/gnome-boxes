@@ -54,6 +54,7 @@ vala_sources = [
   'display-page.vala',
   'display-toolbar.vala',
   'display.vala',
+  'downloads-hub.vala',
   'editable-entry.vala',
   'i-properties-provider.vala',
   'i-collection-view.vala',

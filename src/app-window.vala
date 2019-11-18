@@ -232,7 +232,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                                             icon_view,
                                             list_view,
                                             props_window,
-                                            wizard_window,
+                                            //wizard_window,
                                             empty_boxes }) {
             ui.set_state (ui_state);
         }
