@@ -42,7 +42,9 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     public void go_back () {
         if (stack.visible_child == home_page) {
-            dialog.close ();
+            dialog.shutdown ();
+
+            return;
         }
 
         stack.visible_child = home_page;
@@ -108,9 +110,9 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
             rhel_dialog.run ();
         } else
-            on_download_selected (entry.url);
+            DownloadsHub.get_instance ().add_item (entry);
 
-        dialog.close ();
+        dialog.shutdown ();
     }
 
     public override void cleanup () {
@@ -136,10 +138,5 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         stack.set_visible_child (recommended_downloads_page);
 
         dialog.previous_button.label = _("Previous");
-    }
-
-    [GtkCallback]
-    private void on_download_selected (string url) {
-        print (url);
     }
 }

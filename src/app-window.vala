@@ -232,7 +232,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                                             icon_view,
                                             list_view,
                                             props_window,
-                                            wizard_window,
+                                            //wizard_window,
                                             empty_boxes }) {
             ui.set_state (ui_state);
         }
@@ -303,8 +303,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         new Boxes.RemoteConnectionAssistant (this).run ();
     }
 
-    public void show_vm_assistant () {
-        new Boxes.VMAssistant (this).run ();
+    public void show_vm_assistant (string? path = null) {
+        new Boxes.VMAssistant (this, path).run ();
     }
 
     public void show_properties () {

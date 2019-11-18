@@ -20,7 +20,7 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
 
     private GLib.ListStore recommended_model;
 
-    public signal void media_selected (string url);
+    public signal void media_selected (Gtk.ListBoxRow row);
 
     private AssistantDownloadsPageView _page;
     public AssistantDownloadsPageView page {
@@ -74,17 +74,12 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     }
 
     private Gtk.Widget create_downloads_entry (Object item) {
-        var media = item as Osinfo.Media;
-
-        return new WizardDownloadableEntry (media);
+        return new WizardDownloadableEntry (item as Osinfo.Media);
     }
 
     [GtkCallback]
     private void on_listbox_row_activated (Gtk.ListBoxRow row) {
-        // Start to download Entry
-        var entry = row as WizardDownloadableEntry;
-
-        media_selected (entry.url);
+        media_selected (row);
     }
 
     [GtkCallback]
