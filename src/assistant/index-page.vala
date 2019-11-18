@@ -108,7 +108,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
             rhel_dialog.run ();
         } else
-            on_download_selected (entry.url);
+            DownloadsHub.get_instance ().add_item (entry);
 
         dialog.close ();
     }

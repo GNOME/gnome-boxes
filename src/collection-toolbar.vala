@@ -16,6 +16,8 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     private Button new_btn;
     [GtkChild]
+    private DownloadsHub downloads_hub_btn;
+    [GtkChild]
     private MenuButton hamburger_btn;
     [GtkChild]
     private CollectionFilterSwitcher filter_switcher;
@@ -62,7 +64,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
     [GtkCallback]
     private void on_new_vm_btn_clicked () {
-        window.set_state (UIState.WIZARD);
+        //window.set_state (UIState.WIZARD);
     }
 
     [GtkCallback]
