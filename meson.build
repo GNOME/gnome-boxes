@@ -2,7 +2,7 @@ project ('gnome-boxes',
          ['vala', 'c'],
          version: '3.35.1',
          license: 'LGPLv2+',
-         meson_version: '>= 0.46.0',
+         meson_version: '>= 0.50.0',
 )
 
 gnome = import ('gnome')
