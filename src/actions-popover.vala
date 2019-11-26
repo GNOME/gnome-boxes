@@ -9,6 +9,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"delete",          delete_activated},
         {"clone",           clone_activated},
         {"properties",      properties_activated},
+        {"export",          export_activated},
         {"restart",         restart_activated},
         {"send_file",       send_file_activated}
 
@@ -95,6 +96,10 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var action = action_group.lookup_action ("properties") as GLib.SimpleAction;
         action.set_enabled (!importing);
 
+        section.append (_("Export"), "box.export");
+        menu.append_section (null, section);
+        // when to enable?
+
         bind_model (menu, null);
         window.current_item = item;
     }
@@ -169,4 +174,22 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     private void properties_activated () {
         window.show_properties ();
     }
+
+    private void export_activated () {
+        var machine = window.current_item as LibvirtMachine;
+
+        var title = _("Export %s").printf (machine.name);
+        var file_chooser = new Gtk.FileChooserNative (title,
+                                                      window,
+                                                      Gtk.FileChooserAction.SAVE,
+                                                      _("Export"), _("Cancel"));
+        if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
+            print (title);
+            print (file_chooser.get_filename ());
+
+            var vm_exporter = new VMExporter (machine, file_chooser.get_filename ());
+            vm_exporter.export.begin ();
+        }
+    }
+
 }

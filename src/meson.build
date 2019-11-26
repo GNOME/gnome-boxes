@@ -102,6 +102,7 @@ vala_sources = [
   'vm-configurator.vala',
   'vm-creator.vala',
   'vm-importer.vala',
+  'vm-exporter.vala',
   'libvirt-system-importer.vala',
   'libvirt-vm-cloner.vala',
   'libvirt-vm-importer.vala',
