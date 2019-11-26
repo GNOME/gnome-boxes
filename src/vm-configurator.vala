@@ -79,6 +79,9 @@ private class Boxes.VMConfigurator {
         clock.add_timer (timer);
         domain.set_clock (clock);
 
+        if (install_media is InstalledMedia)
+            target_path = install_media.device_file;
+
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
 
