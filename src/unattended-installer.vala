@@ -670,7 +670,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 }
             }
 
-            if (datamap.reverse_lookup (kbd_layout) != null) {
+            if (kbd_layout != null && datamap.reverse_lookup (kbd_layout) != null) {
                 return kbd_layout;
             }
         } catch (GLib.Error error) {
