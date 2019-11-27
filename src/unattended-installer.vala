@@ -667,7 +667,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                 kbd_layout = sources.get_child_value (0).get_child_value (1).get_string ();
             }
 
-            if (datamap.reverse_lookup (kbd_layout) != null) {
+            if (kbd_layout != null && datamap.reverse_lookup (kbd_layout) != null) {
                 return kbd_layout;
             }
         } catch (GLib.Error error) {
