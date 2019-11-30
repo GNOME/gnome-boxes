@@ -518,6 +518,21 @@
             ]
         },
         {
+            "name" : "vte",
+            "buildsystem" : "meson",
+            "build-options" : {
+                "env" : {
+                    "CXXFLAGS" : "-fno-exceptions"
+                }
+            },
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/vte.git"
+                }
+            ]
+        },
+        {
             "name" : "gnome-boxes",
             "buildsystem" : "meson",
             "config-opts" : [
