@@ -685,10 +685,13 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var sources = input_settings.get_value ("sources");
 
             if (sources != null) {
-                kbd_layout = sources.get_child_value (0).get_child_value (1).get_string ();
+                var sources_pair = sources.get_child_value (0);
+                if (sources_pair != null) {
+                    kbd_layout = sources_pair.get_child_value (1).get_string ();
+                }
             }
 
-            if (datamap.reverse_lookup (kbd_layout) != null) {
+            if (kbd_layout != null && datamap.reverse_lookup (kbd_layout) != null) {
                 return kbd_layout;
             }
         } catch (GLib.Error error) {
