@@ -136,12 +136,12 @@ dependencies = [
   dependency ('gobject-2.0', version: '>= 2.44'),
   dependency ('gtk+-3.0', version: '>= 3.22.20'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
-  dependency ('libosinfo-1.0', version: '>= 1.4.0'),
+  dependency ('libosinfo-1.0', version: '>= 1.7.0'),
   dependency ('libsecret-1'),
   dependency ('libsoup-2.4', version: '>= 2.38'),
   dependency ('libusb-1.0', version: '>= 1.0.9'),
-  dependency ('libvirt-gconfig-1.0', version: '>= 2.0.0'),
-  dependency ('libvirt-gobject-1.0', version: '>= 2.0.0'),
+  dependency ('libvirt-gconfig-1.0', version: '>= 3.0.0'),
+  dependency ('libvirt-gobject-1.0', version: '>= 3.0.0'),
   dependency ('libxml-2.0', version: '>= 2.7.8'),
   dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
   dependency ('tracker-sparql-2.0'),
@@ -193,6 +193,9 @@ else
   dependencies += libovf.get_variable('govf_vapi')
 endif
 
+if get_option('uefi')
+    vala_args += '--define=USE_UEFI'
+endif
 
 executable ('gnome-boxes', vala_sources + resources,
             include_directories: config_h_dir,
