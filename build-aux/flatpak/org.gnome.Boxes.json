@@ -414,14 +414,13 @@
             ]
         },
         {
-            "name" : "libosinfo",
-            "buildsystem" : "meson",
+            "name" : "ids",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "install -Dm644 pci.ids /app/share/hwdata/pci.ids",
+                "install -Dm644 usb.ids /app/share/hwdata/usb.ids"
+            ],
             "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://releases.pagure.org/libosinfo/libosinfo-1.7.0.tar.xz",
-                    "sha256": "2a3cdf851505af8d9988599c03a54613bf503042f0cf4982e895f4254a697693"
-                },
                 {
                     "type" : "file",
                     "path" : "pci.ids"
@@ -429,6 +428,21 @@
                 {
                     "type" : "file",
                     "path" : "usb.ids"
+                }
+            ]
+        },
+        {
+            "name" : "libosinfo",
+            "buildsystem" : "meson",
+            "config-opts" : [
+                "-Dwith-pci-ids-path=/app/share/hwdata/pci.ids",
+                "-Dwith-usb-ids-path=/app/share/hwdata/usb.ids"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://releases.pagure.org/libosinfo/libosinfo-1.7.0.tar.xz",
+                    "sha256": "2a3cdf851505af8d9988599c03a54613bf503042f0cf4982e895f4254a697693"
                 }
             ]
         },

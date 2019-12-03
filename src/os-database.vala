@@ -56,11 +56,7 @@ private class Boxes.OSDatabase : GLib.Object {
         db_loading = true;
         var loader = new Loader ();
         try {
-#if FLATPAK
-            yield App.app.async_launcher.launch (() => { loader.process_path ("/app/share/osinfo"); });
-#else
             yield App.app.async_launcher.launch (() => { loader.process_default_path (); });
-#endif
         } catch (GLib.Error e) {
             warning ("Error loading default libosinfo database: %s", e.message);
         }
