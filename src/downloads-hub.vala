@@ -86,12 +86,11 @@ private class Boxes.DownloadsHub : Gtk.Popover {
 
     [GtkCallback]
     private void on_row_activated (Gtk.ListBoxRow _row) {
-        var row = _row as DownloadsHubRow;
+        popdown ();
 
+        var row = _row as DownloadsHubRow;
         if (row.local_file != null) {
             App.app.main_window.show_vm_assistant (row.local_file);
-
-            popup ();
         }
     }
 
