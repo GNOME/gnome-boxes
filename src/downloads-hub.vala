@@ -13,35 +13,61 @@ private class Boxes.DownloadsHub : Gtk.Popover {
 
     [GtkChild]
     private ListBox listbox;
+    private Widget button { get { return relative_to; } }
+
+    private uint n_items = 0;
+    private double progress {
+        get {
+            double total = 0;
+            foreach (var row in listbox.get_children ()) {
+                total += (row as DownloadsHubRow).progress.progress / n_items;
+            }
+
+            return total;
+        }
+    }
+    private uint redraw_progress_pie_id = 0;
 
     private bool ongoing_downloads {
-        get { return (listbox.get_children ().length () > 0); }
+        get { return (n_items > 0); }
     }
 
-    // TODO: inhibit suspend
-
     public void add_item (WizardDownloadableEntry entry) {
+        n_items+=1;
+
         var row = new DownloadsHubRow.from_entry (entry);
 
-        if (!relative_to.visible)
-            relative_to.visible = true;
+        if (!button.visible)
+            button.visible = true;
+
+        var drawing_area = (button as Bin).get_child ();
+        drawing_area.draw.connect (draw_button_pie);
 
         row.destroy.connect (on_row_deleted);
         row.download_complete.connect (on_download_complete);
 
-        if (!ongoing_downloads) {
+        if (ongoing_downloads) {
             var reason = _("Downloading media");
 
             App.app.inhibit (App.app.main_window, null, reason);
+
+            redraw_progress_pie_id = Timeout.add_seconds (1, () => {
+                drawing_area.queue_draw ();
+
+                return true;
+            });
         }
 
         listbox.prepend (row);
     }
 
     private void on_row_deleted () {
+        n_items-= 1;
         if (!ongoing_downloads) {
             // Hide the Downloads Hub when there aren't ongoing downloads
-            relative_to.visible = false;
+            button.visible = false;
+
+            GLib.Source.remove (redraw_progress_pie_id);
         }
     }
 
@@ -67,6 +93,31 @@ private class Boxes.DownloadsHub : Gtk.Popover {
             popup ();
         }
     }
+
+    private bool draw_button_pie (Widget drawing_area, Cairo.Context context) {
+        var width = drawing_area.get_allocated_width ();
+        var height = drawing_area.get_allocated_height ();
+
+        context.set_line_join (Cairo.LineJoin.ROUND);
+
+        var style_context = button.get_style_context ();
+        var foreground = style_context.get_color (button.get_state_flags ());
+        var background = foreground;
+
+        background.alpha *= 0.3;
+        context.set_source_rgba (background.red, background.green, background.blue, background.alpha);
+        context.arc (width / 2, height / 2, height / 3, - Math.PI / 2, 3 * Math.PI / 2);
+        context.fill ();
+
+        context.move_to (width / 2, height / 2);
+        context.set_source_rgba (foreground.red, foreground.green, foreground.blue, foreground.alpha);
+
+        double radians = - Math.PI / 2 + 2 * Math.PI * progress;
+        context.arc (width / 2, height / 2, height / 3, - Math.PI / 2, radians);
+        context.fill ();
+
+        return true;
+    }
 }
 
 [GtkTemplate (ui= "/org/gnome/Boxes/ui/downloads-hub-row.ui")]
@@ -78,7 +129,7 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
     [GtkChild]
     private ProgressBar progress_bar;
 
-    private ActivityProgress progress = new ActivityProgress ();
+    public ActivityProgress progress = new ActivityProgress ();
     private ulong progress_notify_id;
 
     private Cancellable cancellable = new Cancellable ();
