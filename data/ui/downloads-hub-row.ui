@@ -37,11 +37,30 @@
         </child>
 
         <child>
-          <object class="GtkProgressBar" id="progress_bar">
+          <object class="GtkStack" id="download_status">
             <property name="visible">True</property>
-            <property name="hexpand">True</property>
+
+            <child>
+              <object class="GtkProgressBar" id="progress_bar">
+                <property name="visible">True</property>
+                <property name="hexpand">True</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel" id="download_complete_label">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Ready to install</property>
+                <property name="halign">start</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
           </object>
           <packing>
+            <property name="top-attach">1</property>
             <property name="left-attach">1</property>
           </packing>
         </child>
