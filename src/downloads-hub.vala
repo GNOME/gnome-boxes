@@ -82,6 +82,13 @@ private class Boxes.DownloadsHub : Gtk.Popover {
         if (!ongoing_downloads) {
             App.app.uninhibit ();
         }
+
+        if (n_items == 1) {
+            var row = listbox.get_row_at_index (0) as DownloadsHubRow;
+
+            popdown ();
+            App.app.main_window.show_vm_assistant (row.local_file);
+        }
     }
 
     [GtkCallback]
