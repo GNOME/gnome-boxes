@@ -169,6 +169,7 @@ private class Boxes.App: Gtk.Application {
     static bool opt_fullscreen;
     static bool opt_help;
     static string opt_open_uuid;
+    static string opt_open_vm_by_name;
     static string[] opt_uris;
     static string[] opt_search;
     const OptionEntry[] options = {
@@ -176,6 +177,7 @@ private class Boxes.App: Gtk.Application {
         { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
+        { "open-vm-by-name", 0, 0, OptionArg.STRING, ref opt_open_vm_by_name, N_("Open VM by name"), null },
         { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
         // A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
         { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URL to display, broker or installer media"), null },
@@ -186,6 +188,7 @@ private class Boxes.App: Gtk.Application {
         opt_fullscreen = false;
         opt_help = false;
         opt_open_uuid = null;
+        opt_open_vm_by_name = null;
         opt_uris = null;
         opt_search = null;
 
@@ -213,7 +216,9 @@ private class Boxes.App: Gtk.Application {
         }
 
         if (opt_uris.length > 1 ||
-            (opt_open_uuid != null && opt_uris != null)) {
+            (opt_open_uuid != null
+             && opt_open_vm_by_name != null
+             && opt_uris != null)) {
             cmdline.printerr (_("Too many command line arguments specified.\n"));
             cmdline.printerr (opt_context.get_help (true, null));
             return 1;
@@ -225,7 +230,15 @@ private class Boxes.App: Gtk.Application {
         if (opt_open_uuid != null) {
             var uuid = opt_open_uuid;
             call_when_ready (() => {
-                    app.open_uuid (uuid);
+                app.open_uuid (uuid);
+            });
+        } else if (open_in_new_window != null) {
+            call_when_ready(() => {
+                if (!app.open_name(opt_open_vm_by_name)) {
+                    cmdline.printerr(_("\nThere is no VM by the name: '%s'\n"),
+                    opt_open_vm_by_name);
+                    list_vm_by_names();
+                }
             });
         } else if (opt_uris != null) {
             var arg = opt_uris[0];
@@ -302,8 +315,17 @@ private class Boxes.App: Gtk.Application {
             withdraw_notification (notification);
     }
 
-    public void open_name (string name) {
+    public void list_vm_by_names() {
         main_window.set_state (UIState.COLLECTION);
+        for (int idx = 0; idx < collection.length; ++idx) {
+            var item = collection.get_item(idx);
+            printerr("* %s\n", item.name);
+        }
+    }
+
+    public bool open_name (string name) {
+        main_window.set_state (UIState.COLLECTION);
+        bool vm_found = false;
 
         // after "ready" all items should be listed
         for (int i = 0 ; i < collection.length ; i++) {
@@ -311,10 +333,11 @@ private class Boxes.App: Gtk.Application {
 
             if (item.name == name) {
                 main_window.select_item (item);
-
+                vm_found = true;
                 break;
             }
         }
+        return vm_found;
     }
 
     public void install (string path) {
