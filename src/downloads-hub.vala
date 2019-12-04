@@ -128,7 +128,11 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
     [GtkChild]
     private Image image;
     [GtkChild]
+    private Stack download_status;
+    [GtkChild]
     private ProgressBar progress_bar;
+    [GtkChild]
+    private Label download_complete_label;
 
     public ActivityProgress progress = new ActivityProgress ();
     private ulong progress_notify_id;
@@ -169,6 +173,7 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
         }
 
         download_complete (label.label, local_file);
+        download_status.set_visible_child (download_complete_label);
     }
 
     [GtkCallback]
