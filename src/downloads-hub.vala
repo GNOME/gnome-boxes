@@ -88,6 +88,8 @@ private class Boxes.DownloadsHub : Gtk.Popover {
 
             popdown ();
             App.app.main_window.show_vm_assistant (row.local_file);
+
+            row.destroy ();
         }
     }
 
@@ -99,6 +101,8 @@ private class Boxes.DownloadsHub : Gtk.Popover {
         if (row.local_file != null) {
             App.app.main_window.show_vm_assistant (row.local_file);
         }
+
+        row.destroy ();
     }
 
     private bool draw_button_pie (Widget drawing_area, Cairo.Context context) {
