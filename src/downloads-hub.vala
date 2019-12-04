@@ -59,6 +59,7 @@ private class Boxes.DownloadsHub : Gtk.Popover {
         }
 
         listbox.prepend (row);
+        popup ();
     }
 
     private void on_row_deleted () {
