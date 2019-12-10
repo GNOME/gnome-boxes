@@ -107,6 +107,8 @@ vala_sources = [
   'libvirt-vm-importer.vala',
   'vnc-display.vala',
   'ssh-display.vala',
+  'welcome-tutorial.vala',
+  'welcome-tutorial-page.vala',
   'wizard-downloads-page.vala',
   'wizard-window.vala',
   'wizard-source.vala',
