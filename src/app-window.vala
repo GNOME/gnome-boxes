@@ -189,6 +189,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         if (app.application_id == "org.gnome.BoxesDevel") {
             get_style_context ().add_class ("devel");
         }
+
+        if (first_run) {
+            new Boxes.WelcomeTutorial (this).run ();
+            first_run = !first_run;
+        }
     }
 
     public void setup_ui () {
