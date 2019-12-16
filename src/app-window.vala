@@ -189,11 +189,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         if (app.application_id == "org.gnome.BoxesDevel") {
             get_style_context ().add_class ("devel");
         }
-
-        if (first_run) {
-            new Boxes.WelcomeTutorial (this).run ();
-            first_run = !first_run;
-        }
     }
 
     public void setup_ui () {
@@ -310,6 +305,14 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
     public void show_vm_assistant (string? path = null) {
         new Boxes.VMAssistant (this, path).run ();
+    }
+
+    public void show_welcome_tutorial () {
+        if (first_run) {
+            new Boxes.WelcomeTutorial (this).run ();
+
+            first_run = !first_run;
+        }
     }
 
     public void show_properties () {
