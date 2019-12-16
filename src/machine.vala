@@ -212,7 +212,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     got_error (message);
             });
 
-            auth_failed_id = _display.auth_failed.connect (() => { delete_auth_credentials.begin (); });
+            auth_failed_id = _display.auth_failed.connect ((message) => {
+                delete_auth_credentials.begin ();
+
+                window.set_state (Boxes.UIState.COLLECTION);
+                window.notificationbar.display_error (_("Authentication failed: %s").printf (message));
+            });
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
