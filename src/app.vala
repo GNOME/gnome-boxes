@@ -164,6 +164,8 @@ private class Boxes.App: Gtk.Application {
         window.set_state (UIState.COLLECTION);
 
         activate_async.begin ();
+
+        window.show_welcome_tutorial ();
     }
 
     static bool opt_fullscreen;
