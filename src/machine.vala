@@ -212,7 +212,12 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     got_error (message);
             });
 
-            auth_failed_id = _display.auth_failed.connect (() => { delete_auth_credentials.begin (); });
+            auth_failed_id = _display.auth_failed.connect ((message) => {
+                delete_auth_credentials.begin ();
+
+                window.set_state (Boxes.UIState.COLLECTION);
+                window.notificationbar.display_error (_("Authentication failed: %s").printf (message));
+            });
 
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
@@ -750,6 +755,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         try {
             yield Secret.password_clear (secret_auth_schema, null,
                                          "gnome-boxes-machine-uuid", config.uuid);
+
+            auth_notification.dismiss ();
+            auth_notification = null;
         } catch (GLib.Error error) {
             debug ("Failed to delete credentials for machine %s: %s", config.uuid, error.message);
         }
