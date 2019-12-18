@@ -1,9 +1,11 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-page-widget.ui")]
 private class Boxes.PropertiesPageWidget: Gtk.Box {
     public bool empty;
 
+    [GtkChild]
     private Gtk.Grid grid;
     private List<Boxes.Property> properties;
 
@@ -27,19 +29,6 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
             name = _("Snapshots");
             break;
         }
-
-        get_style_context ().add_class ("transparent-bg");
-
-        grid = new Gtk.Grid ();
-        grid.margin = 20;
-        grid.row_spacing = 10;
-        grid.column_spacing = 20;
-        var scrolled_win = new Gtk.ScrolledWindow (null, null);
-        scrolled_win.margin_start = 20;
-        scrolled_win.margin_end = 20;
-        scrolled_win.set_policy (Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
-        scrolled_win.add (grid);
-        pack_end (scrolled_win, true, true);
 
         properties = machine.get_properties (page);
         empty = properties.length () == 0;
