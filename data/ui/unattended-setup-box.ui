@@ -189,6 +189,9 @@
                     <property name="text"></property>
                     <property name="visible">True</property>
                     <property name="visibility">False</property>
+                    <property name="secondary-icon-activatable">True</property>
+                    <property name="secondary-icon-name">eye-not-looking-symbolic</property>
+                    <signal name="icon-release" handler="on_secondary_icon_clicked"/>
                     <signal name="changed" handler="on_password_entry_changed"/>
                     <signal name="focus-out-event" handler="on_password_entry_focus_out"/>
                     <signal name="activate" handler="on_password_entry_activated"/>
