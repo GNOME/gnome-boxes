@@ -390,5 +390,14 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
         Signal.stop_emission_by_name (product_key_entry, "insert-text");
     }
+
+    [GtkCallback]
+    private void on_secondary_icon_clicked () {
+        password_entry.visibility = !password_entry.visibility;
+
+        password_entry.secondary_icon_name = password_entry.visibility ?
+                                             "eye-open-negative-filled-symbolic" :
+                                             "eye-not-looking-symbolic";
+    }
 }
 
