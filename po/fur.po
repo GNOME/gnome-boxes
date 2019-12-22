@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-12-11 15:11+0000\n"
-"PO-Revision-Date: 2019-12-16 14:19+0100\n"
+"POT-Creation-Date: 2019-12-16 16:19+0000\n"
+"PO-Revision-Date: 2019-12-22 19:44+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -443,7 +443,7 @@ msgstr "Jutori"
 msgid "About Boxes"
 msgstr "Informazions su Scjatulis"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:651
 msgid "Troubleshooting Log"
 msgstr "Regjistri di soluzion problemis"
 
@@ -739,7 +739,7 @@ msgstr "Sfuarce distudament"
 msgid "Clone"
 msgstr "Clone"
 
-#: src/actions-popover.vala:84 src/machine.vala:626
+#: src/actions-popover.vala:84 src/machine.vala:631
 msgid "Restart"
 msgstr "Torne invie"
 
@@ -1203,20 +1203,25 @@ msgstr "Distudade"
 msgid "Connecting to %s"
 msgstr "Conetint a %s"
 
-#: src/machine.vala:227 src/machine.vala:653
+#: src/machine.vala:219
+#, c-format
+msgid "Authentication failed: %s"
+msgstr "Autenticazion falide: %s"
+
+#: src/machine.vala:232 src/machine.vala:658
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Conession a “%s” falide"
 
-#: src/machine.vala:279
+#: src/machine.vala:284
 msgid "Machine is under construction"
 msgstr "La machine e je in costruzion"
 
-#: src/machine.vala:433
+#: src/machine.vala:438
 msgid "Saving…"
 msgstr "Daûr a salvâ…"
 
-#: src/machine.vala:625
+#: src/machine.vala:630
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1225,13 +1230,13 @@ msgstr ""
 "Nol è stât pussibil ripristinâ “%s” dal disc\n"
 "Provâ cence il stât salvât?"
 
-#: src/machine.vala:636
+#: src/machine.vala:641
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Inviament di “%s” falît"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:740
+#: src/machine.vala:745
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” al à bisugne di autenticazion"
@@ -1525,6 +1530,10 @@ msgstr "La scjatule Live “%s” e je stade eliminade in automatic."
 msgid "Box import from file “%s” failed."
 msgstr "Importazion scjatule dal file “%s” falide."
 
+#: src/vnc-display.vala:154
+msgid "Read-only"
+msgstr "Dome leture"
+
 #: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "Sisteme x86 di 32-bit"
@@ -1713,9 +1722,6 @@ msgstr "P_ersonalize…"
 
 #~ msgid "%s (maximum)"
 #~ msgstr "%s (massim)"
-
-#~ msgid "Read-only"
-#~ msgstr "Dome leture"
 
 #~ msgid "%dx%d"
 #~ msgstr "%dx%d"
