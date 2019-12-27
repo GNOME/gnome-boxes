@@ -5,25 +5,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-28\n"
-"POT-Creation-Date: 2018-03-22 10:44+0000\n"
-"PO-Revision-Date: 2018-03-25 18:53+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"POT-Creation-Date: 2019-09-19 12:49+0000\n"
+"PO-Revision-Date: 2019-12-27 17:45+0100\n"
+"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-Project-Style: gnome\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Fran Dieguez <frandieguez@gnome.org>, 2018."
+msgstr "Fran Dieguez <frandieguez@gnome.org>, 2018-2020."
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -36,10 +36,128 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr ""
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+#, fuzzy
+#| msgid "Create a box"
+msgid "Restore a box"
+msgstr "Crear unha caixa"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+#, fuzzy
+#| msgid "Use the clipboard with <app>Boxes</app>."
+msgid "Exit <app>Boxes</app>."
+msgstr "Usar o portaretallos con <app>Caixas</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+#, fuzzy
+#| msgid "Use the clipboard with <app>Boxes</app>."
+msgid "Launch <app>Boxes</app>."
+msgstr "Usar o portaretallos con <app>Caixas</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -83,8 +201,8 @@ msgid ""
 msgstr ""
 "Prema co botón dereito na caixa desde a vista de coleción e seleccione "
 "<gui>Propiedades</gui>, ou se a caixa está axectándose, prema o botón de "
-"menú (<_:media-1/>) na barra de cabeceira e seleccione "
-"<gui>Propiedades</gui>."
+"menú (<_:media-1/>) na barra de cabeceira e seleccione <gui>Propiedades</"
+"gui>."
 
 #. (itstool) path: item/p
 #: C/clipboard.page:31
@@ -92,8 +210,8 @@ msgid ""
 "On the <gui>General</gui> tab, switch <gui>Share clipboard</gui> to <gui>ON</"
 "gui>."
 msgstr ""
-"Na lapela <gui>Xeral</gui>, troque <gui>Compartir portapapeis</gui> a "
-"<gui>|</gui>."
+"Na lapela <gui>Xeral</gui>, troque <gui>Compartir portapapeis</gui> a <gui>|"
+"</gui>."
 
 #. (itstool) path: note/p
 #: C/clipboard.page:36
@@ -155,8 +273,8 @@ msgid ""
 "At the wizard's <gui>Source Selection</gui> screen, click <gui style=\"button"
 "\">Enter URL</gui>."
 msgstr ""
-"Na pantalla do asistente <gui>Selección de orixe</gui>, prema <gui style=\""
-"button\">Escribir URL</gui>."
+"Na pantalla do asistente <gui>Selección de orixe</gui>, prema <gui style="
+"\"button\">Escribir URL</gui>."
 
 #. (itstool) path: item/p
 #: C/connect.page:35
@@ -196,7 +314,8 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/connect.page:44
 msgid "vnc:// to connect to a remote <app>vino</app> or <app>VNC</app> server."
-msgstr "vnc:// para conectarse a un servidor <app>vino</app> ou <app>VNC</app>."
+msgstr ""
+"vnc:// para conectarse a un servidor <app>vino</app> ou <app>VNC</app>."
 
 #. (itstool) path: note/p
 #: C/connect.page:48
@@ -224,113 +343,12 @@ msgid "The remote box will open in the collection view."
 msgstr "A caixa remota abrirase na vista de colección."
 
 #. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr "Crear unha caixa usando unha imaxe de disco Continuous."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "Usar Caixas con Continuous"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\""
-">Continuous</link> é o sistema de construción continuous de GNOME. Caixas "
-"pode crear unha caixa desde unha imaxe <em>qcow2</em> Continuous."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"As últimas imaxes atópanse na ligazón fornecida na sección de <link href=\""
-"https://wiki.gnome.org/Projects/GnomeContinuous#Installation\""
-">Instalación</link> da páxina de wiki."
-
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"As imaxes están dispoñíbeis en modos <em>runtime</em> e <em>devel-debug</em>"
-". Os resultados das imaxes <em>devel-debug</em> nunha máquina virtual "
-"contendo as ferramentas e cabeceiras de desenvolvemento."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"En <app>Caixas</app>, prema <gui style=\"button\">Nova</gui> para iniciar o "
-"asistente de creación de caixas."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"Prema en <gui style=\"button\">Escribir URL</gui> e escriba o URL que inclúe "
-"o nome de ficheiro completo do runtime comprimido en gzip ou unha imaxe "
-"qcow2 devel-debug. Caixas descargara e instalará a imaxe."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"Se xa gardou unha imaxe no disco, prema <gui style=\"button\">Seleccionar un "
-"ficheiro</gui> e navegue á imaxe qcow2 de Continuous. Seleccione o ficheiro "
-"e prema <gui style=\"button\">Abrir</gui>."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"Abrirase a páxina <gui>Revisión</gui>. Prema <gui style=\"button\""
-">Personalizar</gui> para axustar a memoria ou tamaño do disco, ou renomear a "
-"caixa."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"Prema <gui style=\"button\">Crear</gui>. Volverá a vista de colección, e a "
-"instalación da caixa comezará."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"A información precisa para actualizar unha MV de Continuous pode atoparse na "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">páxina de "
-"wiki</link>."
-
-#. (itstool) path: info/desc
 #: C/create.page:18
-msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
-msgstr "Prema <gui style=\"button\">Nova</gui> para comezar a crear unha caixa."
+#, fuzzy
+#| msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
+msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
+msgstr ""
+"Prema <gui style=\"button\">Nova</gui> para comezar a crear unha caixa."
 
 #. (itstool) path: page/title
 #: C/create.page:21
@@ -529,16 +547,10 @@ msgstr "Asuntos avanzados"
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
 
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
-
 #. (itstool) path: info/desc
 #: C/interface.page:25
 msgid "Get around the application."
-msgstr "Unha volta polo aplicativo."
+msgstr "Unha volta pola aplicación."
 
 #. (itstool) path: page/title
 #: C/interface.page:28
@@ -807,6 +819,15 @@ msgstr "Prema a lapela <gui>Sistema</gui>."
 msgid ""
 "Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
 "reflect the desired values."
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -1150,7 +1171,8 @@ msgstr "Desde a lista, seleccione a instantánea que quere renomear."
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:40
 msgid "Click the gear button on the right and select <gui>Rename</gui>."
-msgstr "Prema o botón do engranaxe da dereita e seleccione <gui>Renomear</gui>."
+msgstr ""
+"Prema o botón do engranaxe da dereita e seleccione <gui>Renomear</gui>."
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:42
@@ -1211,9 +1233,9 @@ msgid ""
 "app> to allow users to easily manage virtual machines and connect to remote "
 "machines."
 msgstr ""
-"Caixas usa <app>qemu-kvm</app>, <app>libvirt-glib</app> e <app>spice-"
-"gtk</app> para permitirlle aos usuarios xestionar as máquinas virtuais de "
-"forma doada e conectarse a máquinas remotas."
+"Caixas usa <app>qemu-kvm</app>, <app>libvirt-glib</app> e <app>spice-gtk</"
+"app> para permitirlle aos usuarios xestionar as máquinas virtuais de forma "
+"doada e conectarse a máquinas remotas."
 
 #. (itstool) path: section/title
 #: C/supported-protocols.page:42
@@ -1405,18 +1427,28 @@ msgid ""
 "Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
 msgstr ""
 
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr ""
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr ""
+
 #. (itstool) path: info/desc
-#: C/virtualization.page:16
+#: C/virtualization.page:22
 msgid "Check the resources available to <app>Boxes</app>."
 msgstr ""
 
 #. (itstool) path: page/title
-#: C/virtualization.page:19
+#: C/virtualization.page:25
 msgid "Using processor hardware virtualization"
 msgstr "USar a virtualización hardware do procesador"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:21
+#: C/virtualization.page:27
 msgid ""
 "To determine whether your computer supports processor virtualization "
 "hardware extensions, and that they have been enabled in the system BIOS, run "
@@ -1424,18 +1456,63 @@ msgid ""
 msgstr ""
 
 #. (itstool) path: page/p
-#: C/virtualization.page:24
+#: C/virtualization.page:30
 msgid "<cmd>gnome-boxes --checks</cmd>"
 msgstr "<cmd>gnome-boxes --checks</cmd>"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:25
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
 msgid ""
-"If necessary, switch on the extensions <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">in the BIOS setup</link>"
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr ""
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
 msgstr ""
 
 #. (itstool) path: page/title
@@ -1472,3 +1549,85 @@ msgid ""
 "virtual machine can also be used during software development, to test in a "
 "pristine environment."
 msgstr ""
+
+#~ msgid "Create a box using a Continuous disk image."
+#~ msgstr "Crear unha caixa usando unha imaxe de disco Continuous."
+
+#~ msgid "Using Boxes with Continuous"
+#~ msgstr "Usar Caixas con Continuous"
+
+#~ msgid ""
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
+#~ "\">Continuous</link> is GNOME's continuous build system. Boxes is able to "
+#~ "create a box from a Continuous <em>qcow2</em> image."
+#~ msgstr ""
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous"
+#~ "\">Continuous</link> é o sistema de construción continuous de GNOME. "
+#~ "Caixas pode crear unha caixa desde unha imaxe <em>qcow2</em> Continuous."
+
+#~ msgid ""
+#~ "The latest images are found at the link provided in the <link href="
+#~ "\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
+#~ "\">Installation</link> section of the wiki page."
+#~ msgstr ""
+#~ "As últimas imaxes atópanse na ligazón fornecida na sección de <link href="
+#~ "\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
+#~ "\">Instalación</link> da páxina de wiki."
+
+#~ msgid ""
+#~ "Images are available in <em>runtime</em> and <em>devel-debug</em> "
+#~ "flavors. The <em>devel-debug</em> image results in a virtual machine "
+#~ "containing developer tools and headers."
+#~ msgstr ""
+#~ "As imaxes están dispoñíbeis en modos <em>runtime</em> e <em>devel-debug</"
+#~ "em>. Os resultados das imaxes <em>devel-debug</em> nunha máquina virtual "
+#~ "contendo as ferramentas e cabeceiras de desenvolvemento."
+
+#~ msgid ""
+#~ "In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the "
+#~ "box creation wizard."
+#~ msgstr ""
+#~ "En <app>Caixas</app>, prema <gui style=\"button\">Nova</gui> para iniciar "
+#~ "o asistente de creación de caixas."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Enter URL</gui> and type the URL including "
+#~ "the full filename of the gzipped runtime or devel-debug qcow2 image. "
+#~ "Boxes will download and install the image."
+#~ msgstr ""
+#~ "Prema en <gui style=\"button\">Escribir URL</gui> e escriba o URL que "
+#~ "inclúe o nome de ficheiro completo do runtime comprimido en gzip ou unha "
+#~ "imaxe qcow2 devel-debug. Caixas descargara e instalará a imaxe."
+
+#~ msgid ""
+#~ "If you have already saved an image to disk, click <gui style=\"button"
+#~ "\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
+#~ "the file and click <gui style=\"button\">Open</gui>."
+#~ msgstr ""
+#~ "Se xa gardou unha imaxe no disco, prema <gui style=\"button\">Seleccionar "
+#~ "un ficheiro</gui> e navegue á imaxe qcow2 de Continuous. Seleccione o "
+#~ "ficheiro e prema <gui style=\"button\">Abrir</gui>."
+
+#~ msgid ""
+#~ "The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
+#~ "gui> to adjust memory or disk size, or to rename the box."
+#~ msgstr ""
+#~ "Abrirase a páxina <gui>Revisión</gui>. Prema <gui style=\"button"
+#~ "\">Personalizar</gui> para axustar a memoria ou tamaño do disco, ou "
+#~ "renomear a caixa."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Create</gui>. The collection view returns, "
+#~ "and the installation of the box begins."
+#~ msgstr ""
+#~ "Prema <gui style=\"button\">Crear</gui>. Volverá a vista de colección, e "
+#~ "a instalación da caixa comezará."
+
+#~ msgid ""
+#~ "The information necessary to upgrade a Continuous vm can be found on the "
+#~ "<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
+#~ "link>."
+#~ msgstr ""
+#~ "A información precisa para actualizar unha MV de Continuous pode atoparse "
+#~ "na <link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">páxina "
+#~ "de wiki</link>."
