@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-12-11 15:11+0000\n"
-"PO-Revision-Date: 2019-12-12 09:06+0100\n"
+"POT-Creation-Date: 2019-12-16 16:19+0000\n"
+"PO-Revision-Date: 2019-12-30 12:11+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -445,7 +445,7 @@ msgstr "Ayuda"
 msgid "About Boxes"
 msgstr "Acerca de Cajas"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:651
 msgid "Troubleshooting Log"
 msgstr "Registro de resolución de problemas"
 
@@ -586,7 +586,6 @@ msgstr ""
 "de todo."
 
 #: data/ui/welcome-tutorial.ui:46
-#| msgid "Downloads"
 msgid "Easy Downloads"
 msgstr "Descargas fáciles"
 
@@ -742,7 +741,7 @@ msgstr "Forzar apagado"
 msgid "Clone"
 msgstr "Clonar"
 
-#: src/actions-popover.vala:84 src/machine.vala:626
+#: src/actions-popover.vala:84 src/machine.vala:631
 msgid "Restart"
 msgstr "Reiniciar"
 
@@ -1204,20 +1203,25 @@ msgstr "Apagada"
 msgid "Connecting to %s"
 msgstr "Conectando a %s"
 
-#: src/machine.vala:227 src/machine.vala:653
+#: src/machine.vala:219
+#, c-format
+msgid "Authentication failed: %s"
+msgstr "Falló la autenticación: %s"
+
+#: src/machine.vala:232 src/machine.vala:658
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Falló la conexión a «%s»"
 
-#: src/machine.vala:279
+#: src/machine.vala:284
 msgid "Machine is under construction"
 msgstr "Se está construyendo la máquina"
 
-#: src/machine.vala:433
+#: src/machine.vala:438
 msgid "Saving…"
 msgstr "Guardando…"
 
-#: src/machine.vala:625
+#: src/machine.vala:630
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1226,13 +1230,13 @@ msgstr ""
 "no se pudo restaurar «%s» desde el disco\n"
 "¿Intentarlo sin el estado guardado?"
 
-#: src/machine.vala:636
+#: src/machine.vala:641
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Falló al iniciar «%s»"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:740
+#: src/machine.vala:745
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "«%s» requiere autenticación"
@@ -1526,6 +1530,10 @@ msgstr "Se ha eliminado la caja «%s» automáticamente."
 msgid "Box import from file “%s” failed."
 msgstr "Falló al importar la caja del archivo «%s»."
 
+#: src/vnc-display.vala:154
+msgid "Read-only"
+msgstr "Sólo lectura"
+
 #: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "sistema x86 de 32 bits"
@@ -1711,9 +1719,6 @@ msgstr "_Personalizar…"
 
 #~ msgid "%s (maximum)"
 #~ msgstr "%s (máximo)"
-
-#~ msgid "Read-only"
-#~ msgstr "Sólo lectura"
 
 #~ msgid "%dx%d"
 #~ msgstr "%dx%d"
