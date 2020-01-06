@@ -58,7 +58,7 @@ private class Boxes.InstallerMedia : GLib.Object {
     public bool prefers_q35 {
         get {
             if (os == null)
-                return true;
+                return false;
 
             var device = find_device_by_prop (supported_devices, DEVICE_PROP_NAME, "qemu-x86-q35");
             if (device == null)
