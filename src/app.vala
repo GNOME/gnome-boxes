@@ -134,11 +134,6 @@ private class Boxes.App: Gtk.Application {
         Gtk.init (ref args2);
 
         collection = new Collection ();
-
-        brokers.insert ("libvirt", LibvirtBroker.get_default ());
-
-        check_cpu_vt_capability.begin ();
-        check_module_kvm_loaded.begin ();
     }
 
     public bool has_broker_for_source_type (string type) {
@@ -165,12 +160,21 @@ private class Boxes.App: Gtk.Application {
 
         activate_async.begin ();
 
+	if (opt_remote_viewer)
+            return;
+
+        brokers.insert ("libvirt", LibvirtBroker.get_default ());
+
+        check_cpu_vt_capability.begin ();
+        check_module_kvm_loaded.begin ();
+
         window.show_welcome_tutorial ();
     }
 
     static bool opt_fullscreen;
     static bool opt_help;
     static string opt_open_uuid;
+    public static bool opt_remote_viewer;
     static string[] opt_uris;
     static string[] opt_search;
     const OptionEntry[] options = {
@@ -179,6 +183,7 @@ private class Boxes.App: Gtk.Application {
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
         { "search", 0, 0, OptionArg.STRING_ARRAY, ref opt_search, N_("Search term"), null },
+        { "remote-viewer", 0, 0, OptionArg.NONE, ref opt_remote_viewer, N_("Launch only remote viewing capabilities"), null },
         // A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
         { "", 0, 0, OptionArg.STRING_ARRAY, ref opt_uris, N_("URL to display, broker or installer media"), null },
         { null }
@@ -187,6 +192,7 @@ private class Boxes.App: Gtk.Application {
     public override int command_line (GLib.ApplicationCommandLine cmdline) {
         opt_fullscreen = false;
         opt_help = false;
+        opt_remote_viewer = false;
         opt_open_uuid = null;
         opt_uris = null;
         opt_search = null;
@@ -416,7 +422,8 @@ private class Boxes.App: Gtk.Application {
     private async void activate_async () {
         yield move_configs_from_cache ();
 
-        yield setup_default_source ();
+	if (!opt_remote_viewer)
+            yield setup_default_source ();
 
         is_ready = true;
         ready ();
