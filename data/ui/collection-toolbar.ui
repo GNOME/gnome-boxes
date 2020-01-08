@@ -9,8 +9,19 @@
     </style>
 
     <child type="title">
-      <object class="BoxesCollectionFilterSwitcher" id="filter_switcher">
+      <object class="GtkStack" id="title_stack">
         <property name="visible">True</property>
+	<child>
+          <object class="BoxesCollectionFilterSwitcher" id="filter_switcher">
+            <property name="visible">True</property>
+          </object>
+        </child>
+	<child>
+	  <object class="GtkLabel" id="remote_viewer_title">
+	    <property name="visible">True</property>
+	    <property name="label" translatable="yes">Remote Viewer</property>
+	  </object>
+	</child>
       </object>
     </child>
 
@@ -232,7 +243,7 @@
         <property name="orientation">vertical</property>
         <property name="margin">10</property>
         <child>
-          <object class="GtkModelButton">
+          <object class="GtkModelButton" id="create_vm_entry">
             <property name="visible">True</property>
             <property name="text" translatable="yes">Create a Virtual Machine…</property>
             <signal name="clicked" handler="on_create_vm_btn_clicked"/>
