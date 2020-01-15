@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-09-25 11:53+0000\n"
+"POT-Creation-Date: 2019-12-16 16:19+0000\n"
 "PO-Revision-Date: 2019-09-30 22:30+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -60,8 +60,8 @@ msgstr ""
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
-#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
+#: src/app-window.vala:137 src/app-window.vala:263 src/app-window.vala:265
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
@@ -139,6 +139,121 @@ msgstr ""
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 
+#: data/ui/assistant/pages/downloads-page.ui:110
+#: data/ui/wizard-downloads-page.ui:89
+msgid "No operating systems found"
+msgstr "オペレーティングシステムが見つかりません"
+
+#: data/ui/assistant/pages/downloads-page.ui:121
+#: data/ui/wizard-downloads-page.ui:100
+msgid "Try a different search"
+msgstr "他のキーワードを試してください"
+
+#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: src/assistant/downloads-page.vala:54
+msgid "Search for an OS or enter a download link…"
+msgstr "OS を検索するか、ダウンロードリンクを入力してください…"
+
+#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
+#, fuzzy
+#| msgid "Create a Virtual Machine…"
+msgid "Create a Virtual Machine"
+msgstr "仮想マシンを作成…"
+
+#: data/ui/assistant/pages/index-page.ui:35
+msgid ""
+"A new virtual machine will be created and an operating system installed into "
+"it. Select an operating system source to begin."
+msgstr ""
+
+#: data/ui/assistant/pages/index-page.ui:49
+msgid "Detected Sources"
+msgstr ""
+
+#: data/ui/assistant/pages/index-page.ui:109
+msgid "Featured Downloads"
+msgstr ""
+
+#: data/ui/assistant/pages/index-page.ui:120
+#, fuzzy
+#| msgid "You will find your file in the Downloads directory."
+msgid "You will be notified when the download has completed."
+msgstr "ファイルはダウンロードディレクトリにあります。"
+
+#: data/ui/assistant/pages/index-page.ui:147
+#, fuzzy
+#| msgid "Select a file"
+msgid "Select an OS Source"
+msgstr "ファイルを選択する"
+
+#: data/ui/assistant/pages/index-page.ui:180
+#, fuzzy
+#| msgid "No operating systems found"
+msgid "Operating System Download"
+msgstr "オペレーティングシステムが見つかりません"
+
+#: data/ui/assistant/pages/index-page.ui:196
+msgid "Browse and search for operating systems to install."
+msgstr ""
+
+#: data/ui/assistant/pages/index-page.ui:242
+msgid "Operating System Image File"
+msgstr ""
+
+#: data/ui/assistant/pages/index-page.ui:258
+#, fuzzy
+#| msgid "Select a bootable image file to install in a virtual machine."
+msgid "Select an .iso file to install a virtual machine."
+msgstr "選択したブータブルイメージファイルを仮想マシンにインストールします。"
+
+#: data/ui/assistant/pages/preparation-page.ui:5
+#, fuzzy
+#| msgid "Importing…"
+msgid "Preparing…"
+msgstr "インポート中…"
+
+#: data/ui/assistant/pages/preparation-page.ui:20
+#, fuzzy
+#| msgid "Preparing to create new box"
+msgid "Preparing to create a new box"
+msgstr "新しいボックスを準備中"
+
+#: data/ui/assistant/pages/review-page.ui:5
+msgid "Review and Create"
+msgstr ""
+
+#: data/ui/assistant/pages/review-page.ui:18
+#, fuzzy
+#| msgid "Boxes will create a new box with the following properties:"
+msgid "Boxes is ready to set up a new box with the following properties:"
+msgstr "次のプロパティで新しいボックスを作成します:"
+
+#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+msgid ""
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
+msgstr ""
+"仮想化支援機能がお使いのシステムで利用できません。\n"
+"BIOS 設定を確認して仮想化支援機能を有効にしてください。"
+
+#: data/ui/assistant/pages/review-page.ui:68
+#, fuzzy
+#| msgid "Source Selection"
+msgid "Resource Allocation"
+msgstr "ソースの選択"
+
+#: data/ui/assistant/pages/review-page.ui:77
+#, fuzzy
+#| msgid "C_ustomize…"
+msgid "Customize"
+msgstr "カスタマイズ(_U)…"
+
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:37
+#, fuzzy
+#| msgid "Express Install"
+msgid "Express Installation"
+msgstr "かんたんインストール"
+
 #: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
 msgid "Connect to a Box"
 msgstr "ボックスへ接続"
@@ -148,17 +263,23 @@ msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
 "vnc://."
 msgstr ""
-"接続するアドレスを入力してください (spice://、rdp://、vnc:// から始まるアドレス"
-"が有効です)。"
+"接続するアドレスを入力してください (spice://、rdp://、vnc:// から始まるアドレ"
+"スが有効です)。"
 
 #: data/ui/assistant/remote-connection.ui:37
-#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
+#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "キャンセル"
 
 #: data/ui/assistant/remote-connection.ui:45
 msgid "Connect"
 msgstr "接続"
+
+#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+msgid "Next"
+msgstr ""
 
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
@@ -199,30 +320,36 @@ msgid "Back"
 msgstr "戻る"
 
 #: data/ui/collection-toolbar.ui:74
+#, fuzzy
+#| msgid "Download an OS"
+msgid "Downloads"
+msgstr "OS をダウンロードする"
+
+#: data/ui/collection-toolbar.ui:99
 msgid "Application Menu"
 msgstr "アプリケーションメニュー"
 
-#: data/ui/collection-toolbar.ui:102
+#: data/ui/collection-toolbar.ui:127
 msgid "Select Items"
 msgstr "アイテムの選択"
 
-#: data/ui/collection-toolbar.ui:130
+#: data/ui/collection-toolbar.ui:155
 msgid "List view"
 msgstr "リストビュー"
 
-#: data/ui/collection-toolbar.ui:158
+#: data/ui/collection-toolbar.ui:183
 msgid "Grid view"
 msgstr "グリッドビュー"
 
-#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:209 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "検索"
 
-#: data/ui/collection-toolbar.ui:212
+#: data/ui/collection-toolbar.ui:237
 msgid "Create a Virtual Machine…"
 msgstr "仮想マシンを作成…"
 
-#: data/ui/collection-toolbar.ui:219
+#: data/ui/collection-toolbar.ui:244
 msgid "Connect to a Remote Computer…"
 msgstr "リモートのコンピューターに接続…"
 
@@ -246,6 +373,10 @@ msgstr "キーボードショートカット"
 msgid "Fullscreen"
 msgstr "フルスクリーン"
 
+#: data/ui/downloads-hub-row.ui:54
+msgid "Ready to install"
+msgstr ""
+
 #: data/ui/empty-boxes.ui:68
 msgid "State of the art virtualization"
 msgstr "最先端の仮想化"
@@ -255,7 +386,9 @@ msgid "Boxes can be virtual or remote machines."
 msgstr "Boxes では仮想マシンまたはリモートのマシンを利用できます。"
 
 #: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>New</b> button to create your first one."
+#, fuzzy
+#| msgid "Just hit the <b>New</b> button to create your first one."
+msgid "Just hit the <b>+</b> button to create your first one."
 msgstr "<b>新規</b>ボタンを押してボックスを作成してください。"
 
 #: data/ui/kbd-shortcuts-window.ui:18
@@ -335,7 +468,7 @@ msgstr "ヘルプ"
 msgid "About Boxes"
 msgstr "Boxes について"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:651
 msgid "Troubleshooting Log"
 msgstr "トラブルシューティングログ"
 
@@ -344,7 +477,7 @@ msgid "_Copy to Clipboard"
 msgstr "クリップボードにコピー(_C)"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/properties-window.vala:55
+#: src/assistant/index-page.vala:140 src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "デバイスまたは ISO ファイルを選択"
 
@@ -361,7 +494,7 @@ msgid "_Delete"
 msgstr "削除(_D)"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:331
+#: src/app-window.vala:340
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
@@ -431,11 +564,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "かんたんインストール"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:271
 msgid "Username"
 msgstr "ユーザー名"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:272
 msgid "Password"
 msgstr "パスワード"
 
@@ -447,7 +580,50 @@ msgstr "パスワードを追加(_A)"
 msgid "Product Key"
 msgstr "プロダクトキー"
 
-#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
+#: data/ui/welcome-tutorial.ui:6
+msgid "Welcome Tutorial"
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:28
+msgid "Welcome to Boxes"
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:29
+msgid ""
+"Boxes makes it easy to install and run virtual machines. You can also use it "
+"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
+"connections."
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:38
+msgid ""
+"With express installation, Boxes will set the install options for a new "
+"virtual machine. Just start the installation and everything will be taken "
+"care of for you."
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:46
+msgid "Easy Downloads"
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:47
+msgid ""
+"With Boxes, you don't need to download an operating system to create a "
+"virtual machine. Instead, just pick the operating system you want to setup, "
+"and Boxes will automatically download it for you."
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:55
+msgid "Drag and Drop"
+msgstr ""
+
+#: data/ui/welcome-tutorial.ui:56
+msgid ""
+"Sharing files is as simple as dropping them onto your virtual machine. They "
+"will appear in your Downloads folder."
+msgstr ""
+
+#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
 msgid "Unknown media"
 msgstr "不明なメディア"
 
@@ -455,17 +631,10 @@ msgstr "不明なメディア"
 msgid "Show more…"
 msgstr "さらに表示…"
 
-#: data/ui/wizard-downloads-page.ui:89
-msgid "No operating systems found"
-msgstr "オペレーティングシステムが見つかりません"
-
-#: data/ui/wizard-downloads-page.ui:100
-msgid "Try a different search"
-msgstr "他のキーワードを試してください"
-
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
-msgstr "OS のインストールメディアを挿入するか、以下からソースを選択してください。"
+msgstr ""
+"OS のインストールメディアを挿入するか、以下からソースを選択してください。"
 
 #: data/ui/wizard-source.ui:87
 msgid "Download an OS"
@@ -507,8 +676,8 @@ msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
 msgstr ""
-"接続するアドレスを入力してください (spice://、rdp://、ssh://、vnc:// から始まる"
-"アドレスが有効です)。"
+"接続するアドレスを入力してください (spice://、rdp://、ssh://、vnc:// から始ま"
+"るアドレスが有効です)。"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 #: data/ui/wizard-window.ui:69 src/wizard.vala:178
@@ -527,33 +696,21 @@ msgstr "続行(_O)"
 msgid "Customize Resources"
 msgstr "リソースのカスタマイズ"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:342
 msgid "_Open"
 msgstr "開く(_O)"
-
-#: data/ui/wizard-toolbar.ui:243
-msgid "Search for an OS or enter a download link…"
-msgstr "OS を検索するか、ダウンロードリンクを入力してください…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
 msgstr "新しいボックスを準備中"
-
-#: data/ui/wizard.ui:220
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"仮想化支援機能がお使いのシステムで利用できません。\n"
-"BIOS 設定を確認して仮想化支援機能を有効にしてください。"
 
 #: data/ui/wizard-window.ui:82
 msgid ""
 "Each box can be a virtual machine that runs on this computer, or a "
 "connection to an existing remote machine"
 msgstr ""
-"ボックスは、このコンピューター上で実行される仮想マシンか、"
-"既存のリモートマシンへの接続のどちらかです"
+"ボックスは、このコンピューター上で実行される仮想マシンか、既存のリモートマシ"
+"ンへの接続のどちらかです"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -593,7 +750,7 @@ msgstr "強制終了"
 msgid "Clone"
 msgstr "複製"
 
-#: src/actions-popover.vala:84 src/machine.vala:626
+#: src/actions-popover.vala:84 src/machine.vala:631
 msgid "Restart"
 msgstr "再起動"
 
@@ -608,7 +765,7 @@ msgstr "プロパティ"
 msgid "Screenshot from %s"
 msgstr ""
 
-#: src/app.vala:112
+#: src/app.vala:116
 msgid "translator-credits"
 msgstr ""
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
@@ -617,75 +774,109 @@ msgstr ""
 "Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "sicklylife <translation@sicklylife.jp>"
 
-#: src/app.vala:113
+#: src/app.vala:117
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "リモートや仮想マシンにアクセスする簡単なGNOME3のアプリケーション"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
 msgstr "バージョン番号を表示"
 
-#: src/app.vala:172
+#: src/app.vala:176
 msgid "Open in full screen"
 msgstr "フルスクリーンで開く"
 
-#: src/app.vala:173 src/main.vala:10
+#: src/app.vala:177 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "仮想化支援機能が利用可能か確認する"
 
-#: src/app.vala:174
+#: src/app.vala:178
 msgid "Open box with UUID"
 msgstr "UUID を指定してボックスを開く"
 
-#: src/app.vala:175
+#: src/app.vala:179
 msgid "Search term"
 msgstr "検索キーワードを指定する"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:177
+#: src/app.vala:181
 msgid "URL to display, broker or installer media"
 msgstr "ディスプレイまたはブローカー、もしくはインストールメディアの URL"
 
-#: src/app.vala:188
+#: src/app.vala:192
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— リモートや仮想マシンにアクセスするシンプルなアプリケーション"
 
-#: src/app.vala:213
+#: src/app.vala:217
 msgid "Too many command line arguments specified.\n"
 msgstr "コマンドラインの引数が多すぎます。\n"
 
-#: src/app.vala:466
+#: src/app.vala:474
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "ボックス“%s”のインストールが完了し、使用できるようになりました"
 
-#: src/app.vala:468
+#: src/app.vala:476
 msgid "Launch"
 msgstr "起動"
 
-#: src/app.vala:554
+#: src/app.vala:562
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "ボックス“%s”を削除しました"
 
-#: src/app.vala:555
+#: src/app.vala:563
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 個のボックスを削除しました"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:557
+#: src/app.vala:590 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "元に戻す(_U)"
 
-#: src/app.vala:626
+#: src/app.vala:634
 msgid "Boxes is doing something"
 msgstr ""
 
-#: src/app-window.vala:330
+#: src/app-window.vala:339
 msgid "Select files to transfer"
 msgstr "送信するファイルの選択"
+
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+msgid "Open"
+msgstr "開く"
+
+#: src/assistant/index-page.vala:157 src/assistant/vm-assistant.vala:73
+msgid "Previous"
+msgstr ""
+
+#: src/assistant/review-page.vala:47 src/wizard.vala:580
+msgid "Memory"
+msgstr "メモリー"
+
+#: src/assistant/review-page.vala:56 src/wizard.vala:589
+msgid "Disk"
+msgstr "ディスク"
+
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: src/assistant/review-page.vala:58 src/wizard.vala:591
+#, c-format
+msgid "%s maximum"
+msgstr "最大 %s"
+
+#: src/assistant/vm-assistant.vala:60 src/wizard.vala:404
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"インストールメディアの分析に失敗しました。メディアが壊れているか不完全の可能"
+"性があります。"
+
+#: src/assistant/vm-assistant.vala:72
+#, fuzzy
+#| msgid "C_reate"
+msgid "Create"
+msgstr "作成(_R)"
 
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -705,6 +896,26 @@ msgstr ""
 msgid "Exit fullscreen"
 msgstr "フルスクリーンを終了"
 
+#: src/downloads-hub.vala:50 src/wizard.vala:657
+msgid "Downloading media"
+msgstr "メディアをダウンロードしています"
+
+#: src/downloads-hub.vala:76
+#, c-format
+msgid "“%s“ download complete"
+msgstr ""
+
+#: src/downloads-hub.vala:78
+#, fuzzy
+#| msgid "Installing…"
+msgid "Install"
+msgstr "インストール中…"
+
+#. We did this, so ignore!
+#: src/downloads-hub.vala:179
+msgid "Failed to download"
+msgstr ""
+
 #: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "新規または最近使った仮想マシン"
@@ -713,7 +924,7 @@ msgstr "新規または最近使った仮想マシン"
 msgid "Unsupported disk image format."
 msgstr "対応していないディスクイメージ形式"
 
-#: src/installed-media.vala:100 src/installer-media.vala:164
+#: src/installed-media.vala:100 src/installer-media.vala:178
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "システム"
@@ -905,40 +1116,40 @@ msgstr "ディスクから %s を復元中"
 msgid "Starting %s"
 msgstr "%s を起動しています"
 
-#: src/libvirt-machine.vala:709
+#: src/libvirt-machine.vala:715
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s”の再起動に時間がかかりすぎています。強制終了させますか?"
 
-#: src/libvirt-machine.vala:711
+#: src/libvirt-machine.vala:717
 msgid "_Shutdown"
 msgstr "終了(_S)"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:733
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "“%s”を複製中…"
 
-#: src/libvirt-machine.vala:859
+#: src/libvirt-machine.vala:865
 msgid "Installing…"
 msgstr "インストール中…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:861 src/util-app.vala:136
+#: src/libvirt-machine.vala:867 src/util-app.vala:152
 #: src/wizard-source.vala:123
 msgid "Live"
 msgstr "ライブ"
 
-#: src/libvirt-machine.vala:863
+#: src/libvirt-machine.vala:869
 msgid "Setting up clone…"
 msgstr "複製の設定中…"
 
-#: src/libvirt-machine.vala:865
+#: src/libvirt-machine.vala:871
 msgid "Importing…"
 msgstr "インポート中…"
 
-#: src/libvirt-machine.vala:874
+#: src/libvirt-machine.vala:880
 #, c-format
 msgid "host: %s"
 msgstr "ホスト: %s"
@@ -1003,20 +1214,25 @@ msgstr "電源オフ"
 msgid "Connecting to %s"
 msgstr "%s へ接続しています"
 
-#: src/machine.vala:227 src/machine.vala:653
+#: src/machine.vala:219
+#, c-format
+msgid "Authentication failed: %s"
+msgstr ""
+
+#: src/machine.vala:232 src/machine.vala:658
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s”への接続が失敗"
 
-#: src/machine.vala:279
+#: src/machine.vala:284
 msgid "Machine is under construction"
 msgstr ""
 
-#: src/machine.vala:433
+#: src/machine.vala:438
 msgid "Saving…"
 msgstr "保存しています…"
 
-#: src/machine.vala:625
+#: src/machine.vala:630
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1025,13 +1241,13 @@ msgstr ""
 "“%s”はディスクからリストアできませんでした\n"
 "保存されている状態を無視してやり直してみますか?"
 
-#: src/machine.vala:636
+#: src/machine.vala:641
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s”の起動に失敗しました"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:740
+#: src/machine.vala:745
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s”は認証が必要です"
@@ -1098,10 +1314,6 @@ msgstr "デバイスと共有"
 #: src/properties-page-widget.vala:27
 msgid "Snapshots"
 msgstr "スナップショット"
-
-#: src/properties-window.vala:58
-msgid "Open"
-msgstr "開く"
 
 #: src/properties.vala:83
 #, c-format
@@ -1226,14 +1438,14 @@ msgstr ""
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:216
+#: src/unattended-installer.vala:200
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "インストールの準備中にエラーが発生しました。かんたんインストールを無効化しま"
 "した。"
 
-#: src/unattended-installer.vala:479
+#: src/unattended-installer.vala:458
 msgid "Downloading device drivers…"
 msgstr "デバイスドライバーをダウンロードしています…"
 
@@ -1251,7 +1463,7 @@ msgstr "%s の高速インストールにはインターネット接続が必要
 msgid "GNOME Boxes credentials for “%s”"
 msgstr ""
 
-#: src/util-app.vala:322
+#: src/util-app.vala:338
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1261,20 +1473,20 @@ msgstr ""
 "きます:\n"
 "%s"
 
-#: src/util-app.vala:326
+#: src/util-app.vala:342
 msgid "SELinux not installed?"
 msgstr "SELinux はインストールされていない?"
 
-#: src/util-app.vala:408
+#: src/util-app.vala:424
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 msgstr ""
-"“gnome-boxes”ストレージプールの情報を libvirt から取得できませんでした。"
-"“virsh -c qemu:///session pool-dumpxml gnome-boxes”が機能するか確認して"
-"ください。"
+"“gnome-boxes”ストレージプールの情報を libvirt から取得できませんでし"
+"た。“virsh -c qemu:///session pool-dumpxml gnome-boxes”が機能するか確認してく"
+"ださい。"
 
-#: src/util-app.vala:413
+#: src/util-app.vala:429
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1283,7 +1495,7 @@ msgstr ""
 "%s は GNOME Boxes 用ストレージプールとして libvirt に認識されていますが、この"
 "ディレクトリは存在しません"
 
-#: src/util-app.vala:417
+#: src/util-app.vala:433
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1291,7 +1503,7 @@ msgstr ""
 "%s は GNOME Boxes 用ストレージプールとして libvirt に認識されていますが、ディ"
 "レクトリではありません"
 
-#: src/util-app.vala:421
+#: src/util-app.vala:437
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1310,7 +1522,7 @@ msgstr "いいえ"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:721
+#: src/vm-configurator.vala:748
 msgid "Incapable host system"
 msgstr "仮想化支援機能が利用できないホストシステムです"
 
@@ -1323,6 +1535,10 @@ msgstr "ライブボックス“%s”を自動削除しました。"
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "ファイル“%s”からのボックスのインポートに失敗しました"
+
+#: src/vnc-display.vala:154
+msgid "Read-only"
+msgstr "読み込み専用"
 
 #: src/wizard-source.vala:128
 msgid "32-bit x86 system"
@@ -1391,12 +1607,6 @@ msgstr "不明なインストールメディア"
 msgid "Analyzing…"
 msgstr "分析中…"
 
-#: src/wizard.vala:404
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
-"インストールメディアの分析に失敗しました。メディアが壊れているか不完全の可能"
-"性があります。"
-
 #. We did this, so ignore!
 #: src/wizard.vala:516
 msgid "Box setup failed"
@@ -1426,27 +1636,9 @@ msgstr "TLSポート"
 msgid "Will add boxes for all systems available from this account:"
 msgstr "このアカウントから利用可能なすべてのシステムのボックスを追加します:"
 
-#: src/wizard.vala:580
-msgid "Memory"
-msgstr "メモリー"
-
-#: src/wizard.vala:589
-msgid "Disk"
-msgstr "ディスク"
-
-#. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:591
-#, c-format
-msgid "%s maximum"
-msgstr "最大 %s"
-
 #: src/wizard.vala:654
 msgid "Downloading media…"
 msgstr "メディアをダウンロードしています…"
-
-#: src/wizard.vala:657
-msgid "Downloading media"
-msgstr "メディアをダウンロードしています"
 
 #: src/wizard.vala:667
 msgid "Download failed."
@@ -1526,6 +1718,3 @@ msgstr "カスタマイズ(_U)…"
 
 #~ msgid "Share Clipboard"
 #~ msgstr "クリップボードを共有"
-
-#~ msgid "Read-only"
-#~ msgstr "読み込み専用"
