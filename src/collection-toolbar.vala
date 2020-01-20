@@ -56,10 +56,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
         back_btn.clicked ();
     }
 
-    public void click_new_button () {
-        new_btn.clicked ();
-    }
-
     public void click_search_button () {
         search_btn.clicked ();
     }
