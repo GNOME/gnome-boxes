@@ -654,10 +654,3 @@ private class Boxes.App: Gtk.Application {
         }
     }
 }
-
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/kbd-shortcuts-window.ui")]
-private class Boxes.KbdShortcutsWindow: Gtk.ShortcutsWindow {
-    construct {
-        set_transient_for (App.app.main_window);
-    }
-}
