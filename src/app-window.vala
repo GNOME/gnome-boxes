@@ -419,6 +419,11 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             show_vm_assistant ();
 
             return true;
+        } else if (event.keyval == Gdk.Key.N &&
+                   (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
+            show_remote_connection_assistant ();
+
+            return true;
         } else if (event.keyval == Gdk.Key.f &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             topbar.click_search_button ();
