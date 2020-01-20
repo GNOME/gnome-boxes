@@ -172,20 +172,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         views = { icon_view, list_view };
 
-        var action = new GLib.SimpleAction ("kbd-shortcuts", null);
-        action.activate.connect (() => {
-            var window = new Boxes.KbdShortcutsWindow ();
-            if (ui_state == UIState.COLLECTION)
-                window.view_name = "overview";
-            else if (ui_state == UIState.WIZARD || ui_state == UIState.PROPERTIES)
-                window.view_name = "wizard";
-            else if (ui_state == UIState.DISPLAY)
-                window.view_name = "display";
-
-            window.show ();
-        });
-        add_action (action);
-
         if (app.application_id == "org.gnome.BoxesDevel") {
             get_style_context ().add_class ("devel");
         }

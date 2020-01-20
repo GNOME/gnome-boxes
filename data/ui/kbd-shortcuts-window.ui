@@ -2,7 +2,7 @@
 <interface>
   <!-- interface-requires gtk+ 3.17 -->
 
-  <template class="BoxesKbdShortcutsWindow" parent="GtkShortcutsWindow">
+  <object class="GtkShortcutsWindow" id="help_overlay">
     <property name="modal">1</property>
 
     <child>
@@ -45,7 +45,7 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="visible">1</property>
-                <property name="accelerator">&lt;Ctrl&gt;k</property>
+                <property name="accelerator">&lt;Ctrl&gt;F1</property>
                 <property name="title" translatable="yes" context="shortcut window">Keyboard shortcuts</property>
               </object>
             </child>
@@ -162,6 +162,6 @@
 
       </object>
     </child>
-  </template>
+  </object>
 
 </interface>
