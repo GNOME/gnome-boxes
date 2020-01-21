@@ -406,11 +406,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             App.app.activate_action ("help", null);
 
             return true;
-        } else if (event.keyval == Gdk.Key.k &&
-                   (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            activate_action ("kbd-shortcuts", null);
-
-            return true;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             if (ui_state == UIState.DISPLAY)
@@ -421,7 +416,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             return true;
         } else if (event.keyval == Gdk.Key.n &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            topbar.click_new_button ();
+            show_vm_assistant ();
+
+            return true;
+        } else if (event.keyval == Gdk.Key.N &&
+                   (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
+            show_remote_connection_assistant ();
 
             return true;
         } else if (event.keyval == Gdk.Key.f &&

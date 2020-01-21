@@ -40,11 +40,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             window.selection_mode = false;
     }
 
-    public void click_new_button () {
-        if (window.ui_state == UIState.COLLECTION)
-            collection_toolbar.click_new_button ();
-    }
-
     public void click_search_button () {
         if (window.ui_state == UIState.COLLECTION)
             collection_toolbar.click_search_button ();
