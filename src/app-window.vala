@@ -406,6 +406,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             App.app.activate_action ("help", null);
 
             return true;
+        } else if (event.keyval == Gdk.Key.F10) {
+            topbar.pop_main_menu ();
+
+            return true;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             if (ui_state == UIState.DISPLAY)
