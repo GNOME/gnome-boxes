@@ -18,7 +18,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     private MenuButton downloads_hub_btn;
     [GtkChild]
-    private MenuButton hamburger_btn;
+    public MenuButton hamburger_btn;
     [GtkChild]
     private CollectionFilterSwitcher filter_switcher;
 

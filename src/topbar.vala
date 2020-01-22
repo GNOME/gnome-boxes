@@ -45,6 +45,10 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
             collection_toolbar.click_search_button ();
     }
 
+    public void pop_main_menu () {
+        collection_toolbar.hamburger_btn.clicked ();
+    }
+
     public string? _status;
     public string? status {
         get { return _status; }
