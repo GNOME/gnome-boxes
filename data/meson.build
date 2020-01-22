@@ -103,7 +103,7 @@ configure_file (
   configuration: search_provider_conf,
   input: files ('gnome-boxes-search-provider.ini'),
   install_dir: join_paths (data_dir, 'gnome-shell', 'search-providers'),
-  output: 'gnome-boxes-search-provider.ini'.format (application_id)
+  output: '@0@.SearchProvider.ini'.format (application_id)
 )
 
 install_data ('QEMU_Session', install_dir : join_paths (data_dir, 'gnome-boxes/sources'))
