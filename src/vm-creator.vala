@@ -186,7 +186,8 @@ private class Boxes.VMCreator : Object {
 
     private async void try_create_snapshot (LibvirtMachine machine) {
         try {
-            yield machine.create_snapshot ("Just installed ");
+            // Translators: This is the name of the snapshot taken right after installing a VM.
+            yield machine.create_snapshot (_("Just installed "));
         } catch (GLib.Error error) {
             warning ("Failed to create snapshot for domain '%s': %s", machine.name, error.message);
         }
