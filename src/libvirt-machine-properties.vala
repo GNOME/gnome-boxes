@@ -127,7 +127,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             get_resources_properties (ref list);
 
-            add_run_in_bg_property (ref list);
+            add_footer_properties (ref list);
 
             break;
 
@@ -650,9 +650,80 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         return machine.domain.get_snapshots ();
     }
 
-    private void add_run_in_bg_property (ref List<Boxes.Property> list) {
+    private void add_footer_properties (ref List<Boxes.Property> list) {
+        var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+
+        var set_vcpus_property = get_set_vcpus_property ();
+        box.pack_start (set_vcpus_property, false, false, 0);
+
+        var run_in_bg_property = get_run_in_bg_property ();
+        box.pack_end (run_in_bg_property, false, false, 0);
+
+        add_property (ref list, null, box, null);
+    }
+
+    private Gtk.Widget? get_set_vcpus_property () {
+        try {
+            var host_topology = machine.connection.get_node_info ();
+            var max_vcpus = host_topology.cores * host_topology.sockets * host_topology.threads;
+
+            var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 10);
+            box.hexpand = false;
+            var label = new Gtk.Label ("");
+            label.set_markup ("<span color=\"grey\">%s</span>".printf (_("CPUs: ")));
+            label.halign = Gtk.Align.START;
+            box.add (label);
+
+            var property = new IntegerProperty (_("CPUs: "), 1, max_vcpus, 1, machine.domain_config.get_vcpus ());
+            property.changed.connect (on_vcpus_changed);
+            box.add (property.widget);
+
+            return box;
+        } catch (GLib.Error error) {
+            debug ("Failed to detect the number of vCPUs of %s: %s", machine.domain.get_name (), error.message);
+        }
+
+        return null;
+    }
+
+    private void on_vcpus_changed (Boxes.Property property, int vcpus) {
+        try {
+            if (machine.domain_config.get_vcpus () == vcpus)
+                return;
+
+            var config = machine.domain.get_config (GVir.DomainXMLFlags.INACTIVE);
+            config.set_vcpus (vcpus);
+            if (config.get_class ().find_property ("current-vcpus") != null)
+                config.set ("current-vcpus", vcpus);
+
+            var guest_topology = new GVirConfig.CapabilitiesCpuTopology ();
+            guest_topology.set_cores (vcpus);
+            guest_topology.set_sockets (1);
+            guest_topology.set_threads (1);
+
+            var cpu = machine.domain_config.get_cpu ();
+            cpu.set_topology (guest_topology);
+            config.set_cpu (cpu);
+
+            machine.domain.set_config (config);
+            debug ("vCPus changed to %d", vcpus);
+
+            if (machine.is_on) {
+                // TODO: unify the reboot requests for non-properties
+                var message = _("Changes require restart of “%s”.").printf (machine.name);
+                machine.window.notificationbar.dismiss_all ();
+                machine.window.notificationbar.display_for_action (message, _("_Restart"), () => {
+                    machine.restart ();
+                });
+            }
+        } catch (GLib.Error error) {
+            debug ("Failed to set the number of vCPUs for %s : %s", machine.domain.get_name (), error.message);
+        }
+    }
+
+    private Gtk.Widget? get_run_in_bg_property () {
         if (machine.connection != App.app.default_connection)
-            return; // We only autosuspend machines on default connection so this property is N/A to other machines
+            return null; // We only autosuspend machines on default connection so this property is N/A to other machines
 
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 20);
         box.halign = Gtk.Align.END;
@@ -665,6 +736,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         machine.bind_property ("run-in-bg", toggle, "active",
                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
         toggle.halign = Gtk.Align.START;
+        toggle.valign = Gtk.Align.CENTER;
         box.add (toggle);
         label.mnemonic_widget = toggle;
 
@@ -676,7 +748,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                               _("“%s” will be paused automatically to save resources.").printf (name);
         });
 
-        add_property (ref list, null, box, null);
+        return box;
     }
 
     private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list) {
