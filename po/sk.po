@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-16 13:05+0000\n"
-"PO-Revision-Date: 2020-01-21 13:44+0100\n"
+"POT-Creation-Date: 2020-01-27 16:42+0000\n"
+"PO-Revision-Date: 2020-02-03 07:29+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -24,7 +24,7 @@ msgstr "Boxy prostredia GNOME"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Simple remote and virtual machines"
-msgstr "Jednoduché vzdialené a virtuálne stroje"
+msgstr "Jednoduché vzdialené a virtuálne počítače"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Jednoduchá aplikácia prostredia GNOME 3 na prístup k vzdialeným alebo "
 "virtuálnym systémom. Na rozdiel od ostatného softvéru na správu virtuálnych "
-"strojov sú Boxy určené pre typických koncových používateľov. Preto Boxy "
-"neposkytujú toľko pokročilých volieb na doladenie virtuálnych strojov. "
+"počítačov sú Boxy určené pre typických koncových používateľov. Preto Boxy "
+"neposkytujú toľko pokročilých volieb na doladenie virtuálnych počítačov. "
 "Namiesto toho sú Boxy zamerané na to, aby všetko fungovalo ako má s "
 "minimálnym zásahom používateľa."
 
@@ -51,30 +51,30 @@ msgstr ""
 "Aplikácia Boxy je vhodná na veľmi bezpečný a jednoduchý spôsob ako vyskúšať "
 "nové operačné systémy, alebo nové (potencionálne nestabilné) verzie vašich "
 "obľúbených operačných systémov, alebo keď sa potrebujete pripojiť k "
-"vzdialenému stroju (napríklad vo vašej kancelárii)."
+"vzdialenému počítaču (napríklad vo vašej kancelárii)."
 
 #: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
-#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
-#: src/main.vala:72 src/topbar.vala:94
+#: src/app-window.vala:137 src/app-window.vala:244 src/app-window.vala:246
+#: src/main.vala:72 src/topbar.vala:93
 msgid "Boxes"
 msgstr "Boxy"
 
 #: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
-msgstr "Prezerač/správca virtuálnych strojov"
+msgstr "Prezerač/správca virtuálnych počítačov"
 
 #: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
-msgstr "Zobraziť a použiť virtuálne stroje"
+msgstr "Zobrazuje a používa virtuálne počítače"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;vnc;rdp;"
-msgstr "virtuálny stroj;vm;vnc;rdp;"
+msgstr "virtuálny počítač;stroj;vm;vnc;rdp;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -153,14 +153,14 @@ msgstr "Vyhľadajte OS, alebo zadajte odkaz na prevzatie…"
 
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
-msgstr "Vytvorenie virtuálneho stroja"
+msgstr "Vytvorenie virtuálneho počítača"
 
 #: data/ui/assistant/pages/index-page.ui:35
 msgid ""
 "A new virtual machine will be created and an operating system installed into "
 "it. Select an operating system source to begin."
 msgstr ""
-"Bude vytvorený nový virtuálny stroj a operačný systém v ňom bude "
+"Bude vytvorený nový virtuálny počítač a operačný systém v ňom bude "
 "nainštalovaný. Na začiatok vyberte zdroj operačného systému."
 
 #: data/ui/assistant/pages/index-page.ui:49
@@ -194,7 +194,7 @@ msgstr "Súbor obrazu operačného systému"
 
 #: data/ui/assistant/pages/index-page.ui:258
 msgid "Select an .iso file to install a virtual machine."
-msgstr "Vyberte súbor .iso na inštaláciu virtuálneho stroja."
+msgstr "Vyberte súbor .iso na inštaláciu virtuálneho počítača."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -327,7 +327,7 @@ msgstr "Vyhľadať"
 
 #: data/ui/collection-toolbar.ui:237
 msgid "Create a Virtual Machine…"
-msgstr "Vytvoriť virtuálny stroj…"
+msgstr "Vytvoriť virtuálny počítač…"
 
 #: data/ui/collection-toolbar.ui:244
 msgid "Connect to a Remote Computer…"
@@ -364,7 +364,7 @@ msgstr "Súčasná virtualizácia"
 
 #: data/ui/empty-boxes.ui:82
 msgid "Boxes can be virtual or remote machines."
-msgstr "Boxy môžu byť virtuálne alebo vzdialené stroje."
+msgstr "Boxy môžu byť virtuálne alebo vzdialené počítače."
 
 #: data/ui/empty-boxes.ui:95
 msgid "Just hit the <b>+</b> button to create your first one."
@@ -382,56 +382,66 @@ msgstr "Pomocník"
 
 #: data/ui/kbd-shortcuts-window.ui:33
 msgctxt "shortcut window"
-msgid "Create a new box"
-msgstr "Vytvorenie nového boxu"
+msgid "Open main menu"
+msgstr "Otvorenie hlavnej ponuky"
+
+#: data/ui/kbd-shortcuts-window.ui:41
+msgctxt "shortcut window"
+msgid "Create a new virtual machine"
+msgstr "Vytvorenie nového virtuálneho počítača"
+
+#: data/ui/kbd-shortcuts-window.ui:49
+msgctxt "shortcut window"
+msgid "Connect to a remote machine"
+msgstr "Pripojenie k vzdialenému počítaču"
 
 # button
-#: data/ui/kbd-shortcuts-window.ui:41
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Search"
 msgstr "Vyhľadanie"
 
-#: data/ui/kbd-shortcuts-window.ui:49
+#: data/ui/kbd-shortcuts-window.ui:65
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Klávesové skratky"
 
-#: data/ui/kbd-shortcuts-window.ui:57 data/ui/kbd-shortcuts-window.ui:149
+#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Zatvorenie okna / ukončenie aplikácie Boxy"
 
-#: data/ui/kbd-shortcuts-window.ui:67
+#: data/ui/kbd-shortcuts-window.ui:83
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Tvorba boxu a vlastnosti"
 
-#: data/ui/kbd-shortcuts-window.ui:76 data/ui/kbd-shortcuts-window.ui:95
+#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Prepnutie na nasledujúcu stránku"
 
-#: data/ui/kbd-shortcuts-window.ui:85 data/ui/kbd-shortcuts-window.ui:104
+#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Prepnutie na predchádzajúcu stránku"
 
-#: data/ui/kbd-shortcuts-window.ui:114
+#: data/ui/kbd-shortcuts-window.ui:130
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Zobrazenie boxu"
 
-#: data/ui/kbd-shortcuts-window.ui:121
+#: data/ui/kbd-shortcuts-window.ui:137
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Zachytenie / zrušenie zachytenia klávesnice"
 
-#: data/ui/kbd-shortcuts-window.ui:131 data/ui/kbd-shortcuts-window.ui:141
+#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Prejdenie späť na prehľad"
 
-#: data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:173
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Režim na celú obrazovku / obnova z režimu na celú obrazovku"
@@ -475,7 +485,7 @@ msgid "_Delete"
 msgstr "O_dstrániť"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:343
+#: src/app-window.vala:329
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
@@ -580,7 +590,7 @@ msgid ""
 "to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
 "connections."
 msgstr ""
-"Aplikácia Boxy zjednodušuje inštaláciu a spúšťanie virtuálnych strojov. "
+"Aplikácia Boxy zjednodušuje inštaláciu a spúšťanie virtuálnych počítačov. "
 "Taktiež ju môžete využiť na vzdialený prístup k počítačom pomocou pripojení "
 "SPICE, VNC alebo SSH."
 
@@ -591,7 +601,7 @@ msgid ""
 "care of for you."
 msgstr ""
 "S rýchlou inštaláciou aplikácia Boxy nastaví voľby inštalácie pre nový "
-"virtuálny stroj. Stačí spustiť inštaláciu a o všetko bude postarané za vás."
+"virtuálny počítač. Stačí spustiť inštaláciu a o všetko bude postarané za vás."
 
 #: data/ui/welcome-tutorial.ui:49
 msgid "Easy Downloads"
@@ -604,8 +614,8 @@ msgid ""
 "and Boxes will automatically download it for you."
 msgstr ""
 "S aplikáciou Boxy nepotrebujete preberať operačný systém kvôli vytvoreniu "
-"vyrtuálneho stroja. Namiesto toho stačí vybrať operačný systém, ktorý chcete "
-"nainštalovať a aplikácia Boxy ho automaticky prevezme za vás."
+"vyrtuálneho počítača. Namiesto toho stačí vybrať operačný systém, ktorý "
+"chcete nainštalovať a aplikácia Boxy ho automaticky prevezme za vás."
 
 #: data/ui/welcome-tutorial.ui:58
 msgid "Drag and Drop"
@@ -616,7 +626,7 @@ msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
 msgstr ""
-"Zdieľanie súborov je jednoduché. Stačí ich pustiť do virtuálneho stroja, "
+"Zdieľanie súborov je jednoduché. Stačí ich pustiť do virtuálneho počítača, "
 "následne sa objavia v priečinku Stiahnuté."
 
 #: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
@@ -637,7 +647,7 @@ msgstr "Prevziať OS"
 
 #: data/ui/wizard-source.ui:94
 msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "Operačný systém bude prevzatý a nainštalovaný vo virtuálnom stroji."
+msgstr "Operačný systém bude prevzatý a nainštalovaný vo virtuálnom počítači."
 
 #: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
 msgid "▶"
@@ -650,7 +660,8 @@ msgstr "Vybrať súbor"
 
 #: data/ui/wizard-source.ui:158
 msgid "Select a bootable image file to install in a virtual machine."
-msgstr "Výber súboru so spúšťacím obrazom na inštaláciu vo virtuálnom stroji."
+msgstr ""
+"Výber súboru so spúšťacím obrazom na inštaláciu vo virtuálnom počítači."
 
 #: data/ui/wizard-source.ui:194
 msgid ""
@@ -688,7 +699,7 @@ msgstr "P_okračovať"
 msgid "Customize Resources"
 msgstr "Prispôsobenie prostriedkov"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:345
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:331
 msgid "_Open"
 msgstr "_Otvoriť"
 
@@ -701,8 +712,8 @@ msgid ""
 "Each box can be a virtual machine that runs on this computer, or a "
 "connection to an existing remote machine"
 msgstr ""
-"Každý box môže byť virtuálnym strojom, ktorý je spustený na tomto počítači, "
-"alebo pripojením k existujúcemu vzdialenému stroju"
+"Každý box môže byť virtuálnym počítačom, ktorý je spustený na tomto "
+"počítači, alebo pripojením k existujúcemu vzdialenému počítaču"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -801,7 +812,7 @@ msgstr "URL k displeju, správcovi virtualizácie alebo inštalačnému nosiču"
 #: src/app.vala:194
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
-"- Jednoduchá aplikácia na prístup k vzdialeným alebo virtuálnym strojom"
+"- Jednoduchá aplikácia na prístup k vzdialeným alebo virtuálnym počítačom"
 
 #: src/app.vala:219
 msgid "Too many command line arguments specified.\n"
@@ -840,7 +851,7 @@ msgid "Boxes is doing something"
 msgstr "Boxy niečo vykonávajú"
 
 # dialog title
-#: src/app-window.vala:342
+#: src/app-window.vala:328
 msgid "Select files to transfer"
 msgstr "Výber súborov na prenos"
 
@@ -1023,13 +1034,13 @@ msgstr "O_dstrániť"
 #: src/libvirt-machine-properties.vala:222
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
-msgstr "Vloženie súboru „%s“ ako CD/DVD do virtuálneho stroja „%s“ zlyhalo"
+msgstr "Vloženie súboru „%s“ ako CD/DVD do virtuálneho počítača „%s“ zlyhalo"
 
 #. Translators: “%s” here is name of the box.
 #: src/libvirt-machine-properties.vala:236
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
-msgstr "Odstránenie CD/DVD z virtuálneho stroja „%s“ zlyhalo"
+msgstr "Odstránenie CD/DVD z virtuálneho počítača „%s“ zlyhalo"
 
 #: src/libvirt-machine-properties.vala:310
 msgid "CPU"
@@ -1199,11 +1210,11 @@ msgstr "Overenie totožnosti zlyhalo: %s"
 #: src/machine.vala:232 src/machine.vala:658
 #, c-format
 msgid "Connection to “%s” failed"
-msgstr "Pripojenie k virtuálnemu stroju „%s“ zlyhalo"
+msgstr "Pripojenie k virtuálnemu počítaču „%s“ zlyhalo"
 
 #: src/machine.vala:284
 msgid "Machine is under construction"
-msgstr "Stroj je vo výstavbe"
+msgstr "Počítač je vo výstavbe"
 
 #: src/machine.vala:438
 msgid "Saving…"
@@ -1215,7 +1226,7 @@ msgid ""
 "“%s” could not be restored from disk\n"
 "Try without saved state?"
 msgstr ""
-"Virtuálny stroj „%s“ nemôže byť obnovený z disku\n"
+"Virtuálny počítač „%s“ nemôže byť obnovený z disku\n"
 "Skúsiť spustenie bez uloženého stavu?"
 
 #: src/machine.vala:641
@@ -1227,7 +1238,7 @@ msgstr "Zlyhalo spustenie boxu „%s“"
 #: src/machine.vala:745
 #, c-format
 msgid "“%s” requires authentication"
-msgstr "Virtuálny stroj „%s“ vyžaduje overenie totožnosti"
+msgstr "Virtuálny počítač „%s“ vyžaduje overenie totožnosti"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1297,7 +1308,7 @@ msgstr "Snímky"
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
-msgstr "Zmeny vyžadujú reštart virtuálneho stroja „%s“."
+msgstr "Zmeny vyžadujú reštart virtuálneho počítača „%s“."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1520,6 +1531,11 @@ msgstr "Nevyhovujúci hostiteľský systém"
 msgid "Live box “%s” has been deleted automatically."
 msgstr "Live box „%s“ bol automaticky odstránený."
 
+#. Translators: This is the name of the snapshot taken right after installing a VM.
+#: src/vm-creator.vala:190
+msgid "Just installed "
+msgstr "Práve nainštalovaný"
+
 #: src/vm-importer.vala:59
 #, c-format
 msgid "Box import from file “%s” failed."
@@ -1641,6 +1657,10 @@ msgstr "Preberanie zlyhalo."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "_Prispôsobiť…"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Create a new box"
+#~ msgstr "Vytvorenie nového boxu"
 
 #~ msgid "Connect to Libvirt brokers."
 #~ msgstr "Pripojenie k správcovi virtualizácie Libvirt."
