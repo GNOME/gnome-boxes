@@ -73,7 +73,7 @@ private class Boxes.DownloadsHub : Gtk.Popover {
     }
 
     private void on_download_complete (string label, string path) {
-        var msg = _("“%s“ download complete").printf (label);
+        var msg = _("“%s” download complete").printf (label);
         var notification = new GLib.Notification (msg);
         notification.add_button (_("Install"), "app.install::" + path);
 
