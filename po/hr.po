@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-16 13:05+0000\n"
-"PO-Revision-Date: 2020-01-17 20:04+0100\n"
+"POT-Creation-Date: 2020-02-03 10:34+0000\n"
+"PO-Revision-Date: 2020-02-03 12:57+0100\n"
 "Last-Translator: gogo <linux.hr@protonmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -59,8 +59,8 @@ msgid "The GNOME Project"
 msgstr "GNOME projekt"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
-#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
-#: src/main.vala:72 src/topbar.vala:94
+#: src/app-window.vala:137 src/app-window.vala:244 src/app-window.vala:246
+#: src/main.vala:72 src/topbar.vala:93
 msgid "Boxes"
 msgstr "Boksevi"
 
@@ -377,55 +377,65 @@ msgstr "Priručnik"
 
 #: data/ui/kbd-shortcuts-window.ui:33
 msgctxt "shortcut window"
-msgid "Create a new box"
-msgstr "Stvori novi boks"
+msgid "Open main menu"
+msgstr "Otvori glavni izbornik"
 
 #: data/ui/kbd-shortcuts-window.ui:41
+msgctxt "shortcut window"
+msgid "Create a new virtual machine"
+msgstr "Stvori novi virtualni stroj"
+
+#: data/ui/kbd-shortcuts-window.ui:49
+msgctxt "shortcut window"
+msgid "Connect to a remote machine"
+msgstr "Poveži se sa udaljenim strojem"
+
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Search"
 msgstr "Pretraži"
 
-#: data/ui/kbd-shortcuts-window.ui:49
+#: data/ui/kbd-shortcuts-window.ui:65
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Prečaci tipkovnice"
 
-#: data/ui/kbd-shortcuts-window.ui:57 data/ui/kbd-shortcuts-window.ui:149
+#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Zatvori prozor/Boks"
 
-#: data/ui/kbd-shortcuts-window.ui:67
+#: data/ui/kbd-shortcuts-window.ui:83
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Stvaranje boksa i svojstva"
 
-#: data/ui/kbd-shortcuts-window.ui:76 data/ui/kbd-shortcuts-window.ui:95
+#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Prebaci na sljedeću stranicu"
 
-#: data/ui/kbd-shortcuts-window.ui:85 data/ui/kbd-shortcuts-window.ui:104
+#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Prebaci na prijašnju stranicu"
 
-#: data/ui/kbd-shortcuts-window.ui:114
+#: data/ui/kbd-shortcuts-window.ui:130
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Prikaz Boksa"
 
-#: data/ui/kbd-shortcuts-window.ui:121
+#: data/ui/kbd-shortcuts-window.ui:137
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Uhvati/Oslobodi tipkovnicu"
 
-#: data/ui/kbd-shortcuts-window.ui:131 data/ui/kbd-shortcuts-window.ui:141
+#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Natrag na pregled"
 
-#: data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:173
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Cjelozaslonski/Prozorski prikaz"
@@ -468,7 +478,7 @@ msgid "_Delete"
 msgstr "_Obriši"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:343
+#: src/app-window.vala:329
 msgid "_Cancel"
 msgstr "_Odustani"
 
@@ -675,7 +685,7 @@ msgstr "N_astavi"
 msgid "Customize Resources"
 msgstr "Prilagodi resurse"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:345
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:331
 msgid "_Open"
 msgstr "_Otvori"
 
@@ -818,7 +828,7 @@ msgstr "_Poništi"
 msgid "Boxes is doing something"
 msgstr "Boksevi nešto izvode"
 
-#: src/app-window.vala:342
+#: src/app-window.vala:328
 msgid "Select files to transfer"
 msgstr "Odaberi datoteku za prijenos"
 
@@ -876,7 +886,7 @@ msgstr "Preuzimanje medija"
 
 #: src/downloads-hub.vala:76
 #, c-format
-msgid "“%s“ download complete"
+msgid "“%s” download complete"
 msgstr "“%s“ preuzimanje završeno"
 
 #: src/downloads-hub.vala:78
@@ -1479,6 +1489,11 @@ msgstr "Neprikladan poslužitelj sustava"
 msgid "Live box “%s” has been deleted automatically."
 msgstr "Live boks “%s” je automatski obrisan."
 
+#. Translators: This is the name of the snapshot taken right after installing a VM.
+#: src/vm-creator.vala:190
+msgid "Just installed "
+msgstr "Upravo instaliran "
+
 #: src/vm-importer.vala:59
 #, c-format
 msgid "Box import from file “%s” failed."
@@ -1600,6 +1615,10 @@ msgstr "Neuspjelo preuzimanje."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "P_rilagodi…"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Create a new box"
+#~ msgstr "Stvori novi boks"
 
 #~ msgid "Connect to Libvirt brokers."
 #~ msgstr "Povezivanje s Libvirt posrednikom."
