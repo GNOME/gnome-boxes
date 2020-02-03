@@ -169,6 +169,31 @@ private class Boxes.SizeProperty : Boxes.Property {
     }
 }
 
+private class Boxes.IntegerProperty : Boxes.Property {
+    public signal void changed (int value);
+
+    public int value {
+        get {
+            return (widget as Gtk.SpinButton).get_value_as_int ();
+        }
+    }
+
+    public IntegerProperty (string name,
+                            double min,
+                            double max,
+                            double step,
+                            double value) {
+        var spinbutton = new Gtk.SpinButton.with_range (min, max, step);
+        spinbutton.value = value;
+
+        spinbutton.value_changed.connect (() => {
+            changed (spinbutton.get_value_as_int ());
+        });
+
+        base (name, spinbutton, null);
+    }
+}
+
 private class Boxes.StringProperty : Boxes.Property {
     public string text {
         get { return (widget as Gtk.Label).label; }
