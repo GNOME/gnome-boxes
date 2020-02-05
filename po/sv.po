@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-27 16:42+0000\n"
-"PO-Revision-Date: 2020-02-01 01:39+0100\n"
+"POT-Creation-Date: 2020-02-03 13:40+0000\n"
+"PO-Revision-Date: 2020-02-03 17:51+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -240,11 +240,11 @@ msgstr "Anslut till en box"
 
 #: data/ui/assistant/remote-connection.ui:22
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
 msgstr ""
-"Mata in en adress att ansluta till. Adresser kan börja med spice://, rdp:// "
-"eller vnc://."
+"Mata in en adress att ansluta till. Adresser kan börja med spice://, rdp://, "
+"ssh:// eller vnc://."
 
 #: data/ui/assistant/remote-connection.ui:37
 #: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
@@ -894,10 +894,9 @@ msgstr "Stäng helskärm"
 msgid "Downloading media"
 msgstr "Hämtar media"
 
-# TODO: wrong ending quote in english
 #: src/downloads-hub.vala:76
 #, c-format
-msgid "“%s“ download complete"
+msgid "“%s” download complete"
 msgstr "Hämtning av ”%s” slutförd"
 
 #: src/downloads-hub.vala:78
@@ -1040,7 +1039,8 @@ msgstr "In/Ut"
 msgid "Network"
 msgstr "Nätverk"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "Omsta_rt"
 
@@ -1084,23 +1084,34 @@ msgstr[1] ""
 "Storleksändring av lagring kräver att %llu associerade ögonblicksavbilder "
 "tas bort."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "Processorer: "
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Ändringar kräver omstart av ”%s”."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "_Kör i bakgrunden"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "”%s” kommer inte pausas automatiskt."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "”%s” kommer pausas automatiskt för att spara resurser."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "3D-acceleration"
 
@@ -1280,11 +1291,6 @@ msgstr "Enheter & delningar"
 #: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Ögonblicksavbilder"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Ändringar kräver omstart av ”%s”."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1493,7 +1499,7 @@ msgstr "nej"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:751
+#: src/vm-configurator.vala:753
 msgid "Incapable host system"
 msgstr "Ej kapabelt värdsystem"
 
@@ -1629,6 +1635,13 @@ msgstr "Hämtning misslyckades."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "A_npassa…"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Mata in en adress att ansluta till. Adresser kan börja med spice://, "
+#~ "rdp:// eller vnc://."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new box"
