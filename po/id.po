@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-27 16:42+0000\n"
-"PO-Revision-Date: 2020-01-28 17:00+0700\n"
+"POT-Creation-Date: 2020-02-03 13:40+0000\n"
+"PO-Revision-Date: 2020-02-04 13:50+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural= n!=1;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -241,11 +241,11 @@ msgstr "Sambungan ke Box"
 
 #: data/ui/assistant/remote-connection.ui:22
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
 msgstr ""
 "Masukkan alamat untuk tersambung. Alamat dapat dimulai dengan spice://, "
-"rdp:// atau vnc://."
+"rdp://, ssh:// atau vnc://."
 
 #: data/ui/assistant/remote-connection.ui:37
 #: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
@@ -894,7 +894,7 @@ msgstr "Mengunduh media"
 
 #: src/downloads-hub.vala:76
 #, c-format
-msgid "“%s“ download complete"
+msgid "“%s” download complete"
 msgstr "Pengunduhan \"%s\" selesai"
 
 #: src/downloads-hub.vala:78
@@ -1037,7 +1037,8 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Jaringan"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "Mu_lai ulang"
 
@@ -1079,23 +1080,34 @@ msgstr[0] ""
 msgstr[1] ""
 "Pengubahan penyimpanan memerlukan penghapusan %llu snapshot yang terkait."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "CPU: "
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Perubahan memerlukan “%s” dimulai ulang."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "Jalankan di lata_r belakang"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” tidak akan diistirahatkan secara otomatis."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” akan diistirahatkan secara otomatis untuk menghemat sumber daya."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "Akselerasi 3D"
 
@@ -1275,11 +1287,6 @@ msgstr "Perangkat & Berbagi"
 #: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Snapshot"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Perubahan memerlukan “%s” dimulai ulang."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1487,7 +1494,7 @@ msgstr "tidak"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:751
+#: src/vm-configurator.vala:753
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
 
@@ -1622,6 +1629,13 @@ msgstr "Pengunduhan gagal."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "Ses_uaikan…"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Masukkan alamat untuk tersambung. Alamat dapat dimulai dengan spice://, "
+#~ "rdp:// atau vnc://."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new box"
