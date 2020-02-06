@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-27 16:42+0000\n"
-"PO-Revision-Date: 2020-01-27 14:52-0300\n"
+"POT-Creation-Date: 2020-02-05 18:06+0000\n"
+"PO-Revision-Date: 2020-02-06 19:40-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -249,26 +249,29 @@ msgstr "Instalação expressa"
 msgid "Connect to a Box"
 msgstr "Conectar a uma máquina"
 
-#: data/ui/assistant/remote-connection.ui:22
+#: data/ui/assistant/remote-connection.ui:23
+#| msgid ""
+#| "Enter an address to connect to. Addresses can begin with spice://, "
+#| "rdp://, ssh://, or vnc://."
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
 msgstr ""
-"Insira um endereço a ser conectado. O endereço pode começar com spice://, "
-"rdp:// ou vnc://."
+"Insira um endereço a ser conectado. Endereços podem começar com spice://, "
+"rdp://, ssh:// ou vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Conectar"
 
-#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
 msgstr "Próximo"
 
@@ -908,7 +911,8 @@ msgstr "Baixando mídia"
 
 #: src/downloads-hub.vala:76
 #, c-format
-msgid "“%s“ download complete"
+#| msgid "“%s“ download complete"
+msgid "“%s” download complete"
 msgstr "Download de “%s“ concluído"
 
 #: src/downloads-hub.vala:78
@@ -1051,7 +1055,8 @@ msgstr "E/S"
 msgid "Network"
 msgstr "Rede"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Reiniciar"
 
@@ -1092,23 +1097,34 @@ msgstr[0] "Redimensionamento de armazenamento exige excluir captura associada."
 msgstr[1] ""
 "Redimensionamento de armazenamento exige excluir %llu capturas associadas."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "CPUs: "
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "As alterações requerem reinicialização de “%s”."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "_Executar em segundo plano"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” não será pausada automaticamente."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” será pausada automaticamente para economizar recursos."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "Aceleração 3D"
 
@@ -1289,11 +1305,6 @@ msgstr "Dispositivos & compartilhamentos"
 #: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Capturas"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "As alterações requerem reinicialização de “%s”."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1504,7 +1515,7 @@ msgstr "não"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:751
+#: src/vm-configurator.vala:753
 msgid "Incapable host system"
 msgstr "Sistema hospedeiro incompatível"
 
@@ -1515,7 +1526,6 @@ msgstr "A máquina Live “%s” foi excluída automaticamente."
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
 #: src/vm-creator.vala:190
-#| msgid "SELinux not installed?"
 msgid "Just installed "
 msgstr "Recém-instalado."
 
@@ -1641,6 +1651,13 @@ msgstr "O download falhou."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "P_ersonalizar…"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Insira um endereço a ser conectado. O endereço pode começar com spice://, "
+#~ "rdp:// ou vnc://."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new box"
