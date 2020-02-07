@@ -97,11 +97,25 @@ private class Boxes.VMCreator : Object {
         }
 
         if (!FileUtils.test (install_media.device_file, FileTest.EXISTS)) {
-            warning ("Source installer media '%s' no longer exists. Deleting machine '%s'..",
-                     install_media.device_file,
-                     machine.name);
-            App.app.delete_machine (machine);
-            return;
+            Notification.OKFunc add_installer_media = () => {
+                var file_chooser = new Gtk.FileChooserNative (_("Select a device or ISO file"),
+                                                              machine.window,
+                                                              Gtk.FileChooserAction.OPEN,
+                                                              _("Select"), _("Cancel"));
+                if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
+                    install_media.device_file = file_chooser.get_filename ();
+                } else {
+                    install_media.device_file = null;
+                }
+            };
+
+            var message = _("Source installer media '%s' no longer exists").printf (install_media.device_file);
+            machine.window.notificationbar.display_for_action (message,
+                                                               _("Add installer media"),
+                                                               (owned) add_installer_media,
+                                                               null);
+            if (install_media.device_file == null)
+                return;
         }
 
         install_media.prepare_to_continue_installation (name);
