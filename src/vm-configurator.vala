@@ -286,8 +286,14 @@ private class Boxes.VMConfigurator {
                 var domain_disk = device as DomainDisk;
                 var device_type = domain_disk.get_guest_device_type ();
                 if (device_type == DomainDiskGuestDeviceType.CDROM) {
-                    if (domain_disk.get_source () != null)
-                        supports_alternative_boot_device = true;
+                    if (domain_disk.get_source () != null) {
+                        if (!FileUtils.test (domain_disk.get_source (), FileTest.EXISTS)) {
+                            debug ("CDROM media '%s' cannot be found", domain_disk.get_source ();
+                            domain_disk.set_source ("");
+                        } else {
+                            supports_alternative_boot_device = true;
+                        }
+                    }
                 }
 
                 devices.prepend (device);
