@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-22 12:55+0000\n"
-"PO-Revision-Date: 2020-01-26 15:27+0200\n"
+"POT-Creation-Date: 2020-02-05 18:06+0000\n"
+"PO-Revision-Date: 2020-02-09 20:27+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -198,7 +198,6 @@ msgid "Select an .iso file to install a virtual machine."
 msgstr "Valitse .iso-tiedosto asentaaksesi virtuaalikoneen."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
-#| msgid "Importing…"
 msgid "Preparing…"
 msgstr "Valmistellaan…"
 
@@ -238,26 +237,26 @@ msgstr "Pika-asennus"
 msgid "Connect to a Box"
 msgstr "Yhdistä boksiin"
 
-#: data/ui/assistant/remote-connection.ui:22
+#: data/ui/assistant/remote-connection.ui:23
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
 msgstr ""
 "Kirjoita osoite mihin yhdistetään. Osoitteet voivat alkaa "
-"protokollamääreellä spice://, rdp:// tai vnc://."
+"protokollamääreellä spice://, rdp://, ssh:// tai vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Peru"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Yhdistä"
 
-#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
 msgstr "Seuraava"
 
@@ -887,8 +886,8 @@ msgstr "Ladataan mediaa"
 
 #: src/downloads-hub.vala:76
 #, c-format
-msgid "“%s“ download complete"
-msgstr "Lataus “%s“ valmistui"
+msgid "“%s” download complete"
+msgstr "Lataus “%s” valmistui"
 
 #: src/downloads-hub.vala:78
 msgid "Install"
@@ -1030,7 +1029,8 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Verkko"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Käynnistä uudelleen"
 
@@ -1072,23 +1072,34 @@ msgstr[1] ""
 "Tallennustilan koon muuttaminen vaatii siihen liittyvien %llu "
 "tilannevedoksen poistamisen."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "Suorittimet: "
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Muutokset vaativat, että “%s” käynnistetään uudelleen."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "Suo_rita taustalla"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "Boksia “%s” ei keskeytetä automaattisesti."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "Boksi “%s” keskeytetään automaattisesti resurssien säästämiseksi."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "3D-kiihdytys"
 
@@ -1270,11 +1281,6 @@ msgstr "Laitteet ja jaot"
 #: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Tilannevedokset"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Muutokset vaativat, että “%s” käynnistetään uudelleen."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1476,7 +1482,7 @@ msgstr "ei"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:751
+#: src/vm-configurator.vala:753
 msgid "Incapable host system"
 msgstr "Kykenemätön isäntäjärjestelmä"
 
@@ -1484,6 +1490,11 @@ msgstr "Kykenemätön isäntäjärjestelmä"
 #, c-format
 msgid "Live box “%s” has been deleted automatically."
 msgstr "Live-boksi “%s” on poistettu automaattisesti."
+
+#. Translators: This is the name of the snapshot taken right after installing a VM.
+#: src/vm-creator.vala:190
+msgid "Just installed "
+msgstr "Juuri asennettu"
 
 #: src/vm-importer.vala:59
 #, c-format
@@ -1607,6 +1618,13 @@ msgstr "Lataus epäonnistui."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "_Muokkaa…"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Kirjoita osoite mihin yhdistetään. Osoitteet voivat alkaa "
+#~ "protokollamääreellä spice://, rdp:// tai vnc://."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new box"
