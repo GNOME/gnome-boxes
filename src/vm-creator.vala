@@ -97,11 +97,25 @@ private class Boxes.VMCreator : Object {
         }
 
         if (!FileUtils.test (install_media.device_file, FileTest.EXISTS)) {
-            warning ("Source installer media '%s' no longer exists. Deleting machine '%s'..",
-                     install_media.device_file,
-                     machine.name);
-            App.app.delete_machine (machine);
-            return;
+            Notification.OKFunc add_installer_media = () => {
+                var file_chooser = new Gtk.FileChooserNative (_("Select a device or ISO file"),
+                                                              machine.window,
+                                                              Gtk.FileChooserAction.OPEN,
+                                                              _("Select"), _("Cancel"));
+                if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
+                    install_media.device_file = file_chooser.get_filename ();
+                } else {
+                    install_media.device_file = null;
+                }
+            };
+
+            var message = _("Source installer media '%s' no longer exists").printf (install_media.device_file);
+            machine.window.notificationbar.display_for_action (message,
+                                                               _("Add installer media"),
+                                                               (owned) add_installer_media,
+                                                               null);
+            if (install_media.device_file == null)
+                return;
         }
 
         install_media.prepare_to_continue_installation (name);
@@ -160,27 +174,12 @@ private class Boxes.VMCreator : Object {
             machine.vm_creator = null;
             machine.schedule_autosave ();
             try_create_snapshot.begin (machine);
-        } else {
-            if (VMConfigurator.is_live_config (machine.domain_config)) {
-                // No installation during live session, so lets delete the VM
-                machine.disconnect (state_changed_id);
-                install_media.clean_up ();
-                var items = new GLib.List<CollectionItem> ();
-                items.append (machine);
-
-                Boxes.App.UndoNotifyCallback undo_notify_callback = () => {
-                    debug ("Live box deletion cancelled. Invoking post installation setup...");
-                    set_post_install_config (machine);
-                };
-
-                var msg = _("Live box “%s” has been deleted automatically.").printf (machine.name);
-                App.app.delete_machines_undoable ((owned) items, msg, (owned) undo_notify_callback);
-            } else
-                try {
-                    domain.start (0);
-                } catch (GLib.Error error) {
-                    warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
-                }
+        } else if (!VMConfigurator.is_live_config (machine.domain_config)) {
+            try {
+                domain.start (0);
+            } catch (GLib.Error error) {
+                warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
+            }
         }
     }
 
