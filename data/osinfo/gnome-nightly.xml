@@ -1,0 +1,43 @@
+<libosinfo version="0.0.1">
+<!-- Licensed under the GNU General Public License version 2 or later.
+     See http://www.gnu.org/licenses/ for a copy of the license text -->
+  <os id="http://gnome.org/gnome/nightly">
+    <short-id>gnomenightly</short-id>
+    <name>GNOME</name>
+    <version>Nightly</version>
+    <vendor>The GNOME Project</vendor>
+    <family>linux</family>
+    <distro>gnome</distro>
+
+    <firmware arch="x86_64" type="efi"/>
+
+    <devices>
+      <device id="http://pcisig.com/pci/1af4/1050"/> <!-- virtio1.0-gpu -->
+      <device id="http://qemu.org/chipset/x86/q35"/> <!-- qemu-x86-q35 -->
+    </devices>
+
+    <variant id="nightly">
+      <name>GNOME Nightly</name>
+    </variant>
+
+    <media arch="x86_64" format="qcow2">
+      <variant id="nightly"/>
+      <url>https://feborg.es/gnome-nightly/</url>
+    </media>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>10737418240</storage>
+      </minimum>
+
+      <recommended>
+        <ram>3147483648</ram>
+        <storage>21474836480</storage>
+      </recommended>
+    </resources>
+
+  </os>
+</libosinfo>
