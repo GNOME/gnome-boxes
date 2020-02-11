@@ -20,11 +20,12 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     public override bool need_user_input_for_vm_creation { get { return false; } }
     public override bool ready_to_create { get { return true; } }
     public override bool live { get { return false; } }
+    private bool is_gnome;
 
     protected override string? architecture {
         owned get {
             // Many distributors provide arch name on the image file so lets try to use that if possible
-            if (device_file.contains ("amd64") || device_file.contains ("x86_64"))
+            if (device_file.contains ("amd64") || device_file.contains ("x86_64") || is_gnome)
                 return "x86_64";
             else {
                 foreach (var arch in supported_architectures) {
@@ -61,6 +62,23 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
     public async InstalledMedia.guess_os (string path, MediaManager media_manager) throws GLib.Error {
         this (path);
+
+        resources = OSDatabase.get_default_resources ();
+
+        label_setup ();
+    }
+
+    public async InstalledMedia.gnome_nightly (string path) throws GLib.Error {
+        this (path, true);
+        is_gnome = true;
+
+        try {
+            var media_manager = MediaManager.get_instance ();
+            os = yield media_manager.os_db.get_os_by_id ("http://gnome.org/gnome/nightly");
+            os_media = os.get_media_list ().get_nth (0) as Osinfo.Media;
+        } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
+            debug (error.message);
+        }
 
         resources = OSDatabase.get_default_resources ();
 

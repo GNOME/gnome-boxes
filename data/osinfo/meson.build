@@ -5,6 +5,7 @@ osinfo_db = [
   ['eos-3.3.xml', 'gnome-boxes/osinfo/os/endlessos.com'],
   ['fedora-1.xml', 'gnome-boxes/osinfo/os/fedoraproject.org'],
   ['freedos-1.2.xml', 'gnome-boxes/osinfo/os/freedos.org'],
+  ['gnome-nightly.xml', 'osinfo/os/gnome.org'],
   ['opensuse-10.2.xml', 'gnome-boxes/osinfo/os/opensuse.org'],
   ['ubuntu-4.10.xml', 'gnome-boxes/osinfo/os/ubuntu.com'],
   ['popos-17.10.xml', 'gnome-boxes/osinfo/os/system76.com'],
