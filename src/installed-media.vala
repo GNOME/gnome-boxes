@@ -12,7 +12,8 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
                                                    ".vdi", ".vdi.gz",
                                                    ".vmdk", ".vmdk.gz",
                                                    ".vpc", ".vpc.gz",
-                                                   ".cloop", ".cloop.gz" };
+                                                   ".cloop", ".cloop.gz",
+                                                   "gnome-nightly" };
     public const string[] supported_architectures = {
         "i686", "i586", "i486", "i386", "x86_64", "amd64"
     };
@@ -24,7 +25,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     protected override string? architecture {
         owned get {
             // Many distributors provide arch name on the image file so lets try to use that if possible
-            if (device_file.contains ("amd64") || device_file.contains ("x86_64"))
+            if (device_file.contains ("amd64") || device_file.contains ("x86_64") || device_file.contains ("gnome-nightly"))
                 return "x86_64";
             else {
                 foreach (var arch in supported_architectures) {
@@ -61,6 +62,15 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
     public async InstalledMedia.guess_os (string path, MediaManager media_manager) throws GLib.Error {
         this (path);
+
+        if (path.contains ("gnome-nightly")) {
+            try {
+                os = yield media_manager.os_db.get_os_by_id ("http://gnome.org/gnome/nightly");
+                //os_media = media_manager.os_db.get_media_by_id (os, "nightly");
+            } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
+                print ("\n\n\n\n\n\n\n %s\n\n\n", error.message);
+            }
+        }
 
         resources = OSDatabase.get_default_resources ();
 
