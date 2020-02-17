@@ -46,6 +46,7 @@ private async void run_checks () {
     var cpu = yield Boxes.check_cpu_vt_capability ();
     var kvm = yield Boxes.check_module_kvm_loaded ();
     var libvirt_kvm = yield Boxes.check_libvirt_kvm ();
+    var kvm_group = yield Boxes.check_user_in_kvm_group ();
     var selinux_context_default = yield Boxes.check_selinux_context_default (out selinux_context_diagnosis);
     var storage_pool = yield Boxes.check_storage_pool (out storage_pool_diagnosis);
 
@@ -53,6 +54,9 @@ private async void run_checks () {
     GLib.stdout.printf (_("• The CPU is capable of virtualization: %s\n").printf (Boxes.yes_no (cpu)));
     GLib.stdout.printf (_("• The KVM module is loaded: %s\n").printf (Boxes.yes_no (kvm)));
     GLib.stdout.printf (_("• Libvirt KVM guest available: %s\n").printf (Boxes.yes_no (libvirt_kvm)));
+    GLib.stdout.printf (_("• User is a member of KVM group: %s\n").printf (Boxes.yes_no (kvm_group)));
+    if (!kvm_group)
+        GLib.stdout.printf (Boxes.indent ("    ", "Please add your user to this group by running: \nsudo adduser $user kvm\n\n…and restart your system\n"));
     GLib.stdout.printf (_("• Boxes storage pool available: %s\n").printf (Boxes.yes_no (storage_pool)));
     if (storage_pool_diagnosis.length != 0)
         GLib.stdout.printf (Boxes.indent ("    ", storage_pool_diagnosis) + "\n");

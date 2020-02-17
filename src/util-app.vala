@@ -441,6 +441,11 @@ namespace Boxes {
         return true;
     }
 
+    public async bool check_user_in_kvm_group () {
+        unowned Posix.Group group = Posix.getgrnam ("kvm");
+
+        return (group != null && Posix.group_member (group.gr_gid) == 0);
+    }
 
     // FIXME: Better ways to remove alpha more than welcome
     private Gdk.Pixbuf remove_alpha (Gdk.Pixbuf pixbuf) {
