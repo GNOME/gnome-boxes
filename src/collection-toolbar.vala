@@ -20,7 +20,13 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     public MenuButton hamburger_btn;
     [GtkChild]
+    private ModelButton create_vm_entry;
+    [GtkChild]
+    private Stack title_stack;
+    [GtkChild]
     private CollectionFilterSwitcher filter_switcher;
+    [GtkChild]
+    private Label remote_viewer_title;
 
     private AppWindow window;
 
@@ -43,7 +49,12 @@ private class Boxes.CollectionToolbar: HeaderBar {
         window.notify["ui-state"].connect (ui_state_changed);
         App.app.notify["main-window"].connect (ui_state_changed);
 
-        filter_switcher.setup_ui (window);
+        if (!App.opt_remote_viewer)
+            filter_switcher.setup_ui (window);
+        else {
+            create_vm_entry.visible = false;
+	    title_stack.set_visible_child (remote_viewer_title);
+        }
 
         var builder = new Builder.from_resource ("/org/gnome/Boxes/ui/menus.ui");
         MenuModel menu = (MenuModel) builder.get_object ("app-menu");
@@ -114,7 +125,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
             new_btn.show ();
             grid_btn.visible = window.view_type != AppWindow.ViewType.ICON;
             list_btn.visible = window.view_type != AppWindow.ViewType.LIST;
-            custom_title = filter_switcher;
+            custom_title = title_stack;
             break;
 
         case UIState.CREDS:
