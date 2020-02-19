@@ -25,7 +25,7 @@ private class Boxes.WelcomeTutorialPage : Gtk.Box {
         }
     }
 
-    public string color { set; get; }
+    public Gdk.RGBA color { set; get; }
     public string image { set; get; }
 
     [GtkCallback]
@@ -33,14 +33,12 @@ private class Boxes.WelcomeTutorialPage : Gtk.Box {
         var provider = new CssProvider ();
         var css = """
           .tutorial-page {
-            background-color: #%s;
+            background-color: %s;
             background-image: url("resource://%s");
           }
-        """.printf (color, image);
+        """.printf (color.to_string (), image);
 
         provider.load_from_data (css);
-        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
-                                                  provider,
-                                                  STYLE_PROVIDER_PRIORITY_APPLICATION);
+        get_style_context ().add_provider (provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
     }
 }
