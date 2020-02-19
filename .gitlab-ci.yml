@@ -18,17 +18,11 @@ flatpak:
     extends: .flatpak
 
 review:
-    stage: deploy
     dependencies:
         - flatpak
-    script:
-        - echo "Generating flatpak deployment"
     extends: '.review'
 
 stop_review:
-    stage: deploy
-    script:
-        - echo "Stopping flatpak deployment"
     extends: '.stop_review'
 
 nightly:
