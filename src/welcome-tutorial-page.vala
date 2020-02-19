@@ -28,15 +28,18 @@ private class Boxes.WelcomeTutorialPage : Gtk.Box {
     public Gdk.RGBA color { set; get; }
     public string image { set; get; }
 
+    construct {
+        expand = true;
+    }
+
     [GtkCallback]
     private void load_css () {
         var provider = new CssProvider ();
         var css = """
           .tutorial-page {
-            background-color: %s;
             background-image: url("resource://%s");
           }
-        """.printf (color.to_string (), image);
+        """.printf (image);
 
         provider.load_from_data (css);
         get_style_context ().add_provider (provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
