@@ -48,10 +48,6 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
     private void on_position_changed () {
         var n_pages = pages.length ();
         var position = paginator.position;
-        var index = (uint) Math.round (position);
-
-        var topbar = get_header_bar () as Gtk.HeaderBar;
-        topbar.subtitle = _("%u/%u").printf (index + 1, n_pages);
 
         // Toggle button's visibility
         go_back_button.opacity = double.min (position, 1);
