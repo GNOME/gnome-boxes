@@ -357,7 +357,7 @@ namespace Boxes {
 
             yield exec (argv, null, out standard_output);
             var kvm = extract_xpath (standard_output,
-                                     "string(/capabilities/guest[os_type='hvm']/arch/domain[@type='kvm']/emulator)");
+                                     "string(/capabilities/guest[os_type='hvm']/arch/domain[@type='kvm']/../emulator)");
             return kvm.length != 0;
 
         } catch (GLib.SpawnError.NOEXEC error) {
