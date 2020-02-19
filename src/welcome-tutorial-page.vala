@@ -33,10 +33,9 @@ private class Boxes.WelcomeTutorialPage : Gtk.Box {
         var provider = new CssProvider ();
         var css = """
           .tutorial-page {
-            background-color: %s;
             background-image: url("resource://%s");
           }
-        """.printf (color.to_string (), image);
+        """.printf (image);
 
         provider.load_from_data (css);
         get_style_context ().add_provider (provider, STYLE_PROVIDER_PRIORITY_APPLICATION);

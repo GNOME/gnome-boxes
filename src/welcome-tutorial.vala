@@ -1,62 +1,91 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
+using Hdy;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/welcome-tutorial.ui")]
 private class Boxes.WelcomeTutorial : Gtk.Dialog {
     [GtkChild]
-    private Stack stack;
+    private Paginator paginator;
     [GtkChild]
     private Button go_back_button;
     [GtkChild]
     private Button go_next_button;
 
-    private GLib.List<unowned Widget> pages;
-
-    private uint _visible_page_idx = 0;
-    private uint visible_page_idx {
-        set {
-            _visible_page_idx = value;
-
-            stack.set_visible_child (pages.nth_data (visible_page_idx));
-        }
-        get {
-            return _visible_page_idx;
-        }
-    }
+    private GLib.List<unowned WelcomeTutorialPage> pages;
+    private CssProvider provider;
 
     construct {
         use_header_bar = 1;
 
-        pages = stack.get_children ();
+        pages = new GLib.List<unowned WelcomeTutorialPage> ();
+        foreach (var page in paginator.get_children ()) {
+            assert (page is WelcomeTutorialPage);
+            pages.append (page as WelcomeTutorialPage);
+        }
 
-        on_stack_page_changed ();
+        provider = new CssProvider ();
+        get_style_context ().add_provider (provider,
+                                           STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+        on_position_changed ();
     }
 
     public WelcomeTutorial (AppWindow app_window) {
         set_transient_for (app_window);
     }
 
+    private void set_background_color (Gdk.RGBA color) {
+        var css = """
+          .welcome-tutorial {
+            background-color: %s;
+          }
+        """.printf (color.to_string ());
+
+        provider.load_from_data (css);
+    }
+
     [GtkCallback]
-    private void on_stack_page_changed () {
+    private void on_position_changed () {
         var n_pages = pages.length ();
+        var position = paginator.position;
+        var index = (uint) Math.round (position);
 
         var topbar = get_header_bar () as Gtk.HeaderBar;
-        topbar.subtitle = _("%u/%u").printf (visible_page_idx + 1, n_pages);
+        topbar.subtitle = _("%u/%u").printf (index + 1, n_pages);
 
         // Toggle button's visibility
-        go_back_button.visible = (visible_page_idx > 0);
-        go_next_button.visible = (visible_page_idx < pages.length () - 1);
+        go_back_button.opacity = double.min (position, 1);
+        go_next_button.opacity = double.max (0, n_pages - 1 - position);
 
+        var color1 = pages.nth_data ((uint) Math.floor (position)).color;
+        var color2 = pages.nth_data ((uint) Math.ceil (position)).color;
+        var progress = position % 1;
+
+        Gdk.RGBA rgba = {
+            red:   color1.red   * (1 - progress) + color2.red   * progress,
+            green: color1.green * (1 - progress) + color2.green * progress,
+            blue:  color1.blue  * (1 - progress) + color2.blue  * progress,
+            alpha: 1
+        };
+        set_background_color (rgba);
     }
 
     [GtkCallback]
     private void on_next_button_clicked () {
-        visible_page_idx += 1;
+        var index = (int) Math.round (paginator.position) + 1;
+        if (index >= pages.length ())
+            return;
+
+        paginator.scroll_to (pages.nth_data (index));
 
     }
 
     [GtkCallback]
     private void on_back_button_clicked () {
-        visible_page_idx -= 1;
+        var index = (int) Math.round (paginator.position) - 1;
+        if (index < 0)
+            return;
+
+        paginator.scroll_to (pages.nth_data (index));
     }
 }
