@@ -119,11 +119,22 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     [GtkCallback]
-    private void on_featured_media_selected (Gtk.ListBoxRow row) {
+    private async void on_featured_media_selected (Gtk.ListBoxRow row) {
         var entry = row as WizardDownloadableEntry;
 
         if (entry.os != null && entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
             (new RHELDownloadDialog (dialog, entry).run ());
+        } else if (entry.os != null && entry.os.id.has_prefix ("http://gnome.org/gnome/")) {
+            var file_chooser = new Gtk.FileChooserNative (_("Select the GNOME Nightly VM image"),
+                                                          App.app.main_window,
+                                                          Gtk.FileChooserAction.OPEN,
+                                                          _("Select"), _("Cancel"));
+            file_chooser.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
+            if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
+                var media = yield new InstalledMedia.gnome_nightly (file_chooser.get_filename ());
+                done (media);
+                return;
+            }
         } else {
             DownloadsHub.get_instance ().add_item (entry);
         }
