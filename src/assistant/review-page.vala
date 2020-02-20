@@ -62,8 +62,9 @@ private class Boxes.AssistantReviewPage : AssistantPage {
                          error.message);
             }
 
-            nokvm_infobar.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
         }
+
+        nokvm_infobar.visible = (machine.domain_config.get_virt_type () != GVirConfig.DomainVirtType.KVM);
 
         populate_customization_grid (machine);
     }
