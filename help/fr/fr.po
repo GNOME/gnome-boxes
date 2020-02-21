@@ -1,23 +1,26 @@
 # French translation for gnome-boxes.
-# Copyright (C) 2014 gnome-boxes's COPYRIGHT HOLDER
+# Copyright (C) 2014-2020 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Julien Hardelin <jhardlin@orange.fr>, 2014, 2018.
 # Alain Lojewski <allomervan@gmail.com>, 2014.
 # David Ducassou <david.ducassou@free.fr>, 2017
-# Guillaume Bernard <associations@guillaume-bernard.fr>, 2017-2018.
+# Guillaume Bernard <associations@guillaume-bernard.fr>, 2017-2019.
+# Charles Monzat <charles.monzat@free.fr>, 2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-12\n"
-"POT-Creation-Date: 2018-03-07 17:06+0000\n"
-"PO-Revision-Date: 2018-03-07 08:09+0100\n"
-"Last-Translator: Julien Hardelin <jhardlin@orange.fr>\n"
+"POT-Creation-Date: 2020-01-04 15:13+0000\n"
+"PO-Revision-Date: 2020-01-14 13:14+0100\n"
+"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 3.34.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -26,10 +29,11 @@ msgstr ""
 "Julien Hardelin <jhardlin@orange.fr>, 2014, 2018\n"
 "Alain Lojewski <allomervan@gmail.com>, 2014\n"
 "David Ducassou <david.ducassou@free.fr>, 2017\n"
-"Guillaume Bernard <associations@guillaume-bernard.fr>, 2017-2018"
+"Guillaume Bernard <associations@guillaume-bernard.fr>, 2017-2019\n"
+"Charles Monzat <charles.monzat@free.fr>, 2020"
 
 #. (itstool) path: credit/name
-#: C/clipboard.page:11 C/connect.page:10 C/continuous.page:11 C/create.page:11
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
 #: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
 #: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
 #: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
@@ -42,10 +46,149 @@ msgid "Michael Hill"
 msgstr "Michael Hill"
 
 #. (itstool) path: credit/years
-#: C/clipboard.page:13 C/continuous.page:13 C/delete.page:11
-#: C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
-#: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
-#: C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Écrire la configuration d’une machine dans un fichier pour la sauvegarder ou "
+"la déplacer."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Sauvegarde ou déplacement d’une machine"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"Deux composants sont nécessaires pour sauvegarder ou déplacer une machine : "
+"le fichier image et la configuration de la machine, enregistrée dans un "
+"fichier XML. Sauvegarder la configuration nécessite la commande <cmd>virsh</"
+"cmd> de l’application <app>libvirt</app> ou le paquet <app>libvirt-client</"
+"app>."
+
+# Caractère « : » justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "Dans une fenêtre de terminal, tapez :"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Nom &gt; Nom.xml"
+
+# Caractère « : » justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"où <cmd>Nom</cmd> est le nom présenté dans <app>Machines</app> ou le "
+"<em>domaine</em> de votre machine. Pour lister les domaines accessibles à "
+"<app>Machines</app>, tapez :"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Copiez le fichier <cmd>.xml</cmd> que vous venez de créer vers votre espace "
+"de sauvegarde ou de stockage temporaire."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Copiez le fichier image vers votre espace de stockage de sauvegarde ou de "
+"stockage temporaire. Ce sera un fichier composé du nom de domaine de votre "
+"machine et terminé par <cmd>.qcow2</cmd>, placé dans <file>~/.local/share/"
+"gnome-boxes/images/</file>."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Restauration d’une machine"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"La machine sauvegardée peut être installée dans <app>Machines</app> sur un "
+"nouvel hôte, ou sur l’hôte d’origine dans le cas d’un scénario de "
+"récupération."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "Quittez <app>Machines</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Copiez le fichier image <cmd>.qcow2</cmd> depuis votre sauvegarde ou votre "
+"espace de stockage temporaire vers le répertoire <file>~/.local/share/gnome-"
+"boxes/images/</file> de la nouvelle destination."
+
+# Caractère « : » justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"Dans une fenêtre de terminal, naviguez vers le répertoire ou le périphérique "
+"contenant le fichier <cmd>.xml</cmd> que vous avez sauvegardé. Tapez :"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Nom.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "où <cmd>Nom</cmd> est le domaine de votre machine."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "Lancez <app>Machines</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
 msgid "2014"
 msgstr "2014"
@@ -88,8 +231,8 @@ msgid ""
 "header bar and select <gui>Properties</gui>."
 msgstr ""
 "Faites un clic droit sur la machine dans la fenêtre de collection et "
-"sélectionnez <gui>Propriétés</gui>, ou, si la machine est déjà ouverte, "
-"cliquez sur le bouton menu (<_:media-1/>)  dans la barre d’en-têtes, puis "
+"sélectionnez <gui>Propriétés</gui>, ou si la machine est déjà ouverte, "
+"cliquez sur le bouton menu (<_:media-1/>) dans la barre d’en-tête, puis "
 "sélectionnez <gui>Propriétés</gui>."
 
 #. (itstool) path: item/p
@@ -113,14 +256,14 @@ msgid ""
 "<link href=\"http://www.spice-space.org/download.html\">SPICE download page</"
 "link>."
 msgstr ""
-"Alors que l’installation expresse prend généralement soin de conserver le "
+"Alors que l’installation rapide prend généralement soin de conserver le "
 "presse-papiers partagé, elle n’est pas disponible pour tous les systèmes "
 "d’exploitation. Dans de tels cas, ou si vous choisissez l’installation "
 "manuelle, pour que le presse-papiers partagé fonctionne, l’agent SPICE doit "
 "être installé dans l’invité. Dans la plupart des systèmes d’exploitation "
 "basés sur Linux, le paquet est appelé <em>spice-vdagent</em>. Si l’invité "
-"fonctionne sur un autre système d’exploitation, consultez la page <link href="
-"\"http://www.spice-space.org/download.html\">Page de téléchargement de "
+"fonctionne sur un autre système d’exploitation, consultez la <link href="
+"\"http://www.spice-space.org/download.html\">page de téléchargement de "
 "SPICE</link>."
 
 #. (itstool) path: credit/years
@@ -223,7 +366,7 @@ msgid ""
 "\"menu\">Properties</gui> view in <app>Boxes</app> provides the URL you "
 "would use to connect to that box."
 msgstr ""
-"L'adresse et le numéro de port sont normalement disponibles dans la "
+"L’adresse et le numéro de port sont normalement disponibles dans la "
 "configuration du périphérique ou du service sur la machine distante. Par "
 "exemple, la fenêtre <gui style=\"menu\">Propriétés</gui> dans <app>Machines</"
 "app> fournit l’URL à utiliser pour se connecter à cette machine."
@@ -243,118 +386,14 @@ msgstr "Cliquez sur <gui style=\"button\">Créer</gui>."
 #. (itstool) path: page/p
 #: C/connect.page:59
 msgid "The remote box will open in the collection view."
-msgstr "La machine distante s'ouvre dans la fenêtre de collection."
-
-#. (itstool) path: info/desc
-#: C/continuous.page:16
-msgid "Create a box using a Continuous disk image."
-msgstr "Créer une machine utilisant une image disque Continuous."
-
-#. (itstool) path: page/title
-#: C/continuous.page:21
-msgid "Using Boxes with Continuous"
-msgstr "Utilisation de <app>Machines</app> avec Continuous"
-
-#. (itstool) path: page/p
-#: C/continuous.page:23
-msgid ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> is GNOME's continuous build system. Boxes is able to create a box from "
-"a Continuous <em>qcow2</em> image."
-msgstr ""
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">Continuous</"
-"link> est le système de construction en continu de GNOME. <app>Machines</"
-"app> peut générer une machine à partir d’une image <em>qcow2</em> Continuous."
-
-#. (itstool) path: item/p
-#: C/continuous.page:28
-msgid ""
-"The latest images are found at the link provided in the <link href=\"https://"
-"wiki.gnome.org/Projects/GnomeContinuous#Installation\">Installation</link> "
-"section of the wiki page."
-msgstr ""
-"Les dernières images se trouvent sur le lien fourni dans la section <link "
-"href=\"https://wiki.gnome.org/Projects/GnomeContinuous#Installation"
-"\">Installation</link> de la page du wiki."
-
-#. (itstool) path: note/p
-#: C/continuous.page:32
-msgid ""
-"Images are available in <em>runtime</em> and <em>devel-debug</em> flavors. "
-"The <em>devel-debug</em> image results in a virtual machine containing "
-"developer tools and headers."
-msgstr ""
-"Les images sont disponibles dans les variantes <em>runtime</em> et <em>devel-"
-"debug</em>. L'image <em>devel-debug</em> crée une machine virtuelle "
-"contenant les outils et les en-têtes pour développeurs."
-
-#. (itstool) path: item/p
-#: C/continuous.page:37
-msgid ""
-"In <app>Boxes</app>, click <gui style=\"button\">New</gui> to launch the box "
-"creation wizard."
-msgstr ""
-"Dans <app>Machines</app>, cliquez sur <gui style=\"button\">Nouveau</gui> "
-"pour lancer l’assistant de création."
-
-#. (itstool) path: item/p
-#: C/continuous.page:39
-msgid ""
-"Click <gui style=\"button\">Enter URL</gui> and type the URL including the "
-"full filename of the gzipped runtime or devel-debug qcow2 image. Boxes will "
-"download and install the image."
-msgstr ""
-"Cliquez sur <gui style=\"button\">Saisir un URL</gui> et tapez l’URL "
-"incluant le nom complet du fichier gzippé ou l’image qcow2 de développement "
-"ou de débogage. <app>Machines</app> téléchargera et installera l’image."
-
-#. (itstool) path: item/p
-#: C/continuous.page:42
-msgid ""
-"If you have already saved an image to disk, click <gui style=\"button"
-"\">Select a file</gui> and navigate to the Continuous qcow2 image. Select "
-"the file and click <gui style=\"button\">Open</gui>."
-msgstr ""
-"Si vous avez déjà enregistré une image sur le disque, cliquez sur <gui style="
-"\"button\">Sélectionner un fichier</gui> et allez à l’image qcow2. "
-"Sélectionnez le fichier et cliquez sur <gui style=\"button\">Ouvrir</gui>."
-
-#. (itstool) path: item/p
-#: C/continuous.page:46
-msgid ""
-"The <gui>Review</gui> page opens. Click <gui style=\"button\">Customize</"
-"gui> to adjust memory or disk size, or to rename the box."
-msgstr ""
-"La page <gui>Résumé</gui> s'ouvre. Cliquez sur <gui style=\"button"
-"\">Personnaliser</gui> pour ajuster la taille du disque ou de la mémoire, ou "
-"pour renommer la machine."
-
-#. (itstool) path: item/p
-#: C/continuous.page:49
-msgid ""
-"Click <gui style=\"button\">Create</gui>. The collection view returns, and "
-"the installation of the box begins."
-msgstr ""
-"Cliquez sur <gui style=\"button\">Créer</gui>. La fenêtre de collection "
-"réapparaît, et l’installation de la machine commence."
-
-#. (itstool) path: page/p
-#: C/continuous.page:53
-msgid ""
-"The information necessary to upgrade a Continuous vm can be found on the "
-"<link href=\"https://wiki.gnome.org/Projects/GnomeContinuous\">wiki page</"
-"link>."
-msgstr ""
-"Les informations nécessaires à la mise à niveau d’une machine virtuelle "
-"Continuous sont sur cette <link href=\"https://wiki.gnome.org/Projects/"
-"GnomeContinuous\">page du wiki</link>."
+msgstr "La machine distante s’ouvre dans la fenêtre de collection."
 
 #. (itstool) path: info/desc
 #: C/create.page:18
-msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
+msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
 msgstr ""
-"Cliquez sur <gui style=\"button\">Nouveau</gui> pour débuter la création "
-"d’une machine."
+"Cliquer sur <gui style=\"button\">+</gui> pour débuter la création d’une "
+"machine."
 
 #. (itstool) path: page/title
 #: C/create.page:21
@@ -386,7 +425,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/create.page:35
 msgid "An ISO found by <app>Boxes</app>."
-msgstr "d’un ISO trouvé par <app>Machines</app>,"
+msgstr "d’un fichier ISO trouvé par <app>Machines</app>,"
 
 #. (itstool) path: item/p
 #: C/create.page:36
@@ -430,8 +469,8 @@ msgid ""
 "memory or disk size, or to rename the box."
 msgstr ""
 "Si la machine est locale, cliquez sur <gui style=\"button\">Personnaliser</"
-"gui> pour ajuster la quantité de mémoire allouée, la taille disque, ou pour "
-"renommer la machine."
+"gui> pour ajuster la quantité de mémoire allouée, la taille du disque, ou "
+"pour renommer la machine."
 
 #. (itstool) path: page/p
 #: C/create.page:55
@@ -465,7 +504,7 @@ msgid ""
 "deleted."
 msgstr ""
 "Sélectionnez une ou plusieurs machines. Dans la fenêtre de collection, "
-"faites un clic droit sur la machine a supprimer."
+"faites un clic droit sur la machine à supprimer."
 
 #. (itstool) path: item/p
 #: C/delete.page:26
@@ -479,7 +518,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/delete.page:28
 msgid "Click the <gui style=\"button\">Delete</gui> button."
-msgstr "Cliquez sur <gui style=\"button\">Supprimer</gui>."
+msgstr "Cliquez sur <gui style=\"button\">Effacer</gui>."
 
 #. (itstool) path: item/p
 #: C/delete.page:29
@@ -587,12 +626,6 @@ msgstr "Sujets avancés"
 msgid "Felipe Borges"
 msgstr "Felipe Borges"
 
-#. (itstool) path: credit/years
-#: C/interface.page:20 C/shared-folders.page:12 C/snapshot-create.page:19
-#: C/snapshot-revert.page:19 C/usb-redirection.page:26
-msgid "2018"
-msgstr "2018"
-
 #. (itstool) path: info/desc
 #: C/interface.page:25
 msgid "Get around the application."
@@ -601,7 +634,7 @@ msgstr "Explorer l’application."
 #. (itstool) path: page/title
 #: C/interface.page:28
 msgid "The Boxes interface"
-msgstr "L'interface de <app>Machines</app>"
+msgstr "L’interface de <app>Machines</app>"
 
 #. (itstool) path: section/title
 #: C/interface.page:31
@@ -641,7 +674,7 @@ msgstr "cliquer sur une machine pour en lancer une session virtuelle,"
 #. (itstool) path: item/p
 #: C/interface.page:43
 msgid "<link xref=\"search\">Search</link> for a box."
-msgstr "<link xref=\"search\">Rechercher</link> une machine,"
+msgstr "<link xref=\"search\">rechercher</link> une machine,"
 
 #. (itstool) path: item/p
 #: C/interface.page:44
@@ -658,13 +691,13 @@ msgid ""
 msgstr ""
 "faire un clic droit sur une machine afin de choisir <gui>Ouvrir dans une "
 "nouvelle fenêtre</gui>, <gui>Ajouter aux favoris</gui>, <gui>Forcer l’arrêt</"
-"gui>, <gui>Suspendre</gui>, <gui>Cloner</gui>, <gui>Effacer</gui>, ou afin "
-"d’ouvrir la vue <gui>Propriétés</gui> au sujet de la machine."
+"gui>, <gui>Cloner</gui>, <gui>Effacer</gui>, ou afin d’ouvrir la vue "
+"<gui>Propriétés</gui> au sujet de la machine."
 
 #. (itstool) path: section/title
 #: C/interface.page:55
 msgid "The wizard"
-msgstr "L'assistant"
+msgstr "L’assistant"
 
 #. (itstool) path: section/p
 #: C/interface.page:57
@@ -695,7 +728,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/interface.page:70
 msgid "<link xref=\"delete\">Delete</link> a box or boxes."
-msgstr "<link xref=\"delete\">Supprimer</link> une ou plusieurs machines,"
+msgstr "<link xref=\"delete\">supprimer</link> une ou plusieurs machines,"
 
 #. (itstool) path: item/p
 #: C/interface.page:71
@@ -746,8 +779,8 @@ msgstr ""
 "Dans le cas d’une machine distante, cet onglet affiche aussi le "
 "<gui>Protocole d’affichage</gui> (par exemple <em>VNC</em>), et l’<gui>URL</"
 "gui> à employer pour les accès distants. Lorsque la machine est en cours "
-"d’exécution, l’interrupteur <gui>Partager le presse-papier</gui> est visible "
-"ici."
+"d’exécution, l’interrupteur <gui>Partager le presse-papiers</gui> est "
+"visible ici."
 
 #. (itstool) path: item/p
 #: C/interface.page:93
@@ -760,14 +793,14 @@ msgid ""
 "\"button\">Restart</gui> button, and the <gui>Run in background</gui> switch "
 "are on this tab."
 msgstr ""
-"Paramètres <gui>Système</gui> : affiche les graphiques actuels de l’activité "
-"du processeur, les E/S du  disque et du réseau. Les curseurs <gui>Mémoire</"
-"gui> et <gui>Taille maximum du disque</gui> sont ajustables, et le "
-"<gui>Journal de dépannage</gui> est visualisable. Sont aussi visibles sur "
-"cet onglet : le bouton <gui style=\"button\">Forcer l’arrêt</gui>, qui vous "
-"permet de <link xref=\"shutdown\">forcer une machine à s’éteindre</link>, le "
-"bouton <gui style=\"button\">Redémarrer</gui>, et le commutateur "
-"<gui>Exécution en arrière-plan</gui>."
+"<gui>Système</gui> : affiche les graphiques actuels de l’activité du "
+"processeur, les E/S du disque et du réseau. Les curseurs <gui>Mémoire</gui> "
+"et <gui>Taille maximum du disque</gui> sont ajustables, et le <gui>Journal "
+"de dépannage</gui> est visualisable. Sont aussi visibles sur cet onglet : le "
+"bouton <gui style=\"button\">Forcer l’arrêt</gui>, qui vous permet de <link "
+"xref=\"shutdown\">forcer une machine à s’éteindre</link>, le bouton <gui "
+"style=\"button\">Redémarrer</gui>, et le commutateur <gui>Exécution en "
+"arrière-plan</gui>."
 
 #. (itstool) path: item/p
 #: C/interface.page:100
@@ -809,8 +842,8 @@ msgstr ""
 "La fenêtre des propriétés est aussi accessible par le bouton <gui style="
 "\"button\">Personnaliser</gui> de l’assistant d’installation durant le "
 "paramétrage d’une machine locale. Si la machine est en cours de "
-"fonctionnement, dans la barre d’en-têtes cliquez sur le bouton (<_:media-1/"
-">) puis sélectionnez <gui>Propriétés</gui>."
+"fonctionnement, cliquez sur le bouton (<_:media-1/>) situé dans la barre "
+"d’en-tête, puis sélectionnez <gui>Propriétés</gui>."
 
 #. (itstool) path: credit/years
 #: C/keystrokes.page:12
@@ -825,7 +858,7 @@ msgstr "Combinaisons de touches pouvant être envoyées depuis le menu."
 #. (itstool) path: page/title
 #: C/keystrokes.page:21
 msgid "Send a keystroke combination to a box"
-msgstr "Envoyer une combinaison de touches vers une machine"
+msgstr "Envoi d’une combinaison de touches vers une machine"
 
 #. (itstool) path: page/p
 #: C/keystrokes.page:23
@@ -840,7 +873,8 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/keystrokes.page:27
 msgid "Click the keyboard (<_:media-1/>) button in the header bar."
-msgstr "Clic sur le bouton clavier (<_:media-1/>) dans la barre d’en-têtes."
+msgstr ""
+"Cliquez sur le bouton clavier (<_:media-1/>) situé dans la barre d’en-tête."
 
 #. (itstool) path: item/p
 #: C/keystrokes.page:31
@@ -899,13 +933,13 @@ msgstr ""
 #: C/legal.xml:4
 msgid "Creative Commons Attribution-Share Alike 3.0 Unported License"
 msgstr ""
-"Creative Commons Paternité - Partage dans des conditions identiques à "
-"l’initiale 3.0 non transposée"
+"licence Creative Commons Attribution - Partage dans les Mêmes Conditions 3.0 "
+"non transposé"
 
 #. (itstool) path: license/p
 #: C/legal.xml:3
 msgid "This work is licensed under a <_:link-1/>."
-msgstr "Cet ouvrage est sous licence <_:link-1/>."
+msgstr "Cette œuvre est distribuée sous <_:link-1/>."
 
 #. (itstool) path: info/desc
 #: C/prop-system.page:16
@@ -940,6 +974,20 @@ msgid ""
 msgstr ""
 "Déplacez les curseurs <gui>Mémoire</gui> et <gui>Taille maximum du disque</"
 "gui> vers les valeurs de votre choix."
+
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+"Vous ne devez pas allouer toute la mémoire disponible car votre système hôte "
+"a également besoin de mémoire pour fonctionner, et plus il y a de mémoire "
+"allouée, plus il faudra de temps pour suspendre/reprendre. La mémoire "
+"recommandée sera suffisante car ces informations proviennent des "
+"documentations des systèmes d’exploitation."
 
 #. (itstool) path: info/desc
 #: C/prop-trouble.page:16
@@ -1001,7 +1049,7 @@ msgstr ""
 #. (itstool) path: page/p
 #: C/search.page:27
 msgid "Press <key>Esc</key> to dismiss the search."
-msgstr "Appuyez sur <key>Échap</key>pour interrompre la recherche."
+msgstr "Appuyez sur <key>Échap</key> pour interrompre la recherche."
 
 #. (itstool) path: info/desc
 #: C/shared-folders.page:15
@@ -1038,14 +1086,12 @@ msgid ""
 msgstr ""
 "Faites un clic droit sur la machine dans la fenêtre de collection et "
 "sélectionnez <gui>Propriétés</gui>, ou cliquez sur le bouton menu (<_:"
-"media-1/>)  dans la barre d’en-têtes, puis sélectionnez <gui>Propriétés</"
-"gui>."
+"media-1/>) dans la barre d’en-tête, puis sélectionnez <gui>Propriétés</gui>."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:32
 msgid "Click the <gui>Devices &amp; Shares</gui> tab."
-msgstr ""
-"Cliquez sur <gui>Périphériques et partages</gui> dans le panneau latéral."
+msgstr "Cliquez sur l’onglet <gui>Périphériques et partages</gui>."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:33
@@ -1168,7 +1214,7 @@ msgstr "Arrêter une machine ayant cessé de fonctionner."
 #. (itstool) path: page/title
 #: C/shutdown.page:21
 msgid "Force a box to shut down"
-msgstr "Forcer une machine à s’arrêter"
+msgstr "Arrêt forcé d’une machine"
 
 #. (itstool) path: page/p
 #: C/shutdown.page:23
@@ -1187,8 +1233,8 @@ msgid ""
 "header bar and select <gui>Properties</gui>."
 msgstr ""
 "Ouvrez la <link xref=\"interface#properties\">vue des propriétés</link> de "
-"la machine. Si la machine est ouverte, cliquez sur le bouton menu  (<_:"
-"media-1/>) dans la barre d’en-têtes afin de sélectionner <gui style=\"button"
+"la machine. Si la machine est ouverte, cliquez sur le bouton menu (<_:"
+"media-1/>) dans la barre d’en-tête afin de sélectionner <gui style=\"button"
 "\">Propriétés</gui>."
 
 #. (itstool) path: item/p
@@ -1241,7 +1287,7 @@ msgstr "Cliquez sur l’onglet <gui>Instantanés</gui>."
 #: C/snapshot-create.page:44
 msgid "Click <key>+</key> below the <gui>Snapshots</gui> list."
 msgstr ""
-"Cliquez sur <key>+</key> en-dessous de la liste des <gui>Instantanés</gui>."
+"Cliquez sur <key>+</key> en dessous de la liste des <gui>Instantanés</gui>."
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:47
@@ -1277,8 +1323,8 @@ msgstr "Sélectionnez l’instantané à supprimer dans la liste."
 #: C/snapshot-delete.page:32
 msgid "Click the gear button on the right and select <gui>Delete</gui>."
 msgstr ""
-"Cliquez sur le bouton engrenage à droite puis appuyez sur <gui>Supprimer</"
-"gui>."
+"Cliquez sur le bouton engrenage situé à droite, puis choisissez "
+"<gui>Effacer</gui>."
 
 #. (itstool) path: info/desc
 #: C/snapshot-rename.page:16
@@ -1288,7 +1334,7 @@ msgstr "Donner un nom significatif à l’instantané."
 #. (itstool) path: page/title
 #: C/snapshot-rename.page:21
 msgid "Rename a snapshot"
-msgstr "Renommer un instantané"
+msgstr "Renommage d’un instantané"
 
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:23
@@ -1301,7 +1347,7 @@ msgstr ""
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:26
 msgid "<file>09/14/2014, 11:54:36 AM</file>"
-msgstr "<file>09/14/2014, 11:54:36 AM</file>"
+msgstr "<file>14/09/2014, 11:54:36</file>"
 
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:28
@@ -1327,12 +1373,15 @@ msgstr "Depuis la liste, sélectionnez l’instantané à renommer."
 #: C/snapshot-rename.page:40
 msgid "Click the gear button on the right and select <gui>Rename</gui>."
 msgstr ""
-"Cliquez sur le bouton engrenage à droite puis choisissez <gui>Renommer</gui>."
+"Cliquez sur le bouton engrenage situé à droite, puis choisissez "
+"<gui>Renommer</gui>."
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:42
 msgid "Type the desired name and press <gui style=\"button\">Done</gui>."
-msgstr "Saisissez le nom souhaité puis appuyez sur <key>Terminé</key>."
+msgstr ""
+"Saisissez le nom souhaité puis appuyez sur <gui style=\"button\">Terminé</"
+"gui>."
 
 #. (itstool) path: info/desc
 #: C/snapshot-revert.page:22
@@ -1353,9 +1402,9 @@ msgid ""
 "creation."
 msgstr ""
 "Le <em>Retour</em> à un instantané antérieur restaure l’état de la machine à "
-"cet instant là. L'état de la mémoire est également restauré, ramenant les "
-"programmes qui étaient en cours d’exécution et leurs paramètres à l’état "
-"exact où ils se trouvaient lors de la création de l’instantané."
+"cet instant précis. L’état de la mémoire est également restauré, ramenant "
+"les programmes qui étaient en cours d’exécution et leurs paramètres à l’état "
+"exact dans lequel ils se trouvaient lors de la création de l’instantané."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:39
@@ -1369,8 +1418,8 @@ msgid ""
 "Click the gear button on the right and select <gui>Revert to this state</"
 "gui>."
 msgstr ""
-"Cliquez sur le bouton engrenage à droite puis sélectionnez <gui>Revenir à "
-"cet état</gui>"
+"Cliquez sur le bouton engrenage situé à droite, puis sélectionnez "
+"<gui>Revenir à cet état</gui>."
 
 #. (itstool) path: page/p
 #: C/snapshot-revert.page:45
@@ -1378,8 +1427,8 @@ msgid ""
 "Changes made to the virtual machine since the snapshot was saved are "
 "discarded."
 msgstr ""
-"Les modifications apportées à la machine postérieurement à la date "
-"d’enregistrement de l’instantané sont ignorées."
+"Les modifications apportées à la machine virtuelle depuis l’enregistrement "
+"de l’instantané sont ignorées."
 
 #. (itstool) path: page/title
 #: C/supported-protocols.page:26
@@ -1560,7 +1609,7 @@ msgid ""
 "virtual machine itself."
 msgstr ""
 "Cela ne signifie pas que <app>Machines</app> allouera 20 Go d’espace lors de "
-"la création de la machine virtuelle. L'espace disque effectivement utilisé "
+"la création de la machine virtuelle. L’espace disque effectivement utilisé "
 "par <app>Machines</app> sera inférieur (ou au pire égal) à l’espace disque "
 "utilisé par la machine virtuelle elle-même."
 
@@ -1586,8 +1635,8 @@ msgid ""
 "It is also recommended that you have at least 8GB RAM and 20GB of free disk "
 "space on your computer to efficiently run <app>Boxes</app>."
 msgstr ""
-"Pour exécuter efficacement <app>Machines</app>, il est recommandé "
-"d’avoir sur votre ordinateur au moins 8 Go de RAM et 20 Go d’espace disque "
+"Pour exécuter efficacement <app>Machines</app>, il est recommandé d’avoir "
+"sur votre ordinateur au moins 8 Go de RAM et 20 Go d’espace disque "
 "disponible."
 
 #. (itstool) path: info/desc
@@ -1637,22 +1686,32 @@ msgid ""
 "<gui>USB devices</gui> connected to the host machine are shown in a list. "
 "Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
 msgstr ""
-"Les <gui>périphériques USB</gui> connectés à la machine hôte sont montrés "
+"Les <gui>périphériques USB</gui> connectés à la machine hôte sont affichés "
 "dans une liste. Basculez l’interrupteur proche de chaque périphérique désiré "
 "sur <gui style=\"switch\">Activé</gui>."
 
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Priya Pandya"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
 #. (itstool) path: info/desc
-#: C/virtualization.page:16
+#: C/virtualization.page:22
 msgid "Check the resources available to <app>Boxes</app>."
 msgstr "Vérifier les ressources disponibles pour <app>Machines</app>."
 
 #. (itstool) path: page/title
-#: C/virtualization.page:19
+#: C/virtualization.page:25
 msgid "Using processor hardware virtualization"
 msgstr "Utilisation de la virtualisation matérielle du processeur"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:21
+#: C/virtualization.page:27
 msgid ""
 "To determine whether your computer supports processor virtualization "
 "hardware extensions, and that they have been enabled in the system BIOS, run "
@@ -1663,29 +1722,88 @@ msgstr ""
 "exécutez la commande suivante dans un terminal :"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:24
+#: C/virtualization.page:30
 msgid "<cmd>gnome-boxes --checks</cmd>"
 msgstr "<cmd>gnome-boxes --checks</cmd>"
 
 #. (itstool) path: page/p
-#: C/virtualization.page:25
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr "Pour activer la virtualisation sur votre système :"
+
+# Point final justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr "Redémarrez le système et ouvrez le menu <gui>BIOS</gui>."
+
+# Point final justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/virtualization.page:36
 msgid ""
-"If necessary, switch on the extensions <link href=\"http://docs."
-"fedoraproject.org/en-US/Fedora/18/html/Virtualization_Administration_Guide/"
-"sect-Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html"
-"\">in the BIOS setup</link>"
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
 msgstr ""
-"Si nécessaire, activez les extensions <link href=\"http://docs.fedoraproject."
-"org/en-US/Fedora/18/html/Virtualization_Administration_Guide/sect-"
-"Virtualization-Troubleshooting-"
-"Enabling_Intel_VT_and_AMD_V_virtualization_hardware_extensions_in_BIOS.html."
-"\">dans les paramétrages du BIOS</link>"
+"Sélectionnez l’option <gui>Restaurer les valeurs par défaut</gui>, puis "
+"<gui>Enregistrer et quitter</gui>."
+
+# Point final justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr "Redémarrez et ouvrez à nouveau le <gui>BIOS</gui>."
+
+# Point final justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+"Ouvrez le sous-menu <gui>Processeur</gui> dans <gui>Chipset, configuration "
+"CPU avancée</gui> ou <gui>Northbridge</gui>."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+"Activez l’option <gui>Technologie de virtualisation Intel</gui> (également "
+"appelée Intel VT) ou <gui>AMD-V</gui>, selon la marque du processeur. Les "
+"extensions de virtualisation peuvent être étiquetées <gui>Extensions de "
+"virtualisation, Vanderpool</gui> ou divers autres noms selon le fabricant "
+"d’équipement d’origine (OEM) et le BIOS du système."
+
+# Point final justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr "<gui>Enregistrez et quittez</gui>."
+
+# Point final justifié dans la traduction.
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr "Redémarrez puis exécutez : <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+"Si des résultats s’affichent, les extensions de virtualisation sont "
+"maintenant activées. Dans le cas contraire, les extensions de virtualisation "
+"de votre système sont certainement désactivées, ou les réglages du BIOS sont "
+"incorrects."
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
 msgid "What is a virtual machine?"
-msgstr "Qu'est-ce qu’une machine virtuelle ?"
+msgstr "Qu’est-ce qu’une machine virtuelle ?"
 
 #. (itstool) path: page/p
 #: C/what-is-a-virtual-machine.page:28
@@ -1695,7 +1813,7 @@ msgid ""
 "machine is called <em>host</em>."
 msgstr ""
 "Une machine virtuelle est un ordinateur simulé s’exécutant à l’intérieur "
-"d’un autre ordinateur. L'ordinateur simulé est souvent appelé <em>invité</"
+"d’un autre ordinateur. L’ordinateur simulé est souvent appelé <em>invité</"
 "em> tandis que la machine réelle est appelée <em>hôte</em>."
 
 #. (itstool) path: page/p
