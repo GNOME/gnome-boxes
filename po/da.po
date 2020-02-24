@@ -5,7 +5,7 @@
 # Kris Thomsen <lakristho@gmail.com>, 2012, 2014.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2015.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2012-2017, 2019.
-# Alan Mortensen <alanmortensen.am@gmail.com>, 2018.
+# Alan Mortensen <alanmortensen.am@gmail.com>, 2018, 2020.
 #
 # Konventioner:
 #
@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2019-09-04 10:11+0000\n"
-"PO-Revision-Date: 2019-10-02 05:45+0200\n"
+"POT-Creation-Date: 2020-02-12 12:05+0000\n"
+"PO-Revision-Date: 2020-02-16 16:23+0100\n"
 "Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -61,13 +61,13 @@ msgstr ""
 "af dine yndlingsoperativsystemer, eller hvis du har brug for at forbinde til "
 "en fjernmaskine (f.eks. på dit kontor)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:64
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "GNOME-projektet"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
-#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
-#: src/main.vala:72 src/topbar.vala:94
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
+#: src/app-window.vala:137 src/app-window.vala:244 src/app-window.vala:246
+#: src/main.vala:72 src/topbar.vala:93
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -145,24 +145,127 @@ msgstr "Delte mapper"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Varierende array (variant) af delte mappers navne og stiafbildning"
 
+#: data/ui/assistant/pages/downloads-page.ui:110
+#: data/ui/wizard-downloads-page.ui:89
+msgid "No operating systems found"
+msgstr "Fandt ingen styresystemer"
+
+#: data/ui/assistant/pages/downloads-page.ui:121
+#: data/ui/wizard-downloads-page.ui:100
+msgid "Try a different search"
+msgstr "Prøv en anden søgning"
+
+#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: src/assistant/downloads-page.vala:54
+msgid "Search for an OS or enter a download link…"
+msgstr "Led efter et OS eller indtast et downloadlink …"
+
+#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
+msgid "Create a Virtual Machine"
+msgstr "Opret en virtuel maskine"
+
+#: data/ui/assistant/pages/index-page.ui:35
+msgid ""
+"A new virtual machine will be created and an operating system installed into "
+"it. Select an operating system source to begin."
+msgstr ""
+"En ny virtuel maskine vil blive oprettet og et styresystem installeret på "
+"den. Vælg en kilde til styresystemet for at begynde."
+
+#: data/ui/assistant/pages/index-page.ui:49
+msgid "Detected Sources"
+msgstr "Registrerede kilder"
+
+#: data/ui/assistant/pages/index-page.ui:109
+msgid "Featured Downloads"
+msgstr "Udvalgte filer til hentning"
+
+#: data/ui/assistant/pages/index-page.ui:120
+msgid "You will be notified when the download has completed."
+msgstr "Du vil få besked, når filen er blevet hentet."
+
+#: data/ui/assistant/pages/index-page.ui:147
+msgid "Select an OS Source"
+msgstr "Vælg en kilde til styresystem"
+
+#: data/ui/assistant/pages/index-page.ui:180
+msgid "Operating System Download"
+msgstr "Styresystemer der kan hentes"
+
+#: data/ui/assistant/pages/index-page.ui:196
+msgid "Browse and search for operating systems to install."
+msgstr "Gennemse og søg efter styresystemer, der kan installeres."
+
+#: data/ui/assistant/pages/index-page.ui:242
+msgid "Operating System Image File"
+msgstr "Aftryksfil af styresystem"
+
+#: data/ui/assistant/pages/index-page.ui:258
+msgid "Select an .iso file to install a virtual machine."
+msgstr "Vælg en .iso-fil, som skal installeres på en virtuel maskine."
+
+#: data/ui/assistant/pages/preparation-page.ui:5
+msgid "Preparing…"
+msgstr "Forbereder …"
+
+#: data/ui/assistant/pages/preparation-page.ui:20
+msgid "Preparing to create a new box"
+msgstr "Forbereder oprettelse af en ny boks"
+
+#: data/ui/assistant/pages/review-page.ui:5
+msgid "Review and Create"
+msgstr "Gennemgå og opret"
+
+#: data/ui/assistant/pages/review-page.ui:18
+msgid "Boxes is ready to set up a new box with the following properties:"
+msgstr "Boxes er klar til at opsætte en ny boks med følgende indstillinger:"
+
+#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+msgid ""
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
+msgstr ""
+"Virtualiseringsudvidelser er ikke tilgængelige på dit system. Se om du kan "
+"slå dem til i dine BIOS-indstillinger."
+
+#: data/ui/assistant/pages/review-page.ui:68
+msgid "Resource Allocation"
+msgstr "Ressourceallokering"
+
+#: data/ui/assistant/pages/review-page.ui:77
+msgid "Customize"
+msgstr "Tilpas"
+
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:40
+msgid "Express Installation"
+msgstr "Lyninstallation"
+
 #: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
 msgid "Connect to a Box"
 msgstr "Forbind til en boks"
 
-#: data/ui/assistant/remote-connection.ui:22
+#: data/ui/assistant/remote-connection.ui:23
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
-msgstr "Indtast en adresse der skal forbindes til. Adresser kan begynde med spice://, rdp:// eller vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
+msgstr ""
+"Indtast en adresse, der skal forbindes til. Adresser kan begynde med "
+"spice://, rdp://, ssh:// eller vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
+#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Annullér"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Tilslut"
+
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
+msgid "Next"
+msgstr "Næste"
 
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
@@ -203,30 +306,34 @@ msgid "Back"
 msgstr "Tilbage"
 
 #: data/ui/collection-toolbar.ui:74
+msgid "Downloads"
+msgstr "Hentet"
+
+#: data/ui/collection-toolbar.ui:99
 msgid "Application Menu"
 msgstr "Programmenu"
 
-#: data/ui/collection-toolbar.ui:102
+#: data/ui/collection-toolbar.ui:127
 msgid "Select Items"
 msgstr "Vælg elementer"
 
-#: data/ui/collection-toolbar.ui:130
+#: data/ui/collection-toolbar.ui:155
 msgid "List view"
 msgstr "Listevisning"
 
-#: data/ui/collection-toolbar.ui:158
+#: data/ui/collection-toolbar.ui:183
 msgid "Grid view"
 msgstr "Gittervisning"
 
-#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:209 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Søg"
 
-#: data/ui/collection-toolbar.ui:212
+#: data/ui/collection-toolbar.ui:237
 msgid "Create a Virtual Machine…"
 msgstr "Opret en virtuel maskine …"
 
-#: data/ui/collection-toolbar.ui:219
+#: data/ui/collection-toolbar.ui:244
 msgid "Connect to a Remote Computer…"
 msgstr "Forbind til en fjerncomputer …"
 
@@ -250,6 +357,10 @@ msgstr "Tastaturgenveje"
 msgid "Fullscreen"
 msgstr "Fuldskærm"
 
+#: data/ui/downloads-hub-row.ui:54
+msgid "Ready to install"
+msgstr "Klar til at installere"
+
 #: data/ui/empty-boxes.ui:68
 msgid "State of the art virtualization"
 msgstr "Supermoderne virtualisering"
@@ -259,8 +370,8 @@ msgid "Boxes can be virtual or remote machines."
 msgstr "Boxes kan være virtuelle maskiner eller maskiner på netværket."
 
 #: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>New</b> button to create your first one."
-msgstr "Klik blot <b>Ny</b>-knappen for at oprette den første."
+msgid "Just hit the <b>+</b> button to create your first one."
+msgstr "Klik blot <b>+</b>-knappen for at oprette den første."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -274,55 +385,65 @@ msgstr "Hjælp"
 
 #: data/ui/kbd-shortcuts-window.ui:33
 msgctxt "shortcut window"
-msgid "Create a new box"
-msgstr "Opret en ny boks"
+msgid "Open main menu"
+msgstr "Åbn hovedvindue"
 
 #: data/ui/kbd-shortcuts-window.ui:41
+msgctxt "shortcut window"
+msgid "Create a new virtual machine"
+msgstr "Opret en ny virtuel maskine"
+
+#: data/ui/kbd-shortcuts-window.ui:49
+msgctxt "shortcut window"
+msgid "Connect to a remote machine"
+msgstr "Forbind til en fjernmaskine"
+
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Search"
 msgstr "Søg"
 
-#: data/ui/kbd-shortcuts-window.ui:49
+#: data/ui/kbd-shortcuts-window.ui:65
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Tastaturgenveje"
 
-#: data/ui/kbd-shortcuts-window.ui:57 data/ui/kbd-shortcuts-window.ui:149
+#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Luk vindue/afslut Boxes"
 
-#: data/ui/kbd-shortcuts-window.ui:67
+#: data/ui/kbd-shortcuts-window.ui:83
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Oprettelse og egenskaber for boks"
 
-#: data/ui/kbd-shortcuts-window.ui:76 data/ui/kbd-shortcuts-window.ui:95
+#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Gå til næste side"
 
-#: data/ui/kbd-shortcuts-window.ui:85 data/ui/kbd-shortcuts-window.ui:104
+#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Gå til forrige side"
 
-#: data/ui/kbd-shortcuts-window.ui:114
+#: data/ui/kbd-shortcuts-window.ui:130
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Boks-visning"
 
-#: data/ui/kbd-shortcuts-window.ui:121
+#: data/ui/kbd-shortcuts-window.ui:137
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Indfang/slip tastatur"
 
-#: data/ui/kbd-shortcuts-window.ui:131 data/ui/kbd-shortcuts-window.ui:141
+#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Tilbage til oversigt"
 
-#: data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:173
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Fuldskærm/gendan fra fuldskærm"
@@ -339,7 +460,7 @@ msgstr "Hjælp"
 msgid "About Boxes"
 msgstr "Om Boxes"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:651
 msgid "Troubleshooting Log"
 msgstr "Fejlfindingslog"
 
@@ -348,7 +469,7 @@ msgid "_Copy to Clipboard"
 msgstr "_Kopiér til udklipsholder"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/properties-window.vala:55
+#: src/assistant/index-page.vala:140 src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "Vælg en enhed eller ISO-fil"
 
@@ -365,7 +486,7 @@ msgid "_Delete"
 msgstr "_Slet"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:331
+#: src/app-window.vala:329
 msgid "_Cancel"
 msgstr "_Annullér"
 
@@ -406,7 +527,7 @@ msgid "Rename"
 msgstr "Omdøb"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:80
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:84
 msgid "Delete"
 msgstr "Slet"
 
@@ -435,11 +556,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "Lyninstallation"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:271
 msgid "Username"
 msgstr "Brugernavn"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:272
 msgid "Password"
 msgstr "Adgangskode"
 
@@ -447,25 +568,70 @@ msgstr "Adgangskode"
 msgid "_Add Password"
 msgstr "_Tilføj adgangskode"
 
-#: data/ui/unattended-setup-box.ui:211
+#: data/ui/unattended-setup-box.ui:214
 msgid "Product Key"
 msgstr "Produktnøgle"
 
-#: data/ui/wizard-downloadable-entry.ui:60 data/ui/wizard-media-entry.ui:52
+#: data/ui/welcome-tutorial.ui:7
+msgid "Welcome Tutorial"
+msgstr "Velkomstvejledning"
+
+#: data/ui/welcome-tutorial.ui:31
+msgid "Welcome to Boxes"
+msgstr "Velkommen til Boxes"
+
+#: data/ui/welcome-tutorial.ui:32
+msgid ""
+"Boxes makes it easy to install and run virtual machines. You can also use it "
+"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
+"connections."
+msgstr ""
+"Boxes gør det nemt at installere og køre virtuelle maskiner. Du kan også "
+"bruge det til at få fjernadgang til andre computere med brug af SPICE-, "
+"VNC-, RDP- eller Secure Shell-forbindelser."
+
+#: data/ui/welcome-tutorial.ui:41
+msgid ""
+"With express installation, Boxes will set the install options for a new "
+"virtual machine. Just start the installation and everything will be taken "
+"care of for you."
+msgstr ""
+"Med lyninstallation vil Boxes indstille installeringsmulighederne til en ny "
+"virtuel maskine. Bare begynd installationen, og alt vil blive ordnet for dig."
+
+#: data/ui/welcome-tutorial.ui:49
+msgid "Easy Downloads"
+msgstr "Nem hentning"
+
+#: data/ui/welcome-tutorial.ui:50
+msgid ""
+"With Boxes, you don't need to download an operating system to create a "
+"virtual machine. Instead, just pick the operating system you want to setup, "
+"and Boxes will automatically download it for you."
+msgstr ""
+"Med Boxes behøver du ikke hente et styresystem for at oprette en virtuel "
+"maskine. Vælg i stedet det styresystem, du vil sætte op, og Boxes vil "
+"automatisk hente det for dig."
+
+#: data/ui/welcome-tutorial.ui:58
+msgid "Drag and Drop"
+msgstr "Træk og slip"
+
+#: data/ui/welcome-tutorial.ui:59
+msgid ""
+"Sharing files is as simple as dropping them onto your virtual machine. They "
+"will appear in your Downloads folder."
+msgstr ""
+"Filer deles nemt ved at trække dem over på din virtuelle maskine. De vil "
+"ligge i mappen Hentet."
+
+#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
 msgid "Unknown media"
 msgstr "Ukendt medie"
 
 #: data/ui/wizard-downloads-page.ui:26
 msgid "Show more…"
 msgstr "Vis mere …"
-
-#: data/ui/wizard-downloads-page.ui:89
-msgid "No operating systems found"
-msgstr "Fandt ingen styresystemer"
-
-#: data/ui/wizard-downloads-page.ui:100
-msgid "Try a different search"
-msgstr "Prøv en anden søgning"
 
 #: data/ui/wizard-source.ui:32
 msgid "Insert operating system installation media or select a source below"
@@ -480,24 +646,19 @@ msgstr "Hent et styresystem"
 msgid "Operating system will be downloaded and installed in a virtual machine."
 msgstr "Styresystem vil blive hentet og installeret på en virtuel maskine."
 
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
-#: data/ui/wizard-source.ui:238
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:157
-msgid "Connect to Libvirt brokers."
-msgstr "Forbind til Libvirt-mægler"
-
-#: data/ui/wizard-source.ui:213
+#: data/ui/wizard-source.ui:151
 msgid "Select a file"
 msgstr "Vælg en fil"
 
-#: data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:158
 msgid "Select a bootable image file to install in a virtual machine."
 msgstr "Vælg et bootaftryk, som skal installeres på en virtuel maskine."
 
-#: data/ui/wizard-source.ui:256
+#: data/ui/wizard-source.ui:194
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
@@ -506,11 +667,13 @@ msgstr ""
 "Alle varemærker vist ovenfor er udelukkende brugt til identificering af "
 "softwareprodukter du allerede har skaffet og tilhører deres respektive ejere."
 
-#: data/ui/wizard-source.ui:322
+#: data/ui/wizard-source.ui:260
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh://, or vnc://."
-msgstr "Indtast en adresse der skal forbindes til. Adresser kan begynde med spice://, rdp://, ssh:// eller vnc://."
+msgstr ""
+"Indtast en adresse der skal forbindes til. Adresser kan begynde med "
+"spice://, rdp://, ssh:// eller vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
 #: data/ui/wizard-window.ui:69 src/wizard.vala:178
@@ -529,25 +692,13 @@ msgstr "_Fortsæt"
 msgid "Customize Resources"
 msgstr "Tilpas ressourcer"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:331
 msgid "_Open"
 msgstr "_Åbn"
-
-#: data/ui/wizard-toolbar.ui:243
-msgid "Search for an OS or enter a download link…"
-msgstr "Led efter et OS eller indtast et downloadlink …"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
 msgstr "Forbereder oprettelse af ny boks"
-
-#: data/ui/wizard.ui:220
-msgid ""
-"Virtualization extensions are unavailable on your system.\n"
-"Check your BIOS settings to enable them."
-msgstr ""
-"Virtualiseringsudvidelser er ikke tilgængelige på dit system. Se om du kan "
-"slå dem til i dine BIOS-indstillinger."
 
 #: data/ui/wizard-window.ui:82
 msgid ""
@@ -590,27 +741,26 @@ msgstr "Føj til favoritter"
 msgid "Force Shutdown"
 msgstr "Gennemtving nedlukning"
 
-#. Clone
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:79
 msgid "Clone"
 msgstr "Klon"
 
-#: src/actions-popover.vala:84 src/machine.vala:626
+#: src/actions-popover.vala:88 src/machine.vala:631
 msgid "Restart"
 msgstr "Genstart"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:97
 msgid "Properties"
 msgstr "Egenskaber"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:117
+#: src/actions-popover.vala:121
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Skærmbillede fra %s"
 
-#: src/app.vala:112
+#: src/app.vala:116
 msgid "translator-credits"
 msgstr ""
 "Kris Thomsen\n"
@@ -621,79 +771,110 @@ msgstr ""
 "Websted http://dansk-gruppen.dk\n"
 "E-mail <dansk@dansk-gruppen.dk>"
 
-#: src/app.vala:113
+#: src/app.vala:117
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Et simpelt GNOME 3-program til at få adgang til fjern- eller virtuelle "
 "systemer"
 
-#: src/app.vala:171 src/main.vala:9
+#: src/app.vala:177 src/main.vala:9
 msgid "Display version number"
 msgstr "Vis versionsnummer"
 
-#: src/app.vala:172
+#: src/app.vala:178
 msgid "Open in full screen"
 msgstr "Åbn i fuldskærm"
 
-#: src/app.vala:173 src/main.vala:10
+#: src/app.vala:179 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Tjek virtualiseringsevner"
 
-#: src/app.vala:174
+#: src/app.vala:180
 msgid "Open box with UUID"
 msgstr "Åbn boks med UUID"
 
-#: src/app.vala:175
+#: src/app.vala:181
 msgid "Search term"
 msgstr "Søgetekst"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:177
+#: src/app.vala:183
 msgid "URL to display, broker or installer media"
 msgstr "URL at vise, mægler- eller installationsmedie"
 
-#: src/app.vala:188
+#: src/app.vala:194
 msgid "— A simple application to access remote or virtual machines"
 msgstr ""
 "— Et simpelt program til at få adgang til fjern- eller virtuelle systemer"
 
-#: src/app.vala:213
+#: src/app.vala:219
 msgid "Too many command line arguments specified.\n"
 msgstr "Der er givet for mange kommandolinjeargumenter.\n"
 
-#: src/app.vala:466
+#: src/app.vala:476
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Boks “%s” er allerede i brug"
 
-#: src/app.vala:468
+#: src/app.vala:478
 msgid "Launch"
 msgstr "Start"
 
-#: src/app.vala:554
+#: src/app.vala:564
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Boks “%s” er blevet slettet"
 
-#: src/app.vala:555
+#: src/app.vala:565
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boks er blevet slettet"
 msgstr[1] "%u bokse er blevet slettet"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:557
+#: src/app.vala:592 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Fortryd"
 
-#: src/app.vala:626
+#: src/app.vala:636
 msgid "Boxes is doing something"
 msgstr "Boxes laver noget"
 
-#: src/app-window.vala:330
+#: src/app-window.vala:328
 msgid "Select files to transfer"
 msgstr "Vælg filer der skal overføres"
+
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+msgid "Open"
+msgstr "Åbn"
+
+#: src/assistant/index-page.vala:157 src/assistant/vm-assistant.vala:73
+msgid "Previous"
+msgstr "Forrige"
+
+#: src/assistant/review-page.vala:47 src/wizard.vala:571
+msgid "Memory"
+msgstr "Hukommelse"
+
+#: src/assistant/review-page.vala:56 src/wizard.vala:580
+msgid "Disk"
+msgstr "Disk"
+
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: src/assistant/review-page.vala:58 src/wizard.vala:582
+#, c-format
+msgid "%s maximum"
+msgstr "%s maksimum"
+
+#: src/assistant/vm-assistant.vala:60 src/wizard.vala:401
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"Kunne ikke analysere installationsmedie. Beskadiget eller ufærdigt medie?"
+
+#: src/assistant/vm-assistant.vala:72
+msgid "Create"
+msgstr "Opret"
 
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -713,6 +894,24 @@ msgstr "%d×%d"
 msgid "Exit fullscreen"
 msgstr "Afslut fuldskærm"
 
+#: src/downloads-hub.vala:50 src/wizard.vala:641
+msgid "Downloading media"
+msgstr "Henter medie"
+
+#: src/downloads-hub.vala:76
+#, c-format
+msgid "“%s” download complete"
+msgstr "Hentning af “%s” fuldført"
+
+#: src/downloads-hub.vala:78
+msgid "Install"
+msgstr "Installér"
+
+#. We did this, so ignore!
+#: src/downloads-hub.vala:179
+msgid "Failed to download"
+msgstr "Kunne ikke hente"
+
 #: src/icon-view.vala:32
 msgid "New and Recent"
 msgstr "Nye og seneste"
@@ -721,8 +920,8 @@ msgstr "Nye og seneste"
 msgid "Unsupported disk image format."
 msgstr "Diskaftryksformat understøttes ikke."
 
-#: src/installed-media.vala:100 src/installer-media.vala:164
-#: src/properties-page-widget.vala:19
+#: src/installed-media.vala:100 src/installer-media.vala:178
+#: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "System"
 
@@ -845,7 +1044,8 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Netværk"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Genstart"
 
@@ -888,23 +1088,34 @@ msgstr[1] ""
 "Ændring af størrelsen på lageret kræver, at de %llu tilhørende "
 "øjebliksbilleder slettes."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "CPU'er: "
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Ændringer kræver genstart af “%s”."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "_Kør i baggrunden"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” vil ikke blive sat på pause automatisk."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” vil automatisk blive sat på pause for at spare ressourcer."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "3D-acceleration"
 
@@ -920,78 +1131,43 @@ msgstr "Gendanner %s fra disken"
 msgid "Starting %s"
 msgstr "Starter %s"
 
-#: src/libvirt-machine.vala:709
+#: src/libvirt-machine.vala:715
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Genstart af “%s” varer for længe. Tving den til at lukke?"
 
-#: src/libvirt-machine.vala:711
+#: src/libvirt-machine.vala:717
 msgid "_Shutdown"
 msgstr "_Sluk"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:733
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Kloner “%s” …"
 
-#: src/libvirt-machine.vala:859
+#: src/libvirt-machine.vala:865
 msgid "Installing…"
 msgstr "Installerer …"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:861 src/util-app.vala:136
+#: src/libvirt-machine.vala:867 src/util-app.vala:152
 #: src/wizard-source.vala:123
 msgid "Live"
 msgstr "Live"
 
-#: src/libvirt-machine.vala:863
+#: src/libvirt-machine.vala:869
 msgid "Setting up clone…"
 msgstr "Indstiller klon …"
 
-#: src/libvirt-machine.vala:865
+#: src/libvirt-machine.vala:871
 msgid "Importing…"
 msgstr "Importerer …"
 
-#: src/libvirt-machine.vala:874
+#: src/libvirt-machine.vala:880
 #, c-format
 msgid "host: %s"
 msgstr "vært: %s"
-
-#: src/libvirt-system-importer.vala:21
-#, c-format
-msgid "_Import “%s” from system broker"
-msgstr "I_mportér “%s” fra systemmægler"
-
-#. Translators: %u here is the number of boxes available for import
-#: src/libvirt-system-importer.vala:24
-#, c-format
-msgid "_Import %u box from system broker"
-msgid_plural "_Import %u boxes from system broker"
-msgstr[0] "I_mportér %u boks fra systemmægler"
-msgstr[1] "I_mportér %u bokse fra systemmægler"
-
-#: src/libvirt-system-importer.vala:35
-#, c-format
-msgid "Will import “%s” from system broker"
-msgstr "Vil importere “%s” fra systemmægler"
-
-#. Translators: %u here is the number of boxes available for import
-#: src/libvirt-system-importer.vala:38
-#, c-format
-msgid "Will import %u box from system broker"
-msgid_plural "Will import %u boxes from system broker"
-msgstr[0] "Vil importere %u boks fra systemmægler"
-msgstr[1] "Vil importere %u bokse fra systemmægler"
-
-#: src/libvirt-system-importer.vala:71
-msgid "No boxes to import"
-msgstr "Ingen bokse at importere"
-
-#: src/libvirt-system-importer.vala:129
-#, c-format
-msgid "Failed to find suitable disk to import for box “%s”"
-msgstr "Kunne ikke finde passende disk til at importere boksen “%s”"
 
 #: src/list-view-row.vala:125
 msgid "Connected"
@@ -1019,20 +1195,25 @@ msgstr "Slukket"
 msgid "Connecting to %s"
 msgstr "Forbinder til %s"
 
-#: src/machine.vala:227 src/machine.vala:653
+#: src/machine.vala:219
+#, c-format
+msgid "Authentication failed: %s"
+msgstr "Godkendelse mislykkedes: %s"
+
+#: src/machine.vala:232 src/machine.vala:658
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Forbindelse til “%s” mislykkedes"
 
-#: src/machine.vala:279
+#: src/machine.vala:284
 msgid "Machine is under construction"
 msgstr "Maskine er under opbygning"
 
-#: src/machine.vala:433
+#: src/machine.vala:438
 msgid "Saving…"
 msgstr "Gemmer …"
 
-#: src/machine.vala:625
+#: src/machine.vala:630
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1041,13 +1222,13 @@ msgstr ""
 "“%s” kunne ikke gendannes fra disken\n"
 "Prøv uden gemt tilstand?"
 
-#: src/machine.vala:636
+#: src/machine.vala:641
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Kunne ikke starte “%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:740
+#: src/machine.vala:745
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s” kræver godkendelse"
@@ -1088,7 +1269,7 @@ msgstr "Rapportér programfejl til <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Hjemmeside for %s: <%s>.\n"
 
-#: src/media-manager.vala:282
+#: src/media-manager.vala:284
 #, c-format
 msgid "No such file %s"
 msgstr "Der findes ikke nogen fil kaldet %s"
@@ -1103,32 +1284,23 @@ msgstr "Log ind på %s"
 msgid "Not connected to %s"
 msgstr "Ikke forbundet til %s"
 
-#: src/properties-page-widget.vala:15
+#: src/properties-page-widget.vala:17
 msgid "General"
 msgstr "Generelt"
 
-#: src/properties-page-widget.vala:23
+#: src/properties-page-widget.vala:25
 msgid "Devices & Shares"
 msgstr "Enheder & deling"
 
-#: src/properties-page-widget.vala:27
+#: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Øjebliksbilleder"
-
-#: src/properties-window.vala:58
-msgid "Open"
-msgstr "Åbn"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Ændringer kræver genstart af “%s”."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/remote-machine.vala:83 src/wizard.vala:540
+#: src/remote-machine.vala:83 src/wizard.vala:531
 msgid "URL"
 msgstr "URL"
 
@@ -1213,7 +1385,11 @@ msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
 "enable host and box interactions, such as copy&amp;paste. Please visit %s to "
 "download and install these tools from within the box."
-msgstr "SPICE-gæsteværktøjerne er ikke installeret. Disse værktøjer vil forbedre din brugeroplevelse og tillade interaktion mellem vært og boks såsom kopiér og indsæt. Se venligst %s om at hente og installere disse værktøjer inde fra boksen."
+msgstr ""
+"SPICE-gæsteværktøjerne er ikke installeret. Disse værktøjer vil forbedre din "
+"brugeroplevelse og tillade interaktion mellem vært og boks såsom kopiér og "
+"indsæt. Se venligst %s om at hente og installere disse værktøjer inde fra "
+"boksen."
 
 #: src/spice-display.vala:387
 msgid "USB devices"
@@ -1224,7 +1400,7 @@ msgid "Folder Shares"
 msgstr "Delte mapper"
 
 #: src/spice-display.vala:601 src/spice-display.vala:626
-#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
+#: src/spice-display.vala:629 src/wizard.vala:341 src/wizard.vala:354
 msgid "Invalid URL"
 msgstr "Ugyldig URL"
 
@@ -1245,14 +1421,14 @@ msgstr "Kopierer “%s” til “Hentet”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:216
+#: src/unattended-installer.vala:200
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "Der opstod en fejl under installationsforberedelsen. Lyninstallation "
 "deaktiveret."
 
-#: src/unattended-installer.vala:479
+#: src/unattended-installer.vala:458
 msgid "Downloading device drivers…"
 msgstr "Henter enhedsdrivere …"
 
@@ -1270,7 +1446,7 @@ msgstr "Lyninstallation af %s kræver en internetforbindelse."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Boxes-akkreditiver for “%s”"
 
-#: src/util-app.vala:322
+#: src/util-app.vala:338
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1279,11 +1455,11 @@ msgstr ""
 "Din SELinux-kontekst ser forkert ud; du kan prøve at fikse det ved at køre:\n"
 "%s"
 
-#: src/util-app.vala:326
+#: src/util-app.vala:342
 msgid "SELinux not installed?"
 msgstr "SELinux ikke installeret?"
 
-#: src/util-app.vala:408
+#: src/util-app.vala:424
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1291,7 +1467,7 @@ msgstr ""
 "Kunne ikke hente information om lagerpulje for “gnome-boxes” fra libvirt. "
 "Sikr dig at “virsh -c qemu:///session pool-dumpxml gnome-boxes” fungerer."
 
-#: src/util-app.vala:413
+#: src/util-app.vala:429
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1300,14 +1476,14 @@ msgstr ""
 "%s kendes hos libvirt som GNOME Boxes' lagerpulje, men dette katalog findes "
 "ikke"
 
-#: src/util-app.vala:417
+#: src/util-app.vala:433
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s kendes hos libvirt som GNOME Boxes' lagerpulje, men er ikke et katalog"
 
-#: src/util-app.vala:421
+#: src/util-app.vala:437
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1326,19 +1502,28 @@ msgstr "nej"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:721
+#: src/vm-configurator.vala:759
 msgid "Incapable host system"
 msgstr "Værtssystem understøtter ikke handling"
 
-#: src/vm-creator.vala:176
-#, c-format
-msgid "Live box “%s” has been deleted automatically."
-msgstr "Live-boks “%s” er blevet slettet automatisk."
+#. Translators: This is the name of the snapshot taken right after installing a VM.
+#: src/vm-creator.vala:172
+msgid "Just installed "
+msgstr "Lige installeret "
 
-#: src/vm-importer.vala:50
+#: src/vm-importer.vala:59
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Boksimport fra filen “%s” mislykkedes."
+
+#: src/vnc-display.vala:154
+msgid "Read-only"
+msgstr "Skrivebeskyttet"
+
+#: src/welcome-tutorial.vala:44
+#, c-format
+msgid "%u/%u"
+msgstr "%u/%u"
 
 #: src/wizard-source.vala:128
 msgid "32-bit x86 system"
@@ -1374,102 +1559,118 @@ msgstr "Gennemse"
 msgid "Box creation failed"
 msgstr "Oprettelse af boks mislykkedes"
 
-#: src/wizard.vala:303
+#: src/wizard.vala:300
 msgid "Empty location"
 msgstr "Tom placering"
 
-#: src/wizard.vala:326
+#: src/wizard.vala:323
 msgid "Unsupported file"
 msgstr "Ikke-understøttet fil"
 
-#: src/wizard.vala:332
+#: src/wizard.vala:329
 msgid "Invalid file"
 msgstr "Ugyldig fil"
 
 #. accept any vnc:// uri
 #. accept any ssh:// uri
 #. accept any rdp:// uri
-#: src/wizard.vala:374
+#: src/wizard.vala:371
 msgid "Boxes was compiled without RDP support"
 msgstr "Boxes blev bygget uden understøttelse af RDP"
 
-#: src/wizard.vala:382
+#: src/wizard.vala:379
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "Ikke-understøttet protokol “%s”"
 
-#: src/wizard.vala:388 src/wizard.vala:462
+#: src/wizard.vala:385 src/wizard.vala:453
 msgid "Unknown installer media"
 msgstr "Ukendt installationsmedie"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:390 src/wizard.vala:463
+#: src/wizard.vala:387 src/wizard.vala:454
 msgid "Analyzing…"
 msgstr "Analyserer …"
 
-#: src/wizard.vala:404
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
-"Kunne ikke analysere installationsmedie. Beskadiget eller ufærdigt medie?"
-
 #. We did this, so ignore!
-#: src/wizard.vala:516
+#: src/wizard.vala:507
 msgid "Box setup failed"
 msgstr "Opsætning af boks mislykkedes"
 
-#: src/wizard.vala:530
+#: src/wizard.vala:521
 msgid "Boxes will create a new box with the following properties:"
 msgstr "Boxes vil oprette en ny boks med følgende indstillinger:"
 
-#: src/wizard.vala:535
+#: src/wizard.vala:526
 msgid "Type"
 msgstr "Type"
 
-#: src/wizard.vala:538
+#: src/wizard.vala:529
 msgid "Host"
 msgstr "Vært"
 
-#: src/wizard.vala:549 src/wizard.vala:562
+#: src/wizard.vala:540 src/wizard.vala:553
 msgid "Port"
 msgstr "Port"
 
-#: src/wizard.vala:551
+#: src/wizard.vala:542
 msgid "TLS Port"
 msgstr "TLS-port"
 
-#: src/wizard.vala:567
+#: src/wizard.vala:558
 msgid "Will add boxes for all systems available from this account:"
 msgstr "Vil tilfølge bokse for alle systemer tilgængelige fra denne konto:"
 
-#: src/wizard.vala:580
-msgid "Memory"
-msgstr "Hukommelse"
-
-#: src/wizard.vala:589
-msgid "Disk"
-msgstr "Disk"
-
-#. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:591
-#, c-format
-msgid "%s maximum"
-msgstr "%s maksimum"
-
-#: src/wizard.vala:654
+#: src/wizard.vala:638
 msgid "Downloading media…"
 msgstr "Henter medie …"
 
-#: src/wizard.vala:657
-msgid "Downloading media"
-msgstr "Henter medie"
-
-#: src/wizard.vala:667
+#: src/wizard.vala:651
 msgid "Download failed."
-msgstr "Nedhentning mislykkedes."
+msgstr "Hentning mislykkedes."
 
-#: src/wizard.vala:787
+#: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "_Tilpas …"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Indtast en adresse der skal forbindes til. Adresser kan begynde med "
+#~ "spice://, rdp:// eller vnc://."
+
+#~ msgctxt "shortcut window"
+#~ msgid "Create a new box"
+#~ msgstr "Opret en ny boks"
+
+#~ msgid "Connect to Libvirt brokers."
+#~ msgstr "Forbind til Libvirt-mægler"
+
+#~ msgid "_Import “%s” from system broker"
+#~ msgstr "I_mportér “%s” fra systemmægler"
+
+#~ msgid "_Import %u box from system broker"
+#~ msgid_plural "_Import %u boxes from system broker"
+#~ msgstr[0] "I_mportér %u boks fra systemmægler"
+#~ msgstr[1] "I_mportér %u bokse fra systemmægler"
+
+#~ msgid "Will import “%s” from system broker"
+#~ msgstr "Vil importere “%s” fra systemmægler"
+
+#~ msgid "Will import %u box from system broker"
+#~ msgid_plural "Will import %u boxes from system broker"
+#~ msgstr[0] "Vil importere %u boks fra systemmægler"
+#~ msgstr[1] "Vil importere %u bokse fra systemmægler"
+
+#~ msgid "No boxes to import"
+#~ msgstr "Ingen bokse at importere"
+
+#~ msgid "Failed to find suitable disk to import for box “%s”"
+#~ msgstr "Kunne ikke finde passende disk til at importere boksen “%s”"
+
+#~ msgid "Live box “%s” has been deleted automatically."
+#~ msgstr "Live-boks “%s” er blevet slettet automatisk."
 
 #~ msgid "_New"
 #~ msgstr "_Ny"
@@ -1540,9 +1741,6 @@ msgstr "_Tilpas …"
 
 #~ msgid "%s (maximum)"
 #~ msgstr "%s (maksimum)"
-
-#~ msgid "Read-only"
-#~ msgstr "Skrivebeskyttet"
 
 #~ msgid "%dx%d"
 #~ msgstr "%dx%d"
@@ -1687,9 +1885,6 @@ msgstr "_Tilpas …"
 
 #~ msgid "Shared with you"
 #~ msgstr "Delt med dig"
-
-#~ msgid "Create"
-#~ msgstr "Opret"
 
 #~ msgid "No username provided"
 #~ msgstr "Intet brugernavn angivet"
