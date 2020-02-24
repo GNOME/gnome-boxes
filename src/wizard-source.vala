@@ -90,6 +90,9 @@ public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
         details = media.os.vendor;
 
         url = media.url;
+
+        var media_file = GLib.File.new_for_uri (media.url);
+        set_tooltip_text (media_file.get_basename ());
     }
 
     public WizardDownloadableEntry.from_os (Osinfo.Os os) {
@@ -121,7 +124,12 @@ private class Boxes.WizardMediaEntry : Gtk.ListBoxRow {
             // Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
             //              http://en.wikipedia.org/wiki/Live_CD
             title_label.label += " (" +  _("Live") + ")";
-        set_tooltip_text (title_label.label);
+        if (media.device_file != null) {
+            var media_file = GLib.File.new_for_path (media.device_file);
+            set_tooltip_text (media_file.get_basename ());
+        } else {
+            set_tooltip_text (title_label.label);
+        }
 
         if (media.os_media != null) {
             var architecture = (media.os_media.architecture == "i386" || media.os_media.architecture == "i686") ?
