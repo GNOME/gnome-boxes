@@ -240,7 +240,7 @@ private class Boxes.App: Gtk.Application {
                     if (is_uri)
                         main_window.wizard_window.wizard.open_with_uri (arg);
                     else
-                        main_window.wizard_window.wizard.open_with_uri (file.get_uri ());
+                        main_window.show_vm_assistant (file.get_path ());
                 } else if (is_uri)
                     main_window.wizard_window.wizard.open_with_uri (arg);
                 else
@@ -268,7 +268,7 @@ private class Boxes.App: Gtk.Application {
         File[] files = _files;
         call_when_ready (() => {
             foreach (File file in files) {
-                main_window.wizard_window.wizard.open_with_uri (file.get_uri ());
+                main_window.show_vm_assistant (file.get_path ());
             }
         });
     }
