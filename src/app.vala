@@ -238,11 +238,11 @@ private class Boxes.App: Gtk.Application {
 
                 if (file.query_exists ()) {
                     if (is_uri)
-                        main_window.wizard_window.wizard.open_with_uri (arg);
+                        main_window.show_remote_connection_assistant (arg);
                     else
                         main_window.show_vm_assistant (file.get_path ());
                 } else if (is_uri)
-                    main_window.wizard_window.wizard.open_with_uri (arg);
+                    main_window.show_remote_connection_assistant (arg);
                 else
                     open_name (arg);
             });
