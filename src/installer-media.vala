@@ -69,7 +69,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
-    public bool prefers_q35 {
+    public virtual bool prefers_q35 {
         get {
             if (os == null)
                 return false;
@@ -85,7 +85,7 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
-    public bool prefers_ich9 {
+    public virtual bool prefers_ich9 {
         get {
             if (!prefers_q35)
                 return false;
