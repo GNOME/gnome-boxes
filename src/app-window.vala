@@ -285,8 +285,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             func (view);
     }
 
-    public void show_remote_connection_assistant () {
-        new Boxes.RemoteConnectionAssistant (this).run ();
+    public void show_remote_connection_assistant (string? uri = null) {
+        new Boxes.RemoteConnectionAssistant (this, uri).run ();
     }
 
     public void show_vm_assistant (string? path = null) {

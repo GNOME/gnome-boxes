@@ -15,7 +15,7 @@ private class Boxes.RemoteConnectionAssistant : Gtk.Dialog {
         use_header_bar = 1;
     }
 
-    public RemoteConnectionAssistant (AppWindow app_window) {
+    public RemoteConnectionAssistant (AppWindow app_window, string? uri = null) {
         this.app_window = app_window;
 
         set_transient_for (app_window);
@@ -23,6 +23,8 @@ private class Boxes.RemoteConnectionAssistant : Gtk.Dialog {
         url_entry.changed.connect (on_url_entry_changed);
         connect_button.clicked.connect (on_connect_button_clicked);
         connect_button.get_style_context ().add_class ("suggested-action");
+
+        url_entry.set_text (uri);
     }
 
     private void on_url_entry_changed () {
