@@ -294,7 +294,6 @@ private class Boxes.App: Gtk.Application {
 
         foreach (var window in windows) {
             window.notificationbar.dismiss_all ();
-            window.wizard_window.wizard.cleanup ();
         }
         async_launcher.await_all ();
         suspend_machines ();
