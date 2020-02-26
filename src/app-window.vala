@@ -69,8 +69,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public Notificationbar notificationbar {
         get {
             switch (ui_state) {
-            case UIState.WIZARD:
-                return wizard_window.notificationbar;
             case UIState.PROPERTIES:
                 return props_window.notificationbar;
             default:
@@ -79,7 +77,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         }
     }
 
-    public WizardWindow wizard_window;
     public PropertiesWindow  props_window;
 
     [GtkChild]
@@ -190,8 +187,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         group = new Gtk.WindowGroup ();
         group.add_window (this);
-        wizard_window = new WizardWindow (this);
-        group.add_window (wizard_window);
         props_window = new PropertiesWindow (this);
         group.add_window (props_window);
 
