@@ -9,6 +9,12 @@ private class Boxes.LibvirtMedia : Boxes.InstalledMedia {
         }
     }
 
+    public override bool prefers_q35 {
+        get {
+            return domain_config.get_os ().get_machine ().contains ("q35");
+        }
+    }
+
     public Domain domain_config { get; private set; }
 
     public LibvirtMedia (string path, Domain domain_config, bool known_qcow2 = false) throws GLib.Error {
