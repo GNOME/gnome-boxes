@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-01-22 12:55+0000\n"
-"PO-Revision-Date: 2020-01-26 17:16+0100\n"
+"POT-Creation-Date: 2020-02-24 21:38+0000\n"
+"PO-Revision-Date: 2020-02-27 20:20+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -236,26 +236,26 @@ msgstr "Instalazion rapide"
 msgid "Connect to a Box"
 msgstr "Conet a une scjatule"
 
-#: data/ui/assistant/remote-connection.ui:22
+#: data/ui/assistant/remote-connection.ui:23
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
 msgstr ""
 "Inserìs une direzion dulà conetisi. Lis direzions a puedin tacâ cun "
-"spice://, rdp:// o vnc://."
+"spice://, rdp://, ssh:// o vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Anule"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Conet"
 
-#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
 msgstr "Prossim"
 
@@ -889,8 +889,8 @@ msgstr "Daûr a discjariâ il supuart"
 
 #: src/downloads-hub.vala:76
 #, c-format
-msgid "“%s“ download complete"
-msgstr "Discjariament “%s“ completât"
+msgid "“%s” download complete"
+msgstr "Discjariament di “%s“ completât"
 
 #: src/downloads-hub.vala:78
 msgid "Install"
@@ -1033,7 +1033,8 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Rêt"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Torne invie"
 
@@ -1076,23 +1077,34 @@ msgstr[1] ""
 "Il ridimensionâ dal archivi al necessite di eliminâ %llu istantaniis "
 "associadis."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "Processôrs: "
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Pes modifichis al è necessari tornâ a inviâ “%s”."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "_Eseguìs par daûr (background)"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” nol vignarà metût in pause in automatic."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” al vignarà metût in pause in automatic par salvâ risorsis."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "Acelerazion 3D"
 
@@ -1272,11 +1284,6 @@ msgstr "Dispositîfs & condivisions"
 #: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Istantaniis"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Pes modifichis al è necessari tornâ a inviâ “%s”."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1485,14 +1492,14 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:751
+#: src/vm-configurator.vala:759
 msgid "Incapable host system"
 msgstr "Sisteme host incapaç"
 
-#: src/vm-creator.vala:176
-#, c-format
-msgid "Live box “%s” has been deleted automatically."
-msgstr "La scjatule Live “%s” e je stade eliminade in automatic."
+#. Translators: This is the name of the snapshot taken right after installing a VM.
+#: src/vm-creator.vala:172
+msgid "Just installed "
+msgstr "Apene instalade "
 
 #: src/vm-importer.vala:59
 #, c-format
@@ -1615,6 +1622,16 @@ msgstr "Scjariament falît."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "P_ersonalize…"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Inserìs une direzion dulà conetisi. Lis direzions a puedin tacâ cun "
+#~ "spice://, rdp:// o vnc://."
+
+#~ msgid "Live box “%s” has been deleted automatically."
+#~ msgstr "La scjatule Live “%s” e je stade eliminade in automatic."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new box"
