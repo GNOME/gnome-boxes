@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-02-03 10:34+0000\n"
-"PO-Revision-Date: 2020-02-03 12:57+0100\n"
+"POT-Creation-Date: 2020-02-24 21:38+0000\n"
+"PO-Revision-Date: 2020-03-01 15:36+0100\n"
 "Last-Translator: gogo <linux.hr@protonmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -236,26 +236,26 @@ msgstr "Ekspresna instalacija"
 msgid "Connect to a Box"
 msgstr "Povezivanje s boksom"
 
-#: data/ui/assistant/remote-connection.ui:22
+#: data/ui/assistant/remote-connection.ui:23
 msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
-"vnc://."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh:// or vnc://."
 msgstr ""
-"Upišite adresu za povezivanje. Adrese mogu započinjati sa spice://, rdp:// "
-"ili vnc://."
+"Upišite adresu za povezivanje. Adrese mogu započinjati sa spice://, rdp://, "
+"ssh:// ili vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Odustani"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Poveži"
 
-#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
 msgstr "Sljedeće"
 
@@ -1029,7 +1029,8 @@ msgstr "U/I"
 msgid "Network"
 msgstr "Mreža"
 
-#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351
+#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Ponovno pokreni"
 
@@ -1071,23 +1072,34 @@ msgstr[1] ""
 msgstr[2] ""
 "Promjena veličine pohrane zahtjeva brisanje %llu pridruženih snimaka sustava."
 
-#: src/libvirt-machine-properties.vala:661
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:677
+msgid "CPUs: "
+msgstr "CPU:"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Promjene zahtijevaju ponovno pokretanje “%s”."
+
+#: src/libvirt-machine-properties.vala:732
 msgid "_Run in background"
 msgstr "_Pokreni u pozadini"
 
-#: src/libvirt-machine-properties.vala:672
-#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:747
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” neće biti pauziran automatski."
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:676
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” će biti pauziran automatski u svrhu spremanja resursa."
 
-#: src/libvirt-machine-properties.vala:692
+#: src/libvirt-machine-properties.vala:764
 msgid "3D Acceleration"
 msgstr "3D ubrzanje"
 
@@ -1267,11 +1279,6 @@ msgstr "Uređaji i dijeljenja"
 #: src/properties-page-widget.vala:29
 msgid "Snapshots"
 msgstr "Snimke sustava"
-
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Promjene zahtijevaju ponovno pokretanje “%s”."
 
 #: src/remote-machine.vala:81
 msgid "Protocol"
@@ -1480,17 +1487,12 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:751
+#: src/vm-configurator.vala:759
 msgid "Incapable host system"
 msgstr "Neprikladan poslužitelj sustava"
 
-#: src/vm-creator.vala:176
-#, c-format
-msgid "Live box “%s” has been deleted automatically."
-msgstr "Live boks “%s” je automatski obrisan."
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:190
+#: src/vm-creator.vala:172
 msgid "Just installed "
 msgstr "Upravo instaliran "
 
@@ -1615,6 +1617,16 @@ msgstr "Neuspjelo preuzimanje."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "P_rilagodi…"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
+#~ "or vnc://."
+#~ msgstr ""
+#~ "Upišite adresu za povezivanje. Adrese mogu započinjati sa spice://, "
+#~ "rdp:// ili vnc://."
+
+#~ msgid "Live box “%s” has been deleted automatically."
+#~ msgstr "Live boks “%s” je automatski obrisan."
 
 #~ msgctxt "shortcut window"
 #~ msgid "Create a new box"
