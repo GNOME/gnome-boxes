@@ -238,11 +238,11 @@ private class Boxes.App: Gtk.Application {
 
                 if (file.query_exists ()) {
                     if (is_uri)
-                        main_window.wizard_window.wizard.open_with_uri (arg);
+                        main_window.show_remote_connection_assistant (arg);
                     else
-                        main_window.wizard_window.wizard.open_with_uri (file.get_uri ());
+                        main_window.show_vm_assistant (file.get_path ());
                 } else if (is_uri)
-                    main_window.wizard_window.wizard.open_with_uri (arg);
+                    main_window.show_remote_connection_assistant (arg);
                 else
                     open_name (arg);
             });
@@ -268,7 +268,7 @@ private class Boxes.App: Gtk.Application {
         File[] files = _files;
         call_when_ready (() => {
             foreach (File file in files) {
-                main_window.wizard_window.wizard.open_with_uri (file.get_uri ());
+                main_window.show_vm_assistant (file.get_path ());
             }
         });
     }
@@ -294,7 +294,6 @@ private class Boxes.App: Gtk.Application {
 
         foreach (var window in windows) {
             window.notificationbar.dismiss_all ();
-            window.wizard_window.wizard.cleanup ();
         }
         async_launcher.await_all ();
         suspend_machines ();
