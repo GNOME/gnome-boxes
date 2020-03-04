@@ -63,7 +63,7 @@ private class Boxes.VMCreator : Object {
         return machine;
     }
 
-    public virtual void launch_vm (LibvirtMachine machine, int64 access_last_time = -1) throws GLib.Error {
+    public virtual void launch_vm (LibvirtMachine machine, int64 access_last_time = -1, bool clone = false) throws GLib.Error {
         if (!express_install) {
             ulong signal_id = 0;
 
