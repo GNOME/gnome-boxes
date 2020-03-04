@@ -16,11 +16,15 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         base.for_install_completion (machine);
     }
 
-    public override void launch_vm (LibvirtMachine machine, int64 access_last_time = -1) throws GLib.Error {
+    public override void launch_vm (LibvirtMachine machine, int64 access_last_time = -1, bool clone = false) throws GLib.Error {
         machine.vm_creator = this;
         machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
 
-        post_import_setup.begin (machine);
+        if (clone) {
+            import_vm (machine);
+        } else {
+            post_import_setup.begin (machine);
+        }
     }
 
     protected override async void continue_installation (LibvirtMachine machine) {
@@ -62,5 +66,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
 
             return;
         }
+
+        yield post_import_setup (machine);
     }
 }
