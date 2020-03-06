@@ -3,6 +3,12 @@
 using GVirConfig;
 
 private class Boxes.LibvirtMedia : Boxes.InstalledMedia {
+    public override bool prefers_q35 {
+        get {
+            return domain_config.get_os ().get_machine ().contains ("q35");
+        }
+    }
+
     protected override string? architecture {
         owned get {
             return domain_config.get_os ().get_arch ();
