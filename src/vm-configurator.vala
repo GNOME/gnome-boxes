@@ -380,7 +380,8 @@ private class Boxes.VMConfigurator {
         os.set_arch (old_os.get_arch ());
         os.set_machine (old_os.get_machine ());
 #if USE_UEFI
-        os.set_firmware (old_os.get_firmware ());
+        if (old_os.get_firmware () == GVirConfig.DomainOsFirmware.EFI)
+            os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
 #endif
 
         domain.set_os (os);
