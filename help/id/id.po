@@ -7,21 +7,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2019-09-06 11:14+0000\n"
-"PO-Revision-Date: 2019-11-11 22:15+0700\n"
+"POT-Creation-Date: 2020-02-24 21:38+0000\n"
+"PO-Revision-Date: 2020-03-13 18:39+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 2.3\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Andika Triwidada <andika@gmail.com>, 2014, 2016, 2017, 2019\n"
+"Andika Triwidada <andika@gmail.com>, 2014, 2016, 2017, 2019, 2020\n"
 "Lorenz Adam Damara <lorenzrenz@gmail.com>, 2016"
 
 #. (itstool) path: credit/name
@@ -48,11 +48,12 @@ msgstr "2018"
 #: C/backup.page:17
 msgid "Write the configuration of a box to a file to back it up or move it."
 msgstr ""
+"Tulis konfigurasi box ke berkas untuk mencadangkan atau memindahkannya."
 
 #. (itstool) path: page/title
 #: C/backup.page:20
 msgid "Back up or move a box"
-msgstr ""
+msgstr "Mencadangkan atau memindahkan suatu box"
 
 #. (itstool) path: page/p
 #: C/backup.page:22
@@ -62,17 +63,21 @@ msgid ""
 "requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
 "<app>libvirt-client</app> package."
 msgstr ""
+"Dua komponen yang diperlukan untuk membuat cadangan atau memindahkan suatu "
+"box: berkas image, dan konfigurasi box yang disimpan sebagai berkas XML. "
+"Menyimpan konfigurasi memerlukan perintah <cmd>virsh</cmd> dari paket "
+"<app>libvirt</app> atau <app>libvirt-client</app> ."
 
 #. (itstool) path: item/p
 #: C/backup.page:29
 msgid "In a terminal window, type"
-msgstr ""
+msgstr "Di jendela terminal, ketik"
 
 #. (itstool) path: item/code
 #: C/backup.page:30
 #, no-wrap
 msgid "virsh dumpxml Name &gt; Name.xml"
-msgstr ""
+msgstr "virsh dumpxml Nama &gt; Nama.xml"
 
 #. (itstool) path: item/p
 #: C/backup.page:31
@@ -80,6 +85,8 @@ msgid ""
 "where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
 "your box. To list the domains seen by <app>Boxes</app>, type"
 msgstr ""
+"di mana <cmd>Nama</cmd> adalah nama <app>Boxes</app> , atau <em>domain</em>, "
+"dari box Anda. Untuk daftar domain yang dilihat oleh <app>Boxes</app>, ketik"
 
 #. (itstool) path: item/code
 #: C/backup.page:33
@@ -93,6 +100,8 @@ msgid ""
 "Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
 "storage location."
 msgstr ""
+"Salin berkas <cmd>.xml</cmd> yang baru saja Anda buat ke lokasi cadangan "
+"atau penyimpanan sementara."
 
 #. (itstool) path: item/p
 #: C/backup.page:40
@@ -101,13 +110,14 @@ msgid ""
 "a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
 "located in <file>~/.local/share/gnome-boxes/images/</file>."
 msgstr ""
+"Salin berkas image ke lokasi cadangan atau penyimpanan sementara. Ini akan "
+"menjadi berkas dengan nama domain box Anda dan berakhiran <cmd>.qcow2</cmd>, "
+"terletak di <file>~/.local/share/gnome-boxes/images/</file>."
 
 #. (itstool) path: section/title
 #: C/backup.page:48
-#, fuzzy
-#| msgid "Create a box"
 msgid "Restore a box"
-msgstr "Membuat suatu box"
+msgstr "Memulihkan suatu box"
 
 #. (itstool) path: section/p
 #: C/backup.page:50
@@ -115,13 +125,13 @@ msgid ""
 "The saved box can be installed into <app>Boxes</app> on a new host machine, "
 "or on the original machine as part of a disaster recovery scenario."
 msgstr ""
+"Box yang disimpan dapat dipasang ke <app>Boxes</app> pada suatu mesin host "
+"baru, atau pada mesin asli sebagai bagian dari skenario pemulihan bencana."
 
 #. (itstool) path: item/p
 #: C/backup.page:56
-#, fuzzy
-#| msgid "An ISO found by <app>Boxes</app>."
 msgid "Exit <app>Boxes</app>."
-msgstr "Sebuah ISO yang ditemukan oleh <app>Boxes</app>."
+msgstr "Keluar <app>Boxes</app>."
 
 #. (itstool) path: item/p
 #: C/backup.page:59
@@ -130,6 +140,9 @@ msgid ""
 "location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
 "in the new location."
 msgstr ""
+"Salin berkas image <cmd>.qcow2</cmd> dari cadangan atau lokasi penyimpanan "
+"sementara Anda ke dalam direktori <file>~/.local/share/gnome-boxes/umages/</"
+"file> di lokasi baru."
 
 #. (itstool) path: item/p
 #: C/backup.page:64
@@ -137,24 +150,24 @@ msgid ""
 "In a terminal window, navigate to the directory or device containing the "
 "<cmd>.xml</cmd> file you stored. Type"
 msgstr ""
+"Di jendela terminal, navigasikan ke direktori atau perangkat yang berisi "
+"berkas <cmd>.xml</cmd> yang Anda simpan. Ketikkan"
 
 #. (itstool) path: item/code
 #: C/backup.page:66
 #, no-wrap
 msgid "virsh define Name.xml"
-msgstr ""
+msgstr "virsh define Nama.xml"
 
 #. (itstool) path: item/p
 #: C/backup.page:67
 msgid "where <cmd>Name</cmd> is the domain of your box."
-msgstr ""
+msgstr "di mana <cmd>Nama</cmd> adalah domain box Anda."
 
 #. (itstool) path: item/p
 #: C/backup.page:70
-#, fuzzy
-#| msgid "An ISO found by <app>Boxes</app>."
 msgid "Launch <app>Boxes</app>."
-msgstr "Sebuah ISO yang ditemukan oleh <app>Boxes</app>."
+msgstr "Meluncurkan <app>Boxes</app>."
 
 #. (itstool) path: credit/years
 #: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
@@ -357,10 +370,8 @@ msgstr "Box remote akan terbuka dalam tilikan koleksi."
 
 #. (itstool) path: info/desc
 #: C/create.page:18
-#, fuzzy
-#| msgid "Click <gui style=\"button\">New</gui> to begin creating a box."
 msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
-msgstr "Klik <gui style=\"button\">Baru</gui> untuk mulai membuat suatu box."
+msgstr "Klik <gui style=\"button\">+</gui> untuk mulai membuat suatu box."
 
 #. (itstool) path: page/title
 #: C/create.page:21
@@ -613,10 +624,11 @@ msgid ""
 "boxes appear at the top of the list. Collection view allows you to:"
 msgstr ""
 "Ketika Anda pertama kali meluncurkan <app>Boxes</app>, sapaan memberitahu "
-"Anda untuk mengklik tombol <gui style=\"button\">Baru</gui>. Pada kunjungan-"
-"kunjungan selanjutnya, <app>Boxes</app> membuka dalam <em>tilikan koleksi</"
-"em>, menampilkan gambar mini dari box-box Anda. Box favorit atau yang sering "
-"dipakai muncul di puncak daftar."
+"Anda untuk mengklik tombol <gui style=\"button\">Baru</gui> untuk membuat "
+"box pertama Anda. Pada kunjungan-kunjungan selanjutnya, <app>Boxes</app> "
+"membuka dalam <em>tilikan koleksi</em>, menampilkan gambar mini dari box-box "
+"Anda dalam suatu kisi. Box favorit atau yang sering dipakai muncul di puncak "
+"daftar. Tilikan Koleksi memungkinkan Anda untuk:"
 
 #. (itstool) path: item/p
 #: C/interface.page:40
@@ -644,12 +656,6 @@ msgstr "Klik tombol centang dalam bilah kepala untuk memasuki mode seleksi."
 
 #. (itstool) path: item/p
 #: C/interface.page:46
-#, fuzzy
-#| msgid ""
-#| "Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
-#| "Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Pause</gui>, <gui>Clone</"
-#| "gui>, <gui>Delete</gui>, or to open the <gui>Properties</gui> view for "
-#| "the box."
 msgid ""
 "Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
 "Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
@@ -768,13 +774,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/interface.page:100
-#, fuzzy
-#| msgid ""
-#| "<gui>Devices</gui>: the <gui style=\"button\">Select</gui> button allows "
-#| "you to specify the path to a CD/DVD device or ISO. The <gui style=\"button"
-#| "\">Remove</gui> button disconnects it. When the box is running, the USB "
-#| "devices connected to the host system are listed, and each can be "
-#| "controlled with an <gui>ON | OFF</gui> switch."
 msgid ""
 "<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
 "button allows you to specify the path to a CD/DVD device or ISO. The <gui "
@@ -784,11 +783,13 @@ msgid ""
 "folders\">Shared Folders</link> between host and guest can be set for "
 "running machines which support spice-webdavd."
 msgstr ""
-"<gui>Peranti</gui>: tombol <gui style=\"button\">Pilih</gui> memungkinkan "
-"Anda menyatakan path ke peranti CD/DVD atau ISO. Tombol <gui style=\"button"
-"\">Hapus</gui> memutusnya. Ketika box sedang berjalan, peranti USB yang "
-"tersambung ke sistem host ditampilkan daftarnya, dan masing-masing dapat "
-"dikendalikan dengan saklar <gui>NYALA | MATI</gui>."
+"<gui>Peranti &amp; Berbagi</gui>: tombol <gui style=\"button\">Pilih</gui> "
+"memungkinkan Anda menyatakan path ke peranti CD/DVD atau ISO. Tombol <gui "
+"style=\"button\">Hapus</gui> memutusnya. Ketika box sedang berjalan, peranti "
+"USB yang tersambung ke sistem host ditampilkan daftarnya, dan masing-masing "
+"dapat dikendalikan dengan saklar <gui>ON | OFF</gui>. <link xref=\"shared-"
+"folders\">Folder Bersama</link> antara host dan guest dapat ditata untuk "
+"menjalankan mesin yang mendukung spice-webdavd."
 
 #. (itstool) path: item/p
 #: C/interface.page:107
@@ -944,6 +945,11 @@ msgid ""
 "take to suspend/resume. The recommended memory will be sufficient since this "
 "information comes from the OSes documentations."
 msgstr ""
+"Anda tidak boleh mengalokasikan semua memori yang tersedia karena sistem "
+"host Anda juga perlu memori untuk berjalan, dan ketika lebih banyak memori "
+"dialokasikan, semakin lama waktu yang dibutuhkan untuk menangguhkan/"
+"melanjutkan. Memori yang disarankan akan cukup karena informasi ini berasal "
+"dari dokumentasi OS."
 
 #. (itstool) path: info/desc
 #: C/prop-trouble.page:16
@@ -1008,12 +1014,12 @@ msgstr "Tekan <key>Esc</key> untuk menutup pencarian."
 #. (itstool) path: info/desc
 #: C/shared-folders.page:15
 msgid "Share folders between host and guest."
-msgstr ""
+msgstr "Berbagi folder antara host dan guest."
 
 #. (itstool) path: page/title
 #: C/shared-folders.page:20
 msgid "Shared Folders"
-msgstr ""
+msgstr "Folder Bersama"
 
 #. (itstool) path: page/p
 #: C/shared-folders.page:22
@@ -1022,36 +1028,30 @@ msgid ""
 "to set folders in your host system which you desire to browse from inside "
 "your virtual machine."
 msgstr ""
+"Jika mesin virtual Anda berjalan dan berisi spice-webdavd, Anda mungkin "
+"ingin mengatur folder dalam sistem host Anda yang Anda inginkan untuk "
+"ditelusuri dari dalam mesin virtual Anda."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:27
-#, fuzzy
-#| msgid "Get started with virtual machines"
 msgid "Make sure your virtual machine is running."
-msgstr "Mulai memakai mesin virtual"
+msgstr "Pastikan mesin virtual Anda berjalan."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:28 C/usb-redirection.page:46
-#, fuzzy
-#| msgid ""
-#| "Right-click on the box in the collection view and select <gui>Properties</"
-#| "gui>, or if the box is running, click the menu (<_:media-1/>) button in "
-#| "the header bar and select <gui>Properties</gui>."
 msgid ""
 "Right-click on the box in the collection view and select <gui>Properties</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
 "<gui>Properties</gui>."
 msgstr ""
-"Klik kanan pada box dalam tilikan koleksi dan pilih <gui>Properti</gui>, "
-"atau bila box sedang berjalan, klik tombol menu (<_:media-1/>) dalam bilah "
-"kepala dan pilih <gui>Properti</gui>."
+"Klik kanan pada kotak di tampilan koleksi dan pilih <gui>Properti</gui>, "
+"atau klik tombol menu (<_:media-1/>) di bilah kepala dan pilih "
+"<gui>Properti</gui>."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:32
-#, fuzzy
-#| msgid "Click the <gui>Devices</gui> tab."
 msgid "Click the <gui>Devices &amp; Shares</gui> tab."
-msgstr "Klik tab <gui>Peranti</gui>."
+msgstr "Klik tab <gui>Peranti &amp; Berbagi</gui> ."
 
 #. (itstool) path: item/p
 #: C/shared-folders.page:33
@@ -1059,6 +1059,8 @@ msgid ""
 "In the <gui>Folder Shares</gui> section you can view, remove, and create new "
 "shared folders."
 msgstr ""
+"Di bagian <gui>Folder Berbagi</gui> Anda dapat melihat, menghapus, dan "
+"membuat folder bersama baru."
 
 #. (itstool) path: credit/name
 #: C/shortcuts.page:11
@@ -1230,6 +1232,9 @@ msgid ""
 "also include the memory data for boxes which are running at the moment of "
 "the snapshot creation."
 msgstr ""
+"Snapshot menyertakan keadaan eksak dari disk mesin virtual Anda dan mereka "
+"juga dapat menyertakan data memori untuk box yang berjalan pada saat "
+"pembuatan snapshot."
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:43 C/snapshot-delete.page:30
@@ -1347,6 +1352,10 @@ msgid ""
 "running programs and settings at the exact same state of the snapshot "
 "creation."
 msgstr ""
+"<em>Memulihkan</em> ke snapshot mengembalikan status mesin virtual yang "
+"disimpan di snapshot tersebut. Status memori juga akan dipulihkan, membawa "
+"kembali program yang berjalan dan pengaturan pada keadaan yang sama persis "
+"dari pembuatan snapshot."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:39
@@ -1612,7 +1621,7 @@ msgstr "Untuk memfungsikan perangkat USB host dalam suatu box:"
 #. (itstool) path: item/p
 #: C/usb-redirection.page:45
 msgid "Make sure the box is running."
-msgstr ""
+msgstr "Pastikan box sedang berjalan."
 
 #. (itstool) path: item/p
 #: C/usb-redirection.page:50
@@ -1668,23 +1677,24 @@ msgstr "<cmd>gnome-shell --checks</cmd>"
 #. (itstool) path: page/p
 #: C/virtualization.page:33
 msgid "To enable Virtualization on your system:"
-msgstr ""
+msgstr "Untuk mengaktifkan Virtualisasi pada sistem Anda:"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:35
 msgid "Reboot the system and open the <gui>BIOS</gui> menu"
-msgstr ""
+msgstr "Reboot sistem dan buka menu <gui>BIOS</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:36
 msgid ""
 "Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
 msgstr ""
+"Pilih opsi <gui>Pulihkan Baku</gui> dan kemudian <gui>Simpan dan Keluar</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:37
 msgid "Reboot and again open <gui>BIOS</gui>"
-msgstr ""
+msgstr "Reboot dan buka lagi <gui>BIOS</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:38
@@ -1692,6 +1702,8 @@ msgid ""
 "Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
 "Configuration</gui> or <gui>Northbridge</gui>"
 msgstr ""
+"Buka submenu <gui>Prosesor</gui> di <gui>Chipset, Konfigurasi CPU Tingkat "
+"Lanjut</gui> atau <gui>Northbridge</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:39
@@ -1701,16 +1713,20 @@ msgid ""
 "virtualization extensions may be labeled <gui>Virtualization Extensions, "
 "Vanderpool</gui> or various other names depending on the OEM and system BIOS"
 msgstr ""
+"Aktifkan <gui>Intel Virtualization Technology</gui> (juga dikenal sebagai "
+"Intel VT) atau <gui>AMD-V</gui> tergantung pada merek prosesor. Ekstensi "
+"virtualisasi dapat diberi label <gui>Ekstensi Virtualisasi, Vanderpool</gui> "
+"atau berbagai nama lain tergantung pada OEM dan sistem BIOS"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:40
 msgid "<gui>Save and Exit</gui>"
-msgstr ""
+msgstr "<gui>Simpan dan Keluar</gui>"
 
 #. (itstool) path: item/p
 #: C/virtualization.page:41
 msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
-msgstr ""
+msgstr "Reboot dan jalankan: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
 
 #. (itstool) path: page/p
 #: C/virtualization.page:44
@@ -1719,6 +1735,9 @@ msgid ""
 "If there is no output your system may not have the virtualization extensions "
 "or the correct BIOS setting enabled"
 msgstr ""
+"Jika ada beberapa luaran maka ekstensi virtualisasi sekarang diaktifkan. "
+"Jika tidak ada luaran, sistem Anda mungkin tidak memiliki ekstensi "
+"virtualisasi atau pengaturan BIOS yang benar yang diaktifkan"
 
 #. (itstool) path: page/title
 #: C/what-is-a-virtual-machine.page:26
