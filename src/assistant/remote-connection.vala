@@ -41,7 +41,8 @@ private class Boxes.RemoteConnectionAssistant : Gtk.Dialog {
 
         if (uri.scheme == "vnc" ||
             uri.scheme == "ssh" ||
-            uri.scheme == "rdp") {
+            uri.scheme == "rdp" ||
+            uri.scheme == "spice") {
             connect_button.sensitive = true;
         }
     }
