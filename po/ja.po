@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-02-24 21:38+0000\n"
+"POT-Creation-Date: 2020-03-04 17:20+0000\n"
 "PO-Revision-Date: 2020-02-27 21:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
@@ -61,7 +61,7 @@ msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
-#: src/app-window.vala:137 src/app-window.vala:244 src/app-window.vala:246
+#: src/app-window.vala:134 src/app-window.vala:239 src/app-window.vala:241
 #: src/main.vala:72 src/topbar.vala:93
 msgid "Boxes"
 msgstr "Boxes"
@@ -234,7 +234,7 @@ msgstr "カスタマイズ"
 msgid "Express Installation"
 msgstr "かんたんインストール"
 
-#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+#: data/ui/assistant/remote-connection.ui:6
 msgid "Connect to a Box"
 msgstr "ボックスに接続"
 
@@ -248,8 +248,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
-#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
+#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:131
+#: src/assistant/index-page.vala:154 src/assistant/vm-assistant.vala:73
+#: src/properties-window.vala:58 src/vm-creator.vala:104
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -463,7 +464,8 @@ msgid "_Copy to Clipboard"
 msgstr "クリップボードにコピー(_C)"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:140 src/properties-window.vala:55
+#: src/assistant/index-page.vala:151 src/properties-window.vala:55
+#: src/vm-creator.vala:101
 msgid "Select a device or ISO file"
 msgstr "デバイスまたは ISO ファイルを選択"
 
@@ -480,7 +482,7 @@ msgid "_Delete"
 msgstr "削除(_D)"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:329
+#: src/app-window.vala:324
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
@@ -670,7 +672,7 @@ msgstr ""
 "るアドレスが有効です)。"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69 src/wizard.vala:178
+#: data/ui/wizard-window.ui:69
 msgid "Create a Box"
 msgstr "ボックスの作成"
 
@@ -686,7 +688,7 @@ msgstr "続行(_O)"
 msgid "Customize Resources"
 msgstr "リソースのカスタマイズ"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:331
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:326
 msgid "_Open"
 msgstr "開く(_O)"
 
@@ -765,7 +767,8 @@ msgstr ""
 
 #: src/app.vala:117
 msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "リモートや仮想マシンにアクセスするシンプルな GNOME 3 のアプリケーション"
+msgstr ""
+"リモートや仮想マシンにアクセスするシンプルな GNOME 3 のアプリケーション"
 
 #: src/app.vala:177 src/main.vala:9
 msgid "Display version number"
@@ -800,62 +803,97 @@ msgstr "— リモートや仮想マシンにアクセスするシンプルな�
 msgid "Too many command line arguments specified.\n"
 msgstr "コマンドラインの引数が多すぎます。\n"
 
-#: src/app.vala:476
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "ボックス“%s”のインストールが完了し、使用できるようになりました"
 
-#: src/app.vala:478
+#: src/app.vala:477
 msgid "Launch"
 msgstr "起動"
 
-#: src/app.vala:564
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "ボックス“%s”を削除しました"
 
-#: src/app.vala:565
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 個のボックスを削除しました"
 
-#: src/app.vala:592 src/libvirt-machine-properties.vala:557
+#: src/app.vala:591 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "元に戻す(_U)"
 
-#: src/app.vala:636
+#: src/app.vala:635
 msgid "Boxes is doing something"
 msgstr "Boxes が何かをしています"
 
-#: src/app-window.vala:328
+#: src/app-window.vala:323
 msgid "Select files to transfer"
 msgstr "送信するファイルを選択"
 
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: src/assistant/index-page.vala:128
+msgid "Select the GNOME Nightly VM image"
+msgstr ""
+
+#: src/assistant/index-page.vala:131 src/vm-creator.vala:104
+#, fuzzy
+#| msgid "_Select"
+msgid "Select"
+msgstr "選択(_S)"
+
+#: src/assistant/index-page.vala:154 src/properties-window.vala:58
 msgid "Open"
 msgstr "開く"
 
-#: src/assistant/index-page.vala:157 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "前へ"
 
-#: src/assistant/review-page.vala:47 src/wizard.vala:571
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: src/assistant/index-page.vala:235 src/libvirt-machine.vala:867
+#: src/util-app.vala:152
+msgid "Live"
+msgstr "ライブ"
+
+#: src/assistant/index-page.vala:240
+msgid "32-bit x86 system"
+msgstr "32-bit x86 システム"
+
+#: src/assistant/index-page.vala:241
+msgid "64-bit x86 system"
+msgstr "64-bit x86 システム"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: src/assistant/index-page.vala:246
+#, c-format
+msgid " from %s"
+msgstr " 提供元 %s"
+
+#: src/assistant/review-page.vala:47
 msgid "Memory"
 msgstr "メモリ"
 
-#: src/assistant/review-page.vala:56 src/wizard.vala:580
+#: src/assistant/review-page.vala:56
 msgid "Disk"
 msgstr "ディスク"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/assistant/review-page.vala:58 src/wizard.vala:582
+#: src/assistant/review-page.vala:58
 #, c-format
 msgid "%s maximum"
 msgstr "最大 %s"
 
-#: src/assistant/vm-assistant.vala:60 src/wizard.vala:401
+#: src/assistant/review-page.vala:161
+msgid "C_ustomize…"
+msgstr "カスタマイズ(_U)…"
+
+#: src/assistant/vm-assistant.vala:60
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "インストールメディアの分析に失敗しました。メディアが壊れているか不完全の可能"
@@ -883,7 +921,7 @@ msgstr "%d×%d"
 msgid "Exit fullscreen"
 msgstr "フルスクリーンを終了"
 
-#: src/downloads-hub.vala:50 src/wizard.vala:641
+#: src/downloads-hub.vala:50
 msgid "Downloading media"
 msgstr "メディアをダウンロード中"
 
@@ -905,11 +943,11 @@ msgstr "ダウンロードに失敗しました"
 msgid "New and Recent"
 msgstr "新規または最近使用した仮想マシン"
 
-#: src/installed-media.vala:54
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "対応していないディスクイメージ形式です。"
 
-#: src/installed-media.vala:100 src/installer-media.vala:178
+#: src/installed-media.vala:118 src/installer-media.vala:178
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "システム"
@@ -1133,13 +1171,6 @@ msgstr "“%s”を複製中…"
 msgid "Installing…"
 msgstr "インストール中…"
 
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:867 src/util-app.vala:152
-#: src/wizard-source.vala:123
-msgid "Live"
-msgstr "ライブ"
-
 #: src/libvirt-machine.vala:869
 msgid "Setting up clone…"
 msgstr "複製の設定中…"
@@ -1284,7 +1315,7 @@ msgstr "スナップショット"
 msgid "Protocol"
 msgstr "プロトコル"
 
-#: src/remote-machine.vala:83 src/wizard.vala:531
+#: src/remote-machine.vala:83
 msgid "URL"
 msgstr "URL"
 
@@ -1367,9 +1398,9 @@ msgid ""
 "enable host and box interactions, such as copy&amp;paste. Please visit %s to "
 "download and install these tools from within the box."
 msgstr ""
-"SPICE ゲストツールがインストールされていません。ツールはユーザーエクスペリエン"
-"スを改善し、コピー＆ペーストなどのホストとボックス間のやり取りを有効にします。"
-"ボックス内で %s からツールをダウンロードしてインストールしてください。"
+"SPICE ゲストツールがインストールされていません。ツールはユーザーエクスペリエ"
+"ンスを改善し、コピー＆ペーストなどのホストとボックス間のやり取りを有効にしま"
+"す。ボックス内で %s からツールをダウンロードしてインストールしてください。"
 
 #: src/spice-display.vala:387
 msgid "USB devices"
@@ -1380,7 +1411,7 @@ msgid "Folder Shares"
 msgstr "フォルダーの共有"
 
 #: src/spice-display.vala:601 src/spice-display.vala:626
-#: src/spice-display.vala:629 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:629
 msgid "Invalid URL"
 msgstr "無効な URL"
 
@@ -1489,8 +1520,19 @@ msgstr "いいえ"
 msgid "Incapable host system"
 msgstr "仮想化支援機能が利用できないホストシステムです"
 
+#: src/vm-creator.vala:112
+#, c-format
+msgid "Source installer media '%s' no longer exists"
+msgstr ""
+
+#: src/vm-creator.vala:114
+#, fuzzy
+#| msgid "Unknown installer media"
+msgid "Add installer media"
+msgstr "不明なインストールメディア"
+
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:172
+#: src/vm-creator.vala:189
 msgid "Just installed "
 msgstr "(インストール直後) "
 
@@ -1508,113 +1550,65 @@ msgstr "読み取り専用"
 msgid "%u/%u"
 msgstr "%u/%u"
 
-#: src/wizard-source.vala:128
-msgid "32-bit x86 system"
-msgstr "32-bit x86 システム"
+#~ msgid "Source Selection"
+#~ msgstr "ソースの選択"
 
-#: src/wizard-source.vala:129
-msgid "64-bit x86 system"
-msgstr "64-bit x86 システム"
+#~ msgid "Box Preparation"
+#~ msgstr "ボックスの準備"
 
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:134
-#, c-format
-msgid " from %s"
-msgstr " 提供元 %s"
+#~ msgid "Box Setup"
+#~ msgstr "ボックスのセットアップ"
 
-#: src/wizard-toolbar.vala:6
-msgid "Source Selection"
-msgstr "ソースの選択"
+#~ msgid "Review"
+#~ msgstr "レビュー"
 
-#: src/wizard-toolbar.vala:7
-msgid "Box Preparation"
-msgstr "ボックスの準備"
+#~ msgid "Box creation failed"
+#~ msgstr "ボックスの作成に失敗しました"
 
-#: src/wizard-toolbar.vala:8
-msgid "Box Setup"
-msgstr "ボックスのセットアップ"
+#~ msgid "Empty location"
+#~ msgstr "空のロケーション"
 
-#: src/wizard-toolbar.vala:9
-msgid "Review"
-msgstr "レビュー"
+#~ msgid "Unsupported file"
+#~ msgstr "サポートしていないファイル形式"
 
-#: src/wizard.vala:121
-msgid "Box creation failed"
-msgstr "ボックスの作成に失敗しました"
+#~ msgid "Invalid file"
+#~ msgstr "無効なファイル"
 
-#: src/wizard.vala:300
-msgid "Empty location"
-msgstr "空のロケーション"
+#~ msgid "Boxes was compiled without RDP support"
+#~ msgstr "Boxes が RDP サポートなしでコンパイルされています"
 
-#: src/wizard.vala:323
-msgid "Unsupported file"
-msgstr "サポートしていないファイル形式"
+#~ msgid "Unsupported protocol “%s”"
+#~ msgstr "サポートしていないプロトコル“%s”"
 
-#: src/wizard.vala:329
-msgid "Invalid file"
-msgstr "無効なファイル"
+#~ msgid "Analyzing…"
+#~ msgstr "分析中…"
 
-#. accept any vnc:// uri
-#. accept any ssh:// uri
-#. accept any rdp:// uri
-#: src/wizard.vala:371
-msgid "Boxes was compiled without RDP support"
-msgstr "Boxes が RDP サポートなしでコンパイルされています"
+#~ msgid "Box setup failed"
+#~ msgstr "ボックスの設定に失敗しました"
 
-#: src/wizard.vala:379
-#, c-format
-msgid "Unsupported protocol “%s”"
-msgstr "サポートしていないプロトコル“%s”"
+#~ msgid "Boxes will create a new box with the following properties:"
+#~ msgstr "次のプロパティで新しいボックスを作成します:"
 
-#: src/wizard.vala:385 src/wizard.vala:453
-msgid "Unknown installer media"
-msgstr "不明なインストールメディア"
+#~ msgid "Type"
+#~ msgstr "種類"
 
-#. Translators: Analyzing installer media
-#: src/wizard.vala:387 src/wizard.vala:454
-msgid "Analyzing…"
-msgstr "分析中…"
+#~ msgid "Host"
+#~ msgstr "ホスト"
 
-#. We did this, so ignore!
-#: src/wizard.vala:507
-msgid "Box setup failed"
-msgstr "ボックスの設定に失敗しました"
+#~ msgid "Port"
+#~ msgstr "ポート"
 
-#: src/wizard.vala:521
-msgid "Boxes will create a new box with the following properties:"
-msgstr "次のプロパティで新しいボックスを作成します:"
+#~ msgid "TLS Port"
+#~ msgstr "TLS ポート"
 
-#: src/wizard.vala:526
-msgid "Type"
-msgstr "種類"
+#~ msgid "Will add boxes for all systems available from this account:"
+#~ msgstr "このアカウントから利用可能なすべてのシステムのボックスを追加します:"
 
-#: src/wizard.vala:529
-msgid "Host"
-msgstr "ホスト"
+#~ msgid "Downloading media…"
+#~ msgstr "メディアをダウンロード中…"
 
-#: src/wizard.vala:540 src/wizard.vala:553
-msgid "Port"
-msgstr "ポート"
-
-#: src/wizard.vala:542
-msgid "TLS Port"
-msgstr "TLS ポート"
-
-#: src/wizard.vala:558
-msgid "Will add boxes for all systems available from this account:"
-msgstr "このアカウントから利用可能なすべてのシステムのボックスを追加します:"
-
-#: src/wizard.vala:638
-msgid "Downloading media…"
-msgstr "メディアをダウンロード中…"
-
-#: src/wizard.vala:651
-msgid "Download failed."
-msgstr "ダウンロードに失敗しました。"
-
-#: src/wizard.vala:770
-msgid "C_ustomize…"
-msgstr "カスタマイズ(_U)…"
+#~ msgid "Download failed."
+#~ msgstr "ダウンロードに失敗しました。"
 
 #~ msgid "Live box “%s” has been deleted automatically."
 #~ msgstr "ライブボックス“%s”を自動削除しました。"
