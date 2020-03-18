@@ -25,13 +25,14 @@
         "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
     ],
     "modules" : [
+        "shared-modules/intltool/intltool-0.51.json",
         {
             "name" : "check",
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/libcheck/check/releases/download/0.11.0/check-0.11.0.tar.gz",
-                    "sha256" : "24f7a48aae6b74755bcbe964ce8bc7240f6ced2141f8d9cf480bc3b3de0d5616"
+                    "url" : "https://github.com/libcheck/check/releases/download/0.14.0/check-0.14.0.tar.gz",
+                    "sha256" : "bd0f0ca1be65b70238b32f8e9fe5d36dc2fbf7a759b7edf28e75323a7d74f30b"
                 }
             ]
         },
@@ -51,8 +52,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://www.infradead.org/~tgr/libnl/files/libnl-1.1.4.tar.gz",
-                    "sha256" : "4f80c21fe5bbcdde6e72b59b4f98306063a41421f909887c34e58d93e746d063"
+                    "url" : "https://github.com/thom311/libnl/releases/download/libnl3_5_0/libnl-3.5.0.tar.gz",
+                    "sha256" : "352133ec9545da76f77e70ccb48c9d7e5324d67f6474744647a7ed382b5e05fa"
                 }
             ]
         },
@@ -64,8 +65,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/libusb/libusb/releases/download/v1.0.22/libusb-1.0.22.tar.bz2",
-                    "sha256" : "75aeb9d59a4fdb800d329a545c2e6799f732362193b465ea198f2aa275518157"
+                    "url" : "https://github.com/libusb/libusb/releases/download/v1.0.23/libusb-1.0.23.tar.bz2",
+                    "sha256" : "db11c06e958a82dac52cf3c65cb4dd2c3f339c8a988665110e0d24d19312ad8d"
                 }
             ]
         },
@@ -119,8 +120,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.1.4.tar.bz2",
-                    "sha256" : "2ca529f02292e10c158562295a1ffd95d2ce8af97820e3534fe1b0e3aec7561d"
+                    "url" : "https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.2.5.tar.bz2",
+                    "sha256" : "f3b6350c7e9c3cd9c58fc7a5e5f8e6be469cc571bb5eb31eb9790b3e675186ca"
                 }
             ]
         },
@@ -130,15 +131,29 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.tar.gz",
-                    "sha256" : "eaa227686b84e8ae20181d2119c0ccac29d82371441844008019a134dafe3613"
+                    "url" : "https://github.com/thkukuk/rpcsvc-proto/archive/v1.4.1.tar.gz",
+                    "sha256" : "750f7e57b81407a25b707867e90d7ee80aeb53bf515b114fc218f3c78dc9a6e8"
+                }
+            ]
+        },
+        {
+            "name" : "docutils",
+            "buildsystem" : "simple",
+            "build-commands" : [
+                "pip3 install --prefix=/app docutils-0.16-py2.py3-none-any.whl"
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://files.pythonhosted.org/packages/81/44/8a15e45ffa96e6cf82956dd8d7af9e666357e16b0d93b253903475ee947f/docutils-0.16-py2.py3-none-any.whl",
+                    "sha256" : "0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"
                 }
             ]
         },
         {
             "name" : "libvirt",
+            "builddir": true,
             "config-opts" : [
-                "--without-html-subdir",
                 "--without-storage-mpath"
             ],
             "build-options" : {
@@ -147,19 +162,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://libvirt.org/sources/libvirt-5.3.0.tar.xz",
-                    "sha256" : "8564bdd506817b3957fa67e4f06b217922d30f19e416c4dc620995fd155dc101"
-                }
-            ]
-        },
-        {
-            "name" : "intltool",
-            "cleanup" : [ "*" ],
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz",
-                    "sha256" : "67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
+                    "url" : "https://libvirt.org/sources/libvirt-5.10.0.tar.xz",
+                    "sha256" : "9aaa889dccdc16e39eaa53dae36375413619561896920419fb1351bee8a2fc87"
                 }
             ]
         },
@@ -168,7 +172,7 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://libvirt.org/sources/glib/libvirt-glib-3.0.0.tar.gz",
+                    "url" : "https://libvirt.org/sources/glib/libvirt-glib-3.0.0.tar.gz",
                     "sha256" : "7fff8ca9a2b723dbfd04223b1c7624251c8bf79eb57ec27362a7301b2dd9ebfe"
                 }
             ]
@@ -179,8 +183,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://www.spice-space.org/download/releases/spice-protocol-0.14.0.tar.bz2",
-                    "sha256" : "b6a4aa1ca32668790b45a494bbd000e9d05797b391d5a5d4b91adf1118216eac"
+                    "url" : "https://www.spice-space.org/download/releases/spice-protocol-0.14.1.tar.bz2",
+                    "sha256" : "79e6da61834b080a143234c1cd4c099a8ead1a64b5039489610b72ab282c132a"
                 }
             ]
         },
@@ -193,8 +197,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://ftp.gnome.org/pub/GNOME/sources/phodav/2.3/phodav-2.3.tar.xz",
-                    "sha256" : "6ef61e624c30a42fb720ef7ade7447e9ba922d69024b0326dc072fa3362ebe59"
+                    "url" : "https://ftp.gnome.org/pub/GNOME/sources/phodav/2.4/phodav-2.4.tar.xz",
+                    "sha256" : "7dddc2b75e04d0866bb9c9a83028a597ebd73ef4c37bd6ebe1032a870b43b8c3"
                 }
             ]
         },
@@ -202,13 +206,13 @@
             "name" : "python-pyparsing",
             "buildsystem" : "simple",
             "build-commands" : [
-                "pip3 install --prefix=/app pyparsing-2.2.0-py2.py3-none-any.whl"
+                "pip3 install --prefix=/app pyparsing-2.4.6-py2.py3-none-any.whl"
             ],
             "sources" : [
                 {
                     "type" : "file",
-                    "url" : "https://pypi.python.org/packages/6a/8a/718fd7d3458f9fab8e67186b00abdd345b639976bc7fb3ae722e1b026a50/pyparsing-2.2.0-py2.py3-none-any.whl#md5=7247e7896688eff4bc8c7fc5d0cdd2b0",
-                    "sha256" : "fee43f17a9c4087e7ed1605bd6df994c6173c1e977d7ade7b651292fab2bd010"
+                    "url" : "https://files.pythonhosted.org/packages/5d/bc/1e58593167fade7b544bfe9502a26dc860940a79ab306e651e7f13be68c2/pyparsing-2.4.6-py2.py3-none-any.whl",
+                    "sha256" : "c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec"
                 }
             ]
         },
@@ -217,8 +221,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://www.spice-space.org/download/libcacard/libcacard-2.5.3.tar.xz",
-                    "sha256": "243ff03c563a95faed497db7f524fcb34ccd6f388d1175ecf31c371a3188963b"
+                    "url" : "https://www.spice-space.org/download/libcacard/libcacard-2.7.0.tar.xz",
+                    "sha256": "16b1a0847d5f9d2290e0785eca40f2e49d1ed80814bfc758c05c76b3c89cdb6f"
                 }
             ]
         },
@@ -232,12 +236,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://spice-space.org/download/releases/spice-0.14.2.tar.bz2",
-                    "sha256" : "b203b3882e06f4c7249a3150d90c84e1a90490d41ead255a3d2cede46f4a29a7"
-                },
-                {
-                    "type" : "patch",
-                    "path" : "spice-meson-fix-version.patch"
+                    "url" : "https://spice-space.org/download/releases/spice-0.14.3.tar.bz2",
+                    "sha256" : "551d4be4a07667cf0543f3c895beb6da8a93ef5a9829f2ae47817be5e616a114"
                 }
             ]
         },
@@ -280,8 +280,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/tracker/2.3/tracker-2.3.0.tar.xz",
-                    "sha256": "2c04534da83419b0bc65216e367da51a420f52bb8449f4cc4542c651e5c6bf7b"
+                    "url" : "https://download.gnome.org/sources/tracker/2.3/tracker-2.3.4.tar.xz",
+                    "sha256": "577952244ab977c78b0b88e2f63c4197eaba16e4d66bff692b7f58993e06516d"
                 }
             ]
         },
@@ -313,8 +313,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/tracker-miners/2.3/tracker-miners-2.3.0.tar.xz",
-                    "sha256" : "ade7d61d1ee22288a5adcf02652e81fd1d3ade4d98270f14203fe8ba4183c7cf"
+                    "url": "https://download.gnome.org/sources/tracker-miners/2.3/tracker-miners-2.3.3.tar.xz",
+                    "sha256" : "7472aa28d7862620d3ca2bbec3b103df547d7319c12e95a7f7aa9f9f6dee4b19"
                 }
             ]
         },
@@ -325,8 +325,8 @@
                 {
                     "type" : "git",
                     "url" : "https://gitlab.freedesktop.org/spice/usbredir.git",
-                    "tag" : "usbredir-0.7.1",
-                    "commit" : "e1a7e3dbbe091bfdc568372ff5ab18ed7eae972e"
+                    "tag" : "usbredir-0.8.0",
+                    "commit" : "07b98b8e71f620dfdd57e92ddef6b677b259a092"
                 }
             ]
         },
@@ -355,8 +355,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://download.qemu.org/qemu-4.1.1.tar.xz",
-                    "sha256" : "ed6fdbbdd272611446ff8036991e9b9f04a2ab2e3ffa9e79f3bab0eb9a95a1d2"
+                    "url" : "https://download.qemu.org/qemu-4.2.0.tar.xz",
+                    "sha256" : "d3481d4108ce211a053ef15be69af1bdd9dde1510fda80d92be0f6c3e98768f0"
                 }
             ]
         },
@@ -372,8 +372,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "http://pub.freerdp.com/releases/freerdp-2.0.0-rc2.tar.gz",
-                    "sha256" : "bf080f71655a4996942436d5aacd5ce4afe57e546d4282fc0dc42fb80bd9da0c"
+                    "url" : "https://pub.freerdp.com/releases/freerdp-2.0.0-rc4.tar.gz",
+                    "sha256" : "bd1cd5579765b2d6b444508cafc7b3669c68ff2246941a081e771f744b150f6a"
                 }
             ]
         },
@@ -413,8 +413,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://releases.pagure.org/libosinfo/libosinfo-1.7.0.tar.xz",
-                    "sha256": "2a3cdf851505af8d9988599c03a54613bf503042f0cf4982e895f4254a697693"
+                    "url" : "https://releases.pagure.org/libosinfo/libosinfo-1.7.1.tar.xz",
+                    "sha256": "bb26106ad4a9f8523f81b332d2aedb717cdcb0500b3f68ba7c6ff945c4d627e9"
                 },
                 {
                     "type" : "file",
