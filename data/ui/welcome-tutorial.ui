@@ -8,6 +8,9 @@
     <property name="height-request">600</property>
     <property name="width-request">710</property>
     <signal name="delete-event" handler="gtk_widget_hide_on_delete"/>
+    <style>
+      <class name="welcome-tutorial"/>
+    </style>
 
     <child internal-child="vbox">
       <object class="GtkBox">
@@ -20,17 +23,18 @@
             <property name="expand">True</property>
 
             <child>
-              <object class="GtkStack" id="stack">
+              <object class="HdyPaginator" id="paginator">
                 <property name="visible">True</property>
-                <property name="transition-duration">400</property>
-                <property name="transition-type">slide-left-right</property>
-                <signal name="notify::visible-child" handler="on_stack_page_changed"/>
+                <property name="animation-duration">400</property>
+                <property name="indicator-style">dots</property>
+                <property name="margin-bottom">12</property>
+                <signal name="notify::position" handler="on_position_changed"/>
 
                 <child>
                   <object class="BoxesWelcomeTutorialPage">
                     <property name="title" translatable="yes">Welcome to Boxes</property>
                     <property name="description" translatable="yes">Boxes makes it easy to install and run virtual machines. You can also use it to remotely access other computers, using SPICE, VNC, RDP or Secure Shell connections.</property>
-                    <property name="color">613583</property>
+                    <property name="color">#613583</property>
                     <property name="image">/org/gnome/Boxes/welcome-tutorial/welcome.svg</property>
                   </object>
                 </child>
@@ -39,7 +43,7 @@
                   <object class="BoxesWelcomeTutorialPage">
                     <property name="title" translatable="yes">Express Installation</property>
                     <property name="description" translatable="yes">With express installation, Boxes will set the install options for a new virtual machine. Just start the installation and everything will be taken care of for you.</property>
-                    <property name="color">26a269</property>
+                    <property name="color">#26a269</property>
                     <property name="image">/org/gnome/Boxes/welcome-tutorial/express-install.svg</property>
                   </object>
                 </child>
@@ -48,7 +52,7 @@
                   <object class="BoxesWelcomeTutorialPage">
                     <property name="title" translatable="yes">Easy Downloads</property>
                     <property name="description" translatable="yes">With Boxes, you don't need to download an operating system to create a virtual machine. Instead, just pick the operating system you want to setup, and Boxes will automatically download it for you.</property>
-                    <property name="color">e66100</property>
+                    <property name="color">#e66100</property>
                     <property name="image">/org/gnome/Boxes/welcome-tutorial/easy-downloads.svg</property>
                   </object>
                 </child>
@@ -57,7 +61,7 @@
                   <object class="BoxesWelcomeTutorialPage">
                     <property name="title" translatable="yes">Drag and Drop</property>
                     <property name="description" translatable="yes">Sharing files is as simple as dropping them onto your virtual machine. They will appear in your Downloads folder.</property>
-                    <property name="color">1c71d8</property>
+                    <property name="color">#1c71d8</property>
                     <property name="image">/org/gnome/Boxes/welcome-tutorial/drag-and-drop.svg</property>
                   </object>
                 </child>
@@ -72,7 +76,7 @@
 
                 <child>
                   <object class="GtkButton" id="go_back_button">
-                    <property name="visible">False</property>
+                    <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="valign">center</property>
                     <signal name="clicked" handler="on_back_button_clicked"/>
@@ -119,7 +123,7 @@
                 </child>
               </object>
               <packing>
-                <property name="passthrough">True</property>
+                <property name="pass-through">True</property>
               </packing>
             </child>
           </object>
