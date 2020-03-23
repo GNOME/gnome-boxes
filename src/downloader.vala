@@ -61,8 +61,9 @@ private class Boxes.Downloader : GLib.Object {
         if (Environment.get_variable ("SOUP_DEBUG") != null)
             session.add_feature (new Soup.Logger (Soup.LoggerLogLevel.HEADERS, -1));
 
-        var user_agent = get_user_agent ();
-        session.user_agent = user_agent;
+        // As some websites redirect based on UA, lets force wget user-agent so the
+        // website assumes it's a CLI tool downloading the file.
+        session.user_agent = "Wget/1.0";
     }
 
     /**
