@@ -516,7 +516,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                 try {
                     // This undefines the domain, causing it to be transient if it was running
                     domain.delete (DomainDeleteFlags.SAVED_STATE |
-                                   DomainDeleteFlags.SNAPSHOTS_METADATA);
+                                   DomainDeleteFlags.SNAPSHOTS_METADATA |
+                                   0x4); // VIR_DOMAIN_UNDEFINE_NVRAM See rhbz#1817031
                 } catch (GLib.Error err) {
                     warning (err.message);
                 }
