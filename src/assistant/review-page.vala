@@ -78,8 +78,6 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         var current_row = 0;
         foreach (var property in resource_properties) {
             if (property.widget == null || property.extra_widget == null) {
-                warn_if_reached ();
-
                 continue;
             }
 
