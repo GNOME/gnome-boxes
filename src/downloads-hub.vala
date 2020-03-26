@@ -89,15 +89,18 @@ private class Boxes.DownloadsHub : Gtk.Popover {
             popdown ();
             App.app.main_window.show_vm_assistant (row.local_file);
 
-            row.destroy ();
+            listbox.remove (row);
         }
     }
 
     [GtkCallback]
     private void on_row_activated (Gtk.ListBoxRow _row) {
+        var row = _row as DownloadsHubRow;
+        if (!row.complete)
+            return;
+
         popdown ();
 
-        var row = _row as DownloadsHubRow;
         if (row.local_file != null) {
             App.app.main_window.show_vm_assistant (row.local_file);
         }
@@ -153,6 +156,8 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
 
     public signal void download_complete (string label, string path);
 
+    public bool complete = false;
+
     public DownloadsHubRow.from_entry (WizardDownloadableEntry entry) {
         label.label = entry.title;
 
@@ -183,6 +188,7 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
         }
 
         if (!cancellable.is_cancelled ()) {
+            complete = true;
             download_complete (label.label, local_file);
             download_status.set_visible_child (download_complete_label);
         }
