@@ -752,6 +752,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     private async void delete_auth_credentials () {
+        if (config.uuid == null) {
+            return;
+        }
+
         try {
             yield Secret.password_clear (secret_auth_schema, null,
                                          "gnome-boxes-machine-uuid", config.uuid);
