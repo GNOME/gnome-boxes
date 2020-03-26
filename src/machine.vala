@@ -760,8 +760,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             yield Secret.password_clear (secret_auth_schema, null,
                                          "gnome-boxes-machine-uuid", config.uuid);
 
-            auth_notification.dismiss ();
-            auth_notification = null;
+            if (auth_notification != null) {
+                auth_notification.dismiss ();
+                auth_notification = null;
+            }
         } catch (GLib.Error error) {
             debug ("Failed to delete credentials for machine %s: %s", config.uuid, error.message);
         }
