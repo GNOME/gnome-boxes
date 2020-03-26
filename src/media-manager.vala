@@ -154,7 +154,7 @@ private class Boxes.MediaManager : Object {
 
                     list.insert_sorted (media, compare_media_by_vendor);
                 } catch (GLib.Error error) {
-                    warning ("Failed to use ISO '%s': %s", path, error.message);
+                    debug ("Failed to use ISO '%s': %s", path, error.message);
                 }
             }
         } catch (GLib.Error error) {
