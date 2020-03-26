@@ -182,8 +182,10 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
             return;
         }
 
-        download_complete (label.label, local_file);
-        download_status.set_visible_child (download_complete_label);
+        if (!cancellable.is_cancelled ()) {
+            download_complete (label.label, local_file);
+            download_status.set_visible_child (download_complete_label);
+        }
     }
 
     [GtkCallback]
