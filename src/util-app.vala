@@ -191,7 +191,7 @@ namespace Boxes {
 
                 list.append (media);
             } catch (OSDatabaseError error) {
-                warning ("Failed to find OS with id: '%s': %s", os_id, error.message);
+                debug ("Failed to find OS with id: '%s': %s", os_id, error.message);
             }
         }
 
