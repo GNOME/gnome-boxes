@@ -24,7 +24,9 @@ private class Boxes.RemoteConnectionAssistant : Gtk.Dialog {
         connect_button.clicked.connect (on_connect_button_clicked);
         connect_button.get_style_context ().add_class ("suggested-action");
 
-        url_entry.set_text (uri);
+        if (uri != null) {
+	    url_entry.set_text (uri);
+        }
     }
 
     private void on_url_entry_changed () {
