@@ -133,9 +133,10 @@ namespace Boxes {
             if (media.url != null && media.url.contains ("server"))
                 variant += " Server";
         } else {
-            var file = File.new_for_uri (media.url);
-
-            title = file.get_basename ().replace ("_", "");
+            if (media.url != null) {
+                var file = File.new_for_uri (media.url);
+                title = file.get_basename ().replace ("_", "");
+            }
         }
 
         var subvariant = "";
@@ -191,7 +192,7 @@ namespace Boxes {
 
                 list.append (media);
             } catch (OSDatabaseError error) {
-                warning ("Failed to find OS with id: '%s': %s", os_id, error.message);
+                debug ("Failed to find OS with id: '%s': %s", os_id, error.message);
             }
         }
 

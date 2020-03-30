@@ -61,7 +61,9 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         populate_detected_sources_list (MAX_MEDIA_ENTRIES);
 
         var recommended_downloads = yield get_recommended_downloads ();
-        for (var i = 0; i < MAX_MEDIA_ENTRIES; i++)
+        if (recommended_downloads == null)
+            return;
+        for (var i = 0; (i < recommended_downloads.length ()) && (i < MAX_MEDIA_ENTRIES); i++)
             featured_model.append (recommended_downloads.nth (i).data);
     }
 
