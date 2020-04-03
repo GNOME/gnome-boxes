@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-03-21 19:23+0000\n"
-"PO-Revision-Date: 2020-03-22 16:48+0900\n"
+"POT-Creation-Date: 2020-04-02 07:21+0000\n"
+"PO-Revision-Date: 2020-04-03 18:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -80,62 +80,50 @@ msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;vnc;rdp;仮想マシン;仮想化;boxes;ボックス;"
 
 #: data/org.gnome.boxes.gschema.xml:11
-msgid "Collections"
-msgstr "コレクション一覧"
-
-#: data/org.gnome.boxes.gschema.xml:12
-msgid "The list of boxes collections"
-msgstr "ボックスのコレクションの一覧"
-
-#: data/org.gnome.boxes.gschema.xml:15
-msgid "[ 'Work', 'Research', 'Gaming' ]"
-msgstr "[ 'Work', 'Research', 'Gaming' ]"
-
-#: data/org.gnome.boxes.gschema.xml:19
 msgid "Screenshot interval"
 msgstr "スクリーンショットの更新間隔"
 
-#: data/org.gnome.boxes.gschema.xml:20
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The interval in seconds between screenshot updates"
 msgstr "スクリーンショットを更新する間隔を秒数で指定します"
 
-#: data/org.gnome.boxes.gschema.xml:32
+#: data/org.gnome.boxes.gschema.xml:24
 msgid "Window size"
 msgstr "ウィンドウのサイズ"
 
-#: data/org.gnome.boxes.gschema.xml:33
+#: data/org.gnome.boxes.gschema.xml:25
 msgid "Window size (width and height)"
 msgstr "ウィンドウのサイズ (幅と高さ)"
 
-#: data/org.gnome.boxes.gschema.xml:39
+#: data/org.gnome.boxes.gschema.xml:31
 msgid "Window position"
 msgstr "ウィンドウの位置"
 
-#: data/org.gnome.boxes.gschema.xml:40
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window position (x and y)"
 msgstr "ウィンドウの位置 (x と y)"
 
-#: data/org.gnome.boxes.gschema.xml:46
+#: data/org.gnome.boxes.gschema.xml:38
 msgid "Window maximized"
 msgstr "ウィンドウ最大化"
 
-#: data/org.gnome.boxes.gschema.xml:47
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window maximized state"
 msgstr "ウィンドウを最大化状態にします"
 
-#: data/org.gnome.boxes.gschema.xml:53
+#: data/org.gnome.boxes.gschema.xml:45
 msgid "First run"
 msgstr "初回起動"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:46
 msgid "Whether Boxes is running for the first time"
 msgstr "Boxes を起動したことがあるかどうか"
 
-#: data/org.gnome.boxes.gschema.xml:61
+#: data/org.gnome.boxes.gschema.xml:53
 msgid "Shared folders"
 msgstr "共有フォルダー"
 
-#: data/org.gnome.boxes.gschema.xml:62
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 
@@ -248,8 +236,8 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:131
-#: src/assistant/index-page.vala:154 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
+#: src/assistant/index-page.vala:156 src/assistant/vm-assistant.vala:73
 #: src/properties-window.vala:58 src/vm-creator.vala:104
 msgid "Cancel"
 msgstr "キャンセル"
@@ -464,7 +452,7 @@ msgid "_Copy to Clipboard"
 msgstr "クリップボードにコピー(_C)"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:151 src/properties-window.vala:55
+#: src/assistant/index-page.vala:153 src/properties-window.vala:55
 #: src/vm-creator.vala:101
 msgid "Select a device or ISO file"
 msgstr "デバイスまたは ISO ファイルを選択"
@@ -750,11 +738,12 @@ msgstr "再起動"
 msgid "Properties"
 msgstr "プロパティ"
 
+# ここは英語のままの方がいいようなので「スクリーンショット」から「Screenshot from」に戻しました (sicklylife)
 #. Translators: %s => the timestamp of when the screenshot was taken.
 #: src/actions-popover.vala:121
 #, c-format
 msgid "Screenshot from %s"
-msgstr "スクリーンショット %s"
+msgstr "Screenshot from %s"
 
 #: src/app.vala:116
 msgid "translator-credits"
@@ -836,39 +825,39 @@ msgstr "Boxes が何らかの処理を実行中です"
 msgid "Select files to transfer"
 msgstr "送信するファイルを選択"
 
-#: src/assistant/index-page.vala:128
+#: src/assistant/index-page.vala:130
 msgid "Select the GNOME Nightly VM image"
 msgstr "GNOME Nightly VM イメージを選択"
 
-#: src/assistant/index-page.vala:131 src/vm-creator.vala:104
+#: src/assistant/index-page.vala:133 src/vm-creator.vala:104
 msgid "Select"
 msgstr "選択"
 
-#: src/assistant/index-page.vala:154 src/properties-window.vala:58
+#: src/assistant/index-page.vala:156 src/properties-window.vala:58
 msgid "Open"
 msgstr "開く"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:170 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "前へ"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:235 src/libvirt-machine.vala:867
-#: src/util-app.vala:152
+#: src/assistant/index-page.vala:237 src/libvirt-machine.vala:867
+#: src/util-app.vala:153
 msgid "Live"
 msgstr "ライブ"
 
-#: src/assistant/index-page.vala:240
+#: src/assistant/index-page.vala:242
 msgid "32-bit x86 system"
 msgstr "32-bit x86 システム"
 
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:243
 msgid "64-bit x86 system"
 msgstr "64-bit x86 システム"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:246
+#: src/assistant/index-page.vala:248
 #, c-format
 msgid " from %s"
 msgstr " 提供元 %s"
@@ -887,7 +876,7 @@ msgstr "ディスク"
 msgid "%s maximum"
 msgstr "最大 %s"
 
-#: src/assistant/review-page.vala:161
+#: src/assistant/review-page.vala:159
 msgid "C_ustomize…"
 msgstr "カスタマイズ(_U)…"
 
@@ -933,7 +922,7 @@ msgid "Install"
 msgstr "インストール"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:179
+#: src/downloads-hub.vala:184
 msgid "Failed to download"
 msgstr "ダウンロードに失敗しました"
 
@@ -1455,7 +1444,7 @@ msgstr "%s のかんたんインストールにはインターネット接続が
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s”の資格情報"
 
-#: src/util-app.vala:338
+#: src/util-app.vala:339
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1465,11 +1454,11 @@ msgstr ""
 "きます:\n"
 "%s"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:343
 msgid "SELinux not installed?"
 msgstr "SELinux はインストールされていますか?"
 
-#: src/util-app.vala:424
+#: src/util-app.vala:425
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1478,7 +1467,7 @@ msgstr ""
 "た。“virsh -c qemu:///session pool-dumpxml gnome-boxes”が機能するか確認してく"
 "ださい。"
 
-#: src/util-app.vala:429
+#: src/util-app.vala:430
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1487,7 +1476,7 @@ msgstr ""
 "%s は GNOME Boxes 用ストレージプールとして libvirt に認識されていますが、この"
 "ディレクトリは存在しません"
 
-#: src/util-app.vala:433
+#: src/util-app.vala:434
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1495,7 +1484,7 @@ msgstr ""
 "%s は GNOME Boxes 用ストレージプールとして libvirt に認識されていますが、ディ"
 "レクトリではありません"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:438
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1540,6 +1529,15 @@ msgstr "“%s”からのボックスのインポートに失敗しました。"
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "読み取り専用"
+
+#~ msgid "Collections"
+#~ msgstr "コレクション一覧"
+
+#~ msgid "The list of boxes collections"
+#~ msgstr "ボックスのコレクションの一覧"
+
+#~ msgid "[ 'Work', 'Research', 'Gaming' ]"
+#~ msgstr "[ 'Work', 'Research', 'Gaming' ]"
 
 #~ msgid "%u/%u"
 #~ msgstr "%u/%u"
