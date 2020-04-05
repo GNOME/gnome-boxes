@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-02-03 13:40+0000\n"
-"PO-Revision-Date: 2020-02-04 13:50+0700\n"
+"POT-Creation-Date: 2020-03-21 19:24+0000\n"
+"PO-Revision-Date: 2020-04-05 19:26+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -57,7 +57,7 @@ msgstr ""
 "berpotensi tidak stabil) dari sistem operasi favorit Anda, atau ingin "
 "menyambung ke mesin jarak jauh (sebagai contoh, di kantor Anda)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:71
+#: data/org.gnome.Boxes.appdata.xml.in:70
 msgid "The GNOME Project"
 msgstr "Proyek GNOME"
 
@@ -181,7 +181,7 @@ msgstr "Anda akan diberitahu ketika pengunduhan usai."
 
 #: data/ui/assistant/pages/index-page.ui:147
 msgid "Select an OS Source"
-msgstr "Pilih sebuah Sumber OS"
+msgstr "Pilih sebuah Sumber SO"
 
 #: data/ui/assistant/pages/index-page.ui:180
 msgid "Operating System Download"
@@ -239,7 +239,7 @@ msgstr "Pemasangan Kilat"
 msgid "Connect to a Box"
 msgstr "Sambungan ke Box"
 
-#: data/ui/assistant/remote-connection.ui:22
+#: data/ui/assistant/remote-connection.ui:23
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh:// or vnc://."
@@ -247,18 +247,18 @@ msgstr ""
 "Masukkan alamat untuk tersambung. Alamat dapat dimulai dengan spice://, "
 "rdp://, ssh:// atau vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
 msgid "Cancel"
 msgstr "Batal"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Sambung"
 
-#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
 msgstr "Berikutnya"
 
@@ -362,7 +362,7 @@ msgstr "Virtualisasi tingkat tertinggi"
 
 #: data/ui/empty-boxes.ui:82
 msgid "Boxes can be virtual or remote machines."
-msgstr "Boxes dapat berupa virtual atau mesin jarak jauh."
+msgstr "Boxes dapat berupa mesin virtual atau jarak jauh."
 
 #: data/ui/empty-boxes.ui:95
 msgid "Just hit the <b>+</b> button to create your first one."
@@ -573,7 +573,7 @@ msgstr "Tutorial Selamat Datang"
 
 #: data/ui/welcome-tutorial.ui:31
 msgid "Welcome to Boxes"
-msgstr "Selamat Datang ke Boxes"
+msgstr "Selamat Datang di Boxes"
 
 #: data/ui/welcome-tutorial.ui:32
 msgid ""
@@ -581,9 +581,9 @@ msgid ""
 "to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
 "connections."
 msgstr ""
-"Boxes membuat mudah memasang dan menjalankan sistem operasi. Anda juga dapat "
-"memakainya untuk mengakses komputer lain dari jarak jauh, memakai koneksi "
-"SPICE, VNC, RDP, atau Secure Shell."
+"Boxes membuat kemudahan dalam memasang dan menjalankan sistem operasi. Anda "
+"juga dapat memakainya untuk mengakses komputer lain dari jarak jauh, memakai "
+"koneksi SPICE, VNC, RDP, atau Secure Shell."
 
 #: data/ui/welcome-tutorial.ui:41
 msgid ""
@@ -591,13 +591,13 @@ msgid ""
 "virtual machine. Just start the installation and everything will be taken "
 "care of for you."
 msgstr ""
-"Dengan instalasi kilat, Boxes akan menata opsi-opsi instalasi bagi suatu "
-"mesin virtual baru. Mulai saja instalasi dan semuanya akan dibereskan untuk "
+"Dengan pemasangan kilat, Boxes akan menata opsi-opsi pemasangan bagi suatu "
+"mesin virtual baru. Mulai saja pemasangan dan semuanya akan dibereskan untuk "
 "Anda."
 
 #: data/ui/welcome-tutorial.ui:49
 msgid "Easy Downloads"
-msgstr "Unduh Mudah"
+msgstr "Unduh Dengan Mudah"
 
 #: data/ui/welcome-tutorial.ui:50
 msgid ""
@@ -611,7 +611,7 @@ msgstr ""
 
 #: data/ui/welcome-tutorial.ui:58
 msgid "Drag and Drop"
-msgstr "Seret dan Letak"
+msgstr "Seret dan Letakkan"
 
 #: data/ui/welcome-tutorial.ui:59
 msgid ""
@@ -1144,7 +1144,7 @@ msgstr "Memasang…"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/libvirt-machine.vala:867 src/util-app.vala:152
-#: src/wizard-source.vala:123
+#: src/wizard-source.vala:126
 msgid "Live"
 msgstr "Live"
 
@@ -1494,21 +1494,16 @@ msgstr "tidak"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:753
+#: src/vm-configurator.vala:760
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
 
-#: src/vm-creator.vala:176
-#, c-format
-msgid "Live box “%s” has been deleted automatically."
-msgstr "Box live “%s” telah dihapus secara otomatis."
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:190
+#: src/vm-creator.vala:172
 msgid "Just installed "
 msgstr "Baru saja dipasang "
 
-#: src/vm-importer.vala:59
+#: src/vm-importer.vala:63
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Impor Box dari berkas “%s” gagal."
@@ -1522,16 +1517,16 @@ msgstr "Hanya-baca"
 msgid "%u/%u"
 msgstr "%u/%u"
 
-#: src/wizard-source.vala:128
+#: src/wizard-source.vala:136
 msgid "32-bit x86 system"
 msgstr "Sistem x86 32-bit"
 
-#: src/wizard-source.vala:129
+#: src/wizard-source.vala:137
 msgid "64-bit x86 system"
 msgstr "Sistem x86 64-bit"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:134
+#: src/wizard-source.vala:142
 #, c-format
 msgid " from %s"
 msgstr " dari %s"
@@ -1629,6 +1624,9 @@ msgstr "Pengunduhan gagal."
 #: src/wizard.vala:770
 msgid "C_ustomize…"
 msgstr "Ses_uaikan…"
+
+#~ msgid "Live box “%s” has been deleted automatically."
+#~ msgstr "Box live “%s” telah dihapus secara otomatis."
 
 #~ msgid ""
 #~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
