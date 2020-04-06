@@ -163,6 +163,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             window.display_page.show_display (display, widget);
             widget.grab_focus ();
 
+            store_auth_credentials ();
+
             break;
 
         case Boxes.UIState.PROPERTIES:
@@ -704,9 +706,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 this.password = password;
 
             try_connect_display.begin ();
-
-            /* Maybe this can be an optional preference with a toggle in the UI. */
-            store_auth_credentials ();
         };
 
         Notification.DismissFunc dismiss_func = () => {
