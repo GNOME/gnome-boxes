@@ -1,0 +1,25 @@
+From 3278cf7827e5892e495d3374885d30d898e96ab6 Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Tue, 7 Apr 2020 13:49:30 +0200
+Subject: [PATCH] arch-uefi
+
+---
+ data/os/archlinux.org/archlinux-rolling.xml.in | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/data/os/archlinux.org/archlinux-rolling.xml.in b/data/os/archlinux.org/archlinux-rolling.xml.in
+index 2a5b740..d26f5ab 100644
+--- a/data/os/archlinux.org/archlinux-rolling.xml.in
++++ b/data/os/archlinux.org/archlinux-rolling.xml.in
+@@ -10,6 +10,8 @@
+ 
+     <release-status>rolling</release-status>
+ 
++    <firmware arch="x86_64" type="efi"/>
++
+     <devices>
+       <device id="http://pcisig.com/pci/1033/0194"/> <!-- nec-xhci -->
+       <device id="http://pcisig.com/pci/1af4/1000"/> <!-- virtio-net -->
+-- 
+2.26.0
+
