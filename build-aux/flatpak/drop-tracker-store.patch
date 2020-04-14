@@ -1,0 +1,3681 @@
+From: Manuel Wassermann <manuel.wassermann97@gmail.com>
+Subject: Removes tracker-store
+ 
+34 files changed, 1 insertion(+), 3455 deletions(-)
+
+diff --git a/data/meson.build b/data/meson.build
+index 16e70d3..54e96cb 100644
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -1,8 +1,7 @@
+ tracker_gsettings_schemas = files([
+   'org.freedesktop.Tracker.DB.gschema.xml',
+   'org.freedesktop.Tracker.FTS.gschema.xml',
+-  'org.freedesktop.Tracker.gschema.xml',
+-  'org.freedesktop.Tracker.Store.gschema.xml'
++  'org.freedesktop.Tracker.gschema.xml'
+ ])
+ 
+ foreach schema : tracker_gsettings_schemas
+diff --git a/data/org.freedesktop.Tracker.Store.gschema.xml a/data/org.freedesktop.Tracker.Store.gschema.xml
+deleted file mode 100644
+index a599791..0000000
+--- a/data/org.freedesktop.Tracker.Store.gschema.xml
++++ /dev/null
+@@ -1,33 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!--
+-Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+-
+-This library is free software; you can redistribute it and/or
+-modify it under the terms of the GNU Lesser General Public
+-License as published by the Free Software Foundation; either
+-version 2.1 of the License, or (at your option) any later version.
+-
+-This library is distributed in the hope that it will be useful,
+-but WITHOUT ANY WARRANTY; without even the implied warranty of
+-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+-Lesser General Public License for more details.
+-
+-You should have received a copy of the GNU Lesser General Public
+-License along with this library; if not, write to the
+-Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-Boston, MA  02110-1301, USA.
+--->
+-<schemalist>
+-  <schema id="org.freedesktop.Tracker.Store" path="/org/freedesktop/tracker/store/" gettext-domain="tracker">
+-    <key name="verbosity" enum="org.freedesktop.Tracker.TrackerVerbosity">
+-      <default>'errors'</default>
+-      <summary>Log verbosity</summary>
+-      <description>Log verbosity.</description>
+-    </key>
+-    <key name="graphupdated-delay" type="i">
+-      <default>1000</default>
+-      <summary>GraphUpdated delay</summary>
+-      <description>Period in milliseconds between GraphUpdated signals being emitted when indexed data has changed inside the database.</description>
+-    </key>
+-  </schema>
+-</schemalist>
+diff --git a/data/org.freedesktop.Tracker.gschema.xml b/data/org.freedesktop.Tracker.gschema.xml
+index e6007bb..1d46aa5 100644
+--- a/data/org.freedesktop.Tracker.gschema.xml
++++ b/data/org.freedesktop.Tracker.gschema.xml
+@@ -21,6 +21,5 @@ Boston, MA  02110-1301, USA.
+   <schema id="org.freedesktop.Tracker" path="/org/freedesktop/tracker/">
+     <child name="db" schema="org.freedesktop.Tracker.DB"/>
+     <child name="fts" schema="org.freedesktop.Tracker.FTS"/>
+-    <child name="store" schema="org.freedesktop.Tracker.Store"/>
+   </schema>
+ </schemalist>
+diff --git a/docs/manpages/meson.build b/docs/manpages/meson.build
+index 5d2be6e..0b060c8 100644
+--- a/docs/manpages/meson.build
++++ b/docs/manpages/meson.build
+@@ -4,7 +4,6 @@ install_man('tracker-search.1')
+ install_man('tracker-sparql.1')
+ install_man('tracker-sql.1')
+ install_man('tracker-status.1')
+-install_man('tracker-store.1')
+ install_man('tracker-tag.1')
+ install_man('tracker-reset.1')
+ install_man('tracker-index.1')
+diff --git a/docs/manpages/tracker-store.1 a/docs/manpages/tracker-store.1
+deleted file mode 100644
+index 28452f0..0000000
+--- a/docs/manpages/tracker-store.1
++++ /dev/null
+@@ -1,113 +0,0 @@
+-.TH tracker-store 1 "September 2009" GNU "User Commands"
+-
+-.SH NAME
+-tracker-store \- database indexer and query daemon
+-
+-.SH SYNOPSIS
+-\fBtracker-store\fR [\fIOPTION\fR...]
+-
+-.SH DESCRIPTION
+-.B tracker-store
+-provides both a powerful database daemon which allows clients to query
+-or update their data using the highly descriptive
+-.B SPARQL
+-language.
+-.PP
+-.B tracker-store
+-does not do any file crawling or any mining of data itself, instead
+-other processes do that while
+-.B tracker-store
+-serves as a daemon waiting for such
+-requests from application miners like
+-.B tracker-miner-fs.
+-
+-.SH OPTIONS
+-.TP
+-.B \-?, \-\-help
+-A brief help message including some examples.
+-.TP
+-.B \-V, \-\-version
+-Returns the version of this binary.
+-.TP
+-.B \-v, \-\-verbosity={0|1|2|3}
+-Sets the logging level, 0=errors, 1=minimal, 2=detailed, 3=debug.
+-.TP
+-.B \-r, \-\-force-reindex
+-This forces tracker-store to remove databases and to recreate fresh
+-databases ready for data insertion from the miners. For more
+-information about the miners, see
+-.B tracker-miner-fs.
+-.TP
+-.B \-n, \-\-readonly-mode
+-This starts
+-.B tracker-store
+-in a mode which disables writing to the database. Only
+-.B SPARQL
+-read requests can be serviced if this option is used.
+-
+-.SH ENVIRONMENT
+-.TP
+-.B TRACKER_DB_ONTOLOGIES_DIR
+-This is the directory which tracker uses to load the .ontology files
+-from. If unset it will default to the correct place. This is used
+-mainly for testing purposes.
+-
+-.TP
+-.B TRACKER_LANGUAGE_STOP_WORDS_DIR
+-This is the directory which tracker uses to load the stop words
+-dictionaries from. If unset it will default to the correct place. This
+-is used mainly for testing purposes.
+-
+-.TP
+-.B TRACKER_STORE_MAX_TASK_TIME
+-This is maximum time allowed for a process to finish before interruption
+-happens. The actual moment of interruption depends also on the frequency of
+-checks. The value 0 indicates no interruption.
+-This environment variable is used mainly for testing purposes.
+-
+-.TP
+-.B TRACKER_STORE_SELECT_CACHE_SIZE / TRACKER_STORE_UPDATE_CACHE_SIZE
+-Tracker caches database statements which occur frequently to make
+-subsequent repeat queries much faster. The cache size is set to 100 by
+-default for each type (select and update queries). This must be at
+-least 2 as a minimum, any less and a value of 3 is used instead. The
+-number represents the number of cached statements to keep around.
+-This environment variable is used mainly for testing purposes.
+-
+-.TP
+-.B TRACKER_USE_LOG_FILES
+-Don't just log to stdout and stderr, but to log files too which are
+-kept in $HOME/.local/share/tracker/. This came into effect in 0.15.3
+-and 0.16.0. After this version of Tracker, logging to file (usually
+-useful for debugging) can only be done by declaring this environment
+-variable.
+-
+-.TP
+-.B TRACKER_USE_CONFIG_FILES
+-Don't use GSettings, instead use a config file similar to how settings
+-were saved in 0.10.x. That is, a file which is much like an .ini file.
+-These are saved to $HOME/.config/tracker/
+-
+-.SH NOTES
+-.B tracker-store
+-is highly bound to the D-Bus freedesktop project. A D-Bus session is
+-needed for all Tracker processes to communicate between each other.
+-D-Bus is our acting IPC. See
+-.BR dbus-daemon(1)
+-for more information.
+-
+-.SH SEE ALSO
+-.BR tracker-applet (1),
+-.BR tracker-search-tool (1),
+-.BR tracker-search (1),
+-.BR tracker-tag (1),
+-.BR tracker-stats (1),
+-.BR tracker-services (1),
+-.BR tracker-info (1),
+-.BR tracker-control (1),
+-
+-.BR http://www.w3.org/TR/rdf-sparql-query/
+-
+-.BR dbus-daemon (1),
+-
+-.BR http://www.freedesktop.org/wiki/Software/dbus
+diff --git a/src/meson.build b/src/meson.build
+index 04f7f39..6a4d685 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -28,6 +28,3 @@ subdir('libtracker-control')
+ 
+ # Public commandline control tool
+ subdir('tracker')
+-
+-# Public shared database
+-subdir('tracker-store')
+diff --git a/src/tracker-store/.gitignore a/src/tracker-store/.gitignore
+deleted file mode 100644
+index f90c290..0000000
+--- a/src/tracker-store/.gitignore
++++ /dev/null
+@@ -1,13 +0,0 @@
+-tracker-store
+-tracker-backup.c
+-tracker-dbus.c
+-tracker-main.c
+-tracker-resources.c
+-tracker-statistics.c
+-tracker-status.c
+-tracker-steroids.c
+-tracker-store.c
+-tracker-store.h
+-*.service
+-*.valid
+-*.cfg.5
+diff --git a/src/tracker-store/default.rule a/src/tracker-store/default.rule
+deleted file mode 100644
+index 40ae2bd..0000000
+--- a/src/tracker-store/default.rule
++++ /dev/null
+@@ -1,44 +0,0 @@
+-[DomainOntology]
+-# All locations accept
+-# 1) Paths relative from a variable, the variables
+-#    may be: HOME, XDG_CACHE_HOME, XDG_DATA_HOME, XDG_RUNTIME_DIR,
+-#    XDG_DESKTOP_DIR, XDG_DOCUMENTS_DIR, XDG_DOWNLOAD_DIR,
+-#    XDG_MUSIC_DIR, XDG_PICTURES_DIR, XDG_PUBLICSHARE_DIR,
+-#    XDG_VIDEOS_DIR.
+-#
+-#    eg. $XDG_CACHE_HOME/...
+-#
+-# 2) URIs
+-#
+-#    eg. file:///var/...
+-#
+-
+-# Location for the Tracker database (not optional)
+-CacheLocation=$XDG_CACHE_HOME/tracker
+-
+-# Location for the data journal, used in data recovery
+-# situations (optional)
+-JournalLocation=$XDG_DATA_HOME/tracker/data
+-
+-# Name of the ontology to use, must be one located in
+-# $(sharedir)/tracker/ontologies
+-OntologyName=nepomuk
+-
+-# Alternatively, the location may be provided with an
+-# absolute URI. One of OntologyName and OntologyLocation
+-# must be provided
+-#OntologyLocation=file:///...
+-
+-# DBus name for the owner (not optional). Tracker will use
+-# the domain as the prefix of the DBus name for all the
+-# services related to this domain ontology.
+-#
+-# eg. org.gnome.Photos
+-Domain=org.freedesktop
+-
+-# Miners that the domain ontology will require. This is
+-# purely a hint (mainly for libtracker-control), and not
+-# any sort of white list. Anything else knowing about this
+-# domain ontology may still perform updates, miners and
+-# non-miners.
+-Miners=Miner.Files;Miner.Extract;Miner.Applications;Miner.RSS
+diff --git a/src/tracker-store/meson.build a/src/tracker-store/meson.build
+deleted file mode 100644
+index a6c3d09..0000000
+--- a/src/tracker-store/meson.build
++++ /dev/null
+@@ -1,68 +0,0 @@
+-tracker_store_sources = [
+-    'tracker-backup.vala',
+-    'tracker-config.c',
+-    'tracker-dbus.vala',
+-    'tracker-events.c',
+-    'tracker-main.vala',
+-    'tracker-resources.vala',
+-    'tracker-statistics.vala',
+-    'tracker-status.vala',
+-    'tracker-steroids.vala',
+-    'tracker-store.vala',
+-    'tracker-writeback.c',
+-    'tracker-config.vapi',
+-    'tracker-events.vapi',
+-    'tracker-locale-change.vapi',
+-    'tracker-writeback.vapi',
+-    '../libtracker-common/libtracker-common.vapi',
+-    '../libtracker-data/libtracker-data.vapi',
+-    '../libtracker-direct/tracker-direct.vapi',
+-]
+-
+-tracker_store = executable('tracker-store',
+-    tracker_store_sources,
+-    tracker_sparql_vapi,
+-    c_args: tracker_c_args + [
+-        '-include', 'config.h'
+-    ],
+-    vala_args: [ '--pkg', 'posix' ],
+-    dependencies: [
+-        tracker_common_dep, tracker_sparql_dep, tracker_data_dep, tracker_sparql_direct_dep, gio_unix
+-    ],
+-    install: true,
+-    install_dir: join_paths(get_option('prefix'), get_option('libexecdir')),
+-    install_rpath: tracker_install_rpath)
+-
+-install_data(
+-    'tracker-backup.xml',
+-    'tracker-resources.xml',
+-    'tracker-statistics.xml',
+-    'tracker-status.xml',
+-    install_dir: join_paths(get_option('prefix'), get_option('datadir'), 'tracker'))
+-
+-dbus_service_file = configure_file(
+-    input: 'org.freedesktop.Tracker1.service.in',
+-    output: 'org.freedesktop.Tracker1.service',
+-    configuration: conf,
+-    install: true,
+-    install_dir: dbus_services_dir)
+-
+-i18n.merge_file('tracker-store-desktop-file',
+-    type: 'desktop',
+-    input: 'tracker-store.desktop.in',
+-    output: 'tracker-store.desktop',
+-    po_dir: po_subdir,
+-    install: true,
+-    install_dir: join_paths(get_option('sysconfdir'), 'xdg/autostart'))
+-
+-if install_systemd_user_services
+-  configure_file(
+-      input: 'tracker-store.service.in',
+-      output: 'tracker-store.service',
+-      configuration: conf,
+-      install: true,
+-      install_dir: systemd_user_services_dir)
+-endif
+-
+-install_data('default.rule',
+-    install_dir: join_paths(get_option('datadir'), 'tracker', 'domain-ontologies'))
+diff --git a/src/tracker-store/org.freedesktop.Tracker1.service.in a/src/tracker-store/org.freedesktop.Tracker1.service.in
+deleted file mode 100644
+index d834273..0000000
+--- a/src/tracker-store/org.freedesktop.Tracker1.service.in
++++ /dev/null
+@@ -1,4 +0,0 @@
+-[D-BUS Service]
+-Name=org.freedesktop.Tracker1
+-Exec=@libexecdir@/tracker-store
+-SystemdService=tracker-store.service
+diff --git a/src/tracker-store/tracker-backup.vala a/src/tracker-store/tracker-backup.vala
+deleted file mode 100644
+index a9ede1b..0000000
+--- a/src/tracker-store/tracker-backup.vala
++++ /dev/null
+@@ -1,105 +0,0 @@
+-/*
+- * Copyright (C) 2006, Jamie McCracken <jamiemcc@gnome.org>
+- * Copyright (C) 2008-2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-[DBus (name = "org.freedesktop.Tracker1.Backup")]
+-public class Tracker.Backup : Object {
+-	public const string PATH = "/org/freedesktop/Tracker1/Backup";
+-
+-	public async void save (BusName sender, string destination_uri) throws Error {
+-		var resources = (Resources) Tracker.DBus.get_object (typeof (Resources));
+-		if (resources != null) {
+-			Tracker.Store.disable_signals ();
+-			Tracker.Events.shutdown ();
+-		}
+-
+-		var request = DBusRequest.begin (sender, "D-Bus request to save backup into '%s'", destination_uri);
+-		try {
+-			var destination = File.new_for_uri (destination_uri);
+-
+-			if (destination == null || destination.get_path() == null) {
+-				throw new DataBackupError.INVALID_URI ("'" + destination_uri + "' is not a valid uri");
+-			}
+-
+-			yield Tracker.Store.pause ();
+-
+-			Error backup_error = null;
+-			var data_manager = Tracker.Main.get_data_manager ();
+-			Data.backup_save (data_manager, destination, destination, error => {
+-				backup_error = error;
+-				save.callback ();
+-			});
+-			yield;
+-
+-			if (backup_error != null) {
+-				throw backup_error;
+-			}
+-
+-			request.end ();
+-		} catch (Error e) {
+-			request.end (e);
+-			throw e;
+-		} finally {
+-			if (resources != null) {
+-				Tracker.Events.init ();
+-				Tracker.Store.enable_signals ();
+-			}
+-
+-			Tracker.Store.resume ();
+-		}
+-	}
+-
+-	public async void restore (BusName sender, string journal_uri) throws Error {
+-		var resources = (Resources) Tracker.DBus.get_object (typeof (Resources));
+-		if (resources != null) {
+-			Tracker.Store.disable_signals ();
+-			Tracker.Events.shutdown ();
+-		}
+-
+-		var request = DBusRequest.begin (sender, "D-Bus request to restore backup from '%s'", journal_uri);
+-		try {
+-			yield Tracker.Store.pause ();
+-
+-			var journal = File.new_for_uri (journal_uri);
+-
+-			if (journal == null || journal.get_path() == null) {
+-				throw new DataBackupError.INVALID_URI ("'" + journal_uri + "' is not a valid uri");
+-			}
+-
+-			var notifier = (Status) (Tracker.DBus.get_object (typeof (Status)));
+-			var busy_callback = notifier.get_callback ();
+-			var data_manager = Tracker.Main.get_data_manager ();
+-
+-			// TODO: set cache_location, data_location and ontology_location here from store session
+-			Data.backup_restore (data_manager, journal, null, null, null, busy_callback);
+-
+-			request.end ();
+-		} catch (Error e) {
+-			request.end (e);
+-			throw e;
+-		} finally {
+-			if (resources != null) {
+-				Tracker.Events.init ();
+-				Tracker.Store.enable_signals ();
+-			}
+-
+-			Tracker.Store.resume ();
+-		}
+-	}
+-}
+diff --git a/src/tracker-store/tracker-backup.xml a/src/tracker-store/tracker-backup.xml
+deleted file mode 100644
+index d079eee..0000000
+--- a/src/tracker-store/tracker-backup.xml
++++ /dev/null
+@@ -1,14 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<node name="/">
+-  <interface name="org.freedesktop.Tracker1.Backup">
+-    <method name="Save">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="destination-uri" direction="in" />
+-    </method>
+-    <method name="Restore">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="journal-uri" direction="in" />
+-    </method>
+-  </interface>
+-</node>
+diff --git a/src/tracker-store/tracker-config.c a/src/tracker-store/tracker-config.c
+deleted file mode 100644
+index 1c3f9c3..0000000
+--- a/src/tracker-store/tracker-config.c
++++ /dev/null
+@@ -1,261 +0,0 @@
+-/*
+- * Copyright (C) 2009, Nokia <ivan.frade@nokia.com>
+- * Copyright (C) 2014, Lanedo <martyn@lanedo.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.          See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-#include "config.h"
+-
+-#include <string.h>
+-#include <stdlib.h>
+-
+-#include <glib.h>
+-#include <gio/gio.h>
+-
+-#define G_SETTINGS_ENABLE_BACKEND
+-#include <gio/gsettingsbackend.h>
+-
+-#include <libtracker-common/tracker-common.h>
+-
+-#include "tracker-config.h"
+-
+-#define CONFIG_SCHEMA "org.freedesktop.Tracker.Store"
+-#define CONFIG_PATH   "/org/freedesktop/tracker/store/"
+-
+-#define GRAPHUPDATED_DELAY_DEFAULT	1000
+-
+-static void config_set_property         (GObject       *object,
+-                                         guint          param_id,
+-                                         const GValue  *value,
+-                                         GParamSpec    *pspec);
+-static void config_get_property         (GObject       *object,
+-                                         guint          param_id,
+-                                         GValue        *value,
+-                                         GParamSpec    *pspec);
+-static void config_finalize             (GObject       *object);
+-static void config_constructed          (GObject       *object);
+-
+-enum {
+-	PROP_0,
+-	PROP_VERBOSITY,
+-	PROP_GRAPHUPDATED_DELAY,
+-};
+-
+-G_DEFINE_TYPE (TrackerConfig, tracker_config, G_TYPE_SETTINGS);
+-
+-static void
+-tracker_config_class_init (TrackerConfigClass *klass)
+-{
+-	GObjectClass *object_class = G_OBJECT_CLASS (klass);
+-
+-	object_class->set_property = config_set_property;
+-	object_class->get_property = config_get_property;
+-	object_class->finalize     = config_finalize;
+-	object_class->constructed  = config_constructed;
+-
+-	g_object_class_install_property (object_class,
+-	                                 PROP_VERBOSITY,
+-	                                 g_param_spec_enum ("verbosity",
+-	                                                    "Log verbosity",
+-	                                                    "Log verbosity (0=errors, 1=minimal, 2=detailed, 3=debug)",
+-	                                                    TRACKER_TYPE_VERBOSITY,
+-	                                                    TRACKER_VERBOSITY_ERRORS,
+-	                                                    G_PARAM_READWRITE));
+-
+-	g_object_class_install_property (object_class,
+-	                                 PROP_GRAPHUPDATED_DELAY,
+-	                                 g_param_spec_int  ("graphupdated-delay",
+-	                                                    "GraphUpdated delay",
+-	                                                    "GraphUpdated delay in ms. (1000)",
+-	                                                    0,
+-	                                                    G_MAXINT,
+-	                                                    GRAPHUPDATED_DELAY_DEFAULT,
+-	                                                    G_PARAM_READWRITE));
+-
+-}
+-
+-static void
+-tracker_config_init (TrackerConfig *object)
+-{
+-}
+-
+-static void
+-config_set_property (GObject      *object,
+-                     guint         param_id,
+-                     const GValue *value,
+-                     GParamSpec           *pspec)
+-{
+-	switch (param_id) {
+-	case PROP_GRAPHUPDATED_DELAY:
+-		tracker_config_set_graphupdated_delay (TRACKER_CONFIG (object),
+-		                                       g_value_get_int (value));
+-		break;
+-
+-	case PROP_VERBOSITY:
+-		tracker_config_set_verbosity (TRACKER_CONFIG (object),
+-		                              g_value_get_enum (value));
+-		break;
+-	default:
+-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
+-		break;
+-	};
+-}
+-
+-static void
+-config_get_property (GObject    *object,
+-                     guint       param_id,
+-                     GValue     *value,
+-                     GParamSpec *pspec)
+-{
+-	switch (param_id) {
+-	case PROP_GRAPHUPDATED_DELAY:
+-		g_value_set_int (value, tracker_config_get_graphupdated_delay (TRACKER_CONFIG (object)));
+-		break;
+-
+-		/* General */
+-	case PROP_VERBOSITY:
+-		g_value_set_enum (value, tracker_config_get_verbosity (TRACKER_CONFIG (object)));
+-		break;
+-	default:
+-		G_OBJECT_WARN_INVALID_PROPERTY_ID (object, param_id, pspec);
+-		break;
+-	};
+-}
+-
+-static void
+-config_finalize (GObject *object)
+-{
+-	/* For now we do nothing here, we left this override in for
+-	 * future expansion.
+-	 */
+-
+-	(G_OBJECT_CLASS (tracker_config_parent_class)->finalize) (object);
+-}
+-
+-static void
+-config_constructed (GObject *object)
+-{
+-	GSettings *settings;
+-
+-	(G_OBJECT_CLASS (tracker_config_parent_class)->constructed) (object);
+-
+-	settings = G_SETTINGS (object);
+-
+-	if (G_LIKELY (!g_getenv ("TRACKER_USE_CONFIG_FILES"))) {
+-		g_settings_delay (settings);
+-	}
+-
+-	/* Set up bindings:
+-	 *
+-	 * What's interesting here is that 'verbosity' and
+-	 * 'initial-sleep' are command line arguments that can be
+-	 * overridden, so we don't update the config when we set them
+-	 * from main() because it's a session configuration only, not
+-	 * a permanent one. To do this we use the flag
+-	 * G_SETTINGS_BIND_GET_NO_CHANGES.
+-	 *
+-	 * For the other settings, we don't bind the
+-	 * G_SETTINGS_BIND_SET because we don't want to save anything,
+-	 * ever, we only want to know about updates to the settings as
+-	 * they're changed externally. The only time this may be
+-	 * different is where we use the environment variable
+-	 * TRACKER_USE_CONFIG_FILES and we want to write a config
+-	 * file for convenience. But this is only necessary if the
+-	 * config is different to the default.
+-	 */
+-	g_settings_bind (settings, "verbosity", object, "verbosity", G_SETTINGS_BIND_GET | G_SETTINGS_BIND_GET_NO_CHANGES);
+-	g_settings_bind (settings, "graphupdated-delay", object, "graphupdated-delay", G_SETTINGS_BIND_GET);
+-}
+-
+-TrackerConfig *
+-tracker_config_new (void)
+-{
+-	TrackerConfig *config = NULL;
+-
+-	/* FIXME: should we unset GSETTINGS_BACKEND env var? */
+-
+-	if (G_UNLIKELY (g_getenv ("TRACKER_USE_CONFIG_FILES"))) {
+-		GSettingsBackend *backend;
+-		gchar *filename, *basename;
+-		gboolean need_to_save;
+-
+-		basename = g_strdup_printf ("%s.cfg", g_get_prgname ());
+-		filename = g_build_filename (g_get_user_config_dir (), "tracker", basename, NULL);
+-		g_free (basename);
+-
+-		need_to_save = g_file_test (filename, G_FILE_TEST_EXISTS) == FALSE;
+-
+-		backend = g_keyfile_settings_backend_new (filename, CONFIG_PATH, "General");
+-		g_info ("Using config file '%s'", filename);
+-		g_free (filename);
+-
+-		config = g_object_new (TRACKER_TYPE_CONFIG,
+-		                       "backend", backend,
+-		                       "schema-id", CONFIG_SCHEMA,
+-		                       "path", CONFIG_PATH,
+-		                       NULL);
+-		g_object_unref (backend);
+-
+-		if (need_to_save) {
+-			g_info ("  Config file does not exist, using default values...");
+-		}
+-	} else {
+-		config = g_object_new (TRACKER_TYPE_CONFIG,
+-		                       "schema-id", CONFIG_SCHEMA,
+-		                       "path", CONFIG_PATH,
+-		                       NULL);
+-	}
+-
+-	return config;
+-}
+-
+-gint
+-tracker_config_get_verbosity (TrackerConfig *config)
+-{
+-	g_return_val_if_fail (TRACKER_IS_CONFIG (config), 0);
+-
+-	return g_settings_get_enum (G_SETTINGS (config), "verbosity");
+-}
+-
+-void
+-tracker_config_set_verbosity (TrackerConfig *config,
+-                              gint           value)
+-{
+-	g_return_if_fail (TRACKER_IS_CONFIG (config));
+-
+-	g_settings_set_enum (G_SETTINGS (config), "verbosity", value);
+-	g_object_notify (G_OBJECT (config), "verbosity");
+-}
+-
+-
+-gint
+-tracker_config_get_graphupdated_delay (TrackerConfig *config)
+-{
+-	g_return_val_if_fail (TRACKER_IS_CONFIG (config), GRAPHUPDATED_DELAY_DEFAULT);
+-
+-	return g_settings_get_int (G_SETTINGS (config), "graphupdated-delay");
+-}
+-
+-void
+-tracker_config_set_graphupdated_delay (TrackerConfig *config,
+-                                       gint           value)
+-{
+-	g_return_if_fail (TRACKER_IS_CONFIG (config));
+-
+-	g_settings_set_int(G_SETTINGS (config), "graphupdated-delay", value);
+-	g_object_notify (G_OBJECT (config), "graphupdated-delay");
+-}
+diff --git a/src/tracker-store/tracker-config.h a/src/tracker-store/tracker-config.h
+deleted file mode 100644
+index d97f373..0000000
+--- a/src/tracker-store/tracker-config.h
++++ /dev/null
+@@ -1,62 +0,0 @@
+-/*
+- * Copyright (C) 2009, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-#ifndef __TRACKER_STORE_CONFIG_H__
+-#define __TRACKER_STORE_CONFIG_H__
+-
+-#include <glib-object.h>
+-#include <gio/gio.h>
+-
+-G_BEGIN_DECLS
+-
+-#define TRACKER_TYPE_CONFIG         (tracker_config_get_type ())
+-#define TRACKER_CONFIG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), TRACKER_TYPE_CONFIG, TrackerConfig))
+-#define TRACKER_CONFIG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), TRACKER_TYPE_CONFIG, TrackerConfigClass))
+-#define TRACKER_IS_CONFIG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), TRACKER_TYPE_CONFIG))
+-#define TRACKER_IS_CONFIG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), TRACKER_TYPE_CONFIG))
+-#define TRACKER_CONFIG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), TRACKER_TYPE_CONFIG, TrackerConfigClass))
+-
+-typedef struct TrackerConfig TrackerConfig;
+-typedef struct TrackerConfigClass TrackerConfigClass;
+-
+-struct TrackerConfig {
+-	GSettings parent;
+-};
+-
+-struct TrackerConfigClass {
+-	GSettingsClass parent_class;
+-};
+-
+-GType          tracker_config_get_type                             (void) G_GNUC_CONST;
+-
+-TrackerConfig *tracker_config_new                                  (void);
+-gint           tracker_config_get_verbosity                        (TrackerConfig *config);
+-
+-void           tracker_config_set_verbosity                        (TrackerConfig *config,
+-                                                                    gint           value);
+-
+-gint           tracker_config_get_graphupdated_delay               (TrackerConfig *config);
+-
+-void           tracker_config_set_graphupdated_delay               (TrackerConfig *config,
+-                                                                    gint           value);
+-
+-G_END_DECLS
+-
+-#endif /* __TRACKER_STORE_CONFIG_H__ */
+-
+diff --git a/src/tracker-store/tracker-config.vapi a/src/tracker-store/tracker-config.vapi
+deleted file mode 100644
+index 854a71c..0000000
+--- a/src/tracker-store/tracker-config.vapi
++++ /dev/null
+@@ -1,27 +0,0 @@
+-/*
+- * Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.          See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-namespace Tracker {
+-	[CCode (cheader_filename = "tracker-store/tracker-config.h")]
+-	public class Config : ConfigFile {
+-		public Config ();
+-		public int verbosity { get; set; }
+-		public int graphupdated_delay { get; set; }
+-	}
+-}
+diff --git a/src/tracker-store/tracker-dbus.vala a/src/tracker-store/tracker-dbus.vala
+deleted file mode 100644
+index 82387d7..0000000
+--- a/src/tracker-store/tracker-dbus.vala
++++ /dev/null
+@@ -1,285 +0,0 @@
+-/*
+- * Copyright (C) 2006, Jamie McCracken <jamiemcc@gnome.org>
+- * Copyright (C) 2008-2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-public class Tracker.DBus {
+-	static DBusConnection connection;
+-
+-	const string SERVICE = "org.freedesktop.Tracker1";
+-
+-	static uint name_owner_changed_id;
+-	static Tracker.Statistics statistics;
+-	static uint statistics_id;
+-	static Tracker.Resources resources;
+-	static uint resources_id;
+-	static Tracker.Steroids steroids;
+-	static uint steroids_id;
+-	static Tracker.Status notifier;
+-	static uint notifier_id;
+-	static Tracker.Backup backup;
+-	static uint backup_id;
+-	static uint domain_watch_id;
+-	static MainLoop watch_main_loop;
+-
+-	static bool dbus_register_service (string name) {
+-		message ("Registering D-Bus service...\n  Name:'%s'", name);
+-
+-		try {
+-			Variant reply = connection.call_sync ("org.freedesktop.DBus",
+-				"/org/freedesktop/DBus",
+-				"org.freedesktop.DBus", "RequestName",
+-				new Variant ("(su)", name, 1 << 2 /* DBUS_NAME_FLAG_DO_NOT_QUEUE */),
+-				(VariantType) "(u)",
+-				0, -1);
+-
+-			uint result;
+-			reply.get ("(u)", out result);
+-			if (result != 1 /* DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER */) {
+-				critical ("D-Bus service name:'%s' is already taken, " +
+-				          "perhaps the daemon is already running?",
+-					  name);
+-				return false;
+-			}
+-
+-			return true;
+-		} catch (Error e) {
+-			critical ("Could not aquire name:'%s', %s", name, e.message);
+-			return false;
+-		}
+-	}
+-
+-	static uint register_object<T> (DBusConnection lconnection, T object, string path) {
+-		message ("Registering D-Bus object...");
+-		message ("  Path:'%s'", path);
+-		message ("  Type:'%s'", typeof (T).name ());
+-
+-		try {
+-			uint id = lconnection.register_object (path, object);
+-			return id;
+-		} catch (Error e) {
+-			critical ("Could not register D-Bus object: %s", e.message);
+-			return 0;
+-		}
+-	}
+-
+-	public static bool register_names (string? domain) {
+-		string service_name;
+-
+-		if (domain != null) {
+-			service_name = domain;
+-		} else {
+-			/* Register the service name for org.freedesktop.Tracker */
+-			service_name = SERVICE;
+-		}
+-
+-		return dbus_register_service (service_name);
+-	}
+-
+-	public static void on_domain_name_disappeared (DBusConnection connection, string name) {
+-		notifier.wait.begin ();
+-		watch_main_loop.quit ();
+-	}
+-
+-	public static void watch_domain (string? domain, MainLoop main_loop) {
+-		if (domain_watch_id == 0 && domain != null) {
+-			watch_main_loop = main_loop;
+-			domain_watch_id = GLib.Bus.watch_name_on_connection (connection,
+-			                                                     domain,
+-			                                                     GLib.BusNameWatcherFlags.NONE,
+-			                                                     null, on_domain_name_disappeared);
+-		}
+-	}
+-
+-	public static bool init () {
+-		/* Don't reinitialize */
+-		if (connection != null) {
+-			return true;
+-		}
+-
+-		try {
+-			connection = GLib.Bus.get_sync (Tracker.IPC.bus ());
+-		} catch (Error e) {
+-			critical ("Could not connect to the D-Bus session bus, %s", e.message);
+-			return false;
+-		}
+-
+-		return true;
+-	}
+-
+-	static void name_owner_changed_cb (DBusConnection connection, string sender_name, string object_path, string interface_name, string signal_name, Variant parameters) {
+-
+-		unowned string name, old_owner, new_owner;
+-		parameters.get ("(&s&s&s)", out name, out old_owner, out new_owner);
+-
+-		if (old_owner != "" && new_owner == "") {
+-			/* This means that old_owner got removed */
+-			resources.unreg_batches (old_owner);
+-		}
+-	}
+-
+-	static void set_available (bool available) {
+-		if (available) {
+-			if (resources_id == 0) {
+-				register_objects ();
+-			}
+-		} else {
+-			if (resources_id != 0) {
+-				connection.signal_unsubscribe (name_owner_changed_id);
+-				name_owner_changed_id = 0;
+-
+-				connection.unregister_object (resources_id);
+-				resources = null;
+-				resources_id = 0;
+-
+-				connection.unregister_object (steroids_id);
+-				steroids = null;
+-				steroids_id = 0;
+-			}
+-		}
+-	}
+-
+-	public static void shutdown () {
+-		set_available (false);
+-
+-		if (backup != null) {
+-			connection.unregister_object (backup_id);
+-			backup = null;
+-			backup_id = 0;
+-		}
+-
+-		if (notifier != null) {
+-			connection.unregister_object (notifier_id);
+-			notifier = null;
+-			notifier_id = 0;
+-		}
+-
+-		if (domain_watch_id != 0) {
+-			GLib.Bus.unwatch_name (domain_watch_id);
+-			domain_watch_id = 0;
+-		}
+-
+-		connection = null;
+-	}
+-
+-	public static Tracker.Status? register_notifier () {
+-		if (connection == null) {
+-			critical ("D-Bus support must be initialized before registering objects!");
+-			return null;
+-		}
+-
+-		/* Add org.freedesktop.Tracker */
+-		notifier = new Tracker.Status ();
+-		if (notifier == null) {
+-			critical ("Could not create TrackerStatus object to register");
+-			return null;
+-		}
+-
+-		notifier_id = register_object (connection, notifier, Tracker.Status.PATH);
+-
+-		return notifier;
+-	}
+-
+-	public static bool register_objects () {
+-		//gpointer object, resources;
+-
+-		if (connection == null) {
+-			critical ("D-Bus support must be initialized before registering objects!");
+-			return false;
+-		}
+-
+-		/* Add org.freedesktop.Tracker.Statistics */
+-		statistics = new Tracker.Statistics ();
+-		if (statistics == null) {
+-			critical ("Could not create TrackerStatistics object to register");
+-			return false;
+-		}
+-
+-		statistics_id = register_object (connection, statistics, Tracker.Statistics.PATH);
+-
+-		/* Add org.freedesktop.Tracker1.Resources */
+-		resources = new Tracker.Resources (connection);
+-		if (resources == null) {
+-			critical ("Could not create TrackerResources object to register");
+-			return false;
+-		}
+-
+-		name_owner_changed_id = connection.signal_subscribe ("org.freedesktop.DBus",
+-			"org.freedesktop.DBus", "NameOwnerChanged",
+-			"/org/freedesktop/DBus",
+-			null,
+-			0,
+-			name_owner_changed_cb);
+-
+-		resources_id = register_object (connection, resources, Tracker.Resources.PATH);
+-
+-		/* Add org.freedesktop.Tracker1.Steroids */
+-		steroids = new Tracker.Steroids ();
+-		if (steroids == null) {
+-			critical ("Could not create TrackerSteroids object to register");
+-			return false;
+-		}
+-
+-		steroids_id = register_object (connection, steroids, Tracker.Steroids.PATH);
+-
+-		if (backup == null) {
+-			/* Add org.freedesktop.Tracker1.Backup */
+-			backup = new Tracker.Backup ();
+-			if (backup == null) {
+-				critical ("Could not create TrackerBackup object to register");
+-				return false;
+-			}
+-
+-
+-			backup_id = register_object (connection, backup, Tracker.Backup.PATH);
+-		}
+-
+-		return true;
+-	}
+-
+-	public static bool register_prepare_class_signal () {
+-		if (resources == null) {
+-			message ("Error during initialization, Resources DBus object not available");
+-			return false;
+-		}
+-
+-		Tracker.Store.enable_signals ();
+-
+-		return true;
+-	}
+-
+-	public static Object? get_object (Type type) {
+-		if (type == typeof (Resources)) {
+-			return resources;
+-		}
+-
+-		if (type == typeof (Steroids)) {
+-			return steroids;
+-		}
+-
+-		if (type == typeof (Status)) {
+-			return notifier;
+-		}
+-
+-		if (type == typeof (Backup)) {
+-			return backup;
+-		}
+-
+-		return null;
+-	}
+-}
+diff --git a/src/tracker-store/tracker-events.c a/src/tracker-store/tracker-events.c
+deleted file mode 100644
+index 77de4c2..0000000
+--- a/src/tracker-store/tracker-events.c
++++ /dev/null
+@@ -1,402 +0,0 @@
+-/*
+- * Copyright (C) 2008, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- *
+- * Authors:
+- *  Philip Van Hoof <philip@codeminded.be>
+- */
+-
+-#include "config.h"
+-
+-#include <libtracker-data/tracker-data.h>
+-
+-#include "tracker-events.h"
+-
+-typedef struct _TrackerEventBatch TrackerEventBatch;
+-
+-struct _TrackerEventBatch
+-{
+-	struct {
+-		GArray *sub_pred_ids;
+-		GArray *obj_graph_ids;
+-	} deletes;
+-	struct {
+-		GArray *sub_pred_ids;
+-		GArray *obj_graph_ids;
+-	} inserts;
+-};
+-
+-typedef struct {
+-	/* Accessed by updates/dbus threads */
+-	GMutex mutex;
+-	GHashTable *ready;
+-
+-	/* Only accessed by updates thread */
+-	GHashTable *pending;
+-	guint total;
+-} EventsPrivate;
+-
+-static EventsPrivate *private;
+-
+-static TrackerEventBatch *
+-tracker_event_batch_new (void)
+-{
+-	TrackerEventBatch *events;
+-
+-	events = g_new0 (TrackerEventBatch, 1);
+-	events->deletes.sub_pred_ids = g_array_new (FALSE, FALSE, sizeof (gint64));
+-	events->deletes.obj_graph_ids = g_array_new (FALSE, FALSE, sizeof (gint64));
+-	events->inserts.sub_pred_ids = g_array_new (FALSE, FALSE, sizeof (gint64));
+-	events->inserts.obj_graph_ids = g_array_new (FALSE, FALSE, sizeof (gint64));
+-
+-	return events;
+-}
+-
+-static void
+-tracker_event_batch_free (TrackerEventBatch *events)
+-{
+-	g_array_unref (events->deletes.sub_pred_ids);
+-	g_array_unref (events->deletes.obj_graph_ids);
+-	g_array_unref (events->inserts.sub_pred_ids);
+-	g_array_unref (events->inserts.obj_graph_ids);
+-	g_free (events);
+-}
+-
+-static void
+-insert_vals_into_arrays (GArray *sub_pred_ids,
+-                         GArray *obj_graph_ids,
+-                         gint    graph_id,
+-                         gint    subject_id,
+-                         gint    pred_id,
+-                         gint    object_id)
+-{
+-	gint i, j, k;
+-	gint64 tmp;
+-	gint64 sub_pred_id;
+-	gint64 obj_graph_id;
+-
+-	sub_pred_id = (gint64) subject_id;
+-	sub_pred_id = sub_pred_id << 32 | pred_id;
+-	obj_graph_id = (gint64) object_id;
+-	obj_graph_id = obj_graph_id << 32 | graph_id;
+-
+-	i = 0;
+-	j = sub_pred_ids->len - 1;
+-
+-	while (j - i > 0) {
+-		k = (i + j) / 2;
+-		tmp = g_array_index (sub_pred_ids, gint64, k);
+-		if (tmp == sub_pred_id) {
+-			i = k + 1;
+-			break;
+-		} else if (tmp > sub_pred_id)
+-			j = k;
+-		else
+-			i = k + 1;
+-	}
+-
+-	g_array_insert_val (sub_pred_ids, i, sub_pred_id);
+-	g_array_insert_val (obj_graph_ids, i, obj_graph_id);
+-}
+-
+-static void
+-tracker_event_batch_add_insert_event (TrackerEventBatch *events,
+-                                      gint               graph_id,
+-                                      gint               subject_id,
+-                                      gint               pred_id,
+-                                      gint               object_id)
+-{
+-	insert_vals_into_arrays (events->inserts.sub_pred_ids,
+-	                         events->inserts.obj_graph_ids,
+-	                         graph_id,
+-	                         subject_id,
+-	                         pred_id,
+-	                         object_id);
+-}
+-
+-static void
+-tracker_event_batch_add_delete_event (TrackerEventBatch *events,
+-                                      gint               graph_id,
+-                                      gint               subject_id,
+-                                      gint               pred_id,
+-                                      gint               object_id)
+-{
+-	insert_vals_into_arrays (events->deletes.sub_pred_ids,
+-	                         events->deletes.obj_graph_ids,
+-	                         graph_id,
+-	                         subject_id,
+-	                         pred_id,
+-	                         object_id);
+-}
+-
+-static void
+-foreach_event_in_arrays (GArray               *sub_pred_ids,
+-                         GArray               *obj_graph_ids,
+-                         TrackerEventsForeach  foreach,
+-                         gpointer              user_data)
+-{
+-	guint i;
+-
+-	g_assert (sub_pred_ids->len == obj_graph_ids->len);
+-
+-	for (i = 0; i < sub_pred_ids->len; i++) {
+-		gint graph_id, subject_id, pred_id, object_id;
+-		gint64 sub_pred_id;
+-		gint64 obj_graph_id;
+-
+-		sub_pred_id = g_array_index (sub_pred_ids, gint64, i);
+-		obj_graph_id = g_array_index (obj_graph_ids, gint64, i);
+-
+-		pred_id = sub_pred_id & 0xffffffff;
+-		subject_id = sub_pred_id >> 32;
+-		graph_id = obj_graph_id & 0xffffffff;
+-		object_id = obj_graph_id >> 32;
+-
+-		foreach (graph_id, subject_id, pred_id, object_id, user_data);
+-	}
+-}
+-
+-void
+-tracker_event_batch_foreach_insert_event (TrackerEventBatch    *events,
+-                                          TrackerEventsForeach  foreach,
+-                                          gpointer              user_data)
+-{
+-	g_return_if_fail (events != NULL);
+-	g_return_if_fail (foreach != NULL);
+-
+-	foreach_event_in_arrays (events->inserts.sub_pred_ids,
+-	                         events->inserts.obj_graph_ids,
+-	                         foreach, user_data);
+-}
+-
+-void
+-tracker_event_batch_foreach_delete_event (TrackerEventBatch    *events,
+-                                          TrackerEventsForeach  foreach,
+-                                          gpointer              user_data)
+-{
+-	g_return_if_fail (events != NULL);
+-	g_return_if_fail (foreach != NULL);
+-
+-	foreach_event_in_arrays (events->deletes.sub_pred_ids,
+-	                         events->deletes.obj_graph_ids,
+-	                         foreach, user_data);
+-}
+-
+-static GHashTable *
+-tracker_event_batch_hashtable_new (void)
+-{
+-	return g_hash_table_new_full (NULL, NULL,
+-	                              (GDestroyNotify) g_object_unref,
+-	                              (GDestroyNotify) tracker_event_batch_free);
+-}
+-
+-void
+-tracker_event_batch_merge (TrackerEventBatch *dest,
+-                           TrackerEventBatch *to_copy)
+-{
+-	g_array_append_vals (dest->deletes.sub_pred_ids,
+-	                     to_copy->deletes.sub_pred_ids->data,
+-	                     to_copy->deletes.sub_pred_ids->len);
+-	g_array_append_vals (dest->deletes.obj_graph_ids,
+-	                     to_copy->deletes.obj_graph_ids->data,
+-	                     to_copy->deletes.obj_graph_ids->len);
+-	g_array_append_vals (dest->inserts.sub_pred_ids,
+-	                     to_copy->inserts.sub_pred_ids->data,
+-	                     to_copy->inserts.sub_pred_ids->len);
+-	g_array_append_vals (dest->inserts.obj_graph_ids,
+-	                     to_copy->inserts.obj_graph_ids->data,
+-	                     to_copy->inserts.obj_graph_ids->len);
+-}
+-
+-guint
+-tracker_events_get_total (void)
+-{
+-	g_return_val_if_fail (private != NULL, 0);
+-
+-	return private->total;
+-}
+-
+-static inline TrackerEventBatch *
+-ensure_event_batch (TrackerClass *rdf_type)
+-{
+-	TrackerEventBatch *events;
+-
+-	g_assert (private != NULL);
+-
+-	if (!private->pending)
+-		private->pending = tracker_event_batch_hashtable_new ();
+-
+-	events = g_hash_table_lookup (private->pending, rdf_type);
+-
+-	if (!events) {
+-		events = tracker_event_batch_new ();
+-		g_hash_table_insert (private->pending,
+-		                     g_object_ref (rdf_type),
+-		                     events);
+-	}
+-
+-	return events;
+-}
+-
+-void
+-tracker_events_add_insert (gint         graph_id,
+-                           gint         subject_id,
+-                           const gchar *subject,
+-                           gint         pred_id,
+-                           gint         object_id,
+-                           const gchar *object,
+-                           GPtrArray   *rdf_types)
+-{
+-	TrackerEventBatch *events;
+-	guint i;
+-
+-	g_return_if_fail (rdf_types != NULL);
+-	g_return_if_fail (private != NULL);
+-
+-	for (i = 0; i < rdf_types->len; i++) {
+-		if (!tracker_class_get_notify (rdf_types->pdata[i]))
+-			continue;
+-
+-		events = ensure_event_batch (rdf_types->pdata[i]);
+-		tracker_event_batch_add_insert_event (events,
+-		                                      graph_id,
+-		                                      subject_id,
+-		                                      pred_id,
+-		                                      object_id);
+-		private->total++;
+-	}
+-}
+-
+-void
+-tracker_events_add_delete (gint         graph_id,
+-                           gint         subject_id,
+-                           const gchar *subject,
+-                           gint         pred_id,
+-                           gint         object_id,
+-                           const gchar *object,
+-                           GPtrArray   *rdf_types)
+-{
+-	TrackerEventBatch *events;
+-	guint i;
+-
+-	g_return_if_fail (rdf_types != NULL);
+-	g_return_if_fail (private != NULL);
+-
+-	for (i = 0; i < rdf_types->len; i++) {
+-		if (!tracker_class_get_notify (rdf_types->pdata[i]))
+-			continue;
+-
+-		events = ensure_event_batch (rdf_types->pdata[i]);
+-		tracker_event_batch_add_delete_event (events,
+-		                                      graph_id,
+-		                                      subject_id,
+-		                                      pred_id,
+-		                                      object_id);
+-		private->total++;
+-	}
+-}
+-
+-void
+-tracker_events_transact (void)
+-{
+-	TrackerEventBatch *prev_events, *events;
+-	TrackerClass *rdf_type;
+-	GHashTableIter iter;
+-
+-	g_return_if_fail (private != NULL);
+-
+-	if (!private->pending || g_hash_table_size (private->pending) == 0)
+-		return;
+-
+-	g_mutex_lock (&private->mutex);
+-
+-	if (!private->ready) {
+-		private->ready = tracker_event_batch_hashtable_new ();
+-	}
+-
+-	g_hash_table_iter_init (&iter, private->pending);
+-
+-	while (g_hash_table_iter_next (&iter,
+-	                               (gpointer *) &rdf_type,
+-	                               (gpointer *) &events)) {
+-		prev_events = g_hash_table_lookup (private->ready,
+-		                                   rdf_type);
+-		if (prev_events) {
+-			tracker_event_batch_merge (prev_events, events);
+-			g_hash_table_iter_remove (&iter);
+-		} else {
+-			g_hash_table_iter_steal (&iter);
+-			g_hash_table_insert (private->ready,
+-			                     g_object_ref (rdf_type),
+-			                     events);
+-			/* Drop the reference stolen from the pending HT */
+-			g_object_unref (rdf_type);
+-		}
+-	}
+-
+-	private->total = 0;
+-
+-	g_mutex_unlock (&private->mutex);
+-}
+-
+-void
+-tracker_events_reset_pending (void)
+-{
+-	g_return_if_fail (private != NULL);
+-
+-	g_clear_pointer (&private->pending, g_hash_table_unref);
+-}
+-
+-static void
+-free_private (EventsPrivate *private)
+-{
+-	tracker_events_reset_pending ();
+-	g_free (private);
+-}
+-
+-void
+-tracker_events_init (void)
+-{
+-	private = g_new0 (EventsPrivate, 1);
+-	g_mutex_init (&private->mutex);
+-}
+-
+-void
+-tracker_events_shutdown (void)
+-{
+-	if (private != NULL) {
+-		free_private (private);
+-		private = NULL;
+-	} else {
+-		g_warning ("tracker_events already shutdown");
+-	}
+-}
+-
+-GHashTable *
+-tracker_events_get_pending (void)
+-{
+-	GHashTable *pending;
+-
+-	g_return_val_if_fail (private != NULL, NULL);
+-
+-	g_mutex_lock (&private->mutex);
+-	pending = private->ready;
+-	private->ready = NULL;
+-	g_mutex_unlock (&private->mutex);
+-
+-	return pending;
+-}
+diff --git a/src/tracker-store/tracker-events.h a/src/tracker-store/tracker-events.h
+deleted file mode 100644
+index 1aea15a..0000000
+--- a/src/tracker-store/tracker-events.h
++++ /dev/null
+@@ -1,71 +0,0 @@
+-/*
+- * Copyright (C) 2009, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- *
+- * Authors:
+- *  Philip Van Hoof <philip@codeminded.be>
+- */
+-
+-#ifndef __TRACKER_STORE_EVENTS_H__
+-#define __TRACKER_STORE_EVENTS_H__
+-
+-#include <libtracker-common/tracker-common.h>
+-#include <libtracker-data/tracker-data.h>
+-
+-G_BEGIN_DECLS
+-
+-typedef struct _TrackerEventBatch TrackerEventBatch;
+-
+-typedef void (*TrackerEventsForeach) (gint     graph_id,
+-                                      gint     subject_id,
+-                                      gint     pred_id,
+-                                      gint     object_id,
+-                                      gpointer user_data);
+-
+-void           tracker_events_init              (void);
+-void           tracker_events_shutdown          (void);
+-void           tracker_events_add_insert        (gint         graph_id,
+-                                                 gint         subject_id,
+-                                                 const gchar *subject,
+-                                                 gint         pred_id,
+-                                                 gint         object_id,
+-                                                 const gchar *object,
+-                                                 GPtrArray   *rdf_types);
+-void           tracker_events_add_delete        (gint         graph_id,
+-                                                 gint         subject_id,
+-                                                 const gchar *subject,
+-                                                 gint         pred_id,
+-                                                 gint         object_id,
+-                                                 const gchar *object,
+-                                                 GPtrArray   *rdf_types);
+-guint          tracker_events_get_total         (void);
+-void           tracker_events_reset_pending     (void);
+-
+-void           tracker_events_transact          (void);
+-
+-GHashTable *   tracker_events_get_pending       (void);
+-
+-void           tracker_event_batch_foreach_insert_event (TrackerEventBatch    *events,
+-                                                         TrackerEventsForeach  foreach,
+-                                                         gpointer              user_data);
+-void           tracker_event_batch_foreach_delete_event (TrackerEventBatch    *events,
+-                                                         TrackerEventsForeach  foreach,
+-                                                         gpointer              user_data);
+-
+-G_END_DECLS
+-
+-#endif /* __TRACKER_STORE_EVENTS_H__ */
+diff --git a/src/tracker-store/tracker-events.vapi a/src/tracker-store/tracker-events.vapi
+deleted file mode 100644
+index 16df92e..0000000
+--- a/src/tracker-store/tracker-events.vapi
++++ /dev/null
+@@ -1,40 +0,0 @@
+-/*
+- * Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.          See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-namespace Tracker {
+-	[CCode (cheader_filename = "tracker-store/tracker-events.h")]
+-	namespace Events {
+-		public void init ();
+-		public void shutdown ();
+-		public void add_insert (int graph_id, int subject_id, string subject, int pred_id, int object_id, string object, GLib.PtrArray rdf_types);
+-		public void add_delete (int graph_id, int subject_id, string subject, int pred_id, int object_id, string object, GLib.PtrArray rdf_types);
+-		public uint get_total ();
+-		public void reset_pending ();
+-
+-		public void transact ();
+-		public GLib.HashTable<Tracker.Class, Batch> get_pending ();
+-
+-		[CCode (lower_case_cprefix="tracker_event_batch_", cname = "TrackerEventBatch")]
+-		public class Batch {
+-			public delegate void EventsForeach (int graph_id, int subject_id, int pred_id, int object_id);
+-			public void foreach_delete_event (EventsForeach func);
+-			public void foreach_insert_event (EventsForeach func);
+-                }
+-	}
+-}
+diff --git a/src/tracker-store/tracker-locale-change.vapi a/src/tracker-store/tracker-locale-change.vapi
+deleted file mode 100644
+index afc2153..0000000
+--- a/src/tracker-store/tracker-locale-change.vapi
++++ /dev/null
+@@ -1,25 +0,0 @@
+-/*
+- * Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.          See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-namespace Tracker {
+-	[CCode (cheader_filename = "tracker-store/tracker-locale-change.h")]
+-	public void locale_change_initialize_subscription ();
+-	[CCode (cheader_filename = "tracker-store/tracker-locale-change.h")]
+-	public void locale_change_shutdown_subscription ();
+-}
+diff --git a/src/tracker-store/tracker-main.vala a/src/tracker-store/tracker-main.vala
+deleted file mode 100644
+index 0db9b66..0000000
+--- a/src/tracker-store/tracker-main.vala
++++ /dev/null
+@@ -1,402 +0,0 @@
+-/*
+- * Copyright (C) 2006, Jamie McCracken <jamiemcc@gnome.org>
+- * Copyright (C) 2008-2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-class Tracker.Main {
+-	[CCode (cname = "PACKAGE_VERSION")]
+-	extern const string PACKAGE_VERSION;
+-
+-	[CCode (cname = "SHAREDIR")]
+-	extern const string SHAREDIR;
+-
+-	const string LICENSE = "This program is free software and comes without any warranty.
+-It is licensed under version 2 or later of the General Public
+-License which can be viewed at:
+-  http://www.gnu.org/licenses/gpl.txt
+-";
+-
+-	const int SELECT_CACHE_SIZE = 100;
+-	const int UPDATE_CACHE_SIZE = 100;
+-
+-	static MainLoop main_loop;
+-	static string log_filename;
+-
+-	static uint shutdown_timeout_id;
+-	static bool shutdown;
+-
+-	static Tracker.Direct.Connection connection;
+-	static Tracker.Data.Manager data_manager;
+-
+-	/* Private command line parameters */
+-	static bool version;
+-	static int verbosity;
+-	static bool force_reindex;
+-	static bool readonly_mode;
+-	static string domain_ontology;
+-	static File cache_location;
+-	static File data_location;
+-	static File ontology_location;
+-	static string domain;
+-	static bool disable_shutdown;
+-
+-	const OptionEntry entries[] = {
+-		/* Daemon options */
+-		{ "version", 'V', 0, OptionArg.NONE, ref version, N_("Displays version information"), null },
+-		{ "verbosity", 'v', 0, OptionArg.INT, ref verbosity, N_("Logging, 0 = errors only, 1 = minimal, 2 = detailed and 3 = debug (default = 0)"), null },
+-		{ "disable-shutdown", 's', 0, OptionArg.NONE, ref disable_shutdown, N_("Disable automatic shutdown"), null },
+-
+-		/* Indexer options */
+-		{ "force-reindex", 'r', 0, OptionArg.NONE, ref force_reindex, N_("Force a re-index of all content"), null },
+-		{ "readonly-mode", 'n', 0, OptionArg.NONE, ref readonly_mode, N_("Only allow read based actions on the database"), null },
+-		{ "domain-ontology", 'd', 0, OptionArg.STRING, ref domain_ontology, N_("Load a specified domain ontology"), null },
+-		{ null }
+-	};
+-
+-	static void sanity_check_option_values (Tracker.Config config) {
+-		message ("General options:");
+-		message ("  Verbosity  ............................  %d", config.verbosity);
+-
+-		message ("Store options:");
+-		message ("  Readonly mode  ........................  %s", readonly_mode ? "yes" : "no");
+-		message ("  GraphUpdated Delay ....................  %d", config.graphupdated_delay);
+-
+-		if (domain_ontology != null)
+-			message ("  Domain ontology........................  %s", domain_ontology);
+-
+-		if (domain != null)
+-			message ("  Domain.................................  %s", domain);
+-
+-		if (cache_location != null)
+-			message ("  Cache location.........................  %s", cache_location.get_uri());
+-		if (data_location != null)
+-			message ("  Data location..........................  %s", data_location.get_uri());
+-		if (ontology_location != null)
+-			message ("  Ontology location......................  %s", ontology_location.get_uri());
+-	}
+-
+-	static void do_shutdown () {
+-		if (main_loop != null) {
+-			main_loop.quit ();
+-		}
+-
+-		shutdown = true;
+-	}
+-
+-	static bool shutdown_timeout_cb () {
+-		critical ("Could not exit in a timely fashion - terminating...");
+-		Process.exit (1);
+-	}
+-
+-	static bool in_loop = false;
+-
+-	static bool signal_handler (int signo) {
+-		/* Die if we get re-entrant signals handler calls */
+-		if (in_loop) {
+-			Process.exit (1);
+-		}
+-
+-		switch (signo) {
+-		case Posix.Signal.TERM:
+-		case Posix.Signal.INT:
+-			in_loop = true;
+-			do_shutdown ();
+-
+-			if (strsignal (signo) != null) {
+-				print ("\n");
+-				print ("Received signal:%d->'%s'", signo, strsignal (signo));
+-			}
+-			break;
+-		default:
+-			if (strsignal (signo) != null) {
+-				print ("\n");
+-				print ("Received signal:%d->'%s'", signo, strsignal (signo));
+-			}
+-			break;
+-		}
+-
+-		return true;
+-	}
+-
+-	static void initialize_signal_handler () {
+-		Unix.signal_add (Posix.Signal.TERM, () => signal_handler (Posix.Signal.TERM));
+-		Unix.signal_add (Posix.Signal.INT, () => signal_handler (Posix.Signal.INT));
+-	}
+-
+-	static void initialize_priority () {
+-		/* Set disk IO priority and scheduling */
+-		Tracker.ioprio_init ();
+-
+-		/* NOTE: We only set the nice() value when crawling, for all
+-		 * other times we don't have a nice() value. Check the
+-		 * tracker-status code to see where this is done.
+-		 */
+-	}
+-
+-	[CCode (array_length = false, array_null_terminated = true)]
+-	static string[] get_writeback_predicates () {
+-		string[] predicates_to_signal = null;
+-
+-		try {
+-			var cursor = Tracker.Data.query_sparql_cursor (data_manager, "SELECT ?predicate WHERE { ?predicate tracker:writeback true }");
+-
+-			while (cursor.next ()) {
+-				predicates_to_signal += cursor.get_string (0);
+-			}
+-		} catch (Error e) {
+-			critical ("Unable to retrieve tracker:writeback properties: %s", e.message);
+-		}
+-
+-		return predicates_to_signal;
+-	}
+-
+-	static void config_verbosity_changed_cb (Object object, ParamSpec? spec) {
+-		int verbosity = ((Tracker.Config) object).verbosity;
+-
+-		message ("Log verbosity is set to %d, %s D-Bus client lookup",
+-		         verbosity,
+-		         verbosity > 0 ? "enabling" : "disabling");
+-
+-		Tracker.DBusRequest.enable_client_lookup (verbosity > 0);
+-	}
+-
+-	public static unowned Tracker.Data.Manager get_data_manager () {
+-		return data_manager;
+-	}
+-
+-	public static unowned Tracker.Direct.Connection get_sparql_connection () {
+-		return connection;
+-	}
+-
+-	private static bool shutdown_timeout () {
+-		message ("Store shutting down after timeout");
+-		do_shutdown ();
+-		return GLib.Source.REMOVE;
+-	}
+-
+-	private static void idle_cb () {
+-		/* Do not perform shutdown in case of exotic buses */
+-		if (Tracker.IPC.bus () != GLib.BusType.SESSION)
+-			return;
+-		if (shutdown_timeout_id != 0)
+-			return;
+-		if (disable_shutdown)
+-			return;
+-
+-		message ("Store is idle, setting shutdown timeout");
+-		shutdown_timeout_id = GLib.Timeout.add_seconds (30, shutdown_timeout);
+-	}
+-
+-	private static void busy_cb () {
+-		if (shutdown_timeout_id == 0)
+-			return;
+-		message ("Store is busy, removing shutdown timeout");
+-		GLib.Source.remove (shutdown_timeout_id);
+-		shutdown_timeout_id = 0;
+-	}
+-
+-	static int main (string[] args) {
+-		Intl.setlocale (LocaleCategory.ALL, "");
+-
+-		Intl.bindtextdomain (GETTEXT_PACKAGE, LOCALEDIR);
+-		Intl.bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+-		Intl.textdomain (GETTEXT_PACKAGE);
+-
+-		/* Set timezone info */
+-		tzset ();
+-
+-		verbosity = -1;
+-
+-		try {
+-			/* Translators: this messagge will apper immediately after the
+-			 * usage string - Usage: COMMAND <THIS_MESSAGE>
+-			 */
+-			var context = new OptionContext (_("— start the tracker daemon"));
+-			context.add_main_entries (entries, null);
+-			context.parse (ref args);
+-		} catch (Error e) {
+-			printerr ("Invalid arguments, %s\n", e.message);
+-			return 1;
+-		}
+-
+-		if (version) {
+-			/* Print information */
+-			print ("\nTracker " + PACKAGE_VERSION + "\n\n" + LICENSE + "\n");
+-			return 0;
+-		}
+-
+-		/* This makes sure we don't steal all the system's resources */
+-		initialize_priority ();
+-
+-		/* Initialize major subsystems */
+-		var config = new Tracker.Config ();
+-		var db_config = new Tracker.DBConfig ();
+-
+-		/* Daemon command line arguments */
+-		if (verbosity > -1) {
+-			config.verbosity = verbosity;
+-		}
+-
+-		/* Initialize other subsystems */
+-		Tracker.Log.init (config.verbosity, out log_filename);
+-		if (log_filename != null) {
+-			message ("Using log file:'%s'", log_filename);
+-		}
+-
+-		Tracker.DomainOntology domain_ontology_config;
+-
+-		try {
+-			domain_ontology_config = new Tracker.DomainOntology (domain_ontology, null);
+-		} catch (Error e) {
+-			critical ("Could not load domain ontology definition '%s': %s", domain_ontology, e.message);
+-			return -1;
+-		}
+-
+-		cache_location = domain_ontology_config.get_cache ();
+-		data_location = domain_ontology_config.get_journal ();
+-		ontology_location = domain_ontology_config.get_ontology ();
+-		domain = domain_ontology_config.get_domain ("Tracker1");
+-
+-		sanity_check_option_values (config);
+-
+-		if (!Tracker.DBus.init ()) {
+-			return 1;
+-		}
+-
+-		/* Make sure we enable/disable the dbus client lookup */
+-		config_verbosity_changed_cb (config, null);
+-		ulong config_verbosity_id = config.notify["verbosity"].connect (config_verbosity_changed_cb);
+-
+-		DBManagerFlags flags = 0;
+-
+-		if (force_reindex) {
+-			/* TODO port backup support
+-			   backup_user_metadata (config, language); */
+-
+-			flags |= DBManagerFlags.FORCE_REINDEX;
+-		}
+-
+-		Tracker.Direct.Connection.set_default_flags (flags);
+-
+-		var notifier = Tracker.DBus.register_notifier ();
+-
+-		Tracker.Store.init (config, idle_cb, busy_cb);
+-
+-		/* Make Tracker available for introspection */
+-		if (!Tracker.DBus.register_objects ()) {
+-			return 1;
+-		}
+-
+-		if (!Tracker.DBus.register_names (domain)) {
+-			return 1;
+-		}
+-
+-		int chunk_size_mb = db_config.journal_chunk_size;
+-		size_t chunk_size = (size_t) ((size_t) chunk_size_mb * (size_t) 1024 * (size_t) 1024);
+-		string rotate_to = db_config.journal_rotate_destination;
+-
+-		if (rotate_to == "") {
+-			rotate_to = null;
+-		}
+-
+-		bool do_rotating = (chunk_size_mb != -1);
+-
+-		Tracker.DBJournal.set_rotating (do_rotating, chunk_size, rotate_to);
+-
+-		try {
+-			connection = new Tracker.Direct.Connection (Sparql.ConnectionFlags.NONE,
+-			                                            cache_location,
+-			                                            data_location,
+-			                                            ontology_location);
+-			connection.init (null);
+-		} catch (GLib.Error e) {
+-			critical ("Cannot initialize database: %s", e.message);
+-			return 1;
+-		}
+-
+-		data_manager = connection.get_data_manager ();
+-		db_config = null;
+-		notifier = null;
+-
+-		if (!shutdown) {
+-			Tracker.DBus.register_prepare_class_signal ();
+-
+-			Tracker.Events.init ();
+-			Tracker.Writeback.init (data_manager, get_writeback_predicates);
+-			Tracker.Store.resume ();
+-
+-			message ("Waiting for D-Bus requests...");
+-		}
+-
+-		/* Set our status as running, if this is FALSE, threads stop
+-		 * doing what they do and shutdown.
+-		 */
+-		if (!shutdown) {
+-			main_loop = new MainLoop ();
+-
+-			if (domain_ontology != null)
+-				Tracker.DBus.watch_domain (domain_ontology_config.get_domain(), main_loop);
+-
+-			initialize_signal_handler ();
+-
+-			main_loop.run ();
+-		}
+-
+-		/*
+-		 * Shutdown the daemon
+-		 */
+-		message ("Shutdown started");
+-
+-		Tracker.Store.shutdown ();
+-
+-		Timeout.add (5000, shutdown_timeout_cb, Priority.LOW);
+-
+-		message ("Cleaning up");
+-
+-		data_manager = null;
+-		connection = null;
+-
+-		/* Shutdown major subsystems */
+-		Tracker.Writeback.shutdown ();
+-		Tracker.Events.shutdown ();
+-		Tracker.DBus.shutdown ();
+-		Tracker.Log.shutdown ();
+-
+-		config.disconnect (config_verbosity_id);
+-		config = null;
+-
+-		/* This will free rotate_to up in the journal code */
+-		Tracker.DBJournal.set_rotating ((chunk_size_mb != -1), chunk_size, null);
+-
+-		print ("\nOK\n\n");
+-
+-		log_filename = null;
+-
+-		main_loop = null;
+-
+-		return 0;
+-	}
+-
+-	[CCode (cname = "GETTEXT_PACKAGE")]
+-	extern const string GETTEXT_PACKAGE;
+-	[CCode (cname = "LOCALEDIR")]
+-	extern const string LOCALEDIR;
+-
+-	[CCode (cname = "tzset", cheader_filename = "time.h")]
+-	extern static void tzset ();
+-}
+diff --git a/src/tracker-store/tracker-resources.vala a/src/tracker-store/tracker-resources.vala
+deleted file mode 100644
+index bb12180..0000000
+--- a/src/tracker-store/tracker-resources.vala
++++ /dev/null
+@@ -1,269 +0,0 @@
+-/*
+- * Copyright (C) 2006, Jamie McCracken <jamiemcc@gnome.org>
+- * Copyright (C) 2008-2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-[DBus (name = "org.freedesktop.Tracker1.Resources")]
+-public class Tracker.Resources : Object {
+-	public const string PATH = "/org/freedesktop/Tracker1/Resources";
+-
+-	/* I *know* that this is some arbitrary number that doesn't seem to
+-	 * resemble anything. In fact it's what I experimentally measured to
+-	 * be a good value on a default Debian testing which has
+-	 * max_message_size set to 1 000 000 000 in session.conf. I didn't have
+-	 * the feeling that this value was very much respected, as the size
+-	 * of the DBusMessage when libdbus decided to exit() the process was
+-	 * around 160 MB, and not ~ 1000 MB. So if you take 160 MB and you
+-	 * devide it by 1000000 you have an average string size of ~ 160
+-	 * bytes plus DBusMessage's overhead. If that makes this number less
+-	 * arbitrary for you, then fine.
+-	 *
+-	 * I really hope that the libdbus people get to their senses and
+-	 * either stop doing their exit() nonsense in a library, and instead
+-	 * return a clean DBusError or something, or create crystal clear
+-	 * clarity about the maximum size of a message. And make it both so
+-	 * that I can get this length at runtime (without having to parse
+-	 * libdbus's own configuration files) and my DBusMessage's current
+-	 * total length. As far as I know are both not possible. So that for
+-	 * me means that libdbus's exit() is unacceptable.
+-	 *
+-	 * Note for the debugger of the future, the "Disconnected" signal gets
+-	 * sent to us by the bus, which in turn makes libdbus-glib perform exit(). */
+-
+-	const int DBUS_ARBITRARY_MAX_MSG_SIZE = 10000000;
+-
+-	DBusConnection connection;
+-
+-	public signal void writeback ([DBus (signature = "a{iai}")] Variant subjects);
+-	public signal void graph_updated (string classname, [DBus (signature = "a(iiii)")] Variant deletes, [DBus (signature = "a(iiii)")] Variant inserts);
+-
+-	public Resources (DBusConnection connection) {
+-		this.connection = connection;
+-		Tracker.Store.set_signal_callback (on_emit_signals);
+-	}
+-
+-	public async void load (BusName sender, string uri) throws Error {
+-		var request = DBusRequest.begin (sender, "Resources.Load (uri: '%s')", uri);
+-		try {
+-			var file = File.new_for_uri (uri);
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-
+-			yield Tracker.Store.queue_turtle_import (sparql_conn, file, sender);
+-
+-			request.end ();
+-		} catch (DBInterfaceError.NO_SPACE ie) {
+-			throw new Sparql.Error.NO_SPACE (ie.message);
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	[DBus (signature = "aas")]
+-	public async Variant sparql_query (BusName sender, string query) throws Error {
+-		var request = DBusRequest.begin (sender, "Resources.SparqlQuery");
+-		request.debug ("query: %s", query);
+-		try {
+-			var builder = new VariantBuilder ((VariantType) "aas");
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-
+-			yield Tracker.Store.sparql_query (sparql_conn, query, Priority.HIGH, cursor => {
+-				while (cursor.next ()) {
+-					builder.open ((VariantType) "as");
+-
+-					for (int i = 0; i < cursor.n_columns; i++) {
+-						unowned string str = cursor.get_string (i);
+-
+-						if (str == null) {
+-							str = "";
+-						}
+-
+-						builder.add ("s", str);
+-					}
+-
+-					builder.close ();
+-				}
+-			}, sender);
+-
+-			var result = builder.end ();
+-			if (result.get_size () > DBUS_ARBITRARY_MAX_MSG_SIZE) {
+-				throw new DBusError.FAILED ("result set of the query is too large");
+-			}
+-
+-			request.end ();
+-
+-			return result;
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	public async void sparql_update (BusName sender, string update) throws Error {
+-		var request = DBusRequest.begin (sender, "Resources.SparqlUpdate");
+-		request.debug ("query: %s", update);
+-		try {
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-			yield Tracker.Store.sparql_update (sparql_conn, update, Priority.HIGH, sender);
+-
+-			request.end ();
+-		} catch (DBInterfaceError.NO_SPACE ie) {
+-			throw new Sparql.Error.NO_SPACE (ie.message);
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	[DBus (signature = "aaa{ss}")]
+-	public async Variant sparql_update_blank (BusName sender, string update) throws Error {
+-		var request = DBusRequest.begin (sender, "Resources.SparqlUpdateBlank");
+-		request.debug ("query: %s", update);
+-		try {
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-			var variant = yield Tracker.Store.sparql_update_blank (sparql_conn, update, Priority.HIGH, sender);
+-
+-			request.end ();
+-
+-			return variant;
+-		} catch (DBInterfaceError.NO_SPACE ie) {
+-			throw new Sparql.Error.NO_SPACE (ie.message);
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	public void sync (BusName sender) throws Error {
+-		var request = DBusRequest.begin (sender, "Resources.Sync");
+-		var data_manager = Tracker.Main.get_data_manager ();
+-		var data = data_manager.get_data ();
+-
+-		var sparql_conn = Tracker.Main.get_sparql_connection ();
+-		sparql_conn.sync ();
+-
+-		// sync journal if available
+-		data.sync ();
+-
+-		request.end ();
+-	}
+-
+-	public async void batch_sparql_update (BusName sender, string update) throws Error {
+-		var request = DBusRequest.begin (sender, "Resources.BatchSparqlUpdate");
+-		request.debug ("query: %s", update);
+-		try {
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-			yield Tracker.Store.sparql_update (sparql_conn, update, Priority.LOW, sender);
+-
+-			request.end ();
+-		} catch (DBInterfaceError.NO_SPACE ie) {
+-			throw new Sparql.Error.NO_SPACE (ie.message);
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	public void batch_commit () throws Error {
+-		/* no longer needed, just return */
+-	}
+-
+-	void emit_graph_updated (Class cl, Events.Batch events) {
+-		var builder = new VariantBuilder ((VariantType) "a(iiii)");
+-		events.foreach_delete_event ((graph_id, subject_id, pred_id, object_id) => {
+-			builder.add ("(iiii)", graph_id, subject_id, pred_id, object_id);
+-		});
+-		var deletes = builder.end ();
+-
+-		builder = new VariantBuilder ((VariantType) "a(iiii)");
+-		events.foreach_insert_event ((graph_id, subject_id, pred_id, object_id) => {
+-			builder.add ("(iiii)", graph_id, subject_id, pred_id, object_id);
+-		});
+-		var inserts = builder.end ();
+-
+-		graph_updated (cl.uri, deletes, inserts);
+-	}
+-
+-	void emit_writeback (HashTable<int, Array<int>> events) {
+-		var builder = new VariantBuilder ((VariantType) "a{iai}");
+-		var wb_iter = HashTableIter<int, GLib.Array<int>> (events);
+-
+-		int subject_id;
+-		unowned Array<int> types;
+-		while (wb_iter.next (out subject_id, out types)) {
+-			builder.open ((VariantType) "{iai}");
+-
+-			builder.add ("i", subject_id);
+-
+-			builder.open ((VariantType) "ai");
+-			for (int i = 0; i < types.length; i++) {
+-				builder.add ("i", types.index (i));
+-			}
+-			builder.close ();
+-
+-			builder.close ();
+-		}
+-
+-		writeback (builder.end ());
+-	}
+-
+-	void on_emit_signals (HashTable<Tracker.Class, Tracker.Events.Batch>? events, HashTable<int, GLib.Array<int>>? writebacks) {
+-		if (events != null) {
+-			var iter = HashTableIter<Tracker.Class, Tracker.Events.Batch> (events);
+-			unowned Events.Batch class_events;
+-			unowned Class cl;
+-
+-			while (iter.next (out cl, out class_events)) {
+-				emit_graph_updated (cl, class_events);
+-			}
+-		}
+-
+-		if (writebacks != null) {
+-			emit_writeback (writebacks);
+-		}
+-	}
+-
+-	~Resources () {
+-		Tracker.Store.set_signal_callback (null);
+-	}
+-
+-	[DBus (visible = false)]
+-	public void unreg_batches (string old_owner) {
+-		Tracker.Store.unreg_batches (old_owner);
+-	}
+-}
+diff --git a/src/tracker-store/tracker-resources.xml a/src/tracker-store/tracker-resources.xml
+deleted file mode 100644
+index 6c1287f..0000000
+--- a/src/tracker-store/tracker-resources.xml
++++ /dev/null
+@@ -1,64 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<node name="/org/freedesktop/Tracker1">
+-  <interface name="org.freedesktop.Tracker1.Resources">
+-
+-    <!-- Load statements from Turtle file -->
+-    <method name="Load">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="uri" direction="in" />
+-    </method>
+-
+-    <!-- SPARQL Query without updates -->
+-    <method name="SparqlQuery">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+-		  value="QVector&lt;QStringList&gt;"/>
+-      <arg type="s" name="query" direction="in" />
+-      <arg type="aas" name="result" direction="out" />
+-    </method>
+-
+-    <!-- SPARQL Update extensions, insert and delete -->
+-    <method name="SparqlUpdate">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="query" direction="in" />
+-    </method>
+-
+-    <!-- SPARQL Update extensions, insert and delete,
+-         return generated URIs for inserted blank nodes -->
+-    <method name="SparqlUpdateBlank">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="query" direction="in" />
+-      <arg type="aaa{ss}" name="result" direction="out" />
+-    </method>
+-
+-    <!-- sync data to disk -->
+-    <method name="Sync">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-    </method>
+-
+-    <!-- SPARQL Update as part of a batch, use this method when sending a
+-         possibly large amount of updates to improve performance, may delay
+-         database commit until receiving BatchCommit -->
+-    <method name="BatchSparqlUpdate">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="query" direction="in" />
+-    </method>
+-
+-    <!-- Commits pending updates to the database -->
+-    <method name="BatchCommit">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-    </method>
+-
+-   <signal name="Writeback">
+-      <arg type="a{iai}" name="subjects" />
+-   </signal>
+-
+-   <signal name="GraphUpdated">
+-      <arg type="s" name ="classname" />
+-      <arg type="a(iiii)" name="deletes" />
+-      <arg type="a(iiii)" name="inserts" />
+-   </signal>
+-
+-  </interface>
+-</node>
+diff --git a/src/tracker-store/tracker-statistics.vala a/src/tracker-store/tracker-statistics.vala
+deleted file mode 100644
+index e7f9a01..0000000
+--- a/src/tracker-store/tracker-statistics.vala
++++ /dev/null
+@@ -1,73 +0,0 @@
+-/*
+- * Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-[DBus (name = "org.freedesktop.Tracker1.Statistics")]
+-public class Tracker.Statistics : Object {
+-	public const string PATH = "/org/freedesktop/Tracker1/Statistics";
+-
+-	static bool initialized;
+-
+-	[DBus (signature = "aas")]
+-	public new Variant get (BusName sender) throws GLib.Error {
+-		var request = DBusRequest.begin (sender, "Statistics.Get");
+-		var data_manager = Tracker.Main.get_data_manager ();
+-		var ontologies = data_manager.get_ontologies ();
+-
+-		if (!initialized) {
+-			var iface = data_manager.get_db_interface ();
+-
+-			foreach (var cl in ontologies.get_classes ()) {
+-				/* xsd classes do not derive from rdfs:Resource and do not use separate tables */
+-				if (!cl.name.has_prefix ("xsd:")) {
+-					/* update statistics */
+-					var stmt = iface.create_statement (DBStatementCacheType.NONE,
+-						                           "SELECT COUNT(1) FROM \"%s\"",
+-						                            cl.name);
+-
+-					var stat_cursor = stmt.start_cursor ();
+-					if (stat_cursor.next ()) {
+-						cl.count = (int) stat_cursor.get_integer (0);
+-					} else {
+-						warning ("Unable to query instance count for class %s", cl.name);
+-					}
+-				}
+-			}
+-
+-			initialized = true;
+-		}
+-
+-		var builder = new VariantBuilder ((VariantType) "aas");
+-
+-		foreach (var cl in ontologies.get_classes ()) {
+-			if (cl.count == 0) {
+-				/* skip classes without resources */
+-				continue;
+-			}
+-
+-			builder.open ((VariantType) "as");
+-			builder.add ("s", cl.name);
+-			builder.add ("s", cl.count.to_string ());
+-			builder.close ();
+-		}
+-
+-		request.end ();
+-
+-		return builder.end ();
+-	}
+-}
+diff --git a/src/tracker-store/tracker-statistics.xml a/src/tracker-store/tracker-statistics.xml
+deleted file mode 100644
+index 1f4742e..0000000
+--- a/src/tracker-store/tracker-statistics.xml
++++ /dev/null
+@@ -1,32 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<!--
+-   The "id" input parameters can represent, in the case of a file, the
+-   full path and name of the file. In other cases, "id" can also be a
+-   unique name or URI for the specified service.
+-
+-   The "id" field uniquely identifies an entity in Tracker regardless
+-   of its service type. The live_query_id parameters in some search
+-   and retrieval methods is used to indicate whether the query should
+-   be "live". Liveness means the query can receive signals in real
+-   time to remove hits that are no longer valid and add new ones that
+-   are. These signals are emitted in response to file or volume
+-   notifications. A value of -1 should be passed if live query
+-   functionality is not desired. A live_query_id can be obtained in
+-   the future from the LiveQuery Interface.
+-  -->
+-
+-<node name="/">
+-  <interface name="org.freedesktop.Tracker1.Statistics">
+-
+-    <!-- Get statistics for services that have been indexed. Output is
+-	 in string array format: [service, no of entities]
+-      -->
+-    <method name="Get">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <annotation name="com.trolltech.QtDBus.QtTypeName.Out0"
+-		  value="QVector&lt;QStringList&gt;"/>
+-      <arg type="aas" name="service_stats" direction="out" />
+-    </method>
+-  </interface>
+-</node>
+diff --git a/src/tracker-store/tracker-status.vala a/src/tracker-store/tracker-status.vala
+deleted file mode 100644
+index d0de446..0000000
+--- a/src/tracker-store/tracker-status.vala
++++ /dev/null
+@@ -1,122 +0,0 @@
+-/*
+- * Copyright (C) 2008-2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- *
+- * Authors:
+- *  Philip Van Hoof <philip@codeminded.be>
+- */
+-
+-[DBus (name = "org.freedesktop.Tracker1.Status")]
+-public class Tracker.Status : Object {
+-	public const string PATH = "/org/freedesktop/Tracker1/Status";
+-
+-	const int PROGRESS_TIMEOUT_S = 5;
+-
+-	class WaitContext : Object {
+-		public SourceFunc callback;
+-	}
+-
+-	double _progress;
+-	string status = "Idle";
+-	uint timer_id;
+-	List<WaitContext> wait_list;
+-
+-	/**
+-	 * TrackerStatus::progress:
+-	 * @notifier: the TrackerStatus
+-	 * @status: store status
+-	 * @progress: a #gdouble indicating store progress, from 0 to 1.
+-	 *
+-	 * the ::progress signal will be emitted by TrackerStatus
+-	 * to indicate progress about the store process. @status will
+-	 * contain a translated string with the current status and @progress
+-	 * will indicate how much has been processed so far.
+-	 **/
+-	public signal void progress (string status, double progres);
+-
+-	~Status () {
+-		if (timer_id != 0) {
+-			Source.remove (timer_id);
+-		}
+-	}
+-
+-	bool
+-	busy_notification_timeout () {
+-		progress (status, _progress);
+-
+-		timer_id = 0;
+-
+-		return false;
+-	}
+-
+-	static bool first_time = true;
+-
+-	void callback (string status, double progress) {
+-		this._progress = progress;
+-
+-		if (progress == 1 && wait_list != null) {
+-			/* notify clients that tracker-store is no longer busy */
+-
+-			wait_list.reverse ();
+-			foreach (var context in wait_list) {
+-				context.callback ();
+-			}
+-
+-			wait_list = null;
+-		}
+-
+-		if (status != this.status) {
+-			this.status = status;
+-		}
+-
+-		if (timer_id == 0) {
+-			if (first_time) {
+-				this.timer_id = Idle.add (busy_notification_timeout);
+-				first_time = false;
+-			} else {
+-				timer_id = Timeout.add_seconds (PROGRESS_TIMEOUT_S, busy_notification_timeout);
+-			}
+-		}
+-
+-		while (MainContext.default ().iteration (false)) {
+-		}
+-	}
+-
+-	[DBus (visible = false)]
+-	public BusyCallback get_callback () {
+-		return callback;
+-	}
+-
+-	public double get_progress () throws Error {
+-		return this._progress;
+-	}
+-
+-	public string get_status () throws Error {
+-		return this.status;
+-	}
+-
+-	public async void wait () throws Error {
+-		if (status == "Idle") {
+-			/* tracker-store is idle */
+-		} else {
+-			var context = new WaitContext ();
+-			context.callback = wait.callback;
+-			wait_list.prepend (context);
+-			yield;
+-		}
+-	}
+-}
+diff --git a/src/tracker-store/tracker-status.xml a/src/tracker-store/tracker-status.xml
+deleted file mode 100644
+index e309939..0000000
+--- a/src/tracker-store/tracker-status.xml
++++ /dev/null
+@@ -1,26 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<node name="/">
+-  <interface name="org.freedesktop.Tracker1.Status">
+-
+-   <method name="GetStatus">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="s" name="status" direction="out" />
+-    </method>
+-    <method name="GetProgress">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-      <arg type="d" name="progress" direction="out" />
+-    </method>
+-    <method name="Wait">
+-      <annotation name="org.freedesktop.DBus.GLib.Async" value="true"/>
+-    </method>
+-
+-    <!-- Signals -->
+-    <signal name="Progress">
+-      <arg type="s" name="status" />
+-      <arg type="d" name="progress" />
+-    </signal>
+-
+-
+-  </interface>
+-</node>
+diff --git a/src/tracker-store/tracker-steroids.vala a/src/tracker-store/tracker-steroids.vala
+deleted file mode 100644
+index 1eb7bef..0000000
+--- a/src/tracker-store/tracker-steroids.vala
++++ /dev/null
+@@ -1,238 +0,0 @@
+-/*
+- * Copyright (C) 2010, Codeminded BVBA <abustany@gnome.org>
+- * Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU Lesser General Public
+- * License as published by the Free Software Foundation; either
+- * version 2.1 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * Lesser General Public License for more details.
+- *
+- * You should have received a copy of the GNU Lesser General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-[DBus (name = "org.freedesktop.Tracker1.Steroids")]
+-public class Tracker.Steroids : Object {
+-	public const string PATH = "/org/freedesktop/Tracker1/Steroids";
+-
+-	public const int BUFFER_SIZE = 65536;
+-
+-	public async string[] query (BusName sender, string query, UnixOutputStream output_stream) throws Error {
+-		var request = DBusRequest.begin (sender, "Steroids.Query");
+-		request.debug ("query: %s", query);
+-		try {
+-			string[] variable_names = null;
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-
+-			yield Tracker.Store.sparql_query (sparql_conn, query, Priority.HIGH, cursor => {
+-				var data_output_stream = new DataOutputStream (new BufferedOutputStream.sized (output_stream, BUFFER_SIZE));
+-				data_output_stream.set_byte_order (DataStreamByteOrder.HOST_ENDIAN);
+-
+-				int n_columns = cursor.n_columns;
+-
+-				int[] column_sizes = new int[n_columns];
+-				int[] column_offsets = new int[n_columns];
+-				string[] column_data = new string[n_columns];
+-
+-				variable_names = new string[n_columns];
+-				for (int i = 0; i < n_columns; i++) {
+-					variable_names[i] = cursor.get_variable_name (i);
+-				}
+-
+-				while (cursor.next ()) {
+-					int last_offset = -1;
+-
+-					for (int i = 0; i < n_columns ; i++) {
+-						unowned string str = cursor.get_string (i);
+-
+-						column_sizes[i] = str != null ? str.length : 0;
+-						column_data[i]  = str;
+-
+-						last_offset += column_sizes[i] + 1;
+-						column_offsets[i] = last_offset;
+-					}
+-
+-					data_output_stream.put_int32 (n_columns);
+-
+-					for (int i = 0; i < n_columns ; i++) {
+-						/* Cast from enum to int */
+-						data_output_stream.put_int32 ((int) cursor.get_value_type (i));
+-					}
+-
+-					for (int i = 0; i < n_columns ; i++) {
+-						data_output_stream.put_int32 (column_offsets[i]);
+-					}
+-
+-					for (int i = 0; i < n_columns ; i++) {
+-						data_output_stream.put_string (column_data[i] != null ? column_data[i] : "");
+-						data_output_stream.put_byte (0);
+-					}
+-				}
+-			}, sender);
+-
+-			request.end ();
+-
+-			return variable_names;
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	async Variant? update_internal (BusName sender, int priority, bool blank, UnixInputStream input_stream) throws Error {
+-		var request = DBusRequest.begin (sender,
+-			"Steroids.%sUpdate%s",
+-			priority != Priority.HIGH ? "Batch" : "",
+-			blank ? "Blank" : "");
+-		try {
+-			size_t bytes_read;
+-
+-			var data_input_stream = new DataInputStream (input_stream);
+-			data_input_stream.set_buffer_size (BUFFER_SIZE);
+-			data_input_stream.set_byte_order (DataStreamByteOrder.HOST_ENDIAN);
+-
+-			int query_size = data_input_stream.read_int32 (null);
+-
+-			/* We malloc one more char to ensure string is 0 terminated */
+-			uint8[] query = new uint8[query_size + 1];
+-
+-			data_input_stream.read_all (query[0:query_size], out bytes_read);
+-
+-			data_input_stream = null;
+-
+-			request.debug ("query: %s", (string) query);
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-
+-			if (!blank) {
+-				yield Tracker.Store.sparql_update (sparql_conn, (string) query, priority, sender);
+-
+-				request.end ();
+-
+-				return null;
+-			} else {
+-				var variant = yield Tracker.Store.sparql_update_blank (sparql_conn, (string) query, priority, sender);
+-
+-				request.end ();
+-
+-				return variant;
+-			}
+-		} catch (DBInterfaceError.NO_SPACE ie) {
+-			throw new Sparql.Error.NO_SPACE (ie.message);
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-
+-	public async void update (BusName sender, UnixInputStream input_stream) throws Error {
+-		yield update_internal (sender, Priority.HIGH, false, input_stream);
+-	}
+-
+-	public async void batch_update (BusName sender, UnixInputStream input_stream) throws Error {
+-		yield update_internal (sender, Priority.LOW, false, input_stream);
+-	}
+-
+-	[DBus (signature = "aaa{ss}")]
+-	public async Variant update_blank (BusName sender, UnixInputStream input_stream) throws Error {
+-		return yield update_internal (sender, Priority.HIGH, true, input_stream);
+-	}
+-
+-	[DBus (signature = "aaa{ss}")]
+-	public async Variant batch_update_blank (BusName sender, UnixInputStream input_stream) throws Error {
+-		return yield update_internal (sender, Priority.LOW, true, input_stream);
+-	}
+-
+-	[DBus (signature = "as")]
+-	public async Variant update_array (BusName sender, UnixInputStream input_stream) throws Error {
+-		var request = DBusRequest.begin (sender, "Steroids.UpdateArray");
+-		try {
+-			var data_input_stream = new DataInputStream (input_stream);
+-			data_input_stream.set_buffer_size (BUFFER_SIZE);
+-			data_input_stream.set_byte_order (DataStreamByteOrder.HOST_ENDIAN);
+-
+-			int query_count = data_input_stream.read_int32 ();
+-
+-			var combined_query = new StringBuilder ();
+-			string[] query_array = new string[query_count];
+-
+-			int i;
+-			for (i = 0; i < query_count; i++) {
+-				size_t bytes_read;
+-
+-				int query_size = data_input_stream.read_int32 ();
+-
+-				/* We malloc one more char to ensure string is 0 terminated */
+-				query_array[i] = (string) new uint8[query_size + 1];
+-
+-				data_input_stream.read_all (((uint8[]) query_array[i])[0:query_size], out bytes_read);
+-
+-				request.debug ("query: %s", query_array[i]);
+-				combined_query.append (query_array[i]);
+-			}
+-
+-			data_input_stream = null;
+-
+-			var builder = new VariantBuilder ((VariantType) "as");
+-			var sparql_conn = Tracker.Main.get_sparql_connection ();
+-
+-			// first try combined query for best possible performance
+-			try {
+-				yield Tracker.Store.sparql_update (sparql_conn, combined_query.str, Priority.LOW, sender);
+-
+-				// combined query was successful
+-				for (i = 0; i < query_count; i++) {
+-					builder.add ("s", "");
+-					builder.add ("s", "");
+-				}
+-
+-				request.end ();
+-
+-				return builder.end ();
+-			} catch {
+-				// combined query was not successful
+-				combined_query = null;
+-			}
+-
+-			// combined query was not successful, try queries one by one
+-			for (i = 0; i < query_count; i++) {
+-				request.debug ("query: %s", query_array[i]);
+-
+-				try {
+-					yield Tracker.Store.sparql_update (sparql_conn, query_array[i], Priority.LOW, sender);
+-					builder.add ("s", "");
+-					builder.add ("s", "");
+-				} catch (Error e1) {
+-					builder.add ("s", "org.freedesktop.Tracker1.SparqlError.Internal");
+-					builder.add ("s", e1.message);
+-				}
+-
+-			}
+-
+-			request.end ();
+-
+-			return builder.end ();
+-		} catch (Error e) {
+-			request.end (e);
+-			if (e is Sparql.Error) {
+-				throw e;
+-			} else {
+-				throw new Sparql.Error.INTERNAL (e.message);
+-			}
+-		}
+-	}
+-}
+diff --git a/src/tracker-store/tracker-store.desktop.in a/src/tracker-store/tracker-store.desktop.in
+deleted file mode 100644
+index cfc156c..0000000
+--- a/src/tracker-store/tracker-store.desktop.in
++++ /dev/null
+@@ -1,12 +0,0 @@
+-[Desktop Entry]
+-Name=Tracker Store
+-Comment=Metadata database store and lookup manager
+-Exec=gdbus call -e -d org.freedesktop.DBus -o /org/freedesktop/DBus -m org.freedesktop.DBus.StartServiceByName org.freedesktop.Tracker1 0
+-Terminal=false
+-Type=Application
+-Categories=Utility;
+-X-GNOME-Autostart-enabled=true
+-X-KDE-autostart-after=panel
+-X-KDE-StartupNotify=false
+-X-KDE-UniqueApplet=true
+-NoDisplay=true
+diff --git a/src/tracker-store/tracker-store.service.in a/src/tracker-store/tracker-store.service.in
+deleted file mode 100644
+index 928a789..0000000
+--- a/src/tracker-store/tracker-store.service.in
++++ /dev/null
+@@ -1,10 +0,0 @@
+-[Unit]
+-Description=Tracker metadata database store and lookup manager
+-
+-[Service]
+-Type=dbus
+-BusName=org.freedesktop.Tracker1
+-ExecStart=@libexecdir@/tracker-store
+-Restart=on-failure
+-# Don't restart after tracker daemon -k (aka tracker-control -k)
+-RestartPreventExitStatus=SIGKILL
+diff --git a/src/tracker-store/tracker-store.vala a/src/tracker-store/tracker-store.vala
+deleted file mode 100644
+index f7b03a6..0000000
+--- a/src/tracker-store/tracker-store.vala
++++ /dev/null
+@@ -1,311 +0,0 @@
+-/*
+- * Copyright (C) 2009-2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- *
+- * Author: Philip Van Hoof <philip@codeminded.be>
+- */
+-
+-public class Tracker.Store {
+-	const int MAX_CONCURRENT_QUERIES = 2;
+-
+-	const int MAX_TASK_TIME = 30;
+-	const int GRAPH_UPDATED_IMMEDIATE_EMIT_AT = 50000;
+-
+-	static int max_task_time;
+-	static bool active;
+-
+-	static Tracker.Config config;
+-	static uint signal_timeout;
+-	static int n_updates;
+-
+-	static HashTable<string, Cancellable> client_cancellables;
+-
+-	public delegate void SignalEmissionFunc (HashTable<Tracker.Class, Tracker.Events.Batch>? graph_updated, HashTable<int, GLib.Array<int>>? writeback);
+-	static unowned SignalEmissionFunc signal_callback;
+-
+-	public delegate void SparqlQueryInThread (Sparql.Cursor cursor) throws Error;
+-
+-	public delegate void StateCallback ();
+-	static unowned StateCallback idle_cb;
+-	static unowned StateCallback busy_cb;
+-	static bool busy;
+-
+-	class CursorTask {
+-		public Sparql.Cursor cursor;
+-		public unowned SourceFunc callback;
+-		public unowned SparqlQueryInThread thread_func;
+-		public Error error;
+-
+-		public CursorTask (Sparql.Cursor cursor) {
+-			this.cursor = cursor;
+-		}
+-	}
+-
+-	static ThreadPool<CursorTask> cursor_pool;
+-
+-	private static void cursor_dispatch_cb (owned CursorTask task) {
+-		try {
+-			task.thread_func (task.cursor);
+-		} catch (Error e) {
+-			task.error = e;
+-		}
+-
+-		Idle.add (() => {
+-			task.callback ();
+-			update_state ();
+-			return false;
+-		});
+-	}
+-
+-	public static void init (Tracker.Config config_p, StateCallback idle, StateCallback busy) {
+-		string max_task_time_env = Environment.get_variable ("TRACKER_STORE_MAX_TASK_TIME");
+-		if (max_task_time_env != null) {
+-			max_task_time = int.parse (max_task_time_env);
+-		} else {
+-			max_task_time = MAX_TASK_TIME;
+-		}
+-
+-		client_cancellables = new HashTable <string, Cancellable> (str_hash, str_equal);
+-
+-		try {
+-			cursor_pool = new ThreadPool<CursorTask>.with_owned_data (cursor_dispatch_cb, 16, false);
+-		} catch (Error e) {
+-			// Ignore harmless error
+-		}
+-
+-		/* as the following settings are global for unknown reasons,
+-		   let's use the same settings as gio, otherwise the used settings
+-		   are rather random */
+-		ThreadPool.set_max_idle_time (15 * 1000);
+-		ThreadPool.set_max_unused_threads (2);
+-
+-		config = config_p;
+-		idle_cb = idle;
+-		busy_cb = busy;
+-		idle_cb ();
+-	}
+-
+-	public static void shutdown () {
+-		if (signal_timeout != 0) {
+-			Source.remove (signal_timeout);
+-			signal_timeout = 0;
+-		}
+-	}
+-
+-	private static Cancellable create_cancellable (string client_id) {
+-		var client_cancellable = client_cancellables.lookup (client_id);
+-
+-		if (client_cancellable == null) {
+-			client_cancellable = new Cancellable ();
+-			client_cancellables.insert (client_id, client_cancellable);
+-		}
+-
+-		var task_cancellable = new Cancellable ();
+-		client_cancellable.connect (() => {
+-			task_cancellable.cancel ();
+-		});
+-
+-		return task_cancellable;
+-	}
+-
+-	private static void do_emit_signals () {
+-		signal_callback (Tracker.Events.get_pending (), Tracker.Writeback.get_ready ());
+-	}
+-
+-	private static void ensure_signal_timeout () {
+-		if (signal_timeout == 0) {
+-			signal_timeout = Timeout.add (config.graphupdated_delay, () => {
+-				do_emit_signals ();
+-				if (n_updates == 0) {
+-					signal_timeout = 0;
+-					return false;
+-				} else {
+-					return true;
+-				}
+-			});
+-		}
+-	}
+-
+-	public static async void sparql_query (Tracker.Direct.Connection conn, string sparql, int priority, SparqlQueryInThread in_thread, string client_id) throws Error {
+-		var cancellable = create_cancellable (client_id);
+-		uint timeout_id = 0;
+-
+-		if (max_task_time != 0) {
+-			timeout_id = Timeout.add_seconds (max_task_time, () => {
+-				cancellable.cancel ();
+-				timeout_id = 0;
+-				return false;
+-			});
+-		}
+-
+-		var cursor = yield conn.query_async (sparql, cancellable);
+-
+-		if (timeout_id != 0)
+-			GLib.Source.remove (timeout_id);
+-
+-		var task = new CursorTask (cursor);
+-		task.thread_func = in_thread;
+-		task.callback = sparql_query.callback;
+-
+-		try {
+-			cursor_pool.add (task);
+-		} catch (Error e) {
+-			// Ignore harmless error
+-		}
+-
+-		update_state ();
+-
+-		yield;
+-
+-		if (task.error != null)
+-			throw task.error;
+-	}
+-
+-	private static void pre_update () {
+-		n_updates++;
+-		update_state ();
+-		ensure_signal_timeout ();
+-	}
+-
+-	private static void post_update () {
+-		n_updates--;
+-		update_state ();
+-	}
+-
+-	public static async void sparql_update (Tracker.Direct.Connection conn, string sparql, int priority, string client_id) throws Error {
+-		if (!active)
+-			throw new Sparql.Error.UNSUPPORTED ("Store is not active");
+-		pre_update ();
+-		var cancellable = create_cancellable (client_id);
+-		yield conn.update_async (sparql, priority, cancellable);
+-		post_update ();
+-	}
+-
+-	public static async Variant sparql_update_blank (Tracker.Direct.Connection conn, string sparql, int priority, string client_id) throws Error {
+-		if (!active)
+-			throw new Sparql.Error.UNSUPPORTED ("Store is not active");
+-		pre_update ();
+-		var cancellable = create_cancellable (client_id);
+-		var nodes = yield conn.update_blank_async (sparql, priority, cancellable);
+-		post_update ();
+-
+-		return nodes;
+-	}
+-
+-	public static async void queue_turtle_import (Tracker.Direct.Connection conn, File file, string client_id) throws Error {
+-		if (!active)
+-			throw new Sparql.Error.UNSUPPORTED ("Store is not active");
+-		pre_update ();
+-		var cancellable = create_cancellable (client_id);
+-		yield conn.load_async (file, cancellable);
+-		post_update ();
+-	}
+-
+-	public static void unreg_batches (string client_id) {
+-		Cancellable cancellable = client_cancellables.lookup (client_id);
+-
+-		if (cancellable != null) {
+-			cancellable.cancel ();
+-			client_cancellables.remove (client_id);
+-			update_state ();
+-		}
+-	}
+-
+-	public static async void pause () {
+-		Tracker.Store.active = false;
+-
+-		var sparql_conn = Tracker.Main.get_sparql_connection ();
+-		sparql_conn.sync ();
+-	}
+-
+-	public static void resume () {
+-		Tracker.Store.active = true;
+-	}
+-
+-	private static void update_state () {
+-		bool cur_busy;
+-
+-		cur_busy = (!Tracker.Store.active ||          /* Keep busy while paused */
+-		            n_updates != 0 ||                 /* There are updates */
+-		            cursor_pool.unprocessed () > 0 || /* Select cursor pool is busy */
+-		            cursor_pool.get_num_threads () > 0);
+-
+-		if (busy == cur_busy)
+-			return;
+-
+-		busy = cur_busy;
+-		if (busy)
+-			busy_cb ();
+-		else
+-			idle_cb ();
+-	}
+-
+-	private static void on_statements_committed () {
+-		Tracker.Events.transact ();
+-		Tracker.Writeback.transact ();
+-		check_graph_updated_signal ();
+-		update_state ();
+-	}
+-
+-	private static void on_statements_rolled_back () {
+-		Tracker.Events.reset_pending ();
+-		Tracker.Writeback.reset_pending ();
+-	}
+-
+-	private static void check_graph_updated_signal () {
+-		/* Check for whether we need an immediate emit */
+-		if (Tracker.Events.get_total () > GRAPH_UPDATED_IMMEDIATE_EMIT_AT) {
+-			// immediately emit signals for already committed transaction
+-			Idle.add (() => {
+-				do_emit_signals ();
+-				return false;
+-			});
+-		}
+-	}
+-
+-	private static void on_statement_inserted (int graph_id, string? graph, int subject_id, string subject, int pred_id, int object_id, string? object, PtrArray rdf_types) {
+-		Tracker.Events.add_insert (graph_id, subject_id, subject, pred_id, object_id, object, rdf_types);
+-		Tracker.Writeback.check (graph_id, graph, subject_id, subject, pred_id, object_id, object, rdf_types);
+-	}
+-
+-	private static void on_statement_deleted (int graph_id, string? graph, int subject_id, string subject, int pred_id, int object_id, string? object, PtrArray rdf_types) {
+-		Tracker.Events.add_delete (graph_id, subject_id, subject, pred_id, object_id, object, rdf_types);
+-		Tracker.Writeback.check (graph_id, graph, subject_id, subject, pred_id, object_id, object, rdf_types);
+-	}
+-
+-	public static void enable_signals () {
+-		var data_manager = Tracker.Main.get_data_manager ();
+-		var data = data_manager.get_data ();
+-		data.add_insert_statement_callback (on_statement_inserted);
+-		data.add_delete_statement_callback (on_statement_deleted);
+-		data.add_commit_statement_callback (on_statements_committed);
+-		data.add_rollback_statement_callback (on_statements_rolled_back);
+-	}
+-
+-	public static void disable_signals () {
+-		var data_manager = Tracker.Main.get_data_manager ();
+-		var data = data_manager.get_data ();
+-		data.remove_insert_statement_callback (on_statement_inserted);
+-		data.remove_delete_statement_callback (on_statement_deleted);
+-		data.remove_commit_statement_callback (on_statements_committed);
+-		data.remove_rollback_statement_callback (on_statements_rolled_back);
+-	}
+-
+-	public static void set_signal_callback (SignalEmissionFunc? func) {
+-		signal_callback = func;
+-	}
+-}
+diff --git a/src/tracker-store/tracker-writeback.c a/src/tracker-store/tracker-writeback.c
+deleted file mode 100644
+index 4026b92..0000000
+--- a/src/tracker-store/tracker-writeback.c
++++ /dev/null
+@@ -1,239 +0,0 @@
+-/*
+- * Copyright (C) 2009, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- *
+- * Authors:
+- *  Philip Van Hoof <philip@codeminded.be>
+- */
+-
+-#include "config.h"
+-
+-#include <libtracker-data/tracker-data.h>
+-
+-#include "tracker-writeback.h"
+-
+-typedef struct {
+-	/* Accessed by updates thread */
+-	GHashTable *allowances;
+-	GHashTable *pending_events;
+-
+-	/* Accessed by both updates and dbus threads */
+-	GMutex mutex;
+-	GHashTable *ready_events;
+-} WritebackPrivate;
+-
+-static WritebackPrivate *private;
+-
+-static GArray*
+-rdf_types_to_array (GPtrArray *rdf_types)
+-{
+-	GArray *new_types;
+-	guint n;
+-
+-	new_types =  g_array_sized_new (FALSE, FALSE, sizeof (gint), rdf_types->len);
+-
+-	for (n = 0; n < rdf_types->len; n++) {
+-		gint id = tracker_class_get_id (rdf_types->pdata[n]);
+-		g_array_append_val (new_types, id);
+-	}
+-
+-	return new_types;
+-}
+-
+-static void
+-array_free (GArray *array)
+-{
+-	g_array_free (array, TRUE);
+-}
+-
+-void
+-tracker_writeback_check (gint         graph_id,
+-                         const gchar *graph,
+-                         gint         subject_id,
+-                         const gchar *subject,
+-                         gint         pred_id,
+-                         gint         object_id,
+-                         const gchar *object,
+-                         GPtrArray   *rdf_types)
+-{
+-	/* When graph is NULL, the graph is the default one. We only do
+-	 * writeback reporting in the default graph (update queries that
+-	 * aren't coming from the miner)
+-	 */
+-
+-	if (graph != NULL) {
+-		/* g_debug ("Not doing writeback check, no graph"); */
+-		return;
+-	}
+-
+-	g_return_if_fail (private != NULL);
+-
+-	if (g_hash_table_lookup (private->allowances, GINT_TO_POINTER (pred_id))) {
+-		if (!private->pending_events) {
+-			private->pending_events = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+-			                                                 (GDestroyNotify) NULL,
+-			                                                 (GDestroyNotify) NULL);
+-		}
+-
+-		g_hash_table_insert (private->pending_events,
+-		                     GINT_TO_POINTER (subject_id),
+-		                     rdf_types_to_array (rdf_types));
+-	}
+-}
+-
+-void
+-tracker_writeback_reset_pending ()
+-{
+-	g_return_if_fail (private != NULL);
+-
+-	if (private->pending_events) {
+-		g_hash_table_remove_all (private->pending_events);
+-	}
+-}
+-
+-void
+-tracker_writeback_reset_ready ()
+-{
+-	g_return_if_fail (private != NULL);
+-
+-	if (private->ready_events) {
+-		g_hash_table_unref (private->ready_events);
+-		private->ready_events = NULL;
+-	}
+-}
+-
+-GHashTable *
+-tracker_writeback_get_ready (void)
+-{
+-	GHashTable *events;
+-
+-	g_return_val_if_fail (private != NULL, NULL);
+-
+-	g_mutex_lock (&private->mutex);
+-	events = private->ready_events;
+-	private->ready_events = NULL;
+-	g_mutex_unlock (&private->mutex);
+-
+-	return events;
+-}
+-
+-static void
+-free_private (gpointer user_data)
+-{
+-	WritebackPrivate *private;
+-
+-	private = user_data;
+-	if (private->ready_events)
+-		g_hash_table_unref (private->ready_events);
+-	if (private->pending_events)
+-		g_hash_table_unref (private->pending_events);
+-	g_hash_table_unref (private->allowances);
+-	g_free (private);
+-}
+-
+-void
+-tracker_writeback_init (TrackerDataManager                *data_manager,
+-                        TrackerWritebackGetPredicatesFunc  func)
+-{
+-	TrackerOntologies *ontologies;
+-	GStrv predicates_to_signal;
+-	gint i, count;
+-
+-	g_return_if_fail (private == NULL);
+-
+-	private = g_new0 (WritebackPrivate, 1);
+-	g_mutex_init (&private->mutex);
+-
+-	private->allowances = g_hash_table_new_full (g_direct_hash,
+-	                                             g_direct_equal,
+-	                                             NULL,
+-	                                             NULL);
+-
+-	g_message ("Setting up predicates for writeback notification...");
+-
+-	if (!func) {
+-		g_message ("  No predicates set, no TrackerWritebackGetPredicatesFunc");
+-		return;
+-	}
+-
+-	predicates_to_signal = (*func)();
+-
+-	if (!predicates_to_signal) {
+-		g_message ("  No predicates set, none are configured in ontology");
+-		return;
+-	}
+-
+-	count = g_strv_length (predicates_to_signal);
+-	ontologies = tracker_data_manager_get_ontologies (data_manager);
+-
+-	for (i = 0; i < count; i++) {
+-		TrackerProperty *predicate = tracker_ontologies_get_property_by_uri (ontologies, predicates_to_signal[i]);
+-		if (predicate) {
+-			gint id = tracker_property_get_id (predicate);
+-			g_message ("  Adding:'%s'", predicates_to_signal[i]);
+-			g_hash_table_insert (private->allowances,
+-			                     GINT_TO_POINTER (id),
+-			                     GINT_TO_POINTER (TRUE));
+-		}
+-	}
+-
+-	g_strfreev (predicates_to_signal);
+-}
+-
+-void
+-tracker_writeback_transact (void)
+-{
+-	GHashTableIter iter;
+-	gpointer key, value;
+-
+-	g_return_if_fail (private != NULL);
+-
+-	if (!private->pending_events)
+-		return;
+-
+-	g_mutex_lock (&private->mutex);
+-
+-	if (!private->ready_events) {
+-		private->ready_events = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+-		                                               (GDestroyNotify) NULL,
+-		                                               (GDestroyNotify) array_free);
+-	}
+-
+-	g_hash_table_iter_init (&iter, private->pending_events);
+-
+-	while (g_hash_table_iter_next (&iter, &key, &value)) {
+-		g_hash_table_insert (private->ready_events, key, value);
+-		g_hash_table_iter_remove (&iter);
+-	}
+-
+-	g_mutex_unlock (&private->mutex);
+-}
+-
+-void
+-tracker_writeback_shutdown (void)
+-{
+-	g_return_if_fail (private != NULL);
+-
+-	tracker_writeback_reset_pending ();
+-
+-	/* Perhaps hurry an emit of the ready events here? We're shutting down,
+-	 * so I guess we're not required to do that here ... ? */
+-	g_clear_pointer (&private->ready_events, g_hash_table_unref);
+-
+-	free_private (private);
+-	private = NULL;
+-}
+diff --git a/src/tracker-store/tracker-writeback.h a/src/tracker-store/tracker-writeback.h
+deleted file mode 100644
+index 57d09da..0000000
+--- a/src/tracker-store/tracker-writeback.h
++++ /dev/null
+@@ -1,50 +0,0 @@
+-/*
+- * Copyright (C) 2009, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- *
+- * Authors:
+- *  Philip Van Hoof <philip@codeminded.be>
+- */
+-
+-#ifndef __TRACKER_STORE_WRITEBACK_H__
+-#define __TRACKER_STORE_WRITEBACK_H__
+-
+-#include <libtracker-common/tracker-dbus.h>
+-
+-G_BEGIN_DECLS
+-
+-typedef GStrv (*TrackerWritebackGetPredicatesFunc) ();
+-
+-void        tracker_writeback_init          (TrackerDataManager                *data_manager,
+-                                             TrackerWritebackGetPredicatesFunc  callback);
+-void        tracker_writeback_shutdown      (void);
+-void        tracker_writeback_check         (gint         graph_id,
+-                                             const gchar *graph,
+-                                             gint         subject_id,
+-                                             const gchar *subject,
+-                                             gint         pred_id,
+-                                             gint         object_id,
+-                                             const gchar *object,
+-                                             GPtrArray   *rdf_types);
+-GHashTable* tracker_writeback_get_ready     (void);
+-void        tracker_writeback_reset_pending (void);
+-void        tracker_writeback_reset_ready   (void);
+-void        tracker_writeback_transact      (void);
+-
+-G_END_DECLS
+-
+-#endif /* __TRACKER_STORE_WRITEBACK_H__ */
+diff --git a/src/tracker-store/tracker-writeback.vapi a/src/tracker-store/tracker-writeback.vapi
+deleted file mode 100644
+index 7c48512..0000000
+--- a/src/tracker-store/tracker-writeback.vapi
++++ /dev/null
+@@ -1,33 +0,0 @@
+-/*
+- * Copyright (C) 2011, Nokia <ivan.frade@nokia.com>
+- *
+- * This library is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public
+- * License as published by the Free Software Foundation; either
+- * version 2 of the License, or (at your option) any later version.
+- *
+- * This library is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.          See the GNU
+- * General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public
+- * License along with this library; if not, write to the
+- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+- * Boston, MA  02110-1301, USA.
+- */
+-
+-namespace Tracker {
+-	[CCode (array_null_terminated = true, has_target = false, cheader_filename = "tracker-store/tracker-writeback.h")]
+-	public delegate string[] WritebackGetPredicatesFunc ();
+-
+-	[CCode (cheader_filename = "tracker-store/tracker-writeback.h")]
+-	namespace Writeback {
+-		public void init (Tracker.Data.Manager data_manager, WritebackGetPredicatesFunc callback);
+-		public void shutdown ();
+-		public void check (int graph_id, string graph, int subject_id, string subject, int pred_id, int object_id, string object, GLib.PtrArray rdf_types);
+-		public GLib.HashTable<int, GLib.Array<int>> get_ready ();
+-		public void reset_pending ();
+-		public void transact ();
+-	}
+-}
