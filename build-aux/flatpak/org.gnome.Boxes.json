@@ -17,6 +17,7 @@
         "--system-talk-name=org.freedesktop.Accounts",
         "--filesystem=/var/lib/AccountsService/icons:ro",
         "--talk-name=org.freedesktop.Tracker1",
+        "--env=TRACKER_SPARQL_BACKEND=bus",
         "--talk-name=org.freedesktop.secrets",
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
@@ -279,9 +280,9 @@
             ],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/tracker/2.3/tracker-2.3.0.tar.xz",
-                    "sha256": "2c04534da83419b0bc65216e367da51a420f52bb8449f4cc4542c651e5c6bf7b"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git",
+                    "branch": "tracker-2.3"
                 }
             ]
         },
@@ -312,9 +313,9 @@
             ],
             "sources": [
                 {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/tracker-miners/2.3/tracker-miners-2.3.0.tar.xz",
-                    "sha256" : "ade7d61d1ee22288a5adcf02652e81fd1d3ade4d98270f14203fe8ba4183c7cf"
+                    "type": "git",
+                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git",
+                    "branch" : "tracker-miners-2.3"
                 }
             ]
         },
