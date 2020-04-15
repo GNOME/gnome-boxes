@@ -12,6 +12,7 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     private ToggleButton customize_button;
     [GtkChild]
     private Stack customization_stack;
+    private GLib.List<Boxes.Property> resource_properties;
 
     private Cancellable cancellable = new GLib.Cancellable ();
 
@@ -22,6 +23,8 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     }
 
     public async void setup (VMCreator vm_creator) {
+        resource_properties = new GLib.List<Boxes.Property> ();
+
         try {
             artifact = yield vm_creator.create_vm (cancellable);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
@@ -70,7 +73,6 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     }
 
     private void populate_customization_grid (LibvirtMachine machine) {
-        var resource_properties = new GLib.List<Boxes.Property> ();
         machine.properties.get_resources_properties (ref resource_properties);
 
         return_if_fail (resource_properties.length () > 0);
@@ -115,6 +117,11 @@ private class Boxes.AssistantReviewPage : AssistantPage {
             });
             yield;
             disconnect (wait);
+        }
+
+        // Let's apply all deferred changes in properties.
+        foreach (var property in resource_properties) {
+            property.flush ();
         }
 
         done (artifact);
