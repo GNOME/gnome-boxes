@@ -274,8 +274,6 @@ private class Boxes.VMConfigurator {
         foreach (var device in domain.get_devices ()) {
             if (device is DomainInterface)
                 iface = device as DomainInterface;
-            else if (device is DomainGraphicsSpice)
-                graphics = device as DomainGraphicsSpice;
             else if (device is DomainChannel) {
                 var device_channel = device as DomainChannel;
                 if (device_channel.get_target_name () == WEBDAV_CHANNEL_URI)
@@ -316,8 +314,6 @@ private class Boxes.VMConfigurator {
 
         enable_boot_menu (domain, supports_alternative_boot_device);
 
-        if (graphics != null)
-            devices.prepend (create_graphics_device ());
         if (channel_webdav == null)
             devices.prepend (create_webdav_channel ());
 
