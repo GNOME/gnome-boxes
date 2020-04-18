@@ -1,37 +1,37 @@
 # Chinese (China) translation for gnome-boxes.
-# Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
+# Copyright (C) 2012-2019 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # tuhaihe <1132321739qq@gmail.com>, 2012.
 # YunQiang Su <wzssyqa@gmail.com>, 2012, 2013.
 # Tong Hui <tonghuix@gmail.com>, 2013, 2014.
 # Mingcong Bai <jeffbai@aosc.xyz>, 2015, 2016, 2018.
 # lumingzh <lumingzh@qq.com>, 2016.
-# Dingzhong Chen <wsxy162@gmail.com>, 2016.
+# Dingzhong Chen <wsxy162@gmail.com>, 2016-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2018-05-23 14:01+0000\n"
-"PO-Revision-Date: 2018-05-24 15:07+0800\n"
-"Last-Translator: Mingcong Bai <jeffbai@aosc.xyz>\n"
+"POT-Creation-Date: 2019-09-09 13:05+0000\n"
+"PO-Revision-Date: 2019-09-13 00:15+0800\n"
+"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Gtranslator 3.32.1\n"
 
-#: data/org.gnome.Boxes.appdata.xml.in:5
+#: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
 msgstr "GNOME Boxes"
 
-#: data/org.gnome.Boxes.appdata.xml.in:6
+#: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Simple remote and virtual machines"
 msgstr "简单的远程管理和虚拟机"
 
-#: data/org.gnome.Boxes.appdata.xml.in:8
+#: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
 "A simple GNOME 3 application to access remote or virtual systems. Unlike "
 "some other virtual machine management software, Boxes is targeted towards "
@@ -43,7 +43,7 @@ msgstr ""
 "Boxes 专为桌面终端用户打造。因此，Boxes 并不会提供更多调整虚拟机的高级选项。"
 "Boxes 会将重点放在让用户不费劲就能搞定一切。"
 
-#: data/org.gnome.Boxes.appdata.xml.in:15
+#: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -53,8 +53,12 @@ msgstr ""
 "假如您希望通过一种安全方便的方式来尝试一款新操作系统或自己喜爱的操作系统的新"
 "版本（稳定性未知），或连接到一台远程机器（如办公室内），推荐您使用 Boxes。"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: src/app-window.vala:132 src/app-window.vala:249 src/app-window.vala:251
+#: data/org.gnome.Boxes.appdata.xml.in:64
+msgid "The GNOME Project"
+msgstr "GNOME 项目"
+
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:116
+#: src/app-window.vala:137 src/app-window.vala:258 src/app-window.vala:260
 #: src/main.vala:72 src/topbar.vala:94
 msgid "Boxes"
 msgstr "Boxes"
@@ -69,13 +73,8 @@ msgstr "查看和使用虚拟机"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;"
-msgstr "virtual machine;vm;虚拟机;"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.Boxes.desktop.in:10
-msgid "gnome-boxes"
-msgstr "gnome-boxes"
+msgid "virtual machine;vm;vnc;rdp;"
+msgstr "virtual machine;vm;vnc;rdp;虚拟机;远程桌面;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Collections"
@@ -121,13 +120,40 @@ msgstr "窗口最大化"
 msgid "Window maximized state"
 msgstr "窗口最大化状态"
 
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "First run"
+msgstr "首次运行"
+
 #: data/org.gnome.boxes.gschema.xml:54
+msgid "Whether Boxes is running for the first time"
+msgstr "Boxes 是否第一次运行"
+
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Shared folders"
 msgstr "共享文件夹"
 
-#: data/org.gnome.boxes.gschema.xml:55
+#: data/org.gnome.boxes.gschema.xml:62
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "包含各个共享文件夹名称及映射路径的数组"
+
+#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+msgid "Connect to a Box"
+msgstr "连接到 Box"
+
+#: data/ui/assistant/remote-connection.ui:22
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp:// or "
+"vnc://."
+msgstr "输入要连接的地址。地址可以以 spice://、rdp:// 或者 vnc:// 开头。"
+
+#: data/ui/assistant/remote-connection.ui:37
+#: data/ui/shared-folder-popover.ui:97 src/properties-window.vala:58
+msgid "Cancel"
+msgstr "取消"
+
+#: data/ui/assistant/remote-connection.ui:45
+msgid "Connect"
+msgstr "连接"
 
 #: data/ui/auth-notification.ui:39
 msgid "_Username"
@@ -142,51 +168,64 @@ msgid "Sign In"
 msgstr "登录"
 
 #. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:13
+#: data/ui/collection-filter-switcher.ui:14
 msgid "All"
 msgstr "所有"
 
 #. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:26
+#: data/ui/collection-filter-switcher.ui:29
 msgid "Local"
 msgstr "本地"
 
 #. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:39
+#: data/ui/collection-filter-switcher.ui:44
 msgid "Remote"
 msgstr "远程"
 
-#: data/ui/collection-toolbar.ui:22
-msgid "_New"
-msgstr "新建(_N)"
+#: data/ui/collection-toolbar.ui:27
+msgid "New"
+msgstr "新建"
 
-#: data/ui/collection-toolbar.ui:41 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:110
-#: data/ui/wizard-toolbar.ui:205
+#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
+#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
+#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
+#: data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "后退"
 
-#: data/ui/collection-toolbar.ui:65
+#: data/ui/collection-toolbar.ui:74
+msgid "Application Menu"
+msgstr "应用程序菜单"
+
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "选择项目"
 
-#: data/ui/collection-toolbar.ui:93
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "列表视图"
 
-#: data/ui/collection-toolbar.ui:121
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "网格视图"
 
-#: data/ui/collection-toolbar.ui:148 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:184 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "搜索"
 
-#: data/ui/display-page.ui:85
+#: data/ui/collection-toolbar.ui:212
+msgid "Create a Virtual Machine…"
+msgstr "创建虚拟机…"
+
+#: data/ui/collection-toolbar.ui:219
+msgid "Connect to a Remote Computer…"
+msgstr "连接到远程计算机…"
+
+#: data/ui/display-page.ui:89
 msgid "Ready to Receive File"
 msgstr "已准备好接收文件"
 
-#: data/ui/display-page.ui:105
+#: data/ui/display-page.ui:109
 msgid "You will find your file in the Downloads directory."
 msgstr "您将在下载文件夹找到您的文件。"
 
@@ -208,11 +247,11 @@ msgstr "最先进的虚拟化技术"
 
 #: data/ui/empty-boxes.ui:82
 msgid "Boxes can be virtual or remote machines."
-msgstr "Boxes 可以是虚拟机或者远程计算机。"
+msgstr "Box 可以是虚拟机或者远程计算机。"
 
 #: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>New</b> button to create your first one."
-msgstr "点击 <b>新建</b> 按钮来创建你的第一个 box 。"
+msgid "Just hit the <b>+</b> button to create your first one."
+msgstr "点击 <b>+</b> 按钮来创建你的第一个 box 。"
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -262,7 +301,7 @@ msgstr "切换到上一页"
 #: data/ui/kbd-shortcuts-window.ui:114
 msgctxt "shortcut window"
 msgid "Box Display"
-msgstr "虚拟机显示"
+msgstr "Box 显示"
 
 #: data/ui/kbd-shortcuts-window.ui:121
 msgctxt "shortcut window"
@@ -288,14 +327,10 @@ msgid "Help"
 msgstr "帮助"
 
 #: data/ui/menus.ui:15
-msgid "About"
-msgstr "关于"
+msgid "About Boxes"
+msgstr "关于 Boxes"
 
-#: data/ui/menus.ui:19
-msgid "Quit"
-msgstr "退出"
-
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:649
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:646
 msgid "Troubleshooting Log"
 msgstr "故障诊断日志"
 
@@ -303,20 +338,10 @@ msgstr "故障诊断日志"
 msgid "_Copy to Clipboard"
 msgstr "复制到剪贴板(_C)"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:139
+#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
+#: src/properties-window.vala:55
 msgid "Select a device or ISO file"
 msgstr "选择一个设备或 ISO 文件"
-
-#: data/ui/properties-toolbar.ui:116 data/ui/selection-toolbar.ui:64
-#: data/ui/wizard-toolbar.ui:23 data/ui/wizard-toolbar.ui:149
-#: src/app-window.vala:318
-msgid "_Cancel"
-msgstr "取消(_C)"
-
-#: data/ui/properties-toolbar.ui:135 data/ui/wizard-toolbar.ui:168
-#: src/app-window.vala:320
-msgid "_Open"
-msgstr "打开(_O)"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -330,6 +355,11 @@ msgstr "暂停(_A)"
 msgid "_Delete"
 msgstr "删除(_D)"
 
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:331
+msgid "_Cancel"
+msgstr "取消(_C)"
+
 #: data/ui/selection-toolbar.ui:108
 msgid "Select All"
 msgstr "全选"
@@ -342,23 +372,19 @@ msgstr "选择运行中"
 msgid "Select None"
 msgstr "不选"
 
-#: data/ui/shared-folder-popover.ui:30
+#: data/ui/shared-folder-popover.ui:29
 msgid "Local Folder"
 msgstr "本地文件夹"
 
-#: data/ui/shared-folder-popover.ui:45
+#: data/ui/shared-folder-popover.ui:44
 msgid "Name"
 msgstr "名称"
 
-#: data/ui/shared-folder-popover.ui:71
+#: data/ui/shared-folder-popover.ui:70
 msgid "Select Shared Folder"
 msgstr "选择共享文件夹"
 
-#: data/ui/shared-folder-popover.ui:98
-msgid "Cancel"
-msgstr "取消"
-
-#: data/ui/shared-folder-popover.ui:112
+#: data/ui/shared-folder-popover.ui:111
 msgid "Save"
 msgstr "保存"
 
@@ -385,7 +411,7 @@ msgstr "哎呀，出了点差错"
 
 #: data/ui/troubleshoot-view.ui:58
 msgid "Boxes cannot access the virtualization backend."
-msgstr "Boxes 无法访问虚拟化后端。"
+msgstr "Box 无法访问虚拟化后端。"
 
 #: data/ui/unattended-setup-box.ui:43
 msgid ""
@@ -398,11 +424,11 @@ msgstr "选择快速安装可自动预设 Box 为最佳设置。"
 msgid "Express Install"
 msgstr "快速安装"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:282
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:287
 msgid "Username"
 msgstr "用户名"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:283
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:288
 msgid "Password"
 msgstr "密码"
 
@@ -410,7 +436,7 @@ msgstr "密码"
 msgid "_Add Password"
 msgstr "添加密码(_A)"
 
-#: data/ui/unattended-setup-box.ui:210
+#: data/ui/unattended-setup-box.ui:211
 msgid "Product Key"
 msgstr "序列号"
 
@@ -418,15 +444,15 @@ msgstr "序列号"
 msgid "Unknown media"
 msgstr "未知介质"
 
-#: data/ui/wizard-downloads-page.ui:25
+#: data/ui/wizard-downloads-page.ui:26
 msgid "Show more…"
 msgstr "显示更多…"
 
-#: data/ui/wizard-downloads-page.ui:87
+#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "未找到操作系统"
 
-#: data/ui/wizard-downloads-page.ui:98
+#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "请尝试搜索其他关键字"
 
@@ -434,56 +460,49 @@ msgstr "请尝试搜索其他关键字"
 msgid "Insert operating system installation media or select a source below"
 msgstr "请插入操作系统安装介质或从下面选择一个源文件"
 
-#: data/ui/wizard-source.ui:82
+#: data/ui/wizard-source.ui:87
 msgid "Download an OS"
 msgstr "下载操作系统"
 
-#: data/ui/wizard-source.ui:92 data/ui/wizard-source.ui:135
-#: data/ui/wizard-source.ui:177 data/ui/wizard-source.ui:220
+#: data/ui/wizard-source.ui:94
+msgid "Operating system will be downloaded and installed in a virtual machine."
+msgstr "操作系统将被下载并安装到虚拟机中。"
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:175
+#: data/ui/wizard-source.ui:238
 msgid "▶"
 msgstr "▶"
 
-#: data/ui/wizard-source.ui:125
-msgid "_Enter URL"
-msgstr "输入 URL (_E)"
+#: data/ui/wizard-source.ui:157
+msgid "Connect to Libvirt brokers."
+msgstr "连接到 Libvirt 代理器（broker）。"
 
-#: data/ui/wizard-source.ui:210
-msgid "_Select a file"
-msgstr "选择文件(_S)"
+#: data/ui/wizard-source.ui:213
+msgid "Select a file"
+msgstr "选择文件"
 
-#: data/ui/wizard-source.ui:238
+#: data/ui/wizard-source.ui:220
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr "选择要在虚拟机中安装的启动映像文件。"
+
+#: data/ui/wizard-source.ui:256
 msgid ""
 "Any trademarks shown above are used merely for identification of software "
 "products you have already obtained and are the property of their respective "
 "owners."
 msgstr "任何上面显示的商标仅用作您已拥有的软件产品标识，版权归原所有者。"
 
-#: data/ui/wizard-source.ui:309
-msgid "◀"
-msgstr "◀"
-
-#: data/ui/wizard-source.ui:320
-msgid "Enter URL"
-msgstr "输入 URL"
-
-#: data/ui/wizard-source.ui:350
+#: data/ui/wizard-source.ui:322
 msgid ""
-"Enter an address for the box you want to add. Addresses can be of "
-"installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt brokers."
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh://, or vnc://."
 msgstr ""
-"输入您想添加的 box 地址。地址可以为要安装的镜像、SPICE、RDP 和 VNC 服务器，或"
-"者 oVirt 亦或是 Libvirt 代理。"
-
-#: data/ui/wizard-source.ui:368
-msgid ""
-"Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
-"path"
-msgstr ""
-"示例：http://download.com/image.iso, spice://somehost:5051, ovirt://host/path"
+"输入要连接的地址。地址可以以 spice://、rdp://、ssh:// 或者 vnc:// 开头。"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69 src/wizard.vala:178
 msgid "Create a Box"
-msgstr "创建一个 Box"
+msgstr "创建 Box"
 
 #: data/ui/wizard-toolbar.ui:39
 msgid "C_reate"
@@ -493,13 +512,17 @@ msgstr "创建(_R)"
 msgid "C_ontinue"
 msgstr "继续(_O)"
 
-#: data/ui/wizard-toolbar.ui:71
-msgid "_Back"
-msgstr "后退(_B)"
-
-#: data/ui/wizard-toolbar.ui:94
+#: data/ui/wizard-toolbar.ui:106
 msgid "Customize Resources"
 msgstr "自定义资源"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:333
+msgid "_Open"
+msgstr "打开(_O)"
+
+#: data/ui/wizard-toolbar.ui:243
+msgid "Search for an OS or enter a download link…"
+msgstr "搜索 OS 或者输入下载链接…"
 
 #: data/ui/wizard.ui:56
 msgid "Preparing to create new box"
@@ -512,6 +535,13 @@ msgid ""
 msgstr ""
 "您的系统上无可用的虚拟化扩展。\n"
 "请检查 BIOS 设置以将其启用。"
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"每个 box 可以是运行在这台电脑上的虚拟机，也可以是指向已有远程机器的连接"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -551,7 +581,7 @@ msgstr "强制关机"
 msgid "Clone"
 msgstr "克隆"
 
-#: src/actions-popover.vala:84 src/machine.vala:629
+#: src/actions-popover.vala:84 src/machine.vala:626
 msgid "Restart"
 msgstr "重启"
 
@@ -566,7 +596,7 @@ msgstr "属性"
 msgid "Screenshot from %s"
 msgstr "来自 %s 的截图"
 
-#: src/app.vala:110
+#: src/app.vala:112
 msgid "translator-credits"
 msgstr ""
 "tuhaihe <wangdianjin@linuxdeepin.com>, 2012.\n"
@@ -575,9 +605,9 @@ msgstr ""
 "Tong Hui <tonghuix@gmail.com>, 2014.\n"
 "Mingcong Bai <jeffbai@aosc.xyz>, 2015, 2016, 2018.\n"
 "lumingzh <lumingzh@qq.com>, 2016.\n"
-"Dingzhong Chen <wsxy162@gmail.com>, 2016."
+"Dingzhong Chen <wsxy162@gmail.com>, 2016, 2019."
 
-#: src/app.vala:111
+#: src/app.vala:113
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "一个简单的可访问远程或虚拟系统的 GNOME 3 应用程序"
 
@@ -585,52 +615,56 @@ msgstr "一个简单的可访问远程或虚拟系统的 GNOME 3 应用程序"
 msgid "Display version number"
 msgstr "显示版本号"
 
-#: src/app.vala:173
+#: src/app.vala:172
 msgid "Open in full screen"
 msgstr "以全屏模式打开"
 
-#: src/app.vala:174 src/main.vala:10
+#: src/app.vala:173 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "检查虚拟化功能"
 
-#: src/app.vala:175
+#: src/app.vala:174
 msgid "Open box with UUID"
 msgstr "根据 UUID 打开 Box"
 
-#: src/app.vala:176
+#: src/app.vala:175
 msgid "Search term"
 msgstr "搜索条目"
 
-#. A 'broker' is a virtual-machine manager (local or remote). Currently libvirt and ovirt are supported.
-#: src/app.vala:178
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:177
 msgid "URL to display, broker or installer media"
 msgstr "显示，虚拟机管理器或安装介质的 URL"
 
-#: src/app.vala:189
+#: src/app.vala:188
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— 一个简明的，用于访问远程系统或虚拟机的应用程序"
 
-#: src/app.vala:214
+#: src/app.vala:213
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了过多的命令行参数。\n"
 
 #: src/app.vala:466
 #, c-format
 msgid "Box “%s” installed and ready to use"
-msgstr "虚拟机“%s”已安装并准备就绪"
+msgstr "Box“%s”已安装并准备就绪"
+
+#: src/app.vala:468
+msgid "Launch"
+msgstr "启动"
 
 #: src/app.vala:554
 #, c-format
 msgid "Box “%s” has been deleted"
-msgstr "虚拟机“%s”已被删除"
+msgstr "Box“%s”已被删除"
 
 #: src/app.vala:555
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
-msgstr[0] "已删除 %u 个虚拟机"
+msgstr[0] "已删除 %u 个 box"
 
-#: src/app.vala:582 src/libvirt-machine-properties.vala:551
+#: src/app.vala:582 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "撤消(_U)"
@@ -639,7 +673,7 @@ msgstr "撤消(_U)"
 msgid "Boxes is doing something"
 msgstr "Boxes 正在进行一些操作"
 
-#: src/app-window.vala:317
+#: src/app-window.vala:330
 msgid "Select files to transfer"
 msgstr "选择要传送的文件"
 
@@ -652,7 +686,7 @@ msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "按下 Ctrl+Alt（左）按键后再松开来释放键盘。"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:310
+#: src/display-page.vala:307
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -665,23 +699,23 @@ msgstr "退出全屏"
 msgid "New and Recent"
 msgstr "新建和最近的"
 
-#: src/installed-media.vala:53
+#: src/installed-media.vala:54
 msgid "Unsupported disk image format."
 msgstr "不支持的磁盘映像格式。"
 
-#: src/installed-media.vala:110 src/installer-media.vala:113
+#: src/installed-media.vala:100 src/installer-media.vala:164
 #: src/properties-page-widget.vala:19
 msgid "System"
 msgstr "系统"
 
-#. Translators: This is memory or disk size. E.g. "2 GB (1 GB used)".
-#: src/i-properties-provider.vala:89
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:464
 #, c-format
-msgid "%s <span color=\"grey\">(%s used)</span>"
-msgstr "%s <span color=\"grey\">（%s 已用）</span>"
+msgid "%s used"
+msgstr "已占用 %s"
 
 #. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:101
+#: src/i-properties-provider.vala:115
 #, c-format
 msgid "%s (recommended)"
 msgstr "%s（推荐）"
@@ -717,7 +751,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "发送组合键"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:66
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
 msgid "_Name"
 msgstr "名称(_N)"
 
@@ -725,7 +759,7 @@ msgstr "名称(_N)"
 msgid "IP Address"
 msgstr "IP 地址"
 
-#: src/libvirt-machine-properties.vala:110 src/ovirt-machine.vala:71
+#: src/libvirt-machine-properties.vala:110
 msgid "Broker"
 msgstr "代理"
 
@@ -747,7 +781,7 @@ msgstr "空"
 
 #. Don't let user eject installer media if it's an express installation or a live media
 #: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:242
+#: src/libvirt-machine-properties.vala:246
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
@@ -776,126 +810,125 @@ msgstr "将“%s”作为 CD/DVD 插入到虚拟机“%s”失败"
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "无法从虚拟机“%s”移除 CD/DVD"
 
-#: src/libvirt-machine-properties.vala:306
+#: src/libvirt-machine-properties.vala:310
 msgid "CPU"
 msgstr "处理器"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:312
+#: src/libvirt-machine-properties.vala:316
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:318
+#: src/libvirt-machine-properties.vala:322
 msgid "Network"
 msgstr "网络"
 
-#: src/libvirt-machine-properties.vala:347 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:351 src/properties.vala:84
 msgid "_Restart"
 msgstr "重启(_R)"
 
-#: src/libvirt-machine-properties.vala:355
+#: src/libvirt-machine-properties.vala:359
 msgid "_Force Shutdown"
 msgstr "强制关机(_F)"
 
-#: src/libvirt-machine-properties.vala:369
+#: src/libvirt-machine-properties.vala:373
 msgid "_Troubleshooting Log"
 msgstr "故障诊断日志(_T)"
 
-#: src/libvirt-machine-properties.vala:390
+#: src/libvirt-machine-properties.vala:394
 msgid "_Memory: "
 msgstr "内存(_M)："
 
-#: src/libvirt-machine-properties.vala:459
-#, c-format
-msgid ""
-"<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
-"\">(%s used)</span>"
-msgstr ""
-"<span color=\"grey\">最大磁盘大小</span>\t\t %s <span color=\"grey\">（%s 已"
-"用）</span>"
+#: src/libvirt-machine-properties.vala:463
+msgid "Maximum Disk Space"
+msgstr "最大磁盘空间"
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:481
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "没有足够的空间来增加你虚拟机上的最大磁盘大小。"
 
-#: src/libvirt-machine-properties.vala:485
+#: src/libvirt-machine-properties.vala:491
 msgid "Maximum _Disk Size: "
 msgstr "最大磁盘容量(_D)："
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:538
+#: src/libvirt-machine-properties.vala:544
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
 msgstr[0] "调整存储大小需要删除 %llu 个相关的快照。"
 
-#: src/libvirt-machine-properties.vala:655
+#: src/libvirt-machine-properties.vala:661
 msgid "_Run in background"
 msgstr "后台运行(_R)"
 
-#: src/libvirt-machine-properties.vala:666
-#: src/libvirt-machine-properties.vala:669
+#: src/libvirt-machine-properties.vala:672
+#: src/libvirt-machine-properties.vala:675
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s”将不会自动暂停。"
 
-#: src/libvirt-machine-properties.vala:667
-#: src/libvirt-machine-properties.vala:670
+#: src/libvirt-machine-properties.vala:673
+#: src/libvirt-machine-properties.vala:676
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s”将会自动暂停以节省资源。"
 
+#: src/libvirt-machine-properties.vala:692
+msgid "3D Acceleration"
+msgstr "3D 加速"
+
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:595
+#: src/libvirt-machine.vala:633
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正在从磁盘恢复 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:598
+#: src/libvirt-machine.vala:636
 #, c-format
 msgid "Starting %s"
 msgstr "正在启动 %s"
 
-#: src/libvirt-machine.vala:671
+#: src/libvirt-machine.vala:709
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s”重启耗时过长。要强制关机吗？"
 
-#: src/libvirt-machine.vala:673
+#: src/libvirt-machine.vala:711
 msgid "_Shutdown"
 msgstr "关机(_S)"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:727
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "正在克隆“%s”…"
 
-#: src/libvirt-machine.vala:790
+#: src/libvirt-machine.vala:859
 msgid "Installing…"
 msgstr "正在安装…"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:792 src/wizard-source.vala:127
-#: src/wizard-source.vala:157
+#: src/libvirt-machine.vala:861 src/util-app.vala:136
+#: src/wizard-source.vala:123
 msgid "Live"
 msgstr "体验"
 
-#: src/libvirt-machine.vala:794
+#: src/libvirt-machine.vala:863
 msgid "Setting up clone…"
 msgstr "正在设置克隆…"
 
-#: src/libvirt-machine.vala:796
+#: src/libvirt-machine.vala:865
 msgid "Importing…"
 msgstr "正在导入…"
 
-#: src/libvirt-machine.vala:805 src/ovirt-machine.vala:88
+#: src/libvirt-machine.vala:874
 #, c-format
 msgid "host: %s"
 msgstr "主机：%s"
@@ -910,69 +943,69 @@ msgstr "从系统代理器导入“%s”(_I)"
 #, c-format
 msgid "_Import %u box from system broker"
 msgid_plural "_Import %u boxes from system broker"
-msgstr[0] "从系统代理器导入 %u 个虚拟机(_I)"
+msgstr[0] "从系统代理器导入 %u 个 box(_I)"
 
 #: src/libvirt-system-importer.vala:35
 #, c-format
 msgid "Will import “%s” from system broker"
-msgstr "将从系统代理器 (broker) 导入“%s”"
+msgstr "将从系统代理器（broker）导入“%s”"
 
 #. Translators: %u here is the number of boxes available for import
 #: src/libvirt-system-importer.vala:38
 #, c-format
 msgid "Will import %u box from system broker"
 msgid_plural "Will import %u boxes from system broker"
-msgstr[0] "将从系统代理器 (broker) 导入 %u 台机器"
+msgstr[0] "将从系统代理器（broker）导入 %u 个 box"
 
 #: src/libvirt-system-importer.vala:71
 msgid "No boxes to import"
-msgstr "没有要导入的机器"
+msgstr "没有要导入的 box"
 
 #: src/libvirt-system-importer.vala:129
 #, c-format
 msgid "Failed to find suitable disk to import for box “%s”"
-msgstr "找不到合适的磁盘来导入机器“%s”"
+msgstr "找不到合适的磁盘来导入 box“%s”"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Connected"
 msgstr "已连接"
 
-#: src/list-view-row.vala:126
+#: src/list-view-row.vala:125
 msgid "Disconnected"
 msgstr "已断开"
 
-#: src/list-view-row.vala:132
+#: src/list-view-row.vala:131
 msgid "Running"
 msgstr "运行中"
 
-#: src/list-view-row.vala:138
+#: src/list-view-row.vala:137
 msgid "Paused"
 msgstr "已暂停"
 
-#: src/list-view-row.vala:143
+#: src/list-view-row.vala:142
 msgid "Powered Off"
 msgstr "已关闭"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:204
+#: src/machine.vala:202
 #, c-format
 msgid "Connecting to %s"
 msgstr "正在连接到 %s"
 
-#: src/machine.vala:229 src/machine.vala:656
+#: src/machine.vala:227 src/machine.vala:653
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "无法连接到“%s”"
 
-#: src/machine.vala:282
+#: src/machine.vala:279
 msgid "Machine is under construction"
 msgstr "正在准备虚拟机"
 
-#: src/machine.vala:436
+#: src/machine.vala:433
 msgid "Saving…"
 msgstr "正在保存…"
 
-#: src/machine.vala:628
+#: src/machine.vala:625
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -981,13 +1014,13 @@ msgstr ""
 "无法从磁盘恢复“%s”\n"
 "要忽略保存的状态并重试吗？"
 
-#: src/machine.vala:639
+#: src/machine.vala:636
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "无法启动“%s”"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:743
+#: src/machine.vala:740
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s”需要认证"
@@ -1028,7 +1061,7 @@ msgstr "报告问题至 <%s>。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s 主页：<%s>。\n"
 
-#: src/media-manager.vala:248
+#: src/media-manager.vala:284
 #, c-format
 msgid "No such file %s"
 msgstr "没有文件 %s"
@@ -1043,18 +1076,6 @@ msgstr "登录到 %s"
 msgid "Not connected to %s"
 msgstr "未连接到 %s"
 
-#: src/ovirt-broker.vala:59
-msgid "Connection to oVirt broker failed"
-msgstr "连接 oVirt 代理器 (broker) 失败"
-
-#: src/ovirt-machine.vala:72 src/remote-machine.vala:76
-msgid "Protocol"
-msgstr "协议"
-
-#: src/ovirt-machine.vala:73 src/remote-machine.vala:78 src/wizard.vala:535
-msgid "URL"
-msgstr "URL"
-
 #: src/properties-page-widget.vala:15
 msgid "General"
 msgstr "常规"
@@ -1067,12 +1088,24 @@ msgstr "设备及共享"
 msgid "Snapshots"
 msgstr "快照"
 
+#: src/properties-window.vala:58
+msgid "Open"
+msgstr "打开"
+
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "更改需要重启“%s”以生效。"
 
-#: src/remote-machine.vala:80
+#: src/remote-machine.vala:81
+msgid "Protocol"
+msgstr "协议"
+
+#: src/remote-machine.vala:83 src/wizard.vala:540
+msgid "URL"
+msgstr "URL"
+
+#: src/remote-machine.vala:85
 msgid "_URL"
 msgstr "_URL"
 
@@ -1133,49 +1166,44 @@ msgid "Failed to create snapshot of %s"
 msgstr "为 %s 创建快照失败"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
-#: src/spice-display.vala:48
+#: src/spice-display.vala:46
 msgid "Unknown"
 msgstr "未知"
 
-#: src/spice-display.vala:68 src/spice-display.vala:665
+#: src/spice-display.vala:62 src/spice-display.vala:497
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "重定向 USB 设备“%s”用于“%s”失败"
 
-#: src/spice-display.vala:521
-msgid "Share Clipboard"
-msgstr "共享剪贴板"
-
-#: src/spice-display.vala:526
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:360
+#, c-format
 msgid ""
 "SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit <a "
-"href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/"
-"download.html</a> to download and install these tools from within the box."
+"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"download and install these tools from within the box."
 msgstr ""
 "SPICE 客户机工具未安装，此工具可以增强用户体验并且启用宿主机和客户机交互，比"
-"如复制粘贴。请访问 <a href=\"http://www.spice-space.org/download.html"
-"\">http://www.spice-space.org/download.html</a> 在客户机中下载并安装这些工"
-"具。"
+"如复制粘贴。请访问 %s 在客户机中下载并安装这些工具。"
 
-#: src/spice-display.vala:553
+#: src/spice-display.vala:387
 msgid "USB devices"
 msgstr "USB 设备"
 
-#: src/spice-display.vala:571
+#: src/spice-display.vala:403
 msgid "Folder Shares"
 msgstr "文件夹共享"
 
-#: src/spice-display.vala:833 src/spice-display.vala:858
-#: src/spice-display.vala:861 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:601 src/spice-display.vala:626
+#: src/spice-display.vala:629 src/wizard.vala:344 src/wizard.vala:357
 msgid "Invalid URL"
 msgstr "无效的 URL"
 
-#: src/spice-display.vala:843
+#: src/spice-display.vala:611
 msgid "The port must be specified once"
 msgstr "必须指定一次端口"
 
-#: src/spice-display.vala:854
+#: src/spice-display.vala:622
 msgid "Missing port in Spice URL"
 msgstr "Spice URL 缺少端口"
 
@@ -1188,30 +1216,30 @@ msgstr "正在复制“%s”到“下载”"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:192
+#: src/unattended-installer.vala:216
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "安装准备过程发生错误。快速安装已禁用。"
 
-#: src/unattended-installer.vala:469
+#: src/unattended-installer.vala:479
 msgid "Downloading device drivers…"
 msgstr "正在下载设备驱动…"
 
-#: src/unattended-setup-box.vala:52
+#: src/unattended-setup-box.vala:53
 msgid "no password"
 msgstr "没有密码"
 
-#: src/unattended-setup-box.vala:110
+#: src/unattended-setup-box.vala:125
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "快速安装 %s 需要互联网连接。"
 
-#: src/unattended-setup-box.vala:212
+#: src/unattended-setup-box.vala:228
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "用于“%s”的 GNOME Boxes 凭证"
 
-#: src/util-app.vala:242
+#: src/util-app.vala:322
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1220,11 +1248,11 @@ msgstr ""
 "您的 SELinux 环境不太正确，您可以运行下面命令进行修复：\n"
 "%s"
 
-#: src/util-app.vala:246
+#: src/util-app.vala:326
 msgid "SELinux not installed?"
 msgstr "未安装 SELinux？"
 
-#: src/util-app.vala:328
+#: src/util-app.vala:408
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1232,20 +1260,20 @@ msgstr ""
 "无法从 libvirt 获得“gnome-boxes”的存储池信息。请确保“virsh -c qemu:///"
 "session pool-dumpxml gnome-boxes”工作正常。"
 
-#: src/util-app.vala:333
+#: src/util-app.vala:413
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr "libvirt 知道 %s 是 GNOME Boxes 的存储池，但该目录不存在"
 
-#: src/util-app.vala:337
+#: src/util-app.vala:417
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "libvirt 知道 %s 是 GNOME Boxes 的存储池，但该项不是目录"
 
-#: src/util-app.vala:341
+#: src/util-app.vala:421
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1262,7 +1290,7 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:607
+#: src/vm-configurator.vala:721
 msgid "Incapable host system"
 msgstr "主机系统性能不足"
 
@@ -1274,18 +1302,18 @@ msgstr "已自动删除体验机“%s”。"
 #: src/vm-importer.vala:50
 #, c-format
 msgid "Box import from file “%s” failed."
-msgstr "无法从文件“%s”导入虚拟机。"
+msgstr "无法从文件“%s”导入 box。"
 
-#: src/wizard-source.vala:161
+#: src/wizard-source.vala:128
 msgid "32-bit x86 system"
 msgstr "32位 x86 系统"
 
-#: src/wizard-source.vala:162
+#: src/wizard-source.vala:129
 msgid "64-bit x86 system"
 msgstr "64位 x86 系统"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:167
+#: src/wizard-source.vala:134
 #, c-format
 msgid " from %s"
 msgstr "，来自 %s"
@@ -1310,100 +1338,162 @@ msgstr "配置回顾"
 msgid "Box creation failed"
 msgstr "Box 创建失败"
 
-#: src/wizard.vala:300
+#: src/wizard.vala:303
 msgid "Empty location"
 msgstr "路径名为空"
 
-#: src/wizard.vala:323
+#: src/wizard.vala:326
 msgid "Unsupported file"
 msgstr "不支持的文件"
 
-#: src/wizard.vala:329
+#: src/wizard.vala:332
 msgid "Invalid file"
 msgstr "无效的文件"
 
 #. accept any vnc:// uri
+#. accept any ssh:// uri
 #. accept any rdp:// uri
-#: src/wizard.vala:369
+#: src/wizard.vala:374
 msgid "Boxes was compiled without RDP support"
 msgstr "Boxes 编译时未打开 RDP 支持"
 
-#: src/wizard.vala:377
+#: src/wizard.vala:382
 #, c-format
 msgid "Unsupported protocol “%s”"
 msgstr "不支持的协议“%s”"
 
-#: src/wizard.vala:383 src/wizard.vala:457
+#: src/wizard.vala:388 src/wizard.vala:462
 msgid "Unknown installer media"
 msgstr "未知的安装器介质"
 
 #. Translators: Analyzing installer media
-#: src/wizard.vala:385 src/wizard.vala:458
+#: src/wizard.vala:390 src/wizard.vala:463
 msgid "Analyzing…"
 msgstr "正在分析…"
 
-#: src/wizard.vala:399
+#: src/wizard.vala:404
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "无法分析安装器介质。已损坏或不完整的介质？"
 
 #. We did this, so ignore!
-#: src/wizard.vala:511
+#: src/wizard.vala:516
 msgid "Box setup failed"
 msgstr "Box 设置失败"
 
-#: src/wizard.vala:525
-msgid "Boxes will create a new box with the following properties:"
-msgstr "将创建一个新 Box，属性如下："
-
 #: src/wizard.vala:530
+msgid "Boxes will create a new box with the following properties:"
+msgstr "将创建一个新 box，属性如下："
+
+#: src/wizard.vala:535
 msgid "Type"
 msgstr "类型"
 
-#: src/wizard.vala:533
+#: src/wizard.vala:538
 msgid "Host"
 msgstr "主机"
 
-#: src/wizard.vala:544 src/wizard.vala:556
+#: src/wizard.vala:549 src/wizard.vala:562
 msgid "Port"
 msgstr "端口"
 
-#: src/wizard.vala:546
+#: src/wizard.vala:551
 msgid "TLS Port"
 msgstr "TLS 端口"
 
-#: src/wizard.vala:561
+#: src/wizard.vala:567
 msgid "Will add boxes for all systems available from this account:"
 msgstr "将添加所有该帐户可访问系统的 box："
 
-#: src/wizard.vala:574
+#: src/wizard.vala:580
 msgid "Memory"
 msgstr "内存"
 
-#: src/wizard.vala:583
+#: src/wizard.vala:589
 msgid "Disk"
 msgstr "磁盘"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/wizard.vala:585
+#: src/wizard.vala:591
 #, c-format
 msgid "%s maximum"
 msgstr "%s 最大值"
 
-#: src/wizard.vala:648
+#: src/wizard.vala:654
 msgid "Downloading media…"
 msgstr "正在下载介质…"
 
-#: src/wizard.vala:651
+#: src/wizard.vala:657
 msgid "Downloading media"
 msgstr "正在下载介质"
 
-#: src/wizard.vala:661
+#: src/wizard.vala:667
 msgid "Download failed."
 msgstr "下载失败。"
 
-#: src/wizard.vala:777
+#: src/wizard.vala:787
 msgid "C_ustomize…"
 msgstr "自定义(_U)…"
+
+#~ msgid "@icon@"
+#~ msgstr "@icon@"
+
+#~ msgid "_New"
+#~ msgstr "新建(_N)"
+
+#~ msgid "Connect using RDP, SPICE, SSH, or VNC."
+#~ msgstr "使用 RDP、SPICE、SSH 或 VNC 连接。"
+
+#~ msgid "%s <span color=\"grey\">(%s used)</span>"
+#~ msgstr "%s <span color=\"grey\">（%s 已用）</span>"
+
+#~ msgid ""
+#~ "<span color=\"grey\">Maximum Disk Size</span>\t\t %s <span color=\"grey"
+#~ "\">(%s used)</span>"
+#~ msgstr ""
+#~ "<span color=\"grey\">最大磁盘大小</span>\t\t %s <span color=\"grey\">（%s "
+#~ "已用）</span>"
+
+#~ msgid "Connection to oVirt broker failed"
+#~ msgstr "连接 oVirt 代理器（broker）失败"
+
+#~ msgid "Share Clipboard"
+#~ msgstr "共享剪贴板"
+
+#~ msgid "gnome-boxes"
+#~ msgstr "gnome-boxes"
+
+#~ msgid "About"
+#~ msgstr "关于"
+
+#~ msgid "Quit"
+#~ msgstr "退出"
+
+#~ msgid "_Enter URL"
+#~ msgstr "输入 URL (_E)"
+
+#~ msgid "◀"
+#~ msgstr "◀"
+
+#~ msgid "Enter URL"
+#~ msgstr "输入 URL"
+
+#~ msgid ""
+#~ "Enter an address for the box you want to add. Addresses can be of "
+#~ "installation images, SPICE, RDP and VNC servers, or oVirt or Libvirt "
+#~ "brokers."
+#~ msgstr ""
+#~ "输入您想添加的 box 地址。地址可以为要安装的镜像、SPICE、RDP 和 VNC 服务"
+#~ "器，或者 oVirt 亦或是 Libvirt 代理。"
+
+#~ msgid ""
+#~ "Examples: http://download.com/image.iso, spice://somehost:5051, ovirt://"
+#~ "host/path"
+#~ msgstr ""
+#~ "示例：http://download.com/image.iso, spice://somehost:5051, ovirt://host/"
+#~ "path"
+
+#~ msgid "_Back"
+#~ msgstr "后退(_B)"
 
 #~ msgid "Available with a free Red Hat developer account"
 #~ msgstr "包含免费的红帽开发者帐号"
@@ -1508,9 +1598,6 @@ msgstr "自定义(_U)…"
 
 #~ msgid "%s - Properties"
 #~ msgstr "%s - 属性"
-
-#~ msgid "New"
-#~ msgstr "新建"
 
 #~ msgid "Animation duration"
 #~ msgstr "动画时长"
