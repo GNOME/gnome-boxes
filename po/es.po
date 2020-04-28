@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-02-03 13:40+0000\n"
-"PO-Revision-Date: 2020-02-04 12:35+0100\n"
+"POT-Creation-Date: 2020-04-21 11:45+0000\n"
+"PO-Revision-Date: 2020-04-28 12:26+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.34.0\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -54,12 +54,12 @@ msgstr ""
 "sus sistemas operativos favoritos, o necesita conectarse a una máquina "
 "remota (por ejemplo, en su oficina)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:71
+#: data/org.gnome.Boxes.appdata.xml.in:70
 msgid "The GNOME Project"
 msgstr "El Proyecto GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
-#: src/app-window.vala:137 src/app-window.vala:244 src/app-window.vala:246
+#: src/app-window.vala:134 src/app-window.vala:239 src/app-window.vala:241
 #: src/main.vala:72 src/topbar.vala:93
 msgid "Boxes"
 msgstr "Cajas"
@@ -78,63 +78,51 @@ msgid "virtual machine;vm;vnc;rdp;"
 msgstr "máquina virtual;vm;vnc;rdp;"
 
 #: data/org.gnome.boxes.gschema.xml:11
-msgid "Collections"
-msgstr "Colecciones"
-
-#: data/org.gnome.boxes.gschema.xml:12
-msgid "The list of boxes collections"
-msgstr "La lista de colecciones de cajas"
-
-#: data/org.gnome.boxes.gschema.xml:15
-msgid "[ 'Work', 'Research', 'Gaming' ]"
-msgstr "[ 'Trabajo', 'Investigación', 'Juegos' ]"
-
-#: data/org.gnome.boxes.gschema.xml:19
 msgid "Screenshot interval"
 msgstr "Intervalo de la captura de pantalla"
 
-#: data/org.gnome.boxes.gschema.xml:20
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The interval in seconds between screenshot updates"
 msgstr ""
 "El intervalo en segundo entre actualizaciones de las capturas de pantalla"
 
-#: data/org.gnome.boxes.gschema.xml:32
+#: data/org.gnome.boxes.gschema.xml:24
 msgid "Window size"
 msgstr "Tamaño de la ventana"
 
-#: data/org.gnome.boxes.gschema.xml:33
+#: data/org.gnome.boxes.gschema.xml:25
 msgid "Window size (width and height)"
 msgstr "Tamaño de la ventana (anchura y altura)"
 
-#: data/org.gnome.boxes.gschema.xml:39
+#: data/org.gnome.boxes.gschema.xml:31
 msgid "Window position"
 msgstr "Posición de la ventana"
 
-#: data/org.gnome.boxes.gschema.xml:40
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window position (x and y)"
 msgstr "Posición de la ventana (x e y)"
 
-#: data/org.gnome.boxes.gschema.xml:46
+#: data/org.gnome.boxes.gschema.xml:38
 msgid "Window maximized"
 msgstr "Ventana maximizada"
 
-#: data/org.gnome.boxes.gschema.xml:47
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window maximized state"
 msgstr "Estado maximizado de la ventana"
 
-#: data/org.gnome.boxes.gschema.xml:53
+#: data/org.gnome.boxes.gschema.xml:45
 msgid "First run"
 msgstr "Primera ejecución"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:46
 msgid "Whether Boxes is running for the first time"
 msgstr "Indica si Cajas se está ejecutando por primera vez"
 
-#: data/org.gnome.boxes.gschema.xml:61
+#: data/org.gnome.boxes.gschema.xml:53
 msgid "Shared folders"
 msgstr "Carpetas compartidas"
 
-#: data/org.gnome.boxes.gschema.xml:62
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vector de nombres carpetas compartidas y mapeo de rutas"
 
@@ -231,18 +219,15 @@ msgstr "Reserva de recursos"
 msgid "Customize"
 msgstr "Personalizar"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:40
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
 msgid "Express Installation"
 msgstr "Instalación rápida"
 
-#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+#: data/ui/assistant/remote-connection.ui:6
 msgid "Connect to a Box"
 msgstr "Conectar a una caja"
 
-#: data/ui/assistant/remote-connection.ui:22
-#| msgid ""
-#| "Enter an address to connect to. Addresses can begin with spice://, "
-#| "rdp://, ssh://, or vnc://."
+#: data/ui/assistant/remote-connection.ui:23
 msgid ""
 "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
 "ssh:// or vnc://."
@@ -250,18 +235,19 @@ msgstr ""
 "Introduzca una dirección a la que conectarse. Las direcciones pueden empezar "
 "por spice://, rdp://, ssh:// o vnc://."
 
-#: data/ui/assistant/remote-connection.ui:37
-#: data/ui/assistant/vm-assistant.ui:47 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
-#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
+#: data/ui/assistant/remote-connection.ui:38
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
+#: src/assistant/index-page.vala:156 src/assistant/vm-assistant.vala:73
+#: src/properties-window.vala:58 src/vm-creator.vala:104
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/ui/assistant/remote-connection.ui:45
+#: data/ui/assistant/remote-connection.ui:46
 msgid "Connect"
 msgstr "Conectar"
 
-#: data/ui/assistant/vm-assistant.ui:54 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
 msgstr "Siguiente"
 
@@ -304,34 +290,34 @@ msgid "Back"
 msgstr "Atrás"
 
 #: data/ui/collection-toolbar.ui:74
-msgid "Downloads"
-msgstr "Descargas"
-
-#: data/ui/collection-toolbar.ui:99
 msgid "Application Menu"
 msgstr "Menú de aplicaciones"
 
-#: data/ui/collection-toolbar.ui:127
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "Seleccionar elementos"
 
-#: data/ui/collection-toolbar.ui:155
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "Vista de lista"
 
-#: data/ui/collection-toolbar.ui:183
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "Vista de rejilla"
 
-#: data/ui/collection-toolbar.ui:209 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:185 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "Buscar"
 
-#: data/ui/collection-toolbar.ui:237
+#: data/ui/collection-toolbar.ui:212
+msgid "Downloads"
+msgstr "Descargas"
+
+#: data/ui/collection-toolbar.ui:238
 msgid "Create a Virtual Machine…"
 msgstr "Crear una máquina virtual…"
 
-#: data/ui/collection-toolbar.ui:244
+#: data/ui/collection-toolbar.ui:245
 msgid "Connect to a Remote Computer…"
 msgstr "Conectar a un equipo remoto…"
 
@@ -467,7 +453,8 @@ msgid "_Copy to Clipboard"
 msgstr "_Copiar al portapapeles"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:140 src/properties-window.vala:55
+#: src/assistant/index-page.vala:153 src/properties-window.vala:55
+#: src/vm-creator.vala:101
 msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
@@ -484,7 +471,7 @@ msgid "_Delete"
 msgstr "_Eliminar"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:329
+#: src/app-window.vala:324
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -574,11 +561,11 @@ msgstr "Clave del producto"
 msgid "Welcome Tutorial"
 msgstr "Bienvenido al tutorial"
 
-#: data/ui/welcome-tutorial.ui:31
+#: data/ui/welcome-tutorial.ui:35
 msgid "Welcome to Boxes"
 msgstr "Bienvenido a Cajas"
 
-#: data/ui/welcome-tutorial.ui:32
+#: data/ui/welcome-tutorial.ui:36
 msgid ""
 "Boxes makes it easy to install and run virtual machines. You can also use it "
 "to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
@@ -588,7 +575,7 @@ msgstr ""
 "puede usarse para acceder a otros equipos remotos usando SPICE, VNC, RDP o "
 "SSH."
 
-#: data/ui/welcome-tutorial.ui:41
+#: data/ui/welcome-tutorial.ui:45
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -598,11 +585,11 @@ msgstr ""
 "una máquina virtual nueva. Simplemente inicie la instalación y se hará cargo "
 "de todo."
 
-#: data/ui/welcome-tutorial.ui:49
+#: data/ui/welcome-tutorial.ui:53
 msgid "Easy Downloads"
 msgstr "Descargas fáciles"
 
-#: data/ui/welcome-tutorial.ui:50
+#: data/ui/welcome-tutorial.ui:54
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -612,11 +599,11 @@ msgstr ""
 "virtual. En su lugar seleccione el sistema operativo que quiere configurar y "
 "Cajas lo descargará automáticamente."
 
-#: data/ui/welcome-tutorial.ui:58
+#: data/ui/welcome-tutorial.ui:62
 msgid "Drag and Drop"
 msgstr "Arrastrar y soltar"
 
-#: data/ui/welcome-tutorial.ui:59
+#: data/ui/welcome-tutorial.ui:63
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -679,7 +666,7 @@ msgstr ""
 "por spice://, rdp://, ssh:// o vnc://."
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69 src/wizard.vala:178
+#: data/ui/wizard-window.ui:69
 msgid "Create a Box"
 msgstr "Crear una caja"
 
@@ -695,7 +682,7 @@ msgstr "C_ontinuar"
 msgid "Customize Resources"
 msgstr "Personalizar recursos"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:331
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:326
 msgid "_Open"
 msgstr "_Abrir"
 
@@ -806,63 +793,97 @@ msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: src/app.vala:476
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caja «%s» instalada y lista para usarse"
 
-#: src/app.vala:478
+#: src/app.vala:477
 msgid "Launch"
 msgstr "Lanzar"
 
-#: src/app.vala:564
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: src/app.vala:565
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: src/app.vala:592 src/libvirt-machine-properties.vala:557
+#: src/app.vala:591 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: src/app.vala:636
+#: src/app.vala:635
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
-#: src/app-window.vala:328
+#: src/app-window.vala:323
 msgid "Select files to transfer"
 msgstr "Seleccione los archivos que quiere enviar"
 
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: src/assistant/index-page.vala:130
+msgid "Select the GNOME Nightly VM image"
+msgstr "Seleccione la imagen GNOME Nightly VM"
+
+#: src/assistant/index-page.vala:133 src/vm-creator.vala:104
+#| msgid "_Select"
+msgid "Select"
+msgstr "Seleccionar"
+
+#: src/assistant/index-page.vala:156 src/properties-window.vala:58
 msgid "Open"
 msgstr "Abrir"
 
-#: src/assistant/index-page.vala:157 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:170 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Anterior"
 
-#: src/assistant/review-page.vala:47 src/wizard.vala:571
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: src/assistant/index-page.vala:237 src/libvirt-machine.vala:867
+#: src/util-app.vala:153
+msgid "Live"
+msgstr "«Live»"
+
+#: src/assistant/index-page.vala:242
+msgid "32-bit x86 system"
+msgstr "sistema x86 de 32 bits"
+
+#: src/assistant/index-page.vala:243
+msgid "64-bit x86 system"
+msgstr "sistema x86 de 64 bits"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: src/assistant/index-page.vala:248
+#, c-format
+msgid " from %s"
+msgstr " de %s"
+
+#: src/assistant/review-page.vala:50
 msgid "Memory"
 msgstr "Memoria"
 
-#: src/assistant/review-page.vala:56 src/wizard.vala:580
+#: src/assistant/review-page.vala:59
 msgid "Disk"
 msgstr "Disco"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/assistant/review-page.vala:58 src/wizard.vala:582
+#: src/assistant/review-page.vala:61
 #, c-format
 msgid "%s maximum"
 msgstr "%s máximo"
 
-#: src/assistant/vm-assistant.vala:60 src/wizard.vala:401
+#: src/assistant/review-page.vala:166
+msgid "C_ustomize…"
+msgstr "_Personalizar…"
+
+#: src/assistant/vm-assistant.vala:60
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Falló al analizar"
 
@@ -889,7 +910,7 @@ msgstr "%d×%d"
 msgid "Exit fullscreen"
 msgstr "Salir del modo a pantalla completa"
 
-#: src/downloads-hub.vala:50 src/wizard.vala:641
+#: src/downloads-hub.vala:50
 msgid "Downloading media"
 msgstr "Descargando medios"
 
@@ -903,7 +924,7 @@ msgid "Install"
 msgstr "Instalar"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:179
+#: src/downloads-hub.vala:184
 msgid "Failed to download"
 msgstr "Falló al descargar"
 
@@ -911,11 +932,11 @@ msgstr "Falló al descargar"
 msgid "New and Recent"
 msgstr "Nuevas y recientes"
 
-#: src/installed-media.vala:54
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "Formato de archivo de disco no soportado."
 
-#: src/installed-media.vala:100 src/installer-media.vala:178
+#: src/installed-media.vala:118 src/installer-media.vala:178
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Sistema"
@@ -1141,13 +1162,6 @@ msgstr "Clonando «%s»…"
 msgid "Installing…"
 msgstr "Instalando…"
 
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:867 src/util-app.vala:152
-#: src/wizard-source.vala:123
-msgid "Live"
-msgstr "«Live»"
-
 #: src/libvirt-machine.vala:869
 msgid "Setting up clone…"
 msgstr "Configurando clon…"
@@ -1292,7 +1306,7 @@ msgstr "Instantáneas"
 msgid "Protocol"
 msgstr "Protocolo"
 
-#: src/remote-machine.vala:83 src/wizard.vala:531
+#: src/remote-machine.vala:83
 msgid "URL"
 msgstr "URL"
 
@@ -1391,7 +1405,7 @@ msgid "Folder Shares"
 msgstr "Compartición de carpetas"
 
 #: src/spice-display.vala:601 src/spice-display.vala:626
-#: src/spice-display.vala:629 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:629
 msgid "Invalid URL"
 msgstr "URL no válido"
 
@@ -1437,7 +1451,7 @@ msgstr "La instalación rápida de %s necesita una conexión a Internet."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Credenciales de GNOME Cajas para «%s»"
 
-#: src/util-app.vala:338
+#: src/util-app.vala:339
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1446,11 +1460,11 @@ msgstr ""
 "Su contexto SELinux no es correcto. Puede tratar de arreglarlo ejecutando:\n"
 "%s"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:343
 msgid "SELinux not installed?"
 msgstr "¿No está SELinux instalado?"
 
-#: src/util-app.vala:424
+#: src/util-app.vala:425
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1459,7 +1473,7 @@ msgstr ""
 "libvirt. Asegúrese de que «virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes» está funcionando."
 
-#: src/util-app.vala:429
+#: src/util-app.vala:430
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1468,7 +1482,7 @@ msgstr ""
 "libvirt reconoce %s como el almacenamiento de Cajas de GNOME pero esta "
 "carpeta no existe"
 
-#: src/util-app.vala:433
+#: src/util-app.vala:434
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1476,7 +1490,7 @@ msgstr ""
 "libvirt reconoce %s como el almacenamiento de Cajas de GNOME pero no es una "
 "carpeta"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:438
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1495,21 +1509,26 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:753
+#: src/vm-configurator.vala:756
 msgid "Incapable host system"
 msgstr "Equipo no capacitado"
 
-#: src/vm-creator.vala:176
+#: src/vm-creator.vala:112
 #, c-format
-msgid "Live box “%s” has been deleted automatically."
-msgstr "Se ha eliminado la caja «%s» automáticamente."
+msgid "Source installer media '%s' no longer exists"
+msgstr "El medio de la fuente de instalación «%s» ya no existe"
+
+#: src/vm-creator.vala:114
+#| msgid "Unknown installer media"
+msgid "Add installer media"
+msgstr "Añadir instalador del medio"
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:190
+#: src/vm-creator.vala:189
 msgid "Just installed "
 msgstr "Recién instalada "
 
-#: src/vm-importer.vala:59
+#: src/vm-importer.vala:63
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Falló al importar la caja del archivo «%s»."
@@ -1518,119 +1537,81 @@ msgstr "Falló al importar la caja del archivo «%s»."
 msgid "Read-only"
 msgstr "Sólo lectura"
 
-#: src/welcome-tutorial.vala:44
-#, c-format
-msgid "%u/%u"
-msgstr "%u/%u"
+#~ msgid "Collections"
+#~ msgstr "Colecciones"
 
-#: src/wizard-source.vala:128
-msgid "32-bit x86 system"
-msgstr "sistema x86 de 32 bits"
+#~ msgid "The list of boxes collections"
+#~ msgstr "La lista de colecciones de cajas"
 
-#: src/wizard-source.vala:129
-msgid "64-bit x86 system"
-msgstr "sistema x86 de 64 bits"
+#~ msgid "[ 'Work', 'Research', 'Gaming' ]"
+#~ msgstr "[ 'Trabajo', 'Investigación', 'Juegos' ]"
 
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:134
-#, c-format
-msgid " from %s"
-msgstr " de %s"
+#~ msgid "Live box “%s” has been deleted automatically."
+#~ msgstr "Se ha eliminado la caja «%s» automáticamente."
 
-#: src/wizard-toolbar.vala:6
-msgid "Source Selection"
-msgstr "Selección de la fuente"
+#~ msgid "%u/%u"
+#~ msgstr "%u/%u"
 
-#: src/wizard-toolbar.vala:7
-msgid "Box Preparation"
-msgstr "Preparación de la caja"
+#~ msgid "Source Selection"
+#~ msgstr "Selección de la fuente"
 
-#: src/wizard-toolbar.vala:8
-msgid "Box Setup"
-msgstr "Configuración de la caja"
+#~ msgid "Box Preparation"
+#~ msgstr "Preparación de la caja"
 
-#: src/wizard-toolbar.vala:9
-msgid "Review"
-msgstr "Revisar"
+#~ msgid "Box Setup"
+#~ msgstr "Configuración de la caja"
 
-#: src/wizard.vala:121
-msgid "Box creation failed"
-msgstr "Falló la creación de la caja"
+#~ msgid "Review"
+#~ msgstr "Revisar"
 
-#: src/wizard.vala:300
-msgid "Empty location"
-msgstr "Ubicación vacía"
+#~ msgid "Box creation failed"
+#~ msgstr "Falló la creación de la caja"
 
-#: src/wizard.vala:323
-msgid "Unsupported file"
-msgstr "Archivo no soportado"
+#~ msgid "Empty location"
+#~ msgstr "Ubicación vacía"
 
-#: src/wizard.vala:329
-msgid "Invalid file"
-msgstr "Archivo no válido"
+#~ msgid "Unsupported file"
+#~ msgstr "Archivo no soportado"
 
-#. accept any vnc:// uri
-#. accept any ssh:// uri
-#. accept any rdp:// uri
-#: src/wizard.vala:371
-msgid "Boxes was compiled without RDP support"
-msgstr "Se ha compilado Cajas sin soporte para RDP"
+#~ msgid "Invalid file"
+#~ msgstr "Archivo no válido"
 
-#: src/wizard.vala:379
-#, c-format
-msgid "Unsupported protocol “%s”"
-msgstr "Protocolo «%s» no soportado"
+#~ msgid "Boxes was compiled without RDP support"
+#~ msgstr "Se ha compilado Cajas sin soporte para RDP"
 
-#: src/wizard.vala:385 src/wizard.vala:453
-msgid "Unknown installer media"
-msgstr "Instalador del medio desconocido"
+#~ msgid "Unsupported protocol “%s”"
+#~ msgstr "Protocolo «%s» no soportado"
 
-#. Translators: Analyzing installer media
-#: src/wizard.vala:387 src/wizard.vala:454
-msgid "Analyzing…"
-msgstr "Analizando…"
+#~ msgid "Analyzing…"
+#~ msgstr "Analizando…"
 
-#. We did this, so ignore!
-#: src/wizard.vala:507
-msgid "Box setup failed"
-msgstr "Falló la configuración de la caja"
+#~ msgid "Box setup failed"
+#~ msgstr "Falló la configuración de la caja"
 
-#: src/wizard.vala:521
-msgid "Boxes will create a new box with the following properties:"
-msgstr "Se creará una caja nueva con las siguientes propiedades:"
+#~ msgid "Boxes will create a new box with the following properties:"
+#~ msgstr "Se creará una caja nueva con las siguientes propiedades:"
 
-#: src/wizard.vala:526
-msgid "Type"
-msgstr "Tipo"
+#~ msgid "Type"
+#~ msgstr "Tipo"
 
-#: src/wizard.vala:529
-msgid "Host"
-msgstr "Servidor"
+#~ msgid "Host"
+#~ msgstr "Servidor"
 
-#: src/wizard.vala:540 src/wizard.vala:553
-msgid "Port"
-msgstr "Puerto"
+#~ msgid "Port"
+#~ msgstr "Puerto"
 
-#: src/wizard.vala:542
-msgid "TLS Port"
-msgstr "Puerto TLS"
+#~ msgid "TLS Port"
+#~ msgstr "Puerto TLS"
 
-#: src/wizard.vala:558
-msgid "Will add boxes for all systems available from this account:"
-msgstr ""
-"Se añadirán cajas para todos los sistemas disponibles desde esta cuenta:"
+#~ msgid "Will add boxes for all systems available from this account:"
+#~ msgstr ""
+#~ "Se añadirán cajas para todos los sistemas disponibles desde esta cuenta:"
 
-#: src/wizard.vala:638
-msgid "Downloading media…"
-msgstr "Descargando medios…"
+#~ msgid "Downloading media…"
+#~ msgstr "Descargando medios…"
 
-#: src/wizard.vala:651
-msgid "Download failed."
-msgstr "Falló la descarga."
-
-#: src/wizard.vala:770
-msgid "C_ustomize…"
-msgstr "_Personalizar…"
+#~ msgid "Download failed."
+#~ msgstr "Falló la descarga."
 
 #~ msgid ""
 #~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
