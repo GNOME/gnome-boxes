@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-03-21 19:24+0000\n"
-"PO-Revision-Date: 2020-03-31 23:50+0800\n"
+"POT-Creation-Date: 2020-04-21 11:45+0000\n"
+"PO-Revision-Date: 2020-05-01 01:43+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -56,7 +56,7 @@ msgid "The GNOME Project"
 msgstr "GNOME 專案"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
-#: src/app-window.vala:137 src/app-window.vala:244 src/app-window.vala:246
+#: src/app-window.vala:134 src/app-window.vala:239 src/app-window.vala:241
 #: src/main.vala:72 src/topbar.vala:93
 msgid "Boxes"
 msgstr "機櫃"
@@ -75,62 +75,50 @@ msgid "virtual machine;vm;vnc;rdp;"
 msgstr "virtual machine;vm;vnc;rdp;虛擬機;虛擬機;"
 
 #: data/org.gnome.boxes.gschema.xml:11
-msgid "Collections"
-msgstr "收藏集"
-
-#: data/org.gnome.boxes.gschema.xml:12
-msgid "The list of boxes collections"
-msgstr "機臺收藏集的清單"
-
-#: data/org.gnome.boxes.gschema.xml:15
-msgid "[ 'Work', 'Research', 'Gaming' ]"
-msgstr "[ 'Work', 'Research', 'Gaming' ]"
-
-#: data/org.gnome.boxes.gschema.xml:19
 msgid "Screenshot interval"
 msgstr "螢幕快照間隔"
 
-#: data/org.gnome.boxes.gschema.xml:20
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The interval in seconds between screenshot updates"
 msgstr "螢幕快照更新之間的間隔秒數"
 
-#: data/org.gnome.boxes.gschema.xml:32
+#: data/org.gnome.boxes.gschema.xml:24
 msgid "Window size"
 msgstr "視窗大小"
 
-#: data/org.gnome.boxes.gschema.xml:33
+#: data/org.gnome.boxes.gschema.xml:25
 msgid "Window size (width and height)"
 msgstr "視窗大小 (寬度與高度)"
 
-#: data/org.gnome.boxes.gschema.xml:39
+#: data/org.gnome.boxes.gschema.xml:31
 msgid "Window position"
 msgstr "視窗位置"
 
-#: data/org.gnome.boxes.gschema.xml:40
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window position (x and y)"
 msgstr "視窗位置 (x 與 y)"
 
-#: data/org.gnome.boxes.gschema.xml:46
+#: data/org.gnome.boxes.gschema.xml:38
 msgid "Window maximized"
 msgstr "視窗最大化"
 
-#: data/org.gnome.boxes.gschema.xml:47
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window maximized state"
 msgstr "視窗最大化狀態"
 
-#: data/org.gnome.boxes.gschema.xml:53
+#: data/org.gnome.boxes.gschema.xml:45
 msgid "First run"
 msgstr "第一次執行"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:46
 msgid "Whether Boxes is running for the first time"
 msgstr "是否為第一次執行《機櫃》"
 
-#: data/org.gnome.boxes.gschema.xml:61
+#: data/org.gnome.boxes.gschema.xml:53
 msgid "Shared folders"
 msgstr "共享資料夾"
 
-#: data/org.gnome.boxes.gschema.xml:62
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "共享資料夾的名稱與路徑映射之變數陣列"
 
@@ -223,11 +211,11 @@ msgstr "資源配置"
 msgid "Customize"
 msgstr "自訂"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:40
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
 msgid "Express Installation"
 msgstr "快速安裝"
 
-#: data/ui/assistant/remote-connection.ui:6 src/wizard.vala:192
+#: data/ui/assistant/remote-connection.ui:6
 msgid "Connect to a Box"
 msgstr "正在連線至機櫃"
 
@@ -240,8 +228,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:96 src/assistant/index-page.vala:143
-#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:58
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
+#: src/assistant/index-page.vala:156 src/assistant/vm-assistant.vala:73
+#: src/properties-window.vala:58 src/vm-creator.vala:104
 msgid "Cancel"
 msgstr "取消"
 
@@ -292,34 +281,34 @@ msgid "Back"
 msgstr "返回"
 
 #: data/ui/collection-toolbar.ui:74
-msgid "Downloads"
-msgstr "下載"
-
-#: data/ui/collection-toolbar.ui:99
 msgid "Application Menu"
 msgstr "應用程式選單"
 
-#: data/ui/collection-toolbar.ui:127
+#: data/ui/collection-toolbar.ui:102
 msgid "Select Items"
 msgstr "選取項目"
 
-#: data/ui/collection-toolbar.ui:155
+#: data/ui/collection-toolbar.ui:130
 msgid "List view"
 msgstr "列表檢視"
 
-#: data/ui/collection-toolbar.ui:183
+#: data/ui/collection-toolbar.ui:158
 msgid "Grid view"
 msgstr "方格檢視"
 
-#: data/ui/collection-toolbar.ui:209 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:185 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "搜尋"
 
-#: data/ui/collection-toolbar.ui:237
+#: data/ui/collection-toolbar.ui:212
+msgid "Downloads"
+msgstr "下載"
+
+#: data/ui/collection-toolbar.ui:238
 msgid "Create a Virtual Machine…"
 msgstr "建立虛擬主機…"
 
-#: data/ui/collection-toolbar.ui:244
+#: data/ui/collection-toolbar.ui:245
 msgid "Connect to a Remote Computer…"
 msgstr "連線至遠端電腦…"
 
@@ -444,7 +433,7 @@ msgstr "求助"
 
 #: data/ui/menus.ui:15
 msgid "About Boxes"
-msgstr "關於機櫃"
+msgstr "關於《機櫃》"
 
 #: data/ui/properties-toolbar.ui:43 src/machine.vala:651
 msgid "Troubleshooting Log"
@@ -455,7 +444,8 @@ msgid "_Copy to Clipboard"
 msgstr "複製到剪貼簿(_C)"
 
 #: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:140 src/properties-window.vala:55
+#: src/assistant/index-page.vala:153 src/properties-window.vala:55
+#: src/vm-creator.vala:101
 msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
@@ -472,7 +462,7 @@ msgid "_Delete"
 msgstr "刪除(_D)"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:329
+#: src/app-window.vala:324
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -560,11 +550,11 @@ msgstr "產品金鑰"
 msgid "Welcome Tutorial"
 msgstr "歡迎教學"
 
-#: data/ui/welcome-tutorial.ui:31
+#: data/ui/welcome-tutorial.ui:35
 msgid "Welcome to Boxes"
 msgstr "歡迎使用機櫃"
 
-#: data/ui/welcome-tutorial.ui:32
+#: data/ui/welcome-tutorial.ui:36
 msgid ""
 "Boxes makes it easy to install and run virtual machines. You can also use it "
 "to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
@@ -573,7 +563,7 @@ msgstr ""
 "機櫃讓安裝虛擬機並執行變得簡單。您也可使用 SPICE、VNC、RDP 或 SSH 連線來遠端"
 "存取其他電腦。"
 
-#: data/ui/welcome-tutorial.ui:41
+#: data/ui/welcome-tutorial.ui:45
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -582,11 +572,11 @@ msgstr ""
 "使用快速安裝，機櫃會設定新虛擬機的安裝選項。只需開始安裝，所有東西都會幫你妥"
 "善處理好。"
 
-#: data/ui/welcome-tutorial.ui:49
+#: data/ui/welcome-tutorial.ui:53
 msgid "Easy Downloads"
 msgstr "輕鬆下載"
 
-#: data/ui/welcome-tutorial.ui:50
+#: data/ui/welcome-tutorial.ui:54
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -595,11 +585,11 @@ msgstr ""
 "透過機櫃，您無需手動下載想要建立虛擬機的作業系統。只需選擇好要安裝的作業系"
 "統，機櫃就會自動幫你下載。"
 
-#: data/ui/welcome-tutorial.ui:58
+#: data/ui/welcome-tutorial.ui:62
 msgid "Drag and Drop"
 msgstr "拖曳"
 
-#: data/ui/welcome-tutorial.ui:59
+#: data/ui/welcome-tutorial.ui:63
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -654,7 +644,7 @@ msgstr ""
 "輸入要連線的位址。連結可以以 spice://、rdp://、ssh://、或 vnc:// 起頭。"
 
 #: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69 src/wizard.vala:178
+#: data/ui/wizard-window.ui:69
 msgid "Create a Box"
 msgstr "建立機臺"
 
@@ -670,7 +660,7 @@ msgstr "繼續(_O)"
 msgid "Customize Resources"
 msgstr "自訂資源"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:331
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:326
 msgid "_Open"
 msgstr "開啟(_O)"
 
@@ -777,62 +767,97 @@ msgstr "— 可存取遠端機器或虛擬機的簡易應用程式"
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了太多命令列引數。\n"
 
-#: src/app.vala:476
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "機臺「%s」已安裝並準備好可以使用"
 
-#: src/app.vala:478
+#: src/app.vala:477
 msgid "Launch"
 msgstr "啟動"
 
-#: src/app.vala:564
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "「%s」機臺已刪除"
 
-#: src/app.vala:565
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 部機臺已刪除"
 
-#: src/app.vala:592 src/libvirt-machine-properties.vala:557
+#: src/app.vala:591 src/libvirt-machine-properties.vala:557
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "取消動作(_U)"
 
-#: src/app.vala:636
+#: src/app.vala:635
 msgid "Boxes is doing something"
 msgstr "機櫃忙碌中"
 
-#: src/app-window.vala:328
+#: src/app-window.vala:323
 msgid "Select files to transfer"
 msgstr "選取要傳輸的檔案"
 
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: src/assistant/index-page.vala:130
+msgid "Select the GNOME Nightly VM image"
+msgstr ""
+
+#: src/assistant/index-page.vala:133 src/vm-creator.vala:104
+#, fuzzy
+#| msgid "_Select"
+msgid "Select"
+msgstr "選擇(_S)"
+
+#: src/assistant/index-page.vala:156 src/properties-window.vala:58
 msgid "Open"
 msgstr "開啟"
 
-#: src/assistant/index-page.vala:157 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:170 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "上一個"
 
-#: src/assistant/review-page.vala:47 src/wizard.vala:571
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: src/assistant/index-page.vala:237 src/libvirt-machine.vala:867
+#: src/util-app.vala:153
+msgid "Live"
+msgstr "Live"
+
+#: src/assistant/index-page.vala:242
+msgid "32-bit x86 system"
+msgstr "32 位元 x86 系統"
+
+#: src/assistant/index-page.vala:243
+msgid "64-bit x86 system"
+msgstr "64 位元 x86 系統"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: src/assistant/index-page.vala:248
+#, c-format
+msgid " from %s"
+msgstr " 來自 %s"
+
+#: src/assistant/review-page.vala:50
 msgid "Memory"
 msgstr "記憶體"
 
-#: src/assistant/review-page.vala:56 src/wizard.vala:580
+#: src/assistant/review-page.vala:59
 msgid "Disk"
 msgstr "磁碟"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/assistant/review-page.vala:58 src/wizard.vala:582
+#: src/assistant/review-page.vala:61
 #, c-format
 msgid "%s maximum"
 msgstr "最大 %s"
 
-#: src/assistant/vm-assistant.vala:60 src/wizard.vala:401
+#: src/assistant/review-page.vala:166
+msgid "C_ustomize…"
+msgstr "自訂(_U)…"
+
+#: src/assistant/vm-assistant.vala:60
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "安裝程式媒體分析失敗。媒體是否損壞或檔案不完整？"
 
@@ -858,7 +883,7 @@ msgstr "%d×%d"
 msgid "Exit fullscreen"
 msgstr "離開全螢幕"
 
-#: src/downloads-hub.vala:50 src/wizard.vala:641
+#: src/downloads-hub.vala:50
 msgid "Downloading media"
 msgstr "正在下載媒體"
 
@@ -872,7 +897,7 @@ msgid "Install"
 msgstr "安裝"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:179
+#: src/downloads-hub.vala:184
 msgid "Failed to download"
 msgstr "下載失敗"
 
@@ -880,11 +905,11 @@ msgstr "下載失敗"
 msgid "New and Recent"
 msgstr "新增與最近"
 
-#: src/installed-media.vala:54
+#: src/installed-media.vala:55
 msgid "Unsupported disk image format."
 msgstr "不支援的磁碟映像檔格式。"
 
-#: src/installed-media.vala:100 src/installer-media.vala:178
+#: src/installed-media.vala:118 src/installer-media.vala:178
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "系統"
@@ -1106,13 +1131,6 @@ msgstr "正在拓製「%s」…"
 msgid "Installing…"
 msgstr "正在安裝…"
 
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: src/libvirt-machine.vala:867 src/util-app.vala:152
-#: src/wizard-source.vala:126
-msgid "Live"
-msgstr "Live"
-
 #: src/libvirt-machine.vala:869
 msgid "Setting up clone…"
 msgstr "正在設置拓製品…"
@@ -1257,7 +1275,7 @@ msgstr "快照"
 msgid "Protocol"
 msgstr "協定"
 
-#: src/remote-machine.vala:83 src/wizard.vala:531
+#: src/remote-machine.vala:83
 msgid "URL"
 msgstr "URL"
 
@@ -1351,7 +1369,7 @@ msgid "Folder Shares"
 msgstr "資料夾共享"
 
 #: src/spice-display.vala:601 src/spice-display.vala:626
-#: src/spice-display.vala:629 src/wizard.vala:341 src/wizard.vala:354
+#: src/spice-display.vala:629
 msgid "Invalid URL"
 msgstr "URL 無效"
 
@@ -1395,7 +1413,7 @@ msgstr "%s 的快速安裝需要有網際網路連線。"
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "「%s」的 GNOME 機櫃憑證"
 
-#: src/util-app.vala:338
+#: src/util-app.vala:339
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1404,11 +1422,11 @@ msgstr ""
 "您的 SELinux 情境看起來不正確，您可以嘗試修正它，只要執行：\n"
 "%s"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:343
 msgid "SELinux not installed?"
 msgstr "尚未安裝 SELinux？"
 
-#: src/util-app.vala:424
+#: src/util-app.vala:425
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1416,20 +1434,20 @@ msgstr ""
 "無法從 libvirt 取得「gnome-boxes」貯藏池資訊。請確認「virsh -c qemu:///"
 "session pool-dumpxml gnome-boxes」是否正在運作。"
 
-#: src/util-app.vala:429
+#: src/util-app.vala:430
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr "%s 為 libvirt 作為機櫃貯藏池之用，但該目錄卻不存在"
 
-#: src/util-app.vala:433
+#: src/util-app.vala:434
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "%s 為 libvirt 作為機櫃貯藏池之用，但它卻非目錄"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:438
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1446,12 +1464,23 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:760
+#: src/vm-configurator.vala:756
 msgid "Incapable host system"
 msgstr "無能力的主機系統"
 
+#: src/vm-creator.vala:112
+#, c-format
+msgid "Source installer media '%s' no longer exists"
+msgstr ""
+
+#: src/vm-creator.vala:114
+#, fuzzy
+#| msgid "Unknown installer media"
+msgid "Add installer media"
+msgstr "未知的安裝程式媒體"
+
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:172
+#: src/vm-creator.vala:189
 msgid "Just installed "
 msgstr "剛安裝完成 "
 
@@ -1464,118 +1493,77 @@ msgstr "從檔案「%s」匯入機臺失敗。"
 msgid "Read-only"
 msgstr "唯讀"
 
-#: src/welcome-tutorial.vala:44
-#, c-format
-msgid "%u/%u"
-msgstr "%u/%u"
+#~ msgid "Collections"
+#~ msgstr "收藏集"
 
-#: src/wizard-source.vala:136
-msgid "32-bit x86 system"
-msgstr "32 位元 x86 系統"
+#~ msgid "The list of boxes collections"
+#~ msgstr "機臺收藏集的清單"
 
-#: src/wizard-source.vala:137
-msgid "64-bit x86 system"
-msgstr "64 位元 x86 系統"
+#~ msgid "[ 'Work', 'Research', 'Gaming' ]"
+#~ msgstr "[ 'Work', 'Research', 'Gaming' ]"
 
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/wizard-source.vala:142
-#, c-format
-msgid " from %s"
-msgstr " 來自 %s"
+#~ msgid "%u/%u"
+#~ msgstr "%u/%u"
 
-#: src/wizard-toolbar.vala:6
-msgid "Source Selection"
-msgstr "來源選取"
+#~ msgid "Source Selection"
+#~ msgstr "來源選取"
 
-#: src/wizard-toolbar.vala:7
-msgid "Box Preparation"
-msgstr "機臺準備"
+#~ msgid "Box Preparation"
+#~ msgstr "機臺準備"
 
-#: src/wizard-toolbar.vala:8
-msgid "Box Setup"
-msgstr "機臺設定"
+#~ msgid "Box Setup"
+#~ msgstr "機臺設定"
 
-#: src/wizard-toolbar.vala:9
-msgid "Review"
-msgstr "檢閱"
+#~ msgid "Review"
+#~ msgstr "檢閱"
 
-#: src/wizard.vala:121
-msgid "Box creation failed"
-msgstr "機臺建立失敗"
+#~ msgid "Box creation failed"
+#~ msgstr "機臺建立失敗"
 
-#: src/wizard.vala:300
-msgid "Empty location"
-msgstr "空的位置"
+#~ msgid "Empty location"
+#~ msgstr "空的位置"
 
-#: src/wizard.vala:323
-msgid "Unsupported file"
-msgstr "不支援的檔案"
+#~ msgid "Unsupported file"
+#~ msgstr "不支援的檔案"
 
-#: src/wizard.vala:329
-msgid "Invalid file"
-msgstr "無效的檔案"
+#~ msgid "Invalid file"
+#~ msgstr "無效的檔案"
 
-#. accept any vnc:// uri
-#. accept any ssh:// uri
-#. accept any rdp:// uri
-#: src/wizard.vala:371
-msgid "Boxes was compiled without RDP support"
-msgstr "機櫃編譯時未包含 RDP 支援"
+#~ msgid "Boxes was compiled without RDP support"
+#~ msgstr "機櫃編譯時未包含 RDP 支援"
 
-#: src/wizard.vala:379
-#, c-format
-msgid "Unsupported protocol “%s”"
-msgstr "未支援的協定「%s」"
+#~ msgid "Unsupported protocol “%s”"
+#~ msgstr "未支援的協定「%s」"
 
-#: src/wizard.vala:385 src/wizard.vala:453
-msgid "Unknown installer media"
-msgstr "未知的安裝程式媒體"
+#~ msgid "Analyzing…"
+#~ msgstr "正在分析…"
 
-#. Translators: Analyzing installer media
-#: src/wizard.vala:387 src/wizard.vala:454
-msgid "Analyzing…"
-msgstr "正在分析…"
+#~ msgid "Box setup failed"
+#~ msgstr "機臺設定失敗"
 
-#. We did this, so ignore!
-#: src/wizard.vala:507
-msgid "Box setup failed"
-msgstr "機臺設定失敗"
+#~ msgid "Boxes will create a new box with the following properties:"
+#~ msgstr "機櫃會以下列屬性建立新機臺："
 
-#: src/wizard.vala:521
-msgid "Boxes will create a new box with the following properties:"
-msgstr "機櫃會以下列屬性建立新機臺："
+#~ msgid "Type"
+#~ msgstr "類型"
 
-#: src/wizard.vala:526
-msgid "Type"
-msgstr "類型"
+#~ msgid "Host"
+#~ msgstr "主機"
 
-#: src/wizard.vala:529
-msgid "Host"
-msgstr "主機"
+#~ msgid "Port"
+#~ msgstr "連接埠"
 
-#: src/wizard.vala:540 src/wizard.vala:553
-msgid "Port"
-msgstr "連接埠"
+#~ msgid "TLS Port"
+#~ msgstr "TLS 連接埠"
 
-#: src/wizard.vala:542
-msgid "TLS Port"
-msgstr "TLS 連接埠"
+#~ msgid "Will add boxes for all systems available from this account:"
+#~ msgstr "會將此帳號所有可用的系統加入機櫃："
 
-#: src/wizard.vala:558
-msgid "Will add boxes for all systems available from this account:"
-msgstr "會將此帳號所有可用的系統加入機櫃："
+#~ msgid "Downloading media…"
+#~ msgstr "正在下載媒體…"
 
-#: src/wizard.vala:638
-msgid "Downloading media…"
-msgstr "正在下載媒體…"
-
-#: src/wizard.vala:651
-msgid "Download failed."
-msgstr "下載失敗。"
-
-#: src/wizard.vala:770
-msgid "C_ustomize…"
-msgstr "自訂(_U)…"
+#~ msgid "Download failed."
+#~ msgstr "下載失敗。"
 
 #~ msgid ""
 #~ "Enter an address to connect to. Addresses can begin with spice://, rdp:// "
