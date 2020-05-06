@@ -34,7 +34,7 @@ private class Boxes.AssistantPreparationPage : AssistantPage {
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);
         }
 
-        prepare (media);
+        prepare.begin (media);
 
         skip = true;
     }
