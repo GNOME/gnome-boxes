@@ -412,7 +412,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         try {
             avatar_path = yield get_user_avatar_from_accountsservice (username);
-        } catch (GLib.IOError error) {
+        } catch (GLib.Error error) {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 

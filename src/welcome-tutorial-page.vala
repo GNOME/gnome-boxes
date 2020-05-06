@@ -37,7 +37,11 @@ private class Boxes.WelcomeTutorialPage : Gtk.Box {
           }
         """.printf (image);
 
-        provider.load_from_data (css);
-        get_style_context ().add_provider (provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+        try {
+            provider.load_from_data (css);
+            get_style_context ().add_provider (provider, STYLE_PROVIDER_PRIORITY_APPLICATION);
+        } catch (GLib.Error error) {
+            warning ("Failed to load CSS: %s", error.message);
+        }
     }
 }

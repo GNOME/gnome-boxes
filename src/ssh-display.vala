@@ -63,7 +63,13 @@ private class Boxes.SshDisplay: Boxes.Display {
     private bool run (string[] command) {
         SpawnFlags flags = SpawnFlags.SEARCH_PATH_FROM_ENVP | SpawnFlags.DO_NOT_REAP_CHILD;
 
-        return display.spawn_sync (PtyFlags.DEFAULT, Environment.get_home_dir (), command, null, flags, null, null);
+        try {
+            return display.spawn_sync (PtyFlags.DEFAULT, Environment.get_home_dir (), command, null, flags, null, null);
+        } catch (GLib.Error error) {
+            warning ("Failed to spawn command in Vte terminal: %s", error.message);
+
+            return false;
+        }
     }
 
     public override void connect_it (owned Display.OpenFDFunc? open_fd = null) {
