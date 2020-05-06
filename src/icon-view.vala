@@ -72,9 +72,11 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         case SelectionCriteria.RUNNING:
             foreach_child ((box_child) => {
                 var item = get_item_for_child (box_child);
-                if (item != null && item is Machine && (item as Machine).is_running)
-                    select_child (box_child);
-                else
+                if (item != null && item is Machine) {
+                    var machine = item as Machine;
+                    if (machine.is_running)
+                        select_child (box_child);
+                } else
                     unselect_child (box_child);
             });
 
@@ -173,8 +175,11 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         }
 
         var item = get_item_for_child (child);
-        if (item is LibvirtMachine && (item as LibvirtMachine).importing)
-            return;
+        if (item is LibvirtMachine) {
+            var machine = item as LibvirtMachine;
+            if (machine.importing)
+                return;
+        }
 
         window.select_item (item);
 
@@ -208,7 +213,8 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         if (item == null)
             return false;
 
-        var thumbnail = (child.get_child () as IconViewChild).thumbnail;
+        var icon_view_child = child.get_child () as IconViewChild;
+        var thumbnail = icon_view_child.thumbnail;
 
         context_popover.update_for_item (item);
         context_popover.set_relative_to (thumbnail);

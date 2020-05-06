@@ -133,9 +133,13 @@ private class Boxes.AssistantIndexPage : AssistantPage {
                                                           _("Select"), _("Cancel"));
             file_chooser.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
             if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-                var media = yield new InstalledMedia.gnome_nightly (file_chooser.get_filename ());
-                done (media);
-                return;
+                try {
+                    var media = yield new InstalledMedia.gnome_nightly (file_chooser.get_filename ());
+                    done (media);
+                    return;
+                } catch (GLib.Error error) {
+                    warning ("Failed to create GNOME Nightly config for '%s': %s", file_chooser.get_filename (), error.message);
+                }
             }
         } else {
             DownloadsHub.get_instance ().add_item (entry);
@@ -157,9 +161,13 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         file_chooser.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
             var media_manager = MediaManager.get_instance ();
-            var media = yield media_manager.create_installer_media_for_path (file_chooser.get_filename (),
-                                                                             cancellable);
-            done (media);
+            try {
+                var media = yield media_manager.create_installer_media_for_path (file_chooser.get_filename (),
+                                                                                 cancellable);
+                done (media);
+            } catch (GLib.Error error) {
+                warning ("Failed to create installer media for path '%s': %s", file_chooser.get_filename (), error.message);
+            }
         }
     }
 

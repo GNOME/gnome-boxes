@@ -192,7 +192,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         /* FIXME: This is a temporary workaround for a mesa issue that causes
          * Boxes to crash when calling spice_display_get_pixbuf ();
          * See https://bugs.freedesktop.org/106811 */
-        if ((machine as LibvirtMachine).acceleration_3d) {
+        var libvirt_machine = machine as LibvirtMachine;
+        if (libvirt_machine.acceleration_3d) {
             return draw_pixbuf_client_side (display);
         }
 
@@ -258,12 +259,13 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     public override void disconnect_it () {
+        var session_object = session as GLib.Object;
         if (channel_new_id > 0) {
-            (session as GLib.Object).disconnect (channel_new_id);
+            session_object.disconnect (channel_new_id);
             channel_new_id = 0;
         }
         if (channel_destroy_id > 0) {
-            (session as GLib.Object).disconnect (channel_destroy_id);
+            session_object.disconnect (channel_destroy_id);
             channel_destroy_id = 0;
         }
         session.disconnect ();

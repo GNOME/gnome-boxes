@@ -17,7 +17,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var install_scripts = os_media.get_install_script_list ();
             if (install_scripts.get_length () > 0) {
 
-                install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+                var osinfo_list = install_scripts as Osinfo.List;
+                install_scripts = osinfo_list.new_filtered (filter) as InstallScriptList;
                 if (install_scripts.get_length () > 0)
                     return true;
 
@@ -25,7 +26,8 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             }
 
             install_scripts = os.get_install_script_list ();
-            install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+            var osinfo_list = install_scripts as Osinfo.List;
+            install_scripts = osinfo_list.new_filtered (filter) as InstallScriptList;
             if (install_scripts.get_length () > 0)
                 return true;
 
@@ -43,9 +45,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         owned get {
             var devices = base.supported_devices;
 
-            if (setup_box.express_install)
-                return (devices as Osinfo.List).new_union (additional_devices) as Osinfo.DeviceList;
-            else
+            if (setup_box.express_install) {
+                var osinfo_list = devices as Osinfo.List;
+
+                return osinfo_list.new_union (additional_devices) as Osinfo.DeviceList;
+            } else
                 return devices;
         }
     }
@@ -88,8 +92,11 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     private InstallScriptInjectionMethod injection_method {
         private get {
             foreach (var unattended_file in unattended_files) {
-                if (unattended_file is UnattendedScriptFile)
-                    return (unattended_file as UnattendedScriptFile).injection_method;
+                if (unattended_file is UnattendedScriptFile) {
+                    var unattended_script_file = unattended_file as UnattendedScriptFile;
+
+                    return unattended_script_file.injection_method;
+                }
             }
 
             return InstallScriptInjectionMethod.DISK;
@@ -405,7 +412,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
         try {
             avatar_path = yield get_user_avatar_from_accountsservice (username);
-        } catch (GLib.IOError error) {
+        } catch (GLib.Error error) {
             warning ("Failed to retrieve information about user '%s': %s", username, error.message);
         }
 

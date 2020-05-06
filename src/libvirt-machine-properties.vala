@@ -240,7 +240,12 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
 
             /* Enable/disable boot menu */
             VMConfigurator.enable_boot_menu (machine.domain_config, !empty);
-            machine.domain.set_config (machine.domain_config);
+
+            try {
+                machine.domain.set_config (machine.domain_config);
+            } catch (GLib.Error e) {
+                warning ("Failed to update machine config for '%s': %s", machine.name, e.message);
+            }
         });
 
         var property = add_property (ref list, _("CD/DVD"), grid);
@@ -767,13 +772,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
 
         machine.supports_accel3d.begin ((source, result) => {
-            try {
-                if (!machine.supports_accel3d.end (result)) {
-                    property.label.destroy ();
-                    property.widget.destroy ();
-                }
-            } catch (GLib.Error error) {
-                warning (error.message);
+            if (!machine.supports_accel3d.end (result)) {
+                property.label.destroy ();
+                property.widget.destroy ();
             }
         });
 

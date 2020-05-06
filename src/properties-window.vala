@@ -83,7 +83,8 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     }
 
     public void revert_state () {
-        if ((app_window.current_item as Machine).state != Machine.MachineState.RUNNING &&
+        var current_machine = app_window.current_item as Machine;
+        if (current_machine.state != Machine.MachineState.RUNNING &&
              app_window.previous_ui_state == UIState.DISPLAY)
             app_window.set_state (UIState.COLLECTION);
         else

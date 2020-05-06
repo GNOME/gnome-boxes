@@ -87,7 +87,8 @@ namespace Boxes {
         var filter = new Osinfo.Filter ();
         filter.add_constraint (prop_name, prop_value);
 
-        var filtered = (devices as Osinfo.List).new_filtered (filter);
+        var osinfo_list = devices as Osinfo.List;
+        var filtered = osinfo_list.new_filtered (filter);
         if (filtered.get_length () > 0)
             return filtered.get_nth (0) as Osinfo.Device;
         else
@@ -126,10 +127,12 @@ namespace Boxes {
            identifier. */
         var variant = "";
         var variants = media.get_os_variants ();
-        if (variants.get_length () > 0)
-            variant = (variants.get_nth (0) as Osinfo.OsVariant).get_name ();
-        else if ((media.os as Osinfo.Product).name != null) {
-            variant = (media.os as Osinfo.Product).name;
+        var product = media.os as Osinfo.Product;
+        if (variants.get_length () > 0) {
+            var os_variant = variants.get_nth (0) as Osinfo.OsVariant;
+            variant = os_variant.get_name ();
+        } else if (product.name != null) {
+            variant = product.name;
             if (media.url != null && media.url.contains ("server"))
                 variant += " Server";
         } else {

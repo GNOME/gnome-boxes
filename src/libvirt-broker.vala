@@ -33,7 +33,11 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
             SourceFunc callback = add_domain.callback;
             ulong id = 0;
             id = App.app.collection.item_added.connect ((item) => {
-                if (!(item is LibvirtMachine) || (item as LibvirtMachine).domain != domain)
+                if (!(item is LibvirtMachine))
+                    return;
+
+                var libvirt_machine = item as LibvirtMachine;
+                if (libvirt_machine.domain != domain)
                     return;
 
                 App.app.collection.disconnect (id);
@@ -137,7 +141,8 @@ private class Boxes.LibvirtBroker : Boxes.Broker {
         }
 
         foreach (var clone in clones) {
-            var disk_path = (clone.vm_creator as VMImporter).source_media.device_file;
+            var vm_importer = clone.vm_creator as VMImporter;
+            var disk_path = vm_importer.source_media.device_file;
             LibvirtMachine? cloned = null;
 
             for (int i = 0 ; i < App.app.collection.length ; i++) {
