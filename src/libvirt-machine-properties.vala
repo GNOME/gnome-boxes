@@ -772,13 +772,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                                BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
 
         machine.supports_accel3d.begin ((source, result) => {
-            try {
-                if (!machine.supports_accel3d.end (result)) {
-                    property.label.destroy ();
-                    property.widget.destroy ();
-                }
-            } catch (GLib.Error error) {
-                warning (error.message);
+            if (!machine.supports_accel3d.end (result)) {
+                property.label.destroy ();
+                property.widget.destroy ();
             }
         });
 
