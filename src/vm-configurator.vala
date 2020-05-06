@@ -268,7 +268,6 @@ private class Boxes.VMConfigurator {
 
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
-        DomainGraphicsSpice graphics = null;
         DomainChannel channel_webdav = null;
         bool supports_alternative_boot_device = false;
         foreach (var device in domain.get_devices ()) {
