@@ -174,7 +174,10 @@ private class Boxes.IntegerProperty : Boxes.Property {
 
     public int value {
         get {
-            return (widget as Gtk.SpinButton).get_value_as_int ();
+            var spin_button = widget as Gtk.SpinButton;
+            assert (spin_button != null);
+
+            return spin_button.get_value_as_int ();
         }
     }
 
@@ -196,7 +199,11 @@ private class Boxes.IntegerProperty : Boxes.Property {
 
 private class Boxes.StringProperty : Boxes.Property {
     public string text {
-        get { return (widget as Gtk.Label).label; }
+        get {
+            var label = widget as Gtk.Label;
+            assert (label != null);
+
+            return label.label; }
     }
 
     public StringProperty (string name, string value) {

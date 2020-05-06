@@ -19,8 +19,9 @@ private class Boxes.DownloadsHub : Gtk.Popover {
     private double progress {
         get {
             double total = 0;
-            foreach (var row in listbox.get_children ()) {
-                total += (row as DownloadsHubRow).progress.progress / n_items;
+            foreach (var child in listbox.get_children ()) {
+                var row = child as DownloadsHubRow;
+                total += row.progress.progress / n_items;
             }
 
             return total;
@@ -40,7 +41,8 @@ private class Boxes.DownloadsHub : Gtk.Popover {
         if (!button.visible)
             button.visible = true;
 
-        var drawing_area = (button as Bin).get_child ();
+        var bin = button as Gtk.Bin;
+        var drawing_area = bin.get_child ();
         drawing_area.draw.connect (draw_button_pie);
 
         row.destroy.connect (on_row_deleted);

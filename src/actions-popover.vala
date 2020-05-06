@@ -37,7 +37,8 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         var menu = new GLib.Menu ();
         var section = new GLib.Menu ();
 
-        var importing = (machine is LibvirtMachine && (machine as LibvirtMachine).importing);
+        var libvirt_machine = machine as LibvirtMachine;
+        var importing = (machine is LibvirtMachine && libvirt_machine.importing);
 
         // Open in new Window
         if (window.ui_state != UIState.DISPLAY) {
@@ -149,7 +150,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     }
 
     private void restart_activated () {
-        (window.current_item as Machine).restart ();
+        var machine = window.current_item as Machine;
+
+        machine.restart ();
     }
 
     private void delete_activated () {
@@ -162,7 +165,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     }
 
     private void clone_activated () {
-        (window.current_item as Machine).clone.begin ();
+        var machine = window.current_item as Machine;
+
+        machine.clone.begin ();
     }
 
     private void send_file_activated () {

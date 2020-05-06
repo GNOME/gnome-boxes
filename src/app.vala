@@ -11,7 +11,8 @@ private abstract class Boxes.Broker : GLib.Object {
             if (!(item is Machine))
                 continue;
 
-            used_configs.append ((item as Machine).config);
+            var machine = item as Machine;
+            used_configs.append (machine.config);
         }
 
         source.purge_stale_box_configs (used_configs);
@@ -584,7 +585,8 @@ private class Boxes.App: Gtk.Application {
                     continue;
 
                 // Will also delete associated storage volume if by_user is 'true'
-                (item as Machine).delete (true);
+                var machine = item as Machine;
+                machine.delete (true);
             }
         };
 
@@ -617,8 +619,10 @@ private class Boxes.App: Gtk.Application {
 
         var initial_windows_count = windows.length ();
 
-        if (window.current_item != null)
-            (window.current_item as Machine).window = null;
+        if (window.current_item != null) {
+            var current_machine = window.current_item as Machine;
+            current_machine.window = null;
+        }
 
         window.hide ();
 

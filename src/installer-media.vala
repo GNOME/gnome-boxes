@@ -222,10 +222,13 @@ private class Boxes.InstallerMedia : GLib.Object {
             this.label = label;
         else if (os != null && os_media != null) {
             var variants = os_media.get_os_variants ();
-            if (variants.get_length () > 0)
+            if (variants.get_length () > 0) {
                 // FIXME: Assuming first variant only from multivariant medias.
-                this.label = (variants.get_nth (0) as OsVariant).get_name ();
-            else
+                var variant = variants.get_nth (0) as OsVariant;
+                assert (variant != null);
+
+                this.label = variant.get_name ();
+            } else
                 this.label = os.get_name ();
         } else {
             // No appropriate label? :( Lets just use filename w/o extensions (if any) then

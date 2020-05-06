@@ -176,7 +176,8 @@ private class Boxes.MediaManager : Object {
         if (install_scripts.get_length () > 0) {
 
             // Find out whether the media supports a script for DESKTOP profile
-            install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+            var osinfo_list = install_scripts as Osinfo.List;
+            install_scripts = osinfo_list.new_filtered (filter) as InstallScriptList;
 
             if (install_scripts.get_length () > 0) {
                 try {
@@ -192,7 +193,8 @@ private class Boxes.MediaManager : Object {
         // In case scripts are not set as part of the media, let's use the ones
         // set as part of the OS.
         install_scripts = media.os.get_install_script_list ();
-        install_scripts = (install_scripts as Osinfo.List).new_filtered (filter) as InstallScriptList;
+        var osinfo_list = install_scripts as Osinfo.List;
+        install_scripts = osinfo_list.new_filtered (filter) as InstallScriptList;
         if (install_scripts.get_length () > 0) {
             try {
                 install_media = new UnattendedInstaller.from_media (media, install_scripts);

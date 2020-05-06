@@ -208,7 +208,8 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
         if (parent == null || !(parent is Gtk.ListBox))
             return;
 
-        var siblings = (parent as Gtk.Container).get_children ();
+        var container = parent as Gtk.Container;
+        var siblings = container.get_children ();
         this.index = siblings.index (this);
         this.parent_size = (int) siblings.length ();
     }
