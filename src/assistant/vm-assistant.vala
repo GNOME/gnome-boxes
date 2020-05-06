@@ -92,8 +92,8 @@ private class Boxes.VMAssistant : Gtk.Dialog {
     }
 
     [GtkCallback]
-    private void on_next_button_clicked () {
-        visible_page.next ();
+    private async void on_next_button_clicked () {
+        yield visible_page.next ();
     }
 
     [GtkCallback]
@@ -112,14 +112,14 @@ private class Boxes.VMAssistant : Gtk.Dialog {
                                                 next_button, "sensitive",
                                                 BindingFlags.SYNC_CREATE);
 
-        setup_page.setup (vm_creator);
+        setup_page.setup.begin (vm_creator);
     }
 
     [GtkCallback]
     private async void do_review (Object object) {
         pages.set_visible_child (review_page);
 
-        review_page.setup (object as VMCreator);
+        review_page.setup.begin (object as VMCreator);
     }
 
     [GtkCallback]
