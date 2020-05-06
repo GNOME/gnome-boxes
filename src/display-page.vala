@@ -158,7 +158,10 @@ private class Boxes.DisplayPage: Gtk.Box {
 
                 return true;
             });
-            transfer_message_box_drag_leave_id = widget.drag_leave.connect (() => {
+            transfer_message_box_drag_motion_id = transfer_message_box.drag_motion.connect (() => {
+                return true;
+            });
+            transfer_message_box_drag_leave_id = transfer_message_box.drag_leave.connect (() => {
                 transfer_message_box.hide ();
             });
         }
