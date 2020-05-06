@@ -256,8 +256,10 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         case UIState.DISPLAY:
         case UIState.WIZARD:
         case UIState.PROPERTIES:
-            if (current_item != null)
-                (current_item as Machine).unschedule_autosave ();
+            if (current_item != null) {
+                var current_machine = current_item as Machine;
+                current_machine.unschedule_autosave ();
+            }
 
             break;
 
@@ -335,7 +337,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                 uris_param.append (uri);
             }
 
-            (current_item as Machine).display.transfer_files (uris_param);
+            var machine = current_item as Machine;
+            machine.display.transfer_files (uris_param);
         }
 
         dialog.destroy ();
@@ -503,12 +506,14 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     private void on_machine_state_notify () {
-       if (this != App.app.main_window && (current_item as Machine).state != Machine.MachineState.RUNNING)
+       var current_machine = current_item as Machine;
+       if (this != App.app.main_window && current_machine.state != Machine.MachineState.RUNNING)
            on_delete_event ();
     }
 
     private void on_machine_deleted_notify () {
-       if (this != App.app.main_window && (current_item as Machine).deleted)
+       var current_machine = current_item as Machine;
+       if (this != App.app.main_window && current_machine.deleted)
            on_delete_event ();
     }
 }

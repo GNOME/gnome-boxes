@@ -58,7 +58,8 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         if (decision_type != WebKit.PolicyDecisionType.NAVIGATION_ACTION)
             return false;
 
-        var action = (decision as WebKit.NavigationPolicyDecision).get_navigation_action ();
+        var navigation_policy_decision = decision as WebKit.NavigationPolicyDecision;
+        var action = navigation_policy_decision.get_navigation_action ();
         var request = action.get_request ();
         var request_uri = request.get_uri ();
 

@@ -11,8 +11,10 @@ private class Boxes.VMCreator : Object {
     public InstallerMedia? install_media { get; protected set; }
     public bool express_install {
         get {
+            var unattended_installer = install_media as UnattendedInstaller;
+
             return ((install_media is UnattendedInstaller) &&
-                    (install_media as UnattendedInstaller).setup_box.express_install);
+                    unattended_installer.setup_box.express_install);
         }
     }
 

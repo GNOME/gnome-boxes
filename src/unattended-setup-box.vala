@@ -125,7 +125,10 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         var msg = _("Express installation of %s requires an internet connection.").printf (media.label);
         needs_internet_label.label = msg;
         needs_internet_bar.visible = needs_internet;
-        needs_password = (media as UnattendedInstaller).needs_password;
+
+        var unnatended_installer = media as UnattendedInstaller;
+        needs_password = unnatended_installer.needs_password;
+
         media_path = media.device_file;
         keyfile = new GLib.KeyFile ();
 

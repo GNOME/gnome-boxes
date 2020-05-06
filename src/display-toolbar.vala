@@ -84,8 +84,10 @@ private class Boxes.DisplayToolbar: Gtk.HeaderBar {
             back.visible = (window == App.app.main_window);
         });
         window.notify["ui-state"].connect (() => {
-            if (window.ui_state == UIState.DISPLAY)
-                (menu_button.popover as ActionsPopover).update_for_item (window.current_item);
+            if (window.ui_state == UIState.DISPLAY) {
+                var actions_popover = menu_button.popover as ActionsPopover;
+                actions_popover.update_for_item (window.current_item);
+            }
         });
         keys_menu_button.popover = new KeysInputPopover (window);
         transfers_drawing_area.draw.connect (on_draw);

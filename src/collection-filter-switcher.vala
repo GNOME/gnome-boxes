@@ -35,11 +35,17 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
     }
 
     private bool local_filter_func (Boxes.CollectionItem item) {
-        return (item is Machine) && (item as Machine).is_local;
+        assert (item != null && item is Machine);
+        var machine = item as Machine;
+
+        return machine.is_local;
     }
 
     private bool remote_filter_func (Boxes.CollectionItem item) {
-        return (item is Machine) && !(item as Machine).is_local;
+        assert (item != null && item is Machine);
+        var machine = item as Machine;
+
+        return !machine.is_local;
     }
 
     private void on_app_ready () {

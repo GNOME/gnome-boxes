@@ -111,9 +111,13 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         case SelectionCriteria.RUNNING:
             foreach_row ((box_row) => {
                 var item = get_item_for_row (box_row);
-                if (item != null && item is Machine && (item as Machine).is_running)
-                    select_row (box_row);
-                else
+                assert (item != null);
+
+                if (item != null && item is Machine) {
+                    var machine = item as Machine;
+                    if (machine.is_running)
+                        select_row (box_row);
+                } else
                     unselect_row (box_row);
             });
 
@@ -169,14 +173,18 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
                 return;
 
             var item = get_item_for_row (box_row);
-            if (item is LibvirtMachine && (item as LibvirtMachine).importing)
-                return;
+            if (item is LibvirtMachine) {
+                var libvirt_machine = item as LibvirtMachine;
+                if (libvirt_machine.importing)
+                    return;
+            }
 
             window.select_item (item);
         });
 
-        (list_box as Gtk.Container).add.connect (add_row);
-        (list_box as Gtk.Container).remove.connect (remove_row);
+        var container = list_box as Gtk.Container;
+        container.add.connect (add_row);
+        container.remove.connect (remove_row);
     }
 
     private CollectionItem? get_item_for_row (Gtk.ListBoxRow box_row) {

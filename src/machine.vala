@@ -644,7 +644,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     window.current_item = this;
                     window.show_properties ();
 
-                    var logs = (this as LibvirtMachine).properties.collect_logs ();
+                    var libvirt_machine = this as LibvirtMachine;
+                    var logs = libvirt_machine.properties.collect_logs ();
                     window.props_window.show_troubleshoot_log (logs);
                 };
 
@@ -770,9 +771,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     }
 
     public override int compare (CollectionItem other) {
-        if (other is Machine)
-            return config.compare ((other as Machine).config);
-        else
+        if (other is Machine) {
+            var machine = other as Machine;
+            return config.compare (machine.config);
+        } else
             return -1; // Machines are listed before non-machines
     }
 

@@ -87,7 +87,10 @@ private class Boxes.Collection: GLib.Object {
             if (item1 == null || item2 == null)
                 return 0;
 
-            return (item1 as CollectionItem).compare (item2 as CollectionItem);
+            var collection_item1 = item1 as CollectionItem;
+            var collection_item2 = item2 as CollectionItem;
+
+            return collection_item1.compare (collection_item2);
         });
 
         item_added (item);

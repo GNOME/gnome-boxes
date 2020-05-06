@@ -134,9 +134,12 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             });
             item.set_data<ulong> ("can_delete_id", can_delete_id);
 
-            if (item is Machine && !(item as Machine).can_delete) {
-                sensitive = false;
-                break;
+            if (item is Machine) {
+                var machine = item as Machine;
+                if (!machine.can_delete) {
+                    sensitive = false;
+                    break;
+                }
             }
         }
 
@@ -161,9 +164,12 @@ private class Boxes.Selectionbar: Gtk.Revealer {
             });
             item.set_data<ulong> ("importing_id", importing_id);
 
-            if (item is LibvirtMachine && (item as LibvirtMachine).importing) {
-                sensitive = false;
-                break;
+            if (item is LibvirtMachine) {
+                var libvirt_machine = item as LibvirtMachine;
+                if (libvirt_machine.importing) {
+                    sensitive = false;
+                    break;
+                }
             }
         }
         open_btn.sensitive = sensitive;

@@ -104,8 +104,11 @@ private class Boxes.SnapshotsProperty : Boxes.Property {
 
     private int config_sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
         try {
-            var conf1  = (row1 as SnapshotListRow).snapshot.get_config (0);
-            var conf2  = (row2 as SnapshotListRow).snapshot.get_config (0);
+            var snapshot_row1 = row1 as SnapshotListRow;
+            var snapshot_row2 = row2 as SnapshotListRow;
+
+            var conf1  = snapshot_row1.snapshot.get_config (0);
+            var conf2  = snapshot_row2.snapshot.get_config (0);
             if (conf1.get_creation_time () < conf2.get_creation_time ())
                 return -1;
             else
