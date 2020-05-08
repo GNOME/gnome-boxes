@@ -74,6 +74,11 @@ private class Boxes.AuthNotification: Gtk.Revealer {
     }
 
     [GtkCallback]
+    private void on_password_entry_map () {
+        password_entry.grab_focus ();
+    }
+
+    [GtkCallback]
     private void on_password_entry_activated () {
         auth_button.activate ();
     }
