@@ -79,8 +79,6 @@ public int main (string[] args) {
         error (err.message);
     }
 
-    Hdy.init (ref args);
-
     var app = new Boxes.App ();
 
     var exit_status = app.run (args);
