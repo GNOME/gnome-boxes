@@ -47,81 +47,90 @@
 
             <child type="overlay">
               <object class="GtkBox" id="transfer_message_box">
-                <property name="can_focus">False</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <style>
-                  <class name="app-notification"/>
-                  <class name="overlay-box"/>
-                </style>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <child>
-                  <object class="GtkImage">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">end</property>
-                    <property name="valign">center</property>
-                    <property name="margin_right">24</property>
-                    <property name="icon_name">document-save-symbolic</property>
-                    <property name="icon_size">6</property>
-                  </object>
-                  <packing>
-                    <property name="expand">True</property>
-                    <property name="fill">True</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-                <child type="center">
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="halign">start</property>
+                    <property name="halign">center</property>
                     <property name="valign">center</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
-                    <property name="orientation">vertical</property>
-                    <property name="spacing">10</property>
+                    <style>
+                      <class name="app-notification"/>
+                      <class name="overlay-box"/>
+                    </style>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="margin_left">4</property>
-                        <property name="label" translatable="yes">Ready to Receive File</property>
-                        <property name="justify">center</property>
-                        <style>
-                          <class name="tooltip"/>
-                        </style>
-                        <attributes>
-                          <attribute name="weight" value="bold"/>
-                        </attributes>
+                        <property name="halign">end</property>
+                        <property name="valign">center</property>
+                        <property name="margin_right">24</property>
+                        <property name="icon_name">document-save-symbolic</property>
+                        <property name="icon_size">6</property>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
+                        <property name="expand">True</property>
                         <property name="fill">True</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
-                    <child>
-                      <object class="GtkLabel">
+                    <child type="center">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
+                        <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
-                        <property name="label" translatable="yes">You will find your file in the Downloads directory.</property>
-                        <property name="wrap">True</property>
-                        <property name="max_width_chars">25</property>
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="margin_left">4</property>
+                            <property name="label" translatable="yes">Ready to Receive File</property>
+                            <property name="justify">center</property>
+                            <style>
+                              <class name="tooltip"/>
+                            </style>
+                            <attributes>
+                              <attribute name="weight" value="bold"/>
+                            </attributes>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="vexpand">True</property>
+                            <property name="label" translatable="yes">You will find your file in the Downloads directory.</property>
+                            <property name="wrap">True</property>
+                            <property name="max_width_chars">25</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="position">1</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
               </object>
             </child>
