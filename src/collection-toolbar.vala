@@ -19,8 +19,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
     private MenuButton downloads_hub_btn;
     [GtkChild]
     public MenuButton hamburger_btn;
-    [GtkChild]
-    private CollectionFilterSwitcher filter_switcher;
 
     private AppWindow window;
 
@@ -42,8 +40,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
 
         window.notify["ui-state"].connect (ui_state_changed);
         App.app.notify["main-window"].connect (ui_state_changed);
-
-        filter_switcher.setup_ui (window);
 
         var builder = new Builder.from_resource ("/org/gnome/Boxes/ui/menus.ui");
         MenuModel menu = (MenuModel) builder.get_object ("app-menu");
@@ -114,7 +110,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
             new_btn.show ();
             grid_btn.visible = window.view_type != AppWindow.ViewType.ICON;
             list_btn.visible = window.view_type != AppWindow.ViewType.LIST;
-            custom_title = filter_switcher;
             break;
 
         case UIState.CREDS:
@@ -124,7 +119,6 @@ private class Boxes.CollectionToolbar: HeaderBar {
             search_btn.hide ();
             grid_btn.hide ();
             list_btn.hide ();
-            custom_title = null;
             break;
 
         default:
