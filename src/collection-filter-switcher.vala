@@ -5,9 +5,7 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
     [GtkChild]
     private Gtk.ToggleButton all_button;
     [GtkChild]
-    private Gtk.ToggleButton local_button;
-    [GtkChild]
-    private Gtk.ToggleButton remote_button;
+    private Gtk.ToggleButton favorites_button;
 
     private Gtk.ToggleButton active_button;
     private weak AppWindow window;
@@ -26,26 +24,17 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
     private unowned CollectionFilterFunc? get_filter_func () {
         if (active_button == all_button)
             return null;
-        if (active_button == local_button)
-            return local_filter_func;
-        if (active_button == remote_button)
-            return remote_filter_func;
+        if (active_button == favorites_button)
+            return favorites_filter_func;
         else
             return null;
     }
 
-    private bool local_filter_func (Boxes.CollectionItem item) {
+    private bool favorites_filter_func (Boxes.CollectionItem item) {
         assert (item != null && item is Machine);
         var machine = item as Machine;
 
-        return machine.is_local;
-    }
-
-    private bool remote_filter_func (Boxes.CollectionItem item) {
-        assert (item != null && item is Machine);
-        var machine = item as Machine;
-
-        return !machine.is_local;
+        return "favorite" in machine.config.categories;
     }
 
     private void on_app_ready () {

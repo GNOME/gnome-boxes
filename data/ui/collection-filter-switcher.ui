@@ -22,26 +22,11 @@
     </child>
 
     <child>
-      <object class="GtkRadioButton" id="local_button">
+      <object class="GtkRadioButton" id="favorites_button">
         <property name="visible">True</property>
         <property name="group">all_button</property>
         <property name="draw-indicator">False</property>
-        <property name="label" translatable="yes" comments="Translators: this is a switch to show only local boxes in main view.">Local</property>
-        <signal name="toggled" handler="activate_button"/>
-      </object>
-
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-      </packing>
-    </child>
-
-    <child>
-      <object class="GtkRadioButton" id="remote_button">
-        <property name="visible">True</property>
-        <property name="group">all_button</property>
-        <property name="draw-indicator">False</property>
-        <property name="label" translatable="yes" comments="Translators: this is a switch to show only remote boxes in main view.">Remote</property>
+        <property name="label" translatable="yes" comments="Translators: this is a switch to show only favorite boxes in main view.">Favorites</property>
         <signal name="toggled" handler="activate_button"/>
       </object>
 
