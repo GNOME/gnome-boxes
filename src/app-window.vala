@@ -168,6 +168,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         if (app.application_id == "org.gnome.BoxesDevel") {
             get_style_context ().add_class ("devel");
         }
+
+        var icon_name = Config.APPLICATION_ID + "-symbolic";
+        collection_stack.child_set (all_view, "icon-name", icon_name);
     }
 
     public void setup_ui () {
