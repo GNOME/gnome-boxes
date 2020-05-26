@@ -5,6 +5,11 @@ private class Boxes.CollectionFilterView: Gtk.Bin, Boxes.UI {
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
 
+    public enum FilterType {
+        ALL,
+        FAVORITES,
+    }
+
     [GtkChild]
     private Gtk.Stack stack;
     [GtkChild]
@@ -14,13 +19,25 @@ private class Boxes.CollectionFilterView: Gtk.Bin, Boxes.UI {
 
     public AppWindow.ViewType view_type { get; set; default = AppWindow.ViewType.ICON; }
 
-    private unowned CollectionFilterFunc _filter_func = null;
-    public unowned CollectionFilterFunc filter_func {
-        get { return _filter_func; }
+    private FilterType _filter_type = FilterType.ALL;
+    public FilterType filter_type {
+        get { return _filter_type; }
         set {
-            _filter_func = value;
-            icon_view.filter.filter_func = value;
-            list_view.filter.filter_func = value;
+            _filter_type = value;
+
+            CollectionFilterFunc? filter_func = null;
+            switch (filter_type) {
+            default:
+            case FilterType.ALL:
+                filter_func = null;
+                break;
+            case FilterType.FAVORITES:
+                filter_func = favorites_filter_func;
+                break;
+            }
+
+            icon_view.filter.filter_func = filter_func;
+            list_view.filter.filter_func = filter_func;
         }
     }
 
@@ -37,8 +54,7 @@ private class Boxes.CollectionFilterView: Gtk.Bin, Boxes.UI {
     }
 
     construct {
-        notify["view-type"].connect (ui_state_changed);
-    }
+        notify["view-type"].connect (ui_state_changed);    }
 
     public void setup_ui (AppWindow window) {
         icon_view.setup_ui (window);
@@ -60,5 +76,12 @@ private class Boxes.CollectionFilterView: Gtk.Bin, Boxes.UI {
             icon_view.show ();
             list_view.show ();
         }
+    }
+
+    private bool favorites_filter_func (Boxes.CollectionItem item) {
+        assert (item != null && item is Machine);
+        var machine = item as Machine;
+
+        return "favorite" in machine.config.categories;
     }
 }

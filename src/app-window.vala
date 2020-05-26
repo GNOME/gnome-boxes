@@ -500,7 +500,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
            on_delete_event ();
     }
 
-    public void set_filter_func (CollectionFilterFunc? filter_func) {
-        collection_view.filter_func = filter_func;
+    public void set_filter_type (CollectionFilterView.FilterType filter_type) {
+        collection_view.filter_type = filter_type;
     }
 }

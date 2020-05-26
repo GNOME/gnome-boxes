@@ -17,24 +17,15 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
         all_button.active = true;
         activate_button (all_button);
         App.app.call_when_ready (on_app_ready);
-
-        window.set_filter_func (null);
     }
 
-    private unowned CollectionFilterFunc? get_filter_func () {
+    private CollectionFilterView.FilterType get_filter_type () {
         if (active_button == all_button)
-            return null;
+            return CollectionFilterView.FilterType.ALL;
         if (active_button == favorites_button)
-            return favorites_filter_func;
+            return CollectionFilterView.FilterType.FAVORITES;
         else
-            return null;
-    }
-
-    private bool favorites_filter_func (Boxes.CollectionItem item) {
-        assert (item != null && item is Machine);
-        var machine = item as Machine;
-
-        return "favorite" in machine.config.categories;
+            return CollectionFilterView.FilterType.ALL;
     }
 
     private void on_app_ready () {
@@ -62,6 +53,6 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
                 toggle_button.active = toggle_button == active_button;
         }
 
-        window.set_filter_func (get_filter_func ());
+        window.set_filter_type (get_filter_type ());
     }
 }
