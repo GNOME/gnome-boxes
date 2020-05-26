@@ -50,7 +50,6 @@ vala_sources = [
   'archive-writer.vala',
   'auth-notification.vala',
   'collection.vala',
-  'collection-filter-switcher.vala',
   'collection-toolbar.vala',
   'display-page.vala',
   'display-toolbar.vala',

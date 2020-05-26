@@ -60,9 +60,6 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         filter.notify["text"].connect (() => {
             list_box.invalidate_filter ();
         });
-        filter.filter_func_changed.connect (() => {
-            list_box.invalidate_filter ();
-        });
         setup_list_box ();
 
         notify["ui-state"].connect (ui_state_changed);

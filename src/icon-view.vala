@@ -35,9 +35,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         filter.notify["text"].connect (() => {
             flowbox.invalidate_filter ();
         });
-        filter.filter_func_changed.connect (() => {
-            flowbox.invalidate_filter ();
-        });
 
         setup_flowbox ();
 
