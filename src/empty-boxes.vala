@@ -36,6 +36,6 @@ private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
         if (visible)
             window.below_bin.set_visible_child_name ("empty-boxes");
         else
-            window.below_bin.set_visible_child (window.view);
+            window.below_bin.set_visible_child_name ("collection-stack");
     }
 }

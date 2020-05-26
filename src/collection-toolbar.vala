@@ -1,8 +1,9 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
+using Hdy;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/collection-toolbar.ui")]
-private class Boxes.CollectionToolbar: HeaderBar {
+private class Boxes.CollectionToolbar: Gtk.HeaderBar {
     [GtkChild]
     private Button search_btn;
     [GtkChild]
@@ -20,7 +21,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
     [GtkChild]
     public MenuButton hamburger_btn;
     [GtkChild]
-    private CollectionFilterSwitcher filter_switcher;
+    private ViewSwitcher view_switcher;
 
     private AppWindow window;
 
@@ -43,7 +44,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
         window.notify["ui-state"].connect (ui_state_changed);
         App.app.notify["main-window"].connect (ui_state_changed);
 
-        filter_switcher.setup_ui (window);
+        view_switcher.stack = window.collection_stack;
 
         var builder = new Builder.from_resource ("/org/gnome/Boxes/ui/menus.ui");
         MenuModel menu = (MenuModel) builder.get_object ("app-menu");
@@ -114,7 +115,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
             new_btn.show ();
             grid_btn.visible = window.view_type != AppWindow.ViewType.ICON;
             list_btn.visible = window.view_type != AppWindow.ViewType.LIST;
-            custom_title = filter_switcher;
+            custom_title = view_switcher;
             break;
 
         case UIState.CREDS:

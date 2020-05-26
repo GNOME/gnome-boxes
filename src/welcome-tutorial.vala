@@ -5,7 +5,7 @@ using Hdy;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/welcome-tutorial.ui")]
 private class Boxes.WelcomeTutorial : Gtk.Dialog {
     [GtkChild]
-    private Paginator paginator;
+    private Carousel carousel;
     [GtkChild]
     private Button go_back_button;
     [GtkChild]
@@ -18,7 +18,7 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
         use_header_bar = 1;
 
         pages = new GLib.List<unowned WelcomeTutorialPage> ();
-        foreach (var page in paginator.get_children ()) {
+        foreach (var page in carousel.get_children ()) {
             assert (page is WelcomeTutorialPage);
             pages.append (page as WelcomeTutorialPage);
         }
@@ -47,7 +47,7 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
     [GtkCallback]
     private void on_position_changed () {
         var n_pages = pages.length ();
-        var position = paginator.position;
+        var position = carousel.position;
 
         // Toggle button's visibility
         go_back_button.opacity = double.min (position, 1);
@@ -68,20 +68,20 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
 
     [GtkCallback]
     private void on_next_button_clicked () {
-        var index = (int) Math.round (paginator.position) + 1;
+        var index = (int) Math.round (carousel.position) + 1;
         if (index >= pages.length ())
             return;
 
-        paginator.scroll_to (pages.nth_data (index));
+        carousel.scroll_to (pages.nth_data (index));
 
     }
 
     [GtkCallback]
     private void on_back_button_clicked () {
-        var index = (int) Math.round (paginator.position) - 1;
+        var index = (int) Math.round (carousel.position) - 1;
         if (index < 0)
             return;
 
-        paginator.scroll_to (pages.nth_data (index));
+        carousel.scroll_to (pages.nth_data (index));
     }
 }

@@ -16,9 +16,11 @@
      |     |    |
      |     |    |-> below_bin = new Gtk.Stack ();
      |     |        |
-     |     |        |-> icon_view = new Boxes.IconView ();
-     |     |        |
-     |     |        |-> list_view = new Boxes.ListView ();
+     |     |        |-> collection_stack = new Gtk.Stack ();
+     |     |        |    |
+     |     |        |    |-> all_view = new Boxes.CollectionView ();
+     |     |        |    |
+     |     |        |    |-> favorites_view = new Boxes.CollectionView ();
      |     |        |
      |     |        |-> empty_boxes = new Boxes.EmptyBoxes ();
      |     |        |
@@ -93,20 +95,35 @@
                 </child>
 
                 <child>
-                  <object class="BoxesIconView" id="icon_view">
+                  <object class="GtkStack" id="collection_stack">
                     <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="name">icon-view</property>
-                  </packing>
-                </child>
+                    <property name="transition-type">crossfade</property>
 
-                <child>
-                  <object class="BoxesListView" id="list_view">
-                    <property name="visible">True</property>
+                    <child>
+                      <object class="BoxesCollectionFilterView" id="all_view">
+                        <property name="visible">True</property>
+                        <property name="filter-type">all</property>
+                      </object>
+                      <packing>
+                        <property name="title" translatable="yes" comments="Translators: this is a switch to show all boxes in main view.">All</property>
+                        <property name="name">all-view</property>
+                      </packing>
+                    </child>
+
+                    <child>
+                      <object class="BoxesCollectionFilterView" id="favorites_view">
+                        <property name="visible">True</property>
+                        <property name="filter-type">favorites</property>
+                      </object>
+                      <packing>
+                        <property name="title" translatable="yes" comments="Translators: this is a switch to show only favorite boxes in main view.">Favorites</property>
+                        <property name="icon-name">starred-symbolic</property>
+                        <property name="name">favorites-view</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
-                    <property name="name">list-view</property>
+                    <property name="name">collection-stack</property>
                   </packing>
                 </child>
 
