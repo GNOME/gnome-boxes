@@ -16,9 +16,7 @@
      |     |    |
      |     |    |-> below_bin = new Gtk.Stack ();
      |     |        |
-     |     |        |-> icon_view = new Boxes.IconView ();
-     |     |        |
-     |     |        |-> list_view = new Boxes.ListView ();
+     |     |        |-> collection_view = new Boxes.CollectionView ();
      |     |        |
      |     |        |-> empty_boxes = new Boxes.EmptyBoxes ();
      |     |        |
@@ -93,20 +91,12 @@
                 </child>
 
                 <child>
-                  <object class="BoxesIconView" id="icon_view">
+                  <object class="BoxesCollectionFilterView" id="collection_view">
                     <property name="visible">True</property>
-                  </object>
-                  <packing>
-                    <property name="name">icon-view</property>
-                  </packing>
-                </child>
 
-                <child>
-                  <object class="BoxesListView" id="list_view">
-                    <property name="visible">True</property>
                   </object>
                   <packing>
-                    <property name="name">list-view</property>
+                    <property name="name">collection-view</property>
                   </packing>
                 </child>
 

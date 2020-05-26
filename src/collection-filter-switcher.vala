@@ -18,7 +18,7 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
         activate_button (all_button);
         App.app.call_when_ready (on_app_ready);
 
-        window.foreach_view ((view) => { view.filter.filter_func = null; });
+        window.set_filter_func (null);
     }
 
     private unowned CollectionFilterFunc? get_filter_func () {
@@ -62,6 +62,6 @@ private class Boxes.CollectionFilterSwitcher: Gtk.ButtonBox {
                 toggle_button.active = toggle_button == active_button;
         }
 
-        window.foreach_view ((view) => { view.filter.filter_func = get_filter_func (); });
+        window.set_filter_func (get_filter_func ());
     }
 }

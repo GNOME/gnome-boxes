@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesCollectionFilterView" parent="GtkBin">
+    <property name="visible">True</property>
+
+    <child>
+      <object class="GtkStack" id="stack">
+        <property name="visible">True</property>
+        <property name="transition-type">crossfade</property>
+        <property name="transition-duration">400</property>
+
+        <child>
+          <object class="BoxesIconView" id="icon_view">
+            <property name="visible">True</property>
+            <property name="ui-state" bind-source="BoxesCollectionFilterView" bind-property="ui-state"/>
+          </object>
+          <packing>
+            <property name="name">icon-view</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="BoxesListView" id="list_view">
+            <property name="visible">True</property>
+            <property name="ui-state" bind-source="BoxesCollectionFilterView" bind-property="ui-state"/>
+          </object>
+          <packing>
+            <property name="name">list-view</property>
+          </packing>
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>

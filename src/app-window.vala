@@ -94,25 +94,15 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Gtk.Stack below_bin;
     [GtkChild]
-    private IconView icon_view;
-    [GtkChild]
-    private ListView list_view;
+    private CollectionFilterView collection_view;
 
     public ViewType view_type { get; set; default = ViewType.ICON; }
 
     public ICollectionView view {
         get {
-            switch (view_type) {
-            default:
-            case ViewType.ICON:
-                return icon_view;
-            case ViewType.LIST:
-                return list_view;
-            }
+            return collection_view.view;
         }
     }
-
-    private ICollectionView[] views;
 
     public GLib.Settings settings;
 
@@ -167,8 +157,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             move (x, y);
         }
 
-        views = { icon_view, list_view };
-
         if (app.application_id == "org.gnome.BoxesDevel") {
             get_style_context ().add_class ("devel");
         }
@@ -177,8 +165,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public void setup_ui () {
         topbar.setup_ui (this);
         display_page.setup_ui (this);
-        icon_view.setup_ui (this);
-        list_view.setup_ui (this);
+        collection_view.setup_ui (this);
         selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
         empty_boxes.setup_ui (this);
@@ -210,8 +197,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { topbar,
-                                            icon_view,
-                                            list_view,
+                                            collection_view,
                                             props_window,
                                             //wizard_window,
                                             empty_boxes }) {
@@ -226,11 +212,13 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         switch (ui_state) {
         case UIState.COLLECTION:
             if (App.app.collection.length != 0)
-                below_bin.visible_child = view;
+                below_bin.visible_child = collection_view;
             else
                 below_bin.visible_child = empty_boxes;
+
+            collection_view.view_type = view_type;
+
             fullscreened = false;
-            foreach_view ((view) => { view.visible = true; });
 
             if (status_bind != null) {
                 status_bind.unbind ();  // FIXME: We shouldn't neeed to explicitly unbind (Vala bug?)
@@ -275,11 +263,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
 
         if (machine != null && this == machine.window)
             current_item.set_state (ui_state);
-    }
-
-    public void foreach_view (Func<ICollectionView> func) {
-        foreach (var view in views)
-            func (view);
     }
 
     public void show_remote_connection_assistant (string? uri = null) {
@@ -388,7 +371,7 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public void filter (string text) {
-        foreach_view ((view) => { view.filter.text = text; });
+        collection_view.foreach_view ((view) => { view.filter.text = text; });
     }
 
     [GtkCallback]
@@ -434,12 +417,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         } else if (event.keyval == Gdk.Key.a &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             selection_mode = true;
-            foreach_view ((view) => { view.select_all (); });
+            collection_view.foreach_view ((view) => { view.select_all (); });
 
             return true;
         } else if (event.keyval == Gdk.Key.A &&
                    (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
-            foreach_view ((view) => { view.unselect_all (); });
+            collection_view.foreach_view ((view) => { view.unselect_all (); });
 
             return true;
         } else if (((direction == Gtk.TextDirection.LTR && // LTR
@@ -515,5 +498,9 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
        var current_machine = current_item as Machine;
        if (this != App.app.main_window && current_machine.deleted)
            on_delete_event ();
+    }
+
+    public void set_filter_func (CollectionFilterFunc? filter_func) {
+        collection_view.filter_func = filter_func;
     }
 }
