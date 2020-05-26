@@ -16,7 +16,11 @@
      |     |    |
      |     |    |-> below_bin = new Gtk.Stack ();
      |     |        |
-     |     |        |-> collection_view = new Boxes.CollectionView ();
+     |     |        |-> collection_stack = new Gtk.Stack ();
+     |     |        |    |
+     |     |        |    |-> all_view = new Boxes.CollectionView ();
+     |     |        |    |
+     |     |        |    |-> favorites_view = new Boxes.CollectionView ();
      |     |        |
      |     |        |-> empty_boxes = new Boxes.EmptyBoxes ();
      |     |        |
@@ -91,12 +95,34 @@
                 </child>
 
                 <child>
-                  <object class="BoxesCollectionFilterView" id="collection_view">
+                  <object class="GtkStack" id="collection_stack">
                     <property name="visible">True</property>
+                    <property name="transition-type">crossfade</property>
 
+                    <child>
+                      <object class="BoxesCollectionFilterView" id="all_view">
+                        <property name="visible">True</property>
+                        <property name="filter-type">all</property>
+                      </object>
+                      <packing>
+                        <property name="title" translatable="yes" comments="Translators: this is a switch to show all boxes in main view.">All</property>
+                        <property name="name">all-view</property>
+                      </packing>
+                    </child>
+
+                    <child>
+                      <object class="BoxesCollectionFilterView" id="favorites_view">
+                        <property name="visible">True</property>
+                        <property name="filter-type">favorites</property>
+                      </object>
+                      <packing>
+                        <property name="title" translatable="yes" comments="Translators: this is a switch to show only favorite boxes in main view.">Favorites</property>
+                        <property name="name">favorites-view</property>
+                      </packing>
+                    </child>
                   </object>
                   <packing>
-                    <property name="name">collection-view</property>
+                    <property name="name">collection-stack</property>
                   </packing>
                 </child>
 

@@ -94,13 +94,21 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public Gtk.Stack below_bin;
     [GtkChild]
-    private CollectionFilterView collection_view;
+    public Gtk.Stack collection_stack;
+    [GtkChild]
+    private CollectionFilterView all_view;
+    [GtkChild]
+    private CollectionFilterView favorites_view;
 
     public ViewType view_type { get; set; default = ViewType.ICON; }
 
     public ICollectionView view {
         get {
-            return collection_view.view;
+            var current_view = collection_stack.visible_child;
+
+            assert (current_view is CollectionFilterView);
+
+            return ((CollectionFilterView) current_view).view;
         }
     }
 
@@ -165,7 +173,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     public void setup_ui () {
         topbar.setup_ui (this);
         display_page.setup_ui (this);
-        collection_view.setup_ui (this);
+        all_view.setup_ui (this);
+        favorites_view.setup_ui (this);
         selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
         empty_boxes.setup_ui (this);
@@ -197,7 +206,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         // The order is important for some widgets here (e.g properties must change its state before wizard so it can
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { topbar,
-                                            collection_view,
+                                            all_view,
+                                            favorites_view,
                                             props_window,
                                             //wizard_window,
                                             empty_boxes }) {
@@ -212,11 +222,12 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         switch (ui_state) {
         case UIState.COLLECTION:
             if (App.app.collection.length != 0)
-                below_bin.visible_child = collection_view;
+                below_bin.visible_child = collection_stack;
             else
                 below_bin.visible_child = empty_boxes;
 
-            collection_view.view_type = view_type;
+            all_view.view_type = view_type;
+            favorites_view.view_type = view_type;
 
             fullscreened = false;
 
@@ -371,7 +382,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
     }
 
     public void filter (string text) {
-        collection_view.foreach_view ((view) => { view.filter.text = text; });
+        all_view.foreach_view ((view) => { view.filter.text = text; });
+        favorites_view.foreach_view ((view) => { view.filter.text = text; });
     }
 
     [GtkCallback]
@@ -417,12 +429,14 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         } else if (event.keyval == Gdk.Key.a &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             selection_mode = true;
-            collection_view.foreach_view ((view) => { view.select_all (); });
+            all_view.foreach_view ((view) => { view.select_all (); });
+            favorites_view.foreach_view ((view) => { view.select_all (); });
 
             return true;
         } else if (event.keyval == Gdk.Key.A &&
                    (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
-            collection_view.foreach_view ((view) => { view.unselect_all (); });
+            all_view.foreach_view ((view) => { view.unselect_all (); });
+            favorites_view.foreach_view ((view) => { view.unselect_all (); });
 
             return true;
         } else if (((direction == Gtk.TextDirection.LTR && // LTR
@@ -498,9 +512,5 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
        var current_machine = current_item as Machine;
        if (this != App.app.main_window && current_machine.deleted)
            on_delete_event ();
-    }
-
-    public void set_filter_type (CollectionFilterView.FilterType filter_type) {
-        collection_view.filter_type = filter_type;
     }
 }
