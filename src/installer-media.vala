@@ -55,20 +55,6 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
-    public bool supports_efi {
-        get {
-            if (os == null)
-                return false;
-
-            foreach (var iter in os.get_firmware_list (null) .get_elements ()) {
-                var firmware = iter as Firmware;
-                if (firmware.get_firmware_type () == "efi")
-                    return true;
-            }
-            return false;
-        }
-    }
-
     public virtual bool prefers_q35 {
         get {
             if (os == null)
