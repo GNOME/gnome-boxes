@@ -38,7 +38,7 @@ private class Boxes.VMConfigurator {
     private const string LIBOSINFO_XML = "<libosinfo>%s</libosinfo>";
     private const string LIBOSINFO_OS_ID_XML = "<os id=\"%s\"/>";
 
-    public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps, DomainCapabilities domain_caps)
+    public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps)
                                         throws VMConfiguratorError {
         var domain = new Domain ();
 
@@ -51,7 +51,7 @@ private class Boxes.VMConfigurator {
         var virt_type = guest_kvm_enabled (best_caps) ? DomainVirtType.KVM : DomainVirtType.QEMU;
         domain.set_virt_type (virt_type);
 
-        set_os_config (domain, install_media, best_caps, domain_caps);
+        set_os_config (domain, install_media, best_caps);
 
         string[] features = {};
         if (guest_supports_feature (best_caps, "acpi"))
@@ -374,44 +374,16 @@ private class Boxes.VMConfigurator {
 
         os.set_arch (old_os.get_arch ());
         os.set_machine (old_os.get_machine ());
-#if USE_UEFI
-        if (old_os.get_firmware () == GVirConfig.DomainOsFirmware.EFI)
-            os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
-#endif
 
         domain.set_os (os);
     }
 
-    private static bool domain_caps_supports_efi (DomainCapabilities domain_caps) {
-        foreach (var firmware in domain_caps.get_os ().get_firmwares()) {
-            if (firmware == GVirConfig.DomainOsFirmware.EFI)
-                return true;
-        }
-
-        return false;
-    }
-
-    private static bool supports_efi (InstallerMedia install_media, DomainCapabilities domain_caps) {
-        if (install_media == null || !install_media.supports_efi)
-            return false;
-
-        if (domain_caps == null || !domain_caps_supports_efi (domain_caps))
-            return false;
-
-        return true;
-    }
-
-    private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps, DomainCapabilities domain_caps) {
+    private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps) {
         var os = new DomainOs ();
         os.set_os_type (DomainOsType.HVM);
         os.set_arch (guest_caps.get_arch ().get_name ());
         if (install_media.prefers_q35)
             os.set_machine ("q35");
-
-#if USE_UEFI
-        if (supports_efi (install_media, domain_caps))
-            os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
-#endif
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
         install_media.set_direct_boot_params (os);
