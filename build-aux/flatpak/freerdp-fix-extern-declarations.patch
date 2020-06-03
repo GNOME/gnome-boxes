@@ -1,0 +1,33 @@
+From 9078b0deb9d30890b0320b29626abe2d7f241477 Mon Sep 17 00:00:00 2001
+From: Armin Novak <armin.novak@thincast.com>
+Date: Wed, 24 Oct 2018 15:46:18 +0200
+Subject: [PATCH] Fixed extern declaration of rpc_bind p_uuid_t variables.
+
+---
+ libfreerdp/core/gateway/rpc_bind.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/libfreerdp/core/gateway/rpc_bind.h b/libfreerdp/core/gateway/rpc_bind.h
+index f52e38465..5b37ff512 100644
+--- a/libfreerdp/core/gateway/rpc_bind.h
++++ b/libfreerdp/core/gateway/rpc_bind.h
+@@ -25,13 +25,13 @@
+ #include <winpr/wtypes.h>
+ #include <freerdp/api.h>
+ 
+-FREERDP_LOCAL const p_uuid_t TSGU_UUID;
++FREERDP_LOCAL extern const p_uuid_t TSGU_UUID;
+ #define TSGU_SYNTAX_IF_VERSION	0x00030001
+ 
+-FREERDP_LOCAL const p_uuid_t NDR_UUID;
++FREERDP_LOCAL extern const p_uuid_t NDR_UUID;
+ #define NDR_SYNTAX_IF_VERSION	0x00000002
+ 
+-FREERDP_LOCAL const p_uuid_t BTFN_UUID;
++FREERDP_LOCAL extern const p_uuid_t BTFN_UUID;
+ #define BTFN_SYNTAX_IF_VERSION	0x00000001
+ 
+ FREERDP_LOCAL int rpc_send_bind_pdu(rdpRpc* rpc);
+-- 
+2.27.0.rc2
+
