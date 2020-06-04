@@ -402,7 +402,19 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             fullscreened = !fullscreened;
 
             return true;
-        } else if (event.keyval == Gdk.Key.F1) {
+        } else if (((direction == Gtk.TextDirection.LTR && // LTR
+                     event.keyval == Gdk.Key.Left) ||      // ALT + Left -> back
+                    (direction == Gtk.TextDirection.RTL && // RTL
+                     event.keyval == Gdk.Key.Right)) &&    // ALT + Right -> back
+                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
+            topbar.click_back_button ();
+            return true;
+        }
+
+        if (ui_state == UIState.DISPLAY)
+            return false;
+
+        if (event.keyval == Gdk.Key.F1) {
             App.app.activate_action ("help", null);
 
             return true;
@@ -412,9 +424,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             return true;
         } else if (event.keyval == Gdk.Key.q &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            if (ui_state == UIState.DISPLAY)
-                return false;
-
             App.app.quit_app ();
 
             return true;
@@ -443,13 +452,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
                    (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
             foreach_view ((view) => { view.unselect_all (); });
 
-            return true;
-        } else if (((direction == Gtk.TextDirection.LTR && // LTR
-                     event.keyval == Gdk.Key.Left) ||      // ALT + Left -> back
-                    (direction == Gtk.TextDirection.RTL && // RTL
-                     event.keyval == Gdk.Key.Right)) &&    // ALT + Right -> back
-                   (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            topbar.click_back_button ();
             return true;
         } else if (event.keyval == Gdk.Key.Escape) { // ESC -> cancel
             topbar.click_cancel_button ();
