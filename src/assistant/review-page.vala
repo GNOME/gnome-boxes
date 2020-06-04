@@ -14,7 +14,7 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     private Stack customization_stack;
     private GLib.List<Boxes.Property> resource_properties;
 
-    private Cancellable cancellable = new GLib.Cancellable ();
+    private Cancellable? cancellable;
 
     [GtkCallback]
     private void on_customize_button_toggled () {
@@ -23,7 +23,7 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     }
 
     public async void setup (VMCreator vm_creator) {
-        resource_properties = new GLib.List<Boxes.Property> ();
+        cancellable = new GLib.Cancellable ();
 
         try {
             artifact = yield vm_creator.create_vm (cancellable);
@@ -73,9 +73,13 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     }
 
     private void populate_customization_grid (LibvirtMachine machine) {
+        resource_properties = new GLib.List<Boxes.Property> ();
         machine.properties.get_resources_properties (ref resource_properties);
 
         return_if_fail (resource_properties.length () > 0);
+
+        foreach (var child in customization_grid.get_children ())
+            customization_grid.remove (child);
 
         var current_row = 0;
         foreach (var property in resource_properties) {
@@ -97,7 +101,10 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     }
 
     public override void cleanup () {
-        cancellable.cancel ();
+        if (cancellable != null) {
+            cancellable.cancel ();
+            cancellable = null;
+        }
 
         summary.clear ();
         nokvm_infobar.hide ();
@@ -123,6 +130,7 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         foreach (var property in resource_properties) {
             property.flush ();
         }
+        resource_properties = null;
 
         done (artifact);
 
