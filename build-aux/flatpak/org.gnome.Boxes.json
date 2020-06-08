@@ -120,8 +120,12 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.2.5.tar.bz2",
+                    "url" : "http://downloads.sourceforge.net/sourceforge/libtirpc/libtirpc-1.2.5.tar.bz2",
                     "sha256" : "f3b6350c7e9c3cd9c58fc7a5e5f8e6be469cc571bb5eb31eb9790b3e675186ca"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "libtirpc-1.2.5-avoid-multiple-definition.patch"
                 }
             ]
         },
@@ -288,6 +292,10 @@
                     "type" : "archive",
                     "url" : "https://www.spice-space.org/download/gtk/spice-gtk-0.37.tar.bz2",
                     "sha256" : "1f28b706472ad391cda79a93fd7b4c7a03e84b88fc46ddb35dddbe323c923bb7"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "spice-include-math.patch"
                 }
             ]
         },
@@ -415,6 +423,10 @@
                     "type" : "git",
                     "url" : "https://github.com/Distrotech/cdrkit",
                     "branch" : "7b4bb72389ea5ea3ecc94545036dcff4728ec38a"
+                },
+                {
+                    "type" : "patch",
+                    "path" : "genisoimage-extern.patch"
                 }
             ]
         },
@@ -500,11 +512,6 @@
         {
             "name" : "vte",
             "buildsystem" : "meson",
-            "build-options" : {
-                "env" : {
-                    "CXXFLAGS" : "-fno-exceptions"
-                }
-            },
             "sources" : [
                 {
                     "type" : "git",
