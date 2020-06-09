@@ -10,6 +10,7 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public bool can_grab_mouse { get; protected set; }
     public bool mouse_grabbed { get; protected set; }
     public bool keyboard_grabbed { get; protected set; }
+    public bool is_guest_agent_connected { get; protected set; }
     public bool need_password { get; protected set; }
     public bool need_username { get; protected set; }
     public string? password { get; set; }

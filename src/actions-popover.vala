@@ -50,6 +50,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Send File…"), "box.send_file");
             var action = action_group.lookup_action ("send_file") as GLib.SimpleAction;
             action.set_enabled (machine.display.can_transfer_files);
+            machine.display.notify["is-guest-agent-connected"].connect (() => {
+                action.set_enabled (machine.display.can_transfer_files);
+            });
 
             // Take Screenshot
             section.append (_("Take Screenshot"), "box.take_screenshot");
