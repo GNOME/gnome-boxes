@@ -84,11 +84,16 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
                 can_grab_mouse = main_channel.mouse_mode != 2;
                 new_file_transfer_id = main_channel.new_file_transfer.connect (on_new_file_transfer);
+
+                agent_connected_id = main_channel.notify["agent-connected"].connect (() => {
+                    is_guest_agent_connected = main_channel.agent_connected;
+                });
             }
     }
     ulong main_event_id;
     ulong main_mouse_mode_id;
     ulong new_file_transfer_id;
+    ulong agent_connected_id;
 
     private void main_cleanup () {
         if (main_channel == null)
@@ -101,6 +106,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         main_mouse_mode_id = 0;
         o.disconnect (new_file_transfer_id);
         new_file_transfer_id = 0;
+        o.disconnect (agent_connected_id);
+        agent_connected_id = 0;
         main_channel = null;
     }
 
