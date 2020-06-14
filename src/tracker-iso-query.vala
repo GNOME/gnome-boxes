@@ -3,21 +3,15 @@
 using Tracker;
 
 private class Boxes.TrackerISOQuery {
-    private const string LANG_QUERY = "ASK { osinfo:language a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> }";
-    private const string ISO_QUERY = "SELECT nie:url(?iso)   nie:title(?iso)\n" +
-                                     "       osinfo:id(?iso) osinfo:mediaId(?iso)\n" +
+    private const string ISO_QUERY = "SELECT nie:isStoredAs(?iso)   nie:title(?iso)\n" +
+                                     "       osinfo:id(?iso) osinfo:mediaId(?iso) osinfo:language(?iso)\n" +
+                                     "FROM tracker:Software " +
                                      "{ ?iso nfo:isBootable true }";
-    private const string ISO_QUERY_LANG = "SELECT nie:url(?iso)   nie:title(?iso)\n" +
-                                          "       osinfo:id(?iso) osinfo:mediaId(?iso) osinfo:language(?iso)\n" +
-                                          "{ ?iso nfo:isBootable true }";
 
     private Sparql.Cursor cursor;
 
     public async TrackerISOQuery (Sparql.Connection connection) throws GLib.Error {
         var iso_query = ISO_QUERY;
-        var cursor = yield connection.query_async (LANG_QUERY);
-        if ((yield cursor.next_async ()) && cursor.get_boolean (0))
-            iso_query = ISO_QUERY_LANG;
         debug ("Tracker SPARQL query: %s", iso_query);
 
         this.cursor = yield connection.query_async (iso_query);
@@ -48,11 +42,9 @@ private class Boxes.TrackerISOQuery {
         title = cursor.get_string (1);
         os_id = cursor.get_string (2);
         media_id = cursor.get_string (3);
-        if (cursor.n_columns > 4) {
-            var languages = cursor.get_string (4);
+        var languages = cursor.get_string (4);
 
-            lang_list = (languages != null)? languages.split (",") : new string[]{};
-        }
+        lang_list = (languages != null)? languages.split (",") : new string[]{};
 
         return true;
     }
