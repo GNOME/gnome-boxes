@@ -140,7 +140,7 @@ dependencies = [
   dependency ('libvirt-gobject-1.0', version: '>= 3.0.0'),
   dependency ('libxml-2.0', version: '>= 2.7.8'),
   dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
-  dependency ('tracker-sparql-2.0'),
+  dependency ('tracker-sparql-3.0'),
   dependency ('vte-2.91', version: '>= 0.40.2'),
   dependency ('webkit2gtk-4.0'),
   dependency ('libhandy-0.0', version: '>= 0.0.11'),
