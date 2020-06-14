@@ -226,7 +226,8 @@ private class Boxes.MediaManager : Object {
         os_db = new OSDatabase ();
         os_db.load.begin ();
         try {
-            connection = Sparql.Connection.get ();
+            connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
+                                                    null, null);
         } catch (GLib.Error error) {
             critical ("Error connecting to Tracker: %s", error.message);
         }
