@@ -125,6 +125,9 @@ private class Boxes.App: Gtk.Application {
                                    "wrap-license", true);
         });
         add_action (action);
+
+        var webkit_context = WebKit.WebContext.get_default ();
+        webkit_context.set_sandbox_enabled (true);
     }
 
     public override void startup () {

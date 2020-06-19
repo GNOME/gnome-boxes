@@ -142,7 +142,7 @@ dependencies = [
   dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
   dependency ('tracker-sparql-2.0'),
   dependency ('vte-2.91', version: '>= 0.40.2'),
-  dependency ('webkit2gtk-4.0'),
+  dependency ('webkit2gtk-4.0', version: '>= 2.26.0'),
   dependency ('libhandy-0.0', version: '>= 0.0.11'),
   cc.find_library('m', required : false),
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
