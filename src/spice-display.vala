@@ -87,6 +87,11 @@ private class Boxes.SpiceDisplay: Boxes.Display {
 
                 agent_connected_id = main_channel.notify["agent-connected"].connect (() => {
                     is_guest_agent_connected = main_channel.agent_connected;
+
+                    if (is_guest_agent_connected) {
+                        var display = get_display (0) as Spice.Display;
+                        display.only_downscale = false;
+                    }
                 });
             }
     }
@@ -168,6 +173,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             });
             config.save_properties (this, display_saved_properties);
             display.scaling = true;
+            display.only_downscale = true;
 
             displays.replace (n, display);
         }
