@@ -20,6 +20,7 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     private GLib.ListStore recommended_model;
 
     public signal void media_selected (Gtk.ListBoxRow row);
+    public signal void url_entered ();
 
     private AssistantDownloadsPageView _page;
     public AssistantDownloadsPageView page {
@@ -104,6 +105,14 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
 
         if (text == null)
             return;
+
+        var uri = Xml.URI.parse (text);
+        if (uri.scheme.has_prefix ("http")) {
+            DownloadsHub.get_instance ().add_url (text);
+
+            url_entered ();
+            return;
+        }
 
         search.text = text;
     }
