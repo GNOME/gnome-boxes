@@ -54,7 +54,6 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
         get { return _status; }
         set {
             _status = value;
-            collection_toolbar.set_title (_status);
             display_toolbar.set_title (_status);
         }
     }
