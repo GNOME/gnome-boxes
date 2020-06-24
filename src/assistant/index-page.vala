@@ -37,6 +37,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
         source_medias.set_header_func (use_list_box_separator);
         featured_medias.set_header_func (use_list_box_separator);
+        recommended_downloads_page.url_entered.connect (() => { dialog.hide (); });
     }
 
     public void setup (VMAssistant dialog) {
