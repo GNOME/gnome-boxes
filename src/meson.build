@@ -119,6 +119,8 @@ vala_sources = [
   'assistant/vm-assistant.vala',  
   'assistant/assistant-page.vala',
   'assistant/index-page.vala',  
+  'assistant/identify-os-page.vala',
+  'assistant/identify-os-popover.vala',
   'assistant/downloads-page.vala',  
   'assistant/preparation-page.vala',  
   'assistant/setup-page.vala',  

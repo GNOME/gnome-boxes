@@ -3,6 +3,11 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/preparation-page.ui")]
 private class Boxes.AssistantPreparationPage : AssistantPage {
     [GtkChild]
+    private Gtk.Stack stack;
+    [GtkChild]
+    private Boxes.IdentifyOsPage identify_os_page;
+
+    [GtkChild]
     private Gtk.Label media_label;
     [GtkChild]
     private Gtk.Label status_label;
@@ -26,20 +31,35 @@ private class Boxes.AssistantPreparationPage : AssistantPage {
         }
     }
 
-    public void setup (InstallerMedia media) {
+    public void setup (InstallerMedia media, Osinfo.Os? os = null) {
         try {
             var media_manager = MediaManager.get_instance ();
-            media = media_manager.create_installer_media_from_media (media);
+            this.media = media_manager.create_installer_media_from_media (media, os);
+
         } catch (GLib.Error error) {
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);
         }
 
-        prepare.begin (media);
+        if (media.os == null) {
+            stack.visible_child = identify_os_page;
+        } else {
+            prepare.begin (media);
+        }
+    }
 
-        skip = true;
+    public async override void next () {
+        var os = identify_os_page.get_selected_os ();
+        if (os == null) {
+            prepare.begin (media);
+
+            return;
+        }
+
+        setup (media, os);
     }
 
     public async void prepare (InstallerMedia media) {
+        skip = true;
         var progress = create_preparation_progress ();
         if (!yield media.prepare (progress, cancellable)) // add cancellable
             return;

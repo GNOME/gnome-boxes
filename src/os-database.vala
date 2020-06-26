@@ -101,6 +101,34 @@ private class Boxes.OSDatabase : GLib.Object {
         return os;
     }
 
+    public async GLib.List<weak Osinfo.Entity> get_all_oses_sorted_by_release_date () throws OSDatabaseError {
+        if (!yield ensure_db_loaded ())
+            throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
+
+        var os_list = db.get_os_list ().get_elements ();
+        os_list.sort ((entity_a, entity_b) => {
+            var os_a = entity_a as Os;
+            var os_b = entity_b as Os;
+
+            if (os_a == null)
+                return -1;
+            if (os_b == null)
+                return 1;
+
+            var release_a = os_a.get_release_date ();
+            var release_b = os_b.get_release_date ();
+
+            if (release_a == null)
+                return -1;
+            else if (release_b == null)
+                return 1;
+
+            return release_b.compare (release_a);
+        });
+
+        return os_list;
+    }
+
     public async GLib.List<Osinfo.Media> list_downloadable_oses () throws OSDatabaseError {
         if (!yield ensure_db_loaded ())
             throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");

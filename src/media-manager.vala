@@ -206,7 +206,10 @@ private class Boxes.MediaManager : Object {
         return install_media;
     }
 
-    public InstallerMedia create_installer_media_from_media (InstallerMedia media) throws GLib.Error {
+    public InstallerMedia create_installer_media_from_media (InstallerMedia media, Os? os = null) throws GLib.Error {
+        if (os != null)
+            media.os = os;
+
         if (media.os == null)
             return media;
 
