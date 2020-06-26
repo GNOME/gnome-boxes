@@ -292,8 +292,24 @@ private class Boxes.DisplayPage: Gtk.Box {
         if (event.type == EventType.GRAB_BROKEN)
             return false;
 
-        if (event_box.get_child () != null)
-            event_box.get_child ().event (event);
+        if (event_box.get_child () != null) {
+            var child = event_box.get_child ();
+            var offset_x = (get_allocated_width () - child.get_allocated_width ()) / 2.0;
+            var offset_y = (get_allocated_height () - child.get_allocated_height ()) / 2.0;
+
+            switch (event.get_event_type ()) {
+            case Gdk.EventType.MOTION_NOTIFY:
+                event.motion.x -= offset_x;
+                event.motion.y -= offset_y;
+                break;
+
+            default:
+                // Offset not needed or not possible
+                break;
+            }
+
+            child.event (event);
+        }
 
         return false;
     }
