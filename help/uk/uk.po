@@ -1,0 +1,1819 @@
+# Ukrainian translation for gnome-boxes.
+# Copyright (C) 2020 gnome-boxes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-boxes package.
+#
+# Vladyslav Spirin <lfc@fedoraproject.org>, 2020.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-boxes master\n"
+"POT-Creation-Date: 2020-05-12 14:30+0000\n"
+"PO-Revision-Date: 2020-06-19 20:29+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"X-Generator: Lokalize 20.07.70\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Владислав Спірін (Vladyslav Spirin), <lfc@fedoraproject.org>, 2020"
+
+#. (itstool) path: credit/name
+#: C/backup.page:10 C/clipboard.page:11 C/connect.page:10 C/create.page:11
+#: C/delete.page:9 C/disk-images.page:9 C/index.page:21 C/interface.page:13
+#: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
+#: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
+#: C/snapshot-delete.page:11 C/snapshot-rename.page:11
+#: C/snapshot-revert.page:12 C/supported-protocols.page:10
+#: C/system-requirements.page:16 C/usb-redirection.page:19
+#: C/virtualization.page:9 C/what-is-a-virtual-machine.page:15
+#: C/why-do-i-need-virtual-machine.page:16
+msgid "Michael Hill"
+msgstr "Майкл Хіл"
+
+#. (itstool) path: credit/years
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Напишіть конфігурацію коробки у файл, щоб створити її резервну копію чи "
+"перемістити."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Створіть резервну копію або перемістіть коробку"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"Для створення резервної копії або пересування коробки потрібні два"
+" компоненти: файл образу та налаштування коробки, збережені у форматі файла"
+" XML. Для збереження налаштувань потрібна програма <cmd>virsh</cmd> з пакунка"
+" <app>libvirt</app> або <app>libvirt-client</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "У вікні термінала, введіть таку команду:"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Назва &gt; Назва.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"де <cmd>Назва</cmd> є назвою у <app>Коробках</app> або <em>доменом</em> вашої"
+" коробки. Щоб переглянути список доменів, про які відомо <app>Коробкам</app>,"
+" скористайтеся такою командою:"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Скопіюйте створений файл <cmd>.xml</cmd> до вашої теки резервної копії або до"
+" теки сховища тимчасових даних."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Скопіюйте файл образу до вашої теки резервної копії або теки тимчасового"
+" зберігання даних. Це буде файл із назвою домену вашої коробки із суфіксом"
+" назви <cmd>.qcow2</cmd>, який зберігається <file"
+">~/.local/share/gnome-boxes/images/</file>."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Відновіть коробку"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"Збережену коробку можна встановити до <app>Коробок</app> на новій основній"
+" системі або на у початковій системі як частину застережних заходів з метою"
+" відновлення у випадку аварії."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "Вихід з <app>Коробок</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Скопіюйте файл образу <cmd>.qcow2</cmd> з теки вашої резервної копії або теки"
+" тимчасового зберігання даних до каталогу <file"
+">~/.local/share/gnome-boxes/images/</file> у новій системі."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"У вікні термінала перейдіть до цього каталогу або пристрою, на якому"
+" зберігається файл <cmd>.xml</cmd>. Введіть таку команду:"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Назва.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "де <cmd>Ім'я</cmd> є доменом вашої коробки."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "Запустити <app>Коробки</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/clipboard.page:18
+msgid "Use the clipboard with <app>Boxes</app>."
+msgstr "Користування буфером обміну у <app>Коробках</app>."
+
+#. (itstool) path: page/title
+#: C/clipboard.page:21
+msgid "Share the clipboard"
+msgstr "Спільне використання буфера обміну"
+
+#. (itstool) path: page/p
+#: C/clipboard.page:23
+msgid ""
+"The clipboard of the host machine can be shared with the guest in "
+"<app>Boxes</app>."
+msgstr ""
+"Буфер обміну хост-машини можна поділити з гостем у <app>Коробках</app>."
+
+#. (itstool) path: media/span
+#: C/clipboard.page:29 C/interface.page:114 C/keystrokes.page:29
+#: C/prop-system.page:29 C/prop-trouble.page:31 C/shared-folders.page:30
+#: C/shutdown.page:30 C/snapshot-create.page:41 C/snapshot-delete.page:28
+#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
+#: C/usb-redirection.page:48
+msgid "settings"
+msgstr "налаштування"
+
+#. (itstool) path: item/p
+#: C/clipboard.page:27 C/prop-system.page:27 C/prop-trouble.page:29
+#: C/snapshot-create.page:39 C/snapshot-delete.page:26
+#: C/snapshot-rename.page:34 C/snapshot-revert.page:34
+msgid ""
+"Right-click on the box in the collection view and select <gui>Properties</"
+"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Properties</gui>."
+msgstr ""
+"Клацніть правою кнопкою на пункті коробки на панелі збірки і виберіть у"
+" контекстному меню пункт <gui>Властивості</gui>, або якщо коробку запущено,"
+" натисніть кнопку меню (<_:media-1/>) на панелі заголовка і виберіть пункт <"
+"gui>Властивості</gui>."
+
+#. (itstool) path: item/p
+#: C/clipboard.page:31
+msgid ""
+"On the <gui>General</gui> tab, switch <gui>Share clipboard</gui> to <gui>ON</"
+"gui>."
+msgstr ""
+"На вкладці <gui>Загальне</gui> перемкніть пункт <gui>Поділитись буфером</gui>"
+" у значення <gui>увімкнено</"
+"gui>."
+
+#. (itstool) path: note/p
+#: C/clipboard.page:36
+msgid ""
+"While express installation typically takes care of making shared clipboard "
+"available to you, express installation is not available for all operating "
+"systems. In such cases or if you choose manual installation, for shared "
+"clipboard to work the SPICE vdagent needs to be installed in the guest. In "
+"most Linux-based operating systems the package is called <em>spice-vdagent</"
+"em>. If the guest is running a different operating system, check out the "
+"<link href=\"http://www.spice-space.org/download.html\">SPICE download page</"
+"link>."
+msgstr ""
+"Хоча під час експрес-встановлення засіб встановлення має подбати про"
+" уможливлення доступу до спільного буфера, доступ до експрес-встановлення"
+" можливий не в усіх операційних системах. Якщо доступу до"
+" експрес-встановлення немає або ви вибрали встановлення вручну, щоб можна"
+" було користуватися спільним буфером, у гостьовій системі має бути"
+" встановлено vdagent SPICE. У більшості заснованих на Linux операційних"
+" системах відповідний пакунок називається <em>spice-vdagent</em>. Якщо"
+" гостьову систему запущено на іншій операційній системі, ознайомтеся із"
+" вмістом <link href=\"http://www.spice-space.org/download.html\">сторінки"
+" отримання пакунків SPICE</link>."
+
+#. (itstool) path: credit/years
+#: C/connect.page:12 C/create.page:13 C/interface.page:15 C/search.page:12
+#: C/system-requirements.page:18 C/system-requirements.page:23
+#: C/system-requirements.page:28 C/usb-redirection.page:21
+#: C/what-is-a-virtual-machine.page:17 C/why-do-i-need-virtual-machine.page:18
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: info/desc
+#: C/connect.page:15
+msgid "Access a box or service over the network."
+msgstr "Отримайте доступ до коробки або сервісу через мережу."
+
+#. (itstool) path: page/title
+#: C/connect.page:21
+msgid "Connect to another computer"
+msgstr "Під'єднайтеся до іншого комп'ютера"
+
+#. (itstool) path: page/p
+#: C/connect.page:23
+msgid ""
+"<app>Boxes</app> can be used to view and access a remote physical or virtual "
+"machine."
+msgstr ""
+"<app>Коробки</app> можна використовувати для перегляду та доступу до "
+"віддаленої фізичної чи віртуальної машини."
+
+#. (itstool) path: note/p
+#: C/connect.page:26
+msgid "The remote machine should already be configured."
+msgstr "Віддалена машина вже повинна бути налаштована."
+
+#. (itstool) path: item/p
+#: C/connect.page:30 C/create.page:28
+msgid ""
+"Click <gui style=\"button\">New</gui> in the top left corner to launch the "
+"box creation wizard."
+msgstr ""
+"Натисніть <gui style=\"button\">Нова</gui> у верхньому лівому куті, щоб "
+"запустити майстра створення коробок."
+
+#. (itstool) path: item/p
+#: C/connect.page:32
+msgid ""
+"At the wizard's <gui>Source Selection</gui> screen, click <gui style=\"button"
+"\">Enter URL</gui>."
+msgstr ""
+"На екрані майстра <gui>Вибір джерела</gui> натисніть <gui style="
+"\"button\">Введіть URL</gui>."
+
+#. (itstool) path: item/p
+#: C/connect.page:35
+msgid ""
+"Enter a URL containing the protocol, IP address and port number of the "
+"remote device or service. For example:"
+msgstr ""
+"Введіть URL-адресу, що містить протокол, IP-адресу та номер порту "
+"віддаленого пристрою чи сервісу. Наприклад:"
+
+#. (itstool) path: item/code
+#: C/connect.page:37
+#, no-wrap
+msgid "vnc://192.168.122.1:5900"
+msgstr "vnc://192.168.122.1:5900"
+
+#. (itstool) path: item/p
+#: C/connect.page:38
+msgid "The protocol will be:"
+msgstr "Протоколом буде:"
+
+#. (itstool) path: item/p
+#: C/connect.page:40
+msgid "spice:// to connect to a local or remote <app>Xspice</app> server."
+msgstr ""
+"spice:// для встановлення з'єднання із локальним або віддаленим сервером "
+"<app>Xspice</app>."
+
+#. (itstool) path: item/p
+#: C/connect.page:42
+msgid ""
+"qemu:// to connect to a libvirt instance providing access to all virtual "
+"machines it is hosting."
+msgstr ""
+"qemu:// для встановлення з'єднання із екземпляром libvirt з наданням доступу "
+"до усіх віртуальних машин, які у ньому працюють."
+
+#. (itstool) path: item/p
+#: C/connect.page:44
+msgid "vnc:// to connect to a remote <app>vino</app> or <app>VNC</app> server."
+msgstr ""
+"vnc:// для встановлення з'єднання із віддаленим сервером <app>vino</app> або "
+"<app>VNC</app>."
+
+#. (itstool) path: note/p
+#: C/connect.page:48
+msgid ""
+"The address and port number should be available from the configuration of "
+"the device or service on the remote machine. For example, the <gui style="
+"\"menu\">Properties</gui> view in <app>Boxes</app> provides the URL you "
+"would use to connect to that box."
+msgstr ""
+"Адресу і номер порту можна визначити за налаштуваннями пристрою або служби на"
+" віддаленому комп'ютері. Наприклад, у вікні <gui style=\"menu\">Властивості<"
+"/gui> у <app>Коробках</app> наведено адресу, якою слід скористатися для"
+" з'єднання із відповідною коробкою."
+
+#. (itstool) path: item/p
+#: C/connect.page:54
+msgid "Click <gui style=\"button\">Continue</gui> in the top right corner."
+msgstr ""
+"Натисніть <gui style=\"button\">Продовжити</gui> у верхньому правому кутку."
+
+#. (itstool) path: item/p
+#: C/connect.page:56 C/create.page:52
+msgid "Click <gui style=\"button\">Create</gui>."
+msgstr "Натисніть <gui style=\"button\">Створити</gui>."
+
+#. (itstool) path: page/p
+#: C/connect.page:59
+msgid "The remote box will open in the collection view."
+msgstr "Віддалена коробка відкриється у вигляді колекції."
+
+#. (itstool) path: info/desc
+#: C/create.page:18
+msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
+msgstr "Натисніть <gui style=\"button\">+</gui> для початку створення коробки."
+
+#. (itstool) path: page/title
+#: C/create.page:21
+msgid "Create a box"
+msgstr "Створити коробку"
+
+#. (itstool) path: page/p
+#: C/create.page:23
+msgid ""
+"When <app>Boxes</app> is launched, the collection view opens, displaying "
+"your existing boxes. If you haven't yet created a box, an introductory "
+"message is displayed."
+msgstr ""
+"Після запуску <app>Коробок</app> буде відкрито панель збірки, на якій ви"
+" побачите список наявних коробок. Якщо ви ще не створили жодної коробки, буде"
+" показано вступне повідомлення."
+
+#. (itstool) path: item/p
+#: C/create.page:30
+msgid ""
+"At the wizard's <gui>Source Selection</gui> screen, choose a source to "
+"determine the type of box you want to create. A local virtual machine can be "
+"created from:"
+msgstr ""
+"На сторінці майстра <gui>Вибір джерела</gui> виберіть джерело для визначення"
+" типу коробки, яку ви хочете створити. Локальну віртуальну машину можна"
+" створити на основі таких компонентів:"
+
+#. (itstool) path: item/p
+#: C/create.page:35
+msgid "An ISO found by <app>Boxes</app>."
+msgstr "Образ ISO знайдено <app>Коробками</app>."
+
+#. (itstool) path: item/p
+#: C/create.page:36
+msgid "Installation media on a CD/DVD/USB drive."
+msgstr "Встановлювальний носій на CD/DVD/USB-накопичувач."
+
+#. (itstool) path: item/p
+#: C/create.page:37
+msgid "A local ISO file (if not found automatically above)."
+msgstr "Локальний файл ISO (якщо його не знайдено вище автоматично)."
+
+#. (itstool) path: item/p
+#: C/create.page:38
+msgid "A URL to a <link xref=\"connect\">remote</link> machine."
+msgstr "URL-адреса для <link xref=\"connect\">віддаленої</link> машини."
+
+#. (itstool) path: note/p
+#: C/create.page:42
+msgid ""
+"If your installation media supports <gui>Express Installation</gui>, the "
+"installation will proceed without further input."
+msgstr ""
+"Якщо для вашого носія для встановлення передбачено підтримку <gui"
+">Експрес-встановлення</gui>, встановлення буде виконано без подальшого"
+" втручання."
+
+#. (itstool) path: item/p
+#: C/create.page:47
+msgid ""
+"After making your selection, or providing the necessary information, click "
+"<gui style=\"button\">Continue</gui>, which will take you to the "
+"<gui>Review</gui> page."
+msgstr ""
+"Після здійснення вибору або визначення потрібних для встановлення даних"
+" натисніть кнопку <gui style=\"button\">Продовжити</gui>, щоб перейти до"
+" сторінки <gui>Перегляд</gui>."
+
+#. (itstool) path: item/p
+#: C/create.page:50
+msgid ""
+"If the box is local, click <gui style=\"button\">Customize</gui> to adjust "
+"memory or disk size, or to rename the box."
+msgstr ""
+"Якщо коробка є локальною, натисніть кнопку <gui style=\"button\">Налаштувати<"
+"/gui>, щоб скоригувати розмір оперативної пам'яті та дискового простору або"
+" перейменувати коробку."
+
+#. (itstool) path: page/p
+#: C/create.page:55
+msgid "The collection view returns, and the installation of the box begins."
+msgstr "Знову буде відкрито панель збірки і розпочнеться встановлення коробки."
+
+#. (itstool) path: info/desc
+#: C/delete.page:16
+msgid "Remove a box that you no longer need."
+msgstr "Вийміть коробку, яка вам більше не потрібна."
+
+#. (itstool) path: page/title
+#: C/delete.page:19
+msgid "Delete a box"
+msgstr "Видалити коробку"
+
+#. (itstool) path: page/p
+#: C/delete.page:21
+msgid ""
+"When a box is no longer needed, it can be deleted from <app>Boxes</app>."
+msgstr ""
+"Якщо потреби у коробці більше немає, її можна вилучити з <app>Коробок</app>."
+
+#. (itstool) path: item/p
+#: C/delete.page:24
+msgid ""
+"Select one or more boxes. In the collection view, right click a box to be "
+"deleted."
+msgstr ""
+"Позначте одну або декілька коробок. На панелі збірки клацніть правою кнопкою"
+" на одній із коробок, які слід вилучити."
+
+#. (itstool) path: item/p
+#: C/delete.page:26
+msgid ""
+"<link xref=\"interface#selection\">Selection mode</link> opens. Click "
+"additional boxes to select them for deletion."
+msgstr ""
+"Програма перемкнеться у <link xref=\"interface#selection\">режим позначення<"
+"/link>. Клацніть на інших коробках, щоб позначити їх для вилучення."
+
+#. (itstool) path: item/p
+#: C/delete.page:28
+msgid "Click the <gui style=\"button\">Delete</gui> button."
+msgstr "Натисніть кнопку <gui style=\"button\">Вилучити</gui>."
+
+#. (itstool) path: item/p
+#: C/delete.page:29
+msgid "Click the <key>X</key> to confirm."
+msgstr "Натисніть на <key>X</key> для підтвердження."
+
+#. (itstool) path: page/title
+#: C/disk-images.page:19
+msgid "Where does Boxes store disk images?"
+msgstr "Де Коробки зберігає образи диску?"
+
+#. (itstool) path: page/p
+#: C/disk-images.page:21
+msgid ""
+"By default, <app>Boxes</app> stores disk images in the folder <file>~/.local/"
+"share/gnome-boxes/images/</file>. If you are using other software that "
+"interfaces with libvirt, such as <app>virt-manager</app>, then <app>Boxes</"
+"app> will also read from the folder that software uses to store its images."
+msgstr ""
+"Типово, <app>Коробки</app> зберігають образи дисків у теці <file"
+">~/.local/share/gnome-boxes/images/</file>. Якщо ви користуєтеся іншим"
+" програмним забезпеченням, яке взаємодіє із libvirt, зокрема <app"
+">virt-manager</app>, <app>Коробки</app> також читатиме дані з теки, яку це"
+" програмне забезпечення використовує для зберігання свої образів."
+
+#. (itstool) path: media/span
+#: C/index.page:9
+msgid "Boxes"
+msgstr "Коробки"
+
+#. (itstool) path: credit/name
+#: C/index.page:16 C/supported-protocols.page:15 C/system-requirements.page:11
+#: C/usb-redirection.page:14 C/what-is-a-virtual-machine.page:10
+#: C/why-do-i-need-virtual-machine.page:11
+msgid "Baptiste Mille-Mathias"
+msgstr "Батист Мілле-Матіас"
+
+#. (itstool) path: credit/years
+#: C/index.page:18 C/supported-protocols.page:12 C/supported-protocols.page:17
+#: C/system-requirements.page:13 C/usb-redirection.page:16
+#: C/what-is-a-virtual-machine.page:12 C/why-do-i-need-virtual-machine.page:13
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: info/desc
+#: C/index.page:28
+msgid ""
+"Learn to set up local virtual machines and to connect to remote virtual "
+"machines. You can also use <app>Boxes</app> to connect to remote desktops."
+msgstr ""
+"Навчіться налаштовувати локальні віртуальні машини та підключатися до "
+"віддалених віртуальних машин. Ви також можете використовувати <app>Коробки</"
+"app> для підключення до віддалених робочих столів."
+
+#. (itstool) path: page/title
+#: C/index.page:33
+msgid "<_:media-1/> Boxes"
+msgstr "<_:media-1/> Коробки"
+
+#. (itstool) path: page/p
+#: C/index.page:38
+msgid ""
+"<app>Boxes</app> is an application that gives you access to <link xref="
+"\"what-is-a-virtual-machine\">virtual machines</link>, running locally or "
+"remotely. It also allows you to connect to the display of a remote computer."
+msgstr ""
+"<app>Коробки</app> — програма, яка надає вам доступ до <link"
+" xref=\"what-is-a-virtual-machine\">віртуальних машин</link>, запущених"
+" локально або віддалено. Програма також надає вам змогу з'єднуватися із"
+" дисплеєм віддаленого комп'ютера."
+
+#. (itstool) path: section/title
+#: C/index.page:44
+msgid "Getting started"
+msgstr "Починаємо"
+
+#. (itstool) path: section/title
+#: C/index.page:54
+msgid "Using Boxes"
+msgstr "Використання Коробок"
+
+#. (itstool) path: section/title
+#: C/index.page:58
+msgid "Properties"
+msgstr "Властивості"
+
+#. (itstool) path: section/title
+#: C/index.page:62
+msgid "Snapshots"
+msgstr "Знімки"
+
+#. (itstool) path: section/title
+#: C/index.page:66
+msgid "Questions"
+msgstr "Питання"
+
+#. (itstool) path: section/title
+#: C/index.page:70
+msgid "Advanced topics"
+msgstr "Розширені теми"
+
+#. (itstool) path: credit/name
+#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
+#: C/snapshot-revert.page:17 C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Феліпе Борхес"
+
+#. (itstool) path: info/desc
+#: C/interface.page:25
+msgid "Get around the application."
+msgstr "Пройдімося по програмі."
+
+#. (itstool) path: page/title
+#: C/interface.page:28
+msgid "The Boxes interface"
+msgstr "Інтерфейс Коробок"
+
+#. (itstool) path: section/title
+#: C/interface.page:31
+msgid "Collection view"
+msgstr "Вид колекції"
+
+#. (itstool) path: section/p
+#: C/interface.page:33
+msgid ""
+"When you first launch <app>Boxes</app>, the greeting tells you to click the "
+"<gui style=\"button\">New</gui> button to create your first box. On "
+"subsequent visits, <app>Boxes</app> opens in the <em>collection view</em>, "
+"displaying thumbnails of your boxes in a grid. Favourites or frequently-used "
+"boxes appear at the top of the list. Collection view allows you to:"
+msgstr ""
+"Коли ви вперше запустите <app>Коробки</app>, у вікні вітання програма"
+" запропонує вам натиснути кнопку <gui style=\"button\">Створити</gui> для"
+" створення вашої першої коробки. При наступних запусках програми <app"
+">Коробки</app> відкриватимуться у режимі <em>перегляду збірки</em>, у якому"
+" буде показано мініатюри ваших коробок у форматі таблиці. Вибрані коробки та"
+" коробки, які використовуються найчастіше, буде показано на початку списку."
+" За допомогою панелі збірки ви зможете виконувати такі дії:"
+
+#. (itstool) path: item/p
+#: C/interface.page:40
+msgid ""
+"Click <gui style=\"button\">New</gui> to <link xref=\"create\">create</link> "
+"a box."
+msgstr ""
+"Натисніть кнопку <gui style=\"button\">Створити</gui>, щоб <link xref="
+"\"create\">створити</link> коробку."
+
+#. (itstool) path: item/p
+#: C/interface.page:42
+msgid "Click a box to launch a virtual machine session."
+msgstr "Натисніть пункт коробки, щоб запустити сеанс віртуальної машини."
+
+#. (itstool) path: item/p
+#: C/interface.page:43
+msgid "<link xref=\"search\">Search</link> for a box."
+msgstr "<link xref=\"search\">Пошук</link> коробки."
+
+#. (itstool) path: item/p
+#: C/interface.page:44
+msgid "Click the checkmark button in the header bar to enter selection mode."
+msgstr ""
+"Клацніть на кнопці з позначкою на панелі заголовка, щоб перевести програму у"
+" режим позначення."
+
+#. (itstool) path: item/p
+#: C/interface.page:46
+msgid ""
+"Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
+"Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
+"gui>, or to open the <gui>Properties</gui> view for the box."
+msgstr ""
+"Клацніть правою кнопкою миші на коробці, щоб вибрати <gui>Відкрити у новому"
+" вікні</gui>, <gui>Додати до улюбленого</gui>, <gui>Примусово вимкнути</gui>,"
+" <gui>Клонувати</gui>, <gui>Вилучити</gui> або відкрити панель <gui"
+">Властивості</gui> для коробки."
+
+#. (itstool) path: section/title
+#: C/interface.page:55
+msgid "The wizard"
+msgstr "Майстер"
+
+#. (itstool) path: section/p
+#: C/interface.page:57
+msgid ""
+"Clicking <gui style=\"button\">New</gui> launches the <em>wizard</em>, which "
+"guides you through the process of box creation."
+msgstr ""
+"Натискання кнопки <gui style=\"button\">Створити</gui> відкриває вікно <em"
+">майстра</em>, який допоможе вам у процедурі створення коробки."
+
+#. (itstool) path: section/title
+#: C/interface.page:63
+msgid "Selection mode"
+msgstr "Режим вибору"
+
+#. (itstool) path: section/p
+#: C/interface.page:65
+msgid ""
+"In collection view, clicking the checkmark button or right-clicking a "
+"thumbnail puts you in <em>selection mode</em>, where various operations can "
+"be performed on boxes, individually or in groups. You can:"
+msgstr ""
+"На панелі збірки натискання кнопки із позначкою або клацання правою кнопкою"
+" миші на мініатюрі переведе програму у <em>режим позначення</em>, у якому"
+" можна виконувати різні дії із коробками, окремо або у групах. Ви можете"
+" виконувати такі дії:"
+
+#. (itstool) path: item/p
+#: C/interface.page:70
+msgid "<link xref=\"delete\">Delete</link> a box or boxes."
+msgstr "<link xref=\"delete\">Вилучити</link> коробку або коробки."
+
+#. (itstool) path: item/p
+#: C/interface.page:71
+msgid "Mark a box or boxes as favorites."
+msgstr "Позначте поле або коробки, як вибране."
+
+#. (itstool) path: item/p
+#: C/interface.page:72
+msgid "Pause a box."
+msgstr "Призупинити коробку."
+
+#. (itstool) path: item/p
+#: C/interface.page:73
+msgid "Open a box in a new window."
+msgstr "Відкрити коробку у новому вікні."
+
+#. (itstool) path: section/title
+#: C/interface.page:79
+msgid "Properties view"
+msgstr "Перегляд властивостей"
+
+#. (itstool) path: section/p
+#: C/interface.page:81
+msgid ""
+"Right clicking a box and selecting <gui style=\"button\">Properties</gui> in "
+"the collection view opens the <em>properties view</em>, where some of the "
+"details of a box can be configured. The properties view allows you to "
+"display or change settings depending on which of the following tabs is "
+"selected:"
+msgstr ""
+"Клацання правою кнопкою на коробці із вибором пункту <gui style=\"button\""
+">Властивості</gui> на панелі збірки відкриває <em>панель властивостей</em>,"
+" за допомогою якої можна налаштувати деякі параметри коробки. За допомогою"
+" панелі властивостей можна переглядати або змінювати параметри, залежно від"
+" того, яку з вкладок вибрано:"
+
+#. (itstool) path: item/p
+#: C/interface.page:87
+msgid ""
+"<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
+"or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
+"tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), and the "
+"<gui>URL</gui> to be used for remote access. When the box is running, the "
+"<gui>Share Clipboard</gui> switch appears here."
+msgstr ""
+"<gui>Загальне</gui>: показує <gui>Назву</gui> і <gui>Посередник</gui> коробки"
+" або використану систему віртуалізації (наприклад <em>QEMU</em>). Для"
+" віддаленої коробки на цій вкладці буде показано <gui>Протокол</gui>"
+" (наприклад <em>VNC</em>) і <gui>URL</gui>, яку буде використано для"
+" віддаленого доступу. Якщо коробку запущено, на цій вкладці буде розташовано"
+" перемикач <gui>Поділитись буфером</gui>."
+
+#. (itstool) path: item/p
+#: C/interface.page:93
+msgid ""
+"<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
+"network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> sliders "
+"can be adjusted, and the <gui>Troubleshooting Log</gui> can be viewed. The "
+"<gui style=\"button\">Force Shutdown</gui> button, which enables you to "
+"<link xref=\"shutdown\">force a box to shut down</link>, the <gui style="
+"\"button\">Restart</gui> button, and the <gui>Run in background</gui> switch "
+"are on this tab."
+msgstr ""
+"Параметри <gui>Системи</gui>: тут буде показано інтерактивні графіки"
+" використання процесора, введення-виведення даних на диск та роботи у мережі."
+" Ви зможете скоригувати значення для повзунків <gui>Пам'ять</gui> і <gui"
+">Максимальний розмір диска</gui>, а також переглянути <gui>Журнал помилок<"
+"/gui>. На цій вкладці також розташовано кнопку <gui style=\"button\""
+">Примусово вимкнути</gui>, за допомогою якої можна <link xref=\"shutdown\""
+">примусово завершити роботу коробки</link>, кнопку <gui style=\"button\""
+">Перезапустити</gui> і перемикач <gui>Запустити на фоні</gui>."
+
+#. (itstool) path: item/p
+#: C/interface.page:100
+msgid ""
+"<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
+"button allows you to specify the path to a CD/DVD device or ISO. The <gui "
+"style=\"button\">Remove</gui> button disconnects it. When the box is "
+"running, the USB devices connected to the host system are listed, and each "
+"can be controlled with an <gui>ON | OFF</gui> switch. <link xref=\"shared-"
+"folders\">Shared Folders</link> between host and guest can be set for "
+"running machines which support spice-webdavd."
+msgstr ""
+"<gui>Пристрої та доступ</gui>: за допомогою кнопки <gui style=\"button\""
+">Вибрати</gui> ви можете вказати шлях до пристрою для читання компакт-дисків"
+" або DVD чи образу ISO. Кнопка <gui "
+"style=\"button\">Вилучити</gui> від'єднує образ. Якщо коробку запущено, буде"
+" показано список пристроїв USB, які з'єднано із основною системою. Кожним з"
+" цих пристроїв можна керувати за допомогою перемикача <gui>Увімкнути |"
+" Вимкнути</gui>. Можна встановити <link xref=\"shared-folders\">Спільні теки<"
+"/link> для основної і гостьової систем для запущених машин, у яких"
+" передбачено підтримку spice-webdavd."
+
+#. (itstool) path: item/p
+#: C/interface.page:107
+msgid ""
+"<gui>Snapshots</gui>: allows you to <link xref=\"snapshot-create\">create</"
+"link> and manage snapshots of the box."
+msgstr ""
+"<gui>Знімки</gui>: за допомогою цієї вкладки ви можете <link"
+" xref=\"snapshot-create\">створювати</link> знімки коробки та керувати ними."
+
+#. (itstool) path: section/p
+#: C/interface.page:112
+msgid ""
+"The properties view can also be accessed using the wizard's <gui style="
+"\"button\">Customize</gui> button during local box setup. If the box is "
+"running, click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Properties</gui>."
+msgstr ""
+"Крім того, отримати доступ до панелі властивостей можна за допомогою кнопки <"
+"gui style=\"button\">Налаштувати</gui> у майстрі під час налаштовування"
+" локальної коробки. Якщо коробку запущено, натисніть кнопку меню (<_:media-1/"
+">) на панелі заголовка і виберіть пункт <gui>Властивості</gui>."
+
+#. (itstool) path: credit/years
+#: C/keystrokes.page:12
+msgid "2017"
+msgstr "2017"
+
+#. (itstool) path: info/desc
+#: C/keystrokes.page:15
+msgid "Keystroke combinations can be sent from the menu."
+msgstr "Комбінації клавіш можна надсилати з меню."
+
+#. (itstool) path: page/title
+#: C/keystrokes.page:21
+msgid "Send a keystroke combination to a box"
+msgstr "Надсилання комбінацій клавіш до коробки"
+
+#. (itstool) path: page/p
+#: C/keystrokes.page:23
+msgid ""
+"Some combinations of keystrokes are automatically directed to the host "
+"machine. To send a key sequence instead to the running guest:"
+msgstr ""
+"Деякі комбінації клавіш автоматично спрямовуються до основної системи. Щоб"
+" надіслати комбінацію клавіш до основної системи, замість запущеної гостьової"
+" системи, виконайте такі дії:"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:27
+msgid "Click the keyboard (<_:media-1/>) button in the header bar."
+msgstr "Натисніть кнопку клавіатури (<_:media-1/>) на смужці заголовка."
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:31
+msgid ""
+"Click the key combination you want to send. The available key combinations "
+"are:"
+msgstr ""
+"Натисніть комбінацію клавіш, яку ви хочете надіслати. Доступними є такі"
+" комбінації:"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:34
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:35
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:36
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:37
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:38
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
+
+#. (itstool) path: note/p
+#: C/keystrokes.page:44
+msgid ""
+"If your guest operating system is Linux, you can often use one of these key "
+"sequences to switch to the first virtual console, and another to switch back "
+"to the graphical console. In a number of Linux distributions, "
+"<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq> will switch to "
+"the virtual console, and <keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></"
+"keyseq> will switch back to the graphical desktop."
+msgstr ""
+"Якщо вашою гостьовою системою є Linux, у вас може часто виникати потреба у"
+" використанні однієї з цих комбінацій клавіш для перемикання на першу"
+" віртуальну консоль і іншої для повернення до графічної консолі. У багатьох"
+" дистрибутивах Linux <keyseq><key>Ctrl</key><key>Alt</key><key>F3</key><"
+"/keyseq> виконує перемикання на віртуальну консоль, а <keyseq><key>Ctrl</key"
+"><key>Alt</key><key>F1</key></keyseq> повертає систему до графічної стільниці."
+
+#. (itstool) path: p/link
+#: C/legal.xml:4
+msgid "Creative Commons Attribution-Share Alike 3.0 Unported License"
+msgstr "ліцензії Creative Commons Attribution-Share Alike 3.0 Unported"
+
+#. (itstool) path: license/p
+#: C/legal.xml:3
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Ця робота розповсюджується за умов дотримання <_:link-1/>."
+
+#. (itstool) path: info/desc
+#: C/prop-system.page:16
+msgid "Specify RAM and maximum disk allocation."
+msgstr ""
+"Визначення використання оперативної пам'яті та отримання максимального місця "
+"на диску."
+
+#. (itstool) path: page/title
+#: C/prop-system.page:21
+msgid "Adjust the system requirements of a box"
+msgstr "Коригування вимог до системи для коробки"
+
+#. (itstool) path: page/p
+#: C/prop-system.page:23
+msgid ""
+"In <app>Boxes</app>, each virtual machine has its own settings for RAM and "
+"maximum allocated disk space."
+msgstr ""
+"У <app>Коробках</app> у кожної з віртуальних машин є власні параметри"
+" використання оперативної пам'яті та максимального використання місця на"
+" диску."
+
+#. (itstool) path: item/p
+#: C/prop-system.page:31 C/prop-trouble.page:33 C/shutdown.page:32
+msgid "Click the <gui>System</gui> tab."
+msgstr "Натисніть на вкладку <gui>Система</gui>."
+
+#. (itstool) path: item/p
+#: C/prop-system.page:32
+msgid ""
+"Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
+"reflect the desired values."
+msgstr ""
+"Скоригуйте за допомогою повзунків значення <gui>Пам'ять</gui> і <gui"
+">Максимальний розмір диска</gui> до бажаних значень."
+
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+"Ви не можете розподілити усю доступну пам'ять, оскільки вашій основній"
+" системі також потрібна пам'ять, і чим більше пам'яті ви надасте гостьовим"
+" системам, тим тривалішим буде процес призупинення і відновлення роботи"
+" системи. Рекомендованого обсягу пам'яті має бути достатньо, оскільки дані"
+" щодо нього зібрано із документації до операційних систем."
+
+#. (itstool) path: info/desc
+#: C/prop-trouble.page:16
+msgid "Diagnose problems with your box using the log file."
+msgstr "Діагностування проблем із коробкою за допомогою файла журналу."
+
+#. (itstool) path: page/title
+#: C/prop-trouble.page:21
+msgid "View the troubleshooting log of a box"
+msgstr "Перегляд діагностичного журналу коробки"
+
+#. (itstool) path: page/p
+#: C/prop-trouble.page:23
+msgid ""
+"If a box is having a problem starting up or running, clues to help you fix "
+"the problem may be found in the trouble log. The trouble log displays the "
+"virtual machine state, the virtual machine libvirt configuration, and the "
+"QEMU hypervisor log."
+msgstr ""
+"Якщо коробка має проблеми із запуском і роботою, підказки щодо виправлення"
+" проблеми можна знайти у журналі помилок. У журналі помилок ви знайдете дані"
+" щодо стану віртуальної машини, налаштувань віртуальної машини у libvirt та"
+" повідомлення журналу гіпервізора QEMU."
+
+#. (itstool) path: item/p
+#: C/prop-trouble.page:34
+msgid ""
+"Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
+"log."
+msgstr ""
+"Щоб переглянути журнал натисніть кнопку <gui style=\"button\">Журнал помилок<"
+"/gui>."
+
+#. (itstool) path: info/desc
+#: C/search.page:17
+msgid "Quickly access a box by name."
+msgstr "Швидкий доступ до коробки по імені."
+
+#. (itstool) path: page/title
+#: C/search.page:20
+msgid "Search for a box"
+msgstr "Пошук коробки"
+
+#. (itstool) path: page/p
+#: C/search.page:22
+msgid ""
+"If there is more than one box, you can locate or filter boxes by name in the "
+"<link xref=\"interface#collection\">collection view</link> or <link xref="
+"\"interface#selection\">selection mode</link>. Click the search icon, or "
+"just start typing to initiate a search."
+msgstr ""
+"Якщо у списку багато коробок, ви зможете шукати або фільтрувати список"
+" коробок за назвою на <link xref=\"interface#collection\">панелі збірки</link"
+"> або у <link xref=\"interface#selection\">режимі позначення</link>."
+" Натисніть піктограму пошуку або просто почніть вводити критерій пошуку чи"
+" фільтрування, щоб розпочати пошук."
+
+#. (itstool) path: page/p
+#: C/search.page:27
+msgid "Press <key>Esc</key> to dismiss the search."
+msgstr "Натисніть <key>Esc</key>, щоб відхилити пошук."
+
+#. (itstool) path: info/desc
+#: C/shared-folders.page:15
+msgid "Share folders between host and guest."
+msgstr "Спільні теки між хостом та гостем."
+
+#. (itstool) path: page/title
+#: C/shared-folders.page:20
+msgid "Shared Folders"
+msgstr "Спільні теки "
+
+#. (itstool) path: page/p
+#: C/shared-folders.page:22
+msgid ""
+"If your virtual machine is running and contains spice-webdavd, you may want "
+"to set folders in your host system which you desire to browse from inside "
+"your virtual machine."
+msgstr ""
+"Якщо вашу віртуальну машину запущено, і у ній міститься spice-webdavd, у вас"
+" може виникнути бажання встановити теки у вашій основній системі, якими ви"
+" бажаєте користуватися зсередини вашої віртуальної машини."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:27
+msgid "Make sure your virtual machine is running."
+msgstr "Переконайтеся, що вашу віртуальну машину запущено."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:28 C/usb-redirection.page:46
+msgid ""
+"Right-click on the box in the collection view and select <gui>Properties</"
+"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Properties</gui>."
+msgstr ""
+"Клацніть правою кнопкою на пункті коробки на панелі збірки і виберіть у"
+" контекстному меню пункт <gui>Властивості</gui>, або натисніть кнопку меню (<"
+"_:media-1/>) на панелі заголовка і виберіть пункт <"
+"gui>Властивості</gui>."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:32
+msgid "Click the <gui>Devices &amp; Shares</gui> tab."
+msgstr "Перейдіть на вкладку <gui>Пристрої та доступ</gui>."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:33
+msgid ""
+"In the <gui>Folder Shares</gui> section you can view, remove, and create new "
+"shared folders."
+msgstr ""
+"За допомогою розділу <gui>Доступ до тек</gui> можна переглядати, вилучати і"
+" створювати спільні теки."
+
+#. (itstool) path: credit/name
+#: C/shortcuts.page:11
+msgid "Lasse Schuirmann"
+msgstr "Лассе Шуйерман"
+
+#. (itstool) path: info/desc
+#: C/shortcuts.page:18
+msgid "Operate <app>Boxes</app> using keyboard shortcuts."
+msgstr "Керування <app>Коробками</app> за допомогою клавіатурних скорочень."
+
+#. (itstool) path: page/title
+#: C/shortcuts.page:21
+msgid "Keyboard shortcuts"
+msgstr "Клавіатурні скорочення"
+
+#. (itstool) path: page/p
+#: C/shortcuts.page:23
+msgid ""
+"Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
+"following shortcuts are available:"
+msgstr ""
+"Для керування «Коробками» можна скористатися різноманітними клавіатурними"
+" скороченнями. Окрім мнемонічних скорочень, ви можете скористатися такими"
+" комбінаціями клавіш:"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:29
+msgid "Action"
+msgstr "Дія"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:32
+msgid "Shortcut"
+msgstr "Знімок"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:39
+msgid "Create new virtual machine"
+msgstr "Створити нову віртуальну машину"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:42
+msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:47
+msgid "Toggle search"
+msgstr "Увімкнути пошук"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:50
+msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:55
+msgid "Go back"
+msgstr "Повернутися"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:58
+msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+msgstr "<keyseq><key>Alt</key><key>Наліво</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:63
+msgid "Go forward"
+msgstr "Йти вперед"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:66
+msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+msgstr "<keyseq><key>Alt</key><key>Направо</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:71
+msgid "Cancel"
+msgstr "Відмінити"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:74
+msgid "<keyseq><key>Escape</key></keyseq>"
+msgstr "<keyseq><key>Escape</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:79
+msgid "Release mouse and keyboard grab"
+msgstr "Відпустити захоплення миші та клавіатури"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:82
+msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:87
+msgid "Quit Boxes"
+msgstr "Вийти з Коробок"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:90
+msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+
+#. (itstool) path: info/desc
+#: C/shutdown.page:16
+msgid "Shut down a box that has stopped working."
+msgstr "Вимикання коробки, яка не працює."
+
+#. (itstool) path: page/title
+#: C/shutdown.page:21
+msgid "Force a box to shut down"
+msgstr "Примусове вимикання коробки"
+
+#. (itstool) path: page/p
+#: C/shutdown.page:23
+msgid ""
+"If a box stops responding, you can force it to shut down. This allows you to "
+"restart the virtual machine in the hope of returning it to its working state."
+msgstr ""
+"Якщо коробка перестає відповідати, ви можете примусово завершити її роботу."
+" Таке завершення роботи надасть вам змогу перезапустити віртуальну машину у"
+" сподіванні повернення її до працездатного стану."
+
+#. (itstool) path: item/p
+#: C/shutdown.page:28
+msgid ""
+"Open the <link xref=\"interface#properties\">properties view</link> for the "
+"box. If the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Properties</gui>."
+msgstr ""
+"Відкрийте <link xref=\"interface#properties\">панель властивостей</link> для"
+" коробки. Якщо коробку запущено, натисніть кнопку меню (<_:media-1/>) на"
+" панелі заголовка і виберіть пункт <gui>Властивості</gui>."
+
+#. (itstool) path: item/p
+#: C/shutdown.page:33
+msgid "Click the <gui style=\"button\">Force Shutdown</gui> button."
+msgstr "Натисніть кнопку <gui style=\"button\">Примусово вимкнути</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-create.page:22
+msgid "Save the state of a box for later use."
+msgstr "Збереження стану коробки для наступного використання."
+
+#. (itstool) path: page/title
+#: C/snapshot-create.page:27
+msgid "Create a snapshot"
+msgstr "Створення знімка"
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:29
+msgid ""
+"If your virtual machine is operating perfectly in a desired configuration, "
+"you may want to save the setup before it breaks because of a software "
+"upgrade or configuration change. Taking a snapshot of the box preserves the "
+"current state so you can return to it as often as you want."
+msgstr ""
+"Якщо віртуальна машина працює ідеально у бажаній конфігурації, вам варто"
+" зберегти її стан, щоб захистити його від несподіваного пошкодження у"
+" результаті оновлення програмного забезпечення або зміни у налаштуваннях."
+" Створення знімка коробки збереже її поточний стан, щоб згодом можна було"
+" повертатися до нього."
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:34
+msgid ""
+"Snapshots include the exact state of your virtual machine disk and they can "
+"also include the memory data for boxes which are running at the moment of "
+"the snapshot creation."
+msgstr ""
+"До знімка буде включено точний стан диска вашої віртуальної машини. До них"
+" також може бути включено дані з оперативної пам'яті для коробок, які було"
+" запущено у момент створення знімка."
+
+#. (itstool) path: item/p
+#: C/snapshot-create.page:43 C/snapshot-delete.page:30
+#: C/snapshot-rename.page:38 C/snapshot-revert.page:38
+msgid "Click the <gui>Snapshots</gui> tab."
+msgstr "Перейдіть на вкладку <gui>Знімки</gui>."
+
+#. (itstool) path: item/p
+#: C/snapshot-create.page:44
+msgid "Click <key>+</key> below the <gui>Snapshots</gui> list."
+msgstr "Натисніть кнопку <key>+</key> під списком <gui>Знімки</gui>."
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:47
+msgid ""
+"A snapshot is saved reflecting the current state of your box. It appears in "
+"the list."
+msgstr ""
+"Буде збережено знімок із поточним станом вашої коробки. Відповідний пункт"
+" з'явиться у списку."
+
+#. (itstool) path: info/desc
+#: C/snapshot-delete.page:16
+msgid "Remove a snapshot that you no longer need."
+msgstr "Вилучення знімка, у якому вже немає потреби."
+
+#. (itstool) path: page/title
+#: C/snapshot-delete.page:21
+msgid "Delete a snapshot"
+msgstr "Видалити знімок"
+
+#. (itstool) path: page/p
+#: C/snapshot-delete.page:23
+msgid "A snapshot that is no longer needed can be removed from the list."
+msgstr "Непотрібний знімок можна вилучити зі списку."
+
+#. (itstool) path: item/p
+#: C/snapshot-delete.page:31
+msgid "Select the snapshot to be deleted from the list."
+msgstr "Позначте знімок, який слід вилучити, у списку."
+
+#. (itstool) path: item/p
+#: C/snapshot-delete.page:32
+msgid "Click the gear button on the right and select <gui>Delete</gui>."
+msgstr ""
+"Натисніть кнопку із зображенням шестерні праворуч і виберіть пункт "
+"<gui>Вилучити</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-rename.page:16
+msgid "Give the snapshot a meaningful name."
+msgstr "Надання знімку зручної назви."
+
+#. (itstool) path: page/title
+#: C/snapshot-rename.page:21
+msgid "Rename a snapshot"
+msgstr "Перейменовування знімка"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:23
+msgid ""
+"By default, a snapshot is given a generic name based on the timestamp, like:"
+msgstr ""
+"Типово, програма надає знімку загальної назви на основі часової позначки. "
+"Приклад:"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:26
+msgid "<file>09/14/2014, 11:54:36 AM</file>"
+msgstr "<file>09/14/2014, 11:54:36 AM</file>"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:28
+msgid "You may want to change the name to something more meaningful, such as:"
+msgstr "Ви можете змінити цю назву на якусь зручнішу, наприклад таку:"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:30
+msgid ""
+"<file>Fedora_22_with_jhbuild</file> or <file>Windows 7 plus GTK+ 3.6.4</"
+"file>."
+msgstr ""
+"<file>Fedora_22_with_jhbuild</file> або <file>Windows 7 plus GTK+ 3.6.4</"
+"file>."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:39
+msgid "From the list, select the snapshot to be renamed."
+msgstr "Позначте у списку знімок, який слід перейменувати."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:40
+msgid "Click the gear button on the right and select <gui>Rename</gui>."
+msgstr ""
+"Натисніть кнопку із зображенням шестерні праворуч і виберіть пункт "
+"<gui>Перейменувати</gui>."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:42
+msgid "Type the desired name and press <gui style=\"button\">Done</gui>."
+msgstr ""
+"Введіть бажану назву і натисніть кнопку <gui style=\"button\">Зроблено</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-revert.page:22
+msgid "Change back to the state of a saved snapshot."
+msgstr "Повернення віртуальної машини до стану зі збереженого знімка."
+
+#. (itstool) path: page/title
+#: C/snapshot-revert.page:27
+msgid "Revert the state of a box"
+msgstr "Повернення збереженого стану коробки"
+
+#. (itstool) path: page/p
+#: C/snapshot-revert.page:29
+msgid ""
+"<em>Reverting</em> to a snapshot restores the state of the virtual machine "
+"saved in that snapshot. The memory state also gets restored, bringing back "
+"running programs and settings at the exact same state of the snapshot "
+"creation."
+msgstr ""
+"<em>Повернення</em> до знімка відновлює стан віртуальної машини до"
+" збереженого у знімку. Також буде відновлено стан оперативної пам'яті,"
+" повернено точно той самий стан програм і параметрів, який система мала на"
+" момент створення знімка."
+
+#. (itstool) path: item/p
+#: C/snapshot-revert.page:39
+msgid "From the list, select the snapshot to which you want to revert."
+msgstr "У списку виберіть знімок, до якого ви хочете повернутися."
+
+#. (itstool) path: item/p
+#: C/snapshot-revert.page:41
+msgid ""
+"Click the gear button on the right and select <gui>Revert to this state</"
+"gui>."
+msgstr ""
+"Натисніть кнопку із шестернею, яку розташовано праворуч, і виберіть <gui"
+">Вернутись до цього стану</gui>."
+
+#. (itstool) path: page/p
+#: C/snapshot-revert.page:45
+msgid ""
+"Changes made to the virtual machine since the snapshot was saved are "
+"discarded."
+msgstr ""
+"Зміни, які було внесено до віртуальної машини з моменту, коли було збережено"
+" знімок, буде втрачено."
+
+#. (itstool) path: page/title
+#: C/supported-protocols.page:26
+msgid "What is the technology used by Boxes?"
+msgstr "Яку технологію використовують Коробки?"
+
+#. (itstool) path: page/p
+#: C/supported-protocols.page:36
+msgid ""
+"Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and <app>spice-gtk</"
+"app> to allow users to easily manage virtual machines and connect to remote "
+"machines."
+msgstr ""
+"«Коробки» використовують <app>qemu-kvm</app>, <app>libvirt-glib</app> і <app"
+">spice-gtk</"
+"app> для спрощення керування віртуальними машинами та встановлення з'єднання"
+" із віддаленими машинами."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:42
+msgid "QEMU with KVM"
+msgstr "QEMU з KVM"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:44
+msgid ""
+"<app>QEMU</app> is a machine emulator and virtualizer. As a machine "
+"emulator, it can run OSes and programs made for one machine (e.g. an ARM "
+"board) on a different machine (e.g. your own PC). As a virtualizer, QEMU "
+"achieves near native performance by executing the guest code directly on the "
+"host CPU using KVM."
+msgstr ""
+"<app>QEMU</app> — емулятор машин та засіб віртуалізації. Як емулятор машин,"
+" програма може запускати операційні системи та програми, які створено для"
+" однієї машини (наприклад, для плати ARM) на іншій машині (наприклад, на"
+" вашому власному персональному комп'ютері). Як засіб віртуалізації, QEMU дає"
+" змогу досягати майже такої самої швидкодії, що і у невіртуалізованій"
+" системі, виконанням коду гостьової системи безпосередньо на процесорі"
+" основної системи за допомогою KVM."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:50
+msgid ""
+"<app>KVM</app> (Kernel-based Virtual Machine) is a Linux kernel module that "
+"allows a user space program to use the hardware virtualization features of "
+"various processors."
+msgstr ""
+"<app>KVM</app> («Kernel-based Virtual Machine» або «Віртуальна машина на"
+" основі ядра») — модуль ядра Linux, який надає змогу програмі простору"
+" користувача використовувати можливості апаратної віртуалізації різноманітних"
+" процесорів."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:57
+msgid "libvirt"
+msgstr "libvirt"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:59
+msgid ""
+"<app>libvirt</app> is a toolkit for manipulating (creating, deleting and "
+"modifying) and monitoring virtual machines on remote hosts, securely."
+msgstr ""
+"<app>libvirt</app> — набір інструментів для керування віртуальними машинами"
+" (створення, вилучення і внесення змін) та захищеного спостереження за"
+" віртуальними машинами на віддалених вузлах."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:62
+msgid ""
+"<app>libvirt-glib</app> wraps libvirt to provide a high-level object-"
+"oriented API suited for glib-based applications."
+msgstr ""
+"<app>libvirt-glib</app> обгортає libvirt, щоб забезпечити високорівневий "
+"об'єктно-орієнтований API, який підходить для програм на основі glib."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:68
+msgid "SPICE"
+msgstr "SPICE"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:70
+msgid ""
+"<app>SPICE</app>, the Simple Protocol for Independent Computing "
+"Environments, is a system for accessing and controlling remote desktops "
+"across a network."
+msgstr ""
+"<app>SPICE</app> — «Simple Protocol for Independent Computing Environments»"
+" або «простий протокол для незалежних середовищ розрахунків». Система для"
+" доступу до віддалених стільниць за допомогою мережі та керування ними."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:74
+msgid ""
+"The SPICE server is a library that runs inside the QEMU binary. It is mainly "
+"responsible for authentication of client connections, relaying of graphics "
+"output of the guest OS to the client and relaying of user input (mouse and "
+"keyboard) from client to guest."
+msgstr ""
+"Сервер SPICE — віртуальна бібліотека, яка працює усередині виконуваного файла"
+" QEMU. Він, в основному, є відповідальним за розпізнавання клієнтських"
+" з'єднань, передавання графічних даних гостьової операційної системи до"
+" клієнта та передавання введених користувачем вхідних даних (даних миші та"
+" клавіатури) від клієнта до гостьової системи."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:79
+msgid ""
+"<app>spice-gtk</app> is the SPICE client that provides a view into the guest "
+"OS."
+msgstr ""
+"<app>spice-gtk</app> є клієнтом SPICE, який забезпечує перегляд гостьової ОС."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:85
+msgid "VNC"
+msgstr "VNC"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:87
+msgid ""
+"<app>VNC</app>, Virtual Network Computing, used only for remote display, is "
+"a well know protocol but quite limited and slow."
+msgstr ""
+"<app>VNC</app>, Обчислювальна віртуальна мережа, що використовується лише "
+"для віддаленого відображення, є добре відомим протоколом, але досить "
+"обмеженим і повільним."
+
+#. (itstool) path: credit/name
+#: C/system-requirements.page:21
+msgid "Ekaterina Gerasimova"
+msgstr "Катерина Герасімова"
+
+#. (itstool) path: credit/name
+#: C/system-requirements.page:26
+msgid "Zeeshan Ali (Khattak)"
+msgstr "Зеешан Алі (Хаттак)"
+
+#. (itstool) path: info/desc
+#: C/system-requirements.page:31
+msgid "Hardware required to run a <app>Boxes</app> virtual machine."
+msgstr ""
+"Обладнання, яке потрібне для запуску віртуальної машини <app>Коробок</app>."
+
+#. (itstool) path: page/title
+#: C/system-requirements.page:36
+msgid "Get started with virtual machines"
+msgstr "Перші кроки у світі віртуальних машин"
+
+#. (itstool) path: page/p
+#: C/system-requirements.page:38
+msgid ""
+"Your computer should meet certain criteria for best performance when "
+"creating and running virtual machines in <app>Boxes</app>. These "
+"requirements are specified by the vendors of the operating systems. "
+"<app>Boxes</app> automatically allocates resources to virtual machines based "
+"on vendor recommendations. When such information is unavailable to "
+"<app>Boxes</app>, it allocates the following:"
+msgstr ""
+"Ваш комп'ютер має відповідати певним критеріям для досягнення найкращої"
+" швидкодії при створенні і роботі з віртуальними машинами у <app>Коробках<"
+"/app>. Ці вимоги визначаються виробниками операційних систем. <app>Коробки<"
+"/app> автоматично надають віртуальним машинам ресурси на основі рекомендацій"
+" виробників. Якщо такі дані недоступні <app>Коробкам</app>, програма надає"
+" такі ресурси системі:"
+
+#. (itstool) path: item/p
+#: C/system-requirements.page:47
+msgid "20 GB of maximum storage space."
+msgstr "20 ГБ максимального місця для зберігання."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:49
+msgid ""
+"This does not mean that <app>Boxes</app> will allocate 20 GB of space when "
+"creating the virtual machine. The actual disk space used by <app>Boxes</app> "
+"will be less than (or in worst case, equal to) the disk space used by the "
+"virtual machine itself."
+msgstr ""
+"Це не означає, що <app>Коробки</app> нададуть операційній системі точно 20 ГБ"
+" місця при створенні віртуальної машини. Насправді, місце, яке буде"
+" використано <app>Коробками</app> буде меншим (або, у найгіршому випадку,"
+" рівним) місцю на диску, яке використано самою віртуальною машиною."
+
+#. (itstool) path: item/p
+#: C/system-requirements.page:56
+msgid "500 MB of RAM."
+msgstr "500 МБ оперативної пам'яті"
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:61
+msgid ""
+"<app>Boxes</app> performs best if your computer processor supports hardware "
+"<link xref=\"virtualization\">virtualization extensions</link> and these are "
+"enabled in the system BIOS."
+msgstr ""
+"<app>Коробки</app> працюють найкращим чином, якщо у процесорі комп'ютера"
+" передбачено підтримку апаратних <link xref=\"virtualization\">розширень"
+" віртуалізації</link>, і ці розширення увімкнено у BIOS системи."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:66
+msgid ""
+"It is also recommended that you have at least 8GB RAM and 20GB of free disk "
+"space on your computer to efficiently run <app>Boxes</app>."
+msgstr ""
+"Також рекомендуємо вам мати принаймні 8 ГБ оперативної пам'яті та 20 ГБ"
+" вільного місця на диску вашого комп'ютера, щоб <app>Коробки</app> могли"
+" працювати ефективно."
+
+#. (itstool) path: info/desc
+#: C/usb-redirection.page:29
+msgid "Allow your box to access a USB device."
+msgstr "Дозвольте коробці отримати доступ до USB-пристрою."
+
+#. (itstool) path: page/title
+#: C/usb-redirection.page:35
+msgid "USB Redirection"
+msgstr "USB-перенаправлення"
+
+#. (itstool) path: page/p
+#: C/usb-redirection.page:37
+msgid ""
+"<sys>USB</sys> is a universal hardware bus protocol used to plug any kind of "
+"device into your computer. <sys>USB redirection</sys> makes devices plugged "
+"into your local computer available in the machines you are connected to in "
+"<app>Boxes</app>. For instance, a USB flash drive or a webcam will appear as "
+"directly connected to the remote or virtual computer."
+msgstr ""
+"<sys>USB</sys> є універсальним протоколом апаратної шини системи. Цей"
+" протокол використовується для з'єднання пристроїв будь-яких типів із вашим"
+" комп'ютером. <sys>Перенаправлення USB</sys> робить пристрої, які з'єднано із"
+" вашим локальним комп'ютером, доступними у машинах, з якими ви його з'єднуєте"
+" у <app>Коробках</app>. Наприклад, флешка USB або вебкамера з'являться як"
+" безпосередньо з'єднані із віддаленим або віртуальним комп'ютером."
+
+#. (itstool) path: steps/title
+#: C/usb-redirection.page:44
+msgid "To enable host USB devices in a box:"
+msgstr "Щоб увімкнути хостові USB-пристрої у коробці:"
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:45
+msgid "Make sure the box is running."
+msgstr "Переконайтеся, що коробка працює."
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:50
+msgid "Click the <gui>Devices</gui> tab."
+msgstr "Натисніть на вкладку <gui>Пристрої</gui>."
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:51
+msgid ""
+"<gui>USB devices</gui> connected to the host machine are shown in a list. "
+"Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
+msgstr ""
+"<gui>Пристрої USB</gui>, які з'єднано із основною машиною буде показано у"
+" форматі списку. Встановіть для кожного із потрібних вам пристроїв перемикач"
+" у стан <gui style=\"switch\">Увімкнено</gui>."
+
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Прия Пандія"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
+#. (itstool) path: info/desc
+#: C/virtualization.page:22
+msgid "Check the resources available to <app>Boxes</app>."
+msgstr "Перевірте ресурси, доступні для <app>Коробки</app>."
+
+#. (itstool) path: page/title
+#: C/virtualization.page:25
+msgid "Using processor hardware virtualization"
+msgstr "Використання віртуалізації апаратного забезпечення процесора"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:27
+msgid ""
+"To determine whether your computer supports processor virtualization "
+"hardware extensions, and that they have been enabled in the system BIOS, run "
+"the following in a terminal window:"
+msgstr ""
+"Щоб визначити, чи підтримує ваш комп’ютер розширення апаратного забезпечення "
+"для віртуалізації процесора та щоб вони були включені в системній BIOS, "
+"виконайте наступне у вікні терміналу:"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:30
+msgid "<cmd>gnome-boxes --checks</cmd>"
+msgstr "<cmd>gnome-boxes --checks</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr "Щоб увімкнути Віртуалізацію у вашій системі:"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr "Перезавантажте систему та відкрийте меню <gui>BIOS</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
+msgid ""
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
+msgstr ""
+"Виберіть пункт <gui>Restore Defaults</gui> і, далі, <gui>Save and Exit</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr "Перезавантажте та знову відкрийте <gui>BIOS</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+"Відкрийте підменю <gui>Processor</gui> у розділі <gui>Chipset, Advanced CPU "
+"Configuration</gui> або <gui>Northbridge</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+"Увімкніть <gui>Intel Virtualization Technology</gui> (також відому як Intel"
+" VT) або <gui>AMD-V</gui>, залежно від виробника процесора. Розширення"
+" віртуалізації можуть мати мітки <gui>Virtualization Extensions, "
+"Vanderpool</gui> або інші назви, залежно від виробника материнської плати та"
+" BIOS системи."
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr "<gui>Зберегти та Вийти</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr ""
+"Перезавантажте та запустіть: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+"Якщо є якийсь вивід, то розширення віртуалізації тепер увімкнено. Якщо "
+"виводу немає, у вашій системі може не бути розширення віртуалізації або "
+"встановлено вірний параметр BIOS в режим увімкнено."
+
+#. (itstool) path: page/title
+#: C/what-is-a-virtual-machine.page:26
+msgid "What is a virtual machine?"
+msgstr "Що таке віртуальна машина?"
+
+#. (itstool) path: page/p
+#: C/what-is-a-virtual-machine.page:28
+msgid ""
+"A virtual machine is a simulated computer running inside another computer. "
+"The simulated computer is often called <em>guest</em>, while the real "
+"machine is called <em>host</em>."
+msgstr ""
+"Віртуальна машина - це модельований комп'ютер, що працює всередині іншого "
+"комп’ютера. Модельований комп’ютер часто називають <em>гість</em>, а "
+"справжній апарат називають <em>хостом</em>."
+
+#. (itstool) path: page/p
+#: C/what-is-a-virtual-machine.page:31
+msgid ""
+"With <em>virtualization</em>, the guest has access to the real hardware the "
+"host is running. If the guest can run on fake hardware, it's called "
+"<em>emulation</em>."
+msgstr ""
+"Завдяки <em>віртуалізації</em>, гість отримує доступ до реального "
+"обладнання, на якому працює хост. Якщо гість може працювати на підробленому "
+"апаратному забезпеченні, це називається <em>емуляція</em>."
+
+#. (itstool) path: page/title
+#: C/why-do-i-need-virtual-machine.page:27
+msgid "Why do I need a virtual machine?"
+msgstr "Навіщо мені потрібна віртуальна машина?"
+
+#. (itstool) path: page/p
+#: C/why-do-i-need-virtual-machine.page:29
+msgid ""
+"A virtual machine can be useful when you need to run applications that will "
+"only run on another operating system, on Microsoft Windows™ for instance. A "
+"virtual machine can also be used during software development, to test in a "
+"pristine environment."
+msgstr ""
+"Віртуальна машина може бути корисною, коли вам потрібно запускати програми, "
+"які працюють лише в іншій операційній системі, наприклад в Microsoft "
+"Windows™. Віртуальну машину також можна використовувати під час розробки "
+"програмного забезпечення для тестування в незнайомому середовищі."
