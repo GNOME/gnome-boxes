@@ -33,10 +33,12 @@ private class Boxes.DownloadsHub : Gtk.Popover {
     }
 
     public void add_item (WizardDownloadableEntry entry) {
-        n_items+=1;
-
         var row = new DownloadsHubRow.from_entry (entry);
+        add_row (row);
+    }
 
+    private void add_row (DownloadsHubRow row) {
+        n_items+=1;
         if (!button.visible)
             button.visible = true;
 
@@ -60,6 +62,11 @@ private class Boxes.DownloadsHub : Gtk.Popover {
 
         listbox.prepend (row);
         popup ();
+    }
+
+    public void add_url (string url) {
+       var row = new DownloadsHubRow.from_url (url);
+       add_row (row);
     }
 
     private void on_row_deleted () {
@@ -163,17 +170,27 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
 
         Downloader.fetch_os_logo.begin (image, entry.os, 64);
 
+        setup (entry.url);
+    }
+
+    public DownloadsHubRow.from_url (string url) {
+        label.label = url;
+
+        setup (url);
+    }
+
+    private void setup (string url) {
         progress_notify_id = progress.notify["progress"].connect (() => {
             progress_bar.fraction = progress.progress;
         });
         progress_bar.fraction = progress.progress = 0;
 
-        var soup_download_uri = new Soup.URI (entry.url);
+        var soup_download_uri = new Soup.URI (url);
         var download_path = soup_download_uri.get_path ();
 
         var filename = GLib.Path.get_basename (download_path);
 
-        download.begin (entry.url, filename);
+        download.begin (url, filename);
     }
 
     private async void download (string url, string filename) {
