@@ -161,6 +161,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             var widget = display.get_display (0);
             widget_remove (widget);
             window.display_page.show_display (display, widget);
+            window.topbar.status = this.name;
             widget.grab_focus ();
 
             break;
@@ -233,8 +234,9 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 }
 
                 load_screenshot ();
-
-                disconnect_display ();
+		if (!stay_on_display) {
+                    disconnect_display ();
+                }
             });
 
             need_password_id = _display.notify["need-password"].connect (handle_auth);
