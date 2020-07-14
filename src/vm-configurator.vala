@@ -101,7 +101,7 @@ private class Boxes.VMConfigurator {
         var webdav_channel = create_webdav_channel ();
         domain.add_device (webdav_channel);
 
-        add_usb_support (domain);
+        add_usb_support (domain, install_media);
 #if !FLATPAK
         add_smartcard_support (domain);
 #endif
@@ -650,7 +650,8 @@ private class Boxes.VMConfigurator {
         domain.add_device (smartcard);
     }
 
-    public static void add_usb_support (Domain domain) {
+    public static void add_usb_support (Domain domain, InstallerMedia install_media) {
+
         // 4 USB redirection channels
         for (int i = 0; i < 4; i++) {
             var usb_redir = new DomainRedirdev ();
@@ -658,6 +659,15 @@ private class Boxes.VMConfigurator {
             var vmc = new DomainChardevSourceSpiceVmc ();
             usb_redir.set_source (vmc);
             domain.add_device (usb_redir);
+        }
+
+        var device = find_device_by_prop (install_media.supported_devices, DEVICE_PROP_NAME, "qemu-xhci");
+        if (device != null) {
+            var controller = create_usb_controller (DomainControllerUsbModel.QEMU_XHCI);
+            controller.set_ports (15); // 15 is the max amount qemu supports for a single controller
+            domain.add_device (controller);
+
+            return;
         }
 
         // USB controllers
