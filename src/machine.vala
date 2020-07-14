@@ -202,10 +202,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             // Translators: The %s will be expanded with the name of the vm
             window.topbar.status = _("Connecting to %s").printf (name);
 
-            show_id = _display.show.connect ((id) => { show_display (); });
+            show_id = _display.show.connect ((id) => {
+                if (window != null && window.current_item == this)
+                    show_display ();
+            });
 
             hide_id = _display.hide.connect ((id) => {
-                if (window != null)
+                if (window != null && window.current_item == this)
                     window.display_page.remove_display ();
             });
 
@@ -402,7 +405,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             }
         }
 
-        window.display_page.remove_display ();
+        if (window.current_item == this)
+            window.display_page.remove_display ();
         if (!display.should_keep_alive ()) {
             display.disconnect_it ();
             display = null;
