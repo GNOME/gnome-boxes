@@ -88,7 +88,7 @@ private class Boxes.VMConfigurator {
         var graphics = create_graphics_device ();
         domain.add_device (graphics);
 
-        // SPICE agent channel. This is needed for features like copy&paste between host and guest etc to work.
+        // SPICE agent channel. This is needed for features like copy and paste between host and guest etc to work.
         var channel = new DomainChannel ();
         channel.set_target_type (DomainChannelTargetType.VIRTIO);
         channel.set_target_name ("com.redhat.spice.0");

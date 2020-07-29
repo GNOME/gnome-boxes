@@ -372,7 +372,7 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             var link_address = "<a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a>";
 
             // Translators: %s => a link to the website where users can download the guest tools.
-            var message = _("SPICE guest tools are not running. These tools improve user experience and enable host and box interactions, such as copy&amp;paste. Please visit %s to download and install these tools from within the box.").printf (link_address);
+            var message = _("SPICE guest tools are not running. These tools improve user experience and enable host and box interactions, such as copy and paste. Please visit %s to download and install these tools from within the box.").printf (link_address);
             var label = new Gtk.Label (message);
             label.vexpand = true;
             label.valign = Gtk.Align.END;
