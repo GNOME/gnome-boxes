@@ -515,8 +515,15 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             App.app.async_launcher.launch.begin ( () => {
                 try {
                     // This undefines the domain, causing it to be transient if it was running
+#if FLATPAK
+                    domain.delete (DomainDeleteFlags.SAVED_STATE |
+                                   DomainDeleteFlags.SNAPSHOTS_METADATA |
+                                   DomainDeleteFlags.REMOVE_NVRAM);
+#else
+                    // This can go away once libvirt-glib gets a new release https://gitlab.com/libvirt/libvirt-glib/-/issues/1
                     domain.delete (DomainDeleteFlags.SAVED_STATE |
                                    DomainDeleteFlags.SNAPSHOTS_METADATA);
+#endif
                 } catch (GLib.Error err) {
                     warning (err.message);
                 }
