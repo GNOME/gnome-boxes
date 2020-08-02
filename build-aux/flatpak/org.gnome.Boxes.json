@@ -16,14 +16,13 @@
         "--system-talk-name=org.freedesktop.timedate1",
         "--system-talk-name=org.freedesktop.Accounts",
         "--filesystem=/var/lib/AccountsService/icons:ro",
-        "--talk-name=org.freedesktop.Tracker1",
-        "--env=TRACKER_SPARQL_BACKEND=bus",
         "--talk-name=org.freedesktop.secrets",
         "--filesystem=xdg-run/dconf",
         "--filesystem=~/.config/dconf:ro",
         "--filesystem=home",
         "--talk-name=ca.desrt.dconf",
-        "--env=DCONF_USER_CONFIG_DIR=.config/dconf"
+        "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--add-policy=Tracker3.dbus:org.freedesktop.Tracker3.Miner.Files=tracker:Software"
     ],
     "modules" : [
         {
@@ -276,58 +275,28 @@
             ]
         },
         {
-            "name" : "tracker",
-            "buildsystem" : "meson",
-            "cleanup" : [
-                "/bin",
-                "/etc",
-                "/libexec"
-            ],
-            "config-opts" : [
-                "-Dbash_completion=no",
-                "-Dfunctional_tests=false",
-                "-Dman=false",
-                "-Ddocs=false",
-                "-Dsystemd_user_services=no"
-            ],
-            "sources" : [
-                {
-                    "type" : "git",
-                    "url" : "https://gitlab.gnome.org/GNOME/tracker.git",
-                    "branch": "tracker-2.3"
-                }
-            ]
-        },
-        {
             "name": "tracker-miners",
             "buildsystem": "meson",
             "cleanup": [
                 "/etc",
-                "/lib",
                 "/libexec",
-                "/share/dbus-1/services/org.freedesktop.Tracker1.Miner.Extract.service",
-                "/share/dbus-1/services/org.freedesktop.Tracker1.Writeback.service",
-                "/share/tracker/miners/org.freedesktop.Tracker1.Miner.Applications.service",
-                "/share/tracker/miners/org.freedesktop.Tracker1.Miner.Extract.service",
-                "/share/tracker/miners/org.freedesktop.Tracker1.Miner.RSS.service",
-                "/share/tracker-miners",
-                "/share/glib-2.0/schemas/org.freedesktop.Tracker.Extract.gschema.xml",
-                "/share/glib-2.0/schemas/org.freedesktop.Tracker.Writeback.gschema.xml"
+                "/share/tracker/miners"
             ],
             "config-opts": [
-                "-Dextract=false",
+                "-Ddomain_prefix=org.gnome.BoxesDevel",
+                "-Dextract=true",
                 "-Dgeneric_media_extractor=none",
-                "-Dminer_apps=false",
+                "-Dman=false",
                 "-Dminer_fs=true",
+                "-Dminer_fs_cache_location=$XDG_CACHE_HOME/gnome-boxes/miner/files",
                 "-Dminer_rss=false",
-                "-Dsystemd_user_services=no",
+                "-Dsystemd_user_services=false",
                 "-Dwriteback=false"
             ],
             "sources": [
                 {
                     "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git",
-                    "branch" : "tracker-miners-2.3"
+                    "url": "https://gitlab.gnome.org/GNOME/tracker-miners.git"
                 }
             ]
         },
