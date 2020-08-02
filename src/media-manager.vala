@@ -1,5 +1,6 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
+using Config;
 using Osinfo;
 using Tracker;
 
@@ -229,7 +230,17 @@ private class Boxes.MediaManager : Object {
             connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
                                                     null, null);
         } catch (GLib.Error error) {
+#if !FLATPAK
             critical ("Error connecting to Tracker: %s", error.message);
+#else
+            message ("Error connecting to host Tracker Miners: %s", error.message);
+            try {
+                connection = Sparql.Connection.bus_new (Config.APPLICATION_ID + "Tracker3.Miner.Files",
+                                                        null, null);
+            } catch (GLib.Error error) {
+                critical ("Error starting local Tracker Miners: %s", error.message);
+            }
+#endif
         }
     }
 
