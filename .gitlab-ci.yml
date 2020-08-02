@@ -2,8 +2,8 @@ include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_
 
 stages:
 - test
-- deploy
 - fedora
+- deploy
 
 variables:
     BUNDLE: "gnome-boxes.flatpak"
@@ -18,22 +18,10 @@ flatpak:
         APP_ID: "org.gnome.BoxesDevel"
     extends: .flatpak
 
-review:
-    stage: deploy
-    dependencies:
-        - flatpak
-    script:
-        - echo "Generating flatpak deployment"
-    extends: '.review'
-
-stop_review:
-    stage: deploy
-    script:
-        - echo "Stopping flatpak deployment"
-    extends: '.stop_review'
-
 nightly:
     extends: '.publish_nightly'
+    dependencies: ['flatpak']
+    needs: ['flatpak']
 
 fedora:rawhide:
     image: fedora:rawhide
