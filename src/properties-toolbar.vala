@@ -17,6 +17,9 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     public Gtk.HeaderBar main;
 
     [GtkChild]
+    public Gtk.HeaderBar text_editor;
+
+    [GtkChild]
     public Gtk.Button troubleshooting_back_button;
 
     [GtkChild]
@@ -48,13 +51,23 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     [GtkCallback]
-    private void on_troubleshooting_back_clicked () requires (page == PropsWindowPage.TROUBLESHOOTING_LOG) {
+    private void on_troubleshooting_back_clicked () requires (page == PropsWindowPage.TROUBLESHOOTING_LOG || page == PropsWindowPage.TEXT_EDITOR) {
         props_window.page = PropsWindowPage.MAIN;
     }
 
     [GtkCallback]
     private void on_copy_clipboard_clicked () requires (page == PropsWindowPage.TROUBLESHOOTING_LOG) {
         props_window.copy_troubleshoot_log_to_clipboard ();
+    }
+
+    [GtkCallback]
+    private void on_revert_changes_clicked () requires (page == PropsWindowPage.TEXT_EDITOR) {
+        props_window.text_editor.revert_to_original ();
+    }
+
+    [GtkCallback]
+    private void on_text_editor_save_clicked () {
+        props_window.text_editor.save ();
     }
 
     [GtkCallback]

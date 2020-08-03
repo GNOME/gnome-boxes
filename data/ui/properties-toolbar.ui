@@ -98,6 +98,88 @@
       </packing>
     </child>
 
+    <!-- Text Editor page -->
+    <child>
+      <object class="GtkHeaderBar" id="text_editor">
+        <property name="visible">True</property>
+        <property name="show-close-button">True</property>
+        <style>
+          <class name="titlebar"/>
+        </style>
+
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <signal name="clicked" handler="on_troubleshooting_back_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+
+            <child internal-child="accessible">
+              <object class="AtkObject">
+                <property name="accessible-name" translatable="yes">Back</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">go-previous-symbolic</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="pack-type">start</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="revert_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <signal name="clicked" handler="on_revert_changes_clicked"/>
+            <style>
+              <class name="image-button"/>
+            </style>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">document-revert-symbolic</property>
+              </object>
+            </child>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+
+        <child>
+          <object class="GtkButton" id="save_button">
+            <property name="visible">True</property>
+            <property name="valign">center</property>
+            <property name="use-underline">True</property>
+            <property name="label" translatable="yes">_Save</property>
+            <signal name="clicked" handler="on_text_editor_save_clicked"/>
+            <style>
+              <class name="text-button"/>
+            </style>
+          </object>
+
+          <packing>
+            <property name="pack-type">end</property>
+          </packing>
+        </child>
+      </object>
+
+      <packing>
+        <property name="name">text_editor</property>
+      </packing>
+    </child>
+
     <!-- File chooser page -->
     <child>
       <object class="GtkHeaderBar" id="file_chooser">

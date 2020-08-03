@@ -255,6 +255,10 @@ private class Boxes.VMConfigurator {
         if (!boxes_created_domain (domain))
             return;
 
+        if (boxes_edited_domain (domain)) {
+            return;
+        }
+
         try {
             var cpu = domain.get_cpu ();
             if (cpu != null &&
@@ -542,7 +546,7 @@ private class Boxes.VMConfigurator {
         return null;
     }
 
-    private static string? get_custom_xml_node (Domain domain, string node_name) {
+    public static string? get_custom_xml_node (Domain domain, string node_name) {
         var ns_uri = BOXES_NS_URI;
         var xml = domain.get_custom_xml (ns_uri);
         if (xml == null) {
@@ -584,6 +588,10 @@ private class Boxes.VMConfigurator {
             xml = domain.get_custom_xml (BOXES_OLD_NS_URI);
 
         return (xml != null);
+    }
+
+    private static bool boxes_edited_domain (Domain domain) {
+        return (get_custom_xml_node (domain, "edited") != null);
     }
 
     private static void update_custom_xml (Domain domain,

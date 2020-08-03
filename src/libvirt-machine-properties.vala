@@ -383,6 +383,13 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
             machine.window.props_window.show_troubleshoot_log (log);
         });
 
+        var edit_button = new Gtk.Button.with_mnemonic (_("Edit XML"));
+        edit_button.halign = Gtk.Align.END;
+        grid.attach (edit_button, 2, 0, 1, 1);
+        edit_button.clicked.connect (() => {
+            machine.window.props_window.show_editor_view (machine);
+        });
+
         var prop = add_property (ref list, null, grid);
         ulong flushed_id = 0;
         flushed_id = prop.flushed.connect (() => {

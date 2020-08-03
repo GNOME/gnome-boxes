@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <!-- interface-requires gtk+ 3.9 -->
+  <template class="BoxesTextEditor" parent="GtkScrolledWindow">
+    <property name="visible">True</property>
+    <property name="vexpand">True</property>
+    <property name="no-show-all">True</property>
+    <property name="min-content-width">640</property>
+    <property name="min-content-height">480</property>
+    <property name="margin-top">10</property>
+    <property name="margin-start">10</property>
+    <property name="margin-end">10</property>
+    <property name="margin-bottom">10</property>
+
+    <child>
+      <object class="GtkSourceView" id="view">
+        <property name="visible">True</property>
+        <property name="editable">True</property>
+        <property name="auto-indent">True</property>
+        <property name="indent-on-tab">True</property>
+        <property name="insert-spaces-instead-of-tabs">True</property>
+        <property name="monospace">True</property>
+        <property name="show-line-marks">True</property>
+        <property name="show-line-numbers">True</property>
+        <property name="background-pattern">grid</property>
+        <property name="wrap-mode">word</property>
+      </object>
+    </child>
+
+  </template>
+</interface>
