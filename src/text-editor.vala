@@ -38,14 +38,18 @@ private class Boxes.TextEditor: Gtk.ScrolledWindow {
         }
 
         var saved = yield save_original_config (config);
+        if (!saved) {
+            var failed_to_save_msg = _("Unable to backup original configuration. Aborting.");
+            App.app.main_window.notificationbar.display_error (failed_to_save_msg);
 
+            return;
+        }
 
         var xml = view.buffer.text;
         if (config.to_xml () == xml) {
             debug ("Nothing changed in the VM configuration");
             return;
         }
-
 
         GVirConfig.Domain? custom_config = null;
         try {
@@ -87,16 +91,28 @@ private class Boxes.TextEditor: Gtk.ScrolledWindow {
     private async bool save_original_config (GVirConfig.Domain config) {
         var old_config_path = get_user_pkgconfig (config.get_name () + FILE_SUFFIX);
 
-        return FileUtils.set_contents (old_config_path, config.to_xml (), -1);
+        try {
+            return FileUtils.set_contents (old_config_path, config.to_xml (), -1);
+        } catch (GLib.Error error) {
+            warning ("Failed to save original configuration: %s", error.message);
+
+            return false;
+        }
     }
 
     public async void revert_to_original () {
         var original_config_path = get_user_pkgconfig (machine.domain_config.get_name () + FILE_SUFFIX);
 
-        string data;
-        FileUtils.get_contents (original_config_path, out data);
+        string? data = null;
+        try {
+            FileUtils.get_contents (original_config_path, out data);
+        } catch (GLib.Error error) {
+            warning ("Failed to load original configuration: %s", error.message);
+            return;
+        }
+
         if (data == null) {
-            warning ("Failed to load original config");
+            warning ("Failed to load original configuration");
             return;
         }
 
