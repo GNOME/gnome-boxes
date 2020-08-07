@@ -126,21 +126,6 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
         if (entry.os != null && entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
             (new RHELDownloadDialog (dialog, entry).run ());
-        } else if (entry.os != null && entry.os.id.has_prefix ("http://gnome.org/gnome/")) {
-            var file_chooser = new Gtk.FileChooserNative (_("Select the GNOME Nightly VM image"),
-                                                          App.app.main_window,
-                                                          Gtk.FileChooserAction.OPEN,
-                                                          _("Select"), _("Cancel"));
-            file_chooser.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
-            if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-                try {
-                    var media = yield new InstalledMedia.gnome_nightly (file_chooser.get_filename ());
-                    done (media);
-                    return;
-                } catch (GLib.Error error) {
-                    warning ("Failed to create GNOME Nightly config for '%s': %s", file_chooser.get_filename (), error.message);
-                }
-            }
         } else {
             DownloadsHub.get_instance ().add_item (entry);
         }

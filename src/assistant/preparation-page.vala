@@ -31,19 +31,22 @@ private class Boxes.AssistantPreparationPage : AssistantPage {
         }
     }
 
-    public void setup (InstallerMedia media, Osinfo.Os? os = null) {
+    public async void setup (InstallerMedia media, Osinfo.Os? os = null) {
         try {
             var media_manager = MediaManager.get_instance ();
-            this.media = media_manager.create_installer_media_from_media (media, os);
-
+            if (os != null && os.id.has_prefix ("http://gnome.org")) {
+                this.media = yield media_manager.create_installer_media_for_gnome_os (media, os);
+            } else {
+                this.media = media_manager.create_installer_media_from_media (media, os);
+            }
         } catch (GLib.Error error) {
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);
         }
 
-        if (media.os == null) {
+        if (this.media.os == null) {
             stack.visible_child = identify_os_page;
         } else {
-            prepare.begin (media);
+            prepare.begin (this.media);
         }
     }
 

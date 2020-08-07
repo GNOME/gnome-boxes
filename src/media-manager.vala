@@ -219,6 +219,15 @@ private class Boxes.MediaManager : Object {
         return create_unattended_installer (media);
     }
 
+    public async InstallerMedia create_installer_media_for_gnome_os (InstallerMedia media, Os? os = null) throws GLib.Error {
+        try {
+            return yield new InstalledMedia.gnome_nightly (media.device_file);
+        } catch (GLib.Error error) {
+            warning ("Failed to create GNOME Nightly config for '%s': %s", media.device_file, error.message);
+            return create_installer_media_from_media (media, os);
+        }
+    }
+
     private MediaManager () {
 #if !FLATPAK
         client = new GUdev.Client ({"block"});
