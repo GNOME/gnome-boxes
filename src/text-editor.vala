@@ -39,7 +39,14 @@ private class Boxes.TextEditor: Gtk.ScrolledWindow {
 
         var saved = yield save_original_config (config);
 
+
         var xml = view.buffer.text;
+        if (config.to_xml () == xml) {
+            debug ("Nothing changed in the VM configuration");
+            return;
+        }
+
+
         GVirConfig.Domain? custom_config = null;
         try {
             custom_config = new GVirConfig.Domain.from_xml (xml);
@@ -49,7 +56,22 @@ private class Boxes.TextEditor: Gtk.ScrolledWindow {
 
         add_metadata (custom_config);
 
-        machine.domain.set_config (custom_config);
+        try {
+            machine.domain.set_config (custom_config);
+        } catch (GLib.Error error) {
+            warning ("Failed to save custom VM configuration: %s", error.message);
+            var msg = _("Boxes failed to save VM configuration changes: %s");
+            App.app.main_window.notificationbar.display_error (msg);
+
+            return;
+        }
+
+        if (machine.is_running) {
+            var message = _("Changes require restart of “%s”.").printf (machine.name);
+            App.app.main_window.notificationbar.display_for_action (message, _("_Restart"), () => {
+                machine.restart ();
+            });
+        }
     }
 
     private void add_metadata (GVirConfig.Domain config) {
