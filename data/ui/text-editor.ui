@@ -13,19 +13,61 @@
     <property name="margin-bottom">10</property>
 
     <child>
-      <object class="GtkSourceView" id="view">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="editable">True</property>
-        <property name="auto-indent">True</property>
-        <property name="indent-on-tab">True</property>
-        <property name="insert-spaces-instead-of-tabs">True</property>
-        <property name="monospace">True</property>
-        <property name="show-line-marks">True</property>
-        <property name="show-line-numbers">True</property>
-        <property name="background-pattern">grid</property>
-        <property name="wrap-mode">word</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+
+        <child>
+          <object class="GtkInfoBar">
+            <property name="visible">True</property>
+            <property name="halign">fill</property>
+            <property name="spacing">0</property>
+            <property name="message-type">warning</property>
+
+            <child internal-child="content_area">
+              <object class="GtkContainer">
+                <property name="visible">True</property>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">dialog-warning</property>
+                    <property name="icon-size">3</property>
+                    <property name="pixel-size">48</property>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkLabel">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Modifying a virtual machine's configuration can cause an installed operating system to malfunction.
+Making a snapshot before performing major changes is advised.</property>
+                    <property name="wrap">True</property>
+                    <property name="halign">start</property>
+                    <property name="hexpand">True</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkSourceView" id="view">
+            <property name="visible">True</property>
+            <property name="editable">True</property>
+            <property name="auto-indent">True</property>
+            <property name="indent-on-tab">True</property>
+            <property name="insert-spaces-instead-of-tabs">True</property>
+            <property name="monospace">True</property>
+            <property name="show-line-marks">True</property>
+            <property name="show-line-numbers">True</property>
+            <property name="background-pattern">grid</property>
+            <property name="wrap-mode">word</property>
+          </object>
+        </child>
       </object>
     </child>
-
   </template>
 </interface>
