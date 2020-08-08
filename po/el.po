@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-08-07 15:24+0000\n"
-"PO-Revision-Date: 2020-08-07 23:10+0300\n"
+"POT-Creation-Date: 2020-08-08 11:25+0000\n"
+"PO-Revision-Date: 2020-08-08 17:07+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
@@ -147,6 +147,34 @@ msgstr "Δοκιμάστε διαφορετική αναζήτηση"
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Αναζήτηση για λειτουργικό σύστημα ή εισαγωγή συνδέσμου λήψης…"
+
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr ""
+"Τα Πλαίσια δεν μπόρεσε να αναγνωρίσει το λειτουργικό σύστημα στο αρχείο "
+"εικόνας."
+
+#: data/ui/assistant/pages/identify-os-page.ui:29
+msgid ""
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
+msgstr ""
+"Δεν συνιστάται η εκκίνηση ενός άγνωστου λειτουργικού συστήματος, αλλά "
+"μπορείτε να δοκιμάσετε την τύχη σας με ένα συγκεκριμένο είδος λειτουργικού "
+"συστήματος από την παρακάτω λίστα:"
+
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "Πρότυπο"
+
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+msgid "Unknown OS"
+msgstr "Άγνωστο λειτουργικό σύστημα"
+
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+msgid "Search for an OS…"
+msgstr "Αναζήτηση για λειτουργικό σύστημα…"
 
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
@@ -519,6 +547,17 @@ msgstr "Διαγραφή"
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Έτοιμο"
+
+#: data/ui/text-editor.ui:44
+msgid ""
+"Modifying a virtual machine's configuration can cause an installed operating "
+"system to malfunction.\n"
+"Making a snapshot before performing major changes is advised."
+msgstr ""
+"Η τροποποίηση της διαμόρφωσης μιας εικονικής μηχανής μπορεί να προκαλέσει "
+"δυσλειτουργία ενός εγκατεστημένου λειτουργικού συστήματος.\n"
+"Συνιστάται να λάβετε ένα στιγμιότυπο πριν πραγματοποιήσετε σημαντικές "
+"αλλαγές."
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -1062,6 +1101,7 @@ msgstr "Δίκτυο"
 
 #: src/libvirt-machine-properties.vala:356
 #: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/text-editor.vala:75
 msgid "_Restart"
 msgstr "_Επανεκκίνηση"
 
@@ -1116,6 +1156,7 @@ msgstr "CPUs: "
 
 #. TODO: unify the reboot requests for non-properties
 #: src/libvirt-machine-properties.vala:725 src/properties.vala:83
+#: src/text-editor.vala:74
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Οι αλλαγές απαιτούν επανεκκίνηση του “%s”."
@@ -1427,6 +1468,17 @@ msgstr "Η θύρα πρέπει να καθοριστεί μια φορά"
 #: src/spice-display.vala:637
 msgid "Missing port in Spice URL"
 msgstr "Λείπει η θύρα στη διεύθυνση Spice"
+
+#: src/text-editor.vala:42
+msgid "Unable to backup original configuration. Aborting."
+msgstr ""
+"Δεν είναι δυνατή η δημιουργία αντιγράφων ασφαλείας της αρχικής ρύθμισης. "
+"Ματαίωση."
+
+#: src/text-editor.vala:67
+#, c-format
+msgid "Boxes failed to save VM configuration changes: %s"
+msgstr "Τα πλαίσια απέτυχαν να αποθηκεύσουν τις αλλαγές διαμόρφωσης VM: %s"
 
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
