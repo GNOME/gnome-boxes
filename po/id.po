@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-07-31 08:45+0000\n"
-"PO-Revision-Date: 2020-08-06 18:14+0700\n"
+"POT-Creation-Date: 2020-08-08 11:25+0000\n"
+"PO-Revision-Date: 2020-08-10 21:00+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -144,6 +144,32 @@ msgstr "Coba pencarian lain"
 msgid "Search for an OS or enter a download link…"
 msgstr "Cari SO (Sistem Operasi) atau masukkan tautan unduhan…"
 
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr "Boxes tidak dapat mengidentifikasi sistem operasi pada berkas citra."
+
+#: data/ui/assistant/pages/identify-os-page.ui:29
+msgid ""
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
+msgstr ""
+"Hal ini tidak disarankan untuk mencoba boot SO (Sistem Operasi) yang tidak "
+"diketahui, tetapi Anda dapat mencoba keberuntungan Anda memaksa jenis SO "
+"(Sistem Operasi) tertentu dari daftar di bawah ini:"
+
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "Templat"
+
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+msgid "Unknown OS"
+msgstr "SO (Sistem Operasi) Tak Diketahui"
+
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+msgid "Search for an OS…"
+msgstr "Cari SO (Sistem Operasi)…"
+
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
 msgstr "Buat suatu Mesin Virtual"
@@ -170,7 +196,7 @@ msgstr "Anda akan diberitahu ketika pengunduhan usai."
 
 #: data/ui/assistant/pages/index-page.ui:147
 msgid "Select an OS Source"
-msgstr "Pilih sebuah Sumber SO"
+msgstr "Pilih sebuah Sumber SO (Sistem Operasi)"
 
 #: data/ui/assistant/pages/index-page.ui:180
 msgid "Operating System Download"
@@ -192,7 +218,7 @@ msgstr "Pilih sebuah berkas .iso untuk memasang sebuah mesin virtual."
 msgid "Preparing…"
 msgstr "Mempersiapkan…"
 
-#: data/ui/assistant/pages/preparation-page.ui:20
+#: data/ui/assistant/pages/preparation-page.ui:24
 msgid "Preparing to create a new box"
 msgstr "Bersiap membuat sebuah box baru"
 
@@ -238,9 +264,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
-#: src/assistant/index-page.vala:160 src/assistant/vm-assistant.vala:73
-#: src/properties-window.vala:58 src/vm-creator.vala:106
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Batal"
 
@@ -269,9 +295,9 @@ msgid "New"
 msgstr "Baru"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
-#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
-#: data/ui/wizard-toolbar.ui:225
+#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Kembali"
 
@@ -438,8 +464,16 @@ msgstr "Log penelusuran masalah"
 msgid "_Copy to Clipboard"
 msgstr "Salin ke Papan _Klip"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:157 src/properties-window.vala:55
+#: data/ui/properties-toolbar.ui:143
+msgid "Revert changes to original configuration"
+msgstr "Pulihkan perubahan ke konfigurasi asli"
+
+#: data/ui/properties-toolbar.ui:166
+msgid "_Save"
+msgstr "_Simpan"
+
+#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:142 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Pilih perangkat atau berkas ISO"
@@ -505,6 +539,16 @@ msgstr "Hapus"
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Selesai"
+
+#: data/ui/text-editor.ui:44
+msgid ""
+"Modifying a virtual machine's configuration can cause an installed operating "
+"system to malfunction.\n"
+"Making a snapshot before performing major changes is advised."
+msgstr ""
+"Mengubah konfigurasi mesin virtual dapat menyebabkan kegagalan fungsi sistem "
+"operasi yang dipasang.\n"
+"Disarankan untuk membuat snapshot sebelum melakukan perubahan besar."
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -802,7 +846,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box telah dihapus"
 msgstr[1] "%u box telah dihapus"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:562
+#: src/app.vala:596 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Urung"
@@ -815,39 +859,31 @@ msgstr "Boxes sedang melakukan sesuatu"
 msgid "Select files to transfer"
 msgstr "Pilih berkas yang akan ditransfer"
 
-#: src/assistant/index-page.vala:130
-msgid "Select the GNOME Nightly VM image"
-msgstr "Pilih citra VM GNOME Nightly"
-
-#: src/assistant/index-page.vala:133 src/vm-creator.vala:106
-msgid "Select"
-msgstr "Pilih"
-
-#: src/assistant/index-page.vala:160 src/properties-window.vala:58
+#: src/assistant/index-page.vala:145 src/properties-window.vala:61
 msgid "Open"
 msgstr "Buka"
 
-#: src/assistant/index-page.vala:178 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Sebelumnya"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:245 src/libvirt-machine.vala:867
+#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:250
+#: src/assistant/index-page.vala:235
 msgid "32-bit x86 system"
 msgstr "Sistem x86 32-bit"
 
-#: src/assistant/index-page.vala:251
+#: src/assistant/index-page.vala:236
 msgid "64-bit x86 system"
 msgstr "Sistem x86 64-bit"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:256
+#: src/assistant/index-page.vala:241
 #, c-format
 msgid " from %s"
 msgstr " dari %s"
@@ -919,13 +955,13 @@ msgstr "Baru dan Terkini"
 msgid "Unsupported disk image format."
 msgstr "Format citra diska yang tidak didukung."
 
-#: src/installed-media.vala:118 src/installer-media.vala:164
+#: src/installed-media.vala:118 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Sistem"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:469
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
 #, c-format
 msgid "%s used"
 msgstr "%s digunakan"
@@ -1043,7 +1079,8 @@ msgid "Network"
 msgstr "Jaringan"
 
 #: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:720 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/text-editor.vala:75
 msgid "_Restart"
 msgstr "Mu_lai ulang"
 
@@ -1055,28 +1092,32 @@ msgstr "_Paksa Mati"
 msgid "_Troubleshooting Log"
 msgstr "Log Penelusuran _Masalah"
 
-#: src/libvirt-machine-properties.vala:399
+#: src/libvirt-machine-properties.vala:386
+msgid "Edit XML"
+msgstr "Sunting XML"
+
+#: src/libvirt-machine-properties.vala:406
 msgid "_Memory: "
 msgstr "_Memori: "
 
-#: src/libvirt-machine-properties.vala:468
+#: src/libvirt-machine-properties.vala:475
 msgid "Maximum Disk Space"
 msgstr "Ukuran Maksimum Diska"
 
-#: src/libvirt-machine-properties.vala:486
+#: src/libvirt-machine-properties.vala:493
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Tidak ada cukup ruang pada mesin Anda untuk meningkatkan ukuran maksimum "
 "diska."
 
-#: src/libvirt-machine-properties.vala:496
+#: src/libvirt-machine-properties.vala:503
 msgid "Maximum _Disk Size: "
 msgstr "Ukuran Maksimum _Diska: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:549
+#: src/libvirt-machine-properties.vala:556
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1085,34 +1126,35 @@ msgstr[0] ""
 msgstr[1] ""
 "Pengubahan penyimpanan memerlukan penghapusan %llu snapshot yang terkait."
 
-#: src/libvirt-machine-properties.vala:678
-#: src/libvirt-machine-properties.vala:682
+#: src/libvirt-machine-properties.vala:685
+#: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "CPU: "
 
 #. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:718 src/properties.vala:83
+#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
+#: src/text-editor.vala:74
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Perubahan memerlukan “%s” dimulai ulang."
 
-#: src/libvirt-machine-properties.vala:737
+#: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "Jalankan di lata_r belakang"
 
-#: src/libvirt-machine-properties.vala:749
-#: src/libvirt-machine-properties.vala:752
+#: src/libvirt-machine-properties.vala:756
+#: src/libvirt-machine-properties.vala:759
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” tidak akan diistirahatkan secara otomatis."
 
-#: src/libvirt-machine-properties.vala:750
-#: src/libvirt-machine-properties.vala:753
+#: src/libvirt-machine-properties.vala:757
+#: src/libvirt-machine-properties.vala:760
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” akan diistirahatkan secara otomatis untuk menghemat sumber daya."
 
-#: src/libvirt-machine-properties.vala:769
+#: src/libvirt-machine-properties.vala:776
 msgid "3D Acceleration"
 msgstr "Akselerasi 3D"
 
@@ -1259,7 +1301,7 @@ msgstr "Laporkan kutu ke <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "laman beranda %s: <%s>.\n"
 
-#: src/media-manager.vala:286
+#: src/media-manager.vala:298
 #, c-format
 msgid "No such file %s"
 msgstr "Tidak ada berkas %s"
@@ -1399,6 +1441,15 @@ msgstr "Porta mesti dinyatakan sekali"
 msgid "Missing port in Spice URL"
 msgstr "Kurang porta dalam URL Spice"
 
+#: src/text-editor.vala:42
+msgid "Unable to backup original configuration. Aborting."
+msgstr "Tidak dapat mencadangkan konfigurasi asli. Membatalkan."
+
+#: src/text-editor.vala:67
+#, c-format
+msgid "Boxes failed to save VM configuration changes: %s"
+msgstr "Boxes gagal menyimpan perubahan konfigurasi VM: %s"
+
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1491,9 +1542,13 @@ msgstr "tidak"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:727
+#: src/vm-configurator.vala:764
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
+
+#: src/vm-creator.vala:106
+msgid "Select"
+msgstr "Pilih"
 
 #: src/vm-creator.vala:114
 #, c-format
@@ -1517,6 +1572,9 @@ msgstr "Impor Box dari berkas “%s” gagal."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Hanya-baca"
+
+#~ msgid "Select the GNOME Nightly VM image"
+#~ msgstr "Pilih citra VM GNOME Nightly"
 
 #~ msgid "All"
 #~ msgstr "Semua"
