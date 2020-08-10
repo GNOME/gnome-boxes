@@ -1,6 +1,7 @@
 include: 'https://gitlab.gnome.org/GNOME/citemplates/raw/master/flatpak/flatpak_ci_initiative.yml'
 
 stages:
+- codespell
 - test
 - fedora
 - deploy
@@ -38,3 +39,13 @@ fedora:rawhide:
     script:
         - meson _build .
         - ninja -C _build
+
+codespell:
+    image: fedora:rawhide
+    stage: codespell
+    before_script:
+    - dnf update -y --nogpgcheck
+    - dnf install -y codespell
+
+    script:
+    - codespell --skip=".git" --quiet-level=2 --builtin usage
