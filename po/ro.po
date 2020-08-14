@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-07-31 08:45+0000\n"
-"PO-Revision-Date: 2020-07-31 16:45+0300\n"
+"POT-Creation-Date: 2020-08-11 09:21+0000\n"
+"PO-Revision-Date: 2020-08-14 15:03+0300\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
 "Language-Team: Gnome Romanian Translation Team <gnomero-list@lists."
 "sourceforge.net>\n"
@@ -144,6 +144,33 @@ msgstr "Încercați o altă căutare"
 msgid "Search for an OS or enter a download link…"
 msgstr "Căutați un SO sau introduceți o legătură de descărcare…"
 
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr ""
+"Cutii nu a putut identifica sistemul de operare de pe fișierul imagine."
+
+#: data/ui/assistant/pages/identify-os-page.ui:29
+msgid ""
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
+msgstr ""
+"Nu se recomandă să încercați să inițializați un SO necunoscut, dar v-ați "
+"putea încerca norocul la forțarea unui tip specific de SO din lista de mai "
+"jos:"
+
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "Șablon"
+
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+msgid "Unknown OS"
+msgstr "SO necunoscut"
+
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+msgid "Search for an OS…"
+msgstr "Se caută pentru un SO…"
+
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
 msgstr "Creează o mașină virtuală"
@@ -192,7 +219,7 @@ msgstr "Selectați un fișier .iso de instalat într-o mașină virtuală."
 msgid "Preparing…"
 msgstr "Se prepară…"
 
-#: data/ui/assistant/pages/preparation-page.ui:20
+#: data/ui/assistant/pages/preparation-page.ui:24
 msgid "Preparing to create a new box"
 msgstr "Se prepară crearea unei noi cutii"
 
@@ -238,9 +265,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
-#: src/assistant/index-page.vala:160 src/assistant/vm-assistant.vala:73
-#: src/properties-window.vala:58 src/vm-creator.vala:106
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Anulează"
 
@@ -269,9 +296,9 @@ msgid "New"
 msgstr "Nou"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
-#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
-#: data/ui/wizard-toolbar.ui:225
+#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Înapoi"
 
@@ -438,8 +465,16 @@ msgstr "Jurnal depanare"
 msgid "_Copy to Clipboard"
 msgstr "_Copiază în clipboard"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:157 src/properties-window.vala:55
+#: data/ui/properties-toolbar.ui:143
+msgid "Revert changes to original configuration"
+msgstr "Revino din modificările la configurarea originală"
+
+#: data/ui/properties-toolbar.ui:166
+msgid "_Save"
+msgstr "_Salvează"
+
+#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:142 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Alegeți un dispozitiv sau un fișier ISO"
@@ -505,6 +540,17 @@ msgstr "Șterge"
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Terminat"
+
+#: data/ui/text-editor.ui:44
+msgid ""
+"Modifying a virtual machine's configuration can cause an installed operating "
+"system to malfunction.\n"
+"Making a snapshot before performing major changes is advised."
+msgstr ""
+"Modificarea configurărilor unei mașini virtuale poate să cauzeze un sistem "
+"de operare instalat să fie defect.\n"
+"Crearea unui instantaneu înaintea executării de modificări majore este "
+"recomandată."
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -802,7 +848,7 @@ msgstr[0] "%u cutie a fost ștearsă"
 msgstr[1] "%u cutii au fost șterse"
 msgstr[2] "%u de cutii au fost șterse"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:562
+#: src/app.vala:596 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "An_ulează"
@@ -815,39 +861,31 @@ msgstr "Cutii lucrează la ceva"
 msgid "Select files to transfer"
 msgstr "Selectați fișierele de transferat"
 
-#: src/assistant/index-page.vala:130
-msgid "Select the GNOME Nightly VM image"
-msgstr "Selectează imaginea VM Nightly GNOME"
-
-#: src/assistant/index-page.vala:133 src/vm-creator.vala:106
-msgid "Select"
-msgstr "Selectează"
-
-#: src/assistant/index-page.vala:160 src/properties-window.vala:58
+#: src/assistant/index-page.vala:145 src/properties-window.vala:61
 msgid "Open"
 msgstr "Deschide"
 
-#: src/assistant/index-page.vala:178 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Anteriorul"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:245 src/libvirt-machine.vala:867
+#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:250
+#: src/assistant/index-page.vala:235
 msgid "32-bit x86 system"
 msgstr "Sistem pe 32 de biți (x86)"
 
-#: src/assistant/index-page.vala:251
+#: src/assistant/index-page.vala:236
 msgid "64-bit x86 system"
 msgstr "Sistem pe 64 de biți (x86)"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:256
+#: src/assistant/index-page.vala:241
 #, c-format
 msgid " from %s"
 msgstr " de la %s"
@@ -918,13 +956,13 @@ msgstr "Noi și recente"
 msgid "Unsupported disk image format."
 msgstr "Format de imagine disc nesuportat."
 
-#: src/installed-media.vala:118 src/installer-media.vala:164
+#: src/installed-media.vala:118 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Sistem"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:469
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
 #, c-format
 msgid "%s used"
 msgstr "%s utilizat"
@@ -1042,7 +1080,8 @@ msgid "Network"
 msgstr "Rețea"
 
 #: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:720 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/text-editor.vala:75
 msgid "_Restart"
 msgstr "_Repornește"
 
@@ -1054,28 +1093,32 @@ msgstr "_Forțează închiderea"
 msgid "_Troubleshooting Log"
 msgstr "_Jurnal depanare"
 
-#: src/libvirt-machine-properties.vala:399
+#: src/libvirt-machine-properties.vala:386
+msgid "Edit XML"
+msgstr "Editează XML"
+
+#: src/libvirt-machine-properties.vala:406
 msgid "_Memory: "
 msgstr "_Memorie: "
 
-#: src/libvirt-machine-properties.vala:468
+#: src/libvirt-machine-properties.vala:475
 msgid "Maximum Disk Space"
 msgstr "Dimensiunea maximă a discului"
 
-#: src/libvirt-machine-properties.vala:486
+#: src/libvirt-machine-properties.vala:493
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Nu există spațiu suficient pe mașina dumneavoastră pentru a crește mărimea "
 "maximă a discului."
 
-#: src/libvirt-machine-properties.vala:496
+#: src/libvirt-machine-properties.vala:503
 msgid "Maximum _Disk Size: "
 msgstr "Dimensiunea maximă a _discului: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:549
+#: src/libvirt-machine-properties.vala:556
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1086,34 +1129,35 @@ msgstr[1] ""
 msgstr[2] ""
 "Redimensionarea stocării necesită ștergerea a %llu de instantanee asociate."
 
-#: src/libvirt-machine-properties.vala:678
-#: src/libvirt-machine-properties.vala:682
+#: src/libvirt-machine-properties.vala:685
+#: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "CPUs: "
 
 #. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:718 src/properties.vala:83
+#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
+#: src/text-editor.vala:74
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Modificările necesită repornirea lui „%s”."
 
-#: src/libvirt-machine-properties.vala:737
+#: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "_Rulează în fundal"
 
-#: src/libvirt-machine-properties.vala:749
-#: src/libvirt-machine-properties.vala:752
+#: src/libvirt-machine-properties.vala:756
+#: src/libvirt-machine-properties.vala:759
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "„%s” nu va fi întrerupt automat."
 
-#: src/libvirt-machine-properties.vala:750
-#: src/libvirt-machine-properties.vala:753
+#: src/libvirt-machine-properties.vala:757
+#: src/libvirt-machine-properties.vala:760
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "„%s” va fi întrerupt automat pentru a conserva resurse."
 
-#: src/libvirt-machine-properties.vala:769
+#: src/libvirt-machine-properties.vala:776
 msgid "3D Acceleration"
 msgstr "Accelerație 3D"
 
@@ -1260,7 +1304,7 @@ msgstr "Raportează defecte la <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s pagină proprie: <%s>.\n"
 
-#: src/media-manager.vala:286
+#: src/media-manager.vala:298
 #, c-format
 msgid "No such file %s"
 msgstr "Niciun fișier %s"
@@ -1405,6 +1449,15 @@ msgstr "Portul trebuie să fie specificat o singură dată"
 msgid "Missing port in Spice URL"
 msgstr "Port lipsă în URL-ul Spice"
 
+#: src/text-editor.vala:42
+msgid "Unable to backup original configuration. Aborting."
+msgstr "Nu se poate copia de rezervă configurarea originală. Se renunță."
+
+#: src/text-editor.vala:67
+#, c-format
+msgid "Boxes failed to save VM configuration changes: %s"
+msgstr "Cutii a eșuat să salveze modificările de configurare de VM: %s"
+
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1498,9 +1551,13 @@ msgstr "nu"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:727
+#: src/vm-configurator.vala:764
 msgid "Incapable host system"
 msgstr "Sistem gazdă nepotrivit"
+
+#: src/vm-creator.vala:106
+msgid "Select"
+msgstr "Selectează"
 
 #: src/vm-creator.vala:114
 #, c-format
@@ -1524,6 +1581,9 @@ msgstr "Importarea cutiei din fișierul „%s” a eșuat."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Doar citire"
+
+#~ msgid "Select the GNOME Nightly VM image"
+#~ msgstr "Selectează imaginea VM Nightly GNOME"
 
 #~ msgid "All"
 #~ msgstr "Toate"
