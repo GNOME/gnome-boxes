@@ -6,13 +6,14 @@
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2016.
 # Aefgh39622 <aefgh39622@gmail.com>, 2018.
 # sicklylife <translation@sicklylife.jp>, 2019-2020.
+# Yuki Okushi <huyuumi.dev@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-04-02 07:21+0000\n"
-"PO-Revision-Date: 2020-04-03 18:00+0900\n"
+"POT-Creation-Date: 2020-08-12 23:19+0000\n"
+"PO-Revision-Date: 2020-08-15 18:45+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -60,9 +61,10 @@ msgstr ""
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36 src/app.vala:120
-#: src/app-window.vala:134 src/app-window.vala:239 src/app-window.vala:241
-#: src/main.vala:72 src/topbar.vala:93
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
+#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: src/topbar.vala:92
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -125,7 +127,7 @@ msgstr "共有フォルダー"
 
 #: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
-msgstr ""
+msgstr "共有フォルダーの名前とパスマッピングの Variant 型配列"
 
 #: data/ui/assistant/pages/downloads-page.ui:110
 #: data/ui/wizard-downloads-page.ui:89
@@ -141,6 +143,32 @@ msgstr "他のキーワードを試してください"
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "OS を検索するか、ダウンロードリンクを入力してください…"
+
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr ""
+"イメージファイル上のオペレーティングシステムを識別できませんでした。"
+
+#: data/ui/assistant/pages/identify-os-page.ui:29
+msgid ""
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
+msgstr ""
+"不明な OS を起動するのはお勧めできませんが、以下の一覧から OS の種類を強"
+"制的に指定して起動を試すことができます:"
+
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "テンプレート"
+
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+msgid "Unknown OS"
+msgstr "不明な OS"
+
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+msgid "Search for an OS…"
+msgstr "OS を検索してください…"
 
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
@@ -190,7 +218,7 @@ msgstr "選択した .iso ファイルを仮想マシンにインストールし
 msgid "Preparing…"
 msgstr "準備中…"
 
-#: data/ui/assistant/pages/preparation-page.ui:20
+#: data/ui/assistant/pages/preparation-page.ui:24
 msgid "Preparing to create a new box"
 msgstr "新しいボックスを準備中"
 
@@ -236,9 +264,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
-#: src/assistant/index-page.vala:156 src/assistant/vm-assistant.vala:73
-#: src/properties-window.vala:58 src/vm-creator.vala:104
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -258,73 +286,58 @@ msgstr "ユーザー名(_U)"
 msgid "_Password"
 msgstr "パスワード(_P)"
 
-#: data/ui/auth-notification.ui:111 src/notificationbar.vala:48
+#: data/ui/auth-notification.ui:112 src/notificationbar.vala:48
 msgid "Sign In"
 msgstr "サインイン"
 
-#. Translators: this is a switch to show all boxes in main view.
-#: data/ui/collection-filter-switcher.ui:14
-msgid "All"
-msgstr "すべて"
-
-#. Translators: this is a switch to show only local boxes in main view.
-#: data/ui/collection-filter-switcher.ui:29
-msgid "Local"
-msgstr "ローカル"
-
-#. Translators: this is a switch to show only remote boxes in main view.
-#: data/ui/collection-filter-switcher.ui:44
-msgid "Remote"
-msgstr "リモート"
-
-#: data/ui/collection-toolbar.ui:27
+#: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "新規"
 
-#: data/ui/collection-toolbar.ui:51 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
-#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
-#: data/ui/wizard-toolbar.ui:225
+#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "戻る"
 
-#: data/ui/collection-toolbar.ui:74
-msgid "Downloads"
-msgstr "ダウンロード"
-
-#: data/ui/collection-toolbar.ui:99
+#: data/ui/collection-toolbar.ui:69
 msgid "Application Menu"
 msgstr "アプリケーションメニュー"
 
-#: data/ui/collection-toolbar.ui:127
+#: data/ui/collection-toolbar.ui:97
 msgid "Select Items"
 msgstr "アイテムを選択"
 
-#: data/ui/collection-toolbar.ui:155
+#: data/ui/collection-toolbar.ui:125
 msgid "List view"
 msgstr "リストビュー"
 
-#: data/ui/collection-toolbar.ui:183
+#: data/ui/collection-toolbar.ui:153
 msgid "Grid view"
 msgstr "グリッドビュー"
 
-#: data/ui/collection-toolbar.ui:209 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:180 data/ui/selection-toolbar.ui:86
 msgid "Search"
 msgstr "検索"
 
-#: data/ui/collection-toolbar.ui:237
+#: data/ui/collection-toolbar.ui:207
+msgid "Downloads"
+msgstr "ダウンロード"
+
+#: data/ui/collection-toolbar.ui:233
 msgid "Create a Virtual Machine…"
 msgstr "仮想マシンを作成…"
 
-#: data/ui/collection-toolbar.ui:244
+#: data/ui/collection-toolbar.ui:240
 msgid "Connect to a Remote Computer…"
 msgstr "リモートのコンピューターに接続…"
 
-#: data/ui/display-page.ui:89
+#: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
 msgstr "ファイルを受信する準備ができました"
 
-#: data/ui/display-page.ui:109
+#: data/ui/display-page.ui:116
 msgid "You will find your file in the Downloads directory."
 msgstr "ファイルはダウンロードディレクトリに置かれます。"
 
@@ -443,7 +456,7 @@ msgstr "ヘルプ"
 msgid "About Boxes"
 msgstr "Boxes について"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:651
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:658
 msgid "Troubleshooting Log"
 msgstr "トラブルシューティングログ"
 
@@ -451,9 +464,17 @@ msgstr "トラブルシューティングログ"
 msgid "_Copy to Clipboard"
 msgstr "クリップボードにコピー(_C)"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:153 src/properties-window.vala:55
-#: src/vm-creator.vala:101
+#: data/ui/properties-toolbar.ui:143
+msgid "Revert changes to original configuration"
+msgstr "元の設定に戻す"
+
+#: data/ui/properties-toolbar.ui:166
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:142 src/properties-window.vala:58
+#: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "デバイスまたは ISO ファイルを選択"
 
@@ -470,7 +491,7 @@ msgid "_Delete"
 msgstr "削除(_D)"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:324
+#: src/app-window.vala:326
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
@@ -511,13 +532,23 @@ msgid "Rename"
 msgstr "名前を変更"
 
 #. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:84
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:88
 msgid "Delete"
 msgstr "削除"
 
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "完了"
+
+#: data/ui/text-editor.ui:44
+msgid ""
+"Modifying a virtual machine's configuration can cause an installed operating "
+"system to malfunction.\n"
+"Making a snapshot before performing major changes is advised."
+msgstr ""
+"仮想マシンの設定を変更すると、インストールされているオペレーティングシステム"
+"が正常に動作しなくなる可能性があります。\n"
+"大きな変更を加える前にスナップショットを作成しておくことをお勧めします。"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -540,11 +571,11 @@ msgstr ""
 msgid "Express Install"
 msgstr "かんたんインストール"
 
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:271
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
 msgid "Username"
 msgstr "ユーザー名"
 
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:272
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
 msgid "Password"
 msgstr "パスワード"
 
@@ -558,7 +589,7 @@ msgstr "プロダクトキー"
 
 #: data/ui/welcome-tutorial.ui:7
 msgid "Welcome Tutorial"
-msgstr ""
+msgstr "ウェルカムチュートリアル"
 
 #: data/ui/welcome-tutorial.ui:35
 msgid "Welcome to Boxes"
@@ -676,7 +707,7 @@ msgstr "続行(_O)"
 msgid "Customize Resources"
 msgstr "リソースのカスタマイズ"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:326
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:328
 msgid "_Open"
 msgstr "開く(_O)"
 
@@ -698,187 +729,176 @@ msgid "Box actions"
 msgstr "ボックスの操作"
 
 #. Open in new Window
-#: src/actions-popover.vala:44
+#: src/actions-popover.vala:45
 msgid "Open in New Window"
 msgstr "新しいウィンドウで開く"
 
 #. Send files
-#: src/actions-popover.vala:49
+#: src/actions-popover.vala:50
 msgid "Send File…"
 msgstr "ファイルを送る…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:54
+#: src/actions-popover.vala:58
 msgid "Take Screenshot"
 msgstr "スクリーンショットを撮る"
 
 #. Favorite
-#: src/actions-popover.vala:59
+#: src/actions-popover.vala:63
 msgid "Remove from Favorites"
 msgstr "お気に入りから削除"
 
-#: src/actions-popover.vala:61
+#: src/actions-popover.vala:65
 msgid "Add to Favorites"
 msgstr "お気に入りに追加"
 
-#: src/actions-popover.vala:68
+#: src/actions-popover.vala:72
 msgid "Force Shutdown"
 msgstr "強制終了"
 
-#: src/actions-popover.vala:79
+#: src/actions-popover.vala:83
 msgid "Clone"
 msgstr "複製"
 
-#: src/actions-popover.vala:88 src/machine.vala:631
+#: src/actions-popover.vala:92 src/machine.vala:637
 msgid "Restart"
 msgstr "再起動"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:97
+#: src/actions-popover.vala:101
 msgid "Properties"
 msgstr "プロパティ"
 
 # ここは英語のままの方がいいようなので「スクリーンショット」から「Screenshot from」に戻しました (sicklylife)
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:121
+#: src/actions-popover.vala:125
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Screenshot from %s"
 
-#: src/app.vala:116
+#: src/app.vala:117
 msgid "translator-credits"
 msgstr ""
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
 "Aefgh39622 <aefgh39622@gmail.com>\n"
 "Hajime Taira <htaira@redhat.com>\n"
+"sicklylife <translation@sicklylife.jp>\n"
 "Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
-"sicklylife <translation@sicklylife.jp>"
+"Yuki Okushi <huyuumi.dev@gmail.com>"
 
-#: src/app.vala:117
+#: src/app.vala:118
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "リモートや仮想マシンにアクセスするシンプルな GNOME 3 のアプリケーション"
 
-#: src/app.vala:177 src/main.vala:9
+#: src/app.vala:181 src/main.vala:9
 msgid "Display version number"
 msgstr "バージョン番号を表示する"
 
-#: src/app.vala:178
+#: src/app.vala:182
 msgid "Open in full screen"
 msgstr "フルスクリーンで開く"
 
-#: src/app.vala:179 src/main.vala:10
+#: src/app.vala:183 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "仮想化支援機能が利用可能か確認する"
 
-#: src/app.vala:180
+#: src/app.vala:184
 msgid "Open box with UUID"
 msgstr "UUID を指定してボックスを開く"
 
-#: src/app.vala:181
+#: src/app.vala:185
 msgid "Search term"
 msgstr "検索キーワードを指定する"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:183
+#: src/app.vala:187
 msgid "URL to display, broker or installer media"
 msgstr "ディスプレイ、ブローカー、またはインストールメディアの URL"
 
-#: src/app.vala:194
+#: src/app.vala:198
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— リモートや仮想マシンにアクセスするシンプルなアプリケーション"
 
-#: src/app.vala:219
+#: src/app.vala:223
 msgid "Too many command line arguments specified.\n"
 msgstr "コマンドラインの引数が多すぎます。\n"
 
-#: src/app.vala:475
+#: src/app.vala:479
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "ボックス“%s”のインストールが完了し、使用できるようになりました"
 
-#: src/app.vala:477
+#: src/app.vala:481
 msgid "Launch"
 msgstr "起動"
 
-#: src/app.vala:563
+#: src/app.vala:567
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "ボックス“%s”を削除しました"
 
-#: src/app.vala:564
+#: src/app.vala:568
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 個のボックスを削除しました"
 
-#: src/app.vala:591 src/libvirt-machine-properties.vala:557
+#: src/app.vala:596 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "元に戻す(_U)"
 
-#: src/app.vala:635
+#: src/app.vala:642
 msgid "Boxes is doing something"
 msgstr "Boxes が何らかの処理を実行中です"
 
-#: src/app-window.vala:323
+#: src/app-window.vala:325
 msgid "Select files to transfer"
 msgstr "送信するファイルを選択"
 
-#: src/assistant/index-page.vala:130
-msgid "Select the GNOME Nightly VM image"
-msgstr "GNOME Nightly VM イメージを選択"
-
-#: src/assistant/index-page.vala:133 src/vm-creator.vala:104
-msgid "Select"
-msgstr "選択"
-
-#: src/assistant/index-page.vala:156 src/properties-window.vala:58
+#: src/assistant/index-page.vala:145 src/properties-window.vala:61
 msgid "Open"
 msgstr "開く"
 
-#: src/assistant/index-page.vala:170 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "前へ"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:237 src/libvirt-machine.vala:867
-#: src/util-app.vala:153
+#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
+#: src/util-app.vala:156
 msgid "Live"
 msgstr "ライブ"
 
-#: src/assistant/index-page.vala:242
+#: src/assistant/index-page.vala:235
 msgid "32-bit x86 system"
 msgstr "32-bit x86 システム"
 
-#: src/assistant/index-page.vala:243
+#: src/assistant/index-page.vala:236
 msgid "64-bit x86 system"
 msgstr "64-bit x86 システム"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:248
+#: src/assistant/index-page.vala:241
 #, c-format
 msgid " from %s"
 msgstr " 提供元 %s"
 
-#: src/assistant/review-page.vala:47
+#: src/assistant/review-page.vala:50
 msgid "Memory"
 msgstr "メモリ"
 
-#: src/assistant/review-page.vala:56
+#: src/assistant/review-page.vala:59
 msgid "Disk"
 msgstr "ディスク"
 
 #. Translators: This is disk size. E.g "1 GB maximum".
-#: src/assistant/review-page.vala:58
+#: src/assistant/review-page.vala:61
 #, c-format
 msgid "%s maximum"
 msgstr "最大 %s"
-
-#: src/assistant/review-page.vala:159
-msgid "C_ustomize…"
-msgstr "カスタマイズ(_U)…"
 
 #: src/assistant/vm-assistant.vala:60
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
@@ -899,7 +919,7 @@ msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "左 Ctrl+Alt を押してキーボードの捕捉を解除できます。"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:307
+#: src/display-page.vala:326
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -908,21 +928,21 @@ msgstr "%d×%d"
 msgid "Exit fullscreen"
 msgstr "フルスクリーンを終了"
 
-#: src/downloads-hub.vala:50
+#: src/downloads-hub.vala:52
 msgid "Downloading media"
 msgstr "メディアをダウンロード中"
 
-#: src/downloads-hub.vala:76
+#: src/downloads-hub.vala:78
 #, c-format
 msgid "“%s” download complete"
 msgstr "“%s”のダウンロードを完了しました"
 
-#: src/downloads-hub.vala:78
+#: src/downloads-hub.vala:80
 msgid "Install"
 msgstr "インストール"
 
 #. We did this, so ignore!
-#: src/downloads-hub.vala:184
+#: src/downloads-hub.vala:186
 msgid "Failed to download"
 msgstr "ダウンロードに失敗しました"
 
@@ -934,13 +954,13 @@ msgstr "新規または最近使用した仮想マシン"
 msgid "Unsupported disk image format."
 msgstr "対応していないディスクイメージ形式です。"
 
-#: src/installed-media.vala:118 src/installer-media.vala:178
+#: src/installed-media.vala:118 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "システム"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:464
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
 #, c-format
 msgid "%s used"
 msgstr "%s 使用済み"
@@ -1012,7 +1032,7 @@ msgstr "空"
 
 #. Don't let user eject installer media if it's an express installation or a live media
 #: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:246
+#: src/libvirt-machine-properties.vala:251
 msgid "CD/DVD"
 msgstr "CD/DVD"
 
@@ -1041,55 +1061,60 @@ msgstr "“%s”を CD/DVD として“%s”に挿入しようとして失敗し
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "“%s”から CD/DVD を取り除こうとして失敗しました"
 
-#: src/libvirt-machine-properties.vala:310
+#: src/libvirt-machine-properties.vala:315
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:316
+#: src/libvirt-machine-properties.vala:321
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:322
+#: src/libvirt-machine-properties.vala:327
 msgid "Network"
 msgstr "ネットワーク"
 
-#: src/libvirt-machine-properties.vala:351
-#: src/libvirt-machine-properties.vala:715 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:356
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/text-editor.vala:75
 msgid "_Restart"
 msgstr "再起動(_R)"
 
-#: src/libvirt-machine-properties.vala:359
+#: src/libvirt-machine-properties.vala:364
 msgid "_Force Shutdown"
 msgstr "強制シャットダウン(_F)"
 
-#: src/libvirt-machine-properties.vala:373
+#: src/libvirt-machine-properties.vala:378
 msgid "_Troubleshooting Log"
 msgstr "トラブルシューティングログ(_T)"
 
-#: src/libvirt-machine-properties.vala:394
+#: src/libvirt-machine-properties.vala:386
+msgid "Edit XML"
+msgstr "XML を編集"
+
+#: src/libvirt-machine-properties.vala:406
 msgid "_Memory: "
 msgstr "メモリ(_M): "
 
-#: src/libvirt-machine-properties.vala:463
+#: src/libvirt-machine-properties.vala:475
 msgid "Maximum Disk Space"
 msgstr "最大ディスク容量"
 
-#: src/libvirt-machine-properties.vala:481
+#: src/libvirt-machine-properties.vala:493
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "最大ディスクサイズを増加させるための十分な空き領域がありません。"
 
-#: src/libvirt-machine-properties.vala:491
+#: src/libvirt-machine-properties.vala:503
 msgid "Maximum _Disk Size: "
 msgstr "ディスクの最大サイズ(_D): "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:544
+#: src/libvirt-machine-properties.vala:556
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1097,34 +1122,35 @@ msgstr[0] ""
 "ストレージのサイズ変更は関連付けられたスナップショット (%llu 個) の削除が必要"
 "です。"
 
-#: src/libvirt-machine-properties.vala:673
-#: src/libvirt-machine-properties.vala:677
+#: src/libvirt-machine-properties.vala:685
+#: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "CPU: "
 
 #. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:713 src/properties.vala:83
+#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
+#: src/text-editor.vala:74
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "この変更は“%s”を再起動する必要があります。"
 
-#: src/libvirt-machine-properties.vala:732
+#: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "バックグランドで起動する(_R)"
 
-#: src/libvirt-machine-properties.vala:744
-#: src/libvirt-machine-properties.vala:747
+#: src/libvirt-machine-properties.vala:756
+#: src/libvirt-machine-properties.vala:759
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s”は自動で一時停止しません。"
 
-#: src/libvirt-machine-properties.vala:745
-#: src/libvirt-machine-properties.vala:748
+#: src/libvirt-machine-properties.vala:757
+#: src/libvirt-machine-properties.vala:760
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s”はリソースを節約するために自動で一時停止します。"
 
-#: src/libvirt-machine-properties.vala:764
+#: src/libvirt-machine-properties.vala:776
 msgid "3D Acceleration"
 msgstr "3D アクセラレーション"
 
@@ -1192,30 +1218,30 @@ msgid "Powered Off"
 msgstr "電源オフ"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:202
+#: src/machine.vala:203
 #, c-format
 msgid "Connecting to %s"
 msgstr "%s に接続中"
 
-#: src/machine.vala:219
+#: src/machine.vala:223
 #, c-format
 msgid "Authentication failed: %s"
 msgstr "認証に失敗しました: %s"
 
-#: src/machine.vala:232 src/machine.vala:658
+#: src/machine.vala:236 src/machine.vala:665
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "“%s”への接続に失敗しました"
 
-#: src/machine.vala:284
+#: src/machine.vala:289
 msgid "Machine is under construction"
 msgstr "マシンは構築中です"
 
-#: src/machine.vala:438
+#: src/machine.vala:444
 msgid "Saving…"
 msgstr "保存中…"
 
-#: src/machine.vala:630
+#: src/machine.vala:636
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1224,13 +1250,13 @@ msgstr ""
 "“%s”はディスクからリストアできませんでした\n"
 "保存されている状態を無視してやり直してみますか?"
 
-#: src/machine.vala:641
+#: src/machine.vala:647
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "“%s”の起動に失敗しました"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:745
+#: src/machine.vala:752
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "“%s”は認証が必要です"
@@ -1271,7 +1297,7 @@ msgstr "<%s> へバグを報告してください。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s ホームページ: <%s>\n"
 
-#: src/media-manager.vala:284
+#: src/media-manager.vala:298
 #, c-format
 msgid "No such file %s"
 msgstr "%s というファイルはありません"
@@ -1316,12 +1342,12 @@ msgid "Pausing “%s” failed"
 msgstr "“%s”の一時停止に失敗しました"
 
 #. Translators: This is a button to open box(es) in new window(s)
-#: src/selectionbar.vala:173
+#: src/selectionbar.vala:179
 msgctxt "0 items selected"
 msgid "_Open in new window"
 msgstr "新しいウィンドウで開く(_O)"
 
-#: src/selectionbar.vala:175
+#: src/selectionbar.vala:181
 #, c-format
 msgid "_Open in new window"
 msgid_plural "_Open in %u new windows"
@@ -1358,11 +1384,11 @@ msgid "No snapshots created yet. Create one using the button below."
 msgstr ""
 "まだスナップショットはありません。下のボタンを使用して作成してください。"
 
-#: src/snapshots-property.vala:121
+#: src/snapshots-property.vala:124
 msgid "Creating new snapshot…"
 msgstr "新しいスナップショットを作成中…"
 
-#: src/snapshots-property.vala:129
+#: src/snapshots-property.vala:132
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "%s のスナップショットの作成に失敗しました"
@@ -1372,43 +1398,53 @@ msgstr "%s のスナップショットの作成に失敗しました"
 msgid "Unknown"
 msgstr "不明"
 
-#: src/spice-display.vala:62 src/spice-display.vala:497
+#: src/spice-display.vala:62 src/spice-display.vala:512
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "USB デバイス“%s”の“%s”へのリダイレクトに失敗しました"
 
 #. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:360
+#: src/spice-display.vala:375
 #, c-format
 msgid ""
-"SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"SPICE guest tools are not running. These tools improve user experience and "
+"enable host and box interactions, such as copy and paste. Please visit %s to "
 "download and install these tools from within the box."
 msgstr ""
-"SPICE ゲストツールがインストールされていません。ツールはユーザーエクスペリエ"
-"ンスを改善し、コピー & ペーストなどのホストとボックス間のやり取りを有効にしま"
-"す。ボックス内で %s からツールをダウンロードしてインストールしてください。"
+"SPICE ゲストツールが起動していません。ゲストツールはユーザーエクスペリエン"
+"スを改善し、コピー & ペーストなどのホストとボックス間のやり取りを有効にしま"
+"す。ボックス内で %s からゲストツールをダウンロードしてインストールしてくだ"
+"さい。"
 
-#: src/spice-display.vala:387
+#: src/spice-display.vala:402
 msgid "USB devices"
 msgstr "USB デバイス"
 
-#: src/spice-display.vala:403
+#: src/spice-display.vala:418
 msgid "Folder Shares"
 msgstr "フォルダーの共有"
 
-#: src/spice-display.vala:601 src/spice-display.vala:626
-#: src/spice-display.vala:629
+#: src/spice-display.vala:616 src/spice-display.vala:641
+#: src/spice-display.vala:644
 msgid "Invalid URL"
 msgstr "無効な URL"
 
-#: src/spice-display.vala:611
+#: src/spice-display.vala:626
 msgid "The port must be specified once"
 msgstr "ポートが指定されていなければなりません"
 
-#: src/spice-display.vala:622
+#: src/spice-display.vala:637
 msgid "Missing port in Spice URL"
 msgstr "Spice URL でポートが指定されていません"
+
+#: src/text-editor.vala:42
+msgid "Unable to backup original configuration. Aborting."
+msgstr "元の設定をバックアップできません。中止します。"
+
+#: src/text-editor.vala:67
+#, c-format
+msgid "Boxes failed to save VM configuration changes: %s"
+msgstr "VM 設定の変更を保存できませんでした: %s"
 
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
@@ -1419,14 +1455,14 @@ msgstr "“%s”をダウンロードフォルダーにコピー中"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:200
+#: src/unattended-installer.vala:207
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr ""
 "インストールの準備中にエラーが発生しました。かんたんインストールを無効化しま"
 "した。"
 
-#: src/unattended-installer.vala:458
+#: src/unattended-installer.vala:465
 msgid "Downloading device drivers…"
 msgstr "デバイスドライバーをダウンロード中…"
 
@@ -1439,12 +1475,12 @@ msgstr "パスワードなし"
 msgid "Express installation of %s requires an internet connection."
 msgstr "%s のかんたんインストールにはインターネット接続が必要です。"
 
-#: src/unattended-setup-box.vala:228
+#: src/unattended-setup-box.vala:231
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s”の資格情報"
 
-#: src/util-app.vala:339
+#: src/util-app.vala:342
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1454,11 +1490,11 @@ msgstr ""
 "きます:\n"
 "%s"
 
-#: src/util-app.vala:343
+#: src/util-app.vala:346
 msgid "SELinux not installed?"
 msgstr "SELinux はインストールされていますか?"
 
-#: src/util-app.vala:425
+#: src/util-app.vala:428
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1467,7 +1503,7 @@ msgstr ""
 "た。“virsh -c qemu:///session pool-dumpxml gnome-boxes”が機能するか確認してく"
 "ださい。"
 
-#: src/util-app.vala:430
+#: src/util-app.vala:433
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1476,7 +1512,7 @@ msgstr ""
 "%s は GNOME Boxes 用ストレージプールとして libvirt に認識されていますが、この"
 "ディレクトリは存在しません"
 
-#: src/util-app.vala:434
+#: src/util-app.vala:437
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1484,7 +1520,7 @@ msgstr ""
 "%s は GNOME Boxes 用ストレージプールとして libvirt に認識されていますが、ディ"
 "レクトリではありません"
 
-#: src/util-app.vala:438
+#: src/util-app.vala:441
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1503,21 +1539,25 @@ msgstr "いいえ"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:760
+#: src/vm-configurator.vala:764
 msgid "Incapable host system"
 msgstr "仮想化支援機能が利用できないホストシステムです"
 
-#: src/vm-creator.vala:112
+#: src/vm-creator.vala:106
+msgid "Select"
+msgstr "選択"
+
+#: src/vm-creator.vala:114
 #, c-format
 msgid "Source installer media '%s' no longer exists"
 msgstr "ソースインストールメディア '%s' はすでに存在しません"
 
-#: src/vm-creator.vala:114
+#: src/vm-creator.vala:116
 msgid "Add installer media"
 msgstr "インストールメディアを追加"
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:189
+#: src/vm-creator.vala:191
 msgid "Just installed "
 msgstr "(インストール直後) "
 
@@ -1529,6 +1569,21 @@ msgstr "“%s”からのボックスのインポートに失敗しました。"
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "読み取り専用"
+
+#~ msgid "All"
+#~ msgstr "すべて"
+
+#~ msgid "Local"
+#~ msgstr "ローカル"
+
+#~ msgid "Remote"
+#~ msgstr "リモート"
+
+#~ msgid "Select the GNOME Nightly VM image"
+#~ msgstr "GNOME Nightly VM イメージを選択"
+
+#~ msgid "C_ustomize…"
+#~ msgstr "カスタマイズ(_U)…"
 
 #~ msgid "Collections"
 #~ msgstr "コレクション一覧"
