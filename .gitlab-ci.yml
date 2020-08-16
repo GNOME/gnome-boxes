@@ -23,6 +23,7 @@ nightly:
 fedora:33:
     image: fedora:33
     stage: fedora
+    needs: []
     before_script:
     - dnf update -y --nogpgcheck
     - dnf install -y meson git vala gtk3-devel
