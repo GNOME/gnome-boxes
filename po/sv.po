@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-07-31 08:45+0000\n"
-"PO-Revision-Date: 2020-08-04 13:02+0200\n"
+"POT-Creation-Date: 2020-08-11 09:21+0000\n"
+"PO-Revision-Date: 2020-08-18 19:26+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -143,6 +143,31 @@ msgstr "Försök med en annan sökning"
 msgid "Search for an OS or enter a download link…"
 msgstr "Sök efter ett operativsystem eller ange en hämtningslänk…"
 
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr "Boxes kunde inte identifiera operativsystemet på avbildsfilen."
+
+#: data/ui/assistant/pages/identify-os-page.ui:29
+msgid ""
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
+msgstr ""
+"Det rekommenderas inte att försöka att starta ett okänt operativsystem, men "
+"du kan pröva med att tvinga en specifik operativsystemstyp från listan nedan:"
+
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "Mall"
+
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+msgid "Unknown OS"
+msgstr "Okänt operativsystem"
+
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+msgid "Search for an OS…"
+msgstr "Sök ett operativsystem…"
+
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
 msgstr "Skapa en virtuell maskin"
@@ -191,7 +216,7 @@ msgstr "Välj en .iso-fil för att installera en virtuell maskin."
 msgid "Preparing…"
 msgstr "Förbereder…"
 
-#: data/ui/assistant/pages/preparation-page.ui:20
+#: data/ui/assistant/pages/preparation-page.ui:24
 msgid "Preparing to create a new box"
 msgstr "Förbereder att skapa en ny box"
 
@@ -237,9 +262,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
-#: src/assistant/index-page.vala:160 src/assistant/vm-assistant.vala:73
-#: src/properties-window.vala:58 src/vm-creator.vala:106
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -268,9 +293,9 @@ msgid "New"
 msgstr "Ny"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
-#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
-#: data/ui/wizard-toolbar.ui:225
+#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Bakåt"
 
@@ -437,8 +462,16 @@ msgstr "Felsökningslogg"
 msgid "_Copy to Clipboard"
 msgstr "_Kopiera till urklipp"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:157 src/properties-window.vala:55
+#: data/ui/properties-toolbar.ui:143
+msgid "Revert changes to original configuration"
+msgstr "Återställ ändringar till ursprunglig konfiguration"
+
+#: data/ui/properties-toolbar.ui:166
+msgid "_Save"
+msgstr "_Spara"
+
+#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:142 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Välj en enhet eller ISO-fil"
@@ -505,6 +538,16 @@ msgstr "Ta bort"
 msgid "Done"
 msgstr "Färdig"
 
+#: data/ui/text-editor.ui:44
+msgid ""
+"Modifying a virtual machine's configuration can cause an installed operating "
+"system to malfunction.\n"
+"Making a snapshot before performing major changes is advised."
+msgstr ""
+"Att ändra en virtuell maskins konfiguration kan få ett installerat "
+"operativsystem att fungera felaktigt.\n"
+"Du rekommenderas att göra en ögonblicksavbild innan större ändringar görs."
+
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "Hoppsan, något gick fel"
@@ -558,7 +601,7 @@ msgid ""
 msgstr ""
 "Boxes gör det lätt att installera och köra virtuella maskiner. Du kan också "
 "använda det för fjärråtkomst till andra datorer genom SPICE-, VNC-, RDP- "
-"eller Secure Shell-anslutningar"
+"eller Secure Shell-anslutningar."
 
 #: data/ui/welcome-tutorial.ui:45
 msgid ""
@@ -803,7 +846,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box har tagits bort"
 msgstr[1] "%u boxar har tagits bort"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:562
+#: src/app.vala:596 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Ångra"
@@ -816,39 +859,31 @@ msgstr "Boxes gör något"
 msgid "Select files to transfer"
 msgstr "Välj filer att överföra"
 
-#: src/assistant/index-page.vala:130
-msgid "Select the GNOME Nightly VM image"
-msgstr "Välj VM-avbilden för GNOME Nightly"
-
-#: src/assistant/index-page.vala:133 src/vm-creator.vala:106
-msgid "Select"
-msgstr "Välj"
-
-#: src/assistant/index-page.vala:160 src/properties-window.vala:58
+#: src/assistant/index-page.vala:145 src/properties-window.vala:61
 msgid "Open"
 msgstr "Öppna"
 
-#: src/assistant/index-page.vala:178 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Föregående"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:245 src/libvirt-machine.vala:867
+#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:250
+#: src/assistant/index-page.vala:235
 msgid "32-bit x86 system"
 msgstr "32-bitars x86-system"
 
-#: src/assistant/index-page.vala:251
+#: src/assistant/index-page.vala:236
 msgid "64-bit x86 system"
 msgstr "64-bitars x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:256
+#: src/assistant/index-page.vala:241
 #, c-format
 msgid " from %s"
 msgstr " från %s"
@@ -921,13 +956,13 @@ msgstr "Nya och tidigare"
 msgid "Unsupported disk image format."
 msgstr "Icke stött diskavbildsformat."
 
-#: src/installed-media.vala:118 src/installer-media.vala:164
+#: src/installed-media.vala:118 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "System"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:469
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
 #, c-format
 msgid "%s used"
 msgstr "%s använt"
@@ -1045,7 +1080,8 @@ msgid "Network"
 msgstr "Nätverk"
 
 #: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:720 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/text-editor.vala:75
 msgid "_Restart"
 msgstr "Omsta_rt"
 
@@ -1057,28 +1093,32 @@ msgstr "Tvin_ga nedstängning"
 msgid "_Troubleshooting Log"
 msgstr "_Felsökningslogg"
 
-#: src/libvirt-machine-properties.vala:399
+#: src/libvirt-machine-properties.vala:386
+msgid "Edit XML"
+msgstr "Redigera XML"
+
+#: src/libvirt-machine-properties.vala:406
 msgid "_Memory: "
 msgstr "_Minne: "
 
-#: src/libvirt-machine-properties.vala:468
+#: src/libvirt-machine-properties.vala:475
 msgid "Maximum Disk Space"
 msgstr "Maximalt diskutrymme"
 
-#: src/libvirt-machine-properties.vala:486
+#: src/libvirt-machine-properties.vala:493
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Det finns inte tillräckligt mycket utrymme på din maskin för att öka den "
 "maximala storleken på disken."
 
-#: src/libvirt-machine-properties.vala:496
+#: src/libvirt-machine-properties.vala:503
 msgid "Maximum _Disk Size: "
 msgstr "Maximal storlek på _disk: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:549
+#: src/libvirt-machine-properties.vala:556
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1089,34 +1129,35 @@ msgstr[1] ""
 "Storleksändring av lagring kräver att %llu associerade ögonblicksavbilder "
 "tas bort."
 
-#: src/libvirt-machine-properties.vala:678
-#: src/libvirt-machine-properties.vala:682
+#: src/libvirt-machine-properties.vala:685
+#: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "Processorer: "
 
 #. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:718 src/properties.vala:83
+#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
+#: src/text-editor.vala:74
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Ändringar kräver omstart av ”%s”."
 
-#: src/libvirt-machine-properties.vala:737
+#: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "_Kör i bakgrunden"
 
-#: src/libvirt-machine-properties.vala:749
-#: src/libvirt-machine-properties.vala:752
+#: src/libvirt-machine-properties.vala:756
+#: src/libvirt-machine-properties.vala:759
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "”%s” kommer inte pausas automatiskt."
 
-#: src/libvirt-machine-properties.vala:750
-#: src/libvirt-machine-properties.vala:753
+#: src/libvirt-machine-properties.vala:757
+#: src/libvirt-machine-properties.vala:760
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "”%s” kommer pausas automatiskt för att spara resurser."
 
-#: src/libvirt-machine-properties.vala:769
+#: src/libvirt-machine-properties.vala:776
 msgid "3D Acceleration"
 msgstr "3D-acceleration"
 
@@ -1263,7 +1304,7 @@ msgstr "Rapportera fel till <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s webbplats: <%s>.\n"
 
-#: src/media-manager.vala:286
+#: src/media-manager.vala:298
 #, c-format
 msgid "No such file %s"
 msgstr "Ingen sådan fil %s"
@@ -1405,6 +1446,15 @@ msgstr "Porten måste specificeras en gång"
 msgid "Missing port in Spice URL"
 msgstr "Saknar port i Spice-URL"
 
+#: src/text-editor.vala:42
+msgid "Unable to backup original configuration. Aborting."
+msgstr "Kunde inte säkerhetskopiera ursprunglig konfiguration. Avbryter."
+
+#: src/text-editor.vala:67
+#, c-format
+msgid "Boxes failed to save VM configuration changes: %s"
+msgstr "Boxes misslyckades med att spara VM-konfigurationsändringar: %s"
+
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1497,9 +1547,13 @@ msgstr "nej"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:727
+#: src/vm-configurator.vala:764
 msgid "Incapable host system"
 msgstr "Ej kapabelt värdsystem"
+
+#: src/vm-creator.vala:106
+msgid "Select"
+msgstr "Välj"
 
 #: src/vm-creator.vala:114
 #, c-format
@@ -1523,6 +1577,9 @@ msgstr "Box-import från fil ”%s” misslyckades."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Skrivskyddad"
+
+#~ msgid "Select the GNOME Nightly VM image"
+#~ msgstr "Välj VM-avbilden för GNOME Nightly"
 
 #~ msgid "Collections"
 #~ msgstr "Samlingar"
