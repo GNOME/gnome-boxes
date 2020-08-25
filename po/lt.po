@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-07-04 17:16+0000\n"
-"PO-Revision-Date: 2020-07-12 20:06+0300\n"
+"POT-Creation-Date: 2020-08-11 09:21+0000\n"
+"PO-Revision-Date: 2020-08-25 23:06+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -141,6 +141,34 @@ msgstr "Bandykite kitą paiešką"
 msgid "Search for an OS or enter a download link…"
 msgstr "Ieškokite OS arba įveskite parsiuntimo saitą…"
 
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr ""
+"Dėžėms nepavyko identifikuoti atvaizdžio faile esančios operacinės sistemos."
+
+#: data/ui/assistant/pages/identify-os-page.ui:29
+msgid ""
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
+msgstr ""
+"Nerekomenduojama bandyti įkelti nežinomą OS, bet galite bandyti sėkmę "
+"priverstinai nurodydami konkrečią OS iš sąrašo žemiau:"
+
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "Šablonas"
+
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+#| msgid "Unknown"
+msgid "Unknown OS"
+msgstr "Nežinoma OS"
+
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+#| msgid "Search for an OS or enter a download link…"
+msgid "Search for an OS…"
+msgstr "Ieškoti OS…"
+
 #: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
 msgid "Create a Virtual Machine"
 msgstr "Sukurti virtualią mašiną"
@@ -189,7 +217,7 @@ msgstr "Pasirinkite .iso failą diegimui virtualioje mašinoje."
 msgid "Preparing…"
 msgstr "Ruošiama…"
 
-#: data/ui/assistant/pages/preparation-page.ui:20
+#: data/ui/assistant/pages/preparation-page.ui:24
 msgid "Preparing to create a new box"
 msgstr "Ruošiamasi kurti naują dėžę"
 
@@ -235,9 +263,9 @@ msgstr ""
 
 #: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:133
-#: src/assistant/index-page.vala:160 src/assistant/vm-assistant.vala:73
-#: src/properties-window.vala:58 src/vm-creator.vala:106
+#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Atsisakyti"
 
@@ -266,9 +294,9 @@ msgid "New"
 msgstr "Nauja"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/wizard-toolbar.ui:76
-#: data/ui/wizard-toolbar.ui:121 data/ui/wizard-toolbar.ui:165
-#: data/ui/wizard-toolbar.ui:225
+#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Atgal"
 
@@ -427,7 +455,7 @@ msgstr "Žinynas"
 msgid "About Boxes"
 msgstr "Apie dėžes"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:652
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:658
 msgid "Troubleshooting Log"
 msgstr "Problemų žurnalas"
 
@@ -435,8 +463,17 @@ msgstr "Problemų žurnalas"
 msgid "_Copy to Clipboard"
 msgstr "_Kopijuoti į iškarpinę"
 
-#: data/ui/properties-toolbar.ui:106 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:157 src/properties-window.vala:55
+#: data/ui/properties-toolbar.ui:143
+msgid "Revert changes to original configuration"
+msgstr "Atstatyti pakeitimus į pradinę konfigūraciją"
+
+#: data/ui/properties-toolbar.ui:166
+#| msgid "Save"
+msgid "_Save"
+msgstr "Į_rašyti"
+
+#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:142 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Pasirinkite įrenginį arba ISO failą"
@@ -502,6 +539,16 @@ msgstr "Ištrinti"
 #: data/ui/snapshot-list-row.ui:92
 msgid "Done"
 msgstr "Atlikta"
+
+#: data/ui/text-editor.ui:44
+msgid ""
+"Modifying a virtual machine's configuration can cause an installed operating "
+"system to malfunction.\n"
+"Making a snapshot before performing major changes is advised."
+msgstr ""
+"Virtualios mašinos konfigūracijos pakeitimas gali sukelti trikdžių įdiegtoje "
+"operacinėje sistemoje.\n"
+"Rekomenduojama padaryti momentinę kopiją prieš atliekant pakeitimus."
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -713,7 +760,7 @@ msgstr "Priverstinai išjungti"
 msgid "Clone"
 msgstr "Klonuoti"
 
-#: src/actions-popover.vala:92 src/machine.vala:631
+#: src/actions-popover.vala:92 src/machine.vala:637
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
@@ -794,7 +841,7 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:562
+#: src/app.vala:596 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Atšaukti"
@@ -807,40 +854,31 @@ msgstr "Dėžės kažką daro"
 msgid "Select files to transfer"
 msgstr "Pasirinkite failus perdavimui"
 
-#: src/assistant/index-page.vala:130
-msgid "Select the GNOME Nightly VM image"
-msgstr "Pasirinkite GNOME naktinį VM atvaizdį"
-
-#: src/assistant/index-page.vala:133 src/vm-creator.vala:106
-#| msgid "_Select"
-msgid "Select"
-msgstr "Pasirinkite"
-
-#: src/assistant/index-page.vala:160 src/properties-window.vala:58
+#: src/assistant/index-page.vala:145 src/properties-window.vala:61
 msgid "Open"
 msgstr "Atverti"
 
-#: src/assistant/index-page.vala:178 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Ankstesnis"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:245 src/libvirt-machine.vala:867
+#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Veikia"
 
-#: src/assistant/index-page.vala:250
+#: src/assistant/index-page.vala:235
 msgid "32-bit x86 system"
 msgstr "32-bit x86 sistema"
 
-#: src/assistant/index-page.vala:251
+#: src/assistant/index-page.vala:236
 msgid "64-bit x86 system"
 msgstr "64-bit x86 sistema"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:256
+#: src/assistant/index-page.vala:241
 #, c-format
 msgid " from %s"
 msgstr " iš %s"
@@ -879,7 +917,7 @@ msgstr ""
 "paleidimui."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:310
+#: src/display-page.vala:326
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -914,13 +952,13 @@ msgstr "Naujos ir neseniai naudotos"
 msgid "Unsupported disk image format."
 msgstr "Nepalaikomas disko atvaizdžio formatas."
 
-#: src/installed-media.vala:118 src/installer-media.vala:164
+#: src/installed-media.vala:118 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Sistema"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:469
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
 #, c-format
 msgid "%s used"
 msgstr "%s naudojama"
@@ -1038,7 +1076,8 @@ msgid "Network"
 msgstr "Tinklas"
 
 #: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:720 src/properties.vala:84
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/text-editor.vala:75
 msgid "_Restart"
 msgstr "Įkelti iš _naujo"
 
@@ -1050,27 +1089,31 @@ msgstr "_Priverstinai išjungti"
 msgid "_Troubleshooting Log"
 msgstr "P_roblemų žurnalas"
 
-#: src/libvirt-machine-properties.vala:399
+#: src/libvirt-machine-properties.vala:386
+msgid "Edit XML"
+msgstr "Redaguoti XML"
+
+#: src/libvirt-machine-properties.vala:406
 msgid "_Memory: "
 msgstr "_Atmintis:"
 
-#: src/libvirt-machine-properties.vala:468
+#: src/libvirt-machine-properties.vala:475
 msgid "Maximum Disk Space"
 msgstr "Daugiausia disko vietos "
 
-#: src/libvirt-machine-properties.vala:486
+#: src/libvirt-machine-properties.vala:493
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Jūsų kompiuteryje nėra pakankamai vietos didžiausiam disko dydžiui padidinti."
 
-#: src/libvirt-machine-properties.vala:496
+#: src/libvirt-machine-properties.vala:503
 msgid "Maximum _Disk Size: "
 msgstr "Didžiausias _disko dydis: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:549
+#: src/libvirt-machine-properties.vala:556
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1081,34 +1124,35 @@ msgstr[1] ""
 msgstr[2] ""
 "Saugyklos dydžiui pakeisti reikia ištrinti %llu susietų momentinių kopijų."
 
-#: src/libvirt-machine-properties.vala:678
-#: src/libvirt-machine-properties.vala:682
+#: src/libvirt-machine-properties.vala:685
+#: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "Procesoriai: "
 
 #. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:718 src/properties.vala:83
+#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
+#: src/text-editor.vala:74
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Pakeitimai reikalauja „%s“ įkėlimo iš naujo."
 
-#: src/libvirt-machine-properties.vala:737
+#: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "_Vykdyti fone"
 
-#: src/libvirt-machine-properties.vala:749
-#: src/libvirt-machine-properties.vala:752
+#: src/libvirt-machine-properties.vala:756
+#: src/libvirt-machine-properties.vala:759
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "Dėžė „%s“ nebus automatiškai pristabdoma."
 
-#: src/libvirt-machine-properties.vala:750
-#: src/libvirt-machine-properties.vala:753
+#: src/libvirt-machine-properties.vala:757
+#: src/libvirt-machine-properties.vala:760
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "„%s“ bus automatiškai pristabdoma taupant išteklius."
 
-#: src/libvirt-machine-properties.vala:769
+#: src/libvirt-machine-properties.vala:776
 msgid "3D Acceleration"
 msgstr "3D spartinimas"
 
@@ -1176,30 +1220,30 @@ msgid "Powered Off"
 msgstr "Išjungta"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:202
+#: src/machine.vala:203
 #, c-format
 msgid "Connecting to %s"
 msgstr "Jungiamasi prie %s"
 
-#: src/machine.vala:219
+#: src/machine.vala:223
 #, c-format
 msgid "Authentication failed: %s"
 msgstr "Nepavyko patvirtinti tapatybės: %s"
 
-#: src/machine.vala:232 src/machine.vala:659
+#: src/machine.vala:236 src/machine.vala:665
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Nepavyko prisijungti prie „%s“"
 
-#: src/machine.vala:284
+#: src/machine.vala:289
 msgid "Machine is under construction"
 msgstr "Mašina yra kuriama"
 
-#: src/machine.vala:438
+#: src/machine.vala:444
 msgid "Saving…"
 msgstr "Įrašoma…"
 
-#: src/machine.vala:630
+#: src/machine.vala:636
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1208,13 +1252,13 @@ msgstr ""
 "Nepavyko atkurti iš disko „%s“\n"
 "Bandyti be įrašytos būsenos?"
 
-#: src/machine.vala:641
+#: src/machine.vala:647
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nepavyko paleisti „%s“"
 
 #. Translators: %s => name of launched box
-#: src/machine.vala:746
+#: src/machine.vala:752
 #, c-format
 msgid "“%s” requires authentication"
 msgstr "„%s“ reikalauja patvirtinti tapatybę"
@@ -1255,7 +1299,7 @@ msgstr "Praneškite apie klaidas adresu <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s namų puslapis: <%s>.\n"
 
-#: src/media-manager.vala:286
+#: src/media-manager.vala:298
 #, c-format
 msgid "No such file %s"
 msgstr "Nėra failo %s"
@@ -1360,44 +1404,58 @@ msgstr "Nepavyko sukurti %s momentinės kopijos"
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: src/spice-display.vala:62 src/spice-display.vala:506
+#: src/spice-display.vala:62 src/spice-display.vala:512
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Nepavyko nukreipti USB įrenginio „%s“ į „%s“"
 
 #. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:369
+#: src/spice-display.vala:375
 #, c-format
+#| msgid ""
+#| "SPICE guest tools are not installed. These tools improve user experience "
+#| "and enable host and box interactions, such as copy&amp;paste. Please "
+#| "visit %s to download and install these tools from within the box."
 msgid ""
-"SPICE guest tools are not installed. These tools improve user experience and "
-"enable host and box interactions, such as copy&amp;paste. Please visit %s to "
+"SPICE guest tools are not running. These tools improve user experience and "
+"enable host and box interactions, such as copy and paste. Please visit %s to "
 "download and install these tools from within the box."
 msgstr ""
-"SPICE virtualio mašinos įrankiai nėra įdiegti. Šie įrankiai pagerina "
+"SPICE virtualios mašinos įrankiai nėra įdiegti. Šie įrankiai pagerina "
 "naudotojo potyrius ir leidžia susiejimus tarp dėžės ir pagrindinio "
 "kompiuterio, pavyzdžiui kopijavimą. Apsilankykite %s ir įdiekite šiuos "
 "įrankius dėžėje."
 
-#: src/spice-display.vala:396
+#: src/spice-display.vala:402
 msgid "USB devices"
 msgstr "USB įrenginiai"
 
-#: src/spice-display.vala:412
+#: src/spice-display.vala:418
 msgid "Folder Shares"
 msgstr "Bendrinami aplankai"
 
-#: src/spice-display.vala:610 src/spice-display.vala:635
-#: src/spice-display.vala:638
+#: src/spice-display.vala:616 src/spice-display.vala:641
+#: src/spice-display.vala:644
 msgid "Invalid URL"
 msgstr "Netinkamas URL"
 
-#: src/spice-display.vala:620
+#: src/spice-display.vala:626
 msgid "The port must be specified once"
 msgstr "Prievadas turi būti nurodytas vieną kartą"
 
-#: src/spice-display.vala:631
+#: src/spice-display.vala:637
 msgid "Missing port in Spice URL"
 msgstr "Spice URL trūksta prievado"
+
+#: src/text-editor.vala:42
+msgid "Unable to backup original configuration. Aborting."
+msgstr ""
+"Nepavyko padaryti originalios konfigūracijos atsarginės kopijos. Nutraukiama."
+
+#: src/text-editor.vala:67
+#, c-format
+msgid "Boxes failed to save VM configuration changes: %s"
+msgstr "Dėžėms nepavyko įrašyti VM konfigūracijos pakeitimų: %s"
 
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
@@ -1489,9 +1547,13 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:727
+#: src/vm-configurator.vala:764
 msgid "Incapable host system"
 msgstr "Nepajėgi pagrindinė sistema"
+
+#: src/vm-creator.vala:106
+msgid "Select"
+msgstr "Pasirinkite"
 
 #: src/vm-creator.vala:114
 #, c-format
@@ -1499,7 +1561,6 @@ msgid "Source installer media '%s' no longer exists"
 msgstr "Diegimo šaltinio laikmenos „%s“ nebėra"
 
 #: src/vm-creator.vala:116
-#| msgid "Unknown installer media"
 msgid "Add installer media"
 msgstr "Pridėti diegimo laikmeną"
 
@@ -1516,6 +1577,9 @@ msgstr "Nepavyko importuoti dėžės iš failo „%s“."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Tik skaitymui"
+
+#~ msgid "Select the GNOME Nightly VM image"
+#~ msgstr "Pasirinkite GNOME naktinį VM atvaizdį"
 
 #~ msgid "Collections"
 #~ msgstr "Kolekcijos"
