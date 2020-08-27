@@ -68,23 +68,6 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         label_setup ();
     }
 
-    public async InstalledMedia.gnome_nightly (string path) throws GLib.Error {
-        this (path, true);
-        is_gnome = true;
-
-        try {
-            var media_manager = MediaManager.get_instance ();
-            os = yield media_manager.os_db.get_os_by_id ("http://gnome.org/gnome/nightly");
-            os_media = os.get_media_list ().get_nth (0) as Osinfo.Media;
-        } catch (OSDatabaseError.UNKNOWN_OS_ID error) {
-            debug (error.message);
-        }
-
-        resources = OSDatabase.get_default_resources ();
-
-        label_setup ();
-    }
-
     // Also converts to native format (QCOW2)
     public async void copy (string destination_path) throws GLib.Error {
         var decompressed = yield decompress ();

@@ -34,11 +34,7 @@ private class Boxes.AssistantPreparationPage : AssistantPage {
     public async void setup (InstallerMedia media, Osinfo.Os? os = null) {
         try {
             var media_manager = MediaManager.get_instance ();
-            if (os != null && os.id.has_prefix ("http://gnome.org")) {
-                this.media = yield media_manager.create_installer_media_for_gnome_os (media, os);
-            } else {
-                this.media = media_manager.create_installer_media_from_media (media, os);
-            }
+            this.media = media_manager.create_installer_media_from_media (media, os);
         } catch (GLib.Error error) {
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);
         }
