@@ -57,12 +57,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
     }
 
     [GtkCallback]
-    private void on_connect_to_remote_btn_clicked () {
-        window.show_remote_connection_assistant ();
-    }
-
-    [GtkCallback]
-    private void on_create_vm_btn_clicked () {
+    private void on_new_btn_clicked () {
         window.show_vm_assistant ();
     }
 
