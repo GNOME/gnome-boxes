@@ -238,15 +238,9 @@ private class Boxes.App: Gtk.Application {
 
             call_when_ready (() => {
                 var file = File.new_for_commandline_arg (arg);
-                var is_uri = (Uri.parse_scheme (arg) != null);
 
-                if (file.query_exists ()) {
-                    if (is_uri)
-                        main_window.show_remote_connection_assistant (arg);
-                    else
-                        main_window.show_vm_assistant (file.get_path ());
-                } else if (is_uri)
-                    main_window.show_remote_connection_assistant (arg);
+                if (file.query_exists ())
+                    main_window.show_vm_assistant (file.get_path ());
                 else
                     open_name (arg);
             });

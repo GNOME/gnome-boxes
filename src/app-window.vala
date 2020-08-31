@@ -282,10 +282,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
             func (view);
     }
 
-    public void show_remote_connection_assistant (string? uri = null) {
-        new Boxes.RemoteConnectionAssistant (this, uri).run ();
-    }
-
     public void show_vm_assistant (string? path = null) {
         new Boxes.VMAssistant (this, path).run ();
     }
@@ -419,11 +415,6 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         } else if (event.keyval == Gdk.Key.n &&
                    (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
             show_vm_assistant ();
-
-            return true;
-        } else if (event.keyval == Gdk.Key.N &&
-                   (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
-            show_remote_connection_assistant ();
 
             return true;
         } else if (event.keyval == Gdk.Key.f &&

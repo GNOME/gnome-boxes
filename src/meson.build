@@ -116,7 +116,6 @@ vala_sources = [
   'snapshot-list-row.vala',
   'snapshots-property.vala',
   'assistant/rhel-download-dialog.vala',
-  'assistant/remote-connection.vala',
   'assistant/vm-assistant.vala',  
   'assistant/assistant-page.vala',
   'assistant/index-page.vala',  
