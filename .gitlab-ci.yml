@@ -25,16 +25,18 @@ fedora:rawhide:
     stage: fedora
     needs: []
     before_script:
+    - dnf copr enable ssssam/tracker3
     - dnf update -y --nogpgcheck
     - dnf install -y meson git vala gtk3-devel
                      gtk-vnc2-devel libosinfo-devel libsecret-devel
                      libvirt-gconfig-devel libvirt-gobject-devel
                      spice-gtk3-vala libarchive-devel gettext
                      libgudev-devel webkitgtk4-devel libusbx-devel
-                     tracker-devel libosinfo-vala freerdp-devel
+                     tracker3-devel libosinfo-vala freerdp-devel
                      python3-devel libxml2-devel vte291-devel
                      libhandy-devel gtksourceview4-devel
                      --nogpgcheck
+
 
     script:
         - meson _build .
