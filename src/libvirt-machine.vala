@@ -85,6 +85,14 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
+    public bool firmware_is_efi {
+        get {
+            var os = domain_config.get_os ();
+
+            return (os.get_firmware () == GVirConfig.DomainOsFirmware.EFI);
+        }
+    }
+
     public override bool is_local {
         get {
             // If the URI is prefixed by "qemu" or "qemu+unix" and the domain is "system" of "session" then it is local.
