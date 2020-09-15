@@ -1,0 +1,50 @@
+<libosinfo version="0.0.1">
+<!-- Licensed under the GNU General Public License version 2 or later.
+     See http://www.gnu.org/licenses/ for a copy of the license text -->
+  <os id="http://gnome.org/gnome/3.38">
+    <short-id>gnomeos</short-id>
+    <name>GNOME OS</name>
+    <version>3.38</version>
+    <vendor>The GNOME Project</vendor>
+    <family>linux</family>
+    <distro>gnome</distro>
+
+    <logo>https://gitlab.gnome.org/GNOME/gnome-boxes-logos/raw/master/logos/gnome-logo.svg</logo>
+
+    <firmware arch="x86_64" type="efi"/>
+
+    <devices>
+      <device id="http://pcisig.com/pci/1af4/1041"/> <!-- virtio1.0-net -->
+      <device id="http://pcisig.com/pci/1af4/1050"/> <!-- virtio1.0-gpu -->
+      <device id="http://usb.org/usb/80ee/0021"/> <!-- tablet -->
+      <device id="http://pcisig.com/pci/8086/293e"/> <!-- ich9-hda -->
+      <device id="http://pcisig.com/pci/1af4/1045"/> <!-- virtio1.0-balloon -->
+      <device id="http://qemu.org/chipset/x86/q35"/>
+    </devices>
+
+    <variant id="stable">
+      <name>GNOME OS 3.38</name>
+    </variant>
+
+    <resources arch="all">
+      <minimum>
+        <n-cpus>1</n-cpus>
+        <cpu>1000000000</cpu>
+        <ram>1073741824</ram>
+        <storage>10737418240</storage>
+      </minimum>
+
+      <recommended>
+        <ram>3147483648</ram>
+        <storage>21474836480</storage>
+      </recommended>
+    </resources>
+
+    <media arch="x86_64">
+      <iso>
+        <volume-id>GNOME-OS-3.38-x86_64</volume-id>
+      </iso>
+    </media>
+
+  </os>
+</libosinfo>
