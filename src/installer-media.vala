@@ -60,7 +60,7 @@ private class Boxes.InstallerMedia : GLib.Object {
             if (os == null)
                 return false;
 
-            return (os.get_id () == "http://gnome.org/gnome/nightly");
+            return (os.get_id ().has_prefix("http://gnome.org/gnome/"));
 
             /*foreach (var iter in os.get_firmware_list (null) .get_elements ()) {
                 var firmware = iter as Firmware;
