@@ -142,21 +142,15 @@
         {
             "name" : "libvirt",
             "builddir" : true,
-            "config-opts" : [
-                "--without-storage-mpath"
-            ],
+            "buildsystem" : "meson",
             "build-options" : {
                 "cflags" : "-I/app/include/tirpc -ltirpc"
             },
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://libvirt.org/sources/libvirt-6.1.0.tar.xz",
-                    "sha256" : "167c185be45560e73dd3e14ed375778b555c01455192de2dafc4d0f74fabebc0"
-                },
-                {
-                    "type" : "patch",
-                    "path" : "libvirt-check-for-disk-type-correctly.patch"
+                    "url" : "https://libvirt.org/sources/libvirt-6.7.0.tar.xz",
+                    "sha256" : "655b9476c797cdd3bb12e2520acc37335e5299b2d56a5bb9ab3f55db40161342"
                 },
                 {
                     "type" : "patch",
