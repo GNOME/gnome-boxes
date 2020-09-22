@@ -153,7 +153,7 @@ dependencies = [
   valac.find_library ('spice-client-gtk-3.0'),
 ]
 
-libhandy = dependency ('libhandy-0.0', version: '>= 0.0.11', required: false)
+libhandy = dependency ('libhandy-1', version: '>= 1.0.0', required: false)
 if not libhandy.found()
   libhandy = subproject(
     'libhandy',

@@ -79,7 +79,7 @@ public int main (string[] args) {
         error (err.message);
     }
 
-    Hdy.init (ref args);
+    Hdy.init ();
 
     var app = new Boxes.App ();
 
