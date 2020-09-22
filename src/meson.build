@@ -147,13 +147,13 @@ dependencies = [
   dependency ('tracker-sparql-2.0'),
   dependency ('vte-2.91', version: '>= 0.40.2'),
   dependency ('webkit2gtk-4.0', version: '>= 2.26.0'),
-  dependency ('libhandy-0.0', version: '>= 0.0.11'),
   cc.find_library('m', required : false),
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
   valac.find_library ('linux'),
   valac.find_library ('posix'),
   valac.find_library ('spice-client-gtk-3.0'),
 ]
+
 
 if get_option('rdp')
   vala_sources += ['rdp-display.vala']
@@ -165,6 +165,7 @@ if get_option('flatpak')
   vala_args += '--define=FLATPAK'
 
   dependencies += dependency ('govf-0.1')
+  dependencies += dependency ('libhandy-0.0', version: '>= 0.0.11')
 
   if get_option('rdp')
     dependencies += dependency ('gtk-frdp-0.1')
@@ -173,6 +174,17 @@ else
   dependencies += [
     dependency ('gudev-1.0', version: '>= 165'),
   ]
+
+  libhandy = subproject(
+    'libhandy',
+    default_options: [
+      'package_subdir=' + meson.project_name(),
+      'examples=false',
+      'glade_catalog=disabled',
+      'tests=false',
+    ]
+  )
+  dependencies += libhandy.get_variable('libhandy_vapi')
 
   if get_option('rdp')
     gtk_frdp = subproject(
