@@ -18,6 +18,12 @@
         <property name="border-width">0</property>
 
         <child>
+          <object class="GtkBox" id="indicator-spacer">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
           <object class="GtkOverlay">
             <property name="visible">True</property>
             <property name="expand">True</property>
@@ -127,7 +133,23 @@
             </child>
           </object>
         </child>
+
+        <child>
+          <object class="HdyCarouselIndicatorDots" id="indicator">
+            <property name="visible">True</property>
+            <property name="carousel">paginator</property>
+            <property name="margin-top">6</property>
+            <property name="margin-bottom">6</property>
+          </object>
+        </child>
       </object>
     </child>
   </template>
+  <object class="GtkSizeGroup">
+    <property name="mode">vertical</property>
+    <widgets>
+      <widget name="indicator-spacer"/>
+      <widget name="indicator"/>
+    </widgets>
+  </object>
 </interface>
