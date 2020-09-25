@@ -133,6 +133,8 @@ private class Boxes.App: Gtk.Application {
     public override void startup () {
         base.startup ();
 
+        Hdy.init ();
+
         string [] args = {};
         unowned string [] args2 = args;
         Gtk.init (ref args2);
