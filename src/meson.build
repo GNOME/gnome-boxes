@@ -26,7 +26,6 @@ c_args = [
   '-DGETTEXT_PACKAGE="gnome-boxes"',
   '-DCACHEDIR="/var/cache/"',
   '-DG_LOG_DOMAIN="Boxes"',
-  '-DHANDY_USE_UNSTABLE_API=1',
 ]
 
 if get_option ('buildtype').contains ('debug')
