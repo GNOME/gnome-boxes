@@ -1,4 +1,5 @@
 help_files = [
+  '3d-acceleration',
   'backup.page',
   'create.page',
   'delete.page',
