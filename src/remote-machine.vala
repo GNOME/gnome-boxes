@@ -41,9 +41,6 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
             return new RdpDisplay.with_uri (config, source.uri);
 #endif
 
-        case "ssh":
-            return new SshDisplay.with_uri (config, source.uri);
-
         default:
             throw new Boxes.Error.INVALID ("unsupported display of type " + type);
         }
