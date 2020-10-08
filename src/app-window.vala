@@ -140,7 +140,8 @@ private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
         notify["ui-state"].connect (ui_state_changed);
 
         Gtk.Window.set_default_icon_name (Config.APPLICATION_ID);
-        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
+        var override_theme = settings.get_boolean ("override-theme");
+        Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = override_theme;
 
         var provider = Boxes.load_css ("gtk-style.css");
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
