@@ -23,18 +23,45 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
         buffer.set_text (machine.domain_config.to_xml ());
     }
 
+    private async long create_snapshot () {
+        long snapshot_timestamp = 0;
+        try {
+            var snapshot = yield machine.create_snapshot (_("Configuration modified "));
+            try {
+                var config = snapshot.get_config (0);
+                snapshot_timestamp = config.get_creation_time ();
+            } catch (GLib.Error error) {
+                warning ("Failed to obtain snapshot configuration: %s", error.message);
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to create snapshot: %s", error.message);
+        }
+
+        return snapshot_timestamp;
+    }
+
+    private void add_metadata (GVirConfig.Domain config, long snapshot_timestamp) {
+        string edited_xml = MANUALLY_EDITED_XML.printf (snapshot_timestamp);
+
+        try {
+            config.set_custom_xml (edited_xml, "edited", BOXES_NS_URI);
+        } catch (GLib.Error error) {
+            warning ("Failed to save custom XML: %s", error.message);
+        }
+    }
+
     public async void save () {
-        var saved = yield save_original_config (machine.domain_config);
-        if (!saved) {
-            var failed_to_save_msg = _("Unable to backup original configuration. Aborting.");
-            App.app.main_window.notificationbar.display_error (failed_to_save_msg);
+        var xml = view.buffer.text;
+        if (machine.domain_config.to_xml () == xml) {
+            debug ("Nothing changed in the VM configuration");
 
             return;
         }
 
-        var xml = view.buffer.text;
-        if (machine.domain_config.to_xml () == xml) {
-            debug ("Nothing changed in the VM configuration");
+        var snapshot_timestamp = yield create_snapshot ();
+        if (snapshot_timestamp == 0) {
+            warning ("Failed to save changes!");
+
             return;
         }
 
@@ -45,7 +72,7 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
             warning ("Failed to save changes!\n");
         }
 
-        add_metadata (custom_config);
+        add_metadata (custom_config, snapshot_timestamp);
 
         try {
             machine.domain.set_config (custom_config);
@@ -65,51 +92,4 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
         }
     }
 
-    private void add_metadata (GVirConfig.Domain config) {
-        string edited_xml = MANUALLY_EDITED_XML.printf (1);
-
-        try {
-            config.set_custom_xml (edited_xml, "edited", BOXES_NS_URI); 
-        } catch (GLib.Error error) {
-            warning ("Failed to save custom XML: %s", error.message);
-        }
-    }
-
-    private async bool save_original_config (GVirConfig.Domain config) {
-        var old_config_path = get_user_pkgconfig (config.get_name () + FILE_SUFFIX);
-
-        try {
-            return FileUtils.set_contents (old_config_path, config.to_xml (), -1);
-        } catch (GLib.Error error) {
-            warning ("Failed to save original configuration: %s", error.message);
-
-            return false;
-        }
-    }
-
-    public async void revert_to_original () {
-        var original_config_path = get_user_pkgconfig (machine.domain_config.get_name () + FILE_SUFFIX);
-
-        string? data = null;
-        try {
-            FileUtils.get_contents (original_config_path, out data);
-        } catch (GLib.Error error) {
-            warning ("Failed to load original configuration: %s", error.message);
-            return;
-        }
-
-        if (data == null) {
-            warning ("Failed to load original configuration");
-            return;
-        }
-
-        try {
-            var config = new GVirConfig.Domain.from_xml (data);
-            machine.domain.set_config (config);
-
-            view.buffer.text = data;
-        } catch (GLib.Error error) {
-            warning ("Failed to load old configurations %s", error.message);
-        }
-    }
 }

@@ -61,11 +61,6 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     [GtkCallback]
-    private void on_revert_changes_clicked () requires (page == PropsWindowPage.TEXT_EDITOR) {
-        props_window.config_editor.revert_to_original ();
-    }
-
-    [GtkCallback]
     private void on_config_editor_save_clicked () {
         props_window.config_editor.save ();
     }
