@@ -89,7 +89,7 @@ vala_sources = [
   'selection-toolbar.vala',
   'shared-folders.vala',
   'spice-display.vala',
-  'text-editor.vala',
+  'config-editor.vala',
   'transfer-info-row.vala',
   'transfer-popover.vala',
   'troubleshoot-view.vala',

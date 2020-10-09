@@ -1,8 +1,8 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/text-editor.ui")]
-private class Boxes.TextEditor: Gtk.ScrolledWindow {
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/machine-config-editor.ui")]
+private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
     private const string BOXES_NS = "boxes";
     private const string BOXES_NS_URI = "https://wiki.gnome.org/Apps/Boxes/edited";
     private const string MANUALLY_EDITED_XML = "<edited>%u</edited>";

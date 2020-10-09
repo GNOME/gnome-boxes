@@ -17,7 +17,7 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     public Gtk.HeaderBar main;
 
     [GtkChild]
-    public Gtk.HeaderBar text_editor;
+    public Gtk.HeaderBar config_editor;
 
     [GtkChild]
     public Gtk.Button troubleshooting_back_button;
@@ -62,12 +62,12 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
 
     [GtkCallback]
     private void on_revert_changes_clicked () requires (page == PropsWindowPage.TEXT_EDITOR) {
-        props_window.text_editor.revert_to_original ();
+        props_window.config_editor.revert_to_original ();
     }
 
     [GtkCallback]
-    private void on_text_editor_save_clicked () {
-        props_window.text_editor.save ();
+    private void on_config_editor_save_clicked () {
+        props_window.config_editor.save ();
     }
 
     [GtkCallback]

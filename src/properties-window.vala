@@ -12,7 +12,7 @@ public delegate void Boxes.FileChosenFunc (string path);
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-window.ui")]
 private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
-    public const string[] page_names = { "main", "troubleshoot_log", "file_chooser", "text_editor" };
+    public const string[] page_names = { "main", "troubleshoot_log", "file_chooser", "config_editor" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -35,7 +35,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     [GtkChild]
     public TroubleshootLog troubleshoot_log;
     [GtkChild]
-    public TextEditor text_editor;
+    public MachineConfigEditor config_editor;
 
     public Gtk.FileChooserNative file_chooser;
     [GtkChild]
@@ -70,9 +70,9 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
 
     public void show_editor_view (LibvirtMachine machine) {
         page = PropsWindowPage.TEXT_EDITOR;
-        text_editor.setup (machine);
+        config_editor.setup (machine);
 
-        topbar.text_editor.set_title (machine.name);
+        topbar.config_editor.set_title (machine.name);
     }
 
     public void show_file_chooser (owned FileChosenFunc file_chosen_func) {
