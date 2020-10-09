@@ -20,24 +20,11 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
         buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("xml");
         view.buffer = buffer;
 
-        try {
-            var config = machine.domain.get_config (GVir.DomainXMLFlags.NONE);
-            buffer.set_text (config.to_xml ());
-        } catch (GLib.Error error) {
-            warning ("Failed to load machine configuration: %s", error.message);
-        }
+        buffer.set_text (machine.domain_config.to_xml ());
     }
 
     public async void save () {
-        GVirConfig.Domain? config = null;
-        try {
-            config = machine.domain.get_config (GVir.DomainXMLFlags.NONE);
-        } catch (GLib.Error error) {
-            warning ("Failed to load machine configuration: %s", error.message);
-            return;
-        }
-
-        var saved = yield save_original_config (config);
+        var saved = yield save_original_config (machine.domain_config);
         if (!saved) {
             var failed_to_save_msg = _("Unable to backup original configuration. Aborting.");
             App.app.main_window.notificationbar.display_error (failed_to_save_msg);
@@ -46,7 +33,7 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
         }
 
         var xml = view.buffer.text;
-        if (config.to_xml () == xml) {
+        if (machine.domain_config.to_xml () == xml) {
             debug ("Nothing changed in the VM configuration");
             return;
         }
