@@ -6,16 +6,16 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
     private const string BOXES_NS_URI = "https://wiki.gnome.org/Apps/Boxes/edited";
     private const string MANUALLY_EDITED_XML = "<edited>%u</edited>";
 
-    private Gtk.Button save_button;
+    private Gtk.Button apply_config_button;
     [GtkChild]
     private Gtk.SourceView view;
 
     private LibvirtMachine machine;
     private string domain_xml;
 
-    public void setup (LibvirtMachine machine, Gtk.Button save_button) {
+    public void setup (LibvirtMachine machine, Gtk.Button apply_config_button) {
         this.machine = machine;
-        this.save_button = save_button;
+        this.apply_config_button = apply_config_button;
 
         var buffer = new Gtk.SourceBuffer (null);
         buffer.language = Gtk.SourceLanguageManager.get_default ().get_language ("xml");
@@ -50,11 +50,11 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
         try {
             config.set_custom_xml (edited_xml, "edited", BOXES_NS_URI);
         } catch (GLib.Error error) {
-            warning ("Failed to save custom XML: %s", error.message);
+            warning ("Failed to apply custom XML: %s", error.message);
         }
     }
 
-    public async void save () {
+    public async void apply () {
         var xml = view.buffer.text;
         if (machine.domain_config.to_xml () == xml) {
             debug ("Nothing changed in the VM configuration");
@@ -64,7 +64,7 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
 
         var snapshot_timestamp = yield create_snapshot ();
         if (snapshot_timestamp == 0) {
-            warning ("Failed to save changes!");
+            warning ("Failed to apply changes!");
 
             return;
         }
@@ -73,7 +73,7 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
         try {
             custom_config = new GVirConfig.Domain.from_xml (xml);
         } catch (GLib.Error error) {
-            warning ("Failed to save changes!\n");
+            warning ("Failed to apply changes!\n");
         }
 
         add_metadata (custom_config, snapshot_timestamp);
@@ -82,8 +82,8 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
             machine.domain.set_config (custom_config);
             domain_xml = custom_config.to_xml ();
         } catch (GLib.Error error) {
-            warning ("Failed to save custom VM configuration: %s", error.message);
-            var msg = _("Boxes failed to save VM configuration changes: %s");
+            warning ("Failed to apply custom VM configuration: %s", error.message);
+            var msg = _("Boxes failed to apply VM configuration changes: %s");
             App.app.main_window.notificationbar.display_error (msg);
 
             return;
@@ -96,11 +96,11 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
             });
         }
 
-        setup (machine, save_button);
+        setup (machine, apply_config_button);
     }
 
     private void on_config_changed () {
         var config_changed = (view.buffer.text != domain_xml);
-        save_button.sensitive = config_changed;
+        apply_config_button.sensitive = config_changed;
     }
 }
