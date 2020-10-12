@@ -64,9 +64,8 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
 
         var snapshot_timestamp = yield create_snapshot ();
         if (snapshot_timestamp == 0) {
-            warning ("Failed to apply changes!");
-
-            return;
+            var msg = _("Boxes failed to snapshot your virtual machine before applying your changes.");
+            App.app.main_window.notificationbar.display_error (msg);
         }
 
         GVirConfig.Domain? custom_config = null;
