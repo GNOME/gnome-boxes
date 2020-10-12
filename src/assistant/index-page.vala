@@ -56,6 +56,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     private async void populate_media_lists () {
         var media_manager = MediaManager.get_instance ();
+        yield media_manager.connect_to_tracker ();
 
         installer_medias = yield media_manager.list_installer_medias ();
         populate_detected_sources_list (MAX_MEDIA_ENTRIES);

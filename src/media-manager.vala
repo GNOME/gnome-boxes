@@ -226,6 +226,9 @@ private class Boxes.MediaManager : Object {
 #endif
         os_db = new OSDatabase ();
         os_db.load.begin ();
+    }
+
+    public async void connect_to_tracker () {
         try {
             connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
                                                     null, null);
