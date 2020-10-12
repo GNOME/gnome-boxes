@@ -43,6 +43,7 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
         this.props_window = props_window;
 
         window.notify["ui-state"].connect (ui_state_changed);
+        apply_config_button.notify["sensitive"].connect (on_apply_config_editor_sensitivity_changed);
     }
 
     public void click_back_button () {
@@ -66,6 +67,14 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     private void on_config_editor_apply_config_clicked () {
         props_window.config_editor.apply ();
         apply_config_button.sensitive = false;
+    }
+
+    private void on_apply_config_editor_sensitivity_changed () {
+        if (apply_config_button.sensitive) {
+            config_editor.set_title ("*" + config_editor.get_title ());
+        } else {
+            config_editor.set_title (config_editor.get_title ().substring (1));
+        }
     }
 
     [GtkCallback]
