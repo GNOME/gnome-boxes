@@ -70,7 +70,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
 
     public void show_editor_view (LibvirtMachine machine) {
         page = PropsWindowPage.TEXT_EDITOR;
-        config_editor.setup (machine);
+        config_editor.setup (machine, topbar.save_button);
 
         topbar.config_editor.set_title (machine.name);
     }

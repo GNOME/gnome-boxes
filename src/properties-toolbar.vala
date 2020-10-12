@@ -18,6 +18,8 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
 
     [GtkChild]
     public Gtk.HeaderBar config_editor;
+    [GtkChild]
+    public Gtk.Button save_button;
 
     [GtkChild]
     public Gtk.Button troubleshooting_back_button;
@@ -63,6 +65,7 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     [GtkCallback]
     private void on_config_editor_save_clicked () {
         props_window.config_editor.save ();
+        save_button.sensitive = false;
     }
 
     [GtkCallback]
