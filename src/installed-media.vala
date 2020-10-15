@@ -46,7 +46,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
             supported = true; // Let's assume it's device file in raw format
         else
             foreach (var extension in supported_extensions) {
-                supported = path.has_suffix (extension);
+                supported = path.down ().has_suffix (extension);
                 if (supported)
                     break;
             }
