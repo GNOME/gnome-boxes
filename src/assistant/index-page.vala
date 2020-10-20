@@ -142,7 +142,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     private async void on_select_file_button_clicked () {
         var file_chooser = new Gtk.FileChooserNative (_("Select a device or ISO file"),
                                                       App.app.main_window,
-                                                      Gtk.FileChooserAction.OPEN,
+                                                      Gtk.FileChooserAction.OPEN | Gtk.FileChooserAction.SELECT_FOLDER,
                                                       _("Open"), _("Cancel"));
         file_chooser.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
