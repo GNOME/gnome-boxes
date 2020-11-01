@@ -1,0 +1,1689 @@
+# Danish translation for gnome-boxes.
+# Copyright (C) 2020 gnome-boxes's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-boxes package.
+# scootergrisen, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-boxes master\n"
+"POT-Creation-Date: 2020-09-16 19:06+0000\n"
+"PO-Revision-Date: 2020-09-17 00:00+0200\n"
+"Last-Translator: scootergrisen\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "scootergrisen <>, 2020"
+
+#. (itstool) path: credit/name
+#: C/backup.page:10 C/clipboard.page:11 C/create.page:11 C/delete.page:9
+#: C/disk-images.page:9 C/index.page:21 C/interface.page:13
+#: C/keystrokes.page:10 C/prop-system.page:11 C/prop-trouble.page:11
+#: C/search.page:10 C/shutdown.page:11 C/snapshot-create.page:12
+#: C/snapshot-delete.page:11 C/snapshot-rename.page:11
+#: C/snapshot-revert.page:12 C/supported-protocols.page:10
+#: C/system-requirements.page:16 C/usb-redirection.page:19
+#: C/virtualization.page:9 C/what-is-a-virtual-machine.page:15
+#: C/why-do-i-need-virtual-machine.page:16
+msgid "Michael Hill"
+msgstr "Michael Hill"
+
+#. (itstool) path: credit/years
+#: C/backup.page:12 C/interface.page:20 C/shared-folders.page:12
+#: C/snapshot-create.page:19 C/snapshot-revert.page:19
+#: C/usb-redirection.page:26
+msgid "2018"
+msgstr "2018"
+
+#. (itstool) path: info/desc
+#: C/backup.page:17
+msgid "Write the configuration of a box to a file to back it up or move it."
+msgstr ""
+"Skriv konfigurationen af en boks til en fil for at sikkerhedskopiere eller "
+"flytte den."
+
+#. (itstool) path: page/title
+#: C/backup.page:20
+msgid "Back up or move a box"
+msgstr "Sikkerhedskopiér eller flyt en boks"
+
+#. (itstool) path: page/p
+#: C/backup.page:22
+msgid ""
+"Two components are required to back up or move a box: the image file, and "
+"the configuration of the box saved as an XML file. Saving the configuration "
+"requires the <cmd>virsh</cmd> command from the <app>libvirt</app> or "
+"<app>libvirt-client</app> package."
+msgstr ""
+"To komponenter kræves for at sikkerhedskopiere eller flytte en boks: "
+"aftryksfilen, og boksens konfiguration, gemt som en XML-fil. At gemme "
+"konfigurationen kræver <cmd>virsh</cmd>-kommandoen fra <app>libvirt</app>- "
+"eller <app>libvirt-client</app>-pakken."
+
+#. (itstool) path: item/p
+#: C/backup.page:29
+msgid "In a terminal window, type"
+msgstr "Skriv følgende i et terminalvindue"
+
+#. (itstool) path: item/code
+#: C/backup.page:30
+#, no-wrap
+msgid "virsh dumpxml Name &gt; Name.xml"
+msgstr "virsh dumpxml Navn &gt; Navn.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:31
+msgid ""
+"where <cmd>Name</cmd> is the <app>Boxes</app> name, or <em>domain</em>, of "
+"your box. To list the domains seen by <app>Boxes</app>, type"
+msgstr ""
+"hvor <cmd>Navn</cmd> er <app>Boxes</app>-navnet eller <em>domænet</em> på "
+"din boks. Skriv følgende for at vise domænerne, som <app>Boxes</app> kan se"
+
+#. (itstool) path: item/code
+#: C/backup.page:33
+#, no-wrap
+msgid "virsh -c qemu:///session list --all"
+msgstr "virsh -c qemu:///session list --all"
+
+#. (itstool) path: item/p
+#: C/backup.page:36
+msgid ""
+"Copy the <cmd>.xml</cmd> file you just created to your backup or temporary "
+"storage location."
+msgstr ""
+"Kopiér <cmd>.xml</cmd>-filen, som du lige har oprettet, til din placering "
+"for sikkerhedskopiering eller midlertidigt lager."
+
+#. (itstool) path: item/p
+#: C/backup.page:40
+msgid ""
+"Copy the image file to your backup or temporary storage location. It will be "
+"a file with the domain name of your box and ending in <cmd>.qcow2</cmd>, "
+"located in <file>~/.local/share/gnome-boxes/images/</file>."
+msgstr ""
+"Kopiér aftryksfilen til din placering for sikkerhedskopiering eller "
+"midlertidigt lager. Det vil være en fil med domænenavnet på din boks og den "
+"slutter med <cmd>.qcow2</cmd>, placeret i <file>~/.local/share/gnome-boxes/"
+"images/</file>."
+
+#. (itstool) path: section/title
+#: C/backup.page:48
+msgid "Restore a box"
+msgstr "Gendan en boks"
+
+#. (itstool) path: section/p
+#: C/backup.page:50
+msgid ""
+"The saved box can be installed into <app>Boxes</app> on a new host machine, "
+"or on the original machine as part of a disaster recovery scenario."
+msgstr ""
+"Den gemte boks kan installeres i <app>Boxes</app> på en ny værtsmaskine "
+"eller på den oprindelige maskine som del af et katestrofegendannelsessenarie."
+
+#. (itstool) path: item/p
+#: C/backup.page:56
+msgid "Exit <app>Boxes</app>."
+msgstr "Afslut <app>Boxes</app>."
+
+#. (itstool) path: item/p
+#: C/backup.page:59
+msgid ""
+"Copy the <cmd>.qcow2</cmd> image file from your backup or temporary storage "
+"location into the <file>~/.local/share/gnome-boxes/images/</file> directory "
+"in the new location."
+msgstr ""
+"Kopiér <cmd>.qcow2</cmd>-aftryksfilen fra din placering for "
+"sikkerhedskopiering eller midlertidigt lager ind i <file>~/.local/share/"
+"gnome-boxes/images/</file>-mappen i den nye placering."
+
+#. (itstool) path: item/p
+#: C/backup.page:64
+msgid ""
+"In a terminal window, navigate to the directory or device containing the "
+"<cmd>.xml</cmd> file you stored. Type"
+msgstr ""
+"I et terminalvindue, naviger til den mappe eller enhed som indeholder <cmd>."
+"xml</cmd>-filen du gemte. Skriv"
+
+#. (itstool) path: item/code
+#: C/backup.page:66
+#, no-wrap
+msgid "virsh define Name.xml"
+msgstr "virsh define Navn.xml"
+
+#. (itstool) path: item/p
+#: C/backup.page:67
+msgid "where <cmd>Name</cmd> is the domain of your box."
+msgstr "hvor <cmd>Navn</cmd> er domænet på din boks."
+
+#. (itstool) path: item/p
+#: C/backup.page:70
+msgid "Launch <app>Boxes</app>."
+msgstr "Start <app>Boxes</app>."
+
+#. (itstool) path: credit/years
+#: C/clipboard.page:13 C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
+#: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
+#: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
+msgid "2014"
+msgstr "2014"
+
+#. (itstool) path: info/desc
+#: C/clipboard.page:18
+msgid "Use the clipboard with <app>Boxes</app>."
+msgstr "Brug udklipsholderen med <app>Boxes</app>."
+
+#. (itstool) path: page/title
+#: C/clipboard.page:21
+msgid "Share the clipboard"
+msgstr "Del udklipsholderen"
+
+#. (itstool) path: page/p
+#: C/clipboard.page:23
+msgid ""
+"The clipboard of the host machine can be shared with the guest in "
+"<app>Boxes</app>."
+msgstr ""
+"Udklipsholderen på en værtsmaskine kan deles med gæsten i <app>Boxes</app>."
+
+#. (itstool) path: media/span
+#: C/clipboard.page:29 C/interface.page:114 C/keystrokes.page:29
+#: C/prop-system.page:29 C/prop-trouble.page:31 C/shared-folders.page:30
+#: C/shutdown.page:30 C/snapshot-create.page:41 C/snapshot-delete.page:28
+#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
+#: C/usb-redirection.page:48
+msgid "settings"
+msgstr "indstillinger"
+
+#. (itstool) path: item/p
+#: C/clipboard.page:27 C/prop-system.page:27 C/prop-trouble.page:29
+#: C/snapshot-create.page:39 C/snapshot-delete.page:26
+#: C/snapshot-rename.page:34 C/snapshot-revert.page:34
+msgid ""
+"Right-click on the box in the collection view and select <gui>Properties</"
+"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Properties</gui>."
+msgstr ""
+"Højreklik på boksen i samlingsvisningen og vælg <gui>Egenskaber</gui>, eller "
+"hvis boksen kører, så klik på menuknappen (<_:media-1/>) i titellinjen og "
+"vælg <gui>Egenskaber</gui>."
+
+#. (itstool) path: item/p
+#: C/clipboard.page:31
+msgid ""
+"On the <gui>General</gui> tab, switch <gui>Share clipboard</gui> to <gui>ON</"
+"gui>."
+msgstr ""
+"I <gui>Generelt</gui>-fanebladet, skift <gui>Del udklipsholder</gui> til "
+"<gui>ON</gui>."
+
+#. (itstool) path: note/p
+#: C/clipboard.page:36
+msgid ""
+"While express installation typically takes care of making shared clipboard "
+"available to you, express installation is not available for all operating "
+"systems. In such cases or if you choose manual installation, for shared "
+"clipboard to work the SPICE vdagent needs to be installed in the guest. In "
+"most Linux-based operating systems the package is called <em>spice-vdagent</"
+"em>. If the guest is running a different operating system, check out the "
+"<link href=\"http://www.spice-space.org/download.html\">SPICE download page</"
+"link>."
+msgstr ""
+"Mens ekspresinstallation typisk tager sig af at gøre delt udklipsholder "
+"tilgængelig for dig, så er ekspresinstallation ikke tilgængelig på alle "
+"styresystemer. Hvis det er tilfældet, eller hvis du vælger manuel "
+"installation for at få delt udklipsholder til at virke, så skal SPICEs "
+"vdagent installeres på gæsten. På de fleste Linux-baserede styresystemer "
+"kaldes pakken <em>spice-vdagent</em>. Hvis gæsten kører på et andet "
+"styresystem, så tjek <link href=\"http://www.spice-space.org/download.html"
+"\">SPICEs downloadside</link>."
+
+#. (itstool) path: credit/years
+#: C/create.page:13 C/interface.page:15 C/search.page:12
+#: C/system-requirements.page:18 C/system-requirements.page:23
+#: C/system-requirements.page:28 C/usb-redirection.page:21
+#: C/what-is-a-virtual-machine.page:17 C/why-do-i-need-virtual-machine.page:18
+msgid "2013"
+msgstr "2013"
+
+#. (itstool) path: info/desc
+#: C/create.page:18
+msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
+msgstr ""
+"Klik på <gui style=\"button\">+</gui> for at gå i gang med at oprette en "
+"boks."
+
+#. (itstool) path: page/title
+#: C/create.page:21
+msgid "Create a box"
+msgstr "Opret en boks"
+
+#. (itstool) path: page/p
+#: C/create.page:23
+msgid ""
+"When <app>Boxes</app> is launched, the collection view opens, displaying "
+"your existing boxes. If you haven't yet created a box, an introductory "
+"message is displayed."
+msgstr ""
+"Når <app>Boxes</app> startes, så åbnes samlingsvisningen som viser dine "
+"eksisterende bokse. Hvis du endnu ikke har oprettet en boks, så vises der en "
+"introduktionsmeddelelse."
+
+#. (itstool) path: item/p
+#: C/create.page:28
+#| msgid ""
+#| "Click <gui style=\"button\">New</gui> in the top left corner to launch "
+#| "the box creation wizard."
+msgid ""
+"Click <gui style=\"button\">+</gui> in the top left corner to launch the box "
+"creation wizard."
+msgstr ""
+"Klik på <gui style=\"button\">+</gui> i øverste venstre hjørne for at "
+"starte assistenten til oprettelse af bokse."
+
+#. (itstool) path: item/p
+#: C/create.page:30
+msgid ""
+"At the wizard's <gui>Source Selection</gui> screen, choose a source to "
+"determine the type of box you want to create. A local virtual machine can be "
+"created from:"
+msgstr ""
+"I assistentens <gui>Valg af kilde</gui>-skærm, vælg en kilde for at bestemme "
+"typen på den boks du vil oprette. En lokal virtuel maskine kan oprettes fra:"
+
+#. (itstool) path: item/p
+#: C/create.page:35
+msgid "An ISO found by <app>Boxes</app>."
+msgstr "En ISO som <app>Boxes</app> har fundet."
+
+#. (itstool) path: item/p
+#: C/create.page:36
+msgid "Installation media on a CD/DVD/USB drive."
+msgstr "Installationsmedie på en cd-/dvd-/USB-enhed."
+
+#. (itstool) path: item/p
+#: C/create.page:37
+msgid "A local ISO file (if not found automatically above)."
+msgstr "En lokal ISO-fil (hvis den ikke blev fundet automatisk ovenfor)."
+
+#. (itstool) path: item/p
+#: C/create.page:38
+msgid ""
+"A supported operating system available on the <gui>Operating System "
+"Download</gui> page"
+msgstr ""
+"Et understøttet styresystem som er tilgængeligt på <gui>Styresystemer der kan hentes</gui>-siden"
+
+#. (itstool) path: note/p
+#: C/create.page:42
+msgid ""
+"If your installation media supports <gui>Express Installation</gui>, the "
+"installation will proceed without further input."
+msgstr ""
+"Hvis dit installationsmedie understøtter <gui>Ekspresinstallation</gui>, så "
+"fortsætter installationen uden yderligere input."
+
+#. (itstool) path: item/p
+#: C/create.page:47
+msgid ""
+"After making your selection, or providing the necessary information, click "
+"<gui style=\"button\">Continue</gui>, which will take you to the "
+"<gui>Review</gui> page."
+msgstr ""
+"Når du har foretaget dine valg eller angivet den nødvendige information, så "
+"klik på <gui style=\"button\">Fortsæt</gui>, som vil tage dig til "
+"<gui>Gennemse</gui>-siden."
+
+#. (itstool) path: item/p
+#: C/create.page:50
+msgid ""
+"If the box is local, click <gui style=\"button\">Customize</gui> to adjust "
+"memory or disk size, or to rename the box."
+msgstr ""
+"Hvis boksen er lokal, så klik på <gui style=\"button\">Tilpas</gui> for at "
+"justere hukommelse og diskstørrelse, eller for at omdøbe boksen."
+
+#. (itstool) path: item/p
+#: C/create.page:52
+msgid "Click <gui style=\"button\">Create</gui>."
+msgstr "Klik på <gui style=\"button\">Opret</gui>."
+
+#. (itstool) path: page/p
+#: C/create.page:55
+msgid "The collection view returns, and the installation of the box begins."
+msgstr "Samlingsvisningen vender tilbage, og boksens installation begynder."
+
+#. (itstool) path: info/desc
+#: C/delete.page:16
+msgid "Remove a box that you no longer need."
+msgstr "Fjern en boks der ikke længere er brug for."
+
+#. (itstool) path: page/title
+#: C/delete.page:19
+msgid "Delete a box"
+msgstr "Slet en boks"
+
+#. (itstool) path: page/p
+#: C/delete.page:21
+msgid ""
+"When a box is no longer needed, it can be deleted from <app>Boxes</app>."
+msgstr ""
+"Når der ikke længere er brug for en boks, så kan den slettes fra <app>Boxes</"
+"app>."
+
+#. (itstool) path: item/p
+#: C/delete.page:24
+msgid ""
+"Select one or more boxes. In the collection view, right click a box to be "
+"deleted."
+msgstr ""
+"Vælg en eller flere bokse. In samlingsvisningen, højreklik på en boks der "
+"skal slettes."
+
+#. (itstool) path: item/p
+#: C/delete.page:26
+msgid ""
+"<link xref=\"interface#selection\">Selection mode</link> opens. Click "
+"additional boxes to select them for deletion."
+msgstr ""
+"<link xref=\"interface#selection\">Markeringstilstand</link> åbner. Klik på "
+"yderligere bokse for at vælge dem der skal slettes."
+
+#. (itstool) path: item/p
+#: C/delete.page:28
+msgid "Click the <gui style=\"button\">Delete</gui> button."
+msgstr "Klik på <gui style=\"button\">Slet</gui>-knappen."
+
+#. (itstool) path: item/p
+#: C/delete.page:29
+msgid "Click the <key>X</key> to confirm."
+msgstr "Klik på <key>X</key> for at bekræfte."
+
+#. (itstool) path: page/title
+#: C/disk-images.page:19
+msgid "Where does Boxes store disk images?"
+msgstr "Hvor gemmer Boxes diskaftryk?"
+
+#. (itstool) path: page/p
+#: C/disk-images.page:21
+msgid ""
+"By default, <app>Boxes</app> stores disk images in the folder <file>~/.local/"
+"share/gnome-boxes/images/</file>. If you are using other software that "
+"interfaces with libvirt, such as <app>virt-manager</app>, then <app>Boxes</"
+"app> will also read from the folder that software uses to store its images."
+msgstr ""
+"Som standard gemmer <app>Boxes</app> diskaftryk i mappen <file>~/.local/"
+"share/gnome-boxes/images/</file>. Hvis du bruger andet software, som bruger "
+"libvirt såsom <app>virt-manager</app>, så læser <app>Boxes</app> også fra "
+"mappen som, den software bruger til at gemme sine aftryk."
+
+#. (itstool) path: media/span
+#: C/index.page:9
+msgid "Boxes"
+msgstr "Boxes"
+
+#. (itstool) path: credit/name
+#: C/index.page:16 C/supported-protocols.page:15 C/system-requirements.page:11
+#: C/usb-redirection.page:14 C/what-is-a-virtual-machine.page:10
+#: C/why-do-i-need-virtual-machine.page:11
+msgid "Baptiste Mille-Mathias"
+msgstr "Baptiste Mille-Mathias"
+
+#. (itstool) path: credit/years
+#: C/index.page:18 C/supported-protocols.page:12 C/supported-protocols.page:17
+#: C/system-requirements.page:13 C/usb-redirection.page:16
+#: C/what-is-a-virtual-machine.page:12 C/why-do-i-need-virtual-machine.page:13
+msgid "2012"
+msgstr "2012"
+
+#. (itstool) path: info/desc
+#: C/index.page:28
+msgid ""
+"Learn to set up local virtual machines and to connect to remote virtual "
+"machines. You can also use <app>Boxes</app> to connect to remote desktops."
+msgstr ""
+"Lær at opsætte lokale virtuelle maskiner og at oprette forbindelse til "
+"eksterne virtuelle maskiner. Du kan også bruge <app>Boxes</app> til at "
+"oprette forbindelse til eksterne skriveborde."
+
+#. (itstool) path: page/title
+#: C/index.page:33
+msgid "<_:media-1/> Boxes"
+msgstr "<_:media-1/> Boxes"
+
+#. (itstool) path: page/p
+#: C/index.page:38
+msgid ""
+"<app>Boxes</app> is an application that gives you access to <link xref="
+"\"what-is-a-virtual-machine\">virtual machines</link>, running locally or "
+"remotely. It also allows you to connect to the display of a remote computer."
+msgstr ""
+"<app>Boxes</app> er et program som giver dig adgang til <link xref=\"what-is-"
+"a-virtual-machine\">virtuelle maskiner</link>, der kører lokalt eller "
+"eksternt. Den giver også mulighed for at oprette forbindelse til skærmen på "
+"en ekstern computer."
+
+#. (itstool) path: section/title
+#: C/index.page:44
+msgid "Getting started"
+msgstr "Kom godt i gang"
+
+#. (itstool) path: section/title
+#: C/index.page:54
+msgid "Using Boxes"
+msgstr "Brug af Boxes"
+
+#. (itstool) path: section/title
+#: C/index.page:58
+msgid "Properties"
+msgstr "Egenskaber"
+
+#. (itstool) path: section/title
+#: C/index.page:62
+msgid "Snapshots"
+msgstr "Øjebliksbilleder"
+
+#. (itstool) path: section/title
+#: C/index.page:66
+msgid "Questions"
+msgstr "Spørgsmål"
+
+#. (itstool) path: section/title
+#: C/index.page:70
+msgid "Advanced topics"
+msgstr "Avancerede emner"
+
+#. (itstool) path: credit/name
+#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
+#: C/snapshot-revert.page:17 C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: info/desc
+#: C/interface.page:25
+msgid "Get around the application."
+msgstr "Find rundt i programmet."
+
+#. (itstool) path: page/title
+#: C/interface.page:28
+msgid "The Boxes interface"
+msgstr "Boxes-brugerfladen"
+
+#. (itstool) path: section/title
+#: C/interface.page:31
+msgid "Collection view"
+msgstr "Samlingsvisning"
+
+#. (itstool) path: section/p
+#: C/interface.page:33
+msgid ""
+"When you first launch <app>Boxes</app>, the greeting tells you to click the "
+"<gui style=\"button\">New</gui> button to create your first box. On "
+"subsequent visits, <app>Boxes</app> opens in the <em>collection view</em>, "
+"displaying thumbnails of your boxes in a grid. Favourites or frequently-used "
+"boxes appear at the top of the list. Collection view allows you to:"
+msgstr ""
+"Når du starter <app>Boxes</app> for første gang, så fortæller velkomsten dig "
+"at, du skal klikke på <gui style=\"button\">Ny</gui>-knappen for at oprette "
+"din første boks. I efterfølgende besøg åbner <app>Boxes</app> med "
+"<em>samlingsvisningen</em>, som viser miniaturer af dine bokse i et gitter. "
+"Bokse som er favoritter eller bruges ofte, vises øverst i listen. "
+"Samlingsvisningen giver dig mulighed for at:"
+
+#. (itstool) path: item/p
+#: C/interface.page:40
+msgid ""
+"Click <gui style=\"button\">New</gui> to <link xref=\"create\">create</link> "
+"a box."
+msgstr ""
+"Klik på <gui style=\"button\">Ny</gui> for at <link xref=\"create\">oprette</"
+"link> en boks."
+
+#. (itstool) path: item/p
+#: C/interface.page:42
+msgid "Click a box to launch a virtual machine session."
+msgstr "Klik på en boks for at starte en virtuel maskine-session."
+
+#. (itstool) path: item/p
+#: C/interface.page:43
+msgid "<link xref=\"search\">Search</link> for a box."
+msgstr "<link xref=\"search\">Søg</link> efter en boks."
+
+#. (itstool) path: item/p
+#: C/interface.page:44
+msgid "Click the checkmark button in the header bar to enter selection mode."
+msgstr ""
+"Klik på afkrydsningsknappen i titellinjen for at gå i markeringstilstand."
+
+#. (itstool) path: item/p
+#: C/interface.page:46
+msgid ""
+"Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
+"Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
+"gui>, or to open the <gui>Properties</gui> view for the box."
+msgstr ""
+"Højreklik på en boks for at vælge <gui>Åbn i nyt vindue</gui>, <gui>Føj til "
+"favoritter</gui>, <gui>Gennemtving nedlukning</gui>, <gui>Klon</gui>, "
+"<gui>Slet</gui> eller for at åbne <gui>Egenskaber</gui>-visningen til boksen."
+
+#. (itstool) path: section/title
+#: C/interface.page:55
+msgid "The wizard"
+msgstr "Assistenten"
+
+#. (itstool) path: section/p
+#: C/interface.page:57
+msgid ""
+"Clicking <gui style=\"button\">New</gui> launches the <em>wizard</em>, which "
+"guides you through the process of box creation."
+msgstr ""
+"Når der klikkes på <gui style=\"button\">Ny</gui> startes <em>assistenten</"
+"em>, som guider dig gennem processen til oprettelse af boks."
+
+#. (itstool) path: section/title
+#: C/interface.page:63
+msgid "Selection mode"
+msgstr "Markeringstilstand"
+
+#. (itstool) path: section/p
+#: C/interface.page:65
+msgid ""
+"In collection view, clicking the checkmark button or right-clicking a "
+"thumbnail puts you in <em>selection mode</em>, where various operations can "
+"be performed on boxes, individually or in groups. You can:"
+msgstr ""
+"I samlingsvisningen vil klik på afkrydsningsknappen eller højreklik på en "
+"miniature sætte dig i <em>Markeringstilstand</em>, hvor diverse handlinger "
+"kan udføres på bokse enkeltvis eller i grupper. Du kan:"
+
+#. (itstool) path: item/p
+#: C/interface.page:70
+msgid "<link xref=\"delete\">Delete</link> a box or boxes."
+msgstr "<link xref=\"delete\">Slet</link> en eller flere bokse."
+
+#. (itstool) path: item/p
+#: C/interface.page:71
+msgid "Mark a box or boxes as favorites."
+msgstr "Mærk en eller flere bokse som favoritter."
+
+#. (itstool) path: item/p
+#: C/interface.page:72
+msgid "Pause a box."
+msgstr "Sæt en boks på pause."
+
+#. (itstool) path: item/p
+#: C/interface.page:73
+msgid "Open a box in a new window."
+msgstr "Åbn en boks i et nyt vindue."
+
+#. (itstool) path: section/title
+#: C/interface.page:79
+msgid "Properties view"
+msgstr "Egenskabsvisning"
+
+#. (itstool) path: section/p
+#: C/interface.page:81
+msgid ""
+"Right clicking a box and selecting <gui style=\"button\">Properties</gui> in "
+"the collection view opens the <em>properties view</em>, where some of the "
+"details of a box can be configured. The properties view allows you to "
+"display or change settings depending on which of the following tabs is "
+"selected:"
+msgstr ""
+"Når der højreklikkes på en boks og vælges <gui style=\"button\">Egenskaber</"
+"gui> i samlingsvisningen, så åbnes <em>egenskabsvisningen</em> hvor nogle af "
+"detaljerne for en boks kan konfigureres. Egenskabsvisningen giver dig "
+"mulighed for at vise og ændre indstillinger afhængig af hvilke af følgende "
+"faneblade som er valgt:"
+
+#. (itstool) path: item/p
+#: C/interface.page:87
+msgid ""
+"<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
+"or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
+"tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), and the "
+"<gui>URL</gui> to be used for remote access. When the box is running, the "
+"<gui>Share Clipboard</gui> switch appears here."
+msgstr ""
+"<gui>Generelt</gui>: viser boksens <gui>Navn</gui> og <gui>Mægler</gui> "
+"eller virtualizer som bruges (såsom <em>QEMU</em>). For en fjernboks vises "
+"fanebladet <gui>Protokol</gui> (såsom <em>VNC</em>) og <gui>URL</gui> som "
+"skal bruges til fjernadgang. Når boksen kører, så vises <gui>Del "
+"udklipsholder</gui>-kontakten her."
+
+#. (itstool) path: item/p
+#: C/interface.page:93
+msgid ""
+"<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
+"network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> sliders "
+"can be adjusted, and the <gui>Troubleshooting Log</gui> can be viewed. The "
+"<gui style=\"button\">Force Shutdown</gui> button, which enables you to "
+"<link xref=\"shutdown\">force a box to shut down</link>, the <gui style="
+"\"button\">Restart</gui> button, and the <gui>Run in background</gui> switch "
+"are on this tab."
+msgstr ""
+"<gui>System</gui>indstillinger: viser kørende grafer med CPU, disk I/O og "
+"netværksaktivitet. <gui>Hukommelse</gui>- og <gui>Maksimal diskstørrelse</"
+"gui>-skyderne kan justeres, og <gui>Fejlfindingslog</gui> kan vises. <gui "
+"style=\"button\">Gennemtving nedlukning</gui>-knappen, som giver dig "
+"mulighed for at <link xref=\"shutdown\">tvinge en boks til at lukke ned</"
+"link>, <gui style=\"button\">Genstart</gui>-knappen, og <gui>Kør i "
+"baggrunden</gui>-kontakten er på dette faneblad."
+
+#. (itstool) path: item/p
+#: C/interface.page:100
+msgid ""
+"<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
+"button allows you to specify the path to a CD/DVD device or ISO. The <gui "
+"style=\"button\">Remove</gui> button disconnects it. When the box is "
+"running, the USB devices connected to the host system are listed, and each "
+"can be controlled with an <gui>ON | OFF</gui> switch. <link xref=\"shared-"
+"folders\">Shared Folders</link> between host and guest can be set for "
+"running machines which support spice-webdavd."
+msgstr ""
+"<gui>Enheder &amp; deling</gui>: <gui style=\"button\">Vælg</gui>-knappen "
+"giver dig mulighed for at angive stien til en cd-/dvd-enhed eller ISO. <gui "
+"style=\"button\">Fjern</gui>-knappen frakobler den. Når boksen kører, så "
+"vises de USB-enheder som er tilsluttet til værtssystemet og de kan hver og "
+"en styres med en <gui>TÆND | SLUK</gui>-kontakt. <link xref=\"shared-folders"
+"\">Delte mapper</link> mellem vært og gæst kan indstilles for kørende "
+"maskiner der understøtter spice-webdavd."
+
+#. (itstool) path: item/p
+#: C/interface.page:107
+msgid ""
+"<gui>Snapshots</gui>: allows you to <link xref=\"snapshot-create\">create</"
+"link> and manage snapshots of the box."
+msgstr ""
+"<gui>Øjebliksbilleder</gui>: giver dig mulighed for at <link xref=\"snapshot-"
+"create\">oprette</link> og håndtere boksens øjebliksbilleder."
+
+#. (itstool) path: section/p
+#: C/interface.page:112
+msgid ""
+"The properties view can also be accessed using the wizard's <gui style="
+"\"button\">Customize</gui> button during local box setup. If the box is "
+"running, click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Properties</gui>."
+msgstr ""
+"Egenskabsvisningen kan også tilgås med assistentens <gui style=\"button"
+"\">Tilpas</gui>-knappen under opsætning af lokal boks. Hvis boksen kører, så "
+"klik på menuknappen (<_:media-1/>) i hovedlinjen og vælg <gui>Egenskaber</"
+"gui>."
+
+#. (itstool) path: credit/years
+#: C/keystrokes.page:12
+msgid "2017"
+msgstr "2017"
+
+#. (itstool) path: info/desc
+#: C/keystrokes.page:15
+msgid "Keystroke combinations can be sent from the menu."
+msgstr "Tastetrykkombinationer kan sendes fra menuen."
+
+#. (itstool) path: page/title
+#: C/keystrokes.page:21
+msgid "Send a keystroke combination to a box"
+msgstr "Send en tastetrykkombination til en boks"
+
+#. (itstool) path: page/p
+#: C/keystrokes.page:23
+msgid ""
+"Some combinations of keystrokes are automatically directed to the host "
+"machine. To send a key sequence instead to the running guest:"
+msgstr ""
+"Nogle kombinationer af tastetryk sendes automatisk til værtsmaskinen. For i "
+"stedet at sende en tastesekvens til den kørende gæst:"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:27
+msgid "Click the keyboard (<_:media-1/>) button in the header bar."
+msgstr "Klik på tastaturknappen (<_:media-1/>) i titellinjen."
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:31
+msgid ""
+"Click the key combination you want to send. The available key combinations "
+"are:"
+msgstr ""
+"Klik på en tastekombination du vil sende. Tilgængelige tastekombinationer:"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:34
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>Backspace</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:35
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:36
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F2</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:37
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq>"
+
+#. (itstool) path: item/p
+#: C/keystrokes.page:38
+msgid "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key><key>F7</key></keyseq>"
+
+#. (itstool) path: note/p
+#: C/keystrokes.page:44
+msgid ""
+"If your guest operating system is Linux, you can often use one of these key "
+"sequences to switch to the first virtual console, and another to switch back "
+"to the graphical console. In a number of Linux distributions, "
+"<keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq> will switch to "
+"the virtual console, and <keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></"
+"keyseq> will switch back to the graphical desktop."
+msgstr ""
+"Hvis dit gæstestyresystem er Linux, så kan du ofte bruge en af disse "
+"tastesekvenser for at skifte til den første virtuelle konsol, og en anden "
+"for at skifte tilbage til den grafiske konsol. I nogle Linux-distributioner, "
+"vil <keyseq><key>Ctrl</key><key>Alt</key><key>F3</key></keyseq> skifte til "
+"den virtuelle konsol, og <keyseq><key>Ctrl</key><key>Alt</key><key>F1</key></"
+"keyseq> vil skifte tilbage til det grafiske skrivebord."
+
+#. (itstool) path: p/link
+#: C/legal.xml:4
+msgid "Creative Commons Attribution-Share Alike 3.0 Unported License"
+msgstr ""
+"Creative Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret-licens"
+
+#. (itstool) path: license/p
+#: C/legal.xml:3
+msgid "This work is licensed under a <_:link-1/>."
+msgstr "Værket er licenseret under en <_:link-1/>."
+
+#. (itstool) path: info/desc
+#: C/prop-system.page:16
+msgid "Specify RAM and maximum disk allocation."
+msgstr "Angiv allokering af RAM og maksimal diskplads."
+
+#. (itstool) path: page/title
+#: C/prop-system.page:21
+msgid "Adjust the system requirements of a box"
+msgstr "Juster systemkravene for en boks"
+
+#. (itstool) path: page/p
+#: C/prop-system.page:23
+msgid ""
+"In <app>Boxes</app>, each virtual machine has its own settings for RAM and "
+"maximum allocated disk space."
+msgstr ""
+"I <app>Boxes</app> har hver virtuel maskine sine egne indstillinger til RAM "
+"og maksimal allokeret diskplads."
+
+#. (itstool) path: item/p
+#: C/prop-system.page:31 C/prop-trouble.page:33 C/shutdown.page:32
+msgid "Click the <gui>System</gui> tab."
+msgstr "Klik på <gui>System</gui>-fanebladet."
+
+#. (itstool) path: item/p
+#: C/prop-system.page:32
+msgid ""
+"Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
+"reflect the desired values."
+msgstr ""
+"Juster <gui>Hukommelse</gui>- og <gui>Maksimal diskstørrelse</gui>-skyderne, "
+"så de har de ønskede værdier."
+
+#. (itstool) path: note/p
+#: C/prop-system.page:37
+msgid ""
+"You shouldn't allocate all the memory available as your host system also "
+"needs memory to run and the more memory is allocated, the longer it will "
+"take to suspend/resume. The recommended memory will be sufficient since this "
+"information comes from the OSes documentations."
+msgstr ""
+"Du bør ikke allokere alt den tilgængelige hukommelse fordi dit værtssystem "
+"også har brug for hukommelse for at køre, og jo mere hukommelse der "
+"allokeres, jo længere tager det at suspendere/genoptage. Den anbefalede "
+"hukommelse er tilstrækkelig eftersom informationen kommer fra styresystemets "
+"dokumentationer."
+
+#. (itstool) path: info/desc
+#: C/prop-trouble.page:16
+msgid "Diagnose problems with your box using the log file."
+msgstr "Diagnosticer problemer med din boks ved at bruge logfilen."
+
+#. (itstool) path: page/title
+#: C/prop-trouble.page:21
+msgid "View the troubleshooting log of a box"
+msgstr "Vis fejlfindingsloggen for en boks"
+
+#. (itstool) path: page/p
+#: C/prop-trouble.page:23
+msgid ""
+"If a box is having a problem starting up or running, clues to help you fix "
+"the problem may be found in the trouble log. The trouble log displays the "
+"virtual machine state, the virtual machine libvirt configuration, and the "
+"QEMU hypervisor log."
+msgstr ""
+"Hvis en boks har problemer med at starte eller køre, så kan du finde "
+"ledetråde, som kan hjælpe dig til at rette problemet, i fejlfindingsloggen. "
+"Fejlfindingsloggen viser tilstanden for den virtuelle maskine, libvirt-"
+"konfigurationen til den virtuelle maskine, og QEMUs hypervisor-log."
+
+#. (itstool) path: item/p
+#: C/prop-trouble.page:34
+msgid ""
+"Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
+"log."
+msgstr ""
+"Klik på <gui style=\"button\">Fejlfindingslog</gui>-knappen for at vise "
+"loggen."
+
+#. (itstool) path: info/desc
+#: C/search.page:17
+msgid "Quickly access a box by name."
+msgstr "Tilgå hurtigt en boks efter navn."
+
+#. (itstool) path: page/title
+#: C/search.page:20
+msgid "Search for a box"
+msgstr "Søg efter en boks"
+
+#. (itstool) path: page/p
+#: C/search.page:22
+msgid ""
+"If there is more than one box, you can locate or filter boxes by name in the "
+"<link xref=\"interface#collection\">collection view</link> or <link xref="
+"\"interface#selection\">selection mode</link>. Click the search icon, or "
+"just start typing to initiate a search."
+msgstr ""
+"Hvis der er mere end én boks, så kan du finde eller filtrere bokse efter "
+"navn i <link xref=\"interface#collection\">samlingsvisningen</link> eller "
+"<link xref=\"interface#selection\">markeringstilstanden</link>. Klik på søg-"
+"ikonet eller begynd blot at skrive for at starte en søgning."
+
+#. (itstool) path: page/p
+#: C/search.page:27
+msgid "Press <key>Esc</key> to dismiss the search."
+msgstr "Tryk på <key>Esc</key> for at lukke søgningen."
+
+#. (itstool) path: info/desc
+#: C/shared-folders.page:15
+msgid "Share folders between host and guest."
+msgstr "Del mapper mellem værten og gæsten."
+
+#. (itstool) path: page/title
+#: C/shared-folders.page:20
+msgid "Shared Folders"
+msgstr "Delte mapper"
+
+#. (itstool) path: page/p
+#: C/shared-folders.page:22
+msgid ""
+"If your virtual machine is running and contains spice-webdavd, you may want "
+"to set folders in your host system which you desire to browse from inside "
+"your virtual machine."
+msgstr ""
+"Hvis din virtuelle maskine kører og indeholder spice-webdavd, så vil du "
+"måske indstille mapperne i dit værtssystem som du ønsker at gennemse inden i "
+"din virtuelle maskine."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:27
+msgid "Make sure your virtual machine is running."
+msgstr "Sørg for at din virtuelle maskine kører."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:28 C/usb-redirection.page:46
+msgid ""
+"Right-click on the box in the collection view and select <gui>Properties</"
+"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Properties</gui>."
+msgstr ""
+"Højreklik på boksen i samlingsvisningen og vælg <gui>Egenskaber</gui> eller "
+"klik på menuknappen (<_:media-1/>) i hovedlinjen og vælg <gui>Egenskaber</"
+"gui>."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:32
+msgid "Click the <gui>Devices &amp; Shares</gui> tab."
+msgstr "Klik på <gui>Enheder &amp; deling</gui>-fanebladet."
+
+#. (itstool) path: item/p
+#: C/shared-folders.page:33
+msgid ""
+"In the <gui>Folder Shares</gui> section you can view, remove, and create new "
+"shared folders."
+msgstr ""
+"I afsnittet <gui>Delte mapper</gui> kan du vise, fjerne og oprette nye delte "
+"mapper."
+
+#. (itstool) path: credit/name
+#: C/shortcuts.page:11
+msgid "Lasse Schuirmann"
+msgstr "Lasse Schuirmann"
+
+#. (itstool) path: info/desc
+#: C/shortcuts.page:18
+msgid "Operate <app>Boxes</app> using keyboard shortcuts."
+msgstr "Brug <app>Boxes</app> med tastaturgenveje."
+
+#. (itstool) path: page/title
+#: C/shortcuts.page:21
+msgid "Keyboard shortcuts"
+msgstr "Tastaturgenveje"
+
+#. (itstool) path: page/p
+#: C/shortcuts.page:23
+msgid ""
+"Various shortcuts can be used to operate Boxes. Besides mnemonics, the "
+"following shortcuts are available:"
+msgstr ""
+"Diverse genveje kan bruges til at styre Boxes. Udover mnemonics findes "
+"følgende genveje:"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:29
+msgid "Action"
+msgstr "Handling"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:32
+msgid "Shortcut"
+msgstr "Genvej"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:39
+msgid "Create new virtual machine"
+msgstr "Opret ny virtuel maskine"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:42
+msgid "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>N</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:47
+msgid "Toggle search"
+msgstr "Søgning til/fra"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:50
+msgid "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>F</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:55
+msgid "Go back"
+msgstr "Gå tilbage"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:58
+msgid "<keyseq><key>Alt</key><key>Left</key></keyseq>"
+msgstr "<keyseq><key>Alt</key><key>Venstre</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:63
+msgid "Go forward"
+msgstr "Gå fremad"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:66
+msgid "<keyseq><key>Alt</key><key>Right</key></keyseq>"
+msgstr "<keyseq><key>Alt</key><key>Højre</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:71
+msgid "Cancel"
+msgstr "Annuller"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:74
+msgid "<keyseq><key>Escape</key></keyseq>"
+msgstr "<keyseq><key>Escape</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:79
+msgid "Release mouse and keyboard grab"
+msgstr "Slip grebet om musen og tastaturet"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:82
+msgid "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Alt</key></keyseq>"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:87
+msgid "Quit Boxes"
+msgstr "Afslut Boxes"
+
+#. (itstool) path: td/p
+#: C/shortcuts.page:90
+msgid "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+msgstr "<keyseq><key>Ctrl</key><key>Q</key></keyseq>"
+
+#. (itstool) path: info/desc
+#: C/shutdown.page:16
+msgid "Shut down a box that has stopped working."
+msgstr "Sluk en boks som er holdt op med at fungere."
+
+#. (itstool) path: page/title
+#: C/shutdown.page:21
+msgid "Force a box to shut down"
+msgstr "Tving en boks til at slukke"
+
+#. (itstool) path: page/p
+#: C/shutdown.page:23
+msgid ""
+"If a box stops responding, you can force it to shut down. This allows you to "
+"restart the virtual machine in the hope of returning it to its working state."
+msgstr ""
+"Hvis en boks holder op med at svare, så kan du tvinge den til at lukke. Det "
+"giver dig mulighed for at genstarte den virtuelle maskine i håb om at den "
+"vender tilbage til en tilstand, hvor den virker."
+
+#. (itstool) path: item/p
+#: C/shutdown.page:28
+msgid ""
+"Open the <link xref=\"interface#properties\">properties view</link> for the "
+"box. If the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Properties</gui>."
+msgstr ""
+"Åbn <link xref=\"interface#properties\">egenskabsvisningen</link> til "
+"boksen. Hvis boksen kører, så klik på menuknappen (<_:media-1/>) i "
+"hovedlinjen og vælg <gui>Egenskaber</gui>."
+
+#. (itstool) path: item/p
+#: C/shutdown.page:33
+msgid "Click the <gui style=\"button\">Force Shutdown</gui> button."
+msgstr "Klik på <gui style=\"button\">Gennemtving nedlukning</gui>-knappen."
+
+#. (itstool) path: info/desc
+#: C/snapshot-create.page:22
+msgid "Save the state of a box for later use."
+msgstr "Gem tilstanden for en boks så den kan bruges senere."
+
+#. (itstool) path: page/title
+#: C/snapshot-create.page:27
+msgid "Create a snapshot"
+msgstr "Opret et øjebliksbillede"
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:29
+msgid ""
+"If your virtual machine is operating perfectly in a desired configuration, "
+"you may want to save the setup before it breaks because of a software "
+"upgrade or configuration change. Taking a snapshot of the box preserves the "
+"current state so you can return to it as often as you want."
+msgstr ""
+"Hvis din virtuelle maskine fungerer perfekt med en ønskede konfiguration, så "
+"vil du måske gemme opsætningen inden den går i stykker pga. en "
+"softwareopgradering eller ændring i konfigurationen. Når der tages et "
+"øjebliksbillede af boksen, så bevares den nuværende tilstand, så du kan "
+"vende tilbage til den, så tit du vil."
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:34
+msgid ""
+"Snapshots include the exact state of your virtual machine disk and they can "
+"also include the memory data for boxes which are running at the moment of "
+"the snapshot creation."
+msgstr ""
+"Øjebliksbilleder inkluderer den nøjagtige tilstand af din virtuelle maskine-"
+"disk og de kan også inkludere hukommelsesdata til bokse som kører i det "
+"øjebliksbilledet blev oprettet."
+
+#. (itstool) path: item/p
+#: C/snapshot-create.page:43 C/snapshot-delete.page:30
+#: C/snapshot-rename.page:38 C/snapshot-revert.page:38
+msgid "Click the <gui>Snapshots</gui> tab."
+msgstr "Klik på <gui>Øjebliksbilleder</gui>-fanebladet."
+
+#. (itstool) path: item/p
+#: C/snapshot-create.page:44
+msgid "Click <key>+</key> below the <gui>Snapshots</gui> list."
+msgstr "Klik på <key>+</key> under <gui>Øjebliksbilleder</gui>-listen."
+
+#. (itstool) path: page/p
+#: C/snapshot-create.page:47
+msgid ""
+"A snapshot is saved reflecting the current state of your box. It appears in "
+"the list."
+msgstr ""
+"Der gemmes et øjebliksbillede med boksens nuværende tilstand. "
+"Øjebliksbilledet vises i listen."
+
+#. (itstool) path: info/desc
+#: C/snapshot-delete.page:16
+msgid "Remove a snapshot that you no longer need."
+msgstr "Fjern et øjebliksbillede som du ikke længere har brug for."
+
+#. (itstool) path: page/title
+#: C/snapshot-delete.page:21
+msgid "Delete a snapshot"
+msgstr "Slet et øjebliksbillede"
+
+#. (itstool) path: page/p
+#: C/snapshot-delete.page:23
+msgid "A snapshot that is no longer needed can be removed from the list."
+msgstr ""
+"Et øjebliksbillede der ikke længere er brug for kan fjernes fra listen."
+
+#. (itstool) path: item/p
+#: C/snapshot-delete.page:31
+msgid "Select the snapshot to be deleted from the list."
+msgstr "Vælg det øjebliksbillede som skal slettes, fra listen."
+
+#. (itstool) path: item/p
+#: C/snapshot-delete.page:32
+msgid "Click the gear button on the right and select <gui>Delete</gui>."
+msgstr "Klik på tandhjulsknappen til højre og vælg <gui>Slet</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-rename.page:16
+msgid "Give the snapshot a meaningful name."
+msgstr "Giv øjebliksbilledet et relevant navn."
+
+#. (itstool) path: page/title
+#: C/snapshot-rename.page:21
+msgid "Rename a snapshot"
+msgstr "Omdøb et øjebliksbillede"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:23
+msgid ""
+"By default, a snapshot is given a generic name based on the timestamp, like:"
+msgstr ""
+"Som standard gives et øjebliksbillede et generisk navn baseret på "
+"tidsstemplet, såsom:"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:26
+msgid "<file>09/14/2014, 11:54:36 AM</file>"
+msgstr "<file>14-09-2014, 11:54:36</file>"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:28
+msgid "You may want to change the name to something more meaningful, such as:"
+msgstr "Det kan være du vil ændre navnet til noget mere relevant, såsom:"
+
+#. (itstool) path: page/p
+#: C/snapshot-rename.page:30
+msgid ""
+"<file>Fedora_22_with_jhbuild</file> or <file>Windows 7 plus GTK+ 3.6.4</"
+"file>."
+msgstr ""
+"<file>Fedora_22_med_jhbuild</file> eller <file>Windows 7 plus GTK+ 3.6.4</"
+"file>."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:39
+msgid "From the list, select the snapshot to be renamed."
+msgstr "Vælg det øjebliksbillede som skal omdøbes, i listen."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:40
+msgid "Click the gear button on the right and select <gui>Rename</gui>."
+msgstr "Klik på tandhjulsknappen til højre og vælg <gui>Omdøb</gui>."
+
+#. (itstool) path: item/p
+#: C/snapshot-rename.page:42
+msgid "Type the desired name and press <gui style=\"button\">Done</gui>."
+msgstr "Skriv det ønskede navn og tryk på <gui style=\"button\">Færdig</gui>."
+
+#. (itstool) path: info/desc
+#: C/snapshot-revert.page:22
+msgid "Change back to the state of a saved snapshot."
+msgstr "Skift tilbage til tilstanden i det gemte øjebliksbillede."
+
+#. (itstool) path: page/title
+#: C/snapshot-revert.page:27
+msgid "Revert the state of a box"
+msgstr "Vend tilbage til boksens tilstand"
+
+#. (itstool) path: page/p
+#: C/snapshot-revert.page:29
+msgid ""
+"<em>Reverting</em> to a snapshot restores the state of the virtual machine "
+"saved in that snapshot. The memory state also gets restored, bringing back "
+"running programs and settings at the exact same state of the snapshot "
+"creation."
+msgstr ""
+"<em>Vender tilbage til</em> et øjebliksbillede, gendanner tilstanden af den "
+"virtuelle maskine som er gemt i øjebliksbilledet. Hukommelsestilstanden "
+"gendannes også, hvorved kørende programmer og indstillinger bringes tilbage "
+"til nøjagtigt den samme tilstand som da øjebliksbilledet blev oprettet."
+
+#. (itstool) path: item/p
+#: C/snapshot-revert.page:39
+msgid "From the list, select the snapshot to which you want to revert."
+msgstr "Vælg det øjebliksbillede som du vil vende tilbage til, i listen."
+
+#. (itstool) path: item/p
+#: C/snapshot-revert.page:41
+msgid ""
+"Click the gear button on the right and select <gui>Revert to this state</"
+"gui>."
+msgstr ""
+"Klik på tandhjulsknappen til højre og vælg <gui>Vend tilbage til denne "
+"tilstand</gui>."
+
+#. (itstool) path: page/p
+#: C/snapshot-revert.page:45
+msgid ""
+"Changes made to the virtual machine since the snapshot was saved are "
+"discarded."
+msgstr ""
+"Ændringer som er foretaget til den virtuelle maskine siden øjebliksbilledet "
+"blev gemt, forkastes."
+
+#. (itstool) path: page/title
+#: C/supported-protocols.page:26
+msgid "What is the technology used by Boxes?"
+msgstr "Hvilken teknologi bruges af Boxes?"
+
+#. (itstool) path: page/p
+#: C/supported-protocols.page:36
+msgid ""
+"Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and <app>spice-gtk</"
+"app> to allow users to easily manage virtual machines and connect to remote "
+"machines."
+msgstr ""
+"Boxes bruger <app>qemu-kvm</app>, <app>libvirt-glib</app> og <app>spice-gtk</"
+"app> til at give brugerne mulighed for let at håndtere virtuelle maskiner og "
+"oprette forbindelse til eksterne maskiner."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:42
+msgid "QEMU with KVM"
+msgstr "QEMU med KVM"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:44
+msgid ""
+"<app>QEMU</app> is a machine emulator and virtualizer. As a machine "
+"emulator, it can run OSes and programs made for one machine (e.g. an ARM "
+"board) on a different machine (e.g. your own PC). As a virtualizer, QEMU "
+"achieves near native performance by executing the guest code directly on the "
+"host CPU using KVM."
+msgstr ""
+"<app>QEMU</app> er en maskinemulator og virtualizer. Som en maskinemulator "
+"kan den køre styresystemer og programmer som er lavet til en maskine (f.eks. "
+"et ARM-board) på en anden maskine (f.eks. din egen PC). Som en virtualizer "
+"opnår QEMU næsten det oprindelige systems ydelse når gæstens kode køres "
+"direkte på værtens CPU med KVM."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:50
+msgid ""
+"<app>KVM</app> (Kernel-based Virtual Machine) is a Linux kernel module that "
+"allows a user space program to use the hardware virtualization features of "
+"various processors."
+msgstr ""
+"<app>KVM</app> (kernebaseret virtuel maskine) er et Linux-kernemodul, som "
+"gør det muligt for et brugerrum-program at bruge "
+"hardwarevirtualiseringsfunktioner i diverse processorer."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:57
+msgid "libvirt"
+msgstr "libvirt"
+
+# scootergrisen: fra gennemlæsning: nu findes der jo værktøjskasse, så vi ikke behøver låne kit også
+#. (itstool) path: section/p
+#: C/supported-protocols.page:59
+msgid ""
+"<app>libvirt</app> is a toolkit for manipulating (creating, deleting and "
+"modifying) and monitoring virtual machines on remote hosts, securely."
+msgstr ""
+"<app>libvirt</app> er et værktøjskit til manipulation (oprettelse, sletning "
+"og redigering) og overvågning af virtuelle maskiner på eksterne værter, "
+"sikkert."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:62
+msgid ""
+"<app>libvirt-glib</app> wraps libvirt to provide a high-level object-"
+"oriented API suited for glib-based applications."
+msgstr ""
+"<app>libvirt-glib</app> omslutter libvirt for at give et objektorienteret "
+"højniveau-API der egner dig til glib-baserede programmer."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:68
+msgid "SPICE"
+msgstr "SPICE"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:70
+msgid ""
+"<app>SPICE</app>, the Simple Protocol for Independent Computing "
+"Environments, is a system for accessing and controlling remote desktops "
+"across a network."
+msgstr ""
+"<app>SPICE</app>, Simple Protocol for Independent Computing Environments, er "
+"et system til at tilgå og styre eksterne skriveborde på tværs af netværk."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:74
+msgid ""
+"The SPICE server is a library that runs inside the QEMU binary. It is mainly "
+"responsible for authentication of client connections, relaying of graphics "
+"output of the guest OS to the client and relaying of user input (mouse and "
+"keyboard) from client to guest."
+msgstr ""
+"SPICE-serveren er et bibliotek som kører inden i QEMU-binæren. Den er "
+"hovedsageligt ansvarlig for godkendelse af klientforbindelser, videregivelse "
+"af grafikoutput for gæstens styresystem til klienten, og videregivelse af "
+"brugerinput (mus og tastatur) fra klienten til gæsten."
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:79
+msgid ""
+"<app>spice-gtk</app> is the SPICE client that provides a view into the guest "
+"OS."
+msgstr ""
+"<app>spice-gtk</app> er den SPICE-klient som giver en visning ind i "
+"gæstestyresystemet."
+
+#. (itstool) path: section/title
+#: C/supported-protocols.page:85
+msgid "VNC"
+msgstr "VNC"
+
+#. (itstool) path: section/p
+#: C/supported-protocols.page:87
+msgid ""
+"<app>VNC</app>, Virtual Network Computing, used only for remote display, is "
+"a well know protocol but quite limited and slow."
+msgstr ""
+"<app>VNC</app>, Virtual Network Computing, bruges kun til ekstern visning — "
+"det er en velkendt protokol men meget begrænset og langsom."
+
+#. (itstool) path: credit/name
+#: C/system-requirements.page:21
+msgid "Ekaterina Gerasimova"
+msgstr "Ekaterina Gerasimova"
+
+#. (itstool) path: credit/name
+#: C/system-requirements.page:26
+msgid "Zeeshan Ali (Khattak)"
+msgstr "Zeeshan Ali (Khattak)"
+
+#. (itstool) path: info/desc
+#: C/system-requirements.page:31
+msgid "Hardware required to run a <app>Boxes</app> virtual machine."
+msgstr "Hardware som kræves for at køre en <app>Boxes</app>-virtuel maskine."
+
+#. (itstool) path: page/title
+#: C/system-requirements.page:36
+msgid "Get started with virtual machines"
+msgstr "Kom godt i gang med virtuelle maskiner"
+
+#. (itstool) path: page/p
+#: C/system-requirements.page:38
+msgid ""
+"Your computer should meet certain criteria for best performance when "
+"creating and running virtual machines in <app>Boxes</app>. These "
+"requirements are specified by the vendors of the operating systems. "
+"<app>Boxes</app> automatically allocates resources to virtual machines based "
+"on vendor recommendations. When such information is unavailable to "
+"<app>Boxes</app>, it allocates the following:"
+msgstr ""
+"Din computer bør leve op til bestemte kriterier for at få den bedste ydelse "
+"når der oprettes og køres virtuelle maskiner i <app>Boxes</app>. Kravene "
+"angives af styresystemernes producenter. <app>Boxes</app> allokerer "
+"automatisk ressourcer til virtuelle maskiner baseret på producentens "
+"anbefalinger. Når informationen ikke er tilgængelig for <app>Boxes</app>, så "
+"allokeres følgende:"
+
+#. (itstool) path: item/p
+#: C/system-requirements.page:47
+msgid "20 GB of maximum storage space."
+msgstr "20 GB maksimal lagerplads."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:49
+msgid ""
+"This does not mean that <app>Boxes</app> will allocate 20 GB of space when "
+"creating the virtual machine. The actual disk space used by <app>Boxes</app> "
+"will be less than (or in worst case, equal to) the disk space used by the "
+"virtual machine itself."
+msgstr ""
+"Det betyder ikke at <app>Boxes</app> allokerer 20 GB plads når den virtuelle "
+"maskine oprettes. Den faktiske diskplads som bruges af <app>Boxes</app> vil "
+"være mindre end (eller i værste fald, det samme som) den diskplads der "
+"bruges af den virtuelle maskine."
+
+#. (itstool) path: item/p
+#: C/system-requirements.page:56
+msgid "500 MB of RAM."
+msgstr "500 MB RAM."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:61
+msgid ""
+"<app>Boxes</app> performs best if your computer processor supports hardware "
+"<link xref=\"virtualization\">virtualization extensions</link> and these are "
+"enabled in the system BIOS."
+msgstr ""
+"<app>Boxes</app> yder bedst, hvis din computers processor understøtter "
+"hardware<link xref=\"virtualization\">virtualiseringsudvidelser</link>, og "
+"de er aktiveret i systemets BIOS."
+
+#. (itstool) path: note/p
+#: C/system-requirements.page:66
+msgid ""
+"It is also recommended that you have at least 8GB RAM and 20GB of free disk "
+"space on your computer to efficiently run <app>Boxes</app>."
+msgstr ""
+"Det anbefales også, at du har mindst 8 GB RAM og 20 GB ledig diskplads på "
+"din computer for at kunne køre <app>Boxes</app> tilfredsstillende."
+
+#. (itstool) path: info/desc
+#: C/usb-redirection.page:29
+msgid "Allow your box to access a USB device."
+msgstr "Tillad at din boks kan tilgå en USB-enhed."
+
+#. (itstool) path: page/title
+#: C/usb-redirection.page:35
+msgid "USB Redirection"
+msgstr "USB-viderestilling"
+
+#. (itstool) path: page/p
+#: C/usb-redirection.page:37
+msgid ""
+"<sys>USB</sys> is a universal hardware bus protocol used to plug any kind of "
+"device into your computer. <sys>USB redirection</sys> makes devices plugged "
+"into your local computer available in the machines you are connected to in "
+"<app>Boxes</app>. For instance, a USB flash drive or a webcam will appear as "
+"directly connected to the remote or virtual computer."
+msgstr ""
+"<sys>USB</sys> er en universel hardwarebus-protokol som bruges til at "
+"tilslutte alle slags enheder til din computer. <sys>USB-viderestilling</sys> "
+"gør de enheder som er tilsluttet til din lokale computer tilgængelige i "
+"maskinen du har oprettet forbindelse til i <app>Boxes</app>. F.eks. kan et "
+"USB-flashdrev eller et -webkamera vises som direkte tilsluttet til fjern- "
+"eller virtuelle computer."
+
+#. (itstool) path: steps/title
+#: C/usb-redirection.page:44
+msgid "To enable host USB devices in a box:"
+msgstr "Aktivér værtens USB-enheder i en boks:"
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:45
+msgid "Make sure the box is running."
+msgstr "Sørg for at boksen kører."
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:50
+msgid "Click the <gui>Devices</gui> tab."
+msgstr "Klik på <gui>Enheder</gui>-fanebladet."
+
+#. (itstool) path: item/p
+#: C/usb-redirection.page:51
+msgid ""
+"<gui>USB devices</gui> connected to the host machine are shown in a list. "
+"Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
+msgstr ""
+"<gui>USB-enheder</gui> som er tilsluttet værtsmaskinen vises i en liste. "
+"Indstil kontakten ved siden af hver ønskede enhed til <gui style=\"switch"
+"\">TÆND</gui>."
+
+#. (itstool) path: credit/name
+#: C/virtualization.page:15
+msgid "Priya Pandya"
+msgstr "Priya Pandya"
+
+#. (itstool) path: credit/years
+#: C/virtualization.page:17
+msgid "2019"
+msgstr "2019"
+
+#. (itstool) path: info/desc
+#: C/virtualization.page:22
+msgid "Check the resources available to <app>Boxes</app>."
+msgstr "Tjek de ressourcer som er tilgængelige for <app>Boxes</app>."
+
+#. (itstool) path: page/title
+#: C/virtualization.page:25
+msgid "Using processor hardware virtualization"
+msgstr "Brug af processorens hardwarevirtualisering"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:27
+msgid ""
+"To determine whether your computer supports processor virtualization "
+"hardware extensions, and that they have been enabled in the system BIOS, run "
+"the following in a terminal window:"
+msgstr ""
+"Kør følgende i en terminal for at afgøre om din computer understøtter "
+"hardwareudvidelser for processorvirtualisering og at de er aktiveret i "
+"systemets BIOS."
+
+#. (itstool) path: page/p
+#: C/virtualization.page:30
+msgid "<cmd>gnome-boxes --checks</cmd>"
+msgstr "<cmd>gnome-boxes --checks</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:33
+msgid "To enable Virtualization on your system:"
+msgstr "Aktivér virtualisering på dit system:"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:35
+msgid "Reboot the system and open the <gui>BIOS</gui> menu"
+msgstr "Genstart systemet og åbn <gui>BIOS</gui>-menuen"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:36
+msgid ""
+"Select <gui>Restore Defaults</gui> option and then <gui>Save and Exit</gui>"
+msgstr ""
+"Vælg <gui>Gendan standarder</gui>-indstillingen og så <gui>Gem og afslut</"
+"gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:37
+msgid "Reboot and again open <gui>BIOS</gui>"
+msgstr "Genstart og åbn <gui>BIOS</gui> igen"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:38
+msgid ""
+"Open the <gui>Processor</gui> submenu in the <gui>Chipset, Advanced CPU "
+"Configuration</gui> or <gui>Northbridge</gui>"
+msgstr ""
+"Åbn <gui>Processor</gui>-undermenuen i <gui>Chipset, Advanced CPU "
+"Configuration</gui> eller <gui>Northbridge</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:39
+msgid ""
+"Enable <gui>Intel Virtualization Technology</gui> (also known as Intel VT) "
+"or <gui>AMD-V</gui> depending on the brand of the processor. The "
+"virtualization extensions may be labeled <gui>Virtualization Extensions, "
+"Vanderpool</gui> or various other names depending on the OEM and system BIOS"
+msgstr ""
+"Aktivér <gui>Intel Virtualization Technology</gui> (også kaldet Intel VT) "
+"eller <gui>AMD-V</gui>, afhængig af processorens mærke. "
+"Virtualiseringsudvidelserne kan hedde <gui>Virtualization Extensions, "
+"Vanderpool</gui> eller diverse andre navne afhængig af OEM'en og systemets "
+"BIOS"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:40
+msgid "<gui>Save and Exit</gui>"
+msgstr "<gui>Gem og afslut</gui>"
+
+#. (itstool) path: item/p
+#: C/virtualization.page:41
+msgid "Reboot and run: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+msgstr "Genstart og kør: <cmd>cat /proc/cpuinfo | grep vmx svm</cmd>"
+
+#. (itstool) path: page/p
+#: C/virtualization.page:44
+msgid ""
+"If there is some output then the virtualization extensions are now enabled. "
+"If there is no output your system may not have the virtualization extensions "
+"or the correct BIOS setting enabled"
+msgstr ""
+"Hvis der er output, så er virtualiseringsudvidelsen nu aktiveret. Hvis der "
+"ikke er noget output, så har dit system måske ikke aktiveret "
+"virtualiseringsudvidelserne eller den korrekte BIOS-indstilling"
+
+#. (itstool) path: page/title
+#: C/what-is-a-virtual-machine.page:26
+msgid "What is a virtual machine?"
+msgstr "Hvad er en virtuel maskine?"
+
+#. (itstool) path: page/p
+#: C/what-is-a-virtual-machine.page:28
+msgid ""
+"A virtual machine is a simulated computer running inside another computer. "
+"The simulated computer is often called <em>guest</em>, while the real "
+"machine is called <em>host</em>."
+msgstr ""
+"En virtuel maskine er en simuleret computer som kører inden i en anden "
+"computer. Den simulerede computer kaldes ofte <em>gæst</em>, mens den ægte "
+"maskine kaldes <em>vært</em>."
+
+#. (itstool) path: page/p
+#: C/what-is-a-virtual-machine.page:31
+msgid ""
+"With <em>virtualization</em>, the guest has access to the real hardware the "
+"host is running. If the guest can run on fake hardware, it's called "
+"<em>emulation</em>."
+msgstr ""
+"Med <em>virtualisering</em> har gæsten adgang til den ægte hardware, som "
+"værten kører med. Hvis gæsten kan køre på falsk hardware, kaldes det "
+"<em>emulering</em>."
+
+#. (itstool) path: page/title
+#: C/why-do-i-need-virtual-machine.page:27
+msgid "Why do I need a virtual machine?"
+msgstr "Hvorfor har jeg brug for en virtuel maskine?"
+
+#. (itstool) path: page/p
+#: C/why-do-i-need-virtual-machine.page:29
+msgid ""
+"A virtual machine can be useful when you need to run applications that will "
+"only run on another operating system, on Microsoft Windows™ for instance. A "
+"virtual machine can also be used during software development, to test in a "
+"pristine environment."
+msgstr ""
+"En virtuel maskine kan være nyttig når du har brug for at køre programmer "
+"som kun kan køre på et andet styresystem, f.eks. på Microsoft Windows™. En "
+"virtuel maskine kan også bruges under softwareudvikling, til at test i et "
+"rent miljø."
