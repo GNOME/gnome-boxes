@@ -343,16 +343,21 @@ private class Boxes.VMConfigurator {
         var disk = new DomainDisk ();
         disk.set_type (DomainDiskType.FILE);
         disk.set_guest_device_type (DomainDiskGuestDeviceType.DISK);
-        disk.set_driver_name ("qemu");
-        disk.set_driver_format (DomainDiskFormat.QCOW2);
         disk.set_source (target_path);
-        disk.set_driver_cache (DomainDiskCacheType.WRITEBACK);
+
+        var driver = new DomainDiskDriver ();
+        driver.set_name ("qemu");
+        driver.set_format (DomainDiskFormat.QCOW2);
+        driver.set_cache (DomainDiskCacheType.WRITEBACK);
+        disk.set_driver (driver);
 
         var dev_letter_str = ((char) (dev_index + 97)).to_string ();
         if (install_media.supports_virtio_disk || install_media.supports_virtio1_disk) {
             debug ("Using virtio controller for the main disk");
             disk.set_target_bus (DomainDiskBus.VIRTIO);
             disk.set_target_dev ("vd" + dev_letter_str);
+
+            driver.set_discard (DomainDiskDriverDiscard.UNMAP);
         } else {
             if (install_media.prefers_q35) {
                 debug ("Using SATA controller for the main disk");
