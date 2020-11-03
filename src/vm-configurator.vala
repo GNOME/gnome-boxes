@@ -468,7 +468,7 @@ private class Boxes.VMConfigurator {
             libvirt_name = "sb16";
 
         var model = get_enum_value (libvirt_name, typeof (DomainSoundModel));
-        return_if_fail (model != -1);
+        return_val_if_fail (model != -1, (DomainSoundModel) DomainSoundModel.ICH9);
         return (DomainSoundModel) model;
     }
 
