@@ -257,7 +257,7 @@ private class Boxes.VMCreator : Object {
 
         try {
             if (install_media.os_media != null && VMConfigurator.is_install_config (machine.domain_config))
-                return (num_reboots == install_media.os_media.installer_reboots);
+                return (num_reboots >= install_media.os_media.installer_reboots);
             else {
                 var info = volume.get_info ();
 
