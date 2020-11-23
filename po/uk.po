@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-09-19 08:30+0000\n"
-"PO-Revision-Date: 2020-09-20 21:00+0300\n"
+"POT-Creation-Date: 2020-11-20 11:23+0000\n"
+"PO-Revision-Date: 2020-11-23 10:59+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -27,17 +27,10 @@ msgid "GNOME Boxes"
 msgstr "Коробки GNOME"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
-#| msgid "Check virtualization capabilities"
 msgid "Virtualization made simple"
 msgstr "Проста віртуалізація"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
-#| msgid ""
-#| "A simple GNOME 3 application to access remote or virtual systems. Unlike "
-#| "some other virtual machine management software, Boxes is targeted towards "
-#| "typical desktop end-users. For this reason, Boxes will not provide many "
-#| "advanced options to tweak virtual machines. Instead Boxes will focus on "
-#| "getting things working out of the box with very little input from user."
 msgid ""
 "A simple GNOME 3 application to manage virtual systems. Unlike some other "
 "virtual machine management software, Boxes is targeted towards typical "
@@ -45,18 +38,13 @@ msgid ""
 "options to tweak virtual machines. Instead Boxes will focus on getting "
 "things working out of the box with very little input from user."
 msgstr ""
-"Проста програма в GNOME 3 для доступу для керування віртуальними машинами. На "
-"відмінну від іншим програм керування віртуальними машинами, Коробки націлені "
-"на звичайного пересічного користувача. Отже, Коробки не надають багато "
-"параметрів для віртуальних налаштування машин. Натомість Коробки зосереджені "
-"на мінімальному втручанні користувача для повноцінної роботи."
+"Проста програма в GNOME 3 для доступу для керування віртуальними машинами. "
+"На відмінну від іншим програм керування віртуальними машинами, Коробки "
+"націлені на звичайного пересічного користувача. Отже, Коробки не надають "
+"багато параметрів для віртуальних налаштування машин. Натомість Коробки "
+"зосереджені на мінімальному втручанні користувача для повноцінної роботи."
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
-#| msgid ""
-#| "You want to install Boxes if you just want a very safe and easy way to "
-#| "try out new operating systems or new (potentially unstable) versions of "
-#| "your favorite operating system(s), or need to connect to a remote machine "
-#| "(for example, in your office)."
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
@@ -72,7 +60,7 @@ msgstr "Проєкт GNOME "
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
 #: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
-#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
 msgstr "Коробки"
@@ -87,7 +75,6 @@ msgstr "Перегляд і використання віртуальних ма
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-#| msgid "virtual machine;vm;vnc;rdp;"
 msgid "virtual machine;vm;"
 msgstr "віртуальна машина;vm;вм;virtual machine;"
 
@@ -131,11 +118,20 @@ msgstr "Перший запуск"
 msgid "Whether Boxes is running for the first time"
 msgstr "Чи це перший запуск Коробок"
 
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "Перевизначити тему"
+
 #: data/org.gnome.boxes.gschema.xml:53
+#| msgid "Whether Boxes is running for the first time"
+msgid "Whether Boxes will override the user's theme"
+msgstr "Чи перевизначатимуть «Коробки» тему користувача"
+
+#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "Спільні теки"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Перелік варіантів назв і шляхів для спільних тек"
 
@@ -256,12 +252,12 @@ msgstr "Розподіл ресурсів"
 msgid "Customize"
 msgstr "Налаштувати"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "Швидке встановлення"
 
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
 #: src/vm-creator.vala:106
 msgid "Cancel"
@@ -430,6 +426,14 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Перемкнути повноекранний режим"
 
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+msgstr ""
+"«Коробки» роблять знімок вашої віртуальної машини до застосування змін,"
+" надаючи вам змогу їх скасувати."
+
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Клавіатурні скорочення"
@@ -450,16 +454,12 @@ msgstr "Журнал помилок"
 msgid "_Copy to Clipboard"
 msgstr "К_опіювати в буфер"
 
-#: data/ui/properties-toolbar.ui:143
-msgid "Revert changes to original configuration"
-msgstr "Скасувати зміни до початкових налаштувань"
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "Заст_осувати"
 
-#: data/ui/properties-toolbar.ui:166
-msgid "_Save"
-msgstr "З_берегти"
-
-#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:142 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Вибрати пристрій або файл ISO"
@@ -477,7 +477,7 @@ msgid "_Delete"
 msgstr "В_илучити"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:322
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Скасувати"
 
@@ -526,16 +526,6 @@ msgstr "Вилучити"
 msgid "Done"
 msgstr "Зроблено"
 
-#: data/ui/text-editor.ui:44
-msgid ""
-"Modifying a virtual machine's configuration can cause an installed operating "
-"system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-msgstr ""
-"Внесення змін до налаштувань віртуальної машини може призвести до проблем із "
-"працездатністю встановленої операційної системи.\n"
-"Радимо створити знімок системи до внесення будь-яких значних змін."
-
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "Отакої, щось пішло не так"
@@ -577,21 +567,17 @@ msgstr "Ключ продукту"
 msgid "Welcome Tutorial"
 msgstr "Ласкаво просимо до навчального посібника"
 
-#: data/ui/welcome-tutorial.ui:35
+#: data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Ласкаво просимо до Коробок"
 
-#: data/ui/welcome-tutorial.ui:36
-msgid ""
-"Boxes makes it easy to install and run virtual machines. You can also use it "
-"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
+#: data/ui/welcome-tutorial.ui:41
+#| msgid "Select an .iso file to install a virtual machine."
+msgid "Boxes makes it easy to install and run virtual machines."
 msgstr ""
-"Boxes спрощує встановлення та роботу з віртуальними машинами. Ви також "
-"можете використовувати його для віддаленого доступу до інших комп'ютерів "
-"через протоколи SPICE, VNC, RDP або Secure Shell."
+"«Коробки» спрощують спрощує встановлення та роботу з віртуальними машинами."
 
-#: data/ui/welcome-tutorial.ui:45
+#: data/ui/welcome-tutorial.ui:50
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -601,11 +587,11 @@ msgstr ""
 "віртуальної машини. Просто почніть установлення і за вас подбають за все "
 "інше."
 
-#: data/ui/welcome-tutorial.ui:53
+#: data/ui/welcome-tutorial.ui:58
 msgid "Easy Downloads"
 msgstr "Прості звантаження"
 
-#: data/ui/welcome-tutorial.ui:54
+#: data/ui/welcome-tutorial.ui:59
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -615,11 +601,11 @@ msgstr ""
 "створення віртуальної машини. Замість цього просто виберіть операційну "
 "систему, яку бажаєте одержати, і Boxes автоматично звантажить її для вас."
 
-#: data/ui/welcome-tutorial.ui:62
+#: data/ui/welcome-tutorial.ui:67
 msgid "Drag and Drop"
 msgstr "Перетягування"
 
-#: data/ui/welcome-tutorial.ui:63
+#: data/ui/welcome-tutorial.ui:68
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -695,7 +681,7 @@ msgstr "_Далі"
 msgid "Customize Resources"
 msgstr "Налаштувати ресурси"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:324
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
 msgid "_Open"
 msgstr "_Відкрити"
 
@@ -772,54 +758,54 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Проста програма GNOME 3 для доступу до віддалених або віртуальних систем"
 
-#: src/app.vala:181 src/main.vala:9
+#: src/app.vala:183 src/main.vala:9
 msgid "Display version number"
 msgstr "Показати номер версії"
 
-#: src/app.vala:182
+#: src/app.vala:184
 msgid "Open in full screen"
 msgstr "Відкрити на весь екран"
 
-#: src/app.vala:183 src/main.vala:10
+#: src/app.vala:185 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Перевірити можливості віртуалізації"
 
-#: src/app.vala:184
+#: src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Відкрити коробку з UUID"
 
-#: src/app.vala:185
+#: src/app.vala:187
 msgid "Search term"
 msgstr "Ключове слово"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:187
+#: src/app.vala:189
 msgid "URL to display, broker or installer media"
 msgstr "URL до екрана, носія посередника або встановлювача"
 
-#: src/app.vala:198
+#: src/app.vala:200
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— проста програма для доступу до віддалених або віртуальних машин"
 
-#: src/app.vala:223
+#: src/app.vala:225
 msgid "Too many command line arguments specified.\n"
 msgstr "Вказано надто багато аргументів командного рядка.\n"
 
-#: src/app.vala:473
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Коробку «%s» встановлено і нею можна користуватись"
 
-#: src/app.vala:475
+#: src/app.vala:477
 msgid "Launch"
 msgstr "Запустити"
 
-#: src/app.vala:561
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Коробку «%s» вилучено"
 
-#: src/app.vala:562
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -828,44 +814,44 @@ msgstr[1] "%u коробки вилучено"
 msgstr[2] "%u коробок вилучено"
 msgstr[3] "%u коробку вилучено"
 
-#: src/app.vala:590 src/libvirt-machine-properties.vala:569
+#: src/app.vala:592 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Пов_ернути"
 
-#: src/app.vala:636
+#: src/app.vala:638
 msgid "Boxes is doing something"
 msgstr "Boxes щось робить"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Виберіть файли для обміну"
 
-#: src/assistant/index-page.vala:145 src/properties-window.vala:61
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
 msgstr "Відкрити"
 
-#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:882
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:235
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "32-ох бітна система x86"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "64-ох бітна система x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " від %s"
@@ -893,6 +879,36 @@ msgstr ""
 #: src/assistant/vm-assistant.vala:72
 msgid "Create"
 msgstr "Створити"
+
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "Налаштування змінено"
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr ""
+"«Коробкам» не вдалося створити знімок вашої віртуальної машини до"
+" застосування внесених вами змін."
+
+#: src/config-editor.vala:85
+#, c-format
+#| msgid "Boxes failed to save VM configuration changes: %s"
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr ""
+"«Коробкам» не вдалося застосувати зміни у налаштуваннях віртуальної машини: %s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Зміни потребують перезапуску «%s»."
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+msgid "_Restart"
+msgstr "_Перезапустити"
 
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -986,7 +1002,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Надіслати комбінації клавіш"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
 msgid "_Name"
 msgstr "_Назва"
 
@@ -1061,12 +1077,6 @@ msgstr "В/В"
 msgid "Network"
 msgstr "Мережа"
 
-#: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
-#: src/text-editor.vala:75
-msgid "_Restart"
-msgstr "_Перезапустити"
-
 #: src/libvirt-machine-properties.vala:364
 msgid "_Force Shutdown"
 msgstr "При_мусово вимкнути"
@@ -1113,13 +1123,6 @@ msgstr[3] "Зміна розміру зберігання вимагає вил�
 #: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "Процесори:"
-
-#. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
-#: src/text-editor.vala:74
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Зміни потребують перезапуску «%s»."
 
 #: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
@@ -1284,7 +1287,7 @@ msgstr "Звітувати ваду на <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s домашню сторінку: <%s>.\n"
 
-#: src/media-manager.vala:301
+#: src/media-manager.vala:304
 #, c-format
 msgid "No such file %s"
 msgstr "Немає такого файла %s"
@@ -1311,15 +1314,15 @@ msgstr "Пристрої та доступ"
 msgid "Snapshots"
 msgstr "Зрізи"
 
-#: src/remote-machine.vala:81
+#: src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "Протокол"
 
-#: src/remote-machine.vala:83
+#: src/remote-machine.vala:80
 msgid "URL"
 msgstr "URL"
 
-#: src/remote-machine.vala:85
+#: src/remote-machine.vala:82
 msgid "_URL"
 msgstr "_URL"
 
@@ -1428,18 +1431,6 @@ msgstr "Порт потрібно вказати один раз"
 msgid "Missing port in Spice URL"
 msgstr "Бракує порту в URL для Spice"
 
-#: src/text-editor.vala:42
-msgid "Unable to backup original configuration. Aborting."
-msgstr ""
-"Не вдалося створити резервну копію початкових налаштувань. Перериваємо "
-"виконання дії."
-
-#: src/text-editor.vala:67
-#, c-format
-msgid "Boxes failed to save VM configuration changes: %s"
-msgstr ""
-"«Коробкам» не вдалося зберегти зміни у налаштуваннях віртуальної машини: %s"
-
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1530,7 +1521,7 @@ msgstr "ні"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:764
+#: src/vm-configurator.vala:769
 msgid "Incapable host system"
 msgstr "Нездатна головна система"
 
@@ -1560,6 +1551,35 @@ msgstr "Не вдалось імпортувати коробку з файла 
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Лише читання"
+
+#~ msgid "Revert changes to original configuration"
+#~ msgstr "Скасувати зміни до початкових налаштувань"
+
+#~ msgid "_Save"
+#~ msgstr "З_берегти"
+
+#~ msgid ""
+#~ "Modifying a virtual machine's configuration can cause an installed "
+#~ "operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+#~ msgstr ""
+#~ "Внесення змін до налаштувань віртуальної машини може призвести до проблем "
+#~ "із працездатністю встановленої операційної системи.\n"
+#~ "Радимо створити знімок системи до внесення будь-яких значних змін."
+
+#~ msgid ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use "
+#~ "it to remotely access other computers, using SPICE, VNC, RDP or Secure "
+#~ "Shell connections."
+#~ msgstr ""
+#~ "Boxes спрощує встановлення та роботу з віртуальними машинами. Ви також "
+#~ "можете використовувати його для віддаленого доступу до інших комп'ютерів "
+#~ "через протоколи SPICE, VNC, RDP або Secure Shell."
+
+#~ msgid "Unable to backup original configuration. Aborting."
+#~ msgstr ""
+#~ "Не вдалося створити резервну копію початкових налаштувань. Перериваємо "
+#~ "виконання дії."
 
 #~ msgid "Simple remote and virtual machines"
 #~ msgstr "Проста програма для віддалених і віртуальних машин"
