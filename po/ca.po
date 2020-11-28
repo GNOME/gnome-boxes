@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-08-08 11:25+0000\n"
+"POT-Creation-Date: 2020-11-20 11:23+0000\n"
 "PO-Revision-Date: 2020-01-20 08:25+0100\n"
 "Last-Translator: Jordi Mas i Hernàndez <jmas@softcatala.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -27,43 +27,41 @@ msgid "GNOME Boxes"
 msgstr "Màquines del GNOME"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
-msgid "Simple remote and virtual machines"
-msgstr "Sistemes remots o màquines virtuals de forma senzilla"
+msgid "Virtualization made simple"
+msgstr "La virtualització feta simple"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
+"A simple GNOME 3 application to manage virtual systems. Unlike some other "
+"virtual machine management software, Boxes is targeted towards typical "
+"desktop end-users. For this reason, Boxes will not provide many advanced "
+"options to tweak virtual machines. Instead Boxes will focus on getting "
+"things working out of the box with very little input from user."
 msgstr ""
-"Un programa senzill del GNOME 3 per a accedir a sistemes virtuals o remots. "
-"A diferència d'altres programaris de gestió de màquines virtuals, el "
-"Màquines està adreçat al típic usuari d'escriptori. Per aquesta raó, el "
-"Màquines no proporciona gaires opcions avançades per a parametritzar les "
-"màquines virtuals. En canvi, el Màquines se centra a fer que les coses "
-"funcionin sense gaires problemes, ni massa intervenció de l'usuari."
+"Un programa senzill del GNOME 3 per a gestionar sistemes virtuals. A "
+"diferència d'altres programaris de gestió de màquines virtuals, el Màquines "
+"està adreçat al típic usuari d'escriptori. Per aquesta raó, el Màquines no "
+"proporciona gaires opcions avançades per a parametritzar les màquines "
+"virtuals. En canvi, el Màquines se centra a fer que les coses funcionin "
+"sense gaires problemes, ni massa intervenció de l'usuari."
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
+"favorite operating system(s)."
 msgstr ""
 "Voleu instal·lar el Màquines del GNOME si voleu un sistema fàcil i segur de "
 "provar nous sistemes operatius o noves (i potencialment inestables) versions"
-" del vostre sistema operatiu preferit, o us cal connectar-vos a una màquina "
-"remota (per exemple, de la vostra feina)."
+" del vostre sistema operatiu preferit."
 
-#: data/org.gnome.Boxes.appdata.xml.in:70
+#: data/org.gnome.Boxes.appdata.xml.in:69
 msgid "The GNOME Project"
 msgstr "El projecte GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
 #: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
-#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
 msgstr "Màquines"
@@ -79,8 +77,8 @@ msgstr "Visualitzeu i utilitzeu màquines virtuals"
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;vnc;rdp;"
-msgstr "màquina virtual;vm;vnc;rdp;"
+msgid "virtual machine;vm;"
+msgstr "màquina virtual;vm;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
@@ -122,11 +120,19 @@ msgstr "Primera execució"
 msgid "Whether Boxes is running for the first time"
 msgstr "Si el Màquines està executant-se per primer cop"
 
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "Sobreescriu el tema"
+
 #: data/org.gnome.boxes.gschema.xml:53
+msgid "Whether Boxes will override the user's theme"
+msgstr "Si Màquines substituirà el tema de l'usuari"
+
+#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "Carpetes compartides"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Matriu de variables dels noms de les carpetes compartides i l’assignació de "
@@ -251,33 +257,16 @@ msgstr "Assignació de recursos"
 msgid "Customize"
 msgstr "Personalitza"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "Instal·lació ràpida"
 
-#: data/ui/assistant/remote-connection.ui:6
-msgid "Connect to a Box"
-msgstr "Connecta a una màquina"
-
-#: data/ui/assistant/remote-connection.ui:23
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
-msgstr ""
-"Introduïu una adreça a connectar-se. Les adreces poden començar amb "
-"spice://, rdp://, ssh:// o vnc://."
-
-#: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
 #: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Cancel·la"
-
-#: data/ui/assistant/remote-connection.ui:46
-msgid "Connect"
-msgstr "Connecta"
 
 #: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
@@ -329,14 +318,6 @@ msgstr "Cerca"
 #: data/ui/collection-toolbar.ui:207
 msgid "Downloads"
 msgstr "Baixades"
-
-#: data/ui/collection-toolbar.ui:233
-msgid "Create a Virtual Machine…"
-msgstr "Crea una màquina virtual…"
-
-#: data/ui/collection-toolbar.ui:240
-msgid "Connect to a Remote Computer…"
-msgstr "Connecta a una màquina remota…"
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -449,6 +430,14 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Pantalla completa/Torna a pantalla normal"
 
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to"
+" revert them."
+msgstr ""
+"Màquines captura la màquina virtual abans d'aplicar canvis que us permetin "
+"revertir-los."
+
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Dreceres de teclat"
@@ -469,16 +458,12 @@ msgstr "Registre de problemes"
 msgid "_Copy to Clipboard"
 msgstr "_Copia-ho al porta-retalls"
 
-#: data/ui/properties-toolbar.ui:143
-msgid "Revert changes to original configuration"
-msgstr "Reverteix els canvis a la configuració original"
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "_Aplica"
 
-#: data/ui/properties-toolbar.ui:166
-msgid "_Save"
-msgstr "_Desa"
-
-#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:142 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Seleccioneu un dispositiu o un fitxer ISO"
@@ -496,7 +481,7 @@ msgid "_Delete"
 msgstr "_Suprimeix"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:326
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
@@ -545,15 +530,6 @@ msgstr "Suprimeix"
 msgid "Done"
 msgstr "Fet"
 
-#: data/ui/text-editor.ui:44
-msgid ""
-"Modifying a virtual machine's configuration can cause an installed operating system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-msgstr ""
-"La modificació de la configuració d'una màquina virtual pot fer que un "
-"sistema operatiu instal·lat no funcioni correctament.\nEs recomana fer una "
-"instantània abans de realitzar canvis importants."
-
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "S'ha produït un error"
@@ -596,21 +572,15 @@ msgstr "Clau del producte"
 msgid "Welcome Tutorial"
 msgstr "Tutorial de benvinguda"
 
-#: data/ui/welcome-tutorial.ui:35
+#: data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Us donem la benvinguda al Màquines"
 
-#: data/ui/welcome-tutorial.ui:36
-msgid ""
-"Boxes makes it easy to install and run virtual machines. You can also use it"
-" to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
-msgstr ""
-"El Màquines facilita la instal·lació i execució de màquines virtuals. També "
-"podeu utilitzar-lo per a accedir de forma remota a altres equips, utilitzant"
-" connexions SPICE, VNC, RDP o Secure Shell."
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "Màquines fa fàcil instal·lar i executar màquines virtuals."
 
-#: data/ui/welcome-tutorial.ui:45
+#: data/ui/welcome-tutorial.ui:50
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -620,11 +590,11 @@ msgstr ""
 "d'instal·lació per a una màquina virtual nova. Simplement inicieu la "
 "instal·lació i el Màquines s'encarregarà de tot."
 
-#: data/ui/welcome-tutorial.ui:53
+#: data/ui/welcome-tutorial.ui:58
 msgid "Easy Downloads"
 msgstr "Baixades senzilles"
 
-#: data/ui/welcome-tutorial.ui:54
+#: data/ui/welcome-tutorial.ui:59
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -634,11 +604,11 @@ msgstr ""
 "virtual. En comptes, només cal que seleccioneu el sistema operatiu que voleu"
 " configurar i el Màquines el baixarà automàticament."
 
-#: data/ui/welcome-tutorial.ui:62
+#: data/ui/welcome-tutorial.ui:67
 msgid "Drag and Drop"
 msgstr "Arrossega i deixa anar"
 
-#: data/ui/welcome-tutorial.ui:63
+#: data/ui/welcome-tutorial.ui:68
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -718,7 +688,7 @@ msgstr "C_ontinua"
 msgid "Customize Resources"
 msgstr "Personalitzeu els recursos"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:328
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
 msgid "_Open"
 msgstr "_Obre"
 
@@ -799,102 +769,102 @@ msgstr ""
 "Una aplicació del GNOME 3 senzilla per a accedir a sistemes remots o "
 "virtuals"
 
-#: src/app.vala:181 src/main.vala:9
+#: src/app.vala:183 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostra el número de versió"
 
-#: src/app.vala:182
+#: src/app.vala:184
 msgid "Open in full screen"
 msgstr "Obre a pantalla completa"
 
-#: src/app.vala:183 src/main.vala:10
+#: src/app.vala:185 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprova les capacitats de virtualització"
 
-#: src/app.vala:184
+#: src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Obre la màquina amb l'UUID"
 
-#: src/app.vala:185
+#: src/app.vala:187
 msgid "Search term"
 msgstr "Paraula de cerca"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only
 #. libvirt is supported.
-#: src/app.vala:187
+#: src/app.vala:189
 msgid "URL to display, broker or installer media"
 msgstr ""
 "URL que es mostrarà, gestor de màquines virtual o instal·lador de medis"
 
-#: src/app.vala:198
+#: src/app.vala:200
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— Una aplicació senzilla per a accedir a sistemes remots o virtuals"
 
-#: src/app.vala:223
+#: src/app.vala:225
 msgid "Too many command line arguments specified.\n"
 msgstr "S'han especificat massa arguments a la línia d'ordres.\n"
 
-#: src/app.vala:479
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "La màquina «%s» ja està instal·lada i a punt per a fer servir"
 
-#: src/app.vala:481
+#: src/app.vala:477
 msgid "Launch"
 msgstr "Executa"
 
-#: src/app.vala:567
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "S'ha suprimit la màquina «%s»"
 
-#: src/app.vala:568
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "S'ha suprimit %u màquina"
 msgstr[1] "S'han suprimit %u màquines"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:569
+#: src/app.vala:592 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desfés"
 
-#: src/app.vala:642
+#: src/app.vala:638
 msgid "Boxes is doing something"
 msgstr "El màquines està treballant"
 
-#: src/app-window.vala:325
+#: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Seleccioneu els fitxers a transferir"
 
-#: src/assistant/index-page.vala:145 src/properties-window.vala:61
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
 msgstr "Obre"
 
-#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Enrere"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or
 #. box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Proves"
 
-#: src/assistant/index-page.vala:235
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "Sistema x86 de 32 bits"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "Sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat
 #. Inc)
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " de %s"
@@ -922,6 +892,34 @@ msgstr ""
 #: src/assistant/vm-assistant.vala:72
 msgid "Create"
 msgstr "Crea"
+
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "Configuració modificada "
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr ""
+"El Màquines no ha pogut capturar la màquina virtual abans d'aplicar els "
+"canvis."
+
+#: src/config-editor.vala:85
+#, c-format
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr "El Màquines no ha pogut desar els canvis de configuració de la VM: %s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Els canvis requereixen reiniciar «%s»."
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+msgid "_Restart"
+msgstr "_Reinicia"
 
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -968,7 +966,7 @@ msgstr "Noves i recents"
 msgid "Unsupported disk image format."
 msgstr "Aquest format d'imatge de disc no està implementat."
 
-#: src/installed-media.vala:118 src/installer-media.vala:180
+#: src/installed-media.vala:101 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Sistema"
@@ -1017,7 +1015,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Envia les combinacions de tecles"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
 msgid "_Name"
 msgstr "_Nom"
 
@@ -1097,12 +1095,6 @@ msgstr "E/S"
 msgid "Network"
 msgstr "Xarxa"
 
-#: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
-#: src/text-editor.vala:75
-msgid "_Restart"
-msgstr "_Reinicia"
-
 #: src/libvirt-machine-properties.vala:364
 msgid "_Force Shutdown"
 msgstr "_Força l'aturada"
@@ -1150,13 +1142,6 @@ msgstr[1] ""
 msgid "CPUs: "
 msgstr "CPU: "
 
-#. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
-#: src/text-editor.vala:74
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Els canvis requereixen reiniciar «%s»."
-
 #: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "_Executa en segon pla"
@@ -1178,45 +1163,45 @@ msgid "3D Acceleration"
 msgstr "Acceleració 3D"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:633
+#: src/libvirt-machine.vala:648
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "S'està restaurant %s des del disc"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:636
+#: src/libvirt-machine.vala:651
 #, c-format
 msgid "Starting %s"
 msgstr "S'està iniciant %s"
 
-#: src/libvirt-machine.vala:715
+#: src/libvirt-machine.vala:730
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "La màquina «%s» està tardant molt a reiniciar. Voleu forçar-ne l'aturada?"
 
-#: src/libvirt-machine.vala:717
+#: src/libvirt-machine.vala:732
 msgid "_Shutdown"
 msgstr "_Atura"
 
-#: src/libvirt-machine.vala:733
+#: src/libvirt-machine.vala:748
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "S'està clonant a «%s»…"
 
-#: src/libvirt-machine.vala:865
+#: src/libvirt-machine.vala:880
 msgid "Installing…"
 msgstr "S'està instal·lant…"
 
-#: src/libvirt-machine.vala:869
+#: src/libvirt-machine.vala:884
 msgid "Setting up clone…"
 msgstr "S'està configurant el clon..."
 
-#: src/libvirt-machine.vala:871
+#: src/libvirt-machine.vala:886
 msgid "Importing…"
 msgstr "S'està important…"
 
-#: src/libvirt-machine.vala:880
+#: src/libvirt-machine.vala:895
 #, c-format
 msgid "host: %s"
 msgstr "amfitrió: %s"
@@ -1321,7 +1306,7 @@ msgstr "Informeu d'errades a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Pàgina d'inici del %s: <%s>.\n"
 
-#: src/media-manager.vala:298
+#: src/media-manager.vala:304
 #, c-format
 msgid "No such file %s"
 msgstr "No s'ha trobat el fitxer %s"
@@ -1348,15 +1333,15 @@ msgstr "Dispositius i comparticions"
 msgid "Snapshots"
 msgstr "Instantànies"
 
-#: src/remote-machine.vala:81
+#: src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "Protocol"
 
-#: src/remote-machine.vala:83
+#: src/remote-machine.vala:80
 msgid "URL"
 msgstr "URL"
 
-#: src/remote-machine.vala:85
+#: src/remote-machine.vala:82
 msgid "_URL"
 msgstr "_URL"
 
@@ -1466,17 +1451,6 @@ msgstr "El port només s'ha d'especificar una vegada"
 msgid "Missing port in Spice URL"
 msgstr "Manca el port a l'URI de Spice"
 
-#: src/text-editor.vala:42
-msgid "Unable to backup original configuration. Aborting."
-msgstr ""
-"No s'ha pogut fer una còpia de seguretat de la configuració original. S'està"
-" interrompent."
-
-#: src/text-editor.vala:67
-#, c-format
-msgid "Boxes failed to save VM configuration changes: %s"
-msgstr "El Màquines no ha pogut desar els canvis de configuració de la VM: %s"
-
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1572,7 +1546,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:764
+#: src/vm-configurator.vala:769
 msgid "Incapable host system"
 msgstr "El sistema amfitrió no pot"
 
@@ -1603,6 +1577,55 @@ msgstr "La importació de la màquina des del fitxer «%s» ha fallat."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Només lectura"
+
+#~ msgid "Simple remote and virtual machines"
+#~ msgstr "Sistemes remots o màquines virtuals de forma senzilla"
+
+#~ msgid "Connect to a Box"
+#~ msgstr "Connecta a una màquina"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+#~ "ssh:// or vnc://."
+#~ msgstr ""
+#~ "Introduïu una adreça a connectar-se. Les adreces poden començar amb "
+#~ "spice://, rdp://, ssh:// o vnc://."
+
+#~ msgid "Connect"
+#~ msgstr "Connecta"
+
+#~ msgid "Create a Virtual Machine…"
+#~ msgstr "Crea una màquina virtual…"
+
+#~ msgid "Connect to a Remote Computer…"
+#~ msgstr "Connecta a una màquina remota…"
+
+#~ msgid "Revert changes to original configuration"
+#~ msgstr "Reverteix els canvis a la configuració original"
+
+#~ msgid "_Save"
+#~ msgstr "_Desa"
+
+#~ msgid ""
+#~ "Modifying a virtual machine's configuration can cause an installed operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+#~ msgstr ""
+#~ "La modificació de la configuració d'una màquina virtual pot fer que un sistema operatiu instal·lat no funcioni correctament.\n"
+#~ "Es recomana fer una instantània abans de realitzar canvis importants."
+
+#~ msgid ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use it"
+#~ " to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
+#~ "connections."
+#~ msgstr ""
+#~ "El Màquines facilita la instal·lació i execució de màquines virtuals. També "
+#~ "podeu utilitzar-lo per a accedir de forma remota a altres equips, utilitzant"
+#~ " connexions SPICE, VNC, RDP o Secure Shell."
+
+#~ msgid "Unable to backup original configuration. Aborting."
+#~ msgstr ""
+#~ "No s'ha pogut fer una còpia de seguretat de la configuració original. S'està"
+#~ " interrompent."
 
 #~ msgid "All"
 #~ msgstr "Totes"
