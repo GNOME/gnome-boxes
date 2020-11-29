@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-08-08 11:25+0000\n"
-"PO-Revision-Date: 2020-09-06 10:28+0200\n"
+"POT-Creation-Date: 2020-11-23 09:00+0000\n"
+"PO-Revision-Date: 2020-11-29 10:07+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -25,43 +25,40 @@ msgid "GNOME Boxes"
 msgstr "Boxy GNOME"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
-msgid "Simple remote and virtual machines"
-msgstr "Vzdálené a virtuální stroje jednoduše"
+msgid "Virtualization made simple"
+msgstr "Virtualizovat se dá jednoduše"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
+"A simple GNOME 3 application to manage virtual systems. Unlike some other "
+"virtual machine management software, Boxes is targeted towards typical "
+"desktop end-users. For this reason, Boxes will not provide many advanced "
+"options to tweak virtual machines. Instead Boxes will focus on getting "
+"things working out of the box with very little input from user."
 msgstr ""
-"Jednoduchá aplikace GNOME 3 umožňující přístup do vzdálených nebo "
-"virtuálních systémů. Na rozdíl od ostatního softwaru pro správu virtuálních "
-"strojů, se Boxy zaměřují na běžného koncového uživatele počítače. Z toho "
-"důvodu neposkytují hromady pokročilých nastavení k vyladění virtuálního "
-"stroje. Namísto toho se snaží, aby věci fungovaly hned s minimálním "
-"zatěžováním uživatele."
+"Jednoduchá aplikace GNOME 3 pro správu virtuálních systémů. Na rozdíl od "
+"ostatního softwaru pro správu virtuálních strojů, se Boxy zaměřují na běžného "
+"koncového uživatele počítače. Z toho důvodu neposkytují hromady pokročilých "
+"nastavení k vyladění virtuálního stroje. Namísto toho se snaží, aby věci "
+"fungovaly hned s minimálním úsilím ze strany uživatele."
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
+"favorite operating system(s)."
 msgstr ""
-"Boxy byste si měli nainstalovat, pokud chcete velmi bezpečný a snadný "
+"Boxy byste si měli nainstalovat, pokud chcete hodně bezpečný a snadný "
 "způsob, jak si vyzkoušet nový operační systém nebo novou (potenciálně "
-"nestabilní) verzi svého oblíbeného operačního systému, a nebo když se chcete "
-"připojit ke vzdálenému stroji (například ve své kanceláři)."
+"nestabilní) verzi svého oblíbeného operačního systému."
 
-#: data/org.gnome.Boxes.appdata.xml.in:70
+#: data/org.gnome.Boxes.appdata.xml.in:69
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
 #: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
-#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
 msgstr "Boxy"
@@ -76,8 +73,8 @@ msgstr "Zobrazte si a používejte virtuální stroje"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;vnc;rdp;"
-msgstr "virtuální stroj;vm;virtualizace;vnc;rdp;"
+msgid "virtual machine;vm;"
+msgstr "virtuální stroj;vm;virtualizace;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
@@ -119,11 +116,19 @@ msgstr "První spuštění"
 msgid "Whether Boxes is running for the first time"
 msgstr "Zda Boxy běží poprvé."
 
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "Přebít motiv"
+
 #: data/org.gnome.boxes.gschema.xml:53
+msgid "Whether Boxes will override the user's theme"
+msgstr "Zda budou Boxy nahrazovat uživatelský motiv svým."
+
+#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "Sdílené složky"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Proměnné pole s názvy sdílených složek a mapováním cest"
 
@@ -245,33 +250,16 @@ msgstr "Přidělení zdrojů"
 msgid "Customize"
 msgstr "Přizpůsobit"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "Rychlá instalace"
 
-#: data/ui/assistant/remote-connection.ui:6
-msgid "Connect to a Box"
-msgstr "Připojit se k Boxu"
-
-#: data/ui/assistant/remote-connection.ui:23
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
-msgstr ""
-"Zadejte adresu, ke které se má připojit. Adresa může začínat pomocí "
-"spice://, rdp://, ssh:// nebo vnc://."
-
-#: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
 #: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Zrušit"
-
-#: data/ui/assistant/remote-connection.ui:46
-msgid "Connect"
-msgstr "Připojit"
 
 #: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
@@ -323,14 +311,6 @@ msgstr "Hledat"
 #: data/ui/collection-toolbar.ui:207
 msgid "Downloads"
 msgstr "Stahování"
-
-#: data/ui/collection-toolbar.ui:233
-msgid "Create a Virtual Machine…"
-msgstr "Vytvořit virtuální stroj…"
-
-#: data/ui/collection-toolbar.ui:240
-msgid "Connect to a Remote Computer…"
-msgstr "Připojit ke vzdálenému počítači…"
 
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
@@ -443,6 +423,14 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Celá obrazovka/vrátit se z celé obrazovky"
 
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+msgstr ""
+"Boxy před použitím změn zachytí stav virtálního stroje, aby bylo možné se k "
+"němu vrátit."
+
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Klávesové zkratky"
@@ -463,16 +451,12 @@ msgstr "Zaznamenané problémy"
 msgid "_Copy to Clipboard"
 msgstr "_Kopírovat do schránky"
 
-#: data/ui/properties-toolbar.ui:143
-msgid "Revert changes to original configuration"
-msgstr "Vrátit změny zpět na původní nastavení"
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "_Použít"
 
-#: data/ui/properties-toolbar.ui:166
-msgid "_Save"
-msgstr "_Uložit"
-
-#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:142 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Vyberte zařízení nebo soubor ISO"
@@ -490,7 +474,7 @@ msgid "_Delete"
 msgstr "O_dstranit"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:326
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Zrušit"
 
@@ -539,16 +523,6 @@ msgstr "Smazat"
 msgid "Done"
 msgstr "Hotovo"
 
-#: data/ui/text-editor.ui:44
-msgid ""
-"Modifying a virtual machine's configuration can cause an installed operating "
-"system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-msgstr ""
-"Změna nastavení virtuálního stroje může způsobit problémy s funkčností "
-"již nainstalovaného systému.\n"
-"Doporučujeme před provedením zásadních změn uložit zachycený stavu systému."
-
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "Něco neproběhlo správně"
@@ -590,21 +564,15 @@ msgstr "Produktový klíč"
 msgid "Welcome Tutorial"
 msgstr "Úvodní seznámení"
 
-#: data/ui/welcome-tutorial.ui:35
+#: data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Vítejte v aplikaci Boxy"
 
-#: data/ui/welcome-tutorial.ui:36
-msgid ""
-"Boxes makes it easy to install and run virtual machines. You can also use it "
-"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
-msgstr ""
-"Boxy vám usnadní instalace a spouštění virtuálních strojů. Můžete je také "
-"používat pro vzdálený přístup k dalším počítačům pomocí protokolů SPICE, "
-"VNC, RDP nebo SSH."
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "Boxy dělají z instalace a spuštění virtuálního stroje snadné úkoly."
 
-#: data/ui/welcome-tutorial.ui:45
+#: data/ui/welcome-tutorial.ui:50
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -613,11 +581,11 @@ msgstr ""
 "S expresní instalací Boxy za vás nastaví volby pro nový virtuální stroj. "
 "Prostě jen spustíte instalaci a Boxy se o vše postarají."
 
-#: data/ui/welcome-tutorial.ui:53
+#: data/ui/welcome-tutorial.ui:58
 msgid "Easy Downloads"
 msgstr "Usnadnění stahování"
 
-#: data/ui/welcome-tutorial.ui:54
+#: data/ui/welcome-tutorial.ui:59
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -627,11 +595,11 @@ msgstr ""
 "operační systém. Stačí si vybrat, který chcete nainstalovat, a Boxy se o "
 "stažení automaticky postarají."
 
-#: data/ui/welcome-tutorial.ui:62
+#: data/ui/welcome-tutorial.ui:67
 msgid "Drag and Drop"
 msgstr "Táhni a upusť"
 
-#: data/ui/welcome-tutorial.ui:63
+#: data/ui/welcome-tutorial.ui:68
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -706,7 +674,7 @@ msgstr "_Pokračovat"
 msgid "Customize Resources"
 msgstr "Přizpůsobit prostředky"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:328
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
 msgid "_Open"
 msgstr "_Otevřít"
 
@@ -785,54 +753,54 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Jednoduchá aplikace GNOME 3 pro přístup ke vzdáleným nebo virtuálním systémům"
 
-#: src/app.vala:181 src/main.vala:9
+#: src/app.vala:183 src/main.vala:9
 msgid "Display version number"
 msgstr "Zobrazit číslo verze"
 
-#: src/app.vala:182
+#: src/app.vala:184
 msgid "Open in full screen"
 msgstr "Otevřít přes celou obrazovku"
 
-#: src/app.vala:183 src/main.vala:10
+#: src/app.vala:185 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Zkontrolovat vybavenost pro virtualizaci"
 
-#: src/app.vala:184
+#: src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Otevřít box s UUID"
 
-#: src/app.vala:185
+#: src/app.vala:187
 msgid "Search term"
 msgstr "Hledat výraz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:187
+#: src/app.vala:189
 msgid "URL to display, broker or installer media"
 msgstr "Adresa URL k zobrazení, zprostředkovatel nebo instalačnímu médium"
 
-#: src/app.vala:198
+#: src/app.vala:200
 msgid "— A simple application to access remote or virtual machines"
 msgstr "– Jednoduchá aplikace pro přístup ke vzdáleným nebo virtuálním strojům"
 
-#: src/app.vala:223
+#: src/app.vala:225
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: src/app.vala:479
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainstalován a připraven k použití"
 
-#: src/app.vala:481
+#: src/app.vala:477
 msgid "Launch"
 msgstr "Spustit"
 
-#: src/app.vala:567
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: src/app.vala:568
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -840,44 +808,44 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:569
+#: src/app.vala:592 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: src/app.vala:642
+#: src/app.vala:638
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí…"
 
-#: src/app-window.vala:325
+#: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Výběr souboru k přenesení"
 
-#: src/assistant/index-page.vala:145 src/properties-window.vala:61
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Předchozí"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:867
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Živé médium"
 
-#: src/assistant/index-page.vala:235
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "32bitový systém x86"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "64bitový systém x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " od %s"
@@ -903,6 +871,33 @@ msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné
 #: src/assistant/vm-assistant.vala:72
 msgid "Create"
 msgstr "Vytvořit"
+
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "Nastavení bylo změněno"
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr ""
+"Selhalo zachycení stavu virtuálního stroje před použitím vašich změn."
+
+#: src/config-editor.vala:85
+#, c-format
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr "Boxy selhaly při použití změn nastavení virtuálního stroje: %s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Změny vyžadují restartování boxu „%s“."
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+msgid "_Restart"
+msgstr "_Restartovat"
 
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -948,7 +943,7 @@ msgstr "Nové a nedávné"
 msgid "Unsupported disk image format."
 msgstr "Nepodporovaný formát obrazu disku."
 
-#: src/installed-media.vala:118 src/installer-media.vala:180
+#: src/installed-media.vala:101 src/installer-media.vala:180
 #: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Systém"
@@ -996,7 +991,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Odeslat kombinaci kláves"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
 msgid "_Name"
 msgstr "_Název"
 
@@ -1071,12 +1066,6 @@ msgstr "V/V"
 msgid "Network"
 msgstr "Síť"
 
-#: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
-#: src/text-editor.vala:75
-msgid "_Restart"
-msgstr "_Restartovat"
-
 #: src/libvirt-machine-properties.vala:364
 msgid "_Force Shutdown"
 msgstr "_Vynutit vypnutí"
@@ -1127,13 +1116,6 @@ msgstr[2] ""
 msgid "CPUs: "
 msgstr "Procesory:"
 
-#. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
-#: src/text-editor.vala:74
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Změny vyžadují restartování boxu „%s“."
-
 #: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
 msgstr "Běžet na _pozadí"
@@ -1155,45 +1137,45 @@ msgid "3D Acceleration"
 msgstr "Akcelerace 3D"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:633
+#: src/libvirt-machine.vala:648
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnovuje se %s z disku"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:636
+#: src/libvirt-machine.vala:651
 #, c-format
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: src/libvirt-machine.vala:715
+#: src/libvirt-machine.vala:730
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: src/libvirt-machine.vala:717
+#: src/libvirt-machine.vala:732
 msgid "_Shutdown"
 msgstr "_Vypnout"
 
-#: src/libvirt-machine.vala:733
+#: src/libvirt-machine.vala:748
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Klonuje se „%s“…"
 
-#: src/libvirt-machine.vala:865
+#: src/libvirt-machine.vala:880
 msgid "Installing…"
 msgstr "Instaluje se…"
 
-#: src/libvirt-machine.vala:869
+#: src/libvirt-machine.vala:884
 msgid "Setting up clone…"
 msgstr "Nastavuje se klon…"
 
-#: src/libvirt-machine.vala:871
+#: src/libvirt-machine.vala:886
 msgid "Importing…"
 msgstr "Importuje se…"
 
-#: src/libvirt-machine.vala:880
+#: src/libvirt-machine.vala:895
 #, c-format
 msgid "host: %s"
 msgstr "počítač: %s"
@@ -1298,7 +1280,7 @@ msgstr "Chyby hlaste na <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Domovská stránka %s: <%s>.\n"
 
-#: src/media-manager.vala:298
+#: src/media-manager.vala:304
 #, c-format
 msgid "No such file %s"
 msgstr "Soubor „%s“ neexistuje"
@@ -1325,15 +1307,15 @@ msgstr "Zařízení a sdílení"
 msgid "Snapshots"
 msgstr "Zachycené stavy"
 
-#: src/remote-machine.vala:81
+#: src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "Protokol"
 
-#: src/remote-machine.vala:83
+#: src/remote-machine.vala:80
 msgid "URL"
 msgstr "Adresa URL"
 
-#: src/remote-machine.vala:85
+#: src/remote-machine.vala:82
 msgid "_URL"
 msgstr "Adresa _URL"
 
@@ -1415,10 +1397,10 @@ msgid ""
 "enable host and box interactions, such as copy and paste. Please visit %s to "
 "download and install these tools from within the box."
 msgstr ""
-"Neběží nástroje hosta SPICE. Tyto nástroje zvyšují uživatelskou přívětivost a "
-"umožňují vzájemnou spolupráci mezi hostitelem a boxem, například kopírování a "
-"vkládání. Navštivte prosím z boxu stránku %s, ze které si můžete tyto "
-"nástroje stáhnout a nainstalovat."
+"Neběží nástroje hosta SPICE. Tyto nástroje zvyšují uživatelskou přívětivost "
+"a umožňují vzájemnou spolupráci mezi hostitelem a boxem, například "
+"kopírování a vkládání. Navštivte prosím z boxu stránku %s, ze které si "
+"můžete tyto nástroje stáhnout a nainstalovat."
 
 #: src/spice-display.vala:402
 msgid "USB devices"
@@ -1440,15 +1422,6 @@ msgstr "Port musí být zadán jednou"
 #: src/spice-display.vala:637
 msgid "Missing port in Spice URL"
 msgstr "Schází port v adrese Spice URL"
-
-#: src/text-editor.vala:42
-msgid "Unable to backup original configuration. Aborting."
-msgstr "Nelze zálohovat původní nastavení. Operace se ruší."
-
-#: src/text-editor.vala:67
-#, c-format
-msgid "Boxes failed to save VM configuration changes: %s"
-msgstr "Boxy selhaly při ukládání změn nastavení virtuálního stroje: %s"
 
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
@@ -1542,7 +1515,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:764
+#: src/vm-configurator.vala:769
 msgid "Incapable host system"
 msgstr "Nedostačující hostitelský systém"
 
@@ -1572,3 +1545,53 @@ msgstr "Import boxu ze souboru „%s“ selhal."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Jen ke čtení"
+
+#~ msgid "Simple remote and virtual machines"
+#~ msgstr "Vzdálené a virtuální stroje jednoduše"
+
+#~ msgid "Connect to a Box"
+#~ msgstr "Připojit se k Boxu"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh:// or vnc://."
+#~ msgstr ""
+#~ "Zadejte adresu, ke které se má připojit. Adresa může začínat pomocí "
+#~ "spice://, rdp://, ssh:// nebo vnc://."
+
+#~ msgid "Connect"
+#~ msgstr "Připojit"
+
+#~ msgid "Create a Virtual Machine…"
+#~ msgstr "Vytvořit virtuální stroj…"
+
+#~ msgid "Connect to a Remote Computer…"
+#~ msgstr "Připojit ke vzdálenému počítači…"
+
+#~ msgid "Revert changes to original configuration"
+#~ msgstr "Vrátit změny zpět na původní nastavení"
+
+#~ msgid "_Save"
+#~ msgstr "_Uložit"
+
+#~ msgid ""
+#~ "Modifying a virtual machine's configuration can cause an installed "
+#~ "operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+#~ msgstr ""
+#~ "Změna nastavení virtuálního stroje může způsobit problémy s funkčností "
+#~ "již nainstalovaného systému.\n"
+#~ "Doporučujeme před provedením zásadních změn uložit zachycený stavu "
+#~ "systému."
+
+#~ msgid ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use "
+#~ "it to remotely access other computers, using SPICE, VNC, RDP or Secure "
+#~ "Shell connections."
+#~ msgstr ""
+#~ "Boxy vám usnadní instalace a spouštění virtuálních strojů. Můžete je také "
+#~ "používat pro vzdálený přístup k dalším počítačům pomocí protokolů SPICE, "
+#~ "VNC, RDP nebo SSH."
+
+#~ msgid "Unable to backup original configuration. Aborting."
+#~ msgstr "Nelze zálohovat původní nastavení. Operace se ruší."
