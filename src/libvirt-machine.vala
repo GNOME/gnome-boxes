@@ -47,6 +47,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
     }
 
+    public bool is_running { get { return state == MachineState.RUNNING; } }
     public bool run_in_bg { get; set; } // If true, machine will never be paused automatically by Boxes.
 
     private bool _acceleration_3d;

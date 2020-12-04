@@ -37,6 +37,10 @@ private class Boxes.App: Gtk.Application {
     private bool is_ready;
     public signal void ready ();
 
+    public bool run_in_bg {
+        get; private set;
+    }
+
     // A callback to notify that deletion of machines was undone by user.
     public delegate void UndoNotifyCallback ();
 
@@ -90,6 +94,10 @@ private class Boxes.App: Gtk.Application {
 
         action = new GLib.SimpleAction ("launch-box", GLib.VariantType.STRING);
         action.activate.connect ((param) => { open_name (param.get_string ()); });
+        add_action (action);
+
+        action = new GLib.SimpleAction ("launch-run-in-bg-box", GLib.VariantType.STRING);
+        action.activate.connect ((param) => { open_run_in_bg_vm (param.get_string ()); });
         add_action (action);
 
         action = new GLib.SimpleAction ("install", GLib.VariantType.STRING);
@@ -280,6 +288,10 @@ private class Boxes.App: Gtk.Application {
         var display = Gdk.Display.get_default ();
         display.flush ();
 
+        keep_on_running_on_background ();
+        if (run_in_bg)
+            return true;
+
         Idle.add (() => {
             quit ();
 
@@ -290,17 +302,32 @@ private class Boxes.App: Gtk.Application {
     }
 
     public override void shutdown () {
-        base.shutdown ();
+        if (!run_in_bg) {
+            base.shutdown ();
+
+            // Withdraw all the existing notifications
+            foreach (var notification in system_notifications)
+                withdraw_notification (notification);
+        } else {
+            this.hold ();
+        }
 
         foreach (var window in windows) {
             window.notificationbar.dismiss_all ();
         }
         async_launcher.await_all ();
         suspend_machines ();
+    }
 
-        // Withdraw all the existing notifications
-        foreach (var notification in system_notifications)
-            withdraw_notification (notification);
+    private void open_run_in_bg_vm (string name) {
+        activate ();
+
+        var app = this;
+        main_window.present ();
+        call_when_ready (() => {
+            open_name (name);
+        });
+
     }
 
     public void open_name (string name) {
@@ -498,6 +525,36 @@ private class Boxes.App: Gtk.Application {
                 warning ("Failed to add '%s': %s", source.name, error.message);
             }
         }
+    }
+
+    private void keep_vm_running_in_background (LibvirtMachine machine) {
+        if (!machine.run_in_bg && !machine.is_running)
+            return;
+
+        var msg = _("“%s“ is running in the background").printf (machine.name);
+        var notification = new GLib.Notification (msg);
+        notification.set_default_action ("app.launch-run-in-bg-box::" + machine.name);
+
+        send_notification ("gnome-boxes-run-in-bg-%s" + machine.name, notification);
+    }
+
+    private void keep_on_running_on_background () {
+        if (collection == null)
+            return;
+
+        run_in_bg = false;
+        collection.foreach_item((item) => {
+            var machine = item as LibvirtMachine;
+
+            var keep_vm_running = (machine.run_in_bg && machine.is_running);
+            if (keep_vm_running) {
+                run_in_bg = true;
+
+                keep_vm_running_in_background (machine);
+                debug ("Keep running %s in the background", machine.name);
+
+            }
+        });
     }
 
     private void suspend_machines () {
