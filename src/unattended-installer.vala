@@ -515,7 +515,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
                                      ActivityProgress      progress,
                                      AddUnattendedFileFunc add_func,
                                      Cancellable?          cancellable) throws GLib.Error {
-        var downloader = Downloader.get_instance ();
+        var downloader = Downloader.get_default ();
 
         var driver_files = new GLib.List<UnattendedFile> ();
         var location = driver.get_location ();
@@ -662,7 +662,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
     }
 
     private string get_preferred_keyboard (string lang) {
-        var os_db = MediaManager.get_instance ().os_db;
+        var os_db = MediaManager.get_default ().os_db;
         var datamap = os_db.get_datamap ("http://x.org/x11-keyboard");
         string kbd_layout = null;
 

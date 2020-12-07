@@ -22,7 +22,7 @@ public class Boxes.IdentifyOsPopover : Gtk.Popover {
 
     private async void setup_model () {
         try {
-            var media_manager = MediaManager.get_instance ();
+            var media_manager = MediaManager.get_default ();
             os_list = yield media_manager.os_db.get_all_oses_sorted_by_release_date ();
         } catch (GLib.Error error) {
             warning ("Failed to load OS list: %s", error.message);

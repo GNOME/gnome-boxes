@@ -290,7 +290,7 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         if (os_id == null)
             return null;
 
-        var os_db = MediaManager.get_instance ().os_db;
+        var os_db = MediaManager.get_default ().os_db;
         try {
             return yield os_db.get_os_by_id (os_id);
         } catch (OSDatabaseError error) {

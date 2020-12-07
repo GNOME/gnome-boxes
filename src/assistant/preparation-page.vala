@@ -33,7 +33,7 @@ private class Boxes.AssistantPreparationPage : AssistantPage {
 
     public async void setup (InstallerMedia media, Osinfo.Os? os = null) {
         try {
-            var media_manager = MediaManager.get_instance ();
+            var media_manager = MediaManager.get_default ();
             this.media = media_manager.create_installer_media_from_media (media, os);
         } catch (GLib.Error error) {
             warning ("Failed to setup installation media '%s': %s", media.device_file, error.message);

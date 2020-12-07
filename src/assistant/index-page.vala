@@ -55,7 +55,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     private async void populate_media_lists () {
-        var media_manager = MediaManager.get_instance ();
+        var media_manager = MediaManager.get_default ();
         yield media_manager.connect_to_tracker ();
 
         installer_medias = yield media_manager.list_installer_medias ();
@@ -128,7 +128,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         if (entry.os != null && entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
             (new RHELDownloadDialog (dialog, entry).run ());
         } else {
-            DownloadsHub.get_instance ().add_item (entry);
+            DownloadsHub.get_default ().add_item (entry);
         }
 
         dialog.shutdown ();
@@ -146,7 +146,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
                                                       _("Open"), _("Cancel"));
         file_chooser.bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
         if (file_chooser.run () == Gtk.ResponseType.ACCEPT) {
-            var media_manager = MediaManager.get_instance ();
+            var media_manager = MediaManager.get_default ();
             try {
                 var media = yield media_manager.create_installer_media_for_path (file_chooser.get_filename (),
                                                                                  cancellable);

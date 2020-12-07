@@ -28,7 +28,7 @@ private class Boxes.Downloader : GLib.Object {
         "https",
     };
 
-    public static Downloader get_instance () {
+    public static Downloader get_default () {
         if (downloader == null)
             downloader = new Downloader ();
 
@@ -204,7 +204,7 @@ private class Boxes.Downloader : GLib.Object {
             cached_paths += system_cached_path;
 
         try {
-            var cached_file = yield get_instance ().download (remote_file, cached_paths);
+            var cached_file = yield get_default ().download (remote_file, cached_paths);
             var pixbuf = new Gdk.Pixbuf.from_file_at_size (cached_file.get_path (), size, size);
             image.set_from_pixbuf (pixbuf);
         } catch (GLib.Error error) {
@@ -227,7 +227,7 @@ private class Boxes.Downloader : GLib.Object {
 
         return_val_if_fail (basename != null && basename != "" && basename != "/", null);
 
-        var downloader = Downloader.get_instance ();
+        var downloader = Downloader.get_default ();
         var cache = Path.build_filename (GLib.Environment.get_user_special_dir (GLib.UserDirectory.DOWNLOAD),
                                          basename);
 

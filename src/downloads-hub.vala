@@ -4,7 +4,7 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/downloads-hub.ui")]
 private class Boxes.DownloadsHub : Gtk.Popover {
     private static DownloadsHub instance;
-    public static DownloadsHub get_instance () {
+    public static DownloadsHub get_default () {
         if (instance == null)
             instance = new DownloadsHub ();
 

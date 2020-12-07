@@ -49,7 +49,7 @@ private class Boxes.VMAssistant : Gtk.Dialog {
     }
 
     private async void prepare_for_path (string path) {
-        var media_manager = MediaManager.get_instance ();
+        var media_manager = MediaManager.get_default ();
 
         try {
             var installer_media = yield media_manager.create_installer_media_for_path (path, null);

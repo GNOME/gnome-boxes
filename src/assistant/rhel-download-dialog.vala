@@ -81,7 +81,7 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         debug ("RHEL ISO download URI: %s", download_uri);
 
         entry.url = download_uri;
-        DownloadsHub.get_instance ().add_item (entry);
+        DownloadsHub.get_default ().add_item (entry);
 
         decision.ignore ();
         this.close ();

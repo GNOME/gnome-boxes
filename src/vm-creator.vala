@@ -88,7 +88,7 @@ private class Boxes.VMCreator : Object {
     }
 
     protected virtual async void continue_installation (LibvirtMachine machine) {
-        install_media = yield MediaManager.get_instance ().create_installer_media_from_config (machine.domain_config);
+        install_media = yield MediaManager.get_default ().create_installer_media_from_config (machine.domain_config);
         num_reboots = VMConfigurator.get_num_reboots (machine.domain_config);
         var name = machine.domain.get_name ();
 

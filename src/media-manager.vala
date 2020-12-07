@@ -16,7 +16,7 @@ private class Boxes.MediaManager : Object {
 
     private Sparql.Connection connection;
 
-    public static MediaManager get_instance () {
+    public static MediaManager get_default () {
         if (media_manager == null)
             media_manager = new MediaManager ();
 

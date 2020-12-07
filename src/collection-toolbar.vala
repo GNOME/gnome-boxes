@@ -45,7 +45,7 @@ private class Boxes.CollectionToolbar: HeaderBar {
         MenuModel menu = (MenuModel) builder.get_object ("app-menu");
         hamburger_btn.popover = new Popover.from_model (hamburger_btn, menu);
 
-        downloads_hub_btn.popover = DownloadsHub.get_instance ();
+        downloads_hub_btn.popover = DownloadsHub.get_default ();
     }
 
     public void click_back_button () {
