@@ -78,6 +78,7 @@ vala_sources = [
   'notification.vala',
   'notificationbar.vala',
   'os-database.vala',
+  'portals.vala',
   'properties.vala',
   'properties-window.vala',
   'properties-page-widget.vala',
