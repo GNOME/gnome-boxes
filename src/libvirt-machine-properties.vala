@@ -783,7 +783,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                 machine.run_in_bg = false;
 
                 var msg = _("Boxes is not authorized to run in the background");
-                machine.window.notificationbar.display_error (msg);
+                machine.window.notificationbar.display_for_action (msg,
+                                                                   _("Manage permissions"),
+                                                                   open_permission_settings);
             } catch (GLib.Error error) {
                 warning ("Failed to reset VM's run-in-bg setting: %s", error.message);
             }

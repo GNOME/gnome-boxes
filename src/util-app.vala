@@ -683,4 +683,28 @@ namespace Boxes {
 
         return Gdk.pixbuf_get_from_surface (surface, 0, 0, size, size);
     }
+
+    public void open_permission_settings () {
+        try {
+            var proxy = new DBusProxy.for_bus_sync (BusType.SESSION,
+                                                    DBusProxyFlags.NONE,
+                                                    null,
+                                                    "org.gnome.ControlCenter",
+                                                    "/org/gnome/ControlCenter",
+                                                    "org.gtk.Actions");
+            var builder = new VariantBuilder (new VariantType ("av"));
+            builder.add ("v", new Variant.string (Config.APPLICATION_ID));
+            var param = new Variant.tuple ({
+                new Variant.string ("launch-panel"),
+                new Variant.array (new VariantType ("v"), {
+                    new Variant ("v", new Variant ("(sav)", "applications", builder)),
+                }),
+                new Variant.array (new VariantType ("{sv}"), {})
+            });
+
+            proxy.call_sync ("Activate", param, DBusCallFlags.NONE, -1);
+        } catch (GLib.Error error) {
+            warning ("Failed to launch gnome-control-center: %s", error.message);
+        }
+    }
 }
