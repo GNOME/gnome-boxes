@@ -758,9 +758,34 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         toggle.notify["active"].connect ((tooltip) => {
             box.tooltip_text = toggle.active? _("“%s” will not be paused automatically.").printf (name) :
                                               _("“%s” will be paused automatically to save resources.").printf (name);
+            if (toggle.get_active ())
+                on_run_in_bg ();
         });
 
         return box;
+    }
+
+    private async void on_run_in_bg () {
+        if (!machine.run_in_bg)
+            return;
+
+        yield Portals.get_default ().request_to_run_in_background (
+        (response, results) => {
+            if (response == 0) {
+                debug ("User authorized Boxes to run in background");
+
+                return;
+            }
+
+            try {
+                machine.run_in_bg = false;
+
+                var msg = _("Boxes is not authorized to run in the background");
+                machine.window.notificationbar.display_error (msg);
+            } catch (GLib.Error error) {
+                warning ("Failed to reset VM's run-in-bg setting: %s", error.message);
+            }
+        });
     }
 
     private Boxes.SnapshotsProperty add_snapshots_property (ref List<Boxes.Property> list) {
