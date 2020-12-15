@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-09-19 08:30+0000\n"
-"PO-Revision-Date: 2020-09-22 11:00+0200\n"
+"POT-Creation-Date: 2020-11-30 14:48+0000\n"
+"PO-Revision-Date: 2020-12-15 10:22+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -57,7 +57,7 @@ msgstr "Il progjet GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
 #: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
-#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
 msgstr "Scjatulis"
@@ -115,11 +115,19 @@ msgstr "Prime esecuzion"
 msgid "Whether Boxes is running for the first time"
 msgstr "Indiche se Scjatulis al è in esecuzion pe prime volte"
 
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "No sta tignî cont dal teme"
+
 #: data/org.gnome.boxes.gschema.xml:53
+msgid "Whether Boxes will override the user's theme"
+msgstr "Indiche se Scjatulis al à di ignorâ il teme dal utent"
+
+#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "Cartelis condividudis"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Array variabil di nons di cartelis condividudis e mapaduris di percors"
 
@@ -241,12 +249,12 @@ msgstr "Assegnazion des risorsis"
 msgid "Customize"
 msgstr "Personalize"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "Instalazion rapide"
 
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
 #: src/vm-creator.vala:106
 msgid "Cancel"
@@ -415,6 +423,14 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Ative/disative plen visôr"
 
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+msgstr ""
+"Scjatulis al fâs une istantanie de tsô machine virtuâl prime di aplicâ "
+"modifichis, in mût di permetiti di ripristinâlis."
+
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Scurtis di tastiere"
@@ -435,16 +451,12 @@ msgstr "Regjistri di soluzion problemis"
 msgid "_Copy to Clipboard"
 msgstr "_Copie intes notis"
 
-#: data/ui/properties-toolbar.ui:143
-msgid "Revert changes to original configuration"
-msgstr "Disfe lis modifichis tornant indaûr ae configurazion origjinâl"
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "_Apliche"
 
-#: data/ui/properties-toolbar.ui:166
-msgid "_Save"
-msgstr "_Salve"
-
-#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:142 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 #: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Selezione un dispositîf o un file ISO"
@@ -462,7 +474,7 @@ msgid "_Delete"
 msgstr "_Elimine"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:322
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Anule"
 
@@ -511,16 +523,6 @@ msgstr "Elimine"
 msgid "Done"
 msgstr "Fat"
 
-#: data/ui/text-editor.ui:44
-msgid ""
-"Modifying a virtual machine's configuration can cause an installed operating "
-"system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-msgstr ""
-"Modificâ la configurazion di une machine virtuâl al podarès causâ un "
-"malfunzionament dal sisteme operatîf instalât.\n"
-"Si consee di creâ une istantanie prime di eseguî modifichis impuartantis."
-
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "Orpo! Alc al è lât par stuart"
@@ -562,21 +564,15 @@ msgstr "Clâf dal prodot"
 msgid "Welcome Tutorial"
 msgstr "Seminari di benvignût"
 
-#: data/ui/welcome-tutorial.ui:35
+#: data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Benvignût su Scjatulis"
 
-#: data/ui/welcome-tutorial.ui:36
-msgid ""
-"Boxes makes it easy to install and run virtual machines. You can also use it "
-"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
-msgstr ""
-"Scjatulis al rint facil instalâ e eseguî machinis virtuâls. Tu puedis ancje "
-"doprâlu par jentrâ di rimot su altris computer, doprant lis conessions "
-"SPICE, VNC, RDP o Secure Shell."
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "Selezione al rint sempliç instalâ e eseguî lis machinis virtuâls."
 
-#: data/ui/welcome-tutorial.ui:45
+#: data/ui/welcome-tutorial.ui:50
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -587,11 +583,11 @@ msgstr ""
 "e lui si ocuparà di dut."
 
 # Singolâr o plurâl?
-#: data/ui/welcome-tutorial.ui:53
+#: data/ui/welcome-tutorial.ui:58
 msgid "Easy Downloads"
 msgstr "Discjariament facil"
 
-#: data/ui/welcome-tutorial.ui:54
+#: data/ui/welcome-tutorial.ui:59
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -601,11 +597,11 @@ msgstr ""
 "machine virtuâl. Al baste che tu selezionedis il sisteme operatîf che tu "
 "desideris configurâ e Scjatulis ti lu discjariarà in automatic."
 
-#: data/ui/welcome-tutorial.ui:62
+#: data/ui/welcome-tutorial.ui:67
 msgid "Drag and Drop"
 msgstr "Strissine e mole"
 
-#: data/ui/welcome-tutorial.ui:63
+#: data/ui/welcome-tutorial.ui:68
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -683,7 +679,7 @@ msgstr "C_ontinue"
 msgid "Customize Resources"
 msgstr "Personalize risorsis"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:324
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
 msgid "_Open"
 msgstr "_Vierç"
 
@@ -760,98 +756,98 @@ msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Une semplice aplicazion GNOME 3 par jentrâ tai sistemis rimots o virtuâi"
 
-#: src/app.vala:181 src/main.vala:9
+#: src/app.vala:183 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostre il numar di version"
 
-#: src/app.vala:182
+#: src/app.vala:184
 msgid "Open in full screen"
 msgstr "Vierç a plen visôr"
 
-#: src/app.vala:183 src/main.vala:10
+#: src/app.vala:185 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Controle capacitâts di virtualizazion"
 
-#: src/app.vala:184
+#: src/app.vala:186
 msgid "Open box with UUID"
 msgstr "Vierç scjatule cun UUID"
 
-#: src/app.vala:185
+#: src/app.vala:187
 msgid "Search term"
 msgstr "Cîr tiermin"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:187
+#: src/app.vala:189
 msgid "URL to display, broker or installer media"
 msgstr "URL di mostrâ, broker o supuart di instalazion"
 
-#: src/app.vala:198
+#: src/app.vala:200
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— Une semplice aplicazion par jentrâ intes machinis rimotis o virtuâi"
 
-#: src/app.vala:223
+#: src/app.vala:225
 msgid "Too many command line arguments specified.\n"
 msgstr "Specificâts masse argoments a linie di comant.\n"
 
-#: src/app.vala:473
+#: src/app.vala:475
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Scjatule “%s” instalade e pronte par jessi doprade"
 
-#: src/app.vala:475
+#: src/app.vala:477
 msgid "Launch"
 msgstr "Invie"
 
-#: src/app.vala:561
+#: src/app.vala:563
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "La scjatule “%s” e je stade eliminade"
 
-#: src/app.vala:562
+#: src/app.vala:564
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u scjatule e je stade eliminade"
 msgstr[1] "%u scjatulis a son stadis eliminadis"
 
-#: src/app.vala:590 src/libvirt-machine-properties.vala:569
+#: src/app.vala:592 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Disfe"
 
-#: src/app.vala:636
+#: src/app.vala:638
 msgid "Boxes is doing something"
 msgstr "Scjatulis al sta fasint alc"
 
-#: src/app-window.vala:321
+#: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Selezione i files di trasferî"
 
-#: src/assistant/index-page.vala:145 src/properties-window.vala:61
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
 msgstr "Vierç"
 
-#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Precedent"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:882
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:235
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "Sisteme x86 di 32-bit"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "Sisteme x86 di 64-bit"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " di %s"
@@ -878,6 +874,35 @@ msgstr ""
 #: src/assistant/vm-assistant.vala:72
 msgid "Create"
 msgstr "Cree"
+
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "Configurazion modificade "
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr ""
+"Scjatulis nol è rivât a fâ une istantanie de tô machine virtuâl prime di "
+"aplicâ lis modifichis."
+
+#: src/config-editor.vala:85
+#, c-format
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr ""
+"Scjatulis nol è rivât a aplicâ lis modifichis ae configurazion de MV: %s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Pes modifichis al è necessari tornâ a inviâ “%s”."
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
+#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+msgid "_Restart"
+msgstr "_Torne invie"
 
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
@@ -972,7 +997,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Invie cumbinazion di tascj"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
 msgid "_Name"
 msgstr "_Non"
 
@@ -1047,12 +1072,6 @@ msgstr "I/O"
 msgid "Network"
 msgstr "Rêt"
 
-#: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
-#: src/text-editor.vala:75
-msgid "_Restart"
-msgstr "_Torne invie"
-
 #: src/libvirt-machine-properties.vala:364
 msgid "_Force Shutdown"
 msgstr "_Sfuarce distudament"
@@ -1100,13 +1119,6 @@ msgstr[1] ""
 #: src/libvirt-machine-properties.vala:689
 msgid "CPUs: "
 msgstr "Processôrs: "
-
-#. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
-#: src/text-editor.vala:74
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Pes modifichis al è necessari tornâ a inviâ “%s”."
 
 #: src/libvirt-machine-properties.vala:744
 msgid "_Run in background"
@@ -1271,7 +1283,7 @@ msgstr "Segnale erôrs a <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "Pagjine iniziâl di %s: <%s>.\n"
 
-#: src/media-manager.vala:301
+#: src/media-manager.vala:304
 #, c-format
 msgid "No such file %s"
 msgstr "Nol esist il file %s"
@@ -1298,15 +1310,15 @@ msgstr "Dispositîfs & condivisions"
 msgid "Snapshots"
 msgstr "Istantaniis"
 
-#: src/remote-machine.vala:81
+#: src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "Protocol"
 
-#: src/remote-machine.vala:83
+#: src/remote-machine.vala:80
 msgid "URL"
 msgstr "URL"
 
-#: src/remote-machine.vala:85
+#: src/remote-machine.vala:82
 msgid "_URL"
 msgstr "_URL"
 
@@ -1412,16 +1424,6 @@ msgstr "Si à di specificâ la puarte une volte"
 msgid "Missing port in Spice URL"
 msgstr "A mancje la puarte intal URL Spice"
 
-#: src/text-editor.vala:42
-msgid "Unable to backup original configuration. Aborting."
-msgstr "Impussibil creâ il backup de configurazion origjinâl. Si interomp."
-
-#: src/text-editor.vala:67
-#, c-format
-msgid "Boxes failed to save VM configuration changes: %s"
-msgstr ""
-"Scjatulis nol è rivât a salvâ lis modifichis ae configurazion de MV: %s"
-
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1514,7 +1516,7 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:764
+#: src/vm-configurator.vala:769
 msgid "Incapable host system"
 msgstr "Sisteme host incapaç"
 
@@ -1544,6 +1546,33 @@ msgstr "Importazion scjatule dal file “%s” falide."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Dome leture"
+
+#~ msgid "Revert changes to original configuration"
+#~ msgstr "Disfe lis modifichis tornant indaûr ae configurazion origjinâl"
+
+#~ msgid "_Save"
+#~ msgstr "_Salve"
+
+#~ msgid ""
+#~ "Modifying a virtual machine's configuration can cause an installed "
+#~ "operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+#~ msgstr ""
+#~ "Modificâ la configurazion di une machine virtuâl al podarès causâ un "
+#~ "malfunzionament dal sisteme operatîf instalât.\n"
+#~ "Si consee di creâ une istantanie prime di eseguî modifichis impuartantis."
+
+#~ msgid ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use "
+#~ "it to remotely access other computers, using SPICE, VNC, RDP or Secure "
+#~ "Shell connections."
+#~ msgstr ""
+#~ "Scjatulis al rint facil instalâ e eseguî machinis virtuâls. Tu puedis "
+#~ "ancje doprâlu par jentrâ di rimot su altris computer, doprant lis "
+#~ "conessions SPICE, VNC, RDP o Secure Shell."
+
+#~ msgid "Unable to backup original configuration. Aborting."
+#~ msgstr "Impussibil creâ il backup de configurazion origjinâl. Si interomp."
 
 #~ msgid "Simple remote and virtual machines"
 #~ msgstr "Machinis virtuâls e rimotis semplicis"
