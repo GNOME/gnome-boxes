@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-11-20 11:23+0000\n"
-"PO-Revision-Date: 2020-11-23 10:59+0200\n"
+"POT-Creation-Date: 2020-12-15 11:05+0000\n"
+"PO-Revision-Date: 2020-12-15 21:23+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -59,7 +59,7 @@ msgid "The GNOME Project"
 msgstr "Проєкт GNOME "
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -123,7 +123,6 @@ msgid "Override theme"
 msgstr "Перевизначити тему"
 
 #: data/org.gnome.boxes.gschema.xml:53
-#| msgid "Whether Boxes is running for the first time"
 msgid "Whether Boxes will override the user's theme"
 msgstr "Чи перевизначатимуть «Коробки» тему користувача"
 
@@ -431,8 +430,8 @@ msgid ""
 "Boxes snapshots your virtual machine before applying changes allowing you to "
 "revert them."
 msgstr ""
-"«Коробки» роблять знімок вашої віртуальної машини до застосування змін,"
-" надаючи вам змогу їх скасувати."
+"«Коробки» роблять знімок вашої віртуальної машини до застосування змін, "
+"надаючи вам змогу їх скасувати."
 
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
@@ -572,7 +571,6 @@ msgid "Welcome to Boxes"
 msgstr "Ласкаво просимо до Коробок"
 
 #: data/ui/welcome-tutorial.ui:41
-#| msgid "Select an .iso file to install a virtual machine."
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr ""
 "«Коробки» спрощують спрощує встановлення та роботу з віртуальними машинами."
@@ -749,63 +747,68 @@ msgstr "Властивості"
 msgid "Screenshot from %s"
 msgstr "Знімок екрана від %s"
 
-#: src/app.vala:117
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: src/app.vala:118
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Проста програма GNOME 3 для доступу до віддалених або віртуальних систем"
 
-#: src/app.vala:183 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "Показати номер версії"
 
-#: src/app.vala:184
+#: src/app.vala:192
 msgid "Open in full screen"
 msgstr "Відкрити на весь екран"
 
-#: src/app.vala:185 src/main.vala:10
+#: src/app.vala:193 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Перевірити можливості віртуалізації"
 
-#: src/app.vala:186
+#: src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Відкрити коробку з UUID"
 
-#: src/app.vala:187
+#: src/app.vala:195
 msgid "Search term"
 msgstr "Ключове слово"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:189
+#: src/app.vala:197
 msgid "URL to display, broker or installer media"
 msgstr "URL до екрана, носія посередника або встановлювача"
 
-#: src/app.vala:200
+#: src/app.vala:208
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— проста програма для доступу до віддалених або віртуальних машин"
 
-#: src/app.vala:225
+#: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
 msgstr "Вказано надто багато аргументів командного рядка.\n"
 
-#: src/app.vala:475
+#: src/app.vala:502
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Коробку «%s» встановлено і нею можна користуватись"
 
-#: src/app.vala:477
+#: src/app.vala:504
 msgid "Launch"
 msgstr "Запустити"
 
-#: src/app.vala:563
+#: src/app.vala:534
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "«%s» працює у фоновому режимі"
+
+#: src/app.vala:620
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Коробку «%s» вилучено"
 
-#: src/app.vala:564
+#: src/app.vala:621
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -814,12 +817,12 @@ msgstr[1] "%u коробки вилучено"
 msgstr[2] "%u коробок вилучено"
 msgstr[3] "%u коробку вилучено"
 
-#: src/app.vala:592 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Пов_ернути"
 
-#: src/app.vala:638
+#: src/app.vala:695
 msgid "Boxes is doing something"
 msgstr "Boxes щось робить"
 
@@ -837,7 +840,7 @@ msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
@@ -888,15 +891,15 @@ msgstr "Налаштування змінено"
 msgid ""
 "Boxes failed to snapshot your virtual machine before applying your changes."
 msgstr ""
-"«Коробкам» не вдалося створити знімок вашої віртуальної машини до"
-" застосування внесених вами змін."
+"«Коробкам» не вдалося створити знімок вашої віртуальної машини до "
+"застосування внесених вами змін."
 
 #: src/config-editor.vala:85
 #, c-format
-#| msgid "Boxes failed to save VM configuration changes: %s"
 msgid "Boxes failed to apply VM configuration changes: %s"
 msgstr ""
-"«Коробкам» не вдалося застосувати зміни у налаштуваннях віртуальної машини: %s"
+"«Коробкам» не вдалося застосувати зміни у налаштуваннях віртуальної машини: "
+"%s"
 
 #. TODO: unify the reboot requests for non-properties
 #: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
@@ -1140,49 +1143,57 @@ msgstr "«%s» не буде призупинено автоматично."
 msgid "“%s” will be paused automatically to save resources."
 msgstr "«%s» буде призупинено автоматично, щоб заощадити ресурси."
 
-#: src/libvirt-machine-properties.vala:776
+#: src/libvirt-machine-properties.vala:785
+msgid "Boxes is not authorized to run in the background"
+msgstr "«Коробки» не уповноважено на роботу у фоновому режимі"
+
+#: src/libvirt-machine-properties.vala:787
+msgid "Manage permissions"
+msgstr "Керування дозволами"
+
+#: src/libvirt-machine-properties.vala:805
 msgid "3D Acceleration"
 msgstr "Просторове прискорення"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:648
+#: src/libvirt-machine.vala:649
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Відновлення %s з диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:651
+#: src/libvirt-machine.vala:652
 #, c-format
 msgid "Starting %s"
 msgstr "Запускання %s"
 
-#: src/libvirt-machine.vala:730
+#: src/libvirt-machine.vala:731
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Перезапуск «%s» триває задовго. Примусово вимкнути?"
 
-#: src/libvirt-machine.vala:732
+#: src/libvirt-machine.vala:733
 msgid "_Shutdown"
 msgstr "_Вимкнути"
 
-#: src/libvirt-machine.vala:748
+#: src/libvirt-machine.vala:749
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонування «%s»…"
 
-#: src/libvirt-machine.vala:880
+#: src/libvirt-machine.vala:881
 msgid "Installing…"
 msgstr "Встановлення…"
 
-#: src/libvirt-machine.vala:884
+#: src/libvirt-machine.vala:885
 msgid "Setting up clone…"
 msgstr "Розпочаток клонування…"
 
-#: src/libvirt-machine.vala:886
+#: src/libvirt-machine.vala:887
 msgid "Importing…"
 msgstr "Імпортування…"
 
-#: src/libvirt-machine.vala:895
+#: src/libvirt-machine.vala:896
 #, c-format
 msgid "host: %s"
 msgstr "вузол: %s"
