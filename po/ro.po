@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-32\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-11-20 11:23+0000\n"
-"PO-Revision-Date: 2020-12-08 20:48+0200\n"
+"POT-Creation-Date: 2020-12-15 11:05+0000\n"
+"PO-Revision-Date: 2020-12-15 14:20+0200\n"
 "Last-Translator: Florentina Mușat <florentina.musat.28@gmail.com>\n"
 "Language-Team: Gnome Romanian Translation Team <gnomero-list@lists."
 "sourceforge.net>\n"
@@ -60,7 +60,7 @@ msgid "The GNOME Project"
 msgstr "Proiectul GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -749,7 +749,7 @@ msgstr "Proprietăți"
 msgid "Screenshot from %s"
 msgstr "Instantaneu de la %s"
 
-#: src/app.vala:117
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr ""
 "Adrian Gabor <raziel_theripper [at] yahoo [dot] com>\n"
@@ -757,59 +757,64 @@ msgstr ""
 "2019-2020\n"
 "Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2020"
 
-#: src/app.vala:118
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "O aplicație simplă GNOME 3 pentru a accesa mașini la distanță sau virtuale"
 
-#: src/app.vala:183 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "Afișează numărul versiunii"
 
-#: src/app.vala:184
+#: src/app.vala:192
 msgid "Open in full screen"
 msgstr "Deschide pe tot ecranul"
 
-#: src/app.vala:185 src/main.vala:10
+#: src/app.vala:193 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Verifică competențele de virtualizare"
 
-#: src/app.vala:186
+#: src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Deschide cutia cu UUID"
 
-#: src/app.vala:187
+#: src/app.vala:195
 msgid "Search term"
 msgstr "Caută termen"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:189
+#: src/app.vala:197
 msgid "URL to display, broker or installer media"
 msgstr "URL-ul de afișat, broker sau mediu de instalare"
 
-#: src/app.vala:200
+#: src/app.vala:208
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— O aplicație simplă pentru a accesa mașini la distanță sau virtuale"
 
-#: src/app.vala:225
+#: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
 msgstr "Prea multe argumente specificate pentru linia de comandă.\n"
 
-#: src/app.vala:475
+#: src/app.vala:502
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Cutia „%s” a fost instalată și este pregătită pentru utilizare"
 
-#: src/app.vala:477
+#: src/app.vala:504
 msgid "Launch"
 msgstr "Lansează"
 
-#: src/app.vala:563
+#: src/app.vala:534
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "„%s” rulează pe fundal"
+
+#: src/app.vala:620
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Cutia „%s” a fost ștearsă"
 
-#: src/app.vala:564
+#: src/app.vala:621
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -817,12 +822,12 @@ msgstr[0] "%u cutie a fost ștearsă"
 msgstr[1] "%u cutii au fost șterse"
 msgstr[2] "%u de cutii au fost șterse"
 
-#: src/app.vala:592 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "An_ulează"
 
-#: src/app.vala:638
+#: src/app.vala:695
 msgid "Boxes is doing something"
 msgstr "Cutii lucrează la ceva"
 
@@ -840,7 +845,7 @@ msgstr "Anteriorul"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
@@ -1141,49 +1146,57 @@ msgstr "„%s” nu va fi întrerupt automat."
 msgid "“%s” will be paused automatically to save resources."
 msgstr "„%s” va fi întrerupt automat pentru a conserva resurse."
 
-#: src/libvirt-machine-properties.vala:776
+#: src/libvirt-machine-properties.vala:785
+msgid "Boxes is not authorized to run in the background"
+msgstr "Cutii nu este autorizat să ruleze pe fundal"
+
+#: src/libvirt-machine-properties.vala:787
+msgid "Manage permissions"
+msgstr "Gestionează permisiunile"
+
+#: src/libvirt-machine-properties.vala:805
 msgid "3D Acceleration"
 msgstr "Accelerație 3D"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:648
+#: src/libvirt-machine.vala:649
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Se restaurează %s de pe disc"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:651
+#: src/libvirt-machine.vala:652
 #, c-format
 msgid "Starting %s"
 msgstr "Se pornește %s"
 
-#: src/libvirt-machine.vala:730
+#: src/libvirt-machine.vala:731
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Repornirea lui „%s” durează prea mult. Doriți să forțați oprirea?"
 
-#: src/libvirt-machine.vala:732
+#: src/libvirt-machine.vala:733
 msgid "_Shutdown"
 msgstr "_Oprire"
 
-#: src/libvirt-machine.vala:748
+#: src/libvirt-machine.vala:749
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Se clonează „%s”…"
 
-#: src/libvirt-machine.vala:880
+#: src/libvirt-machine.vala:881
 msgid "Installing…"
 msgstr "Se instalează…"
 
-#: src/libvirt-machine.vala:884
+#: src/libvirt-machine.vala:885
 msgid "Setting up clone…"
 msgstr "Se configurează clona…"
 
-#: src/libvirt-machine.vala:886
+#: src/libvirt-machine.vala:887
 msgid "Importing…"
 msgstr "Se importă…"
 
-#: src/libvirt-machine.vala:895
+#: src/libvirt-machine.vala:896
 #, c-format
 msgid "host: %s"
 msgstr "gazdă: %s"
