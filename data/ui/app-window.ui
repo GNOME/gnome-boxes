@@ -7,30 +7,29 @@
     window = new Boxes.ApplicationWindow ();
      |
      |-> main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-     |     |
-     |     |-> searchbar = new Searchbar ();
-     |     |
-     |     |-> notification_overlay = new Gtk.Overlay ();
-     |     |    |
-     |     |    |-> notificationbar = Boxes.Notificationbar ();
-     |     |    |
-     |     |    |-> below_bin = new Gtk.Stack ();
-     |     |        |
-     |     |        |-> icon_view = new Boxes.IconView ();
-     |     |        |
-     |     |        |-> list_view = new Boxes.ListView ();
-     |     |        |
-     |     |        |-> empty_boxes = new Boxes.EmptyBoxes ();
-     |     |        |
-     |     |        |-> display_page = new Boxes.DisplayPage ();
-     |     |
-     |     |-> selectionbar = new Boxes.Selectionbar ();
-     |
-     |-> topbar = new Boxes.Topbar (); // as titlebar
+           |-> topbar = new Boxes.Topbar (); // as titlebar
+           |
+           |-> searchbar = new Searchbar ();
+           |
+           |-> notification_overlay = new Gtk.Overlay ();
+           |    |
+           |    |-> notificationbar = Boxes.Notificationbar ();
+           |    |
+           |    |-> below_bin = new Gtk.Stack ();
+           |        |
+           |        |-> icon_view = new Boxes.IconView ();
+           |        |
+           |        |-> list_view = new Boxes.ListView ();
+           |        |
+           |        |-> empty_boxes = new Boxes.EmptyBoxes ();
+           |        |
+           |        |-> display_page = new Boxes.DisplayPage ();
+           |
+           |-> selectionbar = new Boxes.Selectionbar ();
 
   -->
 
-  <template class="BoxesAppWindow" parent="GtkApplicationWindow">
+  <template class="BoxesAppWindow" parent="HdyApplicationWindow">
     <property name="visible">False</property>
     <property name="show-menubar">False</property>
     <property name="title" translatable="yes">Boxes</property>
@@ -48,6 +47,12 @@
         <property name="valign">fill</property>
         <property name="hexpand">True</property>
         <property name="vexpand">True</property>
+
+        <child>
+          <object class="BoxesTopbar" id="topbar">
+            <property name="visible">True</property>
+          </object>
+        </child>
 
         <child>
           <object class="BoxesSearchbar" id="searchbar">
@@ -160,12 +165,6 @@
             <property name="visible">True</property>
           </object>
         </child>
-      </object>
-    </child>
-
-    <child type="titlebar">
-      <object class="BoxesTopbar" id="topbar">
-        <property name="visible">True</property>
       </object>
     </child>
   </template>

@@ -2,7 +2,7 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/selection-toolbar.ui")]
-private class Boxes.SelectionToolbar: HeaderBar {
+private class Boxes.SelectionToolbar: Hdy.HeaderBar {
     [GtkChild]
     private Button search_btn;
     [GtkChild]

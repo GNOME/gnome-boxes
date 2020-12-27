@@ -2,7 +2,7 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/collection-toolbar.ui")]
-private class Boxes.CollectionToolbar: HeaderBar {
+private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     [GtkChild]
     private Button search_btn;
     [GtkChild]

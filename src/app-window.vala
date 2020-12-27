@@ -3,7 +3,7 @@ using Gtk;
 using Gdk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/app-window.ui")]
-private class Boxes.AppWindow: Gtk.ApplicationWindow, Boxes.UI {
+private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     public const uint TRANSITION_DURATION = 400; // milliseconds
 
     public enum ViewType {

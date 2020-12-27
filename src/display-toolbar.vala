@@ -2,7 +2,7 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/display-toolbar.ui")]
-private class Boxes.DisplayToolbar: Gtk.HeaderBar {
+private class Boxes.DisplayToolbar: Hdy.HeaderBar {
     public bool overlay { get; construct; }
     public bool handle_drag { get; construct; } // Handle drag events to (un)fulscreen the main window
 
