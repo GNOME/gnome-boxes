@@ -181,7 +181,7 @@ private class Boxes.SharedFoldersManager: Boxes.Collection {
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-shared-folder-row.ui")]
-private class Boxes.SharedFolderRow : Gtk.ListBoxRow {
+private class Boxes.SharedFolderRow : Hdy.PreferencesRow {
     public signal void removed (SharedFolder folder);
     [GtkChild]
     private Gtk.Label folder_path_label;
@@ -211,17 +211,17 @@ private class Boxes.SharedFoldersWidget: Gtk.Frame {
 
     private GLib.ListStore list_model;
 
-    private Boxes.SharedFolderPopover popover;
+    private Boxes.SharedFolderPopover popover = new SharedFolderPopover ();
     [GtkChild]
     private Gtk.ListBox listbox;
 
-    public SharedFoldersWidget (string machine_uuid) {
+    public void setup (string machine_uuid) {
         this.machine_uuid = machine_uuid;
 
         list_model = manager.get_folders (machine_uuid);
         listbox.bind_model (list_model, create_shared_folder_row);
 
-        popover = new SharedFolderPopover ();
+        //popover = new SharedFolderPopover ();
         popover.saved.connect (on_popover_saved);
     }
 

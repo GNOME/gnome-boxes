@@ -414,9 +414,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             if (webdav_channel == null || !webdav_channel.port_opened)
                 break;
 
-            var frame = create_shared_folders_frame ();
-            add_property (ref list, _("Folder Shares"), new Gtk.Label (""), frame);
-
             break;
         }
 
@@ -523,10 +520,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         }
 
         return frame;
-    }
-
-    private Gtk.Frame create_shared_folders_frame () {
-        return new SharedFoldersWidget (machine.config.uuid);
     }
 
     private bool is_usb_kbd_or_mouse (uint8 class, uint8 subclass, uint8 protocol) {

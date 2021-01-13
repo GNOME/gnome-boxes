@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesSnapshotsWidget" parent="GtkStack">
+    <property name="visible">True</property>
+
+    <child>
+      <object class="GtkBox" id="list_page">
+        <property name="visible">True</property>
+        <property name="margin">20</property>
+        <property name="orientation">vertical</property>
+        <signal name="add" handler="update_snapshot_stack_page"/>
+        <signal name="remove" handler="update_snapshot_stack_page"/>
+
+        <child>
+          <object class="GtkListBox" id="listbox">
+            <property name="visible">True</property>
+            <property name="selection-mode">none</property>
+
+            <style>
+              <class name="frame"/>
+            </style>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkButton">
+            <property name="visible">True</property>
+            <signal name="clicked" handler="create_snapshot"/>
+
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="icon-name">list-add-symbolic</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyStatusPage" id="empty_page">
+        <property name="visible">True</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="icon-name">empty-boxes</property>
+        <property name="title" translatable="yes">No snapshots created yet.</property>
+        <property name="description" translatable="yes">Create one using the button below.</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkBox" id="activity_page">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="GtkSpinner">
+            <property name="visible">True</property>
+            <property name="active">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

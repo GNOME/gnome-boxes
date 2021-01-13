@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesPreferencesDevicesPage" parent="HdyPreferencesPage">
+    <property name="visible">True</property>
+    <property name="icon-name">media-removable-symbolic</property>
+    <property name="title" translatable="yes">Devices &amp; Shares</property>
+
+    <child>
+      <object class="HdyPreferencesGroup" id="usb_devices_group">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Devices</property>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">No CD/DVD Image</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Select</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Folder Shares</property>
+
+        <child>
+          <object class="BoxesSharedFoldersWidget" id="shared_folders_widget">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <!--<child>
+          <object class="HdyPreferencesRow">
+            <property name="visible">True</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="halign">center</property>
+                <style>
+                  <class name="flat"/>
+                </style>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">list-add-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child> -->
+      </object>
+    </child>
+  </template>
+</interface>

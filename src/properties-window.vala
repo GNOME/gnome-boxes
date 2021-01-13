@@ -11,7 +11,7 @@ private enum Boxes.PropsWindowPage {
 public delegate void Boxes.FileChosenFunc (string path);
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/properties-window.ui")]
-private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
+private class Boxes.PropertiesWindow: Hdy.PreferencesWindow, Boxes.UI {
     public const string[] page_names = { "main", "troubleshoot_log", "file_chooser", "config_editor" };
 
     public UIState previous_ui_state { get; protected set; }
@@ -24,7 +24,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
             _page = value;
 
             view.visible_child_name = page_names[value];
-            topbar.page = value;
+            //topbar.page = value;
         }
     }
 
@@ -39,8 +39,6 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
 
     public Gtk.FileChooserNative file_chooser;
     [GtkChild]
-    public PropertiesToolbar topbar;
-    [GtkChild]
     public Notificationbar notificationbar;
 
     private unowned AppWindow app_window;
@@ -49,7 +47,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
         this.app_window = app_window;
 
         properties.setup_ui (app_window, this);
-        topbar.setup_ui (app_window, this);
+        //topbar.setup_ui (app_window, this);
 
         set_transient_for (app_window);
 
@@ -70,9 +68,9 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
 
     public void show_editor_view (LibvirtMachine machine) {
         page = PropsWindowPage.TEXT_EDITOR;
-        config_editor.setup (machine, topbar.apply_config_button);
+        //config_editor.setup (machine, topbar.apply_config_button);
 
-        topbar.config_editor.set_title (machine.name);
+        //topbar.config_editor.set_title (machine.name);
     }
 
     public void show_file_chooser (owned FileChosenFunc file_chosen_func) {
@@ -119,7 +117,7 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
              (direction == Gtk.TextDirection.RTL && // RTL
               event.keyval == Gdk.Key.Right)) &&    // ALT + Right -> back
             (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
-            topbar.click_back_button ();
+            //topbar.click_back_button ();
 
             return true;
         } else if (event.keyval == Gdk.Key.Escape) { // ESC -> back

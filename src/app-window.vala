@@ -296,7 +296,12 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
 
     public void show_properties () {
-        if (current_item != null) {
+        if (current_item == null)
+            return;
+
+        new Boxes.PreferencesDialog (this, current_item as Machine).present ();
+
+        /*if (current_item != null) {
             if (ui_state == UIState.COLLECTION && selection_mode)
                 selection_mode = false;
             set_state (UIState.PROPERTIES);
@@ -314,7 +319,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             current_item = item;
             set_state (UIState.PROPERTIES);
             break;
-        }
+        }*/
     }
 
     public void show_send_file () {

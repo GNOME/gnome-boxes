@@ -23,6 +23,8 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
     private Boxes.LibvirtMachine machine;
     private unowned Gtk.Container? parent_container = null;
 
+    public signal void removed ();
+
     private const GLib.ActionEntry[] action_entries = {
         {"revert-to", revert_to_activated},
         {"rename",    rename_activated},
@@ -160,40 +162,17 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
 
 
     private void delete_activated (GLib.SimpleAction action, GLib.Variant? v) {
-        string snapshot_identifier = snapshot.get_name ();
-        try {
-            var config = snapshot.get_config (0);
-            snapshot_identifier = config.get_description ();
-        } catch (GLib.Error e) {
-            warning ("Could not get configuration of snapshot %s: %s",
-                      snapshot.get_name (),
-                      e.message);
-        }
-        var message = _("Snapshot “%s” deleted.").printf (snapshot_identifier);
-        parent_container = (Gtk.Container) this.get_parent ();
-        var row = this;
-        parent_container.remove (this);
+        removed ();
+    }
 
-        Notification.OKFunc undo = () => {
-            parent_container.add (this);
-            row = null;
-        };
-
-        Notification.DismissFunc really_remove = () => {
-            this.snapshot.delete_async.begin (0, null, (obj, res) =>{
-                try {
-                    this.snapshot.delete_async.end (res);
-                    parent_container.queue_draw ();
-                } catch (GLib.Error e) {
-                    warning ("Error while deleting snapshot %s: %s", snapshot.get_name (), e.message);
-                }
-            });
-            row = null;
-        };
-        machine.window.notificationbar.display_for_action (message,
-                                                           _("_Undo"),
-                                                           (owned) undo,
-                                                           (owned) really_remove);
+    public void really_remove () {
+        snapshot.delete_async.begin (0, null, (obj, res) => {
+            try {
+               snapshot.delete_async.end (res);
+            } catch (GLib.Error e) {
+                warning ("Error while deleting snapshot %s: %s", snapshot.get_name (), e.message)    ;
+            }
+        });
     }
 
     private void rename_activated (GLib.SimpleAction action, GLib.Variant? v) {

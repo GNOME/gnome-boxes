@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesPreferencesResourcesPage" parent="HdyPreferencesPage">
+    <property name="visible">True</property>
+    <property name="icon-name">network-cellular-signal-excellent-symbolic</property>
+    <property name="title" translatable="yes">Resources</property>
+
+    <child>
+      <object class="HdyPreferencesGroup" id="box_stats">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Box Name</property>
+
+            <child>
+              <object class="GtkEntry" id="box_name_entry">
+                <property name="visible">True</property>
+                <property name="hexpand">True</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">3D Acceleration</property>
+            <property name="activatable_widget">accel_3d_toggle</property>
+
+            <child>
+              <object class="GtkSwitch" id="accel_3d_toggle">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="margin-top">18</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="label" translatable="yes">Troubleshooting Log</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkBox">
+                <property name="visible">True</property>
+                <property name="spacing">10</property>
+
+                <child>
+                  <object class="GtkButton" id="restart_button">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Restart</property>
+                    <signal name="clicked" handler="on_restart_button_clicked"/>
+                    <style>
+                      <class name="suggested-action"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="force_shutdown_button">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">Force Shutdown</property>
+                    <signal name="clicked" handler="on_force_shutdown_button_clicked"/>
+                    <style>
+                      <class name="destructive-action"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="pack-type">end</property>
+              </packing>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup" id="box_resources">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Resources</property>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Memory</property>
+
+            <child>
+              <object class="GtkBox" id="memory_widget">
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Storage</property>
+
+            <child>
+              <object class="GtkBox" id="storage_widget">
+                <property name="visible">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">CPUs</property>
+
+            <child>
+              <object class="GtkSpinButton" id="cpus_spinbutton">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Allow running in background</property>
+
+            <child>
+              <object class="GtkSwitch" id="run_in_bg_switch">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkSizeGroup">
+    <property name="mode">horizontal</property>
+    <widgets>
+      <widget name="restart_button"/>
+      <widget name="force_shutdown_button"/>
+    </widgets>
+  </object>
+</interface>

@@ -21,7 +21,7 @@
         |-> topbar = new Boxes.PropertiesToolbar (); // as titlebar
   -->
 
-  <template class="BoxesPropertiesWindow" parent="GtkWindow">
+  <template class="BoxesPropertiesWindow" parent="HdyPreferencesWindow">
     <property name="can_focus">False</property>
     <property name="resizable">True</property>
     <property name="modal">True</property>
@@ -93,12 +93,6 @@
           </object>
         </child>
 
-      </object>
-    </child>
-
-    <child type="titlebar">
-      <object class="BoxesPropertiesToolbar" id="topbar">
-        <property name="visible">True</property>
       </object>
     </child>
   </template>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesPreferencesDialog" parent="HdyPreferencesWindow">
+    <property name="role">boxes-preferences</property>
+    <property name="can_focus">False</property>
+    <property name="resizable">True</property>
+    <property name="modal">True</property>
+    <property name="type-hint">dialog</property>
+    <property name="width-request">724</property>
+    <property name="height-request">468</property>
+    <signal name="key-press-event" after="yes" handler="on_key_pressed"/>
+
+    <child>
+      <object class="BoxesPreferencesResourcesPage" id="resources_page"/>
+    </child>
+
+    <child>
+      <object class="BoxesPreferencesDevicesPage" id="devices_page"/>
+    </child>
+
+    <child>
+      <object class="BoxesPreferencesSnapshotsPage" id="snapshots_page"/>
+    </child>
+
+  </template>
+</interface>
