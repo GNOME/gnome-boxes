@@ -2,14 +2,14 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012-2020.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2012-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-12-02 13:16+0000\n"
-"PO-Revision-Date: 2020-12-15 09:56+0100\n"
+"POT-Creation-Date: 2020-12-15 11:05+0000\n"
+"PO-Revision-Date: 2021-01-14 09:42+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -57,7 +57,7 @@ msgid "The GNOME Project"
 msgstr "El Proyecto GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -749,76 +749,81 @@ msgstr "Propiedades"
 msgid "Screenshot from %s"
 msgstr "Captura de pantalla de %s"
 
-#: src/app.vala:117
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012 - 2014"
 
-#: src/app.vala:118
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: src/app.vala:183 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
 
-#: src/app.vala:184
+#: src/app.vala:192
 msgid "Open in full screen"
 msgstr "Abrir en pantalla completa"
 
-#: src/app.vala:185 src/main.vala:10
+#: src/app.vala:193 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprobar la capacidad de virtualización"
 
-#: src/app.vala:186
+#: src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Abrir caja con UUID"
 
-#: src/app.vala:187
+#: src/app.vala:195
 msgid "Search term"
 msgstr "Buscar término"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:189
+#: src/app.vala:197
 msgid "URL to display, broker or installer media"
 msgstr "URL que mostrar, agente o medio de instalación"
 
-#: src/app.vala:200
+#: src/app.vala:208
 msgid "— A simple application to access remote or virtual machines"
 msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 
-#: src/app.vala:225
+#: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: src/app.vala:475
+#: src/app.vala:502
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caja «%s» instalada y lista para usarse"
 
-#: src/app.vala:477
+#: src/app.vala:504
 msgid "Launch"
 msgstr "Lanzar"
 
-#: src/app.vala:563
+#: src/app.vala:534
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "«%s» se está ejecutando en segundo plano"
+
+#: src/app.vala:620
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: src/app.vala:564
+#: src/app.vala:621
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: src/app.vala:592 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:569
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: src/app.vala:638
+#: src/app.vala:695
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
@@ -836,7 +841,7 @@ msgstr "Anterior"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:882
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "«Live»"
@@ -1137,49 +1142,57 @@ msgstr "«%s» no se pausará automáticamente."
 msgid "“%s” will be paused automatically to save resources."
 msgstr "«%s» se pausará automáticamente para ahorrar recursos."
 
-#: src/libvirt-machine-properties.vala:776
+#: src/libvirt-machine-properties.vala:785
+msgid "Boxes is not authorized to run in the background"
+msgstr "Cajas no está autorizado a ejecutar el segundo plano"
+
+#: src/libvirt-machine-properties.vala:787
+msgid "Manage permissions"
+msgstr "Gestionar permisos"
+
+#: src/libvirt-machine-properties.vala:805
 msgid "3D Acceleration"
 msgstr "Aceleración 3D"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:648
+#: src/libvirt-machine.vala:649
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restaurando %s desde el disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:651
+#: src/libvirt-machine.vala:652
 #, c-format
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: src/libvirt-machine.vala:730
+#: src/libvirt-machine.vala:731
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: src/libvirt-machine.vala:732
+#: src/libvirt-machine.vala:733
 msgid "_Shutdown"
 msgstr "_Apagar"
 
-#: src/libvirt-machine.vala:748
+#: src/libvirt-machine.vala:749
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Clonando «%s»…"
 
-#: src/libvirt-machine.vala:880
+#: src/libvirt-machine.vala:881
 msgid "Installing…"
 msgstr "Instalando…"
 
-#: src/libvirt-machine.vala:884
+#: src/libvirt-machine.vala:885
 msgid "Setting up clone…"
 msgstr "Configurando clon…"
 
-#: src/libvirt-machine.vala:886
+#: src/libvirt-machine.vala:887
 msgid "Importing…"
 msgstr "Importando…"
 
-#: src/libvirt-machine.vala:895
+#: src/libvirt-machine.vala:896
 #, c-format
 msgid "host: %s"
 msgstr "equipo: %s"
