@@ -41,6 +41,8 @@ private class Boxes.ListViewRow: Gtk.Box {
     [GtkChild]
     private Gtk.Image thumbnail;
     [GtkChild]
+    private Gtk.Image live_thumbnail;
+    [GtkChild]
     private Gtk.Spinner spinner;
     [GtkChild]
     private Gtk.Image favorite;
@@ -84,15 +86,21 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     private void update_thumbnail () {
+        var libvirt_machine = machine as LibvirtMachine;
+
         if (machine.under_construction) {
             stack.visible_child = spinner;
             spinner.start ();
             spinner.visible = true;
-        }
-        else {
+
+            return;
+        } else if (VMConfigurator.is_live_config (libvirt_machine.domain_config)) {
+            stack.visible_child = live_thumbnail;
+        } else {
             stack.visible_child = thumbnail;
-            spinner.stop ();
         }
+
+        spinner.stop ();
     }
 
     private void update_favorite () {
