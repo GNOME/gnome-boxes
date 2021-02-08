@@ -182,17 +182,6 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         else
             label.set_text (get_utf8_basename (source));
 
-        if (machine.vm_creator != null) {
-            var media = machine.vm_creator.install_media;
-
-            if (machine.vm_creator.express_install || (media.os_media != null && media.os_media.live)) {
-                // Don't let user eject installer media if it's an express installation or a live media
-                add_property (ref list, _("CD/DVD"), grid);
-
-                return;
-            }
-        }
-
         var button_label = new Gtk.Label ("");
         var button = new Gtk.Button ();
         button.add (button_label);
