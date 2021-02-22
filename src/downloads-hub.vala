@@ -12,7 +12,7 @@ private class Boxes.DownloadsHub : Gtk.Popover {
     }
 
     [GtkChild]
-    private ListBox listbox;
+    private unowned ListBox listbox;
     private Widget button { get { return relative_to; } }
 
     private uint n_items = 0;
@@ -139,15 +139,15 @@ private class Boxes.DownloadsHub : Gtk.Popover {
 [GtkTemplate (ui= "/org/gnome/Boxes/ui/downloads-hub-row.ui")]
 private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
     [GtkChild]
-    private Label label;
+    private unowned Label label;
     [GtkChild]
-    private Image image;
+    private unowned Image image;
     [GtkChild]
-    private Stack download_status;
+    private unowned Stack download_status;
     [GtkChild]
-    private ProgressBar progress_bar;
+    private unowned ProgressBar progress_bar;
     [GtkChild]
-    private Label download_complete_label;
+    private unowned Label download_complete_label;
 
     public ActivityProgress progress = new ActivityProgress ();
     private ulong progress_notify_id;

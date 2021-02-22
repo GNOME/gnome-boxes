@@ -80,23 +80,23 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     public PropertiesWindow  props_window;
 
     [GtkChild]
-    public Searchbar searchbar;
+    public unowned Searchbar searchbar;
     [GtkChild]
-    public Topbar topbar;
+    public unowned Topbar topbar;
     [GtkChild]
-    public Selectionbar selectionbar;
+    public unowned Selectionbar selectionbar;
     [GtkChild]
-    public DisplayPage display_page;
+    public unowned DisplayPage display_page;
     [GtkChild]
-    public EmptyBoxes empty_boxes;
+    public unowned EmptyBoxes empty_boxes;
     [GtkChild]
-    public TroubleshootView troubleshoot_view;
+    public unowned TroubleshootView troubleshoot_view;
     [GtkChild]
-    public Gtk.Stack below_bin;
+    public unowned Gtk.Stack below_bin;
     [GtkChild]
-    private IconView icon_view;
+    private unowned IconView icon_view;
     [GtkChild]
-    private ListView list_view;
+    private unowned ListView list_view;
 
     public ViewType view_type { get; set; default = ViewType.ICON; }
 
@@ -122,7 +122,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
 
     [GtkChild]
-    private Notificationbar _notificationbar;
+    private unowned Notificationbar _notificationbar;
 
     private uint configure_id;
     public const uint configure_id_timeout = 100;  // 100ms

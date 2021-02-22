@@ -3,7 +3,7 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/setup-page.ui")]
 private class Boxes.AssistantSetupPage : AssistantPage {
     [GtkChild]
-    private Box setup_box;
+    private unowned Box setup_box;
 
     public async void setup (VMCreator vm_creator) {
         this.artifact = vm_creator;

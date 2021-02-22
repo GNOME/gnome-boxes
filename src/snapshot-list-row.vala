@@ -6,15 +6,15 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
     public string activity_message { get; set; default = ""; }
 
     [GtkChild]
-    private Gtk.Label name_label;
+    private unowned Gtk.Label name_label;
     [GtkChild]
-    private Gtk.Stack mode_stack;
+    private unowned Gtk.Stack mode_stack;
     [GtkChild]
-    private Gtk.Entry name_entry;
+    private unowned Gtk.Entry name_entry;
     [GtkChild]
-    private Gtk.Box edit_name_box;
+    private unowned Gtk.Box edit_name_box;
     [GtkChild]
-    private Gtk.Box show_name_box;
+    private unowned Gtk.Box show_name_box;
 
     // index of the snapshot in the list
     private int index;

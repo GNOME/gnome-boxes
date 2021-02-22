@@ -35,23 +35,23 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     [GtkChild]
-    private Gtk.CheckButton selection_button;
+    private unowned Gtk.CheckButton selection_button;
     [GtkChild]
-    private Gtk.Stack stack;
+    private unowned Gtk.Stack stack;
     [GtkChild]
-    private Gtk.Image thumbnail;
+    private unowned Gtk.Image thumbnail;
     [GtkChild]
-    private Gtk.Image live_thumbnail;
+    private unowned Gtk.Image live_thumbnail;
     [GtkChild]
-    private Gtk.Spinner spinner;
+    private unowned Gtk.Spinner spinner;
     [GtkChild]
-    private Gtk.Image favorite;
+    private unowned Gtk.Image favorite;
     [GtkChild]
-    private Gtk.Label machine_name;
+    private unowned Gtk.Label machine_name;
     [GtkChild]
-    private Gtk.Label info_label;
+    private unowned Gtk.Label info_label;
     [GtkChild]
-    private Gtk.Label status_label;
+    private unowned Gtk.Label status_label;
 
     private Boxes.MachineThumbnailer thumbnailer;
 

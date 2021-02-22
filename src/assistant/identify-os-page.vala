@@ -5,9 +5,9 @@ public class Boxes.IdentifyOsPage : Gtk.Box {
     private Boxes.IdentifyOsPopover os_popover;
 
     [GtkChild]
-    private Gtk.MenuButton menu_button;
+    private unowned Gtk.MenuButton menu_button;
     [GtkChild]
-    private Gtk.Label menu_button_label;
+    private unowned Gtk.Label menu_button_label;
 
     private Osinfo.Os? selected_os = null;
 

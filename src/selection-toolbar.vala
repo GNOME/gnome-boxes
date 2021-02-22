@@ -4,11 +4,11 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/selection-toolbar.ui")]
 private class Boxes.SelectionToolbar: Hdy.HeaderBar {
     [GtkChild]
-    private Button search_btn;
+    private unowned Button search_btn;
     [GtkChild]
-    private MenuButton menu_button;
+    private unowned MenuButton menu_button;
     [GtkChild]
-    private Label menu_button_label;
+    private unowned Label menu_button_label;
 
     private AppWindow window;
 

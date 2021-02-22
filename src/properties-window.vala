@@ -29,19 +29,19 @@ private class Boxes.PropertiesWindow: Gtk.Window, Boxes.UI {
     }
 
     [GtkChild]
-    public Gtk.Stack view;
+    public unowned Gtk.Stack view;
     [GtkChild]
-    public Properties properties;
+    public unowned Properties properties;
     [GtkChild]
-    public TroubleshootLog troubleshoot_log;
+    public unowned TroubleshootLog troubleshoot_log;
     [GtkChild]
-    public MachineConfigEditor config_editor;
+    public unowned MachineConfigEditor config_editor;
 
     public Gtk.FileChooserNative file_chooser;
     [GtkChild]
-    public PropertiesToolbar topbar;
+    public unowned PropertiesToolbar topbar;
     [GtkChild]
-    public Notificationbar notificationbar;
+    public unowned Notificationbar notificationbar;
 
     private unowned AppWindow app_window;
 

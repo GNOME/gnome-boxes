@@ -29,19 +29,19 @@ private class Boxes.IconViewChild : Gtk.Box {
     }
 
     [GtkChild]
-    private Gtk.CheckButton selection_button;
+    private unowned Gtk.CheckButton selection_button;
     [GtkChild]
-    private Gtk.Stack stack;
+    private unowned Gtk.Stack stack;
     [GtkChild]
-    public Gtk.Image thumbnail;
+    public unowned Gtk.Image thumbnail;
     [GtkChild]
-    private Gtk.Spinner spinner;
+    private unowned Gtk.Spinner spinner;
     [GtkChild]
-    private Gtk.Image favorite;
+    private unowned Gtk.Image favorite;
     [GtkChild]
-    private Gtk.Image live_thumbnail;
+    private unowned Gtk.Image live_thumbnail;
     [GtkChild]
-    private Gtk.Label machine_name;
+    private unowned Gtk.Label machine_name;
 
     private Boxes.MachineThumbnailer thumbnailer;
 

@@ -7,20 +7,19 @@ private class Boxes.DisplayToolbar: Hdy.HeaderBar {
     public bool handle_drag { get; construct; } // Handle drag events to (un)fulscreen the main window
 
     [GtkChild]
-    private Gtk.Image fullscreen_image;
+    private unowned Gtk.Image fullscreen_image;
     [GtkChild]
-    private Gtk.DrawingArea transfers_drawing_area;
+    private unowned Gtk.DrawingArea transfers_drawing_area;
     [GtkChild]
-    public Gtk.Button transfers_button;
+    public unowned Gtk.Button transfers_button;
     [GtkChild]
-
-    private Gtk.Button back;
+    private unowned Gtk.Button back;
     [GtkChild]
-    private Gtk.Button fullscreen;
+    private unowned Gtk.Button fullscreen;
     [GtkChild]
-    private Gtk.MenuButton menu_button;
+    private unowned Gtk.MenuButton menu_button;
     [GtkChild]
-    private Gtk.MenuButton keys_menu_button;
+    private unowned Gtk.MenuButton keys_menu_button;
 
     private AppWindow window;
 

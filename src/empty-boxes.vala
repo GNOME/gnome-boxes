@@ -6,7 +6,7 @@ private class Boxes.EmptyBoxes : Gtk.Stack, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    private Gtk.Box grid_box;
+    private unowned Gtk.Box grid_box;
 
     private AppWindow window;
 

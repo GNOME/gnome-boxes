@@ -105,11 +105,11 @@ private class Boxes.EditableEntry: Notebook {
     public bool scale_set { get; set; }
 
     [GtkChild]
-    private Gtk.Label label;
+    private unowned Gtk.Label label;
     [GtkChild]
-    private Gtk.Label button_label;
+    private unowned Gtk.Label button_label;
     [GtkChild]
-    private Gtk.Entry entry;
+    private unowned Gtk.Entry entry;
 
     private void update_entry_font (Gtk.Entry entry) {
         if (!scale_set && !weight_set)

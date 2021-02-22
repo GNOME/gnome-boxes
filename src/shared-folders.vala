@@ -184,9 +184,9 @@ private class Boxes.SharedFoldersManager: Boxes.Collection {
 private class Boxes.SharedFolderRow : Gtk.ListBoxRow {
     public signal void removed (SharedFolder folder);
     [GtkChild]
-    private Gtk.Label folder_path_label;
+    private unowned Gtk.Label folder_path_label;
     [GtkChild]
-    private Gtk.Label folder_name_label;
+    private unowned Gtk.Label folder_name_label;
 
     public SharedFolder folder { get; private set; }
 
@@ -213,7 +213,7 @@ private class Boxes.SharedFoldersWidget: Gtk.Frame {
 
     private Boxes.SharedFolderPopover popover;
     [GtkChild]
-    private Gtk.ListBox listbox;
+    private unowned Gtk.ListBox listbox;
 
     public SharedFoldersWidget (string machine_uuid) {
         this.machine_uuid = machine_uuid;
@@ -251,9 +251,9 @@ private class Boxes.SharedFolderPopover: Gtk.Popover {
     public signal bool saved (string path, string name);
 
     [GtkChild]
-    public Gtk.FileChooserButton file_chooser_button;
+    public unowned Gtk.FileChooserButton file_chooser_button;
     [GtkChild]
-    public Gtk.Entry name_entry;
+    public unowned Gtk.Entry name_entry;
 
     construct {
         var default_path = Environment.get_user_special_dir (UserDirectory.PUBLIC_SHARE);

@@ -4,15 +4,15 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/transfer-info-row.ui")]
 private class Boxes.TransferInfoRow: Gtk.Grid {
     [GtkChild]
-    private Gtk.Label status_label;
+    private unowned Gtk.Label status_label;
     [GtkChild]
-    private Gtk.Label details_label;
+    private unowned Gtk.Label details_label;
     [GtkChild]
-    private Gtk.Button cancel_button;
+    private unowned Gtk.Button cancel_button;
     [GtkChild]
-    private Gtk.ProgressBar progress_bar;
+    private unowned Gtk.ProgressBar progress_bar;
     [GtkChild]
-    private Gtk.Image done_image;
+    private unowned Gtk.Image done_image;
 
     public signal void finished ();
 

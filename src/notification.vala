@@ -12,13 +12,13 @@ private class Boxes.Notification: Gtk.Revealer {
     public delegate void DismissFunc ();
 
     [GtkChild]
-    private Gtk.Label message_label;
+    private unowned Gtk.Label message_label;
     [GtkChild]
-    private Gtk.Label ok_button_label;
+    private unowned Gtk.Label ok_button_label;
     [GtkChild]
-    private Gtk.Button ok_button;
+    private unowned Gtk.Button ok_button;
     [GtkChild]
-    private Gtk.Button close_button;
+    private unowned Gtk.Button close_button;
 
     private uint notification_timeout_id = 0;
 

@@ -4,9 +4,9 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/welcome-tutorial-page.ui")]
 private class Boxes.WelcomeTutorialPage : Gtk.Box {
     [GtkChild]
-    private Label title_label;
+    private unowned Label title_label;
     [GtkChild]
-    private Label description_label;
+    private unowned Label description_label;
 
     public string title {
         set {

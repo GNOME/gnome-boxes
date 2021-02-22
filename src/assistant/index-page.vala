@@ -12,20 +12,20 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     private const int MAX_MEDIA_ENTRIES = 3;
 
     [GtkChild]
-    private Stack stack;
+    private unowned Stack stack;
     [GtkChild]
-    private AssistantDownloadsPage recommended_downloads_page;
+    private unowned AssistantDownloadsPage recommended_downloads_page;
     [GtkChild]
-    private ScrolledWindow home_page;
+    private unowned ScrolledWindow home_page;
 
     [GtkChild]
-    private Box detected_sources_section;
+    private unowned Box detected_sources_section;
     [GtkChild]
-    private ListBox source_medias;
+    private unowned ListBox source_medias;
     [GtkChild]
-    private ListBox featured_medias;
+    private unowned ListBox featured_medias;
     [GtkChild]
-    private Button expand_detected_sources_list_button;
+    private unowned Button expand_detected_sources_list_button;
 
     private GLib.Cancellable cancellable = new GLib.Cancellable ();
 
@@ -171,11 +171,11 @@ public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
     public Osinfo.Os? os;
 
     [GtkChild]
-    private Gtk.Image media_image;
+    private unowned Gtk.Image media_image;
     [GtkChild]
-    private Gtk.Label title_label;
+    private unowned Gtk.Label title_label;
     [GtkChild]
-    private Gtk.Label details_label;
+    private unowned Gtk.Label details_label;
 
     public string title {
         get { return title_label.get_text (); }
@@ -212,11 +212,11 @@ private class Boxes.WizardMediaEntry : Gtk.ListBoxRow {
     public InstallerMedia media;
 
     [GtkChild]
-    private Gtk.Image media_image;
+    private unowned Gtk.Image media_image;
     [GtkChild]
-    private Gtk.Label title_label;
+    private unowned Gtk.Label title_label;
     [GtkChild]
-    private Gtk.Label details_label;
+    private unowned Gtk.Label details_label;
 
     public WizardMediaEntry (InstallerMedia media) {
         this.media = media;

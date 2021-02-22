@@ -3,9 +3,9 @@
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/identify-os-popover.ui")]
 public class Boxes.IdentifyOsPopover : Gtk.Popover {
     [GtkChild]
-    private Gtk.SearchEntry search_entry;
+    private unowned Gtk.SearchEntry search_entry;
     [GtkChild]
-    private Gtk.ListBox listbox;
+    private unowned Gtk.ListBox listbox;
     private GLib.ListStore model;
 
     private GLib.List<weak Osinfo.Entity> os_list;

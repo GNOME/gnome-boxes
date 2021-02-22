@@ -14,7 +14,7 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     public CollectionFilter filter { get; protected set; }
 
     [GtkChild]
-    private Gtk.FlowBox flowbox;
+    private unowned Gtk.FlowBox flowbox;
 
     private AppWindow window;
     private Boxes.ActionsPopover context_popover;

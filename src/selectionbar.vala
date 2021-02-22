@@ -4,13 +4,13 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/selectionbar.ui")]
 private class Boxes.Selectionbar: Gtk.Revealer {
     [GtkChild]
-    private Gtk.ToggleButton favorite_btn;
+    private unowned Gtk.ToggleButton favorite_btn;
     [GtkChild]
-    private Gtk.Button pause_btn;
+    private unowned Gtk.Button pause_btn;
     [GtkChild]
-    private Gtk.Button remove_btn;
+    private unowned Gtk.Button remove_btn;
     [GtkChild]
-    private Gtk.Button open_btn;
+    private unowned Gtk.Button open_btn;
 
     private AppWindow window;
 

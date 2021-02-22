@@ -3,18 +3,18 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/preparation-page.ui")]
 private class Boxes.AssistantPreparationPage : AssistantPage {
     [GtkChild]
-    private Gtk.Stack stack;
+    private unowned Gtk.Stack stack;
     [GtkChild]
-    private Boxes.IdentifyOsPage identify_os_page;
+    private unowned Boxes.IdentifyOsPage identify_os_page;
 
     [GtkChild]
-    private Gtk.Label media_label;
+    private unowned Gtk.Label media_label;
     [GtkChild]
-    private Gtk.Label status_label;
+    private unowned Gtk.Label status_label;
     [GtkChild]
-    private Gtk.Image installer_image;
+    private unowned Gtk.Image installer_image;
     [GtkChild]
-    private Gtk.ProgressBar progress_bar;
+    private unowned Gtk.ProgressBar progress_bar;
 
     private Cancellable cancellable = new GLib.Cancellable ();
 

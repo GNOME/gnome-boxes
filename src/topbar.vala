@@ -15,11 +15,11 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public UIState ui_state { get; protected set; }
 
     [GtkChild]
-    private CollectionToolbar collection_toolbar;
+    private unowned CollectionToolbar collection_toolbar;
     [GtkChild]
-    private SelectionToolbar selection_toolbar;
+    private unowned SelectionToolbar selection_toolbar;
     [GtkChild]
-    public DisplayToolbar display_toolbar;
+    public unowned DisplayToolbar display_toolbar;
 
     private AppWindow window;
 

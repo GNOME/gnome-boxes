@@ -11,7 +11,7 @@ private class Boxes.Searchbar: Gtk.SearchBar {
         }
     }
     [GtkChild]
-    private Gtk.SearchEntry entry;
+    private unowned Gtk.SearchEntry entry;
 
     private AppWindow window;
 

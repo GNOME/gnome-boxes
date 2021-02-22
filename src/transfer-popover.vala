@@ -4,7 +4,7 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/transfer-popover.ui")]
 private class Boxes.TransferPopover: Gtk.Popover {
     [GtkChild]
-    public Gtk.Box transfers_container;
+    public unowned Gtk.Box transfers_container;
 
     public signal void all_finished ();
     public GLib.List<Spice.FileTransferTask> spice_tasks;

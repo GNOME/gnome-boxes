@@ -5,11 +5,11 @@ using Hdy;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/welcome-tutorial.ui")]
 private class Boxes.WelcomeTutorial : Gtk.Dialog {
     [GtkChild]
-    private Carousel paginator;
+    private unowned Carousel paginator;
     [GtkChild]
-    private Button go_back_button;
+    private unowned Button go_back_button;
     [GtkChild]
-    private Button go_next_button;
+    private unowned Button go_next_button;
 
     private GLib.List<unowned WelcomeTutorialPage> pages;
     private CssProvider provider;

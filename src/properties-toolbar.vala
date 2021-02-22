@@ -14,18 +14,18 @@ private class Boxes.PropertiesToolbar: Gtk.Stack {
     }
 
     [GtkChild]
-    public Gtk.HeaderBar main;
+    public unowned Gtk.HeaderBar main;
 
     [GtkChild]
-    public Gtk.HeaderBar config_editor;
+    public unowned Gtk.HeaderBar config_editor;
     [GtkChild]
-    public Gtk.Button apply_config_button;
+    public unowned Gtk.Button apply_config_button;
 
     [GtkChild]
-    public Gtk.Button troubleshooting_back_button;
+    public unowned Gtk.Button troubleshooting_back_button;
 
     [GtkChild]
-    private EditableEntry title_entry;
+    private unowned EditableEntry title_entry;
 
     private AppWindow window;
     private unowned PropertiesWindow props_window;

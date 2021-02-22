@@ -12,9 +12,9 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     public DownloadsSearch search { private set; get; }
 
     [GtkChild]
-    private Gtk.ListBox listbox;
+    private unowned Gtk.ListBox listbox;
     [GtkChild]
-    private Gtk.ListBox recommended_listbox;
+    private unowned Gtk.ListBox recommended_listbox;
 
     public Gtk.SearchEntry search_entry = new Gtk.SearchEntry ();
     private GLib.ListStore recommended_model;

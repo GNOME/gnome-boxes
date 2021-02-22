@@ -8,7 +8,7 @@ private class Boxes.ListView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
     public CollectionFilter filter { get; protected set; }
 
     [GtkChild]
-    private Gtk.ListBox list_box;
+    private unowned Gtk.ListBox list_box;
 
     private Gtk.SizeGroup size_group;
 

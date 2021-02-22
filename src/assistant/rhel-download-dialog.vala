@@ -4,9 +4,9 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/rhel-download-dialog.ui")]
 private class Boxes.RHELDownloadDialog : Gtk.Dialog {
     [GtkChild]
-    private Gtk.ProgressBar progress_bar;
+    private unowned Gtk.ProgressBar progress_bar;
     [GtkChild]
-    private WebKit.WebView web_view;
+    private unowned WebKit.WebView web_view;
 
     private uint hide_progress_bar_id;
     private const uint progress_bar_id_timeout = 500;  // 500ms

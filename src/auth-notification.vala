@@ -8,15 +8,15 @@ private class Boxes.AuthNotification: Gtk.Revealer {
     public delegate void AuthFunc (string username, string password);
 
     [GtkChild]
-    private Gtk.Label title_label;
+    private unowned Gtk.Label title_label;
     [GtkChild]
-    private Gtk.Label username_label;
+    private unowned Gtk.Label username_label;
     [GtkChild]
-    private Gtk.Entry username_entry;
+    private unowned Gtk.Entry username_entry;
     [GtkChild]
-    private Gtk.Entry password_entry;
+    private unowned Gtk.Entry password_entry;
     [GtkChild]
-    private Gtk.Button auth_button;
+    private unowned Gtk.Button auth_button;
 
     private AuthFunc? auth_func;
     private bool auth_pressed;

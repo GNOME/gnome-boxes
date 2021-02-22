@@ -7,19 +7,19 @@ private class Boxes.DisplayPage: Gtk.Box {
     private const uint8 SCREEN_EDGE_WIDTH = 100;
 
     [GtkChild]
-    public DisplayToolbar toolbar;
+    public unowned DisplayToolbar toolbar;
 
     [GtkChild]
-    public Gtk.Label size_label;
+    public unowned Gtk.Label size_label;
 
     [GtkChild]
-    public Gtk.Box transfer_message_box;
+    public unowned Gtk.Box transfer_message_box;
     [GtkChild]
-    private EventBox event_box;
+    private unowned EventBox event_box;
     [GtkChild]
-    private DisplayToolbar overlay_toolbar;
+    private unowned DisplayToolbar overlay_toolbar;
     [GtkChild]
-    private EventBox overlay_toolbar_box;
+    private unowned EventBox overlay_toolbar_box;
     public Boxes.TransferPopover transfer_popover;
     private uint toolbar_hide_id;
     private uint toolbar_show_id;

@@ -6,7 +6,7 @@ private class Boxes.PropertiesPageWidget: Gtk.Box {
     public bool empty;
 
     [GtkChild]
-    private Gtk.Grid grid;
+    private unowned Gtk.Grid grid;
     private List<Boxes.Property> properties;
 
     public signal void refresh_properties ();

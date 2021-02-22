@@ -4,21 +4,21 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/collection-toolbar.ui")]
 private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     [GtkChild]
-    private Button search_btn;
+    private unowned Button search_btn;
     [GtkChild]
-    private Button select_btn;
+    private unowned Button select_btn;
     [GtkChild]
-    private Button list_btn;
+    private unowned Button list_btn;
     [GtkChild]
-    private Button grid_btn;
+    private unowned Button grid_btn;
     [GtkChild]
-    private Button back_btn;
+    private unowned Button back_btn;
     [GtkChild]
-    private Button new_btn;
+    private unowned Button new_btn;
     [GtkChild]
-    private MenuButton downloads_hub_btn;
+    private unowned MenuButton downloads_hub_btn;
     [GtkChild]
-    public MenuButton hamburger_btn;
+    public unowned MenuButton hamburger_btn;
 
     private AppWindow window;
 

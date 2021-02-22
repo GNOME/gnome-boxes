@@ -3,15 +3,15 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/review-page.ui")]
 private class Boxes.AssistantReviewPage : AssistantPage {
     [GtkChild]
-    private WizardSummary summary;
+    private unowned WizardSummary summary;
     [GtkChild]
-    private InfoBar nokvm_infobar;
+    private unowned InfoBar nokvm_infobar;
     [GtkChild]
-    private Grid customization_grid;
+    private unowned Grid customization_grid;
     [GtkChild]
-    private ToggleButton customize_button;
+    private unowned ToggleButton customize_button;
     [GtkChild]
-    private Stack customization_stack;
+    private unowned Stack customization_stack;
     private GLib.List<Boxes.Property> resource_properties;
 
     private Cancellable? cancellable;

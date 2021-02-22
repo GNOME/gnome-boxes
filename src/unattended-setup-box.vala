@@ -88,27 +88,27 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     }
 
     [GtkChild]
-    private Gtk.InfoBar needs_internet_bar;
+    private unowned Gtk.InfoBar needs_internet_bar;
     [GtkChild]
-    private Gtk.Label needs_internet_label;
+    private unowned Gtk.Label needs_internet_label;
     [GtkChild]
-    private Gtk.Grid setup_grid;
+    private unowned Gtk.Grid setup_grid;
     [GtkChild]
-    private Gtk.Label express_label;
+    private unowned Gtk.Label express_label;
     [GtkChild]
-    private Gtk.Switch express_toggle;
+    private unowned Gtk.Switch express_toggle;
     [GtkChild]
-    private Gtk.Image user_avatar;
+    private unowned Gtk.Image user_avatar;
     [GtkChild]
-    private Gtk.Entry username_entry;
+    private unowned Gtk.Entry username_entry;
     [GtkChild]
-    private Gtk.Notebook password_notebook;
+    private unowned Gtk.Notebook password_notebook;
     [GtkChild]
-    private Gtk.Entry password_entry;
+    private unowned Gtk.Entry password_entry;
     [GtkChild]
-    private Gtk.Label product_key_label;
+    private unowned Gtk.Label product_key_label;
     [GtkChild]
-    private Gtk.Entry product_key_entry;
+    private unowned Gtk.Entry product_key_entry;
 
     private string? product_key_format;
     private string media_path;

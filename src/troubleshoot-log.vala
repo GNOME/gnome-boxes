@@ -4,5 +4,5 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/troubleshoot-log.ui")]
 private class Boxes.TroubleshootLog: Gtk.ScrolledWindow {
     [GtkChild]
-    public Gtk.TextView view;
+    public unowned Gtk.TextView view;
 }

@@ -8,7 +8,7 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
 
     private Gtk.Button apply_config_button;
     [GtkChild]
-    private Gtk.SourceView view;
+    private unowned Gtk.SourceView view;
 
     private LibvirtMachine machine;
     private string domain_xml;

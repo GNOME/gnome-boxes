@@ -4,20 +4,20 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/vm-assistant.ui")]
 private class Boxes.VMAssistant : Gtk.Dialog {
     [GtkChild]
-    private Stack pages;
+    private unowned Stack pages;
     [GtkChild]
-    private AssistantIndexPage index_page;
+    private unowned AssistantIndexPage index_page;
     [GtkChild]
-    private AssistantPreparationPage preparation_page;
+    private unowned AssistantPreparationPage preparation_page;
     [GtkChild]
-    private AssistantSetupPage setup_page;
+    private unowned AssistantSetupPage setup_page;
     [GtkChild]
-    private AssistantReviewPage review_page;
+    private unowned AssistantReviewPage review_page;
 
     [GtkChild]
-    public Button previous_button;
+    public unowned Button previous_button;
     [GtkChild]
-    private Button next_button;
+    private unowned Button next_button;
 
     private AssistantPage visible_page {
         get {
