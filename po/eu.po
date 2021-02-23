@@ -4,12 +4,12 @@
 #
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013, 2014, 2015, 2016, 2017.
-# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2013, 2019, 2020.
+# Asier Sarasua Garmendia <asiersarasua@ni.eus>, 2013, 2019, 2020, 2021.
 msgid ""
 msgstr "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-08-08 11:25+0000\n"
-"PO-Revision-Date: 2020-12-27 10:00+0100\n"
+"POT-Creation-Date: 2021-02-12 10:24+0000\n"
+"PO-Revision-Date: 2021-02-23 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -46,7 +46,7 @@ msgstr "Instalatu Makinak sistema eragile berriak edo zure sistema eragile gogok
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
 #: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
@@ -240,7 +240,6 @@ msgstr "Instalazio azkarra"
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
-#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Utzi"
 
@@ -319,17 +318,15 @@ msgstr "Pantaila osoa"
 msgid "Ready to install"
 msgstr "Instalatzeko prest"
 
-#: data/ui/empty-boxes.ui:68
-msgid "State of the art virtualization"
+#: data/ui/empty-boxes.ui:50
+msgid "State of the Art Virtualization"
 msgstr "Birtualizazioaren abangoardia"
 
-#: data/ui/empty-boxes.ui:82
-msgid "Boxes can be virtual or remote machines."
-msgstr "Makinak birtualak edo urrunekoak izan daitezke."
-
-#: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>+</b> button to create your first one."
-msgstr "Sakatu <b>+</b> botoia zure lehen makina sortzeko."
+#: data/ui/empty-boxes.ui:51
+msgid ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
+msgstr "Makinak birtualak edo urrunekoak izan daitezke. Sakatu <b>+</b> botoia zure lehen makina sortzeko."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -438,7 +435,6 @@ msgstr "_Aplikatu"
 
 #: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
 #: src/assistant/index-page.vala:143 src/properties-window.vala:58
-#: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Hautatu gailu edo ISO fitxategi bat"
 
@@ -774,7 +770,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "Makina %u ezabatu da"
 msgstr[1] "%u makina ezabatu dira"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desegin"
@@ -853,14 +849,14 @@ msgid "Boxes failed to apply VM configuration changes: %s"
 msgstr "Makinak aplikazioak huts egin du VM konfigurazioaren aldaketak aplikatzean: %s"
 
 #. TODO: unify the reboot requests for non-properties
-#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Aldaketak aplikatzeko '%s' berrabiarazi behar da."
 
-#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
+#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Berrabiarazi"
 
@@ -914,7 +910,7 @@ msgid "System"
 msgstr "Sistema"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
 #, c-format
 msgid "%s used"
 msgstr "%s erabilita"
@@ -980,125 +976,123 @@ msgstr "Pantailaren URLa"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:222
 msgid "empty"
 msgstr "hutsik"
 
-#. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:251
-msgid "CD/DVD"
-msgstr "CD/DVDa"
-
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:193
+#: src/libvirt-machine-properties.vala:221
 msgid "_Select"
 msgstr "_Hautatu"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:196
+#: src/libvirt-machine-properties.vala:204
 msgid "_Remove"
 msgstr "_Kendu"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:211
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Huts egin du '%s' CD/DVD gisa txertatzean '%s'(e)n"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:225
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Huts egin du '%s'(e)tik CD/DVDa kentzean"
 
-#: src/libvirt-machine-properties.vala:315
+#: src/libvirt-machine-properties.vala:240
+msgid "CD/DVD"
+msgstr "CD/DVDa"
+
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "PUZa"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:321
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "S/I"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:327
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "Sarea"
 
-#: src/libvirt-machine-properties.vala:364
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "Behartu _itzaltzea"
 
-#: src/libvirt-machine-properties.vala:378
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "_Arazoen ebazpenen erregistroa"
 
-#: src/libvirt-machine-properties.vala:386
+#: src/libvirt-machine-properties.vala:375
 msgid "Edit XML"
 msgstr "Editatu XMLa"
 
-#: src/libvirt-machine-properties.vala:406
+#: src/libvirt-machine-properties.vala:395
 msgid "_Memory: "
 msgstr "_Memoria: "
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:464
 msgid "Maximum Disk Space"
 msgstr "Gehieneko diskoko lekua"
 
-#: src/libvirt-machine-properties.vala:493
+#: src/libvirt-machine-properties.vala:482
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "Ez dago nahikoa leku makinan diskoaren tamaina gehiengora handiagotzeko."
 
-#: src/libvirt-machine-properties.vala:503
+#: src/libvirt-machine-properties.vala:492
 msgid "Maximum _Disk Size: "
 msgstr "Gehieneko _disko-tamaina: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:556
+#: src/libvirt-machine-properties.vala:545
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
 msgstr[0] "Biltegiratzearen tamaina aldatzeko, hari lotutako bat-batekoa ezabatu behar da."
 msgstr[1] "Biltegiratzearen tamaina aldatzeko, hari lotutako %llu bat-bateko ezabatu behar dira."
 
-#: src/libvirt-machine-properties.vala:685
-#: src/libvirt-machine-properties.vala:689
+#: src/libvirt-machine-properties.vala:674
+#: src/libvirt-machine-properties.vala:678
 msgid "CPUs: "
 msgstr "PUZak: "
 
-#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:733
 msgid "_Run in background"
 msgstr "_Exekutatu atzeko planoan"
 
-#: src/libvirt-machine-properties.vala:756
-#: src/libvirt-machine-properties.vala:759
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "'%s' ez da automatikoki pausatuko."
 
-#: src/libvirt-machine-properties.vala:757
-#: src/libvirt-machine-properties.vala:760
+#: src/libvirt-machine-properties.vala:746
+#: src/libvirt-machine-properties.vala:749
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "'%s' automatikoki pausaraziko da baliabideak aurrezteko."
 
-#: src/libvirt-machine-properties.vala:785
+#: src/libvirt-machine-properties.vala:774
 msgid "Boxes is not authorized to run in the background"
 msgstr "Makinak aplikazioak ez du baimenik atzeko planoan exekutatzeko"
 
-#: src/libvirt-machine-properties.vala:787
+#: src/libvirt-machine-properties.vala:776
 msgid "Manage permissions"
 msgstr "Kudeatu baimenak"
 
-#: src/libvirt-machine-properties.vala:805
+#: src/libvirt-machine-properties.vala:794
 msgid "3D Acceleration"
 msgstr "3D azelerazioa"
 
@@ -1145,23 +1139,23 @@ msgstr "Inportatzen…"
 msgid "host: %s"
 msgstr "ostalaria: %s"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Connected"
 msgstr "Konektatuta"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Disconnected"
 msgstr "Deskonektatuta"
 
-#: src/list-view-row.vala:131
+#: src/list-view-row.vala:139
 msgid "Running"
 msgstr "Exekutatzen"
 
-#: src/list-view-row.vala:137
+#: src/list-view-row.vala:145
 msgid "Paused"
 msgstr "Pausatuta"
 
-#: src/list-view-row.vala:142
+#: src/list-view-row.vala:150
 msgid "Powered Off"
 msgstr "Itzalita"
 
@@ -1466,21 +1460,8 @@ msgstr "ez"
 msgid "Incapable host system"
 msgstr "Ostalari-sistema ez da gai"
 
-#: src/vm-creator.vala:106
-msgid "Select"
-msgstr "Hautatu"
-
-#: src/vm-creator.vala:114
-#, c-format
-msgid "Source installer media '%s' no longer exists"
-msgstr "Iturburua instalatzeko '%s' euskarria ez da existitzen"
-
-#: src/vm-creator.vala:116
-msgid "Add installer media"
-msgstr "Gehitu instalazio-euskarria"
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:191
+#: src/vm-creator.vala:169
 msgid "Just installed "
 msgstr "Instalatu berria "
 
@@ -1492,6 +1473,18 @@ msgstr "Huts egin du '%s' fitxategitik makina inportatzeak."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Irakurtzeko soilik"
+
+#~ msgid "Boxes can be virtual or remote machines."
+#~ msgstr "Makinak birtualak edo urrunekoak izan daitezke."
+
+#~ msgid "Select"
+#~ msgstr "Hautatu"
+
+#~ msgid "Source installer media '%s' no longer exists"
+#~ msgstr "Iturburua instalatzeko '%s' euskarria ez da existitzen"
+
+#~ msgid "Add installer media"
+#~ msgstr "Gehitu instalazio-euskarria"
 
 #~ msgid "Simple remote and virtual machines"
 #~ msgstr "Makina birtual eta urruneko bakunak"
