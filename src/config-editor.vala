@@ -82,7 +82,7 @@ private class Boxes.MachineConfigEditor: Gtk.ScrolledWindow {
             domain_xml = custom_config.to_xml ();
         } catch (GLib.Error error) {
             warning ("Failed to apply custom VM configuration: %s", error.message);
-            var msg = _("Boxes failed to apply VM configuration changes: %s");
+            var msg = _("Boxes failed to apply VM configuration changes: %s").printf (error.message);
             App.app.main_window.notificationbar.display_error (msg);
 
             return;
