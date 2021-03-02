@@ -128,12 +128,24 @@ namespace Boxes {
         var variant = "";
         var variants = media.get_os_variants ();
         var product = media.os as Osinfo.Product;
+
+        var media_url = "";
+        if (media.url != null) {
+            media_url = media.url.ascii_down ();
+        }
+
+        var variant_id = "";
         if (variants.get_length () > 0) {
             var os_variant = variants.get_nth (0) as Osinfo.OsVariant;
             variant = os_variant.get_name ();
-        } else if (product.name != null) {
+
+            variant_id = os_variant.get_param_value ("id");
+        }
+
+        if (variant == "" && product.name != null) {
             variant = product.name;
-            if (media.url != null && media.url.contains ("server"))
+            if (variant_id.contains ("server") ||
+                (media.url != null && media_url.contains ("server")))
                 variant += " Server";
         } else {
             if (media.url != null) {
@@ -143,13 +155,17 @@ namespace Boxes {
         }
 
         var subvariant = "";
+        if (variant_id.contains ("netinst"))
+            subvariant = "(netinst)";
+        else if (variant_id.contains ("minimal"))
+            subvariant = "(minimal)";
 
-        if (media.url != null) {
+        if (subvariant == "" && media.url != null) {
             if (media.url.contains ("netinst"))
                 subvariant = "(netinst)";
-            else if (media.url.contains ("minimal"))
+            else if (media_url.contains ("minimal"))
                 subvariant = "(minimal)";
-            else if (media.url.contains ("dvd"))
+            else if (media_url.contains ("dvd"))
                 subvariant = "(DVD)";
         }
 
