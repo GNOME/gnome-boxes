@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the gnome-boxes package.
 #
 # Martin Srebotnjak  <miles@filmsi.net>, 2012–2014.
-# Matej Urbančič <mateju@svn.gnome.org>, 2013–2021.
+# Matej Urbančič <mateju@src.gnome.org>, 2013–2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-02-18 15:56+0000\n"
-"PO-Revision-Date: 2021-02-18 21:19+0100\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
+"POT-Creation-Date: 2021-03-03 00:37+0000\n"
+"PO-Revision-Date: 2021-03-03 21:14+0100\n"
+"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
@@ -216,9 +216,8 @@ msgid "Operating System Image File"
 msgstr "Datoteka odtisa operacijskega sistema"
 
 #: data/ui/assistant/pages/index-page.ui:258
-msgid "Select an .iso file to install a virtual machine."
-msgstr ""
-"Izbor zagonljive datoteke odtisa .iso za namestitev na navidezno napravo."
+msgid "Select a file to install a virtual machine."
+msgstr "Izbor datoteke za namestitev na navidezno napravo."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -329,7 +328,7 @@ msgstr "Dejanja"
 msgid "Keyboard shortcuts"
 msgstr "Tipkovne bližnjice"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
 msgid "Fullscreen"
 msgstr "Celozaslonski način"
 
@@ -837,8 +836,8 @@ msgstr "Predhodni"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
-#: src/util-app.vala:156
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Živi sistem"
 
@@ -922,7 +921,7 @@ msgstr "Pritisk in sprostitev CTRL+ALT sprosti tipkovnico"
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:71
+#: src/display-toolbar.vala:70
 msgid "Exit fullscreen"
 msgstr "Končaj celozaslonski način"
 
@@ -1152,44 +1151,44 @@ msgid "3D Acceleration"
 msgstr "3D pospeševanje"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:649
+#: src/libvirt-machine.vala:643
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnavljanje %s z diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:652
+#: src/libvirt-machine.vala:646
 #, c-format
 msgid "Starting %s"
 msgstr "Zaganjanje %s"
 
-#: src/libvirt-machine.vala:731
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Ponovni zagon »%s« traja predolgo. Ali naj se izklop vsili?"
 
-#: src/libvirt-machine.vala:733
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Izklopi"
 
-#: src/libvirt-machine.vala:749
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Poteka kloniranje »%s« …"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Poteka nameščanje …"
 
-#: src/libvirt-machine.vala:885
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Poteka nastavljanje klona …"
 
-#: src/libvirt-machine.vala:887
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Poteka uvažanje …"
 
-#: src/libvirt-machine.vala:896
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "gostitelj: %s"
@@ -1475,7 +1474,7 @@ msgstr "Hitra namestitev %s zahteva internetno povezavo."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Poverila programa Škatle za »%s«"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1484,11 +1483,11 @@ msgstr ""
 "Vaš kontekst SELinux je videti nepravilen, popraviti ga lahko poskusite z:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "SELinux ni nameščen?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1497,7 +1496,7 @@ msgstr ""
 "libvirt. Zagnan mora biti ukaz 'virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes'."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1506,14 +1505,14 @@ msgstr ""
 "%s je opredeljeno pri libvirt kot hranilnik podatkov škatel, vendar mapa ne "
 "obstaja"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s je opredeljeno pri libvirt kot hranilnik podatkov škatel, vendar ni mapa"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
