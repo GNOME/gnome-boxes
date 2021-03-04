@@ -1,15 +1,15 @@
 # British English translation of gnome-boxes.
 # Copyright (C) 2012 gnome-boxes COPYRIGHT HOLDER
 # This file is distributed under the same licence as the gnome-boxes package.
-# Zander Brown <zbrown@gnome.org>, 2019-2020.
-# Bruce Cowan <bruce@bcowan.me.uk>, 2012-2020.
+# Zander Brown <zbrown@gnome.org>, 2019-2021.
+# Bruce Cowan <bruce@bcowan.me.uk>, 2012-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-09-16 19:06+0000\n"
-"PO-Revision-Date: 2020-10-24 10:59+0100\n"
+"POT-Creation-Date: 2021-03-02 12:01+0000\n"
+"PO-Revision-Date: 2021-03-04 18:31+0000\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: English - United Kingdom <en@li.org>\n"
 "Language: en_GB\n"
@@ -25,42 +25,40 @@ msgid "GNOME Boxes"
 msgstr "GNOME Boxes"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
-msgid "Simple remote and virtual machines"
-msgstr "Simple remote and virtual machines"
+msgid "Virtualization made simple"
+msgstr "Virtualisation made simple"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
+"A simple GNOME 3 application to manage virtual systems. Unlike some other "
+"virtual machine management software, Boxes is targeted towards typical "
+"desktop end-users. For this reason, Boxes will not provide many advanced "
+"options to tweak virtual machines. Instead Boxes will focus on getting "
+"things working out of the box with very little input from user."
 msgstr ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
+"A simple GNOME 3 application to manage virtual systems. Unlike some other "
+"virtual machine management software, Boxes is targeted towards typical "
+"desktop end-users. For this reason, Boxes will not provide many advanced "
+"options to tweak virtual machines. Instead Boxes will focus on getting "
+"things working out of the box with very little input from users."
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
+"favorite operating system(s)."
 msgstr ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
-"favourite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
+"favourite operating system(s)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:72
+#: data/org.gnome.Boxes.appdata.xml.in:56
 msgid "The GNOME Project"
 msgstr "The GNOME Project"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
-#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
+#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
 msgstr "Boxes"
@@ -75,8 +73,8 @@ msgstr "View and use virtual machines"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;vnc;rdp;"
-msgstr "virtual machine;vm;vnc;rdp;"
+msgid "virtual machine;vm;"
+msgstr "virtual machine;vm;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
@@ -118,11 +116,19 @@ msgstr "First run"
 msgid "Whether Boxes is running for the first time"
 msgstr "Whether Boxes is running for the first time"
 
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "Override theme"
+
 #: data/org.gnome.boxes.gschema.xml:53
+msgid "Whether Boxes will override the user's theme"
+msgstr "Whether Boxes will override the user’s theme"
+
+#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "Shared folders"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variant array of shared folders’ names and path mapping"
 
@@ -207,8 +213,9 @@ msgid "Operating System Image File"
 msgstr "Operating System Image File"
 
 #: data/ui/assistant/pages/index-page.ui:258
-msgid "Select an .iso file to install a virtual machine."
-msgstr "Select an .iso file to install a virtual machine."
+#| msgid "Select an .iso file to install a virtual machine."
+msgid "Select a file to install a virtual machine."
+msgstr "Select a file to install a virtual machine."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -242,33 +249,15 @@ msgstr "Resource Allocation"
 msgid "Customize"
 msgstr "Customise"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "Express Installation"
 
-#: data/ui/assistant/remote-connection.ui:6
-msgid "Connect to a Box"
-msgstr "Connect to a Box"
-
-#: data/ui/assistant/remote-connection.ui:23
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
-msgstr ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
-
-#: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
-#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Cancel"
-
-#: data/ui/assistant/remote-connection.ui:46
-msgid "Connect"
-msgstr "Connect"
 
 #: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
@@ -321,14 +310,6 @@ msgstr "Search"
 msgid "Downloads"
 msgstr "Downloads"
 
-#: data/ui/collection-toolbar.ui:233
-msgid "Create a Virtual Machine…"
-msgstr "Create a Virtual Machine…"
-
-#: data/ui/collection-toolbar.ui:240
-msgid "Connect to a Remote Computer…"
-msgstr "Connect to a Remote Computer…"
-
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
 msgstr "Ready to Receive File"
@@ -345,7 +326,7 @@ msgstr "Actions"
 msgid "Keyboard shortcuts"
 msgstr "Keyboard shortcuts"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
@@ -353,17 +334,17 @@ msgstr "Fullscreen"
 msgid "Ready to install"
 msgstr "Ready to install"
 
-#: data/ui/empty-boxes.ui:68
-msgid "State of the art virtualization"
-msgstr "State of the art virtualisation"
+#: data/ui/empty-boxes.ui:50
+msgid "State of the Art Virtualization"
+msgstr "State of the Art Virtualisation"
 
-#: data/ui/empty-boxes.ui:82
-msgid "Boxes can be virtual or remote machines."
-msgstr "Boxes can be virtual or remote machines."
-
-#: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>+</b> button to create your first one."
-msgstr "Just hit the <b>+</b> button to create your first one."
+#: data/ui/empty-boxes.ui:51
+msgid ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
+msgstr ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -440,6 +421,14 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Fullscreen/Restore from fullscreen"
 
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+msgstr ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Keyboard Shortcuts"
@@ -460,17 +449,12 @@ msgstr "Troubleshooting Log"
 msgid "_Copy to Clipboard"
 msgstr "_Copy to Clipboard"
 
-#: data/ui/properties-toolbar.ui:143
-msgid "Revert changes to original configuration"
-msgstr "Revert changes to original configuration"
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "_Apply"
 
-#: data/ui/properties-toolbar.ui:166
-msgid "_Save"
-msgstr "_Save"
-
-#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:142 src/properties-window.vala:58
-#: src/vm-creator.vala:103
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Select a device or ISO file"
 
@@ -487,7 +471,7 @@ msgid "_Delete"
 msgstr "_Delete"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:326
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Cancel"
 
@@ -536,16 +520,6 @@ msgstr "Delete"
 msgid "Done"
 msgstr "Done"
 
-#: data/ui/text-editor.ui:44
-msgid ""
-"Modifying a virtual machine's configuration can cause an installed operating "
-"system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-msgstr ""
-"Modifying a virtual machine's configuration can cause an installed operating "
-"system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "Oops, something went wrong"
@@ -587,21 +561,15 @@ msgstr "Product Key"
 msgid "Welcome Tutorial"
 msgstr "Welcome Tutorial"
 
-#: data/ui/welcome-tutorial.ui:35
+#: data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Welcome to Boxes"
 
-#: data/ui/welcome-tutorial.ui:36
-msgid ""
-"Boxes makes it easy to install and run virtual machines. You can also use it "
-"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
-msgstr ""
-"Boxes makes it easy to install and run virtual machines. You can also use it "
-"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "Boxes makes it easy to install and run virtual machines."
 
-#: data/ui/welcome-tutorial.ui:45
+#: data/ui/welcome-tutorial.ui:50
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -611,25 +579,25 @@ msgstr ""
 "virtual machine. Just start the installation and everything will be taken "
 "care of for you."
 
-#: data/ui/welcome-tutorial.ui:53
+#: data/ui/welcome-tutorial.ui:58
 msgid "Easy Downloads"
 msgstr "Easy Downloads"
 
-#: data/ui/welcome-tutorial.ui:54
+#: data/ui/welcome-tutorial.ui:59
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
 "and Boxes will automatically download it for you."
 msgstr ""
-"With Boxes, you don't need to download an operating system to create a "
+"With Boxes, you don’t need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
 "and Boxes will automatically download it for you."
 
-#: data/ui/welcome-tutorial.ui:62
+#: data/ui/welcome-tutorial.ui:67
 msgid "Drag and Drop"
 msgstr "Drag and Drop"
 
-#: data/ui/welcome-tutorial.ui:63
+#: data/ui/welcome-tutorial.ui:68
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -705,7 +673,7 @@ msgstr "C_ontinue"
 msgid "Customize Resources"
 msgstr "Customise Resources"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:328
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
 msgid "_Open"
 msgstr "_Open"
 
@@ -773,109 +741,114 @@ msgstr "Properties"
 msgid "Screenshot from %s"
 msgstr "Screenshot from %s"
 
-#: src/app.vala:117
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr ""
 "Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Waldo Luís Ribeiro <waldoribeiro@sapo.pt>\n"
 "Zander Brown <zbrown@gnome.org>"
 
-#: src/app.vala:118
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "A simple GNOME 3 application to access remote or virtual systems"
 
-#: src/app.vala:181 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "Display version number"
 
-#: src/app.vala:182
+#: src/app.vala:192
 msgid "Open in full screen"
 msgstr "Open in full screen"
 
-#: src/app.vala:183 src/main.vala:10
+#: src/app.vala:193 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Check virtualisation capabilities"
 
-#: src/app.vala:184
+#: src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Open box with UUID"
 
-#: src/app.vala:185
+#: src/app.vala:195
 msgid "Search term"
 msgstr "Search term"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:187
+#: src/app.vala:197
 msgid "URL to display, broker or installer media"
 msgstr "URI to display, broker or installer media"
 
-#: src/app.vala:198
+#: src/app.vala:208
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— A simple application to access remote or virtual machines"
 
-#: src/app.vala:223
+#: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
 msgstr "Too many command line arguments specified.\n"
 
-#: src/app.vala:479
+#: src/app.vala:502
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box “%s” installed and ready to use"
 
-#: src/app.vala:481
+#: src/app.vala:504
 msgid "Launch"
 msgstr "Launch"
 
-#: src/app.vala:567
+#: src/app.vala:534
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "“%s“ is running in the background"
+
+#: src/app.vala:620
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box “%s” has been deleted"
 
-#: src/app.vala:568
+#: src/app.vala:621
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box has been deleted"
 msgstr[1] "%u boxes have been deleted"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Undo"
 
-#: src/app.vala:642
+#: src/app.vala:695
 msgid "Boxes is doing something"
 msgstr "Boxes is doing something"
 
-#: src/app-window.vala:325
+#: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Select files to transfer"
 
-#: src/assistant/index-page.vala:145 src/properties-window.vala:61
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
 msgstr "Open"
 
-#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Previous"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:882
-#: src/util-app.vala:156
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:235
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "32-bit x86 system"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "64-bit x86 system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " from %s"
@@ -902,6 +875,33 @@ msgstr "Failed to analyse installer medium. Corrupted or incomplete medium?"
 msgid "Create"
 msgstr "Create"
 
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "Configuration modified "
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+
+#: src/config-editor.vala:85
+#, c-format
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr "Boxes failed to apply VM configuration changes: %s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Changes require restart of “%s”."
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
+#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
+msgid "_Restart"
+msgstr "_Restart"
+
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Press (left) Ctrl+Alt to ungrab"
@@ -916,7 +916,7 @@ msgstr "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:71
+#: src/display-toolbar.vala:70
 msgid "Exit fullscreen"
 msgstr "Exit Fullscreen"
 
@@ -952,7 +952,7 @@ msgid "System"
 msgstr "System"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
 #, c-format
 msgid "%s used"
 msgstr "%s used"
@@ -994,7 +994,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Send key combinations"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
 msgid "_Name"
 msgstr "_Name"
 
@@ -1018,194 +1018,187 @@ msgstr "Display URL"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:222
 msgid "empty"
 msgstr "empty"
 
-#. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:251
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:193
+#: src/libvirt-machine-properties.vala:221
 msgid "_Select"
 msgstr "_Select"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:196
+#: src/libvirt-machine-properties.vala:204
 msgid "_Remove"
 msgstr "_Remove"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:211
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Insertion of “%s” as a CD/DVD into “%s” failed"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:225
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Removal of CD/DVD from “%s” failed"
 
-#: src/libvirt-machine-properties.vala:315
+#: src/libvirt-machine-properties.vala:240
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:321
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:327
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "Network"
 
-#: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
-#: src/text-editor.vala:75
-msgid "_Restart"
-msgstr "_Restart"
-
-#: src/libvirt-machine-properties.vala:364
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "_Force Shutdown"
 
-#: src/libvirt-machine-properties.vala:378
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "_Troubleshooting log"
 
-#: src/libvirt-machine-properties.vala:386
+#: src/libvirt-machine-properties.vala:375
 msgid "Edit XML"
 msgstr "Edit XML"
 
-#: src/libvirt-machine-properties.vala:406
+#: src/libvirt-machine-properties.vala:395
 msgid "_Memory: "
 msgstr "_Memory: "
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:464
 msgid "Maximum Disk Space"
 msgstr "Maximum Disk Space"
 
-#: src/libvirt-machine-properties.vala:493
+#: src/libvirt-machine-properties.vala:482
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "There is not enough space on your machine to increase the maximum disk size."
 
-#: src/libvirt-machine-properties.vala:503
+#: src/libvirt-machine-properties.vala:492
 msgid "Maximum _Disk Size: "
 msgstr "Maximum _Disk Size: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:556
+#: src/libvirt-machine-properties.vala:545
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
 msgstr[0] "Storage resize requires deleting associated snapshot."
 msgstr[1] "Storage resize requires deleting %llu associated snapshots."
 
-#: src/libvirt-machine-properties.vala:685
-#: src/libvirt-machine-properties.vala:689
+#: src/libvirt-machine-properties.vala:674
+#: src/libvirt-machine-properties.vala:678
 msgid "CPUs: "
 msgstr "CPUs: "
 
-#. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
-#: src/text-editor.vala:74
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Changes require restart of “%s”."
-
-#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:733
 msgid "_Run in background"
 msgstr "_Run in background"
 
-#: src/libvirt-machine-properties.vala:756
-#: src/libvirt-machine-properties.vala:759
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” will not be paused automatically."
 
-#: src/libvirt-machine-properties.vala:757
-#: src/libvirt-machine-properties.vala:760
+#: src/libvirt-machine-properties.vala:746
+#: src/libvirt-machine-properties.vala:749
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” will be paused automatically to save resources."
 
+#: src/libvirt-machine-properties.vala:774
+msgid "Boxes is not authorized to run in the background"
+msgstr "Boxes is not authorised to run in the background"
+
 #: src/libvirt-machine-properties.vala:776
+msgid "Manage permissions"
+msgstr "Manage permissions"
+
+#: src/libvirt-machine-properties.vala:794
 msgid "3D Acceleration"
 msgstr "3D Acceleration"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:648
+#: src/libvirt-machine.vala:643
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Restoring %s from disk"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:651
+#: src/libvirt-machine.vala:646
 #, c-format
 msgid "Starting %s"
 msgstr "Starting %s"
 
-#: src/libvirt-machine.vala:730
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Restart of “%s” is taking too long. Force it to shutdown?"
 
-#: src/libvirt-machine.vala:732
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Shutdown"
 
-#: src/libvirt-machine.vala:748
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Cloning “%s”…"
 
-#: src/libvirt-machine.vala:880
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Installing…"
 
-#: src/libvirt-machine.vala:884
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Setting up clone…"
 
-#: src/libvirt-machine.vala:886
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Importing…"
 
-#: src/libvirt-machine.vala:895
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Connected"
 msgstr "Connected"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Disconnected"
 msgstr "Disconnected"
 
-#: src/list-view-row.vala:131
+#: src/list-view-row.vala:139
 msgid "Running"
 msgstr "Running"
 
-#: src/list-view-row.vala:137
+#: src/list-view-row.vala:145
 msgid "Paused"
 msgstr "Paused"
 
-#: src/list-view-row.vala:142
+#: src/list-view-row.vala:150
 msgid "Powered Off"
 msgstr "Powered Off"
 
@@ -1289,7 +1282,7 @@ msgstr "Report bugs to <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s home page: <%s>.\n"
 
-#: src/media-manager.vala:289
+#: src/media-manager.vala:304
 #, c-format
 msgid "No such file %s"
 msgstr "No such file %s"
@@ -1316,15 +1309,15 @@ msgstr "Devices & Shares"
 msgid "Snapshots"
 msgstr "Snapshots"
 
-#: src/remote-machine.vala:81
+#: src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "Protocol"
 
-#: src/remote-machine.vala:83
+#: src/remote-machine.vala:80
 msgid "URL"
 msgstr "URL"
 
-#: src/remote-machine.vala:85
+#: src/remote-machine.vala:82
 msgid "_URL"
 msgstr "_URL"
 
@@ -1429,15 +1422,6 @@ msgstr "The port must be specified once"
 msgid "Missing port in Spice URL"
 msgstr "Missing port in Spice URL"
 
-#: src/text-editor.vala:42
-msgid "Unable to backup original configuration. Aborting."
-msgstr "Unable to backup original configuration. Aborting."
-
-#: src/text-editor.vala:67
-#, c-format
-msgid "Boxes failed to save VM configuration changes: %s"
-msgstr "Boxes failed to save VM configuration changes: %s"
-
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1471,7 +1455,7 @@ msgstr "Express installation of %s requires an internet connection."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Boxes credentials for “%s”"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1480,11 +1464,11 @@ msgstr ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "SELinux not installed?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1492,7 +1476,7 @@ msgstr ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1501,14 +1485,14 @@ msgstr ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1527,25 +1511,12 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:764
+#: src/vm-configurator.vala:779
 msgid "Incapable host system"
 msgstr "Incapable host system"
 
-#: src/vm-creator.vala:106
-msgid "Select"
-msgstr "Select"
-
-#: src/vm-creator.vala:114
-#, c-format
-msgid "Source installer media '%s' no longer exists"
-msgstr "Source installer media '%s' no longer exists"
-
-#: src/vm-creator.vala:116
-msgid "Add installer media"
-msgstr "Add installer media"
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:191
+#: src/vm-creator.vala:169
 msgid "Just installed "
 msgstr "Just installed "
 
@@ -1557,6 +1528,67 @@ msgstr "Box import from file “%s” failed."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Read-only"
+
+#~ msgid "Simple remote and virtual machines"
+#~ msgstr "Simple remote and virtual machines"
+
+#~ msgid "Connect to a Box"
+#~ msgstr "Connect to a Box"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh:// or vnc://."
+#~ msgstr ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh:// or vnc://."
+
+#~ msgid "Connect"
+#~ msgstr "Connect"
+
+#~ msgid "Create a Virtual Machine…"
+#~ msgstr "Create a Virtual Machine…"
+
+#~ msgid "Connect to a Remote Computer…"
+#~ msgstr "Connect to a Remote Computer…"
+
+#~ msgid "Boxes can be virtual or remote machines."
+#~ msgstr "Boxes can be virtual or remote machines."
+
+#~ msgid "Revert changes to original configuration"
+#~ msgstr "Revert changes to original configuration"
+
+#~ msgid "_Save"
+#~ msgstr "_Save"
+
+#~ msgid ""
+#~ "Modifying a virtual machine's configuration can cause an installed "
+#~ "operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+#~ msgstr ""
+#~ "Modifying a virtual machine's configuration can cause an installed "
+#~ "operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+
+#~ msgid ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use "
+#~ "it to remotely access other computers, using SPICE, VNC, RDP or Secure "
+#~ "Shell connections."
+#~ msgstr ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use "
+#~ "it to remotely access other computers, using SPICE, VNC, RDP or Secure "
+#~ "Shell connections."
+
+#~ msgid "Unable to backup original configuration. Aborting."
+#~ msgstr "Unable to backup original configuration. Aborting."
+
+#~ msgid "Select"
+#~ msgstr "Select"
+
+#~ msgid "Source installer media '%s' no longer exists"
+#~ msgstr "Source installer media '%s' no longer exists"
+
+#~ msgid "Add installer media"
+#~ msgstr "Add installer media"
 
 #~ msgid "Collections"
 #~ msgstr "Collections"
