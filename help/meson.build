@@ -4,6 +4,7 @@ help_files = [
   'create.page',
   'delete.page',
   'disk-images.page',
+  'edit-domain.page',
   'index.page',
   'interface.page',
   'keystrokes.page',

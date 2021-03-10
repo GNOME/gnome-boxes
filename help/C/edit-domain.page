@@ -1,0 +1,49 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
+      type="topic" style="task"
+      id="edit-domain">
+  <info>
+    <revision pkgversion="40.rc" date="2021-03-10" status="review"/>
+    <link type="guide" xref="index#properties"/>
+
+    <credit type="author copyright">
+      <name>Felipe Borges</name>
+      <email>felipeborges@gnome.org</email>
+      <years>2021</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Edit advanced configurations of your box.</desc>
+  </info>
+
+  <title>Edit the Libvirt domain XML configuration of a box</title>
+
+  <comment>
+    <cite date="2021-02-10" href="mailto:felipeborges@gnome.org">Felipe Borges</cite>
+    <p>This assumes the reader has a basic understanding of libvirt domains and virtualization
+    concepts such as virtual devices. See https://libvirt.org/format.html
+    By the end of this page, the reader will be able to configure their virtual machine beyond
+    what GNOME Boxes exposes in its user interface.</p>
+  </comment>
+
+  <p>Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML configuration of
+    your virtual machines. This should allow you to achieve specific setups which are not exposed
+    in the GNOME Boxes interface and neither supported by the GNOME Boxes developers.</p>
+
+  <steps>
+    <title>To edit the Libvirt XML configuration of a box:</title>
+    <item><p>Right-click on the box in the collection view and select
+    <gui>Properties</gui>, or click the menu
+    (<media type="image" src="figures/open-menu-symbolic.svg" its:translate="no"><span its:translate="yes">settings</span></media>)
+    button in the header bar and select <gui>Properties</gui>.</p></item>
+    <item><p>Click the <gui>System</gui> tab.</p></item>
+    <item><p>Click the <gui style="button">Edit XML</gui> button to open the configuration
+    editor.</p></item>
+    <item><p>Edit the XML configuration and click <gui style="button">Save</gui>. Boxes will attempt
+    to create a snapshot prior to your changes getting applied, allowing you to revert your
+    configuration in case of a mistake.</p></item>
+    <item><p>If the virtual machine which has been edited is already running, Boxes will show a
+    notification asking to restart the running virtual machine.</p></item>
+  </steps>
+</page>
