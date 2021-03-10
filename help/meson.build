@@ -28,7 +28,7 @@ help_files = [
 ]
 
 help_media = [
-  'figures/boxes_icon.png',
+  'figures/boxes_icon.svg',
   'figures/input-keyboard-symbolic.svg',
   'figures/open-menu-symbolic.svg'
 ]
