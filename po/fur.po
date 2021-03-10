@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-20\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-12-15 11:05+0000\n"
-"PO-Revision-Date: 2020-12-18 06:44+0100\n"
+"POT-Creation-Date: 2021-03-01 12:46+0000\n"
+"PO-Revision-Date: 2021-03-10 11:48+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -51,11 +51,11 @@ msgstr ""
 "version dal to sisteme operatîf preferît o se si scugne colegâsi a une "
 "machine rimote (par esempli intal ufici)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:69
+#: data/org.gnome.Boxes.appdata.xml.in:56
 msgid "The GNOME Project"
 msgstr "Il progjet GNOME"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
 #: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
@@ -213,8 +213,8 @@ msgid "Operating System Image File"
 msgstr "File imagjin di sisteme operatîf"
 
 #: data/ui/assistant/pages/index-page.ui:258
-msgid "Select an .iso file to install a virtual machine."
-msgstr "Selezione un file .iso par instalâ une machine virtuâl."
+msgid "Select a file to install a virtual machine."
+msgstr "Selezione un file par instalâ une machine virtuâl."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -256,7 +256,6 @@ msgstr "Instalazion rapide"
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
-#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Anule"
 
@@ -328,7 +327,7 @@ msgstr "Azions"
 msgid "Keyboard shortcuts"
 msgstr "Scurte di tastiere"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
 msgid "Fullscreen"
 msgstr "A plen visôr"
 
@@ -336,17 +335,17 @@ msgstr "A plen visôr"
 msgid "Ready to install"
 msgstr "Pront par instalâ"
 
-#: data/ui/empty-boxes.ui:68
-msgid "State of the art virtualization"
-msgstr "Il stât de art de virtualizazion"
+#: data/ui/empty-boxes.ui:50
+msgid "State of the Art Virtualization"
+msgstr "Virtualizazion ae avanvuardie"
 
-#: data/ui/empty-boxes.ui:82
-msgid "Boxes can be virtual or remote machines."
-msgstr "Scjatulis al pues ministrâ machinis virtuâls o rimotis."
-
-#: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>+</b> button to create your first one."
-msgstr "Frache il boton <b>+</b> par creâ la tô prime."
+#: data/ui/empty-boxes.ui:51
+msgid ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
+msgstr ""
+"Scjatulis al pues jessi machinis virtuâls o esternis. Al baste fracâ il "
+"boton <b>+</b> par creâ la tô prime."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -457,7 +456,6 @@ msgstr "_Apliche"
 
 #: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
 #: src/assistant/index-page.vala:143 src/properties-window.vala:58
-#: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Selezione un dispositîf o un file ISO"
 
@@ -783,7 +781,8 @@ msgstr "URL di mostrâ, broker o supuart di instalazion"
 
 #: src/app.vala:208
 msgid "— A simple application to access remote or virtual machines"
-msgstr "— Une semplice aplicazion par jentrâ intes machinis rimotis o virtuâi"
+msgstr ""
+"— Une semplice aplicazion par jentrâ intes machinis lontanis o virtuâls"
 
 #: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
@@ -815,7 +814,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u scjatule e je stade eliminade"
 msgstr[1] "%u scjatulis a son stadis eliminadis"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Disfe"
@@ -838,7 +837,7 @@ msgstr "Precedent"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
 #: src/util-app.vala:156
 msgid "Live"
 msgstr "Live"
@@ -898,14 +897,14 @@ msgstr ""
 "Scjatulis nol è rivât a aplicâ lis modifichis ae configurazion de MV: %s"
 
 #. TODO: unify the reboot requests for non-properties
-#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Pes modifichis al è necessari tornâ a inviâ “%s”."
 
-#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
+#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Torne invie"
 
@@ -923,7 +922,7 @@ msgstr "Frache e daspò mole Ctrl+Alt (chei di çampe) par molâ la tastiere."
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:71
+#: src/display-toolbar.vala:70
 msgid "Exit fullscreen"
 msgstr "Jes dal plen visôr"
 
@@ -960,7 +959,7 @@ msgid "System"
 msgstr "Sisteme"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
 #, c-format
 msgid "%s used"
 msgstr "%s doprât"
@@ -1026,91 +1025,89 @@ msgstr "URL display"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:222
 msgid "empty"
 msgstr "vueit"
 
-#. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:251
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:193
+#: src/libvirt-machine-properties.vala:221
 msgid "_Select"
 msgstr "_Selezione"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:196
+#: src/libvirt-machine-properties.vala:204
 msgid "_Remove"
 msgstr "_Gjave"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:211
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Inseriment di “%s” come CD/DVD in “%s” falît"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:225
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "No si è rivâts a gjavâ il CD/DVD di “%s”"
 
-#: src/libvirt-machine-properties.vala:315
+#: src/libvirt-machine-properties.vala:240
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:321
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:327
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "Rêt"
 
-#: src/libvirt-machine-properties.vala:364
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "_Sfuarce distudament"
 
-#: src/libvirt-machine-properties.vala:378
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "_Regjistri di soluzion problemis"
 
-#: src/libvirt-machine-properties.vala:386
+#: src/libvirt-machine-properties.vala:375
 msgid "Edit XML"
 msgstr "Modifiche XML"
 
-#: src/libvirt-machine-properties.vala:406
+#: src/libvirt-machine-properties.vala:395
 msgid "_Memory: "
 msgstr "_Memorie: "
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:464
 msgid "Maximum Disk Space"
 msgstr "Massim spazi su disc"
 
-#: src/libvirt-machine-properties.vala:493
+#: src/libvirt-machine-properties.vala:482
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "No'nd è vonde spazi su cheste machine par aumentâ la dimension massime dal "
 "disc."
 
-#: src/libvirt-machine-properties.vala:503
+#: src/libvirt-machine-properties.vala:492
 msgid "Maximum _Disk Size: "
 msgstr "Dimension massime _disc: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:556
+#: src/libvirt-machine-properties.vala:545
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1120,99 +1117,99 @@ msgstr[1] ""
 "Il ridimensionâ dal archivi al necessite di eliminâ %llu istantaniis "
 "associadis."
 
-#: src/libvirt-machine-properties.vala:685
-#: src/libvirt-machine-properties.vala:689
+#: src/libvirt-machine-properties.vala:674
+#: src/libvirt-machine-properties.vala:678
 msgid "CPUs: "
 msgstr "Processôrs: "
 
-#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:733
 msgid "_Run in background"
 msgstr "_Eseguìs par daûr (background)"
 
-#: src/libvirt-machine-properties.vala:756
-#: src/libvirt-machine-properties.vala:759
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "“%s” nol vignarà metût in pause in automatic."
 
-#: src/libvirt-machine-properties.vala:757
-#: src/libvirt-machine-properties.vala:760
+#: src/libvirt-machine-properties.vala:746
+#: src/libvirt-machine-properties.vala:749
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "“%s” al vignarà metût in pause in automatic par salvâ risorsis."
 
-#: src/libvirt-machine-properties.vala:785
+#: src/libvirt-machine-properties.vala:774
 msgid "Boxes is not authorized to run in the background"
 msgstr "Scjatulis nol è autorizât par zirâ in sotfont"
 
-#: src/libvirt-machine-properties.vala:787
+#: src/libvirt-machine-properties.vala:776
 msgid "Manage permissions"
 msgstr "Gjestìs permès"
 
-#: src/libvirt-machine-properties.vala:805
+#: src/libvirt-machine-properties.vala:794
 msgid "3D Acceleration"
 msgstr "Acelerazion 3D"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:649
+#: src/libvirt-machine.vala:643
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Daûr a ripristinâ %s  dal disc"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:652
+#: src/libvirt-machine.vala:646
 #, c-format
 msgid "Starting %s"
 msgstr "Inviament di %s"
 
-#: src/libvirt-machine.vala:731
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s” al sta masse par tornâ a inviâsi. Sfuarçâ tal distudâlu?"
 
-#: src/libvirt-machine.vala:733
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Distude"
 
-#: src/libvirt-machine.vala:749
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Daûr a clonâ “%s”…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Instalazion…"
 
-#: src/libvirt-machine.vala:885
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Daûr a configurâ la clonazion…"
 
-#: src/libvirt-machine.vala:887
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Daûr a impuartâ…"
 
-#: src/libvirt-machine.vala:896
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "host: %s"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Connected"
 msgstr "Conetude"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Disconnected"
 msgstr "Disconetude"
 
-#: src/list-view-row.vala:131
+#: src/list-view-row.vala:139
 msgid "Running"
 msgstr "In esecuzion"
 
-#: src/list-view-row.vala:137
+#: src/list-view-row.vala:145
 msgid "Paused"
 msgstr "In pause"
 
-#: src/list-view-row.vala:142
+#: src/list-view-row.vala:150
 msgid "Powered Off"
 msgstr "Distudade"
 
@@ -1529,25 +1526,12 @@ msgstr "no"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:769
+#: src/vm-configurator.vala:779
 msgid "Incapable host system"
 msgstr "Sisteme host incapaç"
 
-#: src/vm-creator.vala:106
-msgid "Select"
-msgstr "Selezione"
-
-#: src/vm-creator.vala:114
-#, c-format
-msgid "Source installer media '%s' no longer exists"
-msgstr "Il supuart de sorzint di instalazion '%s' nol esist plui"
-
-#: src/vm-creator.vala:116
-msgid "Add installer media"
-msgstr "Zonte supuart di instalazion"
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:191
+#: src/vm-creator.vala:169
 msgid "Just installed "
 msgstr "Apene instalade "
 
@@ -1559,6 +1543,18 @@ msgstr "Importazion scjatule dal file “%s” falide."
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Dome leture"
+
+#~ msgid "Boxes can be virtual or remote machines."
+#~ msgstr "Scjatulis al pues ministrâ machinis virtuâls o rimotis."
+
+#~ msgid "Select"
+#~ msgstr "Selezione"
+
+#~ msgid "Source installer media '%s' no longer exists"
+#~ msgstr "Il supuart de sorzint di instalazion '%s' nol esist plui"
+
+#~ msgid "Add installer media"
+#~ msgstr "Zonte supuart di instalazion"
 
 #~ msgid "Revert changes to original configuration"
 #~ msgstr "Disfe lis modifichis tornant indaûr ae configurazion origjinâl"
