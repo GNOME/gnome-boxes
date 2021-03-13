@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2021-02-18 15:56+0000\n"
-"PO-Revision-Date: 2021-02-21 15:14-0300\n"
+"POT-Creation-Date: 2021-03-10 16:35+0000\n"
+"PO-Revision-Date: 2021-03-13 17:47-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -59,26 +59,26 @@ msgstr ""
 "O Boxes agora oferece a capacidade de habilitar ou desabilitar a aceleração "
 "3D para suas VMs se o convidado e o hospedeiro tiverem suporte. Isso deve "
 "permitir que você melhore o desempenho de seus aplicativos e jogos do dia a "
-"dia que precisam de gráficos. Ele usa <sys>Virgil</sys> para criar uma "
-"placa de vídeo virtual capaz de 3D para suas máquinas virtuais QEMU."
+"dia que precisam de gráficos. Ele usa <sys>Virgil</sys> para criar uma placa "
+"de vídeo virtual capaz de 3D para suas máquinas virtuais QEMU."
 
 #. (itstool) path: steps/title
 #: C/3d-acceleration.page:35
-#| msgid "To enable host USB devices in a box:"
 msgid "To enable 3D Acceleration in a box:"
 msgstr "Para habilitar a aceleração 3D em uma máquina:"
 
 #. (itstool) path: media/span
-#: C/3d-acceleration.page:38 C/interface.page:118 C/keystrokes.page:29
-#: C/prop-system.page:29 C/prop-trouble.page:31 C/shared-folders.page:30
-#: C/shutdown.page:30 C/snapshot-create.page:41 C/snapshot-delete.page:28
-#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
-#: C/usb-redirection.page:48
+#: C/3d-acceleration.page:38 C/edit-domain.page:38 C/interface.page:118
+#: C/keystrokes.page:29 C/prop-system.page:29 C/prop-trouble.page:31
+#: C/shared-folders.page:30 C/shutdown.page:30 C/snapshot-create.page:41
+#: C/snapshot-delete.page:28 C/snapshot-rename.page:36
+#: C/snapshot-revert.page:36 C/usb-redirection.page:48
 msgid "settings"
 msgstr "configurações"
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:36 C/shared-folders.page:28 C/usb-redirection.page:46
+#: C/3d-acceleration.page:36 C/edit-domain.page:36 C/shared-folders.page:28
+#: C/usb-redirection.page:46
 msgid ""
 "Right-click on the box in the collection view and select <gui>Properties</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
@@ -91,9 +91,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/3d-acceleration.page:40
-#| msgid ""
-#| "<link xref=\"interface#selection\">Selection mode</link> opens. Click "
-#| "additional boxes to select them for deletion."
 msgid ""
 "The <link xref=\"interface#properties\">Properties view</link> opens, with "
 "the General tab selected by default."
@@ -358,10 +355,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/create.page:53
-#| msgid ""
-#| "After making your selection, or providing the necessary information, "
-#| "click <gui style=\"button\">Continue</gui>, which will take you to the "
-#| "<gui>Review</gui> page."
 msgid ""
 "After making your selection, or providing the necessary information, click "
 "<gui style=\"button\">Next</gui>, which will take you to the <gui>Review</"
@@ -463,6 +456,89 @@ msgstr ""
 "então o <app>Boxes</app> também irá ler a pasta que o software usa para "
 "armazenar suas imagens."
 
+#. (itstool) path: credit/name
+#: C/edit-domain.page:10 C/interface.page:18 C/shared-folders.page:10
+#: C/snapshot-create.page:17 C/snapshot-revert.page:17
+#: C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: credit/years
+#: C/edit-domain.page:12
+msgid "2021"
+msgstr "2021"
+
+#. (itstool) path: info/desc
+#: C/edit-domain.page:17
+msgid "Edit advanced configurations of your box."
+msgstr "Edite configurações avançadas de sua máquina."
+
+#. (itstool) path: page/title
+#: C/edit-domain.page:20
+msgid "Edit the Libvirt domain XML configuration of a box"
+msgstr "Editando a configuração XML Libvirt de domínio de uma máquina"
+
+#. (itstool) path: page/p
+#: C/edit-domain.page:30
+msgid ""
+"Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML "
+"configuration of your virtual machines. This should allow you to achieve "
+"specific setups which are not exposed in the GNOME Boxes interface and "
+"neither supported by the GNOME Boxes developers."
+msgstr ""
+"Boxes agora lhe dá a capacidade de editar manualmente a configuração XML "
+"<sys>Libvirt</sys> de suas máquinas virtuais. Isso deve lhe permitir "
+"alcançar configurações específicas que não estão expostas na interface do "
+"GNOME Boxes nem suportadas pelos desenvolvedores do GNOME Boxes."
+
+#. (itstool) path: steps/title
+#: C/edit-domain.page:35
+msgid "To edit the Libvirt XML configuration of a box:"
+msgstr "Para editar a configuração XML Libvirt de uma máquina:"
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:40 C/prop-system.page:31 C/prop-trouble.page:33
+#: C/shutdown.page:32
+msgid "Click the <gui>System</gui> tab."
+msgstr "Clique na aba <gui>Sistema</gui>."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:41
+#| msgid ""
+#| "Click the <gui style=\"button\">Troubleshooting Log</gui> button to view "
+#| "the log."
+msgid ""
+"Click the <gui style=\"button\">Edit XML</gui> button to open the "
+"configuration editor."
+msgstr ""
+"Clique no botão <gui style=\"button\">Editar XML</gui> para abrir o editor "
+"de configuração."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:43
+msgid ""
+"Edit the XML configuration and click <gui style=\"button\">Save</gui>. Boxes "
+"will attempt to create a snapshot prior to your changes getting applied, "
+"allowing you to revert your configuration in case of a mistake."
+msgstr ""
+"Edite a configuração XML e clique <gui style=\"button\">Salvar</gui>. Boxes "
+"vai tentar criar uma captura de estado antes que suas alterações sejam "
+"aplicadas, permitindo que você reverta sua configuração no caso de algum "
+"erro."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:46
+#| msgid ""
+#| "In case the virtual machine for which 3D Acceleration has just been "
+#| "enabled is already running, then, Boxes will show a notification asking "
+#| "to restart the running virtual machine."
+msgid ""
+"If the virtual machine which has been edited is already running, Boxes will "
+"show a notification asking to restart the running virtual machine."
+msgstr ""
+"Caso a máquina virtual que foi editada já esteja em execução, o Boxes "
+"mostrará uma notificação solicitando o reinício desta máquina virtual."
+
 #. (itstool) path: media/span
 #: C/index.page:9
 msgid "Boxes"
@@ -538,12 +614,6 @@ msgstr "Perguntas"
 #: C/index.page:70
 msgid "Advanced topics"
 msgstr "Tópicos avançados"
-
-#. (itstool) path: credit/name
-#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
-#: C/snapshot-revert.page:17 C/usb-redirection.page:24
-msgid "Felipe Borges"
-msgstr "Felipe Borges"
 
 #. (itstool) path: info/desc
 #: C/interface.page:30
@@ -687,12 +757,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/interface.page:92
-#| msgid ""
-#| "<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</"
-#| "gui> or virtualizer being used (such as <em>QEMU</em>). For a remote box, "
-#| "this tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), "
-#| "and the <gui>URL</gui> to be used for remote access. When the box is "
-#| "running, the <gui>Share Clipboard</gui> switch appears here."
 msgid ""
 "<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
 "or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
@@ -893,11 +957,6 @@ msgstr ""
 "<gui>Propriedades</gui> ou, se a máquina já estiver aberta, clique no botão "
 "de menu (<_:media-1/>) na barra de cabeçalho e selecione <gui>Propriedades</"
 "gui>."
-
-#. (itstool) path: item/p
-#: C/prop-system.page:31 C/prop-trouble.page:33 C/shutdown.page:32
-msgid "Click the <gui>System</gui> tab."
-msgstr "Clique na aba <gui>Sistema</gui>."
 
 #. (itstool) path: item/p
 #: C/prop-system.page:32
