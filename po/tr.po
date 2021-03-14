@@ -5,28 +5,28 @@
 # Yaşar Şentürk <yasarix@gmail.com>, 2014.
 # Necdet Yücel <necdetyucel@gmail.com>, 2015.
 # Osman Karagöz <osmank3@gmail.com>, 2015.
-# Muhammet Kara <muhammetk@gmail.com>, 2013, 2014, 2015, 2016.
 # Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
 # İbrahim Aydın <brhm.1995@hotmail.com>, 2017.
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2017.
 # Nurperi Utlu <utlunurperi@gmail.com>, 2017.
 # Sabri Ünal <libreajans@gmail.com>, 2019, 2021.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2016-2021.
+# Muhammet Kara <muhammetk@gmail.com>, 2013-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-01 12:46+0000\n"
-"PO-Revision-Date: 2021-03-02 18:28+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
-"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"POT-Creation-Date: 2021-03-14 18:42+0000\n"
+"PO-Revision-Date: 2021-03-14 22:36+0300\n"
+"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
+"Language-Team: Turkish <gnometurk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"X-Generator: Gtranslator 3.38.0\n"
 "X-POOTLE-MTIME: 1433229130.000000\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
@@ -842,7 +842,7 @@ msgstr "Önceki"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
-#: src/util-app.vala:156
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Canlı"
 
@@ -1305,6 +1305,11 @@ msgstr "%s’e giriş yap"
 msgid "Not connected to %s"
 msgstr "%s’e bağlanılamadı"
 
+#: src/portals.vala:45
+#| msgid "Boxes is not authorized to run in the background"
+msgid "Boxes wants to run VM in background"
+msgstr "Kutular, VM'i (Sanal Makineyi) arka planda çalıştırmak istiyor"
+
 #: src/properties-page-widget.vala:17
 msgid "General"
 msgstr "Genel"
@@ -1463,7 +1468,7 @@ msgstr "%s’in hızlı kurulumu internet bağlantısı gerektiriyor."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "“%s” için GNOME Kutular kimlik bilgileri"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1473,11 +1478,11 @@ msgstr ""
 "deneyebilirsiniz:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "SELinux kurulmadı mı?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1485,7 +1490,7 @@ msgstr ""
 "“gnome-boxes”ın depolama havuzu bilgisi libvirt’ten alınamıyor. “virsh -c "
 "qemu:///session pool-dumpxml gnome-boxes” komutunun çalıştığından emin olun."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1494,7 +1499,7 @@ msgstr ""
 "%s libvirt’e GNOME Kutular’ın depolama havuzu olarak bildirilmiş ama dizin "
 "mevcut değil"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1502,7 +1507,7 @@ msgstr ""
 "%s libvirt’e GNOME Kutular’ın depolama havuzu olarak bildirilmiş ama dizin "
 "değil"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
