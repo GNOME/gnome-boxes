@@ -23,6 +23,8 @@ private class Boxes.VncDisplay: Boxes.Display {
         display.set_force_size (false);
         display.set_scaling (true);
 
+        set_enable_audio (true);
+
         // the VNC widget doesn't like not to have a realized window,
         // so we put it into a window temporarily
         window = new Gtk.Window ();
@@ -113,6 +115,19 @@ private class Boxes.VncDisplay: Boxes.Display {
     }
 
     public override void set_enable_audio (bool enable) {
+        var connection = display.get_connection ();
+        if (!enable) {
+            connection.audio_disable ();
+
+            return;
+        }
+
+        connection.set_audio_format (new Vnc.AudioFormat () {
+            frequency = 44100,
+            nchannels = 2
+        });
+        connection.set_audio (new Vnc.AudioPulse ());
+        connection.audio_enable ();
     }
 
     public override Gdk.Pixbuf? get_pixbuf (int n) throws Boxes.Error {
