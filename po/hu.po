@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-01 12:46+0000\n"
-"PO-Revision-Date: 2021-03-03 01:35+0100\n"
+"POT-Creation-Date: 2021-03-14 18:42+0000\n"
+"PO-Revision-Date: 2021-03-17 00:19+0100\n"
 "Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -215,7 +215,6 @@ msgid "Operating System Image File"
 msgstr "Operációs rendszer lemezkép"
 
 #: data/ui/assistant/pages/index-page.ui:258
-#| msgid "Select an .iso file to install a virtual machine."
 msgid "Select a file to install a virtual machine."
 msgstr "Válasszon egy fájlt a virtuális gép telepítéshez."
 
@@ -840,7 +839,7 @@ msgstr "Előző"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
-#: src/util-app.vala:156
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Élő"
 
@@ -895,7 +894,8 @@ msgstr ""
 #: src/config-editor.vala:85
 #, c-format
 msgid "Boxes failed to apply VM configuration changes: %s"
-msgstr "A Gépek nem tudta alkalmazni a VM konfigurációs módosításait: %s"
+msgstr ""
+"A Gépek nem tudta alkalmazni a virtuális gép konfigurációs módosításait: %s"
 
 #. TODO: unify the reboot requests for non-properties
 #: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
@@ -1308,6 +1308,11 @@ msgstr "Bejelentkezés ide: %s"
 msgid "Not connected to %s"
 msgstr "Nincs kapcsolódva ehhez: %s"
 
+#: src/portals.vala:45
+#| msgid "Boxes is not authorized to run in the background"
+msgid "Boxes wants to run VM in background"
+msgstr "A Gépek virtuális gépet szeretne futtatni a háttérben"
+
 #: src/properties-page-widget.vala:17
 msgid "General"
 msgstr "Általános"
@@ -1470,7 +1475,7 @@ msgstr "A(z) %s gyors telepítése internet-kapcsolatot igényel."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Gépek hitelesítő adatok ehhez: „%s”"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1480,11 +1485,11 @@ msgstr ""
 "futtatásával:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "A SELinux nincs telepítve?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1493,7 +1498,7 @@ msgstr ""
 "Győződjön meg róla, hogy a „virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes” működik."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1502,14 +1507,14 @@ msgstr ""
 "A libvirt szerint a(z) %s a GNOME Gépek közös tárolója, de ez a könyvtár nem "
 "létezik"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "A libvirt szerint a(z) %s a GNOME Gépek közös tárolója, de ez nem könyvtár"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
