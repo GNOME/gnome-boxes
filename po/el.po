@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-12-15 11:05+0000\n"
-"PO-Revision-Date: 2021-01-03 15:53+0200\n"
+"POT-Creation-Date: 2021-03-14 18:42+0000\n"
+"PO-Revision-Date: 2021-03-18 10:56+0200\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -55,11 +55,11 @@ msgstr ""
 "εύκολο τρόπο να δοκιμάσετε ένα νέο λειτουργικό σύστημα ή νέες (ενδεχόμενα "
 "ασταθείς) εκδόσεις του αγαπημένου σας λειτουργικού συστήματος."
 
-#: data/org.gnome.Boxes.appdata.xml.in:69
+#: data/org.gnome.Boxes.appdata.xml.in:56
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
 #: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
@@ -221,8 +221,8 @@ msgid "Operating System Image File"
 msgstr "Αρχείο εικόνας λειτουργικού συστήματος"
 
 #: data/ui/assistant/pages/index-page.ui:258
-msgid "Select an .iso file to install a virtual machine."
-msgstr "Επιλέξτε ένα αρχείο .iso για εγκατάσταση σε μια εικονική μηχανή."
+msgid "Select a file to install a virtual machine."
+msgstr "Επιλέξτε ένα αρχείο για εγκατάσταση μιας εικονικής μηχανής."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -265,7 +265,6 @@ msgstr "Γρήγορη εγκατάσταση"
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
 #: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
-#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "Ακύρωση"
 
@@ -336,7 +335,7 @@ msgstr "Ενέργειες"
 msgid "Keyboard shortcuts"
 msgstr "Συντομεύσεις πληκτρολογίου"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
 msgid "Fullscreen"
 msgstr "Πλήρης οθόνη"
 
@@ -344,17 +343,17 @@ msgstr "Πλήρης οθόνη"
 msgid "Ready to install"
 msgstr "Έτοιμο για εγκατάσταση"
 
-#: data/ui/empty-boxes.ui:68
-msgid "State of the art virtualization"
-msgstr "Κατάσταση της τεχνικής εικονικοποίησης"
+#: data/ui/empty-boxes.ui:50
+msgid "State of the Art Virtualization"
+msgstr "Τελευταία λέξη της τεχνολογίας στην Εικονικοποίηση"
 
-#: data/ui/empty-boxes.ui:82
-msgid "Boxes can be virtual or remote machines."
-msgstr "Τα πλαίσια μπορεί να είναι εικονικά ή απομακρυσμένα μηχανήματα."
-
-#: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>+</b> button to create your first one."
-msgstr "Απλά πατήστε το πλήκτρο <b>+</b> για τη δημιουργία του πρώτου σας."
+#: data/ui/empty-boxes.ui:51
+msgid ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
+msgstr ""
+"Το Πλαίσια μπορεί να είναι εικονικές ή απομακρυσμένες μηχανές. Απλά πατήστε "
+"το πλήκτρο <b>+</b> για τη δημιουργία της πρώτης σας μηχανής."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -465,7 +464,6 @@ msgstr "_Εφαρμογή"
 
 #: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
 #: src/assistant/index-page.vala:143 src/properties-window.vala:58
-#: src/vm-creator.vala:103
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
@@ -837,7 +835,7 @@ msgid_plural "%u boxes have been deleted"
 msgstr[0] "Έχει διαγραφεί %u πλαίσιο"
 msgstr[1] "Έχουν διαγραφεί %u πλαίσια"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Α_ναίρεση"
@@ -860,8 +858,8 @@ msgstr "Προηγούμενο"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
-#: src/util-app.vala:156
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Ζωντανό"
 
@@ -918,14 +916,14 @@ msgid "Boxes failed to apply VM configuration changes: %s"
 msgstr "Τα πλαίσια απέτυχαν να εφαρμόσουν τις αλλαγές διαμόρφωσης VM: %s"
 
 #. TODO: unify the reboot requests for non-properties
-#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:725
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
 #: src/properties.vala:83
 #, c-format
 msgid "Changes require restart of “%s”."
 msgstr "Οι αλλαγές απαιτούν επανεκκίνηση του “%s”."
 
-#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
+#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
 msgid "_Restart"
 msgstr "_Επανεκκίνηση"
 
@@ -945,7 +943,7 @@ msgstr ""
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:71
+#: src/display-toolbar.vala:70
 msgid "Exit fullscreen"
 msgstr "Έξοδος από πλήρη οθόνη"
 
@@ -981,7 +979,7 @@ msgid "System"
 msgstr "Σύστημα"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
 #, c-format
 msgid "%s used"
 msgstr "%s σε χρήση"
@@ -1047,91 +1045,89 @@ msgstr "Εμφάνιση διεύθυνσης"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:222
 msgid "empty"
 msgstr "κενό"
 
-#. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:251
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:193
+#: src/libvirt-machine-properties.vala:221
 msgid "_Select"
 msgstr "Επι_λογή"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:196
+#: src/libvirt-machine-properties.vala:204
 msgid "_Remove"
 msgstr "Α_φαίρεση"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:211
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "Απέτυχε η εισαγωγή του «%s» ως CD/DVD στο «%s»"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:225
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "Απέτυχε η αφαίρεση του CD/DVD από το «%s»"
 
-#: src/libvirt-machine-properties.vala:315
+#: src/libvirt-machine-properties.vala:240
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:321
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:327
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "Δίκτυο"
 
-#: src/libvirt-machine-properties.vala:364
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "Εξ_αναγκασμός τερματισμού"
 
-#: src/libvirt-machine-properties.vala:378
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "Καταγ_ραφή αντιμετώπισης προβλημάτων"
 
-#: src/libvirt-machine-properties.vala:386
+#: src/libvirt-machine-properties.vala:375
 msgid "Edit XML"
 msgstr "Επεξεργασία XML"
 
-#: src/libvirt-machine-properties.vala:406
+#: src/libvirt-machine-properties.vala:395
 msgid "_Memory: "
 msgstr "_Μνήμη: "
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:464
 msgid "Maximum Disk Space"
 msgstr "Μέγιστο μέγεθος δίσκου"
 
-#: src/libvirt-machine-properties.vala:493
+#: src/libvirt-machine-properties.vala:482
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "Δεν υπάρχει αρκετός χώρος στο μηχάνημα σας για να αυξηθεί το μέγιστο μέγεθος "
 "του δίσκου."
 
-#: src/libvirt-machine-properties.vala:503
+#: src/libvirt-machine-properties.vala:492
 msgid "Maximum _Disk Size: "
 msgstr "Μέγιστο μέγεθος _δίσκου: "
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:556
+#: src/libvirt-machine-properties.vala:545
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
@@ -1142,100 +1138,100 @@ msgstr[1] ""
 "Η αλλαγή μεγέθους αποθήκευσης απαιτεί τη διαγραφή των συσχετισμένων "
 "στιγμιότυπων %llu."
 
-#: src/libvirt-machine-properties.vala:685
-#: src/libvirt-machine-properties.vala:689
+#: src/libvirt-machine-properties.vala:674
+#: src/libvirt-machine-properties.vala:678
 msgid "CPUs: "
 msgstr "CPUs: "
 
-#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:733
 msgid "_Run in background"
 msgstr "Εκ_τέλεση στο παρασκήνιο"
 
-#: src/libvirt-machine-properties.vala:756
-#: src/libvirt-machine-properties.vala:759
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "Το «%s» δεν θα διακοπεί αυτόματα."
 
-#: src/libvirt-machine-properties.vala:757
-#: src/libvirt-machine-properties.vala:760
+#: src/libvirt-machine-properties.vala:746
+#: src/libvirt-machine-properties.vala:749
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "Το «%s» θα διακοπεί αυτόματα για να εξοικονομηθούν πόροι."
 
-#: src/libvirt-machine-properties.vala:785
+#: src/libvirt-machine-properties.vala:774
 msgid "Boxes is not authorized to run in the background"
 msgstr "Δεν επιτρέπεται η εκτέλεση της εφαρμογής Πλαίσια στο παρασκήνιο"
 
-#: src/libvirt-machine-properties.vala:787
+#: src/libvirt-machine-properties.vala:776
 msgid "Manage permissions"
 msgstr "Διαχείριση δικαιωμάτων"
 
-#: src/libvirt-machine-properties.vala:805
+#: src/libvirt-machine-properties.vala:794
 msgid "3D Acceleration"
 msgstr "Επιτάχυνση 3D"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:649
+#: src/libvirt-machine.vala:643
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Επαναφορά %s από το δίσκο"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:652
+#: src/libvirt-machine.vala:646
 #, c-format
 msgid "Starting %s"
 msgstr "Εκκίνηση του %s"
 
-#: src/libvirt-machine.vala:731
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Η επανεκκίνηση του «%s» παίρνει υπερβολικό χρόνο. Εξαναγκασμός σε τερματισμό;"
 
-#: src/libvirt-machine.vala:733
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Τερματισμός"
 
-#: src/libvirt-machine.vala:749
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Γίνεται κλωνοποίηση του «%s»…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Εγκατάσταση…"
 
-#: src/libvirt-machine.vala:885
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Ρύθμιση του κλώνου…"
 
-#: src/libvirt-machine.vala:887
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Γίνεται εισαγωγή…"
 
-#: src/libvirt-machine.vala:896
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "κεντρικός υπολογιστής: %s"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Connected"
 msgstr "Συνδεδεμένο"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Disconnected"
 msgstr "Αποσυνδεδεμένο"
 
-#: src/list-view-row.vala:131
+#: src/list-view-row.vala:139
 msgid "Running"
 msgstr "Εκτελείται"
 
-#: src/list-view-row.vala:137
+#: src/list-view-row.vala:145
 msgid "Paused"
 msgstr "Σε παύση"
 
-#: src/list-view-row.vala:142
+#: src/list-view-row.vala:150
 msgid "Powered Off"
 msgstr "Τερματίστηκε"
 
@@ -1333,6 +1329,11 @@ msgstr "Σύνδεση στο %s"
 #, c-format
 msgid "Not connected to %s"
 msgstr "Δεν είναι συνδεδεμένο στο %s"
+
+#: src/portals.vala:45
+msgid "Boxes wants to run VM in background"
+msgstr ""
+"Η εφαρμογή Πλαίσια θέλει να εκτελέσει μια εικονική μηχανή στο παρασκήνιο"
 
 #: src/properties-page-widget.vala:17
 msgid "General"
@@ -1497,7 +1498,7 @@ msgstr "Η γρήγορη εγκατάσταση του %s απαιτεί σύν
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Διαπιστευτήρια του Πλαίσια GNOME για «%s»"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1507,11 +1508,11 @@ msgstr ""
 "διορθώσετε εκτελώντας:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "Δεν είναι εγκατεστημένο το SELinux;"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1520,7 +1521,7 @@ msgstr ""
 "libvirt. Βεβαιωθείτε ότι το «virsh -c qemu:///session pool-dumpxml gnome-"
 "boxes» δουλεύει."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1529,7 +1530,7 @@ msgstr ""
 "Το %s είναι γνωστό στο libvirt ως ομάδα αποθήκευσης των πλαισίων GNOME, αλλά "
 "αυτός ο κατάλογος δεν υπάρχει"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1537,7 +1538,7 @@ msgstr ""
 "Το %s είναι γνωστό στο libvirt ως ομάδα αποθήκευσης των πλαισίων GNOME, αλλά "
 "δεν είναι κατάλογος"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1556,25 +1557,12 @@ msgstr "όχι"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:769
+#: src/vm-configurator.vala:779
 msgid "Incapable host system"
 msgstr "Ανίκανος κεντρικός υπολογιστής"
 
-#: src/vm-creator.vala:106
-msgid "Select"
-msgstr "Επιλογή"
-
-#: src/vm-creator.vala:114
-#, c-format
-msgid "Source installer media '%s' no longer exists"
-msgstr "Το πηγαίο μέσο εγκατάστασης «%s» δεν υπάρχει πλέον"
-
-#: src/vm-creator.vala:116
-msgid "Add installer media"
-msgstr "Προσθήκη μέσου εγκατάστασης"
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:191
+#: src/vm-creator.vala:169
 msgid "Just installed "
 msgstr "Μόλις εγκαταστάθηκε "
 
@@ -1586,6 +1574,18 @@ msgstr "Απέτυχε η εισαγωγή του πλαισίου από το �
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Μόνο ανάγνωση"
+
+#~ msgid "Boxes can be virtual or remote machines."
+#~ msgstr "Τα πλαίσια μπορεί να είναι εικονικά ή απομακρυσμένα μηχανήματα."
+
+#~ msgid "Select"
+#~ msgstr "Επιλογή"
+
+#~ msgid "Source installer media '%s' no longer exists"
+#~ msgstr "Το πηγαίο μέσο εγκατάστασης «%s» δεν υπάρχει πλέον"
+
+#~ msgid "Add installer media"
+#~ msgstr "Προσθήκη μέσου εγκατάστασης"
 
 #~ msgid "Simple remote and virtual machines"
 #~ msgstr ""
