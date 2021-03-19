@@ -8,22 +8,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2021-02-28 09:32+0000\n"
-"PO-Revision-Date: 2021-02-28 15:48+0100\n"
-"Last-Translator: Tim Sabsch <tim@sabsch.com>\n"
+"POT-Creation-Date: 2021-03-19 16:04+0000\n"
+"PO-Revision-Date: 2021-03-19 21:57+0100\n"
+"Last-Translator: Christian Kirbach <christian.kirbach@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
-"Christian Kirbach <christian.kirbach@gmail.com>, 2014\n"
+"Christian Kirbach <christian.kirbach@gmail.com>, 2014-2021\n"
 "Benjamin Steinwender <b@stbe.at>, 2014-2015\n"
 "Mario Blättermann <mario.blaettermann@gmail.com>, 2016-2021"
 
@@ -69,16 +69,17 @@ msgid "To enable 3D Acceleration in a box:"
 msgstr "So aktivieren Sie 3D-Beschleunigung in einer Box:"
 
 #. (itstool) path: media/span
-#: C/3d-acceleration.page:38 C/interface.page:118 C/keystrokes.page:29
-#: C/prop-system.page:29 C/prop-trouble.page:31 C/shared-folders.page:30
-#: C/shutdown.page:30 C/snapshot-create.page:41 C/snapshot-delete.page:28
-#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
-#: C/usb-redirection.page:48
+#: C/3d-acceleration.page:38 C/edit-domain.page:38 C/interface.page:118
+#: C/keystrokes.page:29 C/prop-system.page:29 C/prop-trouble.page:31
+#: C/shared-folders.page:30 C/shutdown.page:30 C/snapshot-create.page:41
+#: C/snapshot-delete.page:28 C/snapshot-rename.page:36
+#: C/snapshot-revert.page:36 C/usb-redirection.page:48
 msgid "settings"
 msgstr "Einstellungen"
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:36 C/shared-folders.page:28 C/usb-redirection.page:46
+#: C/3d-acceleration.page:36 C/edit-domain.page:36 C/shared-folders.page:28
+#: C/usb-redirection.page:46
 msgid ""
 "Right-click on the box in the collection view and select <gui>Properties</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
@@ -125,7 +126,7 @@ msgstr ""
 
 #. (itstool) path: credit/name
 #: C/backup.page:10 C/create.page:12 C/delete.page:9 C/disk-images.page:9
-#: C/index.page:21 C/interface.page:13 C/keystrokes.page:10
+#: C/index.page:20 C/interface.page:13 C/keystrokes.page:10
 #: C/prop-system.page:11 C/prop-trouble.page:11 C/search.page:10
 #: C/shutdown.page:11 C/snapshot-create.page:12 C/snapshot-delete.page:11
 #: C/snapshot-rename.page:11 C/snapshot-revert.page:12
@@ -391,7 +392,7 @@ msgstr ""
 "beginnt."
 
 #. (itstool) path: credit/years
-#: C/delete.page:11 C/disk-images.page:11 C/index.page:23 C/prop-system.page:13
+#: C/delete.page:11 C/disk-images.page:11 C/index.page:22 C/prop-system.page:13
 #: C/prop-trouble.page:13 C/shortcuts.page:13 C/shutdown.page:13
 #: C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14 C/virtualization.page:11
@@ -463,27 +464,119 @@ msgstr ""
 "<app>Boxen</app> auch aus diesem Ordner, den die Software zum Speichern der "
 "Abbilder verwendet."
 
-#. (itstool) path: media/span
+#. (itstool) path: credit/name
+#: C/edit-domain.page:10 C/interface.page:18 C/shared-folders.page:10
+#: C/snapshot-create.page:17 C/snapshot-revert.page:17
+#: C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: credit/years
+#: C/edit-domain.page:12
+msgid "2021"
+msgstr "2021"
+
+#. (itstool) path: info/desc
+#: C/edit-domain.page:17
+msgid "Edit advanced configurations of your box."
+msgstr "So bearbeiten Sie fortgeschrittene Einstellungen Ihrer Box."
+
+#. (itstool) path: page/title
+#: C/edit-domain.page:20
+msgid "Edit the Libvirt domain XML configuration of a box"
+msgstr "Die Libvirt-Domain-XML-Konfiguration einer Box bearbeiten"
+
+#. (itstool) path: page/p
+#: C/edit-domain.page:30
+msgid ""
+"Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML "
+"configuration of your virtual machines. This should allow you to achieve "
+"specific setups which are not exposed in the GNOME Boxes interface and "
+"neither supported by the GNOME Boxes developers."
+msgstr ""
+"Mit Boxen können Sie nun die <sys>Libvirt</sys>-XML-Konfiguration Ihrer "
+"virtuellen Maschinen manuell bearbeiten. Damit können Sie spezielle "
+"Einstellungen vornehmen, die nicht über die Oberfläche von GNOME Boxen "
+"erreichbar sind oder von den Entwicklern von GNOME Boxen unterstützt werden."
+
+#. (itstool) path: steps/title
+#: C/edit-domain.page:35
+msgid "To edit the Libvirt XML configuration of a box:"
+msgstr ""
+"Um die Libvirt-XML-Konfiguration einer Box zu bearbeiten, führen Sie die "
+"folgenden Schritte aus:"
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:40 C/prop-system.page:31 C/prop-trouble.page:33
+#: C/shutdown.page:32
+msgid "Click the <gui>System</gui> tab."
+msgstr "Klicken Sie auf den Reiter <gui>System</gui>."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:41
+msgid ""
+"Click the <gui style=\"button\">Edit XML</gui> button to open the "
+"configuration editor."
+msgstr ""
+"Klicken Sie auf den Knopf <gui style=\"button\">XML bearbeiten</gui>, um den "
+"Konfigurationseditor zu öffnen."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:43
+msgid ""
+"Edit the XML configuration and click <gui style=\"button\">Save</gui>. Boxes "
+"will attempt to create a snapshot prior to your changes getting applied, "
+"allowing you to revert your configuration in case of a mistake."
+msgstr ""
+"Bearbeiten Sie die XML-Konfiguration und klicken Sie auf <gui style=\"button"
+"\">Speichern</gui>. Bevor Ihre Änderungen angewendet werden, versucht Boxen, "
+"einen Schnappschuss zu erstellen. Dies erlaubt Ihnen, Ihre Änderungen "
+"rückgängig zu machen, falls ein Problem auftreten sollte."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:46
+msgid ""
+"If the virtual machine which has been edited is already running, Boxes will "
+"show a notification asking to restart the running virtual machine."
+msgstr ""
+"Falls die bearbeitete virtuelle Maschine bereits läuft, zeigt Boxen eine "
+"Benachrichtigung, in der Sie um die Bestätigung des Neustarts der virtuellen "
+"Maschine gebeten werden."
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "link:trail"
+msgid "Boxes"
+msgstr "Boxen"
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "link"
+msgid "Boxes"
+msgstr "Boxen"
+
+#. (itstool) path: info/title
 #: C/index.page:9
+msgctxt "text"
 msgid "Boxes"
 msgstr "Boxen"
 
 #. (itstool) path: credit/name
-#: C/index.page:16 C/supported-protocols.page:15 C/system-requirements.page:11
+#: C/index.page:15 C/supported-protocols.page:15 C/system-requirements.page:11
 #: C/usb-redirection.page:14 C/what-is-a-virtual-machine.page:10
 #: C/why-do-i-need-virtual-machine.page:11
 msgid "Baptiste Mille-Mathias"
 msgstr "Baptiste Mille-Mathias"
 
 #. (itstool) path: credit/years
-#: C/index.page:18 C/supported-protocols.page:12 C/supported-protocols.page:17
+#: C/index.page:17 C/supported-protocols.page:12 C/supported-protocols.page:17
 #: C/system-requirements.page:13 C/usb-redirection.page:16
 #: C/what-is-a-virtual-machine.page:12 C/why-do-i-need-virtual-machine.page:13
 msgid "2012"
 msgstr "2012"
 
 #. (itstool) path: info/desc
-#: C/index.page:28
+#: C/index.page:27
 msgid ""
 "Learn to set up local virtual machines and to connect to remote virtual "
 "machines. You can also use <app>Boxes</app> to connect to remote desktops."
@@ -493,12 +586,12 @@ msgstr ""
 "Verbinden zu entfernen Oberflächen verwenden."
 
 #. (itstool) path: page/title
-#: C/index.page:33
+#: C/index.page:32
 msgid "<_:media-1/> Boxes"
 msgstr "<_:media-1/> Boxen"
 
 #. (itstool) path: page/p
-#: C/index.page:38
+#: C/index.page:37
 msgid ""
 "<app>Boxes</app> is an application that gives you access to <link xref="
 "\"what-is-a-virtual-machine\">virtual machines</link>, running locally or "
@@ -510,40 +603,34 @@ msgstr ""
 "Rechners zu verbinden."
 
 #. (itstool) path: section/title
-#: C/index.page:44
+#: C/index.page:43
 msgid "Getting started"
 msgstr "Erste Schritte"
 
 #. (itstool) path: section/title
-#: C/index.page:54
+#: C/index.page:53
 msgid "Using Boxes"
 msgstr "Boxen einsetzen"
 
 #. (itstool) path: section/title
-#: C/index.page:58
+#: C/index.page:57
 msgid "Properties"
 msgstr "Eigenschaften"
 
 #. (itstool) path: section/title
-#: C/index.page:62
+#: C/index.page:61
 msgid "Snapshots"
 msgstr "Schnappschüsse"
 
 #. (itstool) path: section/title
-#: C/index.page:66
+#: C/index.page:65
 msgid "Questions"
 msgstr "Fragen"
 
 #. (itstool) path: section/title
-#: C/index.page:70
+#: C/index.page:69
 msgid "Advanced topics"
 msgstr "Fortgeschrittene Themen"
-
-#. (itstool) path: credit/name
-#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
-#: C/snapshot-revert.page:17 C/usb-redirection.page:24
-msgid "Felipe Borges"
-msgstr "Felipe Borges"
 
 #. (itstool) path: info/desc
 #: C/interface.page:30
@@ -889,11 +976,6 @@ msgstr ""
 "und wählen Sie <gui>Eigenschaften</gui>, oder wenn die Box bereits geöffnet "
 "ist, klicken Sie auf den Menü (<_:media-1/>)-Knopf in der Kopfleiste und "
 "wählen Sie dort <gui>Eigenschaften</gui>."
-
-#. (itstool) path: item/p
-#: C/prop-system.page:31 C/prop-trouble.page:33 C/shutdown.page:32
-msgid "Click the <gui>System</gui> tab."
-msgstr "Klicken Sie auf den Reiter <gui>System</gui>."
 
 #. (itstool) path: item/p
 #: C/prop-system.page:32
