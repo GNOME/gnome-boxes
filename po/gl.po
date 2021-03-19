@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-01 12:46+0000\n"
-"PO-Revision-Date: 2021-03-01 20:14+0100\n"
+"POT-Creation-Date: 2021-03-14 18:42+0000\n"
+"PO-Revision-Date: 2021-03-19 21:03+0100\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -218,7 +218,6 @@ msgid "Operating System Image File"
 msgstr "Ficheiro de imaxe de sistema operativo"
 
 #: data/ui/assistant/pages/index-page.ui:258
-#| msgid "Select an .iso file to install a virtual machine."
 msgid "Select a file to install a virtual machine."
 msgstr "Seleccione un ficheiro para instalar unha máquina virtual."
 
@@ -842,7 +841,7 @@ msgstr "Anterior"
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
 #: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
-#: src/util-app.vala:156
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Vivo"
 
@@ -1315,6 +1314,11 @@ msgstr "Iniciar sesión en %s"
 msgid "Not connected to %s"
 msgstr "Non conectado a %s"
 
+#: src/portals.vala:45
+#| msgid "Boxes is not authorized to run in the background"
+msgid "Boxes wants to run VM in background"
+msgstr "Caixas quere executar unha MV en segundo plano"
+
 #: src/properties-page-widget.vala:17
 msgid "General"
 msgstr "Xeral"
@@ -1476,7 +1480,7 @@ msgstr "A instalación rápida de %s require unha conexión a internet."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Credenciais de Caixas de GNOME para «%s»"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1486,11 +1490,11 @@ msgstr ""
 "executando:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "Está SELinux instalado?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1499,7 +1503,7 @@ msgstr ""
 "boxes» desde libvirt. Asegúrese que «virsh -c qemu:///session pool-dumpxml "
 "gnome-boxes» funciona correctamente."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1508,7 +1512,7 @@ msgstr ""
 "libvirt coñece %s como o almacenamento de Caixas de GNOME pero este cartafol "
 "non existe"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1516,7 +1520,7 @@ msgstr ""
 "libvirt coñece %s como o almacenamento de Caixas de GNOME pero non é un "
 "cartafol"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
