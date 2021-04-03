@@ -8,32 +8,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2020-09-06 09:01+0000\n"
-"PO-Revision-Date: 2020-09-17 21:52+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"POT-Creation-Date: 2021-03-19 16:04+0000\n"
+"PO-Revision-Date: 2021-04-03 08:20+0800\n"
+"Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
 msgstr "GNOME 機櫃"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
-msgid "Simple remote and virtual machines"
-msgstr "簡單的遠端和虛擬機"
+msgid "Virtualization made simple"
+msgstr "虛擬化變得簡單"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"A simple GNOME 3 application to access remote or virtual systems. Unlike "
-"some other virtual machine management software, Boxes is targeted towards "
-"typical desktop end-users. For this reason, Boxes will not provide many "
-"advanced options to tweak virtual machines. Instead Boxes will focus on "
-"getting things working out of the box with very little input from user."
+"A simple GNOME 3 application to manage virtual systems. Unlike some other "
+"virtual machine management software, Boxes is targeted towards typical "
+"desktop end-users. For this reason, Boxes will not provide many advanced "
+"options to tweak virtual machines. Instead Boxes will focus on getting "
+"things working out of the box with very little input from user."
 msgstr ""
 "可存取遠端或虛擬系統的簡單 GNOME 3 應用程式。不同於其他的虛擬機管理軟體，《機"
 "櫃》的目標對象為一般的桌面終端使用者。基於這個理由，《機櫃》不會提供許多調校"
@@ -44,20 +44,19 @@ msgstr ""
 msgid ""
 "You want to install Boxes if you just want a very safe and easy way to try "
 "out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s), or need to connect to a remote machine (for "
-"example, in your office)."
+"favorite operating system(s)."
 msgstr ""
 "如果您只是想要一個非常安全、簡單的方式來嘗試新的作業系統或您喜好的作業系統的"
 "新版本 (可能還不穩定)，或是需要連線到遠端機器 (例如，您的辦公室電腦)，您會想"
 "要安裝《機櫃》。"
 
-#: data/org.gnome.Boxes.appdata.xml.in:70
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "GNOME 專案"
 
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:36
-#: data/ui/collection-toolbar.ui:7 src/app.vala:121 src/app-window.vala:134
-#: src/app-window.vala:239 src/app-window.vala:241 src/main.vala:72
+#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
+#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
 msgstr "機櫃"
@@ -72,8 +71,8 @@ msgstr "檢視與使用虛擬機"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Boxes.desktop.in:7
-msgid "virtual machine;vm;vnc;rdp;"
-msgstr "virtual machine;vm;vnc;rdp;虛擬機;虛擬機;"
+msgid "virtual machine;vm;"
+msgstr "virtual machine;vm;虛擬機;"
 
 #: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
@@ -115,11 +114,19 @@ msgstr "第一次執行"
 msgid "Whether Boxes is running for the first time"
 msgstr "是否為第一次執行《機櫃》"
 
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "覆蓋布景主題"
+
 #: data/org.gnome.boxes.gschema.xml:53
+msgid "Whether Boxes will override the user's theme"
+msgstr "《機櫃》是否要覆蓋使用者的布景主題"
+
+#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "共享資料夾"
 
-#: data/org.gnome.boxes.gschema.xml:54
+#: data/org.gnome.boxes.gschema.xml:61
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "共享資料夾的名稱與路徑映射之變數陣列"
 
@@ -202,8 +209,8 @@ msgid "Operating System Image File"
 msgstr "作業系統映像檔案"
 
 #: data/ui/assistant/pages/index-page.ui:258
-msgid "Select an .iso file to install a virtual machine."
-msgstr "選擇要安裝進虛擬機的 .iso 檔案。"
+msgid "Select a file to install a virtual machine."
+msgstr "選擇要安裝虛擬機的檔案。"
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -237,32 +244,15 @@ msgstr "資源配置"
 msgid "Customize"
 msgstr "自訂"
 
-#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:44
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "快速安裝"
 
-#: data/ui/assistant/remote-connection.ui:6
-msgid "Connect to a Box"
-msgstr "正在連線至機櫃"
-
-#: data/ui/assistant/remote-connection.ui:23
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh:// or vnc://."
-msgstr ""
-"請輸入要連線的位址。連線位址可以是 spice://、rdp://、ssh://、或 vnc:// 起頭。"
-
-#: data/ui/assistant/remote-connection.ui:38
 #: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:98 src/assistant/index-page.vala:145
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
 #: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
-#: src/vm-creator.vala:106
 msgid "Cancel"
 msgstr "取消"
-
-#: data/ui/assistant/remote-connection.ui:46
-msgid "Connect"
-msgstr "連線"
 
 #: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
 msgid "Next"
@@ -315,14 +305,6 @@ msgstr "搜尋"
 msgid "Downloads"
 msgstr "下載"
 
-#: data/ui/collection-toolbar.ui:233
-msgid "Create a Virtual Machine…"
-msgstr "建立虛擬主機…"
-
-#: data/ui/collection-toolbar.ui:240
-msgid "Connect to a Remote Computer…"
-msgstr "連線至遠端電腦…"
-
 #: data/ui/display-page.ui:96
 msgid "Ready to Receive File"
 msgstr "準備接收檔案"
@@ -339,7 +321,7 @@ msgstr "行動"
 msgid "Keyboard shortcuts"
 msgstr "鍵盤快捷鍵"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
 msgid "Fullscreen"
 msgstr "全螢幕"
 
@@ -347,17 +329,15 @@ msgstr "全螢幕"
 msgid "Ready to install"
 msgstr "準備安裝"
 
-#: data/ui/empty-boxes.ui:68
-msgid "State of the art virtualization"
-msgstr "先進的虛擬化技術"
+#: data/ui/empty-boxes.ui:50
+msgid "State of the Art Virtualization"
+msgstr "最先進的虛擬化"
 
-#: data/ui/empty-boxes.ui:82
-msgid "Boxes can be virtual or remote machines."
-msgstr "機臺可以是虛擬機或遠端機器。"
-
-#: data/ui/empty-boxes.ui:95
-msgid "Just hit the <b>+</b> button to create your first one."
-msgstr "只要按下 <b>+</b> 按鈕就能建立。"
+#: data/ui/empty-boxes.ui:51
+msgid ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
+msgstr "《機櫃》可以是虛擬或遠端的機器。只要按下 <b>+</b> 按鈕就能建立。"
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -434,6 +414,12 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "全螢幕模式/從全螢幕回復"
 
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+msgstr "《機櫃》會在套用變更之前為您的虛擬機製作快照，讓您可以還原它們。"
+
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "鍵盤快捷鍵"
@@ -454,17 +440,12 @@ msgstr "疑難排解紀錄"
 msgid "_Copy to Clipboard"
 msgstr "複製到剪貼簿(_C)"
 
-#: data/ui/properties-toolbar.ui:143
-msgid "Revert changes to original configuration"
-msgstr "還原變更回原始組態"
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "套用(_A)"
 
-#: data/ui/properties-toolbar.ui:166
-msgid "_Save"
-msgstr "儲存(_S)"
-
-#: data/ui/properties-toolbar.ui:189 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:142 src/properties-window.vala:58
-#: src/vm-creator.vala:103
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "選取裝置或 ISO 檔案"
 
@@ -481,7 +462,7 @@ msgid "_Delete"
 msgstr "刪除(_D)"
 
 #: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:326
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -530,15 +511,6 @@ msgstr "刪除"
 msgid "Done"
 msgstr "完成"
 
-#: data/ui/text-editor.ui:44
-msgid ""
-"Modifying a virtual machine's configuration can cause an installed operating "
-"system to malfunction.\n"
-"Making a snapshot before performing major changes is advised."
-msgstr ""
-"修改虛擬機組態可能導致安裝好的作業系統無法運作。\n"
-"建議請在執行重大變更之前先做快照。"
-
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
 msgstr "糟糕，有個地方出錯了"
@@ -578,20 +550,15 @@ msgstr "產品金鑰"
 msgid "Welcome Tutorial"
 msgstr "歡迎教學"
 
-#: data/ui/welcome-tutorial.ui:35
+#: data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "歡迎使用機櫃"
 
-#: data/ui/welcome-tutorial.ui:36
-msgid ""
-"Boxes makes it easy to install and run virtual machines. You can also use it "
-"to remotely access other computers, using SPICE, VNC, RDP or Secure Shell "
-"connections."
-msgstr ""
-"機櫃讓安裝虛擬機並執行變得簡單。您也可使用 SPICE、VNC、RDP 或 SSH 連線來遠端"
-"存取其他電腦。"
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "《機櫃》讓安裝和執行虛擬機變得很簡單。"
 
-#: data/ui/welcome-tutorial.ui:45
+#: data/ui/welcome-tutorial.ui:50
 msgid ""
 "With express installation, Boxes will set the install options for a new "
 "virtual machine. Just start the installation and everything will be taken "
@@ -600,11 +567,11 @@ msgstr ""
 "使用快速安裝，機櫃會設定新虛擬機的安裝選項。只需開始安裝，所有東西都會幫你妥"
 "善處理好。"
 
-#: data/ui/welcome-tutorial.ui:53
+#: data/ui/welcome-tutorial.ui:58
 msgid "Easy Downloads"
 msgstr "輕鬆下載"
 
-#: data/ui/welcome-tutorial.ui:54
+#: data/ui/welcome-tutorial.ui:59
 msgid ""
 "With Boxes, you don't need to download an operating system to create a "
 "virtual machine. Instead, just pick the operating system you want to setup, "
@@ -613,11 +580,11 @@ msgstr ""
 "透過機櫃，您無需手動下載想要建立虛擬機的作業系統。只需選擇好要安裝的作業系"
 "統，機櫃就會自動幫你下載。"
 
-#: data/ui/welcome-tutorial.ui:62
+#: data/ui/welcome-tutorial.ui:67
 msgid "Drag and Drop"
 msgstr "拖曳"
 
-#: data/ui/welcome-tutorial.ui:63
+#: data/ui/welcome-tutorial.ui:68
 msgid ""
 "Sharing files is as simple as dropping them onto your virtual machine. They "
 "will appear in your Downloads folder."
@@ -688,7 +655,7 @@ msgstr "繼續(_O)"
 msgid "Customize Resources"
 msgstr "自訂資源"
 
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:328
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
 msgid "_Open"
 msgstr "開啟(_O)"
 
@@ -754,105 +721,110 @@ msgstr "屬性"
 msgid "Screenshot from %s"
 msgstr "%s 的畫面快照"
 
-#: src/app.vala:117
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr "Cheng-Chia Tseng <pswo10680@gmail.com>, 2012-2020."
 
-#: src/app.vala:118
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access remote or virtual systems"
 msgstr "可存取遠端或虛擬系統的簡易 GNOME 3 應用程式"
 
-#: src/app.vala:181 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "顯示版本編號"
 
-#: src/app.vala:182
+#: src/app.vala:192
 msgid "Open in full screen"
 msgstr "以全螢幕開啟"
 
-#: src/app.vala:183 src/main.vala:10
+#: src/app.vala:193 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "檢查虛擬化能力"
 
-#: src/app.vala:184
+#: src/app.vala:194
 msgid "Open box with UUID"
 msgstr "以 UUID 開啟機臺"
 
-#: src/app.vala:185
+#: src/app.vala:195
 msgid "Search term"
 msgstr "搜尋詞語"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:187
+#: src/app.vala:197
 msgid "URL to display, broker or installer media"
 msgstr "要顯示的 URL、中介代理、或安裝程式媒體"
 
-#: src/app.vala:198
+#: src/app.vala:208
 msgid "— A simple application to access remote or virtual machines"
 msgstr "— 可存取遠端機器或虛擬機的簡易應用程式"
 
-#: src/app.vala:223
+#: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了太多命令列引數。\n"
 
-#: src/app.vala:479
+#: src/app.vala:502
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "機臺「%s」已安裝並準備好可以使用"
 
-#: src/app.vala:481
+#: src/app.vala:504
 msgid "Launch"
 msgstr "啟動"
 
-#: src/app.vala:567
+#: src/app.vala:534
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "“%s“ 正在背景執行"
+
+#: src/app.vala:620
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "「%s」機臺已刪除"
 
-#: src/app.vala:568
+#: src/app.vala:621
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u 部機臺已刪除"
 
-#: src/app.vala:596 src/libvirt-machine-properties.vala:569
+#: src/app.vala:649 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "取消動作(_U)"
 
-#: src/app.vala:642
+#: src/app.vala:695
 msgid "Boxes is doing something"
 msgstr "機櫃忙碌中"
 
-#: src/app-window.vala:325
+#: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "選取要傳輸的檔案"
 
-#: src/assistant/index-page.vala:145 src/properties-window.vala:61
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
 msgstr "開啟"
 
-#: src/assistant/index-page.vala:163 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "上一個"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:230 src/libvirt-machine.vala:874
-#: src/util-app.vala:156
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:235
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "32 位元 x86 系統"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "64 位元 x86 系統"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:241
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " 來自 %s"
@@ -879,6 +851,32 @@ msgstr "安裝程式媒體分析失敗。媒體是否損壞或檔案不完整？
 msgid "Create"
 msgstr "建立"
 
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "設定已修改"
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr "《機櫃》無法在套用您的變更前為虛擬機製作快照。"
+
+#: src/config-editor.vala:85
+#, c-format
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr "機櫃無法儲存 VM 組態變更：%s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "變更需要重新啟動「%s」。"
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
+#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
+msgid "_Restart"
+msgstr "重新啟動(_R)"
+
 #: src/display-page.vala:135
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "(按下 [左側] Ctrl+Alt 取消抓取)"
@@ -893,7 +891,7 @@ msgstr "(按下後放開 [左側] Ctrl+Alt 取消抓取鍵盤)"
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:71
+#: src/display-toolbar.vala:70
 msgid "Exit fullscreen"
 msgstr "離開全螢幕"
 
@@ -929,7 +927,7 @@ msgid "System"
 msgstr "系統"
 
 #. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:476
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
 #, c-format
 msgid "%s used"
 msgstr "已用 %s"
@@ -971,7 +969,7 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "傳送組合鍵"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:71
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
 msgid "_Name"
 msgstr "名稱(_N)"
 
@@ -995,192 +993,185 @@ msgstr "顯示 URL"
 
 #. Translators: empty is listed as the filename for a non-mounted CD
 #: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:233
+#: src/libvirt-machine-properties.vala:222
 msgid "empty"
 msgstr "空"
 
-#. Don't let user eject installer media if it's an express installation or a live media
-#: src/libvirt-machine-properties.vala:190
-#: src/libvirt-machine-properties.vala:251
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
 #. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:204
-#: src/libvirt-machine-properties.vala:232
+#: src/libvirt-machine-properties.vala:193
+#: src/libvirt-machine-properties.vala:221
 msgid "_Select"
 msgstr "選擇(_S)"
 
 #. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:207
-#: src/libvirt-machine-properties.vala:215
+#: src/libvirt-machine-properties.vala:196
+#: src/libvirt-machine-properties.vala:204
 msgid "_Remove"
 msgstr "移除(_R)"
 
 #. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
 #. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:222
+#: src/libvirt-machine-properties.vala:211
 #, c-format
 msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
 msgstr "將「%s」當做 CD/DVD 插入「%s」失敗"
 
 #. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:236
+#: src/libvirt-machine-properties.vala:225
 #, c-format
 msgid "Removal of CD/DVD from “%s” failed"
 msgstr "從「%s」移除 CD/DVD 失敗"
 
-#: src/libvirt-machine-properties.vala:315
+#: src/libvirt-machine-properties.vala:240
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: src/libvirt-machine-properties.vala:304
 msgid "CPU"
 msgstr "CPU"
 
 #. I/O
 #. 100 MiB/s
-#: src/libvirt-machine-properties.vala:321
+#: src/libvirt-machine-properties.vala:310
 msgid "I/O"
 msgstr "I/O"
 
 #. Network
 #. 1 MiB/s
-#: src/libvirt-machine-properties.vala:327
+#: src/libvirt-machine-properties.vala:316
 msgid "Network"
 msgstr "網路"
 
-#: src/libvirt-machine-properties.vala:356
-#: src/libvirt-machine-properties.vala:727 src/properties.vala:84
-#: src/text-editor.vala:75
-msgid "_Restart"
-msgstr "重新啟動(_R)"
-
-#: src/libvirt-machine-properties.vala:364
+#: src/libvirt-machine-properties.vala:353
 msgid "_Force Shutdown"
 msgstr "強制關機(_F)"
 
-#: src/libvirt-machine-properties.vala:378
+#: src/libvirt-machine-properties.vala:367
 msgid "_Troubleshooting Log"
 msgstr "疑難排解紀錄(_T)"
 
-#: src/libvirt-machine-properties.vala:386
+#: src/libvirt-machine-properties.vala:375
 msgid "Edit XML"
 msgstr "編輯 XML"
 
-#: src/libvirt-machine-properties.vala:406
+#: src/libvirt-machine-properties.vala:395
 msgid "_Memory: "
 msgstr "記憶體(_M)："
 
-#: src/libvirt-machine-properties.vala:475
+#: src/libvirt-machine-properties.vala:464
 msgid "Maximum Disk Space"
 msgstr "磁碟最大容量"
 
-#: src/libvirt-machine-properties.vala:493
+#: src/libvirt-machine-properties.vala:482
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr "您的機器沒有足夠空間以增加最大磁碟容量。"
 
-#: src/libvirt-machine-properties.vala:503
+#: src/libvirt-machine-properties.vala:492
 msgid "Maximum _Disk Size: "
 msgstr "磁碟最大容量(_D)："
 
 #. qemu-img doesn't support resizing disk image with snapshots:
 #. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:556
+#: src/libvirt-machine-properties.vala:545
 #, c-format
 msgid "Storage resize requires deleting associated snapshot."
 msgid_plural "Storage resize requires deleting %llu associated snapshots."
 msgstr[0] "調整儲藏大小必須刪除 %llu 份相關的快照。"
 
-#: src/libvirt-machine-properties.vala:685
-#: src/libvirt-machine-properties.vala:689
+#: src/libvirt-machine-properties.vala:674
+#: src/libvirt-machine-properties.vala:678
 msgid "CPUs: "
 msgstr "CPU："
 
-#. TODO: unify the reboot requests for non-properties
-#: src/libvirt-machine-properties.vala:725 src/properties.vala:83
-#: src/text-editor.vala:74
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "變更需要重新啟動「%s」。"
-
-#: src/libvirt-machine-properties.vala:744
+#: src/libvirt-machine-properties.vala:733
 msgid "_Run in background"
 msgstr "於背景中執行(_R)"
 
-#: src/libvirt-machine-properties.vala:756
-#: src/libvirt-machine-properties.vala:759
+#: src/libvirt-machine-properties.vala:745
+#: src/libvirt-machine-properties.vala:748
 #, c-format
 msgid "“%s” will not be paused automatically."
 msgstr "「%s」不會自動暫停。"
 
-#: src/libvirt-machine-properties.vala:757
-#: src/libvirt-machine-properties.vala:760
+#: src/libvirt-machine-properties.vala:746
+#: src/libvirt-machine-properties.vala:749
 #, c-format
 msgid "“%s” will be paused automatically to save resources."
 msgstr "「%s」會自動暫停以節省資源。"
 
+#: src/libvirt-machine-properties.vala:774
+msgid "Boxes is not authorized to run in the background"
+msgstr "《機櫃》未獲授權在背景執行"
+
 #: src/libvirt-machine-properties.vala:776
+msgid "Manage permissions"
+msgstr "管理權限"
+
+#: src/libvirt-machine-properties.vala:794
 msgid "3D Acceleration"
 msgstr "3D 加速"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:640
+#: src/libvirt-machine.vala:643
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "正從磁碟還原 %s"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:643
+#: src/libvirt-machine.vala:646
 #, c-format
 msgid "Starting %s"
 msgstr "正在啟動 %s"
 
-#: src/libvirt-machine.vala:722
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "「%s」的重新啟動時間過長。是否要強迫關機？"
 
-#: src/libvirt-machine.vala:724
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "關閉(_S)"
 
-#: src/libvirt-machine.vala:740
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "正在拓製「%s」…"
 
-#: src/libvirt-machine.vala:872
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "正在安裝…"
 
-#: src/libvirt-machine.vala:876
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "正在設置拓製品…"
 
-#: src/libvirt-machine.vala:878
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "正在匯入…"
 
-#: src/libvirt-machine.vala:887
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "主機：%s"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Connected"
 msgstr "已連線"
 
-#: src/list-view-row.vala:125
+#: src/list-view-row.vala:133
 msgid "Disconnected"
 msgstr "已斷線"
 
-#: src/list-view-row.vala:131
+#: src/list-view-row.vala:139
 msgid "Running"
 msgstr "正在執行"
 
-#: src/list-view-row.vala:137
+#: src/list-view-row.vala:145
 msgid "Paused"
 msgstr "已暫停"
 
-#: src/list-view-row.vala:142
+#: src/list-view-row.vala:150
 msgid "Powered Off"
 msgstr "已關閉"
 
@@ -1264,7 +1255,7 @@ msgstr "報告錯誤給 <%s>。\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s首頁：<%s>。\n"
 
-#: src/media-manager.vala:289
+#: src/media-manager.vala:304
 #, c-format
 msgid "No such file %s"
 msgstr "沒有這個檔案 %s"
@@ -1279,6 +1270,10 @@ msgstr "登入 %s"
 msgid "Not connected to %s"
 msgstr "未連接至 %s"
 
+#: src/portals.vala:45
+msgid "Boxes wants to run VM in background"
+msgstr "《機櫃》要在背景中執行虛擬機"
+
 #: src/properties-page-widget.vala:17
 msgid "General"
 msgstr "一般"
@@ -1291,15 +1286,15 @@ msgstr "裝置與共享"
 msgid "Snapshots"
 msgstr "快照"
 
-#: src/remote-machine.vala:81
+#: src/remote-machine.vala:78
 msgid "Protocol"
 msgstr "協定"
 
-#: src/remote-machine.vala:83
+#: src/remote-machine.vala:80
 msgid "URL"
 msgstr "URL"
 
-#: src/remote-machine.vala:85
+#: src/remote-machine.vala:82
 msgid "_URL"
 msgstr "_URL"
 
@@ -1401,15 +1396,6 @@ msgstr "該連接埠只能指定一次"
 msgid "Missing port in Spice URL"
 msgstr "Spice URL 中遺漏連接埠"
 
-#: src/text-editor.vala:42
-msgid "Unable to backup original configuration. Aborting."
-msgstr "無法備份原始組態。中止作業。"
-
-#: src/text-editor.vala:67
-#, c-format
-msgid "Boxes failed to save VM configuration changes: %s"
-msgstr "機櫃無法儲存 VM 組態變更：%s"
-
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
 #, c-format
@@ -1442,7 +1428,7 @@ msgstr "%s 的快速安裝需要有網際網路連線。"
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "「%s」的 GNOME 機櫃憑證"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1451,11 +1437,11 @@ msgstr ""
 "您的 SELinux 情境看起來不正確，您可以嘗試修正它，只要執行：\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "尚未安裝 SELinux？"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1463,20 +1449,20 @@ msgstr ""
 "無法從 libvirt 取得「gnome-boxes」貯藏池資訊。請確認「virsh -c qemu:///"
 "session pool-dumpxml gnome-boxes」是否正在運作。"
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr "%s 為 libvirt 作為機櫃貯藏池之用，但該目錄卻不存在"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "%s 為 libvirt 作為機櫃貯藏池之用，但它卻非目錄"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1493,25 +1479,12 @@ msgstr "否"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:764
+#: src/vm-configurator.vala:779
 msgid "Incapable host system"
 msgstr "無能力的主機系統"
 
-#: src/vm-creator.vala:106
-msgid "Select"
-msgstr "選取"
-
-#: src/vm-creator.vala:114
-#, c-format
-msgid "Source installer media '%s' no longer exists"
-msgstr "來源安裝程式媒體「%s」不再存在"
-
-#: src/vm-creator.vala:116
-msgid "Add installer media"
-msgstr "加入安裝程式媒體"
-
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:191
+#: src/vm-creator.vala:169
 msgid "Just installed "
 msgstr "剛安裝完成 "
 
@@ -1523,6 +1496,65 @@ msgstr "從檔案「%s」匯入機臺失敗。"
 #: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "唯讀"
+
+#~ msgid "Simple remote and virtual machines"
+#~ msgstr "簡單的遠端和虛擬機"
+
+#~ msgid "Connect to a Box"
+#~ msgstr "正在連線至機櫃"
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh:// or vnc://."
+#~ msgstr ""
+#~ "請輸入要連線的位址。連線位址可以是 spice://、rdp://、ssh://、或 vnc:// 起"
+#~ "頭。"
+
+#~ msgid "Connect"
+#~ msgstr "連線"
+
+#~ msgid "Create a Virtual Machine…"
+#~ msgstr "建立虛擬主機…"
+
+#~ msgid "Connect to a Remote Computer…"
+#~ msgstr "連線至遠端電腦…"
+
+#~ msgid "Boxes can be virtual or remote machines."
+#~ msgstr "機臺可以是虛擬機或遠端機器。"
+
+#~ msgid "Revert changes to original configuration"
+#~ msgstr "還原變更回原始組態"
+
+#~ msgid "_Save"
+#~ msgstr "儲存(_S)"
+
+#~ msgid ""
+#~ "Modifying a virtual machine's configuration can cause an installed "
+#~ "operating system to malfunction.\n"
+#~ "Making a snapshot before performing major changes is advised."
+#~ msgstr ""
+#~ "修改虛擬機組態可能導致安裝好的作業系統無法運作。\n"
+#~ "建議請在執行重大變更之前先做快照。"
+
+#~ msgid ""
+#~ "Boxes makes it easy to install and run virtual machines. You can also use "
+#~ "it to remotely access other computers, using SPICE, VNC, RDP or Secure "
+#~ "Shell connections."
+#~ msgstr ""
+#~ "機櫃讓安裝虛擬機並執行變得簡單。您也可使用 SPICE、VNC、RDP 或 SSH 連線來遠"
+#~ "端存取其他電腦。"
+
+#~ msgid "Unable to backup original configuration. Aborting."
+#~ msgstr "無法備份原始組態。中止作業。"
+
+#~ msgid "Select"
+#~ msgstr "選取"
+
+#~ msgid "Source installer media '%s' no longer exists"
+#~ msgstr "來源安裝程式媒體「%s」不再存在"
+
+#~ msgid "Add installer media"
+#~ msgstr "加入安裝程式媒體"
 
 #~ msgid "All"
 #~ msgstr "全部"
