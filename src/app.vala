@@ -83,9 +83,7 @@ private class Boxes.App: Gtk.Application {
         action = new GLib.SimpleAction ("help", null);
         action.activate.connect (() => {
             try {
-                Gtk.show_uri (main_window.get_screen (),
-                              "help:gnome-boxes",
-                              Gtk.get_current_event_time ());
+                Gtk.show_uri_on_window (main_window, "help:gnome-boxes", Gtk.get_current_event_time ());
             } catch (GLib.Error e) {
                 warning ("Failed to display help: %s", e.message);
             }
