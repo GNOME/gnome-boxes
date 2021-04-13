@@ -673,7 +673,9 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             if (sources != null) {
                 var sources_pair = sources.get_child_value (0);
                 if (sources_pair != null) {
-                    kbd_layout = sources_pair.get_child_value (1).get_string ();
+                    var sources_pair_value = sources_pair.get_child_value (1);
+                    if (sources_pair_value != null)
+                        kbd_layout = sources_pair_value.get_string ();
                 }
             }
 
