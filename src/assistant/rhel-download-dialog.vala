@@ -15,7 +15,7 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
 
     private GLib.Cancellable cancellable = new GLib.Cancellable ();
 
-    private WizardDownloadableEntry entry;
+    private AssistantDownloadableEntry entry;
 
     construct {
         var context = web_view.get_context ();
@@ -31,7 +31,7 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
         });
     }
 
-    public RHELDownloadDialog (VMAssistant dialog, WizardDownloadableEntry entry) {
+    public RHELDownloadDialog (VMAssistant dialog, AssistantDownloadableEntry entry) {
         set_transient_for (App.app.main_window);
         this.entry = entry;
 

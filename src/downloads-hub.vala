@@ -33,7 +33,7 @@ private class Boxes.DownloadsHub : Gtk.Popover {
         get { return (n_items > 0); }
     }
 
-    public void add_item (WizardDownloadableEntry entry) {
+    public void add_item (AssistantDownloadableEntry entry) {
         n_items+=1;
 
         var row = new DownloadsHubRow.from_entry (entry);
@@ -160,7 +160,7 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
 
     public bool complete = false;
 
-    public DownloadsHubRow.from_entry (WizardDownloadableEntry entry) {
+    public DownloadsHubRow.from_entry (AssistantDownloadableEntry entry) {
         label.label = entry.title;
 
         Downloader.fetch_os_logo.begin (image, entry.os, 64);

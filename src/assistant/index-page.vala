@@ -91,7 +91,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     private Gtk.Widget add_featured_media_entry (GLib.Object object) {
-        return new WizardDownloadableEntry (object as Osinfo.Media);
+        return new AssistantDownloadableEntry (object as Osinfo.Media);
     }
 
     [GtkCallback]
@@ -123,7 +123,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     [GtkCallback]
     private async void on_featured_media_selected (Gtk.ListBoxRow row) {
-        var entry = row as WizardDownloadableEntry;
+        var entry = row as AssistantDownloadableEntry;
 
         if (entry.os != null && entry.os.id.has_prefix ("http://redhat.com/rhel/")) {
             (new RHELDownloadDialog (dialog, entry).run ());
@@ -162,47 +162,5 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         stack.set_visible_child (recommended_downloads_page);
 
         dialog.previous_button.label = _("Previous");
-    }
-}
-
-
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/wizard-downloadable-entry.ui")]
-public class Boxes.WizardDownloadableEntry : Gtk.ListBoxRow {
-    public Osinfo.Os? os;
-
-    [GtkChild]
-    private unowned Gtk.Image media_image;
-    [GtkChild]
-    private unowned Gtk.Label title_label;
-    [GtkChild]
-    private unowned Gtk.Label details_label;
-
-    public string title {
-        get { return title_label.get_text (); }
-        set {
-            title_label.label = value;
-            set_tooltip_text (value);
-        }
-    }
-
-    public string details {
-        get { return details_label.get_text (); }
-        set { details_label.label = value; }
-    }
-    public string url;
-
-    public WizardDownloadableEntry (Osinfo.Media media) {
-        this.from_os (media.os);
-
-        title = serialize_os_title (media);
-        details = media.os.vendor;
-
-        url = media.url;
-    }
-
-    public WizardDownloadableEntry.from_os (Osinfo.Os os) {
-        Downloader.fetch_os_logo.begin (media_image, os, 64);
-
-        this.os = os;
     }
 }

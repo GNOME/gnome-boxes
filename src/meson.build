@@ -114,6 +114,7 @@ vala_sources = [
   'troubleshoot-log.vala',
   'snapshot-list-row.vala',
   'snapshots-property.vala',
+  'assistant/downloadable-entry.vala',
   'assistant/media-entry.vala',
   'assistant/rhel-download-dialog.vala',
   'assistant/vm-assistant.vala',  
