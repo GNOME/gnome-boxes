@@ -114,20 +114,9 @@ vala_sources = [
   'troubleshoot-log.vala',
   'snapshot-list-row.vala',
   'snapshots-property.vala',
-  'assistant/installation-summary.vala',
-  'assistant/downloadable-entry.vala',
-  'assistant/media-entry.vala',
-  'assistant/rhel-download-dialog.vala',
-  'assistant/vm-assistant.vala',  
-  'assistant/assistant-page.vala',
-  'assistant/index-page.vala',  
-  'assistant/identify-os-page.vala',
-  'assistant/identify-os-popover.vala',
-  'assistant/downloads-page.vala',  
-  'assistant/preparation-page.vala',  
-  'assistant/setup-page.vala',  
-  'assistant/review-page.vala',
 ]
+
+subdir('assistant')
 
 dependencies = [
   config_h,
