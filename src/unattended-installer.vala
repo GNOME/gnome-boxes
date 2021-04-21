@@ -670,7 +670,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             var input_settings = new GLib.Settings ("org.gnome.desktop.input-sources");
             var sources = input_settings.get_value ("sources");
 
-            if (sources != null) {
+            if (sources != null && sources.n_children () >= 1) {
                 var sources_pair = sources.get_child_value (0);
                 if (sources_pair != null) {
                     var sources_pair_value = sources_pair.get_child_value (1);
