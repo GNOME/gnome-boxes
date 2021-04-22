@@ -11,10 +11,7 @@ public class Boxes.AssistantDownloadableEntry : Gtk.ListBoxRow {
 
     public string title {
         get { return title_label.get_text (); }
-        set {
-            title_label.label = value;
-            set_tooltip_text (value);
-        }
+        set { title_label.label = value; }
     }
 
     public string details {
@@ -28,6 +25,7 @@ public class Boxes.AssistantDownloadableEntry : Gtk.ListBoxRow {
 
         title = serialize_os_title (media);
         details = media.os.vendor;
+        set_tooltip_text (media.url ?? title);
 
         url = media.url;
     }
