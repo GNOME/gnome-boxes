@@ -20,7 +20,7 @@ private class Boxes.AssistantMediaEntry : Gtk.ListBoxRow {
             // Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
             //              http://en.wikipedia.org/wiki/Live_CD
             title_label.label += " (" +  _("Live") + ")";
-        set_tooltip_text (title_label.label);
+        set_tooltip_text (media.device_file);
 
         if (media.os_media != null) {
             var architecture = (media.os_media.architecture == "i386" || media.os_media.architecture == "i686") ?
