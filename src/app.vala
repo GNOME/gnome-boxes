@@ -187,6 +187,7 @@ private class Boxes.App: Gtk.Application {
     static string[] opt_search;
     const OptionEntry[] options = {
         { "version", 0, 0, OptionArg.NONE, null, N_("Display version number"), null },
+        { "help", 'h', 0, OptionArg.NONE, ref opt_help, N_("Show help"), null },
         { "full-screen", 'f', 0, OptionArg.NONE, ref opt_fullscreen, N_("Open in full screen"), null },
         { "checks", 0, 0, OptionArg.NONE, null, N_("Check virtualization capabilities"), null },
         { "open-uuid", 0, 0, OptionArg.STRING, ref opt_open_uuid, N_("Open box with UUID"), null },
@@ -209,7 +210,7 @@ private class Boxes.App: Gtk.Application {
         opt_context.add_group (Spice.get_option_group ());
         opt_context.add_group (Vnc.Display.get_option_group ());
         opt_context.add_group (Gtk.get_option_group (true));
-        opt_context.set_help_enabled (true);
+        opt_context.set_help_enabled (false);
 
         try {
             string[] args1 = cmdline.get_arguments();
