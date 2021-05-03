@@ -121,7 +121,7 @@ private class Boxes.App: Gtk.Application {
                                    "artists", artists,
                                    "authors", authors,
                                    "translator-credits", _("translator-credits"),
-                                   "comments", _("A simple GNOME 3 application to access remote or virtual systems"),
+                                   "comments", _("A simple GNOME 3 application to access virtual systems"),
                                    "copyright", "\xc2\xa9 2011-2018 Red Hat, Inc.",
                                    "license-type", Gtk.License.LGPL_2_1,
                                    "program-name", _("Boxes") + Config.NAME_SUFFIX,
@@ -204,7 +204,7 @@ private class Boxes.App: Gtk.Application {
         opt_uris = null;
         opt_search = null;
 
-        var parameter_string = _("— A simple application to access remote or virtual machines");
+        var parameter_string = _("— A simple application to access virtual machines");
         var opt_context = new OptionContext (parameter_string);
         opt_context.add_main_entries (options, null);
         opt_context.add_group (Spice.get_option_group ());
