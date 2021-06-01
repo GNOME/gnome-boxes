@@ -30,7 +30,7 @@ help_files = [
 help_media = [
   'figures/boxes_icon.svg',
   'figures/input-keyboard-symbolic.svg',
-  'figures/open-menu-symbolic.svg'
+  'figures/view-more-symbolic.svg'
 ]
 
 gnome.yelp (meson.project_name (),
