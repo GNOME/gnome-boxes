@@ -65,11 +65,7 @@ private class Boxes.VMConfigurator {
         domain.set_features (features);
 
         var clock = new DomainClock ();
-        if (install_media.os != null && install_media.os.short_id.contains ("win"))
-            clock.set_offset (DomainClockOffset.LOCALTIME);
-        else
-            clock.set_offset (DomainClockOffset.UTC);
-
+        clock.set_offset (DomainClockOffset.LOCALTIME);
         DomainTimer timer = new DomainTimerRtc ();
         timer.set_tick_policy (DomainTimerTickPolicy.CATCHUP);
         clock.add_timer (timer);
