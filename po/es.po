@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-14 18:42+0000\n"
-"PO-Revision-Date: 2021-03-16 16:06+0100\n"
+"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"PO-Revision-Date: 2021-06-15 12:21+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -52,12 +52,12 @@ msgstr ""
 "nuevos sistemas operativos o nuevas versiones (potencialmente inestables) de "
 "sus sistemas operativos favoritos."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "El Proyecto GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -133,17 +133,20 @@ msgstr "Carpetas compartidas"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vector de nombres carpetas compartidas y mapeo de rutas"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Medio desconocido"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "No se han encontrado sistemas operativos"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Pruebe a hacer una búsqueda diferente"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Busque un SO o introduzca un enlace de descarga…"
@@ -236,7 +239,7 @@ msgstr ""
 "Cajas está listo para configurar una caja nueva con las siguientes "
 "propiedades:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -284,8 +287,6 @@ msgstr "Nueva"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Atrás"
 
@@ -337,17 +338,16 @@ msgstr "Pantalla completa"
 msgid "Ready to install"
 msgstr "Listo para instalar"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Estado del arte de la virtualización"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Bienvenido a Cajas"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Las cajas pueden ser máquinas virtuales o remotas. Simplemente pulse el "
-"botón <b>+</b> para crear la primera."
+#| msgid ""
+#| "Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+#| "create your first one."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Pulse el botón <b>+</b> para crear su primera máquina virtual."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -371,55 +371,50 @@ msgstr "Crear una máquina virtual nueva"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Conectar a una máquina remota"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Buscar"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Atajos del teclado"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Cerrar ventana/salir de Cajas"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Creación de la caja y propiedades"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Cambiar a la siguiente página"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Cambiar a la página anterior"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Visualización de la caja"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Capturar/liberar teclado"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Volver a la vista general"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Pantalla completa/restaurar pantalla completa"
@@ -456,8 +451,8 @@ msgstr "_Copiar al portapapeles"
 msgid "_Apply"
 msgstr "_Aplicar"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Seleccionar un dispositivo o una imagen ISO"
 
@@ -473,8 +468,7 @@ msgstr "P_ausar"
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -564,10 +558,6 @@ msgstr "Clave del producto"
 msgid "Welcome Tutorial"
 msgstr "Bienvenido al tutorial"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Bienvenido a Cajas"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Cajas hace que sea sencillo instalar y ejecutar máquinas virtuales."
@@ -607,93 +597,6 @@ msgid ""
 msgstr ""
 "Compartir archivos es tan sencillo como arrastrarlos y soltarlos en la "
 "máquina virtual. Aparecerán en su carpeta Descargas."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Medio desconocido"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Mostrar más…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Inserte el medio de instalación del sistema operativo o seleccione una "
-"fuente a continuación"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Descargar un SO"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "El sistema operativo se descargará e instalará en una máquina virtual."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Seleccionar un archivo"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr ""
-"Seleccione un archivo de imagen arrancable para instalarlo en una máquina "
-"virtual."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Cualquier marca mostrada anteriormente se usa meramente para la "
-"identificación de productos de software que haya obtenido y pertenecen a sus "
-"respectivos propietarios."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Introduzca una dirección a la que conectarse. Las direcciones pueden empezar "
-"por spice://, rdp://, ssh:// o vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Crear una caja"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "C_rear"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "C_ontinuar"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Personalizar recursos"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "_Abrir"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Preparándose para crear la caja nueva"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Cada caja puede ser una máquina virtual que se ejecuta en este equipo o una "
-"conexión a una máquina remota existente"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -747,87 +650,97 @@ msgstr "Propiedades"
 msgid "Screenshot from %s"
 msgstr "Captura de pantalla de %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr "Daniel Mustieles <daniel.mustieles@gmail.com>, 2012 - 2014"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
+#: src/app.vala:124
+#| msgid "A simple GNOME 3 application to access remote or virtual systems"
+msgid "A simple GNOME 3 application to access virtual systems"
 msgstr ""
 "Una sencilla aplicación de GNOME 3 para acceder a sistemas virtuales o "
 "remotos"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar el número de versión"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Mostrar la ayuda"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Abrir en pantalla completa"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprobar la capacidad de virtualización"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Abrir caja con UUID"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Buscar término"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr "URL que mostrar, agente o medio de instalación"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
-msgstr "- Una sencilla aplicación para acceder a máquinas virtuales o remotas"
+#: src/app.vala:207
+#| msgid "— A simple application to access remote or virtual machines"
+msgid "— A simple application to access virtual machines"
+msgstr "— Una sencilla aplicación para acceder a máquinas virtuales o remotas"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caja «%s» instalada y lista para usarse"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Lanzar"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» se está ejecutando en segundo plano"
 
-#: src/app.vala:620
+#: src/app.vala:619
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: src/app.vala:621
+#: src/app.vala:620
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:648 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Deshacer"
 
-#: src/app.vala:695
+#: src/app.vala:694
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Seleccione los archivos que quiere enviar"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Abrir"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -839,21 +752,21 @@ msgstr "Anterior"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "«Live»"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "sistema x86 de 32 bits"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " de %s"
@@ -1309,7 +1222,6 @@ msgid "Not connected to %s"
 msgstr "No conectado a %s"
 
 #: src/portals.vala:45
-#| msgid "Boxes is not authorized to run in the background"
 msgid "Boxes wants to run VM in background"
 msgstr "Cajas quiere ejecutar una máquina virtual en segundo plano"
 
@@ -1546,9 +1458,81 @@ msgstr "Recién instalada "
 msgid "Box import from file “%s” failed."
 msgstr "Falló al importar la caja del archivo «%s»."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Sólo lectura"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Estado del arte de la virtualización"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Conectar a una máquina remota"
+
+#~ msgid "Show more…"
+#~ msgstr "Mostrar más…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Inserte el medio de instalación del sistema operativo o seleccione una "
+#~ "fuente a continuación"
+
+#~ msgid "Download an OS"
+#~ msgstr "Descargar un SO"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr ""
+#~ "El sistema operativo se descargará e instalará en una máquina virtual."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Seleccionar un archivo"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr ""
+#~ "Seleccione un archivo de imagen arrancable para instalarlo en una máquina "
+#~ "virtual."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Cualquier marca mostrada anteriormente se usa meramente para la "
+#~ "identificación de productos de software que haya obtenido y pertenecen a "
+#~ "sus respectivos propietarios."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Introduzca una dirección a la que conectarse. Las direcciones pueden "
+#~ "empezar por spice://, rdp://, ssh:// o vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Crear una caja"
+
+#~ msgid "C_reate"
+#~ msgstr "C_rear"
+
+#~ msgid "C_ontinue"
+#~ msgstr "C_ontinuar"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Personalizar recursos"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Preparándose para crear la caja nueva"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Cada caja puede ser una máquina virtual que se ejecuta en este equipo o "
+#~ "una conexión a una máquina remota existente"
 
 #~ msgid "Select"
 #~ msgstr "Seleccionar"
