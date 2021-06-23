@@ -289,8 +289,10 @@ private class Boxes.App: Gtk.Application {
         display.flush ();
 
         keep_on_running_on_background ();
+#if FLATPAK
         if (run_in_bg)
             return true;
+#endif
 
         Idle.add (() => {
             quit ();
@@ -302,6 +304,9 @@ private class Boxes.App: Gtk.Application {
     }
 
     public override void shutdown () {
+#if !FLATPAK
+        base.shutdown ();
+#else
         if (!run_in_bg) {
             base.shutdown ();
 
@@ -311,6 +316,7 @@ private class Boxes.App: Gtk.Application {
         } else {
             this.hold ();
         }
+#endif
 
         foreach (var window in windows) {
             window.notificationbar.dismiss_all ();
