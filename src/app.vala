@@ -526,7 +526,7 @@ private class Boxes.App: Gtk.Application {
         }
     }
 
-    private void keep_vm_running_in_background (LibvirtMachine machine) {
+    private void notify_vm_is_running_in_background (LibvirtMachine machine) {
         if (!machine.run_in_bg && !machine.is_running)
             return;
 
@@ -547,9 +547,11 @@ private class Boxes.App: Gtk.Application {
 
             var keep_vm_running = (machine.run_in_bg && machine.is_running);
             if (keep_vm_running) {
+#if FLATPAK
                 run_in_bg = true;
+#endif
 
-                keep_vm_running_in_background (machine);
+                notify_vm_is_running_in_background (machine);
                 debug ("Keep running %s in the background", machine.name);
 
             }
