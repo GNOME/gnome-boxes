@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-14 18:42+0000\n"
-"PO-Revision-Date: 2021-03-18 10:56+0200\n"
+"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"PO-Revision-Date: 2021-07-02 01:40+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -55,12 +55,12 @@ msgstr ""
 "εύκολο τρόπο να δοκιμάσετε ένα νέο λειτουργικό σύστημα ή νέες (ενδεχόμενα "
 "ασταθείς) εκδόσεις του αγαπημένου σας λειτουργικού συστήματος."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "Το έργο GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -137,17 +137,20 @@ msgstr ""
 "Πολλαπλές συστοιχίες ονομάτων κοινόχρηστων φακέλων και χαρτογράφησης "
 "διαδρομών"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Άγνωστα μέσα"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Δεν βρέθηκαν λειτουργικά συστήματα"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Δοκιμάστε διαφορετική αναζήτηση"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Αναζήτηση για λειτουργικό σύστημα ή εισαγωγή συνδέσμου λήψης…"
@@ -242,7 +245,7 @@ msgstr ""
 "Τα Πλαισία θα δημιουργήσουν μια νέα εικονική μηχανή με τις ακόλουθες "
 "ιδιότητες:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -290,8 +293,6 @@ msgstr "Νέο"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Πίσω"
 
@@ -343,17 +344,13 @@ msgstr "Πλήρης οθόνη"
 msgid "Ready to install"
 msgstr "Έτοιμο για εγκατάσταση"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Τελευταία λέξη της τεχνολογίας στην Εικονικοποίηση"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Καλώς ήλθατε στα Πλαίσια"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Το Πλαίσια μπορεί να είναι εικονικές ή απομακρυσμένες μηχανές. Απλά πατήστε "
-"το πλήκτρο <b>+</b> για τη δημιουργία της πρώτης σας μηχανής."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Πατήστε το πλήκτρο <b>+</b> για τη δημιουργία της πρώτης σας μηχανής."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -377,55 +374,50 @@ msgstr "Δημιουργία νέας εικονικής μηχανής"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Σύνδεση στο απομακρυσμένο υπολογιστή"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Αναζήτηση"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Συντομεύσεις πληκτρολογίου"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Κλείσιμο παραθύρου/Έξοδος εφαρμογής"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Δημιουργία πλαισίου και ιδιότητες"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Εναλλαγή στην επόμενη σελίδα"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Εναλλαγή στην προηγούμενη σελίδα"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Προβολή πλαισίου"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Σύλληψη/Απελευθέρωση πληκτρολογίου"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Επιστροφή στην επισκόπηση"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Μετάβαση/επαναφορά πλήρους οθόνης"
@@ -462,8 +454,8 @@ msgstr "Αντιγρα_φή στο πρόχειρο"
 msgid "_Apply"
 msgstr "_Εφαρμογή"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Επιλέξτε μια συσκευή ή ένα αρχείο ISO"
 
@@ -479,8 +471,7 @@ msgstr "Παύ_ση"
 msgid "_Delete"
 msgstr "_Διαγραφή"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "Ακύ_ρωση"
 
@@ -571,10 +562,6 @@ msgstr "Κλειδί προιόντος"
 msgid "Welcome Tutorial"
 msgstr "Εγχειρίδιο καλωσορίσματος"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Καλώς ήλθατε στα Πλαίσια"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Το Πλαίδια διευκολύνει την εγκατάσταση και εκτέλεση εικονικών μηχανών."
@@ -615,94 +602,6 @@ msgid ""
 msgstr ""
 "Η κοινή χρήση αρχείων είναι τόσο απλή όσο η απόθεσή τους στην εικονική "
 "μηχανή σας. Θα εμφανιστούν στο φάκελο \"Λήψεις\"."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Άγνωστα μέσα"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Εμφάνιση περισσοτέρων…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Τοποθετήστε το μέσο εγκατάστασης του λειτουργικού συστήματος ή επιλέξτε μια "
-"πηγή από κάτω"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Λήψη ενός Λειτουργικού Συστήματος"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr ""
-"Το λειτουργικό σύστημα θα ληφθεί και θα εγκατασταθεί σε μια εικονική μηχανή."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Επιλογή αρχείου"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr ""
-"Επιλέξτε ένα εκκινήσιμο αρχείο εικόνας για εγκατάσταση σε μια εικονική "
-"μηχανή."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Τυχόν κατατεθειμένα εμπορικά σήματα που εμφανίζονται παραπάνω, "
-"χρησιμοποιούνται απλώς για την ταυτοποίηση προγραμμάτων που έχετε ήδη, και "
-"τα οποία ανήκουν στους αντίστοιχους ιδιοκτήτες τους."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Εισαγάγετε μια διεύθυνση για σύνδεση. Οι διευθύνσεις μπορούν να ξεκινήσουν "
-"με spice://, rdp://, ssh://,  ή vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Δημιουργία πλαισίου"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "Δ_ημιουργία"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "Σ_υνέχεια"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Προσαρμογή πόρων"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "Ά_νοιγμα"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Προετοιμασία για τη δημιουργία νέου πλαισίου"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Κάθε πλαίσιο μπορεί να είναι μια εικονική μηχανή που εκτελείται σε αυτόν τον "
-"υπολογιστή ή μια σύνδεση με ένα υπάρχον απομακρυσμένο μηχάνημα"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -756,7 +655,7 @@ msgstr "Ιδιότητες"
 msgid "Screenshot from %s"
 msgstr "Στιγμιότυπο από το %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -768,85 +667,90 @@ msgstr ""
 "\n"
 "http://gnome.gr/"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
+#: src/app.vala:124
+msgid "A simple GNOME 3 application to access virtual systems"
 msgstr ""
-"Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε απομακρυσμένα ή "
-"εικονικά συστήματα"
+"Μια απλή εφαρμογή του GNOME 3 για να έχετε πρόσβαση σε  εικονικά συστήματα"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Εμφάνιση αριθμού έκδοσης"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Εμφάνιση βοήθειας"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Άνοιγμα σε πλήρη οθόνη"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Έλεγχος δυνατοτήτων εικονικοποίησης"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Άνοιγμα πλαισίου με UUID"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Όρος αναζήτησης"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr "Διεύθυνση που θα εμφανιστεί, μεσολαβητής ή πολυμέσο εγκατάστασης"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
-msgstr ""
-"- Μια απλή εφαρμογή για να έχετε πρόσβαση σε απομακρυσμένα ή εικονικά "
-"συστήματα"
+#: src/app.vala:207
+msgid "— A simple application to access virtual machines"
+msgstr "— Μια απλή εφαρμογή για να έχετε πρόσβαση σε εικονικά συστήματα"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Καθορίστηκαν πάρα πολλά ορίσματα τερματικού.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Το πλαίσιο «%s» εγκαταστάθηκε και είναι έτοιμο προς χρήση"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Εκκίνηση"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "το «%s» εκτελείται στο παρασκήνιο"
 
-#: src/app.vala:620
+#: src/app.vala:619
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Έχει διαγραφεί το πλαίσιο «%s»"
 
-#: src/app.vala:621
+#: src/app.vala:620
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Έχει διαγραφεί %u πλαίσιο"
 msgstr[1] "Έχουν διαγραφεί %u πλαίσια"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:648 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Α_ναίρεση"
 
-#: src/app.vala:695
+#: src/app.vala:694
 msgid "Boxes is doing something"
 msgstr "Η εφαρμογή πλαίσια εκτελεί κάτι"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Επιλογή αρχείων προς μεταφορά"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "Ά_νοιγμα"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -858,21 +762,21 @@ msgstr "Προηγούμενο"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Ζωντανό"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "32-bit x86 σύστημα"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "64-bit x86 σύστημα"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " από %s"
@@ -1571,9 +1475,82 @@ msgstr "Μόλις εγκαταστάθηκε "
 msgid "Box import from file “%s” failed."
 msgstr "Απέτυχε η εισαγωγή του πλαισίου από το αρχείο «%s»."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Μόνο ανάγνωση"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Τελευταία λέξη της τεχνολογίας στην Εικονικοποίηση"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Σύνδεση στο απομακρυσμένο υπολογιστή"
+
+#~ msgid "Show more…"
+#~ msgstr "Εμφάνιση περισσοτέρων…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Τοποθετήστε το μέσο εγκατάστασης του λειτουργικού συστήματος ή επιλέξτε "
+#~ "μια πηγή από κάτω"
+
+#~ msgid "Download an OS"
+#~ msgstr "Λήψη ενός Λειτουργικού Συστήματος"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr ""
+#~ "Το λειτουργικό σύστημα θα ληφθεί και θα εγκατασταθεί σε μια εικονική "
+#~ "μηχανή."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Επιλογή αρχείου"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr ""
+#~ "Επιλέξτε ένα εκκινήσιμο αρχείο εικόνας για εγκατάσταση σε μια εικονική "
+#~ "μηχανή."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Τυχόν κατατεθειμένα εμπορικά σήματα που εμφανίζονται παραπάνω, "
+#~ "χρησιμοποιούνται απλώς για την ταυτοποίηση προγραμμάτων που έχετε ήδη, "
+#~ "και τα οποία ανήκουν στους αντίστοιχους ιδιοκτήτες τους."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Εισαγάγετε μια διεύθυνση για σύνδεση. Οι διευθύνσεις μπορούν να "
+#~ "ξεκινήσουν με spice://, rdp://, ssh://,  ή vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Δημιουργία πλαισίου"
+
+#~ msgid "C_reate"
+#~ msgstr "Δ_ημιουργία"
+
+#~ msgid "C_ontinue"
+#~ msgstr "Σ_υνέχεια"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Προσαρμογή πόρων"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Προετοιμασία για τη δημιουργία νέου πλαισίου"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Κάθε πλαίσιο μπορεί να είναι μια εικονική μηχανή που εκτελείται σε αυτόν "
+#~ "τον υπολογιστή ή μια σύνδεση με ένα υπάρχον απομακρυσμένο μηχάνημα"
 
 #~ msgid "Boxes can be virtual or remote machines."
 #~ msgstr "Τα πλαίσια μπορεί να είναι εικονικά ή απομακρυσμένα μηχανήματα."
