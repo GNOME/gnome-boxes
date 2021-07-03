@@ -8,23 +8,23 @@
 # Fábio Nogueira <fnogueira@gnome.org>, 2015.
 # Artur de Aquino Morais <artur.morais93@outlook.com>, 2016.
 # Bruno Lopes da Silva <brunolopesbldsb@gmail.com>, 2018.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2013-2021.
 # Enrico Nicoletto <liverig@gmail.com>, 2013-2016, 2018, 2021.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2013-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-14 18:42+0000\n"
-"PO-Revision-Date: 2021-03-15 11:28-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"PO-Revision-Date: 2021-07-03 12:56-0300\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"X-Generator: Gtranslator 40.0\n"
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
@@ -61,12 +61,12 @@ msgstr ""
 "fácil de experimentar novos sistemas operacionais ou novas versões "
 "(potencialmente instáveis) de seus sistemas operacionais favoritos."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "O Projeto GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -142,17 +142,20 @@ msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Vetor variante de mapeamento de nomes e caminhos das pastas compartilhadas"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Mídia desconhecida"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Nenhum sistema operacional encontrado"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Tente uma pesquisa diferente"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Pesquisar um SO ou inserir um link de download…"
@@ -246,7 +249,7 @@ msgstr ""
 "Boxes está pronto para instalar uma nova máquina com as seguintes "
 "propriedades:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -294,8 +297,6 @@ msgstr "Nova"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Voltar"
 
@@ -347,17 +348,16 @@ msgstr "Tela cheia"
 msgid "Ready to install"
 msgstr "Pronto para instalar"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Estado da arte em virtualização"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Bem-vindo ao Boxes"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Boxes pode ser máquinas virtuais ou remotas. Basta pressionar o botão <b>+</"
-"b> para criar a sua primeira."
+#| msgid ""
+#| "Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+#| "create your first one."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Use o botão <b>+</b> para criar a sua primeira máquina virtual."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -381,55 +381,50 @@ msgstr "Cria uma nova máquina virtual"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Conecta a uma máquina remota"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Pesquisa"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Atalhos de teclado"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Fecha janela/sai do Boxes"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Criação e propriedades da máquina"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Alterna para a próxima página"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Alterna para a página anterior"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Tela da máquina"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Captura/libera teclado"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Retorna à visão geral"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Tela cheia/restaura da tela cheia"
@@ -466,8 +461,8 @@ msgstr "_Copia para a área de transferência"
 msgid "_Apply"
 msgstr "_Aplicar"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Selecione um dispositivo ou arquivo ISO"
 
@@ -483,8 +478,7 @@ msgstr "P_ausar"
 msgid "_Delete"
 msgstr "_Excluir"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -574,10 +568,6 @@ msgstr "Chave do produto"
 msgid "Welcome Tutorial"
 msgstr "Tutorial de boas-vindas"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Bem-vindo ao Boxes"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "O Boxes facilita instalar e executar máquinas virtuais."
@@ -617,93 +607,6 @@ msgid ""
 msgstr ""
 "Compartilhar arquivos é tão simples quanto soltá-los em sua máquina virtual. "
 "Eles aparecerão na sua pasta Downloads."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Mídia desconhecida"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Mostrar mais…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Insira a mídia de instalação do sistema operacional ou selecione uma fonte "
-"abaixo"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Baixar um SO"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "O sistema operacional será baixado e instalado em uma máquina virtual."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Selecione um arquivo"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr ""
-"Selecione um arquivo de imagem inicializável para instalar em uma máquina "
-"virtual."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Quaisquer marcas mostradas acima são usadas apenas para identificação dos "
-"produtos de software que você já obteve e é propriedade de seus respectivos "
-"proprietários."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Insira um endereço a ser conectado. O endereço pode começar com spice://, "
-"rdp://, ssh:// ou vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Criar uma máquina"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "C_riar"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "C_ontinuar"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Personalizar recursos"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "A_brir"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Preparando para criar uma nova máquina"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Cada máquina pode ser uma máquina virtual que roda neste computador, ou uma "
-"conexão à uma máquina virtual remota já existente"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -757,7 +660,7 @@ msgstr "Propriedades"
 msgid "Screenshot from %s"
 msgstr "Captura de tela de %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr ""
 "Djavan Fagundes <djavanf@gnome.org>\n"
@@ -766,82 +669,91 @@ msgstr ""
 "Enrico Nicoletto <liverig@gmail.com>\n"
 "Rafael Fontenelle <rafaelff@gnome.org>"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr ""
-"Um aplicativo simples do GNOME 3 para acessar sistemas remotos ou virtuais"
+#: src/app.vala:124
+#| msgid "A simple GNOME 3 application to access remote or virtual systems"
+msgid "A simple GNOME 3 application to access virtual systems"
+msgstr "Um aplicativo simples do GNOME 3 para acessar sistemas virtuais"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar o número da versão"
 
-#: src/app.vala:192
-msgid "Open in full screen"
-msgstr "Abrir em tela cheia"
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Mostra ajuda"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:191
+msgid "Open in full screen"
+msgstr "Abre em tela cheia"
+
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
-msgstr "Verificar recursos de virtualização"
+msgstr "Verifica recursos de virtualização"
+
+#: src/app.vala:193
+msgid "Open box with UUID"
+msgstr "Abre máquina com UUID"
 
 #: src/app.vala:194
-msgid "Open box with UUID"
-msgstr "Abrir máquina com UUID"
-
-#: src/app.vala:195
 msgid "Search term"
 msgstr "Termo de pesquisa"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr "URL para exibir, gerenciar ou instalar mídia"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
-msgstr "— Um aplicativo para acessar sistemas remotos ou máquinas virtuais"
+#: src/app.vala:207
+#| msgid "— A simple application to access remote or virtual machines"
+msgid "— A simple application to access virtual machines"
+msgstr "— Um aplicativo simples para acessar máquinas virtuais"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Especificado muitos argumentos de linha de comando.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Máquina “%s” instalada e pronta para o uso"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Iniciar"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s“ está em execução em segundo plano"
 
-#: src/app.vala:620
+#: src/app.vala:619
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "A máquina “%s” foi excluída"
 
-#: src/app.vala:621
+#: src/app.vala:620
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u máquina foi excluída"
 msgstr[1] "%u máquinas foram excluídas"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:648 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: src/app.vala:695
+#: src/app.vala:694
 msgid "Boxes is doing something"
 msgstr "O Boxes está executando uma operação"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Selecione os arquivos para transferir"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "A_brir"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -853,21 +765,21 @@ msgstr "Anterior"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "Sistema x86 32 bits"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "Sistema x86 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " da %s"
@@ -1560,9 +1472,81 @@ msgstr "Recém-instalado "
 msgid "Box import from file “%s” failed."
 msgstr "Importação da máquina do arquivo “%s” falhou."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Somente leitura"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Estado da arte em virtualização"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Conecta a uma máquina remota"
+
+#~ msgid "Show more…"
+#~ msgstr "Mostrar mais…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Insira a mídia de instalação do sistema operacional ou selecione uma "
+#~ "fonte abaixo"
+
+#~ msgid "Download an OS"
+#~ msgstr "Baixar um SO"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr ""
+#~ "O sistema operacional será baixado e instalado em uma máquina virtual."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Selecione um arquivo"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr ""
+#~ "Selecione um arquivo de imagem inicializável para instalar em uma máquina "
+#~ "virtual."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Quaisquer marcas mostradas acima são usadas apenas para identificação dos "
+#~ "produtos de software que você já obteve e é propriedade de seus "
+#~ "respectivos proprietários."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Insira um endereço a ser conectado. O endereço pode começar com spice://, "
+#~ "rdp://, ssh:// ou vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Criar uma máquina"
+
+#~ msgid "C_reate"
+#~ msgstr "C_riar"
+
+#~ msgid "C_ontinue"
+#~ msgstr "C_ontinuar"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Personalizar recursos"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Preparando para criar uma nova máquina"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Cada máquina pode ser uma máquina virtual que roda neste computador, ou "
+#~ "uma conexão à uma máquina virtual remota já existente"
 
 #~ msgid "Boxes can be virtual or remote machines."
 #~ msgstr "Máquinas podem ser virtuais ou remotas."
