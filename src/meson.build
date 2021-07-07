@@ -89,10 +89,8 @@ vala_sources = [
   'selectionbar.vala',
   'selection-toolbar.vala',
   'shared-folders.vala',
-  'spice-display.vala',
   'config-editor.vala',
   'transfer-info-row.vala',
-  'transfer-popover.vala',
   'troubleshoot-view.vala',
   'topbar.vala',
   'ui.vala',
@@ -103,9 +101,9 @@ vala_sources = [
   'vm-configurator.vala',
   'vm-creator.vala',
   'vm-importer.vala',
+  'vnc-display.vala',
   'libvirt-vm-cloner.vala',
   'libvirt-vm-importer.vala',
-  'vnc-display.vala',
   'welcome-tutorial.vala',
   'welcome-tutorial-page.vala',
   'downloader.vala',
@@ -134,15 +132,28 @@ dependencies = [
   dependency ('libvirt-gconfig-1.0', version: '>= 4.0.0'),
   dependency ('libvirt-gobject-1.0', version: '>= 4.0.0'),
   dependency ('libxml-2.0', version: '>= 2.7.8'),
-  dependency ('spice-client-gtk-3.0', version: '>= 0.32'),
   dependency ('tracker-sparql-3.0'),
   dependency ('webkit2gtk-4.0', version: '>= 2.26.0'),
   cc.find_library('m', required : false),
   valac.find_library ('gio-2.0-workaround', dirs: vapi_dir),
   valac.find_library ('linux'),
   valac.find_library ('posix'),
-  valac.find_library ('spice-client-gtk-3.0'),
 ]
+
+spice = dependency ('spice-client-gtk-3.0', version: '>= 0.32')
+if spice.found ()
+  vala_args += '--define=HAS_SPICE'
+
+  dependencies += [
+    spice,
+    valac.find_library ('spice-client-gtk-3.0')
+  ]
+
+  vala_sources += [
+    'spice-display.vala',
+    'transfer-popover.vala'
+  ]
+endif
 
 libhandy = dependency ('libhandy-1', version: '>= 1.0.0', required: false)
 if not libhandy.found()

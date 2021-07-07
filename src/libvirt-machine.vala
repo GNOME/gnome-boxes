@@ -53,12 +53,17 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     private bool _acceleration_3d;
     public bool acceleration_3d {
         get {
+#if HAS_SPICE
             return _acceleration_3d;
+#else
+            return false;
+#endif
         }
 
         set {
             _acceleration_3d = value;
 
+#if HAS_SPICE
             GLib.List<GVirConfig.DomainDevice> devices = null;
             foreach (var device in domain_config.get_devices ()) {
                 if (device is GVirConfig.DomainGraphicsSpice) {
@@ -83,6 +88,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             } catch (GLib.Error error) {
                 warning ("Failed to disable 3D Acceleration");
             }
+#endif
         }
     }
 
@@ -463,11 +469,13 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             host = "localhost";
 
         switch (type) {
+#if HAS_SPICE
         case "spice":
             if (port > 0)
                 return new SpiceDisplay (this, config, host, port);
             else
                 return new SpiceDisplay.priv (this, config);
+#endif
 
         case "vnc":
             return new VncDisplay (config, host, port);

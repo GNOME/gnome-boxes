@@ -115,8 +115,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
                     // Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
                     add_string_property (ref list, _("Display URL"), machine.display.uri);
             }
-
+#if HAVE_SPICE
             add_3d_acceleration_property (ref list);
+#endif
 
             break;
 

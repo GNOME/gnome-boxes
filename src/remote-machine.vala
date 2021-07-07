@@ -30,8 +30,10 @@ private class Boxes.RemoteMachine: Boxes.Machine, Boxes.IPropertiesProvider {
         var type = source.source_type;
 
         switch (type) {
+#if HAS_SPICE
         case "spice":
             return new SpiceDisplay.with_uri (this, config, source.uri);
+#endif
 
         case "vnc":
             return new VncDisplay.with_uri (config, source.uri);

@@ -13,6 +13,7 @@ private class Boxes.VMConfigurator {
        future, but this is effectively part of boxes XML API */
     private const string BOXES_NS_URI = "https://wiki.gnome.org/Apps/Boxes";
     private const string BOXES_OLD_NS_URI = "http://live.gnome.org/Boxes/";
+    private const string SPICE_AGENT_CHANNEL = "com.redhat.spice.0";
     private const string WEBDAV_CHANNEL_URI = "org.spice-space.webdav.0";
     private const string BOXES_XML = "<gnome-boxes>%s</gnome-boxes>";
     private const string LIVE_STATE = "live";
@@ -37,6 +38,13 @@ private class Boxes.VMConfigurator {
     private const string LIBOSINFO_NS_URI = "http://libosinfo.org/xmlns/libvirt/domain/1.0";
     private const string LIBOSINFO_XML = "<libosinfo>%s</libosinfo>";
     private const string LIBOSINFO_OS_ID_XML = "<os id=\"%s\"/>";
+
+    private const bool SPICE_AVAILABLE =
+#if HAS_SPICE
+        true;
+#else
+        false;
+#endif
 
     public static Domain create_domain_config (InstallerMedia install_media, string target_path, Capabilities caps, DomainCapabilities domain_caps)
                                         throws VMConfiguratorError {
@@ -85,21 +93,6 @@ private class Boxes.VMConfigurator {
 
         set_target_media_config (domain, target_path, install_media);
         install_media.setup_domain_config (domain);
-
-        var graphics = create_graphics_device ();
-        domain.add_device (graphics);
-
-        // SPICE agent channel. This is needed for features like copy and paste between host and guest etc to work.
-        var channel = new DomainChannel ();
-        channel.set_target_type (DomainChannelTargetType.VIRTIO);
-        channel.set_target_name ("com.redhat.spice.0");
-        var vmc = new DomainChardevSourceSpiceVmc ();
-        channel.set_source (vmc);
-        domain.add_device (channel);
-
-        // Webdav channel. This is needed for the shared folder feature to work.
-        var webdav_channel = create_webdav_channel ();
-        domain.add_device (webdav_channel);
 
         add_usb_support (domain, install_media);
 #if !FLATPAK
@@ -273,16 +266,21 @@ private class Boxes.VMConfigurator {
 
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
-        DomainChannel channel_webdav = null;
         bool supports_alternative_boot_device = false;
         foreach (var device in domain.get_devices ()) {
+            // Let's always re-create the graphics device, so we can switch from SPICE
+            // to VNC and back according to SPICE's availability in the build.
+            if (device is DomainGraphics)
+                continue;
+
             if (device is DomainInterface)
                 iface = device as DomainInterface;
             else if (device is DomainChannel) {
                 var device_channel = device as DomainChannel;
                 if (device_channel.get_target_name () == WEBDAV_CHANNEL_URI)
-                    channel_webdav = device_channel;
-                devices.prepend (device);
+                    continue;
+                else if (device_channel.get_target_name () == SPICE_AGENT_CHANNEL)
+                    continue;
             }
             else if (device is DomainDisk) {
                 var domain_disk = device as DomainDisk;
@@ -304,6 +302,14 @@ private class Boxes.VMConfigurator {
                 devices.prepend (device);
         }
 
+        if (SPICE_AVAILABLE) {
+            devices.prepend (create_spice_webdav_channel ());
+            devices.prepend (create_spice_agent_channel ());
+            devices.prepend (create_graphics_device ());
+        } else {
+            devices.prepend (new DomainGraphicsVnc ());
+        }
+
         // If user interface device was found and it needs to be bridged
         if (iface != null) {
             var bridge = is_libvirt_bridge_net_available ();
@@ -317,9 +323,6 @@ private class Boxes.VMConfigurator {
         }
 
         enable_boot_menu (domain, supports_alternative_boot_device);
-
-        if (channel_webdav == null)
-            devices.prepend (create_webdav_channel ());
 
         devices.reverse ();
         domain.set_devices (devices);
@@ -700,6 +703,17 @@ private class Boxes.VMConfigurator {
         return iface;
     }
 
+    private static DomainChannel create_spice_agent_channel () {
+        // SPICE agent channel. This is needed for features like copy and paste between host and guest etc to work.
+        var channel = new DomainChannel ();
+        channel.set_target_type (DomainChannelTargetType.VIRTIO);
+        channel.set_target_name (SPICE_AGENT_CHANNEL);
+        var vmc = new DomainChardevSourceSpiceVmc ();
+        channel.set_source (vmc);
+
+        return channel;
+    }
+
     public static DomainGraphicsSpice create_graphics_device (bool accel3d = false) {
         var graphics = new DomainGraphicsSpice ();
         graphics.set_autoport (false);
@@ -709,7 +723,7 @@ private class Boxes.VMConfigurator {
         return graphics;
     }
 
-    public static DomainChannel create_webdav_channel () {
+    public static DomainChannel create_spice_webdav_channel () {
         var channel_webdav = new DomainChannel ();
         channel_webdav.set_target_type (DomainChannelTargetType.VIRTIO);
         channel_webdav.set_target_name (WEBDAV_CHANNEL_URI);
