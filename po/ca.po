@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"POT-Creation-Date: 2021-03-14 18:42+0000\n"
 "PO-Revision-Date: 2020-12-19 15:23+0100\n"
 "Last-Translator: Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -55,12 +55,12 @@ msgstr ""
 "provar nous sistemes operatius o noves (i potencialment inestables) versions"
 " del vostre sistema operatiu preferit."
 
-#: data/org.gnome.Boxes.appdata.xml.in:58
+#: data/org.gnome.Boxes.appdata.xml.in:56
 msgid "The GNOME Project"
 msgstr "El projecte GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -138,20 +138,17 @@ msgstr ""
 "Matriu de variables dels noms de les carpetes compartides i l’assignació de "
 "camins"
 
-#: data/ui/assistant/downloadable-entry.ui:57
-#: data/ui/assistant/media-entry.ui:53
-msgid "Unknown media"
-msgstr "Medi d'instal·lació desconegut"
-
 #: data/ui/assistant/pages/downloads-page.ui:110
+#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "No s'han trobat sistemes operatius"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
+#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Proveu amb una cerca diferent"
 
-#: data/ui/assistant/pages/downloads-page.ui:137
+#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Cerca un sistema operatiu o introduïu un enllaç de baixada…"
@@ -244,7 +241,7 @@ msgstr ""
 "El Màquines està llesta per a configurar una màquina nova amb les propietats"
 " següents:"
 
-#: data/ui/assistant/pages/review-page.ui:45
+#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -292,6 +289,8 @@ msgstr "Nova"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
+#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Enrere"
 
@@ -343,13 +342,17 @@ msgstr "Pantalla completa"
 msgid "Ready to install"
 msgstr "A punt per a instal·lar"
 
-#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Us donem la benvinguda al Màquines"
+#: data/ui/empty-boxes.ui:50
+msgid "State of the Art Virtualization"
+msgstr "L'últim crit en virtualització"
 
 #: data/ui/empty-boxes.ui:51
-msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr "Premeu el botó <b>+</b> per a crear la primera màquina virtual."
+msgid ""
+"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+"create your first one."
+msgstr ""
+"Les màquines poden ser virtuals o remotes. Simplement premeu el botó "
+"<b>+</b> per crear-ne la primera."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -373,50 +376,55 @@ msgstr "Crea una màquina virtual nova"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
+msgid "Connect to a remote machine"
+msgstr "Connecta a una màquina remota"
+
+#: data/ui/kbd-shortcuts-window.ui:57
+msgctxt "shortcut window"
 msgid "Search"
 msgstr "Cerca"
 
-#: data/ui/kbd-shortcuts-window.ui:57
+#: data/ui/kbd-shortcuts-window.ui:65
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Dreceres de teclat"
 
-#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Tanca finestra/Surt"
 
-#: data/ui/kbd-shortcuts-window.ui:75
+#: data/ui/kbd-shortcuts-window.ui:83
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Creació de màquines i propietats"
 
-#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
+#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Canvia a la pàgina següent"
 
-#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
+#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Canvia a la pàgina anterior"
 
-#: data/ui/kbd-shortcuts-window.ui:122
+#: data/ui/kbd-shortcuts-window.ui:130
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Visualització de la màquina"
 
-#: data/ui/kbd-shortcuts-window.ui:129
+#: data/ui/kbd-shortcuts-window.ui:137
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Captura o allibera el teclat"
 
-#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
+#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Torna a la visió general"
 
-#: data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:173
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Pantalla completa/Torna a pantalla normal"
@@ -453,8 +461,8 @@ msgstr "_Copia-ho al porta-retalls"
 msgid "_Apply"
 msgstr "_Aplica"
 
-#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
-#: src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
+#: src/assistant/index-page.vala:143 src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Seleccioneu un dispositiu o un fitxer ISO"
 
@@ -470,7 +478,8 @@ msgstr "P_ausa"
 msgid "_Delete"
 msgstr "_Suprimeix"
 
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
+#: src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
@@ -561,6 +570,10 @@ msgstr "Clau del producte"
 msgid "Welcome Tutorial"
 msgstr "Tutorial de benvinguda"
 
+#: data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Us donem la benvinguda al Màquines"
+
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Màquines fa fàcil instal·lar i executar màquines virtuals."
@@ -600,6 +613,94 @@ msgid ""
 msgstr ""
 "Compartir fitxers és tan senzill com deixar-los anar en la màquina virtual. "
 "Apareixeran en la carpeta Baixades."
+
+#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
+msgid "Unknown media"
+msgstr "Medi d'instal·lació desconegut"
+
+#: data/ui/wizard-downloads-page.ui:26
+msgid "Show more…"
+msgstr "Mostra'n més…"
+
+#: data/ui/wizard-source.ui:32
+msgid "Insert operating system installation media or select a source below"
+msgstr ""
+"Inseriu un mitjà d'instal·lació de sistema operatiu o seleccioneu-ne un a "
+"continuació"
+
+#: data/ui/wizard-source.ui:87
+msgid "Download an OS"
+msgstr "Baixa un sistema operatiu"
+
+#: data/ui/wizard-source.ui:94
+msgid ""
+"Operating system will be downloaded and installed in a virtual machine."
+msgstr "Es baixarà i instal·larà un sistema operatiu en la màquina virtual."
+
+#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
+msgid "▶"
+msgstr "▶"
+
+#: data/ui/wizard-source.ui:151
+msgid "Select a file"
+msgstr "Seleccioneu un fitxer"
+
+#: data/ui/wizard-source.ui:158
+msgid "Select a bootable image file to install in a virtual machine."
+msgstr ""
+"Seleccioneu un fitxer d'imatge d'arrancada per a instal·lar en la màquina "
+"virtual."
+
+#: data/ui/wizard-source.ui:194
+msgid ""
+"Any trademarks shown above are used merely for identification of software "
+"products you have already obtained and are the property of their respective "
+"owners."
+msgstr ""
+"Qualsevol de les marques registrades que es mostren a continuació "
+"s'utilitzen simplement per a identificar productes de programari que heu "
+"obtingut i pertanyen als seus propietaris respectius."
+
+#: data/ui/wizard-source.ui:260
+msgid ""
+"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
+"ssh://, or vnc://."
+msgstr ""
+"Introduïu una adreça a connectar-se. Les adreces poden començar amb "
+"spice://, rdp://, ssh:// o vnc://."
+
+#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
+#: data/ui/wizard-window.ui:69
+msgid "Create a Box"
+msgstr "Crea una màquina"
+
+#: data/ui/wizard-toolbar.ui:39
+msgid "C_reate"
+msgstr "C_rea"
+
+#: data/ui/wizard-toolbar.ui:55
+msgid "C_ontinue"
+msgstr "C_ontinua"
+
+#: data/ui/wizard-toolbar.ui:106
+msgid "Customize Resources"
+msgstr "Personalitzeu els recursos"
+
+#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
+msgid "_Open"
+msgstr "_Obre"
+
+#: data/ui/wizard.ui:56
+msgid "Preparing to create new box"
+msgstr "S'està preparant la creació d'una màquina nova"
+
+#: data/ui/wizard-window.ui:82
+msgid ""
+"Each box can be a virtual machine that runs on this computer, or a "
+"connection to an existing remote machine"
+msgstr ""
+"Cada màquina pot ser una màquina virtual que s'executa en aquest ordinador, "
+"o una connexió a una màquina remota existent"
 
 #. Translators: Accessibility name for context menu with box-related actions
 #. (e.g Pause, Delete etc)
@@ -654,98 +755,92 @@ msgstr "Propietats"
 msgid "Screenshot from %s"
 msgstr "Captura de pantalla de %s"
 
-#: src/app.vala:123
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr ""
 "Pau Iranzo <paugnu@gmail.com>\n"
 "Pol Muñoz <pol.munyi@gmail.com>\n"
 "Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>"
 
-#: src/app.vala:124
-msgid "A simple GNOME 3 application to access virtual systems"
-msgstr "Una aplicació del GNOME 3 senzilla per a accedir a sistemes virtuals"
+#: src/app.vala:126
+msgid "A simple GNOME 3 application to access remote or virtual systems"
+msgstr ""
+"Una aplicació del GNOME 3 senzilla per a accedir a sistemes remots o "
+"virtuals"
 
-#: src/app.vala:189 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostra el número de versió"
 
-#: src/app.vala:190
-msgid "Show help"
-msgstr "Mostra l'ajuda"
-
-#: src/app.vala:191
+#: src/app.vala:192
 msgid "Open in full screen"
 msgstr "Obre a pantalla completa"
 
-#: src/app.vala:192 src/main.vala:10
+#: src/app.vala:193 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Comprova les capacitats de virtualització"
 
-#: src/app.vala:193
+#: src/app.vala:194
 msgid "Open box with UUID"
 msgstr "Obre la màquina amb l'UUID"
 
-#: src/app.vala:194
+#: src/app.vala:195
 msgid "Search term"
 msgstr "Paraula de cerca"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only
 #. libvirt is supported.
-#: src/app.vala:196
+#: src/app.vala:197
 msgid "URL to display, broker or installer media"
 msgstr ""
 "URL que es mostrarà, gestor de màquines virtual o instal·lador de medis"
 
-#: src/app.vala:207
-msgid "— A simple application to access virtual machines"
-msgstr "— Una aplicació senzilla per a accedir a màquines virtuals"
+#: src/app.vala:208
+msgid "— A simple application to access remote or virtual machines"
+msgstr "— Una aplicació senzilla per a accedir a sistemes remots o virtuals"
 
-#: src/app.vala:232
+#: src/app.vala:233
 msgid "Too many command line arguments specified.\n"
 msgstr "S'han especificat massa arguments a la línia d'ordres.\n"
 
-#: src/app.vala:501
+#: src/app.vala:502
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "La màquina «%s» ja està instal·lada i a punt per a fer servir"
 
-#: src/app.vala:503
+#: src/app.vala:504
 msgid "Launch"
 msgstr "Executa"
 
-#: src/app.vala:533
+#: src/app.vala:534
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» s'està executant en segon pla"
 
-#: src/app.vala:619
+#: src/app.vala:620
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "S'ha suprimit la màquina «%s»"
 
-#: src/app.vala:620
+#: src/app.vala:621
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "S'ha suprimit %u màquina"
 msgstr[1] "S'han suprimit %u màquines"
 
-#: src/app.vala:648 src/libvirt-machine-properties.vala:558
+#: src/app.vala:649 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Desfés"
 
-#: src/app.vala:694
+#: src/app.vala:695
 msgid "Boxes is doing something"
 msgstr "El màquines està treballant"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Seleccioneu els fitxers a transferir"
-
-#: src/app-window.vala:325
-msgid "_Open"
-msgstr "_Obre"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -758,22 +853,22 @@ msgstr "Enrere"
 #. Translators: We show 'Live' tag next or below the name of live OS media or
 #. box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Proves"
 
-#: src/assistant/media-entry.vala:27
+#: src/assistant/index-page.vala:236
 msgid "32-bit x86 system"
 msgstr "Sistema x86 de 32 bits"
 
-#: src/assistant/media-entry.vala:28
+#: src/assistant/index-page.vala:237
 msgid "64-bit x86 system"
 msgstr "Sistema x86 de 64 bits"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat
 #. Inc)
-#: src/assistant/media-entry.vala:33
+#: src/assistant/index-page.vala:242
 #, c-format
 msgid " from %s"
 msgstr " de %s"
@@ -1479,7 +1574,6 @@ msgstr "S'acaba d'instal·lar "
 msgid "Box import from file “%s” failed."
 msgstr "La importació de la màquina des del fitxer «%s» ha fallat."
 
-#: src/vnc-display.vala:169
+#: src/vnc-display.vala:154
 msgid "Read-only"
 msgstr "Només lectura"
-
