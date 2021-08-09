@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-17 06:49+0000\n"
-"PO-Revision-Date: 2021-03-17 18:39+0100\n"
+"POT-Creation-Date: 2021-08-09 08:46+0000\n"
+"PO-Revision-Date: 2021-08-09 21:40+0200\n"
 "Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -54,12 +54,12 @@ msgstr ""
 "za preizkušanje novih operacijskih sistemov in novih (tudi nestabilnih) "
 "različic distribucij."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "Projekt GNOME"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -135,17 +135,20 @@ msgstr "Mape v souporabi"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vpis imen map v souporabi in poti"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Neznani nosilec"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Ni najdenega nobenega operacijskega sistema"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Poskusite drugačen iskalni niz"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Iskanje operacijskega sistema oziroma vpis povezave za prejem ..."
@@ -235,7 +238,7 @@ msgstr "Pregled in ustvarjanje"
 msgid "Boxes is ready to set up a new box with the following properties:"
 msgstr "Program bo ustvaril novo polje z naslednjimi lastnosti:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -283,8 +286,6 @@ msgstr "Novo"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Nazaj"
 
@@ -336,17 +337,13 @@ msgstr "Celozaslonski način"
 msgid "Ready to install"
 msgstr "Pripravljeno za namestitev"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Umetnost virtualizacije"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Dobrodošli!"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Škatle so lahko virtualne ali oddaljene naprave. Enostavno pritisnite na "
-"gumb <b>+</b> in ustvarite prvo."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Pritisnite na gumb <b>+</b> in ustvarite prvo navidezno napravo."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -370,55 +367,50 @@ msgstr "Ustvari novo navidezno škatlo"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Vzpostavi povezavo z oddaljeno škatlo"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Omogoči iskanje"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Tipkovne bližnjice"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Zapre okno/Konča program"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Ustvarjanje škatle in lastnosti"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Preklopi na naslednjo stran"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Preklopi na predhodno stran"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Prikaže škatle"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Prevzame/Sprosti tipkovnico"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Nazaj na pregled"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Preklopi celozaslonski način"
@@ -455,8 +447,8 @@ msgstr "Kopiraj v _odložišče"
 msgid "_Apply"
 msgstr "_Uveljavi"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Izberite napravo ali datoteko ISO"
 
@@ -472,8 +464,7 @@ msgstr "P_remor"
 msgid "_Delete"
 msgstr "_Izbriši"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "Pre_kliči"
 
@@ -563,10 +554,6 @@ msgstr "Ključ izdelka"
 msgid "Welcome Tutorial"
 msgstr "Uvodna stran"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Dobrodošli!"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Program omogoča enostavno nameščanje in zaganjanje navideznih naprav."
@@ -605,89 +592,6 @@ msgid ""
 msgstr ""
 "Souporaba datotek je enostavna kot spuščanje v navidezno škatlo. Pojavile se "
 "bodo v mapi Prejeto."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Neznani nosilec"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Pokaži več …"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Vnesite nosilec namestitve operacijskega sistema ali izberite vir spodaj"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Prejemi operacijski sistem"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "Operacijski sistem bo prejet in nameščen na navidezni računalnik."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Izbor datoteke"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr "Izbor zagonljive datoteke odtisa za namestitev na virtualno napravo."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Vse zgoraj prikazane zaščitene znamke so uporabljene zgolj za določevanje "
-"programskih izdelkov, ki jih že posedujete in so last njihovih lastnikov."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Vpis naslova za povezavo. Naslov se lahko začne z spice://, rdp://, ssh:// "
-"ali vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Ustvari škatlo"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "_Ustvari"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "N_adaljuj"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Prilagodi vire"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "_Odpri"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Priprava na ustvarjanje nove škatle"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Vsaka škatla je lahko tudi virtualna naprava, ki je zagnana na računalniku "
-"oziroma povezava do obstoječe oddaljene naprave."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -741,70 +645,74 @@ msgstr "Lastnosti"
 msgid "Screenshot from %s"
 msgstr "Zaslonska slika %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr ""
 "Matej Urbančič <mateju@svn@gnome.org>\n"
 "Martin Srebotnjak"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
+#: src/app.vala:124
+msgid "A simple GNOME 3 application to access virtual systems"
 msgstr ""
 "Enostaven program GNOME 3 za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Pokaži številko različice"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Pokaži pomoč"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Odpri v celozaslonskem načinu"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Preveri zmožnosti virtualizacije"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Odpri škatlo z UUID"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Iskalni niz"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr "Naslov URI do sistemskega posrednika oziroma upravljalnika"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
+#: src/app.vala:207
+msgid "— A simple application to access virtual machines"
 msgstr "– Enostaven program za dostop do oddaljenih ali navideznih sistemov"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Navedenih preveč argumentov ukazne vrstice.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Škatla »%s« je nameščena in pripravljena za uporabo"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Zaženi"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "Program »%s« je zagnan v ozadju."
 
-#: src/app.vala:620
+#: src/app.vala:621
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Škatla »%s« je bila izbrisana"
 
-#: src/app.vala:621
+#: src/app.vala:622
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -813,18 +721,22 @@ msgstr[1] "%u škatla je bila izbrisana"
 msgstr[2] "%u škatli sta bili izbrisani"
 msgstr[3] "%u škatle so bile izbrisane"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:650 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Razveljavi"
 
-#: src/app.vala:695
+#: src/app.vala:696
 msgid "Boxes is doing something"
 msgstr "Program je zaposlen z opravilom"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Izbor datotek za prenos"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Odpri"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -836,21 +748,21 @@ msgstr "Predhodni"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Živi sistem"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "32-bitni sistem x86"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "64-bitni sistem x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " - %s"
@@ -907,16 +819,16 @@ msgstr "Spremembe zahtevajo ponovni zagon »%s«."
 msgid "_Restart"
 msgstr "_Ponoven zagon"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Pritisk tipke Ctrl+Alt sprosti predmet"
 
-#: src/display-page.vala:137
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Pritisk in sprostitev CTRL+ALT sprosti tipkovnico"
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:326
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -1549,9 +1461,77 @@ msgstr "Ravnokar nameščeno "
 msgid "Box import from file “%s” failed."
 msgstr "Uvoz škatle iz datoteke »%s« je spodletel."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Samo za branje"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Umetnost virtualizacije"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Vzpostavi povezavo z oddaljeno škatlo"
+
+#~ msgid "Show more…"
+#~ msgstr "Pokaži več …"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Vnesite nosilec namestitve operacijskega sistema ali izberite vir spodaj"
+
+#~ msgid "Download an OS"
+#~ msgstr "Prejemi operacijski sistem"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr "Operacijski sistem bo prejet in nameščen na navidezni računalnik."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Izbor datoteke"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr ""
+#~ "Izbor zagonljive datoteke odtisa za namestitev na virtualno napravo."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Vse zgoraj prikazane zaščitene znamke so uporabljene zgolj za določevanje "
+#~ "programskih izdelkov, ki jih že posedujete in so last njihovih lastnikov."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Vpis naslova za povezavo. Naslov se lahko začne z spice://, rdp://, "
+#~ "ssh:// ali vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Ustvari škatlo"
+
+#~ msgid "C_reate"
+#~ msgstr "_Ustvari"
+
+#~ msgid "C_ontinue"
+#~ msgstr "N_adaljuj"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Prilagodi vire"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Priprava na ustvarjanje nove škatle"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Vsaka škatla je lahko tudi virtualna naprava, ki je zagnana na "
+#~ "računalniku oziroma povezava do obstoječe oddaljene naprave."
 
 #~ msgid "Boxes can be virtual or remote machines."
 #~ msgstr "Škatle so lahko navidezne ali oddaljene naprave."
