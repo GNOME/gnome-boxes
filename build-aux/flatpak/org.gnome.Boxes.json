@@ -281,12 +281,15 @@
                 },
                 {
                     "name": "usbredir",
+                    "buildsystem" : "meson",
+                    "config-opts": [
+                        "-Dtools=disabled"
+                    ],
                     "sources": [
                         {
-                            "type": "git",
-                            "url": "https://gitlab.freedesktop.org/spice/usbredir.git",
-                            "tag": "usbredir-0.9.0",
-                            "commit": "bca484fc6f206ab9da2f73e8a0118fad45374d4e"
+                            "type": "archive",
+                            "url": "https://spice-space.org/download/usbredir/usbredir-0.11.0.tar.xz",
+                            "sha256": "72dd5f3aa90dfbc0510b5149bb5b1654c8f21fdc405dfce7b5dc163dcff19cba"
                         }
                     ]
                 },
