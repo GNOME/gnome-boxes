@@ -89,6 +89,9 @@ private class Boxes.VMConfigurator {
         var graphics = create_graphics_device ();
         domain.add_device (graphics);
 
+        var vnc_graphics = new DomainGraphicsVnc ();
+        domain.add_device (vnc_graphics);
+
         // SPICE agent channel. This is needed for features like copy and paste between host and guest etc to work.
         var channel = new DomainChannel ();
         channel.set_target_type (DomainChannelTargetType.VIRTIO);
