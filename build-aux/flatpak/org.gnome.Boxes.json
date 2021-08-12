@@ -417,39 +417,6 @@
             ]
         },
         {
-            "name": "gtk-frdp",
-            "config-opts": [
-                "--libdir=/app/lib"
-            ],
-            "buildsystem": "meson",
-            "sources": [
-                {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/gnome/gtk-frdp.git"
-                }
-            ],
-            "modules": [
-               {
-                    "name": "freerdp",
-                    "buildsystem": "cmake-ninja",
-                    "builddir": true,
-                    "config-opts": [
-                        "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
-                        "-DWITH_OPENH264=ON",
-                        "-DCMAKE_INSTALL_PREFIX=/app",
-                        "-DCMAKE_INSTALL_LIBDIR=lib"
-                    ],
-                    "sources": [
-                        {
-                            "type": "archive",
-                            "url": "http://pub.freerdp.com/releases/freerdp-2.1.2.tar.gz",
-                            "sha256": "f33bc6aef83b8ad3cbf2cdbc82dcfa980ec2b051efb72650f6f2365d55b79b8d"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "name": "govf",
             "config-opts": [
                 "--libdir=/app/lib"
@@ -469,7 +436,8 @@
                 "-Dflatpak=true",
                 "-Dprofile=development",
                 "-Ddistributor_name=gnome-boxes-nightly",
-                "-Ddistributor_version=master"
+                "-Ddistributor_version=master",
+                "-Drdp=false"
             ],
             "sources": [
                 {
