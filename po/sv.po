@@ -5,13 +5,14 @@
 # Mattias Eriksson <snaggen@gmail.com>, 2014.
 # Anders Jonsson <anders.jonsson@norsjovallen.se>, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 # Sebastian Rasmussen <sebras@gmail.com>, 2015.
+# Luna Jernberg <droidbittin@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-14 18:42+0000\n"
-"PO-Revision-Date: 2021-03-14 21:56+0100\n"
+"POT-Creation-Date: 2021-08-12 12:14+0000\n"
+"PO-Revision-Date: 2021-06-05 09:48+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -54,12 +55,12 @@ msgstr ""
 "att testa nya operativsystem eller nya (potentiellt instabila) versioner av "
 "ditt/dina favoritoperativsystem."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "GNOME-projektet"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -134,17 +135,20 @@ msgstr "Delade mappar"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Variantvektor över delade mappars namn och sökvägsmappning"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Okänt media"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Inga operativsystem hittades"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Försök med en annan sökning"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Sök efter ett operativsystem eller ange en hämtningslänk…"
@@ -234,7 +238,7 @@ msgstr "Granska och skapa"
 msgid "Boxes is ready to set up a new box with the following properties:"
 msgstr "Boxes är redo att konfigurera en ny box med följande egenskaper:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -282,8 +286,6 @@ msgstr "Ny"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Bakåt"
 
@@ -335,17 +337,13 @@ msgstr "Helskärm"
 msgid "Ready to install"
 msgstr "Färdig att installera"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Spjutspetsvirtualisering"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Välkommen till Boxes"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Boxar kan vara virtuella maskiner eller fjärrmaskiner. Tryck bara på knappen "
-"<b>+</b> för att skapa din första."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Tryck på knappen <b>+</b> för att skapa din första virtuella maskin."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -369,55 +367,50 @@ msgstr "Skapa en ny virtuell maskin"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Anslut till en fjärrmaskin"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Sök"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Tangentbordsgenvägar"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Stäng fönster/avsluta Boxes"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Boxskapande och egenskaper"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Växla till nästa sida"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Växla till föregående sida"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Box-display"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Fånga/släpp tangentbord"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Tillbaka till översikten"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Helskärm/återställ från helskärm"
@@ -454,8 +447,8 @@ msgstr "_Kopiera till urklipp"
 msgid "_Apply"
 msgstr "_Verkställ"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Välj en enhet eller ISO-fil"
 
@@ -471,8 +464,7 @@ msgstr "P_aus"
 msgid "_Delete"
 msgstr "Ta _bort"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -562,10 +554,6 @@ msgstr "Produktnyckel"
 msgid "Welcome Tutorial"
 msgstr "Välkomsthandledning"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Välkommen till Boxes"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Boxes gör det lätt att installera och köra virtuella maskiner."
@@ -605,90 +593,6 @@ msgid ""
 msgstr ""
 "Att dela filer är helt enkelt att släppa dem på din virtuella maskin. De "
 "kommer att dyka upp i din hämtningsmapp."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Okänt media"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Visa mer…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Mata in installationsmedia för operativsystemet eller välj en källa nedan"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Hämta ett operativsystem"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr ""
-"Operativsystemet kommer att hämtas och installeras i en virtuell maskin."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Välj en fil"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr "Välj en startbar avbildsfil att installera i en virtuell maskin."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Alla registrerade varumärken som visas ovan används endast för identifiering "
-"av programprodukter som du redan har köpt och tillhör respektive ägare."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Mata in en adress att ansluta till. Adresser kan börja med spice://, rdp://, "
-"ssh:// eller vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Skapa en box"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "S_kapa"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "F_ortsätt"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Anpassa resurser"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "_Öppna"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Förbereder att skapa ny box"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Varje box kan vara en virtuell maskin som körs på denna dator, eller en "
-"anslutning till en befintlig fjärrmaskin"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -742,94 +646,100 @@ msgstr "Egenskaper"
 msgid "Screenshot from %s"
 msgstr "Skärmbild från %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
 "Mattias Eriksson <snaggen@gmail.com>\n"
 "Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
+"Luna Jernberg <droidbittin@gmail.com>\n"
 "\n"
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr ""
-"Ett enkelt GNOME 3-program för att komma åt fjärrdatorer eller virtuella "
-"maskiner"
+#: src/app.vala:124
+msgid "A simple GNOME 3 application to access virtual systems"
+msgstr "Ett enkelt GNOME 3-program för att komma åt virtuella system"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Visa versionsnummer"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Visa hjälp"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Öppna i helskärm"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Kontrollera virtualiseringsförmågor"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Öppna box med UUID"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Sökterm"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr "URL till display, agent eller installationsmedia"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
-msgstr ""
-"— Ett enkelt program för att komma åt fjärrdatorer eller virtuella maskiner"
+#: src/app.vala:207
+msgid "— A simple application to access virtual machines"
+msgstr "— Ett enkelt program för att komma åt virtuella maskiner"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "För många kommandoradsargument angivna.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Boxen ”%s” installerad och redo för användning"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Starta"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "”%s” körs i bakgrunden"
 
-#: src/app.vala:620
+#: src/app.vala:621
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Boxen ”%s” har tagits bort"
 
-#: src/app.vala:621
+#: src/app.vala:622
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box har tagits bort"
 msgstr[1] "%u boxar har tagits bort"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:650 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Ångra"
 
-#: src/app.vala:695
+#: src/app.vala:696
 msgid "Boxes is doing something"
 msgstr "Boxes gör något"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Välj filer att överföra"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Öppna"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -841,21 +751,21 @@ msgstr "Föregående"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "32-bitars x86-system"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "64-bitars x86-system"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " från %s"
@@ -912,16 +822,16 @@ msgstr "Ändringar kräver omstart av ”%s”."
 msgid "_Restart"
 msgstr "Omsta_rt"
 
-#: src/display-page.vala:135
+#: src/display-page.vala:127
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Tryck (vänster) Ctrl+Alt för att släppa"
 
-#: src/display-page.vala:137
+#: src/display-page.vala:129
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Tryck och släpp (vänster) Ctrl+Alt för att släppa tangentbord."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:326
+#: src/display-page.vala:318
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -1535,7 +1445,7 @@ msgstr "nej"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:779
+#: src/vm-configurator.vala:782
 msgid "Incapable host system"
 msgstr "Ej kapabelt värdsystem"
 
@@ -1549,9 +1459,78 @@ msgstr "Just installerad "
 msgid "Box import from file “%s” failed."
 msgstr "Box-import från fil ”%s” misslyckades."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Skrivskyddad"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Spjutspetsvirtualisering"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Anslut till en fjärrmaskin"
+
+#~ msgid "Show more…"
+#~ msgstr "Visa mer…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Mata in installationsmedia för operativsystemet eller välj en källa nedan"
+
+#~ msgid "Download an OS"
+#~ msgstr "Hämta ett operativsystem"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr ""
+#~ "Operativsystemet kommer att hämtas och installeras i en virtuell maskin."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Välj en fil"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr "Välj en startbar avbildsfil att installera i en virtuell maskin."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Alla registrerade varumärken som visas ovan används endast för "
+#~ "identifiering av programprodukter som du redan har köpt och tillhör "
+#~ "respektive ägare."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Mata in en adress att ansluta till. Adresser kan börja med spice://, "
+#~ "rdp://, ssh:// eller vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Skapa en box"
+
+#~ msgid "C_reate"
+#~ msgstr "S_kapa"
+
+#~ msgid "C_ontinue"
+#~ msgstr "F_ortsätt"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Anpassa resurser"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Förbereder att skapa ny box"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Varje box kan vara en virtuell maskin som körs på denna dator, eller en "
+#~ "anslutning till en befintlig fjärrmaskin"
 
 #~ msgid "Select"
 #~ msgstr "Välj"
