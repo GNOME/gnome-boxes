@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-14 18:42+0000\n"
-"PO-Revision-Date: 2021-03-16 17:43+0200\n"
+"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"PO-Revision-Date: 2021-08-27 20:40+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-03-05 14:49:53+0000\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -53,12 +53,12 @@ msgstr ""
 "Boksit sopii sinulle, jos haluat kokeilla mahdollisimman helpolla ja "
 "turvallisella tavalla muita käyttöjärjestelmiä."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "Gnome-projekti"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -133,17 +133,20 @@ msgstr "Jaetut kansiot"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Tuntematon media"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Käyttöjärjestelmiä ei löytynyt"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Yritä eri hakuehtoja"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Etsi käyttöjärjestelmää tai kirjoita latauslinkki…"
@@ -235,7 +238,7 @@ msgstr "Tarkista ja luo"
 msgid "Boxes is ready to set up a new box with the following properties:"
 msgstr "Uusi boksi on valmis luotavaksi seuraavin ominaisuuksin:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -283,8 +286,6 @@ msgstr "Uusi"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Takaisin"
 
@@ -336,17 +337,13 @@ msgstr "Koko näyttö"
 msgid "Ready to install"
 msgstr "Valmiina asennukseen"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Ensiluokkaista virtualisointia"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Tervetuloa, tämä on Boksit"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Boksit voivat olla virtuaali- tai etäkoneita. Napsauta <b>+</b> luodaksesi "
-"ensimmäisen boksin."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Napsauta <b>+</b> luodaksesi virtuaalikoneen."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -370,55 +367,50 @@ msgstr "Luo uusi virtuaalikone"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Yhdistä etätietokoneeseen"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Etsi"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Pikanäppäimet"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Sulje ikkuna/lopeta Boksit"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Boksin luonti ja ominaisuudet"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Vaihda seuraavalle sivulle"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Vaihda edelliselle sivulle"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Boksin näkymä"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Kaappaa näppäimistö tai lopeta näppäimistön kaappaus"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Takaisin päänäkymään"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Koko näyttö päälle/pois"
@@ -455,8 +447,8 @@ msgstr "_Kopioi leikepöydälle"
 msgid "_Apply"
 msgstr "_Toteuta"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Valitse laite tai ISO-tiedosto"
 
@@ -472,8 +464,7 @@ msgstr "_Keskeytä"
 msgid "_Delete"
 msgstr "_Poista"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Peru"
 
@@ -563,10 +554,6 @@ msgstr "Tuoteavain"
 msgid "Welcome Tutorial"
 msgstr "Aloitusopas"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Tervetuloa, tämä on Boksit"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr ""
@@ -606,90 +593,6 @@ msgid ""
 msgstr ""
 "Tiedostojen jakaminen on helppoa; vedä ja pudota tiedostot "
 "virtuaalikoneeseen. Tiedostot ilmestyvät Lataukset-kansioon."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Tuntematon media"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Näytä lisää…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr "Syötä käyttöjärjestelmän asennusmedia tai valitse lähde alta"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Lataa käyttöjärjestelmä"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "Käyttöjärjestelmä ladataan ja asennetaan virtuaalikoneeseen."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Valitse tiedosto"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr ""
-"Valitse käynnistettävä levykuvatiedosto asennettavaksi virtuaalikoneeseen."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Yllä mahdollisesti näytettävät tavaramerkit ovat esillä vain ohjelmiston "
-"tunnistamista varten. Kyseisten tavaramerkkien oikeudet kuuluvat niiden "
-"omistajille."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Kirjoita osoite mihin yhdistetään. Osoitteet voivat alkaa "
-"protokollamääreellä spice://, rdp://, ssh:// tai vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Luo uusi boksi"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "_Luo"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "J_atka"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Muokkaa resursseja"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "_Avaa"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Valmistaudutaan uuden boksin luontiin"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Jokainen yksittäinen boksi voi olla tällä koneella suoritettava "
-"virtuaalikone tai yhteys olemassa olevaan etäkoneeseen"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -743,85 +646,93 @@ msgstr "Ominaisuudet"
 msgid "Screenshot from %s"
 msgstr "Kuvakaappaus - %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "Sovellus etä- tai virtuaalikoneiden käsittelyyn"
+#: src/app.vala:124
+msgid "A simple GNOME 3 application to access virtual systems"
+msgstr "Sovellus virtuaalikoneiden käsittelyyn"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Näytä versionumero"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Näytä ohje"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Avaa koko näytön tilassa"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Tarkista virtualisointikyvyt"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Avaa boksi UUID:llä"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Hakuehto"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr ""
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
-msgstr "— Helppo sovellus etä- tai virtuaalikoneiden käyttämiseksi"
+#: src/app.vala:207
+msgid "— A simple application to access virtual machines"
+msgstr "— Käytä virtuaalikoneita vaivatta"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Liian monta komentoriviargumenttia määritetty.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Boksi “%s” on asennettu ja käyttövalmis"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Käynnistä"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s“ on käynnissä taustalla"
 
-#: src/app.vala:620
+#: src/app.vala:619
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Boksi “%s” on poistettu"
 
-#: src/app.vala:621
+#: src/app.vala:620
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u boksi on poistettu"
 msgstr[1] "%u boksia on poistettu"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:648 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Kumoa"
 
-#: src/app.vala:695
+#: src/app.vala:694
 msgid "Boxes is doing something"
 msgstr "Boksit tekee jotakin"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Valitse siirrettävät tiedostot"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Avaa"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -833,21 +744,21 @@ msgstr "Edellinen"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "32-bittinen x86-järjestelmä"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "64-bittinen x86-järjestelmä"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " tekijä %s"
@@ -1274,7 +1185,7 @@ msgstr "• Libvirt KVM -asiakas käytettävissä: %s\n"
 #: src/main.vala:56
 #, c-format
 msgid "• Boxes storage pool available: %s\n"
-msgstr ""
+msgstr "• Boksien tallennustilavaranto saatavilla: %s\n"
 
 #: src/main.vala:60
 #, c-format
@@ -1491,6 +1402,8 @@ msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 msgstr ""
+"Ei saatu “gnome-boxes”-tallennustilavarannon tietoja libvirtiltä. Varmista "
+"että “virsh -c qemu:///session pool-dumpxml gnome-boxes” toimii."
 
 #: src/util-app.vala:449
 #, c-format
@@ -1498,12 +1411,16 @@ msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr ""
+"%s on libvirtin tiedossa Gnomen boksien tallennustilavarantona, mutta "
+"kyseistä hakemistoa ei ole olemassa"
 
 #: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
+"%s on libvirtin tiedossa Gnomen boksien tallennustilavarantona, mutta se ei "
+"ole hakemisto"
 
 #: src/util-app.vala:457
 #, c-format
@@ -1511,6 +1428,8 @@ msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
 "readable/writable"
 msgstr ""
+"%s on libvirtin tiedossa Gnomen boksien tallennustilavarantona, mutta se ei "
+"ole käyttäjän luettavissa tai kirjoitettavissa"
 
 #: src/util.vala:334
 msgid "yes"
@@ -1536,9 +1455,77 @@ msgstr "Juuri asennettu "
 msgid "Box import from file “%s” failed."
 msgstr "Boksin tuonti tiedostosta “%s” epäonnistui."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Vain luku"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Ensiluokkaista virtualisointia"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Yhdistä etätietokoneeseen"
+
+#~ msgid "Show more…"
+#~ msgstr "Näytä lisää…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr "Syötä käyttöjärjestelmän asennusmedia tai valitse lähde alta"
+
+#~ msgid "Download an OS"
+#~ msgstr "Lataa käyttöjärjestelmä"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr "Käyttöjärjestelmä ladataan ja asennetaan virtuaalikoneeseen."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Valitse tiedosto"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr ""
+#~ "Valitse käynnistettävä levykuvatiedosto asennettavaksi virtuaalikoneeseen."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Yllä mahdollisesti näytettävät tavaramerkit ovat esillä vain ohjelmiston "
+#~ "tunnistamista varten. Kyseisten tavaramerkkien oikeudet kuuluvat niiden "
+#~ "omistajille."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Kirjoita osoite mihin yhdistetään. Osoitteet voivat alkaa "
+#~ "protokollamääreellä spice://, rdp://, ssh:// tai vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Luo uusi boksi"
+
+#~ msgid "C_reate"
+#~ msgstr "_Luo"
+
+#~ msgid "C_ontinue"
+#~ msgstr "J_atka"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Muokkaa resursseja"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Valmistaudutaan uuden boksin luontiin"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Jokainen yksittäinen boksi voi olla tällä koneella suoritettava "
+#~ "virtuaalikone tai yhteys olemassa olevaan etäkoneeseen"
 
 #~ msgid "Simple remote and virtual machines"
 #~ msgstr "Etä- ja virtuaalikoneita yksinkertaisesti"
