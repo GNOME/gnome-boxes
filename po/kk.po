@@ -1,14 +1,14 @@
 # Kazakh translation for gnome-boxes.
 # Copyright (C) 2014 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2014-2020.
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2014-2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-01 12:46+0000\n"
-"PO-Revision-Date: 2021-03-02 08:44+0500\n"
+"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"PO-Revision-Date: 2021-08-28 11:05+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk@li.org>\n"
 "Language: kk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -51,12 +51,12 @@ msgstr ""
 "операциялық жүйені немесе өз операциялық жүйенің жаңа (мүмкін тұрақсыз) "
 "нұсқасын қолданып көрудің қауіпсіз және жеңіл тәсілі керек болса."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "GNOME жобасы"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -131,17 +131,20 @@ msgstr "Ортақ бумалар"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Ортақ бумалар және тіркеу жолдарының өзгермелі массиві"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Белгісіз тасушы"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Операциялық жүйелер табылмады"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Басқа сөздерді іздеп көріңіз"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "ОЖ іздеңіз, немесе жүктеп алу сілтемесін енгізіңіз…"
@@ -231,7 +234,7 @@ msgstr "Қарап шығу және жасау"
 msgid "Boxes is ready to set up a new box with the following properties:"
 msgstr "Бокстар келесі қасиеттері бар жаңа боксты жасауға дайын:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -279,8 +282,6 @@ msgstr "Жаңа"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Кері"
 
@@ -332,17 +333,13 @@ msgstr "Толық экранға"
 msgid "Ready to install"
 msgstr "Орнатуға дайын"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Дамыған виртуализация"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Бокстар ішіне қош келдіңіз"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Бокстар виртуалды немесе қашықтағы машиналар болуы мүмкін. Біріншісін жасау "
-"үшін <b>+</b> батырмасын басыңыз."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Бірінші виртуалды машинаңызды жасау үшін <b>+</b> батырмасын басыңыз."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -366,55 +363,50 @@ msgstr "Жаңа виртуалды машинаны жасау"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Қашықтағы машинаға байланысу"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Іздеу"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Пернетақта жарлықтары"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Терезені жабу/Boxes жұмысын аяқтау"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Боксты жасау және қасиеттері"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Келесі бетке ауысу"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Алдыңғы бетке ауысу"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Бокс экраны"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Пернетақтаны ұстау/жіберу"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Шолу көрінісіне оралу"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Толық экранға/одан шығу"
@@ -451,8 +443,8 @@ msgstr "Алмасу буферіне кө_шіріп алу"
 msgid "_Apply"
 msgstr "Іске _асыру"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Құрылғыны не ISO файлын таңдаңыз"
 
@@ -468,8 +460,7 @@ msgstr "А_ялдату"
 msgid "_Delete"
 msgstr "Ө_шіру"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "Ба_с тарту"
 
@@ -557,10 +548,6 @@ msgstr "Өнім кілті"
 msgid "Welcome Tutorial"
 msgstr "Қарсы алу нұсқаулығы"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Бокстар ішіне қош келдіңіз"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Бокстар виртуалды машиналарды орнатуды және іске қосуды жеңілдетеді."
@@ -599,91 +586,6 @@ msgid ""
 msgstr ""
 "Файлдарды ортақ пайдалану оларды виртуалды машинаға тастау сияқты қарапайым. "
 "Олар Жүктеулер бумасында пайда болады."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Белгісіз тасушы"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Көбірек көрсету…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Операциялық жүйенің орнату тасушысын салыңыз немесе төменнен қайнар көзін "
-"таңдаңыз"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "ОЖ жүктеп алу"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "Операциялық жүйе жүктеліп алынып, виртуалды машинаға орнатылады."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Файлды таңдау"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr "Виртуалды машинада орнату үшін жүктелетін бейнені таңдаңыз."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Жоғарыда көрсетілген сауда белгілерінің барлығы тек сізде бар болып тұрған "
-"бағдарламалық қамтаманы анықтау үшін қолданылады, және өз иелерінің жеке "
-"меншігі болып табылады."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Байланысу үшін адресті енгізіңіз. Адрестер келесімен басталуы мүмкін: "
-"spice://, rdp://, ssh:// немесе vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Боксты жасау"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "_Жасау"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "Жа_лғастыру"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Ресурстарды баптау"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "_Ашу"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Жаңа боксты жасауға дайындалу"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Әр бокс бұл компьютерде орнатылған виртуалды машина, немесе бар болып тұрған "
-"қашықтағы машинаға байланыс болуы мүмкін"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -737,88 +639,93 @@ msgstr "Қасиеттері"
 msgid "Screenshot from %s"
 msgstr "Скриншот, уақыты %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr "Baurzhan Muftakhidinov <baurthefirst@gmail.com>"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr ""
-"Қашықтағы не виртуалды машиналарға қатынауға арналған қарапайым GNOME 3 "
-"қолданбасы"
+#: src/app.vala:124
+msgid "A simple GNOME 3 application to access virtual systems"
+msgstr "Виртуалды жүйелерге қатынауға арналған қарапайым GNOME 3 қолданбасы"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Нұсқа нөмірін көрсету"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Анықтаманы көрсету"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Толық экранда ашу"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Виртуализация мүмкіндіктерін тексеру"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "UUID бар боксты ашу"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Ізделетін мәтін"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr ""
 "Ашу үшін сілтеме, виртуалды машиналар диспетчері немесе орнату тасушысы"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
-msgstr ""
-"— Қашықтағы не виртуалды машиналарға қатынауға арналған қарапайым қолданба"
+#: src/app.vala:207
+msgid "— A simple application to access virtual machines"
+msgstr "— Виртуалды машиналарға қатынауға арналған қарапайым қолданба"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Тым көп командалық жол аргументтері көрсетілді.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "\"%s\" боксы орнатылған және қолдануға дайын"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Жөнелту"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "\"%s\" фонда орындалуда"
 
-#: src/app.vala:620
+#: src/app.vala:619
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "\"%s\" боксы өшірілді"
 
-#: src/app.vala:621
+#: src/app.vala:620
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u бокс өшірілді"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:648 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "Бол_дырмау"
 
-#: src/app.vala:695
+#: src/app.vala:694
 msgid "Boxes is doing something"
 msgstr "Бокстар бірнәрсе жасауда"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Тасымалдау үшін файлдарды таңдаңыз"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Ашу"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -830,21 +737,21 @@ msgstr "Алдыңғы"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
-#: src/util-app.vala:156
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
+#: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "32-биттік x86 жүйесі"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "64-биттік x86 жүйесі"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " жасаған: %s"
@@ -1298,6 +1205,10 @@ msgstr "%s ішіне кіру"
 msgid "Not connected to %s"
 msgstr "%s байланысы орнатылмаған"
 
+#: src/portals.vala:45
+msgid "Boxes wants to run VM in background"
+msgstr "Бокстар виртуалды машиналарды фонда орындағысы келеді"
+
 #: src/properties-page-widget.vala:17
 msgid "General"
 msgstr "Жалпы"
@@ -1457,7 +1368,7 @@ msgstr "%s жылдам орнатуы интернетпен байланыст
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "\"%s\" үшін GNOME бокстары тіркелу мәліметтері"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1467,11 +1378,11 @@ msgstr ""
 "түзеп көре аласыз:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "SELinux орнатылмаған ба?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1480,7 +1391,7 @@ msgstr ""
 "аяқталды. \"virsh -c qemu:///session pool-dumpxml gnome-boxes\" командасы "
 "жасап тұрғанын тексеріңіз."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1489,7 +1400,7 @@ msgstr ""
 "%s libvirt үшін GNOME бокстар сақтаушы пулы ретінде белгілі, бірақ бұл бума "
 "жоқ болып тұр"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1497,7 +1408,7 @@ msgstr ""
 "%s libvirt үшін GNOME бокстар сақтаушы пулы ретінде белгілі, бірақ ол бума "
 "емес болып тұр"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1530,9 +1441,78 @@ msgstr "Жаңа орнатылған "
 msgid "Box import from file “%s” failed."
 msgstr "\"%s\" файлынан боксты импорттау сәтсіз аяқталды."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Тек оқу"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Дамыған виртуализация"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Қашықтағы машинаға байланысу"
+
+#~ msgid "Show more…"
+#~ msgstr "Көбірек көрсету…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Операциялық жүйенің орнату тасушысын салыңыз немесе төменнен қайнар көзін "
+#~ "таңдаңыз"
+
+#~ msgid "Download an OS"
+#~ msgstr "ОЖ жүктеп алу"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr "Операциялық жүйе жүктеліп алынып, виртуалды машинаға орнатылады."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Файлды таңдау"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr "Виртуалды машинада орнату үшін жүктелетін бейнені таңдаңыз."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Жоғарыда көрсетілген сауда белгілерінің барлығы тек сізде бар болып "
+#~ "тұрған бағдарламалық қамтаманы анықтау үшін қолданылады, және өз "
+#~ "иелерінің жеке меншігі болып табылады."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Байланысу үшін адресті енгізіңіз. Адрестер келесімен басталуы мүмкін: "
+#~ "spice://, rdp://, ssh:// немесе vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Боксты жасау"
+
+#~ msgid "C_reate"
+#~ msgstr "_Жасау"
+
+#~ msgid "C_ontinue"
+#~ msgstr "Жа_лғастыру"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Ресурстарды баптау"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Жаңа боксты жасауға дайындалу"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Әр бокс бұл компьютерде орнатылған виртуалды машина, немесе бар болып "
+#~ "тұрған қашықтағы машинаға байланыс болуы мүмкін"
 
 #~ msgid "Simple remote and virtual machines"
 #~ msgstr "Қашықтағы және виртуалды машиналарды басқару"
