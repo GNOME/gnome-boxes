@@ -1,14 +1,12 @@
 # GNOME Boxes
 
-A simple GNOME 3 application to access remote or virtual systems.
+A simple GNOME 3 application to access virtual machines.
 
 [![Download on Flathub](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Flathub-badge-en.svg/240px-Flathub-badge-en.svg.png)](https://flathub.org/apps/details/org.gnome.Boxes)
 
 ## Goals
 
 * View, access, and use:
-  * remote machines
-  * remote virtual machines
   * local virtual machines
   * When technology permits, set up access for applications on local virtual machines
 * View, access, and use virtual machines on removable media
@@ -28,8 +26,6 @@ A simple GNOME 3 application to access remote or virtual systems.
 ## Use Cases
 
 * Connect to a local virtual machine for testing.
-* Connecting to a work machine from home.
-* Connect to a work machine over a low quality cellular network.
 
 ## Runtime Dependencies
 
