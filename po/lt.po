@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-03-14 18:42+0000\n"
-"PO-Revision-Date: 2021-03-18 22:12+0200\n"
+"POT-Creation-Date: 2021-05-17 12:14+0000\n"
+"PO-Revision-Date: 2021-09-01 22:28+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7
 msgid "GNOME Boxes"
@@ -52,12 +52,12 @@ msgstr ""
 "mėgiamų operacinių sistemų versijas arba norite prisijungti prie nutolusio "
 "kompiuterio (pvz. darbo)."
 
-#: data/org.gnome.Boxes.appdata.xml.in:56
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "GNOME projektas"
 
 #: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:129 src/app-window.vala:134
+#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
 #: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
 #: src/topbar.vala:92
 msgid "Boxes"
@@ -133,17 +133,20 @@ msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Variantų masyvas su bendrinamų aplankų pavadinimų bei kelių susiejimais"
 
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Nežinoma laikmena"
+
 #: data/ui/assistant/pages/downloads-page.ui:110
-#: data/ui/wizard-downloads-page.ui:89
 msgid "No operating systems found"
 msgstr "Nerasta operacinių sistemų"
 
 #: data/ui/assistant/pages/downloads-page.ui:121
-#: data/ui/wizard-downloads-page.ui:100
 msgid "Try a different search"
 msgstr "Bandykite kitą paiešką"
 
-#: data/ui/assistant/pages/downloads-page.ui:137 data/ui/wizard-toolbar.ui:243
+#: data/ui/assistant/pages/downloads-page.ui:137
 #: src/assistant/downloads-page.vala:54
 msgid "Search for an OS or enter a download link…"
 msgstr "Ieškokite OS arba įveskite parsiuntimo saitą…"
@@ -234,7 +237,7 @@ msgstr "Paržiūrėti ir sukurti"
 msgid "Boxes is ready to set up a new box with the following properties:"
 msgstr "Dėžės pasiruošusi nustatyti naują dėžę su šiomis savybėmis:"
 
-#: data/ui/assistant/pages/review-page.ui:45 data/ui/wizard.ui:220
+#: data/ui/assistant/pages/review-page.ui:45
 msgid ""
 "Virtualization extensions are unavailable on your system.\n"
 "Check your BIOS settings to enable them."
@@ -282,8 +285,6 @@ msgstr "Nauja"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
 #: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:76 data/ui/wizard-toolbar.ui:121
-#: data/ui/wizard-toolbar.ui:165 data/ui/wizard-toolbar.ui:225
 msgid "Back"
 msgstr "Atgal"
 
@@ -335,17 +336,16 @@ msgstr "Visas ekranas"
 msgid "Ready to install"
 msgstr "Pasiruošta diegimui"
 
-#: data/ui/empty-boxes.ui:50
-msgid "State of the Art Virtualization"
-msgstr "Aukščiausios klasės virtualizacija"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Sveiki pradėja naudoti Dėžes"
 
 #: data/ui/empty-boxes.ui:51
-msgid ""
-"Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
-"create your first one."
-msgstr ""
-"Dėžės gali būti virtualios arba nutolusios mašinos. Tiesiog spauskite "
-"mygtuką <b>+</b> pirmajai sukurti."
+#| msgid ""
+#| "Boxes can be virtual or remote machines. Just hit the <b>+</b> button to "
+#| "create your first one."
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Spauskite mygtuką <b>+</b> pirmajai virtualiai mašinai sukurti."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -369,55 +369,50 @@ msgstr "Sukurti virtualią mašiną"
 
 #: data/ui/kbd-shortcuts-window.ui:49
 msgctxt "shortcut window"
-msgid "Connect to a remote machine"
-msgstr "Prisijungti prie kito kompiuterio"
-
-#: data/ui/kbd-shortcuts-window.ui:57
-msgctxt "shortcut window"
 msgid "Search"
 msgstr "Ieškoti"
 
-#: data/ui/kbd-shortcuts-window.ui:65
+#: data/ui/kbd-shortcuts-window.ui:57
 msgctxt "shortcut window"
 msgid "Keyboard shortcuts"
 msgstr "Klaviatūros trumpiniai"
 
-#: data/ui/kbd-shortcuts-window.ui:73 data/ui/kbd-shortcuts-window.ui:165
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
 msgctxt "shortcut window"
 msgid "Close Window/Quit Boxes"
 msgstr "Užverti langą/Išeiti iš Dėžių"
 
-#: data/ui/kbd-shortcuts-window.ui:83
+#: data/ui/kbd-shortcuts-window.ui:75
 msgctxt "shortcut window"
 msgid "Box Creation and Properties"
 msgstr "Dėžės kūrimas ir savybės"
 
-#: data/ui/kbd-shortcuts-window.ui:92 data/ui/kbd-shortcuts-window.ui:111
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
 msgctxt "shortcut window"
 msgid "Switch to the next page"
 msgstr "Perjungti į kitą puslapį"
 
-#: data/ui/kbd-shortcuts-window.ui:101 data/ui/kbd-shortcuts-window.ui:120
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
 msgctxt "shortcut window"
 msgid "Switch to the previous page"
 msgstr "Perjungti į ankstesnį puslapį"
 
-#: data/ui/kbd-shortcuts-window.ui:130
+#: data/ui/kbd-shortcuts-window.ui:122
 msgctxt "shortcut window"
 msgid "Box Display"
 msgstr "Dėžės vaizduoklis"
 
-#: data/ui/kbd-shortcuts-window.ui:137
+#: data/ui/kbd-shortcuts-window.ui:129
 msgctxt "shortcut window"
 msgid "Grab/Ungrab keyboard"
 msgstr "Sugriebti/Paleisti klaviatūrą"
 
-#: data/ui/kbd-shortcuts-window.ui:147 data/ui/kbd-shortcuts-window.ui:157
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
 msgctxt "shortcut window"
 msgid "Back to overview"
 msgstr "Atgal į apžvalgą"
 
-#: data/ui/kbd-shortcuts-window.ui:173
+#: data/ui/kbd-shortcuts-window.ui:165
 msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Visas ekranas/Išeiti iš viso ekrano"
@@ -454,8 +449,8 @@ msgstr "_Kopijuoti į iškarpinę"
 msgid "_Apply"
 msgstr "Prit_aikyti"
 
-#: data/ui/properties-toolbar.ui:168 data/ui/wizard-toolbar.ui:150
-#: src/assistant/index-page.vala:143 src/properties-window.vala:58
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
 msgid "Select a device or ISO file"
 msgstr "Pasirinkite įrenginį arba ISO failą"
 
@@ -471,8 +466,7 @@ msgstr "Prist_abdyti"
 msgid "_Delete"
 msgstr "Iš_trinti"
 
-#: data/ui/selection-toolbar.ui:64 data/ui/wizard-toolbar.ui:23
-#: src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
 msgid "_Cancel"
 msgstr "_Atsisakyti"
 
@@ -562,10 +556,6 @@ msgstr "Produkto raktas"
 msgid "Welcome Tutorial"
 msgstr "Pradžiamokslis"
 
-#: data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Sveiki pradėja naudoti Dėžes"
-
 #: data/ui/welcome-tutorial.ui:41
 msgid "Boxes makes it easy to install and run virtual machines."
 msgstr "Dėžės leidžia lengvai diegti ir vykdyti virtualias mašinas."
@@ -604,89 +594,6 @@ msgid ""
 msgstr ""
 "Dalinimasis failas yra toks paprastas kaip jų numetimas į virtualią mašiną. "
 "Jie atsiras jūsų atsisiuntimų aplanke."
-
-#: data/ui/wizard-downloadable-entry.ui:57 data/ui/wizard-media-entry.ui:53
-msgid "Unknown media"
-msgstr "Nežinoma laikmena"
-
-#: data/ui/wizard-downloads-page.ui:26
-msgid "Show more…"
-msgstr "Rodyti daugiau…"
-
-#: data/ui/wizard-source.ui:32
-msgid "Insert operating system installation media or select a source below"
-msgstr ""
-"Įdėkite operacinės sistemos diegimo laikmeną arba pasirinkite šaltinį žemiau"
-
-#: data/ui/wizard-source.ui:87
-msgid "Download an OS"
-msgstr "Parsiunčiamas OS"
-
-#: data/ui/wizard-source.ui:94
-msgid "Operating system will be downloaded and installed in a virtual machine."
-msgstr "Operacinė sistema bus parsiųsta ir įdiegta virtualioje mašinoje."
-
-#: data/ui/wizard-source.ui:113 data/ui/wizard-source.ui:176
-msgid "▶"
-msgstr "▶"
-
-#: data/ui/wizard-source.ui:151
-msgid "Select a file"
-msgstr "Pasirinkite failą"
-
-#: data/ui/wizard-source.ui:158
-msgid "Select a bootable image file to install in a virtual machine."
-msgstr "Pasirinkite įkeliama atvaizdžio failą diegimui virtualioje mašinoje."
-
-#: data/ui/wizard-source.ui:194
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Bet kokie prekių ženklai rodomi aukščiau yra tik jūsų įsigyto programinės "
-"įrangos produktų identifikavimui ir yra atitinkamų savininkų nuosavybė."
-
-#: data/ui/wizard-source.ui:260
-msgid ""
-"Enter an address to connect to. Addresses can begin with spice://, rdp://, "
-"ssh://, or vnc://."
-msgstr ""
-"Įveskite adresą, prie kurio prisijungti. Adresai gali prasidėti spice://, "
-"rdp:// arba vnc://."
-
-#: data/ui/wizard-toolbar.ui:13 data/ui/wizard-window.ui:23
-#: data/ui/wizard-window.ui:69
-msgid "Create a Box"
-msgstr "Sukurti dėžę"
-
-#: data/ui/wizard-toolbar.ui:39
-msgid "C_reate"
-msgstr "Suku_rti"
-
-#: data/ui/wizard-toolbar.ui:55
-msgid "C_ontinue"
-msgstr "_Tęsti"
-
-#: data/ui/wizard-toolbar.ui:106
-msgid "Customize Resources"
-msgstr "Tinkinti išteklius"
-
-#: data/ui/wizard-toolbar.ui:188 src/app-window.vala:325
-msgid "_Open"
-msgstr "_Atverti"
-
-#: data/ui/wizard.ui:56
-msgid "Preparing to create new box"
-msgstr "Ruošiamasi kurti naują dėžę"
-
-#: data/ui/wizard-window.ui:82
-msgid ""
-"Each box can be a virtual machine that runs on this computer, or a "
-"connection to an existing remote machine"
-msgstr ""
-"Kiekviena dėžė gali būti virtuali mašina šiame kompiuteryje arba ryšys su "
-"esama nuotoline mašina"
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
 #: src/actions-popover.vala:30
@@ -740,70 +647,76 @@ msgstr "Savybės"
 msgid "Screenshot from %s"
 msgstr "Ekranvaizdžis iš %s"
 
-#: src/app.vala:125
+#: src/app.vala:123
 msgid "translator-credits"
 msgstr ""
 "išvertė:\n"
 "Aurimas Černius <aurisc4@gmail.com>"
 
-#: src/app.vala:126
-msgid "A simple GNOME 3 application to access remote or virtual systems"
+#: src/app.vala:124
+#| msgid "A simple GNOME 3 application to access remote or virtual systems"
+msgid "A simple GNOME 3 application to access virtual systems"
 msgstr ""
 "Paprasta GNOME 3 programa nutolusioms arba virtualioms sistemoms pasiekti"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:189 src/main.vala:9
 msgid "Display version number"
 msgstr "Vaizduoklio versijos numeris"
 
-#: src/app.vala:192
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Rodyti žinyną"
+
+#: src/app.vala:191
 msgid "Open in full screen"
 msgstr "Atverti visame ekrane"
 
-#: src/app.vala:193 src/main.vala:10
+#: src/app.vala:192 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Patikrinti virtualizacijos galimybes"
 
-#: src/app.vala:194
+#: src/app.vala:193
 msgid "Open box with UUID"
 msgstr "Atverti dėžę su UUID"
 
-#: src/app.vala:195
+#: src/app.vala:194
 msgid "Search term"
 msgstr "Paieškos terminas"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:197
+#: src/app.vala:196
 msgid "URL to display, broker or installer media"
 msgstr "URL iki vaizduoklio, brokerio arba diegimo laikmenos"
 
-#: src/app.vala:208
-msgid "— A simple application to access remote or virtual machines"
+#: src/app.vala:207
+#| msgid "— A simple application to access remote or virtual machines"
+msgid "— A simple application to access virtual machines"
 msgstr "– paprasta programa nutolusioms arba virtualioms mašinoms pasiekti"
 
-#: src/app.vala:233
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
-#: src/app.vala:502
+#: src/app.vala:501
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Dėžė „%s“ įdiegta ir paruošta naudojimui"
 
-#: src/app.vala:504
+#: src/app.vala:503
 msgid "Launch"
 msgstr "Paleisti"
 
-#: src/app.vala:534
+#: src/app.vala:533
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "„%s“ veikia fone"
 
-#: src/app.vala:620
+#: src/app.vala:619
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: src/app.vala:621
+#: src/app.vala:620
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -811,18 +724,22 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: src/app.vala:649 src/libvirt-machine-properties.vala:558
+#: src/app.vala:648 src/libvirt-machine-properties.vala:558
 #: src/snapshot-list-row.vala:194
 msgid "_Undo"
 msgstr "_Atšaukti"
 
-#: src/app.vala:695
+#: src/app.vala:694
 msgid "Boxes is doing something"
 msgstr "Dėžės kažką daro"
 
 #: src/app-window.vala:322
 msgid "Select files to transfer"
 msgstr "Pasirinkite failus perdavimui"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Atverti"
 
 #: src/assistant/index-page.vala:146 src/properties-window.vala:61
 msgid "Open"
@@ -834,21 +751,21 @@ msgstr "Ankstesnis"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Veikia"
 
-#: src/assistant/index-page.vala:236
+#: src/assistant/media-entry.vala:27
 msgid "32-bit x86 system"
 msgstr "32-bit x86 sistema"
 
-#: src/assistant/index-page.vala:237
+#: src/assistant/media-entry.vala:28
 msgid "64-bit x86 system"
 msgstr "64-bit x86 sistema"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/index-page.vala:242
+#: src/assistant/media-entry.vala:33
 #, c-format
 msgid " from %s"
 msgstr " iš %s"
@@ -1306,7 +1223,6 @@ msgid "Not connected to %s"
 msgstr "Neprisijungta prie %s"
 
 #: src/portals.vala:45
-#| msgid "Boxes is not authorized to run in the background"
 msgid "Boxes wants to run VM in background"
 msgstr "Dėžės nori vykdyti VM fone"
 
@@ -1543,9 +1459,78 @@ msgstr "Ką tik įdiegta "
 msgid "Box import from file “%s” failed."
 msgstr "Nepavyko importuoti dėžės iš failo „%s“."
 
-#: src/vnc-display.vala:154
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Tik skaitymui"
+
+#~ msgid "State of the Art Virtualization"
+#~ msgstr "Aukščiausios klasės virtualizacija"
+
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Prisijungti prie kito kompiuterio"
+
+#~ msgid "Show more…"
+#~ msgstr "Rodyti daugiau…"
+
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr ""
+#~ "Įdėkite operacinės sistemos diegimo laikmeną arba pasirinkite šaltinį "
+#~ "žemiau"
+
+#~ msgid "Download an OS"
+#~ msgstr "Parsiunčiamas OS"
+
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr "Operacinė sistema bus parsiųsta ir įdiegta virtualioje mašinoje."
+
+#~ msgid "▶"
+#~ msgstr "▶"
+
+#~ msgid "Select a file"
+#~ msgstr "Pasirinkite failą"
+
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr ""
+#~ "Pasirinkite įkeliama atvaizdžio failą diegimui virtualioje mašinoje."
+
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Bet kokie prekių ženklai rodomi aukščiau yra tik jūsų įsigyto programinės "
+#~ "įrangos produktų identifikavimui ir yra atitinkamų savininkų nuosavybė."
+
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Įveskite adresą, prie kurio prisijungti. Adresai gali prasidėti spice://, "
+#~ "rdp:// arba vnc://."
+
+#~ msgid "Create a Box"
+#~ msgstr "Sukurti dėžę"
+
+#~ msgid "C_reate"
+#~ msgstr "Suku_rti"
+
+#~ msgid "C_ontinue"
+#~ msgstr "_Tęsti"
+
+#~ msgid "Customize Resources"
+#~ msgstr "Tinkinti išteklius"
+
+#~ msgid "Preparing to create new box"
+#~ msgstr "Ruošiamasi kurti naują dėžę"
+
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Kiekviena dėžė gali būti virtuali mašina šiame kompiuteryje arba ryšys su "
+#~ "esama nuotoline mašina"
 
 #~ msgid "Boxes can be virtual or remote machines."
 #~ msgstr "Dėžės gali būti virtualios arba nutolusios mašinos."
