@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-02-12 10:24+0000\n"
-"PO-Revision-Date: 2021-02-25 16:45+0100\n"
+"POT-Creation-Date: 2021-04-17 02:30+0000\n"
+"PO-Revision-Date: 2021-09-04 18:48+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -52,7 +52,7 @@ msgstr ""
 "novi operativni sustav ili novu (potencijalno nestabilnu) inačicu vašeg "
 "omiljenog operativnog sustava."
 
-#: data/org.gnome.Boxes.appdata.xml.in:69
+#: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "GNOME projekt"
 
@@ -213,8 +213,8 @@ msgid "Operating System Image File"
 msgstr "Datoteka slike operativnog sustava"
 
 #: data/ui/assistant/pages/index-page.ui:258
-msgid "Select an .iso file to install a virtual machine."
-msgstr "Odaberite datoteku .iso slike za instalaciju u virtualnom stroju."
+msgid "Select a file to install a virtual machine."
+msgstr "Odaberite datoteku za instalaciju u virtualnom stroju."
 
 #: data/ui/assistant/pages/preparation-page.ui:5
 msgid "Preparing…"
@@ -325,7 +325,7 @@ msgstr "Radnje"
 msgid "Keyboard shortcuts"
 msgstr "Prečaci tipkovnice"
 
-#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:74
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
 msgid "Fullscreen"
 msgstr "Cijeli zaslon"
 
@@ -834,8 +834,8 @@ msgstr "Prijašnje"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:883
-#: src/util-app.vala:156
+#: src/assistant/index-page.vala:231 src/libvirt-machine.vala:877
+#: src/util-app.vala:172
 msgid "Live"
 msgstr ""
 
@@ -917,7 +917,7 @@ msgstr "Pritisni i otpusti (lijevi) Ctrl+Alt za oslobađanje tipkovnice."
 msgid "%d×%d"
 msgstr "%d×%d"
 
-#: src/display-toolbar.vala:71
+#: src/display-toolbar.vala:70
 msgid "Exit fullscreen"
 msgstr "Napusti cjelozaslonski prikaz"
 
@@ -1144,44 +1144,44 @@ msgid "3D Acceleration"
 msgstr "3D ubrzanje"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:649
+#: src/libvirt-machine.vala:643
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Obnavljanje %s sa diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:652
+#: src/libvirt-machine.vala:646
 #, c-format
 msgid "Starting %s"
 msgstr "Pokretanje %s"
 
-#: src/libvirt-machine.vala:731
+#: src/libvirt-machine.vala:725
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Ponovno pokretanje “%s” traje predugo. Prisilno isključi?"
 
-#: src/libvirt-machine.vala:733
+#: src/libvirt-machine.vala:727
 msgid "_Shutdown"
 msgstr "_Isključi"
 
-#: src/libvirt-machine.vala:749
+#: src/libvirt-machine.vala:743
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Kloniram “%s”…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:875
 msgid "Installing…"
 msgstr "Instalacija…"
 
-#: src/libvirt-machine.vala:885
+#: src/libvirt-machine.vala:879
 msgid "Setting up clone…"
 msgstr "Postavljanje klona…"
 
-#: src/libvirt-machine.vala:887
+#: src/libvirt-machine.vala:881
 msgid "Importing…"
 msgstr "Uvažanje…"
 
-#: src/libvirt-machine.vala:896
+#: src/libvirt-machine.vala:890
 #, c-format
 msgid "host: %s"
 msgstr "poslužitelj: %s"
@@ -1300,6 +1300,10 @@ msgstr "Prijavi se na %s"
 #, c-format
 msgid "Not connected to %s"
 msgstr "Nije povezano s %s"
+
+#: src/portals.vala:45
+msgid "Boxes wants to run VM in background"
+msgstr "Boksevi želi pokrenuti VM u pozadini"
 
 #: src/properties-page-widget.vala:17
 msgid "General"
@@ -1463,7 +1467,7 @@ msgstr "Ekspresna lokacija %s zahtjeva pristup internetu."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Vjerodajnice GNOME Bokseva za “%s”"
 
-#: src/util-app.vala:342
+#: src/util-app.vala:358
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1473,11 +1477,11 @@ msgstr ""
 "pokretanjem:\n"
 "%s"
 
-#: src/util-app.vala:346
+#: src/util-app.vala:362
 msgid "SELinux not installed?"
 msgstr "SELinux nije instaliran?"
 
-#: src/util-app.vala:428
+#: src/util-app.vala:444
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1485,7 +1489,7 @@ msgstr ""
 "Nemoguće nabavljanje “gnome-boxes” spremnika pohrane informacije iz libvirt. "
 "Pobrinite se da “virsh -c qemu:///session pool-dumpxml gnome-boxes” radi."
 
-#: src/util-app.vala:433
+#: src/util-app.vala:449
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1494,14 +1498,14 @@ msgstr ""
 "%s je poznat libvirtu kao spremnik pohrane GNOME Bokseva ali taj direktorij "
 "ne postoji"
 
-#: src/util-app.vala:437
+#: src/util-app.vala:453
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s je poznat libvirtu kao spremnik pohrane GNOME Bokseva ali nije direktorij"
 
-#: src/util-app.vala:441
+#: src/util-app.vala:457
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1520,7 +1524,7 @@ msgstr "ne"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:769
+#: src/vm-configurator.vala:779
 msgid "Incapable host system"
 msgstr "Neprikladan poslužitelj sustava"
 
