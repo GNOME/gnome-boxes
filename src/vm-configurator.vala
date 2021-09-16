@@ -310,11 +310,20 @@ private class Boxes.VMConfigurator {
             devices.prepend (new DomainGraphicsVnc ());
         }
 
-        // If user interface device was found and it needs to be bridged
         if (iface != null) {
             var bridge = is_libvirt_bridge_net_available ();
-            if (bridge && (iface is DomainInterfaceUser)) {
-                var virtio = iface.get_model () == "virtio";
+            var virtio = iface.get_model () == "virtio";
+
+            /* We recreate the network interface if:
+             *  1. There's a bridge but the interface is "user"
+             *  2. There isn't a bridge but the interface is "bridge"
+             *  3. We are cloning the VM (the MAC address shouldn't collide)
+             *
+             * Otherwise, we keep the existing network interface.
+             */
+            if ((bridge && (iface is DomainInterfaceUser)) ||
+                (!bridge && (iface is DomainInterfaceBridge)) ||
+                VMConfigurator.is_libvirt_cloning_config (domain)) {
 
                 devices.prepend (create_network_interface (domain, bridge, virtio));
             } else {
