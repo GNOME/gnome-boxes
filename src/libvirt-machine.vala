@@ -759,12 +759,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
             var media = new LibvirtClonedMedia (storage_volume.get_path (), config);
 
-            // Recreate network interface so clones won't have the same mac address
-            var iface= VMConfigurator.create_network_interface (config,
-                                                                is_libvirt_bridge_net_available (),
-                                                                media.supports_virtio_net);
-            config.add_device (iface);
-
             var vm_cloner = media.get_vm_creator ();
             var clone_machine = yield vm_cloner.create_vm (null);
             vm_cloner.launch_vm (clone_machine, this.config.access_last_time, true);
