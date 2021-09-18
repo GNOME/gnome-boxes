@@ -10,6 +10,8 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
     private unowned Button go_back_button;
     [GtkChild]
     private unowned Button go_next_button;
+    [GtkChild]
+    private unowned Boxes.WelcomeTutorialPage first_page;
 
     private GLib.List<unowned WelcomeTutorialPage> pages;
     private CssProvider provider;
