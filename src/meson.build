@@ -125,6 +125,7 @@ dependencies = [
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
   dependency ('gvncpulse-1.0'),
   dependency ('gtksourceview-4'),
+  dependency ('libhandy-1', version: '>= 1.0.0'),
   dependency ('libosinfo-1.0', version: '>= 1.7.0'),
   dependency ('libsecret-1'),
   dependency ('libsoup-2.4', version: '>= 2.38'),
@@ -153,22 +154,6 @@ if spice.found ()
     'spice-display.vala',
     'transfer-popover.vala'
   ]
-endif
-
-libhandy = dependency ('libhandy-1', version: '>= 1.0.0', required: false)
-if not libhandy.found()
-  libhandy = subproject(
-    'libhandy',
-    default_options: [
-      'package_subdir=' + meson.project_name(),
-      'examples=false',
-      'glade_catalog=disabled',
-      'tests=false',
-    ]
-  )
-  dependencies += libhandy.get_variable('libhandy_vapi')
-else
-  dependencies += libhandy
 endif
 
 if get_option('rdp')
