@@ -209,7 +209,8 @@ namespace Boxes {
                 var os = yield os_db.get_os_by_id (os_id);
                 var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
 
-                list.append (media);
+                if (media.url != null)
+                    list.append (media);
             } catch (OSDatabaseError error) {
                 debug ("Failed to find OS with id: '%s': %s", os_id, error.message);
             }
