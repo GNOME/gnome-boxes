@@ -2,515 +2,1360 @@
 # Copyright (C) 2012 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2012-2013.
+# Antoine Đỗ <do.antoine@disroot.org>, 2021.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2021.
 #
-#: ../src/main.vala:15
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"boxes&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-01 12:22+0000\n"
-"PO-Revision-Date: 2013-03-03 10:59+0700\n"
-"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
-"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
+"POT-Creation-Date: 2021-10-04 15:42+0000\n"
+"PO-Revision-Date: 2021-10-06 08:53+0700\n"
+"Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
-#: ../data/gnome-boxes.desktop.in.in.h:1
-#: ../data/gnome-boxes-search-provider.ini.in.h:1 ../src/main.vala:73
+#: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
+#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:127
+#: src/app-window.vala:134 src/app-window.vala:240 src/app-window.vala:242
+#: src/main.vala:72 src/topbar.vala:92
 msgid "Boxes"
 msgstr "Máy"
 
-#: ../data/gnome-boxes.desktop.in.in.h:2
+#: data/org.gnome.Boxes.appdata.xml.in:8
+msgid "Virtualization made simple"
+msgstr "Ảo hóa trở nên đơn giản"
+
+#: data/org.gnome.Boxes.appdata.xml.in:10
+msgid ""
+"A simple GNOME 3 application to manage virtual systems. Unlike some other "
+"virtual machine management software, Boxes is targeted towards typical "
+"desktop end-users. For this reason, Boxes will not provide many advanced "
+"options to tweak virtual machines. Instead Boxes will focus on getting "
+"things working out of the box with very little input from user."
+msgstr ""
+"Một ứng dụng đơn giản trong GNOME 3 để quản lý hệ thống ảo. Không giống như "
+"một số phần mềm quản lý máy ảo khác, Boxes hướng tới người dùng cuối là máy "
+"tính để bàn điển hình. Vì lý do này, Boxes sẽ không cung cấp nhiều tùy chọn "
+"nâng cao để tinh chỉnh máy ảo. Thay vào đó, Boxes sẽ tập trung vào việc giúp "
+"mọi thứ hoạt động hiệu quả với rất ít thông tin đầu vào từ người dùng."
+
+#: data/org.gnome.Boxes.appdata.xml.in:17
+msgid ""
+"You want to install Boxes if you just want a very safe and easy way to try "
+"out new operating systems or new (potentially unstable) versions of your "
+"favorite operating system(s)."
+msgstr ""
+"Bạn muốn cài đặt Boxes, nếu như bạn chỉ muốn thử hệ điều hành mới hoặc phiên "
+"bản mới (có thể không ổn định) của (các) hệ điều hành yêu thích của bạn một "
+"cách an toàn và dễ dàng."
+
+#: data/org.gnome.Boxes.appdata.xml.in:58
+msgid "The GNOME Project"
+msgstr "Dự án GNOME"
+
+#: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
-msgstr "Trình truy cập/quản lý máy ảo"
+msgstr "Xem/Quản lý máy ảo"
 
-#: ../data/gnome-boxes.desktop.in.in.h:3
+#: data/org.gnome.Boxes.desktop.in:5
 msgid "View and use virtual machines"
-msgstr "Truy cập máy ảo"
+msgstr "Xem và sử dụng các máy ảo"
 
-#: ../data/gnome-boxes.desktop.in.in.h:4
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.Boxes.desktop.in:7
 msgid "virtual machine;vm;"
 msgstr "virtual machine;máy;ảo;may;ao;vm;"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:1
-msgid "Collections"
-msgstr "Nhóm"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:2
-msgid "The list of boxes collections"
-msgstr "Danh sách nhóm máy ảo"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:3
+#: data/org.gnome.boxes.gschema.xml:11
 msgid "Screenshot interval"
-msgstr "Quảng nghỉ chụp hình"
+msgstr "Nghỉ giữa hai lần chụp"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:4
+#: data/org.gnome.boxes.gschema.xml:12
 msgid "The interval in seconds between screenshot updates"
-msgstr "Khoảng nghỉ theo giây giữa hai lần cập nhật hình chụp"
+msgstr "Thời gian nghỉ tính theo giây giữa các lần tạo bản chụp"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:5
-msgid "Animation duration"
-msgstr "Khoảng thời gian hoạt cản"
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:6
-msgid "The time it takes for transitions and animation, in ms."
-msgstr "Thời gian dùng cho chuyển đổi và hoạt cảnh, theo mili giây."
-
-#: ../data/org.gnome.boxes.gschema.xml.in.h:7
+#: data/org.gnome.boxes.gschema.xml:24
 msgid "Window size"
 msgstr "Kích thước cửa sổ"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:8
+#: data/org.gnome.boxes.gschema.xml:25
 msgid "Window size (width and height)"
 msgstr "Kích thước cửa sổ (rộng và cao)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:9
+#: data/org.gnome.boxes.gschema.xml:31
 msgid "Window position"
 msgstr "Vị trí cửa sổ"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:10
+#: data/org.gnome.boxes.gschema.xml:32
 msgid "Window position (x and y)"
 msgstr "Vị trí cửa sổ (x và y)"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:11
+#: data/org.gnome.boxes.gschema.xml:38
 msgid "Window maximized"
 msgstr "Cửa sổ phóng to"
 
-#: ../data/org.gnome.boxes.gschema.xml.in.h:12
+#: data/org.gnome.boxes.gschema.xml:39
 msgid "Window maximized state"
 msgstr "Trạng thái cửa sổ phóng to"
 
-#: ../src/app.vala:137
-msgid "translator-credits"
-msgstr "Nhóm Việt hoá GNOME"
+#: data/org.gnome.boxes.gschema.xml:45
+msgid "First run"
+msgstr "Lần chạy đầu tiên"
 
-#: ../src/app.vala:138
-msgid "A simple GNOME 3 application to access remote or virtual systems"
-msgstr "Ứng dụng GNOME 3 đơn giản để truy cập hệ thống ảo hoặc từ xa"
+#: data/org.gnome.boxes.gschema.xml:46
+msgid "Whether Boxes is running for the first time"
+msgstr "Cho dù Boxes đang chạy lần đầu tiên"
 
-#: ../src/app.vala:155 ../src/topbar.vala:56
-msgid "New"
-msgstr "Mới"
+#: data/org.gnome.boxes.gschema.xml:52
+msgid "Override theme"
+msgstr "Ghi đè chủ đề"
 
-#: ../src/app.vala:160
-msgid "About Boxes"
-msgstr "Giới thiệu Máy"
+#: data/org.gnome.boxes.gschema.xml:53
+msgid "Whether Boxes will override the user's theme"
+msgstr "Liệu Boxes có ghi đè chủ đề của người dùng hay không"
 
-#: ../src/app.vala:161
-msgid "Quit"
-msgstr "Thoát"
+#: data/org.gnome.boxes.gschema.xml:60
+msgid "Shared folders"
+msgstr "Thư mục chia sẻ"
 
-#: ../src/app.vala:213 ../src/main.vala:9
-msgid "Display version number"
-msgstr "Số phiên bản hiển thị"
+#: data/org.gnome.boxes.gschema.xml:61
+msgid "Variant array of shared folders’ names and path mapping"
+msgstr "Mảng biến thể của tên và bản đồ đường dẫn của thư mục được chia sẻ"
 
-#: ../src/app.vala:215
-msgid "Open in full screen"
-msgstr "Mở toàn màn hình"
+#: data/ui/assistant/downloadable-entry.ui:57
+#: data/ui/assistant/media-entry.ui:53
+msgid "Unknown media"
+msgstr "Đa phương tiện chưa biết"
 
-#: ../src/app.vala:216 ../src/main.vala:10
-msgid "Check virtualization capabilities"
-msgstr "Kiểm kha khả năng ảo hoá"
+#: data/ui/assistant/pages/downloads-page.ui:110
+msgid "No operating systems found"
+msgstr "Không tìm thấy hệ điều hành"
 
-#: ../src/app.vala:217
-msgid "Open box with UUID"
-msgstr "Mở bằng UUID"
+#: data/ui/assistant/pages/downloads-page.ui:121
+msgid "Try a different search"
+msgstr "Thử một tìm kiếm khác"
 
-#: ../src/app.vala:218
-msgid "Search term"
-msgstr "Chuỗi tìm kiếm"
+#: data/ui/assistant/pages/downloads-page.ui:137
+#: src/assistant/downloads-page.vala:54
+msgid "Search for an OS or enter a download link…"
+msgstr "Tìm kiếm một hệ điều hành hoặc nhập liên kết tải xuống…"
 
-#. A 'broker' is a virtual-machine manager (could be local or remote). Currently libvirt is the only one supported.
-#: ../src/app.vala:220
-msgid "URI to display, broker or installer media"
-msgstr "URI đến display, broker hoặc installer media"
+#: data/ui/assistant/pages/identify-os-page.ui:18
+msgid "Boxes was unable to identify the operating system on the image file."
+msgstr "Hộp không thể xác định hệ điều hành trên tệp tin ảnh."
 
-#: ../src/app.vala:231
-msgid "- A simple application to access remote or virtual machines"
-msgstr "- Ứng dụng đơn giản để truy cập máy ảo hoặc máy ở xa"
-
-#: ../src/app.vala:253
-msgid "Too many command line arguments specified.\n"
-msgstr "Quá nhiều đối số dòng lệnh được xác định.\n"
-
-#: ../src/app.vala:811
-#, c-format
-msgid "Box '%s' has been deleted"
-msgstr "Đã xoá máy '%s'"
-
-#: ../src/app.vala:812
-#, c-format
-msgid "%u box has been deleted"
-msgid_plural "%u boxes have been deleted"
-msgstr[0] "Đã xoá %u máy"
-
-#: ../src/app.vala:902
-#, c-format
+#: data/ui/assistant/pages/identify-os-page.ui:29
 msgid ""
-"'%s' could not be restored from disk\n"
-"Try without saved state?"
+"It is not advised to try booting an unknown OS, but you may try your luck "
+"forcing a specific kind of OS from the list below:"
 msgstr ""
+"Không nên thử khởi động một hệ điều hành không xác định, nhưng bạn có thể "
+"thử vận may của mình chọn một loại hệ điều hành cụ thể từ danh sách dưới đây:"
 
-#: ../src/app.vala:903
-msgid "Restart"
-msgstr "Khởi động lại"
+#: data/ui/assistant/pages/identify-os-page.ui:41
+msgid "Template"
+msgstr "Mẫu"
 
-#: ../src/app.vala:908
-#, c-format
-msgid "Connection to '%s' failed"
-msgstr "Lỗi kết nối đến '%s'"
+#: data/ui/assistant/pages/identify-os-page.ui:57
+#: src/assistant/identify-os-page.vala:31
+msgid "Unknown OS"
+msgstr "Hệ điều hành chưa biết"
 
-#: ../src/collection-view.vala:45
-msgid "New and Recent"
-msgstr "Mới và gần đây"
+#: data/ui/assistant/pages/identify-os-popover.ui:19
+msgid "Search for an OS…"
+msgstr "Tìm kiếm một hệ điều hành…"
 
-#: ../src/display-page.vala:281
-msgid "(press Ctrl+Alt keys to ungrab)"
-msgstr "(nhấn phím Ctrl+Alt để nhả)"
+#: data/ui/assistant/pages/index-page.ui:5 data/ui/assistant/vm-assistant.ui:6
+msgid "Create a Virtual Machine"
+msgstr "Tạo Máy Ảo"
 
-#: ../src/empty-boxes.vala:30
-msgid "No boxes found"
-msgstr "Không tìm thấy máy"
-
-#: ../src/empty-boxes.vala:37
-msgid "Create one using the button on the top left."
-msgstr "Tạo một cái bằng nút trên bên trái"
-
-#: ../src/installer-media.vala:81 ../src/properties.vala:73
-msgid "System"
-msgstr "Hệ thống"
-
-#: ../src/libvirt-machine-properties.vala:118 ../src/remote-machine.vala:52
-msgid "Name"
-msgstr "Tên"
-
-#: ../src/libvirt-machine-properties.vala:123 ../src/ovirt-machine.vala:58
-msgid "Virtualizer"
-msgstr "Trình ảo hoá"
-
-#: ../src/libvirt-machine-properties.vala:125 ../src/ovirt-machine.vala:59
-#: ../src/remote-machine.vala:58 ../src/wizard.vala:400
-msgid "URI"
-msgstr "URI"
-
-#: ../src/libvirt-machine-properties.vala:133
-#: ../src/libvirt-machine-properties.vala:138
-msgid "Troubleshooting log"
-msgstr "Chẩn đoán log"
-
-#: ../src/libvirt-machine-properties.vala:142
-msgid "Copy to clipboard"
-msgstr "Chép vào bảng tạm"
-
-#: ../src/libvirt-machine-properties.vala:157
-msgid "Save log"
-msgstr "Lưu log"
-
-#: ../src/libvirt-machine-properties.vala:173
-#, c-format
-msgid "Error saving: %s"
-msgstr "Lỗi lưu: %s"
-
-#: ../src/libvirt-machine-properties.vala:195 ../src/ovirt-machine.vala:63
-#: ../src/remote-machine.vala:62
-msgid "Protocol"
-msgstr "Thuộc tính"
-
-#. Translators: This is the text on the button to select an iso for the cd
-#: ../src/libvirt-machine-properties.vala:225
-#: ../src/libvirt-machine-properties.vala:267
-msgid "Select"
-msgstr "Chọn"
-
-#. Translators: empty is listed as the filename for a non-mounted CD
-#: ../src/libvirt-machine-properties.vala:227
-#: ../src/libvirt-machine-properties.vala:268
-msgid "empty"
-msgstr "rỗng"
-
-#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: ../src/libvirt-machine-properties.vala:230
-#: ../src/libvirt-machine-properties.vala:252
-msgid "Remove"
-msgstr "Loại bỏ"
-
-#: ../src/libvirt-machine-properties.vala:236 ../src/wizard-source.vala:303
-msgid "Select a device or ISO file"
-msgstr "chọn thiết bị hoặc tập tin ISO"
-
-#: ../src/libvirt-machine-properties.vala:275
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
-#: ../src/libvirt-machine-properties.vala:303
-#: ../src/libvirt-machine-properties.vala:320
-msgid "Add support to guest"
-msgstr "Thêm hỗ trợ cho máy khách"
-
-#: ../src/libvirt-machine-properties.vala:305
-msgid "USB device support"
-msgstr "Hỗ trợ thiết bị USB"
-
-#: ../src/libvirt-machine-properties.vala:322
-msgid "Smartcard support"
-msgstr "Hỗ trợ Smartcard"
-
-#: ../src/libvirt-machine-properties.vala:387 ../src/wizard.vala:436
-msgid "Memory"
-msgstr "Bộ nhớ"
-
-#: ../src/libvirt-machine-properties.vala:471
-#, c-format
-msgid "Restart of '%s' is taking too long. Force it to shutdown?"
-msgstr "Khởi động '%s' quá lâu. Buộc tắt máy đó nhé?"
-
-#: ../src/libvirt-machine-properties.vala:484
-#, c-format
-msgid "Changes require restart of '%s'. Attempt restart?"
-msgstr "Cần khởi động lại cho '%s'. Khởi động lại nhé?"
-
-#: ../src/libvirt-machine-properties.vala:499
-msgid "Maximum Disk Size"
-msgstr "Kích cỡ đĩa tối đa"
-
-#: ../src/libvirt-machine.vala:426
-msgid "When you force shutdown, the box may lose data."
-msgstr "Dữ liệu sẽ bị mật khi buộc tắt máy."
-
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:511
-#, c-format
-msgid "Restoring %s from disk"
-msgstr "Phục hồi %s từ đĩa"
-
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/libvirt-machine.vala:514
-#, c-format
-msgid "Starting %s"
-msgstr "Khởi động %s"
-
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:132
-#, c-format
-msgid "Connecting to %s"
-msgstr "Kết nối đến %s"
-
-#. Translators: The %s will be expanded with the name of the vm
-#: ../src/machine.vala:152
-#, c-format
-msgid "Enter password for %s"
-msgstr "Nhập mật mã cho %s"
-
-#: ../src/machine.vala:235
-msgid "Saving..."
-msgstr "Đang lưu..."
-
-#. 3rd row
-#: ../src/machine.vala:564 ../src/unattended-installer.vala:296
-#: ../src/unattended-installer.vala:410
-msgid "Password"
-msgstr "Mật mã"
-
-#. FIXME: add proper UI & docs
-#: ../src/main.vala:54
-#, c-format
-msgid "• The CPU is capable of virtualization: %s\n"
-msgstr "CPU có khả năng ảo hoá: %s\n"
-
-#: ../src/main.vala:55
-#, c-format
-msgid "• The KVM module is loaded: %s\n"
-msgstr "Môđun KVM đã nạp: %s\n"
-
-#: ../src/main.vala:56
-#, c-format
-msgid "• Libvirt KVM guest available: %s\n"
-msgstr "• Libvirt KVM guest sẵn sàng: %s\n"
-
-#: ../src/main.vala:57
-#, c-format
-msgid "• Boxes storage pool available: %s\n"
+#: data/ui/assistant/pages/index-page.ui:35
+msgid ""
+"A new virtual machine will be created and an operating system installed into "
+"it. Select an operating system source to begin."
 msgstr ""
+"Một máy ảo mới sẽ được tạo và một hệ điều hành được cài đặt. Chọn một nguồn "
+"hệ điều hành để bắt đầu."
 
-#: ../src/main.vala:61
-#, c-format
-msgid "• The SELinux context is default: %s\n"
-msgstr "• Ngữ cảnh SELinux là mặc định: %s\n"
+#: data/ui/assistant/pages/index-page.ui:49
+msgid "Detected Sources"
+msgstr "Nguồn được Phát hiện"
 
-#: ../src/main.vala:65
-#, c-format
-msgid "Report bugs to <%s>.\n"
-msgstr "Thông báo lỗi (tiếng Anh) cho <%s>.\n"
+#: data/ui/assistant/pages/index-page.ui:109
+msgid "Featured Downloads"
+msgstr "Tải xuống nổi bật"
 
-#: ../src/main.vala:66
-#, c-format
-msgid "%s home page: <%s>.\n"
-msgstr "Trang chủ %s: <%s>.\n"
+#: data/ui/assistant/pages/index-page.ui:120
+msgid "You will be notified when the download has completed."
+msgstr "Bạn sẽ được thông báo khi việc tải xuống hoàn tất."
 
-#: ../src/notificationbar.vala:57
-#, c-format
-msgid "Not connected to %s"
-msgstr "Chưa kết nối đến %s"
+#: data/ui/assistant/pages/index-page.ui:147
+msgid "Select an OS Source"
+msgstr "Chọn một Nguồn Hệ điều hành"
 
-#: ../src/notificationbar.vala:57 ../src/notificationbar.vala:110
-msgid "Sign In"
-msgstr "Đăng nhập"
+#: data/ui/assistant/pages/index-page.ui:180
+msgid "Operating System Download"
+msgstr "Tải xuống Hệ điều hành"
 
-#: ../src/notificationbar.vala:75
-#, c-format
-msgid "Sign In to %s"
-msgstr "Đăng nhập vào %s"
+#: data/ui/assistant/pages/index-page.ui:196
+msgid "Browse and search for operating systems to install."
+msgstr "Duyệt và tìm kiếm các hệ điều hành để cài đặt."
 
-#: ../src/notificationbar.vala:81
+#: data/ui/assistant/pages/index-page.ui:242
+msgid "Operating System Image File"
+msgstr "Tệp Hình ảnh Hệ điều hành"
+
+#: data/ui/assistant/pages/index-page.ui:258
+msgid "Select a file to install a virtual machine."
+msgstr "Chọn một tập tin để cài đặt máy ảo."
+
+#: data/ui/assistant/pages/preparation-page.ui:5
+msgid "Preparing…"
+msgstr "Chuẩn bị…"
+
+#: data/ui/assistant/pages/preparation-page.ui:24
+msgid "Preparing to create a new box"
+msgstr "Chuẩn bị tạo máy ảo mới"
+
+#: data/ui/assistant/pages/review-page.ui:5
+msgid "Review and Create"
+msgstr "Xem lại và Tạo"
+
+#: data/ui/assistant/pages/review-page.ui:18
+msgid "Boxes is ready to set up a new box with the following properties:"
+msgstr "Đã sẵn sàng cài đặt máy mới với các thuộc tính sau đây:"
+
+#: data/ui/assistant/pages/review-page.ui:45
+msgid ""
+"Virtualization extensions are unavailable on your system.\n"
+"Check your BIOS settings to enable them."
+msgstr ""
+"Tiện ích mở rộng ảo hóa không sẵn dùng trên hệ thống của bạn.\n"
+"Kiểm tra cài đặt BIOS của bạn để bật chúng."
+
+#: data/ui/assistant/pages/review-page.ui:68
+msgid "Resource Allocation"
+msgstr "Phân bổ Tài nguyên"
+
+#: data/ui/assistant/pages/review-page.ui:77
+msgid "Customize"
+msgstr "_Tuỳ chỉnh"
+
+#: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
+msgid "Express Installation"
+msgstr "Cài đặt Nhanh"
+
+#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
+#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
+#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+msgid "Cancel"
+msgstr "Thôi"
+
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
+msgid "Next"
+msgstr "Tiếp theo"
+
+#: data/ui/auth-notification.ui:39
 msgid "_Username"
-msgstr "_Tên người dùng"
+msgstr "Tên người _dùng"
 
-#: ../src/notificationbar.vala:96
+#: data/ui/auth-notification.ui:73
 msgid "_Password"
 msgstr "_Mật mã"
 
-#: ../src/ovirt-broker.vala:64
-msgid "Connection to oVirt broker failed"
-msgstr ""
-
-#. Translators: The %s will be replaced with the name of the VM
-#: ../src/properties.vala:19
-#, c-format
-msgid "%s - Properties"
-msgstr "%s - Thuộc tính"
-
-#: ../src/properties.vala:69
-msgid "Login"
+#: data/ui/auth-notification.ui:112 src/notificationbar.vala:48
+msgid "Sign In"
 msgstr "Đăng nhập"
 
-#: ../src/properties.vala:77
-msgid "Display"
-msgstr "Hiển thị"
+#: data/ui/collection-toolbar.ui:22
+msgid "New"
+msgstr "Mới"
 
-#: ../src/properties.vala:81
-msgid "Devices"
-msgstr "Thiết bị"
+#: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
+#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
+msgid "Back"
+msgstr "Quay lại"
 
-#: ../src/properties.vala:94
-msgid "Some changes may take effect only after reboot"
-msgstr "Một vài thay đổi chỉ có tác dụng sau khi khởi động lại"
+#: data/ui/collection-toolbar.ui:69
+msgid "Application Menu"
+msgstr "Thanh Công cụ"
 
-#: ../src/properties.vala:269
-msgid "CPU:"
-msgstr "CPU:"
+#: data/ui/collection-toolbar.ui:97
+msgid "Select Items"
+msgstr "Chọn Các mục"
 
-#: ../src/properties.vala:276
-msgid "I/O:"
-msgstr "I/O:"
+#: data/ui/collection-toolbar.ui:125
+msgid "List view"
+msgstr "Xem dạng danh sách"
 
-#: ../src/properties.vala:283
-msgid "Net:"
-msgstr "Mạng:"
+#: data/ui/collection-toolbar.ui:153
+msgid "Grid view"
+msgstr "Xem dạng lưới"
 
-#: ../src/properties.vala:290
-msgid "Force Shutdown"
-msgstr "Buộc tắt máy"
+#: data/ui/collection-toolbar.ui:180 data/ui/selection-toolbar.ui:86
+msgid "Search"
+msgstr "Tìm kiếm"
 
-#: ../src/selectionbar.vala:72
-#, c-format
-msgid "Pausing '%s' failed"
-msgstr "Lỗi tạm dừng '%s'"
+#: data/ui/collection-toolbar.ui:207
+msgid "Downloads"
+msgstr "Tải xuống"
 
-#: ../src/spice-display.vala:266
-msgid "Share clipboard"
-msgstr "Chia sẻ bảng tạm"
+#: data/ui/display-page.ui:96
+msgid "Ready to Receive File"
+msgstr "Sẵn sàng Nhận Tập tin"
 
-#: ../src/spice-display.vala:272
-msgid "Resize guest"
-msgstr "Đổi kích thước máy khách"
+#: data/ui/display-page.ui:116
+msgid "You will find your file in the Downloads directory."
+msgstr "Bạn sẽ tìm thấy tệp của mình trong thư mục Tải xuống."
 
-#: ../src/spice-display.vala:281
-msgid "Redirect new USB devices"
-msgstr "Chuyển hướng thiết bị USB mới"
+#: data/ui/display-toolbar.ui:63
+msgid "Actions"
+msgstr "Hành động"
 
-#: ../src/spice-display.vala:307
-#, c-format
-msgid "Error connecting %s: %s"
-msgstr "Lỗi kết nối %s: %s"
+#: data/ui/display-toolbar.ui:91
+msgid "Keyboard shortcuts"
+msgstr "Phím tắt bàn phím"
 
-#: ../src/spice-display.vala:334 ../src/wizard.vala:251
-msgid "Invalid URI"
-msgstr "URI không hợp lệ"
+#: data/ui/display-toolbar.ui:121 src/display-toolbar.vala:73
+msgid "Fullscreen"
+msgstr "Toàn màn hình"
 
-#: ../src/spice-display.vala:344
-msgid "The port must be specified once"
-msgstr "Phải xác định cổng ít nhất một lần"
+#: data/ui/downloads-hub-row.ui:54
+msgid "Ready to install"
+msgstr "Sẵn sàng để cài đặt"
 
-#: ../src/spice-display.vala:353
-msgid "Missing port in Spice URI"
-msgstr "Thiếu cổng trong URI Spice"
+#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Chào mừng đến Máy"
 
-#: ../src/topbar.vala:99
+#: data/ui/empty-boxes.ui:51
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Chỉ cần nhấn nút <b>+</b> để tạo máy ảo đầu tiên."
+
+#: data/ui/kbd-shortcuts-window.ui:18
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Tổng quan"
+
+#: data/ui/kbd-shortcuts-window.ui:25
+msgctxt "shortcut window"
+msgid "Help"
+msgstr "Trợ giúp"
+
+#: data/ui/kbd-shortcuts-window.ui:33
+msgctxt "shortcut window"
+msgid "Open main menu"
+msgstr "Mở trình đơn chính"
+
+#: data/ui/kbd-shortcuts-window.ui:41
+msgctxt "shortcut window"
+msgid "Create a new virtual machine"
+msgstr "Khởi tạo máy ảo mới"
+
+#: data/ui/kbd-shortcuts-window.ui:49
+msgctxt "shortcut window"
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: data/ui/kbd-shortcuts-window.ui:57
+msgctxt "shortcut window"
+msgid "Keyboard shortcuts"
+msgstr "Phím tắt bàn phím"
+
+#: data/ui/kbd-shortcuts-window.ui:65 data/ui/kbd-shortcuts-window.ui:157
+msgctxt "shortcut window"
+msgid "Close Window/Quit Boxes"
+msgstr "Đóng Cửa sổ/Thoát chương trình"
+
+#: data/ui/kbd-shortcuts-window.ui:75
+msgctxt "shortcut window"
+msgid "Box Creation and Properties"
+msgstr "Khởi tạo máy và Thuộc tính"
+
+#: data/ui/kbd-shortcuts-window.ui:84 data/ui/kbd-shortcuts-window.ui:103
+msgctxt "shortcut window"
+msgid "Switch to the next page"
+msgstr "Chuyển sang trang tiếp theo"
+
+#: data/ui/kbd-shortcuts-window.ui:93 data/ui/kbd-shortcuts-window.ui:112
+msgctxt "shortcut window"
+msgid "Switch to the previous page"
+msgstr "Chuyển sang trang trước"
+
+#: data/ui/kbd-shortcuts-window.ui:122
+msgctxt "shortcut window"
+msgid "Box Display"
+msgstr "Hiển thị Box"
+
+#: data/ui/kbd-shortcuts-window.ui:129
+msgctxt "shortcut window"
+msgid "Grab/Ungrab keyboard"
+msgstr "Bắt/Nhả bàn phím"
+
+#: data/ui/kbd-shortcuts-window.ui:139 data/ui/kbd-shortcuts-window.ui:149
+msgctxt "shortcut window"
+msgid "Back to overview"
+msgstr "Quay lại trang tổng quan"
+
+#: data/ui/kbd-shortcuts-window.ui:165
+msgctxt "shortcut window"
+msgid "Fullscreen/Restore from fullscreen"
+msgstr "Toàn màn hình/Thoát khỏi toàn màn hình"
+
+#: data/ui/machine-config-editor.ui:40
+msgid ""
+"Boxes snapshots your virtual machine before applying changes allowing you to "
+"revert them."
+msgstr ""
+"Chụp lại máy ảo của bạn trước khi áp dụng các thay đổi cho phép bạn hoàn "
+"nguyên chúng."
+
+#: data/ui/menus.ui:7
+msgid "Keyboard Shortcuts"
+msgstr "Phím tắt bàn phím"
+
+#: data/ui/menus.ui:11
+msgid "Help"
+msgstr "Trợ giúp"
+
+#: data/ui/menus.ui:15
+msgid "About Boxes"
+msgstr "Giới thiệu Máy"
+
+#: data/ui/properties-toolbar.ui:43 src/machine.vala:658
+msgid "Troubleshooting Log"
+msgstr "Nhật ký Khắc phục Sự cố"
+
+#: data/ui/properties-toolbar.ui:81
+msgid "_Copy to Clipboard"
+msgstr "_Sao chép vào Bảng nhớ tạm"
+
+#: data/ui/properties-toolbar.ui:144
+msgid "_Apply"
+msgstr "Á_p dụng"
+
+#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
+#: src/properties-window.vala:58
+msgid "Select a device or ISO file"
+msgstr "Chọn thiết bị hoặc tập tin ISO"
+
+#: data/ui/selectionbar.ui:36
+msgid "_Favorite"
+msgstr "_Yêu thích"
+
+#: data/ui/selectionbar.ui:54
+msgid "P_ause"
+msgstr "_Dừng"
+
+#: data/ui/selectionbar.ui:72
+msgid "_Delete"
+msgstr "_Xóa"
+
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
+msgid "_Cancel"
+msgstr "T_hôi"
+
+#: data/ui/selection-toolbar.ui:108
 msgid "Select All"
 msgstr "Chọn tất cả"
 
-#: ../src/topbar.vala:100
+#: data/ui/selection-toolbar.ui:113
 msgid "Select Running"
-msgstr "Chọn chạy"
+msgstr "Chọn cái đang chạy"
 
-#: ../src/topbar.vala:101
+#: data/ui/selection-toolbar.ui:117
 msgid "Select None"
-msgstr "Bỏ chọn hết"
+msgstr "Không chọn gì"
 
-#: ../src/topbar.vala:111
-msgid "D_one"
-msgstr "_Xong"
+#: data/ui/shared-folder-popover.ui:29
+msgid "Local Folder"
+msgstr "Thư mục Trên máy"
 
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: ../src/topbar.vala:149
-#, c-format
-msgid "%d selected"
-msgid_plural "%d selected"
-msgstr[0] "Đã chọn %d"
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Tên"
 
-#: ../src/topbar.vala:151
-msgid "(Click on items to select them)"
-msgstr "(Nhấn vào mục để chọn)"
+#: data/ui/shared-folder-popover.ui:70
+msgid "Select Shared Folder"
+msgstr "Chọn Thư mục Chia sẻ"
 
-#: ../src/unattended-installer.vala:54
-msgid "no password"
-msgstr "không mật mã"
+#: data/ui/shared-folder-popover.ui:111
+msgid "Save"
+msgstr "Lưu"
 
-#: ../src/unattended-installer.vala:295 ../src/unattended-installer.vala:396
-msgid "Username"
-msgstr "Tên người dùng"
+#: data/ui/snapshot-list-row.ui:6
+msgid "Revert to this state"
+msgstr "Trở lại trạng thái này"
 
-#: ../src/unattended-installer.vala:352
+#: data/ui/snapshot-list-row.ui:10
+msgid "Rename"
+msgstr "Đổi tên"
+
+#. Delete
+#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:88
+msgid "Delete"
+msgstr "Xóa bỏ"
+
+#: data/ui/snapshot-list-row.ui:92
+msgid "Done"
+msgstr "Hoàn tất"
+
+#: data/ui/troubleshoot-view.ui:44
+msgid "Oops, something went wrong"
+msgstr "Oops, có gì đó không ổn"
+
+#: data/ui/troubleshoot-view.ui:58
+msgid "Boxes cannot access the virtualization backend."
+msgstr "Máy không thể truy cập phụ trợ ảo hóa."
+
+#: data/ui/unattended-setup-box.ui:43
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
 msgstr "Chọn cài đặt nhanh để tự động cấu hình máy với thiết lập tối ưu."
 
-#. First row
-#. Translators: 'Express Install' means that the new box installation will be fully automated, the user
-#. won't be asked anything while it's performed.
-#: ../src/unattended-installer.vala:370
+#. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
+#: data/ui/unattended-setup-box.ui:73
 msgid "Express Install"
 msgstr "Cài đặt nhanh"
 
-#: ../src/unattended-installer.vala:421
-msgid "_Add Password"
-msgstr "_Thêm mật mã"
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
+msgid "Username"
+msgstr "Tên người dùng"
 
-#: ../src/unattended-installer.vala:445
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
+msgid "Password"
+msgstr "Mật mã"
+
+#: data/ui/unattended-setup-box.ui:180
+msgid "_Add Password"
+msgstr "_Thêm Mật mã"
+
+#: data/ui/unattended-setup-box.ui:214
 msgid "Product Key"
 msgstr "Khoá sản phẩm"
 
-#: ../src/unattended-installer.vala:659
-msgid "Downloading device drivers..."
-msgstr "Đang lấy trình điều khiển thiết bị về..."
+#: data/ui/welcome-tutorial.ui:7
+msgid "Welcome Tutorial"
+msgstr "Chào mừng đến tệp Hướng dẫn"
 
-#: ../src/util-app.vala:229
+#: data/ui/welcome-tutorial.ui:41
+msgid "Boxes makes it easy to install and run virtual machines."
+msgstr "Máy giúp bạn dễ dàng cài đặt và chạy các máy ảo."
+
+#: data/ui/welcome-tutorial.ui:50
+msgid ""
+"With express installation, Boxes will set the install options for a new "
+"virtual machine. Just start the installation and everything will be taken "
+"care of for you."
+msgstr ""
+"Với cài đặt nhanh, Máy sẽ thiết lập các tùy chọn cài đặt cho một máy ảo mới. "
+"Chỉ cần bắt đầu cài đặt và mọi thứ sẽ được thực hiện."
+
+#: data/ui/welcome-tutorial.ui:58
+msgid "Easy Downloads"
+msgstr "Tải xuống dễ dàng"
+
+#: data/ui/welcome-tutorial.ui:59
+msgid ""
+"With Boxes, you don't need to download an operating system to create a "
+"virtual machine. Instead, just pick the operating system you want to setup, "
+"and Boxes will automatically download it for you."
+msgstr ""
+"Với Máy, bạn không cần phải tải xuống một hệ điều hành để tạo ra một máy ảo. "
+"Thay vào đó, chỉ cần chọn hệ điều hành bạn muốn thiết lập và Máy sẽ tự động "
+"tải xuống cho bạn."
+
+#: data/ui/welcome-tutorial.ui:67
+msgid "Drag and Drop"
+msgstr "Kéo và Thả"
+
+#: data/ui/welcome-tutorial.ui:68
+msgid ""
+"Sharing files is as simple as dropping them onto your virtual machine. They "
+"will appear in your Downloads folder."
+msgstr ""
+"Chia sẻ tệp cũng đơn giản như thả chúng vào máy ảo của bạn. Chúng sẽ xuất "
+"hiện trong thư mục Tải xuống của bạn."
+
+#. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
+#: src/actions-popover.vala:30
+msgid "Box actions"
+msgstr "Hộp thoại hành động"
+
+#. Open in new Window
+#: src/actions-popover.vala:45
+msgid "Open in New Window"
+msgstr "Mở trong Cửa sổ mới"
+
+#. Send files
+#: src/actions-popover.vala:50
+msgid "Send File…"
+msgstr "Gửi Tập tin…"
+
+#. Take Screenshot
+#: src/actions-popover.vala:58
+msgid "Take Screenshot"
+msgstr "Chụp Màn hình"
+
+#. Favorite
+#: src/actions-popover.vala:63
+msgid "Remove from Favorites"
+msgstr "Xóa khỏi mục Yêu thích"
+
+#: src/actions-popover.vala:65
+msgid "Add to Favorites"
+msgstr "Thêm vào mục Yêu thích"
+
+#: src/actions-popover.vala:72
+msgid "Force Shutdown"
+msgstr "Buộc tắt máy"
+
+#: src/actions-popover.vala:83
+msgid "Clone"
+msgstr "Nhân bản"
+
+#: src/actions-popover.vala:92 src/machine.vala:637
+msgid "Restart"
+msgstr "Khởi động lại"
+
+#. Properties (in separate section)
+#: src/actions-popover.vala:101
+msgid "Properties"
+msgstr "Thuộc tính"
+
+#. Translators: %s => the timestamp of when the screenshot was taken.
+#: src/actions-popover.vala:125
+#, c-format
+msgid "Screenshot from %s"
+msgstr "Chụp màn hình lúc %s"
+
+#: src/app.vala:123
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa GNOME <gnome-vi-list@gnome.org>"
+
+#: src/app.vala:124
+msgid "A simple GNOME 3 application to access virtual systems"
+msgstr "Ứng dụng GNOME 3 đơn giản để truy cập hệ thống ảo"
+
+#: src/app.vala:189 src/main.vala:9
+msgid "Display version number"
+msgstr "Số phiên bản hiển thị"
+
+#: src/app.vala:190
+msgid "Show help"
+msgstr "Hiển thị trợ giúp"
+
+#: src/app.vala:191
+msgid "Open in full screen"
+msgstr "Mở toàn màn hình"
+
+#: src/app.vala:192 src/main.vala:10
+msgid "Check virtualization capabilities"
+msgstr "Kiểm kha khả năng ảo hoá"
+
+#: src/app.vala:193
+msgid "Open box with UUID"
+msgstr "Mở hộp bằng UUID"
+
+#: src/app.vala:194
+msgid "Search term"
+msgstr "Cụm từ tìm kiếm"
+
+#. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
+#: src/app.vala:196
+msgid "URL to display, broker or installer media"
+msgstr "URL hiển thị, trung gian hoặc phương tiện cài đặt"
+
+#: src/app.vala:207
+msgid "— A simple application to access virtual machines"
+msgstr "— Ứng dụng đơn giản để truy cập máy ảo"
+
+#: src/app.vala:234
+msgid "Too many command line arguments specified.\n"
+msgstr "Quá nhiều đối số dòng lệnh được xác định.\n"
+
+#: src/app.vala:503
+#, c-format
+msgid "Box “%s” installed and ready to use"
+msgstr "Máy \"%s\" đã cài đặt và sẵn sàng sử dụng"
+
+#: src/app.vala:505
+msgid "Launch"
+msgstr "Launch"
+
+#: src/app.vala:535
+#, c-format
+msgid "“%s“ is running in the background"
+msgstr "\"%s\" đang chạy ẩn dưới nền hệ thống"
+
+#: src/app.vala:623
+#, c-format
+msgid "Box “%s” has been deleted"
+msgstr "Đã xoá máy \"%s\""
+
+#: src/app.vala:624
+#, c-format
+msgid "%u box has been deleted"
+msgid_plural "%u boxes have been deleted"
+msgstr[0] "Đã xoá %u máy"
+
+#: src/app.vala:652 src/libvirt-machine-properties.vala:559
+#: src/snapshot-list-row.vala:194
+msgid "_Undo"
+msgstr "_Hoàn tác"
+
+#: src/app.vala:698
+msgid "Boxes is doing something"
+msgstr "Máy đang làm một việc"
+
+#: src/app-window.vala:322
+msgid "Select files to transfer"
+msgstr "Chọn các tập tin để chuyển"
+
+#: src/app-window.vala:325
+msgid "_Open"
+msgstr "_Mở"
+
+#: src/assistant/index-page.vala:146 src/properties-window.vala:61
+msgid "Open"
+msgstr "Mở"
+
+#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
+msgid "Previous"
+msgstr "Kế tiếp"
+
+#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
+#. http://en.wikipedia.org/wiki/Live_CD
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:879
+#: src/util-app.vala:172
+msgid "Live"
+msgstr "Live"
+
+#: src/assistant/media-entry.vala:27
+msgid "32-bit x86 system"
+msgstr "Hệ thống x86 32 bít"
+
+#: src/assistant/media-entry.vala:28
+msgid "64-bit x86 system"
+msgstr "Hệ thống x86 64 bít"
+
+#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
+#: src/assistant/media-entry.vala:33
+#, c-format
+msgid " from %s"
+msgstr " từ %s"
+
+#: src/assistant/review-page.vala:50
+msgid "Memory"
+msgstr "Bộ nhớ"
+
+#: src/assistant/review-page.vala:59
+msgid "Disk"
+msgstr "Đĩa"
+
+#. Translators: This is disk size. E.g "1 GB maximum".
+#: src/assistant/review-page.vala:61
+#, c-format
+msgid "%s maximum"
+msgstr "%s tối đa"
+
+#: src/assistant/vm-assistant.vala:60
+msgid "Failed to analyze installer media. Corrupted or incomplete media?"
+msgstr ""
+"Lỗi phân tích phương tiện cài đặt. Phương tiện đã bị hư hay không đầy đủ?"
+
+#: src/assistant/vm-assistant.vala:72
+msgid "Create"
+msgstr "Tạo"
+
+#: src/config-editor.vala:33
+msgid "Configuration modified "
+msgstr "Cấu hình đã sửa đổi "
+
+#: src/config-editor.vala:67
+msgid ""
+"Boxes failed to snapshot your virtual machine before applying your changes."
+msgstr "Máy chụp nhanh máy ảo thất bại, trước khi áp dụng thay đổi."
+
+#: src/config-editor.vala:85
+#, c-format
+msgid "Boxes failed to apply VM configuration changes: %s"
+msgstr "Máy không thể áp dụng thay đổi cấu hình máy ảo: %s"
+
+#. TODO: unify the reboot requests for non-properties
+#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:715
+#: src/properties.vala:83
+#, c-format
+msgid "Changes require restart of “%s”."
+msgstr "Các thay đổi yêu cầu khởi động lại \"%s\"."
+
+#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:346
+#: src/libvirt-machine-properties.vala:717 src/properties.vala:84
+msgid "_Restart"
+msgstr "_Khởi động lại"
+
+#: src/display-page.vala:133
+msgid "Press (left) Ctrl+Alt to ungrab"
+msgstr "Nhấn phím Ctrl(bên trái)+Alt để nhả"
+
+#: src/display-page.vala:135
+msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
+msgstr "Nhấn & thả (bên trái) Ctrl+Alt để bỏ khóa bàn phím."
+
+#. Translators: Showing size of widget as WIDTH×HEIGHT here.
+#: src/display-page.vala:324
+#, c-format
+msgid "%d×%d"
+msgstr "%d×%d"
+
+#: src/display-toolbar.vala:70
+msgid "Exit fullscreen"
+msgstr "Thoát khỏi Toàn màn hình"
+
+#: src/downloads-hub.vala:52
+msgid "Downloading media"
+msgstr "Đang tải xuống tệp"
+
+#: src/downloads-hub.vala:78
+#, c-format
+msgid "“%s” download complete"
+msgstr "đã hoàn tất việc tải \"%s\""
+
+#: src/downloads-hub.vala:80
+msgid "Install"
+msgstr "Cài đặt"
+
+#. We did this, so ignore!
+#: src/downloads-hub.vala:186
+msgid "Failed to download"
+msgstr "Tải xuống thất bại"
+
+#: src/icon-view.vala:32
+msgid "New and Recent"
+msgstr "Mới và Mới dùng"
+
+#: src/installed-media.vala:55
+msgid "Unsupported disk image format."
+msgstr "Định dạng ảnh đĩa không được hỗ trợ."
+
+#: src/installed-media.vala:101 src/installer-media.vala:180
+#: src/properties-page-widget.vala:21
+msgid "System"
+msgstr "Hệ thống"
+
+#. Translators: This is memory or disk size. E.g. "1 GB used".
+#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:466
+#, c-format
+msgid "%s used"
+msgstr "%s đã sử dụng"
+
+#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
+#: src/i-properties-provider.vala:115
+#, c-format
+msgid "%s (recommended)"
+msgstr "%s (khuyên dùng)"
+
+#: src/keys-input-popover.vala:26
+msgid "Ctrl + Alt + Backspace"
+msgstr "Ctrl + Alt + Backspace"
+
+#: src/keys-input-popover.vala:27
+msgid "Ctrl + Alt + Del"
+msgstr "Ctrl + Alt + Del"
+
+#. New section
+#: src/keys-input-popover.vala:31
+msgid "Ctrl + Alt + F1"
+msgstr "Ctrl + Alt + F1"
+
+#: src/keys-input-popover.vala:32
+msgid "Ctrl + Alt + F2"
+msgstr "Ctrl + Alt + F2"
+
+#: src/keys-input-popover.vala:33
+msgid "Ctrl + Alt + F3"
+msgstr "Ctrl + Alt + F3"
+
+#: src/keys-input-popover.vala:34
+msgid "Ctrl + Alt + F7"
+msgstr "Ctrl + Alt + F7"
+
+#. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
+#. intercepted by host/client, to send to the box.
+#: src/keys-input-popover.vala:43
+msgid "Send key combinations"
+msgstr "Gửi tổ hợp bàn phím"
+
+#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:70
+msgid "_Name"
+msgstr "_Tên"
+
+#: src/libvirt-machine-properties.vala:108
+msgid "IP Address"
+msgstr "Địa chỉ IP"
+
+#: src/libvirt-machine-properties.vala:110
+msgid "Broker"
+msgstr "Trung gian"
+
+#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
+#: src/libvirt-machine-properties.vala:113
+msgid "Display Protocol"
+msgstr "Hiển thị các Giao thức"
+
+#. Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
+#: src/libvirt-machine-properties.vala:116
+msgid "Display URL"
+msgstr "Hiển thị URL"
+
+#. Translators: empty is listed as the filename for a non-mounted CD
+#: src/libvirt-machine-properties.vala:182
+#: src/libvirt-machine-properties.vala:223
+msgid "empty"
+msgstr "rỗng"
+
+#. Translators: This is the text on the button to select an iso for the cd
+#: src/libvirt-machine-properties.vala:194
+#: src/libvirt-machine-properties.vala:222
+msgid "_Select"
+msgstr "_Chọn"
+
+#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
+#: src/libvirt-machine-properties.vala:197
+#: src/libvirt-machine-properties.vala:205
+msgid "_Remove"
+msgstr "_Loại bỏ"
+
+#. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
+#. Second “%s” is name of the box.
+#: src/libvirt-machine-properties.vala:212
+#, c-format
+msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
+msgstr "Chèn \"%s\" dưới dạng CD/DVD vào \"%s\" thất bại"
+
+#. Translators: “%s” here is name of the box.
+#: src/libvirt-machine-properties.vala:226
+#, c-format
+msgid "Removal of CD/DVD from “%s” failed"
+msgstr "Loại bỏ CD/DVD khỏi \"%s\" thất bại"
+
+#: src/libvirt-machine-properties.vala:241
+msgid "CD/DVD"
+msgstr "CD/DVD"
+
+#: src/libvirt-machine-properties.vala:305
+msgid "CPU"
+msgstr "CPU"
+
+#. I/O
+#. 100 MiB/s
+#: src/libvirt-machine-properties.vala:311
+msgid "I/O"
+msgstr "Vào/Ra"
+
+#. Network
+#. 1 MiB/s
+#: src/libvirt-machine-properties.vala:317
+msgid "Network"
+msgstr "Network"
+
+#: src/libvirt-machine-properties.vala:354
+msgid "_Force Shutdown"
+msgstr "Buộc _Tắt máy"
+
+#: src/libvirt-machine-properties.vala:368
+msgid "_Troubleshooting Log"
+msgstr "_Nhật ký khắc phục sự cố"
+
+#: src/libvirt-machine-properties.vala:376
+msgid "Edit XML"
+msgstr "Sửa XML"
+
+#: src/libvirt-machine-properties.vala:396
+msgid "_Memory: "
+msgstr "_Bộ nhớ: "
+
+#: src/libvirt-machine-properties.vala:465
+msgid "Maximum Disk Space"
+msgstr "Kích cỡ Không gian đĩa Tối đa"
+
+#: src/libvirt-machine-properties.vala:483
+msgid ""
+"There is not enough space on your machine to increase the maximum disk size."
+msgstr "Không có đủ không gian trên máy của bạn để tăng kích thước đĩa tối đa."
+
+#: src/libvirt-machine-properties.vala:493
+msgid "Maximum _Disk Size: "
+msgstr "Kích cỡ Đĩ_a Tối đa: "
+
+#. qemu-img doesn't support resizing disk image with snapshots:
+#. https://bugs.launchpad.net/qemu/+bug/1563931
+#: src/libvirt-machine-properties.vala:546
+#, c-format
+msgid "Storage resize requires deleting associated snapshot."
+msgid_plural "Storage resize requires deleting %llu associated snapshots."
+msgstr[0] ""
+"Thay đổi kích thước phần lưu trữ yêu cầu xóa %llu bản chụp nhanh liên quan."
+
+#: src/libvirt-machine-properties.vala:675
+#: src/libvirt-machine-properties.vala:679
+msgid "CPUs: "
+msgstr "CPUs: "
+
+#: src/libvirt-machine-properties.vala:734
+msgid "_Run in background"
+msgstr "C_hạy ẩn"
+
+#: src/libvirt-machine-properties.vala:746
+#: src/libvirt-machine-properties.vala:749
+#, c-format
+msgid "“%s” will not be paused automatically."
+msgstr "\"%s\" sẽ không tự động tạm dừng."
+
+#: src/libvirt-machine-properties.vala:747
+#: src/libvirt-machine-properties.vala:750
+#, c-format
+msgid "“%s” will be paused automatically to save resources."
+msgstr "\"%s\" sẽ tạm dừng tự động để lưu tài nguyên."
+
+#: src/libvirt-machine-properties.vala:775
+msgid "Boxes is not authorized to run in the background"
+msgstr "Máy không được phép chạy ẩn dưới nền hệ thống"
+
+#: src/libvirt-machine-properties.vala:777
+msgid "Manage permissions"
+msgstr "Quản lý quyền"
+
+#: src/libvirt-machine-properties.vala:795
+msgid "3D Acceleration"
+msgstr "Tăng tốc 3D"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: src/libvirt-machine.vala:651
+#, c-format
+msgid "Restoring %s from disk"
+msgstr "Phục hồi %s từ đĩa"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: src/libvirt-machine.vala:654
+#, c-format
+msgid "Starting %s"
+msgstr "Khởi động %s"
+
+#: src/libvirt-machine.vala:733
+#, c-format
+msgid "Restart of “%s” is taking too long. Force it to shutdown?"
+msgstr "Khởi động '%s' mất nhiều thời gian. Buộc tắt máy này nhé?"
+
+#: src/libvirt-machine.vala:735
+msgid "_Shutdown"
+msgstr "Tắt máy"
+
+#: src/libvirt-machine.vala:751
+#, c-format
+msgid "Cloning “%s”…"
+msgstr "Sao nguyên bản “%s”…"
+
+#: src/libvirt-machine.vala:877
+msgid "Installing…"
+msgstr "Đang cài đặt…"
+
+#: src/libvirt-machine.vala:881
+msgid "Setting up clone…"
+msgstr "Thiết lập bản sao…"
+
+#: src/libvirt-machine.vala:883
+msgid "Importing…"
+msgstr "Đang nhập…"
+
+#: src/libvirt-machine.vala:892
+#, c-format
+msgid "host: %s"
+msgstr "máy chủ: %s"
+
+#: src/list-view-row.vala:133
+msgid "Connected"
+msgstr "Đã kết nối"
+
+#: src/list-view-row.vala:133
+msgid "Disconnected"
+msgstr "Đã ngưng kết nối"
+
+#: src/list-view-row.vala:139
+msgid "Running"
+msgstr "Đang chạy"
+
+#: src/list-view-row.vala:145
+msgid "Paused"
+msgstr "Tạm dừng"
+
+#: src/list-view-row.vala:150
+msgid "Powered Off"
+msgstr "Tắt nguồn"
+
+#. Translators: The %s will be expanded with the name of the vm
+#: src/machine.vala:203
+#, c-format
+msgid "Connecting to %s"
+msgstr "Kết nối đến %s"
+
+#: src/machine.vala:223
+#, c-format
+msgid "Authentication failed: %s"
+msgstr "Xác thực thất bại: %s"
+
+#: src/machine.vala:236 src/machine.vala:665
+#, c-format
+msgid "Connection to “%s” failed"
+msgstr "Lỗi kết nối đến “%s”"
+
+#: src/machine.vala:289
+msgid "Machine is under construction"
+msgstr "Máy đang được xây dựng"
+
+#: src/machine.vala:444
+msgid "Saving…"
+msgstr "Đang lưu…"
+
+#: src/machine.vala:636
+#, c-format
+msgid ""
+"“%s” could not be restored from disk\n"
+"Try without saved state?"
+msgstr ""
+"\"%s\" không thể khôi phục từ đĩa\n"
+"Thử lại mà không lưu lại trạng thái?"
+
+#: src/machine.vala:647
+#, c-format
+msgid "Failed to start “%s”"
+msgstr "Không khởi động được \"%s\""
+
+#. Translators: %s => name of launched box
+#: src/machine.vala:752
+#, c-format
+msgid "“%s” requires authentication"
+msgstr "“%s” yêu cầu xác thực"
+
+#. FIXME: add proper UI & docs
+#: src/main.vala:53
+#, c-format
+msgid "• The CPU is capable of virtualization: %s\n"
+msgstr "• CPU có khả năng ảo hoá: %s\n"
+
+#: src/main.vala:54
+#, c-format
+msgid "• The KVM module is loaded: %s\n"
+msgstr "• Môđun KVM đã nạp: %s\n"
+
+#: src/main.vala:55
+#, c-format
+msgid "• Libvirt KVM guest available: %s\n"
+msgstr "• Libvirt KVM guest sẵn sàng: %s\n"
+
+#: src/main.vala:56
+#, c-format
+msgid "• Boxes storage pool available: %s\n"
+msgstr "• Nhóm lưu trữ Máy có sẵn: %s\n"
+
+#: src/main.vala:60
+#, c-format
+msgid "• The SELinux context is default: %s\n"
+msgstr "• Ngữ cảnh SELinux là mặc định: %s\n"
+
+#: src/main.vala:64
+#, c-format
+msgid "Report bugs to <%s>.\n"
+msgstr "Thông báo lỗi (tiếng Anh) cho <%s>.\n"
+
+#: src/main.vala:65
+#, c-format
+msgid "%s home page: <%s>.\n"
+msgstr "Trang chủ %s: <%s>.\n"
+
+#: src/media-manager.vala:304
+#, c-format
+msgid "No such file %s"
+msgstr "Không thấy tập tin %s"
+
+#: src/notificationbar.vala:44
+#, c-format
+msgid "Sign In to %s"
+msgstr "Đăng nhập vào %s"
+
+#: src/notificationbar.vala:47
+#, c-format
+msgid "Not connected to %s"
+msgstr "Chưa kết nối đến %s"
+
+#: src/portals.vala:45
+msgid "Boxes wants to run VM in background"
+msgstr "Máy muốn chạy VM (máy ảo) dưới nền của hệ thống"
+
+#: src/properties-page-widget.vala:17
+msgid "General"
+msgstr "Tổng quát"
+
+#: src/properties-page-widget.vala:25
+msgid "Devices & Shares"
+msgstr "Thiết bị & Chia sẻ"
+
+#: src/properties-page-widget.vala:29
+msgid "Snapshots"
+msgstr "Bản chụp nhanh"
+
+#: src/remote-machine.vala:80
+msgid "Protocol"
+msgstr "Thuộc tính"
+
+#: src/remote-machine.vala:82
+msgid "URL"
+msgstr "URL"
+
+#: src/remote-machine.vala:84
+msgid "_URL"
+msgstr "_URL"
+
+#: src/selectionbar.vala:60
+#, c-format
+msgid "Pausing “%s” failed"
+msgstr "Gặp lỗi khi tạm dừng “%s”"
+
+#. Translators: This is a button to open box(es) in new window(s)
+#: src/selectionbar.vala:179
+msgctxt "0 items selected"
+msgid "_Open in new window"
+msgstr "Mở tro_ng cửa sổ mới"
+
+#: src/selectionbar.vala:181
+#, c-format
+msgid "_Open in new window"
+msgid_plural "_Open in %u new windows"
+msgstr[0] "_Mở trong %u cửa sổ mới"
+
+#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
+#. when the main collection view is in selection mode.
+#: src/selection-toolbar.vala:46
+#, c-format
+msgid "%u selected"
+msgid_plural "%u selected"
+msgstr[0] "đã chọn %u"
+
+#: src/selection-toolbar.vala:48
+msgid "(Click on items to select them)"
+msgstr "(Nhấn vào mục để chọn)"
+
+#: src/snapshot-list-row.vala:137
+#, c-format
+msgid "Reverting to %s…"
+msgstr "Kết nối đến %s…"
+
+#: src/snapshot-list-row.vala:155
+msgid "Failed to apply snapshot"
+msgstr "Thất bại trong việc áp dụng bản chụp nhanh"
+
+#: src/snapshot-list-row.vala:172
+#, c-format
+msgid "Snapshot “%s” deleted."
+msgstr "Đã xóa điểm ảnh “%s”."
+
+#: src/snapshots-property.vala:61
+msgid "No snapshots created yet. Create one using the button below."
+msgstr "Chưa có bản chụp nhanh nào được tạo. Tạo một cái bằng nút bên dưới."
+
+#: src/snapshots-property.vala:124
+msgid "Creating new snapshot…"
+msgstr "Đang tạo bản chụp mới…"
+
+#: src/snapshots-property.vala:132
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "Thất bại trong việc tạo bản chụp nhanh của %s"
+
+#. Translators: "Unknown" is a placeholder for a box name when it could not be determined
+#: src/spice-display.vala:46
+msgid "Unknown"
+msgstr "Không biết"
+
+#: src/spice-display.vala:62 src/spice-display.vala:512
+#, c-format
+msgid "Redirection of USB device “%s” for “%s” failed"
+msgstr "Chuyển hướng thiết bị USB \"%s\" cho \"%s\" thất bại"
+
+#. Translators: %s => a link to the website where users can download the guest tools.
+#: src/spice-display.vala:375
+#, c-format
+msgid ""
+"SPICE guest tools are not running. These tools improve user experience and "
+"enable host and box interactions, such as copy and paste. Please visit %s to "
+"download and install these tools from within the box."
+msgstr ""
+"Các công cụ khách SPICE không chạy. Những công cụ này cải thiện trải nghiệm "
+"người dùng và cho phép tương tác máy chủ và máy ảo, chẳng hạn như sao chép "
+"và dán. Vui lòng truy cập %s để tải xuống và cài đặt các công cụ này từ bên "
+"trong máy ảo."
+
+#: src/spice-display.vala:402
+msgid "USB devices"
+msgstr "Thiết bị USB"
+
+#: src/spice-display.vala:418
+msgid "Folder Shares"
+msgstr "Thư mục Chia sẻ"
+
+#: src/spice-display.vala:616 src/spice-display.vala:641
+#: src/spice-display.vala:644
+msgid "Invalid URL"
+msgstr "URL không hợp lệ"
+
+#: src/spice-display.vala:626
+msgid "The port must be specified once"
+msgstr "Phải xác định cổng ít nhất một lần"
+
+#: src/spice-display.vala:637
+msgid "Missing port in Spice URL"
+msgstr "Thiếu cổng trong URL Spice"
+
+#. Translators: "%s" is a file name.
+#: src/transfer-info-row.vala:31
+#, c-format
+msgid "Copying “%s” to “Downloads”"
+msgstr "Sao chép \"%s\" vào thư mục \"Tải xuống\""
+
+#. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
+#. installation will work. When this happens, just disable unattended installs, and let the caller decide
+#. if it wants to retry a non-automatic install or to just abort the box creation..
+#: src/unattended-installer.vala:207
+msgid ""
+"An error occurred during installation preparation. Express Install disabled."
+msgstr "Lỗi trong quá trình chuẩn bị cài đặt. Tắt cài đặt nhanh."
+
+#: src/unattended-installer.vala:465
+msgid "Downloading device drivers…"
+msgstr "Đang lấy trình điều khiển thiết bị về…"
+
+#: src/unattended-setup-box.vala:53
+msgid "no password"
+msgstr "không mật mã"
+
+#: src/unattended-setup-box.vala:125
+#, c-format
+msgid "Express installation of %s requires an internet connection."
+msgstr "Việc cài đặt nhanh %s yêu cầu kết nối internet."
+
+#: src/unattended-setup-box.vala:231
+#, c-format
+msgid "GNOME Boxes credentials for “%s”"
+msgstr "Chứng danh Máy cho \"%s\""
+
+#: src/util-app.vala:359
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -520,270 +1365,288 @@ msgstr ""
 "chạy:\n"
 "%s"
 
-#: ../src/util-app.vala:233
+#: src/util-app.vala:363
 msgid "SELinux not installed?"
 msgstr "Chưa cài đặt SELinux?"
 
-#: ../src/util-app.vala:314
+#: src/util-app.vala:445
 msgid ""
-"Could not get 'gnome-boxes' storage pool information from libvirt. Make sure "
-"'virsh -c qemu:///session pool-dumpxml gnome-boxes' is working."
+"Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
+"“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
 msgstr ""
+"Không thể lấy thông tin hộp lưu trữ \"gnome-boxes\"từ libvirt. Hãy chắc chắn "
+"rằng \"virsh -c qemu:///session pool-dumpxml gnome-boxes\" đang hoạt động."
 
-#: ../src/util-app.vala:319
+#: src/util-app.vala:450
 #, c-format
 msgid ""
-"%s is known to libvirt as GNOME Boxes's storage pool but this directory does "
+"%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr ""
+"%s được libvirt gọi là nhóm lưu trữ của Máy nhưng thư mục này không tồn tại"
 
-#: ../src/util-app.vala:323
+#: src/util-app.vala:454
 #, c-format
 msgid ""
-"%s is known to libvirt as GNOME Boxes's storage pool but is not a directory"
+"%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
+"%s được libvirt gọi là nhóm lưu trữ của Máy nhưng không phải là một thư mục"
 
-#: ../src/util-app.vala:327
+#: src/util-app.vala:458
 #, c-format
 msgid ""
-"%s is known to libvirt as GNOME Boxes's storage pool but is not user-"
+"%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
 "readable/writable"
 msgstr ""
+"%s được libvirt gọi là nhóm lưu trữ của Máy nhưng không thể đọc/ghi người "
+"dùng được"
 
-#: ../src/util.vala:322
+#: src/util.vala:334
 msgid "yes"
 msgstr "có"
 
-#: ../src/util.vala:322
+#: src/util.vala:334
 msgid "no"
 msgstr "không"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: ../src/vm-configurator.vala:443
+#: src/vm-configurator.vala:802
 msgid "Incapable host system"
 msgstr "Hệ thống chủ không đủ khả năng"
 
-#: ../src/vm-creator.vala:43
-msgid ""
-"An error occurred during installation preparation. Express Install disabled."
-msgstr "Lỗi trong quá trình chuẩn bị cài đặt. Tắt cài đặt nhanh."
+#. Translators: This is the name of the snapshot taken right after installing a VM.
+#: src/vm-creator.vala:169
+msgid "Just installed "
+msgstr "Vừa mới cài đặt "
 
-#: ../src/vm-creator.vala:162
-msgid "Installing..."
-msgstr "Đang cài đặt..."
-
-#. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
-#. http://en.wikipedia.org/wiki/Live_CD
-#: ../src/vm-creator.vala:166 ../src/wizard-source.vala:244
-msgid "Live"
-msgstr "Live"
-
-#. This string is about automatic installation progress
-#: ../src/vm-creator.vala:251
+#: src/vm-importer.vala:63
 #, c-format
-msgid "%d%% Installed"
-msgid_plural "%d%% Installed"
-msgstr[0] "Đã cài đặt %d%%"
+msgid "Box import from file “%s” failed."
+msgstr "Nhập máy từ tệp \"%s\" thất bại."
 
-#: ../src/vnc-display.vala:145
+#: src/vnc-display.vala:169
 msgid "Read-only"
 msgstr "Chỉ đọc"
 
-#: ../src/wizard-source.vala:119 ../src/wizard-source.vala:146
-msgid "Enter URL"
-msgstr "Nhập URL"
+#~| msgid "Boxes"
+#~ msgid "GNOME Boxes"
+#~ msgstr "GNOME Boxes"
 
-#: ../src/wizard-source.vala:126
-msgid "Select a file"
-msgstr "Chọn tập tin"
+#~ msgid "State of the art virtualization"
+#~ msgstr "Ảo hóa hiện đại"
 
-#: ../src/wizard-source.vala:163
-msgid ""
-"<b>Desktop Access</b>\n"
-"\n"
-"Will add boxes for all systems available from this account."
-msgstr ""
-"<b>Truy cập môi trường làm việc</b>\n"
-"\n"
-"Sẽ tạo máy cho mọi hệ thống hỗ trợ từ tài khoản này."
+#~| msgid "View and use virtual machines"
+#~ msgid "Boxes can be virtual or remote machines."
+#~ msgstr "Máy có thể là máy ảo hoặc từ xa."
 
-#: ../src/wizard-source.vala:253
-msgid "32-bit x86 system"
-msgstr "Hệ thống x86 32 bit"
+#~ msgctxt "shortcut window"
+#~ msgid "Connect to a remote machine"
+#~ msgstr "Kết nối với máy từ xa"
 
-#: ../src/wizard-source.vala:254
-msgid "64-bit x86 system"
-msgstr "Hệ thống x86 64 bit"
+#~ msgid "Show more…"
+#~ msgstr "Hiển thị thêm…"
 
-#. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: ../src/wizard-source.vala:263
-#, c-format
-msgid " from %s"
-msgstr " từ %s"
+#~ msgid "Insert operating system installation media or select a source below"
+#~ msgstr "Cài đĩa cài đặt hệ điều hành hoặc chọn nguồn bên dưới"
 
-#: ../src/wizard.vala:100
-msgid "Box creation failed"
-msgstr "Lỗi tạo máy"
+#~ msgid "Download an OS"
+#~ msgstr "Tải về một Hệ điều hành"
 
-#: ../src/wizard.vala:148
-msgid "Please enter desktop or collection URI"
-msgstr "Vui lòng chọn URI desktop hoặc nhóm"
+#~ msgid ""
+#~ "Operating system will be downloaded and installed in a virtual machine."
+#~ msgstr "Hệ điều hành sẽ được tải xuống và cài đặt trong một máy ảo."
 
-#: ../src/wizard.vala:154
-msgid "Will add boxes for all systems available from this account."
-msgstr "Sẽ thêm máy cho mọi hệ thống hỗ trợ từ tài khoản này."
+#~ msgid "▶"
+#~ msgstr "▶"
 
-#: ../src/wizard.vala:157
-msgid "Will add a single box."
-msgstr "Sẽ thêm một máy."
+#~ msgid "Select a file"
+#~ msgstr "Chọn tập tin"
 
-#: ../src/wizard.vala:163
-msgid "Desktop Access"
-msgstr "Truy cập môi trường làm việc"
+#~ msgid "Select a bootable image file to install in a virtual machine."
+#~ msgstr "Chọn tệp hình ảnh có thể khởi động để cài đặt trong máy ảo."
 
-#: ../src/wizard.vala:265
-#, c-format
-msgid "Unsupported protocol '%s'"
-msgstr "Phiên bản '%s' không hỗ trợ"
+#~ msgid ""
+#~ "Any trademarks shown above are used merely for identification of software "
+#~ "products you have already obtained and are the property of their "
+#~ "respective owners."
+#~ msgstr ""
+#~ "Bất kỳ thương hiệu nào dưới đây chỉ đơn thuần để định dan sản phẩm phần "
+#~ "mềm bạn đã có và là tài sản của chủ sở hữu tương ứng."
 
-#: ../src/wizard.vala:271
-msgid "Unknown installer media"
-msgstr ""
+#~ msgid ""
+#~ "Enter an address to connect to. Addresses can begin with spice://, "
+#~ "rdp://, ssh://, or vnc://."
+#~ msgstr ""
+#~ "Nhập địa chỉ để kết nối. Địa chỉ có thể bắt đầu bằng spice://, rdp://, "
+#~ "ssh:// hoặc vnc://."
 
-#: ../src/wizard.vala:272
-msgid "Analyzing..."
-msgstr "Đang phân tích..."
+#~ msgid "Create a Box"
+#~ msgstr "Tạo máy"
 
-#: ../src/wizard.vala:304
-msgid "Failed to analyze installer media. Corrupted or incomplete media?"
-msgstr ""
+#~ msgid "C_reate"
+#~ msgstr "_Tạo"
 
-#: ../src/wizard.vala:376
-msgid "Box setup failed"
-msgstr "Lỗi thiết lập máy"
+#~ msgid "C_ontinue"
+#~ msgstr "_Tiếp tục"
 
-#: ../src/wizard.vala:390
-msgid "Boxes will create a new box with the following properties:"
-msgstr "Sẽ tạo máy với các thuộc tính sau đây:"
+#~ msgid "Customize Resources"
+#~ msgstr "Tùy chỉnh Tài nguyên"
 
-#: ../src/wizard.vala:395
-msgid "Type"
-msgstr "Loại"
+#~ msgid "Preparing to create new box"
+#~ msgstr "Chuẩn bị tạo máy mới"
 
-#: ../src/wizard.vala:398
-msgid "Host"
-msgstr "Máy chứa"
+#~ msgid ""
+#~ "Each box can be a virtual machine that runs on this computer, or a "
+#~ "connection to an existing remote machine"
+#~ msgstr ""
+#~ "Mỗi máy có thể là một máy ảo chạy trên máy tính này hoặc kết nối với máy "
+#~ "từ xa"
 
-#: ../src/wizard.vala:409 ../src/wizard.vala:420
-msgid "Port"
-msgstr "Cổng"
+#~ msgid "Select"
+#~ msgstr "Chọn"
 
-#: ../src/wizard.vala:411
-msgid "TLS Port"
-msgstr "Cổng TLS"
+#~ msgid "Source installer media '%s' no longer exists"
+#~ msgstr "Phương tiện trình cài đặt nguồn '%s' không còn tồn tại"
 
-#: ../src/wizard.vala:425
-msgid "Will add boxes for all systems available from this account:"
-msgstr "Sẽ thêm máy cho mọi hệ thống hỗ trợ từ tài khoản này:"
+#~| msgid "%d%% Installed"
+#~| msgid_plural "%d%% Installed"
+#~ msgid "Add installer media"
+#~ msgstr "Thêm phương tiện cài đặt"
 
-#: ../src/wizard.vala:445
-msgid "Disk"
-msgstr "Đĩa"
+#~ msgid "The list of boxes collections"
+#~ msgstr "Danh sách nhóm máy ảo"
 
-#: ../src/wizard.vala:445
-#, c-format
-msgid "%s maximum"
-msgstr "%s tối đa"
+#~ msgid "Animation duration"
+#~ msgstr "Khoảng thời gian hoạt cản"
 
-#: ../src/wizard.vala:535
-msgid "Introduction"
-msgstr "Giới thiệu"
+#~ msgid "The time it takes for transitions and animation, in ms."
+#~ msgstr "Thời gian dùng cho chuyển đổi và hoạt cảnh, theo mili giây."
 
-#: ../src/wizard.vala:539
-msgid ""
-"Creating a Box will allow you to use another operating system directly from "
-"your existing login.\n"
-"\n"
-"You may connect to an existing machine <b><i>over the network</i></b> or "
-"create a <b><i>virtual machine</i></b> that runs locally on your own."
-msgstr ""
-"Tạo máy là cho phép bạn dùng một hệ điều hành khác trực tiếp từ đăng nhập "
-"đang dùng.\n"
-"\n"
-"Bạn có thể kết nối đến máy đã có <b><i>qua mạng</i></b> hoặc tạo <b><i>máy "
-"ảo</i></b> chạy nội bộ trên chính máy của bạn."
+#~ msgid "Quit"
+#~ msgstr "Thoát"
 
-#: ../src/wizard.vala:551
-msgid "Source Selection"
-msgstr "Chọn nguồn"
+#~ msgid "Create one using the button on the top left."
+#~ msgstr "Tạo một cái bằng nút trên bên trái"
 
-#: ../src/wizard.vala:552
-msgid "Insert operating system installation media or select a source below"
-msgstr "Cài đĩa cài đặt hệ điều hành hoặc chọn nguồn bên dưới"
+#~ msgid "Virtualizer"
+#~ msgstr "Trình ảo hoá"
 
-#: ../src/wizard.vala:562
-msgid ""
-"Any trademarks shown above are used merely for identification of software "
-"products you have already obtained and are the property of their respective "
-"owners."
-msgstr ""
-"Bất kỳ thương hiệu nào dưới đây chỉ đơn thuần để định dan sản phẩm phần mềm "
-"bạn đã có và là tài sản của chủ sở hữu tương ứng."
+#~ msgid "Error saving: %s"
+#~ msgstr "Lỗi lưu: %s"
 
-#: ../src/wizard.vala:575
-msgid "Preparation"
-msgstr "Chuẩn bị"
+#~ msgid "Add support to guest"
+#~ msgstr "Thêm hỗ trợ cho máy khách"
 
-#: ../src/wizard.vala:576
-msgid "Preparing to create new box"
-msgstr "Chuẩn bị tạo máy mới"
+#~ msgid "Smartcard support"
+#~ msgstr "Hỗ trợ Smartcard"
 
-#: ../src/wizard.vala:613
-msgid "Setup"
-msgstr "Thiết lập"
+#~ msgid "When you force shutdown, the box may lose data."
+#~ msgstr "Dữ liệu sẽ bị mật khi buộc tắt máy."
 
-#: ../src/wizard.vala:620
-msgid "Review"
-msgstr "Kiểm tra"
+#~ msgid "Enter password for %s"
+#~ msgstr "Nhập mật mã cho %s"
 
-#: ../src/wizard.vala:631
-msgid ""
-"Virtualization extensions are unavailable on your system. Expect this box to "
-"be extremely slow. If your system is recent enough (made in or after 2008), "
-"these extensions are probably available on your system and you may need to "
-"enable them in your system's BIOS setup."
-msgstr ""
-"Phần mở rộng ảo hoá không được hỗ trợ trên máy của bạn. Máy ảo này sẽ chạy "
-"cực kỳ chậm. Nếu bạn mua máy gần đây (từ 2008), những phần mở rộng này có "
-"thể được hỗ trợ và bạn chỉ cần bật lên treong thiết lập BIOS."
+#~ msgid "Login"
+#~ msgstr "Đăng nhập"
 
-#: ../src/wizard.vala:646
-msgid "Create a Box"
-msgstr "Tạo máy"
+#~ msgid "Some changes may take effect only after reboot"
+#~ msgstr "Một vài thay đổi chỉ có tác dụng sau khi khởi động lại"
 
-#: ../src/wizard.vala:649
-msgid "_Cancel"
-msgstr "T_hôi"
+#~ msgid "Net:"
+#~ msgstr "Mạng:"
 
-#: ../src/wizard.vala:658
-msgid "_Back"
-msgstr "_Quay lại"
+#~ msgid "Share clipboard"
+#~ msgstr "Chia sẻ bảng tạm"
 
-#: ../src/wizard.vala:665
-msgid "C_ontinue"
-msgstr "_Tiếp tục"
+#~ msgid "Resize guest"
+#~ msgstr "Đổi kích thước máy khách"
 
-#: ../src/wizard.vala:673
-msgid "C_reate"
-msgstr "_Tạo"
+#~ msgid "Redirect new USB devices"
+#~ msgstr "Chuyển hướng thiết bị USB mới"
 
-#: ../src/wizard.vala:758
-msgid "C_ustomize..."
-msgstr "_Tuỳ biến..."
+#~ msgid "Error connecting %s: %s"
+#~ msgstr "Lỗi kết nối %s: %s"
 
-#~ msgid "Fullscreen"
-#~ msgstr "Toàn màn hình"
+#~ msgid "D_one"
+#~ msgstr "_Xong"
+
+#~ msgid "Enter URL"
+#~ msgstr "Nhập URL"
+
+#~ msgid ""
+#~ "<b>Desktop Access</b>\n"
+#~ "\n"
+#~ "Will add boxes for all systems available from this account."
+#~ msgstr ""
+#~ "<b>Truy cập môi trường làm việc</b>\n"
+#~ "\n"
+#~ "Sẽ tạo máy cho mọi hệ thống hỗ trợ từ tài khoản này."
+
+#~ msgid "Please enter desktop or collection URI"
+#~ msgstr "Vui lòng chọn URI desktop hoặc nhóm"
+
+#~ msgid "Will add boxes for all systems available from this account."
+#~ msgstr "Sẽ thêm máy cho mọi hệ thống hỗ trợ từ tài khoản này."
+
+#~ msgid "Will add a single box."
+#~ msgstr "Sẽ thêm một máy."
+
+#~ msgid "Desktop Access"
+#~ msgstr "Truy cập môi trường làm việc"
+
+#~ msgid "Unsupported protocol '%s'"
+#~ msgstr "Phiên bản '%s' không hỗ trợ"
+
+#~ msgid "Analyzing..."
+#~ msgstr "Đang phân tích..."
+
+#~ msgid "Box setup failed"
+#~ msgstr "Lỗi thiết lập máy"
+
+#~ msgid "Type"
+#~ msgstr "Loại"
+
+#~ msgid "Host"
+#~ msgstr "Máy chứa"
+
+#~ msgid "Port"
+#~ msgstr "Cổng"
+
+#~ msgid "TLS Port"
+#~ msgstr "Cổng TLS"
+
+#~ msgid "Will add boxes for all systems available from this account:"
+#~ msgstr "Sẽ thêm máy cho mọi hệ thống hỗ trợ từ tài khoản này:"
+
+#~ msgid "Introduction"
+#~ msgstr "Giới thiệu"
+
+#~ msgid ""
+#~ "Creating a Box will allow you to use another operating system directly "
+#~ "from your existing login.\n"
+#~ "\n"
+#~ "You may connect to an existing machine <b><i>over the network</i></b> or "
+#~ "create a <b><i>virtual machine</i></b> that runs locally on your own."
+#~ msgstr ""
+#~ "Tạo máy là cho phép bạn dùng một hệ điều hành khác trực tiếp từ đăng nhập "
+#~ "đang dùng.\n"
+#~ "\n"
+#~ "Bạn có thể kết nối đến máy đã có <b><i>qua mạng</i></b> hoặc tạo "
+#~ "<b><i>máy ảo</i></b> chạy nội bộ trên chính máy của bạn."
+
+#~ msgid "Setup"
+#~ msgstr "Thiết lập"
+
+#~ msgid ""
+#~ "Virtualization extensions are unavailable on your system. Expect this box "
+#~ "to be extremely slow. If your system is recent enough (made in or after "
+#~ "2008), these extensions are probably available on your system and you may "
+#~ "need to enable them in your system's BIOS setup."
+#~ msgstr ""
+#~ "Phần mở rộng ảo hoá không được hỗ trợ trên máy của bạn. Máy ảo này sẽ "
+#~ "chạy cực kỳ chậm. Nếu bạn mua máy gần đây (từ 2008), những phần mở rộng "
+#~ "này có thể được hỗ trợ và bạn chỉ cần bật lên treong thiết lập BIOS."
 
 #~ msgid "RAM"
 #~ msgstr "RAM"
@@ -807,14 +1670,8 @@ msgstr "_Tuỳ biến..."
 #~ msgid "_Add Product Key"
 #~ msgstr "_Thêm khoá sản phẩm"
 
-#~ msgid "Favorites"
-#~ msgstr "Yêu thích"
-
 #~ msgid "Private"
 #~ msgstr "Riêng tư"
 
 #~ msgid "Shared with you"
 #~ msgstr "Chia sẻ với bạn"
-
-#~ msgid "Create"
-#~ msgstr "Tạo"
