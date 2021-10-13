@@ -79,7 +79,7 @@ private class Boxes.SharedFoldersManager: Boxes.Collection {
 
         var link_path = GLib.Path.build_filename (shared_folder, folder.name);
         if (GLib.FileUtils.symlink (folder.path, link_path) == -1) {
-            warning (strerror (errno));
+            debug ("Not creating symlink for shared folder \"%s\": %s", link_path, strerror (errno));
 
             return false;
         }
