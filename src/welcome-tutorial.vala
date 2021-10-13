@@ -41,7 +41,11 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
           }
         """.printf (color.to_string ());
 
-        provider.load_from_data (css);
+        try {
+            provider.load_from_data (css);
+        } catch (GLib.Error error) {
+            warning ("Failed to load css for setting background color: %s", error.message);
+        }
     }
 
     [GtkCallback]
