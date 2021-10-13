@@ -407,7 +407,7 @@ private class Boxes.App: Gtk.Application {
             return;
 
         if (sources.get (source.name) != null) {
-            warning ("Attempt to add duplicate collection source '%s', ignoring..", source.name);
+            debug ("Attempt to add duplicate collection source '%s', ignoring..", source.name);
             return; // Already added
         }
 
