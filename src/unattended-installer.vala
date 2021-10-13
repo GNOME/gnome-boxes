@@ -360,10 +360,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return disk;
     }
 
-    private string device_name_to_path (PathFormat path_format, string name) {
-        return (path_format == PathFormat.UNIX)? "/dev/" + name : name;
-    }
-
     private void add_unattended_file (UnattendedFile file) {
         unattended_files.append (file);
     }
