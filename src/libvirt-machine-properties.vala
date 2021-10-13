@@ -748,10 +748,9 @@ private class Boxes.LibvirtMachineProperties: GLib.Object, Boxes.IPropertiesProv
         toggle.notify["active"].connect ((tooltip) => {
             box.tooltip_text = toggle.active? _("“%s” will not be paused automatically.").printf (name) :
                                               _("“%s” will be paused automatically to save resources.").printf (name);
-#if FLATPAK
-            if (toggle.get_active ())
+
+            if (App.is_running_in_flatpak () && toggle.get_active ())
                 on_run_in_bg ();
-#endif
         });
 
         return box;

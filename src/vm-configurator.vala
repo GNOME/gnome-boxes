@@ -95,9 +95,9 @@ private class Boxes.VMConfigurator {
         install_media.setup_domain_config (domain);
 
         add_usb_support (domain, install_media);
-#if !FLATPAK
-        add_smartcard_support (domain);
-#endif
+
+        if (!App.is_running_in_flatpak ())
+            add_smartcard_support (domain);
 
         set_video_config (domain, install_media);
         set_sound_config (domain, install_media);

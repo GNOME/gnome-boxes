@@ -41,6 +41,8 @@ private class Boxes.App: Gtk.Application {
         get; private set;
     }
 
+    private static bool? is_flatpak;
+
     // A callback to notify that deletion of machines was undone by user.
     public delegate void UndoNotifyCallback ();
 
@@ -548,13 +550,10 @@ private class Boxes.App: Gtk.Application {
 
             var keep_vm_running = (machine.run_in_bg && machine.is_running);
             if (keep_vm_running) {
-#if FLATPAK
-                run_in_bg = true;
-#endif
+                run_in_bg = is_flatpak;
 
                 notify_vm_is_running_in_background (machine);
                 debug ("Keep running %s in the background", machine.name);
-
             }
         });
     }
@@ -713,5 +712,15 @@ private class Boxes.App: Gtk.Application {
         if (inhibit_cookie != 0) {
             base.uninhibit (inhibit_cookie);
         }
+    }
+
+    public static bool is_running_in_flatpak () {
+        if (is_flatpak != null)
+            return is_flatpak;
+
+        var file = File.new_for_path ("/.flatpak-info");
+        is_flatpak = file.query_exists ();
+
+        return is_flatpak;
     }
 }
