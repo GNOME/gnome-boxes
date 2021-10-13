@@ -47,7 +47,6 @@ vala_sources = [
   'actions-popover.vala',
   'archive-reader.vala',
   'archive-writer.vala',
-  'auth-notification.vala',
   'collection.vala',
   'collection-toolbar.vala',
   'display-page.vala',

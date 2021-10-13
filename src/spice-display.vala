@@ -47,7 +47,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
     }
 
     construct {
-        need_password = false;
         session = new Session ();
         audio = Spice.Audio.get (session, null);
         gtk_session = GtkSession.get (session);
@@ -325,7 +324,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
             break;
 
         case ChannelEvent.ERROR_AUTH:
-            need_password = true;
             break;
 
         case ChannelEvent.ERROR_CONNECT:

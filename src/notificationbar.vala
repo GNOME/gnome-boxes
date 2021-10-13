@@ -37,40 +37,6 @@ private class Boxes.Notificationbar: Gtk.Grid {
         return display (message, MessageType.INFO, action_label, (owned) action_func, (owned) ignore_func, timeout);
     }
 
-    public Boxes.Notification display_for_optional_auth (string                           broker_name,
-                                                         owned AuthNotification.AuthFunc? auth_func,
-                                                         owned Notification.DismissFunc?  dismiss_func) {
-        Notification.OKFunc next_auth_step = () => {
-            var auth_string = "<span font-weight=\"bold\">" + _("Sign In to %s").printf(broker_name) + "</span>";
-            display_for_auth (auth_string, (owned) auth_func, (owned) dismiss_func);
-        };
-        return display_for_action (_("Not connected to %s").printf (broker_name),
-                                   _("Sign In"),
-                                   (owned) next_auth_step,
-                                   (owned) dismiss_func, -1);
-    }
-
-    public Boxes.AuthNotification display_for_auth (string                           auth_string,
-                                                    owned AuthNotification.AuthFunc? auth_func,
-                                                    owned Notification.DismissFunc?  dismiss_func,
-                                                    bool                             need_username = true) {
-        var notification = new Boxes.AuthNotification (auth_string,
-                                                       (owned) auth_func,
-                                                       (owned) dismiss_func,
-                                                       need_username,
-                                                       searchbar);
-
-        active_notifications.prepend (notification);
-
-        notification.dismissed.connect ( () => {
-            active_notifications.remove (notification);
-        });
-
-        add_notification (notification);
-
-        return notification;
-    }
-
     public Boxes.Notification display_error (string message, int timeout = DEFAULT_TIMEOUT) {
         return display (message, MessageType.ERROR, null, null, null, timeout);
     }

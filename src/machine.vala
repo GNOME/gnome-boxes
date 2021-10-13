@@ -20,12 +20,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public bool can_delete { get; set; default = true; }
     public bool under_construction { get; protected set; default = false; }
 
-    private Cancellable auth_cancellable = new Cancellable ();
-    private Secret.Schema secret_auth_schema
-            = new Secret.Schema ("org.gnome.Boxes",
-                                 Secret.SchemaFlags.NONE,
-                                 "gnome-boxes-machine-uuid", Secret.SchemaAttributeType.STRING);
-
     public signal void got_error (string message);
 
     protected virtual bool should_autosave {
@@ -76,11 +70,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     private ulong show_id;
     private ulong hide_id;
     private ulong disconnected_id;
-    private ulong need_password_id;
-    private ulong need_username_id;
     private ulong ui_state_id;
     private ulong got_error_id;
-    private ulong auth_failed_id;
     private uint screenshot_id;
     public const int SCREENSHOT_WIDTH = 180;
     public const int SCREENSHOT_HEIGHT = 134;
@@ -88,9 +79,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
     public const int EMBLEM_SIZE = 16;
     private static Cairo.Surface grid_surface;
     private bool updating_screenshot;
-    private string username;
-    private string password;
-
     private uint autosave_timeout_id;
 
     public Cancellable connecting_cancellable { get; protected set; }
@@ -185,14 +173,8 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                 hide_id = 0;
                 _display.disconnect (disconnected_id);
                 disconnected_id = 0;
-                _display.disconnect (need_password_id);
-                need_password_id = 0;
-                _display.disconnect (need_username_id);
-                need_username_id = 0;
                 _display.disconnect (got_error_id);
                 got_error_id = 0;
-                _display.disconnect (auth_failed_id);
-                auth_failed_id = 0;
             }
 
             _display = value;
@@ -216,13 +198,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     got_error (message);
             });
 
-            auth_failed_id = _display.auth_failed.connect ((message) => {
-                delete_auth_credentials.begin ();
-
-                window.set_state (Boxes.UIState.COLLECTION);
-                window.notificationbar.display_error (_("Authentication failed: %s").printf (message));
-            });
-
             disconnected_id = _display.disconnected.connect ((failed) => {
                 message (@"display $name disconnected");
                 if (window == null) // App exitting & no window exists anymore
@@ -241,12 +216,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
                     disconnect_display ();
                 }
             });
-
-            need_password_id = _display.notify["need-password"].connect (handle_auth);
-            need_username_id = _display.notify["need-username"].connect (handle_auth);
-
-            _display.username = username;
-            _display.password = password;
         }
     }
 
@@ -583,8 +552,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             ui_state_id = 0;
         }
 
-        delete_auth_credentials.begin ();
-
         config.delete ();
         try {
             FileUtils.unlink (get_screenshot_filename ());
@@ -618,12 +585,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             break;
 
         case UIState.COLLECTION:
-            if (auth_notification != null)
-                auth_notification.dismiss ();
             disconnect_display ();
-
-            auth_cancellable.cancel ();
-            auth_cancellable = new Cancellable ();
 
             break;
         }
@@ -663,116 +625,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             warning ("Failed to connect to %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
             window.notificationbar.display_error (_("Connection to “%s” failed").printf (name));
-        }
-    }
-
-    private void store_auth_credentials () {
-        if (this.password == "" || this.password == null)
-            return;
-
-        var builder = new GLib.VariantBuilder (GLib.VariantType.VARDICT);
-
-        if (this.username != null)
-            builder.add ("{sv}", "username", new GLib.Variant ("s", this.username));
-
-        builder.add ("{sv}", "password", new GLib.Variant ("s", this.password));
-
-        var credentials_str = builder.end ().print (true);
-
-        var label = ("GNOME Boxes credentials for '%s'").printf (config.uuid);
-        Secret.password_store.begin (secret_auth_schema,
-                                     Secret.COLLECTION_DEFAULT,
-                                     label,
-                                     credentials_str,
-                                     null,
-                                     (obj, res) => {
-            try {
-                Secret.password_store.end (res);
-            } catch (GLib.Error error) {
-                warning ("Failed to store password for '%s' in the keyring: %s", config.uuid, error.message);
-            }
-        }, "gnome-boxes-machine-uuid", config.uuid);
-    }
-
-    private Boxes.AuthNotification auth_notification;
-
-    private void handle_auth () {
-        if (auth_notification != null)
-            return;
-        var need_username = display.need_username;
-        if (!display.need_username && !display.need_password)
-            return;
-        display = null;
-
-        AuthNotification.AuthFunc auth_func = (username, password) => {
-            if (username != "")
-                this.username = username;
-            if (password != "")
-                this.password = password;
-
-            try_connect_display.begin ();
-
-            /* Maybe this can be an optional preference with a toggle in the UI. */
-            store_auth_credentials ();
-        };
-
-        Notification.DismissFunc dismiss_func = () => {
-            auth_notification = null;
-            window.set_state (UIState.COLLECTION);
-        };
-
-        Secret.password_lookup.begin (secret_auth_schema, auth_cancellable, (obj, res) => {
-            try {
-                var parsing_error = new Boxes.Error.INVALID ("couldn't unpack a string for the machine credentials");
-                var credentials_str = Secret.password_lookup.end (res);
-                if (credentials_str == null || credentials_str == "")
-                    throw parsing_error;
-
-                try {
-                    var credentials_variant = GLib.Variant.parse (null, credentials_str, null, null);
-
-                    string username_str;
-                    credentials_variant.lookup ("username", "s", out username_str);
-                    if (username_str != null && username_str != "")
-                        this.username = username_str;
-
-                    string password_str;
-                    credentials_variant.lookup ("password", "s", out password_str);
-                    if (password_str != null && password_str != "")
-                        this.password = password_str;
-
-                    try_connect_display.begin ();
-                } catch (GLib.Error error) {
-                    throw parsing_error;
-                }
-            } catch (GLib.Error error) {
-                debug ("No credentials found in keyring. Prompting user.");
-
-                // Translators: %s => name of launched box
-                var auth_string = _("“%s” requires authentication").printf (name);
-                auth_notification = window.notificationbar.display_for_auth (auth_string,
-                                                                             (owned) auth_func,
-                                                                             (owned) dismiss_func,
-                                                                             need_username);
-            }
-        }, "gnome-boxes-machine-uuid", config.uuid);
-    }
-
-    private async void delete_auth_credentials () {
-        if (config.uuid == null) {
-            return;
-        }
-
-        try {
-            yield Secret.password_clear (secret_auth_schema, null,
-                                         "gnome-boxes-machine-uuid", config.uuid);
-
-            if (auth_notification != null) {
-                auth_notification.dismiss ();
-                auth_notification = null;
-            }
-        } catch (GLib.Error error) {
-            debug ("Failed to delete credentials for machine %s: %s", config.uuid, error.message);
         }
     }
 

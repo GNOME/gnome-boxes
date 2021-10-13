@@ -15,7 +15,6 @@ private class Boxes.VncDisplay: Boxes.Display {
         saved_properties = {
             BoxConfig.SavedProperty () { name = "read-only", default_value = false }
         };
-        need_password = false;
 
         display = new Vnc.Display ();
         display.set_keyboard_grab (true);
@@ -40,43 +39,6 @@ private class Boxes.VncDisplay: Boxes.Display {
             access_finish ();
 
             disconnected (true);
-        });
-
-        display.vnc_auth_failure.connect ((message) => {
-            debug ("auth failure");
-
-            need_password = (password != null);
-            need_username = (username != null);
-
-            auth_failed (message);
-        });
-        display.vnc_auth_unsupported.connect (() => {
-            debug ("auth unsupported");
-        });
-
-        display.vnc_auth_credential.connect ((creds) => {
-            foreach (var cred in creds) {
-                var credential = (DisplayCredential) cred;
-
-                switch (credential) {
-                case DisplayCredential.USERNAME:
-                    need_username = true;
-                    break;
-
-                case DisplayCredential.PASSWORD:
-                    need_password = true;
-                    break;
-
-                case DisplayCredential.CLIENTNAME:
-                    break;
-
-                default:
-                    debug ("Unsupported credential: %s".printf (credential.to_string ()));
-                    break;
-                }
-            }
-
-            display.close ();
         });
 
         display.size_allocate.connect (scale);
@@ -139,11 +101,6 @@ private class Boxes.VncDisplay: Boxes.Display {
         if (connected)
             return;
         connected = true;
-
-        // FIXME: we ignore return value which seems to be inconsistent
-        display.set_credential (DisplayCredential.USERNAME, username);
-        display.set_credential (DisplayCredential.PASSWORD, password);
-        display.set_credential (DisplayCredential.CLIENTNAME, "boxes");
 
         if (open_fd != null) {
             var fd = open_fd ();
