@@ -323,7 +323,6 @@ private class Boxes.App: Gtk.Application {
     private void open_run_in_bg_vm (string name) {
         activate ();
 
-        var app = this;
         main_window.present ();
         call_when_ready (() => {
             open_name (name);
