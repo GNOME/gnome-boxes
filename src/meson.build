@@ -143,6 +143,8 @@ dependencies = [
 spice = dependency ('spice-client-gtk-3.0', version: '>= 0.32')
 if spice.found ()
   vala_args += '--define=HAS_SPICE'
+  # FIXME Remove and bump version after libhandy 1.6 is released.
+  vala_args += '--disable-since-check'
 
   dependencies += [
     spice,
