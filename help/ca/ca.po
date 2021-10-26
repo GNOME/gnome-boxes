@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-box-help\n"
-"POT-Creation-Date: 2021-02-28 09:32+0000\n"
+"POT-Creation-Date: 2021-09-04 16:13+0000\n"
 "PO-Revision-Date: 2020-09-05 22:09+0200\n"
 "Last-Translator: Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail.com>\n"
 "Language-Team: Catalan (https://www.transifex.com/softcatala/teams/62837/ca/)\n"
@@ -64,16 +64,16 @@ msgid "To enable 3D Acceleration in a box:"
 msgstr "Per a activar l'acceleració en una màquina:"
 
 #. (itstool) path: media/span
-#: C/3d-acceleration.page:38 C/interface.page:118 C/keystrokes.page:29
-#: C/prop-system.page:29 C/prop-trouble.page:31 C/shared-folders.page:30
-#: C/shutdown.page:30 C/snapshot-create.page:41 C/snapshot-delete.page:28
-#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
-#: C/usb-redirection.page:48
+#: C/3d-acceleration.page:38 C/edit-domain.page:38 C/interface.page:118
+#: C/keystrokes.page:29 C/prop-system.page:29 C/prop-trouble.page:31
+#: C/shared-folders.page:30 C/shutdown.page:30 C/snapshot-create.page:41
+#: C/snapshot-delete.page:28 C/snapshot-rename.page:36
+#: C/snapshot-revert.page:36 C/usb-redirection.page:48
 msgid "settings"
 msgstr "configuració"
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:36 C/shared-folders.page:28
+#: C/3d-acceleration.page:36 C/edit-domain.page:36 C/shared-folders.page:28
 #: C/usb-redirection.page:46
 msgid ""
 "Right-click on the box in the collection view and select "
@@ -100,9 +100,10 @@ msgid ""
 " appear here. By default, it is disabled. To enable 3D Acceleration, simply "
 "toggle the switch next to it to <gui style=\"switch\">ON</gui>."
 msgstr ""
-"Si s'admet l'acceleració 3D, apareixerà aquí l'interruptor <gui>acceleració"
-" 3D </gui>. Per defecte, està inhabilitat. Per a habilitar l'acceleració 3D, "
-"simplement canvieu el commutador del seu costat a <gui style=\"switch\">ON</gui>."
+"Si s'admet l'acceleració 3D, apareixerà aquí l'interruptor <gui>acceleració "
+"3D </gui>. Per defecte, està inhabilitat. Per a habilitar l'acceleració 3D, "
+"simplement canvieu el commutador del seu costat a <gui "
+"style=\"switch\">ON</gui>."
 
 #. (itstool) path: item/p
 #: C/3d-acceleration.page:45
@@ -117,7 +118,7 @@ msgstr ""
 
 #. (itstool) path: credit/name
 #: C/backup.page:10 C/create.page:12 C/delete.page:9 C/disk-images.page:9
-#: C/index.page:21 C/interface.page:13 C/keystrokes.page:10
+#: C/index.page:20 C/interface.page:13 C/keystrokes.page:10
 #: C/prop-system.page:11 C/prop-trouble.page:11 C/search.page:10
 #: C/shutdown.page:11 C/snapshot-create.page:12 C/snapshot-delete.page:11
 #: C/snapshot-rename.page:11 C/snapshot-revert.page:12
@@ -380,7 +381,7 @@ msgstr ""
 "Es torna a la vista de col·lecció i comença la instal·lació de la màquina."
 
 #. (itstool) path: credit/years
-#: C/delete.page:11 C/disk-images.page:11 C/index.page:23
+#: C/delete.page:11 C/disk-images.page:11 C/index.page:22
 #: C/prop-system.page:13 C/prop-trouble.page:13 C/shortcuts.page:13
 #: C/shutdown.page:13 C/snapshot-create.page:14 C/snapshot-delete.page:13
 #: C/snapshot-rename.page:13 C/snapshot-revert.page:14
@@ -453,27 +454,115 @@ msgstr ""
 "manager</app>, aleshores <app>Màquines</app> també llegirà de la carpeta que"
 " utilitza el programari per a emmagatzemar les seves imatges."
 
-#. (itstool) path: media/span
+#. (itstool) path: credit/name
+#: C/edit-domain.page:10 C/interface.page:18 C/shared-folders.page:10
+#: C/snapshot-create.page:17 C/snapshot-revert.page:17
+#: C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: credit/years
+#: C/edit-domain.page:12
+msgid "2021"
+msgstr "2021"
+
+#. (itstool) path: info/desc
+#: C/edit-domain.page:17
+msgid "Edit advanced configurations of your box."
+msgstr "Edita les configuracions avançades de la maquina."
+
+#. (itstool) path: page/title
+#: C/edit-domain.page:20
+msgid "Edit the Libvirt domain XML configuration of a box"
+msgstr "Editar la configuració XML del domini Libvirt d'una màquina"
+
+#. (itstool) path: page/p
+#: C/edit-domain.page:30
+msgid ""
+"Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML "
+"configuration of your virtual machines. This should allow you to achieve "
+"specific setups which are not exposed in the GNOME Boxes interface and "
+"neither supported by the GNOME Boxes developers."
+msgstr ""
+"El màquines us permet editar manualment la configuració XML de <sys>Libvirt</sys> "
+"de les màquines virtuals. Això us hauria de permetre aconseguir "
+"configuracions específiques que no estan exposades a la interfície del GNOME "
+"Màquines i que tampoc són suportades pels desenvolupadors del GNOME Màquines."
+
+#. (itstool) path: steps/title
+#: C/edit-domain.page:35
+msgid "To edit the Libvirt XML configuration of a box:"
+msgstr "Per a editar la configuració XML de Libvirt d'un maquina:"
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:40 C/prop-system.page:31 C/prop-trouble.page:33
+#: C/shutdown.page:32
+msgid "Click the <gui>System</gui> tab."
+msgstr "Feu clic a la pestanya <gui>Sistema</gui>."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:41
+msgid ""
+"Click the <gui style=\"button\">Edit XML</gui> button to open the "
+"configuration editor."
+msgstr ""
+"Feu clic al botó <gui style=\"button\">Edita l'XML</gui> per a obrir "
+"l'editor de configuració."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:43
+msgid ""
+"Edit the XML configuration and click <gui style=\"button\">Save</gui>. Boxes"
+" will attempt to create a snapshot prior to your changes getting applied, "
+"allowing you to revert your configuration in case of a mistake."
+msgstr ""
+"Editeu la configuració XML i feu clic a <gui style=\"button\">Desa</gui>. "
+"El Màquines intentarà crear una instantània abans que s'apliquin els canvis,"
+" permetent-vos revertir la vostra configuració en cas d'error."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:46
+msgid ""
+"If the virtual machine which has been edited is already running, Boxes will "
+"show a notification asking to restart the running virtual machine."
+msgstr ""
+"Si la màquina virtual que s'ha editat ja està en execució, el Màquines mostrarà "
+"una notificació demanant reiniciar la màquina virtual en execució."
+
+#. (itstool) path: info/title
+#: C/index.page:7
+msgctxt "link:trail"
+msgid "Boxes"
+msgstr "Màquines"
+
+#. (itstool) path: info/title
+#: C/index.page:8
+msgctxt "link"
+msgid "Boxes"
+msgstr "Màquines"
+
+#. (itstool) path: info/title
 #: C/index.page:9
+msgctxt "text"
 msgid "Boxes"
 msgstr "Màquines"
 
 #. (itstool) path: credit/name
-#: C/index.page:16 C/supported-protocols.page:15 C/system-requirements.page:11
+#: C/index.page:15 C/supported-protocols.page:15 C/system-requirements.page:11
 #: C/usb-redirection.page:14 C/what-is-a-virtual-machine.page:10
 #: C/why-do-i-need-virtual-machine.page:11
 msgid "Baptiste Mille-Mathias"
 msgstr "Baptiste Mille-Mathias"
 
 #. (itstool) path: credit/years
-#: C/index.page:18 C/supported-protocols.page:12 C/supported-protocols.page:17
+#: C/index.page:17 C/supported-protocols.page:12 C/supported-protocols.page:17
 #: C/system-requirements.page:13 C/usb-redirection.page:16
 #: C/what-is-a-virtual-machine.page:12 C/why-do-i-need-virtual-machine.page:13
 msgid "2012"
 msgstr "2012"
 
 #. (itstool) path: info/desc
-#: C/index.page:28
+#: C/index.page:27
 msgid ""
 "Learn to set up local virtual machines and to connect to remote virtual "
 "machines. You can also use <app>Boxes</app> to connect to remote desktops."
@@ -483,12 +572,12 @@ msgstr ""
 "vos a escriptoris remots."
 
 #. (itstool) path: page/title
-#: C/index.page:33
+#: C/index.page:32
 msgid "<_:media-1/> Boxes"
 msgstr "<_:media-1/> Màquines"
 
 #. (itstool) path: page/p
-#: C/index.page:38
+#: C/index.page:37
 msgid ""
 "<app>Boxes</app> is an application that gives you access to <link "
 "xref=\"what-is-a-virtual-machine\">virtual machines</link>, running locally "
@@ -501,40 +590,34 @@ msgstr ""
 "remot."
 
 #. (itstool) path: section/title
-#: C/index.page:44
+#: C/index.page:43
 msgid "Getting started"
 msgstr "Primers passos"
 
 #. (itstool) path: section/title
-#: C/index.page:54
+#: C/index.page:53
 msgid "Using Boxes"
 msgstr "Ús del Màquines"
 
 #. (itstool) path: section/title
-#: C/index.page:58
+#: C/index.page:57
 msgid "Properties"
 msgstr "Propietats"
 
 #. (itstool) path: section/title
-#: C/index.page:62
+#: C/index.page:61
 msgid "Snapshots"
 msgstr "Captures"
 
 #. (itstool) path: section/title
-#: C/index.page:66
+#: C/index.page:65
 msgid "Questions"
 msgstr "Preguntes"
 
 #. (itstool) path: section/title
-#: C/index.page:70
+#: C/index.page:69
 msgid "Advanced topics"
 msgstr "Termes avançats"
-
-#. (itstool) path: credit/name
-#: C/interface.page:18 C/shared-folders.page:10 C/snapshot-create.page:17
-#: C/snapshot-revert.page:17 C/usb-redirection.page:24
-msgid "Felipe Borges"
-msgstr "Felipe Borges"
 
 #. (itstool) path: info/desc
 #: C/interface.page:30
@@ -678,13 +761,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/interface.page:92
-#, fuzzy
-#| msgid ""
-#| "<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
-#| "or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
-#| "tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), and the "
-#| "<gui>URL</gui> to be used for remote access. When the box is running, the "
-#| "<gui>Share Clipboard</gui> switch appears here."
 msgid ""
 "<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
 "or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
@@ -692,12 +768,11 @@ msgid ""
 "<gui>URL</gui> to be used for remote access. The <gui>3D Acceleration</gui> "
 "switch also appears here."
 msgstr ""
-"<gui>General</gui>: mostra el <gui>Nom</gui> i <gui>Gestor</gui> o "
-"virtualitzador utilitzat per la màquina (com és <em>QEMU</em>). Per a una "
-"màquina remota, aquesta pestanya també mostra el <gui>Protocol</gui> (com el"
-" <em>VNC</em>), i l'<gui>URL</gui> utilitzat en l'accés remot. Quan la "
-"màquina s'està executant, l'activador per <gui>Comparteix l'escriptori</gui>"
-" apareix aquí."
+"<gui>General</gui>: mostra la màquina <gui>Nom</gui> i el <gui>Gestor</gui> o "
+"visualitzador (com ara <em>QEMU</em>). Per a una màquina remota, aquesta pestanya"
+" també mostra el <gui>Protocol</gui> (com ara <em>VNC</em>), i "
+"l'<gui>URL</gui> que s'utilitzarà per a l'accés remot. El commutador <gui>"
+"Acceleració 3Ds</gui> també apareix aquí."
 
 #. (itstool) path: item/p
 #: C/interface.page:97
@@ -888,11 +963,6 @@ msgstr ""
 "<gui>Propietats</gui>."
 
 #. (itstool) path: item/p
-#: C/prop-system.page:31 C/prop-trouble.page:33 C/shutdown.page:32
-msgid "Click the <gui>System</gui> tab."
-msgstr "Feu clic a la pestanya <gui>Sistema</gui>."
-
-#. (itstool) path: item/p
 #: C/prop-system.page:32
 msgid ""
 "Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
@@ -956,7 +1026,7 @@ msgstr "Accedir ràpidament a una màquina pel seu nom."
 #. (itstool) path: page/title
 #: C/search.page:20
 msgid "Search for a box"
-msgstr "Cerca una màquina"
+msgstr "Cercar una màquina"
 
 #. (itstool) path: page/p
 #: C/search.page:22
