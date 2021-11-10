@@ -2,7 +2,7 @@
 using Gdk;
 using Gtk;
 
-private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesProvider {
+private abstract class Boxes.Machine: Boxes.CollectionItem {
     const uint AUTOSAVE_TIMEOUT = 60; // seconds
 
     public Boxes.CollectionSource source;
@@ -354,8 +354,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
         return display.get_pixbuf (0);
     }
 
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
-
     public abstract async void connect_display (ConnectFlags flags) throws GLib.Error;
     public abstract void restart ();
     public abstract async void clone ();
@@ -610,11 +608,11 @@ private abstract class Boxes.Machine: Boxes.CollectionItem, Boxes.IPropertiesPro
             if (this is LibvirtMachine) {
                 Notification.OKFunc troubleshoot = () => {
                     window.current_item = this;
-                    window.show_properties ();
+                    //window.show_properties ();
 
                     var libvirt_machine = this as LibvirtMachine;
-                    var logs = libvirt_machine.properties.collect_logs ();
-                    window.props_window.show_troubleshoot_log (logs);
+                    //FIXME: var logs = libvirt_machine.properties.collect_logs ();
+                    //window.props_window.show_troubleshoot_log (logs);
                 };
 
                 window.notificationbar.display_for_action (msg, _("Troubleshooting Log"), (owned) troubleshoot, null);

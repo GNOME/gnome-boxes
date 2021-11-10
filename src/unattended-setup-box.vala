@@ -96,7 +96,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     [GtkChild]
     private unowned Gtk.Label express_label;
     [GtkChild]
-    private unowned Gtk.Switch express_toggle;
+    public unowned Gtk.Switch express_toggle;
     [GtkChild]
     private unowned Gtk.Image user_avatar;
     [GtkChild]

@@ -360,67 +360,6 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         page.add_transfer (transfer_task);
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
-        var list = new List<Boxes.Property> ();
-
-        switch (page) {
-        case PropertiesPage.GENERAL:
-            if (!connected || main_channel.agent_connected)
-                break;
-            var link_address = "<a href=\"http://www.spice-space.org/download.html\">http://www.spice-space.org/download.html</a>";
-
-            // Translators: %s => a link to the website where users can download the guest tools.
-            var message = _("SPICE guest tools are not running. These tools improve user experience and enable host and box interactions, such as copy and paste. Please visit %s to download and install these tools from within the box.").printf (link_address);
-            var label = new Gtk.Label (message);
-            label.vexpand = true;
-            label.valign = Gtk.Align.END;
-            label.wrap = true;
-            label.max_width_chars = 80;
-            label.use_markup = true;
-            label.get_style_context ().add_class ("boxes-spice-tools-notice-label");
-
-            add_property (ref list, null, label);
-            break;
-
-        case PropertiesPage.DEVICES:
-            try {
-                var manager = UsbDeviceManager.get (session);
-                var devs = get_usb_devices (manager);
-
-                if (connected && devs.length > 0) {
-                    devs.sort ( (a, b) => {
-                        string str_a = a.get_description ("    %1$s %2$s");
-                        string str_b = b.get_description ("    %1$s %2$s");
-
-                        return strcmp (str_a, str_b);
-                    });
-
-                    var frame = create_usb_frame (manager, devs);
-
-                    var usb_property = add_property (ref list, _("USB devices"), new Gtk.Label (""), frame);
-
-                    manager.device_added.connect ((manager, dev) => {
-                        usb_property.refresh_properties ();
-                    });
-                    manager.device_removed.connect ((manager, dev) => {
-                        usb_property.refresh_properties ();
-                    });
-                }
-            } catch (GLib.Error error) {
-            }
-
-            if (webdav_channel == null || !webdav_channel.port_opened)
-                break;
-
-            var frame = create_shared_folders_frame ();
-            add_property (ref list, _("Folder Shares"), new Gtk.Label (""), frame);
-
-            break;
-        }
-
-        return list;
-    }
-
     public override void send_keys (uint[] keyvals) {
         // TODO: multi display
         var display = get_display (0) as Spice.Display;
@@ -428,8 +367,8 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         display.send_keys (keyvals, DisplayKeyEvent.CLICK);
     }
 
-    private GLib.GenericArray<UsbDevice> get_usb_devices (UsbDeviceManager manager) {
-        GLib.GenericArray<UsbDevice> ret = new GLib.GenericArray<UsbDevice> ();
+    private GLib.GenericArray<Spice.UsbDevice> get_usb_devices (UsbDeviceManager manager) {
+        GLib.GenericArray<Spice.UsbDevice> ret = new GLib.GenericArray<Spice.UsbDevice> ();
         var devs = manager.get_devices ();
 
         if (Environment.get_variable ("BOXES_USB_REDIR_ALL") != null)
@@ -474,57 +413,56 @@ private class Boxes.SpiceDisplay: Boxes.Display {
         return ret;
     }
 
-    private Gtk.Frame create_usb_frame (UsbDeviceManager manager, GLib.GenericArray<UsbDevice> devs) {
-        var frame = new Gtk.Frame (null);
-        var listbox = new Gtk.ListBox ();
-        listbox.hexpand = true;
-        frame.add (listbox);
+    public GLib.ListStore get_usb_devices_model () {
+        GLib.ListStore model = new GLib.ListStore (typeof (Boxes.UsbDevice));
+
+        GLib.GenericArray<Spice.UsbDevice> devs = new GLib.GenericArray<Spice.UsbDevice> ();
+        UsbDeviceManager manager;
+        try {
+            manager = UsbDeviceManager.get (session);
+            devs = get_usb_devices (manager);
+        }  catch (GLib.Error error) {
+            warning ("Failed to obtain usb devices list: %s", error.message);
+
+            return model;
+        }
 
         for (int i = 0; i < devs.length; i++) {
             var dev = devs[i];
 
-            var hbox = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            hbox.margin_start = 12;
-            hbox.margin_end = 12;
-            hbox.margin_top = 6;
-            hbox.margin_bottom = 6;
-            var label = new Gtk.Label (dev.get_description ("%1$s %2$s"));
-            label.halign = Gtk.Align.START;
-            hbox.pack_start (label, true, true, 0);
-            var dev_toggle = new Gtk.Switch ();
-            dev_toggle.halign = Gtk.Align.END;
-            hbox.pack_start (dev_toggle, true, true, 0);
-            listbox.prepend (hbox);
+            var usb_device = new Boxes.UsbDevice () {
+                title = dev.get_description ("%1$s %2$s"),
+                active = manager.is_device_connected (dev),
+            };
 
-            dev_toggle.active = manager.is_device_connected (dev);
-
-            dev_toggle.notify["active"].connect ( () => {
-                if (dev_toggle.active) {
-                    manager.connect_device_async.begin (dev, null, (obj, res) => {
-                        try {
-                            manager.connect_device_async.end (res);
-                        } catch (GLib.Error err) {
-                            dev_toggle.active = false;
-                            var device_desc = dev.get_description ("%1$s %2$s");
-                            var box_name = get_box_name ();
-                              var msg = _("Redirection of USB device “%s” for “%s” failed");
-                            got_error (msg.printf (device_desc, box_name));
-                            debug ("Error connecting %s to %s: %s",
-                                   device_desc,
-                                   box_name, err.message);
-                        }
-                    });
-                } else {
+            usb_device.notify["active"].connect (() => {
+                if (!usb_device.active) {
                     manager.disconnect_device (dev);
+
+                    return;
                 }
+
+                manager.connect_device_async.begin (dev, null, (obj, res) => {
+                    try {
+                        manager.connect_device_async.end (res);
+                    } catch (GLib.Error err) {
+                        usb_device.active = false;
+                        var device_desc = dev.get_description ("%1$s %2$s");
+                        var box_name = get_box_name ();
+                        var msg = _("Redirection of USB device “%s” for “%s” failed");
+
+                        got_error (msg.printf (device_desc, box_name));
+                        debug ("Error connecting %s to %s: %s",
+                               device_desc,
+                               box_name, err.message);
+                    }
+                });
             });
+
+            model.append (usb_device);
         }
 
-        return frame;
-    }
-
-    private Gtk.Frame create_shared_folders_frame () {
-        return new SharedFoldersWidget (machine.config.uuid);
+        return model;
     }
 
     private bool is_usb_kbd_or_mouse (uint8 class, uint8 subclass, uint8 protocol) {

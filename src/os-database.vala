@@ -42,16 +42,6 @@ private class Boxes.OSDatabase : GLib.Object {
         return resources;
     }
 
-    public static Resources get_minimum_resources () {
-        var resources = new Resources ("whatever", "x86_64");
-
-        resources.n_cpus = DEFAULT_VCPUS;
-        resources.ram = DEFAULT_RAM;
-        resources.storage = MINIMAL_STORAGE;
-
-        return resources;
-    }
-
     public async void load () {
         db_loading = true;
         var loader = new Loader ();
@@ -220,14 +210,6 @@ private class Boxes.OSDatabase : GLib.Object {
         string[] prefs = { architecture, ARCHITECTURE_ALL };
 
         var list = os.get_recommended_resources ();
-
-        return get_prefered_resources (list, prefs);
-    }
-
-    public static Resources? get_minimum_resources_for_os (Os os, string architecture) {
-        string[] prefs = { architecture, ARCHITECTURE_ALL };
-
-        var list = os.get_minimum_resources ();
 
         return get_prefered_resources (list, prefs);
     }

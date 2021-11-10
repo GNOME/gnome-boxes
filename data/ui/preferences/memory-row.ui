@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesMemoryRow" parent="HdyActionRow">
+    <property name="can_focus">True</property>
+    <property name="activatable">False</property>
+
+    <child>
+      <object class="GtkSpinButton" id="spin_button">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="valign">center</property>
+        <signal name="input" handler="on_spin_button_input"/>
+        <signal name="output" handler="on_spin_button_output"/>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -68,16 +68,9 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
 
     public Notificationbar notificationbar {
         get {
-            switch (ui_state) {
-            case UIState.PROPERTIES:
-                return props_window.notificationbar;
-            default:
-                return _notificationbar;
-            }
+            return _notificationbar;
         }
     }
-
-    public PropertiesWindow  props_window;
 
     [GtkChild]
     public unowned Searchbar searchbar;
@@ -187,8 +180,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
 
         group = new Gtk.WindowGroup ();
         group.add_window (this);
-        props_window = new PropertiesWindow (this);
-        group.add_window (props_window);
 
         notify["view-type"].connect (ui_state_changed);
     }
@@ -212,7 +203,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         foreach (var ui in new Boxes.UI[] { topbar,
                                             icon_view,
                                             list_view,
-                                            props_window,
                                             //wizard_window,
                                             empty_boxes }) {
             ui.set_state (ui_state);
@@ -291,28 +281,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             new Boxes.WelcomeTutorial (this).run ();
 
             first_run = !first_run;
-        }
-    }
-
-    public void show_properties () {
-        if (current_item != null) {
-            if (ui_state == UIState.COLLECTION && selection_mode)
-                selection_mode = false;
-            set_state (UIState.PROPERTIES);
-
-            return;
-        }
-
-        var selected_items = view.get_selected_items ();
-
-        if (ui_state == UIState.COLLECTION && selection_mode)
-            selection_mode = false;
-
-        // Show for the first selected item
-        foreach (var item in selected_items) {
-            current_item = item;
-            set_state (UIState.PROPERTIES);
-            break;
         }
     }
 

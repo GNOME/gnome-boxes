@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <template class="BoxesDevicesPage" parent="HdyPreferencesPage">
+    <property name="visible">True</property>
+    <property name="icon_name">input-mouse-symbolic</property>
+    <property name="title" translatable="yes">Devices &amp; Shares</property>
+
+    <child>
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">USB Devices</property>
+
+        <child>
+          <object class="GtkListBox" id="listbox">
+            <property name="visible">True</property>
+            <property name="selection-mode">none</property>
+            <style>
+              <class name="content"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="BoxesSharedFoldersWidget" id="shared_folders_widget"/>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">CDROM/DVD Drive</property>
+
+        <child>
+          <object class="BoxesCdromRow" id="cdrom_row">
+            <property name="visible">True</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

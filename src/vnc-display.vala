@@ -114,22 +114,6 @@ private class Boxes.VncDisplay: Boxes.Display {
             display.close ();
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
-        var list = new List<Boxes.Property> ();
-
-        switch (page) {
-        case PropertiesPage.GENERAL:
-            var toggle = new Gtk.Switch ();
-            toggle.halign = Gtk.Align.START;
-            display.bind_property ("read-only", toggle, "active",
-                                   BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            add_property (ref list, _("Read-only"), toggle);
-            break;
-        }
-
-        return list;
-    }
-
     public override void send_keys (uint[] keyvals) {
         display.send_keys (keyvals);
     }

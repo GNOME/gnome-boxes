@@ -8,7 +8,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
         {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
         {"clone",           clone_activated},
-        {"properties",      properties_activated},
+        {"preferences",     preferences_activated},
         {"restart",         restart_activated},
         {"send_file",       send_file_activated}
 
@@ -98,9 +98,9 @@ private class Boxes.ActionsPopover: Gtk.Popover {
 
         // Properties (in separate section)
         section = new GLib.Menu ();
-        section.append (_("Properties"), "box.properties");
+        section.append (_("Preferences"), "box.preferences");
         menu.append_section (null, section);
-        var action = action_group.lookup_action ("properties") as GLib.SimpleAction;
+        var action = action_group.lookup_action ("preferences") as GLib.SimpleAction;
         action.set_enabled (!importing);
 
         bind_model (menu, null);
@@ -178,7 +178,13 @@ private class Boxes.ActionsPopover: Gtk.Popover {
     }
 
 
-    private void properties_activated () {
-        window.show_properties ();
+    private void preferences_activated () {
+        var machine = window.current_item as Machine;
+
+        var preferences = new Boxes.PreferencesWindow () {
+            machine = machine,
+            transient_for = window,
+        };
+        preferences.present ();
     }
 }

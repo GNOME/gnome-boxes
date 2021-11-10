@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesSharedFolderRow" parent="HdyActionRow">
+    <property name="visible">True</property>
+
+    <child>
+      <object class="GtkButton">
+        <property name="visible">True</property>
+        <property name="valign">center</property>
+        <signal name="clicked" handler="on_delete_button_clicked"/>
+        <style>
+          <class name="flat"/>
+        </style>
+
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="halign">end</property>
+            <property name="icon-name">window-close-symbolic</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -412,32 +412,16 @@ private class Boxes.App: Gtk.Application {
             return; // Already added
         }
 
-        switch (source.source_type) {
-        case "vnc":
-        case "spice":
-        case "ssh":
-        case "rdp":
-            try {
-                var machine = new RemoteMachine (source);
-                collection.add_item (machine);
-            } catch (Boxes.Error error) {
-                warning (error.message);
+        Broker? broker = brokers.lookup (source.source_type);
+        if (broker != null) {
+            yield broker.add_source (source);
+            sources.insert (source.name, source);
+            if (source.name == DEFAULT_SOURCE_NAME) {
+                notify_property ("default-connection");
+                notify_property ("default-source");
             }
-            break;
-
-        default:
-            Broker? broker = brokers.lookup (source.source_type);
-            if (broker != null) {
-                yield broker.add_source (source);
-                sources.insert (source.name, source);
-                if (source.name == DEFAULT_SOURCE_NAME) {
-                    notify_property ("default-connection");
-                    notify_property ("default-source");
-                }
-            } else {
-                warning ("Unsupported source type %s", source.source_type);
-            }
-            break;
+        } else {
+            warning ("Unsupported source type %s", source.source_type);
         }
     }
 

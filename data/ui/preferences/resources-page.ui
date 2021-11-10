@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <template class="BoxesResourcesPage" parent="HdyPreferencesPage">
+    <property name="visible">True</property>
+    <property name="icon_name">applications-system-symbolic</property>
+    <property name="title" translatable="yes">Resources</property>
+
+    <child>
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="spacing">40</property>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="label" translatable="yes">_Name</property>
+                <property name="use-underline">True</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkEntry" id="box_name_entry">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <property name="hexpand">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup" id="address_group">
+
+        <child>
+          <object class="HdyActionRow" id="ip_address_row">
+            <property name="activatable">False</property>
+            <property name="title" translatable="yes">IP Address</property>
+
+            <child>
+              <object class="GtkLabel" id="ip_address_label">
+                <property name="visible">True</property>
+                <property name="selectable">True</property>
+                <style>
+                  <class name="dim-label"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup" id="resources_group">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Resources</property>
+
+        <child>
+          <object class="BoxesRamRow" id="ram_row">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Memory</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="BoxesStorageRow" id="storage_row">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Storage limit</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="activatable">False</property>
+            <property name="title" translatable="yes">CPUs</property>
+            <property name="use-underline">True</property>
+
+            <child>
+              <object class="GtkSpinButton" id="cpus_spin_button">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="input_purpose">number</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow" id="acceleration_3d_row">
+            <property name="visible">True</property>
+            <property name="activatable">False</property>
+            <property name="title" translatable="yes">3D acceleration</property>
+            <property name="use-underline">True</property>
+
+            <child>
+              <object class="GtkSwitch" id="acceleration_3d_toggle">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="activatable">False</property>
+            <property name="title" translatable="yes">Allow running in background</property>
+            <property name="use-underline">True</property>
+
+            <child>
+              <object class="GtkSwitch" id="run_in_bg_toggle">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <signal name="activate" handler="on_run_in_bg_toggled"/>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="HdyPreferencesGroup">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Configuration</property>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Troubleshooting Logs</property>
+            <property name="subtitle" translatable="yes">Diagnose problems with your box using the log file.</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_troubleshooting_logs_button_clicked"/>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">document-open-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
+          <object class="HdyActionRow">
+            <property name="visible">True</property>
+            <property name="title" translatable="yes">Edit Configuration</property>
+            <property name="subtitle" translatable="yes">Edit the Libvirt domain configuration for this box.</property>
+
+            <child>
+              <object class="GtkButton">
+                <property name="visible">True</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_edit_configuration_button_clicked"/>
+
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">document-edit-symbolic</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+
+      </object>
+    </child>
+  </template>
+</interface>

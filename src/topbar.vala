@@ -23,15 +23,8 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
 
     private AppWindow window;
 
-    // Clicks the appropriate back button depending on the ui state.
     public void click_back_button () {
-        switch (window.ui_state) {
-        case UIState.PROPERTIES:
-            break;
-        case UIState.CREDS:
-            collection_toolbar.click_back_button ();
-            break;
-        }
+        collection_toolbar.click_back_button ();
     }
 
     // Clicks the appropriate cancel button dependent on the ui state.

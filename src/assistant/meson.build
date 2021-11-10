@@ -5,7 +5,6 @@ vala_sources += files(
   'identify-os-page.vala',
   'identify-os-popover.vala',
   'index-page.vala',
-  'installation-summary.vala',
   'media-entry.vala',
   'preparation-page.vala',
   'review-page.vala',

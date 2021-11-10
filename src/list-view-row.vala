@@ -118,19 +118,10 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     private void update_status () {
-        if (machine is RemoteMachine)
-            update_status_label_style (!machine.is_connected);
-        else
-            update_status_label_style (!machine.is_on);
+        update_status_label_style (!machine.is_on);
 
         if (machine.status != null) {
             status_label.label = machine.status;
-
-            return;
-        }
-
-        if (machine is RemoteMachine) {
-            status_label.label = machine.is_connected ? _("Connected"): _("Disconnected");
 
             return;
         }

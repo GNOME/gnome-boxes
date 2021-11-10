@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesSnapshotsPage" parent="HdyPreferencesPage">
+    <property name="visible">True</property>
+    <property name="icon_name">edit-copy-symbolic</property>
+    <property name="title" translatable="yes">Snapshots</property>
+
+    <child>
+      <object class="HdyPreferencesGroup" id="preferences_group">
+        <property name="visible">True</property>
+        <property name="title" translatable="yes">Snapshots</property>
+
+        <child>
+          <object class="GtkOverlay" id="toast_overlay">
+            <property name="visible">True</property>
+            <property name="vexpand">True</property>
+
+            <child>
+              <object class="GtkStack" id="stack">
+                <property name="visible">True</property>
+
+                <child>
+                  <object class="GtkListBox" id="listbox">
+                    <property name="visible">True</property>
+                    <property name="selection-mode">none</property>
+                    <signal name="add" handler="update_snapshot_stack_page"/>
+                    <signal name="remove" handler="update_snapshot_stack_page"/>
+                    <style>
+                      <class name="content"/>
+                    </style>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkBox" id="activity_page">
+                    <property name="visible">True</property>
+                    <property name="spacing">20</property>
+                    <property name="orientation">vertical</property>
+
+                    <child>
+                      <object class="GtkSpinner">
+                        <property name="visible">True</property>
+                        <property name="active">True</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="activity_label">
+                        <property name="visible">True</property>
+                        <property name="label" translatable="yes">Creating new snapshot…</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

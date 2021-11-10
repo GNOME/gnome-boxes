@@ -1,7 +1,9 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/snapshot-list-row.ui")]
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/preferences/snapshot-list-row.ui")]
 private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
+    public signal void deletion_requested (Boxes.PreferencesToast toast);
+
     public GVir.DomainSnapshot snapshot;
     public string activity_message { get; set; default = ""; }
 
@@ -82,7 +84,8 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
             ct.line_to (height / 2.0 + 0.5, height / 2.0);
             ct.stroke ();
         }
-        if (index < parent_size - 1) {
+        // this row + the SnapshotPage's add_button row
+        if (index < parent_size - 2) {
             ct.move_to (height / 2.0 + 0.5, height / 2.0);
             ct.line_to (height / 2.0 + 0.5, height + 1);
             ct.stroke ();
@@ -190,10 +193,13 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
             });
             row = null;
         };
-        machine.window.notificationbar.display_for_action (message,
-                                                           _("_Undo"),
-                                                           (owned) undo,
-                                                           (owned) really_remove);
+
+        var toast = new Boxes.PreferencesToast () {
+            message = message,
+            undo_func = (owned) undo,
+            dismiss_func = (owned) really_remove,
+        };
+        deletion_requested (toast);
     }
 
     private void rename_activated (GLib.SimpleAction action, GLib.Variant? v) {

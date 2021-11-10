@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 using Gtk;
 
-private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
+private abstract class Boxes.Display: GLib.Object {
     public abstract string protocol { get; }
     public abstract string? uri { owned get; }
     public virtual bool can_transfer_files { get { return false; } }
@@ -40,8 +40,6 @@ private abstract class Boxes.Display: GLib.Object, Boxes.IPropertiesProvider {
     public virtual void transfer_files (GLib.List<string> uris) {
     }
     public abstract void send_keys (uint[] keyvals);
-
-    public abstract List<Boxes.Property> get_properties (Boxes.PropertiesPage page);
 
     protected HashTable<int, Gtk.Widget?> displays;
 
