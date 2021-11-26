@@ -23,6 +23,7 @@ nightly:
 fedora:latest:
     image: fedora:latest
     stage: fedora
+    when: manual
     needs: []
     before_script:
     - dnf update -y --nogpgcheck
