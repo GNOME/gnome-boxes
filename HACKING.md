@@ -15,6 +15,11 @@ For additional resources, visit the [Boxes Developer Documentation](https://gitl
 * Read our [commit message guidelines](https://wiki.gnome.org/Git/CommitMessages).
 * [Submit a merge-request](https://wiki.gnome.org/Newcomers/SubmitContribution).
 
+## Contributing
+
+ * Tasks that are good for new contributors are marked with the ["Newcomers" label](https://gitlab.gnome.org/GNOME/gnome-boxes/issues?label_name%5B%5D=4.+Newcomers).
+ * [Building the project](https://wiki.gnome.org/Newcomers/BuildProject) from the source code.
+
 ## Learn more about Vala
 
  * [Documentation](https://wiki.gnome.org/Projects/Vala/Documentation)

@@ -31,100 +31,22 @@ A simple GNOME 3 application to access virtual machines.
 
 * genisoimage (usually provided by genisoimage package)
 
-## Reporting Bugs
+## Reporting issues
 
-If you want to report bugs, please check if there isn't already one on:
+Firstly verify that the issue you are experiencing is not yet reported in [our
+issue tracker](https://gitlab.GNOME.org/GNOME/GNOME-boxes/issues)
 
- [GNOME Boxes Issues](https://gitlab.GNOME.org/GNOME/GNOME-boxes/issues)
+When reporting issues, please provide as much useful information as you can.
+This can include:
 
-If one does not exist already, please file a new one.
+* The version of Boxes you are running (Menu -> About, or `gnome-boxes --version` in the command line).
+* Steps to reproduce your problem.
+* An error message, if there is one (in the UI and on the console)
+* If Boxes crashes, attach a [stack trace](https://gitlab.gnome.org/GNOME/gnome-boxes/-/wikis/debugging-crashes)
+* If additional information is necessary, [activate debug messages](https://gitlab.gnome.org/GNOME/gnome-boxes/-/wikis/Debugging-Crashes#activating-debug-messages).
+* A fix/solution (read the HACKING.md file).
 
-Please provide as much useful information as you can and have. This can
-include
-
-* steps to reproduce your problem
-* the error message, if there is one (in the UI and on the console)
-* a backtrace if the program crashes (See Appendix 1)
-* debug messages if it makes sense (See Appendix 2)
-* a fix if you have one (This greatly increases the chances of this issue
-  getting fixed soon. See HACKING, section 2 for how to provide a good patch.)
-
-The determination of what is useful is your task. If you forget about
-something important, someone will probably ask.
-
-## Contributing
-
-### Finding Bugs
-
-Bugs labelled as "Newcomers" for the project can be found here:
-
-[Newcomers Bugs](https://gitlab.gnome.org/GNOME/gnome-boxes/issues?label_name%5B%5D=4.+Newcomers)
-
-### Building the Project
-
-Instructions for building the project can be found here:
-
-[Build the Project](https://wiki.gnome.org/Newcomers/BuildProject)
-
-## Appendix
-
-### Backtracing
-
-* If you are not using the flatpak gnome-boxes package
-
-```bash
-gdb gnome-boxes
-```
-
-* If you using the flatpak gnome-boxes package
-
-```bash
-flatpak run --command=sh --devel org.gnome.Boxes
-gdb /app/bin/gnome-boxes
-```
-
-Type
-
-```bash
-run
-```
-
-Let the program crash.
-
-Type:
-
-```bash
-backtrace
-```
-
-And copy the output to pastebin.com or a similar webpage and link it in the
-bugtracker with a hint.
-
-### Activating debug messages
-
-To run Boxes with debug message output on the console, just run:
-
-```bash
-G_MESSAGES_DEBUG=Boxes GNOME-boxes
-```
-
-If you want to run your jhbuild version, execute:
-
-```bash
-G_MESSAGES_DEBUG=Boxes jhbuild run GNOME-boxes
-```
-
-or start a shell under jhbuild environment:
-
-```bash
-G_MESSAGES_DEBUG=Boxes jhbuild shell
-```
-
-to be able to use simpler commands from there:
-
-```bash
-GNOME-boxes
-```
+If you forget about something important, we will probably ask.
 
 ### References
 
