@@ -72,6 +72,7 @@ public int main (string[] args) {
     GLib.Environment.set_application_name (_("Boxes"));
 
     typeof (Boxes.WelcomeTutorial).ensure ();
+    typeof (Boxes.WelcomeTutorialPage).ensure ();
 
     parse_local_args (ref args);
 
