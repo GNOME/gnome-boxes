@@ -71,6 +71,9 @@ public int main (string[] args) {
     Intl.textdomain (GETTEXT_PACKAGE);
     GLib.Environment.set_application_name (_("Boxes"));
 
+    typeof (Boxes.WelcomeTutorial).ensure ();
+    typeof (Boxes.WelcomeTutorialPage).ensure ();
+
     parse_local_args (ref args);
 
     try {
