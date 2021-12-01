@@ -273,6 +273,21 @@ private class Boxes.VMConfigurator {
             if (device is DomainGraphics)
                 continue;
 
+            // Fix broken audio. FIXME. See https://gitlab.gnome.org/GNOME/gnome-boxes/-/issues/738
+            var device_xml = device.to_xml ();
+            if (device_xml.has_prefix ("<audio") && device_xml.contains ("none")) {
+                debug ("Fixing audio for %s\n", domain.name);
+
+                var server_name = Path.build_filename (Environment.get_user_runtime_dir (), "pulse", "native");
+                var fixed_audio_xml = device_xml.replace ("none\"",
+                                                          "pulseaudio\" serverName=\"%s\"".printf (server_name));
+
+                var audio_device = new GVirConfig.Object.from_xml (typeof (DomainDevice), "audio", "", fixed_audio_xml);
+                devices.prepend (audio_device as DomainDevice);
+
+                continue;
+            }
+
             if (device is DomainInterface)
                 iface = device as DomainInterface;
             else if (device is DomainChannel) {
