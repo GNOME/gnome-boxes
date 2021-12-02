@@ -278,9 +278,13 @@ private class Boxes.VMConfigurator {
             if (device_xml.has_prefix ("<audio") && device_xml.contains ("none")) {
                 debug ("Fixing audio for %s\n", domain.name);
 
+                #if FLATPAK
                 var server_name = Path.build_filename (Environment.get_user_runtime_dir (), "pulse", "native");
                 var fixed_audio_xml = device_xml.replace ("none\"",
                                                           "pulseaudio\" serverName=\"%s\"".printf (server_name));
+                #else
+                var fixed_audio_xml = device_xml.replace ("none", "spice");
+                #endif
 
                 var audio_device = new GVirConfig.Object.from_xml (typeof (DomainDevice), "audio", "", fixed_audio_xml);
                 devices.prepend (audio_device as DomainDevice);
