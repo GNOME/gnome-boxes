@@ -72,7 +72,7 @@ private class Boxes.SharedFoldersWidget: Hdy.PreferencesGroup {
 
     private void on_list_updated () {
         if (list_model.get_n_items () == 0)
-            description = _("Use the button bellow to add your first shared folder.");
+            description = _("Use the button below to add your first shared folder.");
         else
             description = null;
     }

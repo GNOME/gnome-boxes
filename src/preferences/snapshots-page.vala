@@ -141,7 +141,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
         if (num_rows > 1) {
            preferences_group.description = null;
         } else {
-           preferences_group.description = _("Use the button bellow to create your first snapshot.");
+           preferences_group.description = _("Use the button below to create your first snapshot.");
         }
     }
 }

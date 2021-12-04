@@ -23,7 +23,7 @@ private class Boxes.StorageRow : Boxes.MemoryRow {
             subtitle = _("Used %s.").printf (GLib.format_size (volume_info.allocation));
 
             if (min_storage >= max_storage)
-                subtitle = _("There is not enough space on your machine to increate the maximum disk size.");
+                subtitle = _("There is not enough space on your machine to increase the maximum disk size.");
 
             spin_button.set_range (min_storage, max_storage);
             spin_button.set_increments (256 * 1000 * 1000 , volume_info.allocation);

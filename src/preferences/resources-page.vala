@@ -261,7 +261,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
 
     private void on_machine_state_changed () {
         if (machine.is_running) {
-            resources_group.description = _("Changes to the settings bellow take effect after you restart your box.");
+            resources_group.description = _("Changes to the settings below take effect after you restart your box.");
         } else {
             resources_group.description = null;
         }
