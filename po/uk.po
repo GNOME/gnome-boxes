@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-05-17 12:14+0000\n"
-"PO-Revision-Date: 2021-05-20 10:14+0300\n"
+"POT-Creation-Date: 2021-12-04 15:00+0000\n"
+"PO-Revision-Date: 2021-12-04 18:42+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -21,9 +21,12 @@ msgstr ""
 "X-Generator: Lokalize 20.12.0\n"
 "X-Project-Style: gnome\n"
 
-#: data/org.gnome.Boxes.appdata.xml.in:7
-msgid "GNOME Boxes"
-msgstr "Коробки GNOME"
+#: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
+#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
+#: src/app-window.vala:127 src/app-window.vala:229 src/app-window.vala:231
+#: src/main.vala:72 src/topbar.vala:85
+msgid "Boxes"
+msgstr "Коробки"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Virtualization made simple"
@@ -56,13 +59,6 @@ msgstr ""
 #: data/org.gnome.Boxes.appdata.xml.in:58
 msgid "The GNOME Project"
 msgstr "Проєкт GNOME "
-
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
-#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
-#: src/topbar.vala:92
-msgid "Boxes"
-msgstr "Коробки"
 
 #: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
@@ -117,19 +113,11 @@ msgstr "Перший запуск"
 msgid "Whether Boxes is running for the first time"
 msgstr "Чи це перший запуск Коробок"
 
-#: data/org.gnome.boxes.gschema.xml:52
-msgid "Override theme"
-msgstr "Перевизначити тему"
-
 #: data/org.gnome.boxes.gschema.xml:53
-msgid "Whether Boxes will override the user's theme"
-msgstr "Чи перевизначатимуть «Коробки» тему користувача"
-
-#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "Спільні теки"
 
-#: data/org.gnome.boxes.gschema.xml:61
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Перелік варіантів назв і шляхів для спільних тек"
 
@@ -245,21 +233,41 @@ msgstr ""
 "Розширення віртуалізації недоступні на вашій системі.\n"
 "Перевірте, чи ввімкнено відповідні параметри в BIOS."
 
-#: data/ui/assistant/pages/review-page.ui:68
-msgid "Resource Allocation"
-msgstr "Розподіл ресурсів"
+#: data/ui/assistant/pages/review-page.ui:67
+#| msgid "Operating System Download"
+msgid "Operating System"
+msgstr "Операційна система"
 
-#: data/ui/assistant/pages/review-page.ui:77
-msgid "Customize"
-msgstr "Налаштувати"
+#: data/ui/assistant/pages/review-page.ui:83
+#: data/ui/preferences/resources-page.ui:72
+msgid "Memory"
+msgstr "Пам'ять"
+
+#: data/ui/assistant/pages/review-page.ui:90
+#: data/ui/preferences/resources-page.ui:79
+msgid "Storage limit"
+msgstr ""
+"Обмеження сховища"
+
+#: data/ui/assistant/pages/review-page.ui:96
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
+msgid "Username"
+msgstr "Користувач"
+
+#: data/ui/assistant/pages/review-page.ui:112
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
+msgid "Password"
+msgstr "Пароль"
 
 #: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "Швидке встановлення"
 
-#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
-#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:99
+#: src/assistant/index-page.vala:146 src/assistant/vm-assistant.vala:73
+#: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Скасувати"
 
@@ -267,24 +275,11 @@ msgstr "Скасувати"
 msgid "Next"
 msgstr "Далі"
 
-#: data/ui/auth-notification.ui:39
-msgid "_Username"
-msgstr "_Користувач"
-
-#: data/ui/auth-notification.ui:73
-msgid "_Password"
-msgstr "_Пароль"
-
-#: data/ui/auth-notification.ui:112 src/notificationbar.vala:48
-msgid "Sign In"
-msgstr "Увійти"
-
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "Створити"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
 msgid "Back"
 msgstr "Назад"
 
@@ -341,10 +336,8 @@ msgid "Welcome to Boxes"
 msgstr "Ласкаво просимо до Коробок"
 
 #: data/ui/empty-boxes.ui:51
-#| msgid "Just hit the <b>+</b> button to create your first virtual machine."
 msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr ""
-"Натисніть кнопку <b>+</b>, щоб створити вашу першу віртуальну машину."
+msgstr "Натисніть кнопку <b>+</b>, щоб створити вашу першу віртуальну машину."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -436,22 +429,144 @@ msgstr "Довідка"
 msgid "About Boxes"
 msgstr "Про Коробки"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:658
-msgid "Troubleshooting Log"
+#: data/ui/preferences/cdrom-row.ui:5
+msgid "No CDROM/DVD image"
+msgstr ""
+"Немає образу CDROM/DVD"
+
+#: data/ui/preferences/cdrom-row.ui:15
+msgid "Select"
+msgstr "Вибрати"
+
+#: data/ui/preferences/cdrom-row.ui:24
+#| msgid "_Remove"
+msgid "Remove"
+msgstr "Вилучити"
+
+#: data/ui/preferences/devices-page.ui:7
+msgid "Devices & Shares"
+msgstr "Пристрої та доступ"
+
+#: data/ui/preferences/devices-page.ui:12
+#| msgid "USB devices"
+msgid "USB Devices"
+msgstr "Пристрої USB"
+
+#: data/ui/preferences/devices-page.ui:33
+msgid "CDROM/DVD Drive"
+msgstr ""
+"Пристрій для читання CDROM/DVD"
+
+#: data/ui/preferences/preferences-toast.ui:24
+#| msgid "_Undo"
+msgid "Undo"
+msgstr "Скасувати"
+
+#: data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:67
+#| msgid "Customize Resources"
+msgid "Resources"
+msgstr "Ресурси"
+
+#: data/ui/preferences/resources-page.ui:22
+msgid "_Name"
+msgstr "_Назва"
+
+#: data/ui/preferences/resources-page.ui:48
+msgid "IP Address"
+msgstr "Адреса IP"
+
+#: data/ui/preferences/resources-page.ui:87
+#| msgid "CPUs: "
+msgid "CPUs"
+msgstr "Процесори"
+
+#: data/ui/preferences/resources-page.ui:105
+#| msgid "3D Acceleration"
+msgid "3D acceleration"
+msgstr "Просторове прискорення"
+
+#: data/ui/preferences/resources-page.ui:127
+#| msgid "_Run in background"
+msgid "Allow running in background"
+msgstr "Дозволити запуск у фоні"
+
+#: data/ui/preferences/resources-page.ui:145
+#| msgid "Configuration modified "
+msgid "Configuration"
+msgstr "Налаштування"
+
+#: data/ui/preferences/resources-page.ui:150
+#| msgid "Troubleshooting Log"
+msgid "Troubleshooting Logs"
 msgstr "Журнал помилок"
 
-#: data/ui/properties-toolbar.ui:81
-msgid "_Copy to Clipboard"
-msgstr "К_опіювати в буфер"
+#: data/ui/preferences/resources-page.ui:151
+msgid "Diagnose problems with your box using the log file."
+msgstr ""
+"Діагностування проблем із коробкою за допомогою файла журналу."
 
-#: data/ui/properties-toolbar.ui:144
-msgid "_Apply"
-msgstr "Заст_осувати"
+#: data/ui/preferences/resources-page.ui:173
+#| msgid "Configuration modified "
+msgid "Edit Configuration"
+msgstr "Редагувати налаштування"
 
-#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
-#: src/properties-window.vala:58
-msgid "Select a device or ISO file"
-msgstr "Вибрати пристрій або файл ISO"
+#: data/ui/preferences/resources-page.ui:174
+msgid "Edit the Libvirt domain configuration for this box."
+msgstr ""
+"Редагувати налаштування домену Libvirt для цієї коробки."
+
+#: data/ui/preferences/shared-folder-popover.ui:29
+#: data/ui/shared-folder-popover.ui:29
+msgid "Local Folder"
+msgstr "Локальна тека"
+
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "Назва"
+
+#: data/ui/preferences/shared-folder-popover.ui:70
+#: data/ui/shared-folder-popover.ui:70
+msgid "Select Shared Folder"
+msgstr "Вибрати файл"
+
+#: data/ui/preferences/shared-folder-popover.ui:111
+#: data/ui/shared-folder-popover.ui:111
+msgid "Save"
+msgstr "Зберегти"
+
+#: data/ui/preferences/shared-folders-widget.ui:7
+#| msgid "Shared folders"
+msgid "Shared Folders"
+msgstr "Спільні теки"
+
+#: data/ui/preferences/snapshot-list-row.ui:6
+msgid "Revert to this state"
+msgstr "Вернутись до цього стану"
+
+#: data/ui/preferences/snapshot-list-row.ui:10
+msgid "Rename"
+msgstr "Перейменувати"
+
+#. Delete
+#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:88
+msgid "Delete"
+msgstr "Вилучити"
+
+#: data/ui/preferences/snapshot-list-row.ui:92
+msgid "Done"
+msgstr "Зроблено"
+
+#: data/ui/preferences/snapshots-page.ui:6
+#: data/ui/preferences/snapshots-page.ui:11
+msgid "Snapshots"
+msgstr "Зрізи"
+
+#: data/ui/preferences/snapshots-page.ui:49
+#: src/preferences/snapshots-page.vala:116
+msgid "Creating new snapshot…"
+msgstr "Створення нового зрізу…"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -465,7 +580,7 @@ msgstr "_Призупинити"
 msgid "_Delete"
 msgstr "В_илучити"
 
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:290
 msgid "_Cancel"
 msgstr "_Скасувати"
 
@@ -480,39 +595,6 @@ msgstr "Вибрати запущене"
 #: data/ui/selection-toolbar.ui:117
 msgid "Select None"
 msgstr "Зняти вибір"
-
-#: data/ui/shared-folder-popover.ui:29
-msgid "Local Folder"
-msgstr "Локальна тека"
-
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "Назва"
-
-#: data/ui/shared-folder-popover.ui:70
-msgid "Select Shared Folder"
-msgstr "Вибрати файл"
-
-#: data/ui/shared-folder-popover.ui:111
-msgid "Save"
-msgstr "Зберегти"
-
-#: data/ui/snapshot-list-row.ui:6
-msgid "Revert to this state"
-msgstr "Вернутись до цього стану"
-
-#: data/ui/snapshot-list-row.ui:10
-msgid "Rename"
-msgstr "Перейменувати"
-
-#. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:88
-msgid "Delete"
-msgstr "Вилучити"
-
-#: data/ui/snapshot-list-row.ui:92
-msgid "Done"
-msgstr "Зроблено"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -534,14 +616,6 @@ msgstr ""
 #: data/ui/unattended-setup-box.ui:73
 msgid "Express Install"
 msgstr "Швидке встановлення"
-
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
-msgid "Username"
-msgstr "Користувач"
-
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
-msgid "Password"
-msgstr "Пароль"
 
 #: data/ui/unattended-setup-box.ui:180
 msgid "_Add Password"
@@ -633,14 +707,15 @@ msgstr "Примусово вимкнути"
 msgid "Clone"
 msgstr "Клонувати"
 
-#: src/actions-popover.vala:92 src/machine.vala:637
+#: src/actions-popover.vala:92 src/machine.vala:597
 msgid "Restart"
 msgstr "Перезапустити"
 
 #. Properties (in separate section)
 #: src/actions-popover.vala:101
-msgid "Properties"
-msgstr "Властивості"
+msgid "Preferences"
+msgstr ""
+"Параметри"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
 #: src/actions-popover.vala:125
@@ -648,71 +723,71 @@ msgstr "Властивості"
 msgid "Screenshot from %s"
 msgstr "Знімок екрана від %s"
 
-#: src/app.vala:123
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: src/app.vala:124
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "Проста програма GNOME 3 для доступу до віртуальних систем"
 
-#: src/app.vala:189 src/main.vala:9
+#: src/app.vala:191 src/main.vala:9
 msgid "Display version number"
 msgstr "Показати номер версії"
 
-#: src/app.vala:190
+#: src/app.vala:192
 msgid "Show help"
 msgstr "Показати довідку"
 
-#: src/app.vala:191
+#: src/app.vala:193
 msgid "Open in full screen"
 msgstr "Відкрити на весь екран"
 
-#: src/app.vala:192 src/main.vala:10
+#: src/app.vala:194 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Перевірити можливості віртуалізації"
 
-#: src/app.vala:193
+#: src/app.vala:195
 msgid "Open box with UUID"
 msgstr "Відкрити коробку з UUID"
 
-#: src/app.vala:194
+#: src/app.vala:196
 msgid "Search term"
 msgstr "Ключове слово"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:196
+#: src/app.vala:198
 msgid "URL to display, broker or installer media"
 msgstr "URL до екрана, носія посередника або встановлювача"
 
-#: src/app.vala:207
+#: src/app.vala:209
 msgid "— A simple application to access virtual machines"
 msgstr "— проста програма для доступу до віртуальних машин"
 
-#: src/app.vala:232
+#: src/app.vala:236
 msgid "Too many command line arguments specified.\n"
 msgstr "Вказано надто багато аргументів командного рядка.\n"
 
-#: src/app.vala:501
+#: src/app.vala:488
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Коробку «%s» встановлено і нею можна користуватись"
 
-#: src/app.vala:503
+#: src/app.vala:490
 msgid "Launch"
 msgstr "Запустити"
 
-#: src/app.vala:533
+#: src/app.vala:520
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» працює у фоновому режимі"
 
-#: src/app.vala:619
+#: src/app.vala:605
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Коробку «%s» вилучено"
 
-#: src/app.vala:620
+#: src/app.vala:606
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -721,24 +796,27 @@ msgstr[1] "%u коробки вилучено"
 msgstr[2] "%u коробок вилучено"
 msgstr[3] "%u коробку вилучено"
 
-#: src/app.vala:648 src/libvirt-machine-properties.vala:558
-#: src/snapshot-list-row.vala:194
+#: src/app.vala:634
 msgid "_Undo"
 msgstr "Пов_ернути"
 
-#: src/app.vala:694
+#: src/app.vala:680
 msgid "Boxes is doing something"
 msgstr "Boxes щось робить"
 
-#: src/app-window.vala:322
+#: src/app-window.vala:289
 msgid "Select files to transfer"
 msgstr "Виберіть файли для обміну"
 
-#: src/app-window.vala:325
+#: src/app-window.vala:292
 msgid "_Open"
 msgstr "_Відкрити"
 
-#: src/assistant/index-page.vala:146 src/properties-window.vala:61
+#: src/assistant/index-page.vala:143 src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "Вибрати пристрій або файл ISO"
+
+#: src/assistant/index-page.vala:146 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Відкрити"
 
@@ -748,7 +826,7 @@ msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:703
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
@@ -767,20 +845,6 @@ msgstr "64-ох бітна система x86"
 msgid " from %s"
 msgstr " від %s"
 
-#: src/assistant/review-page.vala:50
-msgid "Memory"
-msgstr "Пам'ять"
-
-#: src/assistant/review-page.vala:59
-msgid "Disk"
-msgstr "Диск"
-
-#. Translators: This is disk size. E.g "1 GB maximum".
-#: src/assistant/review-page.vala:61
-#, c-format
-msgid "%s maximum"
-msgstr "%s максимально"
-
 #: src/assistant/vm-assistant.vala:60
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
@@ -791,46 +855,16 @@ msgstr ""
 msgid "Create"
 msgstr "Створити"
 
-#: src/config-editor.vala:33
-msgid "Configuration modified "
-msgstr "Налаштування змінено"
-
-#: src/config-editor.vala:67
-msgid ""
-"Boxes failed to snapshot your virtual machine before applying your changes."
-msgstr ""
-"«Коробкам» не вдалося створити знімок вашої віртуальної машини до "
-"застосування внесених вами змін."
-
-#: src/config-editor.vala:85
-#, c-format
-msgid "Boxes failed to apply VM configuration changes: %s"
-msgstr ""
-"«Коробкам» не вдалося застосувати зміни у налаштуваннях віртуальної машини: "
-"%s"
-
-#. TODO: unify the reboot requests for non-properties
-#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "Зміни потребують перезапуску «%s»."
-
-#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
-#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
-msgid "_Restart"
-msgstr "_Перезапустити"
-
-#: src/display-page.vala:135
+#: src/display-page.vala:133
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "Натисніть (ліві) Ctrl+Alt, щоб відпустити"
 
-#: src/display-page.vala:137
+#: src/display-page.vala:135
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr "Натисніть і відпустіть (ліві) Ctrl+Alt, щоб відпустити клавіатуру."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:326
+#: src/display-page.vala:324
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -866,21 +900,8 @@ msgid "Unsupported disk image format."
 msgstr "Непідтримуваний формат образу диска."
 
 #: src/installed-media.vala:101 src/installer-media.vala:180
-#: src/properties-page-widget.vala:21
 msgid "System"
 msgstr "Система"
-
-#. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
-#, c-format
-msgid "%s used"
-msgstr "%s вжито"
-
-#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:115
-#, c-format
-msgid "%s (recommended)"
-msgstr "%s (бажано)"
 
 #: src/keys-input-popover.vala:26
 msgid "Ctrl + Alt + Backspace"
@@ -913,242 +934,81 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "Надіслати комбінації клавіш"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
-msgid "_Name"
-msgstr "_Назва"
-
-#: src/libvirt-machine-properties.vala:108
-msgid "IP Address"
-msgstr "Адреса IP"
-
-#: src/libvirt-machine-properties.vala:110
-msgid "Broker"
-msgstr "Посередник"
-
-#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
-#: src/libvirt-machine-properties.vala:113
-msgid "Display Protocol"
-msgstr "Протокол показу"
-
-#. Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
-#: src/libvirt-machine-properties.vala:116
-msgid "Display URL"
-msgstr "URL екрана"
-
-#. Translators: empty is listed as the filename for a non-mounted CD
-#: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:222
-msgid "empty"
-msgstr "порожньо"
-
-#. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:193
-#: src/libvirt-machine-properties.vala:221
-msgid "_Select"
-msgstr "_Вибрати"
-
-#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:196
-#: src/libvirt-machine-properties.vala:204
-msgid "_Remove"
-msgstr "Ви_лучити"
-
-#. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
-#. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:211
-#, c-format
-msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
-msgstr "Не вдалось вставити «%s» як CD/DVD у «%s»"
-
-#. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:225
-#, c-format
-msgid "Removal of CD/DVD from “%s” failed"
-msgstr "Не вдалось витягнути CD/DVD з «%s»"
-
-#: src/libvirt-machine-properties.vala:240
-msgid "CD/DVD"
-msgstr "CD/DVD"
-
-#: src/libvirt-machine-properties.vala:304
-msgid "CPU"
-msgstr "Процесор"
-
-#. I/O
-#. 100 MiB/s
-#: src/libvirt-machine-properties.vala:310
-msgid "I/O"
-msgstr "В/В"
-
-#. Network
-#. 1 MiB/s
-#: src/libvirt-machine-properties.vala:316
-msgid "Network"
-msgstr "Мережа"
-
-#: src/libvirt-machine-properties.vala:353
-msgid "_Force Shutdown"
-msgstr "При_мусово вимкнути"
-
-#: src/libvirt-machine-properties.vala:367
-msgid "_Troubleshooting Log"
-msgstr "_Журнал помилок"
-
-#: src/libvirt-machine-properties.vala:375
-msgid "Edit XML"
-msgstr "Редагувати XML"
-
-#: src/libvirt-machine-properties.vala:395
-msgid "_Memory: "
-msgstr "_Пам'ять:"
-
-#: src/libvirt-machine-properties.vala:464
-msgid "Maximum Disk Space"
-msgstr "Максимально простору на диску"
-
-#: src/libvirt-machine-properties.vala:482
-msgid ""
-"There is not enough space on your machine to increase the maximum disk size."
-msgstr ""
-"Не вистачає простору на вашій машині, щоб збільшити максимальний розмір "
-"диска."
-
-#: src/libvirt-machine-properties.vala:492
-msgid "Maximum _Disk Size: "
-msgstr "Максимальний розмір _диска:"
-
-#. qemu-img doesn't support resizing disk image with snapshots:
-#. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:545
-#, c-format
-msgid "Storage resize requires deleting associated snapshot."
-msgid_plural "Storage resize requires deleting %llu associated snapshots."
-msgstr[0] "Зміна розміру зберігання вимагає вилучення %llu пов'язаного знімка."
-msgstr[1] "Зміна розміру зберігання вимагає вилучення %llu пов'язаних знімків."
-msgstr[2] "Зміна розміру зберігання вимагає вилучення %llu пов'язаних знімків."
-msgstr[3] "Зміна розміру зберігання вимагає вилучення %llu пов'язаного знімка."
-
-#: src/libvirt-machine-properties.vala:674
-#: src/libvirt-machine-properties.vala:678
-msgid "CPUs: "
-msgstr "Процесори:"
-
-#: src/libvirt-machine-properties.vala:733
-msgid "_Run in background"
-msgstr "_Запустити на фоні"
-
-#: src/libvirt-machine-properties.vala:745
-#: src/libvirt-machine-properties.vala:748
-#, c-format
-msgid "“%s” will not be paused automatically."
-msgstr "«%s» не буде призупинено автоматично."
-
-#: src/libvirt-machine-properties.vala:746
-#: src/libvirt-machine-properties.vala:749
-#, c-format
-msgid "“%s” will be paused automatically to save resources."
-msgstr "«%s» буде призупинено автоматично, щоб заощадити ресурси."
-
-#: src/libvirt-machine-properties.vala:774
-msgid "Boxes is not authorized to run in the background"
-msgstr "«Коробки» не уповноважено на роботу у фоновому режимі"
-
-#: src/libvirt-machine-properties.vala:776
-msgid "Manage permissions"
-msgstr "Керування дозволами"
-
-#: src/libvirt-machine-properties.vala:794
-msgid "3D Acceleration"
-msgstr "Просторове прискорення"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:643
+#: src/libvirt-machine.vala:475
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Відновлення %s з диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:646
+#: src/libvirt-machine.vala:478
 #, c-format
 msgid "Starting %s"
 msgstr "Запускання %s"
 
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:557
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Перезапуск «%s» триває задовго. Примусово вимкнути?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:559
 msgid "_Shutdown"
 msgstr "_Вимкнути"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:575
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонування «%s»…"
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:701
 msgid "Installing…"
 msgstr "Встановлення…"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:705
 msgid "Setting up clone…"
 msgstr "Розпочаток клонування…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:707
 msgid "Importing…"
 msgstr "Імпортування…"
 
-#: src/libvirt-machine.vala:890
+#: src/libvirt-machine.vala:716
 #, c-format
 msgid "host: %s"
 msgstr "вузол: %s"
 
-#: src/list-view-row.vala:133
-msgid "Connected"
-msgstr "З'єднано"
-
-#: src/list-view-row.vala:133
-msgid "Disconnected"
-msgstr "Роз'єднано"
-
-#: src/list-view-row.vala:139
+#: src/list-view-row.vala:130
 msgid "Running"
 msgstr "Запущено"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:136
 msgid "Paused"
 msgstr "Призупинено"
 
-#: src/list-view-row.vala:150
+#: src/list-view-row.vala:141
 msgid "Powered Off"
 msgstr "Вимкнено"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:203
+#: src/machine.vala:185
 #, c-format
 msgid "Connecting to %s"
 msgstr "З'єднання з %s"
 
-#: src/machine.vala:223
-#, c-format
-msgid "Authentication failed: %s"
-msgstr "Помилка засвідчення: %s"
-
-#: src/machine.vala:236 src/machine.vala:665
+#: src/machine.vala:211 src/machine.vala:625
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Не вдалося з'єднатися з «%s»"
 
-#: src/machine.vala:289
+#: src/machine.vala:258
 msgid "Machine is under construction"
 msgstr "Машина споруджується"
 
-#: src/machine.vala:444
+#: src/machine.vala:411
 msgid "Saving…"
 msgstr "Зберігання…"
 
-#: src/machine.vala:636
+#: src/machine.vala:596
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1157,16 +1017,16 @@ msgstr ""
 "«%s» неможливо відновити з диску\n"
 "Спробувати без збереженого стану?"
 
-#: src/machine.vala:647
+#: src/machine.vala:607
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Не вдалося запустити «%s»"
 
-#. Translators: %s => name of launched box
-#: src/machine.vala:752
-#, c-format
-msgid "“%s” requires authentication"
-msgstr "«%s» потребує засвідчення"
+#. FIXME: var logs = libvirt_machine.properties.collect_logs ();
+#. window.props_window.show_troubleshoot_log (logs);
+#: src/machine.vala:618
+msgid "Troubleshooting Log"
+msgstr "Журнал помилок"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1209,43 +1069,104 @@ msgstr "%s домашню сторінку: <%s>.\n"
 msgid "No such file %s"
 msgstr "Немає такого файла %s"
 
-#: src/notificationbar.vala:44
-#, c-format
-msgid "Sign In to %s"
-msgstr "Увійти в %s"
-
-#: src/notificationbar.vala:47
-#, c-format
-msgid "Not connected to %s"
-msgstr "Не з'єднано з %s"
-
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
 msgstr "«Коробки» хочуть запустити віртуальну машину у фоновому режимі"
 
-#: src/properties-page-widget.vala:17
-msgid "General"
-msgstr "Загальне"
+#: src/preferences/cdrom-row.vala:33
+msgid "No CD/DVD image"
+msgstr ""
+"Немає образу CD/DVD"
 
-#: src/properties-page-widget.vala:25
-msgid "Devices & Shares"
-msgstr "Пристрої та доступ"
+#: src/preferences/devices-page.vala:25
+msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
+msgstr ""
+"У версії «Коробок GNOME» у форматі Flatpak не передбачено підтримки переспрямовування USB."
 
-#: src/properties-page-widget.vala:29
-msgid "Snapshots"
-msgstr "Зрізи"
+#: src/preferences/devices-page.vala:36
+msgid "Turn on your box to see the USB devices available for redirection."
+msgstr ""
+"Увімкніть вашу коробку, щоб переглянути пристрої USB, які доступні для переспрямовування."
 
-#: src/remote-machine.vala:78
-msgid "Protocol"
-msgstr "Протокол"
+#: src/preferences/resources-page.vala:80
+#, c-format
+#| msgid "%s (recommended)"
+msgid "Recommended %s."
+msgstr "Рекомендовано %s."
 
-#: src/remote-machine.vala:80
-msgid "URL"
-msgstr "URL"
+#: src/preferences/resources-page.vala:155
+#| msgid "Boxes is not authorized to run in the background"
+msgid "Boxes is not authorized to run in background"
+msgstr "«Коробки» не уповноважено на роботу у фоновому режимі"
 
-#: src/remote-machine.vala:82
-msgid "_URL"
-msgstr "_URL"
+#: src/preferences/resources-page.vala:157
+msgid "Manage permissions"
+msgstr "Керування дозволами"
+
+#: src/preferences/resources-page.vala:189
+msgid ""
+"Editing your box configuration can cause issues to the operating system of "
+"your box. Would you like to create a snapshot to recover from your changes?"
+msgstr ""
+"Редагування налаштувань вашої коробки може призвести до проблем у операційній системі вашої коробки. Хочете створити знімок для відновлення системи, якщо зміни будуть невдалими?"
+
+#: src/preferences/resources-page.vala:255
+#, c-format
+#| msgid "Boxes failed to apply VM configuration changes: %s"
+msgid "Failed to save domain configuration: %s"
+msgstr ""
+"Не вдалося зберегти налаштування домену: %s"
+
+#: src/preferences/resources-page.vala:264
+msgid "Changes to the settings bellow take effect after you restart your box."
+msgstr ""
+"Зміни у параметрах, наведених нижче набудуть чинності після перезапуску коробки."
+
+#: src/preferences/shared-folders-widget.vala:75
+#| msgid "Use the <b>+</b> button to create your first virtual machine."
+msgid "Use the button bellow to add your first shared folder."
+msgstr "Натисніть кнопку нижче, щоб додати вашу першу спільну теку."
+
+#: src/preferences/snapshot-list-row.vala:140
+#, c-format
+msgid "Reverting to %s…"
+msgstr "Відновлення до %s…"
+
+#: src/preferences/snapshot-list-row.vala:158
+msgid "Failed to apply snapshot"
+msgstr "Не вдалося накласти зріз"
+
+#: src/preferences/snapshot-list-row.vala:175
+#, c-format
+msgid "Snapshot “%s” deleted."
+msgstr "Зріз «%s» вилучено."
+
+#: src/preferences/snapshots-page.vala:122
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "Не вдалось створити зріз %s"
+
+#: src/preferences/snapshots-page.vala:144
+#| msgid "Use the <b>+</b> button to create your first virtual machine."
+msgid "Use the button bellow to create your first snapshot."
+msgstr "Натисніть кнопку нижче, щоб створити ваш перший знімок."
+
+#. Translators: "%s" is a disk size string (for example "4.2 GB")
+#: src/preferences/storage-row.vala:23
+#, c-format
+msgid "Used %s."
+msgstr ""
+"Використано %s."
+
+#: src/preferences/storage-row.vala:26
+#| msgid ""
+#| "There is not enough space on your machine to increase the maximum disk "
+#| "size."
+msgid ""
+"There is not enough space on your machine to increate the maximum disk size."
+msgstr ""
+"Не вистачає простору на вашій машині, щоб збільшити максимальний розмір "
+"диска."
 
 #: src/selectionbar.vala:60
 #, c-format
@@ -1282,75 +1203,15 @@ msgstr[3] "%u вибрано"
 msgid "(Click on items to select them)"
 msgstr "(Натисніть на об'єкти, щоб вибрати їх)"
 
-#: src/snapshot-list-row.vala:137
-#, c-format
-msgid "Reverting to %s…"
-msgstr "Відновлення до %s…"
-
-#: src/snapshot-list-row.vala:155
-msgid "Failed to apply snapshot"
-msgstr "Не вдалося накласти зріз"
-
-#: src/snapshot-list-row.vala:172
-#, c-format
-msgid "Snapshot “%s” deleted."
-msgstr "Зріз «%s» вилучено."
-
-#: src/snapshots-property.vala:61
-msgid "No snapshots created yet. Create one using the button below."
-msgstr "Немає жодного зрізу наразі. Створіть натиснувши кнопку нижче."
-
-#: src/snapshots-property.vala:124
-msgid "Creating new snapshot…"
-msgstr "Створення нового зрізу…"
-
-#: src/snapshots-property.vala:132
-#, c-format
-msgid "Failed to create snapshot of %s"
-msgstr "Не вдалось створити зріз %s"
-
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: src/spice-display.vala:46
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: src/spice-display.vala:62 src/spice-display.vala:512
+#: src/spice-display.vala:61 src/spice-display.vala:452
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "Не вдалося перенаправити пристрій USB «%s» для «%s»"
-
-#. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:375
-#, c-format
-msgid ""
-"SPICE guest tools are not running. These tools improve user experience and "
-"enable host and box interactions, such as copy and paste. Please visit %s to "
-"download and install these tools from within the box."
-msgstr ""
-"Гостьові інструменти SPICE не запущено. Ці інструменти покращують роботу і "
-"додають взаємодію, як-от, спільний буфер обміну. Відвідайте %s, звантажте і "
-"встановіть ці інструменти в межах коробки."
-
-#: src/spice-display.vala:402
-msgid "USB devices"
-msgstr "Пристрої USB"
-
-#: src/spice-display.vala:418
-msgid "Folder Shares"
-msgstr "Доступ до тек"
-
-#: src/spice-display.vala:616 src/spice-display.vala:641
-#: src/spice-display.vala:644
-msgid "Invalid URL"
-msgstr "Неправильна URL"
-
-#: src/spice-display.vala:626
-msgid "The port must be specified once"
-msgstr "Порт потрібно вказати один раз"
-
-#: src/spice-display.vala:637
-msgid "Missing port in Spice URL"
-msgstr "Бракує порту в URL для Spice"
 
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
@@ -1368,7 +1229,7 @@ msgstr ""
 "Трапилась помилка протягом підготовлення до встановлення. Вимкнено швидке "
 "встановлення. "
 
-#: src/unattended-installer.vala:465
+#: src/unattended-installer.vala:461
 msgid "Downloading device drivers…"
 msgstr "Звантаження драйверів для пристроїв…"
 
@@ -1386,7 +1247,7 @@ msgstr "Швидке встановлення %s потребує з'єднан�
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Реєстраційні дані коробки для «%s»"
 
-#: src/util-app.vala:358
+#: src/util-app.vala:359
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1395,11 +1256,11 @@ msgstr ""
 "Вміст SELinux виглядає неправильно, може спробувати виправити це виконавши:\n"
 "%s"
 
-#: src/util-app.vala:362
+#: src/util-app.vala:363
 msgid "SELinux not installed?"
 msgstr "SELinux не встановлено?"
 
-#: src/util-app.vala:444
+#: src/util-app.vala:445
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1407,7 +1268,7 @@ msgstr ""
 "Неможливо одержати інформацію про пам'ять з libvirt. Переконайтесь, що "
 "«virsh -c qemu:///session pool-dumpxml gnome-boxes» працює."
 
-#: src/util-app.vala:449
+#: src/util-app.vala:450
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1416,14 +1277,14 @@ msgstr ""
 "%s відомий для libvirt як набір пам'яті коробок GNOME, проте цей каталог не "
 "існує"
 
-#: src/util-app.vala:453
+#: src/util-app.vala:454
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr ""
 "%s відомий для libvirt як набір пам'яті коробок GNOME, проте це не є каталог"
 
-#: src/util-app.vala:457
+#: src/util-app.vala:458
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1442,7 +1303,7 @@ msgstr "ні"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:779
+#: src/vm-configurator.vala:817
 msgid "Incapable host system"
 msgstr "Нездатна головна система"
 
@@ -1456,9 +1317,185 @@ msgstr "Щойно встановлено "
 msgid "Box import from file “%s” failed."
 msgstr "Не вдалось імпортувати коробку з файла «%s»."
 
-#: src/vnc-display.vala:169
-msgid "Read-only"
-msgstr "Лише читання"
+#~ msgid "GNOME Boxes"
+#~ msgstr "Коробки GNOME"
+
+#~ msgid "Override theme"
+#~ msgstr "Перевизначити тему"
+
+#~ msgid "Whether Boxes will override the user's theme"
+#~ msgstr "Чи перевизначатимуть «Коробки» тему користувача"
+
+#~ msgid "Resource Allocation"
+#~ msgstr "Розподіл ресурсів"
+
+#~ msgid "Customize"
+#~ msgstr "Налаштувати"
+
+#~ msgid "_Username"
+#~ msgstr "_Користувач"
+
+#~ msgid "_Password"
+#~ msgstr "_Пароль"
+
+#~ msgid "Sign In"
+#~ msgstr "Увійти"
+
+#~ msgid "_Copy to Clipboard"
+#~ msgstr "К_опіювати в буфер"
+
+#~ msgid "_Apply"
+#~ msgstr "Заст_осувати"
+
+#~ msgid "Properties"
+#~ msgstr "Властивості"
+
+#~ msgid "Disk"
+#~ msgstr "Диск"
+
+#~ msgid "%s maximum"
+#~ msgstr "%s максимально"
+
+#~ msgid ""
+#~ "Boxes failed to snapshot your virtual machine before applying your "
+#~ "changes."
+#~ msgstr ""
+#~ "«Коробкам» не вдалося створити знімок вашої віртуальної машини до "
+#~ "застосування внесених вами змін."
+
+#~ msgid "Changes require restart of “%s”."
+#~ msgstr "Зміни потребують перезапуску «%s»."
+
+#~ msgid "_Restart"
+#~ msgstr "_Перезапустити"
+
+#~ msgid "%s used"
+#~ msgstr "%s вжито"
+
+#~ msgid "Broker"
+#~ msgstr "Посередник"
+
+#~ msgid "Display Protocol"
+#~ msgstr "Протокол показу"
+
+#~ msgid "Display URL"
+#~ msgstr "URL екрана"
+
+#~ msgid "empty"
+#~ msgstr "порожньо"
+
+#~ msgid "_Select"
+#~ msgstr "_Вибрати"
+
+#~ msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
+#~ msgstr "Не вдалось вставити «%s» як CD/DVD у «%s»"
+
+#~ msgid "Removal of CD/DVD from “%s” failed"
+#~ msgstr "Не вдалось витягнути CD/DVD з «%s»"
+
+#~ msgid "CD/DVD"
+#~ msgstr "CD/DVD"
+
+#~ msgid "CPU"
+#~ msgstr "Процесор"
+
+#~ msgid "I/O"
+#~ msgstr "В/В"
+
+#~ msgid "Network"
+#~ msgstr "Мережа"
+
+#~ msgid "_Force Shutdown"
+#~ msgstr "При_мусово вимкнути"
+
+#~ msgid "_Troubleshooting Log"
+#~ msgstr "_Журнал помилок"
+
+#~ msgid "Edit XML"
+#~ msgstr "Редагувати XML"
+
+#~ msgid "_Memory: "
+#~ msgstr "_Пам'ять:"
+
+#~ msgid "Maximum Disk Space"
+#~ msgstr "Максимально простору на диску"
+
+#~ msgid "Maximum _Disk Size: "
+#~ msgstr "Максимальний розмір _диска:"
+
+#~ msgid "Storage resize requires deleting associated snapshot."
+#~ msgid_plural "Storage resize requires deleting %llu associated snapshots."
+#~ msgstr[0] ""
+#~ "Зміна розміру зберігання вимагає вилучення %llu пов'язаного знімка."
+#~ msgstr[1] ""
+#~ "Зміна розміру зберігання вимагає вилучення %llu пов'язаних знімків."
+#~ msgstr[2] ""
+#~ "Зміна розміру зберігання вимагає вилучення %llu пов'язаних знімків."
+#~ msgstr[3] ""
+#~ "Зміна розміру зберігання вимагає вилучення %llu пов'язаного знімка."
+
+#~ msgid "“%s” will not be paused automatically."
+#~ msgstr "«%s» не буде призупинено автоматично."
+
+#~ msgid "“%s” will be paused automatically to save resources."
+#~ msgstr "«%s» буде призупинено автоматично, щоб заощадити ресурси."
+
+#~ msgid "Connected"
+#~ msgstr "З'єднано"
+
+#~ msgid "Disconnected"
+#~ msgstr "Роз'єднано"
+
+#~ msgid "Authentication failed: %s"
+#~ msgstr "Помилка засвідчення: %s"
+
+#~ msgid "“%s” requires authentication"
+#~ msgstr "«%s» потребує засвідчення"
+
+#~ msgid "Sign In to %s"
+#~ msgstr "Увійти в %s"
+
+#~ msgid "Not connected to %s"
+#~ msgstr "Не з'єднано з %s"
+
+#~ msgid "General"
+#~ msgstr "Загальне"
+
+#~ msgid "Protocol"
+#~ msgstr "Протокол"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "_URL"
+#~ msgstr "_URL"
+
+#~ msgid "No snapshots created yet. Create one using the button below."
+#~ msgstr "Немає жодного зрізу наразі. Створіть натиснувши кнопку нижче."
+
+#~ msgid ""
+#~ "SPICE guest tools are not running. These tools improve user experience "
+#~ "and enable host and box interactions, such as copy and paste. Please "
+#~ "visit %s to download and install these tools from within the box."
+#~ msgstr ""
+#~ "Гостьові інструменти SPICE не запущено. Ці інструменти покращують роботу "
+#~ "і додають взаємодію, як-от, спільний буфер обміну. Відвідайте %s, "
+#~ "звантажте і встановіть ці інструменти в межах коробки."
+
+#~ msgid "Folder Shares"
+#~ msgstr "Доступ до тек"
+
+#~ msgid "Invalid URL"
+#~ msgstr "Неправильна URL"
+
+#~ msgid "The port must be specified once"
+#~ msgstr "Порт потрібно вказати один раз"
+
+#~ msgid "Missing port in Spice URL"
+#~ msgstr "Бракує порту в URL для Spice"
+
+#~ msgid "Read-only"
+#~ msgstr "Лише читання"
 
 #~ msgid "State of the Art Virtualization"
 #~ msgstr "Сучасний стан віртуалізації"
@@ -1517,9 +1554,6 @@ msgstr "Лише читання"
 #~ msgid "C_ontinue"
 #~ msgstr "_Далі"
 
-#~ msgid "Customize Resources"
-#~ msgstr "Налаштувати ресурси"
-
 #~ msgid "Preparing to create new box"
 #~ msgstr "Підготовлення до створення коробки"
 
@@ -1529,9 +1563,6 @@ msgstr "Лише читання"
 #~ msgstr ""
 #~ "Кожен ящик може бути віртуальною машиною, яка працює на цьому комп'ютері, "
 #~ "або з'єднанням до наявної віддаленого машини"
-
-#~ msgid "Select"
-#~ msgstr "Вибрати"
 
 #~ msgid "Source installer media '%s' no longer exists"
 #~ msgstr "Початкового носія для встановлення «%s» більше не існує"
