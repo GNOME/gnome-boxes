@@ -6,6 +6,7 @@
     <property name="valign">end</property>
     <style>
       <class name="app-notification"/>
+      <class name="boxes-toast"/>
     </style>
 
     <child>
@@ -15,12 +16,14 @@
         <property name="hexpand">True</property>
         <property name="wrap">True</property>
         <property name="lines">2</property>
+        <property name="margin">5</property>
       </object>
     </child>
 
     <child>
       <object class="GtkButton" id="button">
         <property name="visible">True</property>
+        <property name="valign">center</property>
         <property name="label" translatable="yes">Undo</property>
         <signal name="clicked" handler="on_undo_button_clicked"/>
       </object>
