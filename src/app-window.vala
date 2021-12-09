@@ -81,7 +81,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     [GtkChild]
     public unowned DisplayPage display_page;
     [GtkChild]
-    public unowned EmptyBoxes empty_boxes;
+    public unowned Hdy.StatusPage empty_boxes;
     [GtkChild]
     public unowned TroubleshootView troubleshoot_view;
     [GtkChild]
@@ -130,8 +130,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
 
         settings = new GLib.Settings ("org.gnome.boxes");
 
-        notify["ui-state"].connect (ui_state_changed);
-
         Gtk.Window.set_default_icon_name (Config.APPLICATION_ID);
         Hdy.StyleManager.get_default ().color_scheme = PREFER_DARK;
 
@@ -174,14 +172,31 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         list_view.setup_ui (this);
         selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
-        empty_boxes.setup_ui (this);
         troubleshoot_view.setup_ui (this);
         notificationbar.searchbar = searchbar;
 
         group = new Gtk.WindowGroup ();
         group.add_window (this);
 
+        App.app.call_when_ready (on_app_ready);
+    }
+
+    private void on_app_ready () {
+        notify["ui-state"].connect (ui_state_changed);
         notify["view-type"].connect (ui_state_changed);
+
+        on_collection_changed ();
+        App.app.collection.item_added.connect (on_collection_changed);
+        App.app.collection.item_removed.connect (on_collection_changed);
+    }
+
+    private void on_collection_changed () {
+        bool collection_is_empty = (App.app.collection.length == 0);
+
+        if (collection_is_empty)
+            below_bin.visible_child = empty_boxes;
+        else
+            below_bin.visible_child = view;
     }
 
     private void save_window_geometry () {
@@ -202,9 +217,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
         foreach (var ui in new Boxes.UI[] { topbar,
                                             icon_view,
-                                            list_view,
-                                            //wizard_window,
-                                            empty_boxes }) {
+                                            list_view }) {
             ui.set_state (ui_state);
         }
 

@@ -78,10 +78,44 @@
                 <property name="transition-duration">400</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
+                <property name="visible-child-name">connecting-page</property>
 
                 <child>
-                  <object class="BoxesEmptyBoxes" id="empty_boxes">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="halign">fill</property>
+                    <property name="valign">fill</property>
+
+                    <child>
+                      <object class="GtkSpinner">
+                        <property name="visible">True</property>
+                        <property name="active">True</property>
+                        <property name="width-request">32</property>
+                        <property name="height-request">32</property>
+                      </object>
+
+                      <packing>
+                        <property name="expand">True</property>
+                        <property name="fill">True</property>
+                      </packing>
+                    </child>
+                  </object>
+
+                  <packing>
+                    <property name="name">connecting-page</property>
+                  </packing>
+                </child>
+
+                <child>
+                  <object class="HdyStatusPage" id="empty_boxes">
+                    <property name="visible">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="icon-name">empty-boxes</property>
+                    <property name="title" translatable="yes">Welcome to Boxes</property>
+                    <property name="description" translatable="yes">Use the &lt;b&gt;+&lt;/b&gt; button to create your first virtual machine.</property>
                   </object>
                   <packing>
                     <property name="name">empty-boxes</property>
@@ -122,34 +156,6 @@
 
                   <packing>
                     <property name="name">display-page</property>
-                  </packing>
-                </child>
-
-                <child>
-                  <object class="GtkBox" id="spinner-box">
-                    <property name="visible">True</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand">True</property>
-                    <property name="halign">fill</property>
-                    <property name="valign">fill</property>
-
-                    <child>
-                      <object class="GtkSpinner" id="spinner">
-                        <property name="visible">True</property>
-                        <property name="active">True</property>
-                        <property name="width-request">32</property>
-                        <property name="height-request">32</property>
-                      </object>
-
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                      </packing>
-                    </child>
-                  </object>
-
-                  <packing>
-                    <property name="name">connecting-page</property>
                   </packing>
                 </child>
               </object>

@@ -96,7 +96,6 @@ vala_sources = [
   'welcome-tutorial.vala',
   'welcome-tutorial-page.vala',
   'downloader.vala',
-  'empty-boxes.vala',
   'tracker-iso-query.vala',
 ]
 
