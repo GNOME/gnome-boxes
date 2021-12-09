@@ -61,45 +61,13 @@
     </child>
 
     <child>
-      <object class="GtkBox">
+      <object class="HdyStatusPage">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
-        <property name="opacity">0.5</property>
-        <property name="spacing">10</property>
-        <property name="valign">center</property>
-        <style>
-          <class name="dim-label"/>
-        </style>
-
-        <child>
-          <object class="GtkImage">
-            <property name="visible">True</property>
-            <property name="resource">/org/gnome/Boxes/icons/empty-boxes.png</property>
-            <property name="pixel-size">128</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="margin">18</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">No operating systems found</property>
-            <attributes>
-              <attribute name="scale" value="2"/>
-              <attribute name="weight" value="bold"/>
-            </attributes>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkLabel">
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">Try a different search</property>
-          </object>
-        </child>
-
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="icon-name">empty-boxes</property>
+        <property name="title" translatable="yes">No operating systems found</property>
+        <property name="description" translatable="yes">Try a different search</property>
       </object>
       <packing>
         <property name="name">no-results</property>
