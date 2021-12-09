@@ -84,7 +84,7 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     }
 
     private Gtk.Widget create_downloads_entry (Object item) {
-        return new AssistantDownloadableEntry (item as Osinfo.Media);
+        return new AssistantDownloadableEntry.from_osinfo (item as Osinfo.Media);
     }
 
     [GtkCallback]

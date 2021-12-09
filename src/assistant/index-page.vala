@@ -87,11 +87,11 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     private Gtk.Widget add_media_entry (GLib.Object object) {
-        return new AssistantMediaEntry (object as InstallerMedia);
+        return new AssistantMediaEntry.from_installer_media (object as InstallerMedia);
     }
 
     private Gtk.Widget add_featured_media_entry (GLib.Object object) {
-        return new AssistantDownloadableEntry (object as Osinfo.Media);
+        return new AssistantDownloadableEntry.from_osinfo (object as Osinfo.Media);
     }
 
     [GtkCallback]

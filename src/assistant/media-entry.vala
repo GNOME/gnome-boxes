@@ -3,9 +3,9 @@ private class Boxes.AssistantMediaEntry : Hdy.ActionRow {
     public InstallerMedia media;
 
     [GtkChild]
-    private unowned Gtk.Image media_image;
+    protected unowned Gtk.Image media_image;
 
-    public AssistantMediaEntry (InstallerMedia media) {
+    public AssistantMediaEntry.from_installer_media (InstallerMedia media) {
         this.media = media;
 
         if (media.os != null)
