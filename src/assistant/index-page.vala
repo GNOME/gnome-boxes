@@ -17,15 +17,14 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     private unowned AssistantDownloadsPage recommended_downloads_page;
     [GtkChild]
     private unowned ScrolledWindow home_page;
-
     [GtkChild]
-    private unowned Box detected_sources_section;
+    private unowned Hdy.PreferencesGroup detected_sources_section;
     [GtkChild]
     private unowned ListBox source_medias;
     [GtkChild]
     private unowned ListBox featured_medias;
-    [GtkChild]
-    private unowned Button expand_detected_sources_list_button;
+
+    private Gtk.Button view_more_medias_button;
 
     private GLib.Cancellable cancellable = new GLib.Cancellable ();
 
@@ -35,8 +34,16 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         source_medias.bind_model (source_model, add_media_entry);
         featured_medias.bind_model (featured_model, add_featured_media_entry);
 
-        source_medias.set_header_func (use_list_box_separator);
-        featured_medias.set_header_func (use_list_box_separator);
+        view_more_medias_button = new Gtk.Button () {
+            visible = true,
+            image = new Gtk.Image () {
+                visible = true,
+                icon_name = "view-more-symbolic"
+            }
+        };
+        view_more_medias_button.clicked.connect (on_expand_detected_sources_list);
+        view_more_medias_button.get_style_context ().add_class ("flat");
+        source_medias.add (view_more_medias_button);
     }
 
     public void setup (VMAssistant dialog) {
@@ -69,14 +76,12 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     private void populate_detected_sources_list (int? number_of_items = null) {
-	var number_of_available_medias = installer_medias.length ();
+        var number_of_available_medias = installer_medias.length ();
         detected_sources_section.visible = (number_of_available_medias > 0);
         source_model.remove_all ();
 
         if (number_of_available_medias == 0)
             return;
-
-	expand_detected_sources_list_button.visible = (number_of_available_medias > MAX_MEDIA_ENTRIES);
 
         foreach (var media in installer_medias) {
             source_model.append (media);
@@ -106,11 +111,10 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         }
     }
 
-    [GtkCallback]
     private void on_expand_detected_sources_list () {
         populate_detected_sources_list ();
 
-        expand_detected_sources_list_button.hide ();
+        view_more_medias_button.get_parent ().destroy ();
     }
 
     [GtkCallback]
