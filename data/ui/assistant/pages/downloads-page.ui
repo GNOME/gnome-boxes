@@ -11,11 +11,6 @@
         <property name="border-width">20</property>
         <property name="margin-start">20</property>
         <property name="margin-end">20</property>
-        <style>
-          <class name="linked"/>
-          <class name="frame"/>
-          <class name="sources-list"/>
-        </style>
 
         <child>
           <object class="GtkListBox" id="recommended_listbox">
@@ -23,25 +18,9 @@
             <property name="vexpand">True</property>
             <property name="selection-mode">none</property>
             <signal name="row-activated" handler="on_listbox_row_activated"/>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkButton" id="show_more_button">
-            <property name="visible">True</property>
-            <signal name="clicked" handler="on_show_more_button_clicked"/>
             <style>
-              <class name="list-expand-button"/>
-              <class name="boxes-menu-row"/>
-              <class name="flat"/>
+              <class name="content"/>
             </style>
-
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="icon-name">view-more-symbolic</property>
-              </object>
-            </child>
           </object>
         </child>
       </object>
@@ -69,8 +48,7 @@
                 <property name="selection-mode">none</property>
                 <signal name="row-activated" handler="on_listbox_row_activated"/>
                 <style>
-                  <class name="sources-list"/>
-                  <class name="frame"/>
+                  <class name="content"/>
                 </style>
               </object>
             </child>

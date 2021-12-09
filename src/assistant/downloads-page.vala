@@ -18,6 +18,7 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
 
     public Gtk.SearchEntry search_entry = new Gtk.SearchEntry ();
     private GLib.ListStore recommended_model;
+    private Gtk.Button show_more_button;
 
     public signal void media_selected (Gtk.ListBoxRow row);
 
@@ -56,11 +57,20 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
 
         recommended_model = new GLib.ListStore (typeof (Osinfo.Media));
         recommended_listbox.bind_model (recommended_model, create_downloads_entry);
-        recommended_listbox.set_header_func (use_list_box_separator);
         populate_recommended_list.begin ();
 
+        show_more_button = new Gtk.Button () {
+            visible = true,
+            image = new Gtk.Image () {
+                visible = true,
+                icon_name = "view-more-symbolic"
+            }
+        };
+        show_more_button.clicked.connect (on_show_more_button_clicked);
+        show_more_button.get_style_context ().add_class ("flat");
+        recommended_listbox.add (show_more_button);
+
         listbox.bind_model (search.model, create_downloads_entry);
-        listbox.set_header_func (use_list_box_separator);
 
         search.search_changed.connect (set_visible_view);
     }
@@ -92,11 +102,12 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
         media_selected (row);
     }
 
-    [GtkCallback]
     private void on_show_more_button_clicked () {
         search.show_all ();
 
         page = AssistantDownloadsPageView.SEARCH_RESULTS;
+
+        show_more_button.get_parent ().destroy ();
     }
 
     private void on_search_changed () {
