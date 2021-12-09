@@ -2,10 +2,6 @@
 @define-color boxes_bg2_color mix (@theme_bg_color, @boxes_bg_color, 0.5);
 @define-color boxes_selected_color #3465a4;
 
-.boxes-snapshot-list-row {
-    border-bottom: 1px solid @borders;
-}
-
 .boxes-snapshot-list-row.indicator {
     background-color: @insensitive_fg_color;
     border: none;
@@ -15,23 +11,9 @@
     background-color: @theme_fg_color;
 }
 
-.boxes-resource-graph {
-    background-color: @boxes_bg_color;
-    border-color: @theme_fg_color;
-    color: @theme_bg_color;
-}
-
 .transparent-bg {
     background-color: transparent;
     background-image: none;
-}
-
-.content-bg {
-    background-color: @content_view_bg;
-}
-
-.boxes-toplevel {
-    background-color: @theme_bg_color;
 }
 
 .slow-spinner {
@@ -43,69 +25,9 @@
     border: 1px solid @theme_bg_color;
 }
 
-.bold-label {
-    font-weight: bold;
-}
-
-/******************
- * New Box Wizard *
- ******************/
-
-/* This is the subtitle in the ISOs/media list */
-.boxes-step-label {
-    font-size: smaller;
-    font-weight: normal;
-}
-
-.boxes-wizard-media-os-label {
-    color: #d8d8d8;
-    font-weight: bold;
-}
-
-.boxes-logo-notice-label {
-    font-size: smaller;
-    font-style: italic;
-}
-
-.boxes-spice-tools-notice-label {
-    font-size: smaller;
-    font-style: italic;
-}
-
 .boxes-product-key-entry {
     font-family: monospace;
 }
-
-/* Ensure the viewport is transparent so the background don't
-   show through the rounded corners */
-.boxes-menu GtkViewport {
-    background-image: none;
-    background-color: transparent;
-    border-style: none;
-}
-
-.boxes-menu-row {
-    background: @theme_unfocused_base_color;
-}
-
-.boxes-menu-row:hover {
-    background-color: @theme_bg_color;
-}
-
-.sources-list {
-    border-radius: 5px;
-}
-
-separator {
-    background-color: @borders;
-}
-
-.list-expand-button {
-    border-top: 1px solid @borders;
-}
-
-/* Adds a border to the ISOs lists top undershoot */
-.boxes-menu-scrolled.undershoot.top { border-top: 1px solid @borders; }
 
 /* This is to be removed once we port to AdwToast */
 .boxes-toast {
