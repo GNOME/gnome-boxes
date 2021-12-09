@@ -1,72 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <!-- interface-requires gtk+ 3.9 -->
-  <template class="BoxesAssistantMediaEntry" parent="GtkListBoxRow">
-    <style>
-      <class name="entry-row"/>
-    </style>
-
+  <template class="BoxesAssistantMediaEntry" parent="HdyActionRow">
     <property name="visible">True</property>
-    <child>
-      <object class="GtkBox" id="hbox">
+    <property name="activatable">True</property>
+    <property name="can-focus">True</property>
+    <property name="subtitle" translatable="yes">Unknown media</property>
+
+    <child type="prefix">
+      <object class="GtkImage" id="media_image">
         <property name="visible">True</property>
-        <property name="margin-start">15</property>
-        <property name="margin-end">15</property>
-        <property name="spacing">20</property>
-        <property name="orientation">horizontal</property>
-        <child>
-          <object class="GtkImage" id="media_image">
-            <property name="visible">True</property>
-            <property name="icon-name">media-optical</property>
-            <property name="icon-size">0</property>
-            <property name="pixel-size">64</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">False</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="vbox">
-            <property name="visible">True</property>
-            <property name="homogeneous">True</property>
-            <property name="spacing">0</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkLabel" id="title_label">
-                <property name="visible">True</property>
-                <property name="ellipsize">end</property>
-                <property name="halign">start</property>
-                <property name="valign">end</property>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkLabel" id="details_label">
-                <property name="visible">True</property>
-                <property name="ellipsize">end</property>
-                <property name="halign">start</property>
-                <property name="valign">start</property>
-                <property name="label" translatable="yes">Unknown media</property>
-                <style>
-                  <class name="boxes-step-label"/>
-                  <class name="dim-label"/>
-                </style>
-              </object>
-              <packing>
-                <property name="expand">True</property>
-                <property name="fill">True</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-          </packing>
-        </child>
+        <property name="valign">center</property>
+        <property name="icon-name">media-optical</property>
+        <property name="icon-size">0</property>
+        <property name="pixel-size">64</property>
       </object>
     </child>
   </template>
