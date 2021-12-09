@@ -81,12 +81,6 @@ private class Boxes.RdpDisplay: Boxes.Display {
             display.close ();
     }
 
-    public override List<Boxes.Property> get_properties (Boxes.PropertiesPage page) {
-        var list = new List<Boxes.Property> ();
-
-        return list;
-    }
-
     public override void send_keys (uint[] keyvals) {
     }
 }
