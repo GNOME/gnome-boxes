@@ -3,6 +3,10 @@
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/preferences/memory-row.ui")]
 private class Boxes.MemoryRow : Hdy.ActionRow {
     [GtkChild]
+    protected unowned Gtk.Stack stack;
+    [GtkChild]
+    protected unowned Gtk.Label used_label;
+    [GtkChild]
     public unowned Gtk.SpinButton spin_button;
 
     [GtkCallback]
