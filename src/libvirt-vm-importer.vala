@@ -23,7 +23,7 @@ private class Boxes.LibvirtVMImporter : Boxes.VMImporter {
 
     protected override async Domain create_domain_config (string          name,
                                                           string          title,
-                                                          GVir.StorageVol volume,
+                                                          string          volume_path,
                                                           Cancellable?    cancellable) throws GLib.Error {
         var media = install_media as LibvirtMedia;
         var config = media.domain_config;
@@ -60,7 +60,7 @@ private class Boxes.LibvirtVMImporter : Boxes.VMImporter {
         config.set_devices (filtered);
 
         /* Add new disk configuration to match the corresponding target volume/media */
-        VMConfigurator.set_target_media_config (config, volume.get_path (), install_media, hd_index);
+        VMConfigurator.set_target_media_config (config, volume_path, install_media, hd_index);
 
         return config;
     }

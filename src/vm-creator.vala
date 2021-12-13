@@ -53,7 +53,7 @@ private class Boxes.VMCreator : Object {
         yield install_media.prepare_for_installation (name, cancellable);
 
         var volume = yield create_target_volume (name, install_media.resources.storage);
-        var config = yield create_domain_config (name, title, volume, cancellable);
+        var config = yield create_domain_config (name, title, volume.get_path (), cancellable);
         var domain = connection.create_domain (config);
 
         var machine = yield LibvirtBroker.get_default ().add_domain (App.app.default_source,
@@ -186,11 +186,11 @@ private class Boxes.VMCreator : Object {
 
     protected virtual async GVirConfig.Domain create_domain_config (string       name,
                                                                     string       title,
-                                                                    StorageVol   volume,
+                                                                    string       volume_path,
                                                                     Cancellable? cancellable) throws GLib.Error {
         var caps = yield connection.get_capabilities_async (cancellable);
         var domcaps = yield connection.get_domain_capabilities_async (null, null, null, null, 0, cancellable);
-        var config = VMConfigurator.create_domain_config (install_media, volume.get_path (), caps, domcaps);
+        var config = VMConfigurator.create_domain_config (install_media, volume_path, caps, domcaps);
         config.name = name;
         config.title = title;
 
