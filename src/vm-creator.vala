@@ -52,8 +52,18 @@ private class Boxes.VMCreator : Object {
         yield create_domain_name_and_title_from_media (out name, out title);
         yield install_media.prepare_for_installation (name, cancellable);
 
-        var volume = yield create_target_volume (name, install_media.resources.storage);
-        var config = yield create_domain_config (name, title, volume.get_path (), cancellable);
+        string? volume_path = null;
+        if (install_media.skip_import) {
+            volume_path = install_media.device_file;
+
+            debug ("Skiping import. Using '%s' as target volume", volume_path);
+        } else {
+            var volume = yield create_target_volume (name, install_media.resources.storage);
+
+            volume_path = volume.get_path ();
+        }
+
+        var config = yield create_domain_config (name, title, volume_path, cancellable);
         var domain = connection.create_domain (config);
 
         var machine = yield LibvirtBroker.get_default ().add_domain (App.app.default_source,
