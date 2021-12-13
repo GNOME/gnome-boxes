@@ -80,7 +80,8 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
             var row_subtitle = _("Recommended %s.");
 
             ram_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.ram)));
-            storage_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.storage)));
+            if (machine.storage_volume != null)
+                storage_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.storage)));
         }
     }
 
