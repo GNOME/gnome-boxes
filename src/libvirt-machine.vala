@@ -419,14 +419,11 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             if (device_config is GVirConfig.DomainDisk) {
                 var disk_config = device_config as GVirConfig.DomainDisk;
                 var disk_type = disk_config.get_guest_device_type ();
-                var storage_volume_path = (storage_volume != null)? storage_volume.get_path () : null;
 
-                // Prefer Boxes' managed volume over other disks
-                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.DISK &&
-                    disk_config.get_source () == storage_volume_path) {
+                if (disk_type == GVirConfig.DomainDiskGuestDeviceType.DISK) {
                     disk = Object.new (typeof (GVir.DomainDisk),
                                        "domain", domain,
-                                       "config", device_config) as GVir.DomainDisk;
+                                       "config", disk_config) as GVir.DomainDisk;
 
                     break;
                 }
