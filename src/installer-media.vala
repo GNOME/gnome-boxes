@@ -12,6 +12,8 @@ private class Boxes.InstallerMedia : GLib.Object {
     public string mount_point;
     public bool from_image;
 
+    public bool skip_import { get; protected set; default = false; }
+
     public virtual Osinfo.DeviceList supported_devices {
         owned get {
             return (os != null)? os.get_all_devices (null) : new Osinfo.DeviceList ();

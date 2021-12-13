@@ -20,7 +20,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         machine.vm_creator = this;
         machine.config.access_last_time = (access_last_time > 0)? access_last_time : get_real_time ();
 
-        if (clone || !source_media.device_file.has_suffix (".qcow2")) {
+        if (clone || !source_media.skip_import) {
             import_vm.begin (machine);
         } else {
             post_import_setup.begin (machine);

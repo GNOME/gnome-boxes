@@ -54,6 +54,9 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         if (!supported)
             throw new IOError.NOT_SUPPORTED (_("Unsupported disk image format."));
 
+        // FIXME with the proper implementation
+        skip_import = path.down ().has_suffix (".qcow2");
+
         device_file = path;
         from_image = true;
 
