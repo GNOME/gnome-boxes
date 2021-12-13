@@ -3,15 +3,39 @@
 private class Boxes.StorageRow : Boxes.MemoryRow {
     private LibvirtMachine machine;
 
+    private GVir.DomainDisk? external_disk;
+
     public void setup (LibvirtMachine machine) {
         this.machine = machine;
 
-        if (machine.importing || machine.storage_volume == null) {
-            sensitive = false;
+        bool storage_is_internal = (machine.storage_volume != null);
+        if (!storage_is_internal) {
+            try {
+                external_disk = machine.get_domain_disk ();
+            } catch (GLib.Error error) {
+                warning ("Failed to obtain domain disk: %s", error.message);
+                visible = false;
+
+                return;
+            }
+
+        }
+
+        bool has_disk = storage_is_internal || (external_disk != null);
+        if (machine.importing || !has_disk) {
+            visible = false;
 
             return;
         }
 
+        if (storage_is_internal) {
+            setup_internal_storage ();
+        } else {
+            setup_external_storage ();
+        }
+    }
+
+    private void setup_internal_storage () {
         try {
             var volume_info = machine.storage_volume.get_info ();
             var pool = get_storage_pool (machine.connection);
@@ -37,7 +61,31 @@ private class Boxes.StorageRow : Boxes.MemoryRow {
         spin_button.value_changed.connect (on_spin_button_changed);
     }
 
-    [GtkCallback]
+    private void setup_external_storage () {
+        var disk_config = external_disk.config as GVirConfig.DomainDisk;
+        var disk = File.new_for_path (disk_config.get_source ());
+
+        title = _("Storage disk");
+        subtitle = disk.get_path ();
+
+        disk.query_info_async.begin (FileAttribute.STANDARD_SIZE,
+                               FileQueryInfoFlags.NONE,
+                               Priority.LOW,
+                               null, (obj, res) => {
+            try {
+                FileInfo info = disk.query_info_async.end (res);
+                used_label.label = _("Used %s").printf (GLib.format_size (info.get_size ()));
+            } catch (GLib.Error error) {
+                warning ("Failed to calculate disk size for '%s': %s", disk.get_path (),
+                                                                       error.message);
+
+                used_label.visible = false;
+            }
+        });
+
+        stack.set_visible_child (used_label);
+    }
+
     private async void on_spin_button_changed () {
         uint64 storage = (uint64)spin_button.get_value ();
 
