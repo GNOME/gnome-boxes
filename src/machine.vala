@@ -608,11 +608,13 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
             if (this is LibvirtMachine) {
                 Notification.OKFunc troubleshoot = () => {
                     window.current_item = this;
-                    //window.show_properties ();
 
-                    var libvirt_machine = this as LibvirtMachine;
-                    //FIXME: var logs = libvirt_machine.properties.collect_logs ();
-                    //window.props_window.show_troubleshoot_log (logs);
+                    var preferences = new PreferencesWindow () {
+                        machine = this as LibvirtMachine,
+                        transient_for = window
+                    };
+                    preferences.present ();
+                    preferences.show_troubleshoot_logs ();
                 };
 
                 window.notificationbar.display_for_action (msg, _("Troubleshooting Log"), (owned) troubleshoot, null);

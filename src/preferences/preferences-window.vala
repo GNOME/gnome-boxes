@@ -17,4 +17,8 @@ private class Boxes.PreferencesWindow : Hdy.PreferencesWindow {
     private unowned Boxes.DevicesPage devices_page;
     [GtkChild]
     private unowned Boxes.SnapshotsPage snapshots_page;
+
+    public void show_troubleshoot_logs () {
+        resources_page.show_logs ();
+    }
 }

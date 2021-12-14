@@ -161,7 +161,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
     }
 
     [GtkCallback]
-    private void on_troubleshooting_logs_button_clicked () {
+    public void show_logs () {
         if (logs == null)
             logs = collect_logs (machine);
         
