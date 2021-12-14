@@ -5,7 +5,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
     public const int DEFAULT_TIMEOUT = 6;
     private const int MAX_NOTIFICATIONS = 5;
 
-    GLib.List<Widget> active_notifications;
+    GLib.List<Boxes.Notification> active_notifications;
 
     public Searchbar searchbar;
 
@@ -17,7 +17,7 @@ private class Boxes.Notificationbar: Gtk.Grid {
 
         show ();
 
-        active_notifications = new GLib.List<Widget> ();
+        active_notifications = new GLib.List<Boxes.Notification> ();
 
         App.app.notify["page"].connect ( () => {
             foreach (var w in active_notifications) {
@@ -42,8 +42,9 @@ private class Boxes.Notificationbar: Gtk.Grid {
     }
 
     public void dismiss_all () {
-        foreach (var notification in active_notifications)
-            (notification as Notification).dismiss ();
+        foreach (var notification in active_notifications) {
+            notification.dismiss ();
+        }
     }
 
     private void add_notification (Widget w) {
