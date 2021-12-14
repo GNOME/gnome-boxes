@@ -155,10 +155,6 @@ private class Boxes.App: Gtk.Application {
         check_module_kvm_loaded.begin ();
     }
 
-    public bool has_broker_for_source_type (string type) {
-        return brokers.contains (type);
-    }
-
     public delegate void CallReadyFunc ();
     public void call_when_ready (owned CallReadyFunc func) {
         if (is_ready)
