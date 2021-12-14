@@ -100,7 +100,7 @@ private class Boxes.VMAssistant : Gtk.Dialog {
     private void do_preparation (Object object) {
         pages.set_visible_child (preparation_page);
 
-        preparation_page.setup (object as InstallerMedia);
+        preparation_page.setup.begin (object as InstallerMedia);
     }
 
     [GtkCallback]

@@ -54,7 +54,7 @@ private class Boxes.AssistantPreparationPage : AssistantPage {
             return;
         }
 
-        setup (media, os);
+        setup.begin (media, os);
     }
 
     public async void prepare (InstallerMedia media) {
