@@ -432,22 +432,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         return disk;
     }
 
-    private GVir.DomainInterface? get_domain_network_interface () throws GLib.Error {
-        var net = null as GVir.DomainInterface;
-
-        // FiXME: We currently only entertain one network interface
-        foreach (var device_config in domain_config.get_devices ()) {
-            if (device_config is GVirConfig.DomainInterface) {
-                net = Object.new (typeof (GVir.DomainInterface),
-                                  "domain", domain,
-                                  "config", device_config) as GVir.DomainInterface;
-                break;
-            }
-        }
-
-        return net;
-    }
-
     private GVir.DomainStartFlags connect_flags_to_gvir (Machine.ConnectFlags flags) {
         GVir.DomainStartFlags gvir_flags = 0;
         if (Machine.ConnectFlags.IGNORE_SAVED_STATE in flags)
