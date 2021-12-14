@@ -436,7 +436,7 @@ namespace Boxes {
 
     [DBus (name = "org.freedesktop.Accounts")]
     public interface Fdo.Accounts : Object {
-        public abstract async string FindUserByName(string name) throws IOError;
+        public abstract async string FindUserByName(string name) throws GLib.Error;
     }
 
     private async Fdo.Accounts? get_accountsservice_accounts_manager () throws GLib.Error {
