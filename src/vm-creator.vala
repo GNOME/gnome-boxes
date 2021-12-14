@@ -236,12 +236,14 @@ private class Boxes.VMCreator : Object {
         try {
             if (install_media.os_media != null && VMConfigurator.is_install_config (machine.domain_config))
                 return (num_reboots == install_media.os_media.installer_reboots);
-            else {
+            else if (volume != null) {
                 var info = volume.get_info ();
 
                 // If guest has used 1 MiB of storage, we assume it installed an OS on the volume
                 return (info.allocation >= Osinfo.MEBIBYTES);
             }
+
+            return false;
         } catch (GLib.Error error) {
             warning ("Failed to get information from volume '%s': %s", volume.get_name (), error.message);
             return false;
