@@ -657,36 +657,42 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         return scripts;
     }
 
+
     private string get_preferred_keyboard (string lang) {
         var os_db = MediaManager.get_default ().os_db;
         var datamap = os_db.get_datamap ("http://x.org/x11-keyboard");
-        string kbd_layout = null;
 
-        try {
-            var input_settings = new GLib.Settings ("org.gnome.desktop.input-sources");
-            var sources = input_settings.get_value ("sources");
-
-            if (sources != null && sources.n_children () >= 1) {
-                var sources_pair = sources.get_child_value (0);
-                if (sources_pair != null) {
-                    var sources_pair_value = sources_pair.get_child_value (1);
-                    if (sources_pair_value != null)
-                        kbd_layout = sources_pair_value.get_string ();
-                }
-            }
-
-            if (kbd_layout != null && datamap.reverse_lookup (kbd_layout) != null) {
-                return kbd_layout;
-            }
-        } catch (GLib.Error error) {
-            warning (error.message);
-        }
+        string? kbd_layout = get_preferred_keyboard_from_gsettings ();
+        if (kbd_layout != null && datamap.reverse_lookup (kbd_layout) != null)
+            return kbd_layout;
 
         kbd_layout = datamap.lookup (lang);
         if (kbd_layout != null)
             return kbd_layout;
 
         return lang;
+    }
+
+    private const string INPUT_SOURCE_SCHEMA = "org.gnome.desktop.input-sources";
+    private string? get_preferred_keyboard_from_gsettings () {
+        SettingsSchemaSource schema_source = SettingsSchemaSource.get_default ();
+
+        var input_schema = schema_source.lookup (INPUT_SOURCE_SCHEMA, false);
+        if (input_schema == null)
+            return null;
+
+        var input_settings = new GLib.Settings (INPUT_SOURCE_SCHEMA);
+        var sources = input_settings.get_value ("sources");
+        if (sources != null && sources.n_children () >= 1) {
+            var sources_pair = sources.get_child_value (0);
+            if (sources_pair != null) {
+                var sources_pair_value = sources_pair.get_child_value (1);
+                if (sources_pair_value != null)
+                    return sources_pair_value.get_string ();
+            }
+        }
+
+        return null;
     }
 
     private string get_preferred_language () {
