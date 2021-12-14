@@ -23,11 +23,11 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
     [GtkChild]
     private unowned Hdy.PreferencesGroup resources_group;
     [GtkChild]
+    private unowned Gtk.SpinButton cpus_spin_button;
+    [GtkChild]
     private unowned Boxes.RamRow ram_row;
     [GtkChild]
     private unowned Boxes.StorageRow storage_row;
-    [GtkChild]
-    private unowned Gtk.SpinButton cpus_spin_button;
     [GtkChild]
     private unowned Hdy.ActionRow acceleration_3d_row;
     [GtkChild]
