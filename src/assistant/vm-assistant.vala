@@ -67,10 +67,14 @@ private class Boxes.VMAssistant : Gtk.Dialog {
         var is_index = (visible_page == index_page);
         var is_last = (visible_page == review_page);
 
-        next_button.visible = !is_index;
-
-        next_button.label = is_last ? _("Create") : _("Next");
         previous_button.label = is_index ? _("Cancel") : _("Previous");
+
+        next_button.visible = !is_index;
+        next_button.label = is_last ? _("Create") : _("Next");
+        if (is_last)
+            next_button.get_style_context ().add_class ("suggested-action");
+        else
+            next_button.get_style_context ().remove_class ("suggested-action");
 
         title = visible_page.title;
     }
