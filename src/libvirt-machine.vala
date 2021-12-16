@@ -394,10 +394,18 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             domain.suspend ();
     }
 
+    private void cancel_vm_creation () {
+        vm_creator = null;
+    }
+
     public void force_shutdown () {
         debug ("Force shutdown '%s'..", name);
         try {
             force_stopped = true;
+
+            if (vm_creator != null)
+                cancel_vm_creation ();
+
             domain.stop (0);
         } catch (GLib.Error error) {
             warning ("Failed to shutdown '%s': %s", domain.get_name (), error.message);
@@ -407,6 +415,9 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
     public void try_shutdown () {
         try {
             domain.shutdown (0);
+
+            if (vm_creator != null)
+                cancel_vm_creation ();
         } catch (GLib.Error error) {
             warning ("Failed to reboot '%s': %s", domain.get_name (), error.message);
         }
