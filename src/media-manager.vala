@@ -8,9 +8,6 @@ private class Boxes.MediaManager : Object {
     private static MediaManager media_manager;
 
     public OSDatabase os_db { get; private set; }
-#if !FLATPAK
-    public GUdev.Client client { get; private set; }
-#endif
 
     public delegate void InstallerRecognized (Osinfo.Media os_media, Osinfo.Os os);
 
@@ -91,6 +88,8 @@ private class Boxes.MediaManager : Object {
         var list = new GLib.List<InstallerMedia> ();
 
 #if !FLATPAK
+        GUdev.Client client = new GUdev.Client ({"block"});
+
         // First HW media
         var enumerator = new GUdev.Enumerator (client);
         // We don't want to deal with partitions to avoid duplicate medias
@@ -221,9 +220,6 @@ private class Boxes.MediaManager : Object {
     }
 
     private MediaManager () {
-#if !FLATPAK
-        client = new GUdev.Client ({"block"});
-#endif
         os_db = new OSDatabase ();
         os_db.load.begin ();
     }
@@ -233,17 +229,19 @@ private class Boxes.MediaManager : Object {
             connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
                                                     null, null);
         } catch (GLib.Error error) {
-#if !FLATPAK
-            critical ("Error connecting to Tracker: %s", error.message);
-#else
+            if (!App.is_running_in_flatpak ()) {
+                message ("Error connecting to Tracker: %s", error.message);
+
+                return;
+            }
+
             message ("Error connecting to host Tracker Miners: %s", error.message);
             try {
                 connection = Sparql.Connection.bus_new (Config.APPLICATION_ID + "Tracker3.Miner.Files",
                                                         null, null);
             } catch (GLib.Error error) {
-                critical ("Error starting local Tracker Miners: %s", error.message);
+                warning ("Error starting local Tracker Miners: %s", error.message);
             }
-#endif
         }
     }
 
