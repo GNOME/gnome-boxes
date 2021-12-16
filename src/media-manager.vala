@@ -11,7 +11,7 @@ private class Boxes.MediaManager : Object {
 
     public delegate void InstallerRecognized (Osinfo.Media os_media, Osinfo.Os os);
 
-    private Sparql.Connection connection;
+    private Sparql.Connection tracker_connection;
 
     public static MediaManager get_default () {
         if (media_manager == null)
@@ -91,7 +91,7 @@ private class Boxes.MediaManager : Object {
             list.concat (yield load_physical_medias ());
         #endif
 
-        if (connection != null)
+        if (tracker_connection != null)
             list.concat (yield load_medias_from_filesystem ());
 
         return list;
@@ -101,7 +101,7 @@ private class Boxes.MediaManager : Object {
         var list = new GLib.List<InstallerMedia> ();
 
         try {
-            var query = yield new TrackerISOQuery (connection);
+            var query = yield new TrackerISOQuery (tracker_connection);
             string path, title, os_id, media_id;
             string[] lang_list;
 
@@ -238,7 +238,7 @@ private class Boxes.MediaManager : Object {
 
     public async void connect_to_tracker () {
         try {
-            connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
+            tracker_connection = Sparql.Connection.bus_new ("org.freedesktop.Tracker3.Miner.Files",
                                                     null, null);
         } catch (GLib.Error error) {
             if (!App.is_running_in_flatpak ()) {
@@ -249,7 +249,7 @@ private class Boxes.MediaManager : Object {
 
             message ("Error connecting to host Tracker Miners: %s", error.message);
             try {
-                connection = Sparql.Connection.bus_new (Config.APPLICATION_ID + "Tracker3.Miner.Files",
+                tracker_connection = Sparql.Connection.bus_new (Config.APPLICATION_ID + "Tracker3.Miner.Files",
                                                         null, null);
             } catch (GLib.Error error) {
                 warning ("Error starting local Tracker Miners: %s", error.message);
