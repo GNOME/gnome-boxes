@@ -76,10 +76,10 @@ private class Boxes.StorageRow : Boxes.MemoryRow {
                 FileInfo info = disk.query_info_async.end (res);
                 used_label.label = _("Used %s").printf (GLib.format_size (info.get_size ()));
             } catch (GLib.Error error) {
-                warning ("Failed to calculate disk size for '%s': %s", disk.get_path (),
+                message ("Failed to calculate disk size for '%s': %s", disk.get_path (),
                                                                        error.message);
-
-                used_label.visible = false;
+                subtitle = error.message;
+                used_label.visible = spin_button.visible = false;
             }
         });
 
