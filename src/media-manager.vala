@@ -87,46 +87,19 @@ private class Boxes.MediaManager : Object {
     public async GLib.List<InstallerMedia> list_installer_medias () {
         var list = new GLib.List<InstallerMedia> ();
 
-#if !FLATPAK
-        GUdev.Client client = new GUdev.Client ({"block"});
+        #if !FLATPAK
+            list.concat (yield load_physical_medias ());
+        #endif
 
-        // First HW media
-        var enumerator = new GUdev.Enumerator (client);
-        // We don't want to deal with partitions to avoid duplicate medias
-        enumerator.add_match_property ("DEVTYPE", "disk");
+        if (connection != null)
+            list.concat (yield load_medias_from_filesystem ());
 
-        foreach (var device in enumerator.execute ()) {
-            if (device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
-                !device.get_property_as_boolean ("OSINFO_BOOTABLE"))
-                continue;
+        return list;
+    }
 
-            var path = device.get_device_file ();
-            var file = File.new_for_path (path);
-            try {
-                var info = yield file.query_info_async (FileAttribute.ACCESS_CAN_READ,
-                                                        FileQueryInfoFlags.NONE,
-                                                        Priority.DEFAULT,
-                                                        null);
-                if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
-                    debug ("No read access to '%s', ignoring..", path);
-                    continue;
-                }
+    private async GLib.List<InstallerMedia> load_medias_from_filesystem () {
+        var list = new GLib.List<InstallerMedia> ();
 
-                var media = yield create_installer_media_for_path (path);
-
-		if (media != null) {
-                    list.append (media);
-		}
-            } catch (GLib.Error error) {
-                warning ("Failed to get information on device '%s': %s. Ignoring..", path, error.message);
-            }
-        }
-#endif
-
-        if (connection == null)
-            return list;
-
-        // Now ISO files
         try {
             var query = yield new TrackerISOQuery (connection);
             string path, title, os_id, media_id;
@@ -163,6 +136,45 @@ private class Boxes.MediaManager : Object {
 
         return list;
     }
+
+#if !FLATPAK
+    private async GLib.List<InstallerMedia> load_physical_medias ()
+        var list = GLib.List<InstallerMedia> list ();
+
+        GUdev.Client client = new GUdev.Client ({"block"});
+        var enumerator = new GUdev.Enumerator (client);
+        // We don't want to deal with partitions to avoid duplicate medias
+        enumerator.add_match_property ("DEVTYPE", "disk");
+
+        foreach (var device in enumerator.execute ()) {
+            if (device.get_property ("ID_FS_BOOT_SYSTEM_ID") == null &&
+                !device.get_property_as_boolean ("OSINFO_BOOTABLE"))
+                continue;
+
+            var path = device.get_device_file ();
+            var file = File.new_for_path (path);
+            try {
+                var info = yield file.query_info_async (FileAttribute.ACCESS_CAN_READ,
+                                                        FileQueryInfoFlags.NONE,
+                                                        Priority.DEFAULT,
+                                                        null);
+                if (!info.get_attribute_boolean (FileAttribute.ACCESS_CAN_READ)) {
+                    debug ("No read access to '%s', ignoring..", path);
+                    continue;
+                }
+
+                var media = yield create_installer_media_for_path (path);
+		        if (media != null) {
+                    list.append (media);
+		        }
+            } catch (GLib.Error error) {
+                message ("Failed to get information on device '%s': %s. Ignoring..", path, error.message);
+            }
+        }
+
+        return list;
+    }
+#endif
 
     private static InstallerMedia create_unattended_installer (InstallerMedia media) throws GLib.Error {
         InstallerMedia install_media = media;
