@@ -255,7 +255,8 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         try {
             system_virt_connection = yield get_system_virt_connection ();
         } catch (GLib.Error error) {
-            warning ("Failed to connection to system libvirt: %s", error.message);
+            if (!App.is_running_in_flatpak ())
+                message ("Failed to connection to system libvirt: %s", error.message);
         }
 
         update_status ();
