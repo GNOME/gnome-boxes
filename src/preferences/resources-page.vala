@@ -77,6 +77,7 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
         var architecture = machine.domain_config.get_os ().get_arch ();
         var recommended_resources = OSDatabase.get_recommended_resources_for_os (os, architecture);
         if (recommended_resources != null) {
+            // Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
             var row_subtitle = _("Recommended %s.");
 
             ram_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.ram)));
