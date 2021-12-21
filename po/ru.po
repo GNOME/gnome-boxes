@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-06 12:42+0000\n"
-"PO-Revision-Date: 2021-12-06 22:47+0300\n"
+"POT-Creation-Date: 2021-12-14 13:30+0000\n"
+"PO-Revision-Date: 2021-12-14 21:12+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <Alexmelman88@gmail.com>\n"
 "Language: ru\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
-#: src/app-window.vala:127 src/app-window.vala:229 src/app-window.vala:231
+#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
 #: src/main.vala:72 src/topbar.vala:85
 msgid "Boxes"
 msgstr "Boxes"
@@ -129,21 +129,29 @@ msgstr "Совместные папки"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Динамический массив, содержащий имена совместных папок и пути к ним"
 
-#: data/ui/assistant/downloadable-entry.ui:57
-#: data/ui/assistant/media-entry.ui:53
+#: data/ui/app-window.ui:117 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Добро пожаловать в Boxes"
+
+#: data/ui/app-window.ui:118
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr ""
+"Чтобы создать свою первую виртуальную машину, нажмите на кнопку <b>+</b>."
+
+#: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Неизвестный носитель"
 
-#: data/ui/assistant/pages/downloads-page.ui:110
+#: data/ui/assistant/pages/downloads-page.ui:69
 msgid "No operating systems found"
 msgstr "Операционные системы не найдены"
 
-#: data/ui/assistant/pages/downloads-page.ui:121
+#: data/ui/assistant/pages/downloads-page.ui:70
 msgid "Try a different search"
 msgstr "Попробуйте другой поисковый запрос"
 
-#: data/ui/assistant/pages/downloads-page.ui:137
-#: src/assistant/downloads-page.vala:54
+#: data/ui/assistant/pages/downloads-page.ui:83
+#: src/assistant/downloads-page.vala:55
 msgid "Search for an OS or enter a download link…"
 msgstr "Найдите ОС или введите ссылку для скачивания…"
 
@@ -184,35 +192,35 @@ msgstr ""
 "Будет создана новая виртуальная машина и в нее будет установлена "
 "операционная система. Выберите источник операционной системы для установки."
 
-#: data/ui/assistant/pages/index-page.ui:49
+#: data/ui/assistant/pages/index-page.ui:42
 msgid "Detected Sources"
 msgstr "Обнаруженные источники"
 
-#: data/ui/assistant/pages/index-page.ui:109
+#: data/ui/assistant/pages/index-page.ui:60
 msgid "Featured Downloads"
 msgstr "Популярные загрузки"
 
-#: data/ui/assistant/pages/index-page.ui:120
+#: data/ui/assistant/pages/index-page.ui:61
 msgid "You will be notified when the download has completed."
 msgstr "Вы будете уведомлены, когда загрузка будет завершена."
 
-#: data/ui/assistant/pages/index-page.ui:147
+#: data/ui/assistant/pages/index-page.ui:78
 msgid "Select an OS Source"
 msgstr "Выберите источник ОС"
 
-#: data/ui/assistant/pages/index-page.ui:180
+#: data/ui/assistant/pages/index-page.ui:84
 msgid "Operating System Download"
 msgstr "Загрузка операционной системы"
 
-#: data/ui/assistant/pages/index-page.ui:196
+#: data/ui/assistant/pages/index-page.ui:85
 msgid "Browse and search for operating systems to install."
 msgstr "Посмотрите и найдите операционные системы для установки."
 
-#: data/ui/assistant/pages/index-page.ui:242
+#: data/ui/assistant/pages/index-page.ui:101
 msgid "Operating System Image File"
 msgstr "Файл образа операционной системы"
 
-#: data/ui/assistant/pages/index-page.ui:258
+#: data/ui/assistant/pages/index-page.ui:102
 msgid "Select a file to install a virtual machine."
 msgstr "Выберите файл для установки виртуальной машины."
 
@@ -246,12 +254,12 @@ msgid "Operating System"
 msgstr "Операционная система"
 
 #: data/ui/assistant/pages/review-page.ui:83
-#: data/ui/preferences/resources-page.ui:72
+#: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Память"
 
 #: data/ui/assistant/pages/review-page.ui:90
-#: data/ui/preferences/resources-page.ui:79
+#: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Предел хранилища"
 
@@ -271,8 +279,8 @@ msgstr "Быстрая установка"
 
 #: data/ui/assistant/vm-assistant.ui:48
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:99
-#: src/assistant/index-page.vala:146 src/assistant/vm-assistant.vala:73
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:73
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Отмена"
@@ -336,15 +344,6 @@ msgstr "Полноэкранный режим"
 #: data/ui/downloads-hub-row.ui:54
 msgid "Ready to install"
 msgstr "Готово к установке"
-
-#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Добро пожаловать в Boxes"
-
-#: data/ui/empty-boxes.ui:51
-msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr ""
-"Чтобы создать свою первую виртуальную машину, нажмите на кнопку <b>+</b>."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -416,14 +415,6 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Войти/выйти из полноэкранного режима"
 
-#: data/ui/machine-config-editor.ui:40
-msgid ""
-"Boxes snapshots your virtual machine before applying changes allowing you to "
-"revert them."
-msgstr ""
-"Boxes делают снапшот вашей виртуальной машины перед внесением изменений, "
-"позволяя вам впоследствии отменить их."
-
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Комбинации клавиш"
@@ -460,7 +451,7 @@ msgstr "Устройства USB"
 msgid "CDROM/DVD Drive"
 msgstr "Привод CD-ROM/DVD"
 
-#: data/ui/preferences/preferences-toast.ui:24
+#: data/ui/preferences/preferences-toast.ui:27
 msgid "Undo"
 msgstr "Отменить"
 
@@ -477,7 +468,7 @@ msgstr "_Имя"
 msgid "IP Address"
 msgstr "IP-адрес"
 
-#: data/ui/preferences/resources-page.ui:87
+#: data/ui/preferences/resources-page.ui:73
 msgid "CPUs"
 msgstr "ЦП"
 
@@ -573,7 +564,7 @@ msgstr "При_остановить"
 msgid "_Delete"
 msgstr "_Удалить"
 
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:290
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
 msgid "_Cancel"
 msgstr "_Отмена"
 
@@ -798,43 +789,43 @@ msgstr "_Отменить"
 msgid "Boxes is doing something"
 msgstr "Boxes что-то выполняют"
 
-#: src/app-window.vala:289
+#: src/app-window.vala:302
 msgid "Select files to transfer"
 msgstr "Выбрать файлы для передачи"
 
-#: src/app-window.vala:292
+#: src/app-window.vala:305
 msgid "_Open"
 msgstr "_Открыть"
 
-#: src/assistant/index-page.vala:143 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:147 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Выберите устройство или файл ISO"
 
-#: src/assistant/index-page.vala:146 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:150 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Открыть"
 
-#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:73
 msgid "Previous"
 msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:703
+#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:700
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
-#: src/assistant/media-entry.vala:27
+#: src/assistant/media-entry.vala:23
 msgid "32-bit x86 system"
 msgstr "32-битная x86 система"
 
-#: src/assistant/media-entry.vala:28
+#: src/assistant/media-entry.vala:24
 msgid "64-bit x86 system"
 msgstr "64-битная x86 система"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/media-entry.vala:33
+#: src/assistant/media-entry.vala:29
 #, c-format
 msgid " from %s"
 msgstr " от %s"
@@ -892,7 +883,7 @@ msgstr "Новое и недавнее"
 msgid "Unsupported disk image format."
 msgstr "Неподдерживаемый формат образа диска."
 
-#: src/installed-media.vala:101 src/installer-media.vala:180
+#: src/installed-media.vala:104 src/installer-media.vala:182
 msgid "System"
 msgstr "Система"
 
@@ -928,44 +919,44 @@ msgid "Send key combinations"
 msgstr "Послать комбинацию клавиш"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:475
+#: src/libvirt-machine.vala:472
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Восстановление %s с диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:478
+#: src/libvirt-machine.vala:475
 #, c-format
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:557
+#: src/libvirt-machine.vala:554
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» слишком долго перезапускается. Выключить принудительно?"
 
-#: src/libvirt-machine.vala:559
+#: src/libvirt-machine.vala:556
 msgid "_Shutdown"
 msgstr "_Выключить"
 
-#: src/libvirt-machine.vala:575
+#: src/libvirt-machine.vala:572
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонирование «%s»…"
 
-#: src/libvirt-machine.vala:701
+#: src/libvirt-machine.vala:698
 msgid "Installing…"
 msgstr "Установка…"
 
-#: src/libvirt-machine.vala:705
+#: src/libvirt-machine.vala:702
 msgid "Setting up clone…"
 msgstr "Настройка клона…"
 
-#: src/libvirt-machine.vala:707
+#: src/libvirt-machine.vala:704
 msgid "Importing…"
 msgstr "Импортирование…"
 
-#: src/libvirt-machine.vala:716
+#: src/libvirt-machine.vala:713
 #, c-format
 msgid "host: %s"
 msgstr "хост: %s"
@@ -1086,15 +1077,15 @@ msgstr ""
 msgid "Recommended %s."
 msgstr "Рекомендовано %s."
 
-#: src/preferences/resources-page.vala:155
+#: src/preferences/resources-page.vala:156
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxes не разрешена для запуска в фоновом режиме"
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:158
 msgid "Manage permissions"
 msgstr "Управление разрешениями"
 
-#: src/preferences/resources-page.vala:189
+#: src/preferences/resources-page.vala:190
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1103,12 +1094,12 @@ msgstr ""
 "операционной системе вашей виртуальной машины. Хотите создать моментальный "
 "снимок для восстановления после внесенных изменений?"
 
-#: src/preferences/resources-page.vala:255
+#: src/preferences/resources-page.vala:256
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Не удалось сохранить конфигурацию домена: %s"
 
-#: src/preferences/resources-page.vala:264
+#: src/preferences/resources-page.vala:265
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Изменения в приведенных ниже настройках вступают в силу после перезапуска "
@@ -1142,17 +1133,26 @@ msgid "Use the button below to create your first snapshot."
 msgstr "Используйте кнопку ниже, чтобы создать свой первый снимок системы."
 
 #. Translators: "%s" is a disk size string (for example "4.2 GB")
-#: src/preferences/storage-row.vala:23
+#: src/preferences/storage-row.vala:47
 #, c-format
 msgid "Used %s."
 msgstr "Использовано %s."
 
-#: src/preferences/storage-row.vala:26
+#: src/preferences/storage-row.vala:50
 msgid ""
 "There is not enough space on your machine to increase the maximum disk size."
 msgstr ""
 "На вашем компьютере недостаточно места для увеличения максимального размера "
 "диска."
+
+#: src/preferences/storage-row.vala:68
+msgid "Storage disk"
+msgstr "Диск для хранения"
+
+#: src/preferences/storage-row.vala:77
+#, c-format
+msgid "Used %s"
+msgstr "Использовано %s"
 
 #: src/selectionbar.vala:60
 #, c-format
@@ -1283,12 +1283,12 @@ msgstr "нет"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:817
+#: src/vm-configurator.vala:813
 msgid "Incapable host system"
 msgstr "Система не поддерживает необходимые функции"
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:169
+#: src/vm-creator.vala:179
 msgid "Just installed "
 msgstr "Только что установлено "
 
@@ -1296,3 +1296,4 @@ msgstr "Только что установлено "
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Не удалось импортировать виртуальную машину из файла «%s»."
+
