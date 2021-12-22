@@ -25,7 +25,7 @@ private class Boxes.MediaManager : Object {
         InstallerMedia media;
 
         try {
-            media = yield new InstalledMedia.guess_os (path, this);
+            media = yield new InstalledMedia.guess_os (path);
         } catch (IOError.NOT_SUPPORTED e) {
             media = yield new InstallerMedia.for_path (path, this, cancellable);
         }
@@ -40,7 +40,7 @@ private class Boxes.MediaManager : Object {
 
         try {
             if (VMConfigurator.is_import_config (config))
-                return yield new InstalledMedia.guess_os (path, this);
+                return yield new InstalledMedia.guess_os (path);
             else if (VMConfigurator.is_libvirt_system_import_config (config))
                 return new LibvirtMedia (path, config);
             else if (VMConfigurator.is_libvirt_cloning_config (config))

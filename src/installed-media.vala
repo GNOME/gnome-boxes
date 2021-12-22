@@ -63,7 +63,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         label_setup ();
     }
 
-    public async InstalledMedia.guess_os (string path, MediaManager media_manager) throws GLib.Error {
+    public async InstalledMedia.guess_os (string path) throws GLib.Error {
         this (path);
 
         resources = OSDatabase.get_default_resources ();
