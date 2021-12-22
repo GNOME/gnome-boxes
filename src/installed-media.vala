@@ -4,15 +4,6 @@ using GVirConfig;
 using Govf;
 
 private class Boxes.InstalledMedia : Boxes.InstallerMedia {
-    public const string[] supported_extensions = { ".qcow2", ".qcow2.gz",
-                                                   ".qcow", ".qcow.gz",
-                                                   ".img", ".img.gz",
-                                                   ".cow", ".cow.gz",
-                                                   ".ova", ".ova.gz",
-                                                   ".vdi", ".vdi.gz",
-                                                   ".vmdk", ".vmdk.gz",
-                                                   ".vpc", ".vpc.gz",
-                                                   ".cloop", ".cloop.gz" };
     public const string[] supported_architectures = {
         "i686", "i586", "i486", "i386", "x86_64", "amd64"
     };
@@ -39,36 +30,21 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
         }
     }
 
-    public InstalledMedia (string path, bool known_qcow2 = false) throws GLib.Error {
-        var supported = false;
+    public InstalledMedia (string path, bool skip_import = false) {
+        this.skip_import = skip_import;
 
-        if (known_qcow2 || path.has_prefix ("/dev/"))
-            supported = true; // Let's assume it's device file in raw format
-        else
-            foreach (var extension in supported_extensions) {
-                supported = path.down ().has_suffix (extension);
-                if (supported)
-                    break;
-            }
+        if (skip_import)
+            debug ("'%s' doesn't need to be imported", path);
 
-        if (!supported)
-            throw new IOError.NOT_SUPPORTED (_("Unsupported disk image format."));
-
-        // FIXME with the proper implementation
-        skip_import = path.down ().has_suffix (".qcow2");
-
+        resources = OSDatabase.get_default_resources ();
         device_file = path;
         from_image = true;
 
         label_setup ();
     }
 
-    public async InstalledMedia.guess_os (string path) throws GLib.Error {
-        this (path);
-
-        resources = OSDatabase.get_default_resources ();
-
-        label_setup ();
+    public async InstalledMedia.for_path (string path, bool skip_import = false) {
+        this (path, skip_import);
     }
 
     // Also converts to native format (QCOW2)
@@ -78,7 +54,7 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
 
         string[] argv = { "qemu-img", "convert", "-O", "qcow2", device_file, destination_path };
 
-        var converting = !device_file.has_suffix (".qcow2");
+        var converting = !skip_import;
 
         debug ("Copying '%s' to '%s'%s.",
                device_file,
@@ -131,13 +107,14 @@ private class Boxes.InstalledMedia : Boxes.InstallerMedia {
     }
 
     private async bool decompress () throws GLib.Error {
-        if (!device_file.has_suffix (".gz"))
+        var media_manager = MediaManager.get_default ();
+        if (!media_manager.path_is_compressed (device_file))
             return false;
 
         var compressed = File.new_for_path (device_file);
         var input_stream = yield compressed.read_async ();
 
-        var decompressed_path = Path.get_basename (device_file).replace (".gz", "");
+        var decompressed_path = Path.get_basename (device_file).concat (".boxes");
         decompressed_path = get_user_pkgcache (decompressed_path);
         var decompressed = File.new_for_path (decompressed_path);
         GLib.OutputStream output_stream = yield decompressed.replace_async (null,

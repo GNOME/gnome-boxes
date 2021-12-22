@@ -17,8 +17,8 @@ private class Boxes.LibvirtMedia : Boxes.InstalledMedia {
 
     public Domain domain_config { get; private set; }
 
-    public LibvirtMedia (string path, Domain domain_config, bool known_qcow2 = false) throws GLib.Error {
-        base (path, known_qcow2);
+    public LibvirtMedia (string path, Domain domain_config, bool skip_import = false) throws GLib.Error {
+        base (path, skip_import);
 
         this.domain_config = domain_config;
         label = domain_config.title?? domain_config.name;

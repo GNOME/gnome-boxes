@@ -22,15 +22,68 @@ private class Boxes.MediaManager : Object {
 
     public async InstallerMedia create_installer_media_for_path (string       path,
                                                                  Cancellable? cancellable = null) throws GLib.Error {
-        InstallerMedia media;
+        InstallerMedia? media = null;
 
-        try {
-            media = yield new InstalledMedia.guess_os (path);
-        } catch (IOError.NOT_SUPPORTED e) {
-            media = yield new InstallerMedia.for_path (path, this, cancellable);
+        if (path_is_installed_media (path) || path.has_prefix ("/dev/")) {
+            media = new InstalledMedia (path, !path_needs_import (path));
+        } else if (path_is_installer_media (path)) {
+            media = yield new InstallerMedia.for_path (path);
+        }
+
+        if (media == null) {
+            throw new GLib.IOError.NOT_SUPPORTED (_("Media is not supported"));
         }
 
         return create_installer_media_from_media (media);
+    }
+
+    private const string[] supported_installed_media_content_types = {
+        "application/x-qemu-disk",
+        "application/octet-stream",
+        "application/x-tar",
+        "application/x-xz",
+        "application/xml",
+    };
+    private bool path_is_installed_media (string path) {
+        return media_matches_content_type (path, supported_installed_media_content_types);
+    }
+
+    private bool path_needs_import (string path) {
+        return !media_matches_content_type (path, {"application/x-qemu-disk"});
+    }
+
+    private const string[] supported_installer_media_content_types = {
+        "application/x-cd-image",
+        "application/x-raw-disk-image",
+    };
+    private bool path_is_installer_media (string path) {
+        return media_matches_content_type (path, supported_installer_media_content_types);
+    }
+
+    private const string[] supported_compression_content_types = {
+        "application/x-tar",
+        "application/x-xz"
+    };
+    public bool path_is_compressed (string path) {
+        return media_matches_content_type (path, supported_compression_content_types);
+    }
+
+    private bool media_matches_content_type (string path, string[] supported_content_types) {
+        File file = File.new_for_path (path);
+
+        try {
+            FileInfo info = file.query_info ("standard::content-type", 0);
+
+            foreach (var content_type in supported_content_types) {
+                if (info.get_content_type () == content_type)
+                    return true;
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to query file info for '%s': %s", path, error.message);
+        }
+
+        return false;
+
     }
 
     public async InstallerMedia? create_installer_media_from_config (GVirConfig.Domain config) {
@@ -40,7 +93,7 @@ private class Boxes.MediaManager : Object {
 
         try {
             if (VMConfigurator.is_import_config (config))
-                return yield new InstalledMedia.guess_os (path);
+                return new InstalledMedia (path, !path_needs_import (path));
             else if (VMConfigurator.is_libvirt_system_import_config (config))
                 return new LibvirtMedia (path, config);
             else if (VMConfigurator.is_libvirt_cloning_config (config))
