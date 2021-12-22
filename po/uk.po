@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-21 20:06+0000\n"
-"PO-Revision-Date: 2021-12-21 23:20+0200\n"
+"POT-Creation-Date: 2021-12-22 12:57+0000\n"
+"PO-Revision-Date: 2021-12-22 21:57+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -33,23 +33,20 @@ msgid "Virtualization made simple"
 msgstr "Проста віртуалізація"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
-#| msgid ""
-#| "Operating system will be downloaded and installed in a virtual machine."
 msgid ""
 "Select an operating system and let Boxes download and install it for you in "
 "a virtual machine."
 msgstr ""
-"Виберіть операційну систему і надайте «Коробкам» змогу отримати і встановити її у віртуальній машині."
+"Виберіть операційну систему і надайте «Коробкам» змогу отримати і встановити "
+"її у віртуальній машині."
 
 #: data/org.gnome.Boxes.appdata.xml.in:15
 msgid "Features:"
-msgstr ""
-"Можливості:"
+msgstr "Можливості:"
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
 msgid "Download freely available operating systems."
-msgstr ""
-"Отримання вільно доступних операційних систем."
+msgstr "Отримання вільно доступних операційних систем."
 
 #: data/org.gnome.Boxes.appdata.xml.in:18
 msgid ""
@@ -63,19 +60,18 @@ msgstr ""
 msgid ""
 "Create virtual machines from operating system images with a couple of clicks."
 msgstr ""
-"Створення віртуальних машин з образів операційних систем у декілька клацань кнопкою миші."
+"Створення віртуальних машин з образів операційних систем у декілька клацань "
+"кнопкою миші."
 
 #: data/org.gnome.Boxes.appdata.xml.in:21
 msgid ""
 "Limit the resources (memory and storage) your virtual machines consume from "
 "your system."
 msgstr ""
-"Обмеження ресурсів (пам'яті і місця на диску), які віртуальні машини споживають у вашій системі."
+"Обмеження ресурсів (пам'яті і місця на диску), які віртуальні машини "
+"споживають у вашій системі."
 
 #: data/org.gnome.Boxes.appdata.xml.in:22
-#| msgid ""
-#| "Boxes failed to snapshot your virtual machine before applying your "
-#| "changes."
 msgid "Take snapshots of virtual machines to restore to previous states."
 msgstr ""
 "Створення знімків віртуальних машин для відновлення їхніх попередніх станів."
@@ -88,7 +84,8 @@ msgstr ""
 #: data/org.gnome.Boxes.appdata.xml.in:24
 msgid "3D acceleration for some of the supported operating systems."
 msgstr ""
-"Прискорення просторової графіки для деяких із підтримуваних операційних систем."
+"Прискорення просторової графіки для деяких із підтримуваних операційних "
+"систем."
 
 #: data/org.gnome.Boxes.appdata.xml.in:25
 msgid "Automatically resize virtual machines displays to the window size."
@@ -96,21 +93,24 @@ msgstr ""
 "Автоматичне зміна розмірів дисплеїв віртуальних машин до розмірів вікна."
 
 #: data/org.gnome.Boxes.appdata.xml.in:26
-#| msgid "Simple remote and virtual machines"
 msgid "Share clipboard between your system and virtual machines."
-msgstr "Спільне використання буфера обміну даними вашою операційною системою і віртуальними машинами."
+msgstr ""
+"Спільне використання буфера обміну даними вашою операційною системою і "
+"віртуальними машинами."
 
 #: data/org.gnome.Boxes.appdata.xml.in:27
 msgid ""
 "Share files to virtual machines by dropping them from your file manager into "
 "the Boxes window."
 msgstr ""
-"Надання файлів віртуальним машинам скиданням їх з вікна вашої програми для керування файлами до вікна «Коробок»."
+"Надання файлів віртуальним машинам скиданням їх з вікна вашої програми для "
+"керування файлами до вікна «Коробок»."
 
 #: data/org.gnome.Boxes.appdata.xml.in:28
-#| msgid "Select a file to install a virtual machine."
 msgid "Setup Shared Folders between your system and virtual machines."
-msgstr "Налаштовування спільних тек для вашої операційної системи та віртуальних машин."
+msgstr ""
+"Налаштовування спільних тек для вашої операційної системи та віртуальних "
+"машин."
 
 #: data/org.gnome.Boxes.appdata.xml.in:66
 msgid "The GNOME Project"
@@ -924,11 +924,7 @@ msgstr "Не вдалося звантажити"
 msgid "New and Recent"
 msgstr "Нове й недавнє"
 
-#: src/installed-media.vala:55
-msgid "Unsupported disk image format."
-msgstr "Непідтримуваний формат образу диска."
-
-#: src/installed-media.vala:104 src/installer-media.vala:182
+#: src/installed-media.vala:80 src/installer-media.vala:182
 msgid "System"
 msgstr "Система"
 
@@ -1091,7 +1087,12 @@ msgstr "Звітувати ваду на <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s домашню сторінку: <%s>.\n"
 
-#: src/media-manager.vala:315
+#: src/media-manager.vala:34
+msgid "Media is not supported"
+msgstr ""
+"Підтримки носія не передбачено"
+
+#: src/media-manager.vala:368
 #, c-format
 msgid "No such file %s"
 msgstr "Немає такого файла %s"
@@ -1347,6 +1348,9 @@ msgstr "Щойно встановлено "
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Не вдалось імпортувати коробку з файла «%s»."
+
+#~ msgid "Unsupported disk image format."
+#~ msgstr "Непідтримуваний формат образу диска."
 
 #~ msgid ""
 #~ "A simple GNOME 3 application to manage virtual systems. Unlike some other "
