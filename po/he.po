@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME-Boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-06-09 18:37+0000\n"
-"PO-Revision-Date: 2021-06-18 18:11+0300\n"
+"POT-Creation-Date: 2021-12-22 12:57+0000\n"
+"PO-Revision-Date: 2021-12-22 17:42+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: עברית <>\n"
 "Language: he\n"
@@ -19,11 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
 "2 : 3);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: data/org.gnome.Boxes.appdata.xml.in:7
-msgid "GNOME Boxes"
-msgstr "קופסאות GNOME"
+#: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
+#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
+#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
+#: src/main.vala:72 src/topbar.vala:85
+msgid "Boxes"
+msgstr "קופסאות"
 
 #: data/org.gnome.Boxes.appdata.xml.in:8
 msgid "Virtualization made simple"
@@ -31,36 +34,75 @@ msgstr "וירטואליזציה בקלות"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"A simple GNOME 3 application to manage virtual systems. Unlike some other "
-"virtual machine management software, Boxes is targeted towards typical "
-"desktop end-users. For this reason, Boxes will not provide many advanced "
-"options to tweak virtual machines. Instead Boxes will focus on getting "
-"things working out of the box with very little input from user."
+"Select an operating system and let Boxes download and install it for you in "
+"a virtual machine."
 msgstr ""
-"יישום GNOME 3 פשוט לניהול מערכות וירטואליות. בשונה מתכניות ניהול מכונות "
-"וירטואליות אחרות, קופסאות מותאם למשתמשי קצה אופייניים בשולחן העבודה. לכן, "
-"קופסאות לא יספק הרבה אפשרויות מתקדמות להתאמת מכונות וירטואליות. במקום זאת, "
-"קופסאות יתמקד בהגשת תוצרים עובדים הישר מהקופסה עם מעט מאוד קלט מהמשתמש."
+"נא לבחור מערכת הפעלה כדי לאפשר לקופסאות להוריד ולהתקין אותה עבורך במכונה "
+"וירטואלית."
+
+#: data/org.gnome.Boxes.appdata.xml.in:15
+msgid "Features:"
+msgstr "יכולות:"
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
-msgid ""
-"You want to install Boxes if you just want a very safe and easy way to try "
-"out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s)."
-msgstr ""
-"כדאי להתקין את קופסאות אם מעניינת אותך דרך בטוחה ופשוטה לנסות מערכות הפעלה "
-"חדשות או גרסאות (אולי גם לא יציבות) של מערכת או מערכות ההפעלה המועדפות עליך."
+msgid "Download freely available operating systems."
+msgstr "הורדה של מערכת הפעלות שזמינות באופן חופשי."
 
-#: data/org.gnome.Boxes.appdata.xml.in:58
+#: data/org.gnome.Boxes.appdata.xml.in:18
+msgid ""
+"Automatically install CentOS Stream, Debian, Fedora, Microsoft Windows, "
+"OpenSUSE, Red Hat Enterprise Linux, and Ubuntu."
+msgstr ""
+"התקנה אוטומטית של CentOS Stream, דביאן, פדורה, Microsoft Windows,‏ OpenSUSE,‏ "
+"Red Hat Enterprise Linux ואובונטו."
+
+#: data/org.gnome.Boxes.appdata.xml.in:20
+msgid ""
+"Create virtual machines from operating system images with a couple of clicks."
+msgstr "יצירה של מכונות וירטואליות מדמויות של מערכות הפעלה במספר לחיצות."
+
+#: data/org.gnome.Boxes.appdata.xml.in:21
+msgid ""
+"Limit the resources (memory and storage) your virtual machines consume from "
+"your system."
+msgstr ""
+"הגבלת המשאבים (זיכרון ואחסון) שהמכונות הווירטואליות שלך צורכות מהמערכת שלך."
+
+#: data/org.gnome.Boxes.appdata.xml.in:22
+msgid "Take snapshots of virtual machines to restore to previous states."
+msgstr "לכידת תמונת המצב של המכונות הווירטואליות כדי לשחזר למצבים קודמים."
+
+#: data/org.gnome.Boxes.appdata.xml.in:23
+msgid "Redirect USB devices from your physical machine into virtual machines."
+msgstr "הפניית התקני USB מהמכונה הפיזית שלך למכונות וירטואליות."
+
+#: data/org.gnome.Boxes.appdata.xml.in:24
+msgid "3D acceleration for some of the supported operating systems."
+msgstr "האצה תלת־ממדית לחלק ממערכות ההפעלה הנתמכות."
+
+#: data/org.gnome.Boxes.appdata.xml.in:25
+msgid "Automatically resize virtual machines displays to the window size."
+msgstr "שינוי אוטומטי של תצוגות המכונות הווירטואליות לגודל החלון."
+
+#: data/org.gnome.Boxes.appdata.xml.in:26
+msgid "Share clipboard between your system and virtual machines."
+msgstr "שיתוף לוח הגזירים בין המערכת שלך והמכונות הווירטואליות."
+
+#: data/org.gnome.Boxes.appdata.xml.in:27
+msgid ""
+"Share files to virtual machines by dropping them from your file manager into "
+"the Boxes window."
+msgstr ""
+"שיתוף קבצים למכונות וירטואליות על ידי גרירתם ממנהל הקבצים שלך לחלון של "
+"קופסאות."
+
+#: data/org.gnome.Boxes.appdata.xml.in:28
+msgid "Setup Shared Folders between your system and virtual machines."
+msgstr "הגדרת תיקיות משותפות בין המערכת והמכונות הווירטואליות שלך."
+
+#: data/org.gnome.Boxes.appdata.xml.in:66
 msgid "The GNOME Project"
 msgstr "מיזם GNOME"
-
-#: data/org.gnome.Boxes.desktop.in:3 data/ui/app-window.ui:35
-#: data/ui/collection-toolbar.ui:7 src/app.vala:127 src/app-window.vala:134
-#: src/app-window.vala:240 src/app-window.vala:242 src/main.vala:72
-#: src/topbar.vala:92
-msgid "Boxes"
-msgstr "קופסאות"
 
 #: data/org.gnome.Boxes.desktop.in:4
 msgid "Virtual machine viewer/manager"
@@ -115,37 +157,36 @@ msgstr "הפעלה ראשונית"
 msgid "Whether Boxes is running for the first time"
 msgstr "האם זו ההפעלה הראשונית של קופסאות"
 
-#: data/org.gnome.boxes.gschema.xml:52
-msgid "Override theme"
-msgstr "דריסת ערכת העיצוב"
-
 #: data/org.gnome.boxes.gschema.xml:53
-msgid "Whether Boxes will override the user's theme"
-msgstr "האם על קופסאות לדרוס את ערכת העיצוב של המשתמש"
-
-#: data/org.gnome.boxes.gschema.xml:60
 msgid "Shared folders"
 msgstr "תיקיות משותפות"
 
-#: data/org.gnome.boxes.gschema.xml:61
+#: data/org.gnome.boxes.gschema.xml:54
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "מערכת משתנה של שמות תיקיות משותפות ומיפוי נתיבים"
 
-#: data/ui/assistant/downloadable-entry.ui:57
-#: data/ui/assistant/media-entry.ui:53
+#: data/ui/app-window.ui:116 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "ברוך בואך אל קופסאות"
+
+#: data/ui/app-window.ui:117
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "הכפתור <b>+</b> ישמש אותך ליצירת המכונה הווירטואלית הראשונה שלך."
+
+#: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "מדיה בלתי מוכרת"
 
-#: data/ui/assistant/pages/downloads-page.ui:110
+#: data/ui/assistant/pages/downloads-page.ui:69
 msgid "No operating systems found"
 msgstr "לא נמצאה מערכת הפעלה"
 
-#: data/ui/assistant/pages/downloads-page.ui:121
+#: data/ui/assistant/pages/downloads-page.ui:70
 msgid "Try a different search"
 msgstr "כדאי לנסות חיפוש אחר"
 
-#: data/ui/assistant/pages/downloads-page.ui:137
-#: src/assistant/downloads-page.vala:54
+#: data/ui/assistant/pages/downloads-page.ui:83
+#: src/assistant/downloads-page.vala:55
 msgid "Search for an OS or enter a download link…"
 msgstr "חיפוש אחר מערכת הפעלה או מילוי כתובת הורדה…"
 
@@ -186,35 +227,35 @@ msgstr ""
 "תיווצר מכונה וירטואלית חדשה ועליה תוקם מערכת הפעלה. נא לבחור מקור מערכת "
 "הפעלה כדי להתחיל."
 
-#: data/ui/assistant/pages/index-page.ui:49
+#: data/ui/assistant/pages/index-page.ui:42
 msgid "Detected Sources"
 msgstr "מקורות שזוהו"
 
-#: data/ui/assistant/pages/index-page.ui:109
+#: data/ui/assistant/pages/index-page.ui:60
 msgid "Featured Downloads"
 msgstr "הורדות מובילות"
 
-#: data/ui/assistant/pages/index-page.ui:120
+#: data/ui/assistant/pages/index-page.ui:61
 msgid "You will be notified when the download has completed."
 msgstr "תופיע התראה עם השלמת ההורדה."
 
-#: data/ui/assistant/pages/index-page.ui:147
+#: data/ui/assistant/pages/index-page.ui:78
 msgid "Select an OS Source"
 msgstr "בחירת מקור מערכת הפעלה"
 
-#: data/ui/assistant/pages/index-page.ui:180
+#: data/ui/assistant/pages/index-page.ui:84
 msgid "Operating System Download"
 msgstr "הורדת מערכת הפעלה"
 
-#: data/ui/assistant/pages/index-page.ui:196
+#: data/ui/assistant/pages/index-page.ui:85
 msgid "Browse and search for operating systems to install."
 msgstr "עיון וחיפוש מערכות הפעלה להתקנה."
 
-#: data/ui/assistant/pages/index-page.ui:242
+#: data/ui/assistant/pages/index-page.ui:101
 msgid "Operating System Image File"
 msgstr "קובץ דמות מערכת הפעלה"
 
-#: data/ui/assistant/pages/index-page.ui:258
+#: data/ui/assistant/pages/index-page.ui:102
 msgid "Select a file to install a virtual machine."
 msgstr "נא לבחור קובץ להתקנת מכונה וירטואלית."
 
@@ -242,46 +283,51 @@ msgstr ""
 "הרחבות ההדמיה אינן זמינות במערכת שלך.\n"
 "יש לבדוק בהגדרות ה־BIOS ולאפשר אותן."
 
-#: data/ui/assistant/pages/review-page.ui:68
-msgid "Resource Allocation"
-msgstr "הקצאת משאבים"
+#: data/ui/assistant/pages/review-page.ui:67
+msgid "Operating System"
+msgstr "מערכת הפעלה"
 
-#: data/ui/assistant/pages/review-page.ui:77
-msgid "Customize"
-msgstr "התאמה אישית"
+#: data/ui/assistant/pages/review-page.ui:83
+#: data/ui/preferences/resources-page.ui:90
+msgid "Memory"
+msgstr "זיכרון"
+
+#: data/ui/assistant/pages/review-page.ui:90
+#: data/ui/preferences/resources-page.ui:97
+msgid "Storage limit"
+msgstr "מגבלת אחסון"
+
+#: data/ui/assistant/pages/review-page.ui:96
+#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
+msgid "Username"
+msgstr "שם משתמש"
+
+#: data/ui/assistant/pages/review-page.ui:112
+#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
+msgid "Password"
+msgstr "ססמה"
 
 #: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
 msgstr "התקנה מהירה"
 
-#: data/ui/assistant/vm-assistant.ui:48 data/ui/shared-folder-popover.ui:97
-#: src/assistant/index-page.vala:99 src/assistant/index-page.vala:146
-#: src/assistant/vm-assistant.vala:73 src/properties-window.vala:61
+#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/preferences/shared-folder-popover.ui:97
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "ביטול"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
 msgid "Next"
 msgstr "הבא"
-
-#: data/ui/auth-notification.ui:39
-msgid "_Username"
-msgstr "שם מ_שתמש"
-
-#: data/ui/auth-notification.ui:73
-msgid "_Password"
-msgstr "_ססמה"
-
-#: data/ui/auth-notification.ui:112 src/notificationbar.vala:48
-msgid "Sign In"
-msgstr "כניסה"
 
 #: data/ui/collection-toolbar.ui:22
 msgid "New"
 msgstr "חדש"
 
 #: data/ui/collection-toolbar.ui:46 data/ui/display-toolbar.ui:29
-#: data/ui/properties-toolbar.ui:59 data/ui/properties-toolbar.ui:121
 msgid "Back"
 msgstr "חזרה"
 
@@ -332,14 +378,6 @@ msgstr "מסך מלא"
 #: data/ui/downloads-hub-row.ui:54
 msgid "Ready to install"
 msgstr "אפשר להתקין"
-
-#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "ברוך בואך אל קופסאות"
-
-#: data/ui/empty-boxes.ui:51
-msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr "הכפתור <b>+</b> ישמש אותך ליצירת המכונה הווירטואלית הראשונה שלך."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -411,14 +449,6 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "מסך מלא/שחזור ממסך מלא"
 
-#: data/ui/machine-config-editor.ui:40
-msgid ""
-"Boxes snapshots your virtual machine before applying changes allowing you to "
-"revert them."
-msgstr ""
-"קופסאות לוכדת את מצב המכונה הווירטואלית שלך בטרם ביצוע שינויים כדי לאפשר לך "
-"לחזור אחורה."
-
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "צירופי מקשים"
@@ -431,22 +461,129 @@ msgstr "עזרה"
 msgid "About Boxes"
 msgstr "על קופסאות"
 
-#: data/ui/properties-toolbar.ui:43 src/machine.vala:658
-msgid "Troubleshooting Log"
+#: data/ui/preferences/cdrom-row.ui:5
+msgid "No CDROM/DVD image"
+msgstr "אין דמות תקליטור/DVD"
+
+#: data/ui/preferences/cdrom-row.ui:15
+msgid "Select"
+msgstr "בחירה"
+
+#: data/ui/preferences/cdrom-row.ui:24
+msgid "Remove"
+msgstr "הסרה"
+
+#: data/ui/preferences/devices-page.ui:7
+msgid "Devices & Shares"
+msgstr "התקנים ושיתופים"
+
+#: data/ui/preferences/devices-page.ui:12
+msgid "USB Devices"
+msgstr "התקני USB"
+
+#: data/ui/preferences/devices-page.ui:33
+msgid "CDROM/DVD Drive"
+msgstr "כונן תקליטור/DVD"
+
+#: data/ui/preferences/preferences-toast.ui:27
+msgid "Undo"
+msgstr "ביטול"
+
+#: data/ui/preferences/resources-page.ui:7
+#: data/ui/preferences/resources-page.ui:67
+msgid "Resources"
+msgstr "משאבים"
+
+#: data/ui/preferences/resources-page.ui:22
+msgid "_Name"
+msgstr "_שם"
+
+#: data/ui/preferences/resources-page.ui:48
+msgid "IP Address"
+msgstr "כתובת IP"
+
+#: data/ui/preferences/resources-page.ui:73
+msgid "CPUs"
+msgstr "מעבדים"
+
+#: data/ui/preferences/resources-page.ui:105
+msgid "3D acceleration"
+msgstr "האצה תלת ממדית"
+
+#: data/ui/preferences/resources-page.ui:127
+msgid "Allow running in background"
+msgstr "לאפשר הרצה ברקע"
+
+#: data/ui/preferences/resources-page.ui:145
+msgid "Configuration"
+msgstr "הגדרות"
+
+#: data/ui/preferences/resources-page.ui:150
+msgid "Troubleshooting Logs"
 msgstr "יומן טיפול בבעיות"
 
-#: data/ui/properties-toolbar.ui:81
-msgid "_Copy to Clipboard"
-msgstr "הע_תקה ללוח הגזירים"
+#: data/ui/preferences/resources-page.ui:151
+msgid "Diagnose problems with your box using the log file."
+msgstr "ניתוח תקלות במכונה שלך דרך קובץ היומן."
 
-#: data/ui/properties-toolbar.ui:144
-msgid "_Apply"
-msgstr "ה_חלה"
+#: data/ui/preferences/resources-page.ui:173
+msgid "Edit Configuration"
+msgstr "עריכת ההגדרות"
 
-#: data/ui/properties-toolbar.ui:168 src/assistant/index-page.vala:143
-#: src/properties-window.vala:58
-msgid "Select a device or ISO file"
-msgstr "בחירת התקן או קובץ ISO"
+#: data/ui/preferences/resources-page.ui:174
+msgid "Edit the Libvirt domain configuration for this box."
+msgstr "עריכת הגדרות שם התחום ב־Libvirt למכונה הזאת."
+
+#: data/ui/preferences/shared-folder-popover.ui:29
+#: data/ui/shared-folder-popover.ui:29
+msgid "Local Folder"
+msgstr "תיקייה מקומית"
+
+#: data/ui/preferences/shared-folder-popover.ui:44
+#: data/ui/shared-folder-popover.ui:44
+msgid "Name"
+msgstr "שם"
+
+#: data/ui/preferences/shared-folder-popover.ui:70
+#: data/ui/shared-folder-popover.ui:70
+msgid "Select Shared Folder"
+msgstr "בחירת תיקייה משותפת"
+
+#: data/ui/preferences/shared-folder-popover.ui:111
+#: data/ui/shared-folder-popover.ui:111
+msgid "Save"
+msgstr "שמירה"
+
+#: data/ui/preferences/shared-folders-widget.ui:7
+msgid "Shared Folders"
+msgstr "תיקיות משותפות"
+
+#: data/ui/preferences/snapshot-list-row.ui:6
+msgid "Revert to this state"
+msgstr "שחזור למצב זה"
+
+#: data/ui/preferences/snapshot-list-row.ui:10
+msgid "Rename"
+msgstr "שינוי שם"
+
+#. Delete
+#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:88
+msgid "Delete"
+msgstr "מחיקה"
+
+#: data/ui/preferences/snapshot-list-row.ui:92
+msgid "Done"
+msgstr "בוצע"
+
+#: data/ui/preferences/snapshots-page.ui:6
+#: data/ui/preferences/snapshots-page.ui:11
+msgid "Snapshots"
+msgstr "תמונות מצב"
+
+#: data/ui/preferences/snapshots-page.ui:49
+#: src/preferences/snapshots-page.vala:116
+msgid "Creating new snapshot…"
+msgstr "יוצר תמונה מצב…"
 
 #: data/ui/selectionbar.ui:36
 msgid "_Favorite"
@@ -460,7 +597,7 @@ msgstr "ה_שהיה"
 msgid "_Delete"
 msgstr "_מחיקה"
 
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:323
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
 msgid "_Cancel"
 msgstr "_ביטול"
 
@@ -475,39 +612,6 @@ msgstr "בחירה בכאלה שרצות"
 #: data/ui/selection-toolbar.ui:117
 msgid "Select None"
 msgstr "ביטול הבחירה"
-
-#: data/ui/shared-folder-popover.ui:29
-msgid "Local Folder"
-msgstr "תיקייה מקומית"
-
-#: data/ui/shared-folder-popover.ui:44
-msgid "Name"
-msgstr "שם"
-
-#: data/ui/shared-folder-popover.ui:70
-msgid "Select Shared Folder"
-msgstr "בחירת תיקייה משותפת"
-
-#: data/ui/shared-folder-popover.ui:111
-msgid "Save"
-msgstr "שמירה"
-
-#: data/ui/snapshot-list-row.ui:6
-msgid "Revert to this state"
-msgstr "שחזור למצב זה"
-
-#: data/ui/snapshot-list-row.ui:10
-msgid "Rename"
-msgstr "שינוי שם"
-
-#. Delete
-#: data/ui/snapshot-list-row.ui:16 src/actions-popover.vala:88
-msgid "Delete"
-msgstr "מחיקה"
-
-#: data/ui/snapshot-list-row.ui:92
-msgid "Done"
-msgstr "בוצע"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -529,14 +633,6 @@ msgstr ""
 #: data/ui/unattended-setup-box.ui:73
 msgid "Express Install"
 msgstr "התקנה מהירה"
-
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
-msgid "Username"
-msgstr "שם משתמש"
-
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
-msgid "Password"
-msgstr "ססמה"
 
 #: data/ui/unattended-setup-box.ui:180
 msgid "_Add Password"
@@ -626,14 +722,14 @@ msgstr "אילוץ כיבוי"
 msgid "Clone"
 msgstr "שיבוט"
 
-#: src/actions-popover.vala:92 src/machine.vala:637
+#: src/actions-popover.vala:92 src/machine.vala:597
 msgid "Restart"
 msgstr "הפעלה מחדש"
 
 #. Properties (in separate section)
 #: src/actions-popover.vala:101
-msgid "Properties"
-msgstr "מאפיינים"
+msgid "Preferences"
+msgstr "העדפות"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
 #: src/actions-popover.vala:125
@@ -641,46 +737,46 @@ msgstr "מאפיינים"
 msgid "Screenshot from %s"
 msgstr "צילום מסך מ־%s"
 
-#: src/app.vala:123
+#: src/app.vala:125
 msgid "translator-credits"
 msgstr ""
 "ירון שהרבני <sh.yaron@gmail.com>\n"
 "יוסף אור בוצ׳קו <yoseforb@gnome.org>"
 
-#: src/app.vala:124
+#: src/app.vala:126
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "יישום פשוט ל־GNOME 3 לגישה למערכות וירטואליות"
 
-#: src/app.vala:189 src/main.vala:9
+#: src/app.vala:187 src/main.vala:9
 msgid "Display version number"
 msgstr "הצגת מספר הגרסה"
 
-#: src/app.vala:190
+#: src/app.vala:188
 msgid "Show help"
 msgstr "הצגת עזרה"
 
-#: src/app.vala:191
+#: src/app.vala:189
 msgid "Open in full screen"
 msgstr "פתיחה במסך מלא"
 
-#: src/app.vala:192 src/main.vala:10
+#: src/app.vala:190 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "בדיקת יכולות הווירטואליזציה"
 
-#: src/app.vala:193
+#: src/app.vala:191
 msgid "Open box with UUID"
 msgstr "פתיחת קופסה עם UUID"
 
-#: src/app.vala:194
+#: src/app.vala:192
 msgid "Search term"
 msgstr "ביטוי לחיפוש"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:196
+#: src/app.vala:194
 msgid "URL to display, broker or installer media"
 msgstr "הכתובת להצגה, תפעול או מדיית ההתקנה"
 
-#: src/app.vala:207
+#: src/app.vala:205
 msgid "— A simple application to access virtual machines"
 msgstr "— יישום פשוט לגישה למכונות וירטואליות"
 
@@ -688,26 +784,26 @@ msgstr "— יישום פשוט לגישה למכונות וירטואליות"
 msgid "Too many command line arguments specified.\n"
 msgstr "צוינו יותר מדי ארגומנטים בשורת הפקודה.\n"
 
-#: src/app.vala:501
+#: src/app.vala:484
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "הקופסה „%s” מותקנת ומוכנה לשימוש"
 
-#: src/app.vala:503
+#: src/app.vala:486
 msgid "Launch"
 msgstr "הפעלה"
 
-#: src/app.vala:533
+#: src/app.vala:516
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "‫„%s” פועלת ברקע"
 
-#: src/app.vala:619
+#: src/app.vala:601
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "הקופסה „%s” נמחקה"
 
-#: src/app.vala:620
+#: src/app.vala:602
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -716,112 +812,74 @@ msgstr[1] "‫%u קופסאות נמחקו"
 msgstr[2] "‫%u קופסאות נמחקו"
 msgstr[3] "‫%u קופסאות נמחקו"
 
-#: src/app.vala:648 src/libvirt-machine-properties.vala:558
-#: src/snapshot-list-row.vala:194
+#: src/app.vala:630
 msgid "_Undo"
 msgstr "_ביטול"
 
-#: src/app.vala:694
+#: src/app.vala:676
 msgid "Boxes is doing something"
 msgstr "תכנית הקופסאות עושה משהו"
 
-#: src/app-window.vala:322
+#: src/app-window.vala:302
 msgid "Select files to transfer"
 msgstr "בחירת קבצים להעברה"
 
-#: src/app-window.vala:325
+#: src/app-window.vala:305
 msgid "_Open"
 msgstr "_פתיחה"
 
-#: src/assistant/index-page.vala:146 src/properties-window.vala:61
+#: src/assistant/index-page.vala:147 src/preferences/cdrom-row.vala:62
+msgid "Select a device or ISO file"
+msgstr "בחירת התקן או קובץ ISO"
+
+#: src/assistant/index-page.vala:150 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "פתיחה"
 
-#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
 msgid "Previous"
 msgstr "הקודם"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:877
+#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:695
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "חי"
 
-#: src/assistant/media-entry.vala:27
+#: src/assistant/media-entry.vala:23
 msgid "32-bit x86 system"
 msgstr "מערכת 32-סיביות x86"
 
-#: src/assistant/media-entry.vala:28
+#: src/assistant/media-entry.vala:24
 msgid "64-bit x86 system"
 msgstr "מערכת 64-סיביות x86"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/media-entry.vala:33
+#: src/assistant/media-entry.vala:29
 #, c-format
 msgid " from %s"
 msgstr " מבית %s"
-
-#: src/assistant/review-page.vala:50
-msgid "Memory"
-msgstr "זיכרון"
-
-#: src/assistant/review-page.vala:59
-msgid "Disk"
-msgstr "כונן"
-
-#. Translators: This is disk size. E.g "1 GB maximum".
-#: src/assistant/review-page.vala:61
-#, c-format
-msgid "%s maximum"
-msgstr "%s לכל היותר"
 
 #: src/assistant/vm-assistant.vala:60
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "זיהוי המדיה של ההתקנה נכשל. האם המדיה פגומה או חלקית?"
 
-#: src/assistant/vm-assistant.vala:72
+#: src/assistant/vm-assistant.vala:73
 msgid "Create"
 msgstr "יצירה"
 
-#: src/config-editor.vala:33
-msgid "Configuration modified "
-msgstr "ההגדרות נערכו "
-
-#: src/config-editor.vala:67
-msgid ""
-"Boxes failed to snapshot your virtual machine before applying your changes."
-msgstr ""
-"תכנית הקופסאות כשלה בלכידת מצב המכונה הווירטואלית שלך טרם ביצוע השינויים."
-
-#: src/config-editor.vala:85
-#, c-format
-msgid "Boxes failed to apply VM configuration changes: %s"
-msgstr "תכנית הקופסאות כשלה בהחלת שינויים למכונה הווירטואלית: %s"
-
-#. TODO: unify the reboot requests for non-properties
-#: src/config-editor.vala:92 src/libvirt-machine-properties.vala:714
-#: src/properties.vala:83
-#, c-format
-msgid "Changes require restart of “%s”."
-msgstr "השינויים דורשים את הפעלת „%s” מחדש."
-
-#: src/config-editor.vala:93 src/libvirt-machine-properties.vala:345
-#: src/libvirt-machine-properties.vala:716 src/properties.vala:84
-msgid "_Restart"
-msgstr "הפעלה מ_חדש"
-
-#: src/display-page.vala:135
+#: src/display-page.vala:133
 msgid "Press (left) Ctrl+Alt to ungrab"
 msgstr "יש ללחוץ על המקשים Ctrl+Alt (שמאל) כדי לבטל את הלכידה"
 
-#: src/display-page.vala:137
+#: src/display-page.vala:135
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
 msgstr ""
 "יש ללחוץ על המקשים Ctrl+Alt (שמאל) ואחר לשחרר בכדי לבטל את לכידת המקלדת."
 
 #. Translators: Showing size of widget as WIDTH×HEIGHT here.
-#: src/display-page.vala:326
+#: src/display-page.vala:324
 #, c-format
 msgid "%d×%d"
 msgstr "%d×%d"
@@ -852,34 +910,15 @@ msgstr "ההורדה נכשלה"
 msgid "New and Recent"
 msgstr "חדשים ואחרונים"
 
-#: src/installed-media.vala:55
-msgid "Unsupported disk image format."
-msgstr "מבנה תמונת הכונן אינה נתמכת."
-
-#: src/installed-media.vala:101 src/installer-media.vala:180
-#: src/properties-page-widget.vala:21
+#: src/installed-media.vala:80 src/installer-media.vala:182
 msgid "System"
 msgstr "מערכת"
-
-#. Translators: This is memory or disk size. E.g. "1 GB used".
-#: src/i-properties-provider.vala:101 src/libvirt-machine-properties.vala:465
-#, c-format
-#| msgid "Paused"
-msgid "%s used"
-msgstr "‫%s בשימוש"
-
-#. Translators: This is memory or disk size. E.g. "1 GB (recommended)".
-#: src/i-properties-provider.vala:115
-#, c-format
-msgid "%s (recommended)"
-msgstr "%s (מומלץ)"
 
 #: src/keys-input-popover.vala:26
 msgid "Ctrl + Alt + Backspace"
 msgstr "Ctrl + Alt + Backspace"
 
 #: src/keys-input-popover.vala:27
-#| msgid "Ctrl + Alt + F1"
 msgid "Ctrl + Alt + Del"
 msgstr "Ctrl + Alt + Del"
 
@@ -893,7 +932,6 @@ msgid "Ctrl + Alt + F2"
 msgstr "Ctrl + Alt + F2"
 
 #: src/keys-input-popover.vala:33
-#| msgid "Ctrl + Alt + F1"
 msgid "Ctrl + Alt + F3"
 msgstr "Ctrl + Alt + F3"
 
@@ -907,240 +945,81 @@ msgstr "Ctrl + Alt + F7"
 msgid "Send key combinations"
 msgstr "שליחת צירופי מקשים"
 
-#: src/libvirt-machine-properties.vala:96 src/remote-machine.vala:68
-msgid "_Name"
-msgstr "_שם"
-
-#: src/libvirt-machine-properties.vala:108
-msgid "IP Address"
-msgstr "כתובת IP"
-
-#: src/libvirt-machine-properties.vala:110
-msgid "Broker"
-msgstr "מתווך"
-
-#. Translators: This is the protocal being used to connect to the display/desktop, e.g Spice, VNC, etc.
-#: src/libvirt-machine-properties.vala:113
-msgid "Display Protocol"
-msgstr "פרוטוקול תצוגה"
-
-#. Translators: This is the URL to connect to the display/desktop. e.g spice://somehost:5051.
-#: src/libvirt-machine-properties.vala:116
-msgid "Display URL"
-msgstr "כתובת תצוגה"
-
-#. Translators: empty is listed as the filename for a non-mounted CD
-#: src/libvirt-machine-properties.vala:181
-#: src/libvirt-machine-properties.vala:222
-msgid "empty"
-msgstr "ריק"
-
-#. Translators: This is the text on the button to select an iso for the cd
-#: src/libvirt-machine-properties.vala:193
-#: src/libvirt-machine-properties.vala:221
-msgid "_Select"
-msgstr "_בחירה"
-
-#. Translators: Remove is the label on the button to remove an iso from a cdrom drive
-#: src/libvirt-machine-properties.vala:196
-#: src/libvirt-machine-properties.vala:204
-msgid "_Remove"
-msgstr "ה_סרה"
-
-#. Translators: First “%s” is filename of ISO or CD/DVD device that user selected and
-#. Second “%s” is name of the box.
-#: src/libvirt-machine-properties.vala:211
-#, c-format
-msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
-msgstr "ההכנסה של „%s” כתקליטור/DVD לתוך „%s” נכשלה"
-
-#. Translators: “%s” here is name of the box.
-#: src/libvirt-machine-properties.vala:225
-#, c-format
-msgid "Removal of CD/DVD from “%s” failed"
-msgstr "הסרת התקליטור/DVD מהקופסה „%s” נכשלה"
-
-#: src/libvirt-machine-properties.vala:240
-msgid "CD/DVD"
-msgstr "תקליטור/DVD"
-
-#: src/libvirt-machine-properties.vala:304
-msgid "CPU"
-msgstr "מעבד"
-
-#. I/O
-#. 100 MiB/s
-#: src/libvirt-machine-properties.vala:310
-msgid "I/O"
-msgstr "קלט/פלט"
-
-#. Network
-#. 1 MiB/s
-#: src/libvirt-machine-properties.vala:316
-msgid "Network"
-msgstr "רשת"
-
-#: src/libvirt-machine-properties.vala:353
-msgid "_Force Shutdown"
-msgstr "_אילוץ כיבוי"
-
-#: src/libvirt-machine-properties.vala:367
-msgid "_Troubleshooting Log"
-msgstr "יומן _טיפול בבעיות"
-
-#: src/libvirt-machine-properties.vala:375
-msgid "Edit XML"
-msgstr "עריכת XML"
-
-#: src/libvirt-machine-properties.vala:395
-msgid "_Memory: "
-msgstr "זי_כרון: "
-
-#: src/libvirt-machine-properties.vala:464
-msgid "Maximum Disk Space"
-msgstr "הנפח המרבי בכונן"
-
-#: src/libvirt-machine-properties.vala:482
-msgid ""
-"There is not enough space on your machine to increase the maximum disk size."
-msgstr "אין מספיק מקום במחשב שלך בכדי להגדיל את הגודל המרבי של הדיסק."
-
-#: src/libvirt-machine-properties.vala:492
-msgid "Maximum _Disk Size: "
-msgstr "גודל ה_כונן המרבי: "
-
-#. qemu-img doesn't support resizing disk image with snapshots:
-#. https://bugs.launchpad.net/qemu/+bug/1563931
-#: src/libvirt-machine-properties.vala:545
-#, c-format
-msgid "Storage resize requires deleting associated snapshot."
-msgid_plural "Storage resize requires deleting %llu associated snapshots."
-msgstr[0] "שינוי גודל אחסון דורש את מחיקת תמונת המצב המשויכת."
-msgstr[1] "שינוי גודל אחסון דורש את מחיקת %llu תמונות המצב המשויכות."
-msgstr[2] "שינוי גודל אחסון דורש את מחיקת %llu תמונות המצב המשויכות."
-msgstr[3] "שינוי גודל אחסון דורש את מחיקת %llu תמונות המצב המשויכות."
-
-#: src/libvirt-machine-properties.vala:674
-#: src/libvirt-machine-properties.vala:678
-msgid "CPUs: "
-msgstr "מעבדים: "
-
-#: src/libvirt-machine-properties.vala:733
-msgid "_Run in background"
-msgstr "הרצה ב_רקע"
-
-#: src/libvirt-machine-properties.vala:745
-#: src/libvirt-machine-properties.vala:748
-#, c-format
-msgid "“%s” will not be paused automatically."
-msgstr "‫„%s” לא תושהה אוטומטית."
-
-#: src/libvirt-machine-properties.vala:746
-#: src/libvirt-machine-properties.vala:749
-#, c-format
-msgid "“%s” will be paused automatically to save resources."
-msgstr "‫„%s” תושהה אוטומטית כדי לחסוך במשאבים."
-
-#: src/libvirt-machine-properties.vala:774
-msgid "Boxes is not authorized to run in the background"
-msgstr "לקופסאות אין הרשאה לפעול ברקע"
-
-#: src/libvirt-machine-properties.vala:776
-msgid "Manage permissions"
-msgstr "ניהול הרשאות"
-
-#: src/libvirt-machine-properties.vala:794
-msgid "3D Acceleration"
-msgstr "האצה תלת ממדית"
-
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:643
+#: src/libvirt-machine.vala:467
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s משוחזר מהכונן"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:646
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Starting %s"
 msgstr "%s מופעל"
 
-#: src/libvirt-machine.vala:725
+#: src/libvirt-machine.vala:549
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "ההפעלה של „%s” מחדש אורכת זמן רב מדי. לכפות כיבוי?"
 
-#: src/libvirt-machine.vala:727
+#: src/libvirt-machine.vala:551
 msgid "_Shutdown"
 msgstr "_כיבוי"
 
-#: src/libvirt-machine.vala:743
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "‫„%s” משוכפלת…"
 
-#: src/libvirt-machine.vala:875
+#: src/libvirt-machine.vala:693
 msgid "Installing…"
 msgstr "מתבצעת התקנה…"
 
-#: src/libvirt-machine.vala:879
+#: src/libvirt-machine.vala:697
 msgid "Setting up clone…"
 msgstr "הגדרת שיבוט…"
 
-#: src/libvirt-machine.vala:881
+#: src/libvirt-machine.vala:699
 msgid "Importing…"
 msgstr "מתבצע יבוא…"
 
-#: src/libvirt-machine.vala:890
+#: src/libvirt-machine.vala:708
 #, c-format
 msgid "host: %s"
 msgstr "מארח: %s"
 
-#: src/list-view-row.vala:133
-msgid "Connected"
-msgstr "מחובר"
-
-#: src/list-view-row.vala:133
-msgid "Disconnected"
-msgstr "מנותק"
-
-#: src/list-view-row.vala:139
+#: src/list-view-row.vala:130
 msgid "Running"
 msgstr "רץ"
 
-#: src/list-view-row.vala:145
+#: src/list-view-row.vala:136
 msgid "Paused"
 msgstr "מושהה"
 
-#: src/list-view-row.vala:150
+#: src/list-view-row.vala:141
 msgid "Powered Off"
 msgstr "כבוי"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:203
+#: src/machine.vala:185
 #, c-format
 msgid "Connecting to %s"
 msgstr "מתבצעת התחברות אל %s"
 
-#: src/machine.vala:223
-#, c-format
-msgid "Authentication failed: %s"
-msgstr "האימות נכשל: %s"
-
-#: src/machine.vala:236 src/machine.vala:665
+#: src/machine.vala:211 src/machine.vala:627
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "החיבור אל „%s” נכשל"
 
-#: src/machine.vala:289
+#: src/machine.vala:258
 msgid "Machine is under construction"
 msgstr "המכונה בשיפוצים"
 
-#: src/machine.vala:444
+#: src/machine.vala:411
 msgid "Saving…"
 msgstr "מתבצעת שמירה…"
 
-#: src/machine.vala:636
+#: src/machine.vala:596
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1150,16 +1029,14 @@ msgstr ""
 "‬\n"
 "‫לנסות ללא מצב שמור?"
 
-#: src/machine.vala:647
+#: src/machine.vala:607
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "ההפעלה של „%s” נכשלה"
 
-#. Translators: %s => name of launched box
-#: src/machine.vala:752
-#, c-format
-msgid "“%s” requires authentication"
-msgstr "‫„%s” דורשת אימות"
+#: src/machine.vala:620
+msgid "Troubleshooting Log"
+msgstr "יומן טיפול בבעיות"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1197,48 +1074,108 @@ msgstr "דיווח על באגים אל <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "אתר הבית של %s: <%s>.\n"
 
-#: src/media-manager.vala:304
+#: src/media-manager.vala:34
+msgid "Media is not supported"
+msgstr "אין תמיכה במדיה הזאת"
+
+#: src/media-manager.vala:368
 #, c-format
 msgid "No such file %s"
 msgstr "אין כזה קובץ: %s"
-
-#: src/notificationbar.vala:44
-#, c-format
-msgid "Sign In to %s"
-msgstr "כניסה אל %s"
-
-#: src/notificationbar.vala:47
-#, c-format
-msgid "Not connected to %s"
-msgstr "אין חיבור אל %s"
 
 #: src/portals.vala:45
 msgid "Boxes wants to run VM in background"
 msgstr "קופסאות מעוניינת להריץ מכונה וירטואלית ברקע"
 
-#: src/properties-page-widget.vala:17
-msgid "General"
-msgstr "כללי"
+#: src/preferences/cdrom-row.vala:33
+msgid "No CD/DVD image"
+msgstr "אין דמות תקליטור/DVD"
 
-#: src/properties-page-widget.vala:25
-msgid "Devices & Shares"
-msgstr "התקנים ושיתופים"
+#: src/preferences/devices-page.vala:25
+msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
+msgstr "גירסת ה־Flatpak של קופסאות של GNOME לא תומך בהפניית USB."
 
-#: src/properties-page-widget.vala:29
-msgid "Snapshots"
-msgstr "תמונות מצב"
+#: src/preferences/devices-page.vala:36
+msgid "Turn on your box to see the USB devices available for redirection."
+msgstr "יש להפעיל את המכונה שלך כדי לראות שהתקני ה־USB זמינים להפנייה."
 
-#: src/remote-machine.vala:78
-msgid "Protocol"
-msgstr "פרוטוקול"
+#. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
+#: src/preferences/resources-page.vala:81
+#, c-format
+msgid "Recommended %s."
+msgstr "‫%s מומלץ."
 
-#: src/remote-machine.vala:80
-msgid "URL"
-msgstr "כתובת"
+#: src/preferences/resources-page.vala:157
+msgid "Boxes is not authorized to run in background"
+msgstr "לקופסאות אין הרשאה לפעול ברקע"
 
-#: src/remote-machine.vala:82
-msgid "_URL"
-msgstr "_כתובת"
+#: src/preferences/resources-page.vala:159
+msgid "Manage permissions"
+msgstr "ניהול הרשאות"
+
+#: src/preferences/resources-page.vala:191
+msgid ""
+"Editing your box configuration can cause issues to the operating system of "
+"your box. Would you like to create a snapshot to recover from your changes?"
+msgstr ""
+"עריכת הגדרות המכונה שלך יכולות לגרום לתקלות במערכת ההפעלה של המכונה שלך. "
+"ליצור תמונת מצב כדי לאפשר שיחזור של השינויים שלך?"
+
+#: src/preferences/resources-page.vala:257
+#, c-format
+msgid "Failed to save domain configuration: %s"
+msgstr "שמירת הגדרות שם התחום נכשלו: %s"
+
+#: src/preferences/resources-page.vala:266
+msgid "Changes to the settings below take effect after you restart your box."
+msgstr "שינויי ההגדרות שלהלן יחולו לאחר הפעלת המכונה שלך מחדש."
+
+#: src/preferences/shared-folders-widget.vala:75
+msgid "Use the button below to add your first shared folder."
+msgstr "ניתן להשתמש בכפתור שלהלן כדי להוסיף את התיקייה המשותפת הראשונה שלך."
+
+#: src/preferences/snapshot-list-row.vala:140
+#, c-format
+msgid "Reverting to %s…"
+msgstr "מתבצע שחזור אל %s…"
+
+#: src/preferences/snapshot-list-row.vala:158
+msgid "Failed to apply snapshot"
+msgstr "ארע כשל בהחלת תמונה מצב"
+
+#: src/preferences/snapshot-list-row.vala:175
+#, c-format
+msgid "Snapshot “%s” deleted."
+msgstr "תמונת המצב „%s” נמחקה."
+
+#: src/preferences/snapshots-page.vala:122
+#, c-format
+msgid "Failed to create snapshot of %s"
+msgstr "ארע כשל ביצירת תמונת מצב של %s"
+
+#: src/preferences/snapshots-page.vala:144
+msgid "Use the button below to create your first snapshot."
+msgstr "ניתן להשתמש בכפתור שלהלן כדי ליצור את תמונת המצב הראשונה שלך."
+
+#. Translators: "%s" is a disk size string (for example "4.2 GB")
+#: src/preferences/storage-row.vala:47
+#, c-format
+msgid "Used %s."
+msgstr "‫%s בשימוש."
+
+#: src/preferences/storage-row.vala:50
+msgid ""
+"There is not enough space on your machine to increase the maximum disk size."
+msgstr "אין מספיק מקום במחשב שלך בכדי להגדיל את הגודל המרבי של הדיסק."
+
+#: src/preferences/storage-row.vala:68
+msgid "Storage disk"
+msgstr "כונן אחסון"
+
+#: src/preferences/storage-row.vala:77
+#, c-format
+msgid "Used %s"
+msgstr "‫%s בשימוש"
 
 #: src/selectionbar.vala:60
 #, c-format
@@ -1275,75 +1212,15 @@ msgstr[3] "נבחרו %u"
 msgid "(Click on items to select them)"
 msgstr "(יש ללחוץ על הפריטים כדי לבחור אותם)"
 
-#: src/snapshot-list-row.vala:137
-#, c-format
-msgid "Reverting to %s…"
-msgstr "מתבצע שחזור אל %s…"
-
-#: src/snapshot-list-row.vala:155
-msgid "Failed to apply snapshot"
-msgstr "ארע כשל בהחלת תמונה מצב"
-
-#: src/snapshot-list-row.vala:172
-#, c-format
-msgid "Snapshot “%s” deleted."
-msgstr "תמונת המצב „%s” נמחקה."
-
-#: src/snapshots-property.vala:61
-msgid "No snapshots created yet. Create one using the button below."
-msgstr "טרם נוצרה תמונת מצב. ניתן ליצור אחת באמצעות הכפתור מטה."
-
-#: src/snapshots-property.vala:124
-msgid "Creating new snapshot…"
-msgstr "יוצר תמונה מצב…"
-
-#: src/snapshots-property.vala:132
-#, c-format
-msgid "Failed to create snapshot of %s"
-msgstr "ארע כשל ביצירת תמונת מצב של %s"
-
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: src/spice-display.vala:46
 msgid "Unknown"
 msgstr "לא ידוע"
 
-#: src/spice-display.vala:62 src/spice-display.vala:512
+#: src/spice-display.vala:61 src/spice-display.vala:452
 #, c-format
 msgid "Redirection of USB device “%s” for “%s” failed"
 msgstr "הפניית התקן ה־USB ‏„%s” אל „%s” נכשלה"
-
-#. Translators: %s => a link to the website where users can download the guest tools.
-#: src/spice-display.vala:375
-#, c-format
-msgid ""
-"SPICE guest tools are not running. These tools improve user experience and "
-"enable host and box interactions, such as copy and paste. Please visit %s to "
-"download and install these tools from within the box."
-msgstr ""
-"כלי האורחים של SPICE אינם פעילים. כלים אלו משפרים את חוויית המשתמש ומאפשרים "
-"תפעול הדדי בין המערכת המארחת לבין הקופסה, כגון העתקה והדבקה. נא לבקר בכתובת "
-"%s כדי להוריד את הכלים האלו מתוך הקופסה."
-
-#: src/spice-display.vala:402
-msgid "USB devices"
-msgstr "התקני USB"
-
-#: src/spice-display.vala:418
-msgid "Folder Shares"
-msgstr "שיתופי תיקיות"
-
-#: src/spice-display.vala:616 src/spice-display.vala:641
-#: src/spice-display.vala:644
-msgid "Invalid URL"
-msgstr "כתובת שגויה"
-
-#: src/spice-display.vala:626
-msgid "The port must be specified once"
-msgstr "יש לציין את הפתחה פעם אחת"
-
-#: src/spice-display.vala:637
-msgid "Missing port in Spice URL"
-msgstr "חסרה פתחה בכתובת ה־Spice"
 
 #. Translators: "%s" is a file name.
 #: src/transfer-info-row.vala:31
@@ -1359,7 +1236,7 @@ msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "אירעה שגיאה במהלך ההכנות להתקנה. התקנה מהירה נוטרלה."
 
-#: src/unattended-installer.vala:465
+#: src/unattended-installer.vala:461
 msgid "Downloading device drivers…"
 msgstr "מנהלי ההתקנים מתקבלים…"
 
@@ -1377,7 +1254,7 @@ msgstr "הורדה ישירה של %s דורשת חיבור לאינטרנט."
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "פרטי גישה של קופסאות של GNOME עבור „%s”"
 
-#: src/util-app.vala:358
+#: src/util-app.vala:359
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1386,11 +1263,11 @@ msgstr ""
 "הקשר ה־SELinux שלך נראה שגוי, ניתן לנסות לתקן אותו על ידי הרצת הפקודה:\n"
 "%s"
 
-#: src/util-app.vala:362
+#: src/util-app.vala:363
 msgid "SELinux not installed?"
 msgstr "האם SELinux לא מותקן?"
 
-#: src/util-app.vala:444
+#: src/util-app.vala:445
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1398,7 +1275,7 @@ msgstr ""
 "לא ניתן לקבל את פרטי מאגר האחסון „gnome-boxes” מ־libvirt. נא לוודא שהפקודה "
 "„virsh -c qemu:///session pool-dumpxml gnome-boxes” פועלת."
 
-#: src/util-app.vala:449
+#: src/util-app.vala:450
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1406,13 +1283,13 @@ msgid ""
 msgstr ""
 "‫%s מוכר ל־libvirt בתור מאגר האחסון לקופסאות של GNOME אך תיקייה זו אינה קיימת"
 
-#: src/util-app.vala:453
+#: src/util-app.vala:454
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "‫%s מוכר ל־libvirt בתור מאגר האחסון לקופסאות של GNOME אך אינו תיקייה"
 
-#: src/util-app.vala:457
+#: src/util-app.vala:458
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1431,12 +1308,12 @@ msgstr "לא"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:779
+#: src/vm-configurator.vala:813
 msgid "Incapable host system"
 msgstr "מערכת האירוח אינה מסוגלת לכך"
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:169
+#: src/vm-creator.vala:179
 msgid "Just installed "
 msgstr "הרגע הותקן "
 
@@ -1445,9 +1322,204 @@ msgstr "הרגע הותקן "
 msgid "Box import from file “%s” failed."
 msgstr "הייבוא של קופסה מהקובץ „%s” נכשל."
 
-#: src/vnc-display.vala:169
-msgid "Read-only"
-msgstr "קריאה בלבד"
+#~ msgid "GNOME Boxes"
+#~ msgstr "קופסאות GNOME"
+
+#~ msgid ""
+#~ "A simple GNOME 3 application to manage virtual systems. Unlike some other "
+#~ "virtual machine management software, Boxes is targeted towards typical "
+#~ "desktop end-users. For this reason, Boxes will not provide many advanced "
+#~ "options to tweak virtual machines. Instead Boxes will focus on getting "
+#~ "things working out of the box with very little input from user."
+#~ msgstr ""
+#~ "יישום GNOME 3 פשוט לניהול מערכות וירטואליות. בשונה מתכניות ניהול מכונות "
+#~ "וירטואליות אחרות, קופסאות מותאם למשתמשי קצה אופייניים בשולחן העבודה. לכן, "
+#~ "קופסאות לא יספק הרבה אפשרויות מתקדמות להתאמת מכונות וירטואליות. במקום "
+#~ "זאת, קופסאות יתמקד בהגשת תוצרים עובדים הישר מהקופסה עם מעט מאוד קלט "
+#~ "מהמשתמש."
+
+#~ msgid ""
+#~ "You want to install Boxes if you just want a very safe and easy way to "
+#~ "try out new operating systems or new (potentially unstable) versions of "
+#~ "your favorite operating system(s)."
+#~ msgstr ""
+#~ "כדאי להתקין את קופסאות אם מעניינת אותך דרך בטוחה ופשוטה לנסות מערכות "
+#~ "הפעלה חדשות או גרסאות (אולי גם לא יציבות) של מערכת או מערכות ההפעלה "
+#~ "המועדפות עליך."
+
+#~ msgid "Override theme"
+#~ msgstr "דריסת ערכת העיצוב"
+
+#~ msgid "Whether Boxes will override the user's theme"
+#~ msgstr "האם על קופסאות לדרוס את ערכת העיצוב של המשתמש"
+
+#~ msgid "Resource Allocation"
+#~ msgstr "הקצאת משאבים"
+
+#~ msgid "Customize"
+#~ msgstr "התאמה אישית"
+
+#~ msgid "_Username"
+#~ msgstr "שם מ_שתמש"
+
+#~ msgid "_Password"
+#~ msgstr "_ססמה"
+
+#~ msgid "Sign In"
+#~ msgstr "כניסה"
+
+#~ msgid ""
+#~ "Boxes snapshots your virtual machine before applying changes allowing you "
+#~ "to revert them."
+#~ msgstr ""
+#~ "קופסאות לוכדת את מצב המכונה הווירטואלית שלך בטרם ביצוע שינויים כדי לאפשר "
+#~ "לך לחזור אחורה."
+
+#~ msgid "_Copy to Clipboard"
+#~ msgstr "הע_תקה ללוח הגזירים"
+
+#~ msgid "_Apply"
+#~ msgstr "ה_חלה"
+
+#~ msgid "Properties"
+#~ msgstr "מאפיינים"
+
+#~ msgid "Disk"
+#~ msgstr "כונן"
+
+#~ msgid "%s maximum"
+#~ msgstr "%s לכל היותר"
+
+#~ msgid "Changes require restart of “%s”."
+#~ msgstr "השינויים דורשים את הפעלת „%s” מחדש."
+
+#~ msgid "_Restart"
+#~ msgstr "הפעלה מ_חדש"
+
+#~ msgid "Unsupported disk image format."
+#~ msgstr "מבנה תמונת הכונן אינה נתמכת."
+
+#~| msgid "Paused"
+#~ msgid "%s used"
+#~ msgstr "‫%s בשימוש"
+
+#~ msgid "Broker"
+#~ msgstr "מתווך"
+
+#~ msgid "Display Protocol"
+#~ msgstr "פרוטוקול תצוגה"
+
+#~ msgid "Display URL"
+#~ msgstr "כתובת תצוגה"
+
+#~ msgid "empty"
+#~ msgstr "ריק"
+
+#~ msgid "Insertion of “%s” as a CD/DVD into “%s” failed"
+#~ msgstr "ההכנסה של „%s” כתקליטור/DVD לתוך „%s” נכשלה"
+
+#~ msgid "Removal of CD/DVD from “%s” failed"
+#~ msgstr "הסרת התקליטור/DVD מהקופסה „%s” נכשלה"
+
+#~ msgid "CD/DVD"
+#~ msgstr "תקליטור/DVD"
+
+#~ msgid "CPU"
+#~ msgstr "מעבד"
+
+#~ msgid "I/O"
+#~ msgstr "קלט/פלט"
+
+#~ msgid "Network"
+#~ msgstr "רשת"
+
+#~ msgid "_Force Shutdown"
+#~ msgstr "_אילוץ כיבוי"
+
+#~ msgid "_Troubleshooting Log"
+#~ msgstr "יומן _טיפול בבעיות"
+
+#~ msgid "Edit XML"
+#~ msgstr "עריכת XML"
+
+#~ msgid "_Memory: "
+#~ msgstr "זי_כרון: "
+
+#~ msgid "Maximum Disk Space"
+#~ msgstr "הנפח המרבי בכונן"
+
+#~ msgid "Maximum _Disk Size: "
+#~ msgstr "גודל ה_כונן המרבי: "
+
+#~ msgid "Storage resize requires deleting associated snapshot."
+#~ msgid_plural "Storage resize requires deleting %llu associated snapshots."
+#~ msgstr[0] "שינוי גודל אחסון דורש את מחיקת תמונת המצב המשויכת."
+#~ msgstr[1] "שינוי גודל אחסון דורש את מחיקת %llu תמונות המצב המשויכות."
+#~ msgstr[2] "שינוי גודל אחסון דורש את מחיקת %llu תמונות המצב המשויכות."
+#~ msgstr[3] "שינוי גודל אחסון דורש את מחיקת %llu תמונות המצב המשויכות."
+
+#~ msgid "“%s” will not be paused automatically."
+#~ msgstr "‫„%s” לא תושהה אוטומטית."
+
+#~ msgid "“%s” will be paused automatically to save resources."
+#~ msgstr "‫„%s” תושהה אוטומטית כדי לחסוך במשאבים."
+
+#~ msgid "Connected"
+#~ msgstr "מחובר"
+
+#~ msgid "Disconnected"
+#~ msgstr "מנותק"
+
+#~ msgid "Authentication failed: %s"
+#~ msgstr "האימות נכשל: %s"
+
+#~ msgid "“%s” requires authentication"
+#~ msgstr "‫„%s” דורשת אימות"
+
+#~ msgid "Sign In to %s"
+#~ msgstr "כניסה אל %s"
+
+#~ msgid "Not connected to %s"
+#~ msgstr "אין חיבור אל %s"
+
+#~ msgid "General"
+#~ msgstr "כללי"
+
+#~ msgid "Protocol"
+#~ msgstr "פרוטוקול"
+
+#~ msgid "URL"
+#~ msgstr "כתובת"
+
+#~ msgid "_URL"
+#~ msgstr "_כתובת"
+
+#~ msgid "No snapshots created yet. Create one using the button below."
+#~ msgstr "טרם נוצרה תמונת מצב. ניתן ליצור אחת באמצעות הכפתור מטה."
+
+#~ msgid ""
+#~ "SPICE guest tools are not running. These tools improve user experience "
+#~ "and enable host and box interactions, such as copy and paste. Please "
+#~ "visit %s to download and install these tools from within the box."
+#~ msgstr ""
+#~ "כלי האורחים של SPICE אינם פעילים. כלים אלו משפרים את חוויית המשתמש "
+#~ "ומאפשרים תפעול הדדי בין המערכת המארחת לבין הקופסה, כגון העתקה והדבקה. נא "
+#~ "לבקר בכתובת %s כדי להוריד את הכלים האלו מתוך הקופסה."
+
+#~ msgid "Folder Shares"
+#~ msgstr "שיתופי תיקיות"
+
+#~ msgid "Invalid URL"
+#~ msgstr "כתובת שגויה"
+
+#~ msgid "The port must be specified once"
+#~ msgstr "יש לציין את הפתחה פעם אחת"
+
+#~ msgid "Missing port in Spice URL"
+#~ msgstr "חסרה פתחה בכתובת ה־Spice"
+
+#~ msgid "Read-only"
+#~ msgstr "קריאה בלבד"
 
 #~ msgid "Collections"
 #~ msgstr "אוספים"
@@ -1522,9 +1594,6 @@ msgstr "קריאה בלבד"
 
 #~ msgid "_Back"
 #~ msgstr "ח_זרה"
-
-#~ msgid "Customize Resources"
-#~ msgstr "התאמת משאבים"
 
 #~ msgid "Pause"
 #~ msgstr "השהיה"
@@ -1774,9 +1843,6 @@ msgstr "קריאה בלבד"
 
 #~ msgid "RAM"
 #~ msgstr "זיכרון"
-
-#~ msgid "Storage"
-#~ msgstr "אחסון"
 
 #~ msgid ""
 #~ "Internet access required for express installation of Fedora 16 and older"
