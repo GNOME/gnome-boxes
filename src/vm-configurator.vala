@@ -407,31 +407,13 @@ private class Boxes.VMConfigurator {
 
         os.set_arch (old_os.get_arch ());
         os.set_machine (old_os.get_machine ());
-#if USE_UEFI
-        if (old_os.get_firmware () == GVirConfig.DomainOsFirmware.EFI)
-            os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
-#endif
 
-        domain.set_os (os);
-    }
-
-    private static bool domain_caps_supports_efi (DomainCapabilities domain_caps) {
-        foreach (var firmware in domain_caps.get_os ().get_firmwares()) {
-            if (firmware == GVirConfig.DomainOsFirmware.EFI)
-                return true;
+        if (old_os.get_firmware () == GVirConfig.DomainOsFirmware.EFI) {
+            if (App.app.supports_uefi_installs ())
+                os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
         }
 
-        return false;
-    }
-
-    private static bool supports_efi (InstallerMedia install_media, DomainCapabilities domain_caps) {
-        if (install_media == null || !install_media.supports_efi)
-            return false;
-
-        if (domain_caps == null || !domain_caps_supports_efi (domain_caps))
-            return false;
-
-        return true;
+        domain.set_os (os);
     }
 
     private static void set_os_config (Domain domain, InstallerMedia install_media, CapabilitiesGuest guest_caps, DomainCapabilities domain_caps) {
@@ -440,11 +422,6 @@ private class Boxes.VMConfigurator {
         os.set_arch (guest_caps.get_arch ().get_name ());
         if (install_media.prefers_q35)
             os.set_machine ("q35");
-
-#if USE_UEFI
-        if (supports_efi (install_media, domain_caps))
-            os.set_firmware (GVirConfig.DomainOsFirmware.EFI);
-#endif
 
         var boot_devices = new GLib.List<DomainOsBootDevice> ();
         install_media.set_direct_boot_params (os);

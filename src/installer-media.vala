@@ -62,14 +62,13 @@ private class Boxes.InstallerMedia : GLib.Object {
             if (os == null)
                 return false;
 
-            return (os.get_id ().has_prefix("http://gnome.org/gnome/"));
-
-            /*foreach (var iter in os.get_firmware_list (null) .get_elements ()) {
+            foreach (var iter in os.get_firmware_list (null).get_elements ()) {
                 var firmware = iter as Firmware;
                 if (firmware.get_firmware_type () == "efi")
                     return true;
             }
-            return false;*/
+
+            return false;
         }
     }
 
@@ -353,4 +352,14 @@ private class Boxes.InstallerMedia : GLib.Object {
         domain.set_devices (devices);
     }
 
+    public void set_uefi_firmware (Domain domain, bool use_uefi) {
+        try {
+            var os = new DomainOs.from_xml (domain.get_os ().to_xml ());
+            os.set_firmware (use_uefi ? DomainOsFirmware.EFI : DomainOsFirmware.BIOS);
+            domain.set_os (os);
+        } catch (GLib.Error error) {
+            warning ("Failed to set %s firmware: %s", use_uefi ? "EFI" : "BIOS",
+                                                      error.message);
+        }
+    }
 }

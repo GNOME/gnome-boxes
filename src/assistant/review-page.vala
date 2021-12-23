@@ -21,6 +21,10 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     private unowned Hdy.ActionRow unattended_password_row;
     [GtkChild]
     private unowned Gtk.Label password_label;
+    [GtkChild]
+    private unowned Hdy.ActionRow uefi_row;
+    [GtkChild]
+    private unowned Gtk.Switch uefi_switch;
 
     private GLib.Cancellable? cancellable;
 
@@ -47,9 +51,10 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         ram_row.setup (machine);
         storage_row.setup (machine);
 
+        var install_media = machine.vm_creator.install_media;
         bool show_unattended_rows = false;
-        if (machine.vm_creator.install_media is Boxes.UnattendedInstaller) {
-            var installer = machine.vm_creator.install_media as Boxes.UnattendedInstaller;
+        if (install_media is Boxes.UnattendedInstaller) {
+            var installer = install_media as Boxes.UnattendedInstaller;
             show_unattended_rows = installer.setup_box.express_toggle.active;
 
             if (!show_unattended_rows)
@@ -59,6 +64,24 @@ private class Boxes.AssistantReviewPage : AssistantPage {
             password_label.label = installer.setup_box.hidden_password;
         }
         unattended_username_row.visible = unattended_password_row.visible = show_unattended_rows;
+
+        uefi_row.visible = install_media.supports_efi;
+    }
+
+    [GtkCallback]
+    private void on_uefi_switch_toggled () {
+        LibvirtMachine machine = artifact as LibvirtMachine;
+        bool use_uefi = uefi_switch.get_active ();
+
+        try {
+            InstallerMedia install_media = machine.vm_creator.install_media;
+            install_media.set_uefi_firmware (machine.domain_config, use_uefi);
+
+            machine.domain.set_config (machine.domain_config);
+            debug ("Setting firmware to %s", use_uefi ? "EFI" : "BIOS");
+        } catch (GLib.Error error) {
+            warning ("Failed to toggle UEFI support: %s", error.message);
+        }
     }
 
     public override void cleanup () {
