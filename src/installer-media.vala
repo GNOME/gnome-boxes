@@ -128,15 +128,14 @@ private class Boxes.InstallerMedia : GLib.Object {
     public async InstallerMedia.for_path (string       path,
                                           Cancellable? cancellable = null) throws GLib.Error {
         var device_file = yield get_device_file_from_path (path, cancellable);
+        var media_manager = MediaManager.get_default ();
 #if !FLATPAK
         var device = yield get_device_from_device_file (device_file, media_manager.client);
-
         if (device != null)
             yield get_media_info_from_device (device, media_manager.os_db);
         else {
 #endif
             from_image = true;
-            var media_manager = MediaManager.get_default ();
             os_media = yield media_manager.os_db.guess_os_from_install_media_path (device_file, cancellable);
             if (os_media != null)
                 os = os_media.os;
