@@ -72,6 +72,25 @@ private class Boxes.InstallerMedia : GLib.Object {
         }
     }
 
+    public bool requires_efi {
+        get {
+            if (os == null)
+                return false;
+
+            /* This API requires a new libosinfo release https://gitlab.com/libosinfo/libosinfo/-/commit/3070407
+            foreach (var iter in os.get_complete_firmware_list (null).get_elements ()) {
+                var firmware = iter as Firmware;
+                if (firmware.get_firmware_type () == "bios")
+                    return false;
+            }
+
+            return true;*/
+
+            // Until we can consume the API above, let's force this for GNOME OS only.
+            return (os.get_id ().has_prefix("http://gnome.org/gnome/"));
+        }
+    }
+
     public virtual bool prefers_q35 {
         get {
             if (os == null)

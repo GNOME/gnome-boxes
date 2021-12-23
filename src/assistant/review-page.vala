@@ -64,8 +64,9 @@ private class Boxes.AssistantReviewPage : AssistantPage {
             password_label.label = installer.setup_box.hidden_password;
         }
         unattended_username_row.visible = unattended_password_row.visible = show_unattended_rows;
-
-        uefi_row.visible = install_media.supports_efi;
+        if (App.app.supports_uefi_installs ()) {
+            uefi_row.visible = install_media.supports_efi && !install_media.requires_efi;
+        }
     }
 
     [GtkCallback]
