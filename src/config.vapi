@@ -14,4 +14,5 @@ namespace Config {
         public const string APPLICATION_ID;
         public const string NAME_SUFFIX;
         public const string VERSION;
+        public const bool UEFI_INSTALLS_SUPPORTED;
 }

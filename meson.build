@@ -36,6 +36,7 @@ conf.set('PACKAGE_URL', '"https://wiki.gnome.org/Apps/Boxes"')
 conf.set_quoted ('DATADIR', data_dir)
 conf.set_quoted ('CACHEDIR', '/var/cache')
 conf.set_quoted ('LOCALEDIR', locale_dir)
+conf.set10 ('UEFI_INSTALLS_SUPPORTED', get_option ('uefi'))
 conf.set('PACKAGE_BUGREPORT', '"http://gitlab.gnome.org/gnome/gnome-boxes/issues"')
 
 if get_option ('profile') == 'development'

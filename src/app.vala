@@ -703,4 +703,22 @@ private class Boxes.App: Gtk.Application {
 
         return is_flatpak;
     }
+
+    public bool supports_uefi_installs () {
+        if (!Config.UEFI_INSTALLS_SUPPORTED)
+            return false;
+
+        try {
+            var domain_capabilities =
+                default_connection.get_domain_capabilities (null, null, null, null, 0);
+            foreach (var firmware in domain_capabilities.get_os ().get_firmwares ()) {
+                if (firmware == GVirConfig.DomainOsFirmware.EFI)
+                    return true;
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to obtain domain capabilities: %s", error.message);
+        }
+
+        return false;
+    }
 }
