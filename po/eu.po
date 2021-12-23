@@ -8,8 +8,8 @@
 msgid ""
 msgstr "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-04 15:00+0000\n"
-"PO-Revision-Date: 2021-12-06 10:00+0100\n"
+"POT-Creation-Date: 2021-12-22 12:57+0000\n"
+"PO-Revision-Date: 2021-12-23 10:00+0100\n"
 "Last-Translator: Asier Sarasua Garmendia <asiersarasua@ni.eus>\n"
 "Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
@@ -20,7 +20,7 @@ msgstr "Project-Id-Version: gnome-boxes master\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
-#: src/app-window.vala:127 src/app-window.vala:229 src/app-window.vala:231
+#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
 #: src/main.vala:72 src/topbar.vala:85
 msgid "Boxes"
 msgstr "Makinak"
@@ -31,21 +31,66 @@ msgstr "Birtualizazioa modu errazean"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
 msgid ""
-"A simple GNOME 3 application to manage virtual systems. Unlike some other "
-"virtual machine management software, Boxes is targeted towards typical "
-"desktop end-users. For this reason, Boxes will not provide many advanced "
-"options to tweak virtual machines. Instead Boxes will focus on getting "
-"things working out of the box with very little input from user."
-msgstr "GNOME 3 aplikazio xume bat sistema birtualak kudeatzeko. Beste makina birtual batzuk ez bezala, Makinak aplikazioa mahaigaineko ohiko amaierako erabiltzailerantz bideratuta dago. Horregatik, Makinak aplikazioak ez du makina birtualak egokitzeko aukera aurreratu asko eskaintzen. Horren ordez, Makinak aplikazioak gauzek hasieratik funtziona dezaten ahalegintzen da, erabiltzaileak gauza oso gutxi ukituz."
+"Select an operating system and let Boxes download and install it for you in "
+"a virtual machine."
+msgstr "Hautatu sistema eragile bat eta utzi Makinak aplikazioari hura deskargatzen eta makina birtual batean instalatzen."
+
+#: data/org.gnome.Boxes.appdata.xml.in:15
+msgid "Features:"
+msgstr "Eginbideak:"
 
 #: data/org.gnome.Boxes.appdata.xml.in:17
-msgid ""
-"You want to install Boxes if you just want a very safe and easy way to try "
-"out new operating systems or new (potentially unstable) versions of your "
-"favorite operating system(s)."
-msgstr "Instalatu Makinak sistema eragile berriak edo zure sistema eragile gogokoenaren bertsio berriak (agian desegonkorrak) modu seguru eta eroso batean probatzea nahi badituzu."
+msgid "Download freely available operating systems."
+msgstr "Deskargatu libre eskuragarri dauden sistema eragileak."
 
-#: data/org.gnome.Boxes.appdata.xml.in:58
+#: data/org.gnome.Boxes.appdata.xml.in:18
+msgid ""
+"Automatically install CentOS Stream, Debian, Fedora, Microsoft Windows, "
+"OpenSUSE, Red Hat Enterprise Linux, and Ubuntu."
+msgstr "Instalatu automatikoki CentOS Stream, Debian, Fedora, Microsoft Windows, OpenSUSE, Red Hat Enterprise Linux eta Ubuntu."
+
+#: data/org.gnome.Boxes.appdata.xml.in:20
+msgid ""
+"Create virtual machines from operating system images with a couple of clicks."
+msgstr "Sortu makina birtualak sistema eragileen irudiak erabilita, klik pare bat eginda."
+
+#: data/org.gnome.Boxes.appdata.xml.in:21
+msgid ""
+"Limit the resources (memory and storage) your virtual machines consume from "
+"your system."
+msgstr "Mugatu zure makina birtualek zure sistematik kontsumitzen dituzten baliabideak (memoria eta biltegiratzea)."
+
+#: data/org.gnome.Boxes.appdata.xml.in:22
+msgid "Take snapshots of virtual machines to restore to previous states."
+msgstr "Egin makina birtualen bat-batekoak, lehenagoko egoeretara leheneratzeko."
+
+#: data/org.gnome.Boxes.appdata.xml.in:23
+msgid "Redirect USB devices from your physical machine into virtual machines."
+msgstr "Berbideratu USB gailuak zure makina fisikotik makina birtualetara."
+
+#: data/org.gnome.Boxes.appdata.xml.in:24
+msgid "3D acceleration for some of the supported operating systems."
+msgstr "3D azelerazioa sistema eragile batzuetarako."
+
+#: data/org.gnome.Boxes.appdata.xml.in:25
+msgid "Automatically resize virtual machines displays to the window size."
+msgstr "Automatikoki aldatu makina birtualen bistaratzeen tamaina leihoaren tamainara egokitzeko."
+
+#: data/org.gnome.Boxes.appdata.xml.in:26
+msgid "Share clipboard between your system and virtual machines."
+msgstr "Partekatu arbela sistemaren eta makina birtualen artean."
+
+#: data/org.gnome.Boxes.appdata.xml.in:27
+msgid ""
+"Share files to virtual machines by dropping them from your file manager into "
+"the Boxes window."
+msgstr "Partekatu fitxategiak makina birtualekin haiek zure fitxategi-kudeatzailetik Makinak leihora eramanda."
+
+#: data/org.gnome.Boxes.appdata.xml.in:28
+msgid "Setup Shared Folders between your system and virtual machines."
+msgstr "Konfiguratu zure sistemak eta makina birtualek partekatzen dituzten karpetak."
+
+#: data/org.gnome.Boxes.appdata.xml.in:66
 msgid "The GNOME Project"
 msgstr "GNOME proiektua"
 
@@ -110,21 +155,28 @@ msgstr "Partekatutako karpetak"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Matrizea partekatutako karpeten izenak eta bide-izenen mapekin"
 
-#: data/ui/assistant/downloadable-entry.ui:57
-#: data/ui/assistant/media-entry.ui:53
+#: data/ui/app-window.ui:116 data/ui/welcome-tutorial.ui:40
+msgid "Welcome to Boxes"
+msgstr "Ongi etorri Makinak aplikaziora"
+
+#: data/ui/app-window.ui:117
+msgid "Use the <b>+</b> button to create your first virtual machine."
+msgstr "Erabili <b>+</b> botoia zure lehen makina birtuala sortzeko."
+
+#: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
 msgstr "Euskarri ezezaguna"
 
-#: data/ui/assistant/pages/downloads-page.ui:110
+#: data/ui/assistant/pages/downloads-page.ui:69
 msgid "No operating systems found"
 msgstr "Ez da sistema eragilerik aurkitu"
 
-#: data/ui/assistant/pages/downloads-page.ui:121
+#: data/ui/assistant/pages/downloads-page.ui:70
 msgid "Try a different search"
 msgstr "Saiatu bestelako bilaketa"
 
-#: data/ui/assistant/pages/downloads-page.ui:137
-#: src/assistant/downloads-page.vala:54
+#: data/ui/assistant/pages/downloads-page.ui:83
+#: src/assistant/downloads-page.vala:55
 msgid "Search for an OS or enter a download link…"
 msgstr "Bilatu SE bat edo sartu deskargako esteka bat…"
 
@@ -161,35 +213,35 @@ msgid ""
 "it. Select an operating system source to begin."
 msgstr "Makina birtual berria sortuko da eta sistema eragile bat instalatuko da bertan. Hautatu sistema eragile baten iturburua hasteko."
 
-#: data/ui/assistant/pages/index-page.ui:49
+#: data/ui/assistant/pages/index-page.ui:42
 msgid "Detected Sources"
 msgstr "Detektatutako iturburuak"
 
-#: data/ui/assistant/pages/index-page.ui:109
+#: data/ui/assistant/pages/index-page.ui:60
 msgid "Featured Downloads"
 msgstr "Deskarga nabarmenak"
 
-#: data/ui/assistant/pages/index-page.ui:120
+#: data/ui/assistant/pages/index-page.ui:61
 msgid "You will be notified when the download has completed."
 msgstr "Deskarga amaitu denean jakinarazpen bat jasoko duzu."
 
-#: data/ui/assistant/pages/index-page.ui:147
+#: data/ui/assistant/pages/index-page.ui:78
 msgid "Select an OS Source"
 msgstr "Hautatu SE iturburu bat"
 
-#: data/ui/assistant/pages/index-page.ui:180
+#: data/ui/assistant/pages/index-page.ui:84
 msgid "Operating System Download"
 msgstr "Sistema eragilearen deskarga"
 
-#: data/ui/assistant/pages/index-page.ui:196
+#: data/ui/assistant/pages/index-page.ui:85
 msgid "Browse and search for operating systems to install."
 msgstr "Arakatu eta bilatu instalatu daitezkeen sistema eragileak."
 
-#: data/ui/assistant/pages/index-page.ui:242
+#: data/ui/assistant/pages/index-page.ui:101
 msgid "Operating System Image File"
 msgstr "Sistema eragilearen irudi-fitxategia"
 
-#: data/ui/assistant/pages/index-page.ui:258
+#: data/ui/assistant/pages/index-page.ui:102
 msgid "Select a file to install a virtual machine."
 msgstr "Hautatu fitxategi bat makina birtuala instalatzeko."
 
@@ -221,12 +273,12 @@ msgid "Operating System"
 msgstr "Sistema eragilea"
 
 #: data/ui/assistant/pages/review-page.ui:83
-#: data/ui/preferences/resources-page.ui:72
+#: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Memoria"
 
 #: data/ui/assistant/pages/review-page.ui:90
-#: data/ui/preferences/resources-page.ui:79
+#: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Biltegiratze-muga"
 
@@ -246,13 +298,13 @@ msgstr "Instalazio azkarra"
 
 #: data/ui/assistant/vm-assistant.ui:48
 #: data/ui/preferences/shared-folder-popover.ui:97
-#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:99
-#: src/assistant/index-page.vala:146 src/assistant/vm-assistant.vala:73
+#: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Utzi"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:72
+#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
 msgid "Next"
 msgstr "Hurrengoa"
 
@@ -311,14 +363,6 @@ msgstr "Pantaila osoa"
 #: data/ui/downloads-hub-row.ui:54
 msgid "Ready to install"
 msgstr "Instalatzeko prest"
-
-#: data/ui/empty-boxes.ui:50 data/ui/welcome-tutorial.ui:40
-msgid "Welcome to Boxes"
-msgstr "Ongi etorri Makinak aplikaziora"
-
-#: data/ui/empty-boxes.ui:51
-msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr "Erabili <b>+</b> botoia zure lehen makina birtuala sortzeko."
 
 #: data/ui/kbd-shortcuts-window.ui:18
 msgctxt "shortcut window"
@@ -390,12 +434,6 @@ msgctxt "shortcut window"
 msgid "Fullscreen/Restore from fullscreen"
 msgstr "Pantaila osoa/leheneratu pantaila osotik"
 
-#: data/ui/machine-config-editor.ui:40
-msgid ""
-"Boxes snapshots your virtual machine before applying changes allowing you to "
-"revert them."
-msgstr "Makinak aplikazioak zure makina birtualaren bat-batekoa sortzen du aldaketak aplikatu baino lehen, horrela aldaketok baztertu ahal izateko."
-
 #: data/ui/menus.ui:7
 msgid "Keyboard Shortcuts"
 msgstr "Laster-teklak"
@@ -432,7 +470,7 @@ msgstr "USB gailuak"
 msgid "CDROM/DVD Drive"
 msgstr "CDROM/DVD unitatea"
 
-#: data/ui/preferences/preferences-toast.ui:24
+#: data/ui/preferences/preferences-toast.ui:27
 msgid "Undo"
 msgstr "Desegin"
 
@@ -449,7 +487,7 @@ msgstr "_Izena"
 msgid "IP Address"
 msgstr "IP helbidea"
 
-#: data/ui/preferences/resources-page.ui:87
+#: data/ui/preferences/resources-page.ui:73
 msgid "CPUs"
 msgstr "PUZak"
 
@@ -545,7 +583,7 @@ msgstr "_Pausatu"
 msgid "_Delete"
 msgstr "Ez_abatu"
 
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:290
+#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
 msgid "_Cancel"
 msgstr "_Utzi"
 
@@ -684,114 +722,114 @@ msgstr "translator-credits"
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "Sistema birtualetara sartzeko GNOME 3 aplikazio sinplea"
 
-#: src/app.vala:191 src/main.vala:9
+#: src/app.vala:187 src/main.vala:9
 msgid "Display version number"
 msgstr "Erakutsi bertsio-zenbakia"
 
-#: src/app.vala:192
+#: src/app.vala:188
 msgid "Show help"
 msgstr "Erakutsi laguntza"
 
-#: src/app.vala:193
+#: src/app.vala:189
 msgid "Open in full screen"
 msgstr "Ireki pantaila osoan"
 
-#: src/app.vala:194 src/main.vala:10
+#: src/app.vala:190 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Egiaztatu birtualizazioaren gaitasunak"
 
-#: src/app.vala:195
+#: src/app.vala:191
 msgid "Open box with UUID"
 msgstr "Ireki honako UUIDa duen makina:"
 
-#: src/app.vala:196
+#: src/app.vala:192
 msgid "Search term"
 msgstr "Bilaketa-terminoa"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:198
+#: src/app.vala:194
 msgid "URL to display, broker or installer media"
 msgstr "Bistaratuko den URLa, hornitzailea edo instalatzaile-euskarria"
 
-#: src/app.vala:209
+#: src/app.vala:205
 msgid "— A simple application to access virtual machines"
 msgstr "— Makina birtualak atzitzeko aplikazio sinplea"
 
-#: src/app.vala:236
+#: src/app.vala:232
 msgid "Too many command line arguments specified.\n"
 msgstr "Komando-lerroko argumentu gehiegi zehaztu dira.\n"
 
-#: src/app.vala:488
+#: src/app.vala:484
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "'%s' makina instalatuta eta erabiltzeko prest"
 
-#: src/app.vala:490
+#: src/app.vala:486
 msgid "Launch"
 msgstr "Abiarazi"
 
-#: src/app.vala:520
+#: src/app.vala:516
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s“ atzeko planoan exekutatzen ari da"
 
-#: src/app.vala:605
+#: src/app.vala:601
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "'%s' makina ezabatu da"
 
-#: src/app.vala:606
+#: src/app.vala:602
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Makina %u ezabatu da"
 msgstr[1] "%u makina ezabatu dira"
 
-#: src/app.vala:634
+#: src/app.vala:630
 msgid "_Undo"
 msgstr "_Desegin"
 
-#: src/app.vala:680
+#: src/app.vala:676
 msgid "Boxes is doing something"
 msgstr "Makinak zerbait egiten ari da"
 
-#: src/app-window.vala:289
+#: src/app-window.vala:302
 msgid "Select files to transfer"
 msgstr "Hautatu transferituko diren fitxategiak"
 
-#: src/app-window.vala:292
+#: src/app-window.vala:305
 msgid "_Open"
 msgstr "_Ireki"
 
-#: src/assistant/index-page.vala:143 src/preferences/cdrom-row.vala:62
+#: src/assistant/index-page.vala:147 src/preferences/cdrom-row.vala:62
 msgid "Select a device or ISO file"
 msgstr "Hautatu gailu edo ISO fitxategi bat"
 
-#: src/assistant/index-page.vala:146 src/preferences/cdrom-row.vala:65
+#: src/assistant/index-page.vala:150 src/preferences/cdrom-row.vala:65
 msgid "Open"
 msgstr "Ireki"
 
-#: src/assistant/index-page.vala:164 src/assistant/vm-assistant.vala:73
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
 msgid "Previous"
 msgstr "Aurrekoa"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:22 src/libvirt-machine.vala:703
+#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:695
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Zuzenean"
 
-#: src/assistant/media-entry.vala:27
+#: src/assistant/media-entry.vala:23
 msgid "32-bit x86 system"
 msgstr "32-bit x86 sistema"
 
-#: src/assistant/media-entry.vala:28
+#: src/assistant/media-entry.vala:24
 msgid "64-bit x86 system"
 msgstr "64-bit x86 sistema"
 
 #. Translator comment: %s is name of vendor here (e.g Canonical Ltd or Red Hat Inc)
-#: src/assistant/media-entry.vala:33
+#: src/assistant/media-entry.vala:29
 #, c-format
 msgid " from %s"
 msgstr " %s(e)tik"
@@ -800,7 +838,7 @@ msgstr " %s(e)tik"
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Instalazio-euskarriaren analisiak huts egin du. Euskarri hondatua edo osatugabea?"
 
-#: src/assistant/vm-assistant.vala:72
+#: src/assistant/vm-assistant.vala:73
 msgid "Create"
 msgstr "Sorrera"
 
@@ -844,11 +882,7 @@ msgstr "Deskargak huts egin du"
 msgid "New and Recent"
 msgstr "Berria eta azken aldikoa"
 
-#: src/installed-media.vala:55
-msgid "Unsupported disk image format."
-msgstr "Onartu gabeko disko-irudiaren formatua."
-
-#: src/installed-media.vala:101 src/installer-media.vala:180
+#: src/installed-media.vala:80 src/installer-media.vala:182
 msgid "System"
 msgstr "Sistema"
 
@@ -884,44 +918,44 @@ msgid "Send key combinations"
 msgstr "Bidali teklen konbinazioak"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:475
+#: src/libvirt-machine.vala:467
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "%s diskotik leheneratzen"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:478
+#: src/libvirt-machine.vala:470
 #, c-format
 msgid "Starting %s"
 msgstr "'%s' hasieratzen"
 
-#: src/libvirt-machine.vala:557
+#: src/libvirt-machine.vala:549
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "'%s'(r)en hasieratzea luze doa. Behartu ixtera?"
 
-#: src/libvirt-machine.vala:559
+#: src/libvirt-machine.vala:551
 msgid "_Shutdown"
 msgstr "_Itzali"
 
-#: src/libvirt-machine.vala:575
+#: src/libvirt-machine.vala:567
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "“%s” klonatzen…"
 
-#: src/libvirt-machine.vala:701
+#: src/libvirt-machine.vala:693
 msgid "Installing…"
 msgstr "Instalatzen…"
 
-#: src/libvirt-machine.vala:705
+#: src/libvirt-machine.vala:697
 msgid "Setting up clone…"
 msgstr "Klona konfiguratzen…"
 
-#: src/libvirt-machine.vala:707
+#: src/libvirt-machine.vala:699
 msgid "Importing…"
 msgstr "Inportatzen…"
 
-#: src/libvirt-machine.vala:716
+#: src/libvirt-machine.vala:708
 #, c-format
 msgid "host: %s"
 msgstr "ostalaria: %s"
@@ -944,7 +978,7 @@ msgstr "Itzalita"
 msgid "Connecting to %s"
 msgstr "%s(e)ra konektatzen"
 
-#: src/machine.vala:211 src/machine.vala:625
+#: src/machine.vala:211 src/machine.vala:627
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "'%s'(e)rako konexioak huts egin du"
@@ -970,9 +1004,7 @@ msgstr "Ezin izan da '%s' diskotik leheneratu\n"
 msgid "Failed to start “%s”"
 msgstr "Huts egin du '%s' abiaraztean"
 
-#. FIXME: var logs = libvirt_machine.properties.collect_logs ();
-#. window.props_window.show_troubleshoot_log (logs);
-#: src/machine.vala:618
+#: src/machine.vala:620
 msgid "Troubleshooting Log"
 msgstr "Arazoen ebazpenen erregistroa"
 
@@ -1012,7 +1044,11 @@ msgstr "Akatsak jakinarazteko: <%s>.\n"
 msgid "%s home page: <%s>.\n"
 msgstr "%s webgunea: <%s>.\n"
 
-#: src/media-manager.vala:304
+#: src/media-manager.vala:34
+msgid "Media is not supported"
+msgstr "Multimedia hau ez dago onartuta"
+
+#: src/media-manager.vala:368
 #, c-format
 msgid "No such file %s"
 msgstr "Ez dago '%s' bezalako fitxategirik"
@@ -1033,37 +1069,38 @@ msgstr "GNOME Makinak aplikazioaren Flatpak bertioak ez du USB berbideratzea ona
 msgid "Turn on your box to see the USB devices available for redirection."
 msgstr "Piztu zure makina berbideratzerako erabilgarri dauden USB gailuak ikusteko."
 
-#: src/preferences/resources-page.vala:80
+#. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
+#: src/preferences/resources-page.vala:81
 #, c-format
 msgid "Recommended %s."
 msgstr "Gomendatutako %s."
 
-#: src/preferences/resources-page.vala:155
+#: src/preferences/resources-page.vala:157
 msgid "Boxes is not authorized to run in background"
 msgstr "Makinak aplikazioak ez du atzeko planoan exekutatzeko baimenik"
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Manage permissions"
 msgstr "Kudeatu baimenak"
 
-#: src/preferences/resources-page.vala:189
+#: src/preferences/resources-page.vala:191
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
 msgstr "Zure makinaren konfigurazioa editatzen baduzu, makinaren sistema eragilean arazoak sortu daitezke. Bat-bateko bat sortu nahi al duzu aldaketak leheneratu ahal izateko?"
 
-#: src/preferences/resources-page.vala:255
+#: src/preferences/resources-page.vala:257
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Huts egin du domeinuaren konfigurazioa gordetzeak: %s"
 
-#: src/preferences/resources-page.vala:264
-msgid "Changes to the settings bellow take effect after you restart your box."
-msgstr "Beheko ezarpenen aldaketak makina berrabiarazi ondoren sartuko dira indarrean."
+#: src/preferences/resources-page.vala:266
+msgid "Changes to the settings below take effect after you restart your box."
+msgstr "Beheko ezarpenetan egindako aldaketak makina berrabiarazi ondoren sartuko dira indarrean."
 
 #: src/preferences/shared-folders-widget.vala:75
-msgid "Use the button bellow to add your first shared folder."
-msgstr "Erabili behako botoia zure lehen karpeta partekatua gehitzeko."
+msgid "Use the button below to add your first shared folder."
+msgstr "Erabili beheko botoia zure lehen karpeta partekatua gehitzeko."
 
 #: src/preferences/snapshot-list-row.vala:140
 #, c-format
@@ -1085,19 +1122,28 @@ msgid "Failed to create snapshot of %s"
 msgstr "Huts egin du %s(r)en bat-batekoa sortzean"
 
 #: src/preferences/snapshots-page.vala:144
-msgid "Use the button bellow to create your first snapshot."
+msgid "Use the button below to create your first snapshot."
 msgstr "Erabili beheko botoia zure lehen bat-batekoa sortzeko."
 
 #. Translators: "%s" is a disk size string (for example "4.2 GB")
-#: src/preferences/storage-row.vala:23
+#: src/preferences/storage-row.vala:47
 #, c-format
 msgid "Used %s."
 msgstr "Erabilitakoa: %s."
 
-#: src/preferences/storage-row.vala:26
+#: src/preferences/storage-row.vala:50
 msgid ""
-"There is not enough space on your machine to increate the maximum disk size."
-msgstr "Ez dago nahikoa lekurik makinan diskoaren tamaina gehiengora handiagotzeko."
+"There is not enough space on your machine to increase the maximum disk size."
+msgstr "Ez dago nahikoa leku makinan diskoaren tamaina gehiengora handiagotzeko."
+
+#: src/preferences/storage-row.vala:68
+msgid "Storage disk"
+msgstr "Biltegiratze-diskoa"
+
+#: src/preferences/storage-row.vala:77
+#, c-format
+msgid "Used %s"
+msgstr "Erabilitakoa: %s"
 
 #: src/selectionbar.vala:60
 #, c-format
@@ -1220,12 +1266,12 @@ msgstr "ez"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:817
+#: src/vm-configurator.vala:813
 msgid "Incapable host system"
 msgstr "Ostalari-sistema ez da gai"
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:169
+#: src/vm-creator.vala:179
 msgid "Just installed "
 msgstr "Instalatu berria "
 
@@ -1233,6 +1279,39 @@ msgstr "Instalatu berria "
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Huts egin du '%s' fitxategitik makina inportatzeak."
+
+#~ msgid ""
+#~ "A simple GNOME 3 application to manage virtual systems. Unlike some other "
+#~ "virtual machine management software, Boxes is targeted towards typical "
+#~ "desktop end-users. For this reason, Boxes will not provide many advanced "
+#~ "options to tweak virtual machines. Instead Boxes will focus on getting "
+#~ "things working out of the box with very little input from user."
+#~ msgstr ""
+#~ "GNOME 3 aplikazio xume bat sistema birtualak kudeatzeko. Beste makina "
+#~ "birtual batzuk ez bezala, Makinak aplikazioa mahaigaineko ohiko amaierako "
+#~ "erabiltzailerantz bideratuta dago. Horregatik, Makinak aplikazioak ez du "
+#~ "makina birtualak egokitzeko aukera aurreratu asko eskaintzen. Horren "
+#~ "ordez, Makinak aplikazioak gauzek hasieratik funtziona dezaten "
+#~ "ahalegintzen da, erabiltzaileak gauza oso gutxi ukituz."
+
+#~ msgid ""
+#~ "You want to install Boxes if you just want a very safe and easy way to "
+#~ "try out new operating systems or new (potentially unstable) versions of "
+#~ "your favorite operating system(s)."
+#~ msgstr ""
+#~ "Instalatu Makinak sistema eragile berriak edo zure sistema eragile "
+#~ "gogokoenaren bertsio berriak (agian desegonkorrak) modu seguru eta eroso "
+#~ "batean probatzea nahi badituzu."
+
+#~ msgid ""
+#~ "Boxes snapshots your virtual machine before applying changes allowing you "
+#~ "to revert them."
+#~ msgstr ""
+#~ "Makinak aplikazioak zure makina birtualaren bat-batekoa sortzen du "
+#~ "aldaketak aplikatu baino lehen, horrela aldaketok baztertu ahal izateko."
+
+#~ msgid "Unsupported disk image format."
+#~ msgstr "Onartu gabeko disko-irudiaren formatua."
 
 #~ msgid "GNOME Boxes"
 #~ msgstr "GNOME Makinak"
@@ -1272,13 +1351,6 @@ msgstr "Huts egin du '%s' fitxategitik makina inportatzeak."
 
 #~ msgid "%s maximum"
 #~ msgstr "%s gehienez"
-
-#~ msgid ""
-#~ "Boxes failed to snapshot your virtual machine before applying your "
-#~ "changes."
-#~ msgstr ""
-#~ "Makinak aplikazioak ezin izan du zure makina birtualaren bat-batekoa "
-#~ "sortu aldaketak aplikatu baino lehen."
 
 #~ msgid "Changes require restart of “%s”."
 #~ msgstr "Aldaketak aplikatzeko '%s' berrabiarazi behar da."
@@ -1432,11 +1504,6 @@ msgstr "Huts egin du '%s' fitxategitik makina inportatzeak."
 #~ msgid "Download an OS"
 #~ msgstr "Deskargatu SE bat"
 
-#~ msgid ""
-#~ "Operating system will be downloaded and installed in a virtual machine."
-#~ msgstr ""
-#~ "Sistema eragilea deskargatuko da eta makina birtual batean instalatuko da."
-
 #~ msgid "▶"
 #~ msgstr "▶"
 
@@ -1490,9 +1557,6 @@ msgstr "Huts egin du '%s' fitxategitik makina inportatzeak."
 
 #~ msgid "Add installer media"
 #~ msgstr "Gehitu instalazio-euskarria"
-
-#~ msgid "Simple remote and virtual machines"
-#~ msgstr "Makina birtual eta urruneko bakunak"
 
 #~ msgid "Connect to a Box"
 #~ msgstr "Konektatu makina batekin"
