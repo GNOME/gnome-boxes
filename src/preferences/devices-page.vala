@@ -24,7 +24,8 @@ private class Boxes.DevicesPage : Hdy.PreferencesPage {
         if (App.is_running_in_flatpak ()) {
             var msg = new Gtk.Label (_("The Flatpak version of GNOME Boxes does not support USB redirection.")) {
                 visible = true,
-                margin = 10
+                margin = 10,
+                wrap = true
             };
             msg.get_style_context ().add_class ("dim-label");
             listbox.add (msg);
