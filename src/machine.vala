@@ -8,7 +8,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     public Boxes.CollectionSource source;
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
-    public MachineThumbnailer thumbnailer { get; private set; }
     public bool stay_on_display;
     public string? info { get; protected set; }
     public string? status { get; set; }
@@ -75,8 +74,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     private uint screenshot_id;
     public const int SCREENSHOT_WIDTH = 180;
     public const int SCREENSHOT_HEIGHT = 134;
-    public const int CENTERED_EMBLEM_SIZE = 32;
-    public const int EMBLEM_SIZE = 16;
     private static Cairo.Surface grid_surface;
     private bool updating_screenshot;
     private uint autosave_timeout_id;
@@ -247,11 +244,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
         });
 
         create_display_config (uuid);
-
-        // This needs to be set after the 'config' prop has been set.
-        thumbnailer = new MachineThumbnailer (this,
-                                              SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT,
-                                              CENTERED_EMBLEM_SIZE, EMBLEM_SIZE);
 
         notify["under-construction"].connect (() => {
             if (under_construction) {

@@ -19,9 +19,11 @@
 
             <child>
               <object class="GtkImage" id="favorite">
-                <property name="visible">True</property>
-                <property name="width-request">16</property>
-                <property name="height-request">16</property>
+                <property name="visible">False</property>
+                <property name="icon-name">starred-symbolic</property>
+                <style>
+                  <class name="favorite"/>
+                </style>
               </object>
             </child>
 
@@ -42,48 +44,44 @@
           <object class="GtkStack" id="stack">
             <property name="visible">True</property>
             <child>
+              <object class="GtkImage" id="running_thumbnail">
+                <property name="visible">True</property>
+                <style>
+                  <class name="thumbnail"/>
+                  <class name="running"/>
+                </style>
+              </object>
+            </child>
+
+            <child>
               <object class="GtkImage" id="thumbnail">
                 <property name="visible">True</property>
+                <property name="pixel-size">32</property>
                 <style>
                   <class name="thumbnail"/>
                 </style>
               </object>
-
-              <packing>
-                <property name="name">thumbnail</property>
-              </packing>
             </child>
 
             <child>
-              <object class="GtkImage" id="live_thumbnail">
+              <object class="GtkEventBox" id="spinner_box">
                 <property name="visible">True</property>
-                <property name="icon-name">media-optical-symbolic</property>
-                <property name="icon-size">6</property>
+                <child>
+                  <object class="GtkSpinner" id="spinner">
+                    <property name="visible">True</property>
+                    <property name="halign">center</property>
+                    <property name="valign">center</property>
+                    <property name="width-request">32</property>
+                    <property name="height-request">32</property>
+                    <style>
+                      <class name="slow-spinner"/>
+                    </style>
+                  </object>
+                </child>
                 <style>
                   <class name="thumbnail"/>
                 </style>
               </object>
-
-              <packing>
-                <property name="name">live</property>
-              </packing>
-            </child>
-
-            <child>
-              <object class="GtkSpinner" id="spinner">
-                <property name="visible">True</property>
-                <property name="height-request">8</property>
-                <property name="width-request">8</property>
-                <property name="halign">0.5</property>
-                <property name="valign">0.5</property>
-                <style>
-                  <class name="slow-spinner"/>
-                </style>
-              </object>
-
-              <packing>
-                <property name="name">spinner</property>
-              </packing>
             </child>
           </object>
         </child>

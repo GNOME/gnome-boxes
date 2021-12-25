@@ -5,10 +5,6 @@ using Gtk;
 private class Boxes.ListViewRow: Gtk.Box {
     public const int SCREENSHOT_WIDTH = 60;
     public const int SCREENSHOT_HEIGHT = 45;
-    public const int CENTERED_EMBLEM_SIZE = 16;
-    public const int EMBLEM_SIZE = 16;
-    public const Gdk.RGBA FRAME_BORDER_COLOR = { 0x81 / 255.0, 0x85 / 255.0, 0x84 / 255.0, 1.0 };
-    public const Gdk.RGBA FRAME_BACKGROUND_COLOR = { 0x4b / 255.0, 0x50 / 255.0, 0x50 / 255.0, 1.0 };
 
     public bool _selection_mode = false;
     public bool selection_mode {
@@ -41,7 +37,9 @@ private class Boxes.ListViewRow: Gtk.Box {
     [GtkChild]
     private unowned Gtk.Image thumbnail;
     [GtkChild]
-    private unowned Gtk.Image live_thumbnail;
+    private unowned Gtk.Image running_thumbnail;
+    [GtkChild]
+    private unowned Gtk.EventBox spinner_box;
     [GtkChild]
     private unowned Gtk.Spinner spinner;
     [GtkChild]
@@ -60,22 +58,22 @@ private class Boxes.ListViewRow: Gtk.Box {
     public ListViewRow (CollectionItem item) {
         this.item = item;
 
-        thumbnailer = new Boxes.MachineThumbnailer (machine,
-                                                    SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT,
-                                                    CENTERED_EMBLEM_SIZE, EMBLEM_SIZE);
-        thumbnailer.favorite_emblem_enabled = false;
-        thumbnailer.notify["thumbnail"].connect (() => {
-            thumbnail.set_from_pixbuf (thumbnailer.thumbnail);
-        });
-        thumbnail.set_from_pixbuf (thumbnailer.thumbnail);
+        thumbnailer = new MachineThumbnailer (machine,
+                                              SCREENSHOT_WIDTH,
+                                              SCREENSHOT_HEIGHT);
+
+        stack.width_request = SCREENSHOT_WIDTH;
+        stack.height_request = SCREENSHOT_HEIGHT;
 
         selected_binding = bind_property ("selected", selection_button, "active", BindingFlags.BIDIRECTIONAL);
 
         machine.config.notify["categories"].connect (update_favorite);
         machine.notify["under-construction"].connect (update_thumbnail);
+        machine.notify["is-stopped"].connect (update_thumbnail);
         machine.notify["info"].connect (update_info);
         machine.notify["state"].connect (update_status);
         machine.notify["status"].connect (update_status);
+        thumbnailer.notify["thumbnail"].connect (update_thumbnail);
 
         update_thumbnail ();
         update_favorite ();
@@ -88,15 +86,23 @@ private class Boxes.ListViewRow: Gtk.Box {
     private void update_thumbnail () {
         var libvirt_machine = machine as LibvirtMachine;
 
+        running_thumbnail.set_from_pixbuf (thumbnailer.thumbnail);
+
         if (machine.under_construction) {
-            stack.visible_child = spinner;
+            stack.visible_child = spinner_box;
             spinner.start ();
-            spinner.visible = true;
 
             return;
-        } else if (VMConfigurator.is_live_config (libvirt_machine.domain_config)) {
-            stack.visible_child = live_thumbnail;
+        } else if (thumbnailer.thumbnail != null) {
+            stack.visible_child = running_thumbnail;
         } else {
+            if (VMConfigurator.is_live_config (libvirt_machine.domain_config))
+                thumbnail.icon_name = "media-optical-symbolic";
+            else if (machine.is_stopped)
+                thumbnail.icon_name = "system-shutdown-symbolic";
+            else
+                thumbnail.icon_name = "computer-symbolic";
+
             stack.visible_child = thumbnail;
         }
 
