@@ -40,6 +40,7 @@ private class Boxes.VMImporter : Boxes.VMCreator {
         if (start_after_import) {
             try {
                 machine.domain.start (0);
+                App.app.main_window.select_item (machine);
             } catch (GLib.Error error) {
                 warning ("Failed to start domain '%s': %s", machine.domain.get_name (), error.message);
             }
