@@ -8,6 +8,7 @@ private class Boxes.DeviceListRow : Hdy.ActionRow {
     public DeviceListRow (Boxes.UsbDevice device) {
         title = device.title;
 
+        toggle.set_active (device.active);
         device.bind_property ("active", toggle, "active", BindingFlags.BIDIRECTIONAL);
     }
 }
