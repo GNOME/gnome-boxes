@@ -38,7 +38,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             }
         }
     }
-    public signal void item_selected (CollectionItem item);
 
     private GLib.Binding status_bind;
     private ulong got_error_id;
@@ -57,15 +56,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
     private bool maximized { get { return WindowState.MAXIMIZED in get_window ().get_state (); } }
 
-    private bool _selection_mode;
-    public bool selection_mode { get { return _selection_mode; }
-        set {
-            return_if_fail (ui_state == UIState.COLLECTION);
-
-            _selection_mode = value;
-        }
-    }
-
     public Notificationbar notificationbar {
         get {
             return _notificationbar;
@@ -76,8 +66,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     public unowned Searchbar searchbar;
     [GtkChild]
     public unowned Topbar topbar;
-    [GtkChild]
-    public unowned Selectionbar selectionbar;
     [GtkChild]
     public unowned DisplayPage display_page;
     [GtkChild]
@@ -92,8 +80,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     private unowned ListView list_view;
 
     public ViewType view_type { get; set; default = ViewType.ICON; }
-
-    public ICollectionView view {
+    public Gtk.Widget view {
         get {
             switch (view_type) {
             default:
@@ -104,8 +91,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             }
         }
     }
-
-    private ICollectionView[] views;
 
     public GLib.Settings settings;
 
@@ -158,8 +143,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             move (x, y);
         }
 
-        views = { icon_view, list_view };
-
         if (app.application_id == "org.gnome.BoxesDevel") {
             get_style_context ().add_class ("devel");
         }
@@ -170,7 +153,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         display_page.setup_ui (this);
         icon_view.setup_ui (this);
         list_view.setup_ui (this);
-        selectionbar.setup_ui (this);
         searchbar.setup_ui (this);
         troubleshoot_view.setup_ui (this);
         notificationbar.searchbar = searchbar;
@@ -213,13 +195,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
 
     private void ui_state_changed () {
-        // The order is important for some widgets here (e.g properties must change its state before wizard so it can
-        // flush any deferred changes for wizard to pick-up when going back from properties to wizard (review).
-        foreach (var ui in new Boxes.UI[] { topbar,
-                                            icon_view,
-                                            list_view }) {
-            ui.set_state (ui_state);
-        }
+        topbar.set_state (ui_state);
 
         if (ui_state != UIState.COLLECTION)
             searchbar.search_mode_enabled = false;
@@ -233,7 +209,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             else
                 below_bin.visible_child = empty_boxes;
             fullscreened = false;
-            foreach_view ((view) => { view.visible = true; });
 
             if (status_bind != null) {
                 status_bind.unbind ();  // FIXME: We shouldn't neeed to explicitly unbind (Vala bug?)
@@ -278,11 +253,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
 
         if (machine != null && this == machine.window)
             current_item.set_state (ui_state);
-    }
-
-    public void foreach_view (Func<ICollectionView> func) {
-        foreach (var view in views)
-            func (view);
     }
 
     public void show_vm_assistant (string? path = null) {
@@ -341,7 +311,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
 
     public void select_item (CollectionItem item) {
-        if (ui_state != UIState.COLLECTION || selection_mode)
+        if (ui_state != UIState.COLLECTION)
             return;
 
         return_if_fail (item is Machine);
@@ -360,12 +330,11 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             connect_to (machine);
         else
             warning ("unknown item, fix your code");
-
-        item_selected (item);
     }
 
     public void filter (string text) {
-        foreach_view ((view) => { view.filter.text = text; });
+        icon_view.filter.text = text;
+        list_view.filter.text = text;
     }
 
     [GtkCallback]
@@ -403,17 +372,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
             topbar.click_search_button ();
 
             return true;
-        } else if (event.keyval == Gdk.Key.a &&
-                   (event.state & default_modifiers) == Gdk.ModifierType.CONTROL_MASK) {
-            selection_mode = true;
-            foreach_view ((view) => { view.select_all (); });
-
-            return true;
-        } else if (event.keyval == Gdk.Key.A &&
-                   (event.state & default_modifiers) == (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) {
-            foreach_view ((view) => { view.unselect_all (); });
-
-            return true;
         } else if (((direction == Gtk.TextDirection.LTR && // LTR
                      event.keyval == Gdk.Key.Left) ||      // ALT + Left -> back
                     (direction == Gtk.TextDirection.RTL && // RTL
@@ -421,8 +379,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
                    (event.state & default_modifiers) == Gdk.ModifierType.MOD1_MASK) {
             topbar.click_back_button ();
             return true;
-        } else if (event.keyval == Gdk.Key.Escape) { // ESC -> cancel
-            topbar.click_cancel_button ();
         }
 
         return false;

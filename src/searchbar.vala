@@ -33,11 +33,6 @@ private class Boxes.Searchbar: Gtk.SearchBar {
     }
 
     [GtkCallback]
-    private void on_search_activated () {
-        window.view.activate_first_item ();
-    }
-
-    [GtkCallback]
     private void on_search_mode_notify () {
         if (!search_mode_enabled)
             text = "";

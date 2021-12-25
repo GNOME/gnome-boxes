@@ -1,34 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 3.9 -->
-
-  <!-- Widget hierarchy:
-
-    window = new Boxes.ApplicationWindow ();
-     |
-     |-> main_vbox = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-           |-> topbar = new Boxes.Topbar (); // as titlebar
-           |
-           |-> searchbar = new Searchbar ();
-           |
-           |-> notification_overlay = new Gtk.Overlay ();
-           |    |
-           |    |-> notificationbar = Boxes.Notificationbar ();
-           |    |
-           |    |-> below_bin = new Gtk.Stack ();
-           |        |
-           |        |-> icon_view = new Boxes.IconView ();
-           |        |
-           |        |-> list_view = new Boxes.ListView ();
-           |        |
-           |        |-> empty_boxes = new Boxes.EmptyBoxes ();
-           |        |
-           |        |-> display_page = new Boxes.DisplayPage ();
-           |
-           |-> selectionbar = new Boxes.Selectionbar ();
-
-  -->
-
   <template class="BoxesAppWindow" parent="HdyApplicationWindow">
     <property name="visible">False</property>
     <property name="show-menubar">False</property>
@@ -159,12 +130,6 @@
                 </child>
               </object>
             </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="BoxesSelectionbar" id="selectionbar">
-            <property name="visible">True</property>
           </object>
         </child>
       </object>

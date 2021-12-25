@@ -6,32 +6,11 @@ private class Boxes.ListViewRow: Gtk.Box {
     public const int SCREENSHOT_WIDTH = 60;
     public const int SCREENSHOT_HEIGHT = 45;
 
-    public bool _selection_mode = false;
-    public bool selection_mode {
-        get { return _selection_mode; }
-        set {
-            _selection_mode = value;
-
-            selection_button.visible = _selection_mode;
-
-            if (!_selection_mode)
-                selected = false;
-        }
-    }
-
-    public bool _selected = false;
-    public bool selected {
-        get { return _selected; }
-        set { _selected = selection_mode && value; }
-    }
-
     public CollectionItem item { get; private set; }
     private Machine machine {
         get { return item as Machine; }
     }
 
-    [GtkChild]
-    private unowned Gtk.CheckButton selection_button;
     [GtkChild]
     private unowned Gtk.Stack stack;
     [GtkChild]
@@ -53,8 +32,6 @@ private class Boxes.ListViewRow: Gtk.Box {
 
     private Boxes.MachineThumbnailer thumbnailer;
 
-    private Binding selected_binding;
-
     public ListViewRow (CollectionItem item) {
         this.item = item;
 
@@ -64,8 +41,6 @@ private class Boxes.ListViewRow: Gtk.Box {
 
         stack.width_request = SCREENSHOT_WIDTH;
         stack.height_request = SCREENSHOT_HEIGHT;
-
-        selected_binding = bind_property ("selected", selection_button, "active", BindingFlags.BIDIRECTIONAL);
 
         machine.config.notify["categories"].connect (update_favorite);
         machine.notify["under-construction"].connect (update_thumbnail);

@@ -6,8 +6,6 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     [GtkChild]
     private unowned Button search_btn;
     [GtkChild]
-    private unowned Button select_btn;
-    [GtkChild]
     private unowned Button list_btn;
     [GtkChild]
     private unowned Button grid_btn;
@@ -24,10 +22,6 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
 
     public void setup_ui (AppWindow window) {
         this.window = window;
-
-        update_select_btn ();
-        App.app.collection.item_added.connect (update_select_btn);
-        App.app.collection.item_removed.connect (update_select_btn);
 
         update_search_btn ();
         App.app.collection.item_added.connect (update_search_btn);
@@ -76,17 +70,8 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
         update_view_type (AppWindow.ViewType.ICON);
     }
 
-    [GtkCallback]
-    private void on_select_btn_clicked () {
-        window.selection_mode = true;
-    }
-
     private void update_search_btn () {
         search_btn.sensitive = App.app.collection.length != 0;
-    }
-
-    private void update_select_btn () {
-        select_btn.sensitive = App.app.collection.length != 0;
     }
 
     private void update_view_type (AppWindow.ViewType view_type) {
@@ -100,7 +85,6 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
         switch (window.ui_state) {
         case UIState.COLLECTION:
             back_btn.hide ();
-            select_btn.show ();
             search_btn.show ();
             new_btn.show ();
             grid_btn.visible = window.view_type != AppWindow.ViewType.ICON;
@@ -110,7 +94,6 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
         case UIState.CREDS:
             new_btn.hide ();
             back_btn.visible = (window == App.app.main_window);
-            select_btn.hide ();
             search_btn.hide ();
             grid_btn.hide ();
             list_btn.hide ();

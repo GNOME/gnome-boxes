@@ -70,18 +70,6 @@ private class Boxes.App: Gtk.Application {
         action.activate.connect (() => { quit_app (); });
         add_action (action);
 
-        action = new GLib.SimpleAction ("select-all", null);
-        action.activate.connect (() => { main_window.view.select_by_criteria (SelectionCriteria.ALL); });
-        add_action (action);
-
-        action = new GLib.SimpleAction ("select-running", null);
-        action.activate.connect (() => { main_window.view.select_by_criteria (SelectionCriteria.RUNNING); });
-        add_action (action);
-
-        action = new GLib.SimpleAction ("select-none", null);
-        action.activate.connect (() => { main_window.view.select_by_criteria (SelectionCriteria.NONE); });
-        add_action (action);
-
         action = new GLib.SimpleAction ("help", null);
         action.activate.connect (() => {
             try {
@@ -368,17 +356,6 @@ private class Boxes.App: Gtk.Application {
         return false;
     }
 
-    public void open_selected_items_in_new_window () {
-        var selected_items = main_window.view.get_selected_items ();
-
-        main_window.selection_mode = false;
-
-        foreach (var item in selected_items) {
-            if (item is Machine)
-                open_in_new_window (item as Machine);
-        }
-    }
-
     public void open_in_new_window (Machine machine) {
         if (machine.window != main_window) {
             machine.window.present ();
@@ -575,10 +552,6 @@ private class Boxes.App: Gtk.Application {
         debug ("Running boxes suspended");
     }
 
-    public List<CollectionItem> selected_items {
-        owned get { return main_window.view.get_selected_items (); }
-    }
-
     /**
      * Deletes specified items, while allowing user to undo it.
      *
@@ -628,14 +601,6 @@ private class Boxes.App: Gtk.Application {
         };
 
         main_window.notificationbar.display_for_action (msg, _("_Undo"), (owned) undo, (owned) really_remove);
-    }
-
-    public void remove_selected_items () {
-        var selected_items = main_window.view.get_selected_items ();
-
-        main_window.selection_mode = false;
-
-        delete_machines_undoable ((owned) selected_items);
     }
 
     public AppWindow add_new_window () {

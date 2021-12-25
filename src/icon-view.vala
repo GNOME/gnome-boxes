@@ -1,16 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-public enum Boxes.SelectionCriteria {
-    ALL,
-    NONE,
-    RUNNING
-}
-
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/icon-view.ui")]
-private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.UI {
-    public UIState previous_ui_state { get; protected set; }
-    public UIState ui_state { get; protected set; }
-
+private class Boxes.IconView: Gtk.ScrolledWindow {
     public CollectionFilter filter { get; protected set; }
 
     [GtkChild]
@@ -37,72 +28,12 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         });
 
         setup_flowbox ();
-
-        notify["ui-state"].connect (ui_state_changed);
     }
 
     public void setup_ui (AppWindow window) {
         this.window = window;
 
-        window.notify["selection-mode"].connect (() => {
-            flowbox.selection_mode = window.selection_mode ? Gtk.SelectionMode.MULTIPLE :
-                                                             Gtk.SelectionMode.NONE;
-            update_selection_mode ();
-        });
-
         context_popover = new Boxes.ActionsPopover (window);
-    }
-
-    public void select_by_criteria (SelectionCriteria criteria) {
-        window.selection_mode = true;
-
-        switch (criteria) {
-        default:
-        case SelectionCriteria.ALL:
-            foreach_child ((box_child) => { select_child (box_child); });
-
-            break;
-        case SelectionCriteria.NONE:
-            foreach_child ((box_child) => { unselect_child (box_child); });
-
-            break;
-        case SelectionCriteria.RUNNING:
-            foreach_child ((box_child) => {
-                var item = get_item_for_child (box_child);
-                if (item != null && item is Machine) {
-                    var machine = item as Machine;
-                    if (machine.is_running)
-                        select_child (box_child);
-                } else
-                    unselect_child (box_child);
-            });
-
-            break;
-        }
-
-        App.app.notify_property ("selected-items");
-    }
-
-    public List<CollectionItem> get_selected_items () {
-        var selected = new List<CollectionItem> ();
-
-        foreach (var box_child in flowbox.get_selected_children ()) {
-            var item = get_item_for_child (box_child);
-            selected.append (item);
-        }
-
-        return (owned) selected;
-    }
-
-    public void activate_first_item () {
-        Gtk.FlowBoxChild first_child = null;
-        foreach_child ((box_child) => {
-            if (first_child == null)
-                first_child = box_child;
-        });
-
-        if (first_child == null)
-            flowbox.child_activated (first_child);
     }
 
     private void setup_flowbox () {
@@ -111,10 +42,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
             child.halign = Gtk.Align.START;
             var box = new IconViewChild (item as CollectionItem);
             child.add (box);
-
-            box.notify["selected"].connect (() => {
-                propagate_view_child_selection (child);
-            });
 
             box.visible = true;
             child.visible = true;
@@ -133,16 +60,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         return view.item;
     }
 
-    private void foreach_child (Func<Gtk.FlowBoxChild> func) {
-        flowbox.forall ((child) => {
-            var view_child = child as Gtk.FlowBoxChild;
-            if (view_child == null)
-                return;
-
-            func (view_child);
-        });
-    }
-
     private bool model_filter (Gtk.FlowBoxChild child) {
         if (child  == null)
             return false;
@@ -154,23 +71,8 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         return filter.filter (item as CollectionItem);
     }
 
-    private void ui_state_changed () {
-        if (ui_state == UIState.COLLECTION)
-            flowbox.unselect_all ();
-    }
-
     [GtkCallback]
     private void on_child_activated (Gtk.FlowBoxChild child) {
-        if (window.selection_mode) {
-            var view_child = child.get_child () as IconViewChild;
-            if (view_child.selected)
-                unselect_child (child);
-            else
-                select_child (child);
-
-            return;
-        }
-
         var item = get_item_for_child (child);
         if (item is LibvirtMachine) {
             var machine = item as LibvirtMachine;
@@ -179,8 +81,6 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         }
 
         window.select_item (item);
-
-        update_selection_mode ();
     }
 
     [GtkCallback]
@@ -218,61 +118,5 @@ private class Boxes.IconView: Gtk.ScrolledWindow, Boxes.ICollectionView, Boxes.U
         context_popover.show ();
 
         return true;
-    }
-
-    private void update_selection_mode () {
-        foreach_child ((child) => {
-            var view_child = child.get_child () as Boxes.IconViewChild;
-
-            if (view_child.selection_mode != window.selection_mode)
-                view_child.selection_mode = window.selection_mode;
-
-            unselect_child (child);
-        });
-    }
-
-    private void propagate_view_child_selection (Gtk.FlowBoxChild child) {
-        var view_child = child.get_child () as IconViewChild;
-
-        if (view_child.selected)
-            select_child (child);
-        else
-            unselect_child (child);
-    }
-
-    private void select_child (Gtk.FlowBoxChild child) {
-        var view_child = child.get_child () as IconViewChild;
-
-        flowbox.select_child (child);
-        if (!view_child.selected)
-            view_child.selected = true;
-
-        App.app.notify_property ("selected-items");
-    }
-
-    private void unselect_child (Gtk.FlowBoxChild child) {
-        var view_child = child.get_child () as IconViewChild;
-
-        flowbox.unselect_child (child);
-        if (view_child.selected)
-            view_child.selected = false;
-
-        App.app.notify_property ("selected-items");
-    }
-
-    public void unselect_all () {
-        flowbox.unselect_all ();
-
-        foreach_child (unselect_child);
-
-        App.app.notify_property ("selected-items");
-    }
-
-    public void select_all () {
-        flowbox.select_all ();
-
-        foreach_child (select_child);
-
-        App.app.notify_property ("selected-items");
     }
 }

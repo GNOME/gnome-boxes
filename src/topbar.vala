@@ -3,13 +3,12 @@ using Gtk;
 
 public enum Boxes.TopbarPage {
     COLLECTION,
-    SELECTION,
     DISPLAY
 }
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/topbar.ui")]
 private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
-    private const string[] page_names = { "collection", "selection", "display" };
+    private const string[] page_names = { "collection", "display" };
 
     public UIState previous_ui_state { get; protected set; }
     public UIState ui_state { get; protected set; }
@@ -17,20 +16,12 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     [GtkChild]
     private unowned CollectionToolbar collection_toolbar;
     [GtkChild]
-    private unowned SelectionToolbar selection_toolbar;
-    [GtkChild]
     public unowned DisplayToolbar display_toolbar;
 
     private AppWindow window;
 
     public void click_back_button () {
         collection_toolbar.click_back_button ();
-    }
-
-    // Clicks the appropriate cancel button dependent on the ui state.
-    public void click_cancel_button () {
-        if (window.ui_state == UIState.COLLECTION && window.selection_mode)
-            window.selection_mode = false;
     }
 
     public void click_search_button () {
@@ -70,17 +61,11 @@ private class Boxes.Topbar: Gtk.Stack, Boxes.UI {
     public void setup_ui (AppWindow window) {
         this.window = window;
 
-        window.notify["selection-mode"].connect (() => {
-            page = window.selection_mode ?
-                TopbarPage.SELECTION : page = TopbarPage.COLLECTION;
-        });
-
         var toolbar = window.display_page.toolbar;
         toolbar.bind_property ("title", display_toolbar, "title", BindingFlags.SYNC_CREATE);
         toolbar.bind_property ("subtitle", display_toolbar, "subtitle", BindingFlags.SYNC_CREATE);
 
         collection_toolbar.setup_ui (window);
-        selection_toolbar.setup_ui (window);
         display_toolbar.setup_ui (window);
         status = _("Boxes");
     }
