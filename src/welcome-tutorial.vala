@@ -5,6 +5,8 @@ using Hdy;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/welcome-tutorial.ui")]
 private class Boxes.WelcomeTutorial : Gtk.Dialog {
     [GtkChild]
+    private unowned Box inner_box;
+    [GtkChild]
     private unowned Carousel paginator;
     [GtkChild]
     private unowned Button go_back_button;
@@ -24,8 +26,8 @@ private class Boxes.WelcomeTutorial : Gtk.Dialog {
         }
 
         provider = new CssProvider ();
-        get_style_context ().add_provider (provider,
-                                           STYLE_PROVIDER_PRIORITY_APPLICATION);
+        inner_box.get_style_context ().add_provider (provider,
+                                                     STYLE_PROVIDER_PRIORITY_APPLICATION);
 
         on_position_changed ();
     }
