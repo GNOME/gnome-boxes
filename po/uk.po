@@ -3,13 +3,13 @@
 #
 # Daniel Korostil <ted.korostiled@gmail.com>, 2012-2019.
 # Danylo Korostil <ted.korostiled@gmail.com>, 2020.
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-22 12:57+0000\n"
-"PO-Revision-Date: 2021-12-22 21:57+0200\n"
+"POT-Creation-Date: 2022-01-03 14:54+0000\n"
+"PO-Revision-Date: 2022-01-03 22:45+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -22,9 +22,9 @@ msgstr ""
 "X-Project-Style: gnome\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
-#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
-#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
-#: src/main.vala:72 src/topbar.vala:85
+#: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
+#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Коробки"
 
@@ -177,11 +177,11 @@ msgstr "Спільні теки"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Перелік варіантів назв і шляхів для спільних тек"
 
-#: data/ui/app-window.ui:116 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Ласкаво просимо до Коробок"
 
-#: data/ui/app-window.ui:117
+#: data/ui/app-window.ui:88
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Натисніть кнопку <b>+</b>, щоб створити вашу першу віртуальну машину."
 
@@ -296,29 +296,34 @@ msgstr ""
 "Розширення віртуалізації недоступні на вашій системі.\n"
 "Перевірте, чи ввімкнено відповідні параметри в BIOS."
 
-#: data/ui/assistant/pages/review-page.ui:67
+#: data/ui/assistant/pages/review-page.ui:68
 msgid "Operating System"
 msgstr "Операційна система"
 
-#: data/ui/assistant/pages/review-page.ui:83
+#: data/ui/assistant/pages/review-page.ui:84
 #: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Пам'ять"
 
-#: data/ui/assistant/pages/review-page.ui:90
+#: data/ui/assistant/pages/review-page.ui:91
 #: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Обмеження сховища"
 
-#: data/ui/assistant/pages/review-page.ui:96
+#: data/ui/assistant/pages/review-page.ui:97
 #: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Користувач"
 
-#: data/ui/assistant/pages/review-page.ui:112
+#: data/ui/assistant/pages/review-page.ui:113
 #: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Пароль"
+
+#: data/ui/assistant/pages/review-page.ui:130
+msgid "Enable EFI"
+msgstr ""
+"Увімкнути EFI"
 
 #: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
@@ -349,22 +354,18 @@ msgid "Application Menu"
 msgstr "Меню програми"
 
 #: data/ui/collection-toolbar.ui:97
-msgid "Select Items"
-msgstr "Вибрати об'єкти"
-
-#: data/ui/collection-toolbar.ui:125
 msgid "List view"
 msgstr "Перегляд списком"
 
-#: data/ui/collection-toolbar.ui:153
+#: data/ui/collection-toolbar.ui:125
 msgid "Grid view"
 msgstr "Перегляд ґраткою"
 
-#: data/ui/collection-toolbar.ui:180 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:152
 msgid "Search"
 msgstr "Пошук"
 
-#: data/ui/collection-toolbar.ui:207
+#: data/ui/collection-toolbar.ui:179
 msgid "Downloads"
 msgstr "Звантаження"
 
@@ -580,7 +581,7 @@ msgid "Rename"
 msgstr "Перейменувати"
 
 #. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:88
+#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Вилучити"
 
@@ -597,34 +598,6 @@ msgstr "Зрізи"
 #: src/preferences/snapshots-page.vala:116
 msgid "Creating new snapshot…"
 msgstr "Створення нового зрізу…"
-
-#: data/ui/selectionbar.ui:36
-msgid "_Favorite"
-msgstr "_Улюблене"
-
-#: data/ui/selectionbar.ui:54
-msgid "P_ause"
-msgstr "_Призупинити"
-
-#: data/ui/selectionbar.ui:72
-msgid "_Delete"
-msgstr "В_илучити"
-
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
-msgid "_Cancel"
-msgstr "_Скасувати"
-
-#: data/ui/selection-toolbar.ui:108
-msgid "Select All"
-msgstr "Вибрати все"
-
-#: data/ui/selection-toolbar.ui:113
-msgid "Select Running"
-msgstr "Вибрати запущене"
-
-#: data/ui/selection-toolbar.ui:117
-msgid "Select None"
-msgstr "Зняти вибір"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -701,122 +674,113 @@ msgstr ""
 "віртуальну машину. Вони з'являться у вашій теці Звантаження."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:30
+#: src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Дії з коробкою"
 
 #. Open in new Window
-#: src/actions-popover.vala:45
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Відкрити у новому вікні"
 
 #. Send files
-#: src/actions-popover.vala:50
+#: src/actions-popover.vala:49
 msgid "Send File…"
 msgstr "Надіслати файл…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:58
+#: src/actions-popover.vala:57
 msgid "Take Screenshot"
 msgstr "Зробити знімок екрана"
 
-#. Favorite
-#: src/actions-popover.vala:63
-msgid "Remove from Favorites"
-msgstr "Вилучити з улюбленого"
-
-#: src/actions-popover.vala:65
-msgid "Add to Favorites"
-msgstr "Додати до улюбленого"
-
-#: src/actions-popover.vala:72
+#: src/actions-popover.vala:64
 msgid "Force Shutdown"
 msgstr "Примусово вимкнути"
 
-#: src/actions-popover.vala:83
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Клонувати"
 
-#: src/actions-popover.vala:92 src/machine.vala:597
+#: src/actions-popover.vala:84 src/machine.vala:589
 msgid "Restart"
 msgstr "Перезапустити"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:101
+#: src/actions-popover.vala:93
 msgid "Preferences"
 msgstr "Параметри"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:125
+#: src/actions-popover.vala:111
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Знімок екрана від %s"
 
-#: src/app.vala:125
+#: src/app.vala:113
 msgid "translator-credits"
 msgstr "Daniel Korostil <ted.korostiled@gmail.com>"
 
-#: src/app.vala:126
+#: src/app.vala:114
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "Проста програма GNOME 3 для доступу до віртуальних систем"
 
-#: src/app.vala:187 src/main.vala:9
+#: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
 msgstr "Показати номер версії"
 
-#: src/app.vala:188
+#: src/app.vala:176
 msgid "Show help"
 msgstr "Показати довідку"
 
-#: src/app.vala:189
+#: src/app.vala:177
 msgid "Open in full screen"
 msgstr "Відкрити на весь екран"
 
-#: src/app.vala:190 src/main.vala:10
+#: src/app.vala:178 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Перевірити можливості віртуалізації"
 
-#: src/app.vala:191
+#: src/app.vala:179
 msgid "Open box with UUID"
 msgstr "Відкрити коробку з UUID"
 
-#: src/app.vala:192
+#: src/app.vala:180
 msgid "Search term"
 msgstr "Ключове слово"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:194
+#: src/app.vala:182
 msgid "URL to display, broker or installer media"
 msgstr "URL до екрана, носія посередника або встановлювача"
 
-#: src/app.vala:205
+#: src/app.vala:193
 msgid "— A simple application to access virtual machines"
 msgstr "— проста програма для доступу до віртуальних машин"
 
-#: src/app.vala:232
+#: src/app.vala:220
 msgid "Too many command line arguments specified.\n"
 msgstr "Вказано надто багато аргументів командного рядка.\n"
 
-#: src/app.vala:484
+#: src/app.vala:461
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Коробку «%s» встановлено і нею можна користуватись"
 
-#: src/app.vala:486
+#: src/app.vala:463
 msgid "Launch"
 msgstr "Запустити"
 
-#: src/app.vala:516
+#: src/app.vala:493
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» працює у фоновому режимі"
 
-#: src/app.vala:601
+#: src/app.vala:574
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Коробку «%s» вилучено"
 
-#: src/app.vala:602
+#: src/app.vala:575
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -825,19 +789,23 @@ msgstr[1] "%u коробки вилучено"
 msgstr[2] "%u коробок вилучено"
 msgstr[3] "%u коробку вилучено"
 
-#: src/app.vala:630
+#: src/app.vala:603
 msgid "_Undo"
 msgstr "Пов_ернути"
 
-#: src/app.vala:676
+#: src/app.vala:641
 msgid "Boxes is doing something"
 msgstr "Boxes щось робить"
 
-#: src/app-window.vala:302
+#: src/app-window.vala:272
 msgid "Select files to transfer"
 msgstr "Виберіть файли для обміну"
 
-#: src/app-window.vala:305
+#: src/app-window.vala:273
+msgid "_Cancel"
+msgstr "_Скасувати"
+
+#: src/app-window.vala:275
 msgid "_Open"
 msgstr "_Відкрити"
 
@@ -920,11 +888,7 @@ msgstr "Встановити"
 msgid "Failed to download"
 msgstr "Не вдалося звантажити"
 
-#: src/icon-view.vala:32
-msgid "New and Recent"
-msgstr "Нове й недавнє"
-
-#: src/installed-media.vala:80 src/installer-media.vala:182
+#: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
 msgstr "Система"
 
@@ -1002,38 +966,38 @@ msgstr "Імпортування…"
 msgid "host: %s"
 msgstr "вузол: %s"
 
-#: src/list-view-row.vala:130
+#: src/list-view-row.vala:100
 msgid "Running"
 msgstr "Запущено"
 
-#: src/list-view-row.vala:136
+#: src/list-view-row.vala:106
 msgid "Paused"
 msgstr "Призупинено"
 
-#: src/list-view-row.vala:141
+#: src/list-view-row.vala:111
 msgid "Powered Off"
 msgstr "Вимкнено"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:185
+#: src/machine.vala:182
 #, c-format
 msgid "Connecting to %s"
 msgstr "З'єднання з %s"
 
-#: src/machine.vala:211 src/machine.vala:627
+#: src/machine.vala:208 src/machine.vala:619
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Не вдалося з'єднатися з «%s»"
 
-#: src/machine.vala:258
+#: src/machine.vala:250
 msgid "Machine is under construction"
 msgstr "Машина споруджується"
 
-#: src/machine.vala:411
+#: src/machine.vala:403
 msgid "Saving…"
 msgstr "Зберігання…"
 
-#: src/machine.vala:596
+#: src/machine.vala:588
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1042,12 +1006,12 @@ msgstr ""
 "«%s» неможливо відновити з диску\n"
 "Спробувати без збереженого стану?"
 
-#: src/machine.vala:607
+#: src/machine.vala:599
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Не вдалося запустити «%s»"
 
-#: src/machine.vala:620
+#: src/machine.vala:612
 msgid "Troubleshooting Log"
 msgstr "Журнал помилок"
 
@@ -1089,8 +1053,7 @@ msgstr "%s домашню сторінку: <%s>.\n"
 
 #: src/media-manager.vala:34
 msgid "Media is not supported"
-msgstr ""
-"Підтримки носія не передбачено"
+msgstr "Підтримки носія не передбачено"
 
 #: src/media-manager.vala:368
 #, c-format
@@ -1111,7 +1074,7 @@ msgstr ""
 "У версії «Коробок GNOME» у форматі Flatpak не передбачено підтримки "
 "переспрямовування USB."
 
-#: src/preferences/devices-page.vala:36
+#: src/preferences/devices-page.vala:37
 msgid "Turn on your box to see the USB devices available for redirection."
 msgstr ""
 "Увімкніть вашу коробку, щоб переглянути пристрої USB, які доступні для "
@@ -1199,41 +1162,6 @@ msgstr "Диск сховища"
 #, c-format
 msgid "Used %s"
 msgstr "Використано %s"
-
-#: src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Не вдалося призупинити «%s»"
-
-#. Translators: This is a button to open box(es) in new window(s)
-#: src/selectionbar.vala:179
-msgctxt "0 items selected"
-msgid "_Open in new window"
-msgstr "_Відкрити у новому вікні"
-
-#: src/selectionbar.vala:181
-#, c-format
-msgid "_Open in new window"
-msgid_plural "_Open in %u new windows"
-msgstr[0] "_Відкрити у %u новому вікні"
-msgstr[1] "_Відкрити у %u нових вікнах"
-msgstr[2] "_Відкрити у %u нових вікнах"
-msgstr[3] "_Відкрити у новому вікні"
-
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: src/selection-toolbar.vala:46
-#, c-format
-msgid "%u selected"
-msgid_plural "%u selected"
-msgstr[0] "%u вибрано"
-msgstr[1] "%u вибрано"
-msgstr[2] "%u вибрано"
-msgstr[3] "%u вибрано"
-
-#: src/selection-toolbar.vala:48
-msgid "(Click on items to select them)"
-msgstr "(Натисніть на об'єкти, щоб вибрати їх)"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: src/spice-display.vala:46
@@ -1335,7 +1263,7 @@ msgstr "ні"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:813
+#: src/vm-configurator.vala:793
 msgid "Incapable host system"
 msgstr "Нездатна головна система"
 
@@ -1344,10 +1272,64 @@ msgstr "Нездатна головна система"
 msgid "Just installed "
 msgstr "Щойно встановлено "
 
-#: src/vm-importer.vala:63
+#: src/vm-importer.vala:64
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Не вдалось імпортувати коробку з файла «%s»."
+
+#~ msgid "Select Items"
+#~ msgstr "Вибрати об'єкти"
+
+#~ msgid "_Favorite"
+#~ msgstr "_Улюблене"
+
+#~ msgid "P_ause"
+#~ msgstr "_Призупинити"
+
+#~ msgid "_Delete"
+#~ msgstr "В_илучити"
+
+#~ msgid "Select All"
+#~ msgstr "Вибрати все"
+
+#~ msgid "Select Running"
+#~ msgstr "Вибрати запущене"
+
+#~ msgid "Select None"
+#~ msgstr "Зняти вибір"
+
+#~ msgid "Remove from Favorites"
+#~ msgstr "Вилучити з улюбленого"
+
+#~ msgid "Add to Favorites"
+#~ msgstr "Додати до улюбленого"
+
+#~ msgid "New and Recent"
+#~ msgstr "Нове й недавнє"
+
+#~ msgid "Pausing “%s” failed"
+#~ msgstr "Не вдалося призупинити «%s»"
+
+#~ msgctxt "0 items selected"
+#~ msgid "_Open in new window"
+#~ msgstr "_Відкрити у новому вікні"
+
+#~ msgid "_Open in new window"
+#~ msgid_plural "_Open in %u new windows"
+#~ msgstr[0] "_Відкрити у %u новому вікні"
+#~ msgstr[1] "_Відкрити у %u нових вікнах"
+#~ msgstr[2] "_Відкрити у %u нових вікнах"
+#~ msgstr[3] "_Відкрити у новому вікні"
+
+#~ msgid "%u selected"
+#~ msgid_plural "%u selected"
+#~ msgstr[0] "%u вибрано"
+#~ msgstr[1] "%u вибрано"
+#~ msgstr[2] "%u вибрано"
+#~ msgstr[3] "%u вибрано"
+
+#~ msgid "(Click on items to select them)"
+#~ msgstr "(Натисніть на об'єкти, щоб вибрати їх)"
 
 #~ msgid "Unsupported disk image format."
 #~ msgstr "Непідтримуваний формат образу диска."
