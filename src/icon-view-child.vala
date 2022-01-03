@@ -21,8 +21,6 @@ private class Boxes.IconViewChild : Gtk.Box {
     [GtkChild]
     private unowned Gtk.Spinner spinner;
     [GtkChild]
-    private unowned Gtk.Image favorite;
-    [GtkChild]
     private unowned Gtk.Image running_thumbnail;
     [GtkChild]
     private unowned Gtk.Label machine_name;
@@ -39,16 +37,13 @@ private class Boxes.IconViewChild : Gtk.Box {
         stack.width_request = SCREENSHOT_WIDTH;
         stack.height_request = SCREENSHOT_HEIGHT;
 
-        machine.config.notify["categories"].connect (update_favorite);
         machine.notify["under-construction"].connect (update_thumbnail);
         machine.notify["is-stopped"].connect (update_thumbnail);
         thumbnailer.notify["thumbnail"].connect (() => {
             update_thumbnail ();
-            update_favorite ();
         });
 
         update_thumbnail ();
-        update_favorite ();
 
         machine.bind_property ("name", machine_name, "label", BindingFlags.SYNC_CREATE);
     }
@@ -77,14 +72,5 @@ private class Boxes.IconViewChild : Gtk.Box {
         }
 
         spinner.stop ();
-    }
-
-    private void update_favorite () {
-        favorite.visible = "favorite" in machine.config.categories;
-
-        if (thumbnailer.thumbnail != null)
-            favorite.get_style_context ().add_class ("running");
-        else
-            favorite.get_style_context ().remove_class ("running");
     }
 }

@@ -10,18 +10,7 @@ private class Boxes.IconView: Gtk.ScrolledWindow {
     private AppWindow window;
     private Boxes.ActionsPopover context_popover;
 
-    private Category _category;
-    public Category category {
-        get { return _category; }
-        set {
-            _category = value;
-            // FIXME: update view
-        }
-    }
-
     construct {
-        category = new Category (_("New and Recent"), Category.Kind.NEW);
-
         filter = new CollectionFilter ();
         filter.notify["text"].connect (() => {
             flowbox.invalidate_filter ();

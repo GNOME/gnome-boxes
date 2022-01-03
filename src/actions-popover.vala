@@ -3,7 +3,6 @@
 private class Boxes.ActionsPopover: Gtk.Popover {
     private const GLib.ActionEntry[] action_entries = {
         {"open-in-new-win", open_in_new_win_activated},
-        {"favorite",        favorite_activated},
         {"take_screenshot", take_screenshot_activated},
         {"force_shutdown",  force_shutdown_activated},
         {"delete",          delete_activated},
@@ -58,13 +57,6 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             section.append (_("Take Screenshot"), "box.take_screenshot");
         }
 
-        // Favorite
-        if (("favorite" in machine.config.categories))
-            section.append (_("Remove from Favorites"), "box.favorite");
-        else
-            section.append (_("Add to Favorites"), "box.favorite");
-        menu.append_section (null, section);
-
         // New section for force shutdown and delete
         section = new GLib.Menu ();
 
@@ -109,12 +101,6 @@ private class Boxes.ActionsPopover: Gtk.Popover {
 
     private void open_in_new_win_activated () {
         App.app.open_in_new_window (window.current_item as Machine);
-    }
-
-    private void favorite_activated () {
-        var machine = window.current_item as Machine;
-        var enabled = !("favorite" in machine.config.categories);
-        machine.config.set_category ("favorite", enabled);
     }
 
     private string get_screenshot_filename () {

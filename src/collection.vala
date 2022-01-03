@@ -140,21 +140,3 @@ private class Boxes.CollectionFilter: GLib.Object {
 }
 
 private delegate bool Boxes.CollectionFilterFunc (Boxes.CollectionItem item);
-
-private class Boxes.Category: GLib.Object {
-    public enum Kind {
-        USER,
-        NEW,
-        FAVORITES,
-        PRIVATE,
-        SHARED
-    }
-
-    public string name;
-    public Kind kind;
-
-    public Category (string name, Kind kind = Kind.USER) {
-        this.name = name;
-        this.kind = kind;
-    }
-}

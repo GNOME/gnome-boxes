@@ -70,35 +70,6 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
         save ();
     }
 
-    private void remove_category (string category) {
-        string[] categories = {};
-
-        foreach (var it in this.categories)
-            if (it != category)
-                categories += it;
-
-        this.categories = categories;
-    }
-
-    private void add_category (string category) {
-        if (category in categories)
-            return;
-
-        // FIXME: vala bug if in one line
-        string[] categories = categories;
-        categories += category;
-        this.categories = categories;
-    }
-
-    public void set_category (string category, bool enabled) {
-        if (enabled)
-            add_category (category);
-        else
-            remove_category (category);
-
-        save ();
-    }
-
     private void save_property (Object object, string property_name) {
         var value = Value (object.get_class ().find_property (property_name).value_type);
 
@@ -186,15 +157,7 @@ public class Boxes.BoxConfig: GLib.Object, Boxes.IConfig {
     }
 
     public int compare (BoxConfig other) {
-        // sort favorites first
-        // FIXME: We should probably have some fixed categories rather than hard-coded strings
-        if ("favorite" in categories) {
-            if (!("favorite" in other.categories))
-                return -1;
-        } else if ("favorite" in other.categories)
-            return 1;
-
-        // then by last time used
+        // sort by last time used
         if (access_last_time > 0 || other.access_last_time > 0) {
             if (access_last_time > other.access_last_time)
                 return -1;

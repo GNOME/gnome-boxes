@@ -22,8 +22,6 @@ private class Boxes.ListViewRow: Gtk.Box {
     [GtkChild]
     private unowned Gtk.Spinner spinner;
     [GtkChild]
-    private unowned Gtk.Image favorite;
-    [GtkChild]
     private unowned Gtk.Label machine_name;
     [GtkChild]
     private unowned Gtk.Label info_label;
@@ -42,7 +40,6 @@ private class Boxes.ListViewRow: Gtk.Box {
         stack.width_request = SCREENSHOT_WIDTH;
         stack.height_request = SCREENSHOT_HEIGHT;
 
-        machine.config.notify["categories"].connect (update_favorite);
         machine.notify["under-construction"].connect (update_thumbnail);
         machine.notify["is-stopped"].connect (update_thumbnail);
         machine.notify["info"].connect (update_info);
@@ -51,7 +48,6 @@ private class Boxes.ListViewRow: Gtk.Box {
         thumbnailer.notify["thumbnail"].connect (update_thumbnail);
 
         update_thumbnail ();
-        update_favorite ();
         update_info ();
         update_status ();
 
@@ -82,13 +78,6 @@ private class Boxes.ListViewRow: Gtk.Box {
         }
 
         spinner.stop ();
-    }
-
-    private void update_favorite () {
-        if ("favorite" in machine.config.categories)
-            favorite.set_from_icon_name ("starred-symbolic", Gtk.IconSize.MENU);
-        else
-            favorite.clear ();
     }
 
     private void update_info () {
