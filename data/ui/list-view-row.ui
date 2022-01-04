@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <!-- interface-requires gtk+ 3.9 -->
   <template class="BoxesListViewRow" parent="HdyActionRow">
     <property name="visible">True</property>
     <property name="margin">8</property>
@@ -13,6 +12,25 @@
         <property name="emblem-size">4</property>
         <property name="width-request">60</property>
         <property name="height-request">45</property>
+      </object>
+    </child>
+
+    <child>
+      <object class="GtkButton" id="menu_button">
+        <property name="visible">True</property>
+        <property name="halign">end</property>
+        <property name="valign">center</property>
+        <signal name="clicked" handler="pop_menu"/>
+        <style>
+          <class name="flat"/>
+        </style>
+
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="icon-name">view-more-symbolic</property>
+          </object>
+        </child>
       </object>
     </child>
   </template>

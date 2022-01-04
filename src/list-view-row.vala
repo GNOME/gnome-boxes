@@ -10,6 +10,9 @@ private class Boxes.ListViewRow: Hdy.ActionRow {
 
     [GtkChild]
     public unowned Boxes.Thumbnail thumbnail;
+    [GtkChild]
+    public unowned Gtk.Button menu_button;
+    private Boxes.ActionsPopover context_popover;
 
     public ListViewRow (CollectionItem item) {
         this.item = item;
@@ -27,6 +30,8 @@ private class Boxes.ListViewRow: Hdy.ActionRow {
 
         // This is a hack to align the "title" next to the "thumbnail".
         activatable_widget.get_parent ().hexpand = false;
+
+        context_popover = new Boxes.ActionsPopover (machine.window);
     }
 
     private void update_thumbnail () {
@@ -53,5 +58,12 @@ private class Boxes.ListViewRow: Hdy.ActionRow {
         }
 
         subtitle = _("Powered Off");
+    }
+
+    [GtkCallback]
+    public void pop_menu () {
+        context_popover.update_for_item (item);
+        context_popover.relative_to = menu_button;
+        context_popover.show ();
     }
 }
