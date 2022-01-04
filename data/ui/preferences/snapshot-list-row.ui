@@ -19,7 +19,7 @@
     </section>
   </menu>
 
-  <template class="BoxesSnapshotListRow" parent="GtkListBoxRow">
+  <template class="BoxesSnapshotListRow" parent="HdyActionRow">
     <property name="visible">True</property>
     <property name="can_focus">True</property>
 
@@ -28,7 +28,6 @@
         <property name="visible">true</property>
         <property name="can_focus">false</property>
         <property name="transition_type">slide-up-down</property>
-        <property name="margin">5</property>
 
         <child>
           <object class="GtkBox" id="show_name_box">
@@ -44,7 +43,6 @@
                 <property name="halign">start</property>
                 <property name="valign">center</property>
                 <property name="ellipsize">end</property>
-                <property name="margin">10</property>
               </object>
             </child>
 
@@ -53,9 +51,6 @@
                 <property name="visible">true</property>
                 <property name="menu_model">actions_menu</property>
                 <property name="valign">center</property>
-                <property name="margin_top">4</property>
-                <property name="margin_bottom">4</property>
-                <property name="margin_end">4</property>
                 <style>
                   <class name="flat" />
                 </style>

@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/preferences/snapshot-list-row.ui")]
-private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
+private class Boxes.SnapshotListRow : Hdy.ActionRow {
     public signal void deletion_requested (Boxes.PreferencesToast toast);
 
     public GVir.DomainSnapshot snapshot;
