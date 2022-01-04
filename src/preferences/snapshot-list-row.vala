@@ -11,6 +11,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
     [GtkChild]
     private unowned Gtk.Label name_label;
     [GtkChild]
+    private unowned Gtk.Label description_label;
+    [GtkChild]
     private unowned Gtk.Stack mode_stack;
     [GtkChild]
     private unowned Gtk.Entry name_entry;
@@ -45,7 +47,7 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         this.machine = machine;
 
         try {
-            name_label.label = snapshot.get_config (0).get_description ();
+            setup_labels (snapshot.get_config (0));
         } catch (GLib.Error e) {
             critical (e.message);
         }
@@ -53,6 +55,17 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         var action_group = new GLib.SimpleActionGroup ();
         action_group.add_action_entries (action_entries, this);
         this.insert_action_group ("snap", action_group);
+    }
+
+    private void setup_labels (GVirConfig.DomainSnapshot config, string? name = null) {
+        name_label.label = (name == null) ? config.get_description () : name;
+
+        var date = new DateTime.from_unix_local (config.get_creation_time ());
+        var date_string = date.format ("%x, %X");
+        if (date_string != config.get_description ()) {
+            description_label.visible = true;
+            description_label.label = date_string;
+        }
     }
 
     [GtkCallback]
@@ -63,7 +76,7 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
             var config = snapshot.get_config (0);
             config.set_description (name);
             snapshot.set_config (config);
-            name_label.label = name;
+            setup_labels (config, name);
             mode_stack.visible_child = show_name_box;
         } catch (GLib.Error e) {
             warning ("Failed to change name of snapshot to %s: %s", name, e.message);
