@@ -18,10 +18,6 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
     [GtkChild]
     private unowned Gtk.Box show_name_box;
 
-    // index of the snapshot in the list
-    private int index;
-    private int parent_size;
-
     private Boxes.LibvirtMachine machine;
     private unowned Gtk.Container? parent_container = null;
 
@@ -32,7 +28,6 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
     };
 
     construct {
-        this.get_style_context ().add_class ("boxes-snapshot-list-row");
         this.parent_set.connect (() => {
             var parent = get_parent () as Gtk.Container;
 
@@ -40,14 +35,10 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
                 return;
 
             this.parent_container = parent;
-            update_index ();
-            parent.add.connect (update_index);
-            parent.remove.connect (update_index);
         });
         this.selectable = false;
         this.activatable = false;
     }
-
 
     public SnapshotListRow (GVir.DomainSnapshot snapshot,
                             LibvirtMachine      machine) {
@@ -63,52 +54,6 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
         var action_group = new GLib.SimpleActionGroup ();
         action_group.add_action_entries (action_entries, this);
         this.insert_action_group ("snap", action_group);
-    }
-
-    // Need to override this in order to connect the indicators without any gaps.
-    public override bool draw (Cairo.Context ct) {
-        base.draw (ct);
-        var height = this.get_allocated_height ();
-        var sc = this.get_style_context ();
-
-        double indicator_size = height / 2.0;
-
-        sc.save ();
-        sc.add_class ("indicator");
-
-        var line_color = sc.get_background_color (this.get_state_flags ());
-        ct.set_source_rgba (line_color.red, line_color.green, line_color.blue, line_color.alpha);
-        ct.set_line_width (4);
-        if (index > 0) {
-            ct.move_to (height / 2.0 + 0.5, -1);
-            ct.line_to (height / 2.0 + 0.5, height / 2.0);
-            ct.stroke ();
-        }
-        // this row + the SnapshotPage's add_button row
-        if (index < parent_size - 2) {
-            ct.move_to (height / 2.0 + 0.5, height / 2.0);
-            ct.line_to (height / 2.0 + 0.5, height + 1);
-            ct.stroke ();
-        }
-
-        bool is_current = false;
-        try {
-            this.snapshot.get_is_current (0, out is_current);
-        } catch (GLib.Error e) {
-            warning (e.message);
-        }
-
-        if (is_current)
-            sc.add_class ("active");
-
-        ct.save();
-        sc.render_background (ct, height / 4.0, height / 4.0, indicator_size, indicator_size);
-        sc.render_frame (ct, height / 4.0, height / 4.0, indicator_size, indicator_size + 0.5);
-        ct.restore();
-
-        sc.restore ();
-
-        return true;
     }
 
     [GtkCallback]
@@ -206,17 +151,5 @@ private class Boxes.SnapshotListRow : Gtk.ListBoxRow {
         name_entry.text = name_label.get_text ();
         mode_stack.visible_child = edit_name_box;
         name_entry.grab_focus ();
-    }
-
-    private void update_index () {
-        var parent = this.get_parent ();
-
-        if (parent == null || !(parent is Gtk.ListBox))
-            return;
-
-        var container = parent as Gtk.Container;
-        var siblings = container.get_children ();
-        this.index = siblings.index (this);
-        this.parent_size = (int) siblings.length ();
     }
 }
