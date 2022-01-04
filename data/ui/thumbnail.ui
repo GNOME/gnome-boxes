@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="BoxesThumbnail" parent="GtkBox">
+    <style>
+      <class name="thumbnail"/>
+    </style>
+
+    <child>
+      <object class="GtkStack" id="stack">
+        <property name="visible">True</property>
+
+        <child>
+          <object class="GtkSpinner" id="spinner_thumbnail">
+            <property name="visible">True</property>
+            <property name="active">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkImage" id="live_thumbnail">
+            <property name="visible">True</property>
+          </object>
+        </child>
+
+        <child>
+          <object class="GtkBox" id="blank_thumbnail">
+            <property name="visible">True</property>
+
+            <child>
+              <object class="GtkImage" id="emblem">
+                <property name="visible">True</property>
+                <property name="hexpand">True</property>
+                <property name="halign">center</property>
+                <property name="icon-name">computer-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

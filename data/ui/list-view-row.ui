@@ -4,47 +4,15 @@
   <template class="BoxesListViewRow" parent="HdyActionRow">
     <property name="visible">True</property>
     <property name="margin">8</property>
+    <property name="activatable-widget">thumbnail</property>
 
     <child type="prefix">
-      <object class="GtkStack" id="stack">
+      <object class="BoxesThumbnail" id="thumbnail">
         <property name="visible">True</property>
-        <child>
-          <object class="GtkImage" id="running_thumbnail">
-            <property name="visible">True</property>
-            <style>
-              <class name="thumbnail"/>
-              <class name="running"/>
-            </style>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkImage" id="thumbnail">
-            <property name="visible">True</property>
-            <style>
-              <class name="thumbnail"/>
-            </style>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkEventBox" id="spinner_box">
-            <property name="visible">True</property>
-            <child>
-              <object class="GtkSpinner" id="spinner">
-                <property name="visible">True</property>
-                <property name="halign">center</property>
-                <property name="valign">center</property>
-                <style>
-                  <class name="slow-spinner"/>
-                </style>
-              </object>
-            </child>
-            <style>
-              <class name="thumbnail"/>
-            </style>
-          </object>
-        </child>
+        <property name="halign">start</property>
+        <property name="emblem-size">4</property>
+        <property name="width-request">60</property>
+        <property name="height-request">45</property>
       </object>
     </child>
   </template>

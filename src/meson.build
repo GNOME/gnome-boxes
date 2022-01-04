@@ -66,7 +66,6 @@ vala_sources = [
   'list-view.vala',
   'list-view-row.vala',
   'machine.vala',
-  'machine-thumbnailer.vala',
   'main.vala',
   'media-manager.vala',
   'notification.vala',
@@ -80,6 +79,7 @@ vala_sources = [
   'troubleshoot-view.vala',
   'topbar.vala',
   'ui.vala',
+  'ui/thumbnail.vala', # FIXME: move this into ui/meson.build
   'unattended-installer.vala',
   'unattended-file.vala',
   'unattended-setup-box.vala',

@@ -6,65 +6,11 @@
     <property name="orientation">vertical</property>
 
     <child>
-      <object class="GtkOverlay" id="overlay">
+      <object class="BoxesThumbnail" id="thumbnail">
         <property name="visible">True</property>
-
-        <child type="overlay">
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="valign">end</property>
-            <property name="margin">10</property>
-            <property name="margin-start">20</property>
-            <property name="margin-end">20</property>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkStack" id="stack">
-            <property name="visible">True</property>
-            <child>
-              <object class="GtkImage" id="running_thumbnail">
-                <property name="visible">True</property>
-                <style>
-                  <class name="thumbnail"/>
-                  <class name="running"/>
-                </style>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkImage" id="thumbnail">
-                <property name="visible">True</property>
-                <property name="pixel-size">32</property>
-                <style>
-                  <class name="thumbnail"/>
-                </style>
-              </object>
-            </child>
-
-            <child>
-              <object class="GtkEventBox" id="spinner_box">
-                <property name="visible">True</property>
-                <child>
-                  <object class="GtkSpinner" id="spinner">
-                    <property name="visible">True</property>
-                    <property name="halign">center</property>
-                    <property name="valign">center</property>
-                    <property name="width-request">32</property>
-                    <property name="height-request">32</property>
-                    <style>
-                      <class name="slow-spinner"/>
-                    </style>
-                  </object>
-                </child>
-                <style>
-                  <class name="thumbnail"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-
+        <property name="emblem-size">5</property>
+        <property name="width-request">180</property>
+        <property name="height-request">134</property>
       </object>
     </child>
 
