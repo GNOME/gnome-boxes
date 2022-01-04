@@ -1,24 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <menu id="actions_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Revert to this state</attribute>
-        <attribute name="action">snap.revert-to</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">Rename</attribute>
-        <attribute name="action">snap.rename</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">Delete</attribute>
-        <attribute name="action">snap.delete</attribute>
-      </item>
-    </section>
-  </menu>
-
   <template class="BoxesSnapshotListRow" parent="HdyActionRow">
     <property name="visible">True</property>
     <property name="activatable">False</property>
@@ -73,17 +54,56 @@
             </child>
 
             <child>
-              <object class="GtkMenuButton" id="more_button">
+              <object class="GtkBox" id="suffixes">
                 <property name="visible">true</property>
-                <property name="menu_model">actions_menu</property>
                 <property name="valign">center</property>
+                <property name="halign">end</property>
                 <style>
-                  <class name="flat" />
+                  <class name="linked"/>
                 </style>
+
                 <child>
-                  <object class="GtkImage">
+                  <object class="GtkButton">
                     <property name="visible">true</property>
-                    <property name="icon-name">view-more-symbolic</property>
+                    <property name="tooltip-text" translatable="yes">Revert to snapshot</property>
+                    <signal name="clicked" handler="on_revert_button_clicked"/>
+
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">true</property>
+                        <property name="icon-name">document-revert-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">true</property>
+                    <property name="tooltip-text" translatable="yes">Rename snapshot</property>
+                    <signal name="clicked" handler="on_rename_button_clicked"/>
+
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">true</property>
+                        <property name="icon-name">document-edit-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="GtkButton">
+                    <property name="visible">true</property>
+                    <property name="tooltip-text" translatable="yes">Delete snapshot</property>
+                    <signal name="clicked" handler="on_delete_button_clicked"/>
+
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">true</property>
+                        <property name="icon-name">edit-delete-symbolic</property>
+                      </object>
+                    </child>
                   </object>
                 </child>
               </object>

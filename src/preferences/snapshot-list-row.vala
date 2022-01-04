@@ -24,12 +24,6 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
     private Boxes.LibvirtMachine machine;
     private unowned Gtk.Container? parent_container = null;
 
-    private const GLib.ActionEntry[] action_entries = {
-        {"revert-to", revert_to_activated},
-        {"rename",    rename_activated},
-        {"delete",    delete_activated}
-    };
-
     construct {
         this.parent_set.connect (() => {
             var parent = get_parent () as Gtk.Container;
@@ -51,10 +45,6 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         } catch (GLib.Error e) {
             critical (e.message);
         }
-
-        var action_group = new GLib.SimpleActionGroup ();
-        action_group.add_action_entries (action_entries, this);
-        this.insert_action_group ("snap", action_group);
     }
 
     private void setup_labels (GVirConfig.DomainSnapshot config, string? name = null) {
@@ -84,7 +74,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
     }
 
 
-    private void revert_to_activated (GLib.SimpleAction action, GLib.Variant? v) {
+    [GtkCallback]
+    private void on_revert_button_clicked () {
         var snapshot_name = this.snapshot.get_name ();
         var snapshot_state = GVirConfig.DomainSnapshotDomainState.NOSTATE;
 
@@ -121,7 +112,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
     }
 
 
-    private void delete_activated (GLib.SimpleAction action, GLib.Variant? v) {
+    [GtkCallback]
+    private void on_delete_button_clicked () {
         string snapshot_identifier = snapshot.get_name ();
         try {
             var config = snapshot.get_config (0);
@@ -161,7 +153,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         deletion_requested (toast);
     }
 
-    private void rename_activated (GLib.SimpleAction action, GLib.Variant? v) {
+    [GtkCallback]
+    private void on_rename_button_clicked () {
         name_entry.text = name_label.get_text ();
         mode_stack.visible_child = edit_name_box;
         name_entry.grab_focus ();
