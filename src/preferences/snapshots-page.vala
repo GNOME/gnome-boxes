@@ -166,7 +166,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
 
         // we need to account for the "+" button
         if (num_rows > 1) {
-           preferences_group.description = null;
+           preferences_group.description = _("Revert to a previous state of your box.");
         } else {
            preferences_group.description = _("Use the button below to create your first snapshot.");
         }
