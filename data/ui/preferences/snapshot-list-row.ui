@@ -28,6 +28,8 @@
         <property name="visible">true</property>
         <property name="can_focus">false</property>
         <property name="transition_type">slide-up-down</property>
+        <property name="margin">5</property>
+
         <child>
           <object class="GtkBox" id="show_name_box">
             <property name="visible">True</property>
@@ -73,12 +75,16 @@
             <property name="visible">true</property>
             <property name="orientation">horizontal</property>
             <property name="can_focus">false</property>
+            <style>
+              <class name="linked"/>
+            </style>
+
             <child>
               <object class="GtkEntry" id="name_entry">
                 <property name="visible">true</property>
                 <property name="can_focus">true</property>
-                <property name="margin_start">45</property>
                 <property name="hexpand">true</property>
+                <property name="valign">center</property>
                 <signal name="activate" handler="on_save_name_button_clicked" />
               </object>
             </child>
@@ -87,13 +93,18 @@
               <object class="GtkButton" id="save_name_button">
                 <property name="can_focus">true</property>
                 <property name="visible">true</property>
-                <property name="margin_start">10</property>
                 <property name="valign">center</property>
-                <property name="label" translatable="yes">Done</property>
                 <signal name="clicked" handler="on_save_name_button_clicked" />
                 <style>
-                  <class name="text-button" />
+                  <class name="suggested-action"/>
                 </style>
+                
+                <child>
+                  <object class="GtkImage">
+                    <property name="visible">True</property>
+                    <property name="icon-name">document-edit-symbolic</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
