@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-22 12:57+0000\n"
-"PO-Revision-Date: 2021-12-22 14:02+0000\n"
+"POT-Creation-Date: 2022-01-04 11:59+0000\n"
+"PO-Revision-Date: 2022-01-04 14:10+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <hugokarvalho@hotmail.com>\n"
 "Language: pt\n"
@@ -25,9 +25,9 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
-#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
-#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
-#: src/main.vala:72 src/topbar.vala:85
+#: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
+#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Caixas"
 
@@ -178,11 +178,11 @@ msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Matriz variante de nomes de pastas partilhadas e de mapeamento caminhos"
 
-#: data/ui/app-window.ui:116 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Boas-vindas ao Caixas"
 
-#: data/ui/app-window.ui:117
+#: data/ui/app-window.ui:88
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Use o botão <b>+</b> para criar a primeira máquina virtual."
 
@@ -297,29 +297,33 @@ msgstr ""
 "Não há extensões de virtualização disponíveis no sistema.\n"
 "Verificar as configurações do BIOS para as ativar."
 
-#: data/ui/assistant/pages/review-page.ui:67
+#: data/ui/assistant/pages/review-page.ui:68
 msgid "Operating System"
 msgstr "Sistema operativo"
 
-#: data/ui/assistant/pages/review-page.ui:83
+#: data/ui/assistant/pages/review-page.ui:84
 #: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Memória"
 
-#: data/ui/assistant/pages/review-page.ui:90
+#: data/ui/assistant/pages/review-page.ui:91
 #: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Limite de armazenamento"
 
-#: data/ui/assistant/pages/review-page.ui:96
+#: data/ui/assistant/pages/review-page.ui:97
 #: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Utilizador"
 
-#: data/ui/assistant/pages/review-page.ui:112
+#: data/ui/assistant/pages/review-page.ui:113
 #: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Palavra-passe"
+
+#: data/ui/assistant/pages/review-page.ui:130
+msgid "Enable EFI"
+msgstr "Ativar EFI"
 
 #: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
@@ -350,22 +354,18 @@ msgid "Application Menu"
 msgstr "Menu da aplicação"
 
 #: data/ui/collection-toolbar.ui:97
-msgid "Select Items"
-msgstr "Selecionar itens"
-
-#: data/ui/collection-toolbar.ui:125
 msgid "List view"
 msgstr "Vista Lista"
 
-#: data/ui/collection-toolbar.ui:153
+#: data/ui/collection-toolbar.ui:125
 msgid "Grid view"
 msgstr "Vista Grelha"
 
-#: data/ui/collection-toolbar.ui:180 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:152
 msgid "Search"
 msgstr "Procurar"
 
-#: data/ui/collection-toolbar.ui:207
+#: data/ui/collection-toolbar.ui:179
 msgid "Downloads"
 msgstr "Transferências"
 
@@ -582,7 +582,7 @@ msgid "Rename"
 msgstr "Renomear"
 
 #. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:88
+#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -599,34 +599,6 @@ msgstr "Imagens (Snapshots)"
 #: src/preferences/snapshots-page.vala:116
 msgid "Creating new snapshot…"
 msgstr "A criar nova imagem…"
-
-#: data/ui/selectionbar.ui:36
-msgid "_Favorite"
-msgstr "_Favorita"
-
-#: data/ui/selectionbar.ui:54
-msgid "P_ause"
-msgstr "_Suspender"
-
-#: data/ui/selectionbar.ui:72
-msgid "_Delete"
-msgstr "_Eliminar"
-
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
-msgid "_Cancel"
-msgstr "_Cancelar"
-
-#: data/ui/selection-toolbar.ui:108
-msgid "Select All"
-msgstr "Selecionar tudo"
-
-#: data/ui/selection-toolbar.ui:113
-msgid "Select Running"
-msgstr "Selecionar Em execução"
-
-#: data/ui/selection-toolbar.ui:117
-msgid "Select None"
-msgstr "Não selecionar nenhum"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -702,58 +674,49 @@ msgstr ""
 "virtual. Aparecerão na pasta Transferências."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:30
+#: src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Ações da caixa"
 
 #. Open in new Window
-#: src/actions-popover.vala:45
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Abrir em nova janela"
 
 #. Send files
-#: src/actions-popover.vala:50
+#: src/actions-popover.vala:49
 msgid "Send File…"
 msgstr "Enviar ficheiro…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:58
+#: src/actions-popover.vala:57
 msgid "Take Screenshot"
 msgstr "Efetuar uma captura de ecrã"
 
-#. Favorite
-#: src/actions-popover.vala:63
-msgid "Remove from Favorites"
-msgstr "Remover dos favoritos"
-
-#: src/actions-popover.vala:65
-msgid "Add to Favorites"
-msgstr "Adicionar aos favoritos"
-
-#: src/actions-popover.vala:72
+#: src/actions-popover.vala:64
 msgid "Force Shutdown"
 msgstr "Forçar Desligar"
 
-#: src/actions-popover.vala:83
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Clonar"
 
-#: src/actions-popover.vala:92 src/machine.vala:597
+#: src/actions-popover.vala:84 src/machine.vala:588
 msgid "Restart"
 msgstr "Reiniciar"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:101
+#: src/actions-popover.vala:93
 msgid "Preferences"
 msgstr "Preferências"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:125
+#: src/actions-popover.vala:111
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Captura de ecrã de %s"
 
-#: src/app.vala:125
+#: src/app.vala:113
 msgid "translator-credits"
 msgstr ""
 "Duarte Loreto <happyguy_pt@hotmail.com>\n"
@@ -761,86 +724,90 @@ msgstr ""
 "Pedro Albuquerque <palbuquerque73@gmail.com>\n"
 "Hugo Carvalho <hugokarvalho@hotmail.com>"
 
-#: src/app.vala:126
+#: src/app.vala:114
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "Uma simples aplicação do GNOME 3 para aceder a sistemas virtuais"
 
-#: src/app.vala:187 src/main.vala:9
+#: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
 msgstr "Mostrar o número de versão"
 
-#: src/app.vala:188
+#: src/app.vala:176
 msgid "Show help"
 msgstr "Mostrar ajuda"
 
-#: src/app.vala:189
+#: src/app.vala:177
 msgid "Open in full screen"
 msgstr "Abrir em ecrã completo"
 
-#: src/app.vala:190 src/main.vala:10
+#: src/app.vala:178 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Verificar capacidades de virtualização"
 
-#: src/app.vala:191
+#: src/app.vala:179
 msgid "Open box with UUID"
 msgstr "Abrir caixa com o UUID"
 
-#: src/app.vala:192
+#: src/app.vala:180
 msgid "Search term"
 msgstr "Termo de procura"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:194
+#: src/app.vala:182
 msgid "URL to display, broker or installer media"
 msgstr "URL a mostrar, gestor de máquinas virtuais ou suporte de instalação"
 
-#: src/app.vala:205
+#: src/app.vala:193
 msgid "— A simple application to access virtual machines"
 msgstr "— Uma aplicação simples para aceder a máquinas virtuais"
 
-#: src/app.vala:232
+#: src/app.vala:220
 msgid "Too many command line arguments specified.\n"
 msgstr "Especificados demasiados argumentos na linha de comando.\n"
 
-#: src/app.vala:484
+#: src/app.vala:461
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caixa “%s” instalada e pronta a ser usada"
 
-#: src/app.vala:486
+#: src/app.vala:463
 msgid "Launch"
 msgstr "Iniciar"
 
-#: src/app.vala:516
+#: src/app.vala:493
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s“ está a ser executado em segundo plano"
 
-#: src/app.vala:601
+#: src/app.vala:574
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "A caixa “%s” foi eliminada"
 
-#: src/app.vala:602
+#: src/app.vala:575
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Foi eliminada %u caixa"
 msgstr[1] "Foram eliminadas %u caixas"
 
-#: src/app.vala:630
+#: src/app.vala:603
 msgid "_Undo"
 msgstr "_Desfazer"
 
-#: src/app.vala:676
+#: src/app.vala:641
 msgid "Boxes is doing something"
 msgstr "O Caixas está a executar uma operação"
 
-#: src/app-window.vala:302
+#: src/app-window.vala:272
 msgid "Select files to transfer"
 msgstr "Selecionar os ficheiros a transferir"
 
-#: src/app-window.vala:305
+#: src/app-window.vala:273
+msgid "_Cancel"
+msgstr "_Cancelar"
+
+#: src/app-window.vala:275
 msgid "_Open"
 msgstr "_Abrir"
 
@@ -858,7 +825,7 @@ msgstr "Anterior"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:695
+#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Instalação externa"
@@ -922,11 +889,7 @@ msgstr "Instalar"
 msgid "Failed to download"
 msgstr "Falha na transferência"
 
-#: src/icon-view.vala:32
-msgid "New and Recent"
-msgstr "Novos e recentes"
-
-#: src/installed-media.vala:80 src/installer-media.vala:182
+#: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
 msgstr "Sistema"
 
@@ -962,80 +925,75 @@ msgid "Send key combinations"
 msgstr "Enviar combinações de teclas"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:467
+#: src/libvirt-machine.vala:465
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "A restaurar %s a partir do disco"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:468
 #, c-format
 msgid "Starting %s"
 msgstr "A iniciar %s"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:547
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "O reinício de “%s” está a demorar demasiado. Forçar encerrar?"
 
-#: src/libvirt-machine.vala:551
+#: src/libvirt-machine.vala:549
 msgid "_Shutdown"
 msgstr "De_sligar"
 
-#: src/libvirt-machine.vala:567
+#: src/libvirt-machine.vala:565
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "A clonar “%s”…"
 
-#: src/libvirt-machine.vala:693
+#: src/libvirt-machine.vala:691
 msgid "Installing…"
 msgstr "A instalar…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:695
 msgid "Setting up clone…"
 msgstr "A configurar o clone…"
 
-#: src/libvirt-machine.vala:699
+#: src/libvirt-machine.vala:697
 msgid "Importing…"
 msgstr "A importar…"
 
-#: src/libvirt-machine.vala:708
-#, c-format
-msgid "host: %s"
-msgstr "máquina: %s"
-
-#: src/list-view-row.vala:130
+#: src/list-view-row.vala:49
 msgid "Running"
 msgstr "Em execução"
 
-#: src/list-view-row.vala:136
+#: src/list-view-row.vala:55
 msgid "Paused"
 msgstr "Suspenso"
 
-#: src/list-view-row.vala:141
+#: src/list-view-row.vala:60
 msgid "Powered Off"
 msgstr "Desligado"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:185
+#: src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "A ligar a %s"
 
-#: src/machine.vala:211 src/machine.vala:627
+#: src/machine.vala:207 src/machine.vala:618
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Falha ao estabelecer ligação a \"%s\""
 
-#: src/machine.vala:258
+#: src/machine.vala:249
 msgid "Machine is under construction"
 msgstr "Máquina em construção"
 
-#: src/machine.vala:411
+#: src/machine.vala:402
 msgid "Saving…"
 msgstr "A gravar…"
 
-#: src/machine.vala:596
+#: src/machine.vala:587
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1044,12 +1002,12 @@ msgstr ""
 "“%s” não pode ser restaurado a partir do disco\n"
 "Tentar sem estado de gravação?"
 
-#: src/machine.vala:607
+#: src/machine.vala:598
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Falha ao iniciar “%s”"
 
-#: src/machine.vala:620
+#: src/machine.vala:611
 msgid "Troubleshooting Log"
 msgstr "Registo de resolução de problemas"
 
@@ -1111,7 +1069,7 @@ msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
 msgstr ""
 "A versão Flatpak do Caixas do GNOME não suporta o redirecionamento USB."
 
-#: src/preferences/devices-page.vala:36
+#: src/preferences/devices-page.vala:37
 msgid "Turn on your box to see the USB devices available for redirection."
 msgstr ""
 "Ligue a sua caixa para ver os dispositivos USB disponíveis para "
@@ -1199,37 +1157,6 @@ msgstr "Disco de armazenamento"
 #, c-format
 msgid "Used %s"
 msgstr "Utilizado %s"
-
-#: src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Falha ao suspender “%s”"
-
-#. Translators: This is a button to open box(es) in new window(s)
-#: src/selectionbar.vala:179
-msgctxt "0 items selected"
-msgid "_Open in new window"
-msgstr "_Abrir em nova janela"
-
-#: src/selectionbar.vala:181
-#, c-format
-msgid "_Open in new window"
-msgid_plural "_Open in %u new windows"
-msgstr[0] "_Abrir em nova janela"
-msgstr[1] "_Abrir em %u novas janelas"
-
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: src/selection-toolbar.vala:46
-#, c-format
-msgid "%u selected"
-msgid_plural "%u selected"
-msgstr[0] "%u selecionado"
-msgstr[1] "%u selecionados"
-
-#: src/selection-toolbar.vala:48
-msgid "(Click on items to select them)"
-msgstr "(clique nos itens para os selecionar)"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: src/spice-display.vala:46
@@ -1333,7 +1260,7 @@ msgstr "não"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:813
+#: src/vm-configurator.vala:793
 msgid "Incapable host system"
 msgstr "Sistema hospedeiro incompatível"
 
@@ -1342,10 +1269,63 @@ msgstr "Sistema hospedeiro incompatível"
 msgid "Just installed "
 msgstr "Recém-instalado "
 
-#: src/vm-importer.vala:63
+#: src/vm-importer.vala:64
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "A importação da caixa a partir do ficheiro “%s” falhou."
+
+#~ msgid "Select Items"
+#~ msgstr "Selecionar itens"
+
+#~ msgid "_Favorite"
+#~ msgstr "_Favorita"
+
+#~ msgid "P_ause"
+#~ msgstr "_Suspender"
+
+#~ msgid "_Delete"
+#~ msgstr "_Eliminar"
+
+#~ msgid "Select All"
+#~ msgstr "Selecionar tudo"
+
+#~ msgid "Select Running"
+#~ msgstr "Selecionar Em execução"
+
+#~ msgid "Select None"
+#~ msgstr "Não selecionar nenhum"
+
+#~ msgid "Remove from Favorites"
+#~ msgstr "Remover dos favoritos"
+
+#~ msgid "Add to Favorites"
+#~ msgstr "Adicionar aos favoritos"
+
+#~ msgid "New and Recent"
+#~ msgstr "Novos e recentes"
+
+#~ msgid "host: %s"
+#~ msgstr "máquina: %s"
+
+#~ msgid "Pausing “%s” failed"
+#~ msgstr "Falha ao suspender “%s”"
+
+#~ msgctxt "0 items selected"
+#~ msgid "_Open in new window"
+#~ msgstr "_Abrir em nova janela"
+
+#~ msgid "_Open in new window"
+#~ msgid_plural "_Open in %u new windows"
+#~ msgstr[0] "_Abrir em nova janela"
+#~ msgstr[1] "_Abrir em %u novas janelas"
+
+#~ msgid "%u selected"
+#~ msgid_plural "%u selected"
+#~ msgstr[0] "%u selecionado"
+#~ msgstr[1] "%u selecionados"
+
+#~ msgid "(Click on items to select them)"
+#~ msgstr "(clique nos itens para os selecionar)"
 
 #~ msgid "Unsupported disk image format."
 #~ msgstr "Formato de imagem de disco não suportado."
