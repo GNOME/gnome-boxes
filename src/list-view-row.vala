@@ -2,7 +2,7 @@
 using Gtk;
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/list-view-row.ui")]
-private class Boxes.ListViewRow: Gtk.Box {
+private class Boxes.ListViewRow: Hdy.ActionRow {
     public const int SCREENSHOT_WIDTH = 60;
     public const int SCREENSHOT_HEIGHT = 45;
 
@@ -21,10 +21,6 @@ private class Boxes.ListViewRow: Gtk.Box {
     private unowned Gtk.EventBox spinner_box;
     [GtkChild]
     private unowned Gtk.Spinner spinner;
-    [GtkChild]
-    private unowned Gtk.Label machine_name;
-    [GtkChild]
-    private unowned Gtk.Label status_label;
 
     private Boxes.MachineThumbnailer thumbnailer;
 
@@ -47,7 +43,7 @@ private class Boxes.ListViewRow: Gtk.Box {
         update_thumbnail ();
         update_status ();
 
-        machine.bind_property ("name", machine_name, "label", BindingFlags.SYNC_CREATE);
+        machine.bind_property ("name", this, "title", BindingFlags.SYNC_CREATE);
     }
 
     private void update_thumbnail () {
@@ -77,33 +73,24 @@ private class Boxes.ListViewRow: Gtk.Box {
     }
 
     private void update_status () {
-        update_status_label_style (!machine.is_on);
-
         if (machine.status != null) {
-            status_label.label = machine.status;
+            subtitle = machine.status;
 
             return;
         }
 
         if (machine.is_running) {
-            status_label.label = _("Running");
+            subtitle = _("Running");
 
             return;
         }
 
         if (machine.is_on) {
-            status_label.label = _("Paused");
+            subtitle = _("Paused");
 
             return;
         }
 
-        status_label.label = _("Powered Off");
-    }
-
-    private void update_status_label_style (bool dim) {
-        if (dim)
-            status_label.get_style_context ().add_class ("dim-label");
-        else
-            status_label.get_style_context ().remove_class ("dim-label");
+        subtitle = _("Powered Off");
     }
 }
