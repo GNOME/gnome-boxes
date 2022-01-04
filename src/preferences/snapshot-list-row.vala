@@ -3,6 +3,7 @@
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/preferences/snapshot-list-row.ui")]
 private class Boxes.SnapshotListRow : Hdy.ActionRow {
     public signal void deletion_requested (Boxes.PreferencesToast toast);
+    public signal void is_current ();
 
     public GVir.DomainSnapshot snapshot;
     public string activity_message { get; set; default = ""; }
@@ -36,8 +37,6 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
 
             this.parent_container = parent;
         });
-        this.selectable = false;
-        this.activatable = false;
     }
 
     public SnapshotListRow (GVir.DomainSnapshot snapshot,
@@ -98,6 +97,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
             try {
                 snapshot.revert_to_async.end (res);
                 parent_container.queue_draw ();
+
+                is_current ();
             } catch (GLib.Error e) {
                 warning (e.message);
                 machine.window.notificationbar.display_error (_("Failed to apply snapshot"));

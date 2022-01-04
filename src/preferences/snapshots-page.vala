@@ -63,20 +63,47 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
                                                         fetch_snapshots_cancellable);
             var snapshots =  machine.domain.get_snapshots ();
             foreach (var snapshot in snapshots) {
-                add_snapshot_row (snapshot);
+                listbox.add (create_snapshot_row (snapshot));
             }
         } catch (GLib.Error e) {
             warning ("Could not fetch snapshots: %s", e.message);
         }
     }
 
-    private void add_snapshot_row (GVir.DomainSnapshot snapshot) {
+    private SnapshotListRow create_snapshot_row (GVir.DomainSnapshot snapshot) {
         var row = new SnapshotListRow (snapshot, machine);
         row.notify["activity-message"].connect (row_activity_changed);
         row.deletion_requested.connect (on_row_deleted);
+        row.is_current.connect (select_row);
 
-        listbox.add (row);
+        try {
+            bool is_current = false;
+            if (snapshot.get_is_current (0, out is_current)) {
+                row.selectable = is_current;
+                if (is_current)
+                    select_row (row);
+            }
+        } catch (GLib.Error error) {
+            warning ("Failed to determine whether '%s' is the current snapshot: %s",
+                     snapshot.get_name (), error.message);
+        }
+
+        return row;
     }
+
+    private void select_row (SnapshotListRow selected_row) {
+        // We want only the last created snapshot to be selectable
+        foreach (var child in listbox.get_children ()) {
+            if (child is SnapshotListRow) {
+                var row = child as SnapshotListRow;
+                row.selectable = false;
+            }
+        }
+
+        selected_row.selectable = true;
+        listbox.select_row (selected_row);
+    }
+
 
     private void on_row_deleted (Boxes.PreferencesToast new_toast) {
         if (toast != null) {
@@ -117,7 +144,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
 
         try {
             var new_snapshot = yield machine.create_snapshot ();
-            add_snapshot_row (new_snapshot);
+            listbox.add (create_snapshot_row (new_snapshot));
         } catch (GLib.Error e) {
             var msg = _("Failed to create snapshot of %s").printf (machine.name);
             machine.window.notificationbar.display_error (msg);
