@@ -260,8 +260,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
         }
 
         update_status ();
-        update_info ();
-        source.notify["uri"].connect (update_info);
 
         saved_properties = {
             BoxConfig.SavedProperty () { name = "run-in-bg", default_value = false },
@@ -699,15 +697,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
             status = _("Importing…");
         else
             status = null;
-    }
-
-    private void update_info () {
-        if (!is_local) {
-            var uri = Xml.URI.parse (source.uri);
-
-            info = _("host: %s").printf (uri.server);
-        } else
-            info = null;
     }
 
     private string? get_mac_address () {

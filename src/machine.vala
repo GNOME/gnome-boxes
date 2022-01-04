@@ -9,7 +9,6 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     public Boxes.BoxConfig config;
     public Gdk.Pixbuf? pixbuf { get; set; }
     public bool stay_on_display;
-    public string? info { get; protected set; }
     public string? status { get; set; }
     public virtual bool suspend_at_exit { get { return false; } }
 

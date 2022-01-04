@@ -24,8 +24,6 @@ private class Boxes.ListViewRow: Gtk.Box {
     [GtkChild]
     private unowned Gtk.Label machine_name;
     [GtkChild]
-    private unowned Gtk.Label info_label;
-    [GtkChild]
     private unowned Gtk.Label status_label;
 
     private Boxes.MachineThumbnailer thumbnailer;
@@ -42,13 +40,11 @@ private class Boxes.ListViewRow: Gtk.Box {
 
         machine.notify["under-construction"].connect (update_thumbnail);
         machine.notify["is-stopped"].connect (update_thumbnail);
-        machine.notify["info"].connect (update_info);
         machine.notify["state"].connect (update_status);
         machine.notify["status"].connect (update_status);
         thumbnailer.notify["thumbnail"].connect (update_thumbnail);
 
         update_thumbnail ();
-        update_info ();
         update_status ();
 
         machine.bind_property ("name", machine_name, "label", BindingFlags.SYNC_CREATE);
@@ -78,13 +74,6 @@ private class Boxes.ListViewRow: Gtk.Box {
         }
 
         spinner.stop ();
-    }
-
-    private void update_info () {
-        var info = (machine.info != null && machine.info != "")? "<small>" + machine.info + "</small>": "";
-        info_label.label = info;
-
-        info_label.visible = (info != "");
     }
 
     private void update_status () {
