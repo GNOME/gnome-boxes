@@ -38,7 +38,7 @@
   <p>When you first launch <app>Boxes</app>, the greeting tells you to click the
   <gui style="button">+</gui> button to create your first box. On subsequent
   visits, <app>Boxes</app> opens in the <em>collection view</em>, displaying
-  thumbnails of your boxes in a grid. Frequently-used boxes
+  thumbnails of your boxes in a grid. Frequently used boxes
   appear at the top of the list. Collection view allows you to:</p>
 
   <list>
@@ -46,9 +46,9 @@
     <link xref="create">create</link> a box.</p></item>
     <item><p>Click a box to launch a virtual machine session.</p></item>
     <item><p><link xref="search">Search</link> for a box.</p></item>
-    <item><p>Right click on a box to choose <gui>Open in New Window</gui>,
+    <item><p>Right-click on a box to choose <gui>Open in New Window</gui>,
     <gui>Force Shutdown</gui>,
-    <gui>Clone</gui>, <gui>Delete</gui>, or to open the <gui>Properties</gui>
+    <gui>Clone</gui>, <gui>Delete</gui>, or to open the <gui>Preferences</gui>
     view for the box.</p></item>
   </list>
 
@@ -62,40 +62,45 @@
 
   </section>
 
-  <section id="properties">
-  <title>Properties view</title>
+  <section id="preferences">
+  <title>Preferences view</title>
 
-  <p>Right clicking a box and selecting <gui style="button">Properties</gui>
-  in the collection view opens the <em>properties view</em>, where some of the
-  details of a box can be configured. The properties view allows you to display
+  <p>Right-click a box in the collection view and select
+  <gui style="button">Preferences</gui> to open the <em>preferences view</em>,
+  where you can configure some of the details of your box.
+  The preferences view allows you to display
   or change settings depending on which of the following tabs is selected:</p>
 
-  <list>
-    <item><p><gui>General</gui>: displays the box <gui>Name</gui> and
-    <gui>Broker</gui> or virtualizer being used (such as <em>QEMU</em>).
-    The <gui>3D Acceleration</gui> switch also appears here.</p></item>
-    <item><p><gui>System</gui> settings: shows running graphs of CPU, disk I/O
-    and network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui>
-    sliders can be adjusted, and the <gui>Troubleshooting Log</gui> can be
-    viewed. The <gui style="button">Force Shutdown</gui> button, which enables
-    you to <link xref="shutdown">force a box to shut down</link>, the
-    <gui style="button">Restart</gui> button, and the
-    <gui>Run in background</gui> switch are on this tab.</p></item>
-    <item><p><gui>Devices &amp; Shares</gui>: the <gui style="button">Select</gui> button
-    allows you to specify the path to a CD/DVD device or ISO. The
-    <gui style="button">Remove</gui> button disconnects it. When the box is
-    running, the USB devices connected to the host system are listed, and each
-    can be controlled with an <gui>ON | OFF</gui> switch.
-    <link xref="shared-folders">Shared Folders</link> between host and guest
-    can be set for running machines which support spice-webdavd.</p></item>
-    <item><p><gui>Snapshots</gui>: allows you to
-    <link xref="snapshot-create">create</link> and manage snapshots of the
-    box.</p></item>
-  </list>
+  <section id="resources">
+  <title>The Resources tab</title>
+
+    <list>
+      <item><p>View the <gui>Name</gui> of your box and its <gui>IP Address</gui> (when available).</p></item>
+      <item><p>Set the values for <gui>CPU</gui>, <gui>Memory</gui> and <gui>Storage</gui> of your box.</p></item>
+      <item><p>Set the <gui>Allow running in background</gui> preference of your box.</p></item>
+      <item><p>Enable <gui>3D acceleration</gui> for supported operating systems.</p></item>
+      <item><p>Access the logs of your box in the <gui>Troubleshooting logs</gui> option, which can be useful for troubleshooting issues.</p></item>
+      <item><p>The <gui>Edit Configuration</gui> option lets you edit the libvirt domain configuration of your box manually.</p></item>
+    </list>
+  </section>
+
+  <section id="devices-and-shares">
+  <title>The Devices and Shares tab</title>
+
+    <list>
+      <item><p>Choose the <gui>USB Devices</gui> to redirect to your box.</p></item>
+      <item><p>Set the <gui>Shared Folders</gui> to be made available in your box.</p></item>
+      <item><p>Set a <gui>CDROM/DVD Drive</gui> file or device to make available in your box.</p></item>
+    </list>
+  </section>
+
+  <section id="snapshots">
+  <title>The Snaspshots tab</title>
+    <p>With <gui>Snapshots</gui> you can <link xref="snapshot-create">create</link> and manage snapshots of your box.</p>
+  </section>
 
   <p>If the box is running, click the menu (<media its:translate="no" type="image" src="figures/view-more-symbolic.svg"><span its:translate="yes">settings</span></media>)
-  button in the header bar and select <gui>Properties</gui>.</p>
-
+  button in the header bar and select <gui>Preferences</gui>.</p>
   </section>
 
 </page>
