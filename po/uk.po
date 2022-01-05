@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-04 16:09+0000\n"
-"PO-Revision-Date: 2022-01-04 21:00+0200\n"
+"POT-Creation-Date: 2022-01-05 09:51+0000\n"
+"PO-Revision-Date: 2022-01-05 21:42+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -571,18 +571,20 @@ msgstr "Зберегти"
 msgid "Shared Folders"
 msgstr "Спільні теки"
 
-#: data/ui/preferences/snapshot-list-row.ui:6
-msgid "Revert to this state"
-msgstr "Вернутись до цього стану"
+#: data/ui/preferences/snapshot-list-row.ui:68
+#| msgid "Revert to this state"
+msgid "Revert to snapshot"
+msgstr "Повернутися до знімку"
 
-#: data/ui/preferences/snapshot-list-row.ui:10
-msgid "Rename"
-msgstr "Перейменувати"
+#: data/ui/preferences/snapshot-list-row.ui:83
+#| msgid "Creating new snapshot…"
+msgid "Rename snapshot"
+msgstr "Перейменувати знімок"
 
-#. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:80
-msgid "Delete"
-msgstr "Вилучити"
+#: data/ui/preferences/snapshot-list-row.ui:98
+#| msgid "Creating new snapshot…"
+msgid "Delete snapshot"
+msgstr "Вилучити знімок"
 
 #: data/ui/preferences/snapshots-page.ui:6
 #: data/ui/preferences/snapshots-page.ui:11
@@ -695,6 +697,11 @@ msgstr "Примусово вимкнути"
 #: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Клонувати"
+
+#. Delete
+#: src/actions-popover.vala:80
+msgid "Delete"
+msgstr "Вилучити"
 
 #: src/actions-popover.vala:84 src/machine.vala:588
 msgid "Restart"
@@ -1108,16 +1115,16 @@ msgstr ""
 msgid "Use the button below to add your first shared folder."
 msgstr "Натисніть кнопку нижче, щоб додати вашу першу спільну теку."
 
-#: src/preferences/snapshot-list-row.vala:97
+#: src/preferences/snapshot-list-row.vala:88
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Відновлення до %s…"
 
-#: src/preferences/snapshot-list-row.vala:117
+#: src/preferences/snapshot-list-row.vala:108
 msgid "Failed to apply snapshot"
 msgstr "Не вдалося накласти зріз"
 
-#: src/preferences/snapshot-list-row.vala:134
+#: src/preferences/snapshot-list-row.vala:126
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Зріз «%s» вилучено."
@@ -1129,7 +1136,6 @@ msgstr "Не вдалось створити зріз %s"
 
 #. we need to account for the "+" button
 #: src/preferences/snapshots-page.vala:169
-#| msgid "Revert to this state"
 msgid "Revert to a previous state of your box."
 msgstr "Повернутися до попереднього стану вашої коробки."
 
@@ -1272,6 +1278,9 @@ msgstr "Щойно встановлено "
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Не вдалось імпортувати коробку з файла «%s»."
+
+#~ msgid "Rename"
+#~ msgstr "Перейменувати"
 
 #~ msgid "Done"
 #~ msgstr "Зроблено"
