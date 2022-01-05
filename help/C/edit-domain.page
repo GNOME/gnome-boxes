@@ -27,23 +27,31 @@
     what GNOME Boxes exposes in its user interface.</p>
   </comment>
 
-  <p>Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML configuration of
-    your virtual machines. This should allow you to achieve specific setups which are not exposed
-    in the GNOME Boxes interface and neither supported by the GNOME Boxes developers.</p>
+  <p>Boxes enables you to manually edit the the <sys>Libvirt</sys> domain configuration XML of your
+  box. You can achieve specific setups which are not exposed in the Boxes interface and neither supported
+  by the Boxes developers.</p>
+
+  <note style="info">
+    <p>See the Libvirt domain configuration format is documentation at https://libvirt.org/format.html</p>
+  </note>
 
   <steps>
     <title>To edit the Libvirt XML configuration of a box:</title>
     <item><p>Right-click on the box in the collection view and select
-    <gui>Properties</gui>, or click the menu
+    <gui>Preferences</gui>, or click the menu
     (<media type="image" src="figures/view-more-symbolic.svg" its:translate="no"><span its:translate="yes">settings</span></media>)
-    button in the header bar and select <gui>Properties</gui>.</p></item>
-    <item><p>Click the <gui>System</gui> tab.</p></item>
-    <item><p>Click the <gui style="button">Edit XML</gui> button to open the configuration
-    editor.</p></item>
-    <item><p>Edit the XML configuration and click <gui style="button">Save</gui>. Boxes will attempt
-    to create a snapshot prior to your changes getting applied, allowing you to revert your
-    configuration in case of a mistake.</p></item>
-    <item><p>If the virtual machine which has been edited is already running, Boxes will show a
-    notification asking to restart the running virtual machine.</p></item>
+    button in the header bar and select <gui>Preferences</gui>.</p></item>
+    <item><p>Click the <gui>Resources</gui> tab.</p></item>
+    <item><p>Scroll to the <gui>Configuration</gui> section.</p></item>
+    <item><p>Click the <gui style="button">Edit Configuration</gui> button to open the configuration
+    in a text editor.</p></item>
+    <item><p>Edit the XML configuration and <gui style="button">Save</gui>.</p></item>
+    <item><p>If the virtual machine which has been edited is already running, the changes will take effect
+    after restarting the running virtual machine.</p></item>
   </steps>
+
+  <note style="info">
+    <p>Before editing the box configuration, Boxes will suggest that you create a
+    snapshot. Snapshots allow you to revert your changes in case of a mistake.</p>
+  </note>
 </page>
