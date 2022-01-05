@@ -5,14 +5,14 @@
 # Andika Triwidada <andika@gmail.com>, 2012, 2013, 2014, 2015.
 # Zamani Karmana <zamani.karmana@gmail.com>, 2015.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2012.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2021.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-22 20:03+0000\n"
-"PO-Revision-Date: 2021-12-23 09:33+0700\n"
+"POT-Creation-Date: 2022-01-04 16:09+0000\n"
+"PO-Revision-Date: 2022-01-05 09:24+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -23,9 +23,9 @@ msgstr ""
 "X-Generator: Poedit 3.0\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
-#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
-#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
-#: src/main.vala:72 src/topbar.vala:85
+#: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
+#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -168,11 +168,11 @@ msgstr "Folder bersama"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Kumpulan varian nama folder bersama dan pemetaan path"
 
-#: data/ui/app-window.ui:116 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Selamat Datang di Boxes"
 
-#: data/ui/app-window.ui:117
+#: data/ui/app-window.ui:88
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Gunakan tombol <b>+</b> untuk membuat mesin virtual pertama Anda."
 
@@ -287,29 +287,33 @@ msgstr ""
 "Ekstensi viritualisasi tak tersedia pada sistem Anda.\n"
 "Periksalah pengaturan BIOS Anda untuk memfungsikannya."
 
-#: data/ui/assistant/pages/review-page.ui:67
+#: data/ui/assistant/pages/review-page.ui:68
 msgid "Operating System"
 msgstr "Sistem Operasi"
 
-#: data/ui/assistant/pages/review-page.ui:83
+#: data/ui/assistant/pages/review-page.ui:84
 #: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Memori"
 
-#: data/ui/assistant/pages/review-page.ui:90
+#: data/ui/assistant/pages/review-page.ui:91
 #: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Batas penyimpanan"
 
-#: data/ui/assistant/pages/review-page.ui:96
+#: data/ui/assistant/pages/review-page.ui:97
 #: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Nama Pengguna"
 
-#: data/ui/assistant/pages/review-page.ui:112
+#: data/ui/assistant/pages/review-page.ui:113
 #: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Sandi"
+
+#: data/ui/assistant/pages/review-page.ui:130
+msgid "Enable EFI"
+msgstr "Aktifkan EFI"
 
 #: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
@@ -340,22 +344,18 @@ msgid "Application Menu"
 msgstr "Menu Aplikasi"
 
 #: data/ui/collection-toolbar.ui:97
-msgid "Select Items"
-msgstr "Pilih Butir"
-
-#: data/ui/collection-toolbar.ui:125
 msgid "List view"
 msgstr "Tilikan daftar"
 
-#: data/ui/collection-toolbar.ui:153
+#: data/ui/collection-toolbar.ui:125
 msgid "Grid view"
 msgstr "Tilikan kisi"
 
-#: data/ui/collection-toolbar.ui:180 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:152
 msgid "Search"
 msgstr "Cari"
 
-#: data/ui/collection-toolbar.ui:207
+#: data/ui/collection-toolbar.ui:179
 msgid "Downloads"
 msgstr "Unduhan"
 
@@ -528,7 +528,7 @@ msgstr "Log Pemecahan Masalah"
 
 #: data/ui/preferences/resources-page.ui:151
 msgid "Diagnose problems with your box using the log file."
-msgstr "Mendiagnosis masalah dengan Boks Anda menggunakan berkas log."
+msgstr "Mendiagnosis masalah dengan boks Anda menggunakan berkas log."
 
 #: data/ui/preferences/resources-page.ui:173
 msgid "Edit Configuration"
@@ -571,13 +571,9 @@ msgid "Rename"
 msgstr "Ubah Nama"
 
 #. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:88
+#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:80
 msgid "Delete"
 msgstr "Hapus"
-
-#: data/ui/preferences/snapshot-list-row.ui:92
-msgid "Done"
-msgstr "Selesai"
 
 #: data/ui/preferences/snapshots-page.ui:6
 #: data/ui/preferences/snapshots-page.ui:11
@@ -585,37 +581,9 @@ msgid "Snapshots"
 msgstr "Snapshot"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:116
+#: src/preferences/snapshots-page.vala:143
 msgid "Creating new snapshot…"
 msgstr "Sedang membuat snapshot baru…"
-
-#: data/ui/selectionbar.ui:36
-msgid "_Favorite"
-msgstr "_Favorit"
-
-#: data/ui/selectionbar.ui:54
-msgid "P_ause"
-msgstr "Jed_a"
-
-#: data/ui/selectionbar.ui:72
-msgid "_Delete"
-msgstr "_Hapus"
-
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
-msgid "_Cancel"
-msgstr "Ba_tal"
-
-#: data/ui/selection-toolbar.ui:108
-msgid "Select All"
-msgstr "Pilih Semua"
-
-#: data/ui/selection-toolbar.ui:113
-msgid "Select Running"
-msgstr "Pilih Yang Berjalan"
-
-#: data/ui/selection-toolbar.ui:117
-msgid "Select None"
-msgstr "Pilih Tak Satupun"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -691,144 +659,139 @@ msgstr ""
 "akan muncul dalam folder Unduhan Anda."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:30
+#: src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Tindakan Box"
 
 #. Open in new Window
-#: src/actions-popover.vala:45
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Buka di Jendela Baru"
 
 #. Send files
-#: src/actions-popover.vala:50
+#: src/actions-popover.vala:49
 msgid "Send File…"
 msgstr "Kirim Berkas…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:58
+#: src/actions-popover.vala:57
 msgid "Take Screenshot"
 msgstr "Ambil Cuplikan Layar"
 
-#. Favorite
-#: src/actions-popover.vala:63
-msgid "Remove from Favorites"
-msgstr "Buang dari Favorit"
-
-#: src/actions-popover.vala:65
-msgid "Add to Favorites"
-msgstr "Tambah ke Favorit"
-
-#: src/actions-popover.vala:72
+#: src/actions-popover.vala:64
 msgid "Force Shutdown"
 msgstr "Paksa Mati"
 
-#: src/actions-popover.vala:83
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Klon"
 
-#: src/actions-popover.vala:92 src/machine.vala:597
+#: src/actions-popover.vala:84 src/machine.vala:588
 msgid "Restart"
 msgstr "Mulai ulang"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:101
+#: src/actions-popover.vala:93
 msgid "Preferences"
 msgstr "Preferensi"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:125
+#: src/actions-popover.vala:111
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Cuplikan layar dari %s"
 
-#: src/app.vala:125
+#: src/app.vala:113
 msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2012-2015, 2019, 2020.\n"
 "Zamani Karmana <zamani.karmana@gmail.com>, 2015.\n"
 "Dirgita <dirgitadevina@yahoo.co.id>, 2012.\n"
-"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2021."
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2022."
 
-#: src/app.vala:126
+#: src/app.vala:114
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "Sebuah aplikasi GNOME 3 sederhana untuk mengakses sistem  virtual"
 
-#: src/app.vala:187 src/main.vala:9
+#: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
 msgstr "Tampilkan nomor versi"
 
-#: src/app.vala:188
+#: src/app.vala:176
 msgid "Show help"
 msgstr "Tampilkan bantuan"
 
-#: src/app.vala:189
+#: src/app.vala:177
 msgid "Open in full screen"
 msgstr "Buka di layar penuh"
 
-#: src/app.vala:190 src/main.vala:10
+#: src/app.vala:178 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Periksa kapabilitas virtualisasi"
 
-#: src/app.vala:191
+#: src/app.vala:179
 msgid "Open box with UUID"
 msgstr "Buka box dengan UUID"
 
-#: src/app.vala:192
+#: src/app.vala:180
 msgid "Search term"
 msgstr "Istilah pencarian"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:194
+#: src/app.vala:182
 msgid "URL to display, broker or installer media"
 msgstr "URI untuk ditampilkan, broker, atau media pemasangan"
 
-#: src/app.vala:205
+#: src/app.vala:193
 msgid "— A simple application to access virtual machines"
 msgstr "— Sebuah aplikasi sederhana untuk mengakses mesin virtual"
 
-#: src/app.vala:232
+#: src/app.vala:220
 msgid "Too many command line arguments specified.\n"
 msgstr "Terlalu banyak argumen baris perintah yang dinyatakan.\n"
 
-#: src/app.vala:484
+#: src/app.vala:461
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box '%s' telah terpasang dan siap dipakai"
 
-#: src/app.vala:486
+#: src/app.vala:463
 msgid "Launch"
 msgstr "Luncurkan"
 
-#: src/app.vala:516
+#: src/app.vala:493
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "\"%s\" sedang berjalan di latar belakang"
 
-#: src/app.vala:601
+#: src/app.vala:574
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box '%s' telah dihapus"
 
-#: src/app.vala:602
+#: src/app.vala:575
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%u box telah dihapus"
 
-#: src/app.vala:630
+#: src/app.vala:603
 msgid "_Undo"
 msgstr "_Urung"
 
-#: src/app.vala:676
+#: src/app.vala:641
 msgid "Boxes is doing something"
 msgstr "Boxes sedang melakukan sesuatu"
 
-#: src/app-window.vala:302
+#: src/app-window.vala:272
 msgid "Select files to transfer"
 msgstr "Pilih berkas yang akan ditransfer"
 
-#: src/app-window.vala:305
+#: src/app-window.vala:273
+msgid "_Cancel"
+msgstr "Ba_tal"
+
+#: src/app-window.vala:275
 msgid "_Open"
 msgstr "_Buka"
 
@@ -846,7 +809,7 @@ msgstr "Sebelumnya"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:695
+#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
@@ -910,11 +873,7 @@ msgstr "Pasang"
 msgid "Failed to download"
 msgstr "Gagal mengunduh"
 
-#: src/icon-view.vala:32
-msgid "New and Recent"
-msgstr "Baru dan Terkini"
-
-#: src/installed-media.vala:80 src/installer-media.vala:182
+#: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
 msgstr "Sistem"
 
@@ -950,80 +909,75 @@ msgid "Send key combinations"
 msgstr "Kirim kombinasi tombol"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:467
+#: src/libvirt-machine.vala:465
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Mengembalikan %s dari diska"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:468
 #, c-format
 msgid "Starting %s"
 msgstr "Memulai %s"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:547
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "Memulai ulang “%s” memakan waktu terlalu lama. Paksa mematikan?"
 
-#: src/libvirt-machine.vala:551
+#: src/libvirt-machine.vala:549
 msgid "_Shutdown"
 msgstr "_Matikan"
 
-#: src/libvirt-machine.vala:567
+#: src/libvirt-machine.vala:565
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Kloning “%s”…"
 
-#: src/libvirt-machine.vala:693
+#: src/libvirt-machine.vala:691
 msgid "Installing…"
 msgstr "Memasang…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:695
 msgid "Setting up clone…"
 msgstr "Menyiapkan klon…"
 
-#: src/libvirt-machine.vala:699
+#: src/libvirt-machine.vala:697
 msgid "Importing…"
 msgstr "Mengimpor…"
 
-#: src/libvirt-machine.vala:708
-#, c-format
-msgid "host: %s"
-msgstr "host: %s"
-
-#: src/list-view-row.vala:130
+#: src/list-view-row.vala:49
 msgid "Running"
 msgstr "Berjalan"
 
-#: src/list-view-row.vala:136
+#: src/list-view-row.vala:55
 msgid "Paused"
 msgstr "Diistirahatkan"
 
-#: src/list-view-row.vala:141
+#: src/list-view-row.vala:60
 msgid "Powered Off"
 msgstr "Dimatikan"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:185
+#: src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "Menyambung ke %s"
 
-#: src/machine.vala:211 src/machine.vala:627
+#: src/machine.vala:207 src/machine.vala:618
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Sambungan ke “%s” gagal"
 
-#: src/machine.vala:258
+#: src/machine.vala:249
 msgid "Machine is under construction"
 msgstr "Mesin sedang dalam perbaikan"
 
-#: src/machine.vala:411
+#: src/machine.vala:402
 msgid "Saving…"
 msgstr "Menyimpan…"
 
-#: src/machine.vala:596
+#: src/machine.vala:587
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1032,12 +986,12 @@ msgstr ""
 "“%s” tak dapat dipulihkan dari diska\n"
 "Coba tanpa keadaan tersimpan?"
 
-#: src/machine.vala:607
+#: src/machine.vala:598
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Gagal memulai “%s”"
 
-#: src/machine.vala:620
+#: src/machine.vala:611
 msgid "Troubleshooting Log"
 msgstr "Log penelusuran masalah"
 
@@ -1098,7 +1052,7 @@ msgstr "Tidak ada citra CD/DVD"
 msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
 msgstr "GNOME Boxes versi Flatpak tidak mendukung pengalihan USB."
 
-#: src/preferences/devices-page.vala:36
+#: src/preferences/devices-page.vala:37
 msgid "Turn on your box to see the USB devices available for redirection."
 msgstr ""
 "Nyalakan boks Anda untuk melihat perangkat USB yang tersedia untuk "
@@ -1143,26 +1097,31 @@ msgid "Use the button below to add your first shared folder."
 msgstr ""
 "Gunakan tombol di bawah ini untuk menambahkan folder bersama pertama Anda."
 
-#: src/preferences/snapshot-list-row.vala:140
+#: src/preferences/snapshot-list-row.vala:97
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Mengembalikan ke %s…"
 
-#: src/preferences/snapshot-list-row.vala:158
+#: src/preferences/snapshot-list-row.vala:117
 msgid "Failed to apply snapshot"
 msgstr "Gagal menerapkan snapshot"
 
-#: src/preferences/snapshot-list-row.vala:175
+#: src/preferences/snapshot-list-row.vala:134
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Snapshot \"%s\" dihapus."
 
-#: src/preferences/snapshots-page.vala:122
+#: src/preferences/snapshots-page.vala:149
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Gagal membuat snapshot dari %s"
 
-#: src/preferences/snapshots-page.vala:144
+#. we need to account for the "+" button
+#: src/preferences/snapshots-page.vala:169
+msgid "Revert to a previous state of your box."
+msgstr "Kembali ke keadaan sebelumnya dari boks Anda."
+
+#: src/preferences/snapshots-page.vala:171
 msgid "Use the button below to create your first snapshot."
 msgstr "Gunakan tombol di bawah ini untuk membuat snapshot pertama Anda."
 
@@ -1187,35 +1146,6 @@ msgstr "Diska penyimpanan"
 #, c-format
 msgid "Used %s"
 msgstr "Digunakan %s"
-
-#: src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Mengistirahatkan “%s” gagal"
-
-#. Translators: This is a button to open box(es) in new window(s)
-#: src/selectionbar.vala:179
-msgctxt "0 items selected"
-msgid "_Open in new window"
-msgstr "_Buka di jendela baru"
-
-#: src/selectionbar.vala:181
-#, c-format
-msgid "_Open in new window"
-msgid_plural "_Open in %u new windows"
-msgstr[0] "_Buka di %u jendela baru"
-
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: src/selection-toolbar.vala:46
-#, c-format
-msgid "%u selected"
-msgid_plural "%u selected"
-msgstr[0] "%u dipilih"
-
-#: src/selection-toolbar.vala:48
-msgid "(Click on items to select them)"
-msgstr "(Klik pada butir untuk memilihnya)"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: src/spice-display.vala:46
@@ -1319,7 +1249,7 @@ msgstr "tidak"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:813
+#: src/vm-configurator.vala:793
 msgid "Incapable host system"
 msgstr "Sistem host tidak kapabel"
 
@@ -1328,10 +1258,64 @@ msgstr "Sistem host tidak kapabel"
 msgid "Just installed "
 msgstr "Baru saja dipasang "
 
-#: src/vm-importer.vala:63
+#: src/vm-importer.vala:64
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Impor Box dari berkas “%s” gagal."
+
+#~ msgid "Select Items"
+#~ msgstr "Pilih Butir"
+
+#~ msgid "Done"
+#~ msgstr "Selesai"
+
+#~ msgid "_Favorite"
+#~ msgstr "_Favorit"
+
+#~ msgid "P_ause"
+#~ msgstr "Jed_a"
+
+#~ msgid "_Delete"
+#~ msgstr "_Hapus"
+
+#~ msgid "Select All"
+#~ msgstr "Pilih Semua"
+
+#~ msgid "Select Running"
+#~ msgstr "Pilih Yang Berjalan"
+
+#~ msgid "Select None"
+#~ msgstr "Pilih Tak Satupun"
+
+#~ msgid "Remove from Favorites"
+#~ msgstr "Buang dari Favorit"
+
+#~ msgid "Add to Favorites"
+#~ msgstr "Tambah ke Favorit"
+
+#~ msgid "New and Recent"
+#~ msgstr "Baru dan Terkini"
+
+#~ msgid "host: %s"
+#~ msgstr "host: %s"
+
+#~ msgid "Pausing “%s” failed"
+#~ msgstr "Mengistirahatkan “%s” gagal"
+
+#~ msgctxt "0 items selected"
+#~ msgid "_Open in new window"
+#~ msgstr "_Buka di jendela baru"
+
+#~ msgid "_Open in new window"
+#~ msgid_plural "_Open in %u new windows"
+#~ msgstr[0] "_Buka di %u jendela baru"
+
+#~ msgid "%u selected"
+#~ msgid_plural "%u selected"
+#~ msgstr[0] "%u dipilih"
+
+#~ msgid "(Click on items to select them)"
+#~ msgstr "(Klik pada butir untuk memilihnya)"
 
 #~ msgid "Unsupported disk image format."
 #~ msgstr "Format citra diska yang tidak didukung."
