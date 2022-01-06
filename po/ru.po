@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2021-12-22 12:57+0000\n"
-"PO-Revision-Date: 2021-12-23 23:06+0300\n"
+"POT-Creation-Date: 2022-01-05 09:51+0000\n"
+"PO-Revision-Date: 2022-01-05 16:49+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <Alexmelman88@gmail.com>\n"
 "Language: ru\n"
@@ -29,9 +29,9 @@ msgstr ""
 "X-DL-State: Translated\n"
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
-#: data/ui/app-window.ui:35 data/ui/collection-toolbar.ui:7 src/app.vala:129
-#: src/app-window.vala:127 src/app-window.vala:242 src/app-window.vala:244
-#: src/main.vala:72 src/topbar.vala:85
+#: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
+#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxes"
 
@@ -181,11 +181,11 @@ msgstr "Совместные папки"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Динамический массив, содержащий имена совместных папок и пути к ним"
 
-#: data/ui/app-window.ui:116 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Добро пожаловать в Boxes"
 
-#: data/ui/app-window.ui:117
+#: data/ui/app-window.ui:88
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr ""
 "Чтобы создать свою первую виртуальную машину, нажмите на кнопку <b>+</b>."
@@ -301,29 +301,33 @@ msgstr ""
 "Расширения виртуализации недоступны для вашей системы.\n"
 "Включите их в настройках BIOS."
 
-#: data/ui/assistant/pages/review-page.ui:67
+#: data/ui/assistant/pages/review-page.ui:68
 msgid "Operating System"
 msgstr "Операционная система"
 
-#: data/ui/assistant/pages/review-page.ui:83
+#: data/ui/assistant/pages/review-page.ui:84
 #: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Память"
 
-#: data/ui/assistant/pages/review-page.ui:90
+#: data/ui/assistant/pages/review-page.ui:91
 #: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Предел хранилища"
 
-#: data/ui/assistant/pages/review-page.ui:96
+#: data/ui/assistant/pages/review-page.ui:97
 #: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: data/ui/assistant/pages/review-page.ui:112
+#: data/ui/assistant/pages/review-page.ui:113
 #: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
 msgid "Password"
 msgstr "Пароль"
+
+#: data/ui/assistant/pages/review-page.ui:130
+msgid "Enable EFI"
+msgstr "Включить EFI"
 
 #: data/ui/assistant/pages/setup-page.ui:5 data/ui/welcome-tutorial.ui:49
 msgid "Express Installation"
@@ -354,22 +358,18 @@ msgid "Application Menu"
 msgstr "Меню приложения"
 
 #: data/ui/collection-toolbar.ui:97
-msgid "Select Items"
-msgstr "Выбрать элементы"
-
-#: data/ui/collection-toolbar.ui:125
 msgid "List view"
 msgstr "В виде списка"
 
-#: data/ui/collection-toolbar.ui:153
+#: data/ui/collection-toolbar.ui:125
 msgid "Grid view"
 msgstr "В виде сетки"
 
-#: data/ui/collection-toolbar.ui:180 data/ui/selection-toolbar.ui:86
+#: data/ui/collection-toolbar.ui:152
 msgid "Search"
 msgstr "Поиск"
 
-#: data/ui/collection-toolbar.ui:207
+#: data/ui/collection-toolbar.ui:179
 msgid "Downloads"
 msgstr "Загрузки"
 
@@ -577,22 +577,17 @@ msgstr "Сохранить"
 msgid "Shared Folders"
 msgstr "Совместные папки"
 
-#: data/ui/preferences/snapshot-list-row.ui:6
-msgid "Revert to this state"
-msgstr "Вернуть в это состояние"
+#: data/ui/preferences/snapshot-list-row.ui:68
+msgid "Revert to snapshot"
+msgstr "Вернуться к снимку"
 
-#: data/ui/preferences/snapshot-list-row.ui:10
-msgid "Rename"
-msgstr "Переименовать"
+#: data/ui/preferences/snapshot-list-row.ui:83
+msgid "Rename snapshot"
+msgstr "Переименовать снимок"
 
-#. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:88
-msgid "Delete"
-msgstr "Удалить"
-
-#: data/ui/preferences/snapshot-list-row.ui:92
-msgid "Done"
-msgstr "Готово"
+#: data/ui/preferences/snapshot-list-row.ui:98
+msgid "Delete snapshot"
+msgstr "Удалить снимок"
 
 #: data/ui/preferences/snapshots-page.ui:6
 #: data/ui/preferences/snapshots-page.ui:11
@@ -600,37 +595,9 @@ msgid "Snapshots"
 msgstr "Снимки"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:116
+#: src/preferences/snapshots-page.vala:143
 msgid "Creating new snapshot…"
 msgstr "Создаётся новый снимок…"
-
-#: data/ui/selectionbar.ui:36
-msgid "_Favorite"
-msgstr "_Избранное"
-
-#: data/ui/selectionbar.ui:54
-msgid "P_ause"
-msgstr "При_остановить"
-
-#: data/ui/selectionbar.ui:72
-msgid "_Delete"
-msgstr "_Удалить"
-
-#: data/ui/selection-toolbar.ui:64 src/app-window.vala:303
-msgid "_Cancel"
-msgstr "_Отмена"
-
-#: data/ui/selection-toolbar.ui:108
-msgid "Select All"
-msgstr "Выбрать все"
-
-#: data/ui/selection-toolbar.ui:113
-msgid "Select Running"
-msgstr "Выбрать запущенные"
-
-#: data/ui/selection-toolbar.ui:117
-msgid "Select None"
-msgstr "Отменить выбор"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -705,58 +672,54 @@ msgstr ""
 "появятся в вашей папке Загрузки."
 
 #. Translators: Accessibility name for context menu with box-related actions (e.g Pause, Delete etc)
-#: src/actions-popover.vala:30
+#: src/actions-popover.vala:29
 msgid "Box actions"
 msgstr "Действия с виртуальной машиной"
 
 #. Open in new Window
-#: src/actions-popover.vala:45
+#: src/actions-popover.vala:44
 msgid "Open in New Window"
 msgstr "Открыть в новом окне"
 
 #. Send files
-#: src/actions-popover.vala:50
+#: src/actions-popover.vala:49
 msgid "Send File…"
 msgstr "Отправить файл…"
 
 #. Take Screenshot
-#: src/actions-popover.vala:58
+#: src/actions-popover.vala:57
 msgid "Take Screenshot"
 msgstr "Сделать снимок экрана"
 
-#. Favorite
-#: src/actions-popover.vala:63
-msgid "Remove from Favorites"
-msgstr "Удалить из избранного"
-
-#: src/actions-popover.vala:65
-msgid "Add to Favorites"
-msgstr "Добавить в избранное"
-
-#: src/actions-popover.vala:72
+#: src/actions-popover.vala:64
 msgid "Force Shutdown"
 msgstr "Принудительное выключение"
 
-#: src/actions-popover.vala:83
+#: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Клонировать"
 
-#: src/actions-popover.vala:92 src/machine.vala:597
+#. Delete
+#: src/actions-popover.vala:80
+msgid "Delete"
+msgstr "Удалить"
+
+#: src/actions-popover.vala:84 src/machine.vala:588
 msgid "Restart"
 msgstr "Перезапустить"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:101
+#: src/actions-popover.vala:93
 msgid "Preferences"
 msgstr "Параметры"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:125
+#: src/actions-popover.vala:111
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Снимок экрана от %s"
 
-#: src/app.vala:125
+#: src/app.vala:113
 msgid "translator-credits"
 msgstr ""
 "Юрий Мясоедов <ymyasoedov@yandex.ru>, 2012-2017.\n"
@@ -765,67 +728,67 @@ msgstr ""
 "Максим Таранов <png2378@gmail.com>, 2015.\n"
 "Aleksandr Melman <Alexmelman88@gmail.com>, 2021"
 
-#: src/app.vala:126
+#: src/app.vala:114
 msgid "A simple GNOME 3 application to access virtual systems"
 msgstr "Простое приложение GNOME 3 для доступа к виртуальным системам"
 
-#: src/app.vala:187 src/main.vala:9
+#: src/app.vala:175 src/main.vala:9
 msgid "Display version number"
 msgstr "Показать номер версии"
 
-#: src/app.vala:188
+#: src/app.vala:176
 msgid "Show help"
 msgstr "Показать справку"
 
-#: src/app.vala:189
+#: src/app.vala:177
 msgid "Open in full screen"
 msgstr "Открыть в полноэкранном режиме"
 
-#: src/app.vala:190 src/main.vala:10
+#: src/app.vala:178 src/main.vala:10
 msgid "Check virtualization capabilities"
 msgstr "Проверить поддержку виртуализации"
 
-#: src/app.vala:191
+#: src/app.vala:179
 msgid "Open box with UUID"
 msgstr "Открыть виртуальную машину с UUID"
 
-#: src/app.vala:192
+#: src/app.vala:180
 msgid "Search term"
 msgstr "Поисковый запрос"
 
 #. A 'broker' is a virtual-machine manager (local or remote). Currently only libvirt is supported.
-#: src/app.vala:194
+#: src/app.vala:182
 msgid "URL to display, broker or installer media"
 msgstr "Открыть URL, диспетчер виртуальных машин или установочный носитель"
 
-#: src/app.vala:205
+#: src/app.vala:193
 msgid "— A simple application to access virtual machines"
 msgstr "— Простое приложение для доступа к виртуальным машинам"
 
-#: src/app.vala:232
+#: src/app.vala:220
 msgid "Too many command line arguments specified.\n"
 msgstr "Указано слишком много аргументов командной строки.\n"
 
-#: src/app.vala:484
+#: src/app.vala:461
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Виртуальная машина «%s» установлена и готова к использованию"
 
-#: src/app.vala:486
+#: src/app.vala:463
 msgid "Launch"
 msgstr "Запустить"
 
-#: src/app.vala:516
+#: src/app.vala:493
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» запущен в фоновом режиме"
 
-#: src/app.vala:601
+#: src/app.vala:574
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Виртуальная машина «%s» была удалёна"
 
-#: src/app.vala:602
+#: src/app.vala:575
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -833,19 +796,23 @@ msgstr[0] "%u виртуальная машина была удалёна"
 msgstr[1] "%u виртуальные машины были удалёны"
 msgstr[2] "%u виртуальных машин было удалёно"
 
-#: src/app.vala:630
+#: src/app.vala:603
 msgid "_Undo"
 msgstr "_Отменить"
 
-#: src/app.vala:676
+#: src/app.vala:641
 msgid "Boxes is doing something"
 msgstr "Boxes что-то выполняют"
 
-#: src/app-window.vala:302
+#: src/app-window.vala:272
 msgid "Select files to transfer"
 msgstr "Выбрать файлы для передачи"
 
-#: src/app-window.vala:305
+#: src/app-window.vala:273
+msgid "_Cancel"
+msgstr "_Отмена"
+
+#: src/app-window.vala:275
 msgid "_Open"
 msgstr "_Открыть"
 
@@ -863,7 +830,7 @@ msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:695
+#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
 #: src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
@@ -927,11 +894,7 @@ msgstr "Установить"
 msgid "Failed to download"
 msgstr "Ошибка загрузки"
 
-#: src/icon-view.vala:32
-msgid "New and Recent"
-msgstr "Новое и недавнее"
-
-#: src/installed-media.vala:80 src/installer-media.vala:182
+#: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
 msgstr "Система"
 
@@ -967,80 +930,75 @@ msgid "Send key combinations"
 msgstr "Послать комбинацию клавиш"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:467
+#: src/libvirt-machine.vala:465
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Восстановление %s с диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:468
 #, c-format
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:547
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» слишком долго перезапускается. Выключить принудительно?"
 
-#: src/libvirt-machine.vala:551
+#: src/libvirt-machine.vala:549
 msgid "_Shutdown"
 msgstr "_Выключить"
 
-#: src/libvirt-machine.vala:567
+#: src/libvirt-machine.vala:565
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонирование «%s»…"
 
-#: src/libvirt-machine.vala:693
+#: src/libvirt-machine.vala:691
 msgid "Installing…"
 msgstr "Установка…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:695
 msgid "Setting up clone…"
 msgstr "Настройка клона…"
 
-#: src/libvirt-machine.vala:699
+#: src/libvirt-machine.vala:697
 msgid "Importing…"
 msgstr "Импортирование…"
 
-#: src/libvirt-machine.vala:708
-#, c-format
-msgid "host: %s"
-msgstr "хост: %s"
-
-#: src/list-view-row.vala:130
+#: src/list-view-row.vala:49
 msgid "Running"
 msgstr "Запущено"
 
-#: src/list-view-row.vala:136
+#: src/list-view-row.vala:55
 msgid "Paused"
 msgstr "Приостановлено"
 
-#: src/list-view-row.vala:141
+#: src/list-view-row.vala:60
 msgid "Powered Off"
 msgstr "Выключено"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:185
+#: src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "Подключение к %s"
 
-#: src/machine.vala:211 src/machine.vala:627
+#: src/machine.vala:207 src/machine.vala:618
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Сбой подключения к «%s»"
 
-#: src/machine.vala:258
+#: src/machine.vala:249
 msgid "Machine is under construction"
 msgstr "Машина находится в разработке"
 
-#: src/machine.vala:411
+#: src/machine.vala:402
 msgid "Saving…"
 msgstr "Сохранение…"
 
-#: src/machine.vala:596
+#: src/machine.vala:587
 #, c-format
 msgid ""
 "“%s” could not be restored from disk\n"
@@ -1049,12 +1007,12 @@ msgstr ""
 "Невозможно восстановить «%s» с диска\n"
 "Загрузить игнорируя сохранённое состояние?"
 
-#: src/machine.vala:607
+#: src/machine.vala:598
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Не удалось запустить «%s»"
 
-#: src/machine.vala:620
+#: src/machine.vala:611
 msgid "Troubleshooting Log"
 msgstr "Журнал проблем"
 
@@ -1116,7 +1074,7 @@ msgid "The Flatpak version of GNOME Boxes does not support USB redirection."
 msgstr ""
 "Версия GNOME Boxes в формате Flatpak не поддерживает перенаправление USB."
 
-#: src/preferences/devices-page.vala:36
+#: src/preferences/devices-page.vala:37
 msgid "Turn on your box to see the USB devices available for redirection."
 msgstr ""
 "Включите свою виртуальную машину, чтобы увидеть USB-устройства, доступные "
@@ -1160,26 +1118,31 @@ msgstr ""
 msgid "Use the button below to add your first shared folder."
 msgstr "Используйте кнопку ниже, чтобы добавить свою первую общую папку."
 
-#: src/preferences/snapshot-list-row.vala:140
+#: src/preferences/snapshot-list-row.vala:88
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Возврат к %s…"
 
-#: src/preferences/snapshot-list-row.vala:158
+#: src/preferences/snapshot-list-row.vala:108
 msgid "Failed to apply snapshot"
 msgstr "Не удалось применить снимок"
 
-#: src/preferences/snapshot-list-row.vala:175
+#: src/preferences/snapshot-list-row.vala:126
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Снимок «%s» удалён."
 
-#: src/preferences/snapshots-page.vala:122
+#: src/preferences/snapshots-page.vala:149
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Не удалось создать снимок %s"
 
-#: src/preferences/snapshots-page.vala:144
+#. we need to account for the "+" button
+#: src/preferences/snapshots-page.vala:169
+msgid "Revert to a previous state of your box."
+msgstr "Возврат к предыдущему состоянию вашей виртуальной машины."
+
+#: src/preferences/snapshots-page.vala:171
 msgid "Use the button below to create your first snapshot."
 msgstr "Используйте кнопку ниже, чтобы создать свой первый снимок системы."
 
@@ -1204,39 +1167,6 @@ msgstr "Диск для хранения"
 #, c-format
 msgid "Used %s"
 msgstr "Использовано %s"
-
-#: src/selectionbar.vala:60
-#, c-format
-msgid "Pausing “%s” failed"
-msgstr "Ошибка приостановки «%s»"
-
-#. Translators: This is a button to open box(es) in new window(s)
-#: src/selectionbar.vala:179
-msgctxt "0 items selected"
-msgid "_Open in new window"
-msgstr "_Открыть в новом окне"
-
-#: src/selectionbar.vala:181
-#, c-format
-msgid "_Open in new window"
-msgid_plural "_Open in %u new windows"
-msgstr[0] "_Открыть в %u новом окне"
-msgstr[1] "_Открыть в %u новых окнах"
-msgstr[2] "_Открыть в %u новых окнах"
-
-#. This goes with the "Click on items to select them" string and is about selection of items (boxes)
-#. when the main collection view is in selection mode.
-#: src/selection-toolbar.vala:46
-#, c-format
-msgid "%u selected"
-msgid_plural "%u selected"
-msgstr[0] "Выбран %u элемент"
-msgstr[1] "Выбрано %u элемента"
-msgstr[2] "Выбрано %u элементов"
-
-#: src/selection-toolbar.vala:48
-msgid "(Click on items to select them)"
-msgstr "(Нажмите на элемент, чтобы его выбрать)"
 
 #. Translators: "Unknown" is a placeholder for a box name when it could not be determined
 #: src/spice-display.vala:46
@@ -1334,7 +1264,7 @@ msgstr "нет"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:813
+#: src/vm-configurator.vala:793
 msgid "Incapable host system"
 msgstr "Система не поддерживает необходимые функции"
 
@@ -1343,7 +1273,7 @@ msgstr "Система не поддерживает необходимые фу
 msgid "Just installed "
 msgstr "Только что установлено "
 
-#: src/vm-importer.vala:63
+#: src/vm-importer.vala:64
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Не удалось импортировать виртуальную машину из файла «%s»."
