@@ -7,14 +7,14 @@
 # Sérgio Cardeira <cardeira.sergio@gmail.com>, 2016.
 # José Vieira <jvieira33@sapo.pt>, 2020.
 # Juliano Camargo <julianosc@pm.me>, 2020.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020, 2021.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020, 2021, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-04 11:59+0000\n"
-"PO-Revision-Date: 2022-01-04 14:10+0000\n"
+"POT-Creation-Date: 2022-01-05 09:51+0000\n"
+"PO-Revision-Date: 2022-01-06 22:55+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <hugokarvalho@hotmail.com>\n"
 "Language: pt\n"
@@ -77,7 +77,7 @@ msgstr ""
 #: data/org.gnome.Boxes.appdata.xml.in:22
 msgid "Take snapshots of virtual machines to restore to previous states."
 msgstr ""
-"Efetua cópias do sistema de máquinas virtuais para restaurar a estados "
+"Efetua imagens do sistema de máquinas virtuais para restaurar a estados "
 "anteriores."
 
 #: data/org.gnome.Boxes.appdata.xml.in:23
@@ -573,22 +573,17 @@ msgstr "Gravar"
 msgid "Shared Folders"
 msgstr "Pastas partilhadas"
 
-#: data/ui/preferences/snapshot-list-row.ui:6
-msgid "Revert to this state"
-msgstr "Reverter para este estado"
+#: data/ui/preferences/snapshot-list-row.ui:68
+msgid "Revert to snapshot"
+msgstr "Reverter para a imagem"
 
-#: data/ui/preferences/snapshot-list-row.ui:10
-msgid "Rename"
-msgstr "Renomear"
+#: data/ui/preferences/snapshot-list-row.ui:83
+msgid "Rename snapshot"
+msgstr "Renomear imagem"
 
-#. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:80
-msgid "Delete"
-msgstr "Eliminar"
-
-#: data/ui/preferences/snapshot-list-row.ui:92
-msgid "Done"
-msgstr "Terminado"
+#: data/ui/preferences/snapshot-list-row.ui:98
+msgid "Delete snapshot"
+msgstr "Eliminar imagem"
 
 #: data/ui/preferences/snapshots-page.ui:6
 #: data/ui/preferences/snapshots-page.ui:11
@@ -596,7 +591,7 @@ msgid "Snapshots"
 msgstr "Imagens (Snapshots)"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:116
+#: src/preferences/snapshots-page.vala:143
 msgid "Creating new snapshot…"
 msgstr "A criar nova imagem…"
 
@@ -700,6 +695,11 @@ msgstr "Forçar Desligar"
 #: src/actions-popover.vala:75
 msgid "Clone"
 msgstr "Clonar"
+
+#. Delete
+#: src/actions-popover.vala:80
+msgid "Delete"
+msgstr "Eliminar"
 
 #: src/actions-popover.vala:84 src/machine.vala:588
 msgid "Restart"
@@ -1113,26 +1113,31 @@ msgstr ""
 msgid "Use the button below to add your first shared folder."
 msgstr "Utilize o botão abaixo para adicionar a sua primeira pasta partilhada."
 
-#: src/preferences/snapshot-list-row.vala:140
+#: src/preferences/snapshot-list-row.vala:88
 #, c-format
 msgid "Reverting to %s…"
 msgstr "A reverter para %s…"
 
-#: src/preferences/snapshot-list-row.vala:158
+#: src/preferences/snapshot-list-row.vala:108
 msgid "Failed to apply snapshot"
 msgstr "Falha ao aplicar a imagem"
 
-#: src/preferences/snapshot-list-row.vala:175
+#: src/preferences/snapshot-list-row.vala:126
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Imagem “%s” eliminada."
 
-#: src/preferences/snapshots-page.vala:122
+#: src/preferences/snapshots-page.vala:149
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Falha ao criar imagem de %s"
 
-#: src/preferences/snapshots-page.vala:144
+#. we need to account for the "+" button
+#: src/preferences/snapshots-page.vala:169
+msgid "Revert to a previous state of your box."
+msgstr "Reverter para um estado anterior da sua caixa."
+
+#: src/preferences/snapshots-page.vala:171
 msgid "Use the button below to create your first snapshot."
 msgstr "Use o botão abaixo para criar a sua primeira imagem."
 
@@ -1273,6 +1278,12 @@ msgstr "Recém-instalado "
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "A importação da caixa a partir do ficheiro “%s” falhou."
+
+#~ msgid "Rename"
+#~ msgstr "Renomear"
+
+#~ msgid "Done"
+#~ msgstr "Terminado"
 
 #~ msgid "Select Items"
 #~ msgstr "Selecionar itens"
