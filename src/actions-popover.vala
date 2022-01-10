@@ -56,6 +56,7 @@ private class Boxes.ActionsPopover: Gtk.Popover {
             // Take Screenshot
             section.append (_("Take Screenshot"), "box.take_screenshot");
         }
+        menu.append_section (null, section);
 
         // New section for force shutdown and delete
         section = new GLib.Menu ();
