@@ -44,7 +44,7 @@ private class Boxes.DevicesPage : Hdy.PreferencesPage {
             return;
         }
 
-        if (!(machine.display is SpiceDisplay))
+        if (!(machine.display is SpiceDisplay) || App.is_running_in_flatpak ())
             return;
 
         var spice_display = machine.display as SpiceDisplay;
