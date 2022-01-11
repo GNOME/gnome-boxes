@@ -86,6 +86,10 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
             var view_row = new ListViewRow (item as CollectionItem);
             box_row.add (view_row);
 
+            view_row.pop_context_menu.connect (() => {
+                launch_context_popover_for_row (box_row);
+            });
+
             box_row.visible = true;
             view_row.visible = true;
 
@@ -97,6 +101,8 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
         container.add.connect (add_row);
         container.remove.connect (remove_row);
     }
+
+
 
     private CollectionItem? get_item_for_row (Gtk.ListBoxRow box_row) {
         var view = box_row.get_child () as ListViewRow;
@@ -166,8 +172,9 @@ private class Boxes.ListView: Gtk.ScrolledWindow {
         if (item == null)
             return false;
 
+        var row = box_row.get_child () as Boxes.ListViewRow;
         context_popover.update_for_item (item);
-        context_popover.relative_to = box_row;
+        context_popover.relative_to = row.menu_button;
         context_popover.show ();
 
         return true;
