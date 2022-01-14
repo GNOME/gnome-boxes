@@ -20,7 +20,6 @@ resources = gnome.compile_resources ('org.gnome.Boxes',
 desktop_conf = configuration_data ()
 desktop_conf.set ('icon', application_id)
 desktop = i18n.merge_file (
-  'desktop',
   input: configure_file (
     input: files ('org.gnome.Boxes.desktop.in'),
     output: 'org.gnome.Boxes.desktop.in',
@@ -65,7 +64,7 @@ configure_file (
 
 appdata_conf = configuration_data()
 appdata_conf.set('appid', application_id)
-appdata_file = i18n.merge_file ('appdata-file',
+appdata_file = i18n.merge_file (
   input: configure_file (
     input: files ('org.gnome.Boxes.appdata.xml.in'),
     output: 'org.gnome.Boxes.appdata.xml.in',
