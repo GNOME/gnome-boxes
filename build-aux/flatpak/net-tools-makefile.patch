@@ -1,0 +1,22 @@
+diff --git a/net-tools-Makefile b/Makefile
+index 91aa9dd4..c29509df 100644
+--- a/net-tools-Makefile
++++ b/Makefile
+@@ -98,7 +98,7 @@ endif
+ CPPFLAGS += -I. -I$(TOPDIR)/include -I$(NET_LIB_PATH)
+ LDFLAGS  += -L$(NET_LIB_PATH)
+ 
+-SUBDIRS	= man/ $(NET_LIB_PATH)/
++SUBDIRS	= $(NET_LIB_PATH)/
+ 
+ NLIB	= -l$(NET_LIB_NAME)
+ 
+@@ -246,7 +246,7 @@ ifeq ($(HAVE_SERIAL_TOOLS),1)
+ endif
+ 
+ installdata:
+-	$(MAKE) -C man install
++	
+ 	$(MAKE) -C po install
+ 
+ # End of Makefile.

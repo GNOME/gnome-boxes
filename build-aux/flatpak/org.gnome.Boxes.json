@@ -431,6 +431,76 @@
             ]
         },
         {
+            "name": "libtpms",
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/stefanberger/libtpms",
+                    "commit": "e81d634c27"
+                }
+            ]
+        },
+        {
+            "name": "net-tools",
+            "buildsystem": "simple",
+            "build-commands": [
+                "touch config.h",
+                "make BINDIR=/app/bin SBINDIR=/app/sbin install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://jztkft.dl.sourceforge.net/project/net-tools/net-tools-2.10.tar.xz",
+                    "sha256": "b262435a5241e89bfa51c3cabd5133753952f7a7b7b93f32e08cb9d96f580d69"
+                },
+                {
+                   "type": "patch",
+                   "path": "net-tools-makefile.patch"
+                },
+                {
+                    "type": "file",
+                    "dest-filename": "config.h",
+                    "path": "net-tools-config.h"
+                },
+                {
+                    "type": "file",
+                    "dest-filename": "config.make",
+                    "path": "net-tools-config.make"
+                }
+            ]
+        },
+        {
+            "name": "expect",
+            "buildsystem": "simple",
+            "build-commands": [
+                "aclocal && autoconf",
+                "./configure --without-tcl",
+                "make install"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://altushost-swe.dl.sourceforge.net/project/expect/Expect/5.45.4/expect5.45.4.tar.gz",
+                    "sha256": "49a7da83b0bdd9f46d04a04deec19c7767bb9a323e40c4781f89caf760b92c34"
+                }
+            ]
+        },
+        {
+            "name": "swtpm",
+            "config-opts": [
+                "--disable-static",
+                "--with-tpm2",
+                "--with-openssl"
+            ],
+            "sources": [
+                {
+                    "type": "git",
+                    "url": "https://github.com/stefanberger/swtpm",
+                    "commit" : "b79fd91c4b4a74c9c5027b517c5036952c5525db"
+                }
+            ]
+        },
+        {
             "name": "gnome-boxes",
             "buildsystem": "meson",
             "config-opts": [
