@@ -7,7 +7,21 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
 
     [GtkChild]
     private unowned Gtk.Overlay toast_overlay;
-    private Boxes.PreferencesToast toast;
+    private Boxes.PreferencesToast _toast;
+    private Boxes.PreferencesToast toast {
+        set {
+            if (_toast != null) {
+                _toast.dismiss ();
+            }
+
+            _toast = value;
+            toast_overlay.add_overlay (_toast);
+        }
+
+        get {
+            return _toast;
+        }
+    }
 
     [GtkChild]
     private unowned Hdy.PreferencesGroup preferences_group;
@@ -112,7 +126,6 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
         }
 
         toast = new_toast;
-        toast_overlay.add_overlay (toast);
     }
 
     private int config_sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
@@ -147,8 +160,11 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
             listbox.add (create_snapshot_row (new_snapshot));
         } catch (GLib.Error e) {
             var msg = _("Failed to create snapshot of %s").printf (machine.name);
-            machine.window.notificationbar.display_error (msg);
             warning (e.message);
+
+            toast = new Boxes.PreferencesToast () {
+                message = msg
+            };
         }
         this.activity = null;
 
