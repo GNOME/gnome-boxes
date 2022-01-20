@@ -155,9 +155,19 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
             machine.run_in_bg = false;
 
             var msg = _("Boxes is not authorized to run in background");
-            machine.window.notificationbar.display_for_action (msg,
-                                                               _("Manage permissions"),
-                                                               open_permission_settings);
+            var message_dialog = new Gtk.MessageDialog (App.app.main_window,
+                                                        Gtk.DialogFlags.MODAL,
+                                                        Gtk.MessageType.QUESTION,
+                                                        Gtk.ButtonsType.YES_NO,
+                                                        msg);
+            message_dialog.format_secondary_text (_("Do you want to open Settings to manage application permissions?"));
+            message_dialog.show_all ();
+            message_dialog.response.connect ((dialog, response) => {
+                if (response == Gtk.ResponseType.YES)
+                    open_permission_settings ();
+
+                message_dialog.destroy ();
+            });
         });
     }
 
