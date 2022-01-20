@@ -1,7 +1,7 @@
 // This file is part of GNOME Boxes. License: LGPLv2+
 
-[GtkTemplate (ui = "/org/gnome/Boxes/ui/preferences/preferences-toast.ui")]
-private class Boxes.PreferencesToast : Gtk.Box {
+[GtkTemplate (ui = "/org/gnome/Boxes/ui/toast.ui")]
+private class Boxes.Toast : Gtk.Box {
     public delegate void OKFunc ();
     public delegate void DismissFunc ();
 

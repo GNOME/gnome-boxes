@@ -4,7 +4,6 @@ vala_sources += files(
   'device-list-row.vala',
   'memory-row.vala',
   'preferences-window.vala',
-  'preferences-toast.vala',
   'ram-row.vala',
   'resources-page.vala',
   'shared-folders-widget.vala',

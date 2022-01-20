@@ -7,8 +7,8 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
 
     [GtkChild]
     private unowned Gtk.Overlay toast_overlay;
-    private Boxes.PreferencesToast _toast;
-    private Boxes.PreferencesToast toast {
+    private Boxes.Toast _toast;
+    private Boxes.Toast toast {
         set {
             if (_toast != null) {
                 _toast.dismiss ();
@@ -118,7 +118,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
         listbox.select_row (selected_row);
     }
 
-    private void display_toast (Boxes.PreferencesToast new_toast) {
+    private void display_toast (Boxes.Toast new_toast) {
         toast = new_toast;
     }
 
@@ -156,7 +156,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
             var msg = _("Failed to create snapshot of %s").printf (machine.name);
             warning (e.message);
 
-            toast = new Boxes.PreferencesToast () {
+            toast = new Boxes.Toast () {
                 message = msg
             };
         }

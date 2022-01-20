@@ -79,7 +79,6 @@ vala_sources = [
   'troubleshoot-view.vala',
   'topbar.vala',
   'ui.vala',
-  'ui/thumbnail.vala', # FIXME: move this into ui/meson.build
   'unattended-installer.vala',
   'unattended-file.vala',
   'unattended-setup-box.vala',
@@ -96,6 +95,7 @@ vala_sources = [
   'tracker-iso-query.vala',
 ]
 
+subdir('ui')
 subdir('assistant')
 subdir('preferences')
 
