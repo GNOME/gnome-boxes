@@ -2,7 +2,7 @@
 
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/preferences/snapshot-list-row.ui")]
 private class Boxes.SnapshotListRow : Hdy.ActionRow {
-    public signal void deletion_requested (Boxes.PreferencesToast toast);
+    public signal void display_toast (Boxes.PreferencesToast toast);
     public signal void is_current ();
 
     public GVir.DomainSnapshot snapshot;
@@ -44,6 +44,10 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
             setup_labels (snapshot.get_config (0));
         } catch (GLib.Error e) {
             critical (e.message);
+
+            display_toast (new Boxes.PreferencesToast () {
+                message = e.message
+            });
         }
     }
 
@@ -69,7 +73,12 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
             setup_labels (config, name);
             mode_stack.visible_child = show_name_box;
         } catch (GLib.Error e) {
-            warning ("Failed to change name of snapshot to %s: %s", name, e.message);
+            warning ("Failed to rename snapshot to %s: %s", name, e.message);
+
+            display_toast (new Boxes.PreferencesToast () {
+                // Translators: %s is the reason why Boxes failed to rename the snapshot.
+                message = _("Failed to rename snapshot: %s").printf (e.message)
+            });
         }
     }
 
@@ -105,7 +114,11 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
                 is_current ();
             } catch (GLib.Error e) {
                 warning (e.message);
-                machine.window.notificationbar.display_error (_("Failed to apply snapshot"));
+
+                display_toast (new Boxes.PreferencesToast () {
+                    // Translators: %s is the reason why Boxes failed to apply the snapshot.
+                    message = _("Failed to revert to snapshot: %s").printf (e.message)
+                });
             }
             activity_message = null;
         });
@@ -145,13 +158,12 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
             row = null;
         };
 
-        var toast = new Boxes.PreferencesToast () {
+        display_toast (new Boxes.PreferencesToast () {
             message = message,
             action = _("Undo"),
             undo_func = (owned) undo,
             dismiss_func = (owned) really_remove,
-        };
-        deletion_requested (toast);
+        });
     }
 
     [GtkCallback]

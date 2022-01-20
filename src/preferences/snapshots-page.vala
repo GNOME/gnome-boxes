@@ -87,7 +87,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
     private SnapshotListRow create_snapshot_row (GVir.DomainSnapshot snapshot) {
         var row = new SnapshotListRow (snapshot, machine);
         row.notify["activity-message"].connect (row_activity_changed);
-        row.deletion_requested.connect (on_row_deleted);
+        row.display_toast.connect (display_toast);
         row.is_current.connect (select_row);
 
         try {
@@ -118,13 +118,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
         listbox.select_row (selected_row);
     }
 
-
-    private void on_row_deleted (Boxes.PreferencesToast new_toast) {
-        if (toast != null) {
-            toast.dismiss ();
-            toast = null;
-        }
-
+    private void display_toast (Boxes.PreferencesToast new_toast) {
         toast = new_toast;
     }
 
