@@ -147,6 +147,7 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
 
         var toast = new Boxes.PreferencesToast () {
             message = message,
+            action = _("Undo"),
             undo_func = (owned) undo,
             dismiss_func = (owned) really_remove,
         };

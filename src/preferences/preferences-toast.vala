@@ -21,6 +21,7 @@ private class Boxes.PreferencesToast : Gtk.Box {
 
     public string action {
         set {
+            button.visible = true;
             button.label = value; 
         }
         get {
