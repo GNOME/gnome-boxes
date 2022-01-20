@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-05 09:51+0000\n"
-"PO-Revision-Date: 2022-01-05 21:42+0200\n"
+"POT-Creation-Date: 2022-01-20 17:22+0000\n"
+"PO-Revision-Date: 2022-01-20 20:42+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -499,6 +499,7 @@ msgid "CDROM/DVD Drive"
 msgstr "Пристрій для читання CDROM/DVD"
 
 #: data/ui/preferences/preferences-toast.ui:27
+#: src/preferences/snapshot-list-row.vala:163
 msgid "Undo"
 msgstr "Скасувати"
 
@@ -572,17 +573,14 @@ msgid "Shared Folders"
 msgstr "Спільні теки"
 
 #: data/ui/preferences/snapshot-list-row.ui:68
-#| msgid "Revert to this state"
 msgid "Revert to snapshot"
 msgstr "Повернутися до знімку"
 
 #: data/ui/preferences/snapshot-list-row.ui:83
-#| msgid "Creating new snapshot…"
 msgid "Rename snapshot"
 msgstr "Перейменувати знімок"
 
 #: data/ui/preferences/snapshot-list-row.ui:98
-#| msgid "Creating new snapshot…"
 msgid "Delete snapshot"
 msgstr "Вилучити знімок"
 
@@ -592,7 +590,7 @@ msgid "Snapshots"
 msgstr "Зрізи"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:143
+#: src/preferences/snapshots-page.vala:150
 msgid "Creating new snapshot…"
 msgstr "Створення нового зрізу…"
 
@@ -690,30 +688,30 @@ msgstr "Надіслати файл…"
 msgid "Take Screenshot"
 msgstr "Зробити знімок екрана"
 
-#: src/actions-popover.vala:64
+#: src/actions-popover.vala:65
 msgid "Force Shutdown"
 msgstr "Примусово вимкнути"
 
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:76
 msgid "Clone"
 msgstr "Клонувати"
 
 #. Delete
-#: src/actions-popover.vala:80
+#: src/actions-popover.vala:81
 msgid "Delete"
 msgstr "Вилучити"
 
-#: src/actions-popover.vala:84 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:588
 msgid "Restart"
 msgstr "Перезапустити"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:94
 msgid "Preferences"
 msgstr "Параметри"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:111
+#: src/actions-popover.vala:112
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Знімок екрана від %s"
@@ -963,15 +961,15 @@ msgstr "Розпочаток клонування…"
 msgid "Importing…"
 msgstr "Імпортування…"
 
-#: src/list-view-row.vala:49
+#: src/list-view-row.vala:48
 msgid "Running"
 msgstr "Запущено"
 
-#: src/list-view-row.vala:55
+#: src/list-view-row.vala:54
 msgid "Paused"
 msgstr "Призупинено"
 
-#: src/list-view-row.vala:60
+#: src/list-view-row.vala:59
 msgid "Powered Off"
 msgstr "Вимкнено"
 
@@ -1115,31 +1113,41 @@ msgstr ""
 msgid "Use the button below to add your first shared folder."
 msgstr "Натисніть кнопку нижче, щоб додати вашу першу спільну теку."
 
-#: src/preferences/snapshot-list-row.vala:88
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:80
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to rename snapshot: %s"
+msgstr "Не вдалося перейменувати знімок: %s"
+
+#: src/preferences/snapshot-list-row.vala:97
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Відновлення до %s…"
 
-#: src/preferences/snapshot-list-row.vala:108
-msgid "Failed to apply snapshot"
-msgstr "Не вдалося накласти зріз"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:120
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to revert to snapshot: %s"
+msgstr "Не вдалося повернутися до знімка: %s"
 
-#: src/preferences/snapshot-list-row.vala:126
+#: src/preferences/snapshot-list-row.vala:139
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Зріз «%s» вилучено."
 
-#: src/preferences/snapshots-page.vala:149
+#: src/preferences/snapshots-page.vala:156
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Не вдалось створити зріз %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:169
+#: src/preferences/snapshots-page.vala:179
 msgid "Revert to a previous state of your box."
 msgstr "Повернутися до попереднього стану вашої коробки."
 
-#: src/preferences/snapshots-page.vala:171
+#: src/preferences/snapshots-page.vala:181
 msgid "Use the button below to create your first snapshot."
 msgstr "Натисніть кнопку нижче, щоб створити ваш перший знімок."
 
@@ -1278,6 +1286,9 @@ msgstr "Щойно встановлено "
 #, c-format
 msgid "Box import from file “%s” failed."
 msgstr "Не вдалось імпортувати коробку з файла «%s»."
+
+#~ msgid "Failed to apply snapshot"
+#~ msgstr "Не вдалося накласти зріз"
 
 #~ msgid "Rename"
 #~ msgstr "Перейменувати"
