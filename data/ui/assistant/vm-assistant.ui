@@ -14,27 +14,33 @@
         <property name="orientation">vertical</property>
 
         <child>
-          <object class="GtkStack" id="pages">
+          <object class="BoxesToastOverlay" id="toast_overlay">
             <property name="visible">True</property>
-            <signal name="notify::visible-child" handler="update_titlebar"/>
+
             <child>
-              <object class="BoxesAssistantIndexPage" id="index_page">
-                <signal name="done" handler="do_preparation"/>
-              </object>
-            </child>
-            <child>
-              <object class="BoxesAssistantPreparationPage" id="preparation_page">
-                <signal name="done" handler="do_setup"/>
-              </object>
-            </child>
-            <child>
-              <object class="BoxesAssistantSetupPage" id="setup_page">
-                <signal name="done" handler="do_review"/>
-              </object>
-            </child>
-            <child>
-              <object class="BoxesAssistantReviewPage" id="review_page">
-                <signal name="done" handler="do_create"/>
+              <object class="GtkStack" id="pages">
+                <property name="visible">True</property>
+                <signal name="notify::visible-child" handler="update_titlebar"/>
+                <child>
+                  <object class="BoxesAssistantIndexPage" id="index_page">
+                    <signal name="done" handler="do_preparation"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="BoxesAssistantPreparationPage" id="preparation_page">
+                    <signal name="done" handler="do_setup"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="BoxesAssistantSetupPage" id="setup_page">
+                    <signal name="done" handler="do_review"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="BoxesAssistantReviewPage" id="review_page">
+                    <signal name="done" handler="do_create"/>
+                  </object>
+                </child>
               </object>
             </child>
           </object>

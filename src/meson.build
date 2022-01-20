@@ -68,8 +68,6 @@ vala_sources = [
   'machine.vala',
   'main.vala',
   'media-manager.vala',
-  'notification.vala',
-  'notificationbar.vala',
   'os-database.vala',
   'portals.vala',
   'search.vala',

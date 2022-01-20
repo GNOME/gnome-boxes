@@ -510,7 +510,6 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
         stay_on_display = true;
         ulong state_id = 0;
-        Boxes.Notification notification = null;
         debug ("Rebooting '%s'..", name);
 
         state_id = notify["state"].connect (() => {
@@ -530,26 +529,21 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
                     Source.remove (shutdown_timeout);
                     shutdown_timeout = 0;
                 }
-                if (notification != null) {
-                    notification.dismiss ();
-                    notification = null;
-                }
             }
         });
 
         shutdown_timeout = Timeout.add_seconds (5, () => {
             // Seems guest ignored ACPI shutdown, lets force shutdown with user's consent
-            Notification.OKFunc really_force_shutdown = () => {
-                notification = null;
+            Toast.OKFunc really_force_shutdown = () => {
                 force_shutdown ();
             };
 
             var message = _("Restart of “%s” is taking too long. Force it to shutdown?").printf (name);
-            notification = window.notificationbar.display_for_action (message,
-                                                                       _("_Shutdown"),
-                                                                       (owned) really_force_shutdown,
-                                                                       null,
-                                                                       -1);
+            window.display_toast (new Boxes.Toast () {
+                message = message,
+                action = _("Shutdown"),
+                undo_func = (owned) really_force_shutdown
+            });
             shutdown_timeout = 0;
 
             return false;

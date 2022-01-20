@@ -139,9 +139,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
             var msg = _("Failed to create snapshot of %s").printf (machine.name);
             warning (e.message);
 
-            toast_overlay.display_toast (new Boxes.Toast () {
-                message = msg
-            });
+            toast_overlay.display_toast (new Boxes.Toast (msg));
         }
         this.activity = null;
 

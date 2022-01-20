@@ -4,6 +4,8 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/vm-assistant.ui")]
 private class Boxes.VMAssistant : Gtk.Dialog {
     [GtkChild]
+    private unowned Boxes.ToastOverlay toast_overlay;
+    [GtkChild]
     private unowned Stack pages;
     [GtkChild]
     private unowned AssistantIndexPage index_page;
@@ -58,7 +60,7 @@ private class Boxes.VMAssistant : Gtk.Dialog {
             debug("Failed to analyze installer image: %s", error.message);
 
             var msg = _("Failed to analyze installer media. Corrupted or incomplete media?");
-            App.app.main_window.notificationbar.display_error (msg);
+            toast_overlay.display_toast (new Boxes.Toast (msg));
         }
     }
 

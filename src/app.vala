@@ -299,9 +299,8 @@ private class Boxes.App: Gtk.Application {
             this.hold ();
         }
 
-        foreach (var window in windows) {
-            window.notificationbar.dismiss_all ();
-        }
+        main_window.dismiss_toast ();
+
         async_launcher.await_all ();
         suspend_machines ();
     }
@@ -578,7 +577,7 @@ private class Boxes.App: Gtk.Application {
         foreach (var item in items)
             collection.remove_item (item);
 
-        Notification.OKFunc undo = () => {
+        Toast.OKFunc undo = () => {
             debug ("Box deletion cancelled by user. Re-adding to view");
             foreach (var item in items) {
                 var machine = item as Machine;
@@ -588,7 +587,7 @@ private class Boxes.App: Gtk.Application {
                 undo_notify_callback ();
         };
 
-        Notification.DismissFunc really_remove = () => {
+        Toast.DismissFunc really_remove = () => {
             debug ("User did not cancel deletion. Deleting now...");
             foreach (var item in items) {
                 if (!(item is Machine))
@@ -600,7 +599,12 @@ private class Boxes.App: Gtk.Application {
             }
         };
 
-        main_window.notificationbar.display_for_action (msg, _("_Undo"), (owned) undo, (owned) really_remove);
+        main_window.display_toast (new Boxes.Toast () {
+            message = msg,
+            action = _("Undo"),
+            undo_func = (owned) undo,
+            dismiss_func = (owned) really_remove,
+        });
     }
 
     public AppWindow add_new_window () {

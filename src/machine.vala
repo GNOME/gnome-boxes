@@ -203,8 +203,10 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
                     if (!stay_on_display && window.current_item == this)
                         window.set_state (Boxes.UIState.COLLECTION);
 
-                    if (failed)
-                        window.notificationbar.display_error (_("Connection to “%s” failed").printf (name));
+                    if (failed) {
+                        string message = _("Connection to “%s” failed").printf (name);
+                        window.display_toast (new Boxes.Toast (message));
+                    }
                 }
 
                 load_screenshot ();
@@ -584,12 +586,20 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
         try {
             yield connect_display (flags);
         } catch (Boxes.Error.RESTORE_FAILED e) {
-            var message = _("“%s” could not be restored from disk\nTry without saved state?").printf (name);
-            var notification = window.notificationbar.display_for_action (message, _("Restart"), () => {
+            Toast.OKFunc restart_func = () => {
                 try_connect_display.begin (flags | Machine.ConnectFlags.IGNORE_SAVED_STATE);
-            });
-            notification.dismissed.connect (() => {
+            };
+            Toast.DismissFunc dismiss_func = () => {
                 window.set_state (UIState.COLLECTION);
+            };
+
+            // Translators: The first %s is the name of the box, the second is the reason of the error
+            var message = _("“%s” could not be restored from disk: %s").printf (name, e.message);
+            window.display_toast (new Boxes.Toast () {
+                message = message,
+                action = _("Restart"),
+                undo_func = (owned) restart_func,
+                dismiss_func = (owned) dismiss_func
             });
         } catch (Boxes.Error.START_FAILED e) {
             warning ("Failed to start %s: %s", name, e.message);
@@ -597,7 +607,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
 
             var msg = _("Failed to start “%s”").printf (name);
             if (this is LibvirtMachine) {
-                Notification.OKFunc troubleshoot = () => {
+                Toast.OKFunc troubleshoot = () => {
                     window.current_item = this;
 
                     var preferences = new PreferencesWindow () {
@@ -608,14 +618,22 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
                     preferences.show_troubleshoot_logs ();
                 };
 
-                window.notificationbar.display_for_action (msg, _("Troubleshooting Log"), (owned) troubleshoot, null);
+                window.display_toast (new Boxes.Toast () {
+                    message = msg,
+                    action = _("Troubleshooting Log"),
+                    undo_func = (owned) troubleshoot
+                });
             } else {
-                window.notificationbar.display_error (msg);
+                window.display_toast (new Boxes.Toast (msg));
             }
         } catch (GLib.Error e) {
             warning ("Failed to connect to %s: %s", name, e.message);
             window.set_state (UIState.COLLECTION);
-            window.notificationbar.display_error (_("Connection to “%s” failed").printf (name));
+
+            // Translators: the first %s is the name of the box, the second is the reason of the error.
+            var message = _("Connection to “%s” failed: %s").printf (name, e.message);
+
+            window.display_toast (new Boxes.Toast (message));
         }
     }
 

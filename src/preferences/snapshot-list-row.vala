@@ -45,9 +45,7 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         } catch (GLib.Error e) {
             critical (e.message);
 
-            display_toast (new Boxes.Toast () {
-                message = e.message
-            });
+            display_toast (new Boxes.Toast (e.message));
         }
     }
 
@@ -75,10 +73,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         } catch (GLib.Error e) {
             warning ("Failed to rename snapshot to %s: %s", name, e.message);
 
-            display_toast (new Boxes.Toast () {
-                // Translators: %s is the reason why Boxes failed to rename the snapshot.
-                message = _("Failed to rename snapshot: %s").printf (e.message)
-            });
+            // Translators: %s is the reason why Boxes failed to rename the snapshot.
+            display_toast (new Boxes.Toast (_("Failed to rename snapshot: %s").printf (e.message)));
         }
     }
 
@@ -115,10 +111,8 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
             } catch (GLib.Error e) {
                 warning (e.message);
 
-                display_toast (new Boxes.Toast () {
-                    // Translators: %s is the reason why Boxes failed to apply the snapshot.
-                    message = _("Failed to revert to snapshot: %s").printf (e.message)
-                });
+                // Translators: %s is the reason why Boxes failed to apply the snapshot.
+                display_toast (new Boxes.Toast (_("Failed to revert to snapshot: %s").printf (e.message)));
             }
             activity_message = null;
         });
@@ -141,12 +135,12 @@ private class Boxes.SnapshotListRow : Hdy.ActionRow {
         var row = this;
         parent_container.remove (this);
 
-        Notification.OKFunc undo = () => {
+        Toast.OKFunc undo = () => {
             parent_container.add (this);
             row = null;
         };
 
-        Notification.DismissFunc really_remove = () => {
+        Toast.DismissFunc really_remove = () => {
             this.snapshot.delete_async.begin (0, null, (obj, res) =>{
                 try {
                     this.snapshot.delete_async.end (res);

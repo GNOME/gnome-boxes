@@ -32,6 +32,11 @@ private class Boxes.Toast : Gtk.Box {
     public OKFunc? undo_func;
     public DismissFunc? dismiss_func;
 
+    public Toast (string? message = null) {
+        if (message != null)
+            this.message = message;
+    }
+
     public void dismiss () {
         if (dismiss_func != null)
             dismiss_func ();

@@ -56,16 +56,12 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
     private bool maximized { get { return WindowState.MAXIMIZED in get_window ().get_state (); } }
 
-    public Notificationbar notificationbar {
-        get {
-            return _notificationbar;
-        }
-    }
-
     [GtkChild]
     public unowned Searchbar searchbar;
     [GtkChild]
     public unowned Topbar topbar;
+    [GtkChild]
+    public unowned Boxes.ToastOverlay toast_overlay;
     [GtkChild]
     public unowned DisplayPage display_page;
     [GtkChild]
@@ -98,9 +94,6 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         get { return settings.get_boolean ("first-run"); }
         set { settings.set_boolean ("first-run", value); }
     }
-
-    [GtkChild]
-    private unowned Notificationbar _notificationbar;
 
     private uint configure_id;
     public const uint configure_id_timeout = 100;  // 100ms
@@ -155,12 +148,19 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         list_view.setup_ui (this);
         searchbar.setup_ui (this);
         troubleshoot_view.setup_ui (this);
-        notificationbar.searchbar = searchbar;
 
         group = new Gtk.WindowGroup ();
         group.add_window (this);
 
         App.app.call_when_ready (on_app_ready);
+    }
+
+    public void display_toast (Boxes.Toast toast) {
+        toast_overlay.display_toast (toast);
+    }
+
+    public void dismiss_toast () {
+        toast_overlay.dismiss ();
     }
 
     private void on_app_ready () {
@@ -302,8 +302,8 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
         // Track machine status in toolbar
         status_bind = machine.bind_property ("status", topbar, "status", BindingFlags.SYNC_CREATE);
 
-        got_error_id = machine.got_error.connect ( (message) => {
-            notificationbar.display_error (message);
+        got_error_id = machine.got_error.connect ((message) => {
+            display_toast (new Boxes.Toast (message));
         });
 
         if (ui_state != UIState.CREDS)

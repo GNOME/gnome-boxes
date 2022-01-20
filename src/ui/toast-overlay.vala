@@ -21,4 +21,10 @@ private class Boxes.ToastOverlay : Gtk.Overlay {
         this.toast = toast;
     }
 
+    public void dismiss () {
+        if (toast != null) {
+            toast.dismiss ();
+            _toast = null;
+        }
+    }
 }

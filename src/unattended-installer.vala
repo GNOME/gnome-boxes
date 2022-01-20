@@ -205,7 +205,7 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
             // if it wants to retry a non-automatic install or to just abort the box creation..
             setup_box.express_install = false;
             var msg = _("An error occurred during installation preparation. Express Install disabled.");
-            App.app.main_window.notificationbar.display_error (msg);
+            App.app.main_window.display_toast (new Boxes.Toast (msg));
             debug ("Disabling unattended installation: %s", error.message);
         }
     }

@@ -183,7 +183,7 @@ private class Boxes.DownloadsHubRow : Gtk.ListBoxRow {
             local_file = yield Downloader.fetch_media (url, filename, progress, cancellable);
         } catch (IOError.CANCELLED cancel_error) { // We did this, so ignore!
         } catch (GLib.Error error) {
-            App.app.main_window.notificationbar.display_error (_("Failed to download"));
+            App.app.main_window.display_toast (new Boxes.Toast (_("Failed to download: %s").printf (error.message)));
 
             warning (error.message);
             return;
