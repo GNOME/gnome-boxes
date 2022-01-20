@@ -6,22 +6,7 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
     private LibvirtMachine machine;
 
     [GtkChild]
-    private unowned Gtk.Overlay toast_overlay;
-    private Boxes.Toast _toast;
-    private Boxes.Toast toast {
-        set {
-            if (_toast != null) {
-                _toast.dismiss ();
-            }
-
-            _toast = value;
-            toast_overlay.add_overlay (_toast);
-        }
-
-        get {
-            return _toast;
-        }
-    }
+    private unowned Boxes.ToastOverlay toast_overlay;
 
     [GtkChild]
     private unowned Hdy.PreferencesGroup preferences_group;
@@ -87,7 +72,9 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
     private SnapshotListRow create_snapshot_row (GVir.DomainSnapshot snapshot) {
         var row = new SnapshotListRow (snapshot, machine);
         row.notify["activity-message"].connect (row_activity_changed);
-        row.display_toast.connect (display_toast);
+        row.display_toast.connect ((toast) => {
+            toast_overlay.display_toast (toast);
+        });
         row.is_current.connect (select_row);
 
         try {
@@ -116,10 +103,6 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
 
         selected_row.selectable = true;
         listbox.select_row (selected_row);
-    }
-
-    private void display_toast (Boxes.Toast new_toast) {
-        toast = new_toast;
     }
 
     private int config_sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
@@ -156,9 +139,9 @@ private class Boxes.SnapshotsPage : Hdy.PreferencesPage {
             var msg = _("Failed to create snapshot of %s").printf (machine.name);
             warning (e.message);
 
-            toast = new Boxes.Toast () {
+            toast_overlay.display_toast (new Boxes.Toast () {
                 message = msg
-            };
+            });
         }
         this.activity = null;
 
