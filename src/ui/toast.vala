@@ -51,4 +51,11 @@ private class Boxes.Toast : Gtk.Box {
 
         destroy ();
     }
+
+    public override void destroy () {
+        dismiss_func = null;
+        undo_func = null;
+
+        base.destroy ();
+    }
 }
