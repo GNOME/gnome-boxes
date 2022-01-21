@@ -3,7 +3,6 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/index-page.ui")]
 private class Boxes.AssistantIndexPage : AssistantPage {
     GLib.ListStore source_model = new GLib.ListStore (typeof (InstallerMedia));
-    GLib.ListStore featured_model = new GLib.ListStore (typeof (Osinfo.Media));
 
     private VMAssistant dialog;
 
@@ -22,8 +21,6 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     [GtkChild]
     private unowned ListBox source_medias;
     [GtkChild]
-    private unowned ListBox featured_medias;
-    [GtkChild]
     private unowned Revealer panel_revealer;
 
     private Gtk.Button view_more_medias_button;
@@ -34,7 +31,6 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         populate_media_lists.begin ();
 
         source_medias.bind_model (source_model, add_media_entry);
-        featured_medias.bind_model (featured_model, add_featured_media_entry);
 
         view_more_medias_button = new Gtk.Button () {
             visible = true,
@@ -74,12 +70,6 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
         installer_medias = yield media_manager.list_installer_medias ();
         populate_detected_sources_list (MAX_MEDIA_ENTRIES);
-
-        var recommended_downloads = yield get_recommended_downloads ();
-        if (recommended_downloads == null)
-            return;
-        for (var i = 0; (i < recommended_downloads.length ()) && (i < MAX_MEDIA_ENTRIES); i++)
-            featured_model.append (recommended_downloads.nth (i).data);
     }
 
     private void populate_detected_sources_list (int? number_of_items = null) {
@@ -100,10 +90,6 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     private Gtk.Widget add_media_entry (GLib.Object object) {
         return new AssistantMediaEntry.from_installer_media (object as InstallerMedia);
-    }
-
-    private Gtk.Widget add_featured_media_entry (GLib.Object object) {
-        return new AssistantDownloadableEntry.from_osinfo (object as Osinfo.Media);
     }
 
     [GtkCallback]
