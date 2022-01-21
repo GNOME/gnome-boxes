@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-05 09:51+0000\n"
-"PO-Revision-Date: 2022-01-06 22:55+0000\n"
+"POT-Creation-Date: 2022-01-20 17:22+0000\n"
+"PO-Revision-Date: 2022-01-21 14:42+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <hugokarvalho@hotmail.com>\n"
 "Language: pt\n"
@@ -500,6 +500,7 @@ msgid "CDROM/DVD Drive"
 msgstr "Unidade de CDROM/DVD"
 
 #: data/ui/preferences/preferences-toast.ui:27
+#: src/preferences/snapshot-list-row.vala:163
 msgid "Undo"
 msgstr "Desfazer"
 
@@ -591,7 +592,7 @@ msgid "Snapshots"
 msgstr "Imagens (Snapshots)"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:143
+#: src/preferences/snapshots-page.vala:150
 msgid "Creating new snapshot…"
 msgstr "A criar nova imagem…"
 
@@ -688,30 +689,30 @@ msgstr "Enviar ficheiro…"
 msgid "Take Screenshot"
 msgstr "Efetuar uma captura de ecrã"
 
-#: src/actions-popover.vala:64
+#: src/actions-popover.vala:65
 msgid "Force Shutdown"
 msgstr "Forçar Desligar"
 
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:76
 msgid "Clone"
 msgstr "Clonar"
 
 #. Delete
-#: src/actions-popover.vala:80
+#: src/actions-popover.vala:81
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/actions-popover.vala:84 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:588
 msgid "Restart"
 msgstr "Reiniciar"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:94
 msgid "Preferences"
 msgstr "Preferências"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:111
+#: src/actions-popover.vala:112
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Captura de ecrã de %s"
@@ -962,15 +963,15 @@ msgstr "A configurar o clone…"
 msgid "Importing…"
 msgstr "A importar…"
 
-#: src/list-view-row.vala:49
+#: src/list-view-row.vala:48
 msgid "Running"
 msgstr "Em execução"
 
-#: src/list-view-row.vala:55
+#: src/list-view-row.vala:54
 msgid "Paused"
 msgstr "Suspenso"
 
-#: src/list-view-row.vala:60
+#: src/list-view-row.vala:59
 msgid "Powered Off"
 msgstr "Desligado"
 
@@ -1113,31 +1114,39 @@ msgstr ""
 msgid "Use the button below to add your first shared folder."
 msgstr "Utilize o botão abaixo para adicionar a sua primeira pasta partilhada."
 
-#: src/preferences/snapshot-list-row.vala:88
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:80
+#, c-format
+msgid "Failed to rename snapshot: %s"
+msgstr "Falha ao renomear imagem: %s"
+
+#: src/preferences/snapshot-list-row.vala:97
 #, c-format
 msgid "Reverting to %s…"
 msgstr "A reverter para %s…"
 
-#: src/preferences/snapshot-list-row.vala:108
-msgid "Failed to apply snapshot"
-msgstr "Falha ao aplicar a imagem"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:120
+#, c-format
+msgid "Failed to revert to snapshot: %s"
+msgstr "Falha ao reverter para a imagem: %s"
 
-#: src/preferences/snapshot-list-row.vala:126
+#: src/preferences/snapshot-list-row.vala:139
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Imagem “%s” eliminada."
 
-#: src/preferences/snapshots-page.vala:149
+#: src/preferences/snapshots-page.vala:156
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Falha ao criar imagem de %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:169
+#: src/preferences/snapshots-page.vala:179
 msgid "Revert to a previous state of your box."
 msgstr "Reverter para um estado anterior da sua caixa."
 
-#: src/preferences/snapshots-page.vala:171
+#: src/preferences/snapshots-page.vala:181
 msgid "Use the button below to create your first snapshot."
 msgstr "Use o botão abaixo para criar a sua primeira imagem."
 
@@ -1277,7 +1286,10 @@ msgstr "Recém-instalado "
 #: src/vm-importer.vala:64
 #, c-format
 msgid "Box import from file “%s” failed."
-msgstr "A importação da caixa a partir do ficheiro “%s” falhou."
+msgstr "Falha ao importar caixa a partir do ficheiro “%s”."
+
+#~ msgid "Failed to apply snapshot"
+#~ msgstr "Falha ao aplicar a imagem"
 
 #~ msgid "Rename"
 #~ msgstr "Renomear"
