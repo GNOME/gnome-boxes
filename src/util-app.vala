@@ -209,7 +209,7 @@ namespace Boxes {
                 var os = yield os_db.get_os_by_id (os_id);
                 var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
 
-                if (media.url != null)
+                if (media.url != null || os_id.has_prefix ("http://redhat.com"))
                     list.append (media);
             } catch (OSDatabaseError error) {
                 debug ("Failed to find OS with id: '%s': %s", os_id, error.message);
