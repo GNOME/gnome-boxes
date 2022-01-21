@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-05 09:51+0000\n"
-"PO-Revision-Date: 2022-01-05 16:49+0300\n"
+"POT-Creation-Date: 2022-01-20 17:22+0000\n"
+"PO-Revision-Date: 2022-01-20 23:35+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <Alexmelman88@gmail.com>\n"
 "Language: ru\n"
@@ -504,6 +504,7 @@ msgid "CDROM/DVD Drive"
 msgstr "Привод CD-ROM/DVD"
 
 #: data/ui/preferences/preferences-toast.ui:27
+#: src/preferences/snapshot-list-row.vala:163
 msgid "Undo"
 msgstr "Отменить"
 
@@ -595,7 +596,7 @@ msgid "Snapshots"
 msgstr "Снимки"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:143
+#: src/preferences/snapshots-page.vala:150
 msgid "Creating new snapshot…"
 msgstr "Создаётся новый снимок…"
 
@@ -691,30 +692,30 @@ msgstr "Отправить файл…"
 msgid "Take Screenshot"
 msgstr "Сделать снимок экрана"
 
-#: src/actions-popover.vala:64
+#: src/actions-popover.vala:65
 msgid "Force Shutdown"
 msgstr "Принудительное выключение"
 
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:76
 msgid "Clone"
 msgstr "Клонировать"
 
 #. Delete
-#: src/actions-popover.vala:80
+#: src/actions-popover.vala:81
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/actions-popover.vala:84 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:588
 msgid "Restart"
 msgstr "Перезапустить"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:94
 msgid "Preferences"
 msgstr "Параметры"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:111
+#: src/actions-popover.vala:112
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Снимок экрана от %s"
@@ -726,7 +727,7 @@ msgstr ""
 "Станислав Соловей <whats_up@tut.by>, 2013-2019.\n"
 "Михаил Гурин <mikegurin@yandex.ru>, 2015.\n"
 "Максим Таранов <png2378@gmail.com>, 2015.\n"
-"Aleksandr Melman <Alexmelman88@gmail.com>, 2021"
+"Aleksandr Melman <Alexmelman88@gmail.com>, 2022"
 
 #: src/app.vala:114
 msgid "A simple GNOME 3 application to access virtual systems"
@@ -967,15 +968,15 @@ msgstr "Настройка клона…"
 msgid "Importing…"
 msgstr "Импортирование…"
 
-#: src/list-view-row.vala:49
+#: src/list-view-row.vala:48
 msgid "Running"
 msgstr "Запущено"
 
-#: src/list-view-row.vala:55
+#: src/list-view-row.vala:54
 msgid "Paused"
 msgstr "Приостановлено"
 
-#: src/list-view-row.vala:60
+#: src/list-view-row.vala:59
 msgid "Powered Off"
 msgstr "Выключено"
 
@@ -1118,31 +1119,39 @@ msgstr ""
 msgid "Use the button below to add your first shared folder."
 msgstr "Используйте кнопку ниже, чтобы добавить свою первую общую папку."
 
-#: src/preferences/snapshot-list-row.vala:88
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:80
+#, c-format
+msgid "Failed to rename snapshot: %s"
+msgstr "Не удалось переименовать снимок: %s"
+
+#: src/preferences/snapshot-list-row.vala:97
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Возврат к %s…"
 
-#: src/preferences/snapshot-list-row.vala:108
-msgid "Failed to apply snapshot"
-msgstr "Не удалось применить снимок"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:120
+#, c-format
+msgid "Failed to revert to snapshot: %s"
+msgstr "Не удалось вернуться к снимку: %s"
 
-#: src/preferences/snapshot-list-row.vala:126
+#: src/preferences/snapshot-list-row.vala:139
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Снимок «%s» удалён."
 
-#: src/preferences/snapshots-page.vala:149
+#: src/preferences/snapshots-page.vala:156
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Не удалось создать снимок %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:169
+#: src/preferences/snapshots-page.vala:179
 msgid "Revert to a previous state of your box."
 msgstr "Возврат к предыдущему состоянию вашей виртуальной машины."
 
-#: src/preferences/snapshots-page.vala:171
+#: src/preferences/snapshots-page.vala:181
 msgid "Use the button below to create your first snapshot."
 msgstr "Используйте кнопку ниже, чтобы создать свой первый снимок системы."
 
