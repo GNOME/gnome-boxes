@@ -5,107 +5,77 @@
     <property name="title" translatable="yes">Create a Virtual Machine</property>
 
     <child>
-      <object class="GtkStack" id="stack">
+      <object class="GtkBox">
         <property name="visible">True</property>
-        <signal name="notify::visible-child" handler="update_topbar"/>
+        <property name="orientation">vertical</property>
 
         <child>
-          <object class="GtkScrolledWindow" id="home_page">
+          <object class="GtkStack" id="stack">
             <property name="visible">True</property>
-            <property name="expand">True</property>
-            <property name="hscrollbar-policy">never</property>
+            <signal name="notify::visible-child" handler="update_topbar"/>
+            <style>
+              <class name="index-stack"/>
+            </style>
 
             <child>
-              <object class="GtkBox">
+              <object class="GtkScrolledWindow" id="home_page">
                 <property name="visible">True</property>
-                <property name="orientation">vertical</property>
-                <property name="spacing">30</property>
-                <property name="halign">center</property>
-                <property name="border-width">20</property>
-                <property name="margin-left">30</property>
-                <property name="margin-right">30</property>
+                <property name="hexpand">True</property>
+                <property name="min-content-height">420</property>
+                <property name="hscrollbar-policy">never</property>
 
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="wrap">True</property>
-                    <property name="max-width-chars">60</property>
-                    <property name="xalign">0</property>
-                    <property name="halign">start</property>
-                    <property name="label" translatable="yes">A new virtual machine will be created and an operating system installed into it. Select an operating system source to begin.</property>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="HdyPreferencesGroup" id="detected_sources_section">
-                    <property name="visible">True</property>
-                    <property name="title" translatable="yes">Detected Sources</property>
+                    <property name="orientation">vertical</property>
+                    <property name="spacing">20</property>
+                    <property name="border-width">20</property>
 
                     <child>
-                      <object class="GtkListBox" id="source_medias">
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="selection-mode">none</property>
-                        <signal name="row-activated" handler="on_source_media_selected"/>
+                        <property name="wrap">True</property>
+                        <property name="max-width-chars">60</property>
+                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Select an operating system source to begin.</property>
                         <style>
-                          <class name="content"/>
+                          <class name="dim-label"/>
                         </style>
                       </object>
                     </child>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="HdyPreferencesGroup">
-                    <property name="visible">True</property>
-                    <property name="title" translatable="yes">Featured Downloads</property>
-                    <property name="description" translatable="yes">You will be notified when the download has completed.</property>
 
                     <child>
-                      <object class="GtkListBox" id="featured_medias">
+                      <object class="HdyPreferencesGroup" id="detected_sources_section">
                         <property name="visible">True</property>
-                        <signal name="row-activated" handler="on_featured_media_selected"/>
-                        <style>
-                          <class name="content"/>
-                        </style>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-
-                <child>
-                  <object class="HdyPreferencesGroup">
-                    <property name="visible">True</property>
-                    <property name="title" translatable="yes">Select an OS Source</property>
-
-                    <child>
-                      <object class="HdyActionRow">
-                        <property name="visible">True</property>
-                        <property name="activatable">True</property>
-                        <property name="title" translatable="yes">Operating System Download</property>
-                        <property name="subtitle" translatable="yes">Browse and search for operating systems to install.</property>
-                        <signal name="activated" handler="on_download_an_os_button_clicked"/>
+                        <property name="title" translatable="yes">Detected Sources</property>
 
                         <child>
-                          <object class="GtkImage">
+                          <object class="GtkListBox" id="source_medias">
                             <property name="visible">True</property>
-                            <property name="icon-name">go-next-symbolic</property>
-                           </object>
+                            <property name="selection-mode">none</property>
+                            <signal name="row-activated" handler="on_source_media_selected"/>
+                            <style>
+                              <class name="content"/>
+                            </style>
+                          </object>
                         </child>
                       </object>
                     </child>
 
                     <child>
-                      <object class="HdyActionRow">
+                      <object class="HdyPreferencesGroup">
                         <property name="visible">True</property>
-                        <property name="activatable">True</property>
-                        <property name="title" translatable="yes">Operating System Image File</property>
-                        <property name="subtitle" translatable="yes">Select a file to install a virtual machine.</property>
-                        <signal name="activated" handler="on_select_file_button_clicked"/>
+                        <property name="title" translatable="yes">Featured Downloads</property>
+                        <property name="description" translatable="yes">You will be notified when the download has completed.</property>
 
                         <child>
-                          <object class="GtkImage">
+                          <object class="GtkListBox" id="featured_medias">
                             <property name="visible">True</property>
-                            <property name="icon-name">go-next-symbolic</property>
+                            <signal name="row-activated" handler="on_featured_media_selected"/>
+                            <style>
+                              <class name="content"/>
+                            </style>
                           </object>
                         </child>
                       </object>
@@ -114,18 +84,64 @@
                 </child>
               </object>
             </child>
+
+            <child>
+              <object class="BoxesAssistantDownloadsPage" id="recommended_downloads_page">
+                <property name="visible">True</property>
+                <signal name="media-selected" handler="on_featured_media_selected"/>
+              </object>
+            </child>
           </object>
         </child>
 
         <child>
-          <object class="BoxesAssistantDownloadsPage" id="recommended_downloads_page">
+          <object class="GtkRevealer" id="panel_revealer">
             <property name="visible">True</property>
-            <signal name="media-selected" handler="on_featured_media_selected"/>
+            <property name="reveal-child">True</property>
+
+            <child>
+              <object class="HdyPreferencesGroup" id="button_panel">
+                <property name="visible">True</property>
+                <property name="margin">20</property>
+
+                <child>
+                  <object class="HdyActionRow">
+                    <property name="visible">True</property>
+                    <property name="activatable">True</property>
+                    <property name="title" translatable="yes">Operating System Download</property>
+                    <property name="subtitle" translatable="yes">Browse and search for operating systems to install.</property>
+                    <signal name="activated" handler="on_download_an_os_button_clicked"/>
+
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">go-next-symbolic</property>
+                       </object>
+                    </child>
+                  </object>
+                </child>
+
+                <child>
+                  <object class="HdyActionRow">
+                    <property name="visible">True</property>
+                    <property name="activatable">True</property>
+                    <property name="title" translatable="yes">Operating System Image File</property>
+                    <property name="subtitle" translatable="yes">Select a file to install a virtual machine.</property>
+                    <signal name="activated" handler="on_select_file_button_clicked"/>
+
+                    <child>
+                      <object class="GtkImage">
+                        <property name="visible">True</property>
+                        <property name="icon-name">go-next-symbolic</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
-
       </object>
     </child>
-
   </template>
 </interface>

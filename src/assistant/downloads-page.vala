@@ -12,6 +12,8 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     public DownloadsSearch search { private set; get; }
 
     [GtkChild]
+    public unowned Gtk.ScrolledWindow scrolled_window;
+    [GtkChild]
     private unowned Gtk.ListBox listbox;
     [GtkChild]
     private unowned Gtk.ListBox recommended_listbox;

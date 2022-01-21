@@ -23,6 +23,8 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     private unowned ListBox source_medias;
     [GtkChild]
     private unowned ListBox featured_medias;
+    [GtkChild]
+    private unowned Revealer panel_revealer;
 
     private Gtk.Button view_more_medias_button;
 
@@ -44,6 +46,11 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         view_more_medias_button.clicked.connect (on_expand_detected_sources_list);
         view_more_medias_button.get_style_context ().add_class ("flat");
         source_medias.add (view_more_medias_button);
+
+        home_page.bind_property ("min-content-height",
+                                 recommended_downloads_page.scrolled_window,
+                                 "min-content-height",
+                                 BindingFlags.SYNC_CREATE);
     }
 
     public void setup (VMAssistant dialog) {
@@ -106,8 +113,10 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         var titlebar = dialog.get_titlebar () as Gtk.HeaderBar;
         if (stack.visible_child == recommended_downloads_page) {
             titlebar.set_custom_title (recommended_downloads_page.search_entry);
+            panel_revealer.set_reveal_child (false);
         } else {
             titlebar.set_custom_title (null);
+            panel_revealer.set_reveal_child (true);
         }
     }
 

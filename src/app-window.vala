@@ -256,7 +256,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
     }
 
     public void show_vm_assistant (string? path = null) {
-        new Boxes.VMAssistant (this, path).run ();
+        new Boxes.VMAssistant (this, path).present ();
     }
 
     public void show_welcome_tutorial () {

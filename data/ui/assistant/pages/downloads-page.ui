@@ -5,10 +5,8 @@
     <signal name="key-press-event" handler="on_key_pressed"/>
 
     <child>
-      <object class="GtkBox">
+      <object class="GtkScrolledWindow">
         <property name="visible">True</property>
-        <property name="orientation">vertical</property>
-        <property name="border-width">20</property>
         <property name="margin-start">20</property>
         <property name="margin-end">20</property>
 
@@ -17,6 +15,7 @@
             <property name="visible">True</property>
             <property name="vexpand">True</property>
             <property name="selection-mode">none</property>
+            <property name="margin">20</property>
             <signal name="row-activated" handler="on_listbox_row_activated"/>
             <style>
               <class name="content"/>
@@ -30,7 +29,7 @@
     </child>
 
     <child>
-      <object class="GtkScrolledWindow">
+      <object class="GtkScrolledWindow" id="scrolled_window">
         <property name="visible">True</property>
         <property name="expand">True</property>
 
