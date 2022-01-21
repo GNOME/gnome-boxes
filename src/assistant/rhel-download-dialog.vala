@@ -44,10 +44,6 @@ private class Boxes.RHELDownloadDialog : Gtk.Dialog {
 
         web_view.load_uri (authentication_uri);
 
-        int width, height;
-        dialog.get_size_request (out width, out height);
-        set_size_request (width, height);
-
         bind_property ("visible", dialog, "visible", BindingFlags.INVERT_BOOLEAN);
     }
 
