@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-05 09:51+0000\n"
-"PO-Revision-Date: 2022-01-11 15:29+0330\n"
+"POT-Creation-Date: 2022-01-22 13:30+0000\n"
+"PO-Revision-Date: 2022-01-23 08:56+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian <>\n"
 "Language: fa\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "جعبه‌ها"
@@ -162,11 +162,11 @@ msgstr "شاخه‌های هم‌رسانده"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "آرایهٔ گوناگونی از نام‌ها و نگاشت مسیر شاخه‌های هم‌رسانده"
 
-#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "به جعبه‌ها خوش آمدید"
 
-#: data/ui/app-window.ui:88
+#: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "برای ایجاد نخستین دستگاه مجازیتان، از دکمهٔ <b>+</b> استفاده کنید."
 
@@ -312,15 +312,15 @@ msgstr "به کار انداختن EFI"
 msgid "Express Installation"
 msgstr "نصب سریع"
 
-#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
 #: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
-#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "لغو"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
+#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
 msgid "Next"
 msgstr "بعدی"
 
@@ -482,10 +482,6 @@ msgstr "افزاره‌های یواس‌بی"
 msgid "CDROM/DVD Drive"
 msgstr "گردانندهٔ دیسک نوری"
 
-#: data/ui/preferences/preferences-toast.ui:27
-msgid "Undo"
-msgstr "برگردان"
-
 #: data/ui/preferences/resources-page.ui:7 data/ui/preferences/resources-page.ui:67
 msgid "Resources"
 msgstr "منابع"
@@ -570,9 +566,13 @@ msgstr "حذف تصویر لحظه‌ای"
 msgid "Snapshots"
 msgstr "تصویرهای لحظه‌ای"
 
-#: data/ui/preferences/snapshots-page.ui:49 src/preferences/snapshots-page.vala:143
+#: data/ui/preferences/snapshots-page.ui:49 src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "در حال ایجاد تصویر لحظه‌ای جدید…"
+
+#: data/ui/toast.ui:34 src/app.vala:604 src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "برگردان"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -664,30 +664,30 @@ msgstr "ارسال پرونده…"
 msgid "Take Screenshot"
 msgstr "نماگرفت"
 
-#: src/actions-popover.vala:64
+#: src/actions-popover.vala:65
 msgid "Force Shutdown"
 msgstr "خاموش کردن اجباری"
 
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:76
 msgid "Clone"
 msgstr "شبیه‌سازی"
 
 #. Delete
-#: src/actions-popover.vala:80
+#: src/actions-popover.vala:81
 msgid "Delete"
 msgstr "حذف"
 
-#: src/actions-popover.vala:84 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:600
 msgid "Restart"
 msgstr "راه‌اندازی مجدد"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:94
 msgid "Preferences"
 msgstr "ترجیحات"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:111
+#: src/actions-popover.vala:112
 #, c-format
 msgid "Screenshot from %s"
 msgstr "نماگرفت از %s"
@@ -737,36 +737,32 @@ msgstr "— برنامه‌ای ساده برای دسترسی به دستگاه
 msgid "Too many command line arguments specified.\n"
 msgstr "تعداد زیادی متغیرهای خط فرمان داده شده است.\n"
 
-#: src/app.vala:461
+#: src/app.vala:460
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "جعبهٔ «%s» نصب شده و آمادهٔ استفاده است"
 
-#: src/app.vala:463
+#: src/app.vala:462
 msgid "Launch"
 msgstr "اجرا"
 
-#: src/app.vala:493
+#: src/app.vala:492
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» در حال اجرا در پس‌زمینه است"
 
-#: src/app.vala:574
+#: src/app.vala:573
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "جعبهٔ «%s» حذف شده است"
 
-#: src/app.vala:575
+#: src/app.vala:574
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "%Iu جعبه حذف شدند"
 
-#: src/app.vala:603
-msgid "_Undo"
-msgstr "_برگردان"
-
-#: src/app.vala:641
+#: src/app.vala:645
 msgid "Boxes is doing something"
 msgstr "جعبه‌ها در حال انجام کاریست"
 
@@ -790,14 +786,13 @@ msgstr "یک دستگاه یا پرونده ISO انتخاب کنید"
 msgid "Open"
 msgstr "گشودن"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "پیشین"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
-#: src/util-app.vala:172
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
 msgid "Live"
 msgstr "زنده"
 
@@ -815,17 +810,17 @@ msgstr "سامانهٔ ۶۴بیتی x86"
 msgid " from %s"
 msgstr " از %s"
 
-#: src/assistant/vm-assistant.vala:60
+#: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "تجزیه و تحلیل رسانهٔ نصاب شکست خورد. رسانه خراب یا ناقص است؟"
 
-#: src/assistant/vm-assistant.vala:73
+#: src/assistant/vm-assistant.vala:75
 msgid "Create"
 msgstr "ساخت"
 
 #: src/display-page.vala:133
 msgid "Press (left) Ctrl+Alt to ungrab"
-msgstr "برای نگرفتن دگرساز+مهر (چپ) را بزنید"
+msgstr "برای رها کردن، دگرساز+مهار (چپ) را بزنید"
 
 #: src/display-page.vala:135
 msgid "Press & release (left) Ctrl+Alt to ungrab keyboard."
@@ -856,8 +851,9 @@ msgstr "نصب"
 
 #. We did this, so ignore!
 #: src/downloads-hub.vala:186
-msgid "Failed to download"
-msgstr "شکست در بارگیری"
+#, c-format
+msgid "Failed to download: %s"
+msgstr "شکست در بارگیری: %s"
 
 #: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
@@ -906,41 +902,41 @@ msgstr "بازگردانی %s از دیسک"
 msgid "Starting %s"
 msgstr "درحال آغاز %s"
 
-#: src/libvirt-machine.vala:547
+#: src/libvirt-machine.vala:541
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "شروع دوبارهٔ «%s» خیلی طول کشید. به اجبار خاموش شود؟"
 
-#: src/libvirt-machine.vala:549
-msgid "_Shutdown"
-msgstr "_خاموش کردن"
+#: src/libvirt-machine.vala:544
+msgid "Shutdown"
+msgstr "خاموش کردن"
 
-#: src/libvirt-machine.vala:565
+#: src/libvirt-machine.vala:559
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "در حال شبیه‌سازی «%s»…"
 
-#: src/libvirt-machine.vala:691
+#: src/libvirt-machine.vala:685
 msgid "Installing…"
 msgstr "در حال نصب…"
 
-#: src/libvirt-machine.vala:695
+#: src/libvirt-machine.vala:687
 msgid "Setting up clone…"
 msgstr "در حال برپایی شبیه‌سازی…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:689
 msgid "Importing…"
 msgstr "در حال درون‌ریزی…"
 
-#: src/list-view-row.vala:49
+#: src/list-view-row.vala:48
 msgid "Running"
 msgstr "در حال اجرا"
 
-#: src/list-view-row.vala:55
+#: src/list-view-row.vala:54
 msgid "Paused"
 msgstr "مکث شده"
 
-#: src/list-view-row.vala:60
+#: src/list-view-row.vala:59
 msgid "Powered Off"
 msgstr "خاموش"
 
@@ -950,42 +946,45 @@ msgstr "خاموش"
 msgid "Connecting to %s"
 msgstr "درحال اتصال به %s"
 
-#: src/machine.vala:207 src/machine.vala:618
+#: src/machine.vala:207
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "شکست در اتّصال به «%s»"
 
-#: src/machine.vala:249
+#: src/machine.vala:251
 msgid "Machine is under construction"
 msgstr "دستگاه در حال ساخت است"
 
-#: src/machine.vala:402
+#: src/machine.vala:404
 msgid "Saving…"
 msgstr "در حال ذخیره…"
 
-#: src/machine.vala:587
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:597
 #, c-format
-msgid ""
-"“%s” could not be restored from disk\n"
-"Try without saved state?"
-msgstr ""
-"«%s» نمی‌تواند از دیسک بازیابی شود\n"
-"آزمودن بدون حالت ذخیره شده؟"
+msgid "“%s” could not be restored from disk: %s"
+msgstr "«%s» نتوانست از دیسک بازیابی شود: %s"
 
-#: src/machine.vala:598
+#: src/machine.vala:608
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "شکست در شروع «%s»"
 
-#: src/machine.vala:611
+#: src/machine.vala:623
 msgid "Troubleshooting Log"
 msgstr "گزارش اشکال‌زدایی"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:634
+#, c-format
+msgid "Connection to “%s” failed: %s"
+msgstr "اتّصال به «%s» شکست خورد: %s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
 #, c-format
 msgid "• The CPU is capable of virtualization: %s\n"
-msgstr "• سی‌پی‌یو قابلیت مجازی‌سازی داد: %s\n"
+msgstr "• پردازنده قابلیت مجازی‌سازی دارد: %s\n"
 
 #: src/main.vala:54
 #, c-format
@@ -1052,11 +1051,11 @@ msgstr "%s پیشنهاد می‌شود."
 msgid "Boxes is not authorized to run in background"
 msgstr "جعبه‌ها مجاز به اجرا در پس‌زمینه نیست"
 
-#: src/preferences/resources-page.vala:159
-msgid "Manage permissions"
-msgstr "مدیریت اجازه‌ها"
+#: src/preferences/resources-page.vala:163
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr "می‌خواهید برای مدیریت اجازه‌های برنامه، تنظیمات را بگشایید؟"
 
-#: src/preferences/resources-page.vala:191
+#: src/preferences/resources-page.vala:201
 msgid ""
 "Editing your box configuration can cause issues to the operating system of your "
 "box. Would you like to create a snapshot to recover from your changes?"
@@ -1064,12 +1063,12 @@ msgstr ""
 "ویرایش پیکربندی جعبه‌تان می‌تواند موجب اشکال در سیستم‌عامل جعبه‌تان شود. می‌خواهید "
 "برای بازگردانی از تغییراتتان، تصویری لحظه‌ای ایجاد کنید؟"
 
-#: src/preferences/resources-page.vala:257
+#: src/preferences/resources-page.vala:267
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "شکست در ذخیرهٔ پیکربندی دامنه: %s"
 
-#: src/preferences/resources-page.vala:266
+#: src/preferences/resources-page.vala:276
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "تغییرات در تنظیمات زیر پس از شروع دوبارهٔ جعبه‌تان اثر خواهند گذاشت."
 
@@ -1077,31 +1076,39 @@ msgstr "تغییرات در تنظیمات زیر پس از شروع دوبار�
 msgid "Use the button below to add your first shared folder."
 msgstr "برای افزودن نخستین شاخهٔ هم رسانده‌تان، از دکمهٔ زیر استفاده کنید."
 
-#: src/preferences/snapshot-list-row.vala:88
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:77
+#, c-format
+msgid "Failed to rename snapshot: %s"
+msgstr "شکست در تغغیر نام تصویر لحظه‌ای: %s"
+
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
 msgid "Reverting to %s…"
 msgstr "در حال بازگردانی به %s…"
 
-#: src/preferences/snapshot-list-row.vala:108
-msgid "Failed to apply snapshot"
-msgstr "شکست در اعمال تصویر لحظه‌ای"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:115
+#, c-format
+msgid "Failed to revert to snapshot: %s"
+msgstr "شکست در بازگردانی به تصویر لحظه‌ای: %s"
 
-#: src/preferences/snapshot-list-row.vala:126
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "تصویر لحظه‌ای «%s» حذف شد."
 
-#: src/preferences/snapshots-page.vala:149
+#: src/preferences/snapshots-page.vala:139
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "شکست در ایجاد تصویر لحظه‌ای از %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:169
+#: src/preferences/snapshots-page.vala:160
 msgid "Revert to a previous state of your box."
 msgstr "بازگردانی به حالتی پیشین از جعبه‌تان."
 
-#: src/preferences/snapshots-page.vala:171
+#: src/preferences/snapshots-page.vala:162
 msgid "Use the button below to create your first snapshot."
 msgstr "برای ایجاد نخستین تصویر لحظه‌ایتان، از دکمهٔ زیر استفاده کنید."
 
@@ -1226,17 +1233,27 @@ msgstr "خیر"
 #. FIXME: Better error messsage than this please?
 #: src/vm-configurator.vala:793
 msgid "Incapable host system"
-msgstr "سامانه میزبان ناتوان"
+msgstr "سامانهٔ میزبان ناتوان"
 
 #. Translators: This is the name of the snapshot taken right after installing a VM.
 #: src/vm-creator.vala:179
 msgid "Just installed "
 msgstr "پایان نصب "
 
-#: src/vm-importer.vala:64
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "Box import from file “%s” failed."
-msgstr "شکست در درون‌ریزی جعبه از پروندهٔ «%s»."
+msgid "Box import from file “%s” failed: %s"
+msgstr "درون‌ریزی جعبه از پروندهٔ «%s» شکست خورد: %s"
+
+#~ msgid "_Undo"
+#~ msgstr "_برگردان"
+
+#~ msgid "Manage permissions"
+#~ msgstr "مدیریت اجازه‌ها"
+
+#~ msgid "Failed to apply snapshot"
+#~ msgstr "شکست در اعمال تصویر لحظه‌ای"
 
 #~ msgid "GNOME Boxes"
 #~ msgstr "جعبه‌های گنوم"
