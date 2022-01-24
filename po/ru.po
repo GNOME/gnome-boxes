@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-20 17:22+0000\n"
-"PO-Revision-Date: 2022-01-20 23:35+0300\n"
+"POT-Creation-Date: 2022-01-22 13:30+0000\n"
+"PO-Revision-Date: 2022-01-22 21:19+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <Alexmelman88@gmail.com>\n"
 "Language: ru\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxes"
@@ -181,11 +181,11 @@ msgstr "Совместные папки"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Динамический массив, содержащий имена совместных папок и пути к ним"
 
-#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Добро пожаловать в Boxes"
 
-#: data/ui/app-window.ui:88
+#: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr ""
 "Чтобы создать свою первую виртуальную машину, нажмите на кнопку <b>+</b>."
@@ -333,15 +333,15 @@ msgstr "Включить EFI"
 msgid "Express Installation"
 msgstr "Быстрая установка"
 
-#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
 #: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
-#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Отмена"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
+#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
 msgid "Next"
 msgstr "Далее"
 
@@ -503,11 +503,6 @@ msgstr "Устройства USB"
 msgid "CDROM/DVD Drive"
 msgstr "Привод CD-ROM/DVD"
 
-#: data/ui/preferences/preferences-toast.ui:27
-#: src/preferences/snapshot-list-row.vala:163
-msgid "Undo"
-msgstr "Отменить"
-
 #: data/ui/preferences/resources-page.ui:7
 #: data/ui/preferences/resources-page.ui:67
 msgid "Resources"
@@ -596,9 +591,14 @@ msgid "Snapshots"
 msgstr "Снимки"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:150
+#: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Создаётся новый снимок…"
+
+#: data/ui/toast.ui:34 src/app.vala:604
+#: src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "Отменить"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -705,7 +705,7 @@ msgstr "Клонировать"
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/actions-popover.vala:85 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:600
 msgid "Restart"
 msgstr "Перезапустить"
 
@@ -770,26 +770,26 @@ msgstr "— Простое приложение для доступа к вир�
 msgid "Too many command line arguments specified.\n"
 msgstr "Указано слишком много аргументов командной строки.\n"
 
-#: src/app.vala:461
+#: src/app.vala:460
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Виртуальная машина «%s» установлена и готова к использованию"
 
-#: src/app.vala:463
+#: src/app.vala:462
 msgid "Launch"
 msgstr "Запустить"
 
-#: src/app.vala:493
+#: src/app.vala:492
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» запущен в фоновом режиме"
 
-#: src/app.vala:574
+#: src/app.vala:573
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Виртуальная машина «%s» была удалёна"
 
-#: src/app.vala:575
+#: src/app.vala:574
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -797,11 +797,7 @@ msgstr[0] "%u виртуальная машина была удалёна"
 msgstr[1] "%u виртуальные машины были удалёны"
 msgstr[2] "%u виртуальных машин было удалёно"
 
-#: src/app.vala:603
-msgid "_Undo"
-msgstr "_Отменить"
-
-#: src/app.vala:641
+#: src/app.vala:645
 msgid "Boxes is doing something"
 msgstr "Boxes что-то выполняют"
 
@@ -825,14 +821,13 @@ msgstr "Выберите устройство или файл ISO"
 msgid "Open"
 msgstr "Открыть"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Назад"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
-#: src/util-app.vala:172
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
 msgid "Live"
 msgstr "Live"
 
@@ -850,12 +845,12 @@ msgstr "64-битная x86 система"
 msgid " from %s"
 msgstr " от %s"
 
-#: src/assistant/vm-assistant.vala:60
+#: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Ошибка анализа установочного носителям. Повреждённый или неполный носитель?"
 
-#: src/assistant/vm-assistant.vala:73
+#: src/assistant/vm-assistant.vala:75
 msgid "Create"
 msgstr "Создать"
 
@@ -892,8 +887,9 @@ msgstr "Установить"
 
 #. We did this, so ignore!
 #: src/downloads-hub.vala:186
-msgid "Failed to download"
-msgstr "Ошибка загрузки"
+#, c-format
+msgid "Failed to download: %s"
+msgstr "Не удалось загрузить: %s"
 
 #: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
@@ -942,29 +938,29 @@ msgstr "Восстановление %s с диска"
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:547
+#: src/libvirt-machine.vala:541
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» слишком долго перезапускается. Выключить принудительно?"
 
-#: src/libvirt-machine.vala:549
-msgid "_Shutdown"
-msgstr "_Выключить"
+#: src/libvirt-machine.vala:544
+msgid "Shutdown"
+msgstr "Выключить"
 
-#: src/libvirt-machine.vala:565
+#: src/libvirt-machine.vala:559
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонирование «%s»…"
 
-#: src/libvirt-machine.vala:691
+#: src/libvirt-machine.vala:685
 msgid "Installing…"
 msgstr "Установка…"
 
-#: src/libvirt-machine.vala:695
+#: src/libvirt-machine.vala:687
 msgid "Setting up clone…"
 msgstr "Настройка клона…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:689
 msgid "Importing…"
 msgstr "Импортирование…"
 
@@ -986,36 +982,39 @@ msgstr "Выключено"
 msgid "Connecting to %s"
 msgstr "Подключение к %s"
 
-#: src/machine.vala:207 src/machine.vala:618
+#: src/machine.vala:207
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Сбой подключения к «%s»"
 
-#: src/machine.vala:249
+#: src/machine.vala:251
 msgid "Machine is under construction"
 msgstr "Машина находится в разработке"
 
-#: src/machine.vala:402
+#: src/machine.vala:404
 msgid "Saving…"
 msgstr "Сохранение…"
 
-#: src/machine.vala:587
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:597
 #, c-format
-msgid ""
-"“%s” could not be restored from disk\n"
-"Try without saved state?"
-msgstr ""
-"Невозможно восстановить «%s» с диска\n"
-"Загрузить игнорируя сохранённое состояние?"
+msgid "“%s” could not be restored from disk: %s"
+msgstr "\"%s\" не удалось восстановить с диска: %s"
 
-#: src/machine.vala:598
+#: src/machine.vala:608
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Не удалось запустить «%s»"
 
-#: src/machine.vala:611
+#: src/machine.vala:623
 msgid "Troubleshooting Log"
 msgstr "Журнал проблем"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:634
+#, c-format
+msgid "Connection to “%s” failed: %s"
+msgstr "Соединение с \"%s\" не удалось: %s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1091,11 +1090,11 @@ msgstr "Рекомендовано %s."
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxes не разрешена для запуска в фоновом режиме"
 
-#: src/preferences/resources-page.vala:159
-msgid "Manage permissions"
-msgstr "Управление разрешениями"
+#: src/preferences/resources-page.vala:163
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr "Вы хотите открыть Настройки, чтобы управлять разрешениями приложений?"
 
-#: src/preferences/resources-page.vala:191
+#: src/preferences/resources-page.vala:201
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1104,12 +1103,12 @@ msgstr ""
 "операционной системе вашей виртуальной машины. Хотите создать моментальный "
 "снимок для восстановления после внесенных изменений?"
 
-#: src/preferences/resources-page.vala:257
+#: src/preferences/resources-page.vala:267
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Не удалось сохранить конфигурацию домена: %s"
 
-#: src/preferences/resources-page.vala:266
+#: src/preferences/resources-page.vala:276
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Изменения в приведенных ниже настройках вступают в силу после перезапуска "
@@ -1120,38 +1119,38 @@ msgid "Use the button below to add your first shared folder."
 msgstr "Используйте кнопку ниже, чтобы добавить свою первую общую папку."
 
 #. Translators: %s is the reason why Boxes failed to rename the snapshot.
-#: src/preferences/snapshot-list-row.vala:80
+#: src/preferences/snapshot-list-row.vala:77
 #, c-format
 msgid "Failed to rename snapshot: %s"
 msgstr "Не удалось переименовать снимок: %s"
 
-#: src/preferences/snapshot-list-row.vala:97
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Возврат к %s…"
 
 #. Translators: %s is the reason why Boxes failed to apply the snapshot.
-#: src/preferences/snapshot-list-row.vala:120
+#: src/preferences/snapshot-list-row.vala:115
 #, c-format
 msgid "Failed to revert to snapshot: %s"
 msgstr "Не удалось вернуться к снимку: %s"
 
-#: src/preferences/snapshot-list-row.vala:139
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Снимок «%s» удалён."
 
-#: src/preferences/snapshots-page.vala:156
+#: src/preferences/snapshots-page.vala:139
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Не удалось создать снимок %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:179
+#: src/preferences/snapshots-page.vala:160
 msgid "Revert to a previous state of your box."
 msgstr "Возврат к предыдущему состоянию вашей виртуальной машины."
 
-#: src/preferences/snapshots-page.vala:181
+#: src/preferences/snapshots-page.vala:162
 msgid "Use the button below to create your first snapshot."
 msgstr "Используйте кнопку ниже, чтобы создать свой первый снимок системы."
 
@@ -1282,8 +1281,9 @@ msgstr "Система не поддерживает необходимые фу
 msgid "Just installed "
 msgstr "Только что установлено "
 
-#: src/vm-importer.vala:64
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "Box import from file “%s” failed."
-msgstr "Не удалось импортировать виртуальную машину из файла «%s»."
+msgid "Box import from file “%s” failed: %s"
+msgstr "Импорт виртуальной машины из файла \"%s\" не удался: %s"
 
