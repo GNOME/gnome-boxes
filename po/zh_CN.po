@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-05 09:51+0000\n"
-"PO-Revision-Date: 2022-01-07 10:53+0800\n"
+"POT-Creation-Date: 2022-01-23 13:44+0000\n"
+"PO-Revision-Date: 2022-01-24 18:34+0800\n"
 "Last-Translator: lumingzh <lumingzh@qq.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -32,7 +32,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "盒子"
@@ -169,11 +169,11 @@ msgstr "共享文件夹"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "包含各个共享文件夹名称及映射路径的数组"
 
-#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "欢迎使用盒子"
 
-#: data/ui/app-window.ui:88
+#: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "使用 <b>+</b> 按钮来创建您的第一个虚拟机。"
 
@@ -317,15 +317,15 @@ msgstr "启用 EFI"
 msgid "Express Installation"
 msgstr "快速安装"
 
-#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
 #: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
-#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "取消"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
+#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
 msgid "Next"
 msgstr "下一页"
 
@@ -487,10 +487,6 @@ msgstr "USB 设备"
 msgid "CDROM/DVD Drive"
 msgstr "CDROM/DVD 驱动器"
 
-#: data/ui/preferences/preferences-toast.ui:27
-msgid "Undo"
-msgstr "撤消"
-
 #: data/ui/preferences/resources-page.ui:7
 #: data/ui/preferences/resources-page.ui:67
 msgid "Resources"
@@ -561,17 +557,14 @@ msgid "Shared Folders"
 msgstr "共享文件夹"
 
 #: data/ui/preferences/snapshot-list-row.ui:68
-#| msgid "Revert to this state"
 msgid "Revert to snapshot"
 msgstr "还原到快照"
 
 #: data/ui/preferences/snapshot-list-row.ui:83
-#| msgid "Creating new snapshot…"
 msgid "Rename snapshot"
 msgstr "重命名快照"
 
 #: data/ui/preferences/snapshot-list-row.ui:98
-#| msgid "Creating new snapshot…"
 msgid "Delete snapshot"
 msgstr "删除快照"
 
@@ -581,9 +574,14 @@ msgid "Snapshots"
 msgstr "快照"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:143
+#: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "正在创建新快照…"
+
+#: data/ui/toast.ui:34 src/app.vala:604
+#: src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "撤消"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -672,30 +670,30 @@ msgstr "发送文件…"
 msgid "Take Screenshot"
 msgstr "截图"
 
-#: src/actions-popover.vala:64
+#: src/actions-popover.vala:65
 msgid "Force Shutdown"
 msgstr "强制关机"
 
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:76
 msgid "Clone"
 msgstr "克隆"
 
 #. Delete
-#: src/actions-popover.vala:80
+#: src/actions-popover.vala:81
 msgid "Delete"
 msgstr "删除"
 
-#: src/actions-popover.vala:84 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:600
 msgid "Restart"
 msgstr "重启"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:94
 msgid "Preferences"
 msgstr "首选项"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:111
+#: src/actions-popover.vala:112
 #, c-format
 msgid "Screenshot from %s"
 msgstr "来自 %s 的截图"
@@ -754,36 +752,32 @@ msgstr "— 一个简单的用于访问虚拟机的应用程序"
 msgid "Too many command line arguments specified.\n"
 msgstr "指定了过多的命令行参数。\n"
 
-#: src/app.vala:461
+#: src/app.vala:460
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "盒子“%s”已安装并准备就绪"
 
-#: src/app.vala:463
+#: src/app.vala:462
 msgid "Launch"
 msgstr "启动"
 
-#: src/app.vala:493
+#: src/app.vala:492
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "“%s”正在后台运行"
 
-#: src/app.vala:574
+#: src/app.vala:573
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "盒子“%s”已被删除"
 
-#: src/app.vala:575
+#: src/app.vala:574
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "已删除 %u 个盒子"
 
-#: src/app.vala:603
-msgid "_Undo"
-msgstr "撤消(_U)"
-
-#: src/app.vala:641
+#: src/app.vala:645
 msgid "Boxes is doing something"
 msgstr "盒子正在进行一些操作"
 
@@ -807,14 +801,13 @@ msgstr "选择一个设备或 ISO 文件"
 msgid "Open"
 msgstr "打开"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "上一页"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
-#: src/util-app.vala:172
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
 msgid "Live"
 msgstr "体验"
 
@@ -832,11 +825,11 @@ msgstr "64位 x86 系统"
 msgid " from %s"
 msgstr "，来自 %s"
 
-#: src/assistant/vm-assistant.vala:60
+#: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "无法分析安装器介质。已损坏或不完整的介质？"
 
-#: src/assistant/vm-assistant.vala:73
+#: src/assistant/vm-assistant.vala:75
 msgid "Create"
 msgstr "创建"
 
@@ -873,8 +866,10 @@ msgstr "安装"
 
 #. We did this, so ignore!
 #: src/downloads-hub.vala:186
-msgid "Failed to download"
-msgstr "下载失败"
+#, c-format
+#| msgid "Failed to download"
+msgid "Failed to download: %s"
+msgstr "下载失败：%s"
 
 #: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
@@ -923,41 +918,42 @@ msgstr "正在从磁盘恢复 %s"
 msgid "Starting %s"
 msgstr "正在启动 %s"
 
-#: src/libvirt-machine.vala:547
+#: src/libvirt-machine.vala:541
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "“%s”重启耗时过长。要强制关机吗？"
 
-#: src/libvirt-machine.vala:549
-msgid "_Shutdown"
-msgstr "关机(_S)"
+#: src/libvirt-machine.vala:544
+#| msgid "_Shutdown"
+msgid "Shutdown"
+msgstr "关机"
 
-#: src/libvirt-machine.vala:565
+#: src/libvirt-machine.vala:559
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "正在克隆“%s”…"
 
-#: src/libvirt-machine.vala:691
+#: src/libvirt-machine.vala:685
 msgid "Installing…"
 msgstr "正在安装…"
 
-#: src/libvirt-machine.vala:695
+#: src/libvirt-machine.vala:687
 msgid "Setting up clone…"
 msgstr "正在设置克隆…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:689
 msgid "Importing…"
 msgstr "正在导入…"
 
-#: src/list-view-row.vala:49
+#: src/list-view-row.vala:48
 msgid "Running"
 msgstr "运行中"
 
-#: src/list-view-row.vala:55
+#: src/list-view-row.vala:54
 msgid "Paused"
 msgstr "已暂停"
 
-#: src/list-view-row.vala:60
+#: src/list-view-row.vala:59
 msgid "Powered Off"
 msgstr "已关闭"
 
@@ -967,36 +963,43 @@ msgstr "已关闭"
 msgid "Connecting to %s"
 msgstr "正在连接到 %s"
 
-#: src/machine.vala:207 src/machine.vala:618
+#: src/machine.vala:207
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "无法连接到“%s”"
 
-#: src/machine.vala:249
+#: src/machine.vala:251
 msgid "Machine is under construction"
 msgstr "正在准备虚拟机"
 
-#: src/machine.vala:402
+#: src/machine.vala:404
 msgid "Saving…"
 msgstr "正在保存…"
 
-#: src/machine.vala:587
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:597
 #, c-format
-msgid ""
-"“%s” could not be restored from disk\n"
-"Try without saved state?"
-msgstr ""
-"无法从磁盘恢复“%s”\n"
-"要忽略保存的状态并重试吗？"
+#| msgid ""
+#| "“%s” could not be restored from disk\n"
+#| "Try without saved state?"
+msgid "“%s” could not be restored from disk: %s"
+msgstr "无法从磁盘恢复“%s”：%s"
 
-#: src/machine.vala:598
+#: src/machine.vala:608
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "无法启动“%s”"
 
-#: src/machine.vala:611
+#: src/machine.vala:623
 msgid "Troubleshooting Log"
 msgstr "故障诊断日志"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:634
+#, c-format
+#| msgid "Connection to “%s” failed"
+msgid "Connection to “%s” failed: %s"
+msgstr "连接到“%s”失败：%s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1069,11 +1072,11 @@ msgstr "推荐 %s。"
 msgid "Boxes is not authorized to run in background"
 msgstr "盒子未被授权后台运行"
 
-#: src/preferences/resources-page.vala:159
-msgid "Manage permissions"
-msgstr "管理权限"
+#: src/preferences/resources-page.vala:163
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr "您想要打开设置来管理应用程序权限吗？"
 
-#: src/preferences/resources-page.vala:191
+#: src/preferences/resources-page.vala:201
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1081,12 +1084,12 @@ msgstr ""
 "编辑您的盒子配置可能会导致盒子中的操作系统发生问题。您想要创建快照以便从您的"
 "更改中恢复吗？"
 
-#: src/preferences/resources-page.vala:257
+#: src/preferences/resources-page.vala:267
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "保存域名配置失败：%s"
 
-#: src/preferences/resources-page.vala:266
+#: src/preferences/resources-page.vala:276
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "对下方设置的更改将在您重启盒子后生效。"
 
@@ -1094,32 +1097,41 @@ msgstr "对下方设置的更改将在您重启盒子后生效。"
 msgid "Use the button below to add your first shared folder."
 msgstr "使用下方的按钮来添加您的第一个共享文件夹。"
 
-#: src/preferences/snapshot-list-row.vala:88
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:77
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to rename snapshot: %s"
+msgstr "重命名快照失败：%s"
+
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
 msgid "Reverting to %s…"
 msgstr "正在还原到 %s…"
 
-#: src/preferences/snapshot-list-row.vala:108
-msgid "Failed to apply snapshot"
-msgstr "恢复到快照失败"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:115
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to revert to snapshot: %s"
+msgstr "还原至快照失败：%s"
 
-#: src/preferences/snapshot-list-row.vala:126
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "已删除快照“%s”。"
 
-#: src/preferences/snapshots-page.vala:149
+#: src/preferences/snapshots-page.vala:139
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "为 %s 创建快照失败"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:169
-#| msgid "Revert to this state"
+#: src/preferences/snapshots-page.vala:160
 msgid "Revert to a previous state of your box."
 msgstr "还原到您盒子之前的状态。"
 
-#: src/preferences/snapshots-page.vala:171
+#: src/preferences/snapshots-page.vala:162
 msgid "Use the button below to create your first snapshot."
 msgstr "使用下方的按钮来创建您的第一个快照。"
 
@@ -1245,10 +1257,21 @@ msgstr "主机系统性能不足"
 msgid "Just installed "
 msgstr "刚安装 "
 
-#: src/vm-importer.vala:64
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "Box import from file “%s” failed."
-msgstr "从文件“%s”导入盒子失败。"
+#| msgid "Box import from file “%s” failed."
+msgid "Box import from file “%s” failed: %s"
+msgstr "从文件“%s”导入盒子失败：%s"
+
+#~ msgid "_Undo"
+#~ msgstr "撤消(_U)"
+
+#~ msgid "Manage permissions"
+#~ msgstr "管理权限"
+
+#~ msgid "Failed to apply snapshot"
+#~ msgstr "恢复到快照失败"
 
 #~ msgid "Select Items"
 #~ msgstr "选择项目"
