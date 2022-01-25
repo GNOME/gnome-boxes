@@ -105,7 +105,7 @@ dependencies = [
   dependency ('gtk+-3.0', version: '>= 3.22.20'),
   dependency ('gtk-vnc-2.0', version: '>= 0.4.4'),
   dependency ('gvncpulse-1.0'),
-  dependency ('libhandy-1', version: '>= 1.0.0'),
+  dependency ('libhandy-1', version: '>= 1.5.0'),
   dependency ('libosinfo-1.0', version: '>= 1.7.0'),
   dependency ('libsecret-1'),
   dependency ('libsoup-2.4', version: '>= 2.38'),
