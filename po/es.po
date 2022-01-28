@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-20 17:22+0000\n"
-"PO-Revision-Date: 2022-01-21 10:41+0100\n"
+"POT-Creation-Date: 2022-01-23 13:44+0000\n"
+"PO-Revision-Date: 2022-01-28 10:59+0100\n"
 "Last-Translator: Daniel Mustieles García <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Cajas"
@@ -174,11 +174,11 @@ msgstr "Carpetas compartidas"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Vector de nombres carpetas compartidas y mapeo de rutas"
 
-#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Bienvenido a Cajas"
 
-#: data/ui/app-window.ui:88
+#: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Pulse el botón <b>+</b> para crear su primera máquina virtual."
 
@@ -327,15 +327,15 @@ msgstr "Activar EFI"
 msgid "Express Installation"
 msgstr "Instalación rápida"
 
-#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
 #: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
-#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
+#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
 msgid "Next"
 msgstr "Siguiente"
 
@@ -497,11 +497,6 @@ msgstr "Dispositivos USB"
 msgid "CDROM/DVD Drive"
 msgstr "Unidad de CDROM/DVD"
 
-#: data/ui/preferences/preferences-toast.ui:27
-#: src/preferences/snapshot-list-row.vala:163
-msgid "Undo"
-msgstr "Deshacer"
-
 #: data/ui/preferences/resources-page.ui:7
 #: data/ui/preferences/resources-page.ui:67
 msgid "Resources"
@@ -572,17 +567,14 @@ msgid "Shared Folders"
 msgstr "Carpetas compartidas"
 
 #: data/ui/preferences/snapshot-list-row.ui:68
-#| msgid "Revert to this state"
 msgid "Revert to snapshot"
 msgstr "Revertir a una instantánea"
 
 #: data/ui/preferences/snapshot-list-row.ui:83
-#| msgid "Creating new snapshot…"
 msgid "Rename snapshot"
 msgstr "Renombrar instantánea"
 
 #: data/ui/preferences/snapshot-list-row.ui:98
-#| msgid "Creating new snapshot…"
 msgid "Delete snapshot"
 msgstr "Eliminar instantánea"
 
@@ -592,9 +584,14 @@ msgid "Snapshots"
 msgstr "Instantáneas"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:150
+#: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Creando instantánea nueva…"
+
+#: data/ui/toast.ui:34 src/app.vala:604
+#: src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "Deshacer"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -702,7 +699,7 @@ msgstr "Clonar"
 msgid "Delete"
 msgstr "Eliminar"
 
-#: src/actions-popover.vala:85 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:600
 msgid "Restart"
 msgstr "Reiniciar"
 
@@ -764,37 +761,33 @@ msgstr "— Una sencilla aplicación para acceder a máquinas virtuales o remota
 msgid "Too many command line arguments specified.\n"
 msgstr "Se han especificado demasiados argumentos de la línea de comandos.\n"
 
-#: src/app.vala:461
+#: src/app.vala:460
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Caja «%s» instalada y lista para usarse"
 
-#: src/app.vala:463
+#: src/app.vala:462
 msgid "Launch"
 msgstr "Lanzar"
 
-#: src/app.vala:493
+#: src/app.vala:492
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "«%s» se está ejecutando en segundo plano"
 
-#: src/app.vala:574
+#: src/app.vala:573
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Se ha eliminado la caja «%s»"
 
-#: src/app.vala:575
+#: src/app.vala:574
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
 msgstr[0] "Se ha eliminado %u caja"
 msgstr[1] "Se han eliminado %u cajas"
 
-#: src/app.vala:603
-msgid "_Undo"
-msgstr "_Deshacer"
-
-#: src/app.vala:641
+#: src/app.vala:645
 msgid "Boxes is doing something"
 msgstr "Cajas está haciendo algo"
 
@@ -818,14 +811,13 @@ msgstr "Seleccionar un dispositivo o una imagen ISO"
 msgid "Open"
 msgstr "Abrir"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Anterior"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
-#: src/util-app.vala:172
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
 msgid "Live"
 msgstr "«Live»"
 
@@ -843,11 +835,11 @@ msgstr "sistema x86 de 64 bits"
 msgid " from %s"
 msgstr " de %s"
 
-#: src/assistant/vm-assistant.vala:60
+#: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Falló al analizar"
 
-#: src/assistant/vm-assistant.vala:73
+#: src/assistant/vm-assistant.vala:75
 msgid "Create"
 msgstr "Crear"
 
@@ -885,8 +877,10 @@ msgstr "Instalar"
 
 #. We did this, so ignore!
 #: src/downloads-hub.vala:186
-msgid "Failed to download"
-msgstr "Falló al descargar"
+#, c-format
+#| msgid "Failed to download"
+msgid "Failed to download: %s"
+msgstr "Falló al descargar: %s"
 
 #: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
@@ -935,29 +929,30 @@ msgstr "Restaurando %s desde el disco"
 msgid "Starting %s"
 msgstr "Iniciando %s"
 
-#: src/libvirt-machine.vala:547
+#: src/libvirt-machine.vala:541
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» está tardando mucho en reiniciarse. ¿Forzar el apagado?"
 
-#: src/libvirt-machine.vala:549
-msgid "_Shutdown"
-msgstr "_Apagar"
+#: src/libvirt-machine.vala:544
+#| msgid "_Shutdown"
+msgid "Shutdown"
+msgstr "Apagar"
 
-#: src/libvirt-machine.vala:565
+#: src/libvirt-machine.vala:559
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Clonando «%s»…"
 
-#: src/libvirt-machine.vala:691
+#: src/libvirt-machine.vala:685
 msgid "Installing…"
 msgstr "Instalando…"
 
-#: src/libvirt-machine.vala:695
+#: src/libvirt-machine.vala:687
 msgid "Setting up clone…"
 msgstr "Configurando clon…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:689
 msgid "Importing…"
 msgstr "Importando…"
 
@@ -979,36 +974,43 @@ msgstr "Apagada"
 msgid "Connecting to %s"
 msgstr "Conectando a %s"
 
-#: src/machine.vala:207 src/machine.vala:618
+#: src/machine.vala:207
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Falló la conexión a «%s»"
 
-#: src/machine.vala:249
+#: src/machine.vala:251
 msgid "Machine is under construction"
 msgstr "Se está construyendo la máquina"
 
-#: src/machine.vala:402
+#: src/machine.vala:404
 msgid "Saving…"
 msgstr "Guardando…"
 
-#: src/machine.vala:587
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:597
 #, c-format
-msgid ""
-"“%s” could not be restored from disk\n"
-"Try without saved state?"
-msgstr ""
-"no se pudo restaurar «%s» desde el disco\n"
-"¿Intentarlo sin el estado guardado?"
+#| msgid ""
+#| "“%s” could not be restored from disk\n"
+#| "Try without saved state?"
+msgid "“%s” could not be restored from disk: %s"
+msgstr "no se pudo restaurar «%s» desde el disco: %s"
 
-#: src/machine.vala:598
+#: src/machine.vala:608
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Falló al iniciar «%s»"
 
-#: src/machine.vala:611
+#: src/machine.vala:623
 msgid "Troubleshooting Log"
 msgstr "Registro de resolución de problemas"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:634
+#, c-format
+#| msgid "Connection to “%s” failed"
+msgid "Connection to “%s” failed: %s"
+msgstr "Falló la conexión a «%s»: %s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1083,11 +1085,12 @@ msgstr "Recomendado %s"
 msgid "Boxes is not authorized to run in background"
 msgstr "Cajas no está autorizado para ejecutarse en segundo plano"
 
-#: src/preferences/resources-page.vala:159
-msgid "Manage permissions"
-msgstr "Gestionar permisos"
+#: src/preferences/resources-page.vala:163
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr ""
+"¿Quiere abrir la Configuración para gestionar los permisos de la aplicación?"
 
-#: src/preferences/resources-page.vala:191
+#: src/preferences/resources-page.vala:201
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1096,12 +1099,12 @@ msgstr ""
 "operativo de la misma. ¿Quiere crear una instantánea para poder recuperarse "
 "de los cambios?"
 
-#: src/preferences/resources-page.vala:257
+#: src/preferences/resources-page.vala:267
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Falló al guardar la configuración del dominio: %s"
 
-#: src/preferences/resources-page.vala:266
+#: src/preferences/resources-page.vala:276
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Los cambios en la siguiente opción tendrán efecto cuando reinicie la caja."
@@ -1111,41 +1114,38 @@ msgid "Use the button below to add your first shared folder."
 msgstr "Pulse el siguiente botón para añadir su primera carpeta compartida."
 
 #. Translators: %s is the reason why Boxes failed to rename the snapshot.
-#: src/preferences/snapshot-list-row.vala:80
+#: src/preferences/snapshot-list-row.vala:77
 #, c-format
-#| msgid "Failed to create snapshot of %s"
 msgid "Failed to rename snapshot: %s"
 msgstr "Falló al renombrar la instantánea: %s"
 
-#: src/preferences/snapshot-list-row.vala:97
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Revirtiendo a %s…"
 
 #. Translators: %s is the reason why Boxes failed to apply the snapshot.
-#: src/preferences/snapshot-list-row.vala:120
+#: src/preferences/snapshot-list-row.vala:115
 #, c-format
-#| msgid "Failed to create snapshot of %s"
 msgid "Failed to revert to snapshot: %s"
 msgstr "Falló al revertir a la instantánea: %s"
 
-#: src/preferences/snapshot-list-row.vala:139
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Instantánea «%s» eliminada."
 
-#: src/preferences/snapshots-page.vala:156
+#: src/preferences/snapshots-page.vala:139
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Falló al crear la instantánea de %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:179
-#| msgid "Revert to this state"
+#: src/preferences/snapshots-page.vala:160
 msgid "Revert to a previous state of your box."
 msgstr "Revertir a un estado previo de su caja."
 
-#: src/preferences/snapshots-page.vala:181
+#: src/preferences/snapshots-page.vala:162
 msgid "Use the button below to create your first snapshot."
 msgstr "Pulse el siguiente botón para crear su primera instantánea."
 
@@ -1281,10 +1281,18 @@ msgstr "Equipo no capacitado"
 msgid "Just installed "
 msgstr "Recién instalada "
 
-#: src/vm-importer.vala:64
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "Box import from file “%s” failed."
-msgstr "Falló al importar la caja del archivo «%s»."
+#| msgid "Box import from file “%s” failed."
+msgid "Box import from file “%s” failed: %s"
+msgstr "Falló al importar la caja del archivo «%s»: %s"
+
+#~ msgid "_Undo"
+#~ msgstr "_Deshacer"
+
+#~ msgid "Manage permissions"
+#~ msgstr "Gestionar permisos"
 
 #~ msgid "Rename"
 #~ msgstr "Renombrar"
