@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-12 17:14+0000\n"
-"PO-Revision-Date: 2022-01-13 13:21+0100\n"
+"POT-Creation-Date: 2022-01-23 13:44+0000\n"
+"PO-Revision-Date: 2022-01-28 08:04+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxy"
@@ -66,7 +66,8 @@ msgid ""
 "Limit the resources (memory and storage) your virtual machines consume from "
 "your system."
 msgstr ""
-"Omezení prostředků (paměť a úložiště), které virtuální stroje čerpají ze systému."
+"Omezení prostředků (paměť a úložiště), které virtuální stroje čerpají ze "
+"systému."
 
 #: data/org.gnome.Boxes.appdata.xml.in:22
 msgid "Take snapshots of virtual machines to restore to previous states."
@@ -95,8 +96,8 @@ msgid ""
 "Share files to virtual machines by dropping them from your file manager into "
 "the Boxes window."
 msgstr ""
-"Sdílení souborů s virtuálními stroji jejich přetažením ze správce souborů "
-"do okna Boxů."
+"Sdílení souborů s virtuálními stroji jejich přetažením ze správce souborů do "
+"okna Boxů."
 
 #: data/org.gnome.Boxes.appdata.xml.in:28
 msgid "Setup Shared Folders between your system and virtual machines."
@@ -167,13 +168,14 @@ msgstr "Sdílené složky"
 msgid "Variant array of shared folders’ names and path mapping"
 msgstr "Proměnné pole s názvy sdílených složek a mapováním cest"
 
-#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Vítejte v aplikaci Boxy"
 
-#: data/ui/app-window.ui:88
+#: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
-msgstr "Pro vytvoření svého prvního virtuálního stroje použijte tlačítko <b>+</b>."
+msgstr ""
+"Pro vytvoření svého prvního virtuálního stroje použijte tlačítko <b>+</b>."
 
 #: data/ui/assistant/media-entry.ui:8
 msgid "Unknown media"
@@ -319,15 +321,15 @@ msgstr "Povolit EFI"
 msgid "Express Installation"
 msgstr "Rychlá instalace"
 
-#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
 #: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
-#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
+#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
 msgid "Next"
 msgstr "Další"
 
@@ -489,10 +491,6 @@ msgstr "Zařízení USB"
 msgid "CDROM/DVD Drive"
 msgstr "Mechanika CD-ROM/DVD"
 
-#: data/ui/preferences/preferences-toast.ui:27
-msgid "Undo"
-msgstr "Zpět"
-
 #: data/ui/preferences/resources-page.ui:7
 #: data/ui/preferences/resources-page.ui:67
 msgid "Resources"
@@ -580,9 +578,14 @@ msgid "Snapshots"
 msgstr "Zachycené stavy"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:143
+#: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Zachytává se stav…"
+
+#: data/ui/toast.ui:34 src/app.vala:604
+#: src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "Zpět"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -689,7 +692,7 @@ msgstr "Klonovat"
 msgid "Delete"
 msgstr "Smazat"
 
-#: src/actions-popover.vala:85 src/machine.vala:588
+#: src/actions-popover.vala:85 src/machine.vala:600
 msgid "Restart"
 msgstr "Restartovat"
 
@@ -752,26 +755,26 @@ msgstr "– Jednoduchá aplikace pro přístup k virtuálním strojům"
 msgid "Too many command line arguments specified.\n"
 msgstr "Bylo zadáno příliš mnoho přepínačů příkazového řádku.\n"
 
-#: src/app.vala:461
+#: src/app.vala:460
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Box „%s“ je nainstalován a připraven k použití"
 
-#: src/app.vala:463
+#: src/app.vala:462
 msgid "Launch"
 msgstr "Spustit"
 
-#: src/app.vala:493
+#: src/app.vala:492
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "„%s“ běží na pozadí"
 
-#: src/app.vala:574
+#: src/app.vala:573
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Box „%s“ byl odstraněn"
 
-#: src/app.vala:575
+#: src/app.vala:574
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -779,11 +782,7 @@ msgstr[0] "%u box byl odstraněn"
 msgstr[1] "%u boxy byly odstraněny"
 msgstr[2] "%u boxů bylo odstraněno"
 
-#: src/app.vala:603
-msgid "_Undo"
-msgstr "_Zpět"
-
-#: src/app.vala:641
+#: src/app.vala:645
 msgid "Boxes is doing something"
 msgstr "Boxy něco provádí"
 
@@ -807,14 +806,13 @@ msgstr "Vybrat zařízení nebo soubor ISO"
 msgid "Open"
 msgstr "Otevřít"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Předchozí"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:693
-#: src/util-app.vala:172
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
 msgid "Live"
 msgstr "Živé médium"
 
@@ -832,11 +830,11 @@ msgstr "64bitový systém x86"
 msgid " from %s"
 msgstr " od %s"
 
-#: src/assistant/vm-assistant.vala:60
+#: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr "Selhala analýza instalačního média. Není poškozené nebo neúplné?"
 
-#: src/assistant/vm-assistant.vala:73
+#: src/assistant/vm-assistant.vala:75
 msgid "Create"
 msgstr "Vytvořit"
 
@@ -874,8 +872,9 @@ msgstr "Nainstalovat"
 
 #. We did this, so ignore!
 #: src/downloads-hub.vala:186
-msgid "Failed to download"
-msgstr "Stažení selhalo"
+#, c-format
+msgid "Failed to download: %s"
+msgstr "Stažení selhalo: %s"
 
 #: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
@@ -924,30 +923,30 @@ msgstr "Obnovuje se %s z disku"
 msgid "Starting %s"
 msgstr "Spouští se %s"
 
-#: src/libvirt-machine.vala:547
+#: src/libvirt-machine.vala:541
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr ""
 "Restart stroje „%s“ probíhá již příliš dlouho. Chcete jej násilně vypnout?"
 
-#: src/libvirt-machine.vala:549
-msgid "_Shutdown"
-msgstr "_Vypnout"
+#: src/libvirt-machine.vala:544
+msgid "Shutdown"
+msgstr "Vypnout"
 
-#: src/libvirt-machine.vala:565
+#: src/libvirt-machine.vala:559
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Klonuje se „%s“…"
 
-#: src/libvirt-machine.vala:691
+#: src/libvirt-machine.vala:685
 msgid "Installing…"
 msgstr "Instaluje se…"
 
-#: src/libvirt-machine.vala:695
+#: src/libvirt-machine.vala:687
 msgid "Setting up clone…"
 msgstr "Nastavuje se klon…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:689
 msgid "Importing…"
 msgstr "Importuje se…"
 
@@ -969,36 +968,39 @@ msgstr "Vypnutý"
 msgid "Connecting to %s"
 msgstr "Připojuje se k %s"
 
-#: src/machine.vala:207 src/machine.vala:618
+#: src/machine.vala:207
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Připojení k „%s“ selhalo"
 
-#: src/machine.vala:249
+#: src/machine.vala:251
 msgid "Machine is under construction"
 msgstr "Stroj se připravuje"
 
-#: src/machine.vala:402
+#: src/machine.vala:404
 msgid "Saving…"
 msgstr "Ukládá se…"
 
-#: src/machine.vala:587
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:597
 #, c-format
-msgid ""
-"“%s” could not be restored from disk\n"
-"Try without saved state?"
-msgstr ""
-"Stroj „%s“ nelze z disku obnovit\n"
-"Zkusit to bez uloženého stavu?"
+msgid "“%s” could not be restored from disk: %s"
+msgstr "„%s“ se nezdařilo obnovit z disku: %s"
 
-#: src/machine.vala:598
+#: src/machine.vala:608
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Selhalo spuštění „%s“"
 
-#: src/machine.vala:611
+#: src/machine.vala:623
 msgid "Troubleshooting Log"
 msgstr "Zaznamenané problémy"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:634
+#, c-format
+msgid "Connection to “%s” failed: %s"
+msgstr "Připojení k „%s“ selhalo: %s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1073,11 +1075,11 @@ msgstr "Doporučeno %s."
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxy nejsou oprávněné běžet na pozadí"
 
-#: src/preferences/resources-page.vala:159
-msgid "Manage permissions"
-msgstr "Spravovat oprávnění"
+#: src/preferences/resources-page.vala:163
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr "Přejete si otevřít Nastavení, abyste mohli změnit oprávnění aplikace?"
 
-#: src/preferences/resources-page.vala:191
+#: src/preferences/resources-page.vala:201
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1085,12 +1087,12 @@ msgstr ""
 "Úprava konfigurace vašeho boxu může způsobit problémy s operačním systémem "
 "vašeho boxu. Chcete vytvořit zálohu, abyste mohli obnovit změny?"
 
-#: src/preferences/resources-page.vala:257
+#: src/preferences/resources-page.vala:267
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Nepodařilo se uložit nastavení domény: %s"
 
-#: src/preferences/resources-page.vala:266
+#: src/preferences/resources-page.vala:276
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "Níže uvedené změny nastavení se projeví po restartování vašeho boxu."
 
@@ -1098,31 +1100,39 @@ msgstr "Níže uvedené změny nastavení se projeví po restartování vašeho 
 msgid "Use the button below to add your first shared folder."
 msgstr "Pro přidání první sdílené složky použijte tlačítko níže."
 
-#: src/preferences/snapshot-list-row.vala:88
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:77
+#, c-format
+msgid "Failed to rename snapshot: %s"
+msgstr "Selhalo přejmenování zachyceného stavu: %s"
+
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Vrací se k %s…"
 
-#: src/preferences/snapshot-list-row.vala:108
-msgid "Failed to apply snapshot"
-msgstr "Selhalo použití zachyceného stavu"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:115
+#, c-format
+msgid "Failed to revert to snapshot: %s"
+msgstr "Selhal návrat do zachyceného stavu: %s"
 
-#: src/preferences/snapshot-list-row.vala:126
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Zachycený stav „%s“ byl smazán."
 
-#: src/preferences/snapshots-page.vala:149
+#: src/preferences/snapshots-page.vala:139
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Selhalo zachycení stavu pro %s"
 
 #. we need to account for the "+" button
-#: src/preferences/snapshots-page.vala:169
+#: src/preferences/snapshots-page.vala:160
 msgid "Revert to a previous state of your box."
 msgstr "Vrátit do předchozího stavu vašeho boxu."
 
-#: src/preferences/snapshots-page.vala:171
+#: src/preferences/snapshots-page.vala:162
 msgid "Use the button below to create your first snapshot."
 msgstr "Pro vytvoření první zálohy použijte tlačítko níže."
 
@@ -1258,7 +1268,8 @@ msgstr "Nedostačující hostitelský systém"
 msgid "Just installed "
 msgstr "Ihned po instalaci "
 
-#: src/vm-importer.vala:64
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "Box import from file “%s” failed."
-msgstr "Import boxu ze souboru „%s“ selhal."
+msgid "Box import from file “%s” failed: %s"
+msgstr "Import boxu ze souboru „%s“ selhal: %s"
