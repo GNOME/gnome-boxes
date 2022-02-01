@@ -31,7 +31,7 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         var section = new GLib.Menu ();
         section.append (_("Ctrl + Alt + F1"), "key.ctrl+alt+f1");
         section.append (_("Ctrl + Alt + F2"), "key.ctrl+alt+f2");
-        section.append (_("Ctrl + Alt + F3"), "key.ctrl+alt+f2");
+        section.append (_("Ctrl + Alt + F3"), "key.ctrl+alt+f3");
         section.append (_("Ctrl + Alt + F7"), "key.ctrl+alt+f7");
         section.append (_("Ctrl + Alt + F9"), "key.ctrl+alt+f9");
         menu.append_section (null, section);
@@ -65,7 +65,7 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         else if (action.name[action.name.length - 1] == '2')
             keyvals[2] = Gdk.Key.F2;
         else if (action.name[action.name.length - 1] == '3')
-            keyvals[3] = Gdk.Key.F3;
+            keyvals[2] = Gdk.Key.F3;
         else if (action.name[action.name.length - 1] == '7')
             keyvals[2] = Gdk.Key.F7;
         else if (action.name[action.name.length - 1] == '9')
