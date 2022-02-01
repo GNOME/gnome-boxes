@@ -9,6 +9,7 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         {"ctrl+alt+f2", ctrl_alt_fn_activated},
         {"ctrl+alt+f3", ctrl_alt_fn_activated},
         {"ctrl+alt+f7", ctrl_alt_fn_activated},
+        {"ctrl+alt+f9", ctrl_alt_fn_activated},
     };
 
     private AppWindow window;
@@ -32,6 +33,7 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         section.append (_("Ctrl + Alt + F2"), "key.ctrl+alt+f2");
         section.append (_("Ctrl + Alt + F3"), "key.ctrl+alt+f2");
         section.append (_("Ctrl + Alt + F7"), "key.ctrl+alt+f7");
+        section.append (_("Ctrl + Alt + F9"), "key.ctrl+alt+f9");
         menu.append_section (null, section);
 
         bind_model (menu, null);
@@ -65,6 +67,8 @@ private class Boxes.KeysInputPopover: Gtk.Popover {
         else if (action.name[action.name.length - 1] == '3')
             keyvals[3] = Gdk.Key.F3;
         else if (action.name[action.name.length - 1] == '7')
+            keyvals[2] = Gdk.Key.F7;
+        else if (action.name[action.name.length - 1] == '9')
             keyvals[2] = Gdk.Key.F7;
         else {
             warn_if_reached ();
