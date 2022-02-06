@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-01-03 14:54+0000\n"
-"PO-Revision-Date: 2022-01-03 22:23+0200\n"
+"POT-Creation-Date: 2022-02-02 08:39+0000\n"
+"PO-Revision-Date: 2022-02-06 16:39+0200\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:112 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Dėžės"
@@ -31,8 +31,6 @@ msgid "Virtualization made simple"
 msgstr "Paprasta virtualizacija"
 
 #: data/org.gnome.Boxes.appdata.xml.in:10
-#| msgid ""
-#| "Operating system will be downloaded and installed in a virtual machine."
 msgid ""
 "Select an operating system and let Boxes download and install it for you in "
 "a virtual machine."
@@ -72,9 +70,6 @@ msgstr ""
 "saugyklą)."
 
 #: data/org.gnome.Boxes.appdata.xml.in:22
-#| msgid ""
-#| "Boxes failed to snapshot your virtual machine before applying your "
-#| "changes."
 msgid "Take snapshots of virtual machines to restore to previous states."
 msgstr ""
 "Padaro virtualių mašinų momentines kopijas jų ankstesnėms būsenoms atkurti."
@@ -93,7 +88,6 @@ msgid "Automatically resize virtual machines displays to the window size."
 msgstr "Automatiškai keičia virtualių mašinų vaizduoklius pagal lango dydį."
 
 #: data/org.gnome.Boxes.appdata.xml.in:26
-#| msgid "Simple remote and virtual machines"
 msgid "Share clipboard between your system and virtual machines."
 msgstr "Bendrina iškarpinę tarp jūsų sistemos ir virtualios mašinos."
 
@@ -106,7 +100,6 @@ msgstr ""
 "tvarkyklės į Dėžių langą."
 
 #: data/org.gnome.Boxes.appdata.xml.in:28
-#| msgid "Select a file to install a virtual machine."
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Nustato bendrinamus aplankus tarp jūsų sistemos ir virtualių mašinų."
 
@@ -176,11 +169,11 @@ msgid "Variant array of shared folders’ names and path mapping"
 msgstr ""
 "Variantų masyvas su bendrinamų aplankų pavadinimų bei kelių susiejimais"
 
-#: data/ui/app-window.ui:87 data/ui/welcome-tutorial.ui:40
+#: data/ui/app-window.ui:81 data/ui/welcome-tutorial.ui:40
 msgid "Welcome to Boxes"
 msgstr "Sveiki pradėja naudoti Dėžes"
 
-#: data/ui/app-window.ui:88
+#: data/ui/app-window.ui:82
 msgid "Use the <b>+</b> button to create your first virtual machine."
 msgstr "Naudokite mygtuką <b>+</b> pirmajai virtualiai mašinai sukurti."
 
@@ -327,15 +320,15 @@ msgstr "Įjungti EFI"
 msgid "Express Installation"
 msgstr "Greitasis diegimas"
 
-#: data/ui/assistant/vm-assistant.ui:48
+#: data/ui/assistant/vm-assistant.ui:54
 #: data/ui/preferences/shared-folder-popover.ui:97
 #: data/ui/shared-folder-popover.ui:97 src/assistant/index-page.vala:104
-#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:150 src/assistant/vm-assistant.vala:72
 #: src/preferences/cdrom-row.vala:65
 msgid "Cancel"
 msgstr "Atsisakyti"
 
-#: data/ui/assistant/vm-assistant.ui:55 src/assistant/vm-assistant.vala:73
+#: data/ui/assistant/vm-assistant.ui:61 src/assistant/vm-assistant.vala:75
 msgid "Next"
 msgstr "Kitas"
 
@@ -497,10 +490,6 @@ msgstr "USB įrenginiai"
 msgid "CDROM/DVD Drive"
 msgstr "CDROM/DVD įrenginys"
 
-#: data/ui/preferences/preferences-toast.ui:27
-msgid "Undo"
-msgstr "Atšaukti"
-
 #: data/ui/preferences/resources-page.ui:7
 #: data/ui/preferences/resources-page.ui:67
 msgid "Resources"
@@ -570,22 +559,20 @@ msgstr "Įrašyti"
 msgid "Shared Folders"
 msgstr "Bendrinami aplankai"
 
-#: data/ui/preferences/snapshot-list-row.ui:6
-msgid "Revert to this state"
-msgstr "Grįžti į šią būseną"
+#: data/ui/preferences/snapshot-list-row.ui:68
+#| msgid "Revert to this state"
+msgid "Revert to snapshot"
+msgstr "Atstatyti į momentinę kopiją"
 
-#: data/ui/preferences/snapshot-list-row.ui:10
-msgid "Rename"
-msgstr "Pervadinti"
+#: data/ui/preferences/snapshot-list-row.ui:83
+#| msgid "Creating new snapshot…"
+msgid "Rename snapshot"
+msgstr "Pervadinti momentinę kopiją"
 
-#. Delete
-#: data/ui/preferences/snapshot-list-row.ui:16 src/actions-popover.vala:80
-msgid "Delete"
-msgstr "Ištrinti"
-
-#: data/ui/preferences/snapshot-list-row.ui:92
-msgid "Done"
-msgstr "Atlikta"
+#: data/ui/preferences/snapshot-list-row.ui:98
+#| msgid "Creating new snapshot…"
+msgid "Delete snapshot"
+msgstr "Ištrinti momentinę kopiją"
 
 #: data/ui/preferences/snapshots-page.ui:6
 #: data/ui/preferences/snapshots-page.ui:11
@@ -593,9 +580,14 @@ msgid "Snapshots"
 msgstr "Momentinės kopijos"
 
 #: data/ui/preferences/snapshots-page.ui:49
-#: src/preferences/snapshots-page.vala:116
+#: src/preferences/snapshots-page.vala:133
 msgid "Creating new snapshot…"
 msgstr "Kuriama nauja momentinė kopija…"
+
+#: data/ui/toast.ui:34 src/app.vala:604
+#: src/preferences/snapshot-list-row.vala:157
+msgid "Undo"
+msgstr "Atšaukti"
 
 #: data/ui/troubleshoot-view.ui:44
 msgid "Oops, something went wrong"
@@ -689,25 +681,30 @@ msgstr "Siųsti failą…"
 msgid "Take Screenshot"
 msgstr "Padaryti ekrano nuotrauką"
 
-#: src/actions-popover.vala:64
+#: src/actions-popover.vala:65
 msgid "Force Shutdown"
 msgstr "Priverstinai išjungti"
 
-#: src/actions-popover.vala:75
+#: src/actions-popover.vala:76
 msgid "Clone"
 msgstr "Klonuoti"
 
-#: src/actions-popover.vala:84 src/machine.vala:589
+#. Delete
+#: src/actions-popover.vala:81
+msgid "Delete"
+msgstr "Ištrinti"
+
+#: src/actions-popover.vala:85 src/machine.vala:600
 msgid "Restart"
 msgstr "Įkelti iš naujo"
 
 #. Properties (in separate section)
-#: src/actions-popover.vala:93
+#: src/actions-popover.vala:94
 msgid "Preferences"
 msgstr "Nuostatos"
 
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:111
+#: src/actions-popover.vala:112
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Ekranvaizdžis iš %s"
@@ -759,26 +756,26 @@ msgstr "– paprasta programa virtualioms mašinoms pasiekti"
 msgid "Too many command line arguments specified.\n"
 msgstr "Nurodyta per daug komandų eilutės argumentų.\n"
 
-#: src/app.vala:461
+#: src/app.vala:460
 #, c-format
 msgid "Box “%s” installed and ready to use"
 msgstr "Dėžė „%s“ įdiegta ir paruošta naudojimui"
 
-#: src/app.vala:463
+#: src/app.vala:462
 msgid "Launch"
 msgstr "Paleisti"
 
-#: src/app.vala:493
+#: src/app.vala:492
 #, c-format
 msgid "“%s“ is running in the background"
 msgstr "„%s“ veikia fone"
 
-#: src/app.vala:574
+#: src/app.vala:573
 #, c-format
 msgid "Box “%s” has been deleted"
 msgstr "Dėžė „%s“ buvo ištrinta"
 
-#: src/app.vala:575
+#: src/app.vala:574
 #, c-format
 msgid "%u box has been deleted"
 msgid_plural "%u boxes have been deleted"
@@ -786,11 +783,7 @@ msgstr[0] "%u dėžė buvo ištrinta"
 msgstr[1] "%u dėžės buvo ištrintos"
 msgstr[2] "%u dėžių buvo ištrintos"
 
-#: src/app.vala:603
-msgid "_Undo"
-msgstr "_Atšaukti"
-
-#: src/app.vala:641
+#: src/app.vala:645
 msgid "Boxes is doing something"
 msgstr "Dėžės kažką daro"
 
@@ -814,14 +807,13 @@ msgstr "Pasirinkite įrenginį arba ISO failą"
 msgid "Open"
 msgstr "Atverti"
 
-#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:70
+#: src/assistant/index-page.vala:168 src/assistant/vm-assistant.vala:72
 msgid "Previous"
 msgstr "Ankstesnis"
 
 #. Translators: We show 'Live' tag next or below the name of live OS media or box based on such media.
 #. http://en.wikipedia.org/wiki/Live_CD
-#: src/assistant/media-entry.vala:18 src/libvirt-machine.vala:695
-#: src/util-app.vala:172
+#: src/assistant/media-entry.vala:18 src/util-app.vala:172
 msgid "Live"
 msgstr "Veikia"
 
@@ -839,12 +831,12 @@ msgstr "64-bit x86 sistema"
 msgid " from %s"
 msgstr " iš %s"
 
-#: src/assistant/vm-assistant.vala:60
+#: src/assistant/vm-assistant.vala:62
 msgid "Failed to analyze installer media. Corrupted or incomplete media?"
 msgstr ""
 "Nepavyko analizuoti diegyklės laikmenos. Sugadinta ar nepilna laikmena?"
 
-#: src/assistant/vm-assistant.vala:73
+#: src/assistant/vm-assistant.vala:75
 msgid "Create"
 msgstr "Sukurti"
 
@@ -883,135 +875,145 @@ msgstr "Diegti"
 
 #. We did this, so ignore!
 #: src/downloads-hub.vala:186
-msgid "Failed to download"
-msgstr "Nepavyko atsisiųsti"
+#, c-format
+#| msgid "Failed to download"
+msgid "Failed to download: %s"
+msgstr "Nepavyko atsisiųsti: %s"
 
 #: src/installed-media.vala:80 src/installer-media.vala:199
 msgid "System"
 msgstr "Sistema"
 
-#: src/keys-input-popover.vala:26
+#: src/keys-input-popover.vala:27
 msgid "Ctrl + Alt + Backspace"
 msgstr "Vald + Alt + Grįžtamasis trynimas"
 
-#: src/keys-input-popover.vala:27
+#: src/keys-input-popover.vala:28
 msgid "Ctrl + Alt + Del"
 msgstr "Vald + Alt + Trinti"
 
 #. New section
-#: src/keys-input-popover.vala:31
+#: src/keys-input-popover.vala:32
 msgid "Ctrl + Alt + F1"
 msgstr "Vald + Alt + F1"
 
-#: src/keys-input-popover.vala:32
+#: src/keys-input-popover.vala:33
 msgid "Ctrl + Alt + F2"
 msgstr "Vald + Alt + F2"
 
-#: src/keys-input-popover.vala:33
+#: src/keys-input-popover.vala:34
 msgid "Ctrl + Alt + F3"
 msgstr "Vald + Alt + F3"
 
-#: src/keys-input-popover.vala:34
+#: src/keys-input-popover.vala:35
 msgid "Ctrl + Alt + F7"
 msgstr "Vald + Alt + F7"
 
+#: src/keys-input-popover.vala:36
+#| msgid "Ctrl + Alt + F1"
+msgid "Ctrl + Alt + F9"
+msgstr "Vald + Alt + F9"
+
 #. Translators: Accessibility name for context menu with a set of keyboard combos (that would normally be
 #. intercepted by host/client, to send to the box.
-#: src/keys-input-popover.vala:43
+#: src/keys-input-popover.vala:45
 msgid "Send key combinations"
 msgstr "Siųsti klavišų kombinacijas"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:467
+#: src/libvirt-machine.vala:465
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Atkuriama %s iš disko"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:470
+#: src/libvirt-machine.vala:468
 #, c-format
 msgid "Starting %s"
 msgstr "Paleidžiama %s"
 
-#: src/libvirt-machine.vala:549
+#: src/libvirt-machine.vala:541
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "„%s“ perleidimas trunka per ilgai. Priverstinai išjungti?"
 
-#: src/libvirt-machine.vala:551
-msgid "_Shutdown"
-msgstr "_Išjungti"
+#: src/libvirt-machine.vala:544
+#| msgid "_Shutdown"
+msgid "Shutdown"
+msgstr "Išjungti"
 
-#: src/libvirt-machine.vala:567
+#: src/libvirt-machine.vala:559
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Klonuojama „%s“…"
 
-#: src/libvirt-machine.vala:693
+#: src/libvirt-machine.vala:685
 msgid "Installing…"
 msgstr "Diegiama…"
 
-#: src/libvirt-machine.vala:697
+#: src/libvirt-machine.vala:687
 msgid "Setting up clone…"
 msgstr "Nustatomas klonas…"
 
-#: src/libvirt-machine.vala:699
+#: src/libvirt-machine.vala:689
 msgid "Importing…"
 msgstr "Importuojama…"
 
-#: src/libvirt-machine.vala:708
-#, c-format
-msgid "host: %s"
-msgstr "serveris: %s"
-
-#: src/list-view-row.vala:100
+#: src/list-view-row.vala:48
 msgid "Running"
 msgstr "Veikia"
 
-#: src/list-view-row.vala:106
+#: src/list-view-row.vala:54
 msgid "Paused"
 msgstr "Pristabdyta"
 
-#: src/list-view-row.vala:111
+#: src/list-view-row.vala:59
 msgid "Powered Off"
 msgstr "Išjungta"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/machine.vala:182
+#: src/machine.vala:181
 #, c-format
 msgid "Connecting to %s"
 msgstr "Jungiamasi prie %s"
 
-#: src/machine.vala:208 src/machine.vala:619
+#: src/machine.vala:207
 #, c-format
 msgid "Connection to “%s” failed"
 msgstr "Nepavyko prisijungti prie „%s“"
 
-#: src/machine.vala:250
+#: src/machine.vala:251
 msgid "Machine is under construction"
 msgstr "Mašina yra kuriama"
 
-#: src/machine.vala:403
+#: src/machine.vala:404
 msgid "Saving…"
 msgstr "Įrašoma…"
 
-#: src/machine.vala:588
+#. Translators: The first %s is the name of the box, the second is the reason of the error
+#: src/machine.vala:597
 #, c-format
-msgid ""
-"“%s” could not be restored from disk\n"
-"Try without saved state?"
-msgstr ""
-"Nepavyko atkurti iš disko „%s“\n"
-"Bandyti be įrašytos būsenos?"
+#| msgid ""
+#| "“%s” could not be restored from disk\n"
+#| "Try without saved state?"
+msgid "“%s” could not be restored from disk: %s"
+msgstr "%s nepavyko atkurti iš disko: %s"
 
-#: src/machine.vala:599
+#: src/machine.vala:608
 #, c-format
 msgid "Failed to start “%s”"
 msgstr "Nepavyko paleisti „%s“"
 
-#: src/machine.vala:612
+#: src/machine.vala:623
 msgid "Troubleshooting Log"
 msgstr "Problemų žurnalas"
+
+#. Translators: the first %s is the name of the box, the second is the reason of the error.
+#: src/machine.vala:634
+#, c-format
+#| msgid "Connection to “%s” failed"
+msgid "Connection to “%s” failed: %s"
+msgstr "Nepavyko prisijungti prie „%s“: %s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1084,11 +1086,11 @@ msgstr "Rekomenduojama %s"
 msgid "Boxes is not authorized to run in background"
 msgstr "Dėžėms neleidžiama veikti fone"
 
-#: src/preferences/resources-page.vala:159
-msgid "Manage permissions"
-msgstr "Tvarkyti leidimus"
+#: src/preferences/resources-page.vala:163
+msgid "Do you want to open Settings to manage application permissions?"
+msgstr "Ar norite atverti Nustatymus programos leidimams tvarkyti?"
 
-#: src/preferences/resources-page.vala:191
+#: src/preferences/resources-page.vala:201
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1096,12 +1098,12 @@ msgstr ""
 "Dėžės konfigūracijos keitimas gali sukelti problemų joje esančiai operacinei "
 "sistemai. Ar norite sukurti momentinę kopiją pakeitimams atkurti?"
 
-#: src/preferences/resources-page.vala:257
+#: src/preferences/resources-page.vala:267
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Nepavyko įrašyti domeno konfigūracijos: %s"
 
-#: src/preferences/resources-page.vala:266
+#: src/preferences/resources-page.vala:276
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr "Žemiau esančių nuostatų pakeitimas įsigalioja iš naujo paleidus dėžę."
 
@@ -1109,26 +1111,42 @@ msgstr "Žemiau esančių nuostatų pakeitimas įsigalioja iš naujo paleidus d�
 msgid "Use the button below to add your first shared folder."
 msgstr "Naudokite mygtuką žemiau pirmajam bendrinamam aplankui pridėti."
 
-#: src/preferences/snapshot-list-row.vala:140
+#. Translators: %s is the reason why Boxes failed to rename the snapshot.
+#: src/preferences/snapshot-list-row.vala:77
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to rename snapshot: %s"
+msgstr "Nepavyko pervadinti momentinės kopijos: %s"
+
+#: src/preferences/snapshot-list-row.vala:93
 #, c-format
 msgid "Reverting to %s…"
 msgstr "Atstatoma į %s…"
 
-#: src/preferences/snapshot-list-row.vala:158
-msgid "Failed to apply snapshot"
-msgstr "Nepavyko pritaikyti momentinės kopijos"
+#. Translators: %s is the reason why Boxes failed to apply the snapshot.
+#: src/preferences/snapshot-list-row.vala:115
+#, c-format
+#| msgid "Failed to create snapshot of %s"
+msgid "Failed to revert to snapshot: %s"
+msgstr "Nepavyko atstatyti momentinės kopijos: %s"
 
-#: src/preferences/snapshot-list-row.vala:175
+#: src/preferences/snapshot-list-row.vala:133
 #, c-format
 msgid "Snapshot “%s” deleted."
 msgstr "Momentinė kopija „%s“ ištrinta"
 
-#: src/preferences/snapshots-page.vala:122
+#: src/preferences/snapshots-page.vala:139
 #, c-format
 msgid "Failed to create snapshot of %s"
 msgstr "Nepavyko sukurti %s momentinės kopijos"
 
-#: src/preferences/snapshots-page.vala:144
+#. we need to account for the "+" button
+#: src/preferences/snapshots-page.vala:160
+#| msgid "Revert to this state"
+msgid "Revert to a previous state of your box."
+msgstr "Grįžti į ankstesnę dėžės būseną"
+
+#: src/preferences/snapshots-page.vala:162
 msgid "Use the button below to create your first snapshot."
 msgstr "Naudokite mygtuką žemiau pirmajai momentiniai kopijai sukurti."
 
@@ -1145,13 +1163,11 @@ msgstr ""
 "Jūsų kompiuteryje nėra pakankamai vietos didžiausiam disko dydžiui padidinti."
 
 #: src/preferences/storage-row.vala:68
-#| msgid "Storage limit"
 msgid "Storage disk"
 msgstr "Saugyklos diskas"
 
 #: src/preferences/storage-row.vala:77
 #, c-format
-#| msgid "Used %s."
 msgid "Used %s"
 msgstr "Naudojama %s"
 
@@ -1264,10 +1280,30 @@ msgstr "Nepajėgi pagrindinė sistema"
 msgid "Just installed "
 msgstr "Ką tik įdiegta "
 
-#: src/vm-importer.vala:64
+#. Translators: the first %s is a path, the second is the reason of the failure.
+#: src/vm-importer.vala:65
 #, c-format
-msgid "Box import from file “%s” failed."
-msgstr "Nepavyko importuoti dėžės iš failo „%s“."
+#| msgid "Box import from file “%s” failed."
+msgid "Box import from file “%s” failed: %s"
+msgstr "Nepavyko importuoti dėžės iš failo „%s“: %s"
+
+#~ msgid "Rename"
+#~ msgstr "Pervadinti"
+
+#~ msgid "Done"
+#~ msgstr "Atlikta"
+
+#~ msgid "_Undo"
+#~ msgstr "_Atšaukti"
+
+#~ msgid "host: %s"
+#~ msgstr "serveris: %s"
+
+#~ msgid "Manage permissions"
+#~ msgstr "Tvarkyti leidimus"
+
+#~ msgid "Failed to apply snapshot"
+#~ msgstr "Nepavyko pritaikyti momentinės kopijos"
 
 #~ msgid ""
 #~ "A simple GNOME 3 application to manage virtual systems. Unlike some other "
