@@ -6,6 +6,12 @@ private class Boxes.AssistantReviewPage : AssistantPage {
     [GtkChild]
     private unowned Gtk.InfoBar nokvm_infobar;
     [GtkChild]
+    private unowned Gtk.Stack stack;
+    [GtkChild]
+    private unowned Gtk.Spinner spinner;
+    [GtkChild]
+    private unowned Gtk.ListBox listbox;
+    [GtkChild]
     private unowned Hdy.ActionRow os_row;
     [GtkChild]
     private unowned Gtk.Label os_label;
@@ -67,6 +73,9 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         if (App.app.supports_uefi_installs ()) {
             uefi_row.visible = install_media.supports_efi && !install_media.requires_efi;
         }
+
+        stack.set_visible_child (listbox);
+        spinner.stop ();
     }
 
     [GtkCallback]
