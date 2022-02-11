@@ -60,17 +60,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         }
     }
 
-    public string avatar_path {
-        set {
-            try {
-                var pixbuf = new Gdk.Pixbuf.from_file_at_scale (value, 64, 64, true);
-                user_avatar.pixbuf = round_image (pixbuf);
-            } catch (GLib.Error error) {
-                debug ("Failed to load user avatar file '%s': %s", value, error.message);
-            }
-        }
-    }
-
     public signal void user_wants_to_create (); // User wants to already create the VM
 
     private bool _needs_password;
@@ -92,21 +81,17 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     [GtkChild]
     private unowned Gtk.Label needs_internet_label;
     [GtkChild]
-    private unowned Gtk.Grid setup_grid;
-    [GtkChild]
-    private unowned Gtk.Label express_label;
-    [GtkChild]
     public unowned Gtk.Switch express_toggle;
     [GtkChild]
-    private unowned Gtk.Image user_avatar;
+    private unowned Hdy.ActionRow username_row;
     [GtkChild]
     private unowned Gtk.Entry username_entry;
     [GtkChild]
-    private unowned Gtk.Notebook password_notebook;
+    private unowned Hdy.ActionRow password_row;
     [GtkChild]
     private unowned Gtk.Entry password_entry;
     [GtkChild]
-    private unowned Gtk.Label product_key_label;
+    private unowned Hdy.ActionRow product_key_row;
     [GtkChild]
     private unowned Gtk.Entry product_key_entry;
 
@@ -140,9 +125,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
             set_entry_text_from_key (password_entry, PASSWORD_KEY);
             set_entry_text_from_key (product_key_entry, PRODUCTKEY_KEY);
 
-            if (password != "") {
-                password_notebook.next_page ();
-            } else {
+            if (password == "") {
                 Secret.password_lookup.begin (secret_password_schema, cancellable, (obj, res) => {
                     try {
                         var credentials_str = Secret.password_lookup.end (res);
@@ -157,7 +140,6 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
 
                             if (password_str != null && password_str != "") {
                                 password_entry.text = password_str;
-                                password_notebook.next_page ();
                             }
                         } catch (GLib.Error error) {
                             warning ("Failed to parse password from the keyring: %s", error.message);
@@ -183,16 +165,11 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
         setup_express_toggle (media.os_media.live, needs_internet);
 
         if (product_key_format != null) {
-            product_key_label.visible = true;
+            product_key_row.visible = true;
 
-            product_key_entry.visible = true;
             product_key_entry.width_chars = product_key_format.length;
             product_key_entry.max_length = product_key_format.length;
         }
-
-        foreach (var child in setup_grid.get_children ())
-            if (child != express_label && child != express_toggle)
-                express_toggle.bind_property ("active", child, "sensitive", BindingFlags.SYNC_CREATE);
     }
 
     public override void dispose () {
@@ -286,6 +263,10 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     [GtkCallback]
     private void on_mandatory_input_changed () {
         notify_property ("ready-to-create");
+
+        username_row.sensitive = express_toggle.active;
+        password_row.sensitive = express_toggle.active;
+        product_key_row.sensitive = express_toggle.active;
     }
 
     [GtkCallback]
@@ -297,22 +278,9 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     }
 
     [GtkCallback]
-    private void on_password_button_clicked () {
-        password_notebook.next_page ();
-        password_entry.grab_focus ();
-    }
-
-    [GtkCallback]
     private void on_password_entry_changed () {
         cancellable.cancel ();
         cancellable = new Cancellable ();
-    }
-
-    [GtkCallback]
-    private bool on_password_entry_focus_out () {
-        if (password_entry.text_length == 0)
-            password_notebook.prev_page ();
-        return false;
     }
 
     [GtkCallback]

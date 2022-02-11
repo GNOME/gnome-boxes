@@ -57,18 +57,18 @@ private class Boxes.AssistantReviewPage : AssistantPage {
         ram_row.setup (machine);
         storage_row.setup (machine);
 
-        var install_media = machine.vm_creator.install_media;
         bool show_unattended_rows = false;
+        var install_media = machine.vm_creator.install_media;
         if (install_media is Boxes.UnattendedInstaller) {
             var installer = install_media as Boxes.UnattendedInstaller;
             show_unattended_rows = installer.setup_box.express_toggle.active;
 
-            if (!show_unattended_rows)
-                return;
-
-            username_label.label = installer.setup_box.username;
-            password_label.label = installer.setup_box.hidden_password;
+            if (show_unattended_rows) {
+                username_label.label = installer.setup_box.username;
+                password_label.label = installer.setup_box.hidden_password;
+            }
         }
+
         unattended_username_row.visible = unattended_password_row.visible = show_unattended_rows;
         if (App.app.supports_uefi_installs ()) {
             uefi_row.visible = install_media.supports_efi && !install_media.requires_efi;

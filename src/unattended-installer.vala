@@ -78,7 +78,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
 
     private GLib.List<UnattendedFile> unattended_files;
     private GLib.List<UnattendedFile> secondary_unattended_files;
-    private UnattendedAvatarFile avatar_file;
 
     private string? timezone;
     private string lang;
@@ -145,8 +144,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         setup_box.user_wants_to_create.connect (() => {
             user_wants_to_create ();
         });
-
-        fetch_user_avatar.begin ();
     }
 
     public override void prepare_to_continue_installation (string vm_name) {
@@ -245,11 +242,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         // Explicitly setting it every time helps us to not forget this or that
         // case and is not that costly in the end.
         script.set_preferred_injection_method (injection_method);
-
-        if (avatar_file != null) {
-            var location = ((script.path_format == PathFormat.UNIX)? "/" : "\\") + avatar_file.dest_name;
-            config.set_avatar_location (location);
-        }
 
         config.set_driver_signing (driver_signing);
     }
@@ -400,37 +392,6 @@ private class Boxes.UnattendedInstaller: InstallerMedia {
         }
 
         yield exec (argv, cancellable);
-    }
-
-    private async void fetch_user_avatar () {
-        var username = Environment.get_user_name ();
-        string avatar_path = "/var/lib/AccountsService/icons/" + username;
-
-        try {
-            avatar_path = yield get_user_avatar_from_accountsservice (username);
-        } catch (GLib.Error error) {
-            warning ("Failed to retrieve information about user '%s': %s", username, error.message);
-        }
-
-        if (!FileUtils.test (avatar_path, FileTest.EXISTS))
-            return;
-
-        setup_box.avatar_path = avatar_path;
-
-        try {
-            AvatarFormat avatar_format = null;
-            foreach (var s in scripts.get_elements ()) {
-                var script = s as InstallScript;
-                avatar_format = script.avatar_format;
-                if (avatar_format != null)
-                    break;
-            }
-
-            avatar_file = new UnattendedAvatarFile (this, avatar_path, avatar_format);
-            add_unattended_file (avatar_file);
-        } catch (GLib.Error error) {
-            debug ("Failed to load user avatar file '%s': %s", avatar_path, error.message);
-        }
     }
 
     private async void extract_boot_files (ISOExtractor extractor, Cancellable? cancellable) throws GLib.Error {
