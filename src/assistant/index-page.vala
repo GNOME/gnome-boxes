@@ -3,6 +3,7 @@ using Gtk;
 [GtkTemplate (ui = "/org/gnome/Boxes/ui/assistant/pages/index-page.ui")]
 private class Boxes.AssistantIndexPage : AssistantPage {
     GLib.ListStore source_model = new GLib.ListStore (typeof (InstallerMedia));
+    GLib.ListStore downloads_model = new GLib.ListStore (typeof (Osinfo.Media));
 
     private VMAssistant dialog;
 
@@ -17,9 +18,13 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     [GtkChild]
     private unowned ScrolledWindow home_page;
     [GtkChild]
-    private unowned Hdy.PreferencesGroup detected_sources_section;
+    private unowned Stack medias_stack;
+    [GtkChild]
+    private unowned Hdy.PreferencesGroup downloadable_sources_section;
     [GtkChild]
     private unowned ListBox source_medias;
+    [GtkChild]
+    private unowned ListBox downloadable_medias;
     [GtkChild]
     private unowned Revealer panel_revealer;
 
@@ -31,6 +36,7 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         populate_media_lists.begin ();
 
         source_medias.bind_model (source_model, add_media_entry);
+        downloadable_medias.bind_model (downloads_model, add_downloadable_entry);
 
         view_more_medias_button = new Gtk.Button () {
             visible = true,
@@ -74,11 +80,13 @@ private class Boxes.AssistantIndexPage : AssistantPage {
 
     private void populate_detected_sources_list (int? number_of_items = null) {
         var number_of_available_medias = installer_medias.length ();
-        detected_sources_section.visible = (number_of_available_medias > 0);
         source_model.remove_all ();
 
-        if (number_of_available_medias == 0)
+        if (number_of_available_medias == 0) {
+            populate_recommended_downloads_list ();
+
             return;
+        }
 
         foreach (var media in installer_medias) {
             source_model.append (media);
@@ -88,8 +96,23 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         }
     }
 
+    private async void populate_recommended_downloads_list () {
+        downloads_model.remove_all ();
+        medias_stack.set_visible_child (downloadable_sources_section);
+
+        foreach (var media in yield get_recommended_downloads ()) {
+            if (media != null) {
+                downloads_model.append (media);
+            }
+        }
+    }
+
     private Gtk.Widget add_media_entry (GLib.Object object) {
         return new AssistantMediaEntry.from_installer_media (object as InstallerMedia);
+    }
+
+    private Gtk.Widget add_downloadable_entry (GLib.Object object) {
+        return new AssistantDownloadableEntry.from_osinfo (object as Osinfo.Media);
     }
 
     [GtkCallback]
