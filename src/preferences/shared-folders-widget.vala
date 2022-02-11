@@ -71,10 +71,12 @@ private class Boxes.SharedFoldersWidget: Hdy.PreferencesGroup {
     }
 
     private void on_list_updated () {
-        if (list_model.get_n_items () == 0)
-            description = _("Use the button below to add your first shared folder.");
-        else
+        if (list_model.get_n_items () == 0) {
+            // Translators: "spice-webdav" is a name and shouldn't be translated. %s is an URL.
+            description = _("Use the button below to add your first shared folder. For file sharing to work, the guest box needs to have <a href='%s'>spice-webdav</a> installed.").printf ("https://www.spice-space.org/download.html");
+        } else {
             description = null;
+        }
     }
 }
 
