@@ -13,6 +13,8 @@ private class Boxes.IconViewChild : Gtk.Box {
     public unowned Boxes.Thumbnail thumbnail;
     [GtkChild]
     private unowned Gtk.Label machine_name;
+    [GtkChild]
+    private unowned Gtk.Label machine_status;
 
     public IconViewChild (CollectionItem item) {
         this.item = item;
@@ -23,6 +25,7 @@ private class Boxes.IconViewChild : Gtk.Box {
         machine.notify["pixbuf"].connect (update_thumbnail);
 
         machine.bind_property ("name", machine_name, "label", BindingFlags.SYNC_CREATE);
+        machine.bind_property ("status", machine_status, "label", BindingFlags.SYNC_CREATE);
     }
 
     private void update_thumbnail () {

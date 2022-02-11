@@ -394,6 +394,7 @@ private class Boxes.LibvirtMachine: Boxes.Machine {
 
     private void cancel_vm_creation () {
         vm_creator = null;
+        status = null;
     }
 
     public void force_shutdown () {
