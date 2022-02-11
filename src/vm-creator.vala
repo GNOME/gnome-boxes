@@ -163,22 +163,12 @@ private class Boxes.VMCreator : Object {
             App.app.notify_machine_installed (machine);
             machine.vm_creator = null;
             machine.schedule_autosave ();
-            try_create_snapshot.begin (machine);
         } else if (!VMConfigurator.is_live_config (machine.domain_config)) {
             try {
                 domain.start (0);
             } catch (GLib.Error error) {
                 warning ("Failed to start domain '%s': %s", domain.get_name (), error.message);
             }
-        }
-    }
-
-    private async void try_create_snapshot (LibvirtMachine machine) {
-        try {
-            // Translators: This is the name of the snapshot taken right after installing a VM.
-            yield machine.create_snapshot (_("Just installed "));
-        } catch (GLib.Error error) {
-            warning ("Failed to create snapshot for domain '%s': %s", machine.name, error.message);
         }
     }
 
