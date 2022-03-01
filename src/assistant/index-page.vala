@@ -75,15 +75,15 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         yield media_manager.connect_to_tracker ();
 
         installer_medias = yield media_manager.list_installer_medias ();
-        populate_detected_sources_list (MAX_MEDIA_ENTRIES);
+        yield populate_detected_sources_list (MAX_MEDIA_ENTRIES);
     }
 
-    private void populate_detected_sources_list (int? number_of_items = null) {
+    private async void populate_detected_sources_list (int? number_of_items = null) {
         var number_of_available_medias = installer_medias.length ();
         source_model.remove_all ();
 
         if (number_of_available_medias == 0) {
-            populate_recommended_downloads_list ();
+            yield populate_recommended_downloads_list ();
 
             return;
         }
@@ -129,8 +129,8 @@ private class Boxes.AssistantIndexPage : AssistantPage {
         }
     }
 
-    private void on_expand_detected_sources_list () {
-        populate_detected_sources_list ();
+    private async void on_expand_detected_sources_list () {
+        yield populate_detected_sources_list ();
 
         view_more_medias_button.get_parent ().destroy ();
     }
