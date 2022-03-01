@@ -12,15 +12,17 @@ private class Boxes.MemoryRow : Hdy.ActionRow {
     [GtkCallback]
     private int on_spin_button_input (Gtk.SpinButton spin_button, out double new_value) {
         uint64 current_value = (uint64)spin_button.get_value ();
-
-        /* FIXME: we should be getting the value with spin_button.get_text () so we can
-         * accept user manual input. This will require to parse the text properly and
-         * convert strings such as 2.0 GiB into 2.0 * Osinfo.MEBIBYTE * 1024.
-         *
-         * As it is now, we don't support manual input, and the value can only be changed
-         * by using the + and - buttons of the GtkSpinButton.
-        */
         new_value = current_value;
+
+        string? text = spin_button.get_text ();
+        if (text == null)
+            return 1;
+
+        double user_input_value = double.parse (text);
+        if (user_input_value == 0)
+            return 1;
+
+        new_value = user_input_value * Osinfo.GIBIBYTES;
 
         return 1;
     }
