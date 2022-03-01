@@ -260,6 +260,14 @@ private class Boxes.VMConfigurator {
             warning ("Failed to update CPU config for '%s': %s", domain.name, e.message);
         }
 
+        try {
+            update_domain_devices (domain);
+        } catch (GLib.Error e) {
+            critical ("Failed to update domain devices");
+        }
+    }
+
+    private static void update_domain_devices (Domain domain) throws GLib.Error {
         GLib.List<GVirConfig.DomainDevice> devices = null;
         DomainInterface iface = null;
         bool supports_alternative_boot_device = false;
@@ -346,6 +354,8 @@ private class Boxes.VMConfigurator {
 
         devices.reverse ();
         domain.set_devices (devices);
+
+        debug ("Updating domain devices for %s", domain.name);
     }
 
     public static void enable_boot_menu (Domain domain, bool enable) {
