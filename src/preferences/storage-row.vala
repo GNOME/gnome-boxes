@@ -74,7 +74,7 @@ private class Boxes.StorageRow : Boxes.MemoryRow {
                                null, (obj, res) => {
             try {
                 FileInfo info = disk.query_info_async.end (res);
-                used_label.label = _("Used %s").printf (GLib.format_size (info.get_size ()));
+                used_label.label = _("Used %s").printf (GLib.format_size (info.get_size (), GLib.FormatSizeFlags.IEC_UNITS));
             } catch (GLib.Error error) {
                 message ("Failed to calculate disk size for '%s': %s", disk.get_path (),
                                                                        error.message);

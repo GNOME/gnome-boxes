@@ -80,9 +80,11 @@ private class Boxes.ResourcesPage : Hdy.PreferencesPage {
             // Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
             var row_subtitle = _("Recommended %s.");
 
-            ram_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.ram)));
+            ram_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.ram,
+                                                                         GLib.FormatSizeFlags.IEC_UNITS)));
             if (machine.storage_volume != null)
-                storage_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.storage)));
+                storage_row.set_subtitle (row_subtitle.printf (GLib.format_size (recommended_resources.storage,
+                                                                                 GLib.FormatSizeFlags.IEC_UNITS)));
         }
     }
 

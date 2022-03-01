@@ -29,7 +29,8 @@ private class Boxes.MemoryRow : Hdy.ActionRow {
     private bool on_spin_button_output (Gtk.SpinButton spin_button) {
         uint64 current_value = (uint64)spin_button.get_value ();
 
-        spin_button.text = GLib.format_size (current_value);
+        spin_button.text = GLib.format_size (current_value,
+                                             GLib.FormatSizeFlags.IEC_UNITS);
 
         return true;
     }
