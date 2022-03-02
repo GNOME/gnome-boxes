@@ -174,6 +174,7 @@ private class Boxes.AppWindow: Hdy.ApplicationWindow, Boxes.UI {
 
     private void on_collection_changed () {
         bool collection_is_empty = (App.app.collection.length == 0);
+        searchbar.enable_key_handler = !collection_is_empty;
 
         if (collection_is_empty)
             below_bin.visible_child = empty_boxes;

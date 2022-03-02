@@ -47,7 +47,8 @@ private class Boxes.CollectionToolbar: Hdy.HeaderBar {
     }
 
     public void click_search_button () {
-        search_btn.clicked ();
+        if(search_btn.sensitive)
+            search_btn.clicked ();
     }
 
     [GtkCallback]
