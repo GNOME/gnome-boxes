@@ -205,15 +205,24 @@ namespace Boxes {
         var os_db = MediaManager.get_default ().os_db;
         for (Xml.Node* iter = root->children; iter != null; iter = iter->next) {
             var os_id = iter->get_content ();
-            try {
-                var os = yield os_db.get_os_by_id (os_id);
-                var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
 
-                if (media.url != null || os_id.has_prefix ("http://redhat.com"))
-                    list.append (media);
+            Osinfo.Os? os;
+            try {
+                os = yield os_db.get_os_by_id (os_id);
             } catch (OSDatabaseError error) {
-                debug ("Failed to find OS with id: '%s': %s", os_id, error.message);
+                // If the OS wasn't found, it means an os_id prefix was given
+                os = yield os_db.get_latest_release_for_os_prefix (os_id);
             }
+
+            if (os == null) {
+                warning ("Failed to load %s", os_id);
+
+                continue;
+            }
+
+            var media = os.get_media_list ().get_nth (0) as Osinfo.Media;
+            if (media.url != null || os_id.has_prefix ("http://redhat.com"))
+                list.append (media);
         }
 
         return list;
