@@ -41,6 +41,9 @@ private class Boxes.Downloader : GLib.Object {
 
         string logo_url = null;
         var derived = os.get_related (Osinfo.ProductRelationship.DERIVES_FROM);
+        if (derived.get_length () == 0)
+            derived = os.get_related (Osinfo.ProductRelationship.UPGRADES);
+
         while (derived.get_length () > 0 && logo_url == null) {
             // FIXME: Does Osinfo allows deriving from multiple OSs?
             var parent = derived.get_nth (0) as Osinfo.Os;
