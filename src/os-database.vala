@@ -119,6 +119,39 @@ private class Boxes.OSDatabase : GLib.Object {
         return os_list;
     }
 
+    private const string[] skipped_os_versions = {
+        "unknown",
+        "rawhide",
+        "Rawhide",
+        "testing",
+        "factory",
+    };
+    public async Osinfo.Os? get_latest_release_for_os_prefix (string os_id_prefix) {
+        Osinfo.Os? latest_version = null;
+
+        var os_list = db.get_os_list ().get_elements ();
+        foreach (var entity in os_list) {
+            Osinfo.Os os = entity as Osinfo.Os;
+            if (!os.id.has_prefix (os_id_prefix))
+                continue;
+
+            if (os.version in skipped_os_versions)
+                continue;
+
+            if (latest_version == null) {
+                latest_version = os;
+
+                continue;
+            }
+
+            if (double.parse (os.version) > double.parse (latest_version.version)) {
+                latest_version = os;
+            }
+        }
+
+        return latest_version;
+    }
+
     public async GLib.List<Osinfo.Media> list_downloadable_oses () throws OSDatabaseError {
         if (!yield ensure_db_loaded ())
             throw new OSDatabaseError.DB_LOADING_FAILED ("Failed to load OS database");
