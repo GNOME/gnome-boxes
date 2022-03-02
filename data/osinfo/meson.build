@@ -1,7 +1,5 @@
 osinfo_db = [
-  ['centos-6.0.xml', 'gnome-boxes/osinfo/os/centos.org'],
   ['centos-7.0.xml', 'gnome-boxes/osinfo/os/centos.org'],
-  ['centos-stream-8.xml', 'gnome-boxes/osinfo/os/centos.org'],
   ['centos-stream-9.xml', 'gnome-boxes/osinfo/os/centos.org'],
   ['debian-4.xml', 'gnome-boxes/osinfo/os/debian.org'],
   ['eos-3.3.xml', 'gnome-boxes/osinfo/os/endlessos.com'],
@@ -15,10 +13,6 @@ osinfo_db = [
   ['opensuse-10.2.xml', 'gnome-boxes/osinfo/os/opensuse.org'],
   ['ubuntu-4.10.xml', 'gnome-boxes/osinfo/os/ubuntu.com'],
   ['popos-17.10.xml', 'gnome-boxes/osinfo/os/system76.com'],
-  ['rhel-4.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
-  ['rhel-5.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
-  ['rhel-6.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
-  ['rhel-7.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rhel-8.0.xml', 'gnome-boxes/osinfo/os/redhat.com'],
   ['rocky-8.4.xml', 'gnome-boxes/osinfo/os/rockylinux.org'],
   ['silverblue-28.xml', 'gnome-boxes/osinfo/os/fedoraproject.org']
