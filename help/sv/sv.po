@@ -1,14 +1,15 @@
 # Swedish translation for gnome-boxes.
-# Copyright © 2016-2021 gnome-boxes's COPYRIGHT HOLDER
+# Copyright © 2016-2022 gnome-boxes's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-boxes package.
 # Sebastian Rasmussen <sebras@gmail.com>, 2016, 2017, 2019.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2016, 2018, 2020, 2021.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2016, 2018, 2020, 2021, 2022.
+# Luna Jernberg <droidbittin@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
-"POT-Creation-Date: 2021-10-04 13:06+0000\n"
-"PO-Revision-Date: 2021-11-06 01:28+0100\n"
+"POT-Creation-Date: 2022-03-07 19:19+0000\n"
+"PO-Revision-Date: 2022-03-08 08:04+0100\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -16,14 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "Sebastian Rasmussen <sebras@gmail.com>, 2016, 2017\n"
-"Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018\n"
+"Anders Jonsson <anders.jonsson@norsjovallen.se>, 2018, 2020, 2021, 2022\n"
+"Luna Jernberg <droidbittin@gmail.com>, 2022\n"
 "\n"
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
@@ -63,43 +65,47 @@ msgstr ""
 "i din vardag. Det använder <sys>Virgil</sys> för att skapa ett virtuellt 3D-"
 "kapabelt grafikkort för dina virtuella QEMU-maskiner."
 
-#. (itstool) path: steps/title
+#. (itstool) path: note/p
 #: C/3d-acceleration.page:35
+msgid "Currently only Linux guests support 3D acceleration."
+msgstr "För närvarande stöder endast Linux-gäster 3D-acceleration."
+
+#. (itstool) path: steps/title
+#: C/3d-acceleration.page:39
 msgid "To enable 3D Acceleration in a box:"
 msgstr "För att aktivera 3D-acceleration i en box:"
 
 #. (itstool) path: media/span
-#: C/3d-acceleration.page:38 C/edit-domain.page:38 C/interface.page:116
+#: C/3d-acceleration.page:42 C/edit-domain.page:42 C/interface.page:102
 #: C/keystrokes.page:29 C/prop-system.page:29 C/prop-trouble.page:31
-#: C/shared-folders.page:30 C/shutdown.page:30 C/snapshot-create.page:41
-#: C/snapshot-delete.page:28 C/snapshot-rename.page:36
-#: C/snapshot-revert.page:36 C/usb-redirection.page:48
+#: C/shared-folders.page:29 C/snapshot-create.page:41 C/snapshot-delete.page:28
+#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
+#: C/usb-redirection.page:48
 msgid "settings"
 msgstr "inställningar"
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:36 C/edit-domain.page:36 C/shared-folders.page:28
-#: C/usb-redirection.page:46
+#: C/3d-acceleration.page:40 C/edit-domain.page:40 C/shared-folders.page:27
 msgid ""
-"Right-click on the box in the collection view and select <gui>Properties</"
+"Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
-"<gui>Properties</gui>."
+"<gui>Preferences</gui>."
 msgstr ""
-"Högerklicka på boxen i samlingsvyn och välj <gui>Egenskaper</gui>, eller "
-"klicka på menyknappen (<_:media-1/>) i rubrikraden och välj <gui>Egenskaper</"
-"gui>."
+"Högerklicka på boxen i samlingsvyn och välj <gui>Inställningar</gui>, eller "
+"klicka på menyknappen (<_:media-1/>) i rubrikraden och välj "
+"<gui>Inställningar</gui>."
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:40
+#: C/3d-acceleration.page:44
 msgid ""
-"The <link xref=\"interface#properties\">Properties view</link> opens, with "
-"the General tab selected by default."
+"The <link xref=\"interface#preferences\">Preferences view</link> opens, with "
+"the <gui>Resources</gui> tab selected by default."
 msgstr ""
 "<link xref=\"interface#properties\">Egenskapsvyn</link> öppnas, med fliken "
-"Allmänt vald som standard."
+"<gui>Resurser</gui> vald som standard."
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:42
+#: C/3d-acceleration.page:46
 msgid ""
 "If 3D Acceleration is supported, the <gui>3D Acceleration</gui> switch would "
 "appear here. By default, it is disabled. To enable 3D Acceleration, simply "
@@ -109,16 +115,14 @@ msgstr ""
 "här. För att aktivera 3D-acceleration växlar du helt enkelt brytaren till "
 "<gui style=\"switch\">PÅ</gui>."
 
-#. (itstool) path: item/p
-#: C/3d-acceleration.page:45
+#. (itstool) path: note/p
+#: C/3d-acceleration.page:52
 msgid ""
-"In case the virtual machine for which 3D Acceleration has just been enabled "
-"is already running, then, Boxes will show a notification asking to restart "
-"the running virtual machine."
+"When you enable 3D Acceleration for a virtual machine that is already "
+"running, the changes apply after you restart the box."
 msgstr ""
-"Om den virtuella maskinen för vilken 3D-acceleration just har aktiverats "
-"redan körs så kommer Boxes att visa en avisering som ber om att starta om "
-"den körande virtuella maskinen."
+"När du aktiverar 3D-acceleration för en virtuell maskin som redan körs, "
+"börjar ändringarna gälla efter att du startar om boxen."
 
 #. (itstool) path: credit/name
 #: C/backup.page:10 C/create.page:12 C/delete.page:9 C/disk-images.page:9
@@ -275,19 +279,31 @@ msgstr "Starta <app>Boxes</app>."
 msgid "2013"
 msgstr "2013"
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/create.page:22 C/edit-domain.page:10 C/interface.page:18
+#: C/shared-folders.page:10 C/snapshot-create.page:17 C/snapshot-revert.page:17
+#: C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: credit/years
 #: C/create.page:24
+msgid "2022"
+msgstr "2022"
+
+#. (itstool) path: info/desc
+#: C/create.page:29
 msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
 msgstr ""
 "Klicka på <gui style=\"button\">+</gui> för att påbörja skapandet av en box."
 
 #. (itstool) path: page/title
-#: C/create.page:27
+#: C/create.page:32
 msgid "Create a box"
 msgstr "Skapa en box"
 
 #. (itstool) path: page/p
-#: C/create.page:29
+#: C/create.page:34
 msgid ""
 "When <app>Boxes</app> is launched, the collection view opens, displaying "
 "your existing boxes. If you haven't yet created a box, an introductory "
@@ -298,41 +314,35 @@ msgstr ""
 "välkomstmeddelande att visas."
 
 #. (itstool) path: item/p
-#: C/create.page:34
+#: C/create.page:39
 msgid ""
 "Click <gui style=\"button\">+</gui> in the top left corner to launch the box "
-"creation wizard."
+"creation assistant. Create a virtual machine from:"
 msgstr ""
 "Klicka på <gui style=\"button\">+</gui> i övre vänstra hörnet för att starta "
-"guiden för att skapa en box."
-
-#. (itstool) path: item/p
-#: C/create.page:36
-msgid ""
-"At the wizard's <gui>Source Selection</gui> screen, choose a source to "
-"determine the type of box you want to create. A local virtual machine can be "
-"created from:"
-msgstr ""
-"I guidens skärm <gui>Val av källa</gui>, välj en källa för att avgöra vilken "
-"typ av box du vill skapa. En lokal virtuell maskin kan skapas från:"
-
-#. (itstool) path: item/p
-#: C/create.page:41
-msgid "An ISO found by <app>Boxes</app>."
-msgstr "En ISO som hittats av <app>Boxes</app>."
-
-#. (itstool) path: item/p
-#: C/create.page:42
-msgid "Installation media on a CD/DVD/USB drive."
-msgstr "Installationsmedia på en CD/DVD/USB-enhet."
+"assistenten för att skapa en box. Skapa en virtuell maskin från:"
 
 #. (itstool) path: item/p
 #: C/create.page:43
-msgid "A local ISO file (if not found automatically above)."
-msgstr "En lokal ISO-fil (om den inte hittats automatiskt ovan)."
+msgid ""
+"An operating system image file in your home folder detected by <app>Boxes</"
+"app>."
+msgstr ""
+"En avbildsfil för operativsystem i din hemmapp som identifierats av "
+"<app>Boxes</app>."
 
 #. (itstool) path: item/p
 #: C/create.page:44
+msgid "A selected local ISO file (if not found automatically above)."
+msgstr "En vald lokal ISO-fil (om den inte hittats automatiskt ovan)."
+
+#. (itstool) path: item/p
+#: C/create.page:45
+msgid "An installation media on a CD/DVD/USB drive."
+msgstr "Installationsmedia på en cd/dvd/USB-enhet."
+
+#. (itstool) path: item/p
+#: C/create.page:46
 msgid ""
 "A supported operating system available on the <gui>Operating System "
 "Download</gui> page"
@@ -341,33 +351,24 @@ msgstr ""
 "<gui>Operativsystemshämtning</gui>"
 
 #. (itstool) path: note/p
-#: C/create.page:48
+#: C/create.page:50
 msgid ""
 "If your installation media supports <gui>Express Installation</gui>, the "
-"installation will proceed without further input."
+"installation can proceed without further input."
 msgstr ""
 "Om ditt installationsmedia har stöd för <gui>Expressinstallation</gui> "
-"kommer installationen att fortsätta utan vidare indata."
+"kommer installationen att fortsätta utan ytterligare indata."
 
 #. (itstool) path: item/p
-#: C/create.page:53
+#: C/create.page:55
 msgid ""
-"After making your selection, or providing the necessary information, click "
-"<gui style=\"button\">Next</gui>, which will take you to the <gui>Review</"
-"gui> page."
+"After selecting one of the installations method above, continue to the "
+"<gui>Review and Create</gui> page where you can adjust memory, disk capacity "
+"and other preferences for your box."
 msgstr ""
-"Efter att du gjort ditt val eller tillhandahåller den nödvändiga "
-"informationen, klicka på <gui style=\"button\">Nästa</gui> vilket kommer att "
-"ta dig till sidan <gui>Granskning</gui>."
-
-#. (itstool) path: item/p
-#: C/create.page:56
-msgid ""
-"Click <gui style=\"button\">Customize</gui> to adjust memory or disk size, "
-"or to rename the box."
-msgstr ""
-"Klicka på <gui style=\"button\">Anpassa</gui> för att justera minnes- eller "
-"diskstorlek, eller för att byta namn på boxen."
+"Fortsätt efter att ha valt en av installationsmetoderna ovan till sidan "
+"<gui>Granska och skapa</gui> där du kan justera minne, diskkapacitet och "
+"andra inställningar för din box."
 
 #. (itstool) path: item/p
 #: C/create.page:58
@@ -405,31 +406,13 @@ msgstr "När en box inte längre behövs kan den tas bort från <app>Boxes</app>
 
 #. (itstool) path: item/p
 #: C/delete.page:24
-msgid ""
-"Select one or more boxes. In the collection view, right click a box to be "
-"deleted."
-msgstr ""
-"Välj en eller flera boxar. I samlingsvyn, högerklicka på en box som ska tas "
-"bort."
+msgid "In the collection view, right click the box to be deleted."
+msgstr "Högerklicka i samlingsvyn på boxen som ska tas bort."
 
 #. (itstool) path: item/p
-#: C/delete.page:26
-msgid ""
-"<link xref=\"interface#selection\">Selection mode</link> opens. Click "
-"additional boxes to select them for deletion."
-msgstr ""
-"<link xref=\"interface#selection\">Valläget</link> öppnas. Klicka på "
-"ytterligare boxar för att välja dem för borttagning."
-
-#. (itstool) path: item/p
-#: C/delete.page:28
-msgid "Click the <gui style=\"button\">Delete</gui> button."
-msgstr "Klicka på knappen <gui style=\"button\">Ta bort</gui>."
-
-#. (itstool) path: item/p
-#: C/delete.page:29
-msgid "Click the <key>X</key> to confirm."
-msgstr "Klicka på <key>X</key> för att bekräfta."
+#: C/delete.page:25
+msgid "Click the <gui style=\"button\">Delete</gui> menu option."
+msgstr "Klicka på menyalternativet <gui style=\"button\">Ta bort</gui>."
 
 #. (itstool) path: page/title
 #: C/disk-images.page:19
@@ -450,13 +433,6 @@ msgstr ""
 "app> också läsa från mappen som det programmet använder för att lagra sina "
 "avbilder."
 
-#. (itstool) path: credit/name
-#: C/edit-domain.page:10 C/interface.page:18 C/shared-folders.page:10
-#: C/snapshot-create.page:17 C/snapshot-revert.page:17
-#: C/usb-redirection.page:24
-msgid "Felipe Borges"
-msgstr "Felipe Borges"
-
 #. (itstool) path: credit/years
 #: C/edit-domain.page:12
 msgid "2021"
@@ -475,56 +451,71 @@ msgstr "Redigera Libvirts XML-domänkonfiguration för en box"
 #. (itstool) path: page/p
 #: C/edit-domain.page:30
 msgid ""
-"Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML "
-"configuration of your virtual machines. This should allow you to achieve "
-"specific setups which are not exposed in the GNOME Boxes interface and "
-"neither supported by the GNOME Boxes developers."
+"Boxes enables you to manually edit the <sys>Libvirt</sys> domain "
+"configuration XML of your box. You can achieve specific setups which are not "
+"exposed in the Boxes interface and neither supported by the Boxes developers."
 msgstr ""
-"Boxes ger dig nu förmågan att manuellt redigera <sys>Libvirt</sys>s XML-"
-"konfiguration för dina virtuella maskiner. Detta bör låta dig uppnå "
-"specifika konfigurationer som inte exponeras i GNOME Boxes-gränssnittet och "
-"inte heller stöds av GNOME Boxes-utvecklarna."
+"Boxes ger dig förmågan att manuellt redigera <sys>Libvirt</sys>s XML-"
+"konfiguration för din box. Du kan uppnå specifika konfigurationer som inte "
+"är exponerade i Boxes-gränssnittet och som inte heller stöds av Boxes-"
+"utvecklarna."
+
+#. (itstool) path: note/p
+#: C/edit-domain.page:35
+msgid ""
+"See the Libvirt domain configuration format in documentation at https://"
+"libvirt.org/format.html"
+msgstr ""
+"Se Libvirt-domänens konfigurationsformat i dokumentationen på https://"
+"libvirt.org/format.html"
 
 #. (itstool) path: steps/title
-#: C/edit-domain.page:35
+#: C/edit-domain.page:39
 msgid "To edit the Libvirt XML configuration of a box:"
 msgstr "För att redigera Libvirts XML-konfiguration för en box:"
 
 #. (itstool) path: item/p
-#: C/edit-domain.page:40 C/prop-system.page:31 C/prop-trouble.page:33
-#: C/shutdown.page:32
-msgid "Click the <gui>System</gui> tab."
-msgstr "Klicka på fliken <gui>System</gui>."
+#: C/edit-domain.page:44 C/prop-system.page:31 C/prop-trouble.page:33
+msgid "Click the <gui>Resources</gui> tab."
+msgstr "Klicka på fliken <gui>Resurser</gui>."
 
 #. (itstool) path: item/p
-#: C/edit-domain.page:41
-msgid ""
-"Click the <gui style=\"button\">Edit XML</gui> button to open the "
-"configuration editor."
-msgstr ""
-"Klicka på knappen <gui style=\"button\">Redigera XML</gui> för öppna "
-"konfigurationsredigeraren."
-
-#. (itstool) path: item/p
-#: C/edit-domain.page:43
-msgid ""
-"Edit the XML configuration and click <gui style=\"button\">Save</gui>. Boxes "
-"will attempt to create a snapshot prior to your changes getting applied, "
-"allowing you to revert your configuration in case of a mistake."
-msgstr ""
-"Redigera XML-konfigurationen och klicka på <gui style=\"button\">Spara</"
-"gui>. Boxes kommer försöka skapa en ögonblicksbild innan dina ändringar "
-"verkställs, vilket låter dig återställa din konfiguration om du gör ett "
-"misstag."
+#: C/edit-domain.page:45 C/prop-trouble.page:34
+msgid "Scroll to the <gui>Configuration</gui> section."
+msgstr "Rulla till avsnittet <gui>Konfiguration</gui>."
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:46
 msgid ""
-"If the virtual machine which has been edited is already running, Boxes will "
-"show a notification asking to restart the running virtual machine."
+"Click the <gui style=\"button\">Edit Configuration</gui> button to open the "
+"configuration in a text editor."
 msgstr ""
-"Om den virtuella maskinen som har redigerats redan körs så kommer Boxes att "
-"visa en avisering som ber om att starta om den körande virtuella maskinen."
+"Klicka på knappen <gui style=\"button\">Redigera XML</gui> för att öppna "
+"konfigurationen i en textredigerare."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:48
+msgid "Edit the XML configuration and <gui style=\"button\">Save</gui>."
+msgstr "Redigera XML-konfigurationen och <gui style=\"button\">Spara</gui>."
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:49
+msgid ""
+"If the virtual machine which has been edited is already running, the changes "
+"will take effect after restarting the running virtual machine."
+msgstr ""
+"Om den virtuella maskinen som har redigerats redan körs kommer ändringarna "
+"att träda i kraft efter omstart av den virtuella maskinen."
+
+#. (itstool) path: note/p
+#: C/edit-domain.page:54
+msgid ""
+"Before editing the box configuration, Boxes will suggest that you create a "
+"snapshot. Snapshots allow you to revert your changes in case of a mistake."
+msgstr ""
+"Innan du redigerar boxkonfigurationen kommer Boxes att föreslå att du skapar "
+"en ögonblicksbild. Ögonblicksbilder låter dig återställa dina ändringar om "
+"du gör ett misstag."
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -571,13 +562,13 @@ msgstr "<_:media-1/> Boxes"
 #. (itstool) path: page/p
 #: C/index.page:35
 msgid ""
-"<app>Boxes</app> is an application that gives you access to local <link xref="
-"\"what-is-a-virtual-machine\">virtual machines</link>. If you want to get "
-"access to a remote virtual machine or connect to the display of a remote "
+"<app>Boxes</app> is an application that gives you access to local <link "
+"xref=\"what-is-a-virtual-machine\">virtual machines</link>. If you want to "
+"get access to a remote virtual machine or connect to the display of a remote "
 "computer, you can use another GNOME app called <app>Connections</app>."
 msgstr ""
-"<app>Boxes</app> är ett program som ger dig tillgång till lokala <link xref="
-"\"what-is-a-virtual-machine\">virtuella maskiner</link>. Om du vill få "
+"<app>Boxes</app> är ett program som ger dig tillgång till lokala <link "
+"xref=\"what-is-a-virtual-machine\">virtuella maskiner</link>. Om du vill få "
 "åtkomst till en virtuell maskin över nätverket eller ansluta till skärmen på "
 "en fjärrdator så kan du använda ett annat GNOME-program som heter "
 "<app>Anslutningar</app>."
@@ -594,13 +585,13 @@ msgstr "Att använda Boxes"
 
 #. (itstool) path: section/title
 #: C/index.page:56
-msgid "Properties"
-msgstr "Egenskaper"
+msgid "Preferences"
+msgstr "Inställningar"
 
 #. (itstool) path: section/title
 #: C/index.page:60
 msgid "Snapshots"
-msgstr "Ögonblicksavbilder"
+msgstr "Ögonblicksbilder"
 
 #. (itstool) path: section/title
 #: C/index.page:64
@@ -631,26 +622,25 @@ msgstr "Samlingsvy"
 #: C/interface.page:38
 msgid ""
 "When you first launch <app>Boxes</app>, the greeting tells you to click the "
-"<gui style=\"button\">New</gui> button to create your first box. On "
-"subsequent visits, <app>Boxes</app> opens in the <em>collection view</em>, "
-"displaying thumbnails of your boxes in a grid. Favourites or frequently-used "
-"boxes appear at the top of the list. Collection view allows you to:"
+"<gui style=\"button\">+</gui> button to create your first box. On subsequent "
+"visits, <app>Boxes</app> opens in the <em>collection view</em>, displaying "
+"thumbnails of your boxes in a grid. Frequently used boxes appear at the top "
+"of the list. Collection view allows you to:"
 msgstr ""
 "När du först startar <app>Boxes</app> kommer välkomstskärmen att be dig "
-"klicka på knappen <gui style=\"button\">Ny</gui> för att skapa din första "
+"klicka på knappen <gui style=\"button\">+</gui> för att skapa din första "
 "box. Vid efterföljande uppstarter kommer <app>Boxes</app> att öppnas i "
 "<em>samlingsvyn</em> och visa miniatyrbilder av dina boxar i ett rutnät. "
-"Favoriter eller ofta använda boxar kommer att visas längst upp. Samlingsvyn "
-"låter dig:"
+"Ofta använda boxar visas högst upp i listan. Samlingsvyn låter dig:"
 
 #. (itstool) path: item/p
 #: C/interface.page:45
 msgid ""
-"Click <gui style=\"button\">New</gui> to <link xref=\"create\">create</link> "
-"a box."
+"Click <gui style=\"button\">+</gui> to <link xref=\"create\">create</link> a "
+"box."
 msgstr ""
-"Klicka på <gui style=\"button\">Ny</gui> för att <link xref=\"create"
-"\">skapa</link> en box."
+"Klicka på <gui style=\"button\">+</gui> för att <link xref=\"create\">skapa</"
+"link> en box."
 
 #. (itstool) path: item/p
 #: C/interface.page:47
@@ -664,158 +654,149 @@ msgstr "<link xref=\"search\">Söka</link> efter en box."
 
 #. (itstool) path: item/p
 #: C/interface.page:49
-msgid "Click the checkmark button in the header bar to enter selection mode."
-msgstr "Klicka på kryssknappen i rubrikraden för att gå in i valläge."
-
-#. (itstool) path: item/p
-#: C/interface.page:51
 msgid ""
-"Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
-"Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
-"gui>, or to open the <gui>Properties</gui> view for the box."
+"Right-click on a box to choose <gui>Open in New Window</gui>, <gui>Force "
+"Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</gui>, or to open the "
+"<gui>Preferences</gui> view for the box."
 msgstr ""
 "Högerklicka på en box för att välja <gui>Öppna i nytt fönster</gui>, "
-"<gui>Lägg till i favoriter</gui>, <gui>Tvinga nedstängning</gui>, "
-"<gui>Klona</gui>, <gui>Ta bort</gui> eller för att öppna vyn "
-"<gui>Egenskaper</gui> för boxen."
+"<gui>Tvinga nedstängning</gui>, <gui>Klona</gui>, <gui>Ta bort</gui> eller "
+"för att öppna vyn <gui>Inställningar</gui> för boxen."
 
 #. (itstool) path: section/title
+#: C/interface.page:58
+msgid "The assistant"
+msgstr "Assistenten"
+
+#. (itstool) path: section/p
 #: C/interface.page:60
-msgid "The wizard"
-msgstr "Guiden"
-
-#. (itstool) path: section/p
-#: C/interface.page:62
 msgid ""
-"Clicking <gui style=\"button\">New</gui> launches the <em>wizard</em>, which "
-"guides you through the process of box creation."
+"Clicking <gui style=\"button\">+</gui> launches the box creation "
+"<em>Assistant</em>, which guides you through the process of box creation."
 msgstr ""
-"Att klicka på <gui style=\"button\">Ny</gui> innebär att <em>guiden</em> "
-"startas, som kommer att guida dig genom stegen för att skapa en box."
+"Att klicka på <gui style=\"button\">+</gui> startar <em>assistenten</em> för "
+"skapande av boxar, som kommer att guida dig genom stegen för att skapa en "
+"box."
 
 #. (itstool) path: section/title
-#: C/interface.page:68
-msgid "Selection mode"
-msgstr "Valläge"
+#: C/interface.page:66
+msgid "Preferences view"
+msgstr "Inställningsvy"
 
 #. (itstool) path: section/p
-#: C/interface.page:70
+#: C/interface.page:68
 msgid ""
-"In collection view, clicking the checkmark button or right-clicking a "
-"thumbnail puts you in <em>selection mode</em>, where various operations can "
-"be performed on boxes, individually or in groups. You can:"
+"Right-click a box in the collection view and select <gui "
+"style=\"button\">Preferences</gui> to open the <em>preferences view</em>, "
+"where you can configure some of the details of your box. The preferences "
+"view allows you to display or change settings depending on which of the "
+"following tabs is selected:"
 msgstr ""
-"I samlingsvyn, om du klickar på kryssknappen eller högerklickar på en "
-"miniatyrbild kommer du att hamna i <em>valläget</em> där diverse åtgärder "
-"kan utföras på boxar, individuellt eller i grupper. Du kan:"
+"Högerklicka på en box i samlingsvyn och välj <gui "
+"style=\"button\">Inställningar</gui>för att öppna <em>inställningsvyn</em> "
+"där du kan konfigurera några av detaljerna för din box. Inställningsvyn "
+"låter dig visa eller ändra inställningar beroende på vilken av följande "
+"flikar som är vald:"
 
-#. (itstool) path: item/p
+#. (itstool) path: section/title
 #: C/interface.page:75
-msgid "<link xref=\"delete\">Delete</link> a box or boxes."
-msgstr "<link xref=\"delete\">Ta bort</link> en eller flera boxar."
-
-#. (itstool) path: item/p
-#: C/interface.page:76
-msgid "Mark a box or boxes as favorites."
-msgstr "Markera en eller flera boxar som favoriter."
-
-#. (itstool) path: item/p
-#: C/interface.page:77
-msgid "Pause a box."
-msgstr "Pausa en box."
+msgid "The Resources tab"
+msgstr "Fliken Resurser"
 
 #. (itstool) path: item/p
 #: C/interface.page:78
-msgid "Open a box in a new window."
-msgstr "Öppna en box i ett nytt fönster."
+msgid ""
+"View the <gui>Name</gui> of your box and its <gui>IP Address</gui> (when "
+"available)."
+msgstr ""
+"Visa <gui>Namn</gui> för din box eller dess <gui>IP-adress</gui> (när "
+"tillgänglig)."
+
+#. (itstool) path: item/p
+#: C/interface.page:79
+msgid ""
+"Set the values for <gui>CPU</gui>, <gui>Memory</gui> and <gui>Storage</gui> "
+"of your box."
+msgstr ""
+"Ställ in värdena för <gui>Processor</gui>, <gui>Minne</gui> och "
+"<gui>Lagring</gui> för din box."
+
+#. (itstool) path: item/p
+#: C/interface.page:80
+msgid "Set the <gui>Allow running in background</gui> preference of your box."
+msgstr ""
+"Ställ in inställningen <gui>Tillåt körning i bakgrunden</gui> för din box."
+
+#. (itstool) path: item/p
+#: C/interface.page:81
+msgid "Enable <gui>3D acceleration</gui> for supported operating systems."
+msgstr "Aktivera <gui>3D-acceleration</gui> för operativsystem som stöds."
+
+#. (itstool) path: item/p
+#: C/interface.page:82
+msgid ""
+"Access the logs of your box in the <gui>Troubleshooting logs</gui> option, "
+"which can be useful for troubleshooting issues."
+msgstr ""
+"Gå till loggarna för din box i alternativet <gui>Felsökningsloggar</gui>, "
+"vilket kan vara användbart för att felsöka problem."
+
+#. (itstool) path: item/p
+#: C/interface.page:83
+msgid ""
+"The <gui>Edit Configuration</gui> option lets you edit the libvirt domain "
+"configuration of your box manually."
+msgstr ""
+"Alternativet <gui>Redigera konfiguration</gui> låter dig redigera libvirt-"
+"domänens konfiguration för din box manuellt."
 
 #. (itstool) path: section/title
-#: C/interface.page:84
-msgid "Properties view"
-msgstr "Egenskapsvy"
+#: C/interface.page:88
+msgid "The Devices and Shares tab"
+msgstr "Fliken Enheter och delningar"
 
-#. (itstool) path: section/p
-#: C/interface.page:86
-msgid ""
-"Right clicking a box and selecting <gui style=\"button\">Properties</gui> in "
-"the collection view opens the <em>properties view</em>, where some of the "
-"details of a box can be configured. The properties view allows you to "
-"display or change settings depending on which of the following tabs is "
-"selected:"
-msgstr ""
-"Att högerklicka på en box och välja <gui style=\"button\">Egenskaper</gui> i "
-"samlingsvyn får <em>egenskapsvyn</em> att öppnas, där vissa av detaljerna "
-"för en box kan konfigureras. Egenskapsvyn låter dig visa eller ändra "
-"inställningar beroende på vilka av följande flikar som väljs:"
+#. (itstool) path: item/p
+#: C/interface.page:91
+msgid "Choose the <gui>USB Devices</gui> to redirect to your box."
+msgstr "Välj <gui>USB-enheter</gui> för att omdirigera till din box."
 
 #. (itstool) path: item/p
 #: C/interface.page:92
-msgid ""
-"<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
-"or virtualizer being used (such as <em>QEMU</em>). The <gui>3D Acceleration</"
-"gui> switch also appears here."
+msgid "Set the <gui>Shared Folders</gui> to be made available in your box."
 msgstr ""
-"<gui>Allmänt</gui>: visar boxens <gui>Namn</gui> och <gui>Agent</gui> eller "
-"virtualiserare som används (exempelvis <em>QEMU</em>). Brytaren <gui>3D-"
-"acceleration</gui> visas också här."
+"Ställ in de <gui>Delade mappar</gui> som ska göras tillgängliga för din box."
 
 #. (itstool) path: item/p
-#: C/interface.page:95
+#: C/interface.page:93
 msgid ""
-"<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
-"network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> sliders "
-"can be adjusted, and the <gui>Troubleshooting Log</gui> can be viewed. The "
-"<gui style=\"button\">Force Shutdown</gui> button, which enables you to "
-"<link xref=\"shutdown\">force a box to shut down</link>, the <gui style="
-"\"button\">Restart</gui> button, and the <gui>Run in background</gui> switch "
-"are on this tab."
+"Set a <gui>CDROM/DVD Drive</gui> file or device to make available in your "
+"box."
 msgstr ""
-"<gui>System</gui>-inställningar: visar löpande grafer för CPU, disk in/ut "
-"och nätverksaktivitet. Skjutreglagen <gui>Minne</gui> och <gui>Maximal "
-"diskstorlek</gui> kan justeras och en <gui>Felsökningslogg</gui> kan visas. "
-"Knappen <gui style=\"button\">Tvinga nedstängning</gui> som gör det möjligt "
-"för dig att <link xref=\"shutdown\">tvinga en box att stänga ner</link>, "
-"knappen <gui style=\"button\">Starta om</gui> och inställningen <gui>Kör i "
-"bakgrunden</gui> finns på denna flik."
+"Ställ in en fil eller enhet för <gui>Cdrom/dvd-enhet</gui> att göra "
+"tillgänglig i din box."
 
-#. (itstool) path: item/p
-#: C/interface.page:102
-msgid ""
-"<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
-"button allows you to specify the path to a CD/DVD device or ISO. The <gui "
-"style=\"button\">Remove</gui> button disconnects it. When the box is "
-"running, the USB devices connected to the host system are listed, and each "
-"can be controlled with an <gui>ON | OFF</gui> switch. <link xref=\"shared-"
-"folders\">Shared Folders</link> between host and guest can be set for "
-"running machines which support spice-webdavd."
-msgstr ""
-"<gui>Enheter &amp; delningar</gui>: knappen <gui style=\"button\">Välj</gui> "
-"låter dig ange sökvägen till en CD/DVD-enhet eller ISO. Knappen <gui style="
-"\"button\">Ta bort</gui> frånkopplar den. När boxen kör listas anslutna USB-"
-"enheter, och var och en kan styras via en <gui>AV | PÅ</gui>-växel. <link "
-"xref=\"shared-folders\">Delade mappar</link> mellan värd och gäst kan "
-"ställas in för maskiner som körs som stöder spice-webdavd."
-
-#. (itstool) path: item/p
-#: C/interface.page:109
-msgid ""
-"<gui>Snapshots</gui>: allows you to <link xref=\"snapshot-create\">create</"
-"link> and manage snapshots of the box."
-msgstr ""
-"<gui>Ögonblicksavbild</gui>: låter dig <link xref=\"snapshot-create\">skapa</"
-"link> och hantera ögonblicksavbilder för boxen."
+#. (itstool) path: section/title
+#: C/interface.page:98
+msgid "The Snapshots tab"
+msgstr "Fliken Ögonblicksbilder"
 
 #. (itstool) path: section/p
-#: C/interface.page:114
+#: C/interface.page:99
 msgid ""
-"The properties view can also be accessed using the wizard's <gui style="
-"\"button\">Customize</gui> button during local box setup. If the box is "
-"running, click the menu (<_:media-1/>) button in the header bar and select "
-"<gui>Properties</gui>."
+"With <gui>Snapshots</gui> you can <link xref=\"snapshot-create\">create</"
+"link> and manage snapshots of your box."
 msgstr ""
-"Egenskapsvyn kan också kommas åt via guidens knapp <gui style=\"button"
-"\">Anpassa</gui> under lokal boxinställning. Om boxen kör, klicka på "
-"menyknappen (<_:media-1/>) i rubrikraden och välj <gui>Egenskaper</gui>."
+"Med <gui>Ögonblicksbilder</gui> kan du <link xref=\"snapshot-create\">skapa</"
+"link> och hantera ögonblicksbilder för din box."
+
+#. (itstool) path: section/p
+#: C/interface.page:102
+msgid ""
+"If the box is running, click the menu (<_:media-1/>) button in the header "
+"bar and select <gui>Preferences</gui>."
+msgstr ""
+"Klicka om boxen är igång på menyknappen (<_:media-1/>) i rubrikraden och "
+"välj <gui>Inställningar</gui>."
 
 #. (itstool) path: credit/years
 #: C/keystrokes.page:12
@@ -921,33 +902,31 @@ msgstr "Justera systemkraven för en box"
 #. (itstool) path: page/p
 #: C/prop-system.page:23
 msgid ""
-"In <app>Boxes</app>, each virtual machine has its own settings for RAM and "
-"maximum allocated disk space."
+"In <app>Boxes</app>, each virtual machine has its own settings for RAM, CPU "
+"and maximum allocated disk space."
 msgstr ""
-"I <app>Boxes</app> har varje virtuell maskin sina egna inställningar för RAM "
-"och maximalt utrymme för diskallokering."
+"I <app>Boxes</app> har varje virtuell maskin sina egna inställningar för "
+"RAM, processor och maximalt utrymme för diskallokering."
 
 #. (itstool) path: item/p
-#: C/prop-system.page:27 C/prop-trouble.page:29 C/snapshot-create.page:39
-#: C/snapshot-delete.page:26 C/snapshot-rename.page:34
-#: C/snapshot-revert.page:34
+#: C/prop-system.page:27 C/snapshot-create.page:39
 msgid ""
-"Right-click on the box in the collection view and select <gui>Properties</"
+"Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
-"header bar and select <gui>Properties</gui>."
+"header bar and select <gui>Preferences</gui>."
 msgstr ""
-"Högerklicka på boxen i samlingsvyn och välj <gui>Egenskaper</gui>, eller om "
-"boxen redan är öppen, klicka på menyknappen (<_:media-1/>) i rubrikraden och "
-"välj <gui>Egenskaper</gui>."
+"Högerklicka på boxen i samlingsvyn och välj <gui>Inställningar</gui>, eller "
+"om boxen redan är öppen, klicka på menyknappen (<_:media-1/>) i rubrikraden "
+"och välj <gui>Inställningar</gui>."
 
 #. (itstool) path: item/p
 #: C/prop-system.page:32
 msgid ""
-"Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
-"reflect the desired values."
+"Adjust the <gui>Memory</gui>, <gui>CPU</gui> and <gui>Maximum disk size</"
+"gui> sliders to reflect the desired values."
 msgstr ""
-"Justera skjutreglagen för <gui>Minne</gui> och <gui>Maximal diskstorlek</"
-"gui> för att återspegla de önskade värdena."
+"Justera skjutreglagen för <gui>Minne</gui>, <gui>Processor</gui> och "
+"<gui>Maximal diskstorlek</gui> för att återspegla de önskade värdena."
 
 #. (itstool) path: note/p
 #: C/prop-system.page:37
@@ -986,14 +965,27 @@ msgstr ""
 "visar den virtuella maskinens tillstånd, libvirt-konfigurationen för den "
 "virtuell maskinen och loggen för QEMU-hypervisorn."
 
+# TODO: on the box, for less strings
 #. (itstool) path: item/p
-#: C/prop-trouble.page:34
+#: C/prop-trouble.page:29 C/snapshot-delete.page:26 C/snapshot-rename.page:34
+#: C/snapshot-revert.page:34
+msgid ""
+"Right-click the box in the collection view and select <gui>Preferences</"
+"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Preferences</gui>."
+msgstr ""
+"Högerklicka på boxen i samlingsvyn och välj <gui>Inställningar</gui>, eller "
+"om boxen redan är öppen, klicka på menyknappen (<_:media-1/>) i rubrikraden "
+"och välj <gui>Inställningar</gui>."
+
+#. (itstool) path: item/p
+#: C/prop-trouble.page:35
 msgid ""
 "Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
-"log."
+"log in a text editor."
 msgstr ""
 "Klicka på knappen <gui style=\"button\">Felsökningslogg</gui> för att visa "
-"loggen."
+"loggen i en textredigerare."
 
 #. (itstool) path: info/desc
 #: C/search.page:17
@@ -1009,17 +1001,15 @@ msgstr "Sök efter en box"
 #: C/search.page:22
 msgid ""
 "If there is more than one box, you can locate or filter boxes by name in the "
-"<link xref=\"interface#collection\">collection view</link> or <link xref="
-"\"interface#selection\">selection mode</link>. Click the search icon, or "
-"just start typing to initiate a search."
+"<link xref=\"interface#collection\">collection view</link>. Click the search "
+"icon, or just start typing to initiate a search."
 msgstr ""
-"Om det finns mer än en box, kan du hitta eller filtrera boxar efter namn i "
-"<link xref=\"interface#collection\">samlingsvyn</link> eller <link xref="
-"\"interface#selection\">valläget</link>. Klicka på sökikonen eller börja "
-"skriv för att inleda en sökning."
+"Om det finns mer än en box kan du hitta eller filtrera boxar efter namn i "
+"<link xref=\"interface#collection\">samlingsvyn</link>. Klicka på sökikonen "
+"eller börja skriva för att starta en sökning."
 
 #. (itstool) path: page/p
-#: C/search.page:27
+#: C/search.page:26
 msgid "Press <key>Esc</key> to dismiss the search."
 msgstr "Tryck på <key>Esc</key> för att avfärda sökningen."
 
@@ -1045,22 +1035,17 @@ msgstr ""
 "din virtuella maskin."
 
 #. (itstool) path: item/p
-#: C/shared-folders.page:27
-msgid "Make sure your virtual machine is running."
-msgstr "Säkerställ att din virtuella maskin körs."
-
-#. (itstool) path: item/p
-#: C/shared-folders.page:32
+#: C/shared-folders.page:31 C/usb-redirection.page:50
 msgid "Click the <gui>Devices &amp; Shares</gui> tab."
 msgstr "Klicka på fliken <gui>Enheter &amp; delningar</gui>."
 
 #. (itstool) path: item/p
-#: C/shared-folders.page:33
+#: C/shared-folders.page:32
 msgid ""
-"In the <gui>Folder Shares</gui> section you can view, remove, and create new "
-"shared folders."
+"In the <gui>Shared Folders</gui> section you can view, remove, and create "
+"new shared folders."
 msgstr ""
-"I avsnittet <gui>Mappdelningar</gui> kan du visa, ta bort samt skapa nya "
+"I avsnittet <gui>Delade mappar</gui> kan du visa, ta bort samt skapa nya "
 "delade mappar."
 
 #. (itstool) path: credit/name
@@ -1190,19 +1175,13 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/shutdown.page:28
-msgid ""
-"Open the <link xref=\"interface#properties\">properties view</link> for the "
-"box. If the box is running, click the menu (<_:media-1/>) button in the "
-"header bar and select <gui>Properties</gui>."
-msgstr ""
-"Öppna <link xref=\"interface#properties\">egenskapsvyn</link> för boxen. Om "
-"boxen kör, klicka på menyknappen (<_:media-1/>) i rubrikraden och välj "
-"<gui>Egenskaper</gui>."
+msgid "Right-click the box in the collection view."
+msgstr "Högerklicka på boxen i samlingsvyn."
 
 #. (itstool) path: item/p
-#: C/shutdown.page:33
-msgid "Click the <gui style=\"button\">Force Shutdown</gui> button."
-msgstr "Klicka på knappen <gui style=\"button\">Tvinga nedstängning</gui>."
+#: C/shutdown.page:29
+msgid "Select the <gui style=\"button\">Force Shutdown</gui> option."
+msgstr "Välj alternativet <gui style=\"button\">Tvinga nedstängning</gui>."
 
 #. (itstool) path: info/desc
 #: C/snapshot-create.page:22
@@ -1212,7 +1191,7 @@ msgstr "Spara tillståndet för en box för användning senare."
 #. (itstool) path: page/title
 #: C/snapshot-create.page:27
 msgid "Create a snapshot"
-msgstr "Skapa en ögonblicksavbild"
+msgstr "Skapa en ögonblicksbild"
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:29
@@ -1224,9 +1203,9 @@ msgid ""
 msgstr ""
 "Om din virtuella maskin fungerar perfekt i en önskad konfiguration kan du "
 "vilja spara inställningen innan den går sönder på grund av "
-"programuppdateringar eller konfigurationsändringar. Att ta en "
-"ögonblicksavbild av boxen bevarar det aktuella tillståndet så att du kan "
-"återgår till det när du vill."
+"programuppdateringar eller konfigurationsändringar. Att ta en ögonblicksbild "
+"av boxen bevarar det aktuella tillståndet så att du kan återgå till det när "
+"du vill."
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:34
@@ -1235,20 +1214,20 @@ msgid ""
 "also include the memory data for boxes which are running at the moment of "
 "the snapshot creation."
 msgstr ""
-"Ögonblicksavbilder inkluderar det exakta tillståndet för din virtuella "
-"maskins disk, och de kan också inkludera minnesdata för boxar som körs då "
-"ögonblicksavbilden skapas."
+"Ögonblicksbilder inkluderar det exakta tillståndet för din virtuella maskins "
+"disk, och de kan också inkludera minnesdata för boxar som körs då "
+"ögonblicksbilden skapas."
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:43 C/snapshot-delete.page:30
 #: C/snapshot-rename.page:38 C/snapshot-revert.page:38
 msgid "Click the <gui>Snapshots</gui> tab."
-msgstr "Klicka på fliken <gui>Ögonblicksavbilder</gui>."
+msgstr "Klicka på fliken <gui>Ögonblicksbilder</gui>."
 
 #. (itstool) path: item/p
 #: C/snapshot-create.page:44
 msgid "Click <key>+</key> below the <gui>Snapshots</gui> list."
-msgstr "Klicka på <key>+</key> under listan <gui>Ögonblicksavbilder</gui>."
+msgstr "Klicka på <key>+</key> under listan <gui>Ögonblicksbilder</gui>."
 
 #. (itstool) path: page/p
 #: C/snapshot-create.page:47
@@ -1256,51 +1235,53 @@ msgid ""
 "A snapshot is saved reflecting the current state of your box. It appears in "
 "the list."
 msgstr ""
-"En ögonblicksavbild sparas som reflekterar det aktuella tillståndet för din "
+"En ögonblicksbild sparas som reflekterar det aktuella tillståndet för din "
 "box. Den visas i listan."
 
 #. (itstool) path: info/desc
 #: C/snapshot-delete.page:16
 msgid "Remove a snapshot that you no longer need."
-msgstr "Ta bort en ögonblicksavbild som du inte längre behöver."
+msgstr "Ta bort en ögonblicksbild som du inte längre behöver."
 
 #. (itstool) path: page/title
 #: C/snapshot-delete.page:21
 msgid "Delete a snapshot"
-msgstr "Ta bort en ögonblicksavbild"
+msgstr "Ta bort en ögonblicksbild"
 
 #. (itstool) path: page/p
 #: C/snapshot-delete.page:23
 msgid "A snapshot that is no longer needed can be removed from the list."
-msgstr "En ögonblicksavbild som inte längre behövs kan tas bort från listan."
+msgstr "En ögonblicksbild som inte längre behövs kan tas bort från listan."
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:31
-msgid "Select the snapshot to be deleted from the list."
-msgstr "Välj ögonblicksavbilden som ska tas bort från listan."
+msgid "Select the snapshot that you want to delete from the list."
+msgstr "Välj den ögonblicksbild som du vill ta bort från listan."
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:32
-msgid "Click the gear button on the right and select <gui>Delete</gui>."
-msgstr "Klicka på kugghjulsknappen till höger och välj <gui>Ta bort</gui>."
+msgid ""
+"Click the <gui style=\"button\">X</gui> button on the list to delete it."
+msgstr ""
+"Klicka på knappen <gui style=\"button\">X</gui> i listan för att radera den."
 
 #. (itstool) path: info/desc
 #: C/snapshot-rename.page:16
 msgid "Give the snapshot a meaningful name."
-msgstr "Ge en ögonblicksavbild ett meningsfullt namn."
+msgstr "Ge en ögonblicksbild ett meningsfullt namn."
 
 #. (itstool) path: page/title
 #: C/snapshot-rename.page:21
 msgid "Rename a snapshot"
-msgstr "Byt namn på en ögonblicksavbild"
+msgstr "Byt namn på en ögonblicksbild"
 
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:23
 msgid ""
 "By default, a snapshot is given a generic name based on the timestamp, like:"
 msgstr ""
-"Som standard ges en ögonblicksavbild ett allmänt namn baserat på "
-"tidsstämpeln, till exempel:"
+"Som standard ges en ögonblicksbild ett allmänt namn baserat på tidsstämpeln, "
+"till exempel:"
 
 #. (itstool) path: page/p
 #: C/snapshot-rename.page:26
@@ -1323,24 +1304,19 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:39
-msgid "From the list, select the snapshot to be renamed."
-msgstr "I listan, välj ögonblicksavbilden som ska byta namn."
+msgid "From the list, select the snapshot that you want to rename."
+msgstr "Välj i listan ögonblicksbilden som du vill byta namn på."
 
+# TODO: in the list
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:40
-msgid "Click the gear button on the right and select <gui>Rename</gui>."
-msgstr "Klicka på kugghjulsknappen till höger och välj <gui>Byt namn</gui>."
-
-#. (itstool) path: item/p
-#: C/snapshot-rename.page:42
-msgid "Type the desired name and press <gui style=\"button\">Done</gui>."
-msgstr ""
-"Skriv in det önskade namnet och tryck <gui style=\"button\">Färdig</gui>."
+msgid "Click the edit button on the list to rename."
+msgstr "Klicka på redigeringsknappen i listan för att byta namn."
 
 #. (itstool) path: info/desc
 #: C/snapshot-revert.page:22
 msgid "Change back to the state of a saved snapshot."
-msgstr "Ändra tillbaka till tillståndet från en sparad ögonblicksavbild."
+msgstr "Ändra tillbaka till tillståndet från en sparad ögonblicksbild."
 
 #. (itstool) path: page/title
 #: C/snapshot-revert.page:27
@@ -1355,33 +1331,30 @@ msgid ""
 "running programs and settings at the exact same state of the snapshot "
 "creation."
 msgstr ""
-"Att <em>återgå</em> till en ögonblicksavbild återgår till tillståndet för "
-"den virtuella maskinen som sparades i den ögonblicksavbilden. "
-"Minnestillståndet återställs också, vilket tar tillbaka körande program och "
-"inställningar till det exakta tillståndet då ögonblicksavbilden skapades."
+"Att <em>återgå</em> till en ögonblicksbild återgår till tillståndet för den "
+"virtuella maskinen som sparades i den ögonblicksbilden. Minnestillståndet "
+"återställs också, vilket tar tillbaka körande program och inställningar till "
+"det exakta tillståndet då ögonblicksbilden skapades."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:39
 msgid "From the list, select the snapshot to which you want to revert."
-msgstr "I listan, välj ögonblicksavbilden som du vill återgå till."
+msgstr "Välj i listan ögonblicksbilden som du vill återgå till."
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:41
-msgid ""
-"Click the gear button on the right and select <gui>Revert to this state</"
-"gui>."
-msgstr ""
-"Klicka på kugghjulsknappen till höger och välj <gui>Återgå till detta "
-"tillstånd</gui>."
+msgid "Click the revert button next to the snapshot name."
+msgstr "Klicka på återgå-knappen bredvid ögonblicksbildens namn."
 
-#. (itstool) path: page/p
+#. (itstool) path: note/p
 #: C/snapshot-revert.page:45
 msgid ""
-"Changes made to the virtual machine since the snapshot was saved are "
-"discarded."
+"Snapshots capture a state of your virtual machine. Changes that you make "
+"after creating a snapshot will be lost on revert."
 msgstr ""
-"Ändringar som gjorts för den virtuella maskinen sedan ögonblicksavbilden "
-"sparades kommer att kasseras."
+"Ögonblicksbilder fångar ett tillstånd för din virtuella maskin. Ändringar "
+"som du gör efter att du skapat en ögonblicksbild kommer att gå förlorade vid "
+"återställning."
 
 #. (itstool) path: page/title
 #: C/supported-protocols.page:26
@@ -1552,11 +1525,11 @@ msgstr "20 GB maximalt lagringsutrymme."
 msgid ""
 "This does not mean that <app>Boxes</app> will allocate 20 GB of space when "
 "creating the virtual machine. The actual disk space used by <app>Boxes</app> "
-"will be less than (or in worst case, equal to) the disk space used by the "
-"virtual machine itself."
+"will be less than (or in the worst case, equal to) the disk space used by "
+"the virtual machine itself."
 msgstr ""
 "Detta innebär inte att <app>Boxes</app> kommer att allokera 20 GB utrymme "
-"när den virtuella maskinen skapas. Det verkliga diskutrymmet som används av "
+"när den virtuella maskinen skapas. Det faktiska diskutrymmet som används av "
 "<app>Boxes</app> kommer att vara mindre än (eller i värsta fall samma som) "
 "diskutrymmet som används av den virtuella maskinen själv."
 
@@ -1621,19 +1594,26 @@ msgstr "För att aktivera värd-USB-enheter i en box:"
 msgid "Make sure the box is running."
 msgstr "Säkerställ att boxen körs."
 
+# TODO: on the box, for less strings
 #. (itstool) path: item/p
-#: C/usb-redirection.page:50
-msgid "Click the <gui>Devices</gui> tab."
-msgstr "Klicka på fliken <gui>Enheter</gui>."
+#: C/usb-redirection.page:46
+msgid ""
+"Right-click the box in the collection view and select <gui>Preferences</"
+"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Preferences</gui>."
+msgstr ""
+"Högerklicka på boxen i samlingsvyn och välj <gui>Inställningar</gui>, eller "
+"klicka på menyknappen (<_:media-1/>) i rubrikraden och välj "
+"<gui>Inställningar</gui>."
 
 #. (itstool) path: item/p
 #: C/usb-redirection.page:51
 msgid ""
-"<gui>USB devices</gui> connected to the host machine are shown in a list. "
+"<gui>USB Devices</gui> connected to the host machine are shown in a list. "
 "Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
 msgstr ""
 "<gui>USB-enheter</gui> anslutna till värdmaskinen visas i en lista. Ställ in "
-"spaken intill varje önskad enhet till <gui style=\"switch\">PÅ</gui>."
+"brytaren intill varje önskad enhet till <gui style=\"switch\">PÅ</gui>."
 
 #. (itstool) path: credit/name
 #: C/virtualization.page:15
@@ -1781,6 +1761,174 @@ msgstr ""
 "kommer att köra under andra operativsystem, till exempel under Microsoft "
 "Windows™. En virtuell maskin kan också användas under programutveckling för "
 "att testa i en nyinstallerad miljö."
+
+#~ msgid ""
+#~ "In case the virtual machine for which 3D Acceleration has just been "
+#~ "enabled is already running, then, Boxes will show a notification asking "
+#~ "to restart the running virtual machine."
+#~ msgstr ""
+#~ "Om den virtuella maskinen för vilken 3D-acceleration just har aktiverats "
+#~ "redan körs så kommer Boxes att visa en avisering som ber om att starta om "
+#~ "den körande virtuella maskinen."
+
+#~ msgid ""
+#~ "At the wizard's <gui>Source Selection</gui> screen, choose a source to "
+#~ "determine the type of box you want to create. A local virtual machine can "
+#~ "be created from:"
+#~ msgstr ""
+#~ "I guidens skärm <gui>Val av källa</gui>, välj en källa för att avgöra "
+#~ "vilken typ av box du vill skapa. En lokal virtuell maskin kan skapas från:"
+
+#~ msgid "An ISO found by <app>Boxes</app>."
+#~ msgstr "En ISO som hittats av <app>Boxes</app>."
+
+#~ msgid ""
+#~ "After making your selection, or providing the necessary information, "
+#~ "click <gui style=\"button\">Next</gui>, which will take you to the "
+#~ "<gui>Review</gui> page."
+#~ msgstr ""
+#~ "Efter att du gjort ditt val eller tillhandahåller den nödvändiga "
+#~ "informationen, klicka på <gui style=\"button\">Nästa</gui> vilket kommer "
+#~ "att ta dig till sidan <gui>Granskning</gui>."
+
+#~ msgid ""
+#~ "Click <gui style=\"button\">Customize</gui> to adjust memory or disk "
+#~ "size, or to rename the box."
+#~ msgstr ""
+#~ "Klicka på <gui style=\"button\">Anpassa</gui> för att justera minnes- "
+#~ "eller diskstorlek, eller för att byta namn på boxen."
+
+#~ msgid ""
+#~ "<link xref=\"interface#selection\">Selection mode</link> opens. Click "
+#~ "additional boxes to select them for deletion."
+#~ msgstr ""
+#~ "<link xref=\"interface#selection\">Valläget</link> öppnas. Klicka på "
+#~ "ytterligare boxar för att välja dem för borttagning."
+
+#~ msgid "Click the <key>X</key> to confirm."
+#~ msgstr "Klicka på <key>X</key> för att bekräfta."
+
+#~ msgid "Click the <gui>System</gui> tab."
+#~ msgstr "Klicka på fliken <gui>System</gui>."
+
+#~ msgid "Properties"
+#~ msgstr "Egenskaper"
+
+#~ msgid ""
+#~ "Click the checkmark button in the header bar to enter selection mode."
+#~ msgstr "Klicka på kryssknappen i rubrikraden för att gå in i valläge."
+
+#~ msgid "The wizard"
+#~ msgstr "Guiden"
+
+#~ msgid "Selection mode"
+#~ msgstr "Valläge"
+
+#~ msgid ""
+#~ "In collection view, clicking the checkmark button or right-clicking a "
+#~ "thumbnail puts you in <em>selection mode</em>, where various operations "
+#~ "can be performed on boxes, individually or in groups. You can:"
+#~ msgstr ""
+#~ "I samlingsvyn, om du klickar på kryssknappen eller högerklickar på en "
+#~ "miniatyrbild kommer du att hamna i <em>valläget</em> där diverse åtgärder "
+#~ "kan utföras på boxar, individuellt eller i grupper. Du kan:"
+
+#~ msgid "<link xref=\"delete\">Delete</link> a box or boxes."
+#~ msgstr "<link xref=\"delete\">Ta bort</link> en eller flera boxar."
+
+#~ msgid "Mark a box or boxes as favorites."
+#~ msgstr "Markera en eller flera boxar som favoriter."
+
+#~ msgid "Pause a box."
+#~ msgstr "Pausa en box."
+
+#~ msgid "Open a box in a new window."
+#~ msgstr "Öppna en box i ett nytt fönster."
+
+#~ msgid ""
+#~ "<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</"
+#~ "gui> or virtualizer being used (such as <em>QEMU</em>). The <gui>3D "
+#~ "Acceleration</gui> switch also appears here."
+#~ msgstr ""
+#~ "<gui>Allmänt</gui>: visar boxens <gui>Namn</gui> och <gui>Agent</gui> "
+#~ "eller virtualiserare som används (exempelvis <em>QEMU</em>). Brytaren "
+#~ "<gui>3D-acceleration</gui> visas också här."
+
+#~ msgid ""
+#~ "<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
+#~ "network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> "
+#~ "sliders can be adjusted, and the <gui>Troubleshooting Log</gui> can be "
+#~ "viewed. The <gui style=\"button\">Force Shutdown</gui> button, which "
+#~ "enables you to <link xref=\"shutdown\">force a box to shut down</link>, "
+#~ "the <gui style=\"button\">Restart</gui> button, and the <gui>Run in "
+#~ "background</gui> switch are on this tab."
+#~ msgstr ""
+#~ "<gui>System</gui>-inställningar: visar löpande grafer för CPU, disk in/ut "
+#~ "och nätverksaktivitet. Skjutreglagen <gui>Minne</gui> och <gui>Maximal "
+#~ "diskstorlek</gui> kan justeras och en <gui>Felsökningslogg</gui> kan "
+#~ "visas. Knappen <gui style=\"button\">Tvinga nedstängning</gui> som gör "
+#~ "det möjligt för dig att <link xref=\"shutdown\">tvinga en box att stänga "
+#~ "ner</link>, knappen <gui style=\"button\">Starta om</gui> och "
+#~ "inställningen <gui>Kör i bakgrunden</gui> finns på denna flik."
+
+#~ msgid ""
+#~ "<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
+#~ "button allows you to specify the path to a CD/DVD device or ISO. The <gui "
+#~ "style=\"button\">Remove</gui> button disconnects it. When the box is "
+#~ "running, the USB devices connected to the host system are listed, and "
+#~ "each can be controlled with an <gui>ON | OFF</gui> switch. <link "
+#~ "xref=\"shared-folders\">Shared Folders</link> between host and guest can "
+#~ "be set for running machines which support spice-webdavd."
+#~ msgstr ""
+#~ "<gui>Enheter &amp; delningar</gui>: knappen <gui style=\"button\">Välj</"
+#~ "gui> låter dig ange sökvägen till en CD/DVD-enhet eller ISO. Knappen <gui "
+#~ "style=\"button\">Ta bort</gui> frånkopplar den. När boxen kör listas "
+#~ "anslutna USB-enheter, och var och en kan styras via en <gui>AV | PÅ</gui>-"
+#~ "växel. <link xref=\"shared-folders\">Delade mappar</link> mellan värd och "
+#~ "gäst kan ställas in för maskiner som körs som stöder spice-webdavd."
+
+#~ msgid ""
+#~ "The properties view can also be accessed using the wizard's <gui "
+#~ "style=\"button\">Customize</gui> button during local box setup. If the "
+#~ "box is running, click the menu (<_:media-1/>) button in the header bar "
+#~ "and select <gui>Properties</gui>."
+#~ msgstr ""
+#~ "Egenskapsvyn kan också kommas åt via guidens knapp <gui "
+#~ "style=\"button\">Anpassa</gui> under lokal boxinställning. Om boxen kör, "
+#~ "klicka på menyknappen (<_:media-1/>) i rubrikraden och välj "
+#~ "<gui>Egenskaper</gui>."
+
+#~ msgid "Make sure your virtual machine is running."
+#~ msgstr "Säkerställ att din virtuella maskin körs."
+
+#~ msgid ""
+#~ "Open the <link xref=\"interface#properties\">properties view</link> for "
+#~ "the box. If the box is running, click the menu (<_:media-1/>) button in "
+#~ "the header bar and select <gui>Properties</gui>."
+#~ msgstr ""
+#~ "Öppna <link xref=\"interface#properties\">egenskapsvyn</link> för boxen. "
+#~ "Om boxen kör, klicka på menyknappen (<_:media-1/>) i rubrikraden och välj "
+#~ "<gui>Egenskaper</gui>."
+
+#~ msgid "Click the gear button on the right and select <gui>Delete</gui>."
+#~ msgstr "Klicka på kugghjulsknappen till höger och välj <gui>Ta bort</gui>."
+
+#~ msgid "From the list, select the snapshot to be renamed."
+#~ msgstr "I listan, välj ögonblicksavbilden som ska byta namn."
+
+#~ msgid ""
+#~ "Click the gear button on the right and select <gui>Revert to this state</"
+#~ "gui>."
+#~ msgstr ""
+#~ "Klicka på kugghjulsknappen till höger och välj <gui>Återgå till detta "
+#~ "tillstånd</gui>."
+
+#~ msgid ""
+#~ "Changes made to the virtual machine since the snapshot was saved are "
+#~ "discarded."
+#~ msgstr ""
+#~ "Ändringar som gjorts för den virtuella maskinen sedan ögonblicksavbilden "
+#~ "sparades kommer att kasseras."
 
 #~ msgid ""
 #~ "Learn to set up local virtual machines and to connect to remote virtual "
