@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-11 12:42+0000\n"
-"PO-Revision-Date: 2022-03-17 20:03+0100\n"
+"POT-Creation-Date: 2022-03-18 14:46+0000\n"
+"PO-Revision-Date: 2022-03-19 08:35+0100\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Кутије"
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Подешавање дељених фасцикли између вашег система и виртуелних машина."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "Гном пројекат"
 
@@ -247,17 +247,12 @@ msgid "You will be notified when the download has completed."
 msgstr "Бићете обавештени када се преузимање доврши."
 
 #: data/ui/assistant/pages/index-page.ui:117
-#, fuzzy
-#| msgctxt "shortcut window"
-#| msgid "Create a new virtual machine"
 msgid "Create virtual machine from file"
-msgstr "Прави нову виртуелну машину"
+msgstr "Направи виртуелну машину из датотеке"
 
 #: data/ui/assistant/pages/index-page.ui:134
-#, fuzzy
-#| msgid "No operating systems found"
 msgid "Download an operating system"
-msgstr "Нема нађених оперативних система"
+msgstr "Преузми оперативни систем"
 
 #: data/ui/assistant/pages/index-page.ui:135
 msgid "Browse and search for operating systems to install."
@@ -288,10 +283,8 @@ msgstr ""
 "Проверите ваша подешавања БИОС-а да их укључите."
 
 #: data/ui/assistant/pages/review-page.ui:78
-#, fuzzy
-#| msgid "Operating System Download"
 msgid "Operating System"
-msgstr "Преузимање оперативног система"
+msgstr "Оперативни систем"
 
 #: data/ui/assistant/pages/review-page.ui:94
 #: data/ui/preferences/resources-page.ui:90
@@ -521,10 +514,8 @@ msgid "Configuration"
 msgstr "Подешавање"
 
 #: data/ui/preferences/resources-page.ui:150
-#, fuzzy
-#| msgid "Troubleshooting Log"
 msgid "Troubleshooting Logs"
-msgstr "Дневник решавања проблема"
+msgstr "Дневници решавања проблема"
 
 #: data/ui/preferences/resources-page.ui:151
 msgid "Diagnose problems with your box using the log file."
@@ -787,15 +778,15 @@ msgstr[3] "Једна кутија је обрисана"
 msgid "Boxes is doing something"
 msgstr "Кутије тренутно раде нешто"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "Изаберите датотеке за пренос"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "От_кажи"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "_Отвори"
 
@@ -988,14 +979,9 @@ msgstr "Чувам…"
 
 #. Translators: The first %s is the name of the box, the second is the reason of the error
 #: src/machine.vala:597
-#, fuzzy, c-format
-#| msgid ""
-#| "“%s” could not be restored from disk\n"
-#| "Try without saved state?"
+#, c-format
 msgid "“%s” could not be restored from disk: %s"
-msgstr ""
-"Не могу да обновим „%s“ са диска\n"
-"Да покушам без сачуваног стања?"
+msgstr "Не могу да обновим „%s“ са диска: %s"
 
 #: src/machine.vala:608
 #, c-format
@@ -1008,10 +994,9 @@ msgstr "Дневник решавања проблема"
 
 #. Translators: the first %s is the name of the box, the second is the reason of the error.
 #: src/machine.vala:634
-#, fuzzy, c-format
-#| msgid "Connection to “%s” failed"
+#, c-format
 msgid "Connection to “%s” failed: %s"
-msgstr "Повезивање на „%s“ није успело"
+msgstr "Повезивање на „%s“ није успело: %s"
 
 #. FIXME: add proper UI & docs
 #: src/main.vala:53
@@ -1077,22 +1062,19 @@ msgstr ""
 
 #. Translators: %s is a recommended value for RAM/storage limit. For example "Recommended 4 GB."
 #: src/preferences/resources-page.vala:81
-#, fuzzy, c-format
-#| msgid "%s (recommended)"
+#, c-format
 msgid "Recommended %s."
-msgstr "%s (препоручено)"
+msgstr "Препоручено %s."
 
-#: src/preferences/resources-page.vala:157
-#, fuzzy
-#| msgid "Boxes is not authorized to run in the background"
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "Кутије нису овлашћене да раде у позадини"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Да ли желите отворити Подешавања за промену овлашћења програма?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1101,13 +1083,12 @@ msgstr ""
 "систему унутар кутије. Да ли желите направити снимак стања да бисте могли да "
 "опозовете ваше измене?"
 
-#: src/preferences/resources-page.vala:267
-#, fuzzy, c-format
-#| msgid "Boxes failed to apply VM configuration changes: %s"
+#: src/preferences/resources-page.vala:269
+#, c-format
 msgid "Failed to save domain configuration: %s"
-msgstr "Кутије нису успеле да примене измене подешавања ВМ-а: %s"
+msgstr "Нисам успео да сачувам измене домена: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Измене подешавања испод ступају на снагу након што поново покренете вашу "
@@ -1126,10 +1107,9 @@ msgstr ""
 
 #. Translators: %s is the reason why Boxes failed to rename the snapshot.
 #: src/preferences/snapshot-list-row.vala:77
-#, fuzzy, c-format
-#| msgid "Failed to create snapshot of %s"
+#, c-format
 msgid "Failed to rename snapshot: %s"
-msgstr "Нисам успео да направим снимак стања за „%s“"
+msgstr "Нисам успео да преименујем снимак стања: %s"
 
 #: src/preferences/snapshot-list-row.vala:93
 #, c-format
@@ -1138,10 +1118,9 @@ msgstr "Враћам на „%s“…"
 
 #. Translators: %s is the reason why Boxes failed to apply the snapshot.
 #: src/preferences/snapshot-list-row.vala:115
-#, fuzzy, c-format
-#| msgid "Failed to create snapshot of %s"
+#, c-format
 msgid "Failed to revert to snapshot: %s"
-msgstr "Нисам успео да направим снимак стања за „%s“"
+msgstr "Нисам успео да вратим снимак стања: %s"
 
 #: src/preferences/snapshot-list-row.vala:133
 #, c-format
@@ -1155,16 +1134,12 @@ msgstr "Нисам успео да направим снимак стања за
 
 #. we need to account for the "+" button
 #: src/preferences/snapshots-page.vala:160
-#, fuzzy
-#| msgid "Revert to this state"
 msgid "Revert to a previous state of your box."
-msgstr "Врати на ово стање"
+msgstr "Врати на претходно стање кутије."
 
 #: src/preferences/snapshots-page.vala:162
-#, fuzzy
-#| msgid "Use the <b>+</b> button to create your first virtual machine."
 msgid "Use the button below to create your first snapshot."
-msgstr "Притисните тастере <b>+</b> да направите вашу прву виртуелну машину."
+msgstr "Користите дугме испод да бисте направили ваш први снимак стања."
 
 #. Translators: "%s" is a disk size string (for example "4.2 GB")
 #: src/preferences/storage-row.vala:47
@@ -1232,7 +1207,7 @@ msgstr "Брза инсталација „%s“ захтева интернет
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "Уверења Гномових кутија за „%s“"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:368
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1242,11 +1217,11 @@ msgstr ""
 "поправку извршавањем следећег:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:372
 msgid "SELinux not installed?"
 msgstr "СЕ-Линукс није инсталиран?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:454
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1255,7 +1230,7 @@ msgstr ""
 "Проверите да ли је могуће извршити „virsh -c qemu:///session pool-dumpxml "
 "gnome-boxes“."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:459
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
@@ -1264,7 +1239,7 @@ msgstr ""
 "%s је познат либвирту као складишни депо Гномових Кутија али тај "
 "директоријум не постоји"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:463
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
@@ -1272,7 +1247,7 @@ msgstr ""
 "%s је познат либвирту као складишни депо Гномових Кутија али он није "
 "директоријум"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:467
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1291,16 +1266,15 @@ msgstr "не"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:803
 msgid "Incapable host system"
 msgstr "Домаћин систем је неспособан за виртуелизовање"
 
 #. Translators: the first %s is a path, the second is the reason of the failure.
 #: src/vm-importer.vala:65
-#, fuzzy, c-format
-#| msgid "Box import from file “%s” failed."
+#, c-format
 msgid "Box import from file “%s” failed: %s"
-msgstr "Увоз кутије из датотеке „%s“ није успео."
+msgstr "Увоз кутије из датотеке „%s“ није успео: %s"
 
 #~ msgid "GNOME Boxes"
 #~ msgstr "Гномове кутије"
