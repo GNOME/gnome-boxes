@@ -11,9 +11,7 @@ private class Boxes.UnattendedSetupBox : Gtk.Box {
     public bool ready_for_express {
         get {
             return username != "" &&
-                   !needs_password &&
-                   (product_key_format == null ||
-                    product_key_entry.text_length == product_key_format.length);
+                   !needs_password;
         }
     }
 
