@@ -6,6 +6,7 @@ help_files = [
   'disk-images.page',
   'edit-domain.page',
   'index.page',
+  'install-guest-agent.page',
   'interface.page',
   'keystrokes.page',
   'legal.xml',
