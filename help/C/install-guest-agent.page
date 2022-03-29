@@ -1,0 +1,63 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="install-guest-tools">
+  <info>
+    <revision version="0.1" date="2022-03-29" status="candidate"/>
+    <link type="guide" xref="index#use"/>
+
+    <credit type="author copyright">
+      <name>Felipe Borges</name>
+      <email>felipeborges@gnome.org</email>
+      <years>2022</years>
+    </credit>
+
+    <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
+
+    <desc>Enable additional integrations with your box.</desc>
+  </info>
+
+  <title>Install guest tools</title>
+
+  <comment>
+    <cite date="2022-03-29" href="mailto:felipeborges@gnome.org">Felipe Borges</cite>
+    <p>This assumes the reader has succesfully installed a virtual machine.
+    By the end of this article the reader will be able to install the guest tools
+    for an improved experience while using Boxes.</p>
+  </comment>
+
+  <p>Guest tools are a collection of drivers and utilities that improve the usability of your virtual machine. It provides improved input performance, automatic screen resolution adjustment, shared clipboard, and file transfer.</p>
+
+  <section id="installing-on-windows">
+    <title>Installing on Windows virtual machines</title>
+
+    <p>Visit <link href="https://win.gnomeboxes.org">win.gnomeboxes.org</link> in your Windows virtual machine to download and install the <app>spice-guest-tools</app> application, which provides the guest integration for GNOME Boxes.</p>
+  </section>
+
+  <section id="installing-on-linux">
+    <title>Installing on Linux virtual machines</title>
+
+    <p>Most popular Linux distributions package the guest tools as <app>spice-vdagent</app>.</p>
+
+    <p>The spice agent for Linux consists of 2 parts, a daemon <app>spice-vdagentd</app> and
+       a per X-session process <app>spice-vdagent</app>. The daemon gets started in Spice guests
+       through a Sys-V initscript or a systemd unit. The per X-session gets
+       automatically started in desktop environments which honor <file>/etc/xdg/autostart</file>,
+       and under <app>gdm</app>.</p>
+
+    <section id="installing-on-rpm">
+      <title>Installing on RPM based distributions</title>
+
+      <p>Distributions such as Fedora, Red Hat Enterprise Linux, CentOS Stream, OpenSUSE, are known to provide <app>spice-vdagent</app> in their repositories.</p>
+
+      <screen>sudo dnf install spice-vdagent</screen>
+    </section>
+
+    <section id="installing-on-deb">
+      <title>Installing on Deb based distributions</title>
+
+      <p>Distributions such as Ubuntu, Debian, Linux Mint are known to provide <app>spice-vdagent</app> in their repositories.</p>
+
+      <screen>sudo apt install spice-vdagent</screen>
+    </section>
+  </section>
+</page>
