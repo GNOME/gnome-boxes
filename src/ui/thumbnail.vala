@@ -31,13 +31,18 @@ private class Boxes.Thumbnail: Gtk.Box {
         }
 
         if (machine.pixbuf != null && !machine.is_stopped) {
-            live_thumbnail.set_from_pixbuf (
-                machine.pixbuf.scale_simple (width_request,
-                                             height_request,
-                                             Gdk.InterpType.BILINEAR));
-            stack.visible_child = live_thumbnail;
-
-            return;
+            machine.take_screenshot.begin ((source, result) => {
+                try {
+                    var screenshot = machine.take_screenshot.end (result);
+                    var scaled = screenshot.scale_simple (width_request,
+                                                          height_request,
+                                                          Gdk.InterpType.BILINEAR);
+                    live_thumbnail.set_from_pixbuf (scaled);
+                    stack.visible_child = live_thumbnail;
+                } catch (GLib.Error error) {
+                    debug (error.message);
+                }
+            });
         }
 
         stack.visible_child = blank_thumbnail;

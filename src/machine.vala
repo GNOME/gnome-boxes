@@ -340,7 +340,7 @@ private abstract class Boxes.Machine: Boxes.CollectionItem {
     // just before going back to the collection view. Taking regular
     // screenshots can have its use in case of an abnormal gnome-boxes
     // termination.
-    protected async virtual Gdk.Pixbuf? take_screenshot () throws GLib.Error {
+    public async virtual Gdk.Pixbuf? take_screenshot () throws GLib.Error {
         if (display == null)
             return null;
 
