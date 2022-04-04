@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-boxes/issues\n"
-"POT-Creation-Date: 2022-02-11 10:43+0000\n"
-"PO-Revision-Date: 2022-02-11 14:04+0300\n"
+"POT-Creation-Date: 2022-03-29 09:07+0000\n"
+"PO-Revision-Date: 2022-03-30 13:36+0300\n"
 "Last-Translator: Aleksandr Melman <Alexmelman88@gmail.com>\n"
 "Language-Team: Russian <Alexmelman88@gmail.com>\n"
 "Language: ru\n"
@@ -30,7 +30,7 @@ msgstr ""
 
 #: data/org.gnome.Boxes.appdata.xml.in:7 data/org.gnome.Boxes.desktop.in:3
 #: data/ui/app-window.ui:6 data/ui/collection-toolbar.ui:7 src/app.vala:117
-#: src/app-window.vala:105 src/app-window.vala:217 src/app-window.vala:219
+#: src/app-window.vala:105 src/app-window.vala:218 src/app-window.vala:220
 #: src/main.vala:72 src/topbar.vala:70
 msgid "Boxes"
 msgstr "Boxes"
@@ -116,7 +116,7 @@ msgstr ""
 msgid "Setup Shared Folders between your system and virtual machines."
 msgstr "Настраивайте общие папки между вашей системой и виртуальными машинами."
 
-#: data/org.gnome.Boxes.appdata.xml.in:66
+#: data/org.gnome.Boxes.appdata.xml.in:71
 msgid "The GNOME Project"
 msgstr "Проект GNOME"
 
@@ -299,31 +299,31 @@ msgstr ""
 "Расширения виртуализации недоступны для вашей системы.\n"
 "Включите их в настройках BIOS."
 
-#: data/ui/assistant/pages/review-page.ui:68
+#: data/ui/assistant/pages/review-page.ui:78
 msgid "Operating System"
 msgstr "Операционная система"
 
-#: data/ui/assistant/pages/review-page.ui:84
+#: data/ui/assistant/pages/review-page.ui:94
 #: data/ui/preferences/resources-page.ui:90
 msgid "Memory"
 msgstr "Память"
 
-#: data/ui/assistant/pages/review-page.ui:91
+#: data/ui/assistant/pages/review-page.ui:101
 #: data/ui/preferences/resources-page.ui:97
 msgid "Storage limit"
 msgstr "Предел хранилища"
 
-#: data/ui/assistant/pages/review-page.ui:97
-#: data/ui/unattended-setup-box.ui:123 src/unattended-installer.vala:278
+#: data/ui/assistant/pages/review-page.ui:107
+#: data/ui/unattended-setup-box.ui:68 src/unattended-installer.vala:270
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: data/ui/assistant/pages/review-page.ui:113
-#: data/ui/unattended-setup-box.ui:158 src/unattended-installer.vala:279
+#: data/ui/assistant/pages/review-page.ui:123
+#: data/ui/unattended-setup-box.ui:84 src/unattended-installer.vala:271
 msgid "Password"
 msgstr "Пароль"
 
-#: data/ui/assistant/pages/review-page.ui:130
+#: data/ui/assistant/pages/review-page.ui:140
 msgid "Enable EFI"
 msgstr "Включить EFI"
 
@@ -606,7 +606,7 @@ msgstr "Ой! Что-то пошло не так"
 msgid "Boxes cannot access the virtualization backend."
 msgstr "Boxes не могут получить доступ к серверу виртуализации."
 
-#: data/ui/unattended-setup-box.ui:43
+#: data/ui/unattended-setup-box.ui:47
 msgid ""
 "Choose express install to automatically preconfigure the box with optimal "
 "settings."
@@ -615,15 +615,11 @@ msgstr ""
 "с оптимальными параметрами."
 
 #. Translators: 'Express Install' means that the new box installation will be fully automated, the user won't be asked anything while it's performed.
-#: data/ui/unattended-setup-box.ui:73
+#: data/ui/unattended-setup-box.ui:52
 msgid "Express Install"
 msgstr "Быстрая установка"
 
-#: data/ui/unattended-setup-box.ui:180
-msgid "_Add Password"
-msgstr "_Добавить пароль"
-
-#: data/ui/unattended-setup-box.ui:214
+#: data/ui/unattended-setup-box.ui:106
 msgid "Product Key"
 msgstr "Ключ продукта"
 
@@ -712,8 +708,13 @@ msgstr "Перезапустить"
 msgid "Preferences"
 msgstr "Параметры"
 
+#. Translators: name of the folder under ~/Pictures for screenshots. This is the same folder where GNOME Shell saves screenshots.
+#: src/actions-popover.vala:109
+msgid "Screenshots"
+msgstr "Снимки экрана"
+
 #. Translators: %s => the timestamp of when the screenshot was taken.
-#: src/actions-popover.vala:112
+#: src/actions-popover.vala:126
 #, c-format
 msgid "Screenshot from %s"
 msgstr "Снимок экрана от %s"
@@ -799,15 +800,15 @@ msgstr[2] "%u виртуальных машин было удалёно"
 msgid "Boxes is doing something"
 msgstr "Boxes что-то выполняют"
 
-#: src/app-window.vala:272
+#: src/app-window.vala:273
 msgid "Select files to transfer"
 msgstr "Выбрать файлы для передачи"
 
-#: src/app-window.vala:273
+#: src/app-window.vala:274
 msgid "_Cancel"
 msgstr "_Отмена"
 
-#: src/app-window.vala:275
+#: src/app-window.vala:276
 msgid "_Open"
 msgstr "_Открыть"
 
@@ -929,40 +930,40 @@ msgid "Send key combinations"
 msgstr "Послать комбинацию клавиш"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:465
+#: src/libvirt-machine.vala:466
 #, c-format
 msgid "Restoring %s from disk"
 msgstr "Восстановление %s с диска"
 
 #. Translators: The %s will be expanded with the name of the vm
-#: src/libvirt-machine.vala:468
+#: src/libvirt-machine.vala:469
 #, c-format
 msgid "Starting %s"
 msgstr "Запуск %s"
 
-#: src/libvirt-machine.vala:541
+#: src/libvirt-machine.vala:542
 #, c-format
 msgid "Restart of “%s” is taking too long. Force it to shutdown?"
 msgstr "«%s» слишком долго перезапускается. Выключить принудительно?"
 
-#: src/libvirt-machine.vala:544
+#: src/libvirt-machine.vala:545
 msgid "Shutdown"
 msgstr "Выключить"
 
-#: src/libvirt-machine.vala:559
+#: src/libvirt-machine.vala:560
 #, c-format
 msgid "Cloning “%s”…"
 msgstr "Клонирование «%s»…"
 
-#: src/libvirt-machine.vala:685
+#: src/libvirt-machine.vala:686
 msgid "Installing…"
 msgstr "Установка…"
 
-#: src/libvirt-machine.vala:687
+#: src/libvirt-machine.vala:688
 msgid "Setting up clone…"
 msgstr "Настройка клона…"
 
-#: src/libvirt-machine.vala:689
+#: src/libvirt-machine.vala:690
 msgid "Importing…"
 msgstr "Импортирование…"
 
@@ -1088,15 +1089,15 @@ msgstr ""
 msgid "Recommended %s."
 msgstr "Рекомендовано %s."
 
-#: src/preferences/resources-page.vala:157
+#: src/preferences/resources-page.vala:159
 msgid "Boxes is not authorized to run in background"
 msgstr "Boxes не разрешена для запуска в фоновом режиме"
 
-#: src/preferences/resources-page.vala:163
+#: src/preferences/resources-page.vala:165
 msgid "Do you want to open Settings to manage application permissions?"
 msgstr "Вы хотите открыть Настройки, чтобы управлять разрешениями приложений?"
 
-#: src/preferences/resources-page.vala:201
+#: src/preferences/resources-page.vala:203
 msgid ""
 "Editing your box configuration can cause issues to the operating system of "
 "your box. Would you like to create a snapshot to recover from your changes?"
@@ -1105,12 +1106,12 @@ msgstr ""
 "операционной системе вашей виртуальной машины. Хотите создать моментальный "
 "снимок для восстановления после внесенных изменений?"
 
-#: src/preferences/resources-page.vala:267
+#: src/preferences/resources-page.vala:269
 #, c-format
 msgid "Failed to save domain configuration: %s"
 msgstr "Не удалось сохранить конфигурацию домена: %s"
 
-#: src/preferences/resources-page.vala:276
+#: src/preferences/resources-page.vala:278
 msgid "Changes to the settings below take effect after you restart your box."
 msgstr ""
 "Изменения в приведенных ниже настройках вступают в силу после перезапуска "
@@ -1204,30 +1205,30 @@ msgstr "Копирование «%s» в «Загрузки»"
 #. An error occurred when trying to setup unattended installation, but it's likely that a non-unattended
 #. installation will work. When this happens, just disable unattended installs, and let the caller decide
 #. if it wants to retry a non-automatic install or to just abort the box creation..
-#: src/unattended-installer.vala:207
+#: src/unattended-installer.vala:204
 msgid ""
 "An error occurred during installation preparation. Express Install disabled."
 msgstr "Во время установки произошла ошибка. Быстрая установка отключена."
 
-#: src/unattended-installer.vala:461
+#: src/unattended-installer.vala:422
 msgid "Downloading device drivers…"
 msgstr "Загрузка драйверов устройств…"
 
-#: src/unattended-setup-box.vala:53
+#: src/unattended-setup-box.vala:51
 msgid "no password"
 msgstr "без пароля"
 
-#: src/unattended-setup-box.vala:125
+#: src/unattended-setup-box.vala:108
 #, c-format
 msgid "Express installation of %s requires an internet connection."
 msgstr "Для быстрой установки %s требуется подключение к Интернету."
 
-#: src/unattended-setup-box.vala:231
+#: src/unattended-setup-box.vala:206
 #, c-format
 msgid "GNOME Boxes credentials for “%s”"
 msgstr "GNOME Boxes аккредитован для «%s»"
 
-#: src/util-app.vala:359
+#: src/util-app.vala:368
 #, c-format
 msgid ""
 "Your SELinux context looks incorrect, you can try to fix it by running:\n"
@@ -1237,11 +1238,11 @@ msgstr ""
 "исправить, запустив:\n"
 "%s"
 
-#: src/util-app.vala:363
+#: src/util-app.vala:372
 msgid "SELinux not installed?"
 msgstr "SELinux не установлен?"
 
-#: src/util-app.vala:445
+#: src/util-app.vala:454
 msgid ""
 "Could not get “gnome-boxes” storage pool information from libvirt. Make sure "
 "“virsh -c qemu:///session pool-dumpxml gnome-boxes” is working."
@@ -1249,20 +1250,20 @@ msgstr ""
 "Невозможно получить пул хранения «gnome-boxes» из libvirt. Проверьте, что "
 "команда «virsh -c qemu:///session pool-dumpxml gnome-boxes» работает."
 
-#: src/util-app.vala:450
+#: src/util-app.vala:459
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but this directory does "
 "not exist"
 msgstr "%s известен libvirt как пул хранения, но этот каталог не существует"
 
-#: src/util-app.vala:454
+#: src/util-app.vala:463
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not a directory"
 msgstr "%s известен libvirt как пул хранения, но он не является каталогом"
 
-#: src/util-app.vala:458
+#: src/util-app.vala:467
 #, c-format
 msgid ""
 "%s is known to libvirt as GNOME Boxes’s storage pool but is not user-"
@@ -1281,14 +1282,9 @@ msgstr "нет"
 
 #. No guest caps or none compatible
 #. FIXME: Better error messsage than this please?
-#: src/vm-configurator.vala:793
+#: src/vm-configurator.vala:803
 msgid "Incapable host system"
 msgstr "Система не поддерживает необходимые функции"
-
-#. Translators: This is the name of the snapshot taken right after installing a VM.
-#: src/vm-creator.vala:179
-msgid "Just installed "
-msgstr "Только что установлено "
 
 #. Translators: the first %s is a path, the second is the reason of the failure.
 #: src/vm-importer.vala:65
