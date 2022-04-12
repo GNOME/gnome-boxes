@@ -204,7 +204,7 @@ namespace Boxes {
         GLib.List<Osinfo.Media> list = new GLib.List<Osinfo.Media> ();
         var os_db = MediaManager.get_default ().os_db;
         for (Xml.Node* iter = root->children; iter != null; iter = iter->next) {
-            var os_id = iter->get_content ();
+            var os_id = iter->get_prop ("id");
 
             Osinfo.Os? os;
             try {
