@@ -125,7 +125,7 @@ private class Boxes.Downloader : GLib.Object {
         return cached_file;
     }
 
-    private async void download_from_http (Download download, Cancellable? cancellable = null) throws GLib.Error {
+    public async void download_from_http (Download download, Cancellable? cancellable = null) throws GLib.Error {
         var msg = new Soup.Message ("GET", download.uri);
         GLib.Error? err = null;
 

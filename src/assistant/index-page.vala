@@ -180,8 +180,10 @@ private class Boxes.AssistantIndexPage : AssistantPage {
     }
 
     [GtkCallback]
-    private void on_download_an_os_button_clicked () {
+    private async void on_download_an_os_button_clicked () {
         stack.set_visible_child (recommended_downloads_page);
+
+        yield recommended_downloads_page.populate_recommended_list ();
 
         dialog.previous_button.label = _("Previous");
     }

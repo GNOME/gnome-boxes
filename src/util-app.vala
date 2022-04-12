@@ -178,10 +178,34 @@ namespace Boxes {
     }
 
     public async GLib.List<Osinfo.Media>? get_recommended_downloads () {
+        return yield parse_recommended_downloads_file (
+            "resource:///org/gnome/Boxes/recommended-downloads.xml");
+    }
+
+    private const string GNOME_UPSTREAM_RECOMMENDED_DOWNLOADS = "https://gnome.pages.gitlab.gnome.org/gnome-boxes-logos/recommended-downloads.xml";
+    public async GLib.List<Osinfo.Media>? fetch_recommended_downloads_from_net () {
+        var remote_file = GLib.File.new_for_uri (GNOME_UPSTREAM_RECOMMENDED_DOWNLOADS);
+        string cached_path = get_logo_cache ("recommended-downloads.xml");
+        GLib.File cached_file = GLib.File.new_for_path (cached_path);
+
+        var download = new Download (remote_file, cached_file, new ActivityProgress ()); 
+        try {
+            yield Downloader.get_default ().download_from_http (download);
+        } catch (GLib.Error error) {
+            warning ("Failed to download recommended-downloads file: %s", error.message);
+
+            if (!cached_file.query_exists ())
+                return null;
+        }
+
+        return yield parse_recommended_downloads_file (cached_file.get_uri ());
+    }
+
+    private async GLib.List<Osinfo.Media>? parse_recommended_downloads_file (string uri) {
         uint8[] contents;
 
         try {
-            File file = File.new_for_uri ("resource:///org/gnome/Boxes/recommended-downloads.xml");
+            File file = File.new_for_uri (uri);
 
             file.load_contents (null, out contents, null);
         } catch (GLib.Error e) {
@@ -205,6 +229,8 @@ namespace Boxes {
         var os_db = MediaManager.get_default ().os_db;
         for (Xml.Node* iter = root->children; iter != null; iter = iter->next) {
             var os_id = iter->get_prop ("id");
+            if (os_id == null)
+                continue;
 
             Osinfo.Os? os;
             try {

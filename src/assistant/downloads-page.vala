@@ -16,6 +16,8 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
     [GtkChild]
     private unowned Gtk.ListBox listbox;
     [GtkChild]
+    private unowned Gtk.Stack stack;
+    [GtkChild]
     private unowned Gtk.ListBox recommended_listbox;
 
     public Gtk.SearchEntry search_entry = new Gtk.SearchEntry ();
@@ -59,7 +61,6 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
 
         recommended_model = new GLib.ListStore (typeof (Osinfo.Media));
         recommended_listbox.bind_model (recommended_model, create_downloads_entry);
-        populate_recommended_list.begin ();
 
         show_more_button = new Gtk.Button () {
             visible = true,
@@ -87,12 +88,22 @@ public class Boxes.AssistantDownloadsPage : Gtk.Stack {
         }
     }
 
-    private async void populate_recommended_list () {
-        foreach (var media in yield get_recommended_downloads ()) {
+    public async void populate_recommended_list () {
+        if (recommended_model.get_n_items () != 0)
+            return;
+
+        var os_list = yield fetch_recommended_downloads_from_net ();
+        if (os_list == null)
+            os_list = yield get_recommended_downloads ();
+
+        foreach (var media in os_list) {
             if (media != null) {
                 recommended_model.append (media);
             }
         }
+
+        if (recommended_model.get_n_items () > 0)
+            stack.set_visible_child (recommended_listbox);
     }
 
     private Gtk.Widget create_downloads_entry (Object item) {
