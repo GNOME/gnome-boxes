@@ -1,0 +1,43 @@
+From 7c213d37b398a7d3f9dfdcf80e0c95edf94c41d3 Mon Sep 17 00:00:00 2001
+From: Felipe Borges <felipeborges@gnome.org>
+Date: Tue, 19 Apr 2022 16:47:43 +0200
+Subject: [PATCH] qemu: Init qmp.monitor and qmp.pid in XDG_RUNTIME_DIR
+
+See https://gitlab.gnome.org/GNOME/gnome-boxes/-/issues/784
+---
+ src/qemu/qemu_process.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/src/qemu/qemu_process.c b/src/qemu/qemu_process.c
+index f110e4f3dd..04d6ffed23 100644
+--- a/src/qemu/qemu_process.c
++++ b/src/qemu/qemu_process.c
+@@ -9238,6 +9238,7 @@ static int
+ qemuProcessQMPInit(qemuProcessQMP *proc)
+ {
+     g_autofree char *template = NULL;
++    g_autofree char *monitor_path = NULL;
+ 
+     VIR_DEBUG("proc=%p, emulator=%s", proc, proc->binary);
+ 
+@@ -9258,7 +9259,7 @@ qemuProcessQMPInit(qemuProcessQMP *proc)
+     if (qemuProcessQEMULabelUniqPath(proc) < 0)
+         return -1;
+ 
+-    proc->monpath = g_strdup_printf("%s/%s", proc->uniqDir, "qmp.monitor");
++    proc->monpath = g_build_filename (g_get_user_runtime_dir (), "qmp.monitor", NULL);
+ 
+     proc->monarg = g_strdup_printf("unix:%s,server=on,wait=off", proc->monpath);
+ 
+@@ -9267,7 +9268,7 @@ qemuProcessQMPInit(qemuProcessQMP *proc)
+      * -daemonize we need QEMU to be allowed to create them, rather
+      * than libvirtd. So we're using libDir which QEMU can write to
+      */
+-    proc->pidfile = g_strdup_printf("%s/%s", proc->uniqDir, "qmp.pid");
++    proc->pidfile = g_build_filename (g_get_user_runtime_dir (), "qmp.pid", NULL);
+ 
+     return 0;
+ }
+-- 
+2.35.1
+
