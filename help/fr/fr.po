@@ -8,20 +8,21 @@
 # Charles Monzat <charles.monzat@free.fr>, 2020.
 # vanadiae <vanadiae35@gmail.com>, 2021.
 # Guillaume Bernard <associations@guillaume-bernard.fr>, 2017-2021.
+# Jean-Marc Tissières <jmetissieres@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-boxes gnome-3-12\n"
-"POT-Creation-Date: 2021-03-30 13:03+0000\n"
-"PO-Revision-Date: 2021-03-30 22:07+0200\n"
-"Last-Translator: Guillaume Bernard <associations@guillaume-bernard.fr>\n"
+"POT-Creation-Date: 2022-03-19 07:36+0000\n"
+"PO-Revision-Date: 2022-03-31 14:57+0200\n"
+"Last-Translator: Jean-Marc Tissières <jmetissieres@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -31,7 +32,8 @@ msgstr ""
 "Alain Lojewski <allomervan@gmail.com>, 2014\n"
 "David Ducassou <david.ducassou@free.fr>, 2017\n"
 "Guillaume Bernard <associations@guillaume-bernard.fr>, 2017-2021\n"
-"Charles Monzat <charles.monzat@free.fr>, 2020-2021"
+"Charles Monzat <charles.monzat@free.fr>, 2020-2021\n"
+"Jean-Marc Tissières <jmetissieres@gmail.com>, 2022"
 
 #. (itstool) path: credit/name
 #: C/3d-acceleration.page:10 C/create.page:17 C/interface.page:23
@@ -69,43 +71,49 @@ msgstr ""
 "Cela utilise <sys>Virgil</sys> pour créer une carte graphique virtuelle "
 "capable de faire de la 3D pour vos machines virtuelles QEMU."
 
-#. (itstool) path: steps/title
+#. (itstool) path: note/p
 #: C/3d-acceleration.page:35
+msgid "Currently only Linux guests support 3D acceleration."
+msgstr ""
+"Pour le moment, seules les machines invitées Linux prennent en charge "
+"l’accélération 3D."
+
+#. (itstool) path: steps/title
+#: C/3d-acceleration.page:39
 msgid "To enable 3D Acceleration in a box:"
 msgstr "Pour activer l’accélération 3D pour votre machine :"
 
 #. (itstool) path: media/span
-#: C/3d-acceleration.page:38 C/edit-domain.page:38 C/interface.page:118
+#: C/3d-acceleration.page:42 C/edit-domain.page:42 C/interface.page:102
 #: C/keystrokes.page:29 C/prop-system.page:29 C/prop-trouble.page:31
-#: C/shared-folders.page:30 C/shutdown.page:30 C/snapshot-create.page:41
-#: C/snapshot-delete.page:28 C/snapshot-rename.page:36
-#: C/snapshot-revert.page:36 C/usb-redirection.page:48
+#: C/shared-folders.page:29 C/snapshot-create.page:41 C/snapshot-delete.page:28
+#: C/snapshot-rename.page:36 C/snapshot-revert.page:36
+#: C/usb-redirection.page:48
 msgid "settings"
 msgstr "paramètres"
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:36 C/edit-domain.page:36 C/shared-folders.page:28
-#: C/usb-redirection.page:46
+#: C/3d-acceleration.page:40 C/edit-domain.page:40 C/shared-folders.page:27
 msgid ""
-"Right-click on the box in the collection view and select <gui>Properties</"
+"Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or click the menu (<_:media-1/>) button in the header bar and select "
-"<gui>Properties</gui>."
+"<gui>Preferences</gui>."
 msgstr ""
 "Faites un clic droit sur la machine dans la fenêtre de collection et "
-"sélectionnez <gui>Propriétés</gui>, ou cliquez sur le bouton menu (<_:"
-"media-1/>) dans la barre d’en-tête, puis sélectionnez <gui>Propriétés</gui>."
+"sélectionnez <gui>Préférences</gui>, ou cliquez sur le bouton menu (<_:"
+"media-1/>) dans la barre d’en-tête, puis sélectionnez <gui>Préférences</gui>."
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:40
+#: C/3d-acceleration.page:44
 msgid ""
-"The <link xref=\"interface#properties\">Properties view</link> opens, with "
-"the General tab selected by default."
+"The <link xref=\"interface#preferences\">Preferences view</link> opens, with "
+"the <gui>Resources</gui> tab selected by default."
 msgstr ""
-"La <link xref=\"interface#properties\">Fenêtre des propriétés</link> "
-"s’ouvre, avec l’onglet Général sélectionné par défaut."
+"La <link xref=\"interface#preferences\">Fenêtre des préférences</link> "
+"s’ouvre, avec l’onglet <gui>Ressources</gui> sélectionné par défaut."
 
 #. (itstool) path: item/p
-#: C/3d-acceleration.page:42
+#: C/3d-acceleration.page:46
 msgid ""
 "If 3D Acceleration is supported, the <gui>3D Acceleration</gui> switch would "
 "appear here. By default, it is disabled. To enable 3D Acceleration, simply "
@@ -116,17 +124,15 @@ msgstr ""
 "activer l’accélération 3D, basculez simplement l’interrupteur situé juste à "
 "côté sur <gui style=\"switch\">Activé</gui>."
 
-#. (itstool) path: item/p
-#: C/3d-acceleration.page:45
+#. (itstool) path: note/p
+#: C/3d-acceleration.page:52
 msgid ""
-"In case the virtual machine for which 3D Acceleration has just been enabled "
-"is already running, then, Boxes will show a notification asking to restart "
-"the running virtual machine."
+"When you enable 3D Acceleration for a virtual machine that is already "
+"running, the changes apply after you restart the box."
 msgstr ""
-"Dans le cas où la machine virtuelle pour laquelle l’accélération 3D vient "
-"juste d’être activée est déjà en fonctionnement, Machines affiche alors une "
-"notification demandant le redémarrage de la machine virtuelle en "
-"fonctionnement."
+"Quand vous activez l’accélération 3D sur une machine virtuelle en cours "
+"d’exécution, le changement n’est pris en compte qu’après le redémarrage de "
+"la machine."
 
 #. (itstool) path: credit/name
 #: C/backup.page:10 C/create.page:12 C/delete.page:9 C/disk-images.page:9
@@ -288,20 +294,32 @@ msgstr "Lancez <app>Machines</app>."
 msgid "2013"
 msgstr "2013"
 
-#. (itstool) path: info/desc
+#. (itstool) path: credit/name
+#: C/create.page:22 C/edit-domain.page:10 C/interface.page:18
+#: C/shared-folders.page:10 C/snapshot-create.page:17 C/snapshot-revert.page:17
+#: C/usb-redirection.page:24
+msgid "Felipe Borges"
+msgstr "Felipe Borges"
+
+#. (itstool) path: credit/years
 #: C/create.page:24
+msgid "2022"
+msgstr "2022"
+
+#. (itstool) path: info/desc
+#: C/create.page:29
 msgid "Click <gui style=\"button\">+</gui> to begin creating a box."
 msgstr ""
 "Cliquer sur <gui style=\"button\">+</gui> pour débuter la création d’une "
 "machine."
 
 #. (itstool) path: page/title
-#: C/create.page:27
+#: C/create.page:32
 msgid "Create a box"
 msgstr "Création d’une machine"
 
 #. (itstool) path: page/p
-#: C/create.page:29
+#: C/create.page:34
 msgid ""
 "When <app>Boxes</app> is launched, the collection view opens, displaying "
 "your existing boxes. If you haven't yet created a box, an introductory "
@@ -312,42 +330,36 @@ msgstr ""
 "un message d’introduction est affiché."
 
 #. (itstool) path: item/p
-#: C/create.page:34
+#: C/create.page:39
 msgid ""
 "Click <gui style=\"button\">+</gui> in the top left corner to launch the box "
-"creation wizard."
+"creation assistant. Create a virtual machine from:"
 msgstr ""
 "Cliquez sur <gui style=\"button\">+</gui> dans le coin supérieur gauche pour "
-"lancer l’assistant de création de machine."
-
-#. (itstool) path: item/p
-#: C/create.page:36
-msgid ""
-"At the wizard's <gui>Source Selection</gui> screen, choose a source to "
-"determine the type of box you want to create. A local virtual machine can be "
-"created from:"
-msgstr ""
-"Dans l’écran <gui>Sélection de la source</gui> de l’assistant, choisissez "
-"une source pour définir le type de machine à créer. Une machine virtuelle "
-"locale peut être créée à partir :"
-
-#. (itstool) path: item/p
-#: C/create.page:41
-msgid "An ISO found by <app>Boxes</app>."
-msgstr "d’un fichier ISO trouvé par <app>Machines</app>,"
-
-#. (itstool) path: item/p
-#: C/create.page:42
-msgid "Installation media on a CD/DVD/USB drive."
-msgstr "d’un support d’installation sur CD/DVD/USB,"
+"lancer l’assistant de création de machine. Créez une machine virtuelle à "
+"partir :"
 
 #. (itstool) path: item/p
 #: C/create.page:43
-msgid "A local ISO file (if not found automatically above)."
-msgstr "d’un fichier ISO local, si non trouvé automatiquement comme ci-dessus,"
+msgid ""
+"An operating system image file in your home folder detected by <app>Boxes</"
+"app>."
+msgstr ""
+"du fichier image d’un système d’exploitation situé dans votre dossier "
+"personnel détecté par <app>Machines</app>,"
 
 #. (itstool) path: item/p
 #: C/create.page:44
+msgid "A selected local ISO file (if not found automatically above)."
+msgstr "d’un fichier ISO local (si non trouvé automatiquement ci-dessus),"
+
+#. (itstool) path: item/p
+#: C/create.page:45
+msgid "An installation media on a CD/DVD/USB drive."
+msgstr "d’un média d’installation présent sur un support CD/DVD/USB,"
+
+#. (itstool) path: item/p
+#: C/create.page:46
 msgid ""
 "A supported operating system available on the <gui>Operating System "
 "Download</gui> page"
@@ -356,34 +368,25 @@ msgstr ""
 "<gui>Téléchargement de système d’exploitation</gui>."
 
 #. (itstool) path: note/p
-#: C/create.page:48
+#: C/create.page:50
 msgid ""
 "If your installation media supports <gui>Express Installation</gui>, the "
-"installation will proceed without further input."
+"installation can proceed without further input."
 msgstr ""
-"Si votre média d’installation prend en charge l’<gui>Installation rapide</"
+"Si votre média d’installation prend en charge l’<gui>installation rapide</"
 "gui>, celle-ci se fera sans autre formalité."
 
 #. (itstool) path: item/p
-#: C/create.page:53
+#: C/create.page:55
 msgid ""
-"After making your selection, or providing the necessary information, click "
-"<gui style=\"button\">Next</gui>, which will take you to the <gui>Review</"
-"gui> page."
+"After selecting one of the installations method above, continue to the "
+"<gui>Review and Create</gui> page where you can adjust memory, disk capacity "
+"and other preferences for your box."
 msgstr ""
-"Après avoir fait votre sélection, ou après avoir fourni les informations "
-"nécessaires, cliquez sur <gui style=\"button\">Continuer</gui>, ce qui vous "
-"mènera sur la page <gui>Résumé</gui>."
-
-#. (itstool) path: item/p
-#: C/create.page:56
-msgid ""
-"If the box is local, click <gui style=\"button\">Customize</gui> to adjust "
-"memory or disk size, or to rename the box."
-msgstr ""
-"Si la machine est locale, cliquez sur <gui style=\"button\">Personnaliser</"
-"gui> pour ajuster la quantité de mémoire allouée, la taille du disque, ou "
-"pour renommer la machine."
+"Après avoir sélectionné l’une des méthodes d’installation ci-dessus, "
+"continuez sur la page <gui>Valider et créer</gui> dans laquelle vous pouvez "
+"modifier la quantité de mémoire, la capacité du disque, ainsi que d’autres "
+"préférences pour votre machine."
 
 #. (itstool) path: item/p
 #: C/create.page:58
@@ -425,31 +428,15 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/delete.page:24
-msgid ""
-"Select one or more boxes. In the collection view, right click a box to be "
-"deleted."
+msgid "In the collection view, right click the box to be deleted."
 msgstr ""
-"Sélectionnez une ou plusieurs machines. Dans la fenêtre de collection, "
-"faites un clic droit sur la machine à supprimer."
+"Dans la fenêtre de collection, faites un clic droit sur la machine à "
+"supprimer."
 
 #. (itstool) path: item/p
-#: C/delete.page:26
-msgid ""
-"<link xref=\"interface#selection\">Selection mode</link> opens. Click "
-"additional boxes to select them for deletion."
-msgstr ""
-"La boîte de dialogue <link xref=\"interface#selection\">Mode de sélection</"
-"link> s’ouvre. Sélectionnez les machines à supprimer."
-
-#. (itstool) path: item/p
-#: C/delete.page:28
-msgid "Click the <gui style=\"button\">Delete</gui> button."
-msgstr "Cliquez sur le bouton <gui style=\"button\">Effacer</gui>."
-
-#. (itstool) path: item/p
-#: C/delete.page:29
-msgid "Click the <key>X</key> to confirm."
-msgstr "Cliquez sur <key>X</key> pour confirmer."
+#: C/delete.page:25
+msgid "Click the <gui style=\"button\">Delete</gui> menu option."
+msgstr "Cliquez sur l’option de menu <gui style=\"button\">Effacer</gui>."
 
 #. (itstool) path: page/title
 #: C/disk-images.page:19
@@ -470,13 +457,6 @@ msgstr ""
 "alors <app>Machines</app> va également chercher dans le dossier utilisé par "
 "ces logiciels pour stocker leurs images."
 
-#. (itstool) path: credit/name
-#: C/edit-domain.page:10 C/interface.page:18 C/shared-folders.page:10
-#: C/snapshot-create.page:17 C/snapshot-revert.page:17
-#: C/usb-redirection.page:24
-msgid "Felipe Borges"
-msgstr "Felipe Borges"
-
 #. (itstool) path: credit/years
 #: C/edit-domain.page:12
 msgid "2021"
@@ -496,10 +476,9 @@ msgstr ""
 #. (itstool) path: page/p
 #: C/edit-domain.page:30
 msgid ""
-"Boxes now gives you the ability to manually edit the <sys>Libvirt</sys> XML "
-"configuration of your virtual machines. This should allow you to achieve "
-"specific setups which are not exposed in the GNOME Boxes interface and "
-"neither supported by the GNOME Boxes developers."
+"Boxes enables you to manually edit the <sys>Libvirt</sys> domain "
+"configuration XML of your box. You can achieve specific setups which are not "
+"exposed in the Boxes interface and neither supported by the Boxes developers."
 msgstr ""
 "Machines vous donne la possibilité de modifier manuellement la configuration "
 "XML <sys>Libvirt</sys> de vos machines virtuelles. Cela vous permet "
@@ -507,46 +486,65 @@ msgstr ""
 "Machines et qui ne sont pas prises en charge par les développeurs de "
 "l’application."
 
-#. (itstool) path: steps/title
+#. (itstool) path: note/p
 #: C/edit-domain.page:35
+msgid ""
+"See the Libvirt domain configuration format in documentation at https://"
+"libvirt.org/format.html"
+msgstr ""
+"Voir la documentation concernant la configuration d’un domaine Libvirt sur "
+"le site https://libvirt.org/format.html"
+
+#. (itstool) path: steps/title
+#: C/edit-domain.page:39
 msgid "To edit the Libvirt XML configuration of a box:"
 msgstr "Pour modifier la configuration XML Libvirt de votre machine :"
 
 #. (itstool) path: item/p
-#: C/edit-domain.page:40 C/prop-system.page:31 C/prop-trouble.page:33
-#: C/shutdown.page:32
-msgid "Click the <gui>System</gui> tab."
-msgstr "Cliquez sur l’onglet <gui>Système</gui>."
+#: C/edit-domain.page:44 C/prop-system.page:31 C/prop-trouble.page:33
+msgid "Click the <gui>Resources</gui> tab."
+msgstr "cliquez sur l’onglet <gui>Ressources</gui>,"
 
 #. (itstool) path: item/p
-#: C/edit-domain.page:41
-msgid ""
-"Click the <gui style=\"button\">Edit XML</gui> button to open the "
-"configuration editor."
-msgstr ""
-"Cliquez sur le bouton <gui style=\"button\">Modifier le XML</gui> pour "
-"ouvrir l’éditeur de configuration."
-
-#. (itstool) path: item/p
-#: C/edit-domain.page:43
-msgid ""
-"Edit the XML configuration and click <gui style=\"button\">Save</gui>. Boxes "
-"will attempt to create a snapshot prior to your changes getting applied, "
-"allowing you to revert your configuration in case of a mistake."
-msgstr ""
-"Modifiez la configuration XML et cliquez sur <gui style=\"button"
-"\">Enregistrer</gui>. Machines tente alors de créer un instantané "
-"préalablement à vos modifications, vous permettant de revenir à la "
-"configuration précédente en cas d’erreur."
+#: C/edit-domain.page:45 C/prop-trouble.page:34
+msgid "Scroll to the <gui>Configuration</gui> section."
+msgstr "faites défiler la liste jusqu’à la section <gui>Configuration</gui>,"
 
 #. (itstool) path: item/p
 #: C/edit-domain.page:46
 msgid ""
-"If the virtual machine which has been edited is already running, Boxes will "
-"show a notification asking to restart the running virtual machine."
+"Click the <gui style=\"button\">Edit Configuration</gui> button to open the "
+"configuration in a text editor."
 msgstr ""
-"Si la machine virtuelle qui a été modifiée est déjà en cours d’exécution, "
-"Machines affiche une notification vous demandant de la redémarrer."
+"cliquez sur le bouton <gui style=\"button\">Modifier la configuration</gui> "
+"pour ouvrir l’éditeur de configuration,"
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:48
+msgid "Edit the XML configuration and <gui style=\"button\">Save</gui>."
+msgstr ""
+"modifiez la configuration XML puis cliquez sur <gui style=\"button"
+"\">Enregistrer</gui>,"
+
+#. (itstool) path: item/p
+#: C/edit-domain.page:49
+msgid ""
+"If the virtual machine which has been edited is already running, the changes "
+"will take effect after restarting the running virtual machine."
+msgstr ""
+"si la machine virtuelle qui a été modifiée est déjà en cours d’exécution, "
+"les changements ne seront pris en compte qu’après le redémarrage de la "
+"machine."
+
+#. (itstool) path: note/p
+#: C/edit-domain.page:54
+msgid ""
+"Before editing the box configuration, Boxes will suggest that you create a "
+"snapshot. Snapshots allow you to revert your changes in case of a mistake."
+msgstr ""
+"Avant toute modification de la configuration de la machine virtuelle, "
+"Machines vous propose de créer un instantané. Les instantanés vous "
+"permettent de revenir à la configuration précédente en cas d’erreur."
 
 #. (itstool) path: info/title
 #: C/index.page:7
@@ -582,58 +580,55 @@ msgstr "2012"
 
 #. (itstool) path: info/desc
 #: C/index.page:27
-msgid ""
-"Learn to set up local virtual machines and to connect to remote virtual "
-"machines. You can also use <app>Boxes</app> to connect to remote desktops."
-msgstr ""
-"Apprendre à configurer des machines virtuelles locales et à se connecter à "
-"des machines virtuelles distantes. Vous pouvez aussi utiliser <app>Machines</"
-"app> pour vous connecter à des ordinateurs distants."
+msgid "Learn to set up local virtual machines."
+msgstr "Apprendre à créer des machines virtuelles locales."
 
 #. (itstool) path: page/title
-#: C/index.page:32
+#: C/index.page:30
 msgid "<_:media-1/> Boxes"
 msgstr "<_:media-1/> Machines"
 
 #. (itstool) path: page/p
-#: C/index.page:37
+#: C/index.page:35
 msgid ""
-"<app>Boxes</app> is an application that gives you access to <link xref="
-"\"what-is-a-virtual-machine\">virtual machines</link>, running locally or "
-"remotely. It also allows you to connect to the display of a remote computer."
+"<app>Boxes</app> is an application that gives you access to local <link xref="
+"\"what-is-a-virtual-machine\">virtual machines</link>. If you want to get "
+"access to a remote virtual machine or connect to the display of a remote "
+"computer, you can use another GNOME app called <app>Connections</app>."
 msgstr ""
 "<app>Machines</app> est une application qui donne accès à des <link xref="
-"\"what-is-a-virtual-machine\">machines virtuelles</link>, exécutées "
-"localement ou à distance. Elle permet également de vous connecter à "
-"l’affichage d’un ordinateur distant."
+"\"what-is-a-virtual-machine\">machines virtuelles</link> locales. Si vous "
+"voulez accéder à une machine virtuelle distante ou vous connecter au bureau "
+"d’un ordinateur distant, vous pouvez utiliser <app>Connexions</app>, une "
+"autre application GNOME."
 
 #. (itstool) path: section/title
-#: C/index.page:43
+#: C/index.page:42
 msgid "Getting started"
 msgstr "Premiers pas"
 
 #. (itstool) path: section/title
-#: C/index.page:53
+#: C/index.page:52
 msgid "Using Boxes"
 msgstr "Utilisation de <app>Machines</app>"
 
 #. (itstool) path: section/title
-#: C/index.page:57
-msgid "Properties"
-msgstr "Propriétés"
+#: C/index.page:56
+msgid "Preferences"
+msgstr "Préférences"
 
 #. (itstool) path: section/title
-#: C/index.page:61
+#: C/index.page:60
 msgid "Snapshots"
 msgstr "Instantanés"
 
 #. (itstool) path: section/title
-#: C/index.page:65
+#: C/index.page:64
 msgid "Questions"
 msgstr "Questions"
 
 #. (itstool) path: section/title
-#: C/index.page:69
+#: C/index.page:68
 msgid "Advanced topics"
 msgstr "Sujets avancés"
 
@@ -656,26 +651,26 @@ msgstr "La fenêtre de collection"
 #: C/interface.page:38
 msgid ""
 "When you first launch <app>Boxes</app>, the greeting tells you to click the "
-"<gui style=\"button\">New</gui> button to create your first box. On "
-"subsequent visits, <app>Boxes</app> opens in the <em>collection view</em>, "
-"displaying thumbnails of your boxes in a grid. Favourites or frequently-used "
-"boxes appear at the top of the list. Collection view allows you to:"
+"<gui style=\"button\">+</gui> button to create your first box. On subsequent "
+"visits, <app>Boxes</app> opens in the <em>collection view</em>, displaying "
+"thumbnails of your boxes in a grid. Frequently used boxes appear at the top "
+"of the list. Collection view allows you to:"
 msgstr ""
-"Au premier lancement de <app>Machines</app>, la page d’accueil vous demande "
-"de cliquer sur le bouton <gui style=\"button\">Nouveau</gui> pour créer "
-"votre première machine. Lors des visites ultérieures, <app>Machines</app> "
-"s’ouvre sur la <em>fenêtre de collection</em> qui affiche dans une grille "
-"les miniatures des machines installées. Les favoris ou les machines souvent "
-"utilisées se trouvent en début de liste. La fenêtre de collection permet de :"
+"Au premier lancement de <app>Machines</app>, la page d’accueil vous indique "
+"de cliquer sur le bouton <gui style=\"button\">+</gui> pour créer votre "
+"première machine. Lors des visites ultérieures, <app>Machines</app> s’ouvre "
+"sur la <em>fenêtre de collection</em> qui affiche dans une grille les "
+"miniatures des machines installées. Les machines souvent utilisées se "
+"trouvent en début de liste. La fenêtre de collection permet de :"
 
 #. (itstool) path: item/p
 #: C/interface.page:45
 msgid ""
-"Click <gui style=\"button\">New</gui> to <link xref=\"create\">create</link> "
-"a box."
+"Click <gui style=\"button\">+</gui> to <link xref=\"create\">create</link> a "
+"box."
 msgstr ""
-"cliquer sur <gui style=\"button\">Nouveau</gui> pour débuter la création "
-"d’une machine,"
+"cliquer sur <gui style=\"button\">+</gui> pour <link xref=\"create\">créer</"
+"link> une machine,"
 
 #. (itstool) path: item/p
 #: C/interface.page:47
@@ -689,171 +684,155 @@ msgstr "<link xref=\"search\">rechercher</link> une machine,"
 
 #. (itstool) path: item/p
 #: C/interface.page:49
-msgid "Click the checkmark button in the header bar to enter selection mode."
-msgstr ""
-"cocher la case dans la barre d’en-tête afin de passer en mode sélection,"
-
-#. (itstool) path: item/p
-#: C/interface.page:51
 msgid ""
-"Right click on a box to choose <gui>Open in New Window</gui>, <gui>Add to "
-"Favorites</gui>, <gui>Force Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</"
-"gui>, or to open the <gui>Properties</gui> view for the box."
+"Right-click on a box to choose <gui>Open in New Window</gui>, <gui>Force "
+"Shutdown</gui>, <gui>Clone</gui>, <gui>Delete</gui>, or to open the "
+"<gui>Preferences</gui> view for the box."
 msgstr ""
 "faire un clic droit sur une machine afin de choisir <gui>Ouvrir dans une "
-"nouvelle fenêtre</gui>, <gui>Ajouter aux favoris</gui>, <gui>Forcer l’arrêt</"
-"gui>, <gui>Cloner</gui>, <gui>Effacer</gui>, ou afin d’ouvrir la fenêtre des "
-"<gui>Propriétés</gui> concernant la machine."
+"nouvelle fenêtre</gui>, <gui>Forcer l’arrêt</gui>, <gui>Cloner</gui>, "
+"<gui>Effacer</gui>, ou encore d’ouvrir la fenêtre des <gui>Préférences</gui> "
+"concernant la machine."
 
 #. (itstool) path: section/title
-#: C/interface.page:60
-msgid "The wizard"
+#: C/interface.page:58
+msgid "The assistant"
 msgstr "L’assistant"
 
 #. (itstool) path: section/p
-#: C/interface.page:62
+#: C/interface.page:60
 msgid ""
-"Clicking <gui style=\"button\">New</gui> launches the <em>wizard</em>, which "
-"guides you through the process of box creation."
+"Clicking <gui style=\"button\">+</gui> launches the box creation "
+"<em>Assistant</em>, which guides you through the process of box creation."
 msgstr ""
-"Cliquer sur <gui style=\"button\">Nouveau</gui> démarre l’<em>assistant</em> "
-"qui vous guide à travers le processus de création d’une machine."
+"Cliquer sur <gui style=\"button\">+</gui> démarre l’<em>assistant</em> qui "
+"vous guide à travers le processus de création d’une machine."
 
 #. (itstool) path: section/title
-#: C/interface.page:68
-msgid "Selection mode"
-msgstr "Mode sélection"
+#: C/interface.page:66
+msgid "Preferences view"
+msgstr "Fenêtre des préférences"
 
 #. (itstool) path: section/p
-#: C/interface.page:70
+#: C/interface.page:68
 msgid ""
-"In collection view, clicking the checkmark button or right-clicking a "
-"thumbnail puts you in <em>selection mode</em>, where various operations can "
-"be performed on boxes, individually or in groups. You can:"
+"Right-click a box in the collection view and select <gui style=\"button"
+"\">Preferences</gui> to open the <em>preferences view</em>, where you can "
+"configure some of the details of your box. The preferences view allows you "
+"to display or change settings depending on which of the following tabs is "
+"selected:"
 msgstr ""
-"Dans la fenêtre de collection, cocher la case ou cliquer droit sur une "
-"miniature vous fait passer en <em>mode sélection</em>, où diverses "
-"opérations sur les machines sont possibles, individuellement ou en groupes. "
-"Vous pouvez alors :"
+"Faire un clic droit sur l’icône d’une machine de la collection, puis "
+"sélectionner le bouton <gui style=\"button\">Préférences</gui> qui ouvre la "
+"<em>fenêtre des préférences</em>, dans laquelle vous pouvez configurer "
+"certains détails concernant cette machine. La fenêtre des préférences vous "
+"permet d’afficher ou de modifier certains paramètres selon l’onglet que vous "
+"sélectionnez parmi les suivants :"
 
-#. (itstool) path: item/p
+#. (itstool) path: section/title
 #: C/interface.page:75
-msgid "<link xref=\"delete\">Delete</link> a box or boxes."
-msgstr "<link xref=\"delete\">supprimer</link> une ou plusieurs machines,"
-
-#. (itstool) path: item/p
-#: C/interface.page:76
-msgid "Mark a box or boxes as favorites."
-msgstr "marquer une ou plusieurs machines comme favorites,"
-
-#. (itstool) path: item/p
-#: C/interface.page:77
-msgid "Pause a box."
-msgstr "mettre une machine en pause,"
+msgid "The Resources tab"
+msgstr "L’onglet Ressources"
 
 #. (itstool) path: item/p
 #: C/interface.page:78
-msgid "Open a box in a new window."
-msgstr "ouvrir une machine dans une nouvelle fenêtre."
+msgid ""
+"View the <gui>Name</gui> of your box and its <gui>IP Address</gui> (when "
+"available)."
+msgstr ""
+"Afficher le <gui>Nom</gui> de votre machine et son <gui>Adresse IP</gui> (si "
+"disponible),"
+
+#. (itstool) path: item/p
+#: C/interface.page:79
+msgid ""
+"Set the values for <gui>CPU</gui>, <gui>Memory</gui> and <gui>Storage</gui> "
+"of your box."
+msgstr ""
+"ajuster les valeurs pour les <gui>CPU</gui>, la <gui>mémoire</gui> et le "
+"<gui>stockage</gui> de votre machine,"
+
+#. (itstool) path: item/p
+#: C/interface.page:80
+msgid "Set the <gui>Allow running in background</gui> preference of your box."
+msgstr ""
+"activer ou non l’option <gui>Autoriser l’exécution en arrière-plan</gui>,"
+
+#. (itstool) path: item/p
+#: C/interface.page:81
+msgid "Enable <gui>3D acceleration</gui> for supported operating systems."
+msgstr ""
+"activer l’<gui>accélération 3D</gui> pour les systèmes d’exploitation pris "
+"en charge,"
+
+#. (itstool) path: item/p
+#: C/interface.page:82
+msgid ""
+"Access the logs of your box in the <gui>Troubleshooting logs</gui> option, "
+"which can be useful for troubleshooting issues."
+msgstr ""
+"accéder aux journaux de votre machine au moyen de l’option <gui>Journaux de "
+"dépannage</gui>, ce qui peut vous aider en cas de difficultés,"
+
+#. (itstool) path: item/p
+#: C/interface.page:83
+msgid ""
+"The <gui>Edit Configuration</gui> option lets you edit the libvirt domain "
+"configuration of your box manually."
+msgstr ""
+"l’option <gui>Modifier la configuration</gui> vous permet de modifier "
+"manuellement la configuration du domaine libvirt de votre machine."
 
 #. (itstool) path: section/title
-#: C/interface.page:84
-msgid "Properties view"
-msgstr "Fenêtre des propriétés"
+#: C/interface.page:88
+msgid "The Devices and Shares tab"
+msgstr "L’onglet Périphériques et partages"
 
-#. (itstool) path: section/p
-#: C/interface.page:86
-msgid ""
-"Right clicking a box and selecting <gui style=\"button\">Properties</gui> in "
-"the collection view opens the <em>properties view</em>, where some of the "
-"details of a box can be configured. The properties view allows you to "
-"display or change settings depending on which of the following tabs is "
-"selected:"
+#. (itstool) path: item/p
+#: C/interface.page:91
+msgid "Choose the <gui>USB Devices</gui> to redirect to your box."
 msgstr ""
-"En mode sélection, faire un clic droit puis sélectionner le bouton <gui "
-"style=\"button\">Propriétés</gui> ouvre la <em>fenêtre des propriétés</em>, "
-"dans laquelle certains détails concernant une machine peuvent être "
-"configurés. La fenêtre des propriétés vous permet de modifier des paramètres "
-"selon l’onglet que vous sélectionnez :"
+"Choisir le ou les <gui>Périphériques USB</gui> à rediriger vers votre "
+"machine,"
 
 #. (itstool) path: item/p
 #: C/interface.page:92
-msgid ""
-"<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</gui> "
-"or virtualizer being used (such as <em>QEMU</em>). For a remote box, this "
-"tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), and the "
-"<gui>URL</gui> to be used for remote access. The <gui>3D Acceleration</gui> "
-"switch also appears here."
+msgid "Set the <gui>Shared Folders</gui> to be made available in your box."
 msgstr ""
-"<gui>Général</gui> : affiche la boîte <gui>Nom</gui> et <gui>Fournisseur</"
-"gui> ou le dispositif de virtualisation utilisé (par exemple <em>QEMU</em>). "
-"Dans le cas d’une machine distante, cet onglet affiche aussi le "
-"<gui>Protocole</gui> (par exemple <em>VNC</em>), et l’<gui>URL</gui> à "
-"employer pour les accès distants. L’interrupteur <gui>Accélération 3D</gui> "
-"apparaît également dans cet onglet."
+"ajouter des <gui>Dossiers partagés</gui> pour pouvoir y accéder depuis votre "
+"machine,"
 
 #. (itstool) path: item/p
-#: C/interface.page:97
+#: C/interface.page:93
 msgid ""
-"<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
-"network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> sliders "
-"can be adjusted, and the <gui>Troubleshooting Log</gui> can be viewed. The "
-"<gui style=\"button\">Force Shutdown</gui> button, which enables you to "
-"<link xref=\"shutdown\">force a box to shut down</link>, the <gui style="
-"\"button\">Restart</gui> button, and the <gui>Run in background</gui> switch "
-"are on this tab."
+"Set a <gui>CDROM/DVD Drive</gui> file or device to make available in your "
+"box."
 msgstr ""
-"<gui>Système</gui> : affiche les graphiques actuels de l’activité du "
-"processeur, les E/S du disque et du réseau. Les curseurs <gui>Mémoire</gui> "
-"et <gui>Taille maximum du disque</gui> sont ajustables, et le <gui>Journal "
-"de dépannage</gui> est visualisable. Sont aussi visibles sur cet onglet : le "
-"bouton <gui style=\"button\">Forcer l’arrêt</gui>, qui vous permet de <link "
-"xref=\"shutdown\">forcer une machine à s’éteindre</link>, le bouton <gui "
-"style=\"button\">Redémarrer</gui>, et l’interrupteur <gui>Exécution en "
-"arrière-plan</gui>."
+"définir un fichier ou un périphérique <gui>Lecteur CDROM/DVD</gui> afin de "
+"pouvoir y accéder depuis votre machine."
 
-#. (itstool) path: item/p
-#: C/interface.page:104
-msgid ""
-"<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
-"button allows you to specify the path to a CD/DVD device or ISO. The <gui "
-"style=\"button\">Remove</gui> button disconnects it. When the box is "
-"running, the USB devices connected to the host system are listed, and each "
-"can be controlled with an <gui>ON | OFF</gui> switch. <link xref=\"shared-"
-"folders\">Shared Folders</link> between host and guest can be set for "
-"running machines which support spice-webdavd."
-msgstr ""
-"<gui>Périphériques et partages</gui> : le bouton <gui style=\"button"
-"\">Sélectionner</gui> vous permet de spécifier le chemin vers un "
-"périphérique CD/DVD ou ISO. Le bouton <gui style=\"button\">Retirer</gui> le "
-"déconnecte. Lorsque la machine est en cours d’exécution, les périphériques "
-"USB connectés au système hôte sont listés, et chacun est contrôlable via un "
-"interrupteur <gui>ON | OFF</gui>. Les <link xref=\"shared-folders\">Dossiers "
-"partagés</link> entre l’hôte et l’invité peuvent être paramétrés pour les "
-"machines sur lesquelles spice-webdavd peut être installé."
-
-#. (itstool) path: item/p
-#: C/interface.page:111
-msgid ""
-"<gui>Snapshots</gui>: allows you to <link xref=\"snapshot-create\">create</"
-"link> and manage snapshots of the box."
-msgstr ""
-"<gui>Instantanés</gui> : vous permet de <link xref=\"snapshot-create"
-"\">créer</link> et gérer des instantanés de la machine."
+#. (itstool) path: section/title
+#: C/interface.page:98
+msgid "The Snapshots tab"
+msgstr "L’onglet Instantanés"
 
 #. (itstool) path: section/p
-#: C/interface.page:116
+#: C/interface.page:99
 msgid ""
-"The properties view can also be accessed using the wizard's <gui style="
-"\"button\">Customize</gui> button during local box setup. If the box is "
-"running, click the menu (<_:media-1/>) button in the header bar and select "
-"<gui>Properties</gui>."
+"With <gui>Snapshots</gui> you can <link xref=\"snapshot-create\">create</"
+"link> and manage snapshots of your box."
 msgstr ""
-"La fenêtre des propriétés est aussi accessible par le bouton <gui style="
-"\"button\">Personnaliser</gui> de l’assistant d’installation durant le "
-"paramétrage d’une machine locale. Si la machine est en cours de "
-"fonctionnement, cliquez sur le bouton (<_:media-1/>) situé dans la barre "
-"d’en-tête, puis sélectionnez <gui>Propriétés</gui>."
+"<gui>Instantanés</gui> vous permet de <link xref=\"snapshot-create\">créer</"
+"link> et gérer des instantanés pour votre machine."
+
+#. (itstool) path: section/p
+#: C/interface.page:102
+msgid ""
+"If the box is running, click the menu (<_:media-1/>) button in the header "
+"bar and select <gui>Preferences</gui>."
+msgstr ""
+"Si la machine est en cours d’exécution, cliquez sur le bouton menu (<_:"
+"media-1/>) dans la barre d’en-tête, puis sélectionnez <gui>Préférences</gui>."
 
 #. (itstool) path: credit/years
 #: C/keystrokes.page:12
@@ -965,34 +944,32 @@ msgstr "Allocation des besoins système d’une machine"
 #. (itstool) path: page/p
 #: C/prop-system.page:23
 msgid ""
-"In <app>Boxes</app>, each virtual machine has its own settings for RAM and "
-"maximum allocated disk space."
+"In <app>Boxes</app>, each virtual machine has its own settings for RAM, CPU "
+"and maximum allocated disk space."
 msgstr ""
 "Dans <app>Machines</app>, chaque machine virtuelle possède ses propres "
-"paramètres d’allocation mémoire et d’espace disque maximum."
+"paramètres d’allocation mémoire, de nombre de CPU et d’espace disque maximum."
 
 #. (itstool) path: item/p
-#: C/prop-system.page:27 C/prop-trouble.page:29 C/snapshot-create.page:39
-#: C/snapshot-delete.page:26 C/snapshot-rename.page:34
-#: C/snapshot-revert.page:34
+#: C/prop-system.page:27 C/snapshot-create.page:39
 msgid ""
-"Right-click on the box in the collection view and select <gui>Properties</"
+"Right-click on the box in the collection view and select <gui>Preferences</"
 "gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
-"header bar and select <gui>Properties</gui>."
+"header bar and select <gui>Preferences</gui>."
 msgstr ""
 "Faites un clic droit sur la machine dans la fenêtre de collection et "
-"sélectionnez <gui>Propriétés</gui>, ou si la machine est déjà ouverte, "
-"cliquez sur le bouton menu (<_:media-1/>) dans la barre d’en-tête, puis "
-"sélectionnez <gui>Propriétés</gui>."
+"sélectionnez <gui>Préférences</gui>, ou si la machine est déjà en cours "
+"d’exécution, cliquez sur le bouton menu (<_:media-1/>) dans la barre d’en-"
+"tête, puis sélectionnez <gui>Préférences</gui>."
 
 #. (itstool) path: item/p
 #: C/prop-system.page:32
 msgid ""
-"Adjust the <gui>Memory</gui> and <gui>Maximum disk size</gui> sliders to "
-"reflect the desired values."
+"Adjust the <gui>Memory</gui>, <gui>CPU</gui> and <gui>Maximum disk size</"
+"gui> sliders to reflect the desired values."
 msgstr ""
-"Déplacez les curseurs <gui>Mémoire</gui> et <gui>Taille maximum du disque</"
-"gui> vers les valeurs de votre choix."
+"Déplacez les curseurs <gui>Mémoire</gui>, <gui>CPU</gui> et <gui>Taille "
+"maximum du disque</gui> vers les valeurs de votre choix."
 
 #. (itstool) path: note/p
 #: C/prop-system.page:37
@@ -1033,13 +1010,26 @@ msgstr ""
 "le journal de l’hyperviseur QEMU."
 
 #. (itstool) path: item/p
-#: C/prop-trouble.page:34
+#: C/prop-trouble.page:29 C/snapshot-delete.page:26 C/snapshot-rename.page:34
+#: C/snapshot-revert.page:34
+msgid ""
+"Right-click the box in the collection view and select <gui>Preferences</"
+"gui>, or if the box is running, click the menu (<_:media-1/>) button in the "
+"header bar and select <gui>Preferences</gui>."
+msgstr ""
+"Faites un clic droit sur la machine dans la fenêtre de collection et "
+"sélectionnez <gui>Préférences</gui>, ou si la machine est déjà en cours "
+"d’exécution, cliquez sur le bouton menu (<_:media-1/>) dans la barre d’en-"
+"tête, puis sélectionnez <gui>Préférences</gui>."
+
+#. (itstool) path: item/p
+#: C/prop-trouble.page:35
 msgid ""
 "Click the <gui style=\"button\">Troubleshooting Log</gui> button to view the "
-"log."
+"log in a text editor."
 msgstr ""
 "Cliquez sur le bouton <gui style=\"button\">Journal de dépannage</gui> pour "
-"l’afficher."
+"l’afficher dans un éditeur de texte."
 
 #. (itstool) path: info/desc
 #: C/search.page:17
@@ -1055,18 +1045,16 @@ msgstr "Recherche d’une machine"
 #: C/search.page:22
 msgid ""
 "If there is more than one box, you can locate or filter boxes by name in the "
-"<link xref=\"interface#collection\">collection view</link> or <link xref="
-"\"interface#selection\">selection mode</link>. Click the search icon, or "
-"just start typing to initiate a search."
+"<link xref=\"interface#collection\">collection view</link>. Click the search "
+"icon, or just start typing to initiate a search."
 msgstr ""
 "Si vous possédez plusieurs machines, il est possible d’en localiser une "
 "particulière par son nom dans la <link xref=\"interface#collection\">fenêtre "
-"de collection</link> ou en <link xref=\"interface#collection\">mode "
-"sélection</link>. Cliquez sur l’icône de recherche, ou commencez simplement "
-"la saisie pour lancer la recherche."
+"de collection</link>. Cliquez sur l’icône de recherche, ou commencez "
+"simplement la saisie pour lancer la recherche."
 
 #. (itstool) path: page/p
-#: C/search.page:27
+#: C/search.page:26
 msgid "Press <key>Esc</key> to dismiss the search."
 msgstr "Appuyez sur <key>Échap</key> pour interrompre la recherche."
 
@@ -1092,23 +1080,18 @@ msgstr ""
 "explorer de l’intérieur de votre machine virtuelle."
 
 #. (itstool) path: item/p
-#: C/shared-folders.page:27
-msgid "Make sure your virtual machine is running."
-msgstr "Assurez-vous que votre machine virtuelle est en cours d’exécution."
-
-#. (itstool) path: item/p
-#: C/shared-folders.page:32
+#: C/shared-folders.page:31 C/usb-redirection.page:50
 msgid "Click the <gui>Devices &amp; Shares</gui> tab."
 msgstr "Cliquez sur l’onglet <gui>Périphériques et partages</gui>."
 
 #. (itstool) path: item/p
-#: C/shared-folders.page:33
+#: C/shared-folders.page:32
 msgid ""
-"In the <gui>Folder Shares</gui> section you can view, remove, and create new "
-"shared folders."
+"In the <gui>Shared Folders</gui> section you can view, remove, and create "
+"new shared folders."
 msgstr ""
-"Dans la rubrique <gui>Partages de dossiers</gui>, vous pouvez : visualiser, "
-"retirer et créer de nouveaux dossiers partagés."
+"À la rubrique <gui>Dossiers partagés</gui>, vous pouvez visualiser, enlever "
+"et créer de nouveaux dossiers partagés."
 
 #. (itstool) path: credit/name
 #: C/shortcuts.page:11
@@ -1235,20 +1218,13 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/shutdown.page:28
-msgid ""
-"Open the <link xref=\"interface#properties\">properties view</link> for the "
-"box. If the box is running, click the menu (<_:media-1/>) button in the "
-"header bar and select <gui>Properties</gui>."
-msgstr ""
-"Ouvrez la <link xref=\"interface#properties\">fenêtre des propriétés</link> "
-"de la machine. Si la machine est ouverte, cliquez sur le bouton menu (<_:"
-"media-1/>) dans la barre d’en-tête afin de sélectionner <gui style=\"button"
-"\">Propriétés</gui>."
+msgid "Right-click the box in the collection view."
+msgstr "Faites un clic droit sur la machine dans la fenêtre de collection."
 
 #. (itstool) path: item/p
-#: C/shutdown.page:33
-msgid "Click the <gui style=\"button\">Force Shutdown</gui> button."
-msgstr "Cliquez sur le bouton <gui style=\"button\">Forcer l’arrêt</gui>."
+#: C/shutdown.page:29
+msgid "Select the <gui style=\"button\">Force Shutdown</gui> option."
+msgstr "Sélectionnez l’option <gui style=\"button\">Forcer l’arrêt</gui>."
 
 #. (itstool) path: info/desc
 #: C/snapshot-create.page:22
@@ -1324,15 +1300,16 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:31
-msgid "Select the snapshot to be deleted from the list."
-msgstr "Sélectionnez l’instantané à supprimer dans la liste."
+msgid "Select the snapshot that you want to delete from the list."
+msgstr "Sélectionnez l’instantané que vous souhaitez supprimer dans la liste."
 
 #. (itstool) path: item/p
 #: C/snapshot-delete.page:32
-msgid "Click the gear button on the right and select <gui>Delete</gui>."
+msgid ""
+"Click the <gui style=\"button\">X</gui> button on the list to delete it."
 msgstr ""
-"Cliquez sur le bouton engrenage situé à droite, puis choisissez "
-"<gui>Effacer</gui>."
+"Cliquez sur le bouton <gui style=\"button\">X</gui> pour supprimer "
+"l’instantané."
 
 #. (itstool) path: info/desc
 #: C/snapshot-rename.page:16
@@ -1374,22 +1351,13 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:39
-msgid "From the list, select the snapshot to be renamed."
-msgstr "Depuis la liste, sélectionnez l’instantané à renommer."
+msgid "From the list, select the snapshot that you want to rename."
+msgstr "Dans la liste, sélectionnez l’instantané à renommer."
 
 #. (itstool) path: item/p
 #: C/snapshot-rename.page:40
-msgid "Click the gear button on the right and select <gui>Rename</gui>."
-msgstr ""
-"Cliquez sur le bouton engrenage situé à droite, puis choisissez "
-"<gui>Renommer</gui>."
-
-#. (itstool) path: item/p
-#: C/snapshot-rename.page:42
-msgid "Type the desired name and press <gui style=\"button\">Done</gui>."
-msgstr ""
-"Saisissez le nom souhaité puis appuyez sur <gui style=\"button\">Terminé</"
-"gui>."
+msgid "Click the edit button on the list to rename."
+msgstr "Cliquez sur le bouton de modification pour renommer."
 
 #. (itstool) path: info/desc
 #: C/snapshot-revert.page:22
@@ -1422,21 +1390,18 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/snapshot-revert.page:41
-msgid ""
-"Click the gear button on the right and select <gui>Revert to this state</"
-"gui>."
-msgstr ""
-"Cliquez sur le bouton engrenage situé à droite, puis sélectionnez "
-"<gui>Revenir à cet état</gui>."
+msgid "Click the revert button next to the snapshot name."
+msgstr "Cliquez sur le bouton de retour situé à côté du nom de l’instantané."
 
-#. (itstool) path: page/p
+#. (itstool) path: note/p
 #: C/snapshot-revert.page:45
 msgid ""
-"Changes made to the virtual machine since the snapshot was saved are "
-"discarded."
+"Snapshots capture a state of your virtual machine. Changes that you make "
+"after creating a snapshot will be lost on revert."
 msgstr ""
-"Les modifications apportées à la machine virtuelle depuis l’enregistrement "
-"de l’instantané sont ignorées."
+"Les instantanés enregistrent l’état de votre machine virtuelle. Les "
+"modifications que vous effectuez après la création d’un instantané sont "
+"perdues si vous revenez à cet instantané."
 
 #. (itstool) path: page/title
 #: C/supported-protocols.page:26
@@ -1447,20 +1412,19 @@ msgstr "Technologie utilisée par <app>Machines</app>"
 #: C/supported-protocols.page:36
 msgid ""
 "Boxes uses <app>qemu-kvm</app>, <app>libvirt-glib</app> and <app>spice-gtk</"
-"app> to allow users to easily manage virtual machines and connect to remote "
-"machines."
+"app> to allow users to easily manage virtual machines."
 msgstr ""
-"<app>Machines</app> utilise <app>qemu-kvm</app>, <app>libvirt-glib</app> et "
-"<app>spice-gtk</app> pour permettre aux utilisateurs de gérer les machines "
-"virtuelles et de se connecter à des machines distantes facilement."
+"Machines utilise <app>qemu-kvm</app>, <app>libvirt-glib</app> et <app>spice-"
+"gtk</app> pour permettre aux utilisateurs de gérer facilement leurs machines "
+"virtuelles."
 
 #. (itstool) path: section/title
-#: C/supported-protocols.page:42
+#: C/supported-protocols.page:41
 msgid "QEMU with KVM"
 msgstr "QEMU avec KVM"
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:44
+#: C/supported-protocols.page:43
 msgid ""
 "<app>QEMU</app> is a machine emulator and virtualizer. As a machine "
 "emulator, it can run OSes and programs made for one machine (e.g. an ARM "
@@ -1476,7 +1440,7 @@ msgstr ""
 "hôte grâce à KVM."
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:50
+#: C/supported-protocols.page:49
 msgid ""
 "<app>KVM</app> (Kernel-based Virtual Machine) is a Linux kernel module that "
 "allows a user space program to use the hardware virtualization features of "
@@ -1487,22 +1451,21 @@ msgstr ""
 "virtualisation matérielles de différents processeurs."
 
 #. (itstool) path: section/title
-#: C/supported-protocols.page:57
+#: C/supported-protocols.page:56
 msgid "libvirt"
 msgstr "libvirt"
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:59
+#: C/supported-protocols.page:58
 msgid ""
 "<app>libvirt</app> is a toolkit for manipulating (creating, deleting and "
-"modifying) and monitoring virtual machines on remote hosts, securely."
+"modifying) and monitoring virtual machines."
 msgstr ""
 "<app>libvirt</app> est un ensemble d’outils pour la manipulation (création, "
-"effacement, modification) et la surveillance de machines virtuelles sur des "
-"hôtes distants, en toute sécurité."
+"effacement, modification) et la surveillance de machines virtuelles."
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:62
+#: C/supported-protocols.page:61
 msgid ""
 "<app>libvirt-glib</app> wraps libvirt to provide a high-level object-"
 "oriented API suited for glib-based applications."
@@ -1511,12 +1474,12 @@ msgstr ""
 "de haut niveau, convenant à des applications basées sur glib."
 
 #. (itstool) path: section/title
-#: C/supported-protocols.page:68
+#: C/supported-protocols.page:67
 msgid "SPICE"
 msgstr "SPICE"
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:70
+#: C/supported-protocols.page:69
 msgid ""
 "<app>SPICE</app>, the Simple Protocol for Independent Computing "
 "Environments, is a system for accessing and controlling remote desktops "
@@ -1527,7 +1490,7 @@ msgstr ""
 "travers un réseau."
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:74
+#: C/supported-protocols.page:73
 msgid ""
 "The SPICE server is a library that runs inside the QEMU binary. It is mainly "
 "responsible for authentication of client connections, relaying of graphics "
@@ -1541,7 +1504,7 @@ msgstr ""
 "(souris et clavier) du client vers l’invité."
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:79
+#: C/supported-protocols.page:78
 msgid ""
 "<app>spice-gtk</app> is the SPICE client that provides a view into the guest "
 "OS."
@@ -1550,18 +1513,19 @@ msgstr ""
 "d’exploitation de l’invité."
 
 #. (itstool) path: section/title
-#: C/supported-protocols.page:85
+#: C/supported-protocols.page:84
 msgid "VNC"
 msgstr "VNC"
 
 #. (itstool) path: section/p
-#: C/supported-protocols.page:87
+#: C/supported-protocols.page:86
 msgid ""
-"<app>VNC</app>, Virtual Network Computing, used only for remote display, is "
-"a well know protocol but quite limited and slow."
+"<app>VNC</app>, Virtual Network Computing, used as fallback when SPICE is "
+"not available, is a well know protocol but quite limited and slow."
 msgstr ""
-"<app>VNC</app> (Virtual Network Computing), utilisé seulement pour "
-"l’affichage distant, est un protocole bien connu, mais plutôt limité et lent."
+"<app>VNC</app> (Virtual Network Computing), utilisé comme alternative si "
+"SPICE n’est pas disponible, est un protocole bien connu, mais plutôt limité "
+"et lent."
 
 #. (itstool) path: credit/name
 #: C/system-requirements.page:21
@@ -1613,13 +1577,13 @@ msgstr "20 Go d’espace de stockage maximum."
 msgid ""
 "This does not mean that <app>Boxes</app> will allocate 20 GB of space when "
 "creating the virtual machine. The actual disk space used by <app>Boxes</app> "
-"will be less than (or in worst case, equal to) the disk space used by the "
-"virtual machine itself."
+"will be less than (or in the worst case, equal to) the disk space used by "
+"the virtual machine itself."
 msgstr ""
 "Cela ne signifie pas que <app>Machines</app> allouera 20 Go d’espace lors de "
-"la création de la machine virtuelle. L’espace disque effectivement utilisé "
-"par <app>Machines</app> sera inférieur (ou au pire égal) à l’espace disque "
-"utilisé par la machine virtuelle elle-même."
+"la création de la machine virtuelle. L’espace disque réellement utilisé par "
+"<app>Machines</app> sera celui utilisé par la machine virtuelle elle-même, "
+"et il sera donc inférieur (ou au pire égal) à l’espace disque programmé."
 
 #. (itstool) path: item/p
 #: C/system-requirements.page:56
@@ -1662,16 +1626,16 @@ msgstr "Redirection USB"
 msgid ""
 "<sys>USB</sys> is a universal hardware bus protocol used to plug any kind of "
 "device into your computer. <sys>USB redirection</sys> makes devices plugged "
-"into your local computer available in the machines you are connected to in "
-"<app>Boxes</app>. For instance, a USB flash drive or a webcam will appear as "
-"directly connected to the remote or virtual computer."
+"into your local computer available in the machines running in <app>Boxes</"
+"app>. For instance, a USB flash drive or a webcam will appear as directly "
+"connected to the virtual computer."
 msgstr ""
 "<sys>USB</sys> est un protocole de bus matériel universel utilisé pour le "
 "branchement de toutes sortes de périphériques sur votre ordinateur local. La "
-"<sys>redirection USB</sys> rend les périphériques branchés sur votre "
-"ordinateur local accessibles aux machines auxquelles vous êtes connecté par "
-"<app>Machines</app>. Par exemple, un disque flash USB ou une webcam "
-"apparaîtra comme directement connecté à l’ordinateur distant ou virtuel."
+"<sys>redirection USB</sys> rend les périphériques branchés à votre "
+"ordinateur local accessibles aux machines fonctionnant dans <app>Machines</"
+"app>. Par exemple, un disque flash USB ou une webcam apparaîtra comme "
+"directement connecté à l’ordinateur virtuel."
 
 #. (itstool) path: steps/title
 #: C/usb-redirection.page:44
@@ -1684,19 +1648,25 @@ msgid "Make sure the box is running."
 msgstr "Assurez-vous que la machine est en cours d’exécution."
 
 #. (itstool) path: item/p
-#: C/usb-redirection.page:50
-msgid "Click the <gui>Devices</gui> tab."
-msgstr "Cliquez sur l’onglet <gui>Périphériques</gui>."
+#: C/usb-redirection.page:46
+msgid ""
+"Right-click the box in the collection view and select <gui>Preferences</"
+"gui>, or click the menu (<_:media-1/>) button in the header bar and select "
+"<gui>Preferences</gui>."
+msgstr ""
+"Faites un clic droit sur la machine dans la fenêtre de collection et "
+"sélectionnez <gui>Préférences</gui>, ou cliquez sur le bouton menu (<_:"
+"media-1/>) dans la barre d’en-tête, puis sélectionnez <gui>Préférences</gui>."
 
 #. (itstool) path: item/p
 #: C/usb-redirection.page:51
 msgid ""
-"<gui>USB devices</gui> connected to the host machine are shown in a list. "
+"<gui>USB Devices</gui> connected to the host machine are shown in a list. "
 "Set the switch next to each desired device to <gui style=\"switch\">ON</gui>."
 msgstr ""
 "Les <gui>périphériques USB</gui> connectés à la machine hôte sont affichés "
-"dans une liste. Basculez l’interrupteur proche de chaque périphérique désiré "
-"sur <gui style=\"switch\">Activé</gui>."
+"dans une liste. Basculez l’interrupteur de chaque périphérique désiré sur "
+"<gui style=\"switch\">Activé</gui>."
 
 #. (itstool) path: credit/name
 #: C/virtualization.page:15
@@ -1852,6 +1822,200 @@ msgstr ""
 "Windows™ sous Linux. Une machine virtuelle peut aussi être utilisée lors du "
 "développement de logiciels, pour les tester dans un environnement spécifique."
 
+#~ msgid ""
+#~ "In case the virtual machine for which 3D Acceleration has just been "
+#~ "enabled is already running, then, Boxes will show a notification asking "
+#~ "to restart the running virtual machine."
+#~ msgstr ""
+#~ "Dans le cas où la machine virtuelle pour laquelle l’accélération 3D vient "
+#~ "juste d’être activée est déjà en fonctionnement, Machines affiche alors "
+#~ "une notification demandant le redémarrage de la machine virtuelle en "
+#~ "fonctionnement."
+
+#~ msgid ""
+#~ "At the wizard's <gui>Source Selection</gui> screen, choose a source to "
+#~ "determine the type of box you want to create. A local virtual machine can "
+#~ "be created from:"
+#~ msgstr ""
+#~ "Dans l’écran <gui>Sélection de la source</gui> de l’assistant, choisissez "
+#~ "une source pour définir le type de machine à créer. Une machine virtuelle "
+#~ "locale peut être créée à partir :"
+
+#~ msgid "An ISO found by <app>Boxes</app>."
+#~ msgstr "d’un fichier ISO trouvé par <app>Machines</app>,"
+
+#~ msgid ""
+#~ "After making your selection, or providing the necessary information, "
+#~ "click <gui style=\"button\">Next</gui>, which will take you to the "
+#~ "<gui>Review</gui> page."
+#~ msgstr ""
+#~ "Après avoir fait votre sélection, ou après avoir fourni les informations "
+#~ "nécessaires, cliquez sur <gui style=\"button\">Continuer</gui>, ce qui "
+#~ "vous mènera sur la page <gui>Résumé</gui>."
+
+#~ msgid ""
+#~ "If the box is local, click <gui style=\"button\">Customize</gui> to "
+#~ "adjust memory or disk size, or to rename the box."
+#~ msgstr ""
+#~ "Si la machine est locale, cliquez sur <gui style=\"button"
+#~ "\">Personnaliser</gui> pour ajuster la quantité de mémoire allouée, la "
+#~ "taille du disque, ou pour renommer la machine."
+
+#~ msgid ""
+#~ "<link xref=\"interface#selection\">Selection mode</link> opens. Click "
+#~ "additional boxes to select them for deletion."
+#~ msgstr ""
+#~ "La boîte de dialogue <link xref=\"interface#selection\">Mode de "
+#~ "sélection</link> s’ouvre. Sélectionnez les machines à supprimer."
+
+#~ msgid "Click the <key>X</key> to confirm."
+#~ msgstr "Cliquez sur <key>X</key> pour confirmer."
+
+#~ msgid "Click the <gui>System</gui> tab."
+#~ msgstr "Cliquez sur l’onglet <gui>Système</gui>."
+
+#~ msgid ""
+#~ "Learn to set up local virtual machines and to connect to remote virtual "
+#~ "machines. You can also use <app>Boxes</app> to connect to remote desktops."
+#~ msgstr ""
+#~ "Apprendre à configurer des machines virtuelles locales et à se connecter "
+#~ "à des machines virtuelles distantes. Vous pouvez aussi utiliser "
+#~ "<app>Machines</app> pour vous connecter à des ordinateurs distants."
+
+#~ msgid "Properties"
+#~ msgstr "Propriétés"
+
+#~ msgid ""
+#~ "Click the checkmark button in the header bar to enter selection mode."
+#~ msgstr ""
+#~ "cocher la case dans la barre d’en-tête afin de passer en mode sélection,"
+
+#~ msgid "The wizard"
+#~ msgstr "L’assistant"
+
+#~ msgid "Selection mode"
+#~ msgstr "Mode sélection"
+
+#~ msgid ""
+#~ "In collection view, clicking the checkmark button or right-clicking a "
+#~ "thumbnail puts you in <em>selection mode</em>, where various operations "
+#~ "can be performed on boxes, individually or in groups. You can:"
+#~ msgstr ""
+#~ "Dans la fenêtre de collection, cocher la case ou cliquer droit sur une "
+#~ "miniature vous fait passer en <em>mode sélection</em>, où diverses "
+#~ "opérations sur les machines sont possibles, individuellement ou en "
+#~ "groupes. Vous pouvez alors :"
+
+#~ msgid "<link xref=\"delete\">Delete</link> a box or boxes."
+#~ msgstr "<link xref=\"delete\">supprimer</link> une ou plusieurs machines,"
+
+#~ msgid "Mark a box or boxes as favorites."
+#~ msgstr "marquer une ou plusieurs machines comme favorites,"
+
+#~ msgid "Pause a box."
+#~ msgstr "mettre une machine en pause,"
+
+#~ msgid "Open a box in a new window."
+#~ msgstr "ouvrir une machine dans une nouvelle fenêtre."
+
+#~ msgid ""
+#~ "<gui>General</gui>: displays the box <gui>Name</gui> and <gui>Broker</"
+#~ "gui> or virtualizer being used (such as <em>QEMU</em>). For a remote box, "
+#~ "this tab also displays the <gui>Protocol</gui> (such as <em>VNC</em>), "
+#~ "and the <gui>URL</gui> to be used for remote access. The <gui>3D "
+#~ "Acceleration</gui> switch also appears here."
+#~ msgstr ""
+#~ "<gui>Général</gui> : affiche la boîte <gui>Nom</gui> et <gui>Fournisseur</"
+#~ "gui> ou le dispositif de virtualisation utilisé (par exemple <em>QEMU</"
+#~ "em>). Dans le cas d’une machine distante, cet onglet affiche aussi le "
+#~ "<gui>Protocole</gui> (par exemple <em>VNC</em>), et l’<gui>URL</gui> à "
+#~ "employer pour les accès distants. L’interrupteur <gui>Accélération 3D</"
+#~ "gui> apparaît également dans cet onglet."
+
+#~ msgid ""
+#~ "<gui>System</gui> settings: shows running graphs of CPU, disk I/O and "
+#~ "network activity. <gui>Memory</gui> and <gui>Maximum Disk Size</gui> "
+#~ "sliders can be adjusted, and the <gui>Troubleshooting Log</gui> can be "
+#~ "viewed. The <gui style=\"button\">Force Shutdown</gui> button, which "
+#~ "enables you to <link xref=\"shutdown\">force a box to shut down</link>, "
+#~ "the <gui style=\"button\">Restart</gui> button, and the <gui>Run in "
+#~ "background</gui> switch are on this tab."
+#~ msgstr ""
+#~ "<gui>Système</gui> : affiche les graphiques actuels de l’activité du "
+#~ "processeur, les E/S du disque et du réseau. Les curseurs <gui>Mémoire</"
+#~ "gui> et <gui>Taille maximum du disque</gui> sont ajustables, et le "
+#~ "<gui>Journal de dépannage</gui> est visualisable. Sont aussi visibles sur "
+#~ "cet onglet : le bouton <gui style=\"button\">Forcer l’arrêt</gui>, qui "
+#~ "vous permet de <link xref=\"shutdown\">forcer une machine à s’éteindre</"
+#~ "link>, le bouton <gui style=\"button\">Redémarrer</gui>, et "
+#~ "l’interrupteur <gui>Exécution en arrière-plan</gui>."
+
+#~ msgid ""
+#~ "<gui>Devices &amp; Shares</gui>: the <gui style=\"button\">Select</gui> "
+#~ "button allows you to specify the path to a CD/DVD device or ISO. The <gui "
+#~ "style=\"button\">Remove</gui> button disconnects it. When the box is "
+#~ "running, the USB devices connected to the host system are listed, and "
+#~ "each can be controlled with an <gui>ON | OFF</gui> switch. <link xref="
+#~ "\"shared-folders\">Shared Folders</link> between host and guest can be "
+#~ "set for running machines which support spice-webdavd."
+#~ msgstr ""
+#~ "<gui>Périphériques et partages</gui> : le bouton <gui style=\"button"
+#~ "\">Sélectionner</gui> vous permet de spécifier le chemin vers un "
+#~ "périphérique CD/DVD ou ISO. Le bouton <gui style=\"button\">Retirer</gui> "
+#~ "le déconnecte. Lorsque la machine est en cours d’exécution, les "
+#~ "périphériques USB connectés au système hôte sont listés, et chacun est "
+#~ "contrôlable via un interrupteur <gui>ON | OFF</gui>. Les <link xref="
+#~ "\"shared-folders\">Dossiers partagés</link> entre l’hôte et l’invité "
+#~ "peuvent être paramétrés pour les machines sur lesquelles spice-webdavd "
+#~ "peut être installé."
+
+#~ msgid ""
+#~ "The properties view can also be accessed using the wizard's <gui style="
+#~ "\"button\">Customize</gui> button during local box setup. If the box is "
+#~ "running, click the menu (<_:media-1/>) button in the header bar and "
+#~ "select <gui>Properties</gui>."
+#~ msgstr ""
+#~ "La fenêtre des propriétés est aussi accessible par le bouton <gui style="
+#~ "\"button\">Personnaliser</gui> de l’assistant d’installation durant le "
+#~ "paramétrage d’une machine locale. Si la machine est en cours de "
+#~ "fonctionnement, cliquez sur le bouton (<_:media-1/>) situé dans la barre "
+#~ "d’en-tête, puis sélectionnez <gui>Propriétés</gui>."
+
+#~ msgid "Make sure your virtual machine is running."
+#~ msgstr "Assurez-vous que votre machine virtuelle est en cours d’exécution."
+
+#~ msgid ""
+#~ "Open the <link xref=\"interface#properties\">properties view</link> for "
+#~ "the box. If the box is running, click the menu (<_:media-1/>) button in "
+#~ "the header bar and select <gui>Properties</gui>."
+#~ msgstr ""
+#~ "Ouvrez la <link xref=\"interface#properties\">fenêtre des propriétés</"
+#~ "link> de la machine. Si la machine est ouverte, cliquez sur le bouton "
+#~ "menu (<_:media-1/>) dans la barre d’en-tête afin de sélectionner <gui "
+#~ "style=\"button\">Propriétés</gui>."
+
+#~ msgid "Click the gear button on the right and select <gui>Delete</gui>."
+#~ msgstr ""
+#~ "Cliquez sur le bouton engrenage situé à droite, puis choisissez "
+#~ "<gui>Effacer</gui>."
+
+#~ msgid "From the list, select the snapshot to be renamed."
+#~ msgstr "Depuis la liste, sélectionnez l’instantané à renommer."
+
+#~ msgid ""
+#~ "Click the gear button on the right and select <gui>Revert to this state</"
+#~ "gui>."
+#~ msgstr ""
+#~ "Cliquez sur le bouton engrenage situé à droite, puis sélectionnez "
+#~ "<gui>Revenir à cet état</gui>."
+
+#~ msgid ""
+#~ "Changes made to the virtual machine since the snapshot was saved are "
+#~ "discarded."
+#~ msgstr ""
+#~ "Les modifications apportées à la machine virtuelle depuis "
+#~ "l’enregistrement de l’instantané sont ignorées."
+
 #~ msgctxt "_"
 #~ msgid ""
 #~ "external ref='figures/open-menu-symbolic.svg' "
@@ -1986,9 +2150,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Cliquez sur <gui style=\"button\">Continuer</gui> dans le coin en haut à "
 #~ "droite."
-
-#~ msgid "The remote box will open in the collection view."
-#~ msgstr "La machine distante s’ouvre dans la fenêtre de collection."
 
 #~ msgid "A URL to a <link xref=\"connect\">remote</link> machine."
 #~ msgstr "d’un URL vers une machine <link xref=\"connect\">distante</link>."
